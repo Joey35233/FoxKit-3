@@ -13,11 +13,11 @@ namespace FoxKit.Editor.Workflows.GetStarted
         [MenuItem("FoxKit/Debug/Get Started")]
         private static void Init()
         {
-            ShowExample();
+            ShowEditor();
         }
 #endif
 
-        public static void ShowExample()
+        public static void ShowEditor()
         {
             GetStartedEditorWindow window = GetWindow<GetStartedEditorWindow>();
             window.titleContent = new GUIContent("Get Started!");
