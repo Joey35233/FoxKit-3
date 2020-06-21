@@ -6,7 +6,7 @@ using UnityEngine;
 
 using GraphProcessor;
 
-[System.Serializable, NodeMenuItem("Vector/FxCompositionVectorNode")]
+[System.Serializable, NodeMenuItem("Vector/Composition")]
 public class FxCompositionVectorNode : BaseNode
 {
 	[Input(name = "Input0")]
@@ -29,5 +29,5 @@ public class FxCompositionVectorNode : BaseNode
 	[SerializeField]
 	public bool SecondMaskZ;
 
-	public override string name => "FxCompositionVectorNode";
+	public override string name => "Composition";
 }
