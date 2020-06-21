@@ -6,11 +6,11 @@ using UnityEngine;
 
 using GraphProcessor;
 
-[System.Serializable, NodeMenuItem("Color/Color")]
+[System.Serializable, NodeMenuItem("Color/FxColorVectorNode")]
 public class FxColorVectorNode : BaseNode
 {
 	[Output(name = "Color"), SerializeField]
-	public Color color;
+	public Color Color;
 
-	public override string name => "Color";
+	public override string name => "FxColorVectorNode";
 }
