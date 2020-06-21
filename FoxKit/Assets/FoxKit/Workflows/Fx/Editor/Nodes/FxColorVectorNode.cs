@@ -1,18 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+
 using UnityEngine;
 
-public class FxConstLifeNode : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+using GraphProcessor;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+[System.Serializable, NodeMenuItem("Color/Color")]
+public class FxColorVectorNode : BaseNode
+{
+	[Output(name = "Color"), SerializeField]
+	public Color color;
+
+	public override string name => "Color";
 }
