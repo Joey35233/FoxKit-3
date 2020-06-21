@@ -6,7 +6,7 @@ using UnityEngine;
 
 using GraphProcessor;
 
-[System.Serializable, NodeMenuItem("Vector/PlaneRot")]
+[System.Serializable, NodeMenuItem("Shape/PlaneRot")]
 public class FxPlaneRotShapeNode : BaseNode
 {
 	[Input(name = "Input0")]
