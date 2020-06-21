@@ -6,7 +6,7 @@ using UnityEngine;
 
 using GraphProcessor;
 
-[System.Serializable, NodeMenuItem("Material/FxLightInfluenceMaterialNode")]
+[System.Serializable, NodeMenuItem("Material/LightInfluence")]
 public class FxLightInfluenceMaterialNode : BaseNode
 {
 	[Output(name = "Output0")]
@@ -49,5 +49,5 @@ public class FxLightInfluenceMaterialNode : BaseNode
     [SerializeField]
     string TextureFile;
 
-    public override string name => "FxLightInfluenceMaterialNode";
+    public override string name => "LightInfluence";
 }

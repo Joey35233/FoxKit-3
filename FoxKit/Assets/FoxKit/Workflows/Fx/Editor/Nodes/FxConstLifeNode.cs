@@ -6,7 +6,7 @@ using UnityEngine;
 
 using GraphProcessor;
 
-[System.Serializable, NodeMenuItem("Life/FxConstLifeNode")]
+[System.Serializable, NodeMenuItem("Life/Life")]
 public class FxConstLifeNode : BaseNode
 {
 	[Output(name = "Output0")]
@@ -15,5 +15,5 @@ public class FxConstLifeNode : BaseNode
 	[SerializeField]
 	public uint LifeFrame;
 
-	public override string name => "FxConstLifeNode";
+	public override string name => "Life";
 }

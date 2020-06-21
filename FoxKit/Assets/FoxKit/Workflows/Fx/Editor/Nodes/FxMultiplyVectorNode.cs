@@ -6,7 +6,7 @@ using UnityEngine;
 
 using GraphProcessor;
 
-[System.Serializable, NodeMenuItem("Vector/FxMultiplyVectorNode")]
+[System.Serializable, NodeMenuItem("Vector/x")]
 public class FxMultiplyVectorNode : BaseNode
 {
 	[Input(name = "Input0")]
@@ -29,5 +29,5 @@ public class FxMultiplyVectorNode : BaseNode
 	[SerializeField]
 	public bool SecondMaskZ;
 
-	public override string name => "FxMultiplyVectorNode";
+	public override string name => "x";
 }

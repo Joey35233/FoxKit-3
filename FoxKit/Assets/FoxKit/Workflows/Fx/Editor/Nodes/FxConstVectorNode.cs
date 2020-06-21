@@ -13,7 +13,7 @@ public enum FxVectorType
 	Color = 2,
 }
 
-[System.Serializable, NodeMenuItem("Vector/FxConstVectorNode")]
+[System.Serializable, NodeMenuItem("Vector/Constant")]
 public class FxConstVectorNode : BaseNode
 {
 	[Output(name = "Output0")]
@@ -28,5 +28,5 @@ public class FxConstVectorNode : BaseNode
 	[SerializeField]
 	public FxVectorType VectorType;
 
-	public override string name => "FxConstVectorNode";
+	public override string name => "Constant";
 }

@@ -64,7 +64,7 @@ public class FxPlaneRotShapeNode : BaseNode
 	public bool CullFace;
 
 	[SerializeField]
-	public bool Enable;
+	public new bool Enable;
 
 	[SerializeField]
 	public bool LocalSpace;
