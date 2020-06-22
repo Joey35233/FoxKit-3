@@ -6,48 +6,68 @@ using UnityEngine;
 
 using GraphProcessor;
 
-[System.Serializable, NodeMenuItem("Material/LightInfluence")]
-public class FxLightInfluenceMaterialNode : BaseNode
+namespace FoxKit.Fx.Editor.Nodes
 {
-	[Output(name = "Output0")]
-	public float Output0;
+    [System.Serializable, NodeMenuItem("Material/LightInfluence")]
+    public class FxLightInfluenceMaterialNode : BaseNode
+    {
+        [Output(name = "Output0")]
+        public float Output0;
 
-    [SerializeField]
-    float AmbientRate;
-    [SerializeField]
-    float CameraFadeInFar;
-    [SerializeField]
-    float CameraFadeInNear;
-    [SerializeField]
-    float CameraZOffset;
-    [SerializeField]
-    float DirectionalLightRate;
-    [SerializeField]
-    bool Opaque;
-    [SerializeField]
-    float PointLightRate;
-    [SerializeField]
-    bool ReceiveShadowMap;
-    [SerializeField]
-    int ShaderType;
-    [SerializeField]
-    bool SoftBlend;
-    [SerializeField]
-    float SoftBlendFactor;
-    [SerializeField]
-    bool TextureAnimeBlend;
-    [SerializeField]
-    float TextureAnimeBlendFrame;
-    [SerializeField]
-    uint TextureAnimeBlendHeight;
-    [SerializeField]
-    uint TextureAnimeBlendWidth;
-    [SerializeField]
-    bool TextureAnimeClamp;
-    [SerializeField]
-    bool TextureAnimeRandomStart;
-    [SerializeField]
-    string TextureFile;
+        [SerializeField]
+        float AmbientRate;
 
-    public override string name => "LightInfluence";
+        [SerializeField]
+        float CameraFadeInFar;
+
+        [SerializeField]
+        float CameraFadeInNear;
+
+        [SerializeField]
+        float CameraZOffset;
+
+        [SerializeField]
+        float DirectionalLightRate;
+
+        [SerializeField]
+        bool Opaque;
+
+        [SerializeField]
+        float PointLightRate;
+
+        [SerializeField]
+        bool ReceiveShadowMap;
+
+        [SerializeField]
+        int ShaderType;
+
+        [SerializeField]
+        bool SoftBlend;
+
+        [SerializeField]
+        float SoftBlendFactor;
+
+        [SerializeField]
+        bool TextureAnimeBlend;
+
+        [SerializeField]
+        float TextureAnimeBlendFrame;
+
+        [SerializeField]
+        uint TextureAnimeBlendHeight;
+
+        [SerializeField]
+        uint TextureAnimeBlendWidth;
+
+        [SerializeField]
+        bool TextureAnimeClamp;
+
+        [SerializeField]
+        bool TextureAnimeRandomStart;
+
+        [SerializeField]
+        string TextureFile;
+
+        public override string name => "LightInfluence";
+    }
 }

@@ -6,18 +6,23 @@ using UnityEngine;
 
 using GraphProcessor;
 
-[System.Serializable, NodeMenuItem("Time/FxDragTimeVectorNode")]
-public class FxDragTimeVectorNode : BaseNode
+namespace FoxKit.Fx.Editor.Nodes
 {
-	[Output(name = "Output0")]
-	public float Output0;
+	[System.Serializable, NodeMenuItem("Time/FxDragTimeVectorNode")]
+	public class FxDragTimeVectorNode : BaseNode
+	{
+		[Output(name = "Output0")]
+		public float Output0;
 
-	[SerializeField]
-	public float Drag;
-	[SerializeField]
-	public int Method;
-	[SerializeField]
-	public float Scale;
+		[SerializeField]
+		public float Drag;
 
-	public override string name => "FxDragTimeVectorNode";
+		[SerializeField]
+		public int Method;
+
+		[SerializeField]
+		public float Scale;
+
+		public override string name => "FxDragTimeVectorNode";
+	}
 }

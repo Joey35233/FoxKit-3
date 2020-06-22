@@ -6,14 +6,17 @@ using UnityEngine;
 
 using GraphProcessor;
 
-[System.Serializable, NodeMenuItem("Life/Life")]
-public class FxConstLifeNode : BaseNode
+namespace FoxKit.Fx.Editor.Nodes
 {
-	[Output(name = "Output0")]
-	public float Output0;
+	[System.Serializable, NodeMenuItem("Life/Life")]
+	public class FxConstLifeNode : BaseNode
+	{
+		[Output(name = "Output0")]
+		public float Output0;
 
-	[SerializeField]
-	public uint LifeFrame;
+		[SerializeField]
+		public uint LifeFrame;
 
-	public override string name => "Life";
+		public override string name => "Life";
+	}
 }

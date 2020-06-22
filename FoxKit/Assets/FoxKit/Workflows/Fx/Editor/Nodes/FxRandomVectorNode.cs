@@ -6,38 +6,41 @@ using UnityEngine;
 
 using GraphProcessor;
 
-[System.Serializable, NodeMenuItem("Vector/Random")]
-public class FxRandomVectorNode : BaseNode
+namespace FoxKit.Fx.Editor.Nodes
 {
-	[Output(name = "Output0")]
-	public float Output0;
+	[System.Serializable, NodeMenuItem("Vector/Random")]
+	public class FxRandomVectorNode : BaseNode
+	{
+		[Output(name = "Output0")]
+		public float Output0;
 
-	[SerializeField]
-	public float Force;
+		[SerializeField]
+		public float Force;
 
-	[SerializeField]
-	public bool Global;
+		[SerializeField]
+		public bool Global;
 
-	[SerializeField]
-	public bool GlobalEvaluateRealTimeRootRotate;
+		[SerializeField]
+		public bool GlobalEvaluateRealTimeRootRotate;
 
-	[SerializeField]
-	public uint RandomGatherSeedValue;
+		[SerializeField]
+		public uint RandomGatherSeedValue;
 
-	[SerializeField]
-	public int RandomGatherType;
+		[SerializeField]
+		public int RandomGatherType;
 
-	[SerializeField]
-	public Vector4 RandomMax;
+		[SerializeField]
+		public Vector4 RandomMax;
 
-	[SerializeField]
-	public Vector4 RandomMin;
+		[SerializeField]
+		public Vector4 RandomMin;
 
-	[SerializeField]
-	public int VectorType;
+		[SerializeField]
+		public int VectorType;
 
-	[SerializeField]
-	public bool XySquere;
+		[SerializeField]
+		public bool XySquere;
 
-	public override string name => "Random";
+		public override string name => "Random";
+	}
 }

@@ -6,17 +6,20 @@ using UnityEngine;
 
 using GraphProcessor;
 
-[System.Serializable, NodeMenuItem("Vector/UniformVelocityTime")]
-public class FxUniformVelocityTimeVectorNode : BaseNode
+namespace FoxKit.Fx.Editor.Nodes
 {
-	[Input(name = "Input0")]
-	public float Input0;
+	[System.Serializable, NodeMenuItem("Vector/UniformVelocityTime")]
+	public class FxUniformVelocityTimeVectorNode : BaseNode
+	{
+		[Input(name = "Input0")]
+		public float Input0;
 
-	[Input(name = "Input1")]
-	public float Input1;
+		[Input(name = "Input1")]
+		public float Input1;
 
-	[Output(name = "Output0")]
-	public float Output0;
+		[Output(name = "Output0")]
+		public float Output0;
 
-	public override string name => "UniformVelocityTime";
+		public override string name => "UniformVelocityTime";
+	}
 }

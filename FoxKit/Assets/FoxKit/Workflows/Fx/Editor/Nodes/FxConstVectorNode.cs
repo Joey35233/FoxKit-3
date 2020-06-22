@@ -6,27 +6,26 @@ using UnityEngine;
 
 using GraphProcessor;
 
-public enum FxVectorType
+namespace FoxKit.Fx.Editor.Nodes
 {
-	Vector = 0,
-	Rotates = 1,
-	Color = 2,
-}
+	[System.Serializable, NodeMenuItem("Vector/Constant")]
+	public class FxConstVectorNode : BaseNode
+	{
+		[Output(name = "Output0")]
+		public Vector4 Output0;
 
-[System.Serializable, NodeMenuItem("Vector/Constant")]
-public class FxConstVectorNode : BaseNode
-{
-	[Output(name = "Output0")]
-	public Vector4 Output0;
+		[SerializeField]
+		public uint Force;
 
-	[SerializeField]
-	public uint Force;
-	[SerializeField]
-	public bool Global;
-	[SerializeField]
-	public Vector4 Vector;
-	[SerializeField]
-	public FxVectorType VectorType;
+		[SerializeField]
+		public bool Global;
 
-	public override string name => "Constant";
+		[SerializeField]
+		public Vector4 Vector;
+
+		[SerializeField]
+		public FxVectorType VectorType;
+
+		public override string name => "Constant";
+	}
 }

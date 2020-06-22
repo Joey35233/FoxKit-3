@@ -8,7 +8,7 @@ using UnityEditor;
 
 using GraphProcessor;
 	
-namespace FoxKit.Editor.Workflows.Fx
+namespace FoxKit.Fx.Editor
 {
 	public class FxModuleGraphEditor : BaseGraphWindow
 	{
