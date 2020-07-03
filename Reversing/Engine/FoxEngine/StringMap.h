@@ -32,11 +32,12 @@ namespace fox
 		};
 
 		void* vfptr;
-		uint unknown; // pading for 8-byte alignment?
+		uint unknown;
 		uint count;
 		uint capacity;
 		Cell** cells;
 		Cell* smUnknown0;
 		Cell* smUnknown1;
+		uint test; // StringMap is 48 bytes. Missing 4 otherwise, but this specific variable order actually means the struct won't comply with alignment rules (cells, smUnknown0, and smUnknown1) cross alignment boundaries.
 	};
 }
