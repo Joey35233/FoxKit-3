@@ -25,17 +25,18 @@ namespace fox
 		struct Cell
 		{
 			String* key;
-			Cell* firstCell;
-			Cell* unknown;
-			Cell* nextCell;
+			Cell* cUnknown0;
+			Cell* cUnknown1;
+			Cell* cUnknown2;
 			T value;
 		};
 
 		void* vfptr;
-		uint unknown;
+		uint unknown; // pading for 8-byte alignment?
 		uint count;
 		uint capacity;
 		Cell** cells;
-		Cell firstCell;
+		Cell* smUnknown0;
+		Cell* smUnknown1;
 	};
 }
