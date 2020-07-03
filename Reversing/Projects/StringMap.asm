@@ -94,15 +94,15 @@ str        r0, [r4,#0xc ]                        ; store r0_pIndexedCell in r4_p
 ldr.w      r0, [r8,#0x0 ]                        ; load r8_pValue {r8} into uint r0_value
 str        r0, [r4,#0x10 ]                       ; store r0_value in r4_pNewCell->value {r4_pNewCell + 0x10}
 ldr.w      r0, [r10 ,#0x10 ]                     ; load Cell** this->cells {r10_this + 0x10} into r0_ppCells
-str.w      r4,[  r0, r9,lsl #  0x2 ]             ; load r0_ppCells[r9_idx] {r0_ppCells + r9_idx << 2} into r4_pIndexedCell
+str.w      r4,[  r0, r9,lsl #  0x2 ]             ; store r4_pNewCell into r0_ppCells[r9_idx] {r0_ppCells + r9_idx << 2}
 add.w      r0, r10 , #0x14                       ; copy &r10_this->smUnknown0 {r10_this + 0x14} to r0_ppSmUnknown0 @ NOTE: This "pointer retargeting" definitely suggests that it's some sort of inline struct
-str        r0, [r4,#0x8 ]                        ; store r0_ppSmUnknown0 in r4_pIndexedCell->pCUnknown1 {r4_pIndexedCell + 0x8}
+str        r0, [r4,#0x8 ]                        ; store r0_ppSmUnknown0 in r4_pNewCell->pCUnknown1 {r4_pNewCell + 0x8}
 ldr.w      r0, [r10 ,#0x18 ]                     ; load r10_this->smUnknown1 {r10_this + 0x18} to r0_pSmUnknown1
-str        r0, [r4,#0x4 ]                        ; store r0_pSmUnknown1 in r4_pIndexedCell->pCUnknown0 {r4_pIndexedCell + 0x4}
+str        r0, [r4,#0x4 ]                        ; store r0_pSmUnknown1 in r4_pNewCell->pCUnknown0 {r4_pNewCell + 0x4}
 ldr.w      r0, [r10 ,#0x18 ]                     ; load r10_this->smUnknown1 {r10_this + 0x18} to r0_pSmUnknown1
-str        r4, [r0,#0x8 ]                        ; store r4_pIndexedCell in r0_pSmUnknown1
+str        r4, [r0,#0x8 ]                        ; store r4_pNewCell in r0_pSmUnknown1
 ldr.w      r0, [r10 ,#0x8 ]                      ; load r10_this->count {r10_this + 0x8} to r0_count
-str.w      r4, [r10 ,#0x18 ]                     ; store r4_pIndexedCell in r10_this->smUnknown1 {r10_this + 0x18}
+str.w      r4, [r10 ,#0x18 ]                     ; store r4_pNewCell in r10_this->smUnknown1 {r10_this + 0x18}
 add        r0, #0x1                              ; copy r0_count + 1 to r0_newCount
 str.w      r0, [r10 ,#0x8 ]                      ; store r0_newCount in r10_this->count {r10_this + 0x8}
 add        sp, #0x10                             ; stack stuff
