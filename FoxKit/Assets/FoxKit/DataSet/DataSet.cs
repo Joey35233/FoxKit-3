@@ -11,12 +11,5 @@ namespace FoxKit.DataSet
         {
 
         }
-
-        public DataSet(byte[] data)
-        {
-            Data = data;
-        }
-
-        private byte[] Data;
     }
 }

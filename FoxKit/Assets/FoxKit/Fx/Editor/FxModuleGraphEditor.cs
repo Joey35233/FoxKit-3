@@ -25,6 +25,8 @@ namespace FoxKit.Fx.Editor
 		[MenuItem("FoxKit/Debug/FxModuleGraph")]
 		public static BaseGraphWindow ShowEditor()
 		{
+			var test = new Fox.String("test");
+
 			var graphWindow = CreateWindow<FxModuleGraphEditor>();
 
 			// When the graph is opened from the window, we don't save the graph to disk
