@@ -8,13 +8,13 @@ namespace Fox
     /// </summary>
     /// <typeparam name="T">The type of the referenced file.</typeparam>
     [Serializable]
-    public readonly struct FilePtr<T> : System.IEquatable<FilePtr<T>> where T : File
+    public struct FilePtr<T> : System.IEquatable<FilePtr<T>> where T : File
     {
         /// <summary>
         /// The referenced file.
         /// </summary>
         [SerializeField]
-        private readonly T file;
+        private T file;
 
         public FilePtr(T file) => this.file = file;
 

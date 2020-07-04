@@ -1,17 +1,19 @@
 namespace Fox
 {
     using System;
+    using UnityEngine;
 
     /// <summary>
     /// Stores a shared reference to an Entity.
     /// </summary>
     [Serializable]
-    public readonly struct EntityHandle : System.IEquatable<EntityHandle>
+    public struct EntityHandle : System.IEquatable<EntityHandle>
     {
         /// <summary>
         /// The referenced Entity.
         /// </summary>
-        public Entity Entity { get; }
+        [SerializeField]
+        private Entity Entity;
 
         private EntityHandle(Entity entity) => this.Entity = entity;
 

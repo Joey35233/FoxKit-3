@@ -1,6 +1,7 @@
 namespace Fox
 {
     using System;
+    using UnityEngine;
 
     /// <summary>
     /// Stores a typed reference to an Entity.
@@ -12,7 +13,8 @@ namespace Fox
         /// <summary>
         /// The referenced Entity.
         /// </summary>
-        public T Entity;
+        [SerializeField]
+        private T Entity;
 
         private EntityPtr(T entity) => this.Entity = entity;
 

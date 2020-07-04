@@ -7,31 +7,31 @@ namespace Fox
     /// Stores a reference to an Entity.
     /// </summary>
     [Serializable]
-    public readonly struct EntityLink : System.IEquatable<EntityLink>
+    public struct EntityLink : System.IEquatable<EntityLink>
     {
         /// <summary>
         /// The referenced Entity.
         /// </summary>
         [SerializeField]
-        private readonly EntityHandle handle;
+        private EntityHandle handle;
 
         /// <summary>
         /// Path to the referenced Entity's containing package.
         /// </summary>
         [SerializeField]
-        private readonly Fox.Path packagePath;
+        private Fox.Path packagePath;
 
         /// <summary>
         /// Path to the referenced Entity's containing DataSetFile2.
         /// </summary>
         [SerializeField]
-        private readonly Fox.Path archivePath;
+        private Fox.Path archivePath;
 
         /// <summary>
         /// The referenced Entity.
         /// </summary>
         [SerializeField]
-        private readonly Fox.String nameInArchive;
+        private Fox.String nameInArchive;
 
         public EntityLink(Entity entity, Fox.Path packagePath, Fox.Path archivePath, Fox.String nameInArchive)
         {
