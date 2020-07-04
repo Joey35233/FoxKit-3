@@ -2,7 +2,9 @@ namespace Fox
 {
     using System;
     using System.Collections.Generic;
+    using System.IO;
     using UnityEngine;
+    using UnityEditor;
     using FoxKit;
 
     public enum LocatorBinaryType
@@ -20,6 +22,60 @@ namespace Fox
         private const int HeaderSize = 15;
         private const int UnscaledLocatorSize = sizeof(float) * 4 * 2;
         private const int ScaledLocatorSize = UnscaledLocatorSize + (sizeof(float) * 3) + (sizeof(ushort) * 2);
+
+        [UnityEditor.MenuItem("FoxKit/Debug/LBA/Import LBA")]
+        public static void Import()
+        {
+            var assetPath = UnityEditor.EditorUtility.OpenFilePanel("Import asset", string.Empty, "lba");
+            if (string.IsNullOrEmpty(assetPath))
+            {
+                return;
+            }
+
+            var fileContent = File.ReadAllBytes(assetPath);
+            var loader = new LocatorFileReader(fileContent);
+            var type = loader.ReadType();
+
+            switch (type)
+            {
+                case LocatorBinaryType.PowerCutArea:
+                    {
+                        var locators = loader.ReadPowerCutAreaLocators();
+                        var asset = ScriptableObject.CreateInstance<PowerCutAreaLocatorBinaryArrayAsset>() as PowerCutAreaLocatorBinaryArrayAsset;
+
+                        AssetDatabase.CreateAsset(asset, "Assets/" + Path.GetFileNameWithoutExtension(assetPath) + ".asset");
+                        AssetDatabase.SaveAssets();
+
+                        asset.locators = locators;
+                    }
+
+                    break;
+                case LocatorBinaryType.Named:
+                    {
+                        var locators = loader.ReadNamedLocators();
+                        var asset = ScriptableObject.CreateInstance<NamedLocatorBinaryArrayAsset>() as NamedLocatorBinaryArrayAsset;
+
+                        AssetDatabase.CreateAsset(asset, "Assets/" + Path.GetFileNameWithoutExtension(assetPath) + ".asset");
+                        AssetDatabase.SaveAssets();
+
+                        asset.locators = locators;
+                    }
+                    break;
+                case LocatorBinaryType.Scaled:
+                    {
+                        var locators = loader.ReadScaledLocators();
+                        var asset = ScriptableObject.CreateInstance<ScaledLocatorBinaryArrayAsset>() as ScaledLocatorBinaryArrayAsset;
+
+                        AssetDatabase.CreateAsset(asset, "Assets/" + Path.GetFileNameWithoutExtension(assetPath) + ".asset");
+                        AssetDatabase.SaveAssets();
+
+                        asset.locators = locators;
+                    }
+                    break;
+                default:
+                    return;
+            }
+        }
 
         public LocatorFileReader(byte[] buffer)
         {
