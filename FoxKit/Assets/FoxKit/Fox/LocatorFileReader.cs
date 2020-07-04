@@ -7,6 +7,10 @@ namespace Fox
     using UnityEditor;
     using FoxKit;
 
+
+    /// <summary>
+    /// Type of the locators stored in an LBA file. Each LBA file can only contain locators of a single type.
+    /// </summary>
     public enum LocatorBinaryType
     {
         Invalid = -1,
@@ -15,12 +19,34 @@ namespace Fox
         Scaled = 3
     }
 
+    /// <summary>
+    /// Reads locator binary array (LBA) files.
+    /// </summary>
     public sealed class LocatorFileReader
     {
+        /// <summary>
+        /// The binary file contents.
+        /// </summary>
         private readonly byte[] buffer;
+
+        /// <summary>
+        /// Current offset in the buffer.
+        /// </summary>
         private int position = 0;
+
+        /// <summary>
+        /// Size of an LBA file's header.
+        /// </summary>
         private const int HeaderSize = 16;
+
+        /// <summary>
+        /// Size of an unscaled locator.
+        /// </summary>
         private const int UnscaledLocatorSize = sizeof(float) * 4 * 2;
+
+        /// <summary>
+        /// Size of a scaled locator.
+        /// </summary>
         private const int ScaledLocatorSize = UnscaledLocatorSize + (sizeof(float) * 3) + (sizeof(ushort) * 2);
 
         [UnityEditor.MenuItem("FoxKit/Debug/LBA/Import LBA")]
@@ -77,19 +103,29 @@ namespace Fox
             }
         }
 
+        /// <summary>
+        /// Initializes a new instance of the LocatorFileReader class based on the specified LBA buffer.
+        /// </summary>
+        /// <param name="buffer">Binary contents of the LBA file to read.</param>
         public LocatorFileReader(byte[] buffer)
         {
             Debug.Assert(buffer != null);
 
             if (buffer.Length < HeaderSize)
             {
-                Debug.LogError("LBA file too short. Invalid or unrecognized format.");
+                Debug.LogError("LBA file buffer too short. Invalid or unrecognized format.");
                 return;
             }
 
             this.buffer = buffer;
         }
 
+        /// <summary>
+        /// Reads the type of locators stored in the file.
+        /// </summary>
+        /// <returns>
+        /// The type of locators stored in the file.
+        /// </returns>
         public LocatorBinaryType ReadType()
         {
             var type = BitConverter.ToInt32(this.buffer, 4);
@@ -102,6 +138,15 @@ namespace Fox
             return LocatorBinaryType.Invalid; 
         }
 
+        /// <summary>
+        /// Reads the contents of the file as an array of PowerCutAreaLocatorBinary.
+        /// </summary>
+        /// <returns>
+        /// The parsed locators.
+        /// </returns>
+        /// <remarks>
+        /// Does not check the type of the file before reading.
+        /// </remarks>
         public List<PowerCutAreaLocatorBinary> ReadPowerCutAreaLocators()
         {
             var count = BitConverter.ToInt32(this.buffer, 0);
@@ -116,6 +161,15 @@ namespace Fox
             return result;
         }
 
+        /// <summary>
+        /// Reads the contents of the file as an array of NamedLocatorBinary.
+        /// </summary>
+        /// <returns>
+        /// The parsed locators.
+        /// </returns>
+        /// <remarks>
+        /// Does not check the type of the file before reading.
+        /// </remarks>
         public List<NamedLocatorBinary> ReadNamedLocators()
         {
             var count = BitConverter.ToInt32(this.buffer, 0);
@@ -140,6 +194,15 @@ namespace Fox
             return result;
         }
 
+        /// <summary>
+        /// Reads the contents of the file as an array of ScaledLocatorBinary.
+        /// </summary>
+        /// <returns>
+        /// The parsed locators.
+        /// </returns>
+        /// <remarks>
+        /// Does not check the type of the file before reading.
+        /// </remarks>
         public List<ScaledLocatorBinary> ReadScaledLocators()
         {
             var count = BitConverter.ToInt32(this.buffer, 0);
