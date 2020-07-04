@@ -19,7 +19,7 @@ namespace Fox
     {
         private readonly byte[] buffer;
         private int position = 0;
-        private const int HeaderSize = 15;
+        private const int HeaderSize = 16;
         private const int UnscaledLocatorSize = sizeof(float) * 4 * 2;
         private const int ScaledLocatorSize = UnscaledLocatorSize + (sizeof(float) * 3) + (sizeof(ushort) * 2);
 
