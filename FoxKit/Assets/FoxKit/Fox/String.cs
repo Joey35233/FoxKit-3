@@ -6,36 +6,50 @@ using UnityEngine;
 namespace Fox
 {
     [Serializable]
-    public struct String
+    public readonly struct String
     {
-        public string CString;
+        [SerializeField]
+        private readonly string cString;
 
-        public uint Length;
+        [SerializeField]
+        private readonly uint length;
 
-        public StrCode Hash;
+        [SerializeField]
+        private readonly StrCode hash;
 
-        private static String DefaultString()
+        /// <summary>
+        /// The empty string.
+        /// </summary>
+        public static Fox.String Empty { get; }
+
+        static String()
         {
-            return new String
-            {
-                CString = "",
-                Length = 0,
-                Hash = new StrCode(""),
-            };
+            Empty = new String(string.Empty, 0, new StrCode(string.Empty));
         }
 
         public String(string name)
         {
-            if (name != null)
+            if (!string.IsNullOrEmpty(name))
             {
-                CString = name;
-                Length = (uint)name.Length;
-                Hash = new StrCode(name);
+                this.cString = name;
+                this.length = (uint)name.Length;
+                this.hash = new StrCode(name);
             }
             else
             {
-                this = DefaultString();
+                this.cString = Empty.CString();
+                this.length = Empty.length;
+                this.hash = Empty.hash;
             }
+        }
+
+        public string CString() => this.cString;
+
+        private String(string cString, uint length, StrCode hash)
+        {
+            this.cString = cString;
+            this.length = length;
+            this.hash = hash;
         }
     }
 }

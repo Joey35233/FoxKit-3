@@ -58,7 +58,7 @@ namespace Fox
                 return;
             }
 
-            var fileContent = File.ReadAllBytes(assetPath);
+            var fileContent = System.IO.File.ReadAllBytes(assetPath);
             var loader = new LocatorFileReader(fileContent);
             var type = loader.ReadType();
 
@@ -69,7 +69,7 @@ namespace Fox
                         var locators = loader.ReadPowerCutAreaLocators();
                         var asset = ScriptableObject.CreateInstance<PowerCutAreaLocatorBinaryArrayAsset>() as PowerCutAreaLocatorBinaryArrayAsset;
 
-                        AssetDatabase.CreateAsset(asset, "Assets/" + Path.GetFileNameWithoutExtension(assetPath) + ".asset");
+                        AssetDatabase.CreateAsset(asset, "Assets/" + System.IO.Path.GetFileNameWithoutExtension(assetPath) + ".asset");
                         AssetDatabase.SaveAssets();
 
                         asset.locators = locators;
@@ -81,7 +81,7 @@ namespace Fox
                         var locators = loader.ReadNamedLocators();
                         var asset = ScriptableObject.CreateInstance<NamedLocatorBinaryArrayAsset>() as NamedLocatorBinaryArrayAsset;
 
-                        AssetDatabase.CreateAsset(asset, "Assets/" + Path.GetFileNameWithoutExtension(assetPath) + ".asset");
+                        AssetDatabase.CreateAsset(asset, "Assets/" + System.IO.Path.GetFileNameWithoutExtension(assetPath) + ".asset");
                         AssetDatabase.SaveAssets();
 
                         asset.locators = locators;
@@ -92,7 +92,7 @@ namespace Fox
                         var locators = loader.ReadScaledLocators();
                         var asset = ScriptableObject.CreateInstance<ScaledLocatorBinaryArrayAsset>() as ScaledLocatorBinaryArrayAsset;
 
-                        AssetDatabase.CreateAsset(asset, "Assets/" + Path.GetFileNameWithoutExtension(assetPath) + ".asset");
+                        AssetDatabase.CreateAsset(asset, "Assets/" + System.IO.Path.GetFileNameWithoutExtension(assetPath) + ".asset");
                         AssetDatabase.SaveAssets();
 
                         asset.locators = locators;
