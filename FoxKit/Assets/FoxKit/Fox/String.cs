@@ -1,17 +1,18 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 
 using UnityEngine;
 
 namespace Fox
 {
+    [Serializable]
     public struct String
     {
-        public string CString { get; private set; } // ASCII
+        public string CString;
 
-        public uint Length { get; private set; }
+        public uint Length;
 
-        public StrCode Hash { get; private set; }
+        public StrCode Hash;
 
         private static String DefaultString()
         {
