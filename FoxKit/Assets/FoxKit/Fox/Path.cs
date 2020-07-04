@@ -7,19 +7,19 @@
     /// Stores the path to a file.
     /// </summary>
     [Serializable]
-    public readonly struct Path : System.IEquatable<Path>
+    public struct Path : System.IEquatable<Path>
     {
         /// <summary>
         /// The file path.
         /// </summary>
         [SerializeField]
-        private readonly string path;
+        private string path;
 
         /// <summary>
         /// PathFileNameAndExtCode of the path.
         /// </summary>
         [SerializeField]
-        private readonly ulong hash;
+        private ulong hash;
 
         /// <summary>
         /// The empty path.

@@ -7,12 +7,12 @@ namespace Fox
     /// </summary>
     /// <typeparam name="T">The type of the referenced Entity.</typeparam>
     [Serializable]
-    public readonly struct EntityPtr<T> : System.IEquatable<EntityPtr<T>> where T : Entity
+    public struct EntityPtr<T> : System.IEquatable<EntityPtr<T>> where T : Entity
     {
         /// <summary>
         /// The referenced Entity.
         /// </summary>
-        public T Entity { get; }
+        public T Entity;
 
         private EntityPtr(T entity) => this.Entity = entity;
 

@@ -1,13 +1,16 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 
 using UnityEngine;
 
 namespace Fox
 {
+    [Serializable]
     public struct StrCode
     {
-        ulong hash;
+        [SerializeField]
+        private ulong hash;
 
         public StrCode(string str)
         {

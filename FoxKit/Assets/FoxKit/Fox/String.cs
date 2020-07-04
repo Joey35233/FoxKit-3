@@ -6,16 +6,16 @@ using UnityEngine;
 namespace Fox
 {
     [Serializable]
-    public readonly struct String
+    public struct String
     {
         [SerializeField]
-        private readonly string cString;
+        private string cString;
 
         [SerializeField]
-        private readonly uint length;
+        private uint length;
 
         [SerializeField]
-        private readonly StrCode hash;
+        private StrCode hash;
 
         /// <summary>
         /// The empty string.
