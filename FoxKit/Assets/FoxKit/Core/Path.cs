@@ -5,34 +5,34 @@ using UnityEngine;
 
 namespace Fox
 {
-    public class String
+    public class Path
     {
         public string CString { get; private set; } // ASCII
 
         public uint Length { get; private set; }
 
-        public StrCode Hash { get; private set; }
+        public PathFileNameCode Hash { get; private set; }
 
-        public String()
+        public Path()
         {
             CString = "";
             Length = 0;
-            Hash = new StrCode("");
+            Hash = new PathFileNameCode("");
         }
 
-        public String(string name)
+        public Path(string name)
         {
             if (name != null)
             {
                 CString = name;
                 Length = (uint)name.Length;
-                Hash = new StrCode(name);
+                Hash = new PathFileNameCode(name);
             }
             else
             {
                 CString = "";
                 Length = 0;
-                Hash = new StrCode("");
+                Hash = new PathFileNameCode("");
             }
         }
     }
