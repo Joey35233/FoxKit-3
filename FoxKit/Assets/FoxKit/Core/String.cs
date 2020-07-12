@@ -1,39 +1,55 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 
 using UnityEngine;
 
 namespace Fox
 {
-    public class String
+    [Serializable]
+    public struct String
     {
-        public string CString { get; private set; } // ASCII
+        [SerializeField]
+        private string cString;
 
-        public uint Length { get; private set; }
+        [SerializeField]
+        private uint length;
 
-        public ulong Hash { get; private set; }
+        [SerializeField]
+        private StrCode hash;
 
-        public String()
+        /// <summary>
+        /// The empty string.
+        /// </summary>
+        public static Fox.String Empty { get; }
+
+        static String()
         {
-            CString = "";
-            Length = 0;
-            Hash = Hashing.StrCode("");
+            Empty = new String(string.Empty, 0, new StrCode(string.Empty));
         }
 
         public String(string name)
         {
-            if (name != null)
+            if (!string.IsNullOrEmpty(name))
             {
-                CString = name;
-                Length = (uint)name.Length;
-                Hash = Hashing.StrCode(name);
+                this.cString = name;
+                this.length = (uint)name.Length;
+                this.hash = new StrCode(name);
             }
             else
             {
-                CString = "";
-                Length = 0;
-                Hash = Hashing.StrCode("");
+                this.cString = Empty.CString();
+                this.length = Empty.length;
+                this.hash = Empty.hash;
             }
+        }
+
+        public string CString() => this.cString;
+
+        private String(string cString, uint length, StrCode hash)
+        {
+            this.cString = cString;
+            this.length = length;
+            this.hash = hash;
         }
     }
 }
