@@ -1,0 +1,1318 @@
+[
+	{
+		"name": "GrxLineSSAOParameters_BlurMode",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "SIMPLE_BLUR", "value": 0 },
+			{ "name": "BILATERAL_BLUR", "value": 1 }
+		]
+	},
+	{
+		"name": "UiCameraDataFov",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "FOV_DIAGONAL", "value": 0 },
+			{ "name": "FOV_HORIZONTAL", "value": 1 },
+			{ "name": "FOV_VERTICAL", "value": 2 }
+		]
+	},
+	{
+		"name": "UiCameraDataFlag",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "FLAG_DISP_INFO", "value": 2 }
+		]
+	},
+	{
+		"name": "StaticModel_DrawRejectionLevel",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "LEVEL0(size:0.5m)", "value": 0 },
+			{ "name": "LEVEL1(size:1m)", "value": 1 },
+			{ "name": "LEVEL2(size:2m)", "value": 2 },
+			{ "name": "LEVEL3(size:4m)", "value": 3 },
+			{ "name": "LEVEL4(size:8m)", "value": 4 },
+			{ "name": "LEVEL5(size:16m)", "value": 5 },
+			{ "name": "LEVEL6(size:32m)", "value": 6 },
+			{ "name": "NO_REJECT", "value": 7 },
+			{ "name": "DEFAULT", "value": 8 }
+		]
+	},
+	{
+		"name": "StaticModel_DrawMode",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "NORMAL", "value": 0 },
+			{ "name": "SHADOW_ONLY", "value": 1 },
+			{ "name": "DISABLE_SHADOW", "value": 2 }
+		]
+	},
+	{
+		"name": "StaticModel_RejectFarRangeShadowCast",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "NO_REJECT", "value": 0 },
+			{ "name": "REJECT", "value": 1 },
+			{ "name": "DEFAULT", "value": 2 }
+		]
+	},
+	{
+		"name": "TerrainDecal_DrawRejectionLevel",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "LEVEL0(size:0.5m)", "value": 0 },
+			{ "name": "LEVEL1(size:1m)", "value": 1 },
+			{ "name": "LEVEL2(size:2m)", "value": 2 },
+			{ "name": "LEVEL3(size:4m)", "value": 3 },
+			{ "name": "LEVEL4(size:8m)", "value": 4 },
+			{ "name": "NO_REJECT", "value": 5 }
+		]
+	},
+	{
+		"name": "SimLodLevelName",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "SIM_UPDATE_2X", "value": 0 },
+			{ "name": "SIM_UPDATE_1X", "value": 1 },
+			{ "name": "SIM_UPDATE_SIMPLE", "value": 2 }
+		]
+	},
+	{
+		"name": "TransformData_Flags",
+		"type": "flags",
+		"underlying_type": "uint",
+		"values": [
+			{ "name": "ENABLE_VISIBILITY", "value": 1 },
+			{ "name": "ENABLE_SELECTION", "value": 2 },
+			{ "name": "ENABLE_INHERIT_TRANSFORM", "value": 4 },
+			{ "name": "UNKNOWN1", "value": 134217728 },
+			{ "name": "UNKNOWN2", "value": 2147483648 }
+		]
+	},
+	{
+		"name": "BlockGroupData_ByteOrder",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "B", "value": 0 },
+			{ "name": "KB", "value": 1 },
+			{ "name": "MB", "value": 2 }
+		]
+	},
+	{
+		"name": "Utility_InterpType",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "INTERP_TYPE_NONE", "value": 0 },
+			{ "name": "INTERP_TYPE_LINEAR", "value": 1 },
+			{ "name": "INTERP_TYPE_SIN", "value": 2 },
+			{ "name": "INTERP_TYPE_SCURVE", "value": 3 }
+		]
+	},
+	{
+		"name": "DemoStreamAnimation_LocatorType",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "LOCATOR_TYPE_NONE", "value": 0 },
+			{ "name": "LOCATOR_TYPE_NULL", "value": 1 },
+			{ "name": "LOCATOR_TYPE_MODEL", "value": 2 },
+			{ "name": "LOCATOR_TYPE_PARTS", "value": 3 }
+		]
+	},
+	{
+		"name": "DemoStreamAnimation_CameraType",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "CAMERA_TYPE_NONE", "value": 0 },
+			{ "name": "CAMERA_TYPE_NORMAL", "value": 1 }
+		]
+	},
+	{
+		"name": "StaticModelArray_DrawRejectionLevel",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "LEVEL0(size:0.5m)", "value": 0 },
+			{ "name": "LEVEL1(size:1m)", "value": 1 },
+			{ "name": "LEVEL2(size:2m)", "value": 2 },
+			{ "name": "LEVEL3(size:4m)", "value": 3 },
+			{ "name": "LEVEL4(size:8m)", "value": 4 },
+			{ "name": "LEVEL5(size:16m)", "value": 5 },
+			{ "name": "LEVEL6(size:32m)", "value": 6 },
+			{ "name": "NO_REJECT", "value": 7 },
+			{ "name": "DEFAULT", "value": 8 }
+		]
+	},
+	{
+		"name": "StaticModelArray_DrawMode",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "NORMAL", "value": 0 },
+			{ "name": "SHADOW_ONLY", "value": 1 },
+			{ "name": "DISABLE_SHADOW", "value": 2 }
+		]
+	},
+	{
+		"name": "StaticModelArray_RejectFarRangeShadowCast",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "NO_REJECT", "value": 0 },
+			{ "name": "REJECT", "value": 1 },
+			{ "name": "DEFAULT", "value": 2 }
+		]
+	},
+	{
+		"name": "OrthogonalCamera_ViewType",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "VIEW_FRONT", "value": 0 },
+			{ "name": "VIEW_SIDE", "value": 1 },
+			{ "name": "VIEW_TOP", "value": 2 }
+		]
+	},
+	{
+		"name": "Decal_ProjectionMode",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "PROJECTION_ORTHOGRAPHIC", "value": 0 },
+			{ "name": "PROJECTION_PERSPECTIVE", "value": 1 },
+			{ "name": "MAP_CYLINDRICAL", "value": 2 }
+		]
+	},
+	{
+		"name": "Decal_ProjectionTarget",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "PROJECTION_ANY_SURFACE", "value": 0 },
+			{ "name": "PROJECTION_TARGETS_ONLY", "value": 1 }
+		]
+	},
+	{
+		"name": "Decal_PolygonDataSource",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "CHARA_COLLISION_DATA", "value": 0 },
+			{ "name": "RECOIL_COLLISION_DATA", "value": 1 }
+		]
+	},
+	{
+		"name": "Decal_DrawRejectionLevel",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "LEVEL0(size:0.5m)", "value": 0 },
+			{ "name": "LEVEL1(size:1m)", "value": 1 },
+			{ "name": "LEVEL2(size:2m)", "value": 2 },
+			{ "name": "LEVEL3(size:4m)", "value": 3 },
+			{ "name": "LEVEL4(size:8m)", "value": 4 },
+			{ "name": "NO_REJECT", "value": 5 }
+		]
+	},
+	{
+		"name": "DecalArray_ProjectionMode",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "PROJECTION_ORTHOGRAPHIC", "value": 0 },
+			{ "name": "PROJECTION_PERSPECTIVE", "value": 1 },
+			{ "name": "MAP_CYLINDRICAL", "value": 2 }
+		]
+	},
+	{
+		"name": "DecalArray_ProjectionTarget",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "PROJECTION_ANY_SURFACE", "value": 0 },
+			{ "name": "PROJECTION_TARGETS_ONLY", "value": 1 }
+		]
+	},
+	{
+		"name": "DecalArray_PolygonDataSource",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "CHARA_COLLISION_DATA", "value": 0 },
+			{ "name": "RECOIL_COLLISION_DATA", "value": 1 }
+		]
+	},
+	{
+		"name": "DecalArray_DrawRejectionLevel",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "LEVEL0(size:0.5m)", "value": 0 },
+			{ "name": "LEVEL1(size:1m)", "value": 1 },
+			{ "name": "LEVEL2(size:2m)", "value": 2 },
+			{ "name": "LEVEL3(size:4m)", "value": 3 },
+			{ "name": "LEVEL4(size:8m)", "value": 4 },
+			{ "name": "NO_REJECT", "value": 5 }
+		]
+	},
+	{
+		"name": "LevelType",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "SQUARE", "value": 0 },
+			{ "name": "CIRCLE", "value": 1 },
+			{ "name": "PATH", "value": 2 }
+		]
+	},
+	{
+		"name": "WolrdTerrainTextureMode",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "NONE", "value": 0 },
+			{ "name": "DEFAULT", "value": 1 },
+			{ "name": "NEW", "value": 2 }
+		]
+	},
+	{
+		"name": "DrawRejectionLevel",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "LEVEL0(size:0.5m)", "value": 0 },
+			{ "name": "LEVEL1(size:1m)", "value": 1 },
+			{ "name": "LEVEL2(size:2m)", "value": 2 },
+			{ "name": "LEVEL3(size:4m)", "value": 3 },
+			{ "name": "LEVEL4(size:8m)", "value": 4 },
+			{ "name": "NO_REJECT", "value": 5 }
+		]
+	},
+	{
+		"name": "ObjectBrushPluginClone_ModelRejectionLevel",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "LEVEL0(size:400pixel)", "value": 0 },
+			{ "name": "LEVEL1(size:320pixel)", "value": 1 },
+			{ "name": "LEVEL2(size:240pixel)", "value": 2 },
+			{ "name": "LEVEL3(size:184pixel)", "value": 3 },
+			{ "name": "LEVEL4(size:128pixel)", "value": 4 },
+			{ "name": "LEVEL5(size:80pixel)", "value": 5 },
+			{ "name": "LEVEL6(size:48pixel)", "value": 6 },
+			{ "name": "LEVEL7(size:24pixel)", "value": 7 },
+			{ "name": "LEVEL8(size:12pixel)", "value": 8 },
+			{ "name": "LEVEL9(size:8pixel)", "value": 9 },
+			{ "name": "NO_REJECT(size:1pixel)", "value": 10 },
+			{ "name": "LEVEL MASSIVE GRASS", "value": 11 }
+		]
+	},
+	{
+		"name": "ViewGroupControlCondition_Condition",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "Visible", "value": 0 },
+			{ "name": "Invisible", "value": 1 }
+		]
+	},
+	{
+		"name": "Watermark_StandardMode",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "LEFT_TOP", "value": 0 },
+			{ "name": "LEFT_BOTTOM", "value": 1 },
+			{ "name": "RIGHT_TOP", "value": 2 },
+			{ "name": "RIGHT_BOTTOM", "value": 3 }
+		]
+	},
+	{
+		"name": "SequenceState",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "STATE_CREATED", "value": 0 },
+			{ "name": "STATE_START_GAME", "value": 1 },
+			{ "name": "STATE_ACT_GAME", "value": 2 },
+			{ "name": "STATE_LEAVE_GAME", "value": 3 },
+			{ "name": "STATE_LOAD_GAME", "value": 4 },
+			{ "name": "STATE_START_GAMEOVER", "value": 5 },
+			{ "name": "STATE_ACT_GAMEOVER", "value": 6 },
+			{ "name": "STATE_LEAVE_GAMEOVER", "value": 7 }
+		]
+	},
+	{
+		"name": "SubtitlesGenerator_TextHorizontalAlign",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "TEXT_LEFT", "value": 0 },
+			{ "name": "TEXT_CENTER", "value": 1 },
+			{ "name": "TEXT_RIGHT", "value": 2 }
+		]
+	},
+	{
+		"name": "SubtitlesGenerator_TextVerticalAlign",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "VERTICAL_TOP", "value": 0 },
+			{ "name": "VERTICAL_MIDDLE", "value": 1 },
+			{ "name": "VERTICAL_BOTTOM", "value": 2 }
+		]
+	},
+	{
+		"name": "SubtitlesGenerator_TextBoxAlign",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "BOX_LEFT", "value": 0 },
+			{ "name": "BOX_CENTER", "value": 1 },
+			{ "name": "BOX_RIGHT", "value": 2 },
+			{ "name": "BOX_NONE", "value": 3 }
+		]
+	},
+	{
+		"name": "ModelDescription_DrawRejectionLevel",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "LEVEL0(size:0.5m)", "value": 0 },
+			{ "name": "LEVEL1(size:1m)", "value": 1 },
+			{ "name": "LEVEL2(size:2m)", "value": 2 },
+			{ "name": "LEVEL3(size:4m)", "value": 3 },
+			{ "name": "LEVEL4(size:8m)", "value": 4 },
+			{ "name": "LEVEL5(size:8m)", "value": 5 },
+			{ "name": "LEVEL6(size:8m)", "value": 6 },
+			{ "name": "NO_REJECT", "value": 7 },
+			{ "name": "DEFAULT", "value": 8 }
+		]
+	},
+	{
+		"name": "ModelDescription_RejectFarRangeShadowCast",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "NO_REJECT", "value": 0 },
+			{ "name": "REJECT", "value": 1 },
+			{ "name": "DEFAULT", "value": 2 }
+		]
+	},
+	{
+		"name": "EffectKind",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "NORMAL", "value": 0 },
+			{ "name": "GPARAM_GLOBAL_SHIFT", "value": 1 },
+			{ "name": "ROTATION_OFFSET", "value": 2 }
+		]
+	},
+	{
+		"name": "GkTacticalActionDirection",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "TACTICAL_ACTION_ONE_WAY_01", "value": 0 },
+			{ "name": "TACTICAL_ACTION_ONE_WAY_10", "value": 1 },
+			{ "name": "TACTICAL_ACTION_BOTH_WAYS", "value": 2 }
+		]
+	},
+	{
+		"name": "MbConstructDataType",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "PLANT_HQ", "value": 0 },
+			{ "name": "PLANT_UNIQUE", "value": 1 },
+			{ "name": "PLANT_COMMON", "value": 2 },
+			{ "name": "CONNECTOR", "value": 3 },
+			{ "name": "BRIDGE", "value": 4 },
+			{ "name": "CLUSTER_BRIDGE", "value": 5 },
+			{ "name": "PREREQUISIT_DUMMY", "value": 6 }
+		]
+	},
+	{
+		"name": "TppGameStatusFlag",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "S_DISABLE_TARGET", "value": 0 },
+			{ "name": "S_DISABLE_TRAP", "value": 1 },
+			{ "name": "S_DISABLE_PLAYER_PAD", "value": 2 },
+			{ "name": "S_DISABLE_SYSTEM_UI_PAD", "value": 3 },
+			{ "name": "S_DISABLE_PLAYER_DAMAGE", "value": 4 },
+			{ "name": "S_DISABLE_THROWING", "value": 5 },
+			{ "name": "S_DISABLE_PLACEMENT", "value": 6 },
+			{ "name": "S_DISABLE_FILTER_EFFECTS", "value": 6 },
+			{ "name": "S_DISABLE_NPC", "value": 7 },
+			{ "name": "S_DISABLE_NPC_NOTICE", "value": 8 },
+			{ "name": "S_DISABLE_HUD", "value": 9 },
+			{ "name": "S_DISABLE_TERMINAL", "value": 10 },
+			{ "name": "S_DISABLE_SUPPORT_HELICOPTER", "value": 11 },
+			{ "name": "S_DISABLE_GAME", "value": 12 },
+			{ "name": "S_DISABLE_GAME_PAUSE", "value": 13 },
+			{ "name": "S_DISABLE_DEMO_PAUSE", "value": 14 },
+			{ "name": "S_IS_NO_TIME_ELAPSE_MISSION", "value": 15 },
+			{ "name": "S_ENABLE_FOB_PLAYER_HIDE", "value": 16 },
+			{ "name": "S_ENABLE_TUTORIAL_PAUSE", "value": 17 },
+			{ "name": "S_ENABLE_HIGH_LOADING", "value": 18 },
+			{ "name": "S_IS_ONLINE", "value": 19 },
+			{ "name": "S_IS_TIME_CIGARETTE", "value": 20 },
+			{ "name": "S_IS_STEALTH_ASSIST_MODE", "value": 21 },
+			{ "name": "S_IS_CLAIRVOYANCE", "value": 22 },
+			{ "name": "S_IS_BLACK_LOADING", "value": 23 },
+			{ "name": "S_IS_STAGE_LOAD_LATE", "value": 24 },
+			{ "name": "S_INVISIBLE_UNRELATED_DEMO", "value": 25 },
+			{ "name": "S_IS_SORTIE_PREPARATION", "value": 26 },
+			{ "name": "S_IS_RESULT", "value": 27 },
+			{ "name": "S_IS_TITLE_SCREEN", "value": 28 },
+			{ "name": "S_IS_DEMO_CAMERA", "value": 29 },
+			{ "name": "S_IS_RUST_FOG", "value": 30 },
+			{ "name": "S_STOP_FOR_DEMO", "value": 31 },
+			{ "name": "S_DISABLE_ESC_PAUSE", "value": 32 },
+			{ "name": "S_DISABLE_MOUSE_CAMERA", "value": 33 },
+			{ "name": "S_DISABLE_MOUSE_TRAP", "value": 34 },
+			{ "name": "S_DISABLE_MOUSE_TRAP_FOR_END", "value": 35 },
+			{ "name": "S_DISABLE_KEYBOARD", "value": 36 }
+		]
+	},
+	{
+		"name": "MGS_LadderEntryType",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "Bottom", "value": 1 },
+			{ "name": "Top", "value": 2 }
+		]
+	},
+	{
+		"name": "TppTrapEnvironmentType",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "ENV_TYPE_NORMAL", "value": 0 },
+			{ "name": "ENV_TYPE_DOWNWASH", "value": 1 },
+			{ "name": "ENV_TYPE_FIRE", "value": 1 }
+		]
+	},
+	{
+		"name": "TppDemoParameter_WeatherType",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "WEATHER_TYPE_IGNORE", "value": 0 },
+			{ "name": "WEATHER_TYPE_CLEAR", "value": 1 },
+			{ "name": "WEATHER_TYPE_CLOUDY", "value": 2 },
+			{ "name": "WEATHER_TYPE_RAINY", "value": 3 },
+			{ "name": "WEATHER_TYPE_SANDSTORM", "value": 4 },
+			{ "name": "WEATHER_TYPE_FOGGY", "value": 5 }
+		]
+	},
+	{
+		"name": "EyelidFilterStateMngState",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "EVENT_STATUS_NONE", "value": 0 },
+			{ "name": "EVENT_STATUS_AWAKENING_1DAY", "value": 1 },
+			{ "name": "EVENT_STATUS_AWAKENING_2DAY", "value": 2 }
+		]
+	},
+	{
+		"name": "TppEyelidFilterState",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "EYELID_STATE_DEMO_CONTROL", "value": 0 },
+			{ "name": "EYELID_STATE_IDLING", "value": 1 },
+			{ "name": "EYELID_STATE_OPEN", "value": 2 },
+			{ "name": "EYELID_STATE_CLOSE", "value": 3 }
+		]
+	},
+	{
+		"name": "TppWaterBoundingType",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "TYPE_WATER", "value": 0 },
+			{ "name": "TYPE_MAFR_SWAMP", "value": 1 },
+			{ "name": "TYPE_SOUND_ONLY", "value": 2 }
+		]
+	},
+	{
+		"name": "TppSkyClouds3Param_ColorSpace",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "LINEAR", "value": 0 },
+			{ "name": "SRGB", "value": 1 }
+		]
+	},
+	{
+		"name": "TppSkyClouds3Param_TexColor",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "RGBA", "value": 0 },
+			{ "name": "GA", "value": 1 }
+		]
+	},
+	{
+		"name": "TppLensFlareShapeOffsetType",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "OFFSET_TYPE_NO_MOVE", "value": 0 },
+			{ "name": "OFFSET_TYPE_TOGETHER", "value": 1 },
+			{ "name": "OFFSET_TYPE_MIRROR", "value": 2 },
+			{ "name": "OFFSET_TYPE_X_MIRROR", "value": 3 },
+			{ "name": "OFFSET_TYPE_Y_MIRROR", "value": 4 }
+		]
+	},
+	{
+		"name": "TppLensFlareShapeRotateType",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "ROTATE_TYPE_NO_ROTATE", "value": 0 },
+			{ "name": "ROTATE_TYPE_SAME", "value": 1 },
+			{ "name": "ROTATE_TYPE_REVERSE", "value": 2 },
+			{ "name": "ROTATE_TYPE_SCREEN_SPACE", "value": 3 }
+		]
+	},
+	{
+		"name": "TppLensFlareShapeDistanceScalingMode",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "DISTANCE_SCALING_MODE_NONE", "value": 0 },
+			{ "name": "DISTANCE_SCALING_MODE_SIZESCALE", "value": 1 },
+			{ "name": "DISTANCE_SCALING_MODE_ALPHASCALE", "value": 2 },
+			{ "name": "DISTANCE_SCALING_MODE_SIZESCALE2", "value": 3 }
+		]
+	},
+	{
+		"name": "TppLensFlareFieldShapeType",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "SHAPE_TYPE_SQUARE", "value": 0 },
+			{ "name": "SHAPE_TYPE_CIRCLE", "value": 1 }
+		]
+	},
+	{
+		"name": "TppLensFlareFieldInterpType",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "INTERP_TYPE_LINEAR", "value": 0 },
+			{ "name": "INTERP_TYPE_COS", "value": 1 },
+			{ "name": "INTERP_TYPE_SUDDEN", "value": 2 },
+			{ "name": "INTERP_TYPE_BOWL", "value": 3 }
+		]
+	},
+	{
+		"name": "TppLightProbe_DebugMode",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "DEBUG_OFF", "value": 0 },
+			{ "name": "DEBUG_CUBEMAP", "value": 1 },
+			{ "name": "DEBUG_SH_VALUE", "value": 2 },
+			{ "name": "DEBUG_SH_OCCLUSION", "value": 3 },
+			{ "name": "DEBUG_SH_WITH_SKY", "value": 4 },
+			{ "name": "DEBUG_SH_ONLY_COL", "value": 5 },
+			{ "name": "DEBUG_SH_ONLY_SUB_COL", "value": 6 },
+			{ "name": "DEBUG_SH_ONLY_LIGHT_ALL", "value": 7 }
+		]
+	},
+	{
+		"name": "TppLightProbe_DrawRejectionLevel",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "LEVEL0(size:0.5m)", "value": 0 },
+			{ "name": "LEVEL1(size:1m)", "value": 1 },
+			{ "name": "LEVEL2(size:2m)", "value": 2 },
+			{ "name": "LEVEL3(size:4m)", "value": 3 },
+			{ "name": "LEVEL4(size:8m)", "value": 4 },
+			{ "name": "LEVEL5(size:16m)", "value": 5 },
+			{ "name": "LEVEL6(size:32m)", "value": 6 },
+			{ "name": "NO_REJECT", "value": 7 }
+		]
+	},
+	{
+		"name": "TppLightProbe_PackingGeneration",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "GENERATION_ALL", "value": 0 },
+			{ "name": "GENERATION_7", "value": 1 },
+			{ "name": "GENERATION_8", "value": 2 }
+		]
+	},
+	{
+		"name": "TppLightProbe_ShapeType",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "DEFAULT", "value": 0 },
+			{ "name": "TRIALGULAR_PRISM", "value": 1 },
+			{ "name": "SEMI_CYLINDRICAL", "value": 2 },
+			{ "name": "HALF_SQUARE", "value": 2 }
+		]
+	},
+	{
+		"name": "TppLightProbeArray_DrawRejectionLevel",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "LEVEL0(size:0.5m)", "value": 0 },
+			{ "name": "LEVEL1(size:1m)", "value": 1 },
+			{ "name": "LEVEL2(size:2m)", "value": 2 },
+			{ "name": "LEVEL3(size:4m)", "value": 3 },
+			{ "name": "LEVEL4(size:8m)", "value": 4 },
+			{ "name": "LEVEL5(size:16m)", "value": 5 },
+			{ "name": "LEVEL6(size:32m)", "value": 6 },
+			{ "name": "NO_REJECT", "value": 7 }
+		]
+	},
+	{
+		"name": "TppTrapExecThunder_Type",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "HOLD", "value": 0 },
+			{ "name": "FIRE", "value": 1 }
+		]
+	},
+	{
+		"name": "TppPointLight_PackingGeneration",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "GENERATION_ALL", "value": 0 },
+			{ "name": "GENERATION_7", "value": 1 },
+			{ "name": "GENERATION_8", "value": 2 }
+		]
+	},
+	{
+		"name": "TppSpotLight_PackingGeneration",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "GENERATION_ALL", "value": 0 },
+			{ "name": "GENERATION_7", "value": 1 },
+			{ "name": "GENERATION_8", "value": 2 }
+		]
+	},
+	{
+		"name": "SnipePointType",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "Normal", "value": 0 },
+			{ "name": "HighPriority", "value": 1 }
+		]
+	},
+	{
+		"name": "SearchMissilePointType",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "Normal", "value": 0 },
+			{ "name": "HighPriority", "value": 1 }
+		]
+	},
+	{
+		"name": "HidePointType",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "Type1", "value": 0 },
+			{ "name": "Type2", "value": 1 },
+			{ "name": "Type3", "value": 2 }
+		]
+	},
+	{
+		"name": "MbStageBlockCreateMode",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "NOT_CREATE", "value": 0 },
+			{ "name": "CREATE", "value": 1 }
+		]
+	},
+	{
+		"name": "ParamDataDesCondition",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "DES_CONDITION_AUTO", "value": 0 },
+			{ "name": "DES_CONDITION_OUTSIDE", "value": 1 }
+		]
+	},
+	{
+		"name": "DesEffectDataDesEffectFlag",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "ACCOMPANYING", "value": 1 },
+			{ "name": "GENERATION_GROUND", "value": 2 },
+			{ "name": "GENERATION_RIGID_BODY", "value": 3 },
+			{ "name": "GENERATION_CUTTING", "value": 4 },
+			{ "name": "GENERATION_BREAKING", "value": 5 }
+		]
+	},
+	{
+		"name": "FxRandomGatherType",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "AUTO", "value": 0 },
+			{ "name": "RELATIVE_ROOT_OFFSET", "value": 1 },
+			{ "name": "ABSOLUTE_VALUE", "value": 2 }
+		]
+	},
+	{
+		"name": "FxVectorType",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "VECTOR", "value": 0 },
+			{ "name": "ROTATES", "value": 1 },
+			{ "name": "COLOR", "value": 2 }
+		]
+	},
+	{
+		"name": "FxRenderBlendMode",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "ALPHA", "value": 0 },
+			{ "name": "ADD", "value": 1 },
+			{ "name": "SUB", "value": 2 },
+			{ "name": "MUL", "value": 3 },
+			{ "name": "MIN", "value": 4 },
+			{ "name": "OPAQUE", "value": 5 }
+		]
+	},
+	{
+		"name": "FxRenderSortMode",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "NONE", "value": 0 },
+			{ "name": "SIMPLE_SORT", "value": 1 },
+			{ "name": "ONEPOINT_SORT", "value": 2 },
+			{ "name": "LOCAL_SORT", "value": 3 }
+		]
+	},
+	{
+		"name": "FxPlayModeType",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "ONESHOT", "value": 0 },
+			{ "name": "LOOP", "value": 1 },
+			{ "name": "LOOP_FADEINOUT", "value": 2 }
+		]
+	},
+	{
+		"name": "FxUpdateType",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "NORMAL", "value": 0 },
+			{ "name": "DIVIDES_FRAMES", "value": 1 },
+			{ "name": "DRAW_TIMING", "value": 2 }
+		]
+	},
+	{
+		"name": "FxExecutionPriorityType",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "MUST", "value": 0 },
+			{ "name": "NORMAL", "value": 1 }
+		]
+	},
+	{
+		"name": "FxBoundingBoxType",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "NONE", "value": 0 },
+			{ "name": "TIME_PROGRESSES", "value": 1 },
+			{ "name": "STOP", "value": 2 }
+		]
+	},
+	{
+		"name": "FxSimulationMode",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "SIMULATION_NORMAL", "value": 0 },
+			{ "name": "SIMULATION_DECAL_PERF", "value": 1 },
+			{ "name": "SIMULATION_MISSILE_MOVE", "value": 2 },
+			{ "name": "SIMULATION_CREATE_AND_DESTROY_PERF", "value": 3 },
+			{ "name": "SIMULATION_BULLET_LINE_MOVE", "value": 4 },
+			{ "name": "SIMULATION_RPG_WEAPON_MOVE", "value": 5 },
+			{ "name": "SIMULATION_RECEIVE_COLOR_TEST", "value": 6 }
+		]
+	},
+	{
+		"name": "FxShapeBoundingBoxType",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "MANUAL", "value": 0 }
+		]
+	},
+	{
+		"name": "FxRotateOrderType",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "ZYX_OREDER", "value": 0 }
+		]
+	},
+	{
+		"name": "FxCameraLodType",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "CAMERA_DISTANCE", "value": 0 },
+			{ "name": "CAMERA_AREA", "value": 1 },
+			{ "name": "LOD_PRIORITY", "value": 2 }
+		]
+	},
+	{
+		"name": "FxLodEmitPriorityLevel",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "LEVEL_0", "value": 0 },
+			{ "name": "LEVEL_1", "value": 1 },
+			{ "name": "LEVEL_2", "value": 2 },
+			{ "name": "LEVEL_3", "value": 3 },
+			{ "name": "LEVEL_4", "value": 4 },
+			{ "name": "LEVEL_5", "value": 5 },
+			{ "name": "LEVEL_6", "value": 6 },
+			{ "name": "LEVEL_7", "value": 7 },
+			{ "name": "LEVEL_8", "value": 8 },
+			{ "name": "LEVEL_MAX", "value": 9 }
+		]
+	},
+	{
+		"name": "FxGenerationFilterType",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "GENERATION_7", "value": 0 },
+			{ "name": "GENERATION_8", "value": 1 },
+			{ "name": "GENERATION_9", "value": 2 }
+		]
+	},
+	{
+		"name": "FxVariationGenerationFilterType",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "NONE", "value": 0 },
+			{ "name": "GENERATION_7", "value": 1 },
+			{ "name": "GENERATION_8", "value": 2 }
+		]
+	},
+	{
+		"name": "GeoShapeType",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "SPHERE", "value": 0 },
+			{ "name": "BOX", "value": 3 },
+			{ "name": "AABB", "value": 4 }
+		]
+	},
+	{
+		"name": "PrimType",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "TARGET_PRIM_SPHERE", "value": 0 },
+			{ "name": "TARGET_PRIM_LINE", "value": 1 },
+			{ "name": "TARGET_PRIM_CAPSULE", "value": 2 },
+			{ "name": "TARGET_PRIM_AABB", "value": 3 },
+			{ "name": "TARGET_PRIM_BOX", "value": 4 },
+			{ "name": "TARGET_PRIM_AXIS", "value": 5 }
+		]
+	},
+	{
+		"name": "AxisSort",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "TARGET_SORT_PLUS_X", "value": 0 },
+			{ "name": "TARGET_SORT_PLUS_Y", "value": 1 },
+			{ "name": "TARGET_SORT_PLUS_Z", "value": 2 },
+			{ "name": "TARGET_SORT_MINUS_X", "value": 3 },
+			{ "name": "TARGET_SORT_MINUS_Y", "value": 4 },
+			{ "name": "TARGET_SORT_MINUS_Z", "value": 5 }
+		]
+	},
+	{
+		"name": "Face_Mode",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "FACE_CW", "value": 0 },
+			{ "name": "FACE_CCW", "value": 1 },
+			{ "name": "FACE_DOUBLE", "value": 2 }
+		]
+	},
+	{
+		"name": "CollisionPrimitive_Category",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "CATEGORY_ALLL", "value": 0 },
+			{ "name": "CATEGORY_CHARA", "value": 1 },
+			{ "name": "CATEGORY_RECOIL", "value": 2 }
+		]
+	},
+	{
+		"name": "CollisionPrimitive_PrimType",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "PRIM_CIRCLE", "value": 0 },
+			{ "name": "PRIM_RECT", "value": 1 }
+		]
+	},
+	{
+		"name": "CollisionFreeShape_Category",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "CATEGORY_ALLL", "value": 0 },
+			{ "name": "CATEGORY_CHARA", "value": 1 },
+			{ "name": "CATEGORY_RECOIL", "value": 2 }
+		]
+	},
+	{
+		"name": "CollisionPyraidFreeShape_Category",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "CATEGORY_ALLL", "value": 0 },
+			{ "name": "CATEGORY_CHARA", "value": 1 },
+			{ "name": "CATEGORY_RECOIL", "value": 2 }
+		]
+	},
+	{
+		"name": "Horizon_ColorPreset",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "USER_COLOR", "value": 0 },
+			{ "name": "FLAT_GRAY", "value": 1 },
+			{ "name": "GRADIENT_GRAY", "value": 2 },
+			{ "name": "GRADIENT_AZURE", "value": 2 }
+		]
+	},
+	{
+		"name": "PointLight_LodRadiusLevel",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "LEVEL0(size:0.5m)", "value": 0 },
+			{ "name": "LEVEL1(size:1m)", "value": 1 },
+			{ "name": "LEVEL2(size:2m)", "value": 2 },
+			{ "name": "LEVEL3(size:4m)", "value": 3 },
+			{ "name": "LEVEL4(size:8m)", "value": 4 },
+			{ "name": "LEVEL5(size:16m)", "value": 5 },
+			{ "name": "LEVEL6(size:32m)", "value": 6 },
+			{ "name": "LEVEL7(size:64m)", "value": 7 }
+		]
+	},
+	{
+		"name": "PointLight_PackingGeneration",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "GENERATION_ALL", "value": 0 },
+			{ "name": "GENERATION_7", "value": 1 },
+			{ "name": "GENERATION_8", "value": 2 }
+		]
+	},
+	{
+		"name": "SpotLight_LodRadiusLevel",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "LEVEL0(size:0.5m)", "value": 0 },
+			{ "name": "LEVEL1(size:1m)", "value": 1 },
+			{ "name": "LEVEL2(size:2m)", "value": 2 },
+			{ "name": "LEVEL3(size:4m)", "value": 3 },
+			{ "name": "LEVEL4(size:8m)", "value": 4 },
+			{ "name": "LEVEL5(size:16m)", "value": 5 },
+			{ "name": "LEVEL6(size:32m)", "value": 6 },
+			{ "name": "LEVEL7(size:64m)", "value": 7 }
+		]
+	},
+	{
+		"name": "SpotLight_PackingGeneration",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "GENERATION_ALL", "value": 0 },
+			{ "name": "GENERATION_7", "value": 1 },
+			{ "name": "GENERATION_8", "value": 2 }
+		]
+	},
+	{
+		"name": "AmbientOcclusionSettings_Method",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "NO_AMBIENT_OCCLUSION", "value": 0 },
+			{ "name": "LINE_INTEGRALS", "value": 1 },
+			{ "name": "HORIZON_BASED", "value": 2 }
+		]
+	},
+	{
+		"name": "AmbientOcclusionSettings_LightAttachment",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "DIFFUSE", "value": 0 },
+			{ "name": "AMBIENT", "value": 1 }
+		]
+	},
+	{
+		"name": "GrxAreaSSAOParameters_Resolution",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "FULL_SIZE", "value": 0 },
+			{ "name": "HALF_SIZE", "value": 1 },
+			{ "name": "QUARTER_SIZE", "value": 2 }
+		]
+	},
+	{
+		"name": "GrxAreaSSAOParameters_BlurMode",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "BILATERAL_UPSAMPLING", "value": 0 },
+			{ "name": "BILATERAL_BLUR", "value": 1 }
+		]
+	},
+	{
+		"name": "OccluderEx_Mode",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "MODE_GLOBAL", "value": 0 },
+			{ "name": "MODE_LOCAL", "value": 1 }
+		]
+	},
+	{
+		"name": "NavEdgeType",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "EdgeHandle::TYPE_STATIC", "value": 0 },
+			{ "name": "EdgeHandle::TYPE_DYNAMIC", "value": 1 }
+		]
+	},
+	{
+		"name": "NavNavigationAnalyzeReason",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "ANALYZE_REASON_NO_OPTIMIZE_PATH", "value": 0 },
+			{ "name": "ANALYZE_REASON_NO_OPTIMIZE_NEXT_PATH", "value": 1 },
+			{ "name": "ANALYZE_REASON_NO_PATH", "value": 2 },
+			{ "name": "ANALYZE_REASON_NO_LOCAL_PATH", "value": 4 },
+			{ "name": "ANALYZE_REASON_CHANGE_DESTINATION", "value": 8 },
+			{ "name": "ANALYZE_REASON_BLOCK_PATH", "value": 16 },
+			{ "name": "ANALYZE_REASON_NOT_ON_NAV", "value": 32 },
+			{ "name": "ANALYZE_REASON_NEED_TURN", "value": 64 },
+			{ "name": "ANALYZE_REASON_UNEXPECT_POSITION", "value": 128 },
+			{ "name": "ANALYZE_REASON_FAILED", "value": 256 },
+			{ "name": "ANALYZE_REASON_SWITCHING_TO_NEXT_PATH", "value": 512 },
+			{ "name": "ANALYZE_REASON_REACH_REQUESTED_START", "value": 2048 },
+			{ "name": "ANALYZE_REASON_REACHED_SUB_GOAL", "value": 4096 }
+		]
+	},
+	{
+		"name": "NavxBounderLocatorType",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "TYPE_GRAPH", "value": 0 },
+			{ "name": "TYPE_SWITCH", "value": 1 }
+		]
+	},
+	{
+		"name": "PhRigidBodyType",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "FIX", "value": 0 },
+			{ "name": "KEYFRAME", "value": 1 },
+			{ "name": "INERTIA", "value": 2 }
+		]
+	},
+	{
+		"name": "PhShapeType",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "NONE", "value": 0 },
+			{ "name": "CONVEX", "value": 1 },
+			{ "name": "SPHERE", "value": 2 },
+			{ "name": "BOX", "value": 3 },
+			{ "name": "CYLINDER", "value": 4 },
+			{ "name": "CAPSULE", "value": 5 },
+			{ "name": "ROUNDCONE", "value": 6 },
+			{ "name": "CONVEX_GROUP", "value": 7 },
+			{ "name": "POLYHEDRON", "value": 8 }
+		]
+	},
+	{
+		"name": "PhPrimitiveShapeType",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "NONE", "value": 0 },
+			{ "name": "CONVEX", "value": 1 },
+			{ "name": "SPHERE", "value": 2 },
+			{ "name": "BOX", "value": 3 },
+			{ "name": "CYLINDER", "value": 4 },
+			{ "name": "CAPSULE", "value": 5 }
+		]
+	},
+	{
+		"name": "UiNodeType",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "NODE_PAGE", "value": 0 },
+			{ "name": "NODE_PHASE", "value": 1 },
+			{ "name": "NODE_EVENT", "value": 2 },
+			{ "name": "NODE_ACTION", "value": 3 },
+			{ "name": "NODE_OPERATION", "value": 4 },
+			{ "name": "NODE_UNKNOWN", "value": 5 },
+			{ "name": "NODE_COMPOUND", "value": 6 }
+		]
+	},
+	{
+		"name": "UiNodePropType",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "INT8", "value": 0 },
+			{ "name": "UINT8", "value": 1 },
+			{ "name": "INT16", "value": 2 },
+			{ "name": "UINT16", "value": 3 },
+			{ "name": "INT32", "value": 4 },
+			{ "name": "UINT32", "value": 5 },
+			{ "name": "INT64", "value": 6 },
+			{ "name": "UINT64", "value": 7 },
+			{ "name": "FLOAT32", "value": 8 },
+			{ "name": "FLOAT64", "value": 9 },
+			{ "name": "BOOL", "value": 10 },
+			{ "name": "STRING", "value": 11 },
+			{ "name": "PATH", "value": 12 },
+			{ "name": "ENTITY_PTR", "value": 13 },
+			{ "name": "VECTOR3", "value": 14 },
+			{ "name": "VECTOR4", "value": 15 },
+			{ "name": "QUAT", "value": 16 },
+			{ "name": "MATRIX3", "value": 17 },
+			{ "name": "MATRIX4", "value": 18 },
+			{ "name": "COLOR", "value": 19 },
+			{ "name": "FILE_PTR", "value": 20 },
+			{ "name": "ENTITY_HANDLE", "value": 21 },
+			{ "name": "ENTITY_LINK", "value": 22 },
+			{ "name": "INVALID", "value": 23 }
+		]
+	},
+	{
+		"name": "UiNodeBodyType",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "NODE_PAGE", "value": 0 },
+			{ "name": "NODE_PHASE", "value": 1 },
+			{ "name": "NODE_EVENT", "value": 2 },
+			{ "name": "NODE_ACTION", "value": 3 },
+			{ "name": "NODE_OPERATION", "value": 4 },
+			{ "name": "NODE_UNKNOWN", "value": 5 },
+			{ "name": "NODE_COMPOUND", "value": 6 }
+		]
+	},
+	{
+		"name": "UiNodeBodyPropType",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "INT8", "value": 0 },
+			{ "name": "UINT8", "value": 1 },
+			{ "name": "INT16", "value": 2 },
+			{ "name": "UINT16", "value": 3 },
+			{ "name": "INT32", "value": 4 },
+			{ "name": "UINT32", "value": 5 },
+			{ "name": "INT64", "value": 6 },
+			{ "name": "UINT64", "value": 7 },
+			{ "name": "FLOAT32", "value": 8 },
+			{ "name": "FLOAT64", "value": 9 },
+			{ "name": "BOOL", "value": 10 },
+			{ "name": "STRING", "value": 11 },
+			{ "name": "PATH", "value": 12 },
+			{ "name": "ENTITY_PTR", "value": 13 },
+			{ "name": "VECTOR3", "value": 14 },
+			{ "name": "VECTOR4", "value": 15 },
+			{ "name": "QUAT", "value": 16 },
+			{ "name": "MATRIX3", "value": 17 },
+			{ "name": "MATRIX4", "value": 18 },
+			{ "name": "COLOR", "value": 19 },
+			{ "name": "FILE_PTR", "value": 20 },
+			{ "name": "ENTITY_HANDLE", "value": 21 },
+			{ "name": "ENTITY_LINK", "value": 22 },
+			{ "name": "INVALID", "value": 23 }
+		]
+	},
+	{
+		"name": "UiEventNodeKind",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "EVENT_NONE", "value": 0 },
+			{ "name": "EVENT_PRESS", "value": 1 },
+			{ "name": "EVENT_LONG_PRESS", "value": 2 },
+			{ "name": "EVENT_RELEASE", "value": 3 },
+			{ "name": "EVENT_TIMER", "value": 4 },
+			{ "name": "EVENT_SCRIPT", "value": 5 },
+			{ "name": "EVENT_SELECTION", "value": 6 },
+			{ "name": "EVENT_SELECT", "value": 7 },
+			{ "name": "EVENT_SELECT_LIST", "value": 8 },
+			{ "name": "EVENT_TRIGGER", "value": 9 },
+			{ "name": "EVENT_EVCONTROLLER", "value": 10 }
+		]
+	},
+	{
+		"name": "UiModelDataFlag",
+		"type": "flags",		"underlying_type": "int",
+		"values": [
+			{ "name": "FLAG_DISP_ON", "value": 1 },
+			{ "name": "FLAG_ZTEST", "value": 2 },
+			{ "name": "FLAG_GAME_CAMERA", "value": 4 },
+			{ "name": "FLAG_BILLBOARD", "value": 8 },
+			{ "name": "FLAG_STENCIL_MODEL", "value": 16 },
+			{ "name": "FLAG_STENCIL_OUT", "value": 32 },
+			{ "name": "FLAG_DRAW_STENCIL_OFF", "value": 64 },
+			{ "name": "FLAG_TEXTURE_NOWAIT", "value": 128 }
+		]
+	},
+	{
+		"name": "UiInheritanceSetting",
+		"type": "flags",		"underlying_type": "int",
+		"values": [
+			{ "name": "SCALE", "value": 1 },
+			{ "name": "ROTATION", "value": 2 },
+			{ "name": "TRANSLATION", "value": 4 },
+			{ "name": "COLOR_RGB", "value": 8 },
+			{ "name": "COLOR_ALPHA", "value": 16 }
+		]
+	},
+	{
+		"name": "UiModelNodeElementBlend",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "BLEND_OFF", "value": 0 },
+			{ "name": "BLEND_ALPHA", "value": 1 },
+			{ "name": "BLEND_ADD", "value": 2 }
+		]
+	},
+	{
+		"name": "UiAnimDataFlag",
+		"type": "flags",		"underlying_type": "int",
+		"values": [
+			{ "name": "FLAG_PLAY", "value": 1 },
+			{ "name": "FLAG_LOOP", "value": 2 },
+			{ "name": "FLAG_RESET", "value": 4 },
+			{ "name": "FLAG_DISP", "value": 8 }
+		]
+	},
+	{
+		"name": "UiActionNodeKind",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "ACTION_NONE", "value": 0 },
+			{ "name": "ACTION_DISPLAY", "value": 1 },
+			{ "name": "ACTION_ANIMATION", "value": 2 },
+			{ "name": "ACTION_TRANSFORM", "value": 3 },
+			{ "name": "ACTION_COLOR", "value": 4 },
+			{ "name": "ACTION_TEXTURE", "value": 5 },
+			{ "name": "ACTION_FADE_SCENE", "value": 6 },
+			{ "name": "ACTION_PAGE_CHANGE", "value": 7 },
+			{ "name": "ACTION_PHASE_CHANGE", "value": 8 },
+			{ "name": "ACTION_SCRIPT", "value": 9 },
+			{ "name": "ACTION_CHAIN_LIST", "value": 10 },
+			{ "name": "ACTION_SOUND", "value": 11 },
+			{ "name": "ACTION_SENDTRIGGER", "value": 12 },
+			{ "name": "ACTION_SET_TEXT", "value": 13 },
+			{ "name": "ACTION_COLOR_GROUP", "value": 14 },
+			{ "name": "ACTION_PRIORITY", "value": 15 },
+			{ "name": "ACTION_ACTADDWINDOW", "value": 16 },
+			{ "name": "ACTION_ACTREMOVEWINDOW", "value": 17 },
+			{ "name": "ACTION_CONNECTCOMPONENT", "value": 18 }
+		]
+	},
+	{
+		"name": "UiOperationNodeKind",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "OPERATION_NONE", "value": 0 },
+			{ "name": "OPERATION_AND", "value": 1 },
+			{ "name": "OPERATION_OR", "value": 2 },
+			{ "name": "OPERATION_GREATER_THAN", "value": 3 },
+			{ "name": "OPERATION_SWITCH", "value": 4 },
+			{ "name": "OPERATION_PUSH_FLOAT", "value": 5 },
+			{ "name": "OPERATION_PUSH_TEXT", "value": 6 },
+			{ "name": "OPERATION_PUSH_COLOR", "value": 7 },
+			{ "name": "OPERATION_PUSH_VECTOR3", "value": 8 },
+			{ "name": "OPERATION_OPEPUSHARRAY", "value": 9 },
+			{ "name": "OPERATION_OPEPUSHRESOURCE", "value": 10 },
+			{ "name": "OPERATION_OPEGETPROPERTY", "value": 11 },
+			{ "name": "OPERATION_OPEGETWINDOWNAME", "value": 12 },
+			{ "name": "OPERATION_OPECOMPARE", "value": 13 },
+			{ "name": "OPERATION_OPETRIGGERPARAMTOSTRING", "value": 14 }
+		]
+	},
+	{
+		"name": "UiOperationBodyKind",
+		"type": "switch",		"underlying_type": "int",
+		"values": [
+			{ "name": "OPERATION_NONE", "value": 0 },
+			{ "name": "OPERATION_AND", "value": 1 },
+			{ "name": "OPERATION_OR", "value": 2 },
+			{ "name": "OPERATION_GREATER_THAN", "value": 3 },
+			{ "name": "OPERATION_SWITCH", "value": 4 },
+			{ "name": "OPERATION_PUSH_FLOAT", "value": 5 },
+			{ "name": "OPERATION_PUSH_TEXT", "value": 6 },
+			{ "name": "OPERATION_PUSH_COLOR", "value": 7 },
+			{ "name": "OPERATION_PUSH_VECTOR3", "value": 8 },
+			{ "name": "OPERATION_OPEPUSHARRAY", "value": 9 },
+			{ "name": "OPERATION_OPEPUSHRESOURCE", "value": 10 },
+			{ "name": "OPERATION_OPEGETPROPERTY", "value": 11 },
+			{ "name": "OPERATION_OPEGETWINDOWNAME", "value": 12 },
+			{ "name": "OPERATION_OPECOMPARE", "value": 13 },
+			{ "name": "OPERATION_OPETRIGGERPARAMTOSTRING", "value": 14 }
+		]
+	}
+]
