@@ -1,6 +1,6 @@
 ﻿namespace Fox
 {
-    struct EntityHandle
+    public struct EntityHandle
     {
         uint placeholder;
     }

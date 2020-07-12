@@ -9,14 +9,14 @@
 //------------------------------------------------------------------------------
 namespace Fox.{{ info.namespace }}
 {
-    using FoxCore;
-
     public partial class {{ info.name }} {% if info.parent %}: {{ info.get_parent_string() }} {% endif %}
     {
-        private static EntityInfo classInfo;
+        {% if info.properties.len %}// Properties{% endif %}
         {% for property_name in info.properties %}
         public {{ info.properties[property_name].get_property_full_type_string() }} {{ info.properties[property_name].get_safe_name() }} { get; {% if info.properties[property_name].has_setter() %}set; {% endif %}}{% if info.properties[property_name].has_default_value() %} = {{info.properties[property_name].get_default_value()}};{% endif %}
         {% endfor %}
+        // PropertyInfo
+        private static EntityInfo classInfo;
 		{% if info.is_entity() %}public {{ info.name }}(ulong address, ushort idA, ushort idB){% if info.parent %} : base(address, idA, idB) { }{% else %}
         {
             this.Address = address;

@@ -1,32 +1,40 @@
 ﻿namespace Fox
 {
-    using BaseClass = Data;
     using Value = System.Int16;
 
-    class DataSet : BaseClass
+    public partial class DataSet : Data
     {
-        private static EntityInfo entityInfo;
-
-        static DataSet()
-        {
-            entityInfo = new EntityInfo(new String("DataSet"), BaseClass.GetClassEntityInfo(), 232, null, 0);
-
-            entityInfo.StaticProperties.Insert(new String("dataList"), new PropertyInfo(PropertyInfo.PropertyType.EntityPtr, 120, 1, PropertyInfo.ContainerType.StringMap, PropertyInfo.PropertyExport.Never, PropertyInfo.PropertyExport.Never, typeof(FoxCore.Data), null, PropertyInfo.PropertyStorage.Instance));
-        }
-
-        public static new EntityInfo GetClassEntityInfo()
-        {
-            return entityInfo;
-        }
-
+        // Properties
         public StringMap<EntityPtr<Data>> dataList { get; } = new StringMap<EntityPtr<Data>>();
 
+        // PropertyInfo
+        private static EntityInfo classInfo;
+        public static new EntityInfo ClassInfo
+        {
+            get
+            {
+                return classInfo;
+            }
+        }
+        public override EntityInfo GetClassEntityInfo()
+        {
+            return classInfo;
+        }
+        static DataSet()
+        {
+            classInfo = new EntityInfo(new Fox.String("DataSet"), Data.ClassInfo, 232, null, 0);
+
+            classInfo.StaticProperties.Insert(new Fox.String("dataList"), new PropertyInfo(PropertyInfo.PropertyType.EntityPtr, 120, 1, PropertyInfo.ContainerType.StringMap, PropertyInfo.PropertyExport.Never, PropertyInfo.PropertyExport.Never, typeof(Fox.Data), null, PropertyInfo.PropertyStorage.Instance));
+        }
+
+        // Constructor
         public DataSet()
         {
 
         }
 
-        public override void SetProperty(String propertyName, Value value)
+        // Getters and setters
+        public override void SetProperty(Fox.String propertyName, Value value)
         {
             switch (propertyName.Hash)
             {
@@ -37,7 +45,7 @@
             }
         }
 
-        public override void SetPropertyElement(Fox.FoxKernel.String propertyName, ushort index, Value value)
+        public override void SetPropertyElement(Fox.String propertyName, ushort index, Value value)
         {
             switch (propertyName.CString)
             {
@@ -48,12 +56,12 @@
             }
         }
 
-        public override void SetPropertyElement(String propertyName, String key, Value value)
+        public override void SetPropertyElement(Fox.String propertyName, Fox.String key, Value value)
         {
-            switch (propertyName.CString)
+            switch (propertyName.Hash)
             {
-                case Hashing.StrCode32("dataList"):
-                    this.dataList.Add(key, EntityPtr<FoxCore.Data>.Get(value.GetValueAsEntityPtr().Entity as FoxCore.Data));
+                case Hashing.StrCode(""):
+                    this.dataList.Insert(key, EntityPtr<Fox.Data>.Get(value.GetValueAsEntityPtr().Entity as FoxCore.Data));
                     return;
                 default:
 
