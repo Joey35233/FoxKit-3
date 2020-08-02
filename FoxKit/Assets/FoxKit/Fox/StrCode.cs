@@ -6,17 +6,13 @@ using UnityEngine;
 
 namespace Fox
 {
-<<<<<<< HEAD:FoxKit/Assets/FoxKit/Fox/PathFileNameCode.cs
-    public struct PathFileNameCode
-=======
     [Serializable]
     public struct StrCode
->>>>>>> entity-dev:FoxKit/Assets/FoxKit/Fox/StrCode.cs
     {
         [SerializeField]
         private ulong hash;
 
-        public PathFileNameCode(string str)
+        public StrCode(string str)
         {
             hash = Hashing.PathFileNameCode(str);
         }
