@@ -38,8 +38,8 @@ class PropertyInfo:
             "float" : "float",
             "double" : "double",
             "bool" : "bool",
-            "String" : "Fox.FoxKernel.String",
-            "Path" : "Fox.FoxKernel.Path",
+            "String" : "String",
+            "Path" : "Path",
             "EntityPtr" : "EntityPtr",
             "Vector3" : "System.Numerics.Vector3",
             "Vector4" : "System.Numerics.Vector4",
@@ -124,7 +124,7 @@ class PropertyInfo:
                 return value_type_string
             return f'{value_type_string}[]'
         if self.container == "StringMap":
-            return f'Fox.FoxKernel.StringMap<{value_type_string}>'
+            return f'StringMap<{value_type_string}>'
         return f'System.Collections.Generic.IList<{value_type_string}>'
 
     def has_setter(self):
@@ -156,7 +156,7 @@ class PropertyInfo:
         if self.container == "StaticArray":
             return f'new {value_type_string}[{self.array_size}]'
         if self.container == "StringMap":
-            return f'new Fox.FoxKernel.StringMap<{value_type_string}>()'
+            return f'new StringMap<{value_type_string}>()'
         return f'new System.Collections.Generic.List<{value_type_string}>()'
 
     def get_value_getter_type_string(self):
@@ -228,7 +228,7 @@ class PropertyInfo:
         enum_str = "null"
         if self.enum_type:
             enum_str = f'typeof(FoxCore.{self.enum_type})'
-        return f'classInfo.StaticProperties.Add(Fox.FoxKernel.String.FromCString("{self.name}"), new PropertyInfo(PropertyInfo.PropertyType.{self.get_value_getter_type_string()}, {self.offset}, {self.array_size}, PropertyInfo.ContainerType.{self.container}, {self.get_readable_string()}, {self.get_writable_string()}, {self.get_entity_ptr_type_string()}, {enum_str}, PropertyInfo.PropertyStorage.Instance));'
+        return f'classInfo.StaticProperties.Insert(new String("{self.name}"), new PropertyInfo(PropertyInfo.PropertyType.{self.get_value_getter_type_string()}, {self.offset}, {self.array_size}, PropertyInfo.ContainerType.{self.container}, {self.get_readable_string()}, {self.get_writable_string()}, {self.get_entity_ptr_type_string()}, {enum_str}, PropertyInfo.PropertyStorage.Instance));'
 
     def is_collection_property(self):
         """Gets whether or not the property is a collection property.
