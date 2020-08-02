@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 
 using UnityEngine;
 
@@ -14,7 +12,7 @@ namespace Fox
 
         public StrCode(string str)
         {
-            hash = Hashing.PathFileNameCode(str);
+            hash = Hashing.StrCode(str);
         }
     }
 }
