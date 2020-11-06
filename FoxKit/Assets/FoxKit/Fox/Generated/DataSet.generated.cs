@@ -1,7 +1,5 @@
 ﻿namespace Fox
 {
-    using Value = System.Int16;
-
     public partial class DataSet : Data
     {
         // Properties
@@ -34,9 +32,9 @@
         }
 
         // Getters and setters
-        public override void SetProperty(Fox.String propertyName, Value value)
+        public override void SetProperty<T>(String propertyName, Value<T> value)
         {
-            switch (propertyName.Hash)
+            switch (propertyName.CString())
             {
                 default:
 
@@ -45,9 +43,9 @@
             }
         }
 
-        public override void SetPropertyElement(Fox.String propertyName, ushort index, Value value)
+        public override void SetPropertyElement<T>(String propertyName, ushort index, Value<T> value)
         {
-            switch (propertyName.CString)
+            switch (propertyName.CString())
             {
                 default:
 
@@ -56,12 +54,12 @@
             }
         }
 
-        public override void SetPropertyElement(Fox.String propertyName, Fox.String key, Value value)
+        public override void SetPropertyElement<T>(String propertyName, String key, Value<T> value)
         {
-            switch (propertyName.Hash)
+            switch (propertyName.CString())
             {
-                case Hashing.StrCode(""):
-                    this.dataList.Insert(key, EntityPtr<Fox.Data>.Get(value.GetValueAsEntityPtr().Entity as FoxCore.Data));
+                case "dataList":
+                    this.dataList.Add(key, EntityPtr<FoxCore.Data>.Get(value.GetValueAsEntityPtr().Entity as FoxCore.Data));
                     return;
                 default:
 

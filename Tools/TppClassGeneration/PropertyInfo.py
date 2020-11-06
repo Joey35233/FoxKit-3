@@ -103,7 +103,7 @@ class PropertyInfo:
         result = self.data_type_strings[self.data_type]
 
         if self.enum_type:
-            result = f'FoxCore.{self.enum_type}'
+            result = f'{self.enum_type}'
         if self.data_type == "EntityPtr":
             result = f'{result}<{self.definitions[self.ptr_type].namespace}.{self.ptr_type}>'
         elif self.data_type == "FilePtr":
@@ -178,7 +178,7 @@ class PropertyInfo:
 
         cast_string = ""
         if self.enum_type:
-            cast_string = f'(FoxCore.{self.enum_type})'
+            cast_string = f'({self.enum_type})'
 
         if self.data_type == "EntityPtr":
             return f'EntityPtr<{self.definitions[self.ptr_type].namespace}.{self.ptr_type}>.Get(value.GetValueAsEntityPtr().Entity as {self.definitions[self.ptr_type].namespace}.{self.ptr_type})'
@@ -227,7 +227,7 @@ class PropertyInfo:
 
         enum_str = "null"
         if self.enum_type:
-            enum_str = f'typeof(FoxCore.{self.enum_type})'
+            enum_str = f'typeof({self.enum_type})'
         return f'classInfo.StaticProperties.Insert(new String("{self.name}"), new PropertyInfo(PropertyInfo.PropertyType.{self.get_value_getter_type_string()}, {self.offset}, {self.array_size}, PropertyInfo.ContainerType.{self.container}, {self.get_readable_string()}, {self.get_writable_string()}, {self.get_entity_ptr_type_string()}, {enum_str}, PropertyInfo.PropertyStorage.Instance));'
 
     def is_collection_property(self):

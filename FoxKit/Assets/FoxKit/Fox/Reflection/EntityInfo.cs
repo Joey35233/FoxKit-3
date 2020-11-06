@@ -11,7 +11,7 @@ namespace Fox
     {
         public EntityInfo(String name, EntityInfo super, short id, string category, ushort version)
         {
-            Name = name ?? throw new ArgumentNullException(nameof(name));
+            Name = name;
             Super = super;
             Id = id;
             Category = category;
@@ -71,7 +71,7 @@ namespace Fox
 
         public override string ToString()
         {
-            return this.Name.CString;
+            return this.Name.CString();
         }
     }
 }

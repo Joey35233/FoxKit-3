@@ -14,7 +14,7 @@ namespace Fox.FoxCore
         // Properties
         public float blockMemorySize { get; set; }
         
-        public FoxCore.BlockGroupData_ByteOrder sizeOrder { get; set; }
+        public BlockGroupData_ByteOrder sizeOrder { get; set; }
         
         public uint blockSizeInBytes { get; set; }
         
@@ -44,7 +44,7 @@ namespace Fox.FoxCore
             classInfo = new EntityInfo(new String("BlockGroupData"), base.GetClassEntityInfo(), 0, null, 1);
 			
 			classInfo.StaticProperties.Insert(new String("blockMemorySize"), new PropertyInfo(PropertyInfo.PropertyType.Float, 0, 1, PropertyInfo.ContainerType.StaticArray, PropertyInfo.PropertyExport.EditorAndGame, PropertyInfo.PropertyExport.EditorAndGame, null, null, PropertyInfo.PropertyStorage.Instance));
-			classInfo.StaticProperties.Insert(new String("sizeOrder"), new PropertyInfo(PropertyInfo.PropertyType.Int32, 120, 1, PropertyInfo.ContainerType.StaticArray, PropertyInfo.PropertyExport.EditorAndGame, PropertyInfo.PropertyExport.EditorAndGame, null, typeof(FoxCore.BlockGroupData_ByteOrder), PropertyInfo.PropertyStorage.Instance));
+			classInfo.StaticProperties.Insert(new String("sizeOrder"), new PropertyInfo(PropertyInfo.PropertyType.Int32, 120, 1, PropertyInfo.ContainerType.StaticArray, PropertyInfo.PropertyExport.EditorAndGame, PropertyInfo.PropertyExport.EditorAndGame, null, typeof(BlockGroupData_ByteOrder), PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert(new String("blockSizeInBytes"), new PropertyInfo(PropertyInfo.PropertyType.UInt32, 124, 1, PropertyInfo.ContainerType.StaticArray, PropertyInfo.PropertyExport.EditorOnly, PropertyInfo.PropertyExport.EditorOnly, null, null, PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert(new String("blockCount"), new PropertyInfo(PropertyInfo.PropertyType.UInt32, 128, 1, PropertyInfo.ContainerType.StaticArray, PropertyInfo.PropertyExport.EditorAndGame, PropertyInfo.PropertyExport.EditorAndGame, null, null, PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert(new String("block"), new PropertyInfo(PropertyInfo.PropertyType.Path, 136, 1, PropertyInfo.ContainerType.DynamicArray, PropertyInfo.PropertyExport.EditorAndGame, PropertyInfo.PropertyExport.EditorAndGame, null, null, PropertyInfo.PropertyStorage.Instance));
@@ -63,7 +63,7 @@ namespace Fox.FoxCore
                     this.blockMemorySize = value.GetValueAsFloat();
                     return;
                 case "sizeOrder":
-                    this.sizeOrder = (FoxCore.BlockGroupData_ByteOrder)value.GetValueAsInt32();
+                    this.sizeOrder = (BlockGroupData_ByteOrder)value.GetValueAsInt32();
                     return;
                 case "blockSizeInBytes":
                     this.blockSizeInBytes = value.GetValueAsUInt32();

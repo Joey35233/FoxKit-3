@@ -1,7 +1,5 @@
 ﻿namespace Fox
 {
-    using Value = System.Int16;
-
     public partial class Entity
     {
         // PropertyInfo
@@ -29,38 +27,47 @@
         }
 
         // Getters and setters
-        public virtual void SetProperty(Fox.String propertyName, Value value)
+        public virtual void SetProperty<T>(String propertyName, Value<T> value)
         {
-            switch (propertyName.Hash)
+            switch (propertyName.CString())
             {
                 default:
-
-                    base.SetProperty(propertyName, value);
+                    if (this.DynamicProperties.TryGetValue(propertyName, out DynamicProperty property))
+                    {
+                        property.SetValue(value);
+                        return;
+                    }
+                    throw new System.MissingMemberException("Unrecognized property", propertyName.CString());
                     return;
             }
         }
 
-        public virtual void SetPropertyElement(Fox.String propertyName, ushort index, Value value)
+        public virtual void SetPropertyElement<T>(String propertyName, ushort index, Value<T> value)
         {
-            switch (propertyName.CString)
+            switch (propertyName.CString())
             {
                 default:
-
-                    base.SetPropertyElement(propertyName, index, value);
+                    if (this.DynamicProperties.TryGetValue(propertyName, out DynamicProperty property))
+                    {
+                        property.SetElement(index, value);
+                        return;
+                    }
+                    throw new System.MissingMemberException("Unrecognized property", propertyName.CString());
                     return;
             }
         }
 
-        public virtual void SetPropertyElement(Fox.String propertyName, Fox.String key, Value value)
+        public virtual void SetPropertyElement<T>(String propertyName, String key, Value<T> value)
         {
-            switch (propertyName.CString)
+            switch (propertyName.CString())
             {
-                case Hashing.StrCode32("dataList"):
-                    this.dataList.Add(key, EntityPtr<Fox.Data>.Get(value.GetValueAsEntityPtr().Entity as FoxCore.Data));
-                    return;
                 default:
-
-                    base.SetPropertyElement(propertyName, key, value);
+                    if (this.DynamicProperties.TryGetValue(propertyName, out DynamicProperty property))
+                    {
+                        property.SetElement(key, value);
+                        return;
+                    }
+                    throw new System.MissingMemberException("Unrecognized property", propertyName.CString());
                     return;
             }
         }

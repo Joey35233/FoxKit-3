@@ -10,7 +10,7 @@
 using System;
 using System.ComponentModel;
 
-namespace Fox.FoxCore
+namespace Fox
 {
 	{% for enum in enums %}
 	{% if enum.type == "flags" %}[Flags]{% endif %}

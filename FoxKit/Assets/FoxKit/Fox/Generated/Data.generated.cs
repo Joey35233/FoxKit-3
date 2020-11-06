@@ -1,7 +1,5 @@
 ﻿namespace Fox
 {
-    using Value = System.Int16;
-
     public partial class Data : Entity
     {
         // Properties
@@ -37,6 +35,48 @@
         public Data()
         {
 
+        }
+
+        public override void SetProperty(String propertyName, Value value)
+        {
+            switch (propertyName.CString())
+            {
+                case "name":
+                    this.name = value.GetValueAsString();
+                    return;
+                case "dataSet":
+                    this.dataSet = value.GetValueAsEntityHandle();
+                    return;
+                case "referencePath":
+                    this.referencePath = value.GetValueAsString();
+                    return;
+                default:
+
+                    base.SetProperty(propertyName, value);
+                    return;
+            }
+        }
+
+        public override void SetPropertyElement(String propertyName, ushort index, Value value)
+        {
+            switch (propertyName.CString())
+            {
+                default:
+
+                    base.SetPropertyElement(propertyName, index, value);
+                    return;
+            }
+        }
+
+        public override void SetPropertyElement(String propertyName, String key, Value value)
+        {
+            switch (propertyName.CString())
+            {
+                default:
+
+                    base.SetPropertyElement(propertyName, key, value);
+                    return;
+            }
         }
     }
 }

@@ -29,6 +29,12 @@ namespace Fox
             return Cells[0].Value;
         }
 
+        public bool TryGet(String key, out T value)
+        {
+            throw new System.NotImplementedException();
+            value = Cells[0].Value;
+        }
+
         public void Insert(String key, T value)
         {
             throw new System.NotImplementedException();

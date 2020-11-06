@@ -9,7 +9,7 @@
 //------------------------------------------------------------------------------
 using System.Collections.Generic;
 
-namespace Fox.FoxCore
+namespace Fox
 {
     public class EntityFactory
     {

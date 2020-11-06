@@ -22,7 +22,7 @@ namespace Fox.FoxCore
         
         public System.Collections.Generic.IList<EntityHandle> children { get; } = new System.Collections.Generic.List<EntityHandle>();
         
-        public FoxCore.TransformData_Flags flags { get; set; }
+        public TransformData_Flags flags { get; set; }
         
         public bool inheritTransform { get; set; }
         
@@ -56,7 +56,7 @@ namespace Fox.FoxCore
 			classInfo.StaticProperties.Insert(new String("shearTransform"), new PropertyInfo(PropertyInfo.PropertyType.EntityPtr, 136, 1, PropertyInfo.ContainerType.StaticArray, PropertyInfo.PropertyExport.EditorAndGame, PropertyInfo.PropertyExport.EditorAndGame, typeof(FoxCore.ShearTransformEntity), null, PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert(new String("pivotTransform"), new PropertyInfo(PropertyInfo.PropertyType.EntityPtr, 144, 1, PropertyInfo.ContainerType.StaticArray, PropertyInfo.PropertyExport.EditorAndGame, PropertyInfo.PropertyExport.EditorAndGame, typeof(FoxCore.PivotTransformEntity), null, PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert(new String("children"), new PropertyInfo(PropertyInfo.PropertyType.EntityHandle, 152, 1, PropertyInfo.ContainerType.List, PropertyInfo.PropertyExport.Never, PropertyInfo.PropertyExport.Never, null, null, PropertyInfo.PropertyStorage.Instance));
-			classInfo.StaticProperties.Insert(new String("flags"), new PropertyInfo(PropertyInfo.PropertyType.UInt32, 184, 1, PropertyInfo.ContainerType.StaticArray, PropertyInfo.PropertyExport.Never, PropertyInfo.PropertyExport.Never, null, typeof(FoxCore.TransformData_Flags), PropertyInfo.PropertyStorage.Instance));
+			classInfo.StaticProperties.Insert(new String("flags"), new PropertyInfo(PropertyInfo.PropertyType.UInt32, 184, 1, PropertyInfo.ContainerType.StaticArray, PropertyInfo.PropertyExport.Never, PropertyInfo.PropertyExport.Never, null, typeof(TransformData_Flags), PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert(new String("inheritTransform"), new PropertyInfo(PropertyInfo.PropertyType.Bool, 0, 1, PropertyInfo.ContainerType.StaticArray, PropertyInfo.PropertyExport.EditorAndGame, PropertyInfo.PropertyExport.EditorAndGame, null, null, PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert(new String("visibility"), new PropertyInfo(PropertyInfo.PropertyType.Bool, 0, 1, PropertyInfo.ContainerType.StaticArray, PropertyInfo.PropertyExport.EditorAndGame, PropertyInfo.PropertyExport.EditorAndGame, null, null, PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert(new String("selection"), new PropertyInfo(PropertyInfo.PropertyType.Bool, 0, 1, PropertyInfo.ContainerType.StaticArray, PropertyInfo.PropertyExport.EditorAndGame, PropertyInfo.PropertyExport.EditorAndGame, null, null, PropertyInfo.PropertyStorage.Instance));
@@ -84,7 +84,7 @@ namespace Fox.FoxCore
                     this.pivotTransform = EntityPtr<FoxCore.PivotTransformEntity>.Get(value.GetValueAsEntityPtr().Entity as FoxCore.PivotTransformEntity);
                     return;
                 case "flags":
-                    this.flags = (FoxCore.TransformData_Flags)value.GetValueAsUInt32();
+                    this.flags = (TransformData_Flags)value.GetValueAsUInt32();
                     return;
                 case "inheritTransform":
                     this.inheritTransform = value.GetValueAsBool();
