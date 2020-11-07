@@ -51,6 +51,11 @@
             return entity.DynamicProperties.ContainsKey(name);
         }
 
+        public EntityInfo GetClassEntityInfo()
+        {
+            return null;
+        }
+
         public override string ToString()
         {
             return $"{this.GetType().Name}: 0x{this.Address:X16}";

@@ -4,7 +4,7 @@
     using UnityEngine;
 
     [Serializable]
-    public class InspectorTestData
+    public class InspectorTestData : Data
     {
         #region Non-array properties
         public sbyte property10;
@@ -20,7 +20,7 @@
         public bool property20;
         public Fox.String property21;
         public Fox.Path property22;
-        //public EntityPtr<Data> property23;
+        public EntityPtr<Data> property23;
         public Vector3 property24;
         public Vector4 property25;
         public Quaternion property26;
