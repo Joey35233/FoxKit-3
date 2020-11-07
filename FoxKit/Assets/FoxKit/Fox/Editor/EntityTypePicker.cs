@@ -1,7 +1,9 @@
 ﻿using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
+using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -9,6 +11,10 @@ namespace Fox.Editor
 {
     public class EntityTypePicker : EditorWindow
     {
+        private readonly IList<string> allItems = new List<string>();
+        private readonly List<string> filteredItems = new List<string>();
+        private ListView typeList;
+
         public static void Show(Type baseType)
         {
             var window = GetWindow<EntityTypePicker>();
@@ -29,33 +35,48 @@ namespace Fox.Editor
             root.style.flexDirection = FlexDirection.Column;
             root.style.flexGrow = 1.0f;
 
-            var typeList = rootVisualElement.Q<ListView>("Types");
+            this.allItems.Clear();
+            this.filteredItems.Clear();
 
-            // Create some list of data, here simply numbers in interval [1, 1000]
             const int itemCount = 1000;
-            var items = new List<string>(itemCount);
             for (int i = 1; i <= itemCount; i++)
             {
-                items.Add(i.ToString());
+                this.allItems.Add(i.ToString());
+                this.filteredItems.Add(i.ToString());
             }
 
-            // The "makeItem" function will be called as needed
-            // when the ListView needs more items to render
-            Func<VisualElement> makeItem = () => new Label();
+            this.typeList = rootVisualElement.Q<ListView>("Types");
 
-            // As the user scrolls through the list, the ListView object
-            // will recycle elements created by the "makeItem"
-            // and invoke the "bindItem" callback to associate
-            // the element with the matching data item (specified as an index in the list)
-            Action<VisualElement, int> bindItem = (e, i) => (e as Label).text = items[i];
+            VisualElement makeItem() => new Label();
+            void bindItem(VisualElement e, int i) => (e as Label).text = this.filteredItems[i];
 
             typeList.onItemsChosen += obj => Debug.Log(obj);
             typeList.onSelectionChange += objects => Debug.Log(objects);
-            typeList.itemsSource = items;
+            typeList.itemsSource = (System.Collections.IList)this.allItems;
             typeList.makeItem = makeItem;
             typeList.bindItem = bindItem;
-            //typeList.style.minHeight = 500;
-            //typeList.style.flexGrow = 1.0f;
+
+            var search = rootVisualElement.Q<ToolbarSearchField>();
+            search.RegisterValueChangedCallback(OnTextChanged);
+        }
+
+        private void OnTextChanged(ChangeEvent<string> evt)
+        {
+            filteredItems.Clear();
+            typeList.itemsSource = filteredItems;
+            typeList.selectedIndex = -1;
+
+            if (string.IsNullOrEmpty(evt.newValue))
+            {
+                filteredItems.AddRange(this.allItems);
+                typeList.Refresh();
+                return;
+            }
+
+            filteredItems.AddRange(from item in this.allItems
+                                   where item.IndexOf(evt.newValue, StringComparison.OrdinalIgnoreCase) >= 0
+                                   select item);
+            typeList.Refresh();
         }
     }
 }
