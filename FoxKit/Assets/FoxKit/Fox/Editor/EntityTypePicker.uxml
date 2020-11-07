@@ -6,10 +6,6 @@
     xmlns:foxkit="FoxKit"
     xsi:noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd"
 >
-  <engine:Foldout>
-    <engine:VisualElement class="entityPtrHeader">
-      <engine:TextField name="ClassLabel" />
-      <engine:Button text="+" name="CreateDeleteEntityButton"/>
-    </engine:VisualElement>
-  </engine:Foldout>
+  <editor:ToolbarSearchField name="Search"/>
+  <engine:ListView name="Types" show-alternating-row-backgrounds="All" item-height="16" />
 </engine:UXML>

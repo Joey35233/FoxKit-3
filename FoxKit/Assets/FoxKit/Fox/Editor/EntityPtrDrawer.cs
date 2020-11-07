@@ -1,4 +1,5 @@
-﻿using UnityEditor;
+﻿using System;
+using UnityEditor;
 using UnityEngine.UIElements;
 
 namespace Fox.Editor
@@ -18,12 +19,21 @@ namespace Fox.Editor
             foldout.text = property.name;
 
             var classLabel = foldout.Q<TextField>("ClassLabel");
+            var type = GetEntityPtrType(property);
             var className = GetEntityPtrClassName(property);
-            classLabel.value = $"{className} ({GetEntityPtrTypeName(property)})";
+            classLabel.value = $"{className} ({type.Name})";
             classLabel.SetEnabled(false);
+
+            var createDeleteButton = foldout.Q<Button>("CreateDeleteEntityButton");
+            createDeleteButton.clicked += () => CreateDeleteButton_clicked(type);
 
             container.Add(drawer);
             return container;
+        }
+
+        private void CreateDeleteButton_clicked(Type baseType)
+        {
+            EntityTypePicker.Show(baseType);
         }
 
         private static string GetEntityPtrClassName(SerializedProperty property)
@@ -48,7 +58,7 @@ namespace Fox.Editor
             return ptrValue.GetType().Name;
         }
 
-        private static string GetEntityPtrTypeName(SerializedProperty property)
+        private static Type GetEntityPtrType(SerializedProperty property)
         {
             object obj = property.serializedObject.targetObject;
 
@@ -60,7 +70,7 @@ namespace Fox.Editor
                 obj = field.GetValue(obj);
             }
 
-            return obj.GetType().GetGenericArguments()[0].Name;
+            return obj.GetType().GetGenericArguments()[0];
         }
     }
 }
