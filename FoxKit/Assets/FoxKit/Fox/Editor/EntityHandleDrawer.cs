@@ -12,6 +12,9 @@ namespace Fox.Editor
             var uxmlTemplate = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/FoxKit/Fox/Editor/EntityHandleDrawer.uxml");
             var drawer = uxmlTemplate.CloneTree(property.propertyPath);
 
+            var foldout = drawer.Q<TextField>();
+            foldout.label = property.name;
+
             container.Add(drawer);
             return container;
         }

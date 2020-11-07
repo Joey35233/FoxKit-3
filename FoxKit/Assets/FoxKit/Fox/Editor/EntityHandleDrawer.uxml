@@ -5,5 +5,5 @@
     xmlns:editor="UnityEditor.UIElements"
     xsi:noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd"
 >
-  <engine:Label text="Hello yes I am an EntityHandle"/>
+  <engine:TextField text="Hello yes I am an EntityHandle"/>
 </engine:UXML>
