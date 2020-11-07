@@ -20,7 +20,7 @@
         public bool property20;
         public Fox.String property21;
         public Fox.Path property22;
-        //public EntityPtr<Data> property23;
+        public EntityPtr<Entity> property23;
         public Vector3 property24;
         public Vector4 property25;
         public Quaternion property26;
