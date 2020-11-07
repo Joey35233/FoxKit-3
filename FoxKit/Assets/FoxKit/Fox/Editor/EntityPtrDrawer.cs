@@ -7,8 +7,16 @@ namespace Fox.Editor
     [CustomPropertyDrawer(typeof(EntityPtr<>))]
     public class EntityPtrDrawer : PropertyDrawer
     {
+        private Action<Entity> setEntityPtr;
+        private TextField classLabel;
+        private SerializedProperty entityProperty;
+        private string className;
+
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
         {
+            this.entityProperty = GetEntityProperty(property);
+            this.setEntityPtr = GetEntityPtrSetter(property);
+
             var container = new VisualElement();
             var uxmlTemplate = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/FoxKit/Fox/Editor/EntityPtrDrawer.uxml");
             var uss = AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/FoxKit/Fox/Editor/EntityPtrDrawer.uss");
@@ -18,9 +26,9 @@ namespace Fox.Editor
             var foldout = drawer.Q<Foldout>();
             foldout.text = property.name;
 
-            var classLabel = foldout.Q<TextField>("ClassLabel");
+            this.classLabel = foldout.Q<TextField>("ClassLabel");
             var type = GetEntityPtrType(property);
-            var className = GetEntityPtrClassName(property);
+            this.className = GetEntityPtrClassName(property);
             classLabel.value = $"{className} ({type.Name})";
             classLabel.SetEnabled(false);
 
@@ -31,9 +39,32 @@ namespace Fox.Editor
             return container;
         }
 
+        private void UpdateClassNameControl(Type newType)
+        {
+            classLabel.value = $"{newType.Name} ({this.className})";
+        }
+
         private void CreateDeleteButton_clicked(Type baseType)
         {
-            EntityTypePicker.Show(baseType);
+            EntityTypePicker.Show(baseType, EntityTypePicker_onTypeSelected);
+        }
+
+        private void EntityTypePicker_onTypeSelected(Type type)
+        {
+            var instance = Activator.CreateInstance(type) as Entity;
+            this.setEntityPtr(instance);
+            this.UpdateClassNameControl(type);
+        }
+
+        private static SerializedProperty GetEntityProperty(SerializedProperty thisProperty)
+        {
+            var obj = thisProperty.serializedObject;
+            return obj.FindProperty(thisProperty.propertyPath).FindPropertyRelative("ptr");
+        }
+
+        private Action<Entity> GetEntityPtrSetter(SerializedProperty property)
+        {
+            return this.entityProperty.SetValue;
         }
 
         private static string GetEntityPtrClassName(SerializedProperty property)

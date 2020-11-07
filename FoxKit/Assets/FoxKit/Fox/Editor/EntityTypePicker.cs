@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using UnityEditor;
 using UnityEditor.UIElements;
@@ -11,15 +12,19 @@ namespace Fox.Editor
 {
     public class EntityTypePicker : EditorWindow
     {
-        private readonly IList<string> allItems = new List<string>();
-        private readonly List<string> filteredItems = new List<string>();
+        private readonly IList<Type> allItems = new List<Type>();
+        private readonly List<Type> filteredItems = new List<Type>();
         private ListView typeList;
+        private Type baseType;
+        private Action<Type> onTypeSelected;
 
-        public static void Show(Type baseType)
+        public static void Show(Type baseType, Action<Type> onTypeSelected)
         {
-            var window = GetWindow<EntityTypePicker>();
+            var window = CreateWindow<EntityTypePicker>();
+            window.baseType = baseType;
+            window.onTypeSelected = onTypeSelected;
             window.titleContent = new GUIContent(baseType.Name);
-            window.ShowModalUtility();
+            window.Show();
         }
 
         public void OnEnable()
@@ -38,26 +43,40 @@ namespace Fox.Editor
             this.allItems.Clear();
             this.filteredItems.Clear();
 
-            const int itemCount = 1000;
-            for (int i = 1; i <= itemCount; i++)
+            foreach(var type in GetTypes(baseType))
             {
-                this.allItems.Add(i.ToString());
-                this.filteredItems.Add(i.ToString());
+                this.allItems.Add(type);
+                this.filteredItems.Add(type);
             }
 
             this.typeList = rootVisualElement.Q<ListView>("Types");
 
             VisualElement makeItem() => new Label();
-            void bindItem(VisualElement e, int i) => (e as Label).text = this.filteredItems[i];
+            void bindItem(VisualElement e, int i) => (e as Label).text = this.filteredItems[i].Name;
 
-            typeList.onItemsChosen += obj => Debug.Log(obj);
-            typeList.onSelectionChange += objects => Debug.Log(objects);
+            typeList.onSelectionChange += TypeList_onSelectionChange;
             typeList.itemsSource = (System.Collections.IList)this.allItems;
             typeList.makeItem = makeItem;
             typeList.bindItem = bindItem;
 
             var search = rootVisualElement.Q<ToolbarSearchField>();
             search.RegisterValueChangedCallback(OnTextChanged);
+        }
+
+        private void TypeList_onSelectionChange(IEnumerable<object> obj)
+        {
+            var type = obj.ToList()[0] as Type;
+            this.onTypeSelected(type);
+            this.Close();
+        }
+
+        // TODO: Need EntityClassDictionary up and running
+        private static List<Type> GetTypes(Type baseType)
+        {
+            return new List<Type>
+            {
+                typeof(Entity)
+            };
         }
 
         private void OnTextChanged(ChangeEvent<string> evt)
@@ -74,7 +93,7 @@ namespace Fox.Editor
             }
 
             filteredItems.AddRange(from item in this.allItems
-                                   where item.IndexOf(evt.newValue, StringComparison.OrdinalIgnoreCase) >= 0
+                                   where item.Name.IndexOf(evt.newValue, StringComparison.OrdinalIgnoreCase) >= 0
                                    select item);
             typeList.Refresh();
         }
