@@ -1,7 +1,12 @@
-﻿namespace Fox
+﻿using System;
+
+namespace Fox
 {
+    [Serializable]
     public partial class Entity
     {
+        public float InspectorTest;
+
         /// <summary>
         /// The numeric identifier of the Entity, unique to its DataSet.
         /// </summary>
