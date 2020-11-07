@@ -9,34 +9,53 @@ namespace Fox.Editor
     {
         private Action<Entity> setEntityPtr;
         private TextField classLabel;
-        private SerializedProperty entityProperty;
         private string className;
 
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
         {
-            this.entityProperty = GetEntityProperty(property);
-            this.setEntityPtr = GetEntityPtrSetter(property);
+            this.setEntityPtr = GetEntityProperty(property).SetValue;
 
             var container = new VisualElement();
+            var drawer = BuildDrawer(property);
+            this.InitControls(property, drawer);
+
+            container.Add(drawer);
+            return container;
+        }
+
+        private void InitControls(SerializedProperty property, TemplateContainer drawer)
+        {
+            var foldout = drawer.Q<Foldout>();
+            foldout.text = property.name;
+
+            var type = GetEntityPtrType(property);
+
+            this.InitClassLabel(property, foldout, type);
+            this.InitCreateDeleteButton(foldout, type);
+        }
+
+        private void InitCreateDeleteButton(Foldout foldout, Type type)
+        {
+            var createDeleteButton = foldout.Q<Button>("CreateDeleteEntityButton");
+            createDeleteButton.clicked += () => CreateDeleteButton_clicked(type);
+        }
+
+        private void InitClassLabel(SerializedProperty property, Foldout foldout, Type type)
+        {
+            this.classLabel = foldout.Q<TextField>("ClassLabel");
+            this.className = GetEntityPtrClassName(property);
+            classLabel.value = $"{className} ({type.Name})";
+            classLabel.SetEnabled(false);
+        }
+
+        private static TemplateContainer BuildDrawer(SerializedProperty property)
+        {
             var uxmlTemplate = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/FoxKit/Fox/Editor/EntityPtrDrawer.uxml");
             var uss = AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/FoxKit/Fox/Editor/EntityPtrDrawer.uss");
             var drawer = uxmlTemplate.CloneTree(property.propertyPath);
             drawer.styleSheets.Add(uss);
 
-            var foldout = drawer.Q<Foldout>();
-            foldout.text = property.name;
-
-            this.classLabel = foldout.Q<TextField>("ClassLabel");
-            var type = GetEntityPtrType(property);
-            this.className = GetEntityPtrClassName(property);
-            classLabel.value = $"{className} ({type.Name})";
-            classLabel.SetEnabled(false);
-
-            var createDeleteButton = foldout.Q<Button>("CreateDeleteEntityButton");
-            createDeleteButton.clicked += () => CreateDeleteButton_clicked(type);
-
-            container.Add(drawer);
-            return container;
+            return drawer;
         }
 
         private void UpdateClassNameControl(Type newType)
@@ -62,20 +81,13 @@ namespace Fox.Editor
             return obj.FindProperty(thisProperty.propertyPath).FindPropertyRelative("ptr");
         }
 
-        private Action<Entity> GetEntityPtrSetter(SerializedProperty property)
-        {
-            return this.entityProperty.SetValue;
-        }
-
         private static string GetEntityPtrClassName(SerializedProperty property)
         {
             object obj = property.serializedObject.targetObject;
-
-            System.Reflection.FieldInfo field = null;
             foreach (var path in property.propertyPath.Split('.'))
             {
                 var type = obj.GetType();
-                field = type.GetField(path);
+                System.Reflection.FieldInfo field = type.GetField(path);
                 obj = field.GetValue(obj);
             }
 
