@@ -83,7 +83,7 @@ namespace Fox.Editor
 
         private static string GetEntityPtrClassName(SerializedProperty property)
         {
-            object obj = property.serializedObject.targetObject;
+            var obj = property.serializedObject.targetObject as object;
             foreach (var path in property.propertyPath.Split('.'))
             {
                 var type = obj.GetType();
@@ -104,12 +104,10 @@ namespace Fox.Editor
         private static Type GetEntityPtrType(SerializedProperty property)
         {
             object obj = property.serializedObject.targetObject;
-
-            System.Reflection.FieldInfo field = null;
             foreach (var path in property.propertyPath.Split('.'))
             {
                 var type = obj.GetType();
-                field = type.GetField(path);
+                System.Reflection.FieldInfo field = type.GetField(path);
                 obj = field.GetValue(obj);
             }
 
