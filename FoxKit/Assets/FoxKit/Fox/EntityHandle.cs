@@ -1,24 +1,11 @@
-﻿using System.Threading;
-
-namespace Fox
+﻿namespace Fox
 {
-    public struct EntityHandle
+    [System.Serializable]
+    public class EntityHandle
     {
-        uint placeholder;
-
         public static EntityHandle Get(Entity entity)
         {
             return new EntityHandle();
-        }
-
-        public static bool operator==(EntityHandle a, EntityHandle b)
-        {
-            return true;
-        }
-
-        public static bool operator!=(EntityHandle a, EntityHandle b)
-        {
-            return false;
         }
     }
 }
