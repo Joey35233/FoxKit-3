@@ -7,9 +7,17 @@ namespace Fox.Editor
     [CustomPropertyDrawer(typeof(EntityPtr<>))]
     public class EntityPtrDrawer : PropertyDrawer
     {
+        private enum CreateDeleteMode
+        {
+            CreateEntity,
+            DeleteEntity
+        }
+
         private Action<Entity> setEntityPtr;
         private TextField classLabel;
         private string className;
+        private CreateDeleteMode createDeleteMode;
+        private Button createDeleteButton;
 
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
         {
@@ -28,16 +36,41 @@ namespace Fox.Editor
             var foldout = drawer.Q<Foldout>();
             foldout.text = property.name;
 
+            this.InitCreateDeleteMode(property);
+
             var type = GetEntityPtrType(property);
+            UnityEngine.Debug.Assert(type != null);
 
             this.InitClassLabel(property, foldout, type);
             this.InitCreateDeleteButton(foldout, type);
         }
 
+        private void InitCreateDeleteMode(SerializedProperty property)
+        {
+            var ptrValue = GetEntityProperty(property).GetValue();
+            if (ptrValue == null)
+            {
+                this.createDeleteMode = CreateDeleteMode.CreateEntity;
+            }
+            else
+            {
+                this.createDeleteMode = CreateDeleteMode.DeleteEntity;
+            }
+        }
+
         private void InitCreateDeleteButton(Foldout foldout, Type type)
         {
-            var createDeleteButton = foldout.Q<Button>("CreateDeleteEntityButton");
+            this.createDeleteButton = foldout.Q<Button>("CreateDeleteEntityButton");
             createDeleteButton.clicked += () => CreateDeleteButton_clicked(type);
+
+            if (this.createDeleteMode == CreateDeleteMode.CreateEntity)
+            {
+                createDeleteButton.text = "+";
+            }
+            else
+            {
+                createDeleteButton.text = "x";
+            }
         }
 
         private void InitClassLabel(SerializedProperty property, Foldout foldout, Type type)
@@ -63,16 +96,36 @@ namespace Fox.Editor
             classLabel.value = $"{newType.Name} ({this.className})";
         }
 
+        private void ClearClassNameControl()
+        {
+            classLabel.value = $"Null ({this.className})";
+        }
+
         private void CreateDeleteButton_clicked(Type baseType)
         {
-            EntityTypePicker.Show(baseType, EntityTypePicker_onTypeSelected);
+            if (this.createDeleteMode == CreateDeleteMode.CreateEntity)
+            {
+                EntityTypePicker.Show(baseType, EntityTypePicker_onTypeSelected);
+                return;
+            }
+
+            this.setEntityPtr(null);
+            this.ClearClassNameControl();
+            this.createDeleteMode = CreateDeleteMode.CreateEntity;
+            this.createDeleteButton.text = "+";
         }
 
         private void EntityTypePicker_onTypeSelected(Type type)
         {
+            UnityEngine.Debug.Assert(type != null);
+
             var instance = Activator.CreateInstance(type) as Entity;
+            UnityEngine.Debug.Assert(instance != null);
+
             this.setEntityPtr(instance);
             this.UpdateClassNameControl(type);
+            this.createDeleteMode = CreateDeleteMode.DeleteEntity;
+            this.createDeleteButton.text = "x";
         }
 
         private static SerializedProperty GetEntityProperty(SerializedProperty thisProperty)
