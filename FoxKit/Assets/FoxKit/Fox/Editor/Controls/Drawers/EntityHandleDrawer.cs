@@ -9,7 +9,7 @@ namespace Fox.Editor
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
         {
             var container = new VisualElement();
-            var uxmlTemplate = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/FoxKit/Fox/Editor/EntityHandleDrawer.uxml");
+            var uxmlTemplate = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/FoxKit/Fox/Editor/Controls/Drawers/EntityHandleDrawer.uxml");
             var drawer = uxmlTemplate.CloneTree(property.propertyPath);
 
             var foldout = drawer.Q<TextField>();
