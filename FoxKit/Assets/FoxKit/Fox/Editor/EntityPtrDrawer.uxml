@@ -3,7 +3,13 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:engine="UnityEngine.UIElements"
     xmlns:editor="UnityEditor.UIElements"
+    xmlns:foxkit="FoxKit"
     xsi:noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd"
 >
-  <engine:TextField text="ENTITYPTR"/>
+  <engine:Foldout>
+    <engine:VisualElement class="entityPtrHeader">
+      <engine:TextField name="ClassLabel" />
+      <engine:Button text="+"/>
+    </engine:VisualElement>
+  </engine:Foldout>
 </engine:UXML>

@@ -2,8 +2,13 @@
 
 namespace Fox
 {
+    public interface IEntityPtr
+    {
+        Entity Get();
+    }
+
     [System.Serializable]
-    public class EntityPtr<T> where T : Entity
+    public class EntityPtr<T> : IEntityPtr where T : Entity
     {
         public string InspectorTest;
 
@@ -23,6 +28,11 @@ namespace Fox
         public void Reset()
         {
             this.ptr = null;
+        }
+
+        Entity IEntityPtr.Get()
+        {
+            return this.ptr;
         }
     }
 }
