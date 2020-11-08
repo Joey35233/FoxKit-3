@@ -1,5 +1,9 @@
-﻿using System;
+﻿using ICSharpCode.NRefactory.Ast;
+using NUnit.Framework;
+using System;
+using System.Collections.Generic;
 using UnityEditor;
+using UnityEditor.UIElements;
 using UnityEngine.UIElements;
 
 namespace Fox.Editor
@@ -13,41 +17,71 @@ namespace Fox.Editor
             DeleteEntity
         }
 
+        private SerializedProperty property;
         private Action<Entity> setEntityPtr;
         private TextField classLabel;
         private string className;
         private CreateDeleteMode createDeleteMode;
         private Button createDeleteButton;
+        private Foldout foldout;
+        private readonly List<PropertyField> nestedProperties = new List<PropertyField>();
 
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
         {
-            this.setEntityPtr = GetEntityProperty(property).SetValue;
+            this.property = property;
+            this.setEntityPtr = this.GetEntityProperty().SetValue;
 
             var container = new VisualElement();
-            var drawer = BuildDrawer(property);
-            this.InitControls(property, drawer);
+            var drawer = this.BuildDrawer();
+            this.InitControls(drawer);
 
             container.Add(drawer);
             return container;
         }
 
-        private void InitControls(SerializedProperty property, TemplateContainer drawer)
+        private void InitControls(TemplateContainer drawer)
         {
-            var foldout = drawer.Q<Foldout>();
+            this.foldout = drawer.Q<Foldout>();
             foldout.text = property.name;
 
-            this.InitCreateDeleteMode(property);
+            var ptrProperty = GetEntityProperty();
+            var entity = ptrProperty.GetValue() as Entity;
+            this.InitCreateDeleteMode(entity);
 
             var type = GetEntityPtrType(property);
             UnityEngine.Debug.Assert(type != null);
 
-            this.InitClassLabel(property, foldout, type);
+            this.InitClassLabel(foldout, type);
             this.InitCreateDeleteButton(foldout, type);
+
+            if (entity != null)
+            {
+                AddNestedPropertyFields(foldout, ptrProperty);
+            }
         }
 
-        private void InitCreateDeleteMode(SerializedProperty property)
+        private void ClearNestedPropertyFields()
         {
-            var ptrValue = GetEntityProperty(property).GetValue();
+            foreach(var property in this.nestedProperties)
+            {
+                property.RemoveFromHierarchy();
+            }
+
+            this.nestedProperties.Clear();
+        }
+
+        private void AddNestedPropertyFields(Foldout foldout, SerializedProperty ptrProperty)
+        {
+            foreach (var innerProperty in ptrProperty.GetChildren())
+            {
+                var field = new PropertyField(innerProperty);
+                foldout.Add(field);
+                this.nestedProperties.Add(field);
+            }
+        }
+
+        private void InitCreateDeleteMode(Entity ptrValue)
+        {
             if (ptrValue == null)
             {
                 this.createDeleteMode = CreateDeleteMode.CreateEntity;
@@ -73,19 +107,19 @@ namespace Fox.Editor
             }
         }
 
-        private void InitClassLabel(SerializedProperty property, Foldout foldout, Type type)
+        private void InitClassLabel(Foldout foldout, Type type)
         {
             this.classLabel = foldout.Q<TextField>("ClassLabel");
-            this.className = GetEntityPtrClassName(property);
+            this.className = GetEntityPtrClassName(this.property);
             classLabel.value = $"{className} ({type.Name})";
             classLabel.SetEnabled(false);
         }
 
-        private static TemplateContainer BuildDrawer(SerializedProperty property)
+        private TemplateContainer BuildDrawer()
         {
             var uxmlTemplate = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/FoxKit/Fox/Editor/EntityPtrDrawer.uxml");
             var uss = AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/FoxKit/Fox/Editor/EntityPtrDrawer.uss");
-            var drawer = uxmlTemplate.CloneTree(property.propertyPath);
+            var drawer = uxmlTemplate.CloneTree(this.property.propertyPath);
             drawer.styleSheets.Add(uss);
 
             return drawer;
@@ -111,6 +145,7 @@ namespace Fox.Editor
 
             this.setEntityPtr(null);
             this.ClearClassNameControl();
+            this.ClearNestedPropertyFields();
             this.createDeleteMode = CreateDeleteMode.CreateEntity;
             this.createDeleteButton.text = "+";
         }
@@ -126,12 +161,17 @@ namespace Fox.Editor
             this.UpdateClassNameControl(type);
             this.createDeleteMode = CreateDeleteMode.DeleteEntity;
             this.createDeleteButton.text = "x";
+
+            // BUG: Why does this not cause the fields to show up unless you click away and back?
+            var ptrProperty = this.GetEntityProperty();
+            this.ClearNestedPropertyFields();
+            this.AddNestedPropertyFields(this.foldout, ptrProperty);
         }
 
-        private static SerializedProperty GetEntityProperty(SerializedProperty thisProperty)
+        private SerializedProperty GetEntityProperty()
         {
-            var obj = thisProperty.serializedObject;
-            return obj.FindProperty(thisProperty.propertyPath).FindPropertyRelative("ptr");
+            var obj = this.property.serializedObject;
+            return obj.FindProperty(this.property.propertyPath).FindPropertyRelative("ptr");
         }
 
         private static string GetEntityPtrClassName(SerializedProperty property)
