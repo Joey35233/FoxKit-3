@@ -2,6 +2,8 @@
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine.UIElements;
@@ -62,7 +64,7 @@ namespace Fox.Editor
 
         private void ClearNestedPropertyFields()
         {
-            foreach(var property in this.nestedProperties)
+            foreach (var property in this.nestedProperties)
             {
                 property.RemoveFromHierarchy();
             }
@@ -72,11 +74,25 @@ namespace Fox.Editor
 
         private void AddNestedPropertyFields(Foldout foldout, SerializedProperty ptrProperty)
         {
-            foreach (var innerProperty in ptrProperty.GetChildren())
+            var entityProp = ptrProperty;
+
+            var childProperties = new List<SerializedProperty>();
+            foreach (var child in entityProp)
             {
-                var field = new PropertyField(innerProperty);
-                foldout.Add(field);
-                this.nestedProperties.Add(field);
+                var childProperty = child as SerializedProperty;
+                childProperties.Add(childProperty.Copy());
+                UnityEngine.Debug.Log(childProperty.name);
+            }
+
+            entityProp.Reset();
+
+            UnityEngine.Debug.Log("Done finding properties");
+            foreach (var property in childProperties)
+            {
+                UnityEngine.Debug.Log(property.name);
+                var propertyField = new PropertyField(property);
+                this.foldout.Add(propertyField);
+                this.nestedProperties.Add(propertyField);
             }
         }
 
@@ -157,6 +173,8 @@ namespace Fox.Editor
             var instance = Activator.CreateInstance(type) as Entity;
             UnityEngine.Debug.Assert(instance != null);
 
+            var fields = this.GetEntityProperty().GetChildren().ToList();
+
             this.setEntityPtr(instance);
             this.UpdateClassNameControl(type);
             this.createDeleteMode = CreateDeleteMode.DeleteEntity;
@@ -164,6 +182,7 @@ namespace Fox.Editor
 
             // BUG: Why does this not cause the fields to show up unless you click away and back?
             var ptrProperty = this.GetEntityProperty();
+
             this.ClearNestedPropertyFields();
             this.AddNestedPropertyFields(this.foldout, ptrProperty);
         }
