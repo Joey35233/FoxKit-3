@@ -1,9 +1,5 @@
-﻿using ICSharpCode.NRefactory.Ast;
-using NUnit.Framework;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine.UIElements;
@@ -22,7 +18,7 @@ namespace Fox.Editor
         private SerializedProperty property;
         private Action<Entity> setEntityPtr;
         private TextField classLabel;
-        private string className;
+        private string valueTypeName;
         private CreateDeleteMode createDeleteMode;
         private Button createDeleteButton;
         private Foldout foldout;
@@ -50,15 +46,15 @@ namespace Fox.Editor
             var entity = ptrProperty.GetValue() as Entity;
             this.InitCreateDeleteMode(entity);
 
-            var type = GetEntityPtrType(property);
-            UnityEngine.Debug.Assert(type != null);
+            var genericType = GetEntityPtrGenericType(property);
+            UnityEngine.Debug.Assert(genericType != null);
 
-            this.InitClassLabel(foldout, type);
-            this.InitCreateDeleteButton(foldout, type);
+            this.InitClassLabel(foldout, genericType);
+            this.InitCreateDeleteButton(foldout, genericType);
 
             if (entity != null)
             {
-                AddNestedPropertyFields(foldout, ptrProperty);
+                this.AddNestedPropertyFields();
             }
         }
 
@@ -72,25 +68,25 @@ namespace Fox.Editor
             this.nestedProperties.Clear();
         }
 
-        private void AddNestedPropertyFields(Foldout foldout, SerializedProperty ptrProperty)
+        private void AddNestedPropertyFields()
         {
-            var entityProp = ptrProperty;
+            var entityProp = this.GetEntityProperty().Copy();
+            entityProp.serializedObject.Update();
 
             var childProperties = new List<SerializedProperty>();
             foreach (var child in entityProp)
             {
                 var childProperty = child as SerializedProperty;
                 childProperties.Add(childProperty.Copy());
-                UnityEngine.Debug.Log(childProperty.name);
             }
 
             entityProp.Reset();
 
-            UnityEngine.Debug.Log("Done finding properties");
             foreach (var property in childProperties)
             {
-                UnityEngine.Debug.Log(property.name);
-                var propertyField = new PropertyField(property);
+                var propertyField = new PropertyField(property.Copy());
+                propertyField.Bind(entityProp.serializedObject);
+
                 this.foldout.Add(propertyField);
                 this.nestedProperties.Add(propertyField);
             }
@@ -123,11 +119,11 @@ namespace Fox.Editor
             }
         }
 
-        private void InitClassLabel(Foldout foldout, Type type)
+        private void InitClassLabel(Foldout foldout, Type genericTypeName)
         {
             this.classLabel = foldout.Q<TextField>("ClassLabel");
-            this.className = GetEntityPtrClassName(this.property);
-            classLabel.value = $"{className} ({type.Name})";
+            this.valueTypeName = GetEntityPtrTypeName(this.property);
+            classLabel.value = $"{valueTypeName} ({genericTypeName.Name})";
             classLabel.SetEnabled(false);
         }
 
@@ -143,12 +139,13 @@ namespace Fox.Editor
 
         private void UpdateClassNameControl(Type newType)
         {
-            classLabel.value = $"{newType.Name} ({this.className})";
+            var genericTypeName = GetEntityPtrGenericType(property).Name;
+            classLabel.value = $"{newType.Name} ({genericTypeName})";
         }
 
         private void ClearClassNameControl()
         {
-            classLabel.value = $"Null ({this.className})";
+            classLabel.value = $"Null ({this.valueTypeName})";
         }
 
         private void CreateDeleteButton_clicked(Type baseType)
@@ -166,25 +163,20 @@ namespace Fox.Editor
             this.createDeleteButton.text = "+";
         }
 
-        private void EntityTypePicker_onTypeSelected(Type type)
+        private void EntityTypePicker_onTypeSelected(Type newEntityType)
         {
-            UnityEngine.Debug.Assert(type != null);
+            UnityEngine.Debug.Assert(newEntityType != null);
 
-            var instance = Activator.CreateInstance(type) as Entity;
+            var instance = Activator.CreateInstance(newEntityType) as Entity;
             UnityEngine.Debug.Assert(instance != null);
 
-            var fields = this.GetEntityProperty().GetChildren().ToList();
-
             this.setEntityPtr(instance);
-            this.UpdateClassNameControl(type);
+            this.UpdateClassNameControl(newEntityType);
             this.createDeleteMode = CreateDeleteMode.DeleteEntity;
             this.createDeleteButton.text = "x";
 
-            // BUG: Why does this not cause the fields to show up unless you click away and back?
-            var ptrProperty = this.GetEntityProperty();
-
             this.ClearNestedPropertyFields();
-            this.AddNestedPropertyFields(this.foldout, ptrProperty);
+            this.AddNestedPropertyFields();
         }
 
         private SerializedProperty GetEntityProperty()
@@ -193,7 +185,7 @@ namespace Fox.Editor
             return obj.FindProperty(this.property.propertyPath).FindPropertyRelative("ptr");
         }
 
-        private static string GetEntityPtrClassName(SerializedProperty property)
+        private static string GetEntityPtrTypeName(SerializedProperty property)
         {
             var obj = property.serializedObject.targetObject as object;
             foreach (var path in property.propertyPath.Split('.'))
@@ -213,7 +205,7 @@ namespace Fox.Editor
             return ptrValue.GetType().Name;
         }
 
-        private static Type GetEntityPtrType(SerializedProperty property)
+        private static Type GetEntityPtrGenericType(SerializedProperty property)
         {
             object obj = property.serializedObject.targetObject;
             foreach (var path in property.propertyPath.Split('.'))
