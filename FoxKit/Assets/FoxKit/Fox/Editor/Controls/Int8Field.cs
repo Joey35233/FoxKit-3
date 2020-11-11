@@ -11,9 +11,66 @@ using UnityEngine.UIElements;
 
 namespace Fox.Editor
 {
+
+    /// <summary>
+    /// Describes a XML <c>int8</c> attribute.
+    /// </summary>
+    public class UxmlInt8AttributeDescription : TypedUxmlAttributeDescription<sbyte>
+    {
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        public UxmlInt8AttributeDescription()
+        {
+            type = "int8";
+            typeNamespace = xmlSchemaNamespace;
+            defaultValue = 0;
+        }
+
+        /// <summary>
+        /// The default value for the attribute, as a string.
+        /// </summary>
+        public override string defaultValueAsString { get { return defaultValue.ToString(CultureInfo.InvariantCulture.NumberFormat); } }
+
+        /// <summary>
+        /// Retrieves the value of this attribute from the attribute bag. Returns it if it is found, otherwise return <see cref="defaultValue"/>.
+        /// </summary>
+        /// <param name="bag">The bag of attributes.</param>
+        /// <param name="cc">The context in which the values are retrieved.</param>
+        /// <returns>The value of the attribute.</returns>
+        public override sbyte GetValueFromBag(IUxmlAttributes bag, CreationContext cc)
+        {
+            return GetValueFromBag(bag, cc, (s, i) => ConvertValueToInt8(s, i), defaultValue);
+        }
+
+        /// <summary>
+        /// Tries to retrieve the value of this attribute from the attribute bag. Returns true if it is found, otherwise returns false.
+        /// </summary>
+        /// <param name="bag">The bag of attributes.</param>
+        /// <param name="cc">The context in which the values are retrieved.</param>
+        /// <param name="value">The value of the attribute.</param>
+        /// <returns>True if the value could be retrieved, false otherwise.</returns>
+        public bool TryGetValueFromBag(IUxmlAttributes bag, CreationContext cc, ref sbyte value)
+        {
+            return TryGetValueFromBag(bag, cc, (s, i) => ConvertValueToInt8(s, i), defaultValue, ref value);
+        }
+
+        static sbyte ConvertValueToInt8(string v, sbyte defaultValue)
+        {
+            sbyte l;
+            if (v == null || !SByte.TryParse(v, out l))
+                return defaultValue;
+
+            return l;
+        }
+    }
+
     public class Int8Field : TextValueField<System.SByte>
     {
         Int8Input integerInput => (Int8Input)textInputBase;
+
+        public new class UxmlFactory : UxmlFactory<Int8Field, UxmlTraits> { }
+        public new class UxmlTraits : TextValueFieldTraits<System.SByte, UxmlInt8AttributeDescription> {}
 
         protected override string ValueToString(System.SByte v)
         {
@@ -27,6 +84,10 @@ namespace Fox.Editor
             return NumericPropertyDrawers.ClampToInt8(v);
         }
 
+        public new static readonly string ussClassName = "fox-int8-field";
+        public new static readonly string labelUssClassName = ussClassName + "__label";
+        public new static readonly string inputUssClassName = ussClassName + "__input";
+
         public Int8Field()
             : this((string)null) { }
 
@@ -36,6 +97,8 @@ namespace Fox.Editor
         public Int8Field(string label, int maxLength = -1)
             : base(label, maxLength, new Int8Input())
         {
+            AddToClassList(ussClassName);
+            labelElement.AddToClassList(labelUssClassName);
             AddLabelDragger<System.SByte>();
         }
 

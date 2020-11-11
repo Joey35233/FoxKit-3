@@ -12,7 +12,7 @@ namespace Fox
         private string cString;
 
         [SerializeField]
-        private uint length;
+        private int length;
 
         [SerializeField]
         private StrCode hash;
@@ -32,7 +32,7 @@ namespace Fox
             if (!string.IsNullOrEmpty(name))
             {
                 this.cString = name;
-                this.length = (uint)name.Length;
+                this.length = name.Length;
                 this.hash = new StrCode(name);
             }
             else
@@ -45,10 +45,17 @@ namespace Fox
 
         public string CString() => this.cString;
 
-        private String(string cString, uint length, StrCode hash)
+        private String(string cString, int length, StrCode hash)
         {
             this.cString = cString;
             this.length = length;
+            this.hash = hash;
+        }
+
+        public String(StrCode hash)
+        {
+            this.cString = null;
+            this.length = -1;
             this.hash = hash;
         }
     }

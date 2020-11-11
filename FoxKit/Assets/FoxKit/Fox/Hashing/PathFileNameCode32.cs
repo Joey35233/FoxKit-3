@@ -14,5 +14,10 @@ namespace Fox
         {
             hash = Hashing.PathFileNameCode32(str);
         }
+
+        public bool TryParse(string str)
+        {
+            return uint.TryParse(str, out hash);
+        }
     }
 }

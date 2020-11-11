@@ -1,4 +1,5 @@
 ﻿using UnityEditor;
+using UnityEditor.UIElements;
 using UnityEngine.UIElements;
 
 namespace Fox.Editor
@@ -10,11 +11,19 @@ namespace Fox.Editor
         {
             var container = new VisualElement();
 
-            var foldout = new Int8Field();
-            foldout.label = property.name;
+            var field = new Int8Field();
+            field.BindProperty(property);
+            field.label = property.name;
 
-            container.Add(foldout);
+            field.RegisterValueChangedCallback(OnValueChanged);
+
+            container.Add(field);
             return container;
+        }
+
+        private void OnValueChanged(ChangeEvent<sbyte> changeEvent)
+        {
+            return;
         }
     }
 }

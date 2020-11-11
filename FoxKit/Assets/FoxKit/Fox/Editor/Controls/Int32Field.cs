@@ -15,6 +15,9 @@ namespace Fox.Editor
     {
         Int32Input integerInput => (Int32Input)textInputBase;
 
+        public new class UxmlFactory : UxmlFactory<Int32Field, UxmlTraits> {}
+        public new class UxmlTraits : TextValueFieldTraits<System.Int32, UxmlIntAttributeDescription> {}
+
         protected override string ValueToString(System.Int32 v)
         {
             return v.ToString(formatString, CultureInfo.InvariantCulture.NumberFormat);
@@ -27,6 +30,10 @@ namespace Fox.Editor
             return NumericPropertyDrawers.ClampToInt32(v);
         }
 
+        public new static readonly string ussClassName = "fox-int32-field";
+        public new static readonly string labelUssClassName = ussClassName + "__label";
+        public new static readonly string inputUssClassName = ussClassName + "__input";
+
         public Int32Field()
             : this((string)null) { }
 
@@ -36,6 +43,8 @@ namespace Fox.Editor
         public Int32Field(string label, int maxLength = -1)
             : base(label, maxLength, new Int32Input())
         {
+            AddToClassList(ussClassName);
+            labelElement.AddToClassList(labelUssClassName);
             AddLabelDragger<System.Int32>();
         }
 

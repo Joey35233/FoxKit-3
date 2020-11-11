@@ -4,14 +4,14 @@ using UnityEngine.UIElements;
 
 namespace Fox.Editor
 {
-    [CustomPropertyDrawer(typeof(System.UInt32))]
-    public class UInt32Drawer : PropertyDrawer
+    [CustomPropertyDrawer(typeof(Fox.String))]
+    public class StringDrawer : PropertyDrawer
     {
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
         {
             var container = new VisualElement();
 
-            var field = new UInt32Field();
+            var field = new StringField();
             field.BindProperty(property);
             field.label = property.name;
 

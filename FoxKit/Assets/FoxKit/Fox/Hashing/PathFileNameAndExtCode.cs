@@ -14,5 +14,10 @@ namespace Fox
         {
             hash = Hashing.PathFileNameAndExtCode(str);
         }
+
+        public bool TryParse(string str)
+        {
+            return ulong.TryParse(str, out hash);
+        }
     }
 }
