@@ -5,7 +5,10 @@ namespace Fox
     [Serializable]
     public partial class Entity
     {
-        public float InspectorTest;
+        public float NestedPropertyTest = 42;
+        public float NestedPropertyTest2 = 1;
+        public float NestedPropertyTest3 = 2;
+        public float NestedPropertyTest4 = 3;
 
         /// <summary>
         /// The numeric identifier of the Entity, unique to its DataSet.

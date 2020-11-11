@@ -5,6 +5,8 @@ namespace Fox
     public interface IEntityPtr
     {
         Entity Get();
+        void Reset(Entity newPtr);
+        void Reset();
     }
 
     [System.Serializable]
@@ -28,6 +30,11 @@ namespace Fox
         public void Reset()
         {
             this.ptr = null;
+        }
+
+        public void Reset(Entity newPtr)
+        {
+            this.ptr = (T)newPtr;
         }
 
         Entity IEntityPtr.Get()

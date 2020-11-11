@@ -7,13 +7,17 @@ namespace Fox.Editor
     [CustomPropertyDrawer(typeof(System.SByte))]
     public class Int8Drawer : PropertyDrawer
     {
+        private SerializedProperty property;
+
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
         {
+            this.property = property;
             var container = new VisualElement();
 
-            var field = new Int8Field();
-            field.BindProperty(property);
-            field.label = property.name;
+            var foldout = new Int8Field();
+            foldout.label = property.name;
+            foldout.value = (sbyte)property.GetValue();
+            foldout.RegisterValueChangedCallback(OnValueChanged);
 
             field.RegisterValueChangedCallback(OnValueChanged);
 
@@ -21,9 +25,9 @@ namespace Fox.Editor
             return container;
         }
 
-        private void OnValueChanged(ChangeEvent<sbyte> changeEvent)
+        private void OnValueChanged(ChangeEvent<sbyte> evt)
         {
-            return;
+            this.property.SetValue(evt.newValue);
         }
     }
 }
