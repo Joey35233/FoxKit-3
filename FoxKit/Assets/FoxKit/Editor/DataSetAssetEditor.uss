@@ -1,0 +1,31 @@
+﻿Label {
+    font-size: 12px;
+}
+
+.spacer {
+    flex-grow: 1.0
+}
+
+.the-uxml-listview {
+    /* Provide the list view with an explict height for every row
+    so it can calculate how many items to actually display */
+    --unity-item-height: 16;
+    height: 250px;
+    margin-left: 32px;
+}
+
+.inspected-entity-label {
+    -unity-font-style: bold;
+}
+
+.add-entity-button {
+    margin-left: 8px;
+    width: 18px;
+    height: 18px;
+    background-image: resource("Toolbar Plus");
+    align-self: center;
+    border-left-width: 0;
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+}

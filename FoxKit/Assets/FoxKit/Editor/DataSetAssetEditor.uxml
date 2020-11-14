@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<engine:UXML
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:engine="UnityEngine.UIElements"
+    xmlns:editor="UnityEditor.UIElements"
+    xmlns:foxkit="FoxKit"
+    xsi:noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd"
+>
+  <editor:Toolbar>
+    <editor:ToolbarButton class="add-entity-button"/>
+    <editor:ToolbarSpacer class="spacer"/>
+    <editor:ToolbarSearchField/>
+  </editor:Toolbar>
+  <engine:ListView class="the-uxml-listview"/>
+  <engine:Label name="InspectedEntityLabel" class="inspected-entity-label"/>
+</engine:UXML>
