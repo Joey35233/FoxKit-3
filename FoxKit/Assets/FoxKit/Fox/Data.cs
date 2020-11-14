@@ -2,6 +2,7 @@
 
 namespace Fox
 {
+    [System.Serializable]
     public class Data : Entity
     {
         public string name;

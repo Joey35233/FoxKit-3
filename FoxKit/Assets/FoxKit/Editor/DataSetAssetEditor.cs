@@ -5,6 +5,8 @@ using Fox;
 using System.Collections.Generic;
 using ICSharpCode.NRefactory.Ast;
 using System.Linq;
+using UnityEditor.UIElements;
+using UnityEditorInternal.VersionControl;
 
 namespace FoxKit
 {
@@ -12,6 +14,8 @@ namespace FoxKit
     public class DataSetAssetEditor : UnityEditor.Editor
     {
         private const string InspectedEntityLabelName = "InspectedEntityLabel";
+        private const string InspectedEntityPropertiesName = "InspectedEntityProperties";
+
         private const string StylesheetPath = "Assets/FoxKit/Editor/DataSetAssetEditor.uss";
         private const string VisualTreePath = "Assets/FoxKit/Editor/DataSetAssetEditor.uxml";
 
@@ -33,9 +37,6 @@ namespace FoxKit
 
             var items = PopulateEntityList(dataSet);
             this.InitializeEntityList(rootElement, items);
-
-            //var defaultInspector = this.rootElement.Q<IMGUIContainer>();
-            //defaultInspector.onGUIHandler = DrawEntityInspector;
 
             return rootElement;
         }
@@ -66,15 +67,25 @@ namespace FoxKit
         private void ListView_onSelectionChange(IEnumerable<object> obj)
         {
             var inspectedEntityLabel = this.rootElement.Q<Label>(InspectedEntityLabelName);
+            var inspectedEntityProperties = this.rootElement.Q<PropertyField>(InspectedEntityPropertiesName);
 
             var selection = obj.ToList();
             if (selection.Count == 0)
             {
                 inspectedEntityLabel.text = string.Empty;
-                return;
+            }
+            else
+            {
+                inspectedEntityLabel.text = (selection[0] as string);
+                inspectedEntityProperties.Unbind();
             }
 
-            inspectedEntityLabel.text = (selection[0] as string);
+            var list = this.rootElement.Q<ListView>();
+
+            var dataSetProperty = this.serializedObject.FindProperty("dataSet");
+            var dataListProperty = dataSetProperty.FindPropertyRelative("dataList");
+            var listItemProperty = dataListProperty.GetArrayElementAtIndex(list.selectedIndex);
+            inspectedEntityProperties.BindProperty(listItemProperty);
         }
 
         private static List<string> PopulateEntityList(Fox.DataSet dataSet)
