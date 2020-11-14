@@ -1,5 +1,4 @@
 ﻿using UnityEditor;
-using UnityEditor.UIElements;
 using UnityEngine.UIElements;
 
 namespace Fox.Editor
@@ -8,26 +7,41 @@ namespace Fox.Editor
     public class Int8Drawer : PropertyDrawer
     {
         private SerializedProperty property;
+        private Int8Field field;
 
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
         {
             this.property = property;
-            var container = new VisualElement();
 
-            var foldout = new Int8Field();
-            foldout.label = property.name;
-            foldout.value = (sbyte)property.GetValue();
-            foldout.RegisterValueChangedCallback(OnValueChanged);
-
+            field = new Int8Field();
+            field.label = property.name;
+            field.value = (System.SByte)property.GetValue();
             field.RegisterValueChangedCallback(OnValueChanged);
 
-            container.Add(field);
-            return container;
+            Undo.undoRedoPerformed += OnValueUndoneRedone;
+
+            return field;
         }
 
-        private void OnValueChanged(ChangeEvent<sbyte> evt)
+        private void OnValueChanged(ChangeEvent<System.SByte> evt)
         {
             this.property.SetValue(evt.newValue);
+        }
+
+        private void OnValueUndoneRedone()
+        {
+            // When the inspector is not visible, SerializedProperty is Disposed but *NOT* null. Any attempts to confirm this in code result in a custom NullReferenceException.
+            // field.visible is always true, Finalizers for this drawer are never called.
+            // Storing the targetObject to later create a new SerializedObject + .FindProperty() doesn't work either. Both vars look fine until the assignment code is called,
+            // then back to the same NRE.
+            try
+            {
+                field.value = (System.SByte)property.GetValue();
+            }
+            catch (System.NullReferenceException)
+            {
+
+            }
         }
     }
 }

@@ -10,11 +10,18 @@ namespace Fox.Editor
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
         {
             var container = new VisualElement();
+            container.style.flexDirection = FlexDirection.Row;
+
+            var label = new Label(property.name);
+
+            var isHashToggle = new Button();
+            isHashToggle.text = "0x";
 
             var field = new StringField();
             field.BindProperty(property);
-            field.label = property.name;
 
+            container.Add(label);
+            container.Add(isHashToggle);
             container.Add(field);
             return container;
         }

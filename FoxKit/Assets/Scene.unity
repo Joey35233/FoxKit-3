@@ -360,7 +360,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data:
-    property10: 0
+    property10: -27
     property11: 0
     property12: 0
     property13: 0
@@ -368,7 +368,7 @@ MonoBehaviour:
     property15: 0
     property16: 0
     property17: 0
-    property18: 0
+    property18: 1.42
     property19: 0
     property20: 0
     property21:
@@ -402,8 +402,7 @@ MonoBehaviour:
       e33: 0
     property28: {r: 0, g: 0, b: 0, a: 0}
     property29:
-      file:
-        InspectorTest: 0
+      file: {fileID: 0}
     property31:
       nameInArchive:
         cString: 

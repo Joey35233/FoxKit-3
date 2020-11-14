@@ -9,14 +9,11 @@ namespace Fox.Editor
     {
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
         {
-            var container = new VisualElement();
-
             var field = new Int64Field();
             field.BindProperty(property);
             field.label = property.name;
 
-            container.Add(field);
-            return container;
+            return field;
         }
     }
 }
