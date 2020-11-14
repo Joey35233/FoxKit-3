@@ -68,6 +68,8 @@ namespace FoxKit
         {
             var inspectedEntityLabel = this.rootElement.Q<Label>(InspectedEntityLabelName);
             var inspectedEntityProperties = this.rootElement.Q<PropertyField>(InspectedEntityPropertiesName);
+            var list = this.rootElement.Q<ListView>();
+            var dataSet = ((DataSetAsset)this.target).dataSet;
 
             var selection = obj.ToList();
             if (selection.Count == 0)
@@ -76,11 +78,10 @@ namespace FoxKit
             }
             else
             {
-                inspectedEntityLabel.text = (selection[0] as string);
+                var entity = dataSet.dataList[list.selectedIndex];
+                inspectedEntityLabel.text = entity.name + $" ({entity.GetType().Name})";
                 inspectedEntityProperties.Unbind();
             }
-
-            var list = this.rootElement.Q<ListView>();
 
             var dataSetProperty = this.serializedObject.FindProperty("dataSet");
             var dataListProperty = dataSetProperty.FindPropertyRelative("dataList");
