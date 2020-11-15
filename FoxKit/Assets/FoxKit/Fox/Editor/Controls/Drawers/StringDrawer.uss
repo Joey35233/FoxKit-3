@@ -1,0 +1,24 @@
+﻿.unity-toolbar-toggle {
+    background-color: rgba(0, 0, 0, 0);
+    margin-left: 0px;
+    margin-right: 0px;
+    border-left: 0px;
+    border-right: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.unity-button {
+    padding-left: 1px;
+    padding-right: 1px;
+    margin-left: 0px;
+    margin-right: 1px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    padding-bottom: 0px;
+    padding-top: 0px;
+}
+
+.unity-button:checked {
+    background-color: #037bfc;
+}
