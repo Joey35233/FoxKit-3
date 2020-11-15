@@ -6,7 +6,6 @@ using System.Linq;
 using UnityEditor.UIElements;
 using Fox.Editor;
 using System;
-using Fox;
 
 namespace FoxKit
 {
@@ -34,7 +33,6 @@ namespace FoxKit
             var asset = (DataSetAsset)target;
             var dataSet = asset.dataSet;
 
-            //var items = PopulateEntityList(dataSet);
             this.InitializeEntityList(rootElement, dataSet.dataList);
 
             return rootElement;
@@ -73,15 +71,11 @@ namespace FoxKit
             var listView = rootElement.Q<ListView>();
             listView.BindProperty(this.GetDataListProperty());
 
-            var dataListProperty = this.GetDataListProperty();
-
-            // TODO: Figure out why this is trying to bind to items that don't exist
-            // https://forum.unity.com/threads/correct-way-to-use-listview-bind.861862/
             VisualElement makeItem() => new Label();
             void bindItem(VisualElement e, int i)
             {
                 var entityProperty = (SerializedProperty)listView.itemsSource[i];
-                (e as Label).text = entityProperty.FindPropertyRelative("name").stringValue;
+                ((Label)e).text = entityProperty.FindPropertyRelative("name").stringValue;
             }
 
             listView.makeItem = makeItem;
@@ -120,17 +114,6 @@ namespace FoxKit
         {
             var dataSetProperty = this.serializedObject.FindProperty("dataSet");
             return dataSetProperty.FindPropertyRelative("dataList");
-        }
-
-        private static List<string> PopulateEntityList(Fox.DataSet dataSet)
-        {
-            var items = new List<string>();
-            foreach(var data in dataSet.dataList)
-            {
-                items.Add(data.name);
-            }
-
-            return items;
         }
     }
 }
