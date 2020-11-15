@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <UXML xmlns="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" xmlns:engine="UnityEngine.UIElements">
   <editor:Toolbar>
-    <editor:ToolbarButton class="add-entity-button"/>
+    <editor:ToolbarButton name="AddEntityButton" class="add-entity-button"/>
     <editor:ToolbarSpacer class="spacer"/>
     <editor:ToolbarSearchField/>
   </editor:Toolbar>

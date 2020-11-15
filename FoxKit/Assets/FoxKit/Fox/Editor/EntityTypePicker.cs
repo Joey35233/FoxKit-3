@@ -75,7 +75,9 @@ namespace Fox.Editor
         {
             return new List<Type>
             {
-                typeof(Entity)
+                typeof(Entity),
+                typeof(Data),
+                typeof(DataSet)
             };
         }
 
