@@ -1,20 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using System.Runtime.InteropServices;
 using UnityEngine;
 
 namespace Fox
 {
-    [Serializable]
+    [Serializable, StructLayout(LayoutKind.Explicit, Size=1, CharSet=CharSet.Ansi)]
     public struct String
     {
-        [SerializeField]
+        [SerializeField, FieldOffset(0)]
         private string cString;
 
-        [SerializeField]
+        [SerializeField, FieldOffset(8)]
         private int length;
 
-        [SerializeField]
+        [SerializeField, FieldOffset(11)]
+        private bool isHash;
+
+        [SerializeField, FieldOffset(12)]
         private StrCode hash;
 
         /// <summary>
@@ -41,6 +44,8 @@ namespace Fox
                 this.length = Empty.length;
                 this.hash = Empty.hash;
             }
+
+            isHash = false;
         }
 
         public string CString() => this.cString;
@@ -50,6 +55,8 @@ namespace Fox
             this.cString = cString;
             this.length = length;
             this.hash = hash;
+
+            isHash = false;
         }
 
         public String(StrCode hash)
@@ -57,6 +64,13 @@ namespace Fox
             this.cString = null;
             this.length = -1;
             this.hash = hash;
+
+            isHash = true;
+        }
+
+        public bool IsHash()
+        {
+            return IsHash();
         }
     }
 }

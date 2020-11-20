@@ -36,9 +36,7 @@ namespace Fox.Editor
                 return new String(str);
         }
 
-        public override void ApplyInputDeviceDelta(Vector3 delta, DeltaSpeed speed, String startValue)
-        {
-        }
+        public override void ApplyInputDeviceDelta(Vector3 delta, DeltaSpeed speed, String startValue) { }
 
         public StringField()
             : this((string)null) { }

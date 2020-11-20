@@ -17,12 +17,6 @@ namespace Fox.Editor
             isHashToggle.styleSheets.Add(ss);
             isHashToggle.text = "0x";
 
-            isHashToggle.style.borderLeftWidth = 0;
-            isHashToggle.style.borderRightWidth = 0;
-            isHashToggle.style.paddingLeft = 0;
-            isHashToggle.style.paddingRight = 0;
-            isHashToggle.style.paddingTop = 0;
-
             var child = isHashToggle.Children().First();
             child.AddToClassList("unity-button");
 
@@ -31,45 +25,14 @@ namespace Fox.Editor
 
             field.Insert(1, isHashToggle);
 
+            isHashToggle.BindProperty(property.FindPropertyRelative("isHash"));
+            isHashToggle.RegisterValueChangedCallback(OnValueChanged);
+
             return field;
         }
 
-        bool isClicked = false;
-
-        private void MouseDown(MouseDownEvent args)
+        private void OnValueChanged(ChangeEvent<bool> changeEvent)
         {
-            var toggle = args.target as Button;
-            var clickable = toggle.clickable;
-            var type = clickable.GetType();
-            var prop = type.GetProperty("active", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
-            prop.SetValue(clickable, true);
-            UnityEngine.Debug.Log("Clicked!");
-
-            args.StopImmediatePropagation();
         }
-
-        /*
-        private void Clickable_clickedWithEventInfo(EventBase obj)
-        {
-            var toggle = obj.target as Button;
-            Clickable clickable = toggle.clickable;
-
-            if (isClicked)
-            {
-                var type = clickable.GetType();
-                var prop = type.GetProperty("active", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
-                prop.SetValue(clickable, false);
-            }
-            else
-            {
-                var type = clickable.GetType();
-                //var props = type.GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
-                var prop = type.GetProperty("active", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
-                prop.SetValue(clickable, true);
-            }
-
-            isClicked = !isClicked;
-        }
-        */
     }
 }

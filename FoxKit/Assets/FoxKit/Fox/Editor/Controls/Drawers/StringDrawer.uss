@@ -2,10 +2,11 @@
     background-color: rgba(0, 0, 0, 0);
     margin-left: 0px;
     margin-right: 0px;
-    border-left: 0px;
-    border-right: 0px;
+    border-left-width: 0px;
+    border-right-width: 0px;
     padding-left: 0px;
     padding-right: 0px;
+    padding-top: 0px;
 }
 
 .unity-button {
@@ -21,4 +22,8 @@
 
 .unity-button:checked {
     background-color: #037bfc;
+}
+
+.unity-toggle__text {
+    margin-left: 0px;
 }
