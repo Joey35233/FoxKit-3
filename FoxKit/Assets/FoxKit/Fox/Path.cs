@@ -1,38 +1,55 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
-
+using System.Runtime.InteropServices;
 using UnityEngine;
 
 namespace Fox
 {
-    public class Path
+    [Serializable, StructLayout(LayoutKind.Explicit, Size = 1, CharSet = CharSet.Ansi)]
+    public struct Path
     {
-        public string CString { get; private set; } // ASCII
-
-        public uint Length { get; private set; }
-
-        public PathFileNameCode Hash { get; private set; }
-
-        public Path()
+        [SerializeField, FieldOffset(0)]
+        private string _cString;
+        public string CString
         {
-            CString = "";
-            Length = 0;
-            Hash = new PathFileNameCode("");
+            get => _cString;
+        }
+
+        [SerializeField, FieldOffset(8)]
+        private int _length;
+        public int Length
+        {
+            get => _length;
+        }
+
+        [SerializeField, FieldOffset(12)]
+        private PathFileNameCode _hash;
+        public PathFileNameCode Hash
+        {
+            get => _hash;
+        }
+
+        /// <summary>
+        /// The empty path.
+        /// </summary>
+        public static Fox.Path Empty { get; }
+
+        static Path()
+        {
+            Empty = new Path { _cString = string.Empty, _hash = new PathFileNameCode(string.Empty), _length = 0 };
         }
 
         public Path(string name)
         {
-            if (name != null)
+            if (!string.IsNullOrEmpty(name))
             {
-                CString = name;
-                Length = (uint)name.Length;
-                Hash = new PathFileNameCode(name);
+                this._cString = name;
+                this._length = name.Length;
+                this._hash = new PathFileNameCode(name);
             }
             else
             {
-                CString = "";
-                Length = 0;
-                Hash = new PathFileNameCode("");
+                this = Empty;
             }
         }
     }

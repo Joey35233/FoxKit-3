@@ -15,9 +15,14 @@ namespace Fox
             hash = Hashing.PathFileNameCode(str);
         }
 
-        public bool TryParse(string str)
+        public static bool TryParse(string str, out PathFileNameCode outValue)
         {
-            return ulong.TryParse(str, out hash);
+            return ulong.TryParse(str, out outValue.hash);
+        }
+
+        public override string ToString()
+        {
+            return hash.ToString("x");
         }
     }
 }

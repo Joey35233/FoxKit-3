@@ -20,9 +20,9 @@ namespace Fox
             return ulong.TryParse(str, out outValue.hash);
         }
 
-        public new String ToString()
+        public override string ToString()
         {
-            return new String(this);
+            return hash.ToString("x");
         }
     }
 }

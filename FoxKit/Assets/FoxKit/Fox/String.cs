@@ -9,16 +9,25 @@ namespace Fox
     public struct String
     {
         [SerializeField, FieldOffset(0)]
-        private string cString;
+        private string _cString;
+        public string CString
+        {
+            get => _cString;
+        }
 
         [SerializeField, FieldOffset(8)]
-        private int length;
-
-        [SerializeField, FieldOffset(11)]
-        private bool isHash;
+        private int _length;
+        public int Length
+        {
+            get => _length;
+        }
 
         [SerializeField, FieldOffset(12)]
-        private StrCode hash;
+        private StrCode _hash;
+        public StrCode Hash
+        {
+            get => _hash;
+        }
 
         /// <summary>
         /// The empty string.
@@ -27,50 +36,21 @@ namespace Fox
 
         static String()
         {
-            Empty = new String(string.Empty, 0, new StrCode(string.Empty));
+            Empty = new String { _cString = string.Empty, _hash = new StrCode(string.Empty), _length = 0 };
         }
 
         public String(string name)
         {
             if (!string.IsNullOrEmpty(name))
             {
-                this.cString = name;
-                this.length = name.Length;
-                this.hash = new StrCode(name);
+                this._cString = name;
+                this._length = name.Length;
+                this._hash = new StrCode(name);
             }
             else
             {
-                this.cString = Empty.CString();
-                this.length = Empty.length;
-                this.hash = Empty.hash;
+                this = Empty;
             }
-
-            isHash = false;
-        }
-
-        public string CString() => this.cString;
-
-        private String(string cString, int length, StrCode hash)
-        {
-            this.cString = cString;
-            this.length = length;
-            this.hash = hash;
-
-            isHash = false;
-        }
-
-        public String(StrCode hash)
-        {
-            this.cString = null;
-            this.length = -1;
-            this.hash = hash;
-
-            isHash = true;
-        }
-
-        public bool IsHash()
-        {
-            return IsHash();
         }
     }
 }

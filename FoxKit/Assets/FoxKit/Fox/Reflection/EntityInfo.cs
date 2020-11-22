@@ -71,7 +71,7 @@ namespace Fox
 
         public override string ToString()
         {
-            return this.Name.CString();
+            return this.Name.CString;
         }
     }
 }

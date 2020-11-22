@@ -7,8 +7,8 @@ using System.Linq;
 
 namespace Fox.Editor
 {
-    [CustomPropertyDrawer(typeof(Fox.String))]
-    public class StringDrawer : PropertyDrawer
+    [CustomPropertyDrawer(typeof(Fox.Path))]
+    public class PathDrawer : PropertyDrawer
     {
         SerializedProperty property;
 
@@ -23,6 +23,6 @@ namespace Fox.Editor
             return field;
         }
 
-        private void OnValueChanged(ChangeEvent<string> changeEvent) => property.SetValue(new String(changeEvent.newValue));
+        private void OnValueChanged(ChangeEvent<string> changeEvent) => property.SetValue(new Path(changeEvent.newValue));
     }
 }

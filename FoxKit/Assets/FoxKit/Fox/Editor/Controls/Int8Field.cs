@@ -65,8 +65,57 @@ namespace Fox.Editor
         }
     }
 
-    public class Int8Field : TextValueField<System.SByte>
+    public class Int8Field : TextValueField<System.SByte>, INotifyValueChanged<System.SByte>, INotifyValueChanged<int>, INotifyValueChanged<long>
     {
+        int INotifyValueChanged<int>.value
+        {
+            get
+            {
+                return property.intValue;
+            }
+            set
+            {
+                property.SetValue(this.value);
+            }
+        }
+        void INotifyValueChanged<int>.SetValueWithoutNotify(int val)
+        {
+            return;
+        }
+
+        long INotifyValueChanged<long>.value
+        {
+            get
+            {
+                return property.longValue;
+            }
+            set
+            {
+                property.SetValue(this.value);
+            }
+        }
+        void INotifyValueChanged<long>.SetValueWithoutNotify(long val)
+        {
+            return;
+        }
+
+        System.SByte INotifyValueChanged<System.SByte>.value
+        {
+            get
+            {
+                return value;
+            }
+            set
+            {
+                property.SetValue(this.value);
+            }
+        }
+        void INotifyValueChanged<System.SByte>.SetValueWithoutNotify(System.SByte val)
+        {
+            return;
+        }
+
+
         Int8Input integerInput => (Int8Input)textInputBase;
 
         public new class UxmlFactory : UxmlFactory<Int8Field, UxmlTraits> { }
@@ -100,6 +149,14 @@ namespace Fox.Editor
             AddToClassList(ussClassName);
             labelElement.AddToClassList(labelUssClassName);
             AddLabelDragger<System.SByte>();
+        }
+
+        SerializedProperty property;
+        public Int8Field(SerializedProperty property)
+            : this(property.displayName)
+        {
+            this.property = property;
+            this.BindProperty(property);
         }
 
         public override void ApplyInputDeviceDelta(Vector3 delta, DeltaSpeed speed, System.SByte startValue)

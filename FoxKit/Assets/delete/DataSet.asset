@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   test:
     id: 0
+  dataSet:
+    id: 1
   references:
     version: 1
     00000000:
@@ -38,7 +40,7 @@ MonoBehaviour:
         property23:
           InspectorTest: 
           ptr:
-            id: 1
+            id: 2
         property24: {x: 0, y: 0, z: 0}
         property25: {x: 0, y: 0, z: 0, w: 0}
         property26: {x: 0, y: 0, z: 0, w: 0}
@@ -62,11 +64,37 @@ MonoBehaviour:
         property28: {r: 0, g: 0, b: 0, a: 0}
         property29:
           file: {fileID: 0}
+        property30:
+          entity:
+            id: 2
         property31:
+          handle:
+            entity:
+              id: 2
           nameInArchive:
             cString: 
             length: 0
             hash:
               hash: 0
     00000001:
+      type: {class: DataSet, ns: Fox, asm: Assembly-CSharp}
+      data:
+        NestedPropertyTest: 42
+        NestedPropertyTest2: 1
+        NestedPropertyTest3: 2
+        NestedPropertyTest4: 3
+        name: 
+        dataSet:
+          entity:
+            id: 2
+        dataList:
+        - NestedPropertyTest: 42
+          NestedPropertyTest2: 1
+          NestedPropertyTest3: 2
+          NestedPropertyTest4: 3
+          name: Data0
+          dataSet:
+            entity:
+              id: 2
+    00000002:
       type: {class: , ns: , asm: }
