@@ -7,6 +7,11 @@ namespace Fox
     [Serializable]
     public class InspectorTestData
     {
+        public InspectorTestData()
+        {
+            property32 = new StaticArray<string>(5);
+        }
+
         #region Non-array properties
         public sbyte property10;
         public byte property11;

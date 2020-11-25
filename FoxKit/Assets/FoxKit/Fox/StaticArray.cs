@@ -71,6 +71,8 @@ namespace Fox
         public StaticArray(int capacity)
         {
             _list = new List<T>(capacity);
+            for (int i = 0; i < capacity; i++)
+                _list.Add(default);
         }
 
         //bool IList<T>.IsFixedSize()

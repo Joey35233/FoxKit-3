@@ -22,12 +22,21 @@ namespace Fox.Editor
             for (int i = 1; i <= itemCount; i++)
                 items.Add(i.ToString());
 
-            Func<VisualElement> makeItem = () => new Label();
-            Action<VisualElement, int> bindItem = (e, i) => (e as Label).text = items[i];
+            var list = property.GetValue();
+            var list2 = (IList)list;
+
+            var type = property.GetValue().GetType().GenericTypeArguments[0];
+
+            Func<VisualElement> makeItem = () => new PropertyField();
+            Action<VisualElement, int> bindItem = (e, i) =>
+            {
+                var field = e as PropertyField;
+                field.BindProperty(property.GetArrayElementAtIndex(i));
+            };
 
             var field = new ListView
             (
-                items,
+                list2,
                 16,
                 makeItem,
                 bindItem
