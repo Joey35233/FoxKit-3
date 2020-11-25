@@ -1,8 +1,9 @@
-﻿namespace Fox
-{
-    using System;
-    using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
+using UnityEngine;
 
+namespace Fox
+{
     [Serializable]
     public class InspectorTestData
     {
@@ -32,6 +33,7 @@
         #endregion
 
         #region StaticArray properties
+        public StaticArray<string> property32;
         #endregion
 
         #region DynamicArray properties

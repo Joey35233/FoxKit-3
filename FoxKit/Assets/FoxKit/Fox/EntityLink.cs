@@ -7,7 +7,7 @@ namespace Fox
     /// Stores a reference to an Entity.
     /// </summary>
     [Serializable]
-    public struct EntityLink : System.IEquatable<EntityLink>
+    public class EntityLink : System.IEquatable<EntityLink>
     {
         /// <summary>
         /// The referenced Entity.

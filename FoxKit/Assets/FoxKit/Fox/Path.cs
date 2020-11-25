@@ -5,8 +5,8 @@ using UnityEngine;
 
 namespace Fox
 {
-    [Serializable, StructLayout(LayoutKind.Explicit, Size = 1, CharSet = CharSet.Ansi)]
-    public struct Path
+    [Serializable, StructLayout(LayoutKind.Explicit, Size = 16, CharSet = CharSet.Ansi)]
+    public class Path
     {
         [SerializeField, FieldOffset(0)]
         private string _cString;
@@ -36,7 +36,17 @@ namespace Fox
 
         static Path()
         {
-            Empty = new Path { _cString = string.Empty, _hash = new PathFileNameCode(string.Empty), _length = 0 };
+            Empty = new Path
+            {
+                _cString = string.Empty,
+                _length = 0,
+                _hash = new PathFileNameCode(string.Empty)
+            };
+        }
+
+        private Path()
+        {
+
         }
 
         public Path(string name)
@@ -49,7 +59,9 @@ namespace Fox
             }
             else
             {
-                this = Empty;
+                this._cString = Empty.CString;
+                this._length = Empty.Length;
+                this._hash = Empty.Hash;
             }
         }
     }
