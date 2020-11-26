@@ -22,18 +22,22 @@ namespace Fox.Editor
 
             var type = property.GetValue().GetType().GenericTypeArguments[0];
 
-            Func<VisualElement> makeItem = () => new PropertyField();
+            Func<VisualElement> makeItem = () =>
+            {
+                var entryField = new PropertyField();
+                entryField.styleSheets.Add(AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/FoxKit/Fox/Editor/Controls/Drawers/StaticArrayDrawer.uss"));
+
+                return entryField;
+            };
             Action<VisualElement, int> bindItem = (e, i) =>
             {
-                var field = e as PropertyField;
+                var entryField = e as PropertyField;
                 var privateList = property.FindPropertyRelative("_list");
                 var entry = privateList.GetArrayElementAtIndex(i);
-                field.BindProperty(entry);
 
-                //field.style.white
-
-]                var element = field.GetFirstOfType<VisualElement>();
-                //element.
+                entryField.BindProperty(entry);
+                var label = entryField.Query<Label>().First();
+                label.text = $"[{i}]";
             };
 
             var field = new ListView

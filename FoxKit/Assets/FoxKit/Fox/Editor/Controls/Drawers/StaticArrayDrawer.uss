@@ -1,0 +1,4 @@
+﻿.unity-label {
+    min-width: 25px;
+    -unity-font: url("../Fonts/CascadiaCode-SemiLight.ttf");
+}

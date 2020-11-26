@@ -14,10 +14,6 @@ namespace Fox.Editor
         {
             this.property = property;
 
-            var container = new VisualElement();
-            var uxmlTemplate = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/FoxKit/Fox/Editor/Controls/Drawers/EntityHandleDrawer.uxml");
-            var drawer = uxmlTemplate.CloneTree(property.propertyPath);
-
             var dataSet = GetDataSet(property);
             if (dataSet == null)
             {
@@ -27,8 +23,9 @@ namespace Fox.Editor
                     value = "Orphaned EntityHandle",
                     isReadOnly = true
                 };
+                error.labelElement.AddToClassList("unity-property-field__label");
 
-                drawer.Add(error);
+                return error;
             }
             else
             {
@@ -43,11 +40,8 @@ namespace Fox.Editor
                 options.AddRange(dataSet.dataList);
 
                 var popup = new PopupField<Data>(property.name, options, index, FormatSelectedValue, FormatListItem);
-                container.Add(popup);
+                return popup;
             }
-
-            container.Add(drawer);
-            return container;
         }
 
         private static int GetSelectedIndex(DataSet dataSet, EntityHandle handle)

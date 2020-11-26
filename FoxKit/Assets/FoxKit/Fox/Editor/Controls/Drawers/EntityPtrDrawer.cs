@@ -129,8 +129,8 @@ namespace Fox.Editor
 
         private TemplateContainer BuildDrawer()
         {
-            var uxmlTemplate = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/FoxKit/Fox/Editor/EntityPtrDrawer.uxml");
-            var uss = AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/FoxKit/Fox/Editor/EntityPtrDrawer.uss");
+            var uxmlTemplate = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/FoxKit/Fox/Editor/Controls/Drawers/EntityPtrDrawer.uxml");
+            var uss = AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/FoxKit/Fox/Editor/Controls/Drawers/EntityPtrDrawer.uss");
             var drawer = uxmlTemplate.CloneTree(this.property.propertyPath);
             drawer.styleSheets.Add(uss);
 

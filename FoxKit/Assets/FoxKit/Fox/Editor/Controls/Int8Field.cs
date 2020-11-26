@@ -65,8 +65,9 @@ namespace Fox.Editor
         }
     }
 
-    public class Int8Field : TextValueField<System.SByte>, INotifyValueChanged<System.SByte>, INotifyValueChanged<int>, INotifyValueChanged<long>
+    public class Int8Field : TextValueField<System.SByte>//, INotifyValueChanged<System.SByte>, INotifyValueChanged<int>, INotifyValueChanged<long>
     {
+        /*
         int INotifyValueChanged<int>.value
         {
             get
@@ -114,7 +115,7 @@ namespace Fox.Editor
         {
             return;
         }
-
+        */
 
         Int8Input integerInput => (Int8Input)textInputBase;
 
@@ -151,13 +152,13 @@ namespace Fox.Editor
             AddLabelDragger<System.SByte>();
         }
 
-        SerializedProperty property;
-        public Int8Field(SerializedProperty property)
-            : this(property.displayName)
-        {
-            this.property = property;
-            this.BindProperty(property);
-        }
+        //SerializedProperty property;
+        //public Int8Field(SerializedProperty property)
+        //    : this(property.displayName)
+        //{
+        //    this.property = property;
+        //    this.BindProperty(property);
+        //}
 
         public override void ApplyInputDeviceDelta(Vector3 delta, DeltaSpeed speed, System.SByte startValue)
         {

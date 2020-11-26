@@ -13,26 +13,21 @@ namespace Fox.Editor
         {
             this.property = property;
 
-            field = new Int8Field(property);
-            //field.label = property.name;
-            //field.value = (System.SByte)property.GetValue();
-            //field.RegisterValueChangedCallback(OnValueChanged);
-            //field.RegisterCallback<ChangeEvent<System.Int32>>(OnValueChanged2);
+            field = new Int8Field();
+            field.label = property.name;
+            field.value = (System.SByte)property.GetValue();
+            field.RegisterValueChangedCallback(OnValueChanged);
+            field.labelElement.AddToClassList("unity-property-field__label");
 
-            //Undo.undoRedoPerformed += OnValueUndoneRedone;
+            Undo.undoRedoPerformed += OnValueUndoneRedone;
 
             return field;
         }
 
-        //private void OnValueChanged(ChangeEvent<System.SByte> evt)
-        //{
-        //    this.property.SetValue(evt.newValue);
-        //}
-
-        //private void OnValueChanged2(ChangeEvent<System.Int32> evt)
-        //{
-        //    this.property.SetValue(evt.newValue);
-        //}
+        private void OnValueChanged(ChangeEvent<System.SByte> evt)
+        {
+            this.property.SetValue(evt.newValue);
+        }
 
         private void OnValueUndoneRedone()
         {

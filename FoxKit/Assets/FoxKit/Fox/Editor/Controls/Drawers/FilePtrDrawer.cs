@@ -23,6 +23,7 @@ namespace Fox.Editor
             picker.value = this.fileProperty.GetValue() as UnityEngine.Object;
             picker.label = property.name;
             picker.allowSceneObjects = false;
+            picker.labelElement.AddToClassList("unity-property-field__label");
 
             // TODO: Filter this by asset type
             picker.objectType = typeof(UnityEngine.Object);

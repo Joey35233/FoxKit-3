@@ -12,6 +12,7 @@ namespace Fox.Editor
             var field = new Int32Field();
             field.BindProperty(property);
             field.label = property.name;
+            field.labelElement.AddToClassList("unity-property-field__label");
 
             return field;
         }

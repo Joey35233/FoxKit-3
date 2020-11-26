@@ -17,8 +17,9 @@ namespace Fox.Editor
             field.label = property.name;
             field.value = (System.UInt64)property.GetValue();
             field.RegisterValueChangedCallback(OnValueChanged);
+            field.labelElement.AddToClassList("unity-property-field__label");
 
-            //Undo.undoRedoPerformed += OnValueUndoneRedone;
+            Undo.undoRedoPerformed += OnValueUndoneRedone;
 
             return field;
         }

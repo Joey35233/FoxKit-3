@@ -19,6 +19,7 @@ namespace Fox.Editor
             var field = new TextField(property.name);
             field.BindProperty(property.FindPropertyRelative("_cString"));
             field.RegisterValueChangedCallback(OnValueChanged);
+            field.labelElement.AddToClassList("unity-property-field__label");
 
             return field;
         }

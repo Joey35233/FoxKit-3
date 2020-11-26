@@ -9,36 +9,36 @@ namespace Fox
     {
         public InspectorTestData()
         {
-            property32 = new StaticArray<string>(5);
+            StaticArray_property = new StaticArray<string>(5);
         }
 
         #region Non-array properties
-        public sbyte property10;
-        public byte property11;
-        public short property12;
-        public ushort property13;
-        public int property14;
-        public uint property15;
-        public long property16;
-        public ulong property17;
-        public float property18;
-        public double property19;
-        public bool property20;
-        public Fox.String property21;
-        public Fox.Path property22;
-        public EntityPtr<Entity> property23;
-        public Vector3 property24;
-        public Vector4 property25;
-        public Quaternion property26;
-        public Matrix4x4 property27;
-        public Color property28;
-        public Fox.FilePtr<File> property29;
-        public Fox.EntityHandle property30;
-        public Fox.EntityLink property31;
+        public sbyte int8_property;
+        public byte uint8_property;
+        public short int16_property;
+        public ushort uint16_property;
+        public int int32_property;
+        public uint uint32_property;
+        public long int64_property;
+        public ulong uint64_property;
+        public float float32_property;
+        public double float64_property;
+        public bool bool_property;
+        public Fox.String String_property;
+        public Fox.Path Path_property;
+        public EntityPtr<Entity> EntityPtr_property;
+        public Vector3 Vector3_property;
+        public Vector4 Vector4_property;
+        public Quaternion Quaternion_property;
+        public Matrix4x4 Matrix4x4_property;
+        public Color color_property;
+        public Fox.FilePtr<File> FilePtr_property;
+        public Fox.EntityHandle EntityHandle_property;
+        public Fox.EntityLink EntityLink_property;
         #endregion
 
         #region StaticArray properties
-        public StaticArray<string> property32;
+        public StaticArray<string> StaticArray_property;
         #endregion
 
         #region DynamicArray properties
