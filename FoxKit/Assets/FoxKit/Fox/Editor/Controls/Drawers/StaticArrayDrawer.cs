@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine.UIElements;
@@ -17,13 +18,7 @@ namespace Fox.Editor
         {
             this.property = property;
 
-            const int itemCount = 1000;
-            var items = new List<string>(itemCount);
-            for (int i = 1; i <= itemCount; i++)
-                items.Add(i.ToString());
-
-            var list = property.GetValue();
-            var list2 = (IList)list;
+            var list = property.GetValue() as IList;
 
             var type = property.GetValue().GetType().GenericTypeArguments[0];
 
@@ -31,13 +26,20 @@ namespace Fox.Editor
             Action<VisualElement, int> bindItem = (e, i) =>
             {
                 var field = e as PropertyField;
-                field.BindProperty(property.GetArrayElementAtIndex(i));
+                var privateList = property.FindPropertyRelative("_list");
+                var entry = privateList.GetArrayElementAtIndex(i);
+                field.BindProperty(entry);
+
+                //field.style.white
+
+]                var element = field.GetFirstOfType<VisualElement>();
+                //element.
             };
 
             var field = new ListView
             (
-                list2,
-                16,
+                list,
+                20,
                 makeItem,
                 bindItem
             );

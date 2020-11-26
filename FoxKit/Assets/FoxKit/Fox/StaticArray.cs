@@ -8,14 +8,26 @@ using UnityEngine;
 namespace Fox
 {
     [System.Serializable]
-    public class StaticArray<T> : IList<T>
+    public class StaticArray<T> : IList<T>, IList
     {
+        [SerializeField]
         private List<T> _list;
 
         public int Count => _list.Count;
 
         public bool IsReadOnly => false;
 
+        bool IList.IsFixedSize => true;
+
+        bool IList.IsReadOnly => IsReadOnly;
+
+        int ICollection.Count => _list.Count;
+
+        bool ICollection.IsSynchronized => throw new NotImplementedException();
+
+        object ICollection.SyncRoot => throw new NotImplementedException();
+
+        object IList.this[int index] { get => this[index]; set => throw new NotImplementedException(); }
         public T this[int index] { get => _list[index]; set => _list[index] = value; }
 
         public int IndexOf(T item)
@@ -66,6 +78,46 @@ namespace Fox
         IEnumerator IEnumerable.GetEnumerator()
         {
             return _list.GetEnumerator();
+        }
+
+        int IList.Add(object value)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IList.Clear()
+        {
+            Clear();
+        }
+
+        bool IList.Contains(object value)
+        {
+            throw new NotImplementedException();
+        }
+
+        int IList.IndexOf(object value)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IList.Insert(int index, object value)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IList.Remove(object value)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IList.RemoveAt(int index)
+        {
+            RemoveAt(index);
+        }
+
+        void ICollection.CopyTo(Array array, int index)
+        {
+            throw new NotImplementedException();
         }
 
         public StaticArray(int capacity)

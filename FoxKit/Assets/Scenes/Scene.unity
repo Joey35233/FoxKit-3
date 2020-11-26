@@ -213,11 +213,15 @@ MonoBehaviour:
     property19: 0
     property20: 0
     property21:
-      cString: 
-      length: 0
-      isHash: 0
-      hash:
-        hash: 0
+      _cString: 
+      _length: 0
+      _hash:
+        hash: 203000540209048
+    property22:
+      _cString: 
+      _length: 0
+      _hash:
+        hash: 1125899906842624
     property23:
       InspectorTest: 
       ptr:
@@ -245,13 +249,35 @@ MonoBehaviour:
     property28: {r: 0, g: 0, b: 0, a: 0}
     property29:
       file: {fileID: 0}
+    property30:
+      entity:
+        id: 0
     property31:
+      handle:
+        entity:
+          id: 0
+      packagePath:
+        _cString: 
+        _length: 0
+        _hash:
+          hash: 1125899906842624
+      archivePath:
+        _cString: 
+        _length: 0
+        _hash:
+          hash: 1125899906842624
       nameInArchive:
-        cString: 
-        length: 0
-        isHash: 0
-        hash:
-          hash: 0
+        _cString: 
+        _length: 0
+        _hash:
+          hash: 203000540209048
+    property32:
+      _list:
+      - 
+      - sqsdwsdwd
+      - 
+      - 
+      - 
   references:
     version: 1
     00000000:
@@ -346,6 +372,7 @@ Light:
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
+  m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
 --- !u!4 &2138677393
