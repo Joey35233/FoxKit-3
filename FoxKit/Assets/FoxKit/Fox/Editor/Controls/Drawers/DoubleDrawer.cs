@@ -13,6 +13,7 @@ namespace Fox.Editor
             field.BindProperty(property);
             field.label = property.name;
             field.labelElement.AddToClassList("unity-property-field__label");
+            field.styleSheets.Add(AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/FoxKit/Fox/Editor/Controls/Drawers/NumericInputDrawer.uss"));
 
             return field;
         }

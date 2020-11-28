@@ -18,6 +18,7 @@ namespace Fox.Editor
             field.value = (System.UInt64)property.GetValue();
             field.RegisterValueChangedCallback(OnValueChanged);
             field.labelElement.AddToClassList("unity-property-field__label");
+            field.styleSheets.Add(AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/FoxKit/Fox/Editor/Controls/Drawers/NumericInputDrawer.uss"));
 
             Undo.undoRedoPerformed += OnValueUndoneRedone;
 

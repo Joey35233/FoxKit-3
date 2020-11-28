@@ -12,6 +12,7 @@ namespace Fox.Editor
             var container = new VisualElement();
             container.AddToClassList("unity-base-field");
             container.AddToClassList("unity-composite-field");
+            container.styleSheets.Add(AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/FoxKit/Fox/Editor/Controls/Drawers/NumericInputDrawer.uss"));
 
             var label = new Label(property.name);
             label.AddToClassList("unity-base-field__label");

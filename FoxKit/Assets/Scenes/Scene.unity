@@ -201,41 +201,41 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data:
-    property10: 0
-    property11: 0
-    property12: 0
-    property13: 0
-    property14: 0
-    property15: 0
-    property16: 0
-    property17: 0
-    property18: 0
-    property19: 0
-    property20: 0
-    property21:
+    int8_property: -128
+    uint8_property: 132
+    int16_property: -3422
+    uint16_property: 56511
+    int32_property: -481728
+    uint32_property: 4294967295
+    int64_property: 9223372036854775807
+    uint64_property: 18446744073709551615
+    float32_property: 57.68
+    float64_property: -22.83
+    bool_property: 0
+    String_property:
       _cString: 
       _length: 0
       _hash:
-        hash: 203000540209048
-    property22:
+        hash: 0
+    Path_property:
       _cString: 
       _length: 0
       _hash:
-        hash: 1125899906842624
-    property23:
+        hash: 0
+    EntityPtr_property:
       InspectorTest: 
       ptr:
         id: 0
-    property24: {x: 0, y: 0, z: 0}
-    property25: {x: 0, y: 0, z: 0, w: 0}
-    property26: {x: 0, y: 0, z: 0, w: 0}
-    property27:
+    Vector3_property: {x: 6.23, y: 1.74, z: 1.06}
+    Vector4_property: {x: -1.52, y: 0.82, z: 0.76, w: 0.58}
+    Quaternion_property: {x: -5.09, y: -5.24, z: 1.43, w: 0.83}
+    Matrix4x4_property:
       e00: 0
       e01: 0
-      e02: 0
+      e02: 2.47
       e03: 0
       e10: 0
-      e11: 0
+      e11: -5.14
       e12: 0
       e13: 0
       e20: 0
@@ -246,13 +246,13 @@ MonoBehaviour:
       e31: 0
       e32: 0
       e33: 0
-    property28: {r: 0, g: 0, b: 0, a: 0}
-    property29:
+    color_property: {r: 0, g: 0, b: 0, a: 0}
+    FilePtr_property:
       file: {fileID: 0}
-    property30:
+    EntityHandle_property:
       entity:
         id: 0
-    property31:
+    EntityLink_property:
       handle:
         entity:
           id: 0
@@ -260,21 +260,21 @@ MonoBehaviour:
         _cString: 
         _length: 0
         _hash:
-          hash: 1125899906842624
+          hash: 0
       archivePath:
         _cString: 
         _length: 0
         _hash:
-          hash: 1125899906842624
+          hash: 0
       nameInArchive:
         _cString: 
         _length: 0
         _hash:
-          hash: 203000540209048
-    property32:
+          hash: 0
+    StaticArray_property:
       _list:
       - 
-      - sqsdwsdwd
+      - 
       - 
       - 
       - 
@@ -372,7 +372,6 @@ Light:
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
-  m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
 --- !u!4 &2138677393
