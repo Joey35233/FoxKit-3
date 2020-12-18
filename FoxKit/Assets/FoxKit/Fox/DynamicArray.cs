@@ -8,7 +8,7 @@ using UnityEngine;
 namespace Fox
 {
     [System.Serializable]
-    public class StaticArray<T> : IList<T>, IList
+    public class DynamicArray<T> : IList<T>, IList
     {
         [SerializeField]
         private List<T> _list;
@@ -17,7 +17,7 @@ namespace Fox
 
         public bool IsReadOnly => false;
 
-        bool IList.IsFixedSize => true;
+        bool IList.IsFixedSize => false;
 
         bool IList.IsReadOnly => IsReadOnly;
 
@@ -27,7 +27,7 @@ namespace Fox
 
         object ICollection.SyncRoot => throw new NotImplementedException();
 
-        object IList.this[int index] { get => this[index]; set => throw new NotImplementedException(); }
+        object IList.this[int index] { get => this[index]; set => _list[index] = (T)value; }
         public T this[int index] { get => _list[index]; set => _list[index] = value; }
 
         public int IndexOf(T item)
@@ -82,7 +82,8 @@ namespace Fox
 
         int IList.Add(object value)
         {
-            throw new NotImplementedException();
+            Add((T)value);
+            return Count - 1;
         }
 
         void IList.Clear()
@@ -92,22 +93,22 @@ namespace Fox
 
         bool IList.Contains(object value)
         {
-            throw new NotImplementedException();
+            return Contains((T)value);
         }
 
         int IList.IndexOf(object value)
         {
-            throw new NotImplementedException();
+            return IndexOf((T)value);
         }
 
         void IList.Insert(int index, object value)
         {
-            _list.Insert(index, (T)value);
+            Insert(index, (T)value);
         }
 
         void IList.Remove(object value)
         {
-            throw new NotImplementedException();
+            Remove((T)value);
         }
 
         void IList.RemoveAt(int index)
@@ -117,10 +118,10 @@ namespace Fox
 
         void ICollection.CopyTo(Array array, int index)
         {
-            throw new NotImplementedException();
+            CopyTo((T[])array, index);
         }
 
-        public StaticArray(int capacity)
+        public DynamicArray(int capacity)
         {
             _list = new List<T>(capacity);
             for (int i = 0; i < capacity; i++)

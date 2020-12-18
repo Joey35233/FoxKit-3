@@ -6,7 +6,11 @@ using UnityEngine;
 namespace Fox
 {
     [Serializable, StructLayout(LayoutKind.Explicit, Size=16, CharSet=CharSet.Ansi)]
+#pragma warning disable CS0660 // Type defines operator == or operator != but does not override Object.Equals(object o)
+#pragma warning disable CS0661 // Type defines operator == or operator != but does not override Object.GetHashCode()
     public class String
+#pragma warning restore CS0661 // Type defines operator == or operator != but does not override Object.GetHashCode()
+#pragma warning restore CS0660 // Type defines operator == or operator != but does not override Object.Equals(object o)
     {
         [SerializeField, FieldOffset(0)]
         private string _cString;
@@ -63,6 +67,16 @@ namespace Fox
                 this._length = Empty.Length;
                 this._hash = Empty.Hash;
             }
+        }
+
+        public static bool operator==(String a, String b)
+        {
+            return a.Hash == b.Hash;
+        }
+
+        public static bool operator!=(String a, String b)
+        {
+            return !(a == b);
         }
     }
 }

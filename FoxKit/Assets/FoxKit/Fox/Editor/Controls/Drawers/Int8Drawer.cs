@@ -16,7 +16,7 @@ namespace Fox.Editor
             field = new Int8Field();
             field.label = property.name;
             field.value = (System.SByte)property.GetValue();
-            field.RegisterValueChangedCallback(OnValueChanged);
+            //field.RegisterValueChangedCallback(OnValueChanged);
             field.labelElement.AddToClassList("unity-property-field__label");
             field.styleSheets.Add(AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/FoxKit/Fox/Editor/Controls/Drawers/NumericInputDrawer.uss"));
 

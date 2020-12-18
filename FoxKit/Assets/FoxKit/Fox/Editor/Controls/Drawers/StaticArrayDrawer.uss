@@ -1,4 +1,4 @@
 ﻿.unity-label {
-    flex-grow: 1;
+    min-width: 20px;
     -unity-font: url("../../Fonts/CascadiaCode-SemiLight.ttf");
 }

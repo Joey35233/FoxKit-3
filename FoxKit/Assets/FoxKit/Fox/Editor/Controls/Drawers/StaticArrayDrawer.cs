@@ -12,15 +12,14 @@ namespace Fox.Editor
     public class StaticArrayDrawer : PropertyDrawer
     {
         private SerializedProperty property;
-        //private  field;
+        private VisualElement root;
+        private ListView field;
 
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
         {
             this.property = property;
 
             var list = property.GetValue() as IList;
-
-            var type = property.GetValue().GetType().GenericTypeArguments[0];
 
             Func<VisualElement> makeItem = () =>
             {
@@ -40,7 +39,7 @@ namespace Fox.Editor
                 label.text = $"[{i}]";
             };
 
-            var field = new ListView
+            field = new ListView
             (
                 list,
                 20,
@@ -59,28 +58,31 @@ namespace Fox.Editor
 
             foldout.Add(field);
 
-            return foldout;
+            root = foldout;
+            root.RegisterCallback<GeometryChangedEvent>(OnGeometryChanged);
+
+            return root;
         }
 
-        //private void OnValueChanged(ChangeEvent<System.Byte> evt)
-        //{
-        //    this.property.SetValue(evt.newValue);
-        //}
+        private void OnGeometryChanged(GeometryChangedEvent evt)
+        {
+            VisualElement container = field.Query<VisualElement>("unity-content-container");
 
-        //private void OnValueUndoneRedone()
-        //{
-        //    // When the inspector is not visible, SerializedProperty is Disposed but *NOT* null. Any attempts to confirm this in code result in a custom NullReferenceException.
-        //    // field.visible is always true, Finalizers for this drawer are never called.
-        //    // Storing the targetObject to later create a new SerializedObject + .FindProperty() doesn't work either. Both vars look fine until the assignment code is called,
-        //    // then back to the same NRE.
-        //    try
-        //    {
-        //        field.value = (System.Byte)property.GetValue();
-        //    }
-        //    catch (System.NullReferenceException)
-        //    {
+            float maxWidth = 0;
+            foreach (PropertyField propertyField in container.Children())
+            {
+                var label = propertyField.Query<Label>().First();
+                if (label.resolvedStyle.width > maxWidth)
+                    maxWidth = label.resolvedStyle.width;
+            }
 
-        //    }
-        //}
+            foreach (PropertyField propertyField in container.Children())
+            {
+                var label = propertyField.Query<Label>().First();
+                label.style.width = maxWidth;
+            }
+
+            root.UnregisterCallback<GeometryChangedEvent>(OnGeometryChanged);
+        }
     }
 }

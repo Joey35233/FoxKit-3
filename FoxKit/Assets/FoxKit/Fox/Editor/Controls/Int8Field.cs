@@ -65,57 +65,40 @@ namespace Fox.Editor
         }
     }
 
-    public class Int8Field : TextValueField<System.SByte>//, INotifyValueChanged<System.SByte>, INotifyValueChanged<int>, INotifyValueChanged<long>
+    public class Int8Field : TextValueField<System.SByte>, INotifyValueChanged<int>
     {
-        /*
         int INotifyValueChanged<int>.value
         {
             get
             {
-                return property.intValue;
+                return (int)_value;
             }
             set
             {
-                property.SetValue(this.value);
+                _value = (sbyte)value;
             }
         }
         void INotifyValueChanged<int>.SetValueWithoutNotify(int val)
         {
-            return;
+            //property.SetValue(value);
         }
 
-        long INotifyValueChanged<long>.value
+        sbyte _value;
+        public override System.SByte value
         {
             get
             {
-                return property.longValue;
+                return _value;
             }
             set
             {
-                property.SetValue(this.value);
+                _value = value;
             }
         }
-        void INotifyValueChanged<long>.SetValueWithoutNotify(long val)
+        public override void SetValueWithoutNotify(System.SByte val)
         {
-            return;
+            //property.SetValue(val);
         }
-
-        System.SByte INotifyValueChanged<System.SByte>.value
-        {
-            get
-            {
-                return value;
-            }
-            set
-            {
-                property.SetValue(this.value);
-            }
-        }
-        void INotifyValueChanged<System.SByte>.SetValueWithoutNotify(System.SByte val)
-        {
-            return;
-        }
-        */
 
         Int8Input integerInput => (Int8Input)textInputBase;
 
@@ -151,14 +134,6 @@ namespace Fox.Editor
             labelElement.AddToClassList(labelUssClassName);
             AddLabelDragger<System.SByte>();
         }
-
-        //SerializedProperty property;
-        //public Int8Field(SerializedProperty property)
-        //    : this(property.displayName)
-        //{
-        //    this.property = property;
-        //    this.BindProperty(property);
-        //}
 
         public override void ApplyInputDeviceDelta(Vector3 delta, DeltaSpeed speed, System.SByte startValue)
         {
