@@ -126,9 +126,15 @@ namespace Fox.Editor
             foldout.Add(buttonContainer);
 
             root = foldout;
-            root.RegisterCallback<GeometryChangedEvent>(OnGeometryChanged);
+            root.RegisterCallback<GeometryChangedEvent>(OnGeometryChangedFirst);
 
             return root;
+        }
+
+        private void OnGeometryChangedFirst(GeometryChangedEvent evt)
+        {
+            root.RegisterCallback<GeometryChangedEvent>(OnGeometryChanged);
+            root.UnregisterCallback<GeometryChangedEvent>(OnGeometryChangedFirst);
         }
 
         private void OnGeometryChanged(GeometryChangedEvent evt)

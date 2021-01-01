@@ -199,6 +199,7 @@ Light:
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
+  m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
 --- !u!4 &173530758
@@ -407,12 +408,13 @@ MonoBehaviour:
       - 3
       - 4
       - 5
-      - 7
-      - 8
-      - 8
-      - 8
-      - 8
-      - 8
+      - 6
+      - 6
+      - 6
+      - 6
+      - 6
+      - 6
+      - 6
     StringMap_property:
       _cells:
       - Key:

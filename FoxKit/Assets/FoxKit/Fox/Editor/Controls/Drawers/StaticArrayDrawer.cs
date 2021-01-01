@@ -37,6 +37,8 @@ namespace Fox.Editor
                 entryField.BindProperty(entry);
                 var label = entryField.Query<Label>().First();
                 label.text = $"[{i}]";
+
+                root.RegisterCallback<GeometryChangedEvent>(OnGeometryChangedFirst);
             };
 
             field = new ListView
@@ -59,9 +61,14 @@ namespace Fox.Editor
             foldout.Add(field);
 
             root = foldout;
-            root.RegisterCallback<GeometryChangedEvent>(OnGeometryChanged);
 
             return root;
+        }
+
+        private void OnGeometryChangedFirst(GeometryChangedEvent evt)
+        {
+            root.RegisterCallback<GeometryChangedEvent>(OnGeometryChanged);
+            root.UnregisterCallback<GeometryChangedEvent>(OnGeometryChangedFirst);
         }
 
         private void OnGeometryChanged(GeometryChangedEvent evt)
