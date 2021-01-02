@@ -66,38 +66,42 @@ namespace Fox.Editor
     }
 
     public class Int8Field : TextValueField<System.SByte>, INotifyValueChanged<int>
-    {        
-        sbyte _value;
+    {
+        System.SByte _value;
         int INotifyValueChanged<int>.value
         {
             get
             {
+                this.value = _value;
                 return _value;
             }
             set
             {
                 if (_value == value) 
                 {
-                    // things usually have to happen when the value is set, for
-                    // instance the very first time its set.
-                    // and that's why we call this one anyways
                     ((INotifyValueChanged<int>)this).SetValueWithoutNotify(value);
                     return;
                 }
          
-                // in order for the serialization binding to update it's expecting you
-                // to dispatch the event
                 using (ChangeEvent<int> valueChangeEvent = ChangeEvent<int>.GetPooled((int)_value, value)) 
                 {
-                    valueChangeEvent.target = this; // very umportant
-                    ((INotifyValueChanged<int>)this).SetValueWithoutNotify(value); // actually set the value and do any init with the value
+                    valueChangeEvent.target = this;
+                    ((INotifyValueChanged<int>)this).SetValueWithoutNotify(value);
+                    SetValueWithoutNotify((System.SByte)value);
                     SendEvent(valueChangeEvent);
                 }
             }
         }
         void INotifyValueChanged<int>.SetValueWithoutNotify(int val)
         {
-            _value = (sbyte)val;
+            _value = (System.SByte)val;
+        }
+
+        public override void SetValueWithoutNotify(System.SByte newValue)
+        {
+            ((INotifyValueChanged<int>)this).value = newValue;
+
+            base.SetValueWithoutNotify(newValue);
         }
 
         Int8Input integerInput => (Int8Input)textInputBase;
@@ -127,22 +131,13 @@ namespace Fox.Editor
         public Int8Field(int maxLength)
             : this(null, maxLength) { }
 
-        SerializedObject obj;
-
         public Int8Field(string label, int maxLength = -1)
             : base(label, maxLength, new Int8Input())
         {
-
             AddToClassList(ussClassName);
             labelElement.AddToClassList(labelUssClassName);
             AddLabelDragger<System.SByte>();
         }
-
-        // public void BindProperty(SerializedProperty prop)
-        // {
-        //     obj = prop.serializedObject;
-        //     bindingPath = prop.propertyPath;
-        // }
 
         public override void ApplyInputDeviceDelta(Vector3 delta, DeltaSpeed speed, System.SByte startValue)
         {

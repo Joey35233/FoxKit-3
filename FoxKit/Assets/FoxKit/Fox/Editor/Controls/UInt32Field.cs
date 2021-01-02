@@ -11,8 +11,45 @@ using UnityEngine.UIElements;
 
 namespace Fox.Editor
 {
-    public class UInt32Field : TextValueField<System.UInt32>
+    public class UInt32Field : TextValueField<System.UInt32>, INotifyValueChanged<int>
     {
+        System.UInt32 _value;
+        int INotifyValueChanged<int>.value
+        {
+            get
+            {
+                this.value = _value;
+                return (int)_value;
+            }
+            set
+            {
+                if (_value == (uint)value)
+                {
+                    ((INotifyValueChanged<int>)this).SetValueWithoutNotify(value);
+                    return;
+                }
+
+                using (ChangeEvent<int> valueChangeEvent = ChangeEvent<int>.GetPooled((int)_value, value))
+                {
+                    valueChangeEvent.target = this;
+                    ((INotifyValueChanged<int>)this).SetValueWithoutNotify(value);
+                    SetValueWithoutNotify((System.UInt32)value);
+                    SendEvent(valueChangeEvent);
+                }
+            }
+        }
+        void INotifyValueChanged<int>.SetValueWithoutNotify(int val)
+        {
+            _value = (System.UInt32)val;
+        }
+
+        public override void SetValueWithoutNotify(System.UInt32 newValue)
+        {
+            ((INotifyValueChanged<int>)this).value = (int)newValue;
+
+            base.SetValueWithoutNotify(newValue);
+        }
+
         UInt32Input integerInput => (UInt32Input)textInputBase;
 
         protected override string ValueToString(System.UInt32 v)

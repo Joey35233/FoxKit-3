@@ -399,63 +399,6 @@ MonoBehaviour:
         _length: 0
         _hash:
           hash: 0
-    StaticArray_property:
-      _list: 0000000005
-    DynamicArray_property:
-      _list:
-      - 1
-      - 2
-      - 3
-      - 5
-      - 4
-      - 6
-      - 5
-    StringMap_property:
-      _cells:
-      - Key:
-          _cString: 
-          _length: 0
-          _hash:
-            hash: 0
-        Value: 0
-      - Key:
-          _cString: 
-          _length: 0
-          _hash:
-            hash: 0
-        Value: 0
-      - Key:
-          _cString: 
-          _length: 0
-          _hash:
-            hash: 0
-        Value: 0
-      - Key:
-          _cString: 
-          _length: 0
-          _hash:
-            hash: 0
-        Value: 0
-      - Key:
-          _cString: 
-          _length: 0
-          _hash:
-            hash: 0
-        Value: 0
-      - Key:
-          _cString: 
-          _length: 0
-          _hash:
-            hash: 0
-        Value: 0
-      - Key:
-          _cString: 
-          _length: 0
-          _hash:
-            hash: 0
-        Value: 127
-    Test_prop:
-      prefabs: []
   references:
     version: 1
     00000000:

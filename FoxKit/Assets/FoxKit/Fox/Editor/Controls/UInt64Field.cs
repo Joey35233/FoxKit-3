@@ -11,8 +11,61 @@ using UnityEngine.UIElements;
 
 namespace Fox.Editor
 {
-    public class UInt64Field : TextValueField<System.UInt64>
+    public class UInt64Field : TextValueField<System.UInt64>, INotifyValueChanged<int>
     {
+        System.UInt64 _value;
+        int INotifyValueChanged<int>.value
+        {
+            get
+            {
+                this.value = _value;
+                return (int)_value;
+            }
+            set
+            {
+                if (serializedObject == null)
+                    return;
+
+                if (_value == (System.UInt64)serializedObject.FindProperty(bindingPath).longValue)
+                {
+                    ((INotifyValueChanged<int>)this).SetValueWithoutNotify(value);
+                    return;
+                }
+                
+                // This is complete nonsense. The point is to make sure that when both are cast to int, that they are not the same value.
+                using (ChangeEvent<int> valueChangeEvent = ChangeEvent<int>.GetPooled((int)_value - 1, (int)_value))
+                {
+                    valueChangeEvent.target = this;
+                    ((INotifyValueChanged<int>)this).SetValueWithoutNotify(value);
+                    long longVal = serializedObject.FindProperty(bindingPath).longValue;
+                    ulong ulongVal = (ulong)longVal;
+                    SetValueWithoutNotify(ulongVal);
+                    SendEvent(valueChangeEvent);
+                }
+            }
+        }
+        void INotifyValueChanged<int>.SetValueWithoutNotify(int val)
+        {
+            if (serializedObject == null)
+                return;
+
+            long longVal = serializedObject.FindProperty(bindingPath).longValue;
+            ulong ulongVal = (ulong)longVal;
+            _value = ulongVal;
+        }
+
+        public override void SetValueWithoutNotify(System.UInt64 newValue)
+        {
+            if (serializedObject == null)
+                return;
+
+            //((INotifyValueChanged<int>)this).value = (int)newValue;
+            serializedObject.FindProperty(bindingPath).SetValue(newValue);
+            serializedObject.ApplyModifiedProperties();
+
+            base.SetValueWithoutNotify(newValue);
+        }
+
         UInt64Input integerInput => (UInt64Input)textInputBase;
 
         protected override string ValueToString(System.UInt64 v)
@@ -37,6 +90,12 @@ namespace Fox.Editor
             : base(label, maxLength, new UInt64Input())
         {
             AddLabelDragger<System.UInt64>();
+        }
+
+        SerializedObject serializedObject;
+        public void PreBindProperty(SerializedProperty property)
+        {
+            serializedObject = property.serializedObject;
         }
 
         public override void ApplyInputDeviceDelta(Vector3 delta, DeltaSpeed speed, System.UInt64 startValue)

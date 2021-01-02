@@ -11,8 +11,45 @@ using UnityEngine.UIElements;
 
 namespace Fox.Editor
 {
-    public class UInt16Field : TextValueField<System.UInt16>
+    public class UInt16Field : TextValueField<System.UInt16>, INotifyValueChanged<int>
     {
+        System.UInt16 _value;
+        int INotifyValueChanged<int>.value
+        {
+            get
+            {
+                this.value = _value;
+                return _value;
+            }
+            set
+            {
+                if (_value == value)
+                {
+                    ((INotifyValueChanged<int>)this).SetValueWithoutNotify(value);
+                    return;
+                }
+
+                using (ChangeEvent<int> valueChangeEvent = ChangeEvent<int>.GetPooled((int)_value, value))
+                {
+                    valueChangeEvent.target = this;
+                    ((INotifyValueChanged<int>)this).SetValueWithoutNotify(value);
+                    SetValueWithoutNotify((System.UInt16)value);
+                    SendEvent(valueChangeEvent);
+                }
+            }
+        }
+        void INotifyValueChanged<int>.SetValueWithoutNotify(int val)
+        {
+            _value = (System.UInt16)val;
+        }
+
+        public override void SetValueWithoutNotify(System.UInt16 newValue)
+        {
+            ((INotifyValueChanged<int>)this).value = newValue;
+
+            base.SetValueWithoutNotify(newValue);
+        }
+
         UInt16Input integerInput => (UInt16Input)textInputBase;
 
         protected override string ValueToString(System.UInt16 v)

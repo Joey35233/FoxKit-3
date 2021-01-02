@@ -9,9 +9,9 @@ namespace Fox
     {
         public InspectorTestData()
         {
-            StaticArray_property = new StaticArray<sbyte>(5);
-            DynamicArray_property = new DynamicArray<string>(5);
-            StringMap_property = new StringMap<sbyte>();
+            //StaticArray_property = new StaticArray<sbyte>(5);
+            //DynamicArray_property = new DynamicArray<string>(5);
+            //StringMap_property = new StringMap<sbyte>();
         }
 
         #region Non-array properties
@@ -40,15 +40,15 @@ namespace Fox
         #endregion
 
         #region StaticArray properties
-        public StaticArray<sbyte> StaticArray_property;
+        //public StaticArray<sbyte> StaticArray_property;
         #endregion
 
         #region DynamicArray properties
-        public DynamicArray<string> DynamicArray_property;
+        //public DynamicArray<string> DynamicArray_property;
         #endregion
 
         #region StringMap properties
-        public StringMap<sbyte> StringMap_property;
+        //public StringMap<sbyte> StringMap_property;
         #endregion
     }
 }
