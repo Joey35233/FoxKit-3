@@ -84,8 +84,6 @@ namespace Fox.Editor
 
                 field.Refresh();
                 field.ScrollToItem(privateList.arraySize + 10);
-
-                root.RegisterCallback<GeometryChangedEvent>(OnGeometryChanged);
             };
 
             var removeButton = new Button();
@@ -116,8 +114,6 @@ namespace Fox.Editor
                 field.Refresh();
 
                 field.SetSelection(privateList.arraySize - 1);
-
-                root.RegisterCallback<GeometryChangedEvent>(OnGeometryChanged);
             };
 
             buttonContainer.Add(removeButton);
@@ -126,36 +122,8 @@ namespace Fox.Editor
             foldout.Add(buttonContainer);
 
             root = foldout;
-            root.RegisterCallback<GeometryChangedEvent>(OnGeometryChangedFirst);
 
             return root;
-        }
-
-        private void OnGeometryChangedFirst(GeometryChangedEvent evt)
-        {
-            root.RegisterCallback<GeometryChangedEvent>(OnGeometryChanged);
-            root.UnregisterCallback<GeometryChangedEvent>(OnGeometryChangedFirst);
-        }
-
-        private void OnGeometryChanged(GeometryChangedEvent evt)
-        {
-            VisualElement container = field.Query<VisualElement>("unity-content-container");
-
-            float maxWidth = 0;
-            foreach (PropertyField propertyField in container.Children())
-            {
-                var label = propertyField.Query<Label>().First();
-                if (label.resolvedStyle.width > maxWidth)
-                    maxWidth = label.resolvedStyle.width;
-            }
-
-            foreach (PropertyField propertyField in container.Children())
-            {
-                var label = propertyField.Query<Label>().First();
-                label.style.width = maxWidth;
-            }
-
-            root.UnregisterCallback<GeometryChangedEvent>(OnGeometryChanged);
         }
     }
 }

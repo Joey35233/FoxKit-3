@@ -37,8 +37,6 @@ namespace Fox.Editor
                 entryField.BindProperty(entry);
                 var label = entryField.Query<Label>().First();
                 label.text = $"[{i}]";
-
-                root.RegisterCallback<GeometryChangedEvent>(OnGeometryChangedFirst);
             };
 
             field = new ListView
@@ -63,33 +61,6 @@ namespace Fox.Editor
             root = foldout;
 
             return root;
-        }
-
-        private void OnGeometryChangedFirst(GeometryChangedEvent evt)
-        {
-            root.RegisterCallback<GeometryChangedEvent>(OnGeometryChanged);
-            root.UnregisterCallback<GeometryChangedEvent>(OnGeometryChangedFirst);
-        }
-
-        private void OnGeometryChanged(GeometryChangedEvent evt)
-        {
-            VisualElement container = field.Query<VisualElement>("unity-content-container");
-
-            float maxWidth = 0;
-            foreach (PropertyField propertyField in container.Children())
-            {
-                var label = propertyField.Query<Label>().First();
-                if (label.resolvedStyle.width > maxWidth)
-                    maxWidth = label.resolvedStyle.width;
-            }
-
-            foreach (PropertyField propertyField in container.Children())
-            {
-                var label = propertyField.Query<Label>().First();
-                label.style.width = maxWidth;
-            }
-
-            root.UnregisterCallback<GeometryChangedEvent>(OnGeometryChanged);
         }
     }
 }
