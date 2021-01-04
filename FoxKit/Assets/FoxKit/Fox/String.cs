@@ -78,5 +78,10 @@ namespace Fox
         {
             return !(a == b);
         }
+
+        public override string ToString()
+        {
+            return $"({Hash}, {CString})";
+        }
     }
 }

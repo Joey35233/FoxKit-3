@@ -91,7 +91,11 @@ namespace Fox
         }
         private T GetT(String key)
         {
-            throw new System.NotImplementedException();
+            foreach (var cell in _cells)
+                if (key == cell.Key)
+                    return cell.Value;
+            
+            return default;
         }
 
         public bool TryGet(String key, out T value)

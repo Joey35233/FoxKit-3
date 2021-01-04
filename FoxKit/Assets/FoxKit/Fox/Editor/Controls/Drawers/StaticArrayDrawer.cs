@@ -36,6 +36,7 @@ namespace Fox.Editor
 
                 entryField.BindProperty(entry);
                 var label = entryField.Query<Label>().First();
+                label.AddToClassList("fox-listview-entry-label");
                 label.text = $"[{i}]";
             };
 

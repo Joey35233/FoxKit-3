@@ -1,4 +1,48 @@
-﻿.unity-label {
+﻿.fox-listview-entry-label {
     min-width: 20px;
     -unity-font: url("../../Fonts/CascadiaCode-SemiLight.ttf");
+}
+
+.fox-listview-add-button {
+    margin-top: 0;
+    border-top-width: 0;
+    margin-right: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    margin-right: 0;
+    height: 22px;
+    width: 32px;
+    font-size: 18px;
+    -unity-text-align: lower-center;
+}
+
+.fox-listview-remove-button {
+    margin-top: 0;
+    border-top-width: 0;
+    margin-right: 0;
+    margin-left: 0;
+    border-left-width: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 0;
+    height: 22px;
+    width: 31px;
+    font-size: 18px;
+}
+
+.fox-stringmap {
+    flex-grow: 1;
+}
+
+.fox-stringmap-key-field .unity-label,.fox-stringmap-value-field .unity-label {
+    min-width: 28px;
+}
+
+.fox-stringmap-key-field .unity-base-field,.fox-stringmap-value-field .unity-base-field{
+    flex-grow: 1;
+}
+
+.fox-stringmap-value-field .unity-base-field__input {
+    margin-right: 0;
 }

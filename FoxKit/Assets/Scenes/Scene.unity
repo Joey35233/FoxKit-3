@@ -399,6 +399,78 @@ MonoBehaviour:
         _length: 0
         _hash:
           hash: 0
+    StaticArray_property:
+      _list: 0000000900
+    DynamicArray_property:
+      _list: 0000000000000000000000000000000000
+    StringMap_property:
+      _cells:
+      - Key:
+          _cString: key0
+          _length: 0
+          _hash:
+            hash: 0
+        Value: -128
+      - Key:
+          _cString: key1
+          _length: 0
+          _hash:
+            hash: 0
+        Value: -128
+      - Key:
+          _cString: key2
+          _length: 0
+          _hash:
+            hash: 0
+        Value: -128
+      - Key:
+          _cString: key3
+          _length: 0
+          _hash:
+            hash: 0
+        Value: -128
+      - Key:
+          _cString: key4
+          _length: 0
+          _hash:
+            hash: 0
+        Value: -128
+      - Key:
+          _cString: key5
+          _length: 0
+          _hash:
+            hash: 0
+        Value: -128
+      - Key:
+          _cString: key6
+          _length: 0
+          _hash:
+            hash: 0
+        Value: -128
+      - Key:
+          _cString: key7
+          _length: 0
+          _hash:
+            hash: 0
+        Value: -128
+      - Key:
+          _cString: key7
+          _length: 0
+          _hash:
+            hash: 0
+        Value: -128
+      - Key:
+          _cString: key7
+          _length: 0
+          _hash:
+            hash: 0
+        Value: -128
+      - Key:
+          _cString: key7
+          _length: 0
+          _hash:
+            hash: 0
+        Value: -128
   references:
     version: 1
     00000000:

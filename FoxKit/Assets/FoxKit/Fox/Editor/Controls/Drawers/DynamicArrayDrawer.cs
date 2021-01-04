@@ -24,7 +24,6 @@ namespace Fox.Editor
             Func<VisualElement> makeItem = () =>
             {
                 var entryField = new PropertyField();
-                entryField.styleSheets.Add(AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/FoxKit/Fox/Editor/Controls/Drawers/StaticArrayDrawer.uss"));
 
                 return entryField;
             };
@@ -36,6 +35,7 @@ namespace Fox.Editor
 
                 entryField.BindProperty(entry);
                 var label = entryField.Query<Label>().First();
+                label.AddToClassList("fox-listview-entry-label");
                 label.text = $"[{i}]";
             };
 
@@ -54,6 +54,7 @@ namespace Fox.Editor
             field.reorderable = true;
 
             var foldout = new Foldout();
+            foldout.styleSheets.Add(AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/FoxKit/Fox/Editor/Controls/Drawers/StaticArrayDrawer.uss"));
             foldout.text = property.name;
 
             foldout.Add(field);
@@ -63,18 +64,8 @@ namespace Fox.Editor
             buttonContainer.style.alignItems = Align.FlexEnd;
 
             var addButton = new Button();
+            addButton.AddToClassList("fox-listview-add-button");
             addButton.text = "+";
-            addButton.style.marginTop = 0;
-            addButton.style.borderTopWidth = 0;
-            addButton.style.marginRight = 0;
-            addButton.style.borderTopLeftRadius = 0;
-            addButton.style.borderTopRightRadius = 0;
-            addButton.style.borderBottomRightRadius = 0;
-            addButton.style.marginRight = 0;
-            addButton.style.height = 22;
-            addButton.style.width = 32;
-            addButton.style.fontSize = 18;
-            addButton.style.unityTextAlign = UnityEngine.TextAnchor.LowerCenter;
             addButton.clicked += () =>
             {
                 var privateList = property.FindPropertyRelative("_list");
@@ -87,18 +78,8 @@ namespace Fox.Editor
             };
 
             var removeButton = new Button();
+            removeButton.AddToClassList("fox-listview-remove-button");
             removeButton.text = "-";
-            removeButton.style.marginTop = 0;
-            removeButton.style.borderTopWidth = 0;
-            removeButton.style.marginRight = 0;
-            removeButton.style.marginLeft = 0;
-            removeButton.style.borderLeftWidth = 0;
-            removeButton.style.borderTopLeftRadius = 0;
-            removeButton.style.borderTopRightRadius = 0;
-            removeButton.style.borderBottomLeftRadius = 0;
-            removeButton.style.height = 22;
-            removeButton.style.width = 31;
-            removeButton.style.fontSize = 18;
             removeButton.clicked += () =>
             {
                 var privateList = property.FindPropertyRelative("_list");

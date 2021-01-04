@@ -11,7 +11,6 @@ using UnityEngine.UIElements;
 
 namespace Fox.Editor
 {
-
     /// <summary>
     /// Describes a XML <c>int8</c> attribute.
     /// </summary>
