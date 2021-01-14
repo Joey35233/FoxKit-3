@@ -406,71 +406,11 @@ MonoBehaviour:
     StringMap_property:
       _cells:
       - Key:
-          _cString: key0
-          _length: 0
+          _cString: h
+          _length: 1
           _hash:
-            hash: 0
-        Value: -128
-      - Key:
-          _cString: key1
-          _length: 0
-          _hash:
-            hash: 0
-        Value: -128
-      - Key:
-          _cString: key2
-          _length: 0
-          _hash:
-            hash: 0
-        Value: -128
-      - Key:
-          _cString: key3
-          _length: 0
-          _hash:
-            hash: 0
-        Value: -128
-      - Key:
-          _cString: key4
-          _length: 0
-          _hash:
-            hash: 0
-        Value: -128
-      - Key:
-          _cString: key5
-          _length: 0
-          _hash:
-            hash: 0
-        Value: -128
-      - Key:
-          _cString: key6
-          _length: 0
-          _hash:
-            hash: 0
-        Value: -128
-      - Key:
-          _cString: key7
-          _length: 0
-          _hash:
-            hash: 0
-        Value: -128
-      - Key:
-          _cString: key7
-          _length: 0
-          _hash:
-            hash: 0
-        Value: -128
-      - Key:
-          _cString: key7
-          _length: 0
-          _hash:
-            hash: 0
-        Value: -128
-      - Key:
-          _cString: key7
-          _length: 0
-          _hash:
-            hash: 0
-        Value: -128
+            hash: 91696364116908
+        Value: 0
   references:
     version: 1
     00000000:

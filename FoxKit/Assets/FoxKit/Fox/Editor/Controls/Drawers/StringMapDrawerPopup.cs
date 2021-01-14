@@ -25,11 +25,8 @@ namespace Fox.Editor
 
             void OnGUI()
             {
-                // Keep text field in focus. Unfortunately, the field can't be prefocused, as the element won't exist yet.
-                // In this case, since the Ok/Cancel buttons essentially destroy themselves on the next iteration, the hack works.
                 GUI.SetNextControlName("KeyTextField");
                 _returnValue = EditorGUILayout.TextField(_returnValue);
-                
                 if (!hasPrefocused)
                 {
                     EditorGUI.FocusTextInControl("KeyTextField");

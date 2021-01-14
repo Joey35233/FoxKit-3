@@ -34,6 +34,8 @@ namespace Fox.Editor
             keyField.AddToClassList("fox-stringmap-key-field");
             innerContainer.Add(keyField);
 
+            //keyField.RegisterCallback<EventCallback<>
+
             var valueField = new PropertyField(property.FindPropertyRelative("Value"));
             valueField.AddToClassList("unity-composite-field__field");
             valueField.AddToClassList("fox-stringmap-value-field");
@@ -78,7 +80,6 @@ namespace Fox.Editor
             );
             field.AddToClassList("fox-stringmap");
 
-            field.style.flexGrow = 1.0f;
             field.style.height = field.itemHeight * 10;
             field.showBorder = true;
             field.showAlternatingRowBackgrounds = AlternatingRowBackground.All;
@@ -90,9 +91,15 @@ namespace Fox.Editor
 
             foldout.Add(field);
 
-            var buttonContainer = new VisualElement();
-            buttonContainer.style.flexDirection = FlexDirection.RowReverse;
-            buttonContainer.style.alignItems = Align.FlexEnd;
+            var bottomContainer = new VisualElement();
+            bottomContainer.style.flexDirection = FlexDirection.RowReverse;
+            bottomContainer.style.alignItems = Align.FlexEnd;
+
+            var duplicateKeyLabel = new Label { text = "Cannot have two entries with the same key." };
+            duplicateKeyLabel.style.color = UnityEngine.Color.red;
+            duplicateKeyLabel.style.flexGrow = 1;
+            duplicateKeyLabel.style.alignSelf = Align.Center;
+            duplicateKeyLabel.visible = false;
 
             var addButton = new Button();
             addButton.AddToClassList("fox-listview-add-button");
@@ -112,6 +119,41 @@ namespace Fox.Editor
 
                 var popupResult = StringMapDrawerPopup.ShowPopup();
 
+                if (popupResult != null)
+                {
+                    duplicateKeyLabel.visible = false;
+
+                    // StringMap.TryGet "algorithm"
+                    bool hasDuplicate = false;
+                    for (int i = 0; i < cellListProperty.arraySize; i++)
+                    {
+                        var cellProperty = cellListProperty.GetArrayElementAtIndex(i);
+                        var keyProperty = cellProperty.FindPropertyRelative("Key");
+                        if (popupResult == keyProperty.GetValue() as String)
+                            hasDuplicate = true;
+                    }
+                    if (hasDuplicate)
+                    {
+                        duplicateKeyLabel.visible = true;
+                    }
+                    else
+                    {
+                        var privateList = property.FindPropertyRelative("_cells");
+
+                        privateList.arraySize++;
+                        property.serializedObject.ApplyModifiedProperties();
+
+                        var entry = privateList.GetArrayElementAtIndex(privateList.arraySize - 1);
+
+                        var childProperty = entry.FindPropertyRelative("Key");
+                        childProperty.SetValue(popupResult);
+
+                        property.serializedObject.ApplyModifiedProperties();
+
+                        field.Refresh();
+                    }
+                }
+
                 return;
             };
 
@@ -121,7 +163,9 @@ namespace Fox.Editor
             removeButton.clicked += () =>
             // Remove item
             {
-                var privateList = property.FindPropertyRelative("_list");
+                duplicateKeyLabel.visible = false;
+
+                var privateList = property.FindPropertyRelative("_cells");
 
                 if (field.selectedIndex != -1)
                     foreach (var index in field.selectedIndices)
@@ -134,10 +178,11 @@ namespace Fox.Editor
                 field.Refresh();
             };
 
-            buttonContainer.Add(removeButton);
-            buttonContainer.Add(addButton);
+            bottomContainer.Add(removeButton);
+            bottomContainer.Add(addButton);
+            bottomContainer.Add(duplicateKeyLabel);
 
-            foldout.Add(buttonContainer);
+            foldout.Add(bottomContainer);
 
             return foldout;
         }

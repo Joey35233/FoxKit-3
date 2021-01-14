@@ -71,7 +71,7 @@ namespace Fox
 
         public static bool operator==(String a, String b)
         {
-            return a.Hash == b.Hash;
+            return a?.Hash == b?.Hash;
         }
 
         public static bool operator!=(String a, String b)
