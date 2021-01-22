@@ -35,6 +35,15 @@ namespace Fox
             return !(a == b);
         }
 
+        public static ulong operator &(StrCode a, ulong b)
+        {
+            return a.hash & b;
+        }
+        public static uint operator &(StrCode a, uint b)
+        {
+            return (uint)(a.hash & (ulong)b);
+        }
+
         public override string ToString()
         {
             return hash.ToString("x");

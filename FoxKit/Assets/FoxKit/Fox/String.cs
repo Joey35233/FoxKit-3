@@ -83,5 +83,10 @@ namespace Fox
         {
             return $"({Hash}, {CString})";
         }
+
+        public bool IsPseudoNull()
+        {
+            return (Length == 0) && (Hash != Empty.Hash);
+        }
     }
 }

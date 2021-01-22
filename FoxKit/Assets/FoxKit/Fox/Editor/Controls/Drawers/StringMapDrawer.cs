@@ -16,6 +16,8 @@ namespace Fox.Editor
             var container = new VisualElement();
             container.AddToClassList("unity-base-field");
             container.AddToClassList("unity-composite-field");
+            container.style.marginTop = 0;
+            container.style.marginBottom = 0;
             container.style.marginRight = 0;
 
             var label = new Label(property.name);
@@ -34,8 +36,6 @@ namespace Fox.Editor
             keyField.AddToClassList("fox-stringmap-key-field");
             innerContainer.Add(keyField);
 
-            //keyField.RegisterCallback<EventCallback<>
-
             var valueField = new PropertyField(property.FindPropertyRelative("Value"));
             valueField.AddToClassList("unity-composite-field__field");
             valueField.AddToClassList("fox-stringmap-value-field");
@@ -52,8 +52,13 @@ namespace Fox.Editor
     {
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
         {
-            var cellListProperty = property.FindPropertyRelative("_cells");
+            var cellListProperty = property.FindPropertyRelative("Cells");
             var cellList = cellListProperty.GetValue() as IList;
+
+            var stringMapList = property.GetValue() as IList;
+            var stringMap = property.GetValue() as IStringMap;
+
+            ListView field = null;
 
             Func<VisualElement> makeItem = () =>
             {
@@ -64,16 +69,16 @@ namespace Fox.Editor
             Action<VisualElement, int> bindItem = (e, i) =>
             {
                 var entryField = e as PropertyField;
-                var entry = cellListProperty.GetArrayElementAtIndex(i);
+                var entry = cellListProperty.GetArrayElementAtIndex(stringMap.OccupiedIndexToAbsoluteIndex(i));
 
                 entryField.BindProperty(entry);
                 var fieldLabel = entryField.Query<Label>().First();
                 fieldLabel.text = $"[{i}]";
             };
 
-            var field = new ListView
+            field = new ListView
             (
-                cellList,
+                stringMapList,
                 20,
                 makeItem,
                 bindItem
@@ -81,9 +86,10 @@ namespace Fox.Editor
             field.AddToClassList("fox-stringmap");
 
             field.style.height = field.itemHeight * 10;
+            field.selectionType = SelectionType.Multiple;
             field.showBorder = true;
             field.showAlternatingRowBackgrounds = AlternatingRowBackground.All;
-            field.reorderable = true;
+            field.reorderable = false;
 
             var foldout = new Foldout();
             foldout.styleSheets.Add(AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/FoxKit/Fox/Editor/Controls/Drawers/StaticArrayDrawer.uss"));
@@ -107,54 +113,27 @@ namespace Fox.Editor
             addButton.clicked += () =>
             // Add item
             {
-                Action validKeyLambda = () =>
-                {
-                    cellListProperty.InsertArrayElementAtIndex(cellListProperty.arraySize);
-
-                    property.serializedObject.ApplyModifiedProperties();
-
-                    field.Refresh();
-                    field.ScrollToItem(cellListProperty.arraySize + 10);
-                };
-
-                var popupResult = StringMapDrawerPopup.ShowPopup();
+                String popupResult = StringMapDrawerPopup.ShowPopup();
 
                 if (popupResult != null)
                 {
                     duplicateKeyLabel.visible = false;
 
-                    // StringMap.TryGet "algorithm"
-                    bool hasDuplicate = false;
-                    for (int i = 0; i < cellListProperty.arraySize; i++)
-                    {
-                        var cellProperty = cellListProperty.GetArrayElementAtIndex(i);
-                        var keyProperty = cellProperty.FindPropertyRelative("Key");
-                        if (popupResult == keyProperty.GetValue() as String)
-                            hasDuplicate = true;
-                    }
-                    if (hasDuplicate)
+                    if (stringMap.ContainsKey(popupResult))
                     {
                         duplicateKeyLabel.visible = true;
                     }
                     else
                     {
-                        var privateList = property.FindPropertyRelative("_cells");
-
-                        privateList.arraySize++;
-                        property.serializedObject.ApplyModifiedProperties();
-
-                        var entry = privateList.GetArrayElementAtIndex(privateList.arraySize - 1);
-
-                        var childProperty = entry.FindPropertyRelative("Key");
-                        childProperty.SetValue(popupResult);
+                        stringMap.Insert(popupResult);
 
                         property.serializedObject.ApplyModifiedProperties();
 
                         field.Refresh();
                     }
-                }
 
-                return;
+                    return;
+                }
             };
 
             var removeButton = new Button();
@@ -165,13 +144,19 @@ namespace Fox.Editor
             {
                 duplicateKeyLabel.visible = false;
 
-                var privateList = property.FindPropertyRelative("_cells");
+                List<String> keys = new List<String>();
+                {
+                    var privateList = property.FindPropertyRelative("Cells");
 
-                if (field.selectedIndex != -1)
-                    foreach (var index in field.selectedIndices)
-                        privateList.DeleteArrayElementAtIndex(index);
-                else
-                    privateList.DeleteArrayElementAtIndex(privateList.arraySize - 1);
+                    if (field.selectedIndex != -1)
+                        foreach (var index in field.selectedIndices)
+                            keys.Add(privateList.GetArrayElementAtIndex(stringMap.OccupiedIndexToAbsoluteIndex(index)).FindPropertyRelative("Key").GetValue() as String);
+                    else
+                        privateList.DeleteArrayElementAtIndex(privateList.arraySize - 1);
+                }
+
+                foreach (var key in keys)
+                    stringMap.Remove(key);
 
                 property.serializedObject.ApplyModifiedProperties();
 

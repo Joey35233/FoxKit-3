@@ -45,7 +45,7 @@ public static class SerializedPropertyExtensions
             container = GetPathComponentValue(container, deferredToken);
             deferredToken = token;
         }
-        Debug.Assert(!container.GetType().IsValueType, $"Cannot use SerializedObject.SetValue on a struct object, as the result will be set on a temporary.  Either change {container.GetType().Name} to a class, or use SetValue with a parent member.");
+        //Debug.Assert(!container.GetType().IsValueType, $"Cannot use SerializedObject.SetValue on a struct object, as the result will be set on a temporary.  Either change {container.GetType().Name} to a class, or use SetValue with a parent member.");
         SetPathComponentValue(container, deferredToken, value);
     }
 

@@ -5,79 +5,378 @@ using UnityEngine;
 
 namespace Fox
 {
-    [Serializable]
-    public class StringMap<T> //: IEnumerable<StringMap<T>.Cell>
+    public interface IStringMap
     {
+        public void Insert(String key, object value);
+        public void Insert(String key);
+
+        public bool Remove(String key);
+
+        public object this[String key] { get; }
+
+        public bool ContainsKey(String key);
+
+        public int OccupiedIndexToAbsoluteIndex(int index);
+    }
+
+    [Serializable]
+    public class StringMap<T> : IStringMap, IList
+    {
+        private const uint InitialSize = 256;
+        private const uint LoadFactor = 90;
+
         [Serializable]
-        public class Cell
+        public struct Cell
         {
+            public Cell(uint distance, String key, T value)
+            {
+                Distance = distance;
+                Key = key;
+                Value = value;
+            }
+
+            override public string ToString()
+            {
+                if (Key is null)
+                    return "Empty";
+                else
+                    return $"{{{Key}, {Value}}}";
+            }
+
+            public uint Distance;
             public String Key;
-            //public Cell cUnknown0;
-            //public Cell cUnknown1;
-            //public Cell cUnknown2;
             public T Value;
         }
 
         [SerializeField]
-        private List<Cell> _cells;
+        private uint Threshold;
+        [SerializeField]
+        private uint HashMask; // Since this map has a 2^n size, (hash & HashMask) or (hash & Capacity - 1)
+                               // serves the same remapping purpose as (hash % Capacity)
 
-        public T this[String key]
+        [SerializeField]
+        private uint CellCount;
+        [SerializeField]
+        private Cell[] Cells; // Open addressing style
+
+        public StringMap()
         {
-            get => GetT(key);
+            CellCount = 0;
+
+            Allocate(InitialSize);
         }
-        private T GetT(String key)
-        {
-            T value;
-            TryGet(key, out value);
 
-            return value;
+        private uint RoundUpToPowerOfTwo(uint x)
+        {
+            x--;
+            x |= x >> 1;
+            x |= x >> 2;
+            x |= x >> 4;
+            x |= x >> 8;
+            x |= x >> 16;
+            x++;
+
+            return x;
         }
 
-        public bool TryGet(String key, out T value)
+        public StringMap(uint capacity)
         {
-            foreach (var cell in _cells)
+            CellCount = 0;
+
+            Allocate(capacity <= InitialSize ? InitialSize : RoundUpToPowerOfTwo(capacity));
+        }
+
+        private void Allocate(uint capacity)
+        {
+            Cells = new Cell[capacity];
+
+            Threshold = capacity * LoadFactor / 100;
+
+            HashMask = capacity - 1;
+        }
+
+        private bool IsCellEmpty(ref Cell cell)
+        {
+            return cell.Key is null || cell.Key.IsPseudoNull();
+        }
+
+        private void Resize()
+        {
+            Cell[] oldCells = Cells;
+
+            uint newCapacity = (uint)Cells.Length * 2;
+
+            Allocate(newCapacity);
+
+            for (uint i = 0; i < oldCells.Length; i++)
             {
-                if (key == cell.Key)
+                ref Cell oldCell = ref oldCells[i];
+
+                if (!IsCellEmpty(ref oldCell))
                 {
-                    value = cell.Value;
-                    return true;
+                    InsertNoResize(oldCell.Key, oldCell.Value);
                 }
             }
+        }
 
-            value = default;
-            return false;
+        private void InsertNoResize(String key, T value)
+        {
+            uint index = key.Hash & HashMask;
+
+            uint probeDistance = 0;
+            while (true)
+            {
+                Cell cell = Cells[index];
+
+                // If cell is uninitialized
+                if (IsCellEmpty(ref cell))
+                {
+                    Cells[index] = new Cell(probeDistance, key, value);
+                    return;
+                }
+
+                if (cell.Key == key)
+                    throw new ArgumentException();
+
+                // If another cell already exists
+                uint existingProbeDistance = cell.Distance;
+                if (existingProbeDistance < probeDistance)
+                {
+                    // Swap cells
+                    Cells[index] = new Cell(probeDistance, key, value);
+                    key = cell.Key;
+                    value = cell.Value;
+                    probeDistance = existingProbeDistance;
+                }
+
+                index = (index + 1) & HashMask; // Loop index back to 0 if it will exceed Capacity.
+                probeDistance++;
+            }
         }
 
         public void Insert(String key, T value)
         {
-            if (ContainsKey(key))
-                throw new System.ArgumentException();
-            else
-                _cells.Add(new Cell { Key = key, Value = value });
-        }
+            if (key is null)
+                throw new ArgumentNullException();
 
-        public void ChangeHashSize(uint newSize)
+            if (++CellCount >= Threshold)
+                Resize();
+
+            InsertNoResize(key, value);
+        }
+        void IStringMap.Insert(String key, object value)
         {
-            throw new System.NotImplementedException();
+            Insert(key, value is T ? (T)value : throw new InvalidCastException());
+        }
+        void IStringMap.Insert(String key)
+        {
+            Insert(key, default(T));
         }
 
-        //IEnumerator<T> IEnumerable<T>.GetEnumerator()
-        //{
-        //    throw new System.NotImplementedException();
-        //}
+        public bool Remove(String key)
+        {
+            if (key is null)
+                throw new ArgumentNullException();
 
-        //IEnumerator IEnumerable.GetEnumerator()
-        //{
-        //    throw new System.NotImplementedException();
-        //}
+            uint index = key.Hash & HashMask;
+
+            uint probeDistance = 0;
+            while (true)
+            {
+                ref Cell cell = ref Cells[index];
+
+                // If cell is uninitialized
+                if (IsCellEmpty(ref cell))
+                {
+                    return false;
+                }
+                else if (probeDistance > cell.Distance)
+                {
+                    return false;
+                }
+                else if (key == cell.Key)
+                {
+                    break;
+                }
+
+                index = (index + 1) & HashMask; // Loop index back to 0 if it will exceed Capacity.
+                probeDistance++;
+            }
+
+            uint lastIndex = index;
+            uint nextIndex = index;
+            while (true)
+            {
+                nextIndex = (nextIndex + 1) & HashMask; // Loop index back to 0 if it will exceed Capacity.
+
+                ref Cell cell = ref Cells[nextIndex];
+
+                if (IsCellEmpty(ref cell))
+                {
+                    Cells[index].Key = null;
+                    break;
+                }
+                else if (cell.Distance == 0)
+                {
+                    Cells[index].Key = null;
+                    break;
+                }
+                else
+                {
+                    Cells[lastIndex] = Cells[nextIndex];
+                    Cells[lastIndex].Distance--;
+                }
+
+
+                lastIndex = nextIndex; // Loop index back to 0 if it will exceed Capacity.
+            }
+
+            CellCount--;
+            return true;
+        }
+
+        public bool TryGetValue(String key, out T value)
+        {
+            if (key is null)
+                throw new ArgumentNullException();
+
+            uint index = key.Hash & HashMask;
+
+            uint probeDistance = 0;
+            while (true)
+            {
+                ref Cell cell = ref Cells[index];
+
+                // If cell is uninitialized
+                if (IsCellEmpty(ref cell))
+                {
+                    value = default;
+                    return false;
+                }
+                else if (probeDistance > cell.Distance)
+                {
+                    value = default;
+                    return false;
+                }
+                else if (key == cell.Key)
+                {
+                    value = Cells[index].Value;
+                    return true;
+                }
+
+                index = (index + 1) & HashMask; // Loop index back to 0 if it will exceed Capacity.
+                probeDistance++;
+            }
+        }
+
+        public T this[String key]
+        {
+            get
+            {
+                T value;
+                if (TryGetValue(key, out value))
+                    return value;
+                else
+                    throw new KeyNotFoundException();
+            }
+        }
+        object IStringMap.this[String key]
+        {
+            get
+            {
+                return this[key];
+            }
+        }
 
         public bool ContainsKey(String key)
         {
-            T value;
-            if (TryGet(key, out value))
-                return true;
-            else
-                return false;
+            return TryGetValue(key, out _);
+        }
+
+        private float GetAverageProbeCount()
+        {
+            float total = 0;
+
+            for (uint i = 0; i < Cells.Length; i++)
+            {
+                ref Cell cell = ref Cells[i];
+
+                if (!IsCellEmpty(ref cell))
+                {
+                    total += cell.Distance;
+                }
+            }
+
+            return total / CellCount + 1;
+        }
+
+        public bool IsFixedSize => throw new NotImplementedException();
+
+        public bool IsReadOnly => throw new NotImplementedException();
+
+        public int Count => (int)CellCount;
+
+        public bool IsSynchronized => throw new NotImplementedException();
+
+        public object SyncRoot => throw new NotImplementedException();
+
+        public object this[int index] { get => Cells[index]; set => throw new NotImplementedException(); }
+
+        int IStringMap.OccupiedIndexToAbsoluteIndex(int index)
+        {
+            int i = 0;
+            for (int j = -1; j < index; i++)
+            {
+                if (!IsCellEmpty(ref Cells[i]))
+                    j++;
+            }
+
+            return i - 1;
+        }
+
+        public int Add(object value)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Clear()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool Contains(object value)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int IndexOf(object value)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Insert(int index, object value)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Remove(object value)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void RemoveAt(int index)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void CopyTo(Array array, int index)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerator GetEnumerator()
+        {
+            throw new NotImplementedException();
         }
     }
 }

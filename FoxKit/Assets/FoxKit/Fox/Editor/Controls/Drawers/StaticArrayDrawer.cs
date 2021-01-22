@@ -11,14 +11,11 @@ namespace Fox.Editor
     [CustomPropertyDrawer(typeof(Fox.StaticArray<>))]
     public class StaticArrayDrawer : PropertyDrawer
     {
-        private SerializedProperty property;
         private VisualElement root;
         private ListView field;
 
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
         {
-            this.property = property;
-
             var list = property.GetValue() as IList;
 
             Func<VisualElement> makeItem = () =>

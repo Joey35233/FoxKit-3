@@ -39,7 +39,7 @@
     min-width: 28px;
 }
 
-.fox-stringmap-key-field .unity-base-field,.fox-stringmap-value-field .unity-base-field{
+.fox-stringmap-key-field .unity-base-field,.fox-stringmap-value-field .unity-base-field {
     flex-grow: 1;
 }
 
