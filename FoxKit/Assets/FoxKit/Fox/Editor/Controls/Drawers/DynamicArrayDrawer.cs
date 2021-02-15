@@ -11,15 +11,9 @@ namespace Fox.Editor
     [CustomPropertyDrawer(typeof(Fox.DynamicArray<>))]
     public class DynamicArrayDrawer : PropertyDrawer
     {
-        private SerializedProperty property;
-        private VisualElement root;
-        private ListView field;
-
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
         {
-            this.property = property;
-
-            var list = property.GetValue() as IList;
+            IList list = property.GetValue() as IList;
 
             Func<VisualElement> makeItem = () =>
             {
@@ -34,12 +28,18 @@ namespace Fox.Editor
                 var entry = privateList.GetArrayElementAtIndex(i);
 
                 entryField.BindProperty(entry);
-                var label = entryField.Query<Label>().First();
+
+                var oldLabel = entryField.Query<Label>().First();
+                var parent = oldLabel.parent;
+                parent.Remove(oldLabel);
+                var label = new Label($"[{i}]");
                 label.AddToClassList("fox-listview-entry-label");
-                label.text = $"[{i}]";
+                foreach (var cssClass in oldLabel.GetClasses())
+                    label.AddToClassList(cssClass);
+                parent.Insert(0, label);
             };
 
-            field = new ListView
+            ListView listView = new ListView
             (
                 list,
                 20,
@@ -47,17 +47,17 @@ namespace Fox.Editor
                 bindItem
             );
 
-            field.style.flexGrow = 1.0f;
-            field.style.height = field.itemHeight * 10;
-            field.showBorder = true;
-            field.showAlternatingRowBackgrounds = AlternatingRowBackground.All;
-            field.reorderable = true;
+            listView.style.flexGrow = 1.0f;
+            listView.style.height = listView.itemHeight * 10;
+            listView.showBorder = true;
+            listView.showAlternatingRowBackgrounds = AlternatingRowBackground.All;
+            listView.reorderable = true;
 
             var foldout = new Foldout();
-            foldout.styleSheets.Add(AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/FoxKit/Fox/Editor/Controls/Drawers/StaticArrayDrawer.uss"));
+            foldout.styleSheets.Add(CollectionDrawer.PropertyDrawerStyleSheet);
             foldout.text = property.name;
 
-            foldout.Add(field);
+            foldout.Add(listView);
 
             var buttonContainer = new VisualElement();
             buttonContainer.style.flexDirection = FlexDirection.RowReverse;
@@ -73,8 +73,8 @@ namespace Fox.Editor
 
                 property.serializedObject.ApplyModifiedProperties();
 
-                field.Refresh();
-                field.ScrollToItem(privateList.arraySize + 10);
+                listView.Refresh();
+                listView.ScrollToItem(privateList.arraySize + 10);
             };
 
             var removeButton = new Button();
@@ -84,17 +84,17 @@ namespace Fox.Editor
             {
                 var privateList = property.FindPropertyRelative("_list");
 
-                if (field.selectedIndex != -1)
-                    foreach (var index in field.selectedIndices)
+                if (listView.selectedIndex != -1)
+                    foreach (var index in listView.selectedIndices)
                         privateList.DeleteArrayElementAtIndex(index);
                 else
                     privateList.DeleteArrayElementAtIndex(privateList.arraySize - 1);
 
                 property.serializedObject.ApplyModifiedProperties();
 
-                field.Refresh();
+                listView.Refresh();
 
-                field.SetSelection(privateList.arraySize - 1);
+                listView.SetSelection(privateList.arraySize - 1);
             };
 
             buttonContainer.Add(removeButton);
@@ -102,9 +102,7 @@ namespace Fox.Editor
 
             foldout.Add(buttonContainer);
 
-            root = foldout;
-
-            return root;
+            return foldout;
         }
     }
 }

@@ -11,16 +11,9 @@ namespace Fox.Editor
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
         {
             var container = new Foldout();
-            //container.AddToClassList("unity-base-field");
-            //container.AddToClassList("unity-composite-field");
 
             container.text = property.name;
-            container.styleSheets.Add(AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/FoxKit/Fox/Editor/Controls/Drawers/NumericInputDrawer.uss"));
-
-            //var label = new Label(property.name);
-            //label.AddToClassList("unity-base-field__label");
-            //label.AddToClassList("unity-property-field__label");
-            //container.Add(label);
+            container.styleSheets.Add(NumericPropertyDrawers.NumericPropertyDrawersStyleSheet);
 
             var innerContainer = new VisualElement();
             innerContainer.AddToClassList("unity-base-field__input");

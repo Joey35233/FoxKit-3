@@ -1,9 +1,13 @@
 ﻿using System.Numerics;
+using UnityEditor;
+using UnityEngine.UIElements;
 
 namespace Fox.Editor
 {
-    internal class NumericPropertyDrawers
+    internal static class NumericPropertyDrawers
     {
+        public static StyleSheet NumericPropertyDrawersStyleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/FoxKit/Fox/Editor/Controls/Drawers/NumericPropertyDrawers.uss");
+
         internal static readonly string IntegerExpressionCharacterWhitelist = "0123456789-*/+%^()";
 
         internal static sbyte ClampToInt8(int value) =>(sbyte)(value > sbyte.MaxValue ? sbyte.MaxValue : (value < sbyte.MinValue ? sbyte.MinValue : value));

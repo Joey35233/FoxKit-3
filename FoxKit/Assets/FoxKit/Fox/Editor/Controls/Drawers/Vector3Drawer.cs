@@ -12,7 +12,7 @@ namespace Fox.Editor
             var container = new Vector3Field(property.name);
             container.BindProperty(property);
             container.labelElement.AddToClassList("unity-property-field__label");
-            container.styleSheets.Add(AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/FoxKit/Fox/Editor/Controls/Drawers/NumericInputDrawer.uss"));
+            container.styleSheets.Add(NumericPropertyDrawers.NumericPropertyDrawersStyleSheet);
 
             return container;
         }

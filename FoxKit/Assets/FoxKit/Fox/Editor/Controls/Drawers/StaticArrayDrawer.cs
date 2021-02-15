@@ -11,54 +11,61 @@ namespace Fox.Editor
     [CustomPropertyDrawer(typeof(Fox.StaticArray<>))]
     public class StaticArrayDrawer : PropertyDrawer
     {
-        private VisualElement root;
-        private ListView field;
+        SerializedProperty InternalListProperty;
 
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
         {
-            var list = property.GetValue() as IList;
+            IList list = property.GetValue() as IList;
+            InternalListProperty = property.FindPropertyRelative("_list");
 
-            Func<VisualElement> makeItem = () =>
-            {
-                var entryField = new PropertyField();
-                entryField.styleSheets.Add(AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/FoxKit/Fox/Editor/Controls/Drawers/StaticArrayDrawer.uss"));
+            object genericList = property.GetValue();
+            Type genericArgument = genericList.GetType().GetGenericArguments()[0];
 
-                return entryField;
-            };
-            Action<VisualElement, int> bindItem = (e, i) =>
-            {
-                var entryField = e as PropertyField;
-                var privateList = property.FindPropertyRelative("_list");
-                var entry = privateList.GetArrayElementAtIndex(i);
-
-                entryField.BindProperty(entry);
-                var label = entryField.Query<Label>().First();
-                label.AddToClassList("fox-listview-entry-label");
-                label.text = $"[{i}]";
-            };
-
-            field = new ListView
+            ListView listView = new ListView
             (
                 list,
-                20,
-                makeItem,
-                bindItem
+                CollectionDrawer.GetListEntrySize(genericArgument),
+                MakeItem,
+                BindItem
             );
 
-            field.style.flexGrow = 1.0f;
-            field.style.height = field.itemHeight * 10;
-            field.showBorder = true;
-            field.showAlternatingRowBackgrounds = AlternatingRowBackground.All;
-            field.reorderable = true;
+            listView.style.flexGrow = 1.0f;
+            listView.style.height = listView.itemHeight * 10;
+            listView.showBorder = true;
+            listView.showAlternatingRowBackgrounds = AlternatingRowBackground.All;
+            listView.reorderable = true;
 
             var foldout = new Foldout();
             foldout.text = property.name;
 
-            foldout.Add(field);
+            foldout.Add(listView);
 
-            root = foldout;
+            return foldout;
+        }
 
-            return root;
+        private VisualElement MakeItem()
+        {
+            var entryField = new PropertyField();
+            entryField.styleSheets.Add(CollectionDrawer.PropertyDrawerStyleSheet);
+
+            return entryField;
+        }
+
+        private void BindItem(VisualElement element, int index)
+        {
+            var entryField = element as PropertyField;
+            var entry = InternalListProperty.GetArrayElementAtIndex(index);
+
+            entryField.BindProperty(entry);
+
+            var oldLabel = entryField.Query<Label>().First();
+            var parent = oldLabel.parent;
+            parent.Remove(oldLabel);
+            var label = new Label($"[{index}]");
+            label.AddToClassList("fox-listview-entry-label");
+            foreach (var cssClass in oldLabel.GetClasses())
+                label.AddToClassList(cssClass);
+            parent.Insert(0, label);
         }
     }
 }

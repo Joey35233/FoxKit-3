@@ -92,7 +92,7 @@ namespace Fox.Editor
             field.reorderable = false;
 
             var foldout = new Foldout();
-            foldout.styleSheets.Add(AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/FoxKit/Fox/Editor/Controls/Drawers/StaticArrayDrawer.uss"));
+            foldout.styleSheets.Add(CollectionDrawer.PropertyDrawerStyleSheet);
             foldout.text = property.name;
 
             foldout.Add(field);

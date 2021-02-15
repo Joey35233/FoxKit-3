@@ -17,11 +17,8 @@ namespace Fox.Editor
             field = new UInt8Field();
             field.label = property.name;
             field.BindProperty(property);
-            //field.RegisterValueChangedCallback(OnValueChanged);
             field.labelElement.AddToClassList("unity-property-field__label");
-            field.styleSheets.Add(AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/FoxKit/Fox/Editor/Controls/Drawers/NumericInputDrawer.uss"));
-
-            //Undo.undoRedoPerformed += OnValueUndoneRedone;
+            field.styleSheets.Add(NumericPropertyDrawers.NumericPropertyDrawersStyleSheet);
 
             return field;
         }
