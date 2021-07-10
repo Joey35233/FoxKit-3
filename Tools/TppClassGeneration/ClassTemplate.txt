@@ -7,7 +7,7 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-namespace Fox.{{ info.namespace }}
+namespace {{ info.get_root_namespace() }}.{{ info.get_namespace_without_prefix() }}
 {
     public partial class {{ info.name }} {% if info.parent %}: {{ info.get_parent_string() }} {% endif %}
     {

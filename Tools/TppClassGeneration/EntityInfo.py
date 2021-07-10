@@ -66,7 +66,8 @@ class EntityInfo:
 
         """
         parent_namespace = self.definitions[self.parent].namespace
-        return f'{parent_namespace}.{self.parent}'
+        parent = self.definitions[self.parent]
+        return f'{parent.get_root_namespace()}.{parent.get_namespace_without_prefix()}.{self.parent}'
 
     def get_parent_entity_info_string(self):
         """Gets the formatted parent EntityInfo string.
@@ -106,3 +107,14 @@ class EntityInfo:
 
         """
         return filter(lambda property : self.properties[property].container == "StringMap", self.properties)
+
+    def get_root_namespace(self):
+        if str.startswith(self.namespace, "Tpp"):
+            return "Tpp"
+        return "Fox"
+
+    def remove_prefix(text, prefix):
+        return text[text.startswith(prefix) and len(prefix):]
+
+    def get_namespace_without_prefix(self):
+        return remove_prefix(remove_prefix(self.namespace, "Tpp"), "Fox")
