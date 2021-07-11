@@ -57,6 +57,22 @@ namespace Fox
             this.value = v2;
         }
 
+        public Value(float v2)
+        {
+            this.value = v2;
+        }
+        public Value(uint v2)
+        {
+            this.value = v2;
+        }
+        public Value(int v2)
+        {
+            this.value = v2;
+        }
+        public Value(byte v2)
+        {
+            this.value = v2;
+        }
         public Value(string @string)
         {
             this.value = @string;

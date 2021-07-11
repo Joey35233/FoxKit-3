@@ -79,9 +79,9 @@ namespace Fox.Core
             return !(a == b);
         }
 
-        internal static sbyte FromFilePath(string v)
+        internal static Path FromFilePath(string v)
         {
-            throw new NotImplementedException();
+            return new Path(v);
         }
     }
 }
