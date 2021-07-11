@@ -347,7 +347,8 @@ namespace Fox.Core
 
         public int Add(string key, object value)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
+            return -1;
         }
 
         public void Clear()

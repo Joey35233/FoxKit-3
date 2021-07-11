@@ -237,7 +237,7 @@ namespace Fox.FoxCore.Serialization
         private void ReadEntityPtr(BinaryReader reader, SetProperty setProperty, string name)
         {
             var address = reader.ReadUInt64();
-            var ptr = new EntityPtr<Entity>(null);
+            IEntityPtr ptr = null; // TODO
             requestEntityPtr(address, ptr);
 
             setProperty(name, new Value(ptr));
@@ -270,7 +270,7 @@ namespace Fox.FoxCore.Serialization
                 case PropertyInfo.PropertyType.Bool:
                     return new Value(reader.ReadBoolean());
                 case PropertyInfo.PropertyType.String:
-                    return new Value(new Fox.String(unhashString(reader.ReadUInt64())));
+                    return new Value(unhashString(reader.ReadUInt64()));
                 case PropertyInfo.PropertyType.Path:
                     return new Value(Path.FromFilePath(unhashString(reader.ReadUInt64())));
                 case PropertyInfo.PropertyType.Vector3:

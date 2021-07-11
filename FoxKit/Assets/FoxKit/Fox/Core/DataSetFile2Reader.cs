@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Security.Policy;
@@ -27,6 +28,11 @@ namespace Fox.Core
             {
                 Entity entity = new DataSetFile2EntityReader(RequestEntityPtr, RequestEntityHandle, RequestFilePtr, RequestEntityLink).Read(reader, this.CreateEntity, (hash) => this.stringTable[hash]);
                 entities.Add(entity.Address, entity);
+            }
+
+            foreach(var ent in entities.Values)
+            {
+                UnityEngine.Debug.Log(ent);
             }
 
             return entities.Values.ToList();

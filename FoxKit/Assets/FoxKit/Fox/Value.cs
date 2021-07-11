@@ -6,162 +6,150 @@ namespace Fox
 {
     public class Value
     {
-        private sbyte v;
-        private FilePtr<File> filePtr;
-        private Color color;
-        private Matrix4x4 matrix4x4;
-        private Quaternion quaternion;
-        private Vector3 vector3;
-        private bool v1;
-        private double v2;
-        private String @string;
-        private EntityLink entityLink;
-        private EntityHandle entityHandle;
-        private IEntityPtr entity;
-        private object entityLink1;
+        private object value;
 
         public Value(sbyte v)
         {
-            this.v = v;
+            this.value = v;
         }
 
         public Value(IEntityPtr entity)
         {
-            this.entity = entity;
+            this.value = entity;
         }
 
         public Value(FilePtr<File> filePtr)
         {
-            this.filePtr = filePtr;
+            this.value = filePtr;
         }
 
         public Value(Color color)
         {
-            this.color = color;
+            this.value = color;
         }
 
         public Value(Matrix4x4 matrix4x4)
         {
-            this.matrix4x4 = matrix4x4;
+            this.value = matrix4x4;
         }
 
         public Value(Quaternion quaternion)
         {
-            this.quaternion = quaternion;
+            this.value = quaternion;
         }
 
         public Value(Vector3 vector3)
         {
-            this.vector3 = vector3;
+            this.value = vector3;
         }
         public Value(Vector4 vector3)
         {
-            this.vector3 = vector3;
+            this.value = vector3;
         }
 
         public Value(bool v1)
         {
-            this.v1 = v1;
+            this.value = v1;
         }
 
         public Value(double v2)
         {
-            this.v2 = v2;
+            this.value = v2;
         }
 
-        public Value(String @string)
+        public Value(string @string)
         {
-            this.@string = @string;
+            this.value = @string;
         }
 
         public Value(EntityLink entityLink)
         {
-            this.entityLink = entityLink;
+            this.value = entityLink;
         }
 
         public Value(EntityHandle entityHandle)
         {
-            this.entityHandle = entityHandle;
+            this.value = entityHandle;
         }
 
         public Value(object entityLink1)
         {
-            this.entityLink1 = entityLink1;
+            this.value = entityLink1;
         }
 
-        internal bool GetValueAsBool()
+        public bool GetValueAsBool()
         {
-            throw new NotImplementedException();
+            return (bool)this.value;
         }
 
         internal float GetValueAsFloat()
         {
-            throw new NotImplementedException();
+            return (float)this.value;
         }
 
         internal Path GetValueAsPath()
         {
-            throw new NotImplementedException();
+            return (Path)this.value;
         }
 
         internal FilePtr<File> GetValueAsFilePtr()
         {
-            throw new NotImplementedException();
+            return (FilePtr<File>)this.value;
         }
 
         internal int GetValueAsInt32()
         {
-            throw new NotImplementedException();
+            return (int)this.value;
         }
 
         internal Color GetValueAsColor()
         {
-            throw new NotImplementedException();
+            return (Color)this.value;
         }
 
         internal EntityPtr<T> GetValueAsEntityPtr<T>() where T : Entity
         {
-            throw new NotImplementedException();
+            return (EntityPtr<T>)this.value;
         }
 
         internal uint GetValueAsUInt32()
         {
-            throw new NotImplementedException();
+            return (uint)this.value;
         }
 
         internal byte GetValueAsUInt8()
         {
-            throw new NotImplementedException();
+            return (byte)this.value;
         }
 
         internal EntityLink GetValueAsEntityLink()
         {
-            throw new NotImplementedException();
+            return (EntityLink)this.value;
         }
 
         internal ushort GetValueAsUInt16()
         {
-            throw new NotImplementedException();
+            return (ushort)this.value;
         }
 
         internal Vector3 GetValueAsVector3()
         {
-            throw new NotImplementedException();
+            return (Vector3)this.value;
         }
 
         internal string GetValueAsString()
         {
-            throw new NotImplementedException();
+            return (string)this.value;
         }
 
         internal EntityHandle GetValueAsEntityHandle()
         {
-            throw new NotImplementedException();
+            return (EntityHandle)this.value;
         }
 
         internal short GetValueAsInt16()
         {
-            throw new NotImplementedException();
+            return (short)this.value;
         }
 
         internal object GetValueAsWideVector3()
@@ -171,22 +159,22 @@ namespace Fox
 
         internal ulong GetValueAsUInt64()
         {
-            throw new NotImplementedException();
+            return (ulong)this.value;
         }
 
         internal Vector4 GetValueAsVector4()
         {
-            throw new NotImplementedException();
+            return (Vector4)this.value;
         }
 
         internal Quaternion GetValueAsQuat()
         {
-            throw new NotImplementedException();
+            return (Quaternion)this.value;
         }
 
         internal double GetValueAsDouble()
         {
-            throw new NotImplementedException();
+            return (double)this.value;
         }
 
         internal object GetValueAsMatrix3()
@@ -196,17 +184,17 @@ namespace Fox
 
         internal sbyte GetValueAsInt8()
         {
-            throw new NotImplementedException();
+            return (sbyte)this.value;
         }
 
         internal Matrix4x4 GetValueAsMatrix4()
         {
-            throw new NotImplementedException();
+            return (Matrix4x4)this.value;
         }
 
         internal long GetValueAsInt64()
         {
-            throw new NotImplementedException();
+            return (long)this.value;
         }
     }
 
