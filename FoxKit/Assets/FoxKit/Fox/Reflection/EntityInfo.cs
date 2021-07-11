@@ -54,11 +54,12 @@ namespace Fox
         /// <param name="entityInfo">The EntityInfo.</param>
         /// <param name="name">The name of the property to find.</param>
         /// <returns>True if a property with the given name was found, else false.</returns>
-        public static bool HasPropertyWithName(EntityInfo entityInfo, String name)
+        public static bool HasPropertyWithName(EntityInfo entityInfo, string name)
         {
             while (entityInfo != null)
             {
-                if (entityInfo.StaticProperties.ContainsKey(name))
+                var foxName = new String(name);
+                if (entityInfo.StaticProperties.ContainsKey(foxName))
                 {
                     return true;
                 }

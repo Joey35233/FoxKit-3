@@ -63,5 +63,10 @@ namespace Fox.Core
         {
             return this.handle.ToString();
         }
+
+        internal static EntityLink Empty()
+        {
+            return new EntityLink(null, null, null, null);
+        }
     }
 }

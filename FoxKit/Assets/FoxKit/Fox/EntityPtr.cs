@@ -12,8 +12,6 @@ namespace Fox.Core
     [System.Serializable]
     public class EntityPtr<T> : IEntityPtr where T : Entity
     {
-        public string InspectorTest;
-
         [SerializeReference]
         private T ptr;
 
@@ -40,6 +38,11 @@ namespace Fox.Core
         Entity IEntityPtr.Get()
         {
             return this.ptr;
+        }
+
+        public EntityPtr(T entity)
+        {
+            this.ptr = entity;
         }
     }
 }

@@ -15,8 +15,10 @@ namespace Fox.Core
         /// </summary>
         [SerializeField]
         private UnityEngine.Object file;
+        private object file1;
 
         public FilePtr(UnityEngine.Object file) => this.file = file;
+
 
         public override string ToString()
         {
@@ -26,6 +28,11 @@ namespace Fox.Core
             }
 
             return this.file.ToString();
+        }
+
+        public static FilePtr<T> Empty()
+        {
+            return new FilePtr<T>(null);
         }
     }
 }
