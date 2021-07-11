@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Fox.Core;
+using System;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEditor.UIElements;

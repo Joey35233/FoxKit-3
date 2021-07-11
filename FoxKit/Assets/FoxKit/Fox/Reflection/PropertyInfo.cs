@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Fox
+namespace Fox.Core
 {
     /// <summary>
     /// Metadata defining a property.

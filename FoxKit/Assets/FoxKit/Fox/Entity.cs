@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Fox
+namespace Fox.Core
 {
     [Serializable]
     public partial class Entity
@@ -57,11 +57,6 @@ namespace Fox
             }
 
             return entity.DynamicProperties.ContainsKey(name);
-        }
-
-        public EntityInfo GetClassEntityInfo()
-        {
-            return null;
         }
 
         public override string ToString()

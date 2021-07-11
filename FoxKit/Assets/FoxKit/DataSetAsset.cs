@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEditor;
 using Fox;
+using Fox.Core;
 
 namespace FoxKit
 {
@@ -10,7 +11,7 @@ namespace FoxKit
         public InspectorTestData test = new InspectorTestData();
 
         [SerializeReference]
-        public DataSet dataSet = new DataSet();
+        public Fox.Core.DataSet dataSet = new Fox.Core.DataSet(0, 0, 0);
 
         [MenuItem("FoxKit/Debug/FOX2/Create DataSet")]
         public static void CreateMyAsset()

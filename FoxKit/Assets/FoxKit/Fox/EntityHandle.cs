@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Fox
+namespace Fox.Core
 {
     [System.Serializable]
     public class EntityHandle

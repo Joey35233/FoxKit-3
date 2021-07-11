@@ -1,12 +1,10 @@
-﻿namespace Fox
+﻿namespace Fox.Core
 {
     using System;
     using UnityEngine;
 
     [Serializable]
-    public class File : Entity
+    public partial class File : Entity
     {
-        [SerializeField]
-        private Fox.Path path;
     }
 }

@@ -1,11 +1,9 @@
 ﻿using Fox;
 
-namespace Fox
+namespace Fox.Core
 {
     [System.Serializable]
-    public class Data : Entity
+    public partial class Data : Entity
     {
-        public string name;
-        public EntityHandle dataSet = EntityHandle.Empty();
     }
 }

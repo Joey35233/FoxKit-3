@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using UnityEngine;
 
-namespace Fox
+namespace Fox.Core
 {
     [Serializable, StructLayout(LayoutKind.Explicit, Size = 16, CharSet = CharSet.Ansi)]
 #pragma warning disable CS0660 // Type defines operator == or operator != but does not override Object.Equals(object o)
@@ -36,7 +36,7 @@ namespace Fox
         /// <summary>
         /// The empty path.
         /// </summary>
-        public static Fox.Path Empty { get; }
+        public static Path Empty { get; }
 
         static Path()
         {

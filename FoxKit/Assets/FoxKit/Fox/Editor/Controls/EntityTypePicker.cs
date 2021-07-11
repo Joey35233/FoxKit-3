@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using Fox.Core;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -77,7 +78,7 @@ namespace Fox.Editor
             {
                 typeof(Entity),
                 typeof(Data),
-                typeof(DataSet)
+                typeof(Core.DataSet)
             };
         }
 

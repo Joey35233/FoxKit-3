@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Fox.Core;
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine.UIElements;
@@ -37,7 +38,11 @@ namespace Fox.Editor
 
                 var options = new List<Data>();
                 options.Add(null);
-                options.AddRange(dataSet.dataList);
+
+                foreach(var data in dataSet.dataList)
+                {
+                    options.Add(data as Data);
+                }
 
                 var popup = new PopupField<Data>(property.name, options, index, FormatSelectedValue, FormatListItem);
                 return popup;
@@ -52,7 +57,7 @@ namespace Fox.Editor
                 return -1;
             }
 
-            return dataSet.dataList.IndexOf((Fox.Data)entity);
+            return dataSet.dataList.IndexOf((Fox.Core.Data)entity);
         }
 
         private string FormatSelectedValue(Data arg)

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEditor.UIElements;
 using Fox.Editor;
+using Fox.Core;
 using System;
 
 namespace FoxKit
@@ -33,19 +34,19 @@ namespace FoxKit
             var asset = (DataSetAsset)target;
             var dataSet = asset.dataSet;
 
-            this.InitializeEntityList(rootElement, dataSet.dataList);
+            //this.InitializeEntityList(rootElement, dataSet.dataList);
 
             return rootElement;
         }
 
         private void AddEntityButton_clicked()
         {
-            EntityTypePicker.Show(typeof(Fox.Data), EntityTypePicker_onTypeSelected);
+            EntityTypePicker.Show(typeof(Fox.Core.Data), EntityTypePicker_onTypeSelected);
         }
 
         private void EntityTypePicker_onTypeSelected(Type obj)
         {
-            var entity = (Fox.Data)Activator.CreateInstance(obj);
+            var entity = (Fox.Core.Data)Activator.CreateInstance(obj);
 
             var dataListProperty = this.GetDataListProperty();
             var newIndex = dataListProperty.arraySize;
@@ -66,7 +67,7 @@ namespace FoxKit
             rootElement.styleSheets.Add(styleSheet);
         }
 
-        private void InitializeEntityList(VisualElement rootElement, List<Fox.Data> items)
+        private void InitializeEntityList(VisualElement rootElement, List<Fox.Core.Data> items)
         {
             var listView = rootElement.Q<ListView>();
             listView.BindProperty(this.GetDataListProperty());
@@ -100,7 +101,7 @@ namespace FoxKit
             }
             else
             {
-                var entity = dataSet.dataList[list.selectedIndex];
+                var entity = dataSet.dataList[list.selectedIndex] as Data;
                 inspectedEntityLabel.text = entity.name + $" ({entity.GetType().Name})";
                 inspectedEntityProperties.Unbind();
             }

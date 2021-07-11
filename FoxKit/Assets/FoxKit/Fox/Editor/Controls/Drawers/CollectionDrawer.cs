@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEditor;
 using UnityEngine.UIElements;
+using Fox.Core;
 
 namespace Fox.Editor
 {
@@ -25,13 +26,13 @@ namespace Fox.Editor
                 case Type _ when propertyType == typeof(double):
                 case Type _ when propertyType == typeof(bool):
                 case Type _ when propertyType == typeof(Fox.String):
-                case Type _ when propertyType == typeof(Fox.Path):
+                case Type _ when propertyType == typeof(Path):
                 case Type _ when propertyType == typeof(Vector3):
                 case Type _ when propertyType == typeof(Vector4):
                 case Type _ when propertyType == typeof(Color):
                 case Type _ when propertyType == typeof(Quaternion):
-                case Type _ when propertyType == typeof(Fox.FilePtr<>):
-                case Type _ when propertyType == typeof(Fox.EntityHandle):
+                case Type _ when propertyType == typeof(FilePtr<>):
+                case Type _ when propertyType == typeof(EntityHandle):
                     return 20;
 
                 case Type _ when propertyType == typeof(Matrix4x4):

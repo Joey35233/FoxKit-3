@@ -9,7 +9,7 @@ namespace Fox
     /// </summary>
     public sealed class EntityInfo
     {
-        public EntityInfo(String name, EntityInfo super, short id, string category, ushort version)
+        public EntityInfo(string name, EntityInfo super, short id, string category, ushort version)
         {
             Name = name;
             Super = super;
@@ -21,7 +21,7 @@ namespace Fox
         /// <summary>
         /// Name of the class.
         /// </summary>
-        public String Name { get; }
+        public string Name { get; }
 
         /// <summary>
         /// EntityInfo of the parent class, or null if there is no parent.
@@ -46,7 +46,7 @@ namespace Fox
         /// <summary>
         /// Metadata for all static properties.
         /// </summary>
-        public StringMap<PropertyInfo> StaticProperties { get; } = new StringMap<PropertyInfo>();
+        public Core.StringMap<Fox.Core.PropertyInfo> StaticProperties { get; } = new Core.StringMap<Fox.Core.PropertyInfo>();
 
         /// <summary>
         /// Checks if an EntityInfo instance or any of its superclasses contains a property with the given name.
@@ -71,7 +71,7 @@ namespace Fox
 
         public override string ToString()
         {
-            return this.Name.CString;
+            return this.Name;
         }
     }
 }

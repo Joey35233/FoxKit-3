@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Fox
+namespace Fox.Core
 {
     public interface IEntityPtr
     {

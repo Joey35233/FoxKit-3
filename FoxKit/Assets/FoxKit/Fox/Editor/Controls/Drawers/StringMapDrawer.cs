@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Fox.Core;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using UnityEngine.UIElements;
 
 namespace Fox.Editor
 {
-    [CustomPropertyDrawer(typeof(Fox.StringMap<>.Cell))]
+    [CustomPropertyDrawer(typeof(Fox.Core.StringMap<>.Cell))]
     public class StringMapCellDrawer : PropertyDrawer
     {
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
@@ -47,7 +48,7 @@ namespace Fox.Editor
         }
     }
 
-    [CustomPropertyDrawer(typeof(Fox.StringMap<>))]
+    [CustomPropertyDrawer(typeof(Fox.Core.StringMap<>))]
     public class StringMapDrawer : PropertyDrawer
     {
         public override VisualElement CreatePropertyGUI(SerializedProperty property)

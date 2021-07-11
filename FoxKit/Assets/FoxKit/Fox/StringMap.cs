@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
 
-namespace Fox
+namespace Fox.Core
 {
     public interface IStringMap
     {
@@ -20,7 +20,7 @@ namespace Fox
     }
 
     [Serializable]
-    public class StringMap<T> : IStringMap, IList
+    public class StringMap<T> : IStringMap//, IList
     {
         private const uint InitialSize = 256;
         private const uint LoadFactor = 90;
@@ -154,6 +154,12 @@ namespace Fox
             }
         }
 
+        public void Insert(string key, T value)
+        {
+            var foxStr = new String(key);
+            this.Insert(foxStr, value);
+        }
+
         public void Insert(String key, T value)
         {
             if (key is null)
@@ -233,6 +239,11 @@ namespace Fox
 
             CellCount--;
             return true;
+        }
+
+        public bool TryGetValue(string key, out T value)
+        {
+            return this.TryGetValue(new String(key), out value);
         }
 
         public bool TryGetValue(String key, out T value)
@@ -334,7 +345,7 @@ namespace Fox
             return i - 1;
         }
 
-        public int Add(object value)
+        public int Add(string key, object value)
         {
             throw new NotImplementedException();
         }

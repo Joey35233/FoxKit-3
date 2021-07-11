@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Fox
+namespace Fox.Core
 {
     [Serializable]
     public class InspectorTestData
@@ -22,16 +22,16 @@ namespace Fox
             float64_StaticArray_property = new StaticArray<double>(5);
             bool_StaticArray_property = new StaticArray<bool>(5);
             String_StaticArray_property = new StaticArray<Fox.String>(5);
-            Path_StaticArray_property = new StaticArray<Fox.Path>(5);
+            Path_StaticArray_property = new StaticArray<Path>(5);
             //EntityPtr_StaticArray_property = new StaticArray<EntityPtr<Entity>>(5);
             Vector3_StaticArray_property = new StaticArray<Vector3>(5);
             Vector4_StaticArray_property = new StaticArray<Vector4>(5);
             Quaternion_StaticArray_property = new StaticArray<Quaternion>(5);
             Matrix4x4_StaticArray_property = new StaticArray<Matrix4x4>(5);
             color_StaticArray_property = new StaticArray<Color>(5);
-            FilePtr_StaticArray_property = new StaticArray<Fox.FilePtr<File>>(5);
-            EntityHandle_StaticArray_property = new StaticArray<Fox.EntityHandle>(5);
-            EntityLink_StaticArray_property = new StaticArray<Fox.EntityLink>(5);
+            FilePtr_StaticArray_property = new StaticArray<FilePtr<File>>(5);
+            EntityHandle_StaticArray_property = new StaticArray<EntityHandle>(5);
+            EntityLink_StaticArray_property = new StaticArray<EntityLink>(5);
             #endregion
 
             #region DynamicArray constructors
@@ -47,16 +47,16 @@ namespace Fox
             float64_DynamicArray_property = new DynamicArray<double>(5);
             bool_DynamicArray_property = new DynamicArray<bool>(5);
             String_DynamicArray_property = new DynamicArray<Fox.String>(5);
-            Path_DynamicArray_property = new DynamicArray<Fox.Path>(5);
+            Path_DynamicArray_property = new DynamicArray<Path>(5);
             //EntityPtr_DynamicArray_property = new DynamicArray<EntityPtr<Entity>>(5);
             Vector3_DynamicArray_property = new DynamicArray<Vector3>(5);
             Vector4_DynamicArray_property = new DynamicArray<Vector4>(5);
             Quaternion_DynamicArray_property = new DynamicArray<Quaternion>(5);
             Matrix4x4_DynamicArray_property = new DynamicArray<Matrix4x4>(5);
             color_DynamicArray_property = new DynamicArray<Color>(5);
-            FilePtr_DynamicArray_property = new DynamicArray<Fox.FilePtr<File>>(5);
-            EntityHandle_DynamicArray_property = new DynamicArray<Fox.EntityHandle>(5);
-            EntityLink_DynamicArray_property = new DynamicArray<Fox.EntityLink>(5);
+            FilePtr_DynamicArray_property = new DynamicArray<FilePtr<File>>(5);
+            EntityHandle_DynamicArray_property = new DynamicArray<EntityHandle>(5);
+            EntityLink_DynamicArray_property = new DynamicArray<EntityLink>(5);
             #endregion
 
             #region StringMap constructors
@@ -72,16 +72,16 @@ namespace Fox
             float64_StringMap_property = new StringMap<double>();
             bool_StringMap_property = new StringMap<bool>();
             String_StringMap_property = new StringMap<Fox.String>();
-            Path_StringMap_property = new StringMap<Fox.Path>();
+            Path_StringMap_property = new StringMap<Path>();
             //EntityPtr_StringMap_property = new StringMap<EntityPtr<Entity>>();
             Vector3_StringMap_property = new StringMap<Vector3>();
             Vector4_StringMap_property = new StringMap<Vector4>();
             Quaternion_StringMap_property = new StringMap<Quaternion>();
             Matrix4x4_StringMap_property = new StringMap<Matrix4x4>();
             color_StringMap_property = new StringMap<Color>();
-            FilePtr_StringMap_property = new StringMap<Fox.FilePtr<File>>();
-            EntityHandle_StringMap_property = new StringMap<Fox.EntityHandle>();
-            EntityLink_StringMap_property = new StringMap<Fox.EntityLink>();
+            FilePtr_StringMap_property = new StringMap<FilePtr<File>>();
+            EntityHandle_StringMap_property = new StringMap<EntityHandle>();
+            EntityLink_StringMap_property = new StringMap<EntityLink>();
             #endregion
         }
 
@@ -98,16 +98,16 @@ namespace Fox
         public double float64_property;
         public bool bool_property;
         public Fox.String String_property;
-        public Fox.Path Path_property;
+        public Path Path_property;
         public EntityPtr<Entity> EntityPtr_property;
         public Vector3 Vector3_property;
         public Vector4 Vector4_property;
         public Quaternion Quaternion_property;
         public Matrix4x4 Matrix4x4_property;
         public Color color_property;
-        public Fox.FilePtr<File> FilePtr_property;
-        public Fox.EntityHandle EntityHandle_property;
-        public Fox.EntityLink EntityLink_property;
+        public FilePtr<File> FilePtr_property;
+        public EntityHandle EntityHandle_property;
+        public EntityLink EntityLink_property;
         #endregion
 
         #region StaticArray properties
@@ -123,16 +123,16 @@ namespace Fox
         public StaticArray<double> float64_StaticArray_property;
         public StaticArray<bool> bool_StaticArray_property;
         public StaticArray<Fox.String> String_StaticArray_property;
-        public StaticArray<Fox.Path> Path_StaticArray_property;
+        public StaticArray<Path> Path_StaticArray_property;
         //public StaticArray<EntityPtr<Entity>> EntityPtr_StaticArray_property;
         public StaticArray<Vector3> Vector3_StaticArray_property;
         public StaticArray<Vector4> Vector4_StaticArray_property;
         public StaticArray<Quaternion> Quaternion_StaticArray_property;
         public StaticArray<Matrix4x4> Matrix4x4_StaticArray_property;
         public StaticArray<Color> color_StaticArray_property;
-        public StaticArray<Fox.FilePtr<File>> FilePtr_StaticArray_property;
-        public StaticArray<Fox.EntityHandle> EntityHandle_StaticArray_property;
-        public StaticArray<Fox.EntityLink> EntityLink_StaticArray_property;
+        public StaticArray<Fox.Core.FilePtr<Fox.Core.File>> FilePtr_StaticArray_property;
+        public StaticArray<Fox.Core.EntityHandle> EntityHandle_StaticArray_property;
+        public StaticArray<Fox.Core.EntityLink> EntityLink_StaticArray_property;
         #endregion
 
         #region DynamicArray properties
@@ -148,16 +148,16 @@ namespace Fox
         public DynamicArray<double> float64_DynamicArray_property;
         public DynamicArray<bool> bool_DynamicArray_property;
         public DynamicArray<Fox.String> String_DynamicArray_property;
-        public DynamicArray<Fox.Path> Path_DynamicArray_property;
+        public DynamicArray<Path> Path_DynamicArray_property;
         //public DynamicArray<EntityPtr<Entity>> EntityPtr_DynamicArray_property;
         public DynamicArray<Vector3> Vector3_DynamicArray_property;
         public DynamicArray<Vector4> Vector4_DynamicArray_property;
         public DynamicArray<Quaternion> Quaternion_DynamicArray_property;
         public DynamicArray<Matrix4x4> Matrix4x4_DynamicArray_property;
         public DynamicArray<Color> color_DynamicArray_property;
-        public DynamicArray<Fox.FilePtr<File>> FilePtr_DynamicArray_property;
-        public DynamicArray<Fox.EntityHandle> EntityHandle_DynamicArray_property;
-        public DynamicArray<Fox.EntityLink> EntityLink_DynamicArray_property;
+        public DynamicArray<FilePtr<File>> FilePtr_DynamicArray_property;
+        public DynamicArray<EntityHandle> EntityHandle_DynamicArray_property;
+        public DynamicArray<EntityLink> EntityLink_DynamicArray_property;
         #endregion
 
         #region StringMap properties
@@ -173,16 +173,16 @@ namespace Fox
         public StringMap<double> float64_StringMap_property;
         public StringMap<bool> bool_StringMap_property;
         public StringMap<Fox.String> String_StringMap_property;
-        public StringMap<Fox.Path> Path_StringMap_property;
+        public StringMap<Path> Path_StringMap_property;
         //public StringMap<EntityPtr<Entity>> EntityPtr_StringMap_property;
         public StringMap<Vector3> Vector3_StringMap_property;
         public StringMap<Vector4> Vector4_StringMap_property;
         public StringMap<Quaternion> Quaternion_StringMap_property;
         public StringMap<Matrix4x4> Matrix4x4_StringMap_property;
         public StringMap<Color> color_StringMap_property;
-        public StringMap<Fox.FilePtr<File>> FilePtr_StringMap_property;
-        public StringMap<Fox.EntityHandle> EntityHandle_StringMap_property;
-        public StringMap<Fox.EntityLink> EntityLink_StringMap_property;
+        public StringMap<FilePtr<File>> FilePtr_StringMap_property;
+        public StringMap<EntityHandle> EntityHandle_StringMap_property;
+        public StringMap<EntityLink> EntityLink_StringMap_property;
         #endregion
     }
 }

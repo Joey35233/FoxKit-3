@@ -4,10 +4,11 @@ using UnityEngine.UIElements;
 using System.Reflection;
 using System;
 using System.Linq;
+using Fox.Core;
 
 namespace Fox.Editor
 {
-    [CustomPropertyDrawer(typeof(Fox.Path))]
+    [CustomPropertyDrawer(typeof(Fox.Core.Path))]
     public class PathDrawer : PropertyDrawer
     {
         SerializedProperty property;

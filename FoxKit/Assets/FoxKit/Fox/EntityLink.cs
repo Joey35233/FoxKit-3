@@ -1,4 +1,4 @@
-namespace Fox
+namespace Fox.Core
 {
     using System;
     using UnityEngine;
@@ -19,13 +19,13 @@ namespace Fox
         /// Path to the referenced Entity's containing package.
         /// </summary>
         [SerializeField]
-        private Fox.Path packagePath;
+        private Path packagePath;
 
         /// <summary>
         /// Path to the referenced Entity's containing DataSetFile2.
         /// </summary>
         [SerializeField]
-        private Fox.Path archivePath;
+        private Path archivePath;
 
         /// <summary>
         /// The referenced Entity.
@@ -33,7 +33,7 @@ namespace Fox
         [SerializeField]
         private Fox.String nameInArchive;
 
-        public EntityLink(Entity entity, Fox.Path packagePath, Fox.Path archivePath, Fox.String nameInArchive)
+        public EntityLink(Entity entity, Path packagePath, Path archivePath, Fox.String nameInArchive)
         {
             this.handle = EntityHandle.Get(entity);
             this.packagePath = packagePath;

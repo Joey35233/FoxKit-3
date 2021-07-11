@@ -1,4 +1,4 @@
-namespace Fox
+namespace Fox.Core
 {
     using System;
     using UnityEngine;
