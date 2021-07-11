@@ -33,6 +33,13 @@ namespace FoxKit.MenuItems
             foreach(var entity in entities)
             {
                 var gameObject = new UnityEngine.GameObject();
+
+                if (!(entity is DataSet))
+                {
+                    var entityComponent = gameObject.AddComponent<FoxEntity>();
+                    entityComponent.Entity = entity;
+                }
+
                 if (entity is Data)
                 {
                     gameObject.name = (entity as Data).name;

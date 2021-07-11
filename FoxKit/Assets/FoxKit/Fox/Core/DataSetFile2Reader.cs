@@ -30,11 +30,6 @@ namespace Fox.Core
                 entities.Add(entity.Address, entity);
             }
 
-            foreach(var ent in entities.Values)
-            {
-                UnityEngine.Debug.Log(ent);
-            }
-
             return entities.Values.ToList();
         }
 
