@@ -13,17 +13,17 @@ namespace Fox
 {
     public class EntityFactory
     {
-        private delegate Entity EntityConstructor(ulong address, ushort idA, ushort idB);
+        private delegate Fox.Core.Entity EntityConstructor(ulong address, ushort idA, ushort idB);
 
         private IDictionary<string, EntityConstructor> Constructors { get; }
 
         public EntityFactory() => this.Constructors = new Dictionary<string, EntityConstructor>
         {
-			{% for class_name in info %}{% if info[class_name].is_entity() %}[nameof({{ info[class_name].namespace }}.{{ class_name}})] = (address, idA, idB) => new {{ info[class_name].namespace }}.{{ class_name}}(address, idA, idB),{% endif %}
+			{% for class_name in info %}{% if info[class_name].is_entity() %}[nameof({{ info[class_name].get_root_namespace() }}.{{ info[class_name].get_namespace_without_prefix() }}.{{ class_name}})] = (address, idA, idB) => new {{ info[class_name].get_root_namespace() }}.{{ info[class_name].get_namespace_without_prefix() }}.{{ class_name }}(address, idA, idB),{% endif %}
 			{% endfor %}
         };
 
-        public Entity Create(string className, ulong address, ushort version, ushort idA, ushort idB)
+        public Fox.Core.Entity Create(string className, ulong address, ushort version, ushort idA, ushort idB)
         {
             if (!this.Constructors.ContainsKey(className))
             {
