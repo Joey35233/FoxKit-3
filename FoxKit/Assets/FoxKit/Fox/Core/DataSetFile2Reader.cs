@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using System.Security.Policy;
 
 namespace Fox.Core
@@ -11,6 +12,8 @@ namespace Fox.Core
     {
         private static readonly EntityFactory entityFactory = new EntityFactory();
         private IDictionary<ulong, string> stringTable;
+        private IDictionary<ulong, IEntityPtr> entityPtrRequests = new Dictionary<ulong, IEntityPtr>();
+        private IDictionary<ulong, HashSet<EntityHandle>> entityHandleRequests = new Dictionary<ulong, HashSet<EntityHandle>>();
 
         public List<Entity> Read(BinaryReader reader)
         {
@@ -29,6 +32,8 @@ namespace Fox.Core
                 Entity entity = new DataSetFile2EntityReader(RequestEntityPtr, RequestEntityHandle, RequestFilePtr, RequestEntityLink).Read(reader, this.CreateEntity, (hash) => this.stringTable[hash]);
                 entities.Add(entity.Address, entity);
             }
+
+            this.ResolveRequests(entities);
 
             return entities.Values.ToList();
         }
@@ -59,6 +64,38 @@ namespace Fox.Core
             return entityFactory.Create(this.stringTable[classNameHash], address, version, idA, idB);
         }
 
+        private void ResolveRequests(IDictionary<ulong, Entity> entities)
+        {
+            foreach(var entityPtr in this.entityPtrRequests)
+            {
+                if (entities.ContainsKey(entityPtr.Key))
+                {
+                    // TODO entityPtr.Value.Reset(entities[entityPtr.Key]);
+                    continue;
+                }
+
+                UnityEngine.Debug.LogError("Unable to resolve EntityPtr " + entityPtr.Key.ToString("X8"));
+            }
+
+            foreach (var entityPtr in this.entityHandleRequests)
+            {
+                if (entities.ContainsKey(entityPtr.Key))
+                {
+                    foreach (var request in entityPtr.Value)
+                    {
+                        request.Reset(entities[entityPtr.Key]);
+                    }
+                }
+                else
+                {
+                    UnityEngine.Debug.LogError("Unable to resolve EntityHandle 0x" + entityPtr.Key.ToString("X8"));
+                }
+            }
+
+            // TODO FilePtr
+            // TODO EntityLink
+        }
+
         public void RequestFilePtr(ulong path, FilePtr<Core.File> ptr)
         {
 
@@ -66,12 +103,27 @@ namespace Fox.Core
 
         public void RequestEntityPtr(ulong address, IEntityPtr ptr)
         {
+            if (address == 0)
+            {
+                return;
+            }
 
+            this.entityPtrRequests.Add(address, ptr);
         }
 
         public void RequestEntityHandle(ulong address, EntityHandle ptr)
         {
+            if (address == 0)
+            {
+                return;
+            }
 
+            if (!this.entityHandleRequests.ContainsKey(address))
+            {
+                this.entityHandleRequests.Add(address, new HashSet<EntityHandle>());
+            }
+
+            this.entityHandleRequests[address].Add(ptr);
         }
 
         public void RequestEntityLink(ulong address, ulong packagePath, ulong archivePath, ulong nameInArchive, EntityLink entityLink)

@@ -25,7 +25,7 @@ namespace FoxKit.MenuItems
             var fox2Reader = new DataSetFile2Reader();
             var entities = fox2Reader.Read(reader);
 
-            var scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene); //CreateScene(CsSystem.IO.Path.GetFileNameWithoutExtension(assetPath));
+            var scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene);
             scene.name = CsSystem.IO.Path.GetFileNameWithoutExtension(assetPath);
 
             var typeCount = new Dictionary<Type, int>();

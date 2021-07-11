@@ -24,6 +24,11 @@ namespace Fox.Core
             return new EntityHandle(entity);
         }
 
+        public void Reset(Entity entity)
+        {
+            this.entity = entity;
+        }
+
         public Entity Entity()
         {
             return this.entity;
