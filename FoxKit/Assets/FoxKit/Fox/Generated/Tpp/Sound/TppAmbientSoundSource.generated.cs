@@ -15,7 +15,7 @@ namespace Tpp.Sound
     public partial class TppAmbientSoundSource : Fox.Sdx.SoundSource 
     {
         // Properties
-        public string volumeRtpc;
+        public Fox.String volumeRtpc;
         
         public byte ambientIndex;
         

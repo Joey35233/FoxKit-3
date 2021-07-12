@@ -15,9 +15,9 @@ namespace Fox.Core
     public partial class Vector3ArrayPropertyDifference : Fox.Core.PropertyDifference 
     {
         // Properties
-        public CsSystem.Collections.Generic.List<UnityEngine.Vector3> originalValues = new CsSystem.Collections.Generic.List<UnityEngine.Vector3>();
+        public Fox.Core.DynamicArray<UnityEngine.Vector3> originalValues = new Fox.Core.DynamicArray<UnityEngine.Vector3>();
         
-        public CsSystem.Collections.Generic.List<UnityEngine.Vector3> values = new CsSystem.Collections.Generic.List<UnityEngine.Vector3>();
+        public Fox.Core.DynamicArray<UnityEngine.Vector3> values = new Fox.Core.DynamicArray<UnityEngine.Vector3>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

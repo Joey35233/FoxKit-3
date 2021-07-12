@@ -15,11 +15,11 @@ namespace Fox.Sdx
     public partial class SoundDataFileInfo : Fox.Core.Data 
     {
         // Properties
-        public CsSystem.Collections.Generic.List<string> loadBanks = new CsSystem.Collections.Generic.List<string>();
+        public Fox.Core.DynamicArray<Fox.String> loadBanks = new Fox.Core.DynamicArray<Fox.String>();
         
-        public CsSystem.Collections.Generic.List<string> prepareBanks = new CsSystem.Collections.Generic.List<string>();
+        public Fox.Core.DynamicArray<Fox.String> prepareBanks = new Fox.Core.DynamicArray<Fox.String>();
         
-        public CsSystem.Collections.Generic.List<string> prepareEvents = new CsSystem.Collections.Generic.List<string>();
+        public Fox.Core.DynamicArray<Fox.String> prepareEvents = new Fox.Core.DynamicArray<Fox.String>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;
@@ -62,15 +62,15 @@ namespace Fox.Sdx
             switch(propertyName)
             {
                 case "loadBanks":
-                    while(this.loadBanks.Count <= index) { this.loadBanks.Add(default(string)); }
+                    while(this.loadBanks.Count <= index) { this.loadBanks.Add(default(Fox.String)); }
                     this.loadBanks[index] = value.GetValueAsString();
                     return;
                 case "prepareBanks":
-                    while(this.prepareBanks.Count <= index) { this.prepareBanks.Add(default(string)); }
+                    while(this.prepareBanks.Count <= index) { this.prepareBanks.Add(default(Fox.String)); }
                     this.prepareBanks[index] = value.GetValueAsString();
                     return;
                 case "prepareEvents":
-                    while(this.prepareEvents.Count <= index) { this.prepareEvents.Add(default(string)); }
+                    while(this.prepareEvents.Count <= index) { this.prepareEvents.Add(default(Fox.String)); }
                     this.prepareEvents[index] = value.GetValueAsString();
                     return;
                 default:

@@ -15,7 +15,7 @@ namespace Fox.GameKit
     public partial class EnvironmentAreaBody : Fox.Core.TransformDataBody 
     {
         // Properties
-        public string tag;
+        public Fox.String tag;
         
         public Fox.Core.EntityHandle manager;
         

@@ -15,11 +15,11 @@ namespace Fox.Core
     public partial class Data : Fox.Core.Entity 
     {
         // Properties
-        public string name;
+        public Fox.String name;
         
         public Fox.Core.EntityHandle dataSet;
         
-        public string referencePath;
+        public Fox.String referencePath;
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

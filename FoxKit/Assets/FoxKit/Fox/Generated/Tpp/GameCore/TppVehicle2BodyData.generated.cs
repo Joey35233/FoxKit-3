@@ -25,9 +25,9 @@ namespace Tpp.GameCore
         
         public byte bodyInstanceCount;
         
-        public CsSystem.Collections.Generic.List<Fox.Core.EntityPtr<Tpp.GameCore.TppVehicle2WeaponParameter>> weaponParams = new CsSystem.Collections.Generic.List<Fox.Core.EntityPtr<Tpp.GameCore.TppVehicle2WeaponParameter>>();
+        public Fox.Core.DynamicArray<Fox.Core.EntityPtr<Tpp.GameCore.TppVehicle2WeaponParameter>> weaponParams = new Fox.Core.DynamicArray<Fox.Core.EntityPtr<Tpp.GameCore.TppVehicle2WeaponParameter>>();
         
-        public CsSystem.Collections.Generic.List<Fox.Core.FilePtr<Fox.Core.File>> fovaFiles = new CsSystem.Collections.Generic.List<Fox.Core.FilePtr<Fox.Core.File>>();
+        public Fox.Core.DynamicArray<Fox.Core.FilePtr<Fox.Core.File>> fovaFiles = new Fox.Core.DynamicArray<Fox.Core.FilePtr<Fox.Core.File>>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

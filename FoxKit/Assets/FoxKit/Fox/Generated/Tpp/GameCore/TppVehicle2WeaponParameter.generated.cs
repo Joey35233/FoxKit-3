@@ -15,11 +15,11 @@ namespace Tpp.GameCore
     public partial class TppVehicle2WeaponParameter : Fox.Core.DataElement 
     {
         // Properties
-        public string attackId;
+        public Fox.String attackId;
         
-        public string equipId;
+        public Fox.String equipId;
         
-        public string bulletId;
+        public Fox.String bulletId;
         
         public byte weaponImplTypeIndex;
         
@@ -29,13 +29,13 @@ namespace Tpp.GameCore
         
         public Fox.Core.FilePtr<Fox.Core.File> ammoFile;
         
-        public string ownerCnpName;
+        public Fox.String ownerCnpName;
         
-        public string weaponBoneName;
+        public Fox.String weaponBoneName;
         
-        public string turretBoneName;
+        public Fox.String turretBoneName;
         
-        public string barrelBoneName;
+        public Fox.String barrelBoneName;
         
         public float minPitch;
         

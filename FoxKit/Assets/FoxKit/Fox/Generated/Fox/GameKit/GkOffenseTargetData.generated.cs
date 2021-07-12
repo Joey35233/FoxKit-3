@@ -15,11 +15,11 @@ namespace Fox.GameKit
     public partial class GkOffenseTargetData : Fox.GameKit.GkTargetData 
     {
         // Properties
-        public string attackTargetName;
+        public Fox.String attackTargetName;
         
-        public string weaponName;
+        public Fox.String weaponName;
         
-        public string bulletName;
+        public Fox.String bulletName;
         
         public float force;
         

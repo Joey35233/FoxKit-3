@@ -15,9 +15,9 @@ namespace Tpp.System
     public partial class VideoPlayerMemoryBlock : Fox.Core.Data 
     {
         // Properties
-        public string identify;
+        public Fox.String identify;
         
-        public string videoFormat;
+        public Fox.String videoFormat;
         
         public uint videoWidth;
         

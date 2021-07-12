@@ -25,7 +25,7 @@ namespace Fox.UiScene
         
         public Fox.Core.EntityHandle connection_connectModelDataHandle;
         
-        public string connection_connectModelNodeName;
+        public Fox.String connection_connectModelNodeName;
         
         public bool useParentCamera;
         

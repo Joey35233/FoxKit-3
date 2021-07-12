@@ -15,7 +15,7 @@ namespace Fox.Core
     public partial class StringListEntity : Fox.Core.Entity 
     {
         // Properties
-        public CsSystem.Collections.Generic.List<string> list = new CsSystem.Collections.Generic.List<string>();
+        public Fox.Core.DynamicArray<Fox.String> list = new Fox.Core.DynamicArray<Fox.String>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;
@@ -56,7 +56,7 @@ namespace Fox.Core
             switch(propertyName)
             {
                 case "list":
-                    while(this.list.Count <= index) { this.list.Add(default(string)); }
+                    while(this.list.Count <= index) { this.list.Add(default(Fox.String)); }
                     this.list[index] = value.GetValueAsString();
                     return;
                 default:

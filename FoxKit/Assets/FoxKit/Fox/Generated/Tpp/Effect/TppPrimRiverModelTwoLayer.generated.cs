@@ -15,7 +15,7 @@ namespace Tpp.Effect
     public partial class TppPrimRiverModelTwoLayer : Fox.Core.Data 
     {
         // Properties
-        public string primRiverGroupName;
+        public Fox.String primRiverGroupName;
         
         public bool visibility;
         
@@ -25,7 +25,7 @@ namespace Tpp.Effect
         
         public Fox.Core.EntityLink staticModel;
         
-        public string maskTextureName;
+        public Fox.String maskTextureName;
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

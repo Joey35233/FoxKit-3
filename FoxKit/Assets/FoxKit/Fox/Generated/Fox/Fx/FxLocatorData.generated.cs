@@ -15,9 +15,9 @@ namespace Fox.Fx
     public partial class FxLocatorData : Fox.Core.TransformData 
     {
         // Properties
-        public string variationName;
+        public Fox.String variationName;
         
-        public string effectInstanceName;
+        public Fox.String effectInstanceName;
         
         public bool enableUserRandomSeed;
         

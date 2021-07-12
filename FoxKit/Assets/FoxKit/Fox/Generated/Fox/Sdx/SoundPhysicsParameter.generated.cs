@@ -15,21 +15,21 @@ namespace Fox.Sdx
     public partial class SoundPhysicsParameter : Fox.Core.Data 
     {
         // Properties
-        public string hitEvent;
+        public Fox.String hitEvent;
         
-        public string rollStartEvent;
+        public Fox.String rollStartEvent;
         
-        public string rollEndEvent;
+        public Fox.String rollEndEvent;
         
-        public string hitRtpcName;
+        public Fox.String hitRtpcName;
         
-        public string rollRtpcName;
+        public Fox.String rollRtpcName;
         
-        public string switchName;
+        public Fox.String switchName;
         
-        public string generalEvent1;
+        public Fox.String generalEvent1;
         
-        public string generalEvent2;
+        public Fox.String generalEvent2;
         
         public float hitLowerPower;
         

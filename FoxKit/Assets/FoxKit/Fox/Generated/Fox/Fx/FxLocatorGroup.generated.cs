@@ -15,7 +15,7 @@ namespace Fox.Fx
     public partial class FxLocatorGroup : Fox.Core.TransformData 
     {
         // Properties
-        public string groupInstanceName;
+        public Fox.String groupInstanceName;
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

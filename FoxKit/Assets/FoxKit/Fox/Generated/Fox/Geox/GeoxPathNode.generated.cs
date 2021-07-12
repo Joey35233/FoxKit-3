@@ -15,7 +15,7 @@ namespace Fox.Geox
     public partial class GeoxPathNode : Fox.Graphx.GraphxSpatialGraphDataNode 
     {
         // Properties
-        public CsSystem.Collections.Generic.List<string> nodeTags = new CsSystem.Collections.Generic.List<string>();
+        public Fox.Core.DynamicArray<Fox.String> nodeTags = new Fox.Core.DynamicArray<Fox.String>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;
@@ -56,7 +56,7 @@ namespace Fox.Geox
             switch(propertyName)
             {
                 case "nodeTags":
-                    while(this.nodeTags.Count <= index) { this.nodeTags.Add(default(string)); }
+                    while(this.nodeTags.Count <= index) { this.nodeTags.Add(default(Fox.String)); }
                     this.nodeTags[index] = value.GetValueAsString();
                     return;
                 default:

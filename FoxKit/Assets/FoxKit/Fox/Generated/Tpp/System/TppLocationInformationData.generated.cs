@@ -17,7 +17,7 @@ namespace Tpp.System
         // Properties
         public ushort locationId;
         
-        public string locationPathString;
+        public Fox.String locationPathString;
         
         public byte locationType;
         

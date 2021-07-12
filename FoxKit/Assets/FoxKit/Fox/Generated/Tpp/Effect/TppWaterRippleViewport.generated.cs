@@ -15,7 +15,7 @@ namespace Tpp.Effect
     public partial class TppWaterRippleViewport : Fox.Core.Data 
     {
         // Properties
-        public string rippleTextureName;
+        public Fox.String rippleTextureName;
         
         public uint viewportWidth;
         

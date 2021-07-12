@@ -38,7 +38,7 @@ class PropertyInfo:
             "float" : "float",
             "double" : "double",
             "bool" : "bool",
-            "String" : "string",
+            "String" : "Fox.String",
             "Path" : "Fox.Core.Path",
             "EntityPtr" : "Fox.Core.EntityPtr",
             "Vector3" : "UnityEngine.Vector3",
@@ -122,10 +122,10 @@ class PropertyInfo:
         if self.container == "StaticArray":
             if self.array_size == 1:
                 return value_type_string
-            return f'{value_type_string}[]'
+            return f'Fox.Core.StaticArray<{value_type_string}>'
         if self.container == "StringMap":
             return f'Fox.Core.StringMap<{value_type_string}>'
-        return f'CsSystem.Collections.Generic.List<{value_type_string}>'
+        return f'Fox.Core.DynamicArray<{value_type_string}>'
 
     def has_setter(self):
         """Gets whether the property has a setter.
@@ -154,10 +154,10 @@ class PropertyInfo:
         """
         value_type_string = self.get_value_type_string()
         if self.container == "StaticArray":
-            return f'new {value_type_string}[{self.array_size}]'
+            return f'new Fox.Core.StaticArray<{value_type_string}>({self.array_size})'
         if self.container == "StringMap":
             return f'new Fox.Core.StringMap<{value_type_string}>()'
-        return f'new CsSystem.Collections.Generic.List<{value_type_string}>()'
+        return f'new Fox.Core.DynamicArray<{value_type_string}>()'
 
     def get_value_getter_type_string(self):
         """Gets the type string to use with Value.GetValueAs...

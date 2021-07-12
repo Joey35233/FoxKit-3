@@ -17,7 +17,7 @@ namespace Fox.Ui
         // Properties
         public Fox.Core.StringMap<Fox.Core.FilePtr<Fox.Core.File>> createWindowParams = new Fox.Core.StringMap<Fox.Core.FilePtr<Fox.Core.File>>();
         
-        public string windowFactoryName;
+        public Fox.String windowFactoryName;
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

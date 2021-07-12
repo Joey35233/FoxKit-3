@@ -15,11 +15,11 @@ namespace Tpp.GameKit
     public partial class ObjectBrushPluginBushDataElement : Fox.Core.DataElement 
     {
         // Properties
-        public CsSystem.Collections.Generic.List<string> lodMeshName = new CsSystem.Collections.Generic.List<string>();
+        public Fox.Core.DynamicArray<Fox.String> lodMeshName = new Fox.Core.DynamicArray<Fox.String>();
         
-        public CsSystem.Collections.Generic.List<float> lodDistance = new CsSystem.Collections.Generic.List<float>();
+        public Fox.Core.DynamicArray<float> lodDistance = new Fox.Core.DynamicArray<float>();
         
-        public CsSystem.Collections.Generic.List<float> lodDistanceHighEnd = new CsSystem.Collections.Generic.List<float>();
+        public Fox.Core.DynamicArray<float> lodDistanceHighEnd = new Fox.Core.DynamicArray<float>();
         
         public float rotationRate;
         
@@ -43,7 +43,7 @@ namespace Tpp.GameKit
         
         public float stopEyeHeight;
         
-        public string noiseSeType;
+        public Fox.String noiseSeType;
         
         public uint bushFlags;
         
@@ -182,7 +182,7 @@ namespace Tpp.GameKit
             switch(propertyName)
             {
                 case "lodMeshName":
-                    while(this.lodMeshName.Count <= index) { this.lodMeshName.Add(default(string)); }
+                    while(this.lodMeshName.Count <= index) { this.lodMeshName.Add(default(Fox.String)); }
                     this.lodMeshName[index] = value.GetValueAsString();
                     return;
                 case "lodDistance":

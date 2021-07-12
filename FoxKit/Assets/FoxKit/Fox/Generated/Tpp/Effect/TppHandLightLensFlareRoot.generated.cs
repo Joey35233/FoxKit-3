@@ -25,9 +25,9 @@ namespace Tpp.Effect
         
         public float exposureBlend;
         
-        public string lensFlareName;
+        public Fox.String lensFlareName;
         
-        public CsSystem.Collections.Generic.List<Fox.Core.EntityLink> shapes = new CsSystem.Collections.Generic.List<Fox.Core.EntityLink>();
+        public Fox.Core.DynamicArray<Fox.Core.EntityLink> shapes = new Fox.Core.DynamicArray<Fox.Core.EntityLink>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

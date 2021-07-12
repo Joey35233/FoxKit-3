@@ -19,7 +19,7 @@ namespace Tpp.Effect
         
         public UnityEngine.Vector3 reachPoint;
         
-        public CsSystem.Collections.Generic.List<uint> BynaryData = new CsSystem.Collections.Generic.List<uint>();
+        public Fox.Core.DynamicArray<uint> BynaryData = new Fox.Core.DynamicArray<uint>();
         
         public Fox.Core.EntityLink lightArea;
         

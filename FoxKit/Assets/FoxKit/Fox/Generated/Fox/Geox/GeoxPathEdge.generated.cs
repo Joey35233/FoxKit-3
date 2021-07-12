@@ -15,7 +15,7 @@ namespace Fox.Geox
     public partial class GeoxPathEdge : Fox.Graphx.GraphxSpatialGraphDataEdge 
     {
         // Properties
-        public CsSystem.Collections.Generic.List<string> edgeTags = new CsSystem.Collections.Generic.List<string>();
+        public Fox.Core.DynamicArray<Fox.String> edgeTags = new Fox.Core.DynamicArray<Fox.String>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;
@@ -56,7 +56,7 @@ namespace Fox.Geox
             switch(propertyName)
             {
                 case "edgeTags":
-                    while(this.edgeTags.Count <= index) { this.edgeTags.Add(default(string)); }
+                    while(this.edgeTags.Count <= index) { this.edgeTags.Add(default(Fox.String)); }
                     this.edgeTags[index] = value.GetValueAsString();
                     return;
                 default:

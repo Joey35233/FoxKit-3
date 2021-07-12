@@ -15,7 +15,7 @@ namespace Fox.GameKit
     public partial class FoxTrapExecViewGroupControlCallbackDataElement : Fox.Geo.GeoTrapModuleCallbackDataElement 
     {
         // Properties
-        public string identify;
+        public Fox.String identify;
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

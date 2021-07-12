@@ -17,17 +17,17 @@ namespace Fox.Core
         // Properties
         public bool enable;
         
-        public string stageName;
+        public Fox.String stageName;
         
         public bool useBaseDirectoryPathAndName;
         
-        public string baseDirectoryPath;
+        public Fox.String baseDirectoryPath;
         
-        public string baseName;
+        public Fox.String baseName;
         
-        public string smallBlock1BaseDirectoryPath;
+        public Fox.String smallBlock1BaseDirectoryPath;
         
-        public string smallBlock1BaseName;
+        public Fox.String smallBlock1BaseName;
         
         public uint blockSizeX;
         
@@ -81,9 +81,9 @@ namespace Fox.Core
         
         public Fox.Core.FilePtr<Fox.Core.File> stageBlockFile;
         
-        public string lod0BaseDirectoryPath;
+        public Fox.String lod0BaseDirectoryPath;
         
-        public string lod0BaseName;
+        public Fox.String lod0BaseName;
         
         public uint lod0blockSizeInBytes;
         
@@ -111,9 +111,9 @@ namespace Fox.Core
         
         public byte lod0LargeBlock3Count;
         
-        public string lod1BaseDirectoryPath;
+        public Fox.String lod1BaseDirectoryPath;
         
-        public string lod1BaseName;
+        public Fox.String lod1BaseName;
         
         public uint lod1blockSizeInBytes;
         

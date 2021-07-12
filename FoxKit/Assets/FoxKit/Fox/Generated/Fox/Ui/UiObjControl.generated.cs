@@ -17,7 +17,7 @@ namespace Fox.Ui
         // Properties
         public Fox.Core.Path uigName;
         
-        public string uigFileName;
+        public Fox.String uigFileName;
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

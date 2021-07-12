@@ -23,7 +23,7 @@ namespace Fox.Core
         
         public Fox.Core.EntityPtr<Fox.Core.PivotTransformEntity> pivotTransform;
         
-        public CsSystem.Collections.Generic.List<Fox.Core.EntityHandle> children = new CsSystem.Collections.Generic.List<Fox.Core.EntityHandle>();
+        public Fox.Core.DynamicArray<Fox.Core.EntityHandle> children = new Fox.Core.DynamicArray<Fox.Core.EntityHandle>();
         
         public TransformData_Flags flags;
         

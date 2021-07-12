@@ -8,7 +8,7 @@ using UnityEngine.UIElements;
 
 namespace Fox.Editor
 {
-    [CustomPropertyDrawer(typeof(Fox.StaticArray<>))]
+    [CustomPropertyDrawer(typeof(Fox.Core.StaticArray<>))]
     public class StaticArrayDrawer : PropertyDrawer
     {
         SerializedProperty InternalListProperty;

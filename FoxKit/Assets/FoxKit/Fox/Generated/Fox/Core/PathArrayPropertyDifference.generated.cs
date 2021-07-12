@@ -15,9 +15,9 @@ namespace Fox.Core
     public partial class PathArrayPropertyDifference : Fox.Core.PropertyDifference 
     {
         // Properties
-        public CsSystem.Collections.Generic.List<Fox.Core.Path> originalValues = new CsSystem.Collections.Generic.List<Fox.Core.Path>();
+        public Fox.Core.DynamicArray<Fox.Core.Path> originalValues = new Fox.Core.DynamicArray<Fox.Core.Path>();
         
-        public CsSystem.Collections.Generic.List<Fox.Core.Path> values = new CsSystem.Collections.Generic.List<Fox.Core.Path>();
+        public Fox.Core.DynamicArray<Fox.Core.Path> values = new Fox.Core.DynamicArray<Fox.Core.Path>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

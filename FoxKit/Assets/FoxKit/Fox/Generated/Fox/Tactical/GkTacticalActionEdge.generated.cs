@@ -15,7 +15,7 @@ namespace Fox.Tactical
     public partial class GkTacticalActionEdge : Fox.Core.DataElement 
     {
         // Properties
-        public string actionName;
+        public Fox.String actionName;
         
         public GkTacticalActionDirection actionDirection;
         

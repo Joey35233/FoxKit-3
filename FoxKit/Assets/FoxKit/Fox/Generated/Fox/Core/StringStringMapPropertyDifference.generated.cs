@@ -15,9 +15,9 @@ namespace Fox.Core
     public partial class StringStringMapPropertyDifference : Fox.Core.PropertyDifference 
     {
         // Properties
-        public Fox.Core.StringMap<string> originalValues = new Fox.Core.StringMap<string>();
+        public Fox.Core.StringMap<Fox.String> originalValues = new Fox.Core.StringMap<Fox.String>();
         
-        public Fox.Core.StringMap<string> values = new Fox.Core.StringMap<string>();
+        public Fox.Core.StringMap<Fox.String> values = new Fox.Core.StringMap<Fox.String>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

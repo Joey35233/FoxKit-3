@@ -15,13 +15,13 @@ namespace Fox.Sdx
     public partial class SoundAreaParameter : Fox.Core.DataElement 
     {
         // Properties
-        public string ambientEvent;
+        public Fox.String ambientEvent;
         
-        public string ambientRtpcName;
+        public Fox.String ambientRtpcName;
         
         public float ambientRtpcValue;
         
-        public string objectRtpcName;
+        public Fox.String objectRtpcName;
         
         public float objectRtpcValue;
         

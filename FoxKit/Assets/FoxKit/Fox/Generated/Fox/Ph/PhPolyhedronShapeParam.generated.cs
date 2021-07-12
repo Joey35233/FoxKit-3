@@ -15,9 +15,9 @@ namespace Fox.Ph
     public partial class PhPolyhedronShapeParam : Fox.Ph.PhShapeParam 
     {
         // Properties
-        public CsSystem.Collections.Generic.List<UnityEngine.Vector3> verts = new CsSystem.Collections.Generic.List<UnityEngine.Vector3>();
+        public Fox.Core.DynamicArray<UnityEngine.Vector3> verts = new Fox.Core.DynamicArray<UnityEngine.Vector3>();
         
-        public CsSystem.Collections.Generic.List<uint> polys = new CsSystem.Collections.Generic.List<uint>();
+        public Fox.Core.DynamicArray<uint> polys = new Fox.Core.DynamicArray<uint>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

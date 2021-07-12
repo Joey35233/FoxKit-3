@@ -15,7 +15,7 @@ namespace Tpp.GameCore
     public partial class TppNoiseArea2 : Fox.Core.Data 
     {
         // Properties
-        public CsSystem.Collections.Generic.List<Fox.Core.EntityLink> shapes = new CsSystem.Collections.Generic.List<Fox.Core.EntityLink>();
+        public Fox.Core.DynamicArray<Fox.Core.EntityLink> shapes = new Fox.Core.DynamicArray<Fox.Core.EntityLink>();
         
         public short areaIndex;
         

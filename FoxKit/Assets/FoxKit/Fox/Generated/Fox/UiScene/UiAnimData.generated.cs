@@ -25,9 +25,9 @@ namespace Fox.UiScene
         
         public UiAnimDataFlag flag;
         
-        public CsSystem.Collections.Generic.List<string> srcNodeNames = new CsSystem.Collections.Generic.List<string>();
+        public Fox.Core.DynamicArray<Fox.String> srcNodeNames = new Fox.Core.DynamicArray<Fox.String>();
         
-        public CsSystem.Collections.Generic.List<string> destNodeNames = new CsSystem.Collections.Generic.List<string>();
+        public Fox.Core.DynamicArray<Fox.String> destNodeNames = new Fox.Core.DynamicArray<Fox.String>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;
@@ -89,11 +89,11 @@ namespace Fox.UiScene
             switch(propertyName)
             {
                 case "srcNodeNames":
-                    while(this.srcNodeNames.Count <= index) { this.srcNodeNames.Add(default(string)); }
+                    while(this.srcNodeNames.Count <= index) { this.srcNodeNames.Add(default(Fox.String)); }
                     this.srcNodeNames[index] = value.GetValueAsString();
                     return;
                 case "destNodeNames":
-                    while(this.destNodeNames.Count <= index) { this.destNodeNames.Add(default(string)); }
+                    while(this.destNodeNames.Count <= index) { this.destNodeNames.Add(default(Fox.String)); }
                     this.destNodeNames[index] = value.GetValueAsString();
                     return;
                 default:

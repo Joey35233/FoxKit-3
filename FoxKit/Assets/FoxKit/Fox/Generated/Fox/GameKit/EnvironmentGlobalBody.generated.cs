@@ -15,7 +15,7 @@ namespace Fox.GameKit
     public partial class EnvironmentGlobalBody : Fox.Core.DataBody 
     {
         // Properties
-        public string tag;
+        public Fox.String tag;
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

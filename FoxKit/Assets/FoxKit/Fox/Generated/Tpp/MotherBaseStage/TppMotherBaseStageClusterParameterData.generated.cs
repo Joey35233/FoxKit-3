@@ -17,43 +17,43 @@ namespace Tpp.MotherBaseStage
         // Properties
         public bool enable;
         
-        public byte[] cluster00divisionPackageIds = new byte[12];
+        public Fox.Core.StaticArray<byte> cluster00divisionPackageIds = new Fox.Core.StaticArray<byte>(12);
         
-        public byte[] cluster01divisionPackageIds = new byte[12];
+        public Fox.Core.StaticArray<byte> cluster01divisionPackageIds = new Fox.Core.StaticArray<byte>(12);
         
-        public byte[] cluster02divisionPackageIds = new byte[12];
+        public Fox.Core.StaticArray<byte> cluster02divisionPackageIds = new Fox.Core.StaticArray<byte>(12);
         
-        public byte[] cluster03divisionPackageIds = new byte[12];
+        public Fox.Core.StaticArray<byte> cluster03divisionPackageIds = new Fox.Core.StaticArray<byte>(12);
         
-        public byte[] cluster04divisionPackageIds = new byte[12];
+        public Fox.Core.StaticArray<byte> cluster04divisionPackageIds = new Fox.Core.StaticArray<byte>(12);
         
-        public byte[] cluster05divisionPackageIds = new byte[12];
+        public Fox.Core.StaticArray<byte> cluster05divisionPackageIds = new Fox.Core.StaticArray<byte>(12);
         
-        public byte[] cluster06divisionPackageIds = new byte[12];
+        public Fox.Core.StaticArray<byte> cluster06divisionPackageIds = new Fox.Core.StaticArray<byte>(12);
         
-        public byte[] cluster07divisionPackageIds = new byte[12];
+        public Fox.Core.StaticArray<byte> cluster07divisionPackageIds = new Fox.Core.StaticArray<byte>(12);
         
-        public UnityEngine.Vector3[] clusterPositions = new UnityEngine.Vector3[8];
+        public Fox.Core.StaticArray<UnityEngine.Vector3> clusterPositions = new Fox.Core.StaticArray<UnityEngine.Vector3>(8);
         
-        public uint[] clusterRequestRadiuses = new uint[8];
+        public Fox.Core.StaticArray<uint> clusterRequestRadiuses = new Fox.Core.StaticArray<uint>(8);
         
-        public uint[] clusterRequireRadiuses = new uint[8];
+        public Fox.Core.StaticArray<uint> clusterRequireRadiuses = new Fox.Core.StaticArray<uint>(8);
         
-        public CsSystem.Collections.Generic.List<short> cluster00loadAreaVertices = new CsSystem.Collections.Generic.List<short>();
+        public Fox.Core.DynamicArray<short> cluster00loadAreaVertices = new Fox.Core.DynamicArray<short>();
         
-        public CsSystem.Collections.Generic.List<short> cluster01loadAreaVertices = new CsSystem.Collections.Generic.List<short>();
+        public Fox.Core.DynamicArray<short> cluster01loadAreaVertices = new Fox.Core.DynamicArray<short>();
         
-        public CsSystem.Collections.Generic.List<short> cluster02loadAreaVertices = new CsSystem.Collections.Generic.List<short>();
+        public Fox.Core.DynamicArray<short> cluster02loadAreaVertices = new Fox.Core.DynamicArray<short>();
         
-        public CsSystem.Collections.Generic.List<short> cluster03loadAreaVertices = new CsSystem.Collections.Generic.List<short>();
+        public Fox.Core.DynamicArray<short> cluster03loadAreaVertices = new Fox.Core.DynamicArray<short>();
         
-        public CsSystem.Collections.Generic.List<short> cluster04loadAreaVertices = new CsSystem.Collections.Generic.List<short>();
+        public Fox.Core.DynamicArray<short> cluster04loadAreaVertices = new Fox.Core.DynamicArray<short>();
         
-        public CsSystem.Collections.Generic.List<short> cluster05loadAreaVertices = new CsSystem.Collections.Generic.List<short>();
+        public Fox.Core.DynamicArray<short> cluster05loadAreaVertices = new Fox.Core.DynamicArray<short>();
         
-        public CsSystem.Collections.Generic.List<short> cluster06loadAreaVertices = new CsSystem.Collections.Generic.List<short>();
+        public Fox.Core.DynamicArray<short> cluster06loadAreaVertices = new Fox.Core.DynamicArray<short>();
         
-        public CsSystem.Collections.Generic.List<short> cluster07loadAreaVertices = new CsSystem.Collections.Generic.List<short>();
+        public Fox.Core.DynamicArray<short> cluster07loadAreaVertices = new Fox.Core.DynamicArray<short>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

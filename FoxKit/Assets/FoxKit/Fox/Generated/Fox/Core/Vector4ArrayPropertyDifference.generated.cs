@@ -15,9 +15,9 @@ namespace Fox.Core
     public partial class Vector4ArrayPropertyDifference : Fox.Core.PropertyDifference 
     {
         // Properties
-        public CsSystem.Collections.Generic.List<UnityEngine.Vector4> originalValues = new CsSystem.Collections.Generic.List<UnityEngine.Vector4>();
+        public Fox.Core.DynamicArray<UnityEngine.Vector4> originalValues = new Fox.Core.DynamicArray<UnityEngine.Vector4>();
         
-        public CsSystem.Collections.Generic.List<UnityEngine.Vector4> values = new CsSystem.Collections.Generic.List<UnityEngine.Vector4>();
+        public Fox.Core.DynamicArray<UnityEngine.Vector4> values = new Fox.Core.DynamicArray<UnityEngine.Vector4>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

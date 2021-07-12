@@ -15,7 +15,7 @@ namespace Tpp.GameCore
     public partial class TppTrapExecLostHostageCallbackDataElement : Fox.Geo.GeoTrapModuleCallbackDataElement 
     {
         // Properties
-        public string hostageName;
+        public Fox.String hostageName;
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

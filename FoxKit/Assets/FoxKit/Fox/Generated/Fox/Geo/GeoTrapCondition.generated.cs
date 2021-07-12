@@ -15,7 +15,7 @@ namespace Fox.Geo
     public partial class GeoTrapCondition : Fox.Core.TransformData 
     {
         // Properties
-        public string trapCategory;
+        public Fox.String trapCategory;
         
         public uint trapPriority;
         

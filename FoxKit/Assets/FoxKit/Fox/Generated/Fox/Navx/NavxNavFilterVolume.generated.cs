@@ -15,7 +15,7 @@ namespace Fox.Navx
     public partial class NavxNavFilterVolume : Fox.Graphx.GraphxPathVolume 
     {
         // Properties
-        public string worldName;
+        public Fox.String worldName;
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

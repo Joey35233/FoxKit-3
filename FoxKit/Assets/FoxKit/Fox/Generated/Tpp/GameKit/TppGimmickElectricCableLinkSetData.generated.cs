@@ -19,11 +19,11 @@ namespace Tpp.GameKit
         
         public Fox.Core.EntityLink poleData;
         
-        public CsSystem.Collections.Generic.List<string> electricCable = new CsSystem.Collections.Generic.List<string>();
+        public Fox.Core.DynamicArray<Fox.String> electricCable = new Fox.Core.DynamicArray<Fox.String>();
         
-        public CsSystem.Collections.Generic.List<string> pole = new CsSystem.Collections.Generic.List<string>();
+        public Fox.Core.DynamicArray<Fox.String> pole = new Fox.Core.DynamicArray<Fox.String>();
         
-        public CsSystem.Collections.Generic.List<byte> cnpIndex = new CsSystem.Collections.Generic.List<byte>();
+        public Fox.Core.DynamicArray<byte> cnpIndex = new Fox.Core.DynamicArray<byte>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;
@@ -74,11 +74,11 @@ namespace Tpp.GameKit
             switch(propertyName)
             {
                 case "electricCable":
-                    while(this.electricCable.Count <= index) { this.electricCable.Add(default(string)); }
+                    while(this.electricCable.Count <= index) { this.electricCable.Add(default(Fox.String)); }
                     this.electricCable[index] = value.GetValueAsString();
                     return;
                 case "pole":
-                    while(this.pole.Count <= index) { this.pole.Add(default(string)); }
+                    while(this.pole.Count <= index) { this.pole.Add(default(Fox.String)); }
                     this.pole[index] = value.GetValueAsString();
                     return;
                 case "cnpIndex":

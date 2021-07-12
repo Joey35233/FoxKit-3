@@ -37,19 +37,19 @@ namespace Fox.GameKit
         
         public uint decalFlags;
         
-        public CsSystem.Collections.Generic.List<UnityEngine.Vector3> scales = new CsSystem.Collections.Generic.List<UnityEngine.Vector3>();
+        public Fox.Core.DynamicArray<UnityEngine.Vector3> scales = new Fox.Core.DynamicArray<UnityEngine.Vector3>();
         
-        public CsSystem.Collections.Generic.List<UnityEngine.Quaternion> rotations = new CsSystem.Collections.Generic.List<UnityEngine.Quaternion>();
+        public Fox.Core.DynamicArray<UnityEngine.Quaternion> rotations = new Fox.Core.DynamicArray<UnityEngine.Quaternion>();
         
-        public CsSystem.Collections.Generic.List<UnityEngine.Vector3> translations = new CsSystem.Collections.Generic.List<UnityEngine.Vector3>();
+        public Fox.Core.DynamicArray<UnityEngine.Vector3> translations = new Fox.Core.DynamicArray<UnityEngine.Vector3>();
         
-        public CsSystem.Collections.Generic.List<Fox.Core.EntityLink> targets = new CsSystem.Collections.Generic.List<Fox.Core.EntityLink>();
+        public Fox.Core.DynamicArray<Fox.Core.EntityLink> targets = new Fox.Core.DynamicArray<Fox.Core.EntityLink>();
         
-        public CsSystem.Collections.Generic.List<uint> targetIndices = new CsSystem.Collections.Generic.List<uint>();
+        public Fox.Core.DynamicArray<uint> targetIndices = new Fox.Core.DynamicArray<uint>();
         
-        public CsSystem.Collections.Generic.List<uint> targetStartIndices = new CsSystem.Collections.Generic.List<uint>();
+        public Fox.Core.DynamicArray<uint> targetStartIndices = new Fox.Core.DynamicArray<uint>();
         
-        public CsSystem.Collections.Generic.List<int> renderingPriorities = new CsSystem.Collections.Generic.List<int>();
+        public Fox.Core.DynamicArray<int> renderingPriorities = new Fox.Core.DynamicArray<int>();
         
         public bool isDisableAlbedo;
         

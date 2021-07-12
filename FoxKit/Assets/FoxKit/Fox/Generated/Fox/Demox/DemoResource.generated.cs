@@ -17,9 +17,9 @@ namespace Fox.Demox
         // Properties
         public bool enable;
         
-        public string demoIdentifierName;
+        public Fox.String demoIdentifierName;
         
-        public CsSystem.Collections.Generic.List<string> demoIdentifierKey = new CsSystem.Collections.Generic.List<string>();
+        public Fox.Core.DynamicArray<Fox.String> demoIdentifierKey = new Fox.Core.DynamicArray<Fox.String>();
         
         public uint streamBufferSizeInKbytes;
         
@@ -110,7 +110,7 @@ namespace Fox.Demox
             switch(propertyName)
             {
                 case "demoIdentifierKey":
-                    while(this.demoIdentifierKey.Count <= index) { this.demoIdentifierKey.Add(default(string)); }
+                    while(this.demoIdentifierKey.Count <= index) { this.demoIdentifierKey.Add(default(Fox.String)); }
                     this.demoIdentifierKey[index] = value.GetValueAsString();
                     return;
                 default:

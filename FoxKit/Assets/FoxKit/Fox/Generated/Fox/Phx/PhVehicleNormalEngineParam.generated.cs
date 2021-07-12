@@ -15,11 +15,11 @@ namespace Fox.Phx
     public partial class PhVehicleNormalEngineParam : Fox.Core.Entity 
     {
         // Properties
-        public CsSystem.Collections.Generic.List<float> specPointAngularVelocity = new CsSystem.Collections.Generic.List<float>();
+        public Fox.Core.DynamicArray<float> specPointAngularVelocity = new Fox.Core.DynamicArray<float>();
         
-        public CsSystem.Collections.Generic.List<float> specPointTorque = new CsSystem.Collections.Generic.List<float>();
+        public Fox.Core.DynamicArray<float> specPointTorque = new Fox.Core.DynamicArray<float>();
         
-        public CsSystem.Collections.Generic.List<float> specPointBreakTorque = new CsSystem.Collections.Generic.List<float>();
+        public Fox.Core.DynamicArray<float> specPointBreakTorque = new Fox.Core.DynamicArray<float>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

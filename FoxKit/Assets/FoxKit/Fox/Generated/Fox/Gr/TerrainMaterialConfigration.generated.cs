@@ -15,13 +15,13 @@ namespace Fox.Gr
     public partial class TerrainMaterialConfigration : Fox.Core.Data 
     {
         // Properties
-        public CsSystem.Collections.Generic.List<uint> slot0 = new CsSystem.Collections.Generic.List<uint>();
+        public Fox.Core.DynamicArray<uint> slot0 = new Fox.Core.DynamicArray<uint>();
         
-        public CsSystem.Collections.Generic.List<uint> slot1 = new CsSystem.Collections.Generic.List<uint>();
+        public Fox.Core.DynamicArray<uint> slot1 = new Fox.Core.DynamicArray<uint>();
         
-        public CsSystem.Collections.Generic.List<uint> slot2 = new CsSystem.Collections.Generic.List<uint>();
+        public Fox.Core.DynamicArray<uint> slot2 = new Fox.Core.DynamicArray<uint>();
         
-        public CsSystem.Collections.Generic.List<uint> slot3 = new CsSystem.Collections.Generic.List<uint>();
+        public Fox.Core.DynamicArray<uint> slot3 = new Fox.Core.DynamicArray<uint>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

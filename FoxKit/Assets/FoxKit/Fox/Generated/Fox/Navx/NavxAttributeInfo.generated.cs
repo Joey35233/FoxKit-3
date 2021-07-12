@@ -15,7 +15,7 @@ namespace Fox.Navx
     public partial class NavxAttributeInfo : Fox.Core.DataElement 
     {
         // Properties
-        public string name;
+        public Fox.String name;
         
         public float simplificationThreshold;
         

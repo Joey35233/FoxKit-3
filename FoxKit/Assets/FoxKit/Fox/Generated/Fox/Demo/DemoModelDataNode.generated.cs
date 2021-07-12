@@ -15,7 +15,7 @@ namespace Fox.Demo
     public partial class DemoModelDataNode : Fox.Core.Data 
     {
         // Properties
-        public Fox.Core.StringMap<string> partNames = new Fox.Core.StringMap<string>();
+        public Fox.Core.StringMap<Fox.String> partNames = new Fox.Core.StringMap<Fox.String>();
         
         public Fox.Core.EntityLink target;
         

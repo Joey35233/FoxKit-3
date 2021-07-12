@@ -17,9 +17,9 @@ namespace Fox.Navx
         // Properties
         public bool enable;
         
-        public string sceneName;
+        public Fox.String sceneName;
         
-        public string worldName;
+        public Fox.String worldName;
         
         public NavxBounderLocatorType type;
         

@@ -25,7 +25,7 @@ namespace Tpp.Effect
         
         public int quality;
         
-        public CsSystem.Collections.Generic.List<Fox.Core.EntityLink> targetLocators = new CsSystem.Collections.Generic.List<Fox.Core.EntityLink>();
+        public Fox.Core.DynamicArray<Fox.Core.EntityLink> targetLocators = new Fox.Core.DynamicArray<Fox.Core.EntityLink>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

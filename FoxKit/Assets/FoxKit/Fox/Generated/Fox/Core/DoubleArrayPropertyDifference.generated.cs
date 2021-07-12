@@ -15,9 +15,9 @@ namespace Fox.Core
     public partial class DoubleArrayPropertyDifference : Fox.Core.PropertyDifference 
     {
         // Properties
-        public CsSystem.Collections.Generic.List<double> originalValues = new CsSystem.Collections.Generic.List<double>();
+        public Fox.Core.DynamicArray<double> originalValues = new Fox.Core.DynamicArray<double>();
         
-        public CsSystem.Collections.Generic.List<double> values = new CsSystem.Collections.Generic.List<double>();
+        public Fox.Core.DynamicArray<double> values = new Fox.Core.DynamicArray<double>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

@@ -17,11 +17,11 @@ namespace Fox.GameKit
         // Properties
         public double measureTime;
         
-        public string startMessageName;
+        public Fox.String startMessageName;
         
-        public string interruptMessageName;
+        public Fox.String interruptMessageName;
         
-        public string alarmMessageName;
+        public Fox.String alarmMessageName;
         
         public bool enableDebugView;
         

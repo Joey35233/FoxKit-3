@@ -15,7 +15,7 @@ namespace Fox.Phx
     public partial class PhxVehicleTransmission : Fox.Core.Data 
     {
         // Properties
-        public CsSystem.Collections.Generic.List<float> gearRatios = new CsSystem.Collections.Generic.List<float>();
+        public Fox.Core.DynamicArray<float> gearRatios = new Fox.Core.DynamicArray<float>();
         
         public float finalGearRatio;
         

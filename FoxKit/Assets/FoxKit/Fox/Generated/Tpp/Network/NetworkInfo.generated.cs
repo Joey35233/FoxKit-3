@@ -17,11 +17,11 @@ namespace Tpp.Network
         // Properties
         public uint userId;
         
-        public string userName;
+        public Fox.String userName;
         
         public uint playerId;
         
-        public string playerName;
+        public Fox.String playerName;
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

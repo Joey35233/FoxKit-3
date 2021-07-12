@@ -53,7 +53,7 @@ namespace Fox.Ph
         
         public int motionType;
         
-        public string material;
+        public Fox.String material;
         
         public bool isNoGravity;
         

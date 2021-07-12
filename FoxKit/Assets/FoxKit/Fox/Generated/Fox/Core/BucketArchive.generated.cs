@@ -15,7 +15,7 @@ namespace Fox.Core
     public partial class BucketArchive : Fox.Core.Entity 
     {
         // Properties
-        public string name;
+        public Fox.String name;
         
         public Fox.Core.StringMap<Fox.Core.FilePtr<Fox.Core.File>> dataSetFiles = new Fox.Core.StringMap<Fox.Core.FilePtr<Fox.Core.File>>();
         

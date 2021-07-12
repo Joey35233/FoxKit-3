@@ -15,31 +15,31 @@ namespace Fox.Geox
     public partial class GeoxTargetDesc : Fox.Core.Data 
     {
         // Properties
-        public CsSystem.Collections.Generic.List<UnityEngine.Vector3> posArray = new CsSystem.Collections.Generic.List<UnityEngine.Vector3>();
+        public Fox.Core.DynamicArray<UnityEngine.Vector3> posArray = new Fox.Core.DynamicArray<UnityEngine.Vector3>();
         
-        public CsSystem.Collections.Generic.List<UnityEngine.Vector3> scaleArray = new CsSystem.Collections.Generic.List<UnityEngine.Vector3>();
+        public Fox.Core.DynamicArray<UnityEngine.Vector3> scaleArray = new Fox.Core.DynamicArray<UnityEngine.Vector3>();
         
-        public CsSystem.Collections.Generic.List<UnityEngine.Quaternion> rotArray = new CsSystem.Collections.Generic.List<UnityEngine.Quaternion>();
+        public Fox.Core.DynamicArray<UnityEngine.Quaternion> rotArray = new Fox.Core.DynamicArray<UnityEngine.Quaternion>();
         
-        public CsSystem.Collections.Generic.List<uint> primTypeArray = new CsSystem.Collections.Generic.List<uint>();
+        public Fox.Core.DynamicArray<uint> primTypeArray = new Fox.Core.DynamicArray<uint>();
         
-        public CsSystem.Collections.Generic.List<ulong> systemAttributeArray = new CsSystem.Collections.Generic.List<ulong>();
+        public Fox.Core.DynamicArray<ulong> systemAttributeArray = new Fox.Core.DynamicArray<ulong>();
         
-        public CsSystem.Collections.Generic.List<uint> throughValueArray = new CsSystem.Collections.Generic.List<uint>();
+        public Fox.Core.DynamicArray<uint> throughValueArray = new Fox.Core.DynamicArray<uint>();
         
-        public CsSystem.Collections.Generic.List<uint> flagArray = new CsSystem.Collections.Generic.List<uint>();
+        public Fox.Core.DynamicArray<uint> flagArray = new Fox.Core.DynamicArray<uint>();
         
-        public string categoryTag;
+        public Fox.String categoryTag;
         
-        public CsSystem.Collections.Generic.List<string> nameArray = new CsSystem.Collections.Generic.List<string>();
+        public Fox.Core.DynamicArray<Fox.String> nameArray = new Fox.Core.DynamicArray<Fox.String>();
         
-        public CsSystem.Collections.Generic.List<string> attachSkeletonArray = new CsSystem.Collections.Generic.List<string>();
+        public Fox.Core.DynamicArray<Fox.String> attachSkeletonArray = new Fox.Core.DynamicArray<Fox.String>();
         
-        public CsSystem.Collections.Generic.List<string> groupArray = new CsSystem.Collections.Generic.List<string>();
+        public Fox.Core.DynamicArray<Fox.String> groupArray = new Fox.Core.DynamicArray<Fox.String>();
         
-        public CsSystem.Collections.Generic.List<uint> objIndexForgroupTagArray = new CsSystem.Collections.Generic.List<uint>();
+        public Fox.Core.DynamicArray<uint> objIndexForgroupTagArray = new Fox.Core.DynamicArray<uint>();
         
-        public CsSystem.Collections.Generic.List<Fox.Core.EntityLink> applicationDataLinkArray = new CsSystem.Collections.Generic.List<Fox.Core.EntityLink>();
+        public Fox.Core.DynamicArray<Fox.Core.EntityLink> applicationDataLinkArray = new Fox.Core.DynamicArray<Fox.Core.EntityLink>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;
@@ -123,15 +123,15 @@ namespace Fox.Geox
                     this.flagArray[index] = value.GetValueAsUInt32();
                     return;
                 case "nameArray":
-                    while(this.nameArray.Count <= index) { this.nameArray.Add(default(string)); }
+                    while(this.nameArray.Count <= index) { this.nameArray.Add(default(Fox.String)); }
                     this.nameArray[index] = value.GetValueAsString();
                     return;
                 case "attachSkeletonArray":
-                    while(this.attachSkeletonArray.Count <= index) { this.attachSkeletonArray.Add(default(string)); }
+                    while(this.attachSkeletonArray.Count <= index) { this.attachSkeletonArray.Add(default(Fox.String)); }
                     this.attachSkeletonArray[index] = value.GetValueAsString();
                     return;
                 case "groupArray":
-                    while(this.groupArray.Count <= index) { this.groupArray.Add(default(string)); }
+                    while(this.groupArray.Count <= index) { this.groupArray.Add(default(Fox.String)); }
                     this.groupArray[index] = value.GetValueAsString();
                     return;
                 case "objIndexForgroupTagArray":

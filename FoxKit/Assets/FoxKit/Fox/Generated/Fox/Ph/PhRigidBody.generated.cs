@@ -55,7 +55,7 @@ namespace Fox.Ph
         
         public PhRigidBodyType motionType;
         
-        public string material;
+        public Fox.String material;
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

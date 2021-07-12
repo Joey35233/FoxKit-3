@@ -15,7 +15,7 @@ namespace Tpp.System
     public partial class TppDefaultParameterContainer : Fox.Core.Data 
     {
         // Properties
-        public string id;
+        public Fox.String id;
         
         public Fox.Core.StringMap<Fox.Core.EntityPtr<Tpp.System.TppDefaultParameterElement>> @params = new Fox.Core.StringMap<Fox.Core.EntityPtr<Tpp.System.TppDefaultParameterElement>>();
         

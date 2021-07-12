@@ -19,11 +19,11 @@ namespace Tpp.MotherBaseCore
         
         public ushort index;
         
-        public byte[] divisionType = new byte[4];
+        public Fox.Core.StaticArray<byte> divisionType = new Fox.Core.StaticArray<byte>(4);
         
-        public ushort[] divisionRotate = new ushort[4];
+        public Fox.Core.StaticArray<ushort> divisionRotate = new Fox.Core.StaticArray<ushort>(4);
         
-        public bool[] anotherConnector = new bool[8];
+        public Fox.Core.StaticArray<bool> anotherConnector = new Fox.Core.StaticArray<bool>(8);
         
         public byte cluster;
         

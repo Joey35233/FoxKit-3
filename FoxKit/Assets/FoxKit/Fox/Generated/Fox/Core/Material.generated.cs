@@ -15,7 +15,7 @@ namespace Fox.Core
     public partial class Material : Fox.Core.Data 
     {
         // Properties
-        public string materialName;
+        public Fox.String materialName;
         
         public Fox.Core.Path shader;
         

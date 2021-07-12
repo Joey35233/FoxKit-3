@@ -49,7 +49,7 @@ namespace Tpp.Effect
         
         public uint randomSeed;
         
-        public CsSystem.Collections.Generic.List<Fox.Core.EntityLink> collisionDatas = new CsSystem.Collections.Generic.List<Fox.Core.EntityLink>();
+        public Fox.Core.DynamicArray<Fox.Core.EntityLink> collisionDatas = new Fox.Core.DynamicArray<Fox.Core.EntityLink>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

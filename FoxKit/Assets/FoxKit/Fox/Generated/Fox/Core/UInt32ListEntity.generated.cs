@@ -15,7 +15,7 @@ namespace Fox.Core
     public partial class UInt32ListEntity : Fox.Core.Entity 
     {
         // Properties
-        public CsSystem.Collections.Generic.List<uint> list = new CsSystem.Collections.Generic.List<uint>();
+        public Fox.Core.DynamicArray<uint> list = new Fox.Core.DynamicArray<uint>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

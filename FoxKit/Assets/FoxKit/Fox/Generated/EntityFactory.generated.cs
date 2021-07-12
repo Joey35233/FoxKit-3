@@ -13,7 +13,7 @@ namespace Fox
 {
     public class EntityFactory
     {
-        private delegate Core.Entity EntityConstructor(ulong address, ushort idA, ushort idB);
+        private delegate Fox.Core.Entity EntityConstructor(ulong address, ushort idA, ushort idB);
 
         private IDictionary<string, EntityConstructor> Constructors { get; }
 
@@ -1175,7 +1175,7 @@ namespace Fox
 			
         };
 
-        public Core.Entity Create(string className, ulong address, ushort version, ushort idA, ushort idB)
+        public Fox.Core.Entity Create(string className, ulong address, ushort version, ushort idA, ushort idB)
         {
             if (!this.Constructors.ContainsKey(className))
             {

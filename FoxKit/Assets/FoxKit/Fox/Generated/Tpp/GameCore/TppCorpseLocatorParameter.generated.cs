@@ -15,7 +15,7 @@ namespace Tpp.GameCore
     public partial class TppCorpseLocatorParameter : Fox.Core.DataElement 
     {
         // Properties
-        public string identifier;
+        public Fox.String identifier;
         
         public bool isEmplaced;
         

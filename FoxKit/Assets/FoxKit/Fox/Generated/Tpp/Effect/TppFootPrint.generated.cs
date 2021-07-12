@@ -15,17 +15,17 @@ namespace Tpp.Effect
     public partial class TppFootPrint : Fox.Core.TransformData 
     {
         // Properties
-        public CsSystem.Collections.Generic.List<UnityEngine.Matrix4x4> matrices = new CsSystem.Collections.Generic.List<UnityEngine.Matrix4x4>();
+        public Fox.Core.DynamicArray<UnityEngine.Matrix4x4> matrices = new Fox.Core.DynamicArray<UnityEngine.Matrix4x4>();
         
-        public CsSystem.Collections.Generic.List<uint> footChara = new CsSystem.Collections.Generic.List<uint>();
+        public Fox.Core.DynamicArray<uint> footChara = new Fox.Core.DynamicArray<uint>();
         
-        public CsSystem.Collections.Generic.List<uint> footLR = new CsSystem.Collections.Generic.List<uint>();
+        public Fox.Core.DynamicArray<uint> footLR = new Fox.Core.DynamicArray<uint>();
         
-        public CsSystem.Collections.Generic.List<float> alpha = new CsSystem.Collections.Generic.List<float>();
+        public Fox.Core.DynamicArray<float> alpha = new Fox.Core.DynamicArray<float>();
         
-        public CsSystem.Collections.Generic.List<bool> blood = new CsSystem.Collections.Generic.List<bool>();
+        public Fox.Core.DynamicArray<bool> blood = new Fox.Core.DynamicArray<bool>();
         
-        public CsSystem.Collections.Generic.List<bool> enable = new CsSystem.Collections.Generic.List<bool>();
+        public Fox.Core.DynamicArray<bool> enable = new Fox.Core.DynamicArray<bool>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

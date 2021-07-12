@@ -15,7 +15,7 @@ namespace Fox.Core
     public partial class EntityPtrListEntity : Fox.Core.Entity 
     {
         // Properties
-        public CsSystem.Collections.Generic.List<Fox.Core.EntityPtr<Fox.Core.Entity>> list = new CsSystem.Collections.Generic.List<Fox.Core.EntityPtr<Fox.Core.Entity>>();
+        public Fox.Core.DynamicArray<Fox.Core.EntityPtr<Fox.Core.Entity>> list = new Fox.Core.DynamicArray<Fox.Core.EntityPtr<Fox.Core.Entity>>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

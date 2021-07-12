@@ -15,7 +15,7 @@ namespace Fox.UiScene
     public partial class UiReplaceTextureData : Fox.Core.Data 
     {
         // Properties
-        public CsSystem.Collections.Generic.List<Fox.Core.Path> texturePath = new CsSystem.Collections.Generic.List<Fox.Core.Path>();
+        public Fox.Core.DynamicArray<Fox.Core.Path> texturePath = new Fox.Core.DynamicArray<Fox.Core.Path>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

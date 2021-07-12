@@ -17,7 +17,7 @@ namespace Tpp.Effect
         // Properties
         public Fox.Core.FilePtr<Fox.Core.File> vfxFile;
         
-        public Fox.Core.StringMap<string> materialSoundList = new Fox.Core.StringMap<string>();
+        public Fox.Core.StringMap<Fox.String> materialSoundList = new Fox.Core.StringMap<Fox.String>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

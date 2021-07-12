@@ -15,7 +15,7 @@ namespace Fox.GameKit
     public partial class ObjectBrushPlugin : Fox.Core.Data 
     {
         // Properties
-        public string parentDataName;
+        public Fox.String parentDataName;
         
         public bool visibility;
         

@@ -15,11 +15,11 @@ namespace Fox.GameKit
     public partial class StageLightFadeData : Fox.Core.Data 
     {
         // Properties
-        public CsSystem.Collections.Generic.List<Fox.Core.EntityLink> lightGroup = new CsSystem.Collections.Generic.List<Fox.Core.EntityLink>();
+        public Fox.Core.DynamicArray<Fox.Core.EntityLink> lightGroup = new Fox.Core.DynamicArray<Fox.Core.EntityLink>();
         
-        public CsSystem.Collections.Generic.List<UnityEngine.Color> colorList = new CsSystem.Collections.Generic.List<UnityEngine.Color>();
+        public Fox.Core.DynamicArray<UnityEngine.Color> colorList = new Fox.Core.DynamicArray<UnityEngine.Color>();
         
-        public CsSystem.Collections.Generic.List<float> requirdTime = new CsSystem.Collections.Generic.List<float>();
+        public Fox.Core.DynamicArray<float> requirdTime = new Fox.Core.DynamicArray<float>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

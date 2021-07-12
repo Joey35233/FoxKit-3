@@ -15,9 +15,9 @@ namespace Fox.Ui
     public partial class UiNodeDataBody : Fox.Core.DataBody 
     {
         // Properties
-        public CsSystem.Collections.Generic.List<Fox.Core.EntityHandle> inputEdges = new CsSystem.Collections.Generic.List<Fox.Core.EntityHandle>();
+        public Fox.Core.DynamicArray<Fox.Core.EntityHandle> inputEdges = new Fox.Core.DynamicArray<Fox.Core.EntityHandle>();
         
-        public CsSystem.Collections.Generic.List<Fox.Core.EntityHandle> outputEdges = new CsSystem.Collections.Generic.List<Fox.Core.EntityHandle>();
+        public Fox.Core.DynamicArray<Fox.Core.EntityHandle> outputEdges = new Fox.Core.DynamicArray<Fox.Core.EntityHandle>();
         
         public Fox.Core.Path uigName;
         

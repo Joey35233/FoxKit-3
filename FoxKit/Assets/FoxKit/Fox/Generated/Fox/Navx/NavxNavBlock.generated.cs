@@ -15,9 +15,9 @@ namespace Fox.Navx
     public partial class NavxNavBlock : Fox.Core.Data 
     {
         // Properties
-        public string sceneName;
+        public Fox.String sceneName;
         
-        public string worldName;
+        public Fox.String worldName;
         
         public uint tileId;
         

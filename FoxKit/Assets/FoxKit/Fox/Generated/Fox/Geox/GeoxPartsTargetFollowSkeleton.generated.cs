@@ -15,9 +15,9 @@ namespace Fox.Geox
     public partial class GeoxPartsTargetFollowSkeleton : Fox.Core.Data 
     {
         // Properties
-        public CsSystem.Collections.Generic.List<string> skeletonNames = new CsSystem.Collections.Generic.List<string>();
+        public Fox.Core.DynamicArray<Fox.String> skeletonNames = new Fox.Core.DynamicArray<Fox.String>();
         
-        public CsSystem.Collections.Generic.List<Fox.Core.EntityLink> objectLinks = new CsSystem.Collections.Generic.List<Fox.Core.EntityLink>();
+        public Fox.Core.DynamicArray<Fox.Core.EntityLink> objectLinks = new Fox.Core.DynamicArray<Fox.Core.EntityLink>();
         
         public Fox.Core.EntityHandle partsTargetUnitHandle;
         
@@ -65,7 +65,7 @@ namespace Fox.Geox
             switch(propertyName)
             {
                 case "skeletonNames":
-                    while(this.skeletonNames.Count <= index) { this.skeletonNames.Add(default(string)); }
+                    while(this.skeletonNames.Count <= index) { this.skeletonNames.Add(default(Fox.String)); }
                     this.skeletonNames[index] = value.GetValueAsString();
                     return;
                 case "objectLinks":

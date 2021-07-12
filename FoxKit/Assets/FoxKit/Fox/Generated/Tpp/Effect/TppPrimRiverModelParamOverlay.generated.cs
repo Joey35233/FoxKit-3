@@ -15,15 +15,15 @@ namespace Tpp.Effect
     public partial class TppPrimRiverModelParamOverlay : Fox.Core.Data 
     {
         // Properties
-        public string primRiverGroupName;
+        public Fox.String primRiverGroupName;
         
         public bool visibility;
         
-        public string baseTextureName;
+        public Fox.String baseTextureName;
         
-        public string normalTextureName;
+        public Fox.String normalTextureName;
         
-        public string cubeMapName;
+        public Fox.String cubeMapName;
         
         public Fox.Core.EntityLink lightCaptureLocator;
         

@@ -19,7 +19,7 @@ namespace Tpp.GameKit
         
         public Fox.Core.EntityLink ownerGimmick;
         
-        public CsSystem.Collections.Generic.List<Fox.Core.EntityLink> lightList = new CsSystem.Collections.Generic.List<Fox.Core.EntityLink>();
+        public Fox.Core.DynamicArray<Fox.Core.EntityLink> lightList = new Fox.Core.DynamicArray<Fox.Core.EntityLink>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

@@ -17,11 +17,11 @@ namespace Fox.Core
         // Properties
         public Fox.Core.EntityHandle collector;
         
-        public string name;
+        public Fox.String name;
         
-        public string sceneName;
+        public Fox.String sceneName;
         
-        public CsSystem.Collections.Generic.List<Fox.Core.EntityPtr<Fox.Core.Actor>> actors = new CsSystem.Collections.Generic.List<Fox.Core.EntityPtr<Fox.Core.Actor>>();
+        public Fox.Core.DynamicArray<Fox.Core.EntityPtr<Fox.Core.Actor>> actors = new Fox.Core.DynamicArray<Fox.Core.EntityPtr<Fox.Core.Actor>>();
         
         public Fox.Core.StringMap<Fox.Core.FilePtr<Fox.Core.File>> dataSetFiles = new Fox.Core.StringMap<Fox.Core.FilePtr<Fox.Core.File>>();
         

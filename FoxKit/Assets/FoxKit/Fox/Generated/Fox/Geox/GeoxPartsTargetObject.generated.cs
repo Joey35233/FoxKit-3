@@ -25,9 +25,9 @@ namespace Fox.Geox
         
         public bool isValid;
         
-        public string categoryTag;
+        public Fox.String categoryTag;
         
-        public CsSystem.Collections.Generic.List<string> groupTags = new CsSystem.Collections.Generic.List<string>();
+        public Fox.Core.DynamicArray<Fox.String> groupTags = new Fox.Core.DynamicArray<Fox.String>();
         
         public Fox.Core.EntityLink applicationDataLink;
         
@@ -98,7 +98,7 @@ namespace Fox.Geox
             switch(propertyName)
             {
                 case "groupTags":
-                    while(this.groupTags.Count <= index) { this.groupTags.Add(default(string)); }
+                    while(this.groupTags.Count <= index) { this.groupTags.Add(default(Fox.String)); }
                     this.groupTags[index] = value.GetValueAsString();
                     return;
                 default:

@@ -43,11 +43,11 @@ namespace Fox.Navx
         
         public Fox.Core.FilePtr<Fox.Core.File> roughGraphFilePtr;
         
-        public string worldName;
+        public Fox.String worldName;
         
         public uint maxFileSizeInKb;
         
-        public CsSystem.Collections.Generic.List<Fox.Core.EntityPtr<Fox.Navx.NavxNavigableParameter>> parameters = new CsSystem.Collections.Generic.List<Fox.Core.EntityPtr<Fox.Navx.NavxNavigableParameter>>();
+        public Fox.Core.DynamicArray<Fox.Core.EntityPtr<Fox.Navx.NavxNavigableParameter>> parameters = new Fox.Core.DynamicArray<Fox.Core.EntityPtr<Fox.Navx.NavxNavigableParameter>>();
         
         public uint sectorSizeHorizontal;
         
@@ -55,7 +55,7 @@ namespace Fox.Navx
         
         public uint searchSpaceBucketSizeHorizontal;
         
-        public CsSystem.Collections.Generic.List<string> collisionAttributes = new CsSystem.Collections.Generic.List<string>();
+        public Fox.Core.DynamicArray<Fox.String> collisionAttributes = new Fox.Core.DynamicArray<Fox.String>();
         
         public Fox.Core.Path loadFox2FileListScriptPath;
         
@@ -183,7 +183,7 @@ namespace Fox.Navx
                     this.parameters[index] = value.GetValueAsEntityPtr<Fox.Navx.NavxNavigableParameter>();
                     return;
                 case "collisionAttributes":
-                    while(this.collisionAttributes.Count <= index) { this.collisionAttributes.Add(default(string)); }
+                    while(this.collisionAttributes.Count <= index) { this.collisionAttributes.Add(default(Fox.String)); }
                     this.collisionAttributes[index] = value.GetValueAsString();
                     return;
                 default:

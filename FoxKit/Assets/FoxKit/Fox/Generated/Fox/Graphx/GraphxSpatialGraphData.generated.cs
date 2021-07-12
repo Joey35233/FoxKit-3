@@ -15,9 +15,9 @@ namespace Fox.Graphx
     public partial class GraphxSpatialGraphData : Fox.Core.TransformData 
     {
         // Properties
-        public CsSystem.Collections.Generic.List<Fox.Core.EntityPtr<Fox.Graphx.GraphxSpatialGraphDataNode>> nodes = new CsSystem.Collections.Generic.List<Fox.Core.EntityPtr<Fox.Graphx.GraphxSpatialGraphDataNode>>();
+        public Fox.Core.DynamicArray<Fox.Core.EntityPtr<Fox.Graphx.GraphxSpatialGraphDataNode>> nodes = new Fox.Core.DynamicArray<Fox.Core.EntityPtr<Fox.Graphx.GraphxSpatialGraphDataNode>>();
         
-        public CsSystem.Collections.Generic.List<Fox.Core.EntityPtr<Fox.Graphx.GraphxSpatialGraphDataEdge>> edges = new CsSystem.Collections.Generic.List<Fox.Core.EntityPtr<Fox.Graphx.GraphxSpatialGraphDataEdge>>();
+        public Fox.Core.DynamicArray<Fox.Core.EntityPtr<Fox.Graphx.GraphxSpatialGraphDataEdge>> edges = new Fox.Core.DynamicArray<Fox.Core.EntityPtr<Fox.Graphx.GraphxSpatialGraphDataEdge>>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

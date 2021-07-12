@@ -15,7 +15,7 @@ namespace Fox.Phx
     public partial class PhxWheelAssociationUnitParam : Fox.Core.Entity 
     {
         // Properties
-        public string boneName;
+        public Fox.String boneName;
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

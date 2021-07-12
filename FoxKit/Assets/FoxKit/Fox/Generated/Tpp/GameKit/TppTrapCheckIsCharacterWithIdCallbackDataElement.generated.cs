@@ -15,7 +15,7 @@ namespace Tpp.GameKit
     public partial class TppTrapCheckIsCharacterWithIdCallbackDataElement : Fox.Geo.GeoTrapModuleCallbackDataElement 
     {
         // Properties
-        public string checkCharacterId;
+        public Fox.String checkCharacterId;
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

@@ -15,7 +15,7 @@ namespace Fox.Geo
     public partial class GeoTrap : Fox.Core.TransformData 
     {
         // Properties
-        public CsSystem.Collections.Generic.List<Fox.Core.EntityLink> conditionArray = new CsSystem.Collections.Generic.List<Fox.Core.EntityLink>();
+        public Fox.Core.DynamicArray<Fox.Core.EntityLink> conditionArray = new Fox.Core.DynamicArray<Fox.Core.EntityLink>();
         
         public bool enable;
         

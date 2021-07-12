@@ -15,7 +15,7 @@ namespace Fox.Core
     public partial class StringStringMapEntity : Fox.Core.Entity 
     {
         // Properties
-        public Fox.Core.StringMap<string> stringMap = new Fox.Core.StringMap<string>();
+        public Fox.Core.StringMap<Fox.String> stringMap = new Fox.Core.StringMap<Fox.String>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

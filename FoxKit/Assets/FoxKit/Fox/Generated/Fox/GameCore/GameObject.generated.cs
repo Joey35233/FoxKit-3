@@ -15,7 +15,7 @@ namespace Fox.GameCore
     public partial class GameObject : Fox.Core.Data 
     {
         // Properties
-        public string typeName;
+        public Fox.String typeName;
         
         public uint groupId;
         

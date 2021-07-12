@@ -15,13 +15,13 @@ namespace Tpp.Effect
     public partial class TppRainFilterInterrupt : Fox.Core.Data 
     {
         // Properties
-        public CsSystem.Collections.Generic.List<UnityEngine.Matrix4x4> planeMatrices = new CsSystem.Collections.Generic.List<UnityEngine.Matrix4x4>();
+        public Fox.Core.DynamicArray<UnityEngine.Matrix4x4> planeMatrices = new Fox.Core.DynamicArray<UnityEngine.Matrix4x4>();
         
-        public CsSystem.Collections.Generic.List<Fox.Core.Path> maskTextures = new CsSystem.Collections.Generic.List<Fox.Core.Path>();
+        public Fox.Core.DynamicArray<Fox.Core.Path> maskTextures = new Fox.Core.DynamicArray<Fox.Core.Path>();
         
-        public CsSystem.Collections.Generic.List<uint> interruptFlags = new CsSystem.Collections.Generic.List<uint>();
+        public Fox.Core.DynamicArray<uint> interruptFlags = new Fox.Core.DynamicArray<uint>();
         
-        public CsSystem.Collections.Generic.List<uint> levels = new CsSystem.Collections.Generic.List<uint>();
+        public Fox.Core.DynamicArray<uint> levels = new Fox.Core.DynamicArray<uint>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

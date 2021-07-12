@@ -17,9 +17,9 @@ namespace Fox.Geo
         // Properties
         public bool isAndCheck;
         
-        public CsSystem.Collections.Generic.List<Fox.Core.Path> checkScriptPathArray = new CsSystem.Collections.Generic.List<Fox.Core.Path>();
+        public Fox.Core.DynamicArray<Fox.Core.Path> checkScriptPathArray = new Fox.Core.DynamicArray<Fox.Core.Path>();
         
-        public CsSystem.Collections.Generic.List<Fox.Core.Path> execScriptPathArray = new CsSystem.Collections.Generic.List<Fox.Core.Path>();
+        public Fox.Core.DynamicArray<Fox.Core.Path> execScriptPathArray = new Fox.Core.DynamicArray<Fox.Core.Path>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

@@ -15,9 +15,9 @@ namespace Tpp.GameCore
     public partial class TppLandingZoneData : Fox.Core.TransformData 
     {
         // Properties
-        public string approachRoute;
+        public Fox.String approachRoute;
         
-        public string returnRoute;
+        public Fox.String returnRoute;
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

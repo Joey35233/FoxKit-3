@@ -15,7 +15,7 @@ namespace Tpp.GameKit
     public partial class TppObjectBrushSkeletonModelReserveResource : Fox.Core.Data 
     {
         // Properties
-        public string pluginName;
+        public Fox.String pluginName;
         
         public uint reserveLodLevel0;
         

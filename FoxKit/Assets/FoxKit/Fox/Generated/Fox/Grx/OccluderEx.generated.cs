@@ -23,7 +23,7 @@ namespace Fox.Grx
         
         public int numVertices;
         
-        public UnityEngine.Vector3[] positions = new UnityEngine.Vector3[7];
+        public Fox.Core.StaticArray<UnityEngine.Vector3> positions = new Fox.Core.StaticArray<UnityEngine.Vector3>(7);
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

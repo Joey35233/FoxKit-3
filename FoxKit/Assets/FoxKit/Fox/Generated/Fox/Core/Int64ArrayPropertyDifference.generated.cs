@@ -15,9 +15,9 @@ namespace Fox.Core
     public partial class Int64ArrayPropertyDifference : Fox.Core.PropertyDifference 
     {
         // Properties
-        public CsSystem.Collections.Generic.List<long> originalValues = new CsSystem.Collections.Generic.List<long>();
+        public Fox.Core.DynamicArray<long> originalValues = new Fox.Core.DynamicArray<long>();
         
-        public CsSystem.Collections.Generic.List<long> values = new CsSystem.Collections.Generic.List<long>();
+        public Fox.Core.DynamicArray<long> values = new Fox.Core.DynamicArray<long>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

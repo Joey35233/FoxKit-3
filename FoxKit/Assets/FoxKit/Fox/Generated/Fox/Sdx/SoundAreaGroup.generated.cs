@@ -19,9 +19,9 @@ namespace Fox.Sdx
         
         public Fox.Core.EntityPtr<Fox.Sdx.SoundAreaParameter> parameter;
         
-        public CsSystem.Collections.Generic.List<Fox.Core.EntityLink> members = new CsSystem.Collections.Generic.List<Fox.Core.EntityLink>();
+        public Fox.Core.DynamicArray<Fox.Core.EntityLink> members = new Fox.Core.DynamicArray<Fox.Core.EntityLink>();
         
-        public CsSystem.Collections.Generic.List<Fox.Core.EntityLink> edges = new CsSystem.Collections.Generic.List<Fox.Core.EntityLink>();
+        public Fox.Core.DynamicArray<Fox.Core.EntityLink> edges = new Fox.Core.DynamicArray<Fox.Core.EntityLink>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

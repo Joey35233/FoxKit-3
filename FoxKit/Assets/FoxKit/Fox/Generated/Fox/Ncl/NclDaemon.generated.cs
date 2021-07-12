@@ -15,9 +15,9 @@ namespace Fox.Ncl
     public partial class NclDaemon : Fox.Core.Entity 
     {
         // Properties
-        public string exIp;
+        public Fox.String exIp;
         
-        public string inIp;
+        public Fox.String inIp;
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

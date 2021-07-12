@@ -19,7 +19,7 @@ namespace Tpp.GameKit
         
         public uint trunkCount;
         
-        public string pluginName;
+        public Fox.String pluginName;
         
         public uint flags;
         

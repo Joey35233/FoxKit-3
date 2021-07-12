@@ -15,7 +15,7 @@ namespace Fox.GameKit
     public partial class ObjectBrushBody : Fox.Core.TransformDataBody 
     {
         // Properties
-        public CsSystem.Collections.Generic.List<Fox.Core.EntityHandle> pluginBodyHandle = new CsSystem.Collections.Generic.List<Fox.Core.EntityHandle>();
+        public Fox.Core.DynamicArray<Fox.Core.EntityHandle> pluginBodyHandle = new Fox.Core.DynamicArray<Fox.Core.EntityHandle>();
         
         public uint numPlugins;
         

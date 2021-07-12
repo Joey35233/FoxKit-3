@@ -15,11 +15,11 @@ namespace Fox.PartsBuilder
     public partial class PartDescription : Fox.Core.Data 
     {
         // Properties
-        public CsSystem.Collections.Generic.List<Fox.Core.EntityLink> depends = new CsSystem.Collections.Generic.List<Fox.Core.EntityLink>();
+        public Fox.Core.DynamicArray<Fox.Core.EntityLink> depends = new Fox.Core.DynamicArray<Fox.Core.EntityLink>();
         
-        public string partName;
+        public Fox.String partName;
         
-        public string buildType;
+        public Fox.String buildType;
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

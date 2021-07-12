@@ -15,7 +15,7 @@ namespace Fox.GameKit
     public partial class SubtitlesOptionBlockControllerData : Fox.Core.Data 
     {
         // Properties
-        public CsSystem.Collections.Generic.List<string> packageFileNames = new CsSystem.Collections.Generic.List<string>();
+        public Fox.Core.DynamicArray<Fox.String> packageFileNames = new Fox.Core.DynamicArray<Fox.String>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;
@@ -56,7 +56,7 @@ namespace Fox.GameKit
             switch(propertyName)
             {
                 case "packageFileNames":
-                    while(this.packageFileNames.Count <= index) { this.packageFileNames.Add(default(string)); }
+                    while(this.packageFileNames.Count <= index) { this.packageFileNames.Add(default(Fox.String)); }
                     this.packageFileNames[index] = value.GetValueAsString();
                     return;
                 default:

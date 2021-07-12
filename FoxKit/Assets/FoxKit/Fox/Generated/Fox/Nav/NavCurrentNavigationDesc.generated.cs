@@ -21,7 +21,7 @@ namespace Fox.Nav
         
         public UnityEngine.Vector3 position;
         
-        public CsSystem.Collections.Generic.List<UnityEngine.Vector3> startPositions = new CsSystem.Collections.Generic.List<UnityEngine.Vector3>();
+        public Fox.Core.DynamicArray<UnityEngine.Vector3> startPositions = new Fox.Core.DynamicArray<UnityEngine.Vector3>();
         
         public UnityEngine.Vector3 direction;
         

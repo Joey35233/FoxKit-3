@@ -15,23 +15,23 @@ namespace Tpp.Collectible
     public partial class TppCollectionLocatorArray : Fox.Core.Data 
     {
         // Properties
-        public CsSystem.Collections.Generic.List<UnityEngine.Vector3> positions = new CsSystem.Collections.Generic.List<UnityEngine.Vector3>();
+        public Fox.Core.DynamicArray<UnityEngine.Vector3> positions = new Fox.Core.DynamicArray<UnityEngine.Vector3>();
         
-        public CsSystem.Collections.Generic.List<uint> rotations = new CsSystem.Collections.Generic.List<uint>();
+        public Fox.Core.DynamicArray<uint> rotations = new Fox.Core.DynamicArray<uint>();
         
-        public CsSystem.Collections.Generic.List<uint> infos = new CsSystem.Collections.Generic.List<uint>();
+        public Fox.Core.DynamicArray<uint> infos = new Fox.Core.DynamicArray<uint>();
         
-        public CsSystem.Collections.Generic.List<ushort> segmentIndices = new CsSystem.Collections.Generic.List<ushort>();
+        public Fox.Core.DynamicArray<ushort> segmentIndices = new Fox.Core.DynamicArray<ushort>();
         
-        public CsSystem.Collections.Generic.List<ushort> locatorIndices = new CsSystem.Collections.Generic.List<ushort>();
+        public Fox.Core.DynamicArray<ushort> locatorIndices = new Fox.Core.DynamicArray<ushort>();
         
-        public CsSystem.Collections.Generic.List<ushort> locatorCounts = new CsSystem.Collections.Generic.List<ushort>();
+        public Fox.Core.DynamicArray<ushort> locatorCounts = new Fox.Core.DynamicArray<ushort>();
         
-        public CsSystem.Collections.Generic.List<byte> groupIds = new CsSystem.Collections.Generic.List<byte>();
+        public Fox.Core.DynamicArray<byte> groupIds = new Fox.Core.DynamicArray<byte>();
         
-        public CsSystem.Collections.Generic.List<ushort> segmentInfoIndices = new CsSystem.Collections.Generic.List<ushort>();
+        public Fox.Core.DynamicArray<ushort> segmentInfoIndices = new Fox.Core.DynamicArray<ushort>();
         
-        public CsSystem.Collections.Generic.List<ushort> segmentInfoCounts = new CsSystem.Collections.Generic.List<ushort>();
+        public Fox.Core.DynamicArray<ushort> segmentInfoCounts = new Fox.Core.DynamicArray<ushort>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

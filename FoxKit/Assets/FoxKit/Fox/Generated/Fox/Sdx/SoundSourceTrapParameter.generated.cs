@@ -17,9 +17,9 @@ namespace Fox.Sdx
         // Properties
         public Fox.Core.EntityLink source;
         
-        public string enterEvent;
+        public Fox.String enterEvent;
         
-        public string outEvent;
+        public Fox.String outEvent;
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

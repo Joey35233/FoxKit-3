@@ -31,7 +31,7 @@ namespace Tpp.GameCore
         
         public float lifeRecoveryCooldownTimer;
         
-        public string partsType;
+        public Fox.String partsType;
         
         public Fox.Core.StringMap<byte> TODO_trapTags = new Fox.Core.StringMap<byte>();
         

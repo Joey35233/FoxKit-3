@@ -15,25 +15,25 @@ namespace Fox.Ui
     public partial class UiNodeData : Fox.Core.Data 
     {
         // Properties
-        public CsSystem.Collections.Generic.List<Fox.Core.EntityLink> inputEdges = new CsSystem.Collections.Generic.List<Fox.Core.EntityLink>();
+        public Fox.Core.DynamicArray<Fox.Core.EntityLink> inputEdges = new Fox.Core.DynamicArray<Fox.Core.EntityLink>();
         
-        public CsSystem.Collections.Generic.List<Fox.Core.EntityLink> outputEdges = new CsSystem.Collections.Generic.List<Fox.Core.EntityLink>();
+        public Fox.Core.DynamicArray<Fox.Core.EntityLink> outputEdges = new Fox.Core.DynamicArray<Fox.Core.EntityLink>();
         
         public uint inputPortCount;
         
-        public CsSystem.Collections.Generic.List<UiNodeType> inputPortTypes = new CsSystem.Collections.Generic.List<UiNodeType>();
+        public Fox.Core.DynamicArray<UiNodeType> inputPortTypes = new Fox.Core.DynamicArray<UiNodeType>();
         
-        public CsSystem.Collections.Generic.List<string> inputPropertyNames = new CsSystem.Collections.Generic.List<string>();
+        public Fox.Core.DynamicArray<Fox.String> inputPropertyNames = new Fox.Core.DynamicArray<Fox.String>();
         
-        public CsSystem.Collections.Generic.List<UiNodePropType> inputPropertyTypes = new CsSystem.Collections.Generic.List<UiNodePropType>();
+        public Fox.Core.DynamicArray<UiNodePropType> inputPropertyTypes = new Fox.Core.DynamicArray<UiNodePropType>();
         
         public uint outputPortCount;
         
-        public CsSystem.Collections.Generic.List<UiNodeType> outputPortTypes = new CsSystem.Collections.Generic.List<UiNodeType>();
+        public Fox.Core.DynamicArray<UiNodeType> outputPortTypes = new Fox.Core.DynamicArray<UiNodeType>();
         
-        public CsSystem.Collections.Generic.List<string> outputPropertyNames = new CsSystem.Collections.Generic.List<string>();
+        public Fox.Core.DynamicArray<Fox.String> outputPropertyNames = new Fox.Core.DynamicArray<Fox.String>();
         
-        public CsSystem.Collections.Generic.List<UiNodePropType> outputPropertyTypes = new CsSystem.Collections.Generic.List<UiNodePropType>();
+        public Fox.Core.DynamicArray<UiNodePropType> outputPropertyTypes = new Fox.Core.DynamicArray<UiNodePropType>();
         
         public float xPosition;
         
@@ -43,7 +43,7 @@ namespace Fox.Ui
         
         public UiNodeType type;
         
-        public string nodeName;
+        public Fox.String nodeName;
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;
@@ -131,7 +131,7 @@ namespace Fox.Ui
                     this.inputPortTypes[index] = (UiNodeType)value.GetValueAsInt32();
                     return;
                 case "inputPropertyNames":
-                    while(this.inputPropertyNames.Count <= index) { this.inputPropertyNames.Add(default(string)); }
+                    while(this.inputPropertyNames.Count <= index) { this.inputPropertyNames.Add(default(Fox.String)); }
                     this.inputPropertyNames[index] = value.GetValueAsString();
                     return;
                 case "inputPropertyTypes":
@@ -143,7 +143,7 @@ namespace Fox.Ui
                     this.outputPortTypes[index] = (UiNodeType)value.GetValueAsInt32();
                     return;
                 case "outputPropertyNames":
-                    while(this.outputPropertyNames.Count <= index) { this.outputPropertyNames.Add(default(string)); }
+                    while(this.outputPropertyNames.Count <= index) { this.outputPropertyNames.Add(default(Fox.String)); }
                     this.outputPropertyNames[index] = value.GetValueAsString();
                     return;
                 case "outputPropertyTypes":

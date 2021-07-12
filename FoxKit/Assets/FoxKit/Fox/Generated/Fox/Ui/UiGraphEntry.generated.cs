@@ -15,9 +15,9 @@ namespace Fox.Ui
     public partial class UiGraphEntry : Fox.Core.Data 
     {
         // Properties
-        public CsSystem.Collections.Generic.List<Fox.Core.FilePtr<Fox.Core.File>> files = new CsSystem.Collections.Generic.List<Fox.Core.FilePtr<Fox.Core.File>>();
+        public Fox.Core.DynamicArray<Fox.Core.FilePtr<Fox.Core.File>> files = new Fox.Core.DynamicArray<Fox.Core.FilePtr<Fox.Core.File>>();
         
-        public CsSystem.Collections.Generic.List<Fox.Core.FilePtr<Fox.Core.File>> rawFiles = new CsSystem.Collections.Generic.List<Fox.Core.FilePtr<Fox.Core.File>>();
+        public Fox.Core.DynamicArray<Fox.Core.FilePtr<Fox.Core.File>> rawFiles = new Fox.Core.DynamicArray<Fox.Core.FilePtr<Fox.Core.File>>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

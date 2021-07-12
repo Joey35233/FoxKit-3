@@ -17,7 +17,7 @@ namespace Fox.GameKit
         // Properties
         public Fox.Core.FilePtr<Fox.Core.File> terrainDecalPackFile;
         
-        public CsSystem.Collections.Generic.List<Fox.Core.EntityLink> materialLinks = new CsSystem.Collections.Generic.List<Fox.Core.EntityLink>();
+        public Fox.Core.DynamicArray<Fox.Core.EntityLink> materialLinks = new Fox.Core.DynamicArray<Fox.Core.EntityLink>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

@@ -15,7 +15,7 @@ namespace Fox.GameKit
     public partial class CheckpointTrapScriptModuleConditionBody : Fox.Geo.GeoTrapScriptModuleConditionBody 
     {
         // Properties
-        public string checkpointName;
+        public Fox.String checkpointName;
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

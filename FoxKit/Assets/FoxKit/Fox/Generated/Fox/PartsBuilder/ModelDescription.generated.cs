@@ -27,7 +27,7 @@ namespace Fox.PartsBuilder
         
         public Fox.Core.FilePtr<Fox.Core.File> facialSettingFile;
         
-        public CsSystem.Collections.Generic.List<string> invisibleMeshNames = new CsSystem.Collections.Generic.List<string>();
+        public Fox.Core.DynamicArray<Fox.String> invisibleMeshNames = new Fox.Core.DynamicArray<Fox.String>();
         
         public float lodFarPixelSize;
         
@@ -122,7 +122,7 @@ namespace Fox.PartsBuilder
             switch(propertyName)
             {
                 case "invisibleMeshNames":
-                    while(this.invisibleMeshNames.Count <= index) { this.invisibleMeshNames.Add(default(string)); }
+                    while(this.invisibleMeshNames.Count <= index) { this.invisibleMeshNames.Add(default(Fox.String)); }
                     this.invisibleMeshNames[index] = value.GetValueAsString();
                     return;
                 default:

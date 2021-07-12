@@ -17,11 +17,11 @@ namespace Fox.Geox
         // Properties
         public CollisionFreeShape_Category collisionCategory;
         
-        public string collisionMaterial;
+        public Fox.String collisionMaterial;
         
-        public CsSystem.Collections.Generic.List<string> collisionAttributeNames = new CsSystem.Collections.Generic.List<string>();
+        public Fox.Core.DynamicArray<Fox.String> collisionAttributeNames = new Fox.Core.DynamicArray<Fox.String>();
         
-        public UnityEngine.Vector3[] points = new UnityEngine.Vector3[8];
+        public Fox.Core.StaticArray<UnityEngine.Vector3> points = new Fox.Core.StaticArray<UnityEngine.Vector3>(8);
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;
@@ -71,7 +71,7 @@ namespace Fox.Geox
             switch(propertyName)
             {
                 case "collisionAttributeNames":
-                    while(this.collisionAttributeNames.Count <= index) { this.collisionAttributeNames.Add(default(string)); }
+                    while(this.collisionAttributeNames.Count <= index) { this.collisionAttributeNames.Add(default(Fox.String)); }
                     this.collisionAttributeNames[index] = value.GetValueAsString();
                     return;
                 case "points":

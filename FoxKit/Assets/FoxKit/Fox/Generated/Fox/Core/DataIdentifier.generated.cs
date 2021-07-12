@@ -15,7 +15,7 @@ namespace Fox.Core
     public partial class DataIdentifier : Fox.Core.Data 
     {
         // Properties
-        public string identifier;
+        public Fox.String identifier;
         
         public Fox.Core.StringMap<Fox.Core.EntityLink> links = new Fox.Core.StringMap<Fox.Core.EntityLink>();
         

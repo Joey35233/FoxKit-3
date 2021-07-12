@@ -15,7 +15,7 @@ namespace Fox.Des
     public partial class DesFixData : Fox.Core.Data 
     {
         // Properties
-        public CsSystem.Collections.Generic.List<string> elementNames = new CsSystem.Collections.Generic.List<string>();
+        public Fox.Core.DynamicArray<Fox.String> elementNames = new Fox.Core.DynamicArray<Fox.String>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;
@@ -56,7 +56,7 @@ namespace Fox.Des
             switch(propertyName)
             {
                 case "elementNames":
-                    while(this.elementNames.Count <= index) { this.elementNames.Add(default(string)); }
+                    while(this.elementNames.Count <= index) { this.elementNames.Add(default(Fox.String)); }
                     this.elementNames[index] = value.GetValueAsString();
                     return;
                 default:

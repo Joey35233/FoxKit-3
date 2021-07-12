@@ -135,7 +135,7 @@ namespace Tpp.Effect
         
         public uint numBands;
         
-        public CsSystem.Collections.Generic.List<UnityEngine.Vector4> coefficients = new CsSystem.Collections.Generic.List<UnityEngine.Vector4>();
+        public Fox.Core.DynamicArray<UnityEngine.Vector4> coefficients = new Fox.Core.DynamicArray<UnityEngine.Vector4>();
         
         public float cloudiness;
         

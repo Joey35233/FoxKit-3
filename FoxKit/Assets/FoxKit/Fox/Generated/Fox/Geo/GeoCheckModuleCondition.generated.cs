@@ -17,9 +17,9 @@ namespace Fox.Geo
         // Properties
         public bool isAndCheck;
         
-        public CsSystem.Collections.Generic.List<string> checkFuncNames = new CsSystem.Collections.Generic.List<string>();
+        public Fox.Core.DynamicArray<Fox.String> checkFuncNames = new Fox.Core.DynamicArray<Fox.String>();
         
-        public CsSystem.Collections.Generic.List<Fox.Core.EntityPtr<Fox.Geo.GeoTrapModuleCallbackDataElement>> checkCallbackDataElements = new CsSystem.Collections.Generic.List<Fox.Core.EntityPtr<Fox.Geo.GeoTrapModuleCallbackDataElement>>();
+        public Fox.Core.DynamicArray<Fox.Core.EntityPtr<Fox.Geo.GeoTrapModuleCallbackDataElement>> checkCallbackDataElements = new Fox.Core.DynamicArray<Fox.Core.EntityPtr<Fox.Geo.GeoTrapModuleCallbackDataElement>>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;
@@ -65,7 +65,7 @@ namespace Fox.Geo
             switch(propertyName)
             {
                 case "checkFuncNames":
-                    while(this.checkFuncNames.Count <= index) { this.checkFuncNames.Add(default(string)); }
+                    while(this.checkFuncNames.Count <= index) { this.checkFuncNames.Add(default(Fox.String)); }
                     this.checkFuncNames[index] = value.GetValueAsString();
                     return;
                 case "checkCallbackDataElements":

@@ -23,7 +23,7 @@ namespace Fox.Geo
         
         public UnityEngine.Vector3 moverRotation;
         
-        public string trapName;
+        public Fox.String trapName;
         
         public UnityEngine.Vector3 trapPosition;
         
@@ -33,7 +33,7 @@ namespace Fox.Geo
         
         public Fox.Core.EntityHandle conditionBodyHandle;
         
-        public string trapFlagString;
+        public Fox.String trapFlagString;
         
         public uint trapFlag;
         

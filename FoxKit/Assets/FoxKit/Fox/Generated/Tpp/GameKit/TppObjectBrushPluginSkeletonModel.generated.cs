@@ -15,17 +15,17 @@ namespace Tpp.GameKit
     public partial class TppObjectBrushPluginSkeletonModel : Fox.GameKit.ObjectBrushPlugin 
     {
         // Properties
-        public CsSystem.Collections.Generic.List<Fox.Core.FilePtr<Fox.Core.File>> modelFile = new CsSystem.Collections.Generic.List<Fox.Core.FilePtr<Fox.Core.File>>();
+        public Fox.Core.DynamicArray<Fox.Core.FilePtr<Fox.Core.File>> modelFile = new Fox.Core.DynamicArray<Fox.Core.FilePtr<Fox.Core.File>>();
         
-        public CsSystem.Collections.Generic.List<Fox.Core.FilePtr<Fox.Core.File>> geomFile = new CsSystem.Collections.Generic.List<Fox.Core.FilePtr<Fox.Core.File>>();
+        public Fox.Core.DynamicArray<Fox.Core.FilePtr<Fox.Core.File>> geomFile = new Fox.Core.DynamicArray<Fox.Core.FilePtr<Fox.Core.File>>();
         
-        public CsSystem.Collections.Generic.List<Fox.Core.Path> animFile = new CsSystem.Collections.Generic.List<Fox.Core.Path>();
+        public Fox.Core.DynamicArray<Fox.Core.Path> animFile = new Fox.Core.DynamicArray<Fox.Core.Path>();
         
-        public CsSystem.Collections.Generic.List<Fox.Core.Path> animWindyFile = new CsSystem.Collections.Generic.List<Fox.Core.Path>();
+        public Fox.Core.DynamicArray<Fox.Core.Path> animWindyFile = new Fox.Core.DynamicArray<Fox.Core.Path>();
         
         public Fox.Core.FilePtr<Fox.Core.File> mtarFile;
         
-        public string soundSeType;
+        public Fox.String soundSeType;
         
         public float minSize;
         
@@ -41,9 +41,9 @@ namespace Tpp.GameKit
         
         public uint reserveResourcePerBlock;
         
-        public float[] lodLength = new float[4];
+        public Fox.Core.StaticArray<float> lodLength = new Fox.Core.StaticArray<float>(4);
         
-        public float[] lodLengthForHighEnd = new float[4];
+        public Fox.Core.StaticArray<float> lodLengthForHighEnd = new Fox.Core.StaticArray<float>(4);
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

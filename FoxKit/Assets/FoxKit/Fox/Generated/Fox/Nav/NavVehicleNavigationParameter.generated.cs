@@ -15,9 +15,9 @@ namespace Fox.Nav
     public partial class NavVehicleNavigationParameter : Fox.Nav.NavNavigationParameter 
     {
         // Properties
-        public CsSystem.Collections.Generic.List<float> turningRadii = new CsSystem.Collections.Generic.List<float>();
+        public Fox.Core.DynamicArray<float> turningRadii = new Fox.Core.DynamicArray<float>();
         
-        public CsSystem.Collections.Generic.List<float> turningSpeeds = new CsSystem.Collections.Generic.List<float>();
+        public Fox.Core.DynamicArray<float> turningSpeeds = new Fox.Core.DynamicArray<float>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

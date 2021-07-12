@@ -15,9 +15,9 @@ namespace Fox.Core
     public partial class EntityLinkArrayPropertyDifference : Fox.Core.PropertyDifference 
     {
         // Properties
-        public CsSystem.Collections.Generic.List<Fox.Core.EntityLink> originalValues = new CsSystem.Collections.Generic.List<Fox.Core.EntityLink>();
+        public Fox.Core.DynamicArray<Fox.Core.EntityLink> originalValues = new Fox.Core.DynamicArray<Fox.Core.EntityLink>();
         
-        public CsSystem.Collections.Generic.List<Fox.Core.EntityLink> values = new CsSystem.Collections.Generic.List<Fox.Core.EntityLink>();
+        public Fox.Core.DynamicArray<Fox.Core.EntityLink> values = new Fox.Core.DynamicArray<Fox.Core.EntityLink>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

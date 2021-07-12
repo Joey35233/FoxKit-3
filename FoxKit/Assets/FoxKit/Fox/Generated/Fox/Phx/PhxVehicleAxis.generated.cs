@@ -19,11 +19,11 @@ namespace Fox.Phx
         
         public Fox.Core.EntityPtr<Fox.Phx.PhxWheelConstraintParam> wheelConstraintParam;
         
-        public CsSystem.Collections.Generic.List<Fox.Core.EntityPtr<Fox.Phx.PhxWheelAssociationUnitParam>> wheelAssociationUnitParams = new CsSystem.Collections.Generic.List<Fox.Core.EntityPtr<Fox.Phx.PhxWheelAssociationUnitParam>>();
+        public Fox.Core.DynamicArray<Fox.Core.EntityPtr<Fox.Phx.PhxWheelAssociationUnitParam>> wheelAssociationUnitParams = new Fox.Core.DynamicArray<Fox.Core.EntityPtr<Fox.Phx.PhxWheelAssociationUnitParam>>();
         
-        public CsSystem.Collections.Generic.List<float> torqueDistributions = new CsSystem.Collections.Generic.List<float>();
+        public Fox.Core.DynamicArray<float> torqueDistributions = new Fox.Core.DynamicArray<float>();
         
-        public CsSystem.Collections.Generic.List<float> gearRatios = new CsSystem.Collections.Generic.List<float>();
+        public Fox.Core.DynamicArray<float> gearRatios = new Fox.Core.DynamicArray<float>();
         
         public UnityEngine.Vector3 wheelFront;
         
@@ -51,7 +51,7 @@ namespace Fox.Phx
         
         public bool useDifferential;
         
-        public CsSystem.Collections.Generic.List<string> AssignedBoneNames = new CsSystem.Collections.Generic.List<string>();
+        public Fox.Core.DynamicArray<Fox.String> AssignedBoneNames = new Fox.Core.DynamicArray<Fox.String>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;
@@ -167,7 +167,7 @@ namespace Fox.Phx
                     this.gearRatios[index] = value.GetValueAsFloat();
                     return;
                 case "AssignedBoneNames":
-                    while(this.AssignedBoneNames.Count <= index) { this.AssignedBoneNames.Add(default(string)); }
+                    while(this.AssignedBoneNames.Count <= index) { this.AssignedBoneNames.Add(default(Fox.String)); }
                     this.AssignedBoneNames[index] = value.GetValueAsString();
                     return;
                 default:

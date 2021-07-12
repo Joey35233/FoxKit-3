@@ -33,11 +33,11 @@ namespace Fox.GameKit
         
         public bool isDebugMaterial;
         
-        public Fox.Core.EntityLink[] materials = new Fox.Core.EntityLink[16];
+        public Fox.Core.StaticArray<Fox.Core.EntityLink> materials = new Fox.Core.StaticArray<Fox.Core.EntityLink>(16);
         
         public float lodParam;
         
-        public CsSystem.Collections.Generic.List<Fox.Core.EntityLink> materialConfigs = new CsSystem.Collections.Generic.List<Fox.Core.EntityLink>();
+        public Fox.Core.DynamicArray<Fox.Core.EntityLink> materialConfigs = new Fox.Core.DynamicArray<Fox.Core.EntityLink>();
         
         public Fox.Core.Path baseColorTexture;
         

@@ -15,15 +15,15 @@ namespace Fox.EdDemo
     public partial class ChildrenIdConvertParameter : Fox.Demo.DemoParameter 
     {
         // Properties
-        public string injuryId;
+        public Fox.String injuryId;
         
-        public string yellowHoodId;
+        public Fox.String yellowHoodId;
         
-        public string afloId;
+        public Fox.String afloId;
         
-        public string shortAfloId;
+        public Fox.String shortAfloId;
         
-        public string blackCoatId;
+        public Fox.String blackCoatId;
         
         public byte injuryPriority;
         

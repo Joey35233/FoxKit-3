@@ -15,7 +15,7 @@ namespace Fox.Ui
     public partial class UiFontGroupData : Fox.Core.Data 
     {
         // Properties
-        public CsSystem.Collections.Generic.List<Fox.Core.EntityPtr<Fox.Ui.UiFontDataElement>> fonts = new CsSystem.Collections.Generic.List<Fox.Core.EntityPtr<Fox.Ui.UiFontDataElement>>();
+        public Fox.Core.DynamicArray<Fox.Core.EntityPtr<Fox.Ui.UiFontDataElement>> fonts = new Fox.Core.DynamicArray<Fox.Core.EntityPtr<Fox.Ui.UiFontDataElement>>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

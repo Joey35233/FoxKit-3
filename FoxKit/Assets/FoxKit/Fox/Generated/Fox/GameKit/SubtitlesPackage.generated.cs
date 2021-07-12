@@ -15,11 +15,11 @@ namespace Fox.GameKit
     public partial class SubtitlesPackage : Fox.Core.Data 
     {
         // Properties
-        public CsSystem.Collections.Generic.List<Fox.Core.FilePtr<Fox.Core.File>> subtitlesPackage = new CsSystem.Collections.Generic.List<Fox.Core.FilePtr<Fox.Core.File>>();
+        public Fox.Core.DynamicArray<Fox.Core.FilePtr<Fox.Core.File>> subtitlesPackage = new Fox.Core.DynamicArray<Fox.Core.FilePtr<Fox.Core.File>>();
         
-        public CsSystem.Collections.Generic.List<Fox.Core.FilePtr<Fox.Core.File>> subtitlesStreamData = new CsSystem.Collections.Generic.List<Fox.Core.FilePtr<Fox.Core.File>>();
+        public Fox.Core.DynamicArray<Fox.Core.FilePtr<Fox.Core.File>> subtitlesStreamData = new Fox.Core.DynamicArray<Fox.Core.FilePtr<Fox.Core.File>>();
         
-        public CsSystem.Collections.Generic.List<Fox.Core.Path> subtitlesStreamPath = new CsSystem.Collections.Generic.List<Fox.Core.Path>();
+        public Fox.Core.DynamicArray<Fox.Core.Path> subtitlesStreamPath = new Fox.Core.DynamicArray<Fox.Core.Path>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

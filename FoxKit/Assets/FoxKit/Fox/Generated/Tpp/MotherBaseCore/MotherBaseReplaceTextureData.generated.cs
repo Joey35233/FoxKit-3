@@ -15,7 +15,7 @@ namespace Tpp.MotherBaseCore
     public partial class MotherBaseReplaceTextureData : Fox.Core.Data 
     {
         // Properties
-        public CsSystem.Collections.Generic.List<ulong> pathCodes = new CsSystem.Collections.Generic.List<ulong>();
+        public Fox.Core.DynamicArray<ulong> pathCodes = new Fox.Core.DynamicArray<ulong>();
         
         public Fox.Core.StringMap<int> flags = new Fox.Core.StringMap<int>();
         

@@ -33,7 +33,7 @@ namespace Fox.GameKit
         
         public int renderingPriority;
         
-        public CsSystem.Collections.Generic.List<Fox.Core.EntityLink> targets = new CsSystem.Collections.Generic.List<Fox.Core.EntityLink>();
+        public Fox.Core.DynamicArray<Fox.Core.EntityLink> targets = new Fox.Core.DynamicArray<Fox.Core.EntityLink>();
         
         public Decal_DrawRejectionLevel drawRejectionLevel;
         

@@ -17,7 +17,7 @@ namespace Fox.GameKit
         // Properties
         public uint id;
         
-        public string terrainName;
+        public Fox.String terrainName;
         
         public Fox.Core.FilePtr<Fox.Core.File> filePtr;
         

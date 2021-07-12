@@ -15,9 +15,9 @@ namespace Fox.Core
     public partial class FilePtrArrayPropertyDifference : Fox.Core.PropertyDifference 
     {
         // Properties
-        public CsSystem.Collections.Generic.List<Fox.Core.FilePtr<Fox.Core.File>> originalValues = new CsSystem.Collections.Generic.List<Fox.Core.FilePtr<Fox.Core.File>>();
+        public Fox.Core.DynamicArray<Fox.Core.FilePtr<Fox.Core.File>> originalValues = new Fox.Core.DynamicArray<Fox.Core.FilePtr<Fox.Core.File>>();
         
-        public CsSystem.Collections.Generic.List<Fox.Core.FilePtr<Fox.Core.File>> values = new CsSystem.Collections.Generic.List<Fox.Core.FilePtr<Fox.Core.File>>();
+        public Fox.Core.DynamicArray<Fox.Core.FilePtr<Fox.Core.File>> values = new Fox.Core.DynamicArray<Fox.Core.FilePtr<Fox.Core.File>>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

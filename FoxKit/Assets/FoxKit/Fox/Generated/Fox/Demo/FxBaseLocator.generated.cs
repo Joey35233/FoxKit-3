@@ -15,7 +15,7 @@ namespace Fox.Demo
     public partial class FxBaseLocator : Fox.Core.TransformData 
     {
         // Properties
-        public string drawText;
+        public Fox.String drawText;
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

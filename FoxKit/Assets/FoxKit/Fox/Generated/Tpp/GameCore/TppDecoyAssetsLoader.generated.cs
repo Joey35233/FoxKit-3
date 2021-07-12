@@ -15,11 +15,11 @@ namespace Tpp.GameCore
     public partial class TppDecoyAssetsLoader : Fox.Core.Data 
     {
         // Properties
-        public CsSystem.Collections.Generic.List<Fox.Core.FilePtr<Fox.Core.File>> decoyAssets = new CsSystem.Collections.Generic.List<Fox.Core.FilePtr<Fox.Core.File>>();
+        public Fox.Core.DynamicArray<Fox.Core.FilePtr<Fox.Core.File>> decoyAssets = new Fox.Core.DynamicArray<Fox.Core.FilePtr<Fox.Core.File>>();
         
-        public string playerDecoyType;
+        public Fox.String playerDecoyType;
         
-        public string enemyDecoyType;
+        public Fox.String enemyDecoyType;
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

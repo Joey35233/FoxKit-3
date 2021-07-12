@@ -27,9 +27,9 @@ namespace Tpp.Effect
         
         public float burnSpritePosition;
         
-        public string damageColorCorrectionTextureName;
+        public Fox.String damageColorCorrectionTextureName;
         
-        public string injuryColorCorrectionTextureName;
+        public Fox.String injuryColorCorrectionTextureName;
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

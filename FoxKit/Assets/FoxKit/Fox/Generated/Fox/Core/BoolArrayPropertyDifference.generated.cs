@@ -15,9 +15,9 @@ namespace Fox.Core
     public partial class BoolArrayPropertyDifference : Fox.Core.PropertyDifference 
     {
         // Properties
-        public CsSystem.Collections.Generic.List<bool> originalValues = new CsSystem.Collections.Generic.List<bool>();
+        public Fox.Core.DynamicArray<bool> originalValues = new Fox.Core.DynamicArray<bool>();
         
-        public CsSystem.Collections.Generic.List<bool> values = new CsSystem.Collections.Generic.List<bool>();
+        public Fox.Core.DynamicArray<bool> values = new Fox.Core.DynamicArray<bool>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

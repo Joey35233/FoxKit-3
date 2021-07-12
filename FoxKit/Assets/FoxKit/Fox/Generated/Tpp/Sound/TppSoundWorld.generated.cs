@@ -29,27 +29,27 @@ namespace Tpp.Sound
         
         public float endEvening;
         
-        public string situationEvent;
+        public Fox.String situationEvent;
         
-        public string clockRtpc;
+        public Fox.String clockRtpc;
         
-        public string windVelocityRtpc;
+        public Fox.String windVelocityRtpc;
         
-        public string windDirectionRtpc;
+        public Fox.String windDirectionRtpc;
         
-        public string rainRtpc;
+        public Fox.String rainRtpc;
         
-        public string heightRtpc;
+        public Fox.String heightRtpc;
         
-        public Fox.Core.EntityLink[] ambientParameter = new Fox.Core.EntityLink[8];
+        public Fox.Core.StaticArray<Fox.Core.EntityLink> ambientParameter = new Fox.Core.StaticArray<Fox.Core.EntityLink>(8);
         
-        public string categoryFpvStateGroup;
+        public Fox.String categoryFpvStateGroup;
         
-        public string categoryFpvStateValue;
+        public Fox.String categoryFpvStateValue;
         
-        public string dashStartEventName;
+        public Fox.String dashStartEventName;
         
-        public string dashFinishEventName;
+        public Fox.String dashFinishEventName;
         
         public float blockedObstruction;
         

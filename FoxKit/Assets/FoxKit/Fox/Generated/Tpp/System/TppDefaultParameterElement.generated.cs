@@ -15,7 +15,7 @@ namespace Tpp.System
     public partial class TppDefaultParameterElement : Fox.Core.DataElement 
     {
         // Properties
-        public string paramName;
+        public Fox.String paramName;
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

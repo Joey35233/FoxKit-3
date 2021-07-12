@@ -15,15 +15,15 @@ namespace Fox.EdDemo
     public partial class TppDemoPlayerResourceParameter : Fox.Demo.DemoParameter 
     {
         // Properties
-        public string playerInstanceName;
+        public Fox.String playerInstanceName;
         
-        public string partsFile;
+        public Fox.String partsFile;
         
-        public string handFv2File;
+        public Fox.String handFv2File;
         
-        public string headFv2File;
+        public Fox.String headFv2File;
         
-        public string camoFv2File;
+        public Fox.String camoFv2File;
         
         public bool needReload;
         

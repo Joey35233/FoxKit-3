@@ -17,9 +17,9 @@ namespace Fox.Geox
         // Properties
         public Fox.Core.EntityLink materialLink;
         
-        public string collisionMaterialName;
+        public Fox.String collisionMaterialName;
         
-        public string collisionColorName;
+        public Fox.String collisionColorName;
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

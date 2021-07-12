@@ -15,7 +15,7 @@ namespace Tpp.Effect
     public partial class TppSunLightFlare : Fox.Core.TransformData 
     {
         // Properties
-        public string flareName;
+        public Fox.String flareName;
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

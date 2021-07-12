@@ -15,9 +15,9 @@ namespace Fox.Core
     public partial class EntityHandleArrayPropertyDifference : Fox.Core.PropertyDifference 
     {
         // Properties
-        public CsSystem.Collections.Generic.List<Fox.Core.EntityHandle> originalValues = new CsSystem.Collections.Generic.List<Fox.Core.EntityHandle>();
+        public Fox.Core.DynamicArray<Fox.Core.EntityHandle> originalValues = new Fox.Core.DynamicArray<Fox.Core.EntityHandle>();
         
-        public CsSystem.Collections.Generic.List<Fox.Core.EntityHandle> values = new CsSystem.Collections.Generic.List<Fox.Core.EntityHandle>();
+        public Fox.Core.DynamicArray<Fox.Core.EntityHandle> values = new Fox.Core.DynamicArray<Fox.Core.EntityHandle>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

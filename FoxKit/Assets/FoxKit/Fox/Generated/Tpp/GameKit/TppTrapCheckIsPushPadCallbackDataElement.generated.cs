@@ -17,7 +17,7 @@ namespace Tpp.GameKit
         // Properties
         public uint padNumber;
         
-        public CsSystem.Collections.Generic.List<string> checkButtons = new CsSystem.Collections.Generic.List<string>();
+        public Fox.Core.DynamicArray<Fox.String> checkButtons = new Fox.Core.DynamicArray<Fox.String>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;
@@ -62,7 +62,7 @@ namespace Tpp.GameKit
             switch(propertyName)
             {
                 case "checkButtons":
-                    while(this.checkButtons.Count <= index) { this.checkButtons.Add(default(string)); }
+                    while(this.checkButtons.Count <= index) { this.checkButtons.Add(default(Fox.String)); }
                     this.checkButtons[index] = value.GetValueAsString();
                     return;
                 default:

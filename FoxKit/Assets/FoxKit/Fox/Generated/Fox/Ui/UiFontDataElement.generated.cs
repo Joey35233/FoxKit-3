@@ -15,9 +15,9 @@ namespace Fox.Ui
     public partial class UiFontDataElement : Fox.Core.DataElement 
     {
         // Properties
-        public string language;
+        public Fox.String language;
         
-        public string fontName;
+        public Fox.String fontName;
         
         public Fox.Core.FilePtr<Fox.Core.File> fontFile;
         

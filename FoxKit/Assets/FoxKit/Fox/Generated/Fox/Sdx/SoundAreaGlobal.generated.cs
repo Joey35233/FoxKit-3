@@ -17,7 +17,7 @@ namespace Fox.Sdx
         // Properties
         public Fox.Core.EntityPtr<Fox.Sdx.SoundAreaParameter> parameter;
         
-        public string volumeRtpc;
+        public Fox.String volumeRtpc;
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

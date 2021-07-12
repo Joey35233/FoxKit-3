@@ -23,17 +23,17 @@ namespace Tpp.Effect
         
         public float direction;
         
-        public string bgModelName;
+        public Fox.String bgModelName;
         
-        public CsSystem.Collections.Generic.List<string> modelNameArray = new CsSystem.Collections.Generic.List<string>();
+        public Fox.Core.DynamicArray<Fox.String> modelNameArray = new Fox.Core.DynamicArray<Fox.String>();
         
-        public CsSystem.Collections.Generic.List<string> nameArray = new CsSystem.Collections.Generic.List<string>();
+        public Fox.Core.DynamicArray<Fox.String> nameArray = new Fox.Core.DynamicArray<Fox.String>();
         
-        public CsSystem.Collections.Generic.List<float> latitudeArray = new CsSystem.Collections.Generic.List<float>();
+        public Fox.Core.DynamicArray<float> latitudeArray = new Fox.Core.DynamicArray<float>();
         
-        public CsSystem.Collections.Generic.List<float> longitudeArray = new CsSystem.Collections.Generic.List<float>();
+        public Fox.Core.DynamicArray<float> longitudeArray = new Fox.Core.DynamicArray<float>();
         
-        public CsSystem.Collections.Generic.List<float> scaleArray = new CsSystem.Collections.Generic.List<float>();
+        public Fox.Core.DynamicArray<float> scaleArray = new Fox.Core.DynamicArray<float>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;
@@ -98,11 +98,11 @@ namespace Tpp.Effect
             switch(propertyName)
             {
                 case "modelNameArray":
-                    while(this.modelNameArray.Count <= index) { this.modelNameArray.Add(default(string)); }
+                    while(this.modelNameArray.Count <= index) { this.modelNameArray.Add(default(Fox.String)); }
                     this.modelNameArray[index] = value.GetValueAsString();
                     return;
                 case "nameArray":
-                    while(this.nameArray.Count <= index) { this.nameArray.Add(default(string)); }
+                    while(this.nameArray.Count <= index) { this.nameArray.Add(default(Fox.String)); }
                     this.nameArray[index] = value.GetValueAsString();
                     return;
                 case "latitudeArray":

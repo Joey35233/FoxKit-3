@@ -17,9 +17,9 @@ namespace Fox.GameKit
         // Properties
         public Fox.Core.StringMap<byte> targetTags = new Fox.Core.StringMap<byte>();
         
-        public string enterSubtitlesFileName;
+        public Fox.String enterSubtitlesFileName;
         
-        public string outSubtitlesFileName;
+        public Fox.String outSubtitlesFileName;
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

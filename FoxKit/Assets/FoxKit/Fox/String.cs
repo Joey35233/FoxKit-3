@@ -88,5 +88,8 @@ namespace Fox
         {
             return (Length == 0) && (Hash != Empty.Hash);
         }
+
+        public static implicit operator String(string @string) => new String(@string);
+        public static implicit operator string(String @string) => @string.CString;
     }
 }

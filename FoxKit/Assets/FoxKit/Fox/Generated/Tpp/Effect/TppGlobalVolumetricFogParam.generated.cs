@@ -43,9 +43,9 @@ namespace Tpp.Effect
         
         public float falloff;
         
-        public float[] exposureOffsetValues = new float[3];
+        public Fox.Core.StaticArray<float> exposureOffsetValues = new Fox.Core.StaticArray<float>(3);
         
-        public float[] exposureOffsetTargets = new float[3];
+        public Fox.Core.StaticArray<float> exposureOffsetTargets = new Fox.Core.StaticArray<float>(3);
         
         public uint flags;
         

@@ -15,9 +15,9 @@ namespace Fox.GameKit
     public partial class ObjectBrush : Fox.Core.TransformData 
     {
         // Properties
-        public CsSystem.Collections.Generic.List<Fox.Core.EntityHandle> pluginHandle = new CsSystem.Collections.Generic.List<Fox.Core.EntityHandle>();
+        public Fox.Core.DynamicArray<Fox.Core.EntityHandle> pluginHandle = new Fox.Core.DynamicArray<Fox.Core.EntityHandle>();
         
-        public CsSystem.Collections.Generic.List<string> blockDataName = new CsSystem.Collections.Generic.List<string>();
+        public Fox.Core.DynamicArray<Fox.String> blockDataName = new Fox.Core.DynamicArray<Fox.String>();
         
         public Fox.Core.Path filePath;
         
@@ -87,7 +87,7 @@ namespace Fox.GameKit
                     this.pluginHandle[index] = value.GetValueAsEntityHandle();
                     return;
                 case "blockDataName":
-                    while(this.blockDataName.Count <= index) { this.blockDataName.Add(default(string)); }
+                    while(this.blockDataName.Count <= index) { this.blockDataName.Add(default(Fox.String)); }
                     this.blockDataName[index] = value.GetValueAsString();
                     return;
                 default:

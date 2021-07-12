@@ -15,7 +15,7 @@ namespace Tpp.GameKit
     public partial class CyprusBlockLoadFileData : Fox.Core.Data 
     {
         // Properties
-        public Fox.Core.Path[] path = new Fox.Core.Path[5];
+        public Fox.Core.StaticArray<Fox.Core.Path> path = new Fox.Core.StaticArray<Fox.Core.Path>(5);
         
         public uint block;
         

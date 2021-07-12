@@ -35,9 +35,9 @@ namespace Fox.GameKit
         
         public Fox.Core.EntityLink parentLocator;
         
-        public CsSystem.Collections.Generic.List<UnityEngine.Matrix4x4> transforms = new CsSystem.Collections.Generic.List<UnityEngine.Matrix4x4>();
+        public Fox.Core.DynamicArray<UnityEngine.Matrix4x4> transforms = new Fox.Core.DynamicArray<UnityEngine.Matrix4x4>();
         
-        public CsSystem.Collections.Generic.List<uint> colors = new CsSystem.Collections.Generic.List<uint>();
+        public Fox.Core.DynamicArray<uint> colors = new Fox.Core.DynamicArray<uint>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

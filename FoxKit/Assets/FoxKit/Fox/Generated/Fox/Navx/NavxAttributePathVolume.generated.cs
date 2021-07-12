@@ -15,9 +15,9 @@ namespace Fox.Navx
     public partial class NavxAttributePathVolume : Fox.Graphx.GraphxPathVolume 
     {
         // Properties
-        public string worldName;
+        public Fox.String worldName;
         
-        public CsSystem.Collections.Generic.List<Fox.Core.EntityPtr<Fox.Navx.NavxAttributeInfo>> attributeInfos = new CsSystem.Collections.Generic.List<Fox.Core.EntityPtr<Fox.Navx.NavxAttributeInfo>>();
+        public Fox.Core.DynamicArray<Fox.Core.EntityPtr<Fox.Navx.NavxAttributeInfo>> attributeInfos = new Fox.Core.DynamicArray<Fox.Core.EntityPtr<Fox.Navx.NavxAttributeInfo>>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

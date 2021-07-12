@@ -15,13 +15,13 @@ namespace Fox.Demo
     public partial class PartsDesc : Fox.Core.DataElement 
     {
         // Properties
-        public string instanceName;
+        public Fox.String instanceName;
         
         public Fox.Core.FilePtr<Fox.Core.File> partsFile;
         
         public Fox.Core.Path modelPath;
         
-        public string partName;
+        public Fox.String partName;
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

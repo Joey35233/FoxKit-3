@@ -15,9 +15,9 @@ namespace Fox.Anim
     public partial class ParameterMaskElement : Fox.Core.DataElement 
     {
         // Properties
-        public CsSystem.Collections.Generic.List<string> unitNameList = new CsSystem.Collections.Generic.List<string>();
+        public Fox.Core.DynamicArray<Fox.String> unitNameList = new Fox.Core.DynamicArray<Fox.String>();
         
-        public string nodeName;
+        public Fox.String nodeName;
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;
@@ -62,7 +62,7 @@ namespace Fox.Anim
             switch(propertyName)
             {
                 case "unitNameList":
-                    while(this.unitNameList.Count <= index) { this.unitNameList.Add(default(string)); }
+                    while(this.unitNameList.Count <= index) { this.unitNameList.Add(default(Fox.String)); }
                     this.unitNameList[index] = value.GetValueAsString();
                     return;
                 default:

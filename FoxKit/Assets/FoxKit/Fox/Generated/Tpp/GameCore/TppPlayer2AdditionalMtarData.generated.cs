@@ -15,7 +15,7 @@ namespace Tpp.GameCore
     public partial class TppPlayer2AdditionalMtarData : Fox.Core.Data 
     {
         // Properties
-        public CsSystem.Collections.Generic.List<Fox.Core.FilePtr<Fox.Core.File>> mtarFiles = new CsSystem.Collections.Generic.List<Fox.Core.FilePtr<Fox.Core.File>>();
+        public Fox.Core.DynamicArray<Fox.Core.FilePtr<Fox.Core.File>> mtarFiles = new Fox.Core.DynamicArray<Fox.Core.FilePtr<Fox.Core.File>>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

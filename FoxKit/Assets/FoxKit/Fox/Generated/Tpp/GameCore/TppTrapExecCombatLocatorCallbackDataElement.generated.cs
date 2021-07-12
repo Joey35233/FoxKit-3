@@ -15,9 +15,9 @@ namespace Tpp.GameCore
     public partial class TppTrapExecCombatLocatorCallbackDataElement : Fox.Geo.GeoTrapModuleCallbackDataElement 
     {
         // Properties
-        public string frontLineName;
+        public Fox.String frontLineName;
         
-        public CsSystem.Collections.Generic.List<string> inactiveLocators = new CsSystem.Collections.Generic.List<string>();
+        public Fox.Core.DynamicArray<Fox.String> inactiveLocators = new Fox.Core.DynamicArray<Fox.String>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;
@@ -62,7 +62,7 @@ namespace Tpp.GameCore
             switch(propertyName)
             {
                 case "inactiveLocators":
-                    while(this.inactiveLocators.Count <= index) { this.inactiveLocators.Add(default(string)); }
+                    while(this.inactiveLocators.Count <= index) { this.inactiveLocators.Add(default(Fox.String)); }
                     this.inactiveLocators[index] = value.GetValueAsString();
                     return;
                 default:

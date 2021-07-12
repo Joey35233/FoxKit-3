@@ -15,15 +15,15 @@ namespace Fox.Anim
     public partial class EventDataUnit : Fox.Core.Data 
     {
         // Properties
-        public string eventName;
+        public Fox.String eventName;
         
-        public CsSystem.Collections.Generic.List<Fox.Core.EntityPtr<Fox.Anim.TimeSection>> sections = new CsSystem.Collections.Generic.List<Fox.Core.EntityPtr<Fox.Anim.TimeSection>>();
+        public Fox.Core.DynamicArray<Fox.Core.EntityPtr<Fox.Anim.TimeSection>> sections = new Fox.Core.DynamicArray<Fox.Core.EntityPtr<Fox.Anim.TimeSection>>();
         
-        public CsSystem.Collections.Generic.List<string> paramString = new CsSystem.Collections.Generic.List<string>();
+        public Fox.Core.DynamicArray<Fox.String> paramString = new Fox.Core.DynamicArray<Fox.String>();
         
-        public CsSystem.Collections.Generic.List<int> paramInt = new CsSystem.Collections.Generic.List<int>();
+        public Fox.Core.DynamicArray<int> paramInt = new Fox.Core.DynamicArray<int>();
         
-        public CsSystem.Collections.Generic.List<float> paramFloat = new CsSystem.Collections.Generic.List<float>();
+        public Fox.Core.DynamicArray<float> paramFloat = new Fox.Core.DynamicArray<float>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;
@@ -75,7 +75,7 @@ namespace Fox.Anim
                     this.sections[index] = value.GetValueAsEntityPtr<Fox.Anim.TimeSection>();
                     return;
                 case "paramString":
-                    while(this.paramString.Count <= index) { this.paramString.Add(default(string)); }
+                    while(this.paramString.Count <= index) { this.paramString.Add(default(Fox.String)); }
                     this.paramString[index] = value.GetValueAsString();
                     return;
                 case "paramInt":

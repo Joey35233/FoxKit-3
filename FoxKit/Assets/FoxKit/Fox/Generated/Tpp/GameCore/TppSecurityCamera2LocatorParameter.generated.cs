@@ -15,7 +15,7 @@ namespace Tpp.GameCore
     public partial class TppSecurityCamera2LocatorParameter : Fox.Core.DataElement 
     {
         // Properties
-        public string identifier;
+        public Fox.String identifier;
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

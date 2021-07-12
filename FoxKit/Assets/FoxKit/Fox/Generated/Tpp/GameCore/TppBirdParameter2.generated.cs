@@ -19,7 +19,7 @@ namespace Tpp.GameCore
         
         public Fox.Core.FilePtr<Fox.Core.File> mtarFile;
         
-        public CsSystem.Collections.Generic.List<Fox.Core.FilePtr<Fox.Core.File>> fovaFiles = new CsSystem.Collections.Generic.List<Fox.Core.FilePtr<Fox.Core.File>>();
+        public Fox.Core.DynamicArray<Fox.Core.FilePtr<Fox.Core.File>> fovaFiles = new Fox.Core.DynamicArray<Fox.Core.FilePtr<Fox.Core.File>>();
         
         public Fox.Core.StringMap<Fox.Core.FilePtr<Fox.Core.File>> vfxFiles = new Fox.Core.StringMap<Fox.Core.FilePtr<Fox.Core.File>>();
         

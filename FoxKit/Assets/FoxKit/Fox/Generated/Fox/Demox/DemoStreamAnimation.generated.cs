@@ -31,9 +31,9 @@ namespace Fox.Demox
         
         public Fox.Core.StringMap<Fox.Core.FilePtr<Fox.Core.File>> coverModelFiles = new Fox.Core.StringMap<Fox.Core.FilePtr<Fox.Core.File>>();
         
-        public Fox.Core.StringMap<string> modelPartsDictionary = new Fox.Core.StringMap<string>();
+        public Fox.Core.StringMap<Fox.String> modelPartsDictionary = new Fox.Core.StringMap<Fox.String>();
         
-        public Fox.Core.StringMap<string> coverModelDictionary = new Fox.Core.StringMap<string>();
+        public Fox.Core.StringMap<Fox.String> coverModelDictionary = new Fox.Core.StringMap<Fox.String>();
         
         public uint updateJobCount;
         

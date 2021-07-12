@@ -15,7 +15,7 @@ namespace Fox.GameKit
     public partial class StageBlockLowModel : Fox.Core.Data 
     {
         // Properties
-        public string lowModelBasePath;
+        public Fox.String lowModelBasePath;
         
         public uint minIndexX;
         

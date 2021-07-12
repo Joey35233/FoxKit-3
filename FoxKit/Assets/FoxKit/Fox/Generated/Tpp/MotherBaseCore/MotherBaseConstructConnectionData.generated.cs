@@ -15,7 +15,7 @@ namespace Tpp.MotherBaseCore
     public partial class MotherBaseConstructConnectionData : Fox.Core.Data 
     {
         // Properties
-        public CsSystem.Collections.Generic.List<ulong> constructConnectionList = new CsSystem.Collections.Generic.List<ulong>();
+        public Fox.Core.DynamicArray<ulong> constructConnectionList = new Fox.Core.DynamicArray<ulong>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

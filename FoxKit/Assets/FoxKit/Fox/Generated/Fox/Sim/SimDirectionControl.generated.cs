@@ -17,7 +17,7 @@ namespace Fox.Sim
         // Properties
         public Fox.Core.EntityPtr<Fox.Sim.SimDirectionControlParam> controlParam;
         
-        public string refBone;
+        public Fox.String refBone;
         
         public UnityEngine.Quaternion offset;
         

@@ -17,7 +17,7 @@ namespace Fox.Sim
         // Properties
         public Fox.Core.EntityPtr<Fox.Sim.SimClothControlParam> controlParam;
         
-        public CsSystem.Collections.Generic.List<Fox.Core.EntityPtr<Fox.Sim.SimClothControlUnit>> clothControlUnits = new CsSystem.Collections.Generic.List<Fox.Core.EntityPtr<Fox.Sim.SimClothControlUnit>>();
+        public Fox.Core.DynamicArray<Fox.Core.EntityPtr<Fox.Sim.SimClothControlUnit>> clothControlUnits = new Fox.Core.DynamicArray<Fox.Core.EntityPtr<Fox.Sim.SimClothControlUnit>>();
         
         public float windCoefficient;
         

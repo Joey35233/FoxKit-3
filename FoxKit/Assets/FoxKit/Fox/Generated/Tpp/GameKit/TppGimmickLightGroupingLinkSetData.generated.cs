@@ -15,9 +15,9 @@ namespace Tpp.GameKit
     public partial class TppGimmickLightGroupingLinkSetData : Fox.Core.Data 
     {
         // Properties
-        public CsSystem.Collections.Generic.List<Fox.Core.EntityLink> ownerGimmickList = new CsSystem.Collections.Generic.List<Fox.Core.EntityLink>();
+        public Fox.Core.DynamicArray<Fox.Core.EntityLink> ownerGimmickList = new Fox.Core.DynamicArray<Fox.Core.EntityLink>();
         
-        public CsSystem.Collections.Generic.List<string> gimmickNameList = new CsSystem.Collections.Generic.List<string>();
+        public Fox.Core.DynamicArray<Fox.String> gimmickNameList = new Fox.Core.DynamicArray<Fox.String>();
         
         public Fox.Core.EntityLink light;
         
@@ -69,7 +69,7 @@ namespace Tpp.GameKit
                     this.ownerGimmickList[index] = value.GetValueAsEntityLink();
                     return;
                 case "gimmickNameList":
-                    while(this.gimmickNameList.Count <= index) { this.gimmickNameList.Add(default(string)); }
+                    while(this.gimmickNameList.Count <= index) { this.gimmickNameList.Add(default(Fox.String)); }
                     this.gimmickNameList[index] = value.GetValueAsString();
                     return;
                 default:

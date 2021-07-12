@@ -73,7 +73,7 @@ namespace Fox
         {
             this.value = v2;
         }
-        public Value(string @string)
+        public Value(String @string)
         {
             this.value = @string;
         }
@@ -153,9 +153,9 @@ namespace Fox
             return (Vector3)this.value;
         }
 
-        internal string GetValueAsString()
+        internal String GetValueAsString()
         {
-            return (string)this.value;
+            return (String)this.value;
         }
 
         internal EntityHandle GetValueAsEntityHandle()

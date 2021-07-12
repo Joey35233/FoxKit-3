@@ -15,9 +15,9 @@ namespace Fox.EdDemo
     public partial class DemoRelativePlayParameter : Fox.Demo.DemoParameter 
     {
         // Properties
-        public string rootCharacterId;
+        public Fox.String rootCharacterId;
         
-        public string lookAtCharacterId;
+        public Fox.String lookAtCharacterId;
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

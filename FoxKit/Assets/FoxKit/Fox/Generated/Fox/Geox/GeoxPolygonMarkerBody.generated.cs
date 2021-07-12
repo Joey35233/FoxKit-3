@@ -15,7 +15,7 @@ namespace Fox.Geox
     public partial class GeoxPolygonMarkerBody : Fox.Core.TransformDataBody 
     {
         // Properties
-        public CsSystem.Collections.Generic.List<UnityEngine.Vector3> vertices = new CsSystem.Collections.Generic.List<UnityEngine.Vector3>();
+        public Fox.Core.DynamicArray<UnityEngine.Vector3> vertices = new Fox.Core.DynamicArray<UnityEngine.Vector3>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

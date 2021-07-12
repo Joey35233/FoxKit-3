@@ -15,9 +15,9 @@ namespace Fox.Anim
     public partial class FacialMaskElement : Fox.Core.DataElement 
     {
         // Properties
-        public CsSystem.Collections.Generic.List<string> skelList = new CsSystem.Collections.Generic.List<string>();
+        public Fox.Core.DynamicArray<Fox.String> skelList = new Fox.Core.DynamicArray<Fox.String>();
         
-        public CsSystem.Collections.Generic.List<Fox.Core.EntityPtr<Fox.Anim.ParameterMaskElement>> shaderList = new CsSystem.Collections.Generic.List<Fox.Core.EntityPtr<Fox.Anim.ParameterMaskElement>>();
+        public Fox.Core.DynamicArray<Fox.Core.EntityPtr<Fox.Anim.ParameterMaskElement>> shaderList = new Fox.Core.DynamicArray<Fox.Core.EntityPtr<Fox.Anim.ParameterMaskElement>>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;
@@ -59,7 +59,7 @@ namespace Fox.Anim
             switch(propertyName)
             {
                 case "skelList":
-                    while(this.skelList.Count <= index) { this.skelList.Add(default(string)); }
+                    while(this.skelList.Count <= index) { this.skelList.Add(default(Fox.String)); }
                     this.skelList[index] = value.GetValueAsString();
                     return;
                 case "shaderList":

@@ -19,11 +19,11 @@ namespace Fox.Geox
         
         public CollisionPrimitive_PrimType primitiveType;
         
-        public string groupTag;
+        public Fox.String groupTag;
         
-        public string collisionMaterial;
+        public Fox.String collisionMaterial;
         
-        public CsSystem.Collections.Generic.List<string> collisionAttributeNames = new CsSystem.Collections.Generic.List<string>();
+        public Fox.Core.DynamicArray<Fox.String> collisionAttributeNames = new Fox.Core.DynamicArray<Fox.String>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;
@@ -80,7 +80,7 @@ namespace Fox.Geox
             switch(propertyName)
             {
                 case "collisionAttributeNames":
-                    while(this.collisionAttributeNames.Count <= index) { this.collisionAttributeNames.Add(default(string)); }
+                    while(this.collisionAttributeNames.Count <= index) { this.collisionAttributeNames.Add(default(Fox.String)); }
                     this.collisionAttributeNames[index] = value.GetValueAsString();
                     return;
                 default:

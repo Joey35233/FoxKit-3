@@ -15,7 +15,7 @@ namespace Fox.UiScene
     public partial class UiModelNodeElement : Fox.Core.DataElement 
     {
         // Properties
-        public string modelNodeName;
+        public Fox.String modelNodeName;
         
         public bool visible;
         

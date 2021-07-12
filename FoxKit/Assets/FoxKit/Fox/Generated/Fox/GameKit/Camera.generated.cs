@@ -15,7 +15,7 @@ namespace Fox.GameKit
     public partial class Camera : Fox.Core.Entity 
     {
         // Properties
-        public string priorityName;
+        public Fox.String priorityName;
         
         public bool enable;
         

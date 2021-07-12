@@ -15,9 +15,9 @@ namespace Fox.Demo
     public partial class ClipData : Fox.Core.DataElement 
     {
         // Properties
-        public string name;
+        public Fox.String name;
         
-        public string cameraName;
+        public Fox.String cameraName;
         
         public int startFrame;
         

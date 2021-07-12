@@ -19,7 +19,7 @@ namespace Fox.Core
         
         public uint sizeInBytes;
         
-        public CsSystem.Collections.Generic.List<string> prerequisites = new CsSystem.Collections.Generic.List<string>();
+        public Fox.Core.DynamicArray<Fox.String> prerequisites = new Fox.Core.DynamicArray<Fox.String>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;
@@ -68,7 +68,7 @@ namespace Fox.Core
             switch(propertyName)
             {
                 case "prerequisites":
-                    while(this.prerequisites.Count <= index) { this.prerequisites.Add(default(string)); }
+                    while(this.prerequisites.Count <= index) { this.prerequisites.Add(default(Fox.String)); }
                     this.prerequisites[index] = value.GetValueAsString();
                     return;
                 default:

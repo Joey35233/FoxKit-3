@@ -15,9 +15,9 @@ namespace Fox.Core
     public partial class QuatArrayPropertyDifference : Fox.Core.PropertyDifference 
     {
         // Properties
-        public CsSystem.Collections.Generic.List<UnityEngine.Quaternion> originalValues = new CsSystem.Collections.Generic.List<UnityEngine.Quaternion>();
+        public Fox.Core.DynamicArray<UnityEngine.Quaternion> originalValues = new Fox.Core.DynamicArray<UnityEngine.Quaternion>();
         
-        public CsSystem.Collections.Generic.List<UnityEngine.Quaternion> values = new CsSystem.Collections.Generic.List<UnityEngine.Quaternion>();
+        public Fox.Core.DynamicArray<UnityEngine.Quaternion> values = new Fox.Core.DynamicArray<UnityEngine.Quaternion>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

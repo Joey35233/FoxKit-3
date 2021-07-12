@@ -15,7 +15,7 @@ namespace Fox.Demox
     public partial class DemoData : Fox.Core.TransformData 
     {
         // Properties
-        public CsSystem.Collections.Generic.List<Fox.Core.FilePtr<Fox.Core.File>> evfFiles = new CsSystem.Collections.Generic.List<Fox.Core.FilePtr<Fox.Core.File>>();
+        public Fox.Core.DynamicArray<Fox.Core.FilePtr<Fox.Core.File>> evfFiles = new Fox.Core.DynamicArray<Fox.Core.FilePtr<Fox.Core.File>>();
         
         public bool onMemory;
         
@@ -31,11 +31,11 @@ namespace Fox.Demox
         
         public Fox.Core.StringMap<Fox.Core.EntityPtr<Fox.Demo.PartsDesc>> partsDesc = new Fox.Core.StringMap<Fox.Core.EntityPtr<Fox.Demo.PartsDesc>>();
         
-        public CsSystem.Collections.Generic.List<Fox.Core.EntityPtr<Fox.Demo.ClipData>> clipDatas = new CsSystem.Collections.Generic.List<Fox.Core.EntityPtr<Fox.Demo.ClipData>>();
+        public Fox.Core.DynamicArray<Fox.Core.EntityPtr<Fox.Demo.ClipData>> clipDatas = new Fox.Core.DynamicArray<Fox.Core.EntityPtr<Fox.Demo.ClipData>>();
         
-        public CsSystem.Collections.Generic.List<Fox.Core.Path> loadFiles = new CsSystem.Collections.Generic.List<Fox.Core.Path>();
+        public Fox.Core.DynamicArray<Fox.Core.Path> loadFiles = new Fox.Core.DynamicArray<Fox.Core.Path>();
         
-        public string demoId;
+        public Fox.String demoId;
         
         public Fox.Core.EntityLink playingRoot;
         
@@ -55,7 +55,7 @@ namespace Fox.Demox
         
         public Fox.Core.FilePtr<Fox.Core.File> nodeDataFile;
         
-        public CsSystem.Collections.Generic.List<string> stringParams = new CsSystem.Collections.Generic.List<string>();
+        public Fox.Core.DynamicArray<Fox.String> stringParams = new Fox.Core.DynamicArray<Fox.String>();
         
         public Fox.Core.StringMap<Fox.Core.EntityLink> entityParams = new Fox.Core.StringMap<Fox.Core.EntityLink>();
         
@@ -65,11 +65,11 @@ namespace Fox.Demox
         
         public Fox.Core.StringMap<Fox.Core.EntityLink> controlDatas = new Fox.Core.StringMap<Fox.Core.EntityLink>();
         
-        public Fox.Core.StringMap<string> controlCollectibles = new Fox.Core.StringMap<string>();
+        public Fox.Core.StringMap<Fox.String> controlCollectibles = new Fox.Core.StringMap<Fox.String>();
         
         public Fox.Core.StringMap<Fox.Core.EntityPtr<Fox.Demo.DemoParameter>> parameters = new Fox.Core.StringMap<Fox.Core.EntityPtr<Fox.Demo.DemoParameter>>();
         
-        public Fox.Core.StringMap<string> setupLights = new Fox.Core.StringMap<string>();
+        public Fox.Core.StringMap<Fox.String> setupLights = new Fox.Core.StringMap<Fox.String>();
         
         public Utility_InterpType cameraInterpType;
         
@@ -101,9 +101,9 @@ namespace Fox.Demox
         
         public int eventSkipCacheNum;
         
-        public CsSystem.Collections.Generic.List<string> highestTextureStreamModel = new CsSystem.Collections.Generic.List<string>();
+        public Fox.Core.DynamicArray<Fox.String> highestTextureStreamModel = new Fox.Core.DynamicArray<Fox.String>();
         
-        public CsSystem.Collections.Generic.List<Fox.Core.Path> highestTexture = new CsSystem.Collections.Generic.List<Fox.Core.Path>();
+        public Fox.Core.DynamicArray<Fox.Core.Path> highestTexture = new Fox.Core.DynamicArray<Fox.Core.Path>();
         
         public Fox.Core.StringMap<int> objectNum = new Fox.Core.StringMap<int>();
         
@@ -296,11 +296,11 @@ namespace Fox.Demox
                     this.loadFiles[index] = value.GetValueAsPath();
                     return;
                 case "stringParams":
-                    while(this.stringParams.Count <= index) { this.stringParams.Add(default(string)); }
+                    while(this.stringParams.Count <= index) { this.stringParams.Add(default(Fox.String)); }
                     this.stringParams[index] = value.GetValueAsString();
                     return;
                 case "highestTextureStreamModel":
-                    while(this.highestTextureStreamModel.Count <= index) { this.highestTextureStreamModel.Add(default(string)); }
+                    while(this.highestTextureStreamModel.Count <= index) { this.highestTextureStreamModel.Add(default(Fox.String)); }
                     this.highestTextureStreamModel[index] = value.GetValueAsString();
                     return;
                 case "highestTexture":

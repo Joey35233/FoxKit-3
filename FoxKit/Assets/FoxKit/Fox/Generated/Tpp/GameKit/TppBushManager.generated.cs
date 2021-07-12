@@ -35,11 +35,11 @@ namespace Tpp.GameKit
         
         public UnityEngine.Vector3 cameraPos;
         
-        public CsSystem.Collections.Generic.List<string> existMaterials = new CsSystem.Collections.Generic.List<string>();
+        public Fox.Core.DynamicArray<Fox.String> existMaterials = new Fox.Core.DynamicArray<Fox.String>();
         
-        public CsSystem.Collections.Generic.List<string> noiseSeType = new CsSystem.Collections.Generic.List<string>();
+        public Fox.Core.DynamicArray<Fox.String> noiseSeType = new Fox.Core.DynamicArray<Fox.String>();
         
-        public Fox.Core.StringMap<string> noiseSeEventNames = new Fox.Core.StringMap<string>();
+        public Fox.Core.StringMap<Fox.String> noiseSeEventNames = new Fox.Core.StringMap<Fox.String>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;
@@ -122,11 +122,11 @@ namespace Tpp.GameKit
             switch(propertyName)
             {
                 case "existMaterials":
-                    while(this.existMaterials.Count <= index) { this.existMaterials.Add(default(string)); }
+                    while(this.existMaterials.Count <= index) { this.existMaterials.Add(default(Fox.String)); }
                     this.existMaterials[index] = value.GetValueAsString();
                     return;
                 case "noiseSeType":
-                    while(this.noiseSeType.Count <= index) { this.noiseSeType.Add(default(string)); }
+                    while(this.noiseSeType.Count <= index) { this.noiseSeType.Add(default(Fox.String)); }
                     this.noiseSeType[index] = value.GetValueAsString();
                     return;
                 default:

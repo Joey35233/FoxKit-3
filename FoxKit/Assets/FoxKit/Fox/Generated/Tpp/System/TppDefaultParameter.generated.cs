@@ -15,7 +15,7 @@ namespace Tpp.System
     public partial class TppDefaultParameter : Tpp.System.TppDefaultParameterContainer 
     {
         // Properties
-        public string groupName;
+        public Fox.String groupName;
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

@@ -19,9 +19,9 @@ namespace Fox.Geo
         
         public uint stateFlag;
         
-        public string uniqueId;
+        public Fox.String uniqueId;
         
-        public CsSystem.Collections.Generic.List<string> groupTags = new CsSystem.Collections.Generic.List<string>();
+        public Fox.Core.DynamicArray<Fox.String> groupTags = new Fox.Core.DynamicArray<Fox.String>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;
@@ -74,7 +74,7 @@ namespace Fox.Geo
             switch(propertyName)
             {
                 case "groupTags":
-                    while(this.groupTags.Count <= index) { this.groupTags.Add(default(string)); }
+                    while(this.groupTags.Count <= index) { this.groupTags.Add(default(Fox.String)); }
                     this.groupTags[index] = value.GetValueAsString();
                     return;
                 default:

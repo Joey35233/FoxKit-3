@@ -17,11 +17,11 @@ namespace Fox.UiScene
         // Properties
         public Fox.Core.FilePtr<Fox.Core.File> data;
         
-        public string sceneName;
+        public Fox.String sceneName;
         
         public int priority;
         
-        public CsSystem.Collections.Generic.List<Fox.Core.EntityLink> animations = new CsSystem.Collections.Generic.List<Fox.Core.EntityLink>();
+        public Fox.Core.DynamicArray<Fox.Core.EntityLink> animations = new Fox.Core.DynamicArray<Fox.Core.EntityLink>();
         
         public bool useLayoutCamera;
         
@@ -33,13 +33,13 @@ namespace Fox.UiScene
         
         public Fox.Core.EntityHandle connection_connectModelDataHandle;
         
-        public string connection_connectModelNodeName;
+        public Fox.String connection_connectModelNodeName;
         
         public UnityEngine.Color color;
         
         public UiInheritanceSetting inheritanceSetting;
         
-        public CsSystem.Collections.Generic.List<Fox.Core.EntityPtr<Fox.UiScene.UiModelNodeElement>> modelNodes = new CsSystem.Collections.Generic.List<Fox.Core.EntityPtr<Fox.UiScene.UiModelNodeElement>>();
+        public Fox.Core.DynamicArray<Fox.Core.EntityPtr<Fox.UiScene.UiModelNodeElement>> modelNodes = new Fox.Core.DynamicArray<Fox.Core.EntityPtr<Fox.UiScene.UiModelNodeElement>>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

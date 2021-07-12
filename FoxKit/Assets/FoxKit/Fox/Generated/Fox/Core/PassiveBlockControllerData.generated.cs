@@ -21,11 +21,11 @@ namespace Fox.Core
         
         public Fox.Core.Path scriptPath;
         
-        public CsSystem.Collections.Generic.List<Fox.Core.EntityLink> blockGroups = new CsSystem.Collections.Generic.List<Fox.Core.EntityLink>();
+        public Fox.Core.DynamicArray<Fox.Core.EntityLink> blockGroups = new Fox.Core.DynamicArray<Fox.Core.EntityLink>();
         
         public bool isAddRelatedBlockGroupEachOther;
         
-        public string prerequisiteBlockGroupName;
+        public Fox.String prerequisiteBlockGroupName;
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

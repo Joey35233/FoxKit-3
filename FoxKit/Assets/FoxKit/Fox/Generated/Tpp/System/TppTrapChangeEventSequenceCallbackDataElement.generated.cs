@@ -17,7 +17,7 @@ namespace Tpp.System
         // Properties
         public Fox.Core.EntityLink eventSequenceManager;
         
-        public string sequenceIdToGo;
+        public Fox.String sequenceIdToGo;
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

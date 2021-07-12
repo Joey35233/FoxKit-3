@@ -17,7 +17,7 @@ namespace Fox.Sim
         // Properties
         public Fox.Core.EntityPtr<Fox.Sim.SimAssociationUnitParam> param;
         
-        public string boneName;
+        public Fox.String boneName;
         
         public bool initialized;
         

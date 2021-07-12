@@ -15,7 +15,7 @@ namespace Fox.Core
     public partial class EntityHandleArrayEntity : Fox.Core.Entity 
     {
         // Properties
-        public CsSystem.Collections.Generic.List<Fox.Core.EntityHandle> array = new CsSystem.Collections.Generic.List<Fox.Core.EntityHandle>();
+        public Fox.Core.DynamicArray<Fox.Core.EntityHandle> array = new Fox.Core.DynamicArray<Fox.Core.EntityHandle>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

@@ -15,9 +15,9 @@ namespace Fox.Core
     public partial class WideVector3ArrayPropertyDifference : Fox.Core.PropertyDifference 
     {
         // Properties
-        public CsSystem.Collections.Generic.List<object> originalValues = new CsSystem.Collections.Generic.List<object>();
+        public Fox.Core.DynamicArray<object> originalValues = new Fox.Core.DynamicArray<object>();
         
-        public CsSystem.Collections.Generic.List<object> values = new CsSystem.Collections.Generic.List<object>();
+        public Fox.Core.DynamicArray<object> values = new Fox.Core.DynamicArray<object>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

@@ -15,7 +15,7 @@ namespace Fox.Sim
     public partial class SimDaemon : Fox.Core.Entity 
     {
         // Properties
-        public string defaultViewPort;
+        public Fox.String defaultViewPort;
         
         public int maxActiveClothNum;
         

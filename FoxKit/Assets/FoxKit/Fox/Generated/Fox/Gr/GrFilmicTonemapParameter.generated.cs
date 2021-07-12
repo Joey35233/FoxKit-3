@@ -17,7 +17,7 @@ namespace Fox.Gr
         // Properties
         public bool enable;
         
-        public UnityEngine.Vector4[] parameters = new UnityEngine.Vector4[2];
+        public Fox.Core.StaticArray<UnityEngine.Vector4> parameters = new Fox.Core.StaticArray<UnityEngine.Vector4>(2);
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

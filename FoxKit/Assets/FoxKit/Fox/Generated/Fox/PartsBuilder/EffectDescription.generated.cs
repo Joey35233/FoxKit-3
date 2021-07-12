@@ -15,17 +15,17 @@ namespace Fox.PartsBuilder
     public partial class EffectDescription : Fox.PartsBuilder.PartDescription 
     {
         // Properties
-        public CsSystem.Collections.Generic.List<string> connectDestinationSkelNames = new CsSystem.Collections.Generic.List<string>();
+        public Fox.Core.DynamicArray<Fox.String> connectDestinationSkelNames = new Fox.Core.DynamicArray<Fox.String>();
         
-        public CsSystem.Collections.Generic.List<string> connectDestinationCnpNames = new CsSystem.Collections.Generic.List<string>();
+        public Fox.Core.DynamicArray<Fox.String> connectDestinationCnpNames = new Fox.Core.DynamicArray<Fox.String>();
         
-        public CsSystem.Collections.Generic.List<UnityEngine.Vector3> offsetSkelPositions = new CsSystem.Collections.Generic.List<UnityEngine.Vector3>();
+        public Fox.Core.DynamicArray<UnityEngine.Vector3> offsetSkelPositions = new Fox.Core.DynamicArray<UnityEngine.Vector3>();
         
-        public CsSystem.Collections.Generic.List<UnityEngine.Vector3> offsetCnpPositions = new CsSystem.Collections.Generic.List<UnityEngine.Vector3>();
+        public Fox.Core.DynamicArray<UnityEngine.Vector3> offsetCnpPositions = new Fox.Core.DynamicArray<UnityEngine.Vector3>();
         
-        public CsSystem.Collections.Generic.List<UnityEngine.Vector4> generalSkelParameters = new CsSystem.Collections.Generic.List<UnityEngine.Vector4>();
+        public Fox.Core.DynamicArray<UnityEngine.Vector4> generalSkelParameters = new Fox.Core.DynamicArray<UnityEngine.Vector4>();
         
-        public CsSystem.Collections.Generic.List<UnityEngine.Vector4> generalCnpParameters = new CsSystem.Collections.Generic.List<UnityEngine.Vector4>();
+        public Fox.Core.DynamicArray<UnityEngine.Vector4> generalCnpParameters = new Fox.Core.DynamicArray<UnityEngine.Vector4>();
         
         public bool effectConnect;
         
@@ -39,9 +39,9 @@ namespace Fox.PartsBuilder
         
         public EffectKind effectKind;
         
-        public string effectVariationName;
+        public Fox.String effectVariationName;
         
-        public string effectFileFromVfxFileLoader;
+        public Fox.String effectFileFromVfxFileLoader;
         
         public Fox.Core.FilePtr<Fox.Core.File> effectFileFromFilePtr;
         
@@ -125,11 +125,11 @@ namespace Fox.PartsBuilder
             switch(propertyName)
             {
                 case "connectDestinationSkelNames":
-                    while(this.connectDestinationSkelNames.Count <= index) { this.connectDestinationSkelNames.Add(default(string)); }
+                    while(this.connectDestinationSkelNames.Count <= index) { this.connectDestinationSkelNames.Add(default(Fox.String)); }
                     this.connectDestinationSkelNames[index] = value.GetValueAsString();
                     return;
                 case "connectDestinationCnpNames":
-                    while(this.connectDestinationCnpNames.Count <= index) { this.connectDestinationCnpNames.Add(default(string)); }
+                    while(this.connectDestinationCnpNames.Count <= index) { this.connectDestinationCnpNames.Add(default(Fox.String)); }
                     this.connectDestinationCnpNames[index] = value.GetValueAsString();
                     return;
                 case "offsetSkelPositions":

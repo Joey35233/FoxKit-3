@@ -19,7 +19,7 @@ namespace Tpp.GameKit
         
         public byte memberCount;
         
-        public CsSystem.Collections.Generic.List<Fox.Core.EntityLink> aimPoints = new CsSystem.Collections.Generic.List<Fox.Core.EntityLink>();
+        public Fox.Core.DynamicArray<Fox.Core.EntityLink> aimPoints = new Fox.Core.DynamicArray<Fox.Core.EntityLink>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

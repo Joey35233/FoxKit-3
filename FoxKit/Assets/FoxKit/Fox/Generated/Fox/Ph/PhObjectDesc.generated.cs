@@ -15,11 +15,11 @@ namespace Fox.Ph
     public partial class PhObjectDesc : Fox.Core.Data 
     {
         // Properties
-        public CsSystem.Collections.Generic.List<Fox.Core.EntityPtr<Fox.Core.Entity>> bodies = new CsSystem.Collections.Generic.List<Fox.Core.EntityPtr<Fox.Core.Entity>>();
+        public Fox.Core.DynamicArray<Fox.Core.EntityPtr<Fox.Core.Entity>> bodies = new Fox.Core.DynamicArray<Fox.Core.EntityPtr<Fox.Core.Entity>>();
         
-        public CsSystem.Collections.Generic.List<Fox.Core.EntityPtr<Fox.Ph.PhConstraintParam>> constraints = new CsSystem.Collections.Generic.List<Fox.Core.EntityPtr<Fox.Ph.PhConstraintParam>>();
+        public Fox.Core.DynamicArray<Fox.Core.EntityPtr<Fox.Ph.PhConstraintParam>> constraints = new Fox.Core.DynamicArray<Fox.Core.EntityPtr<Fox.Ph.PhConstraintParam>>();
         
-        public CsSystem.Collections.Generic.List<int> bodyIndices = new CsSystem.Collections.Generic.List<int>();
+        public Fox.Core.DynamicArray<int> bodyIndices = new Fox.Core.DynamicArray<int>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

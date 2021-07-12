@@ -15,9 +15,9 @@ namespace Fox.Core
     public partial class StringArrayPropertyDifference : Fox.Core.PropertyDifference 
     {
         // Properties
-        public CsSystem.Collections.Generic.List<string> originalValues = new CsSystem.Collections.Generic.List<string>();
+        public Fox.Core.DynamicArray<Fox.String> originalValues = new Fox.Core.DynamicArray<Fox.String>();
         
-        public CsSystem.Collections.Generic.List<string> values = new CsSystem.Collections.Generic.List<string>();
+        public Fox.Core.DynamicArray<Fox.String> values = new Fox.Core.DynamicArray<Fox.String>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;
@@ -59,11 +59,11 @@ namespace Fox.Core
             switch(propertyName)
             {
                 case "originalValues":
-                    while(this.originalValues.Count <= index) { this.originalValues.Add(default(string)); }
+                    while(this.originalValues.Count <= index) { this.originalValues.Add(default(Fox.String)); }
                     this.originalValues[index] = value.GetValueAsString();
                     return;
                 case "values":
-                    while(this.values.Count <= index) { this.values.Add(default(string)); }
+                    while(this.values.Count <= index) { this.values.Add(default(Fox.String)); }
                     this.values[index] = value.GetValueAsString();
                     return;
                 default:

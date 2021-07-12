@@ -15,11 +15,11 @@ namespace Fox.Navx
     public partial class NavxFillNavVolume : Fox.Core.TransformData 
     {
         // Properties
-        public string sceneName;
+        public Fox.String sceneName;
         
-        public string worldName;
+        public Fox.String worldName;
         
-        public CsSystem.Collections.Generic.List<string> attributes = new CsSystem.Collections.Generic.List<string>();
+        public Fox.Core.DynamicArray<Fox.String> attributes = new Fox.Core.DynamicArray<Fox.String>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;
@@ -68,7 +68,7 @@ namespace Fox.Navx
             switch(propertyName)
             {
                 case "attributes":
-                    while(this.attributes.Count <= index) { this.attributes.Add(default(string)); }
+                    while(this.attributes.Count <= index) { this.attributes.Add(default(Fox.String)); }
                     this.attributes[index] = value.GetValueAsString();
                     return;
                 default:

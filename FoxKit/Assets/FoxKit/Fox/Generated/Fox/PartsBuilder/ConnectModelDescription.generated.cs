@@ -15,7 +15,7 @@ namespace Fox.PartsBuilder
     public partial class ConnectModelDescription : Fox.PartsBuilder.ModelDescription 
     {
         // Properties
-        public Fox.Core.StringMap<string> connectPointNames = new Fox.Core.StringMap<string>();
+        public Fox.Core.StringMap<Fox.String> connectPointNames = new Fox.Core.StringMap<Fox.String>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

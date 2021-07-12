@@ -15,9 +15,9 @@ namespace Fox.Core
     public partial class FoxFlagContainer : Fox.Core.Entity 
     {
         // Properties
-        public CsSystem.Collections.Generic.List<uint> status = new CsSystem.Collections.Generic.List<uint>();
+        public Fox.Core.DynamicArray<uint> status = new Fox.Core.DynamicArray<uint>();
         
-        public string @string;
+        public Fox.String @string;
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

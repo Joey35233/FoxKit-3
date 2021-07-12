@@ -15,19 +15,19 @@ namespace Fox.Phx
     public partial class PhxVehicleNormalEngine : Fox.Core.Data 
     {
         // Properties
-        public CsSystem.Collections.Generic.List<Fox.Core.EntityLink> vehicleAxes = new CsSystem.Collections.Generic.List<Fox.Core.EntityLink>();
+        public Fox.Core.DynamicArray<Fox.Core.EntityLink> vehicleAxes = new Fox.Core.DynamicArray<Fox.Core.EntityLink>();
         
-        public CsSystem.Collections.Generic.List<float> torqueDistributions = new CsSystem.Collections.Generic.List<float>();
+        public Fox.Core.DynamicArray<float> torqueDistributions = new Fox.Core.DynamicArray<float>();
         
-        public CsSystem.Collections.Generic.List<float> gearRatios = new CsSystem.Collections.Generic.List<float>();
+        public Fox.Core.DynamicArray<float> gearRatios = new Fox.Core.DynamicArray<float>();
         
         public Fox.Core.EntityPtr<Fox.Phx.PhVehicleNormalEngineParam> vehicleNormalEngineParam;
         
-        public CsSystem.Collections.Generic.List<float> specPointAngularVelocity = new CsSystem.Collections.Generic.List<float>();
+        public Fox.Core.DynamicArray<float> specPointAngularVelocity = new Fox.Core.DynamicArray<float>();
         
-        public CsSystem.Collections.Generic.List<float> specPointTorque = new CsSystem.Collections.Generic.List<float>();
+        public Fox.Core.DynamicArray<float> specPointTorque = new Fox.Core.DynamicArray<float>();
         
-        public CsSystem.Collections.Generic.List<float> specPointBreakTorque = new CsSystem.Collections.Generic.List<float>();
+        public Fox.Core.DynamicArray<float> specPointBreakTorque = new Fox.Core.DynamicArray<float>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

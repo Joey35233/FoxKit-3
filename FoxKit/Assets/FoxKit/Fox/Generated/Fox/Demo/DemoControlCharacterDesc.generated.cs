@@ -15,11 +15,11 @@ namespace Fox.Demo
     public partial class DemoControlCharacterDesc : Fox.Core.DataElement 
     {
         // Properties
-        public string characterId;
+        public Fox.String characterId;
         
-        public string releaseGroupName;
+        public Fox.String releaseGroupName;
         
-        public string releaseTag;
+        public Fox.String releaseTag;
         
         public bool controlledAtStart;
         
@@ -27,9 +27,9 @@ namespace Fox.Demo
         
         public UnityEngine.Quaternion rotation;
         
-        public string startGroupName;
+        public Fox.String startGroupName;
         
-        public string startTag;
+        public Fox.String startTag;
         
         public UnityEngine.Vector3 startTranslation;
         

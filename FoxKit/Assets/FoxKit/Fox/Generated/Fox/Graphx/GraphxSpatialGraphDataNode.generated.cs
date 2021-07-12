@@ -17,9 +17,9 @@ namespace Fox.Graphx
         // Properties
         public UnityEngine.Vector3 position;
         
-        public CsSystem.Collections.Generic.List<Fox.Core.EntityHandle> inlinks = new CsSystem.Collections.Generic.List<Fox.Core.EntityHandle>();
+        public Fox.Core.DynamicArray<Fox.Core.EntityHandle> inlinks = new Fox.Core.DynamicArray<Fox.Core.EntityHandle>();
         
-        public CsSystem.Collections.Generic.List<Fox.Core.EntityHandle> outlinks = new CsSystem.Collections.Generic.List<Fox.Core.EntityHandle>();
+        public Fox.Core.DynamicArray<Fox.Core.EntityHandle> outlinks = new Fox.Core.DynamicArray<Fox.Core.EntityHandle>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

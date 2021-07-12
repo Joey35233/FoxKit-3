@@ -15,7 +15,7 @@ namespace Fox.Core
     public partial class StringEntity : Fox.Core.PropertyValueEntity 
     {
         // Properties
-        public string value;
+        public Fox.String value;
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

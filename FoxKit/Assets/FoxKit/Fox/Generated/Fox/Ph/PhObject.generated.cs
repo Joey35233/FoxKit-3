@@ -17,7 +17,7 @@ namespace Fox.Ph
         // Properties
         public Fox.Core.EntityPtr<Fox.Ph.PhObjectParam> param;
         
-        public string worldName;
+        public Fox.String worldName;
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

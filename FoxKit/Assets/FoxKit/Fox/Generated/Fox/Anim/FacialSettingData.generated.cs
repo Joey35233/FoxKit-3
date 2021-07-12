@@ -15,13 +15,13 @@ namespace Fox.Anim
     public partial class FacialSettingData : Fox.Core.Data 
     {
         // Properties
-        public CsSystem.Collections.Generic.List<Fox.Core.EntityPtr<Fox.Anim.FacialMaskElement>> aspectMaskList = new CsSystem.Collections.Generic.List<Fox.Core.EntityPtr<Fox.Anim.FacialMaskElement>>();
+        public Fox.Core.DynamicArray<Fox.Core.EntityPtr<Fox.Anim.FacialMaskElement>> aspectMaskList = new Fox.Core.DynamicArray<Fox.Core.EntityPtr<Fox.Anim.FacialMaskElement>>();
         
         public Fox.Core.EntityPtr<Fox.Anim.FacialMaskElement> mouthMask;
         
         public Fox.Core.EntityPtr<Fox.Anim.FacialMaskElement> lipMask;
         
-        public string rootName;
+        public Fox.String rootName;
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

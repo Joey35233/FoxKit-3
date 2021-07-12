@@ -15,7 +15,7 @@ namespace Fox.Geo
     public partial class GeoTrapModuleCallbackDataElement : Fox.Core.DataElement 
     {
         // Properties
-        public string funcName;
+        public Fox.String funcName;
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

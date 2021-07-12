@@ -15,7 +15,7 @@ namespace Fox.Navx
     public partial class NavxNavigableParameter : Fox.Core.DataElement 
     {
         // Properties
-        public string name;
+        public Fox.String name;
         
         public bool isDefault;
         

@@ -15,7 +15,7 @@ namespace Tpp.System
     public partial class TppRequestWeatherTagTrapExecDataElement : Fox.Geo.GeoTrapModuleCallbackDataElement 
     {
         // Properties
-        public string tagName;
+        public Fox.String tagName;
         
         public byte priority;
         

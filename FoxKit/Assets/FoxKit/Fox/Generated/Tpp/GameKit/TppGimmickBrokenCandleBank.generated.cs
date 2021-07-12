@@ -15,7 +15,7 @@ namespace Tpp.GameKit
     public partial class TppGimmickBrokenCandleBank : Fox.Core.Data 
     {
         // Properties
-        public CsSystem.Collections.Generic.List<Fox.Core.Path> referencePartsPathList = new CsSystem.Collections.Generic.List<Fox.Core.Path>();
+        public Fox.Core.DynamicArray<Fox.Core.Path> referencePartsPathList = new Fox.Core.DynamicArray<Fox.Core.Path>();
         
         public Fox.Core.FilePtr<Fox.Core.File> modelFile;
         

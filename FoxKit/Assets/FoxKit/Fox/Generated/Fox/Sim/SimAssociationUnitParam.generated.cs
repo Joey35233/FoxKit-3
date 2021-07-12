@@ -15,7 +15,7 @@ namespace Fox.Sim
     public partial class SimAssociationUnitParam : Fox.Core.Entity 
     {
         // Properties
-        public string boneName;
+        public Fox.String boneName;
         
         public bool initialized;
         

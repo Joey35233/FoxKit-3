@@ -17,7 +17,7 @@ namespace Tpp.GameKit
         // Properties
         public bool onlyOnce;
         
-        public string offenseName;
+        public Fox.String offenseName;
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

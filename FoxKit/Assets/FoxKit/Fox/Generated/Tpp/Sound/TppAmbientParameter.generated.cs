@@ -15,9 +15,9 @@ namespace Tpp.Sound
     public partial class TppAmbientParameter : Fox.Core.Data 
     {
         // Properties
-        public string ambientEvent;
+        public Fox.String ambientEvent;
         
-        public string objectRtpcName;
+        public Fox.String objectRtpcName;
         
         public float objectRtpcValue;
         

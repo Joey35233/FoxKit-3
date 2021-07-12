@@ -19,17 +19,17 @@ namespace Fox.Tactical
         
         public bool enableInGame;
         
-        public string worldName;
+        public Fox.String worldName;
         
         public Fox.Core.EntityLink userData;
         
-        public string userId;
+        public Fox.String userId;
         
-        public CsSystem.Collections.Generic.List<Fox.Core.EntityPtr<Fox.Tactical.GkTacticalActionWaypoint>> waypoints = new CsSystem.Collections.Generic.List<Fox.Core.EntityPtr<Fox.Tactical.GkTacticalActionWaypoint>>();
+        public Fox.Core.DynamicArray<Fox.Core.EntityPtr<Fox.Tactical.GkTacticalActionWaypoint>> waypoints = new Fox.Core.DynamicArray<Fox.Core.EntityPtr<Fox.Tactical.GkTacticalActionWaypoint>>();
         
-        public CsSystem.Collections.Generic.List<Fox.Core.EntityPtr<Fox.Tactical.GkTacticalActionEdge>> edges = new CsSystem.Collections.Generic.List<Fox.Core.EntityPtr<Fox.Tactical.GkTacticalActionEdge>>();
+        public Fox.Core.DynamicArray<Fox.Core.EntityPtr<Fox.Tactical.GkTacticalActionEdge>> edges = new Fox.Core.DynamicArray<Fox.Core.EntityPtr<Fox.Tactical.GkTacticalActionEdge>>();
         
-        public CsSystem.Collections.Generic.List<string> attributeNames = new CsSystem.Collections.Generic.List<string>();
+        public Fox.Core.DynamicArray<Fox.String> attributeNames = new Fox.Core.DynamicArray<Fox.String>();
         
         public uint attribute;
         
@@ -106,7 +106,7 @@ namespace Fox.Tactical
                     this.edges[index] = value.GetValueAsEntityPtr<Fox.Tactical.GkTacticalActionEdge>();
                     return;
                 case "attributeNames":
-                    while(this.attributeNames.Count <= index) { this.attributeNames.Add(default(string)); }
+                    while(this.attributeNames.Count <= index) { this.attributeNames.Add(default(Fox.String)); }
                     this.attributeNames[index] = value.GetValueAsString();
                     return;
                 default:

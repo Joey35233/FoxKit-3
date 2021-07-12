@@ -15,9 +15,9 @@ namespace Fox.Nav
     public partial class NavWorldDesc : Fox.Core.Entity 
     {
         // Properties
-        public string sceneName;
+        public Fox.String sceneName;
         
-        public string worldName;
+        public Fox.String worldName;
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

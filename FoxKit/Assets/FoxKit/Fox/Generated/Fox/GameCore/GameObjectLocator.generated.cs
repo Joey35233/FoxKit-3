@@ -15,7 +15,7 @@ namespace Fox.GameCore
     public partial class GameObjectLocator : Fox.Core.TransformData 
     {
         // Properties
-        public string typeName;
+        public Fox.String typeName;
         
         public uint groupId;
         

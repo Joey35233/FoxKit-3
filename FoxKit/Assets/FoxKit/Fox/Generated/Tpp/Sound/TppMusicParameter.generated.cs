@@ -15,45 +15,45 @@ namespace Tpp.Sound
     public partial class TppMusicParameter : Fox.Core.Data 
     {
         // Properties
-        public string tag;
+        public Fox.String tag;
         
-        public string playEvent;
+        public Fox.String playEvent;
         
-        public string daySwitchEvent;
+        public Fox.String daySwitchEvent;
         
-        public string nightSwitchEvent;
+        public Fox.String nightSwitchEvent;
         
-        public string dangerEasySwitchEvent;
+        public Fox.String dangerEasySwitchEvent;
         
-        public string dangerOuterSwitchEvent;
+        public Fox.String dangerOuterSwitchEvent;
         
-        public string dangerHardSwitchEvent;
+        public Fox.String dangerHardSwitchEvent;
         
-        public string dangerEasyLostSwitchEvent;
+        public Fox.String dangerEasyLostSwitchEvent;
         
-        public string dangerOuterLostSwitchEvent;
+        public Fox.String dangerOuterLostSwitchEvent;
         
-        public string dangerHardLostSwitchEvent;
+        public Fox.String dangerHardLostSwitchEvent;
         
-        public string dangerEvasionSwitchEvent;
+        public Fox.String dangerEvasionSwitchEvent;
         
-        public string dangerStrongSwitchEvent;
+        public Fox.String dangerStrongSwitchEvent;
         
-        public string safetyReflexSwitchEvent;
+        public Fox.String safetyReflexSwitchEvent;
         
-        public string safetyNeutralToSneakSwitchEvent;
+        public Fox.String safetyNeutralToSneakSwitchEvent;
         
-        public string safetySneakSwitchEvent;
+        public Fox.String safetySneakSwitchEvent;
         
-        public string safetyCautionSwitchEvent;
+        public Fox.String safetyCautionSwitchEvent;
         
-        public string safetyNoticeSwitchEvent;
+        public Fox.String safetyNoticeSwitchEvent;
         
-        public string safetyCautionNoticeSwitchEvent;
+        public Fox.String safetyCautionNoticeSwitchEvent;
         
-        public string safetyAlertToCautionSwitchEvent;
+        public Fox.String safetyAlertToCautionSwitchEvent;
         
-        public string neutralSwitchEvent;
+        public Fox.String neutralSwitchEvent;
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

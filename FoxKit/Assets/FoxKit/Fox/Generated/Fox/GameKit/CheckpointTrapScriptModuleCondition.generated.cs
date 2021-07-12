@@ -15,7 +15,7 @@ namespace Fox.GameKit
     public partial class CheckpointTrapScriptModuleCondition : Fox.Geo.GeoTrapScriptModuleCondition 
     {
         // Properties
-        public CsSystem.Collections.Generic.List<Fox.Core.Path> checkpointScriptArray = new CsSystem.Collections.Generic.List<Fox.Core.Path>();
+        public Fox.Core.DynamicArray<Fox.Core.Path> checkpointScriptArray = new Fox.Core.DynamicArray<Fox.Core.Path>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

@@ -23,9 +23,9 @@ namespace Tpp.Effect
         
         public Fox.Core.EntityLink shCoefficientsData;
         
-        public CsSystem.Collections.Generic.List<Fox.Core.EntityLink> onLights = new CsSystem.Collections.Generic.List<Fox.Core.EntityLink>();
+        public Fox.Core.DynamicArray<Fox.Core.EntityLink> onLights = new Fox.Core.DynamicArray<Fox.Core.EntityLink>();
         
-        public CsSystem.Collections.Generic.List<Fox.Core.EntityLink> offLights = new CsSystem.Collections.Generic.List<Fox.Core.EntityLink>();
+        public Fox.Core.DynamicArray<Fox.Core.EntityLink> offLights = new Fox.Core.DynamicArray<Fox.Core.EntityLink>();
         
         public float innerScaleXPositive;
         

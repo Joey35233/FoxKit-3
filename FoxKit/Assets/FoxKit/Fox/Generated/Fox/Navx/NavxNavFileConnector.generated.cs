@@ -15,11 +15,11 @@ namespace Fox.Navx
     public partial class NavxNavFileConnector : Fox.Core.TransformData 
     {
         // Properties
-        public string sceneName;
+        public Fox.String sceneName;
         
-        public string worldName;
+        public Fox.String worldName;
         
-        public string groupName;
+        public Fox.String groupName;
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

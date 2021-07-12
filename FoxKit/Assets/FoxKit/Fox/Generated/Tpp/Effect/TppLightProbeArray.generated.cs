@@ -15,11 +15,11 @@ namespace Tpp.Effect
     public partial class TppLightProbeArray : Fox.Core.TransformData 
     {
         // Properties
-        public CsSystem.Collections.Generic.List<TppLightProbeArray_DrawRejectionLevel> drawRejectionLevels = new CsSystem.Collections.Generic.List<TppLightProbeArray_DrawRejectionLevel>();
+        public Fox.Core.DynamicArray<TppLightProbeArray_DrawRejectionLevel> drawRejectionLevels = new Fox.Core.DynamicArray<TppLightProbeArray_DrawRejectionLevel>();
         
-        public CsSystem.Collections.Generic.List<Fox.Core.EntityLink> relatedLights = new CsSystem.Collections.Generic.List<Fox.Core.EntityLink>();
+        public Fox.Core.DynamicArray<Fox.Core.EntityLink> relatedLights = new Fox.Core.DynamicArray<Fox.Core.EntityLink>();
         
-        public CsSystem.Collections.Generic.List<Fox.Core.EntityLink> shDatas = new CsSystem.Collections.Generic.List<Fox.Core.EntityLink>();
+        public Fox.Core.DynamicArray<Fox.Core.EntityLink> shDatas = new Fox.Core.DynamicArray<Fox.Core.EntityLink>();
         
         public Fox.Core.FilePtr<Fox.Core.File> lightArrayFile;
         

@@ -17,7 +17,7 @@ namespace Tpp.GameCore
         // Properties
         public bool enabled;
         
-        public CsSystem.Collections.Generic.List<Fox.Core.FilePtr<Fox.Core.File>> files = new CsSystem.Collections.Generic.List<Fox.Core.FilePtr<Fox.Core.File>>();
+        public Fox.Core.DynamicArray<Fox.Core.FilePtr<Fox.Core.File>> files = new Fox.Core.DynamicArray<Fox.Core.FilePtr<Fox.Core.File>>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

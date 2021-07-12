@@ -19,7 +19,7 @@ namespace Fox.Geox
         
         public bool enable;
         
-        public CsSystem.Collections.Generic.List<string> tags = new CsSystem.Collections.Generic.List<string>();
+        public Fox.Core.DynamicArray<Fox.String> tags = new Fox.Core.DynamicArray<Fox.String>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;
@@ -68,7 +68,7 @@ namespace Fox.Geox
             switch(propertyName)
             {
                 case "tags":
-                    while(this.tags.Count <= index) { this.tags.Add(default(string)); }
+                    while(this.tags.Count <= index) { this.tags.Add(default(Fox.String)); }
                     this.tags[index] = value.GetValueAsString();
                     return;
                 default:

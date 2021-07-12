@@ -15,7 +15,7 @@ namespace Fox.Ph
     public partial class PhObjectParam : Fox.Core.Entity 
     {
         // Properties
-        public string worldName;
+        public Fox.String worldName;
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

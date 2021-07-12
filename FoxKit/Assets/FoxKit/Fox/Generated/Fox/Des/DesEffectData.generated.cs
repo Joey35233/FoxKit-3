@@ -17,13 +17,13 @@ namespace Fox.Des
         // Properties
         public Fox.Core.Path effectFilePath;
         
-        public string effectName;
+        public Fox.String effectName;
         
-        public string setModelName;
+        public Fox.String setModelName;
         
         public Fox.Core.Path connectPointFilePath;
         
-        public string connectPointName;
+        public Fox.String connectPointName;
         
         public DesEffectDataDesEffectFlag effectFlag;
         

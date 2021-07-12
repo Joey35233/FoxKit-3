@@ -15,7 +15,7 @@ namespace Fox.UiScene
     public partial class UiCameraData : Fox.Core.Data 
     {
         // Properties
-        public string cameraName;
+        public Fox.String cameraName;
         
         public UnityEngine.Vector3 translate;
         

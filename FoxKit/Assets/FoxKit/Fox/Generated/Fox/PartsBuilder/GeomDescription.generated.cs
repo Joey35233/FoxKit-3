@@ -17,7 +17,7 @@ namespace Fox.PartsBuilder
         // Properties
         public Fox.Core.FilePtr<Fox.Core.File> geomFile;
         
-        public string skeletonName;
+        public Fox.String skeletonName;
         
         public UnityEngine.Vector3 offsetScale;
         

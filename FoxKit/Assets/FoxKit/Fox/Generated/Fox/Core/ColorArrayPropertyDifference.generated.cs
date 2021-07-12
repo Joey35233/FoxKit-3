@@ -15,9 +15,9 @@ namespace Fox.Core
     public partial class ColorArrayPropertyDifference : Fox.Core.PropertyDifference 
     {
         // Properties
-        public CsSystem.Collections.Generic.List<UnityEngine.Color> originalValues = new CsSystem.Collections.Generic.List<UnityEngine.Color>();
+        public Fox.Core.DynamicArray<UnityEngine.Color> originalValues = new Fox.Core.DynamicArray<UnityEngine.Color>();
         
-        public CsSystem.Collections.Generic.List<UnityEngine.Color> values = new CsSystem.Collections.Generic.List<UnityEngine.Color>();
+        public Fox.Core.DynamicArray<UnityEngine.Color> values = new Fox.Core.DynamicArray<UnityEngine.Color>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

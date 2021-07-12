@@ -15,9 +15,9 @@ namespace Fox.Core
     public partial class FloatArrayPropertyDifference : Fox.Core.PropertyDifference 
     {
         // Properties
-        public CsSystem.Collections.Generic.List<float> originalValues = new CsSystem.Collections.Generic.List<float>();
+        public Fox.Core.DynamicArray<float> originalValues = new Fox.Core.DynamicArray<float>();
         
-        public CsSystem.Collections.Generic.List<float> values = new CsSystem.Collections.Generic.List<float>();
+        public Fox.Core.DynamicArray<float> values = new Fox.Core.DynamicArray<float>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

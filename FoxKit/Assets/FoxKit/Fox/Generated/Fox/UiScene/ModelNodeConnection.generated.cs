@@ -17,7 +17,7 @@ namespace Fox.UiScene
         // Properties
         public Fox.Core.EntityHandle connectModelDataHandle;
         
-        public string connectModelNodeName;
+        public Fox.String connectModelNodeName;
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

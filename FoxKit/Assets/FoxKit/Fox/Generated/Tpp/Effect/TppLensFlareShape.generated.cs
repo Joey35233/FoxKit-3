@@ -67,7 +67,7 @@ namespace Tpp.Effect
         
         public bool notDrawMultiple;
         
-        public string seName;
+        public Fox.String seName;
         
         public float seCallThreshold;
         

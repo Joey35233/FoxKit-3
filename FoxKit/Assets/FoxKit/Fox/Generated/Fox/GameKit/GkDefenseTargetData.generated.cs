@@ -15,9 +15,9 @@ namespace Fox.GameKit
     public partial class GkDefenseTargetData : Fox.GameKit.GkTargetData 
     {
         // Properties
-        public string name;
+        public Fox.String name;
         
-        public string skeletonName;
+        public Fox.String skeletonName;
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

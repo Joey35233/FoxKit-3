@@ -15,15 +15,15 @@ namespace Tpp.GameCore
     public partial class TppPlayer2InstanceSettings 
     {
         // Properties
-        public string instancePackagePath;
+        public Fox.String instancePackagePath;
         
         public uint instanceBlockSize;
         
-        public string commonMotionTypeName;
+        public Fox.String commonMotionTypeName;
         
-        public CsSystem.Collections.Generic.List<string> partsTypeNames = new CsSystem.Collections.Generic.List<string>();
+        public Fox.Core.DynamicArray<Fox.String> partsTypeNames = new Fox.Core.DynamicArray<Fox.String>();
         
-        public CsSystem.Collections.Generic.List<string> partsTypeInitial = new CsSystem.Collections.Generic.List<string>();
+        public Fox.Core.DynamicArray<Fox.String> partsTypeInitial = new Fox.Core.DynamicArray<Fox.String>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;
@@ -77,11 +77,11 @@ namespace Tpp.GameCore
             switch(propertyName)
             {
                 case "partsTypeNames":
-                    while(this.partsTypeNames.Count <= index) { this.partsTypeNames.Add(default(string)); }
+                    while(this.partsTypeNames.Count <= index) { this.partsTypeNames.Add(default(Fox.String)); }
                     this.partsTypeNames[index] = value.GetValueAsString();
                     return;
                 case "partsTypeInitial":
-                    while(this.partsTypeInitial.Count <= index) { this.partsTypeInitial.Add(default(string)); }
+                    while(this.partsTypeInitial.Count <= index) { this.partsTypeInitial.Add(default(Fox.String)); }
                     this.partsTypeInitial[index] = value.GetValueAsString();
                     return;
                 default:

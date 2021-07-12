@@ -15,13 +15,13 @@ namespace Fox.GameKit
     public partial class ObjectBrushPluginBody : Fox.Core.DataBody 
     {
         // Properties
-        public string name;
+        public Fox.String name;
         
-        public string pluginName;
+        public Fox.String pluginName;
         
-        public string modelName;
+        public Fox.String modelName;
         
-        public string thumbnailPath;
+        public Fox.String thumbnailPath;
         
         public uint numObjects;
         

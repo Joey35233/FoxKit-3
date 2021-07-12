@@ -17,9 +17,9 @@ namespace Fox.GameKit
         // Properties
         public Fox.Core.StringMap<Fox.Core.EntityPtr<Fox.GameKit.CheckpointUnit>> checkPointUnits = new Fox.Core.StringMap<Fox.Core.EntityPtr<Fox.GameKit.CheckpointUnit>>();
         
-        public CsSystem.Collections.Generic.List<string> passedCheckpoints = new CsSystem.Collections.Generic.List<string>();
+        public Fox.Core.DynamicArray<Fox.String> passedCheckpoints = new Fox.Core.DynamicArray<Fox.String>();
         
-        public string latestCheckpointTag;
+        public Fox.String latestCheckpointTag;
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;
@@ -65,7 +65,7 @@ namespace Fox.GameKit
             switch(propertyName)
             {
                 case "passedCheckpoints":
-                    while(this.passedCheckpoints.Count <= index) { this.passedCheckpoints.Add(default(string)); }
+                    while(this.passedCheckpoints.Count <= index) { this.passedCheckpoints.Add(default(Fox.String)); }
                     this.passedCheckpoints[index] = value.GetValueAsString();
                     return;
                 default:

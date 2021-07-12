@@ -15,9 +15,9 @@ namespace Tpp.MarkerLocator
     public partial class TppMarker2LocatorParameter : Fox.Core.DataElement 
     {
         // Properties
-        public string markerType;
+        public Fox.String markerType;
         
-        public string markerId;
+        public Fox.String markerId;
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

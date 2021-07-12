@@ -19,7 +19,7 @@ namespace Fox.Sim
         
         public Fox.Core.EntityPtr<Fox.Sim.SimEngineParam> engineParam;
         
-        public CsSystem.Collections.Generic.List<Fox.Core.EntityPtr<Fox.Sim.SimControlElement>> controls = new CsSystem.Collections.Generic.List<Fox.Core.EntityPtr<Fox.Sim.SimControlElement>>();
+        public Fox.Core.DynamicArray<Fox.Core.EntityPtr<Fox.Sim.SimControlElement>> controls = new Fox.Core.DynamicArray<Fox.Core.EntityPtr<Fox.Sim.SimControlElement>>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

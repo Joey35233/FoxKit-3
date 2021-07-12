@@ -15,7 +15,7 @@ namespace Tpp.Radio
     public partial class TppEspionageRadioLocatorParameter : Fox.Core.DataElement 
     {
         // Properties
-        public string radioLocatorId;
+        public Fox.String radioLocatorId;
         
         public float minDistance;
         

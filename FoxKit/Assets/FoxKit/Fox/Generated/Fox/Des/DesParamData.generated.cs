@@ -21,7 +21,7 @@ namespace Fox.Des
         
         public float restitution;
         
-        public string materialName;
+        public Fox.String materialName;
         
         public ParamDataDesCondition desCondition;
         

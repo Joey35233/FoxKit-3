@@ -23,11 +23,11 @@ namespace Fox.Core
         
         public uint blockCount;
         
-        public CsSystem.Collections.Generic.List<Fox.Core.Path> block = new CsSystem.Collections.Generic.List<Fox.Core.Path>();
+        public Fox.Core.DynamicArray<Fox.Core.Path> block = new Fox.Core.DynamicArray<Fox.Core.Path>();
         
-        public CsSystem.Collections.Generic.List<Fox.Core.EntityLink> relatedBlockGroups = new CsSystem.Collections.Generic.List<Fox.Core.EntityLink>();
+        public Fox.Core.DynamicArray<Fox.Core.EntityLink> relatedBlockGroups = new Fox.Core.DynamicArray<Fox.Core.EntityLink>();
         
-        public CsSystem.Collections.Generic.List<Fox.Core.EntityLink> prerequisiteBlockGroups = new CsSystem.Collections.Generic.List<Fox.Core.EntityLink>();
+        public Fox.Core.DynamicArray<Fox.Core.EntityLink> prerequisiteBlockGroups = new Fox.Core.DynamicArray<Fox.Core.EntityLink>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

@@ -45,7 +45,7 @@ namespace Fox.GameKit
         
         public bool hasSerializedNodes;
         
-        public CsSystem.Collections.Generic.List<UnityEngine.Vector3> serializedGraphNodes = new CsSystem.Collections.Generic.List<UnityEngine.Vector3>();
+        public Fox.Core.DynamicArray<UnityEngine.Vector3> serializedGraphNodes = new Fox.Core.DynamicArray<UnityEngine.Vector3>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

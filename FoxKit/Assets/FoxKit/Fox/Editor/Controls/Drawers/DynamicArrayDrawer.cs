@@ -8,7 +8,7 @@ using UnityEngine.UIElements;
 
 namespace Fox.Editor
 {
-    [CustomPropertyDrawer(typeof(Fox.DynamicArray<>))]
+    [CustomPropertyDrawer(typeof(Fox.Core.DynamicArray<>))]
     public class DynamicArrayDrawer : PropertyDrawer
     {
         public override VisualElement CreatePropertyGUI(SerializedProperty property)

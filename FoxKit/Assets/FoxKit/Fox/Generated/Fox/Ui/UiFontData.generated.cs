@@ -15,7 +15,7 @@ namespace Fox.Ui
     public partial class UiFontData : Fox.Core.Data 
     {
         // Properties
-        public string fontName;
+        public Fox.String fontName;
         
         public Fox.Core.Path texturePath;
         

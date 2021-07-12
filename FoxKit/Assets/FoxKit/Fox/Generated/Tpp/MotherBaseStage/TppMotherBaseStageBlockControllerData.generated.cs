@@ -19,7 +19,7 @@ namespace Tpp.MotherBaseStage
         
         public ushort motherBaseId;
         
-        public string stageName;
+        public Fox.String stageName;
         
         public uint layoutBlockSizeInBytes;
         
@@ -33,27 +33,27 @@ namespace Tpp.MotherBaseStage
         
         public uint divisionBlockSizeInBytes;
         
-        public byte[] cluster00divisionPackageIds = new byte[12];
+        public Fox.Core.StaticArray<byte> cluster00divisionPackageIds = new Fox.Core.StaticArray<byte>(12);
         
-        public byte[] cluster01divisionPackageIds = new byte[12];
+        public Fox.Core.StaticArray<byte> cluster01divisionPackageIds = new Fox.Core.StaticArray<byte>(12);
         
-        public byte[] cluster02divisionPackageIds = new byte[12];
+        public Fox.Core.StaticArray<byte> cluster02divisionPackageIds = new Fox.Core.StaticArray<byte>(12);
         
-        public byte[] cluster03divisionPackageIds = new byte[12];
+        public Fox.Core.StaticArray<byte> cluster03divisionPackageIds = new Fox.Core.StaticArray<byte>(12);
         
-        public byte[] cluster04divisionPackageIds = new byte[12];
+        public Fox.Core.StaticArray<byte> cluster04divisionPackageIds = new Fox.Core.StaticArray<byte>(12);
         
-        public byte[] cluster05divisionPackageIds = new byte[12];
+        public Fox.Core.StaticArray<byte> cluster05divisionPackageIds = new Fox.Core.StaticArray<byte>(12);
         
-        public byte[] cluster06divisionPackageIds = new byte[12];
+        public Fox.Core.StaticArray<byte> cluster06divisionPackageIds = new Fox.Core.StaticArray<byte>(12);
         
-        public byte[] cluster07divisionPackageIds = new byte[12];
+        public Fox.Core.StaticArray<byte> cluster07divisionPackageIds = new Fox.Core.StaticArray<byte>(12);
         
-        public UnityEngine.Vector3[] clusterPositions = new UnityEngine.Vector3[8];
+        public Fox.Core.StaticArray<UnityEngine.Vector3> clusterPositions = new Fox.Core.StaticArray<UnityEngine.Vector3>(8);
         
-        public uint[] clusterRequestRadiuses = new uint[8];
+        public Fox.Core.StaticArray<uint> clusterRequestRadiuses = new Fox.Core.StaticArray<uint>(8);
         
-        public uint[] clusterRequireRadiuses = new uint[8];
+        public Fox.Core.StaticArray<uint> clusterRequireRadiuses = new Fox.Core.StaticArray<uint>(8);
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

@@ -15,11 +15,11 @@ namespace Fox.Core
     public partial class Actor : Fox.Core.Entity 
     {
         // Properties
-        public string name;
+        public Fox.String name;
         
-        public string actorLevelName;
+        public Fox.String actorLevelName;
         
-        public string sceneName;
+        public Fox.String sceneName;
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

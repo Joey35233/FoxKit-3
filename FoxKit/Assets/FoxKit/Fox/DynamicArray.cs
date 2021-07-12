@@ -5,7 +5,7 @@ using System.Collections.ObjectModel;
 
 using UnityEngine;
 
-namespace Fox
+namespace Fox.Core
 {
     [System.Serializable]
     public class DynamicArray<T> : IList<T>, IList
@@ -119,6 +119,11 @@ namespace Fox
         void ICollection.CopyTo(Array array, int index)
         {
             CopyTo((T[])array, index);
+        }
+
+        public DynamicArray()
+        {
+            _list = new List<T>();
         }
 
         public DynamicArray(int capacity)

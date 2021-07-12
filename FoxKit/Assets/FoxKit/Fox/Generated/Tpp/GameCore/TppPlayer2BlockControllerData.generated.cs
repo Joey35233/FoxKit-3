@@ -27,15 +27,15 @@ namespace Tpp.GameCore
         
         public uint configuration_partsBlockSize;
         
-        public string instanceSettings_instancePackagePath;
+        public Fox.String instanceSettings_instancePackagePath;
         
         public uint instanceSettings_instanceBlockSize;
         
-        public string instanceSettings_commonMotionTypeName;
+        public Fox.String instanceSettings_commonMotionTypeName;
         
-        public CsSystem.Collections.Generic.List<string> instanceSettings_partsTypeNames = new CsSystem.Collections.Generic.List<string>();
+        public Fox.Core.DynamicArray<Fox.String> instanceSettings_partsTypeNames = new Fox.Core.DynamicArray<Fox.String>();
         
-        public CsSystem.Collections.Generic.List<string> instanceSettings_partsTypeInitial = new CsSystem.Collections.Generic.List<string>();
+        public Fox.Core.DynamicArray<Fox.String> instanceSettings_partsTypeInitial = new Fox.Core.DynamicArray<Fox.String>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;
@@ -113,11 +113,11 @@ namespace Tpp.GameCore
             switch(propertyName)
             {
                 case "instanceSettings_partsTypeNames":
-                    while(this.instanceSettings_partsTypeNames.Count <= index) { this.instanceSettings_partsTypeNames.Add(default(string)); }
+                    while(this.instanceSettings_partsTypeNames.Count <= index) { this.instanceSettings_partsTypeNames.Add(default(Fox.String)); }
                     this.instanceSettings_partsTypeNames[index] = value.GetValueAsString();
                     return;
                 case "instanceSettings_partsTypeInitial":
-                    while(this.instanceSettings_partsTypeInitial.Count <= index) { this.instanceSettings_partsTypeInitial.Add(default(string)); }
+                    while(this.instanceSettings_partsTypeInitial.Count <= index) { this.instanceSettings_partsTypeInitial.Add(default(Fox.String)); }
                     this.instanceSettings_partsTypeInitial[index] = value.GetValueAsString();
                     return;
                 default:

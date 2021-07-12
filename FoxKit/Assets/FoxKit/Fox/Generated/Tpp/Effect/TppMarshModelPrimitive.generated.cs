@@ -39,7 +39,7 @@ namespace Tpp.Effect
         
         public bool debugReset;
         
-        public CsSystem.Collections.Generic.List<Fox.Core.EntityLink> staticModels = new CsSystem.Collections.Generic.List<Fox.Core.EntityLink>();
+        public Fox.Core.DynamicArray<Fox.Core.EntityLink> staticModels = new Fox.Core.DynamicArray<Fox.Core.EntityLink>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

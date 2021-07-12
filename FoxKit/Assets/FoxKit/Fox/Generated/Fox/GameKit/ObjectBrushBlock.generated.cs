@@ -21,7 +21,7 @@ namespace Fox.GameKit
         
         public uint blockId;
         
-        public string objectBrushName;
+        public Fox.String objectBrushName;
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

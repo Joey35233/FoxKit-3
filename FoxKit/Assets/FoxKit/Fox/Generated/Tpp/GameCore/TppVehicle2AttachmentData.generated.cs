@@ -23,11 +23,11 @@ namespace Tpp.GameCore
         
         public byte attachmentInstanceCount;
         
-        public string bodyCnpName;
+        public Fox.String bodyCnpName;
         
-        public string attachmentBoneName;
+        public Fox.String attachmentBoneName;
         
-        public CsSystem.Collections.Generic.List<Fox.Core.EntityPtr<Tpp.GameCore.TppVehicle2WeaponParameter>> weaponParams = new CsSystem.Collections.Generic.List<Fox.Core.EntityPtr<Tpp.GameCore.TppVehicle2WeaponParameter>>();
+        public Fox.Core.DynamicArray<Fox.Core.EntityPtr<Tpp.GameCore.TppVehicle2WeaponParameter>> weaponParams = new Fox.Core.DynamicArray<Fox.Core.EntityPtr<Tpp.GameCore.TppVehicle2WeaponParameter>>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

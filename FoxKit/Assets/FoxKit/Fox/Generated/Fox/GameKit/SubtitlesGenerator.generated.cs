@@ -15,7 +15,7 @@ namespace Fox.GameKit
     public partial class SubtitlesGenerator : Fox.Ui.UiGraphEntry 
     {
         // Properties
-        public string key;
+        public Fox.String key;
         
         public UnityEngine.Color color;
         
@@ -33,7 +33,7 @@ namespace Fox.GameKit
         
         public SubtitlesGenerator_TextBoxAlign bAlign;
         
-        public string fontName;
+        public Fox.String fontName;
         
         public bool autoLineFeed;
         

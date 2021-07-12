@@ -17,9 +17,9 @@ namespace Fox.Geox
         // Properties
         public bool isVisibleGeom;
         
-        public CsSystem.Collections.Generic.List<UnityEngine.Vector3> vertices = new CsSystem.Collections.Generic.List<UnityEngine.Vector3>();
+        public Fox.Core.DynamicArray<UnityEngine.Vector3> vertices = new Fox.Core.DynamicArray<UnityEngine.Vector3>();
         
-        public CsSystem.Collections.Generic.List<string> collisionAttributeTags = new CsSystem.Collections.Generic.List<string>();
+        public Fox.Core.DynamicArray<Fox.String> collisionAttributeTags = new Fox.Core.DynamicArray<Fox.String>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;
@@ -69,7 +69,7 @@ namespace Fox.Geox
                     this.vertices[index] = value.GetValueAsVector3();
                     return;
                 case "collisionAttributeTags":
-                    while(this.collisionAttributeTags.Count <= index) { this.collisionAttributeTags.Add(default(string)); }
+                    while(this.collisionAttributeTags.Count <= index) { this.collisionAttributeTags.Add(default(Fox.String)); }
                     this.collisionAttributeTags[index] = value.GetValueAsString();
                     return;
                 default:

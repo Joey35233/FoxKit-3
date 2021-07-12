@@ -21,9 +21,9 @@ namespace Fox.Demox
         
         public int priority;
         
-        public string demoId;
+        public Fox.String demoId;
         
-        public CsSystem.Collections.Generic.List<string> stringParams = new CsSystem.Collections.Generic.List<string>();
+        public Fox.Core.DynamicArray<Fox.String> stringParams = new Fox.Core.DynamicArray<Fox.String>();
         
         public Fox.Core.StringMap<Fox.Core.EntityLink> entityParams = new Fox.Core.StringMap<Fox.Core.EntityLink>();
         
@@ -83,7 +83,7 @@ namespace Fox.Demox
             switch(propertyName)
             {
                 case "stringParams":
-                    while(this.stringParams.Count <= index) { this.stringParams.Add(default(string)); }
+                    while(this.stringParams.Count <= index) { this.stringParams.Add(default(Fox.String)); }
                     this.stringParams[index] = value.GetValueAsString();
                     return;
                 default:

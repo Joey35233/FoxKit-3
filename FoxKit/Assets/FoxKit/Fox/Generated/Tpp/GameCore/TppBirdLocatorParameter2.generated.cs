@@ -17,9 +17,9 @@ namespace Tpp.GameCore
         // Properties
         public uint count;
         
-        public CsSystem.Collections.Generic.List<UnityEngine.Vector3> grounds = new CsSystem.Collections.Generic.List<UnityEngine.Vector3>();
+        public Fox.Core.DynamicArray<UnityEngine.Vector3> grounds = new Fox.Core.DynamicArray<UnityEngine.Vector3>();
         
-        public CsSystem.Collections.Generic.List<UnityEngine.Vector3> perchPoints = new CsSystem.Collections.Generic.List<UnityEngine.Vector3>();
+        public Fox.Core.DynamicArray<UnityEngine.Vector3> perchPoints = new Fox.Core.DynamicArray<UnityEngine.Vector3>();
         
         public byte radius;
         

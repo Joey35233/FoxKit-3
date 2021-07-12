@@ -15,13 +15,13 @@ namespace Tpp.GameKit
     public partial class TppTrapExecEnvironmentMotionCallbackDataElement : Fox.Geo.GeoTrapModuleCallbackDataElement 
     {
         // Properties
-        public CsSystem.Collections.Generic.List<Fox.Core.EntityLink> targetShapes = new CsSystem.Collections.Generic.List<Fox.Core.EntityLink>();
+        public Fox.Core.DynamicArray<Fox.Core.EntityLink> targetShapes = new Fox.Core.DynamicArray<Fox.Core.EntityLink>();
         
         public TppTrapEnvironmentType environmentType;
         
-        public string environmentTypeString;
+        public Fox.String environmentTypeString;
         
-        public string offenseName;
+        public Fox.String offenseName;
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

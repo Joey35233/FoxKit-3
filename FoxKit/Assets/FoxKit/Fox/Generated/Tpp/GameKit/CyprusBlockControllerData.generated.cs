@@ -17,11 +17,11 @@ namespace Tpp.GameKit
         // Properties
         public bool enable;
         
-        public string stageName;
+        public Fox.String stageName;
         
         public Fox.Core.Path commonFilePath;
         
-        public string basePath;
+        public Fox.String basePath;
         
         public uint commonBlockSizeInByte;
         

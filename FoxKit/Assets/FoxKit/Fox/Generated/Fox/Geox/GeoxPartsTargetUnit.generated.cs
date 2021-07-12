@@ -15,7 +15,7 @@ namespace Fox.Geox
     public partial class GeoxPartsTargetUnit : Fox.Core.Data 
     {
         // Properties
-        public CsSystem.Collections.Generic.List<Fox.Core.EntityPtr<Fox.Geox.GeoxPartsTargetObject>> objectArray = new CsSystem.Collections.Generic.List<Fox.Core.EntityPtr<Fox.Geox.GeoxPartsTargetObject>>();
+        public Fox.Core.DynamicArray<Fox.Core.EntityPtr<Fox.Geox.GeoxPartsTargetObject>> objectArray = new Fox.Core.DynamicArray<Fox.Core.EntityPtr<Fox.Geox.GeoxPartsTargetObject>>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

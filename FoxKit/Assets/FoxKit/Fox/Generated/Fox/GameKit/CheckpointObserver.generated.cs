@@ -15,7 +15,7 @@ namespace Fox.GameKit
     public partial class CheckpointObserver : Fox.Core.Entity 
     {
         // Properties
-        public string observerTag;
+        public Fox.String observerTag;
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

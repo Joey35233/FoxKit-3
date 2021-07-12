@@ -15,7 +15,7 @@ namespace Tpp.Effect
     public partial class TppPrimRiverModel : Fox.Core.Data 
     {
         // Properties
-        public string primRiverGroupName;
+        public Fox.String primRiverGroupName;
         
         public bool visibility;
         
@@ -23,7 +23,7 @@ namespace Tpp.Effect
         
         public float raise;
         
-        public CsSystem.Collections.Generic.List<Fox.Core.EntityLink> staticModels = new CsSystem.Collections.Generic.List<Fox.Core.EntityLink>();
+        public Fox.Core.DynamicArray<Fox.Core.EntityLink> staticModels = new Fox.Core.DynamicArray<Fox.Core.EntityLink>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

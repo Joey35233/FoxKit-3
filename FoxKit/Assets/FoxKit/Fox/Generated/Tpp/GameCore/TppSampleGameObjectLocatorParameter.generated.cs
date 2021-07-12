@@ -15,7 +15,7 @@ namespace Tpp.GameCore
     public partial class TppSampleGameObjectLocatorParameter : Fox.Core.DataElement 
     {
         // Properties
-        public string text;
+        public Fox.String text;
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;
