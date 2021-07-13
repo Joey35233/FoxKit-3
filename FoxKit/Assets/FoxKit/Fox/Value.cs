@@ -8,51 +8,43 @@ namespace Fox
     {
         private object value;
 
-        public Value(sbyte v)
-        {
-            this.value = v;
-        }
-
-        public Value(IEntityPtr entity)
-        {
-            this.value = entity;
-        }
-
-        public Value(FilePtr<File> filePtr)
-        {
-            this.value = filePtr;
-        }
-
-        public Value(Color color)
-        {
-            this.value = color;
-        }
-
-        public Value(Matrix4x4 matrix4x4)
-        {
-            this.value = matrix4x4;
-        }
-
-        public Value(Quaternion quaternion)
-        {
-            this.value = quaternion;
-        }
-
-        public Value(Vector3 vector3)
-        {
-            this.value = vector3;
-        }
-        public Value(Vector4 vector3)
-        {
-            this.value = vector3;
-        }
-
         public Value(bool v1)
         {
             this.value = v1;
         }
 
-        public Value(double v2)
+        public Value(sbyte v)
+        {
+            this.value = v;
+        }
+        public Value(byte v2)
+        {
+            this.value = v2;
+        }
+
+        public Value(short v)
+        {
+            this.value = v;
+        }
+        public Value(ushort v2)
+        {
+            this.value = v2;
+        }
+
+        public Value(int v2)
+        {
+            this.value = v2;
+        }
+        public Value(uint v2)
+        {
+            this.value = v2;
+        }
+
+        public Value(long v2)
+        {
+            this.value = v2;
+        }
+        public Value(ulong v2)
         {
             this.value = v2;
         }
@@ -61,21 +53,15 @@ namespace Fox
         {
             this.value = v2;
         }
-        public Value(uint v2)
+
+        public Value(double v2)
         {
             this.value = v2;
         }
-        public Value(int v2)
+
+        public Value(IEntityPtr entity)
         {
-            this.value = v2;
-        }
-        public Value(byte v2)
-        {
-            this.value = v2;
-        }
-        public Value(String @string)
-        {
-            this.value = @string;
+            this.value = entity;
         }
 
         public Value(EntityLink entityLink)
@@ -88,9 +74,43 @@ namespace Fox
             this.value = entityHandle;
         }
 
-        public Value(object entityLink1)
+        public Value(FilePtr<File> filePtr)
         {
-            this.value = entityLink1;
+            this.value = filePtr;
+        }
+
+        public Value(Color color)
+        {
+            this.value = color;
+        }
+
+        public Value(Vector3 vector3)
+        {
+            this.value = vector3;
+        }
+        public Value(Vector4 vector3)
+        {
+            this.value = vector3;
+        }
+
+        public Value(Quaternion quaternion)
+        {
+            this.value = quaternion;
+        }
+
+        public Value(Matrix4x4 matrix4x4)
+        {
+            this.value = matrix4x4;
+        }
+
+        public Value(String @string)
+        {
+            this.value = @string;
+        }
+
+        public Value(Path path)
+        {
+            this.value = path;
         }
 
         public bool GetValueAsBool()
@@ -98,29 +118,50 @@ namespace Fox
             return (bool)this.value;
         }
 
-        internal float GetValueAsFloat()
+        internal sbyte GetValueAsInt8()
         {
-            return (float)this.value;
+            return (sbyte)this.value;
+        }
+        internal byte GetValueAsUInt8()
+        {
+            return (byte)this.value;
         }
 
-        internal Path GetValueAsPath()
+        internal short GetValueAsInt16()
         {
-            return (Path)this.value;
+            return (short)this.value;
         }
-
-        internal FilePtr<File> GetValueAsFilePtr()
+        internal ushort GetValueAsUInt16()
         {
-            return (FilePtr<File>)this.value;
+            return (ushort)this.value;
         }
 
         internal int GetValueAsInt32()
         {
             return (int)this.value;
         }
-
-        internal Color GetValueAsColor()
+        internal uint GetValueAsUInt32()
         {
-            return (Color)this.value;
+            return (uint)this.value;
+        }
+
+        internal long GetValueAsInt64()
+        {
+            return (long)this.value;
+        }
+        internal ulong GetValueAsUInt64()
+        {
+            return (ulong)this.value;
+        }
+
+        internal float GetValueAsFloat()
+        {
+            return (float)this.value;
+        }
+
+        internal double GetValueAsDouble()
+        {
+            return (double)this.value;
         }
 
         internal EntityPtr<T> GetValueAsEntityPtr<T>() where T : Entity
@@ -128,34 +169,9 @@ namespace Fox
             return (EntityPtr<T>)this.value;
         }
 
-        internal uint GetValueAsUInt32()
-        {
-            return (uint)this.value;
-        }
-
-        internal byte GetValueAsUInt8()
-        {
-            return (byte)this.value;
-        }
-
         internal EntityLink GetValueAsEntityLink()
         {
             return (EntityLink)this.value;
-        }
-
-        internal ushort GetValueAsUInt16()
-        {
-            return (ushort)this.value;
-        }
-
-        internal Vector3 GetValueAsVector3()
-        {
-            return (Vector3)this.value;
-        }
-
-        internal String GetValueAsString()
-        {
-            return (String)this.value;
         }
 
         internal EntityHandle GetValueAsEntityHandle()
@@ -163,19 +179,24 @@ namespace Fox
             return (EntityHandle)this.value;
         }
 
-        internal short GetValueAsInt16()
+        internal FilePtr<File> GetValueAsFilePtr()
         {
-            return (short)this.value;
+            return (FilePtr<File>)this.value;
+        }
+
+        internal Color GetValueAsColor()
+        {
+            return (Color)this.value;
+        }
+
+        internal Vector3 GetValueAsVector3()
+        {
+            return (Vector3)this.value;
         }
 
         internal object GetValueAsWideVector3()
         {
             throw new NotImplementedException();
-        }
-
-        internal ulong GetValueAsUInt64()
-        {
-            return (ulong)this.value;
         }
 
         internal Vector4 GetValueAsVector4()
@@ -188,19 +209,9 @@ namespace Fox
             return (Quaternion)this.value;
         }
 
-        internal double GetValueAsDouble()
-        {
-            return (double)this.value;
-        }
-
         internal object GetValueAsMatrix3()
         {
             throw new NotImplementedException();
-        }
-
-        internal sbyte GetValueAsInt8()
-        {
-            return (sbyte)this.value;
         }
 
         internal Matrix4x4 GetValueAsMatrix4()
@@ -208,9 +219,14 @@ namespace Fox
             return (Matrix4x4)this.value;
         }
 
-        internal long GetValueAsInt64()
+        internal String GetValueAsString()
         {
-            return (long)this.value;
+            return (String)this.value;
+        }
+
+        internal Path GetValueAsPath()
+        {
+            return (Path)this.value;
         }
     }
 
