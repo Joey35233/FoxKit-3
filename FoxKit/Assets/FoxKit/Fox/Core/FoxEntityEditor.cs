@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 namespace Fox.Editor
 {
     [CustomEditor(typeof(FoxEntity))]
-    public class FoxEntitytEditor : UnityEditor.Editor
+    public class FoxEntityEditor : UnityEditor.Editor
     {
         public override VisualElement CreateInspectorGUI()
         {

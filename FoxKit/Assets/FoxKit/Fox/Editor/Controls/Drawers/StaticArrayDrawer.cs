@@ -8,10 +8,12 @@ using UnityEngine.UIElements;
 
 namespace Fox.Editor
 {
-    [CustomPropertyDrawer(typeof(Fox.Core.StaticArray<>))]
+    [CustomPropertyDrawer(typeof(Core.StaticArray<>))]
     public class StaticArrayDrawer : PropertyDrawer
     {
         SerializedProperty InternalListProperty;
+        Type CollectionTypeArgument;
+        //object FieldConstructor
 
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
         {
@@ -19,12 +21,12 @@ namespace Fox.Editor
             InternalListProperty = property.FindPropertyRelative("_list");
 
             object genericList = property.GetValue();
-            Type genericArgument = genericList.GetType().GetGenericArguments()[0];
+            CollectionTypeArgument = genericList.GetType().GetGenericArguments()[0];
 
             ListView listView = new ListView
             (
                 list,
-                CollectionDrawer.GetListEntrySize(genericArgument),
+                CollectionDrawer.GetListEntrySize(CollectionTypeArgument),
                 MakeItem,
                 BindItem
             );

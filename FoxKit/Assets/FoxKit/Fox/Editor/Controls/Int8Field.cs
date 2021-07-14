@@ -124,14 +124,16 @@ namespace Fox.Editor
             : this((string)null) { }
 
         public Int8Field(int maxLength)
-            : this(null, maxLength) { }
+            : this(null, true, maxLength) { }
 
-        public Int8Field(string label, int maxLength = -1)
+        public Int8Field(string label, bool hasDragger = true, int maxLength = -1)
             : base(label, maxLength, new Int8Input())
         {
             AddToClassList(ussClassName);
             labelElement.AddToClassList(labelUssClassName);
-            AddLabelDragger<System.SByte>();
+
+            if (hasDragger)
+                AddLabelDragger<System.SByte>();
         }
 
         public override void ApplyInputDeviceDelta(Vector3 delta, DeltaSpeed speed, System.SByte startValue)

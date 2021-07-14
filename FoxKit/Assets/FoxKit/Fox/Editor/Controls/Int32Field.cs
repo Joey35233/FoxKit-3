@@ -38,14 +38,16 @@ namespace Fox.Editor
             : this((string)null) { }
 
         public Int32Field(int maxLength)
-            : this(null, maxLength) { }
+            : this(null, true, maxLength) { }
 
-        public Int32Field(string label, int maxLength = -1)
+        public Int32Field(string label, bool hasDragger = true, int maxLength = -1)
             : base(label, maxLength, new Int32Input())
         {
             AddToClassList(ussClassName);
             labelElement.AddToClassList(labelUssClassName);
-            AddLabelDragger<System.Int32>();
+
+            if (hasDragger)
+                AddLabelDragger<System.Int32>();
         }
 
         public override void ApplyInputDeviceDelta(Vector3 delta, DeltaSpeed speed, System.Int32 startValue)

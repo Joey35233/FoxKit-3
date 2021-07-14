@@ -27,12 +27,13 @@ namespace Fox.Editor
             : this((string)null) { }
 
         public Int64Field(int maxLength)
-            : this(null, maxLength) { }
+            : this(null, true, maxLength) { }
 
-        public Int64Field(string label, int maxLength = -1)
+        public Int64Field(string label, bool hasDragger = true, int maxLength = -1)
             : base(label, maxLength, new Int64Input())
         {
-            AddLabelDragger<System.Int64>();
+            if (hasDragger)
+                AddLabelDragger<System.Int64>();
         }
 
         public override void ApplyInputDeviceDelta(Vector3 delta, DeltaSpeed speed, System.Int64 startValue)

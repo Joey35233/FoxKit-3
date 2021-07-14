@@ -64,12 +64,13 @@ namespace Fox.Editor
             : this((string)null) { }
 
         public Int16Field(int maxLength)
-            : this(null, maxLength) { }
+            : this(null, true, maxLength) { }
 
-        public Int16Field(string label, int maxLength = -1)
+        public Int16Field(string label, bool hasDragger = true, int maxLength = -1)
             : base(label, maxLength, new Int16Input())
         {
-            AddLabelDragger<System.Int16>();
+            if (hasDragger)
+                AddLabelDragger<System.Int16>();
         }
 
         public override void ApplyInputDeviceDelta(Vector3 delta, DeltaSpeed speed, System.Int16 startValue)

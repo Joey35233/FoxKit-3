@@ -80,12 +80,13 @@ namespace Fox.Editor
             : this((string)null) { }
 
         public UInt64Field(int maxLength)
-            : this(null, maxLength) { }
+            : this(null, true, maxLength) { }
 
-        public UInt64Field(string label, int maxLength = -1)
+        public UInt64Field(string label, bool hasDragger = true, int maxLength = -1)
             : base(label, maxLength, new UInt64Input())
         {
-            AddLabelDragger<System.UInt64>();
+            if (hasDragger)
+                AddLabelDragger<System.UInt64>();
         }
 
         SerializedObject serializedObject;
