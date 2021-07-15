@@ -185,4 +185,17 @@ namespace Fox.Core
         public StringMap<EntityLink> EntityLink_StringMap_property;
         #endregion
     }
+
+    [Serializable]
+    public class InspectorTestData2
+    {
+        public InspectorTestData2()
+        {
+            //strings = new StaticArray<String>(5);
+        }
+
+        public String str;
+
+        //public StaticArray<String> strings;
+    }
 }

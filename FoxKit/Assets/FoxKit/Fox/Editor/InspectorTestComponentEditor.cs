@@ -14,4 +14,14 @@ namespace Fox.Editor
             return ui;
         }
     }
+    [CustomEditor(typeof(InspectorTestComponent2))]
+    public class InspectorTestComponent2Editor : UnityEditor.Editor
+    {
+        public override VisualElement CreateInspectorGUI()
+        {
+            var uxmlTemplate = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/FoxKit/Fox/Editor/InspectorTestComponentEditor.uxml");
+            var ui = uxmlTemplate.CloneTree();
+            return ui;
+        }
+    }
 }
