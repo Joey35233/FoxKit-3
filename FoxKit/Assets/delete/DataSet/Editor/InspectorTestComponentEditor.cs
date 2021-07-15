@@ -9,7 +9,7 @@ namespace Fox.Editor
     {
         public override VisualElement CreateInspectorGUI()
         {
-            var uxmlTemplate = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/delete/Editor/InspectorTestComponentEditor.uxml");
+            var uxmlTemplate = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/delete/DataSet/Editor/InspectorTestComponentEditor.uxml");
             var ui = uxmlTemplate.CloneTree();
             return ui;
         }
@@ -19,7 +19,7 @@ namespace Fox.Editor
     {
         public override VisualElement CreateInspectorGUI()
         {
-            var uxmlTemplate = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/delete/Editor/InspectorTestComponentEditor.uxml");
+            var uxmlTemplate = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/delete/DataSet/Editor/InspectorTestComponentEditor.uxml");
             var ui = uxmlTemplate.CloneTree();
             return ui;
         }
