@@ -15,9 +15,9 @@ namespace Fox.Phx
     public partial class PhxVehicleAxis : Fox.Core.Data 
     {
         // Properties
-        public Fox.Core.EntityPtr<Fox.Phx.PhVehicleAxisParam> vehicleAxisParam;
+        public Fox.Core.EntityPtr<Fox.Phx.PhVehicleAxisParam> vehicleAxisParam = new Fox.Core.EntityPtr<Fox.Phx.PhVehicleAxisParam>();
         
-        public Fox.Core.EntityPtr<Fox.Phx.PhxWheelConstraintParam> wheelConstraintParam;
+        public Fox.Core.EntityPtr<Fox.Phx.PhxWheelConstraintParam> wheelConstraintParam = new Fox.Core.EntityPtr<Fox.Phx.PhxWheelConstraintParam>();
         
         public Fox.Core.DynamicArray<Fox.Core.EntityPtr<Fox.Phx.PhxWheelAssociationUnitParam>> wheelAssociationUnitParams = new Fox.Core.DynamicArray<Fox.Core.EntityPtr<Fox.Phx.PhxWheelAssociationUnitParam>>();
         

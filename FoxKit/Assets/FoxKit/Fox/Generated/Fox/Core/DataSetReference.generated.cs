@@ -19,7 +19,7 @@ namespace Fox.Core
         
         public bool isReferenceLocked;
         
-        public Fox.Core.EntityPtr<Fox.Core.DataSetDifference> dataSetDifference;
+        public Fox.Core.EntityPtr<Fox.Core.DataSetDifference> dataSetDifference = new Fox.Core.EntityPtr<Fox.Core.DataSetDifference>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

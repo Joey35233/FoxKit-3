@@ -15,7 +15,7 @@ namespace Fox.Core
     public partial class Game : Fox.Core.Actor 
     {
         // Properties
-        public Fox.Core.EntityPtr<Fox.Core.BucketCollector> bucketCollector;
+        public Fox.Core.EntityPtr<Fox.Core.BucketCollector> bucketCollector = new Fox.Core.EntityPtr<Fox.Core.BucketCollector>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

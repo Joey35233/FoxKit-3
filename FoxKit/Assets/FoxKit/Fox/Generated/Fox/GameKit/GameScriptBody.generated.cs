@@ -17,7 +17,7 @@ namespace Fox.GameKit
         // Properties
         public bool enable;
         
-        public Fox.Core.EntityPtr<Fox.GameKit.CheckpointData> storage;
+        public Fox.Core.EntityPtr<Fox.GameKit.CheckpointData> storage = new Fox.Core.EntityPtr<Fox.GameKit.CheckpointData>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

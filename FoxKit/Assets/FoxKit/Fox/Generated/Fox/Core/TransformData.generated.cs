@@ -17,11 +17,11 @@ namespace Fox.Core
         // Properties
         public Fox.Core.EntityHandle parent;
         
-        public Fox.Core.EntityPtr<Fox.Core.TransformEntity> transform;
+        public Fox.Core.EntityPtr<Fox.Core.TransformEntity> transform = new Fox.Core.EntityPtr<Fox.Core.TransformEntity>();
         
-        public Fox.Core.EntityPtr<Fox.Core.ShearTransformEntity> shearTransform;
+        public Fox.Core.EntityPtr<Fox.Core.ShearTransformEntity> shearTransform = new Fox.Core.EntityPtr<Fox.Core.ShearTransformEntity>();
         
-        public Fox.Core.EntityPtr<Fox.Core.PivotTransformEntity> pivotTransform;
+        public Fox.Core.EntityPtr<Fox.Core.PivotTransformEntity> pivotTransform = new Fox.Core.EntityPtr<Fox.Core.PivotTransformEntity>();
         
         public Fox.Core.DynamicArray<Fox.Core.EntityHandle> children = new Fox.Core.DynamicArray<Fox.Core.EntityHandle>();
         

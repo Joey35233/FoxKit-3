@@ -15,7 +15,7 @@ namespace Fox.Core
     public partial class EntityPtrEntity : Fox.Core.PropertyValueEntity 
     {
         // Properties
-        public Fox.Core.EntityPtr<Fox.Core.Entity> value;
+        public Fox.Core.EntityPtr<Fox.Core.Entity> value = new Fox.Core.EntityPtr<Fox.Core.Entity>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

@@ -15,7 +15,7 @@ namespace Tpp.Effect
     public partial class TppGlobalVolumetricFog : Fox.Core.Data 
     {
         // Properties
-        public Fox.Core.EntityPtr<Tpp.Effect.TppGlobalVolumetricFogParam> param;
+        public Fox.Core.EntityPtr<Tpp.Effect.TppGlobalVolumetricFogParam> param = new Fox.Core.EntityPtr<Tpp.Effect.TppGlobalVolumetricFogParam>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

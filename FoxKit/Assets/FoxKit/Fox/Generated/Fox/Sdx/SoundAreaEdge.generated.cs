@@ -15,7 +15,7 @@ namespace Fox.Sdx
     public partial class SoundAreaEdge : Fox.Core.Data 
     {
         // Properties
-        public Fox.Core.EntityPtr<Fox.Sdx.SoundAreaEdgeParameter> parameter;
+        public Fox.Core.EntityPtr<Fox.Sdx.SoundAreaEdgeParameter> parameter = new Fox.Core.EntityPtr<Fox.Sdx.SoundAreaEdgeParameter>();
         
         public Fox.Core.EntityLink prevArea;
         

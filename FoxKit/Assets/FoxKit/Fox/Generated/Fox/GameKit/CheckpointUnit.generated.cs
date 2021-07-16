@@ -15,7 +15,7 @@ namespace Fox.GameKit
     public partial class CheckpointUnit : Fox.Core.Entity 
     {
         // Properties
-        public Fox.Core.EntityPtr<Fox.Core.Entity> checkPointParam;
+        public Fox.Core.EntityPtr<Fox.Core.Entity> checkPointParam = new Fox.Core.EntityPtr<Fox.Core.Entity>();
         
         public Fox.Core.StringMap<Fox.Core.EntityPtr<Fox.Core.Entity>> checkPointData = new Fox.Core.StringMap<Fox.Core.EntityPtr<Fox.Core.Entity>>();
         

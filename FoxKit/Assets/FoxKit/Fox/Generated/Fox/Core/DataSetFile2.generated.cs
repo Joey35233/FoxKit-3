@@ -15,7 +15,7 @@ namespace Fox.Core
     public partial class DataSetFile2 : Fox.Core.EntityFile 
     {
         // Properties
-        public Fox.Core.EntityPtr<Fox.Core.DataSet> dataSet;
+        public Fox.Core.EntityPtr<Fox.Core.DataSet> dataSet = new Fox.Core.EntityPtr<Fox.Core.DataSet>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

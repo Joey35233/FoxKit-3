@@ -45,5 +45,10 @@ namespace Fox.Core
         {
             this.ptr = entity;
         }
+
+        public EntityPtr()
+        {
+            this.ptr = null;
+        }
     }
 }

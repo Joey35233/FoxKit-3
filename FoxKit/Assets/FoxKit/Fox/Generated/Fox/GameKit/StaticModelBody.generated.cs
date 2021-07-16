@@ -15,7 +15,7 @@ namespace Fox.GameKit
     public partial class StaticModelBody : Fox.Core.TransformDataBody 
     {
         // Properties
-        public Fox.Core.EntityPtr<Fox.Geo.CollisionReference> geom;
+        public Fox.Core.EntityPtr<Fox.Geo.CollisionReference> geom = new Fox.Core.EntityPtr<Fox.Geo.CollisionReference>();
         
         public bool isVisible;
         

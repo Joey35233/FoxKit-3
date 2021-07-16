@@ -15,7 +15,7 @@ namespace Fox.Sdx
     public partial class SoundAreaGlobal : Fox.Core.Data 
     {
         // Properties
-        public Fox.Core.EntityPtr<Fox.Sdx.SoundAreaParameter> parameter;
+        public Fox.Core.EntityPtr<Fox.Sdx.SoundAreaParameter> parameter = new Fox.Core.EntityPtr<Fox.Sdx.SoundAreaParameter>();
         
         public Fox.String volumeRtpc;
         

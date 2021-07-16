@@ -21,7 +21,7 @@ namespace Fox.Phx
         
         public Fox.Core.DynamicArray<float> gearRatios = new Fox.Core.DynamicArray<float>();
         
-        public Fox.Core.EntityPtr<Fox.Phx.PhVehicleNormalEngineParam> vehicleNormalEngineParam;
+        public Fox.Core.EntityPtr<Fox.Phx.PhVehicleNormalEngineParam> vehicleNormalEngineParam = new Fox.Core.EntityPtr<Fox.Phx.PhVehicleNormalEngineParam>();
         
         public Fox.Core.DynamicArray<float> specPointAngularVelocity = new Fox.Core.DynamicArray<float>();
         

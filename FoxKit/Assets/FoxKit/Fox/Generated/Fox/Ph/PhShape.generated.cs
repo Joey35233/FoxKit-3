@@ -15,7 +15,7 @@ namespace Fox.Ph
     public partial class PhShape : Fox.Ph.PhSubObject 
     {
         // Properties
-        public Fox.Core.EntityPtr<Fox.Ph.PhShapeParam> param;
+        public Fox.Core.EntityPtr<Fox.Ph.PhShapeParam> param = new Fox.Core.EntityPtr<Fox.Ph.PhShapeParam>();
         
         public UnityEngine.Vector3 offset;
         

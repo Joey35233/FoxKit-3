@@ -15,7 +15,7 @@ namespace Fox.Sim
     public partial class SimWindControl : Fox.Sim.SimControlElement 
     {
         // Properties
-        public Fox.Core.EntityPtr<Fox.Sim.SimWindControlParam> controlParam;
+        public Fox.Core.EntityPtr<Fox.Sim.SimWindControlParam> controlParam = new Fox.Core.EntityPtr<Fox.Sim.SimWindControlParam>();
         
         public float windCoefficient;
         

@@ -15,7 +15,7 @@ namespace Fox.Sim
     public partial class SimDirectionControl : Fox.Sim.SimControlElement 
     {
         // Properties
-        public Fox.Core.EntityPtr<Fox.Sim.SimDirectionControlParam> controlParam;
+        public Fox.Core.EntityPtr<Fox.Sim.SimDirectionControlParam> controlParam = new Fox.Core.EntityPtr<Fox.Sim.SimDirectionControlParam>();
         
         public Fox.String refBone;
         

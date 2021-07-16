@@ -15,7 +15,7 @@ namespace Fox.Geo
     public partial class GeoTrapScriptConditionBody : Fox.Geo.GeoTrapConditionBody 
     {
         // Properties
-        public Fox.Core.EntityPtr<Fox.Core.SafeScript> script;
+        public Fox.Core.EntityPtr<Fox.Core.SafeScript> script = new Fox.Core.EntityPtr<Fox.Core.SafeScript>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

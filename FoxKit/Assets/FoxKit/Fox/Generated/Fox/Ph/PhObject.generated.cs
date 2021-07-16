@@ -15,7 +15,7 @@ namespace Fox.Ph
     public partial class PhObject : Fox.Core.TransformData 
     {
         // Properties
-        public Fox.Core.EntityPtr<Fox.Ph.PhObjectParam> param;
+        public Fox.Core.EntityPtr<Fox.Ph.PhObjectParam> param = new Fox.Core.EntityPtr<Fox.Ph.PhObjectParam>();
         
         public Fox.String worldName;
         

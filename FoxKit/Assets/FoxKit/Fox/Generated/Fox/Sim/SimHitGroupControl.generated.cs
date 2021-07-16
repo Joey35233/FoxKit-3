@@ -15,7 +15,7 @@ namespace Fox.Sim
     public partial class SimHitGroupControl : Fox.Sim.SimControlElement 
     {
         // Properties
-        public Fox.Core.EntityPtr<Fox.Sim.SimHitGroupControlParam> controlParam;
+        public Fox.Core.EntityPtr<Fox.Sim.SimHitGroupControlParam> controlParam = new Fox.Core.EntityPtr<Fox.Sim.SimHitGroupControlParam>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

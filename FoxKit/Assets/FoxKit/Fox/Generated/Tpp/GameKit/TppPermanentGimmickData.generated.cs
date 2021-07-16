@@ -19,7 +19,7 @@ namespace Tpp.GameKit
         
         public Fox.Core.FilePtr<Fox.Core.File> locaterFile;
         
-        public Fox.Core.EntityPtr<Fox.Core.DataElement> parameters;
+        public Fox.Core.EntityPtr<Fox.Core.DataElement> parameters = new Fox.Core.EntityPtr<Fox.Core.DataElement>();
         
         public uint flags1;
         

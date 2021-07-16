@@ -15,7 +15,7 @@ namespace Fox.Sim
     public partial class SimClothControl : Fox.Sim.SimControlElement 
     {
         // Properties
-        public Fox.Core.EntityPtr<Fox.Sim.SimClothControlParam> controlParam;
+        public Fox.Core.EntityPtr<Fox.Sim.SimClothControlParam> controlParam = new Fox.Core.EntityPtr<Fox.Sim.SimClothControlParam>();
         
         public Fox.Core.DynamicArray<Fox.Core.EntityPtr<Fox.Sim.SimClothControlUnit>> clothControlUnits = new Fox.Core.DynamicArray<Fox.Core.EntityPtr<Fox.Sim.SimClothControlUnit>>();
         

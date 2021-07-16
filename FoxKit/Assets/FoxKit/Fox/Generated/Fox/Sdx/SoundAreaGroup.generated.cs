@@ -17,7 +17,7 @@ namespace Fox.Sdx
         // Properties
         public uint priority;
         
-        public Fox.Core.EntityPtr<Fox.Sdx.SoundAreaParameter> parameter;
+        public Fox.Core.EntityPtr<Fox.Sdx.SoundAreaParameter> parameter = new Fox.Core.EntityPtr<Fox.Sdx.SoundAreaParameter>();
         
         public Fox.Core.DynamicArray<Fox.Core.EntityLink> members = new Fox.Core.DynamicArray<Fox.Core.EntityLink>();
         

@@ -15,7 +15,7 @@ namespace Fox.Ph
     public partial class PhDaemon : Fox.Core.Entity 
     {
         // Properties
-        public Fox.Core.EntityPtr<Fox.Ph.PhMaterialManager> materialManager;
+        public Fox.Core.EntityPtr<Fox.Ph.PhMaterialManager> materialManager = new Fox.Core.EntityPtr<Fox.Ph.PhMaterialManager>();
         
         public float defaultFriction;
         
