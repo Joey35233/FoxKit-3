@@ -15,7 +15,7 @@ namespace Fox.Ph
     public partial class PhConstraint : Fox.Ph.PhSubObject 
     {
         // Properties
-        public Fox.Core.EntityPtr<Fox.Ph.PhConstraintParam> param;
+        public Fox.Core.EntityPtr<Fox.Ph.PhConstraintParam> param = new Fox.Core.EntityPtr<Fox.Ph.PhConstraintParam>();
         
         public Fox.Core.EntityLink bodyA;
         

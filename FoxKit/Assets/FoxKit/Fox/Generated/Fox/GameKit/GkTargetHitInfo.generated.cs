@@ -15,9 +15,9 @@ namespace Fox.GameKit
     public partial class GkTargetHitInfo : Fox.Core.Entity 
     {
         // Properties
-        public Fox.Core.EntityPtr<Fox.GameKit.GkTargetData> offense;
+        public Fox.Core.EntityPtr<Fox.GameKit.GkTargetData> offense = new Fox.Core.EntityPtr<Fox.GameKit.GkTargetData>();
         
-        public Fox.Core.EntityPtr<Fox.GameKit.GkTargetData> defense;
+        public Fox.Core.EntityPtr<Fox.GameKit.GkTargetData> defense = new Fox.Core.EntityPtr<Fox.GameKit.GkTargetData>();
         
         public UnityEngine.Vector3 hitPosition;
         

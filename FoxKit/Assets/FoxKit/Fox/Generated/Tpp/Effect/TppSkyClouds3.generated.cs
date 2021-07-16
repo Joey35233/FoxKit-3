@@ -15,7 +15,7 @@ namespace Tpp.Effect
     public partial class TppSkyClouds3 : Fox.Core.Data 
     {
         // Properties
-        public Fox.Core.EntityPtr<Tpp.Effect.TppSkyClouds3Param> param;
+        public Fox.Core.EntityPtr<Tpp.Effect.TppSkyClouds3Param> param = new Fox.Core.EntityPtr<Tpp.Effect.TppSkyClouds3Param>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

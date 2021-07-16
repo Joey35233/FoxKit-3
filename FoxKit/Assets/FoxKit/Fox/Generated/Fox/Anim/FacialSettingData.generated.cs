@@ -17,9 +17,9 @@ namespace Fox.Anim
         // Properties
         public Fox.Core.DynamicArray<Fox.Core.EntityPtr<Fox.Anim.FacialMaskElement>> aspectMaskList = new Fox.Core.DynamicArray<Fox.Core.EntityPtr<Fox.Anim.FacialMaskElement>>();
         
-        public Fox.Core.EntityPtr<Fox.Anim.FacialMaskElement> mouthMask;
+        public Fox.Core.EntityPtr<Fox.Anim.FacialMaskElement> mouthMask = new Fox.Core.EntityPtr<Fox.Anim.FacialMaskElement>();
         
-        public Fox.Core.EntityPtr<Fox.Anim.FacialMaskElement> lipMask;
+        public Fox.Core.EntityPtr<Fox.Anim.FacialMaskElement> lipMask = new Fox.Core.EntityPtr<Fox.Anim.FacialMaskElement>();
         
         public Fox.String rootName;
         

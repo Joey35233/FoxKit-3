@@ -17,7 +17,7 @@ namespace Fox.Core
         // Properties
         public Fox.Core.StringMap<Fox.Core.EntityPtr<Fox.Core.Bucket>> buckets = new Fox.Core.StringMap<Fox.Core.EntityPtr<Fox.Core.Bucket>>();
         
-        public Fox.Core.EntityPtr<Fox.Core.Bucket> mainBucket;
+        public Fox.Core.EntityPtr<Fox.Core.Bucket> mainBucket = new Fox.Core.EntityPtr<Fox.Core.Bucket>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

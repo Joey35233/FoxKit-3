@@ -15,7 +15,7 @@ namespace Fox.Ph
     public partial class PhRigidBody : Fox.Ph.PhSubObject 
     {
         // Properties
-        public Fox.Core.EntityPtr<Fox.Ph.PhRigidBodyParam> param;
+        public Fox.Core.EntityPtr<Fox.Ph.PhRigidBodyParam> param = new Fox.Core.EntityPtr<Fox.Ph.PhRigidBodyParam>();
         
         public UnityEngine.Vector3 defaultPosition;
         

@@ -21,7 +21,7 @@ namespace Fox.Core
         
         public Fox.Core.StringMap<Fox.Core.EntityPtr<Fox.Core.DataBodySet>> dataBodySets = new Fox.Core.StringMap<Fox.Core.EntityPtr<Fox.Core.DataBodySet>>();
         
-        public Fox.Core.EntityPtr<Fox.Core.DataBodySet> editableDataBodySet;
+        public Fox.Core.EntityPtr<Fox.Core.DataBodySet> editableDataBodySet = new Fox.Core.EntityPtr<Fox.Core.DataBodySet>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

@@ -15,7 +15,7 @@ namespace Tpp.GameKit
     public partial class TppObjectBrushPluginBushData : Fox.Core.Data 
     {
         // Properties
-        public Fox.Core.EntityPtr<Tpp.GameKit.ObjectBrushPluginBushDataElement> parameter;
+        public Fox.Core.EntityPtr<Tpp.GameKit.ObjectBrushPluginBushDataElement> parameter = new Fox.Core.EntityPtr<Tpp.GameKit.ObjectBrushPluginBushDataElement>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

@@ -29,24 +29,19 @@ namespace FoxKit.MenuItems
             scene.name = CsSystem.IO.Path.GetFileNameWithoutExtension(assetPath);
 
             var typeCount = new Dictionary<Type, int>();
+            var transformGameObjects = new Dictionary<Entity, UnityEngine.GameObject>();
             UnityEngine.GameObject dataSetGameObject = null;
             foreach(var entity in entities)
             {
                 var gameObject = new UnityEngine.GameObject();
 
-                if (!(entity is DataSet))
-                {
-                    var entityComponent = gameObject.AddComponent<FoxEntity>();
-                    entityComponent.Entity = entity;
-                }
-
+                // Name the GameObject
                 if (entity is Data)
                 {
                     gameObject.name = (entity as Data).name;
                 }
                 else
                 {
-                    gameObject.transform.SetParent(dataSetGameObject.transform);
                     if (typeCount.ContainsKey(entity.GetType()))
                     {
                         gameObject.name = entity.GetType().Name + (typeCount[entity.GetType()] + 1).ToString("D4");
@@ -57,12 +52,44 @@ namespace FoxKit.MenuItems
                         gameObject.name = entity.GetType().Name + "0000";
                         typeCount.Add(entity.GetType(), 0);
                     }
+
                 }
+
+                // Make entity component
                 if (entity is DataSet)
                 {
                     dataSetGameObject = gameObject;
                     gameObject.name = "DataSet";
                 }
+                else
+                {
+                    var entityComponent = gameObject.AddComponent<FoxEntity>();
+                    entityComponent.Entity = entity;
+                }
+
+                // Parenting
+                if (entity is TransformData)
+                {
+                    transformGameObjects.Add(entity, gameObject);
+                }
+                else
+                {
+                    gameObject.transform.SetParent(dataSetGameObject.transform);
+                }
+            }
+
+            foreach(var entity in transformGameObjects.Keys)
+            {
+                var transformData = entity as TransformData;
+                var parent = transformData.parent;
+                if (parent.Entity() == null)
+                {
+                    continue;
+                }
+
+                var parentGameObject = transformGameObjects[parent.Entity()];
+                var gameObject = transformGameObjects[entity];
+                gameObject.transform.SetParent(parentGameObject.transform);
             }
 
             EditorSceneManager.SaveScene(scene, "Assets/Scenes/" + CsSystem.IO.Path.GetFileName(assetPath) + ".unity");

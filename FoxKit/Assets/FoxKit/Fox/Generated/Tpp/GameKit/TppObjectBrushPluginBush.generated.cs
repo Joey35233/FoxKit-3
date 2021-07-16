@@ -19,7 +19,7 @@ namespace Tpp.GameKit
         
         public float upgradeLodRateForHighEnd;
         
-        public Fox.Core.EntityPtr<Tpp.GameKit.ObjectBrushPluginBushDataElement> gimmickParameter;
+        public Fox.Core.EntityPtr<Tpp.GameKit.ObjectBrushPluginBushDataElement> gimmickParameter = new Fox.Core.EntityPtr<Tpp.GameKit.ObjectBrushPluginBushDataElement>();
         
         public Fox.Core.EntityLink externalGimmickParameter;
         

@@ -15,7 +15,7 @@ namespace Fox.Sim
     public partial class SimGravityControl : Fox.Sim.SimControlElement 
     {
         // Properties
-        public Fox.Core.EntityPtr<Fox.Sim.SimGravityControlParam> controlParam;
+        public Fox.Core.EntityPtr<Fox.Sim.SimGravityControlParam> controlParam = new Fox.Core.EntityPtr<Fox.Sim.SimGravityControlParam>();
         
         public float gravityCoefficient;
         

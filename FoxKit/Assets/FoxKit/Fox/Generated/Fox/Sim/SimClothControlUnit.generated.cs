@@ -15,7 +15,7 @@ namespace Fox.Sim
     public partial class SimClothControlUnit : Fox.Core.DataElement 
     {
         // Properties
-        public Fox.Core.EntityPtr<Fox.Sim.SimClothControlUnitParam> controlUnitParam;
+        public Fox.Core.EntityPtr<Fox.Sim.SimClothControlUnitParam> controlUnitParam = new Fox.Core.EntityPtr<Fox.Sim.SimClothControlUnitParam>();
         
         public float mass;
         

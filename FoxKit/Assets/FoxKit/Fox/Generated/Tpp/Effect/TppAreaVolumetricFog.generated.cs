@@ -15,7 +15,7 @@ namespace Tpp.Effect
     public partial class TppAreaVolumetricFog : Fox.Core.TransformData 
     {
         // Properties
-        public Fox.Core.EntityPtr<Tpp.Effect.TppAreaVolumetricFogParam> param;
+        public Fox.Core.EntityPtr<Tpp.Effect.TppAreaVolumetricFogParam> param = new Fox.Core.EntityPtr<Tpp.Effect.TppAreaVolumetricFogParam>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

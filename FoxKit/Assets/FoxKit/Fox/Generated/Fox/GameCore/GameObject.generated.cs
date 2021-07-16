@@ -23,7 +23,7 @@ namespace Fox.GameCore
         
         public uint realizedCount;
         
-        public Fox.Core.EntityPtr<Fox.Core.DataElement> parameters;
+        public Fox.Core.EntityPtr<Fox.Core.DataElement> parameters = new Fox.Core.EntityPtr<Fox.Core.DataElement>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

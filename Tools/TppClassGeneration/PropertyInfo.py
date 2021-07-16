@@ -143,6 +143,9 @@ class PropertyInfo:
                 True if the property has an explicit default value, else false.
 
         """
+        if self.data_type == "EntityPtr":
+            return True
+
         return not (self.container == "StaticArray" and self.array_size == 1)
 
     def get_default_value(self):
@@ -153,6 +156,9 @@ class PropertyInfo:
 
         """
         value_type_string = self.get_value_type_string()
+
+        if not self.is_collection_property() and self.data_type == "EntityPtr":
+            return f'new {value_type_string}()'
         if self.container == "StaticArray":
             return f'new Fox.Core.StaticArray<{value_type_string}>({self.array_size})'
         if self.container == "StringMap":

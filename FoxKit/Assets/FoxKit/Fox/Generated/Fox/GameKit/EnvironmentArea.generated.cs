@@ -15,7 +15,7 @@ namespace Fox.GameKit
     public partial class EnvironmentArea : Fox.Core.TransformData 
     {
         // Properties
-        public Fox.Core.EntityPtr<Fox.GameKit.EnvironmentParameter> parameter;
+        public Fox.Core.EntityPtr<Fox.GameKit.EnvironmentParameter> parameter = new Fox.Core.EntityPtr<Fox.GameKit.EnvironmentParameter>();
         
         public uint priority;
         

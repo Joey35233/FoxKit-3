@@ -15,9 +15,9 @@ namespace Fox.Sim
     public partial class SimObject : Fox.Core.Data 
     {
         // Properties
-        public Fox.Core.EntityPtr<Fox.Sim.SimObjectParam> objectParam;
+        public Fox.Core.EntityPtr<Fox.Sim.SimObjectParam> objectParam = new Fox.Core.EntityPtr<Fox.Sim.SimObjectParam>();
         
-        public Fox.Core.EntityPtr<Fox.Sim.SimEngineParam> engineParam;
+        public Fox.Core.EntityPtr<Fox.Sim.SimEngineParam> engineParam = new Fox.Core.EntityPtr<Fox.Sim.SimEngineParam>();
         
         public Fox.Core.DynamicArray<Fox.Core.EntityPtr<Fox.Sim.SimControlElement>> controls = new Fox.Core.DynamicArray<Fox.Core.EntityPtr<Fox.Sim.SimControlElement>>();
         

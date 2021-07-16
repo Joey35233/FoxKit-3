@@ -19,7 +19,7 @@ namespace Fox.Phx
         
         public Fox.Core.StringMap<Fox.Core.EntityPtr<Fox.Phx.PhxAssociationUnitElement>> connections = new Fox.Core.StringMap<Fox.Core.EntityPtr<Fox.Phx.PhxAssociationUnitElement>>();
         
-        public Fox.Core.EntityPtr<Fox.Phx.PhAssociationParam> param;
+        public Fox.Core.EntityPtr<Fox.Phx.PhAssociationParam> param = new Fox.Core.EntityPtr<Fox.Phx.PhAssociationParam>();
         
         public uint connectType;
         

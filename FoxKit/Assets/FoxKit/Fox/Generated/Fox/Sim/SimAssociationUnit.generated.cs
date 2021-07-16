@@ -15,7 +15,7 @@ namespace Fox.Sim
     public partial class SimAssociationUnit : Fox.Phx.PhxAssociationUnitElement 
     {
         // Properties
-        public Fox.Core.EntityPtr<Fox.Sim.SimAssociationUnitParam> param;
+        public Fox.Core.EntityPtr<Fox.Sim.SimAssociationUnitParam> param = new Fox.Core.EntityPtr<Fox.Sim.SimAssociationUnitParam>();
         
         public Fox.String boneName;
         

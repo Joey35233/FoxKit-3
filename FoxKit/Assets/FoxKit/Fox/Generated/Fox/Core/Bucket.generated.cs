@@ -27,11 +27,11 @@ namespace Fox.Core
         
         public Fox.Core.StringMap<Fox.Core.EntityPtr<Fox.Core.DataBodySet>> dataBodySets = new Fox.Core.StringMap<Fox.Core.EntityPtr<Fox.Core.DataBodySet>>();
         
-        public Fox.Core.EntityPtr<Fox.Core.DataSet> editableDataSet;
+        public Fox.Core.EntityPtr<Fox.Core.DataSet> editableDataSet = new Fox.Core.EntityPtr<Fox.Core.DataSet>();
         
         public Fox.Core.Path editableDataSetPath;
         
-        public Fox.Core.EntityPtr<Fox.Core.DataBodySet> editableDataBodySet;
+        public Fox.Core.EntityPtr<Fox.Core.DataBodySet> editableDataBodySet = new Fox.Core.EntityPtr<Fox.Core.DataBodySet>();
         
         public bool editableDataSetChanged;
         

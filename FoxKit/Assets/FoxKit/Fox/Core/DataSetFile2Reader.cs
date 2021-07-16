@@ -34,7 +34,6 @@ namespace Fox.Core
             }
 
             this.ResolveRequests(entities);
-
             return entities.Values.ToList();
         }
 
@@ -70,7 +69,7 @@ namespace Fox.Core
             {
                 if (entities.ContainsKey(entityPtr.Key))
                 {
-                    // TODO entityPtr.Value.Reset(entities[entityPtr.Key]);
+                    entityPtr.Value.Reset(entities[entityPtr.Key]);
                     continue;
                 }
 

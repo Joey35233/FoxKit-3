@@ -19,9 +19,9 @@ namespace Fox.Grx
         
         public AmbientOcclusionSettings_LightAttachment attachment;
         
-        public Fox.Core.EntityPtr<Fox.Grx.GrxLineSSAOParameters> lineSSAOParameters;
+        public Fox.Core.EntityPtr<Fox.Grx.GrxLineSSAOParameters> lineSSAOParameters = new Fox.Core.EntityPtr<Fox.Grx.GrxLineSSAOParameters>();
         
-        public Fox.Core.EntityPtr<Fox.Grx.GrxAreaSSAOParameters> areaSSAOParameters;
+        public Fox.Core.EntityPtr<Fox.Grx.GrxAreaSSAOParameters> areaSSAOParameters = new Fox.Core.EntityPtr<Fox.Grx.GrxAreaSSAOParameters>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

@@ -15,7 +15,7 @@ namespace Fox.GameKit
     public partial class EnvironmentGlobal : Fox.Core.Data 
     {
         // Properties
-        public Fox.Core.EntityPtr<Fox.GameKit.EnvironmentParameter> parameter;
+        public Fox.Core.EntityPtr<Fox.GameKit.EnvironmentParameter> parameter = new Fox.Core.EntityPtr<Fox.GameKit.EnvironmentParameter>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

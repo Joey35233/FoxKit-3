@@ -15,7 +15,7 @@ namespace Fox.Sim
     public partial class SimInertialControl : Fox.Sim.SimControlElement 
     {
         // Properties
-        public Fox.Core.EntityPtr<Fox.Sim.SimInertialControlParam> controlParam;
+        public Fox.Core.EntityPtr<Fox.Sim.SimInertialControlParam> controlParam = new Fox.Core.EntityPtr<Fox.Sim.SimInertialControlParam>();
         
         public float inertialCoefficient;
         

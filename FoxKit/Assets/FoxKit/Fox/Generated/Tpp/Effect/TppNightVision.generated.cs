@@ -15,7 +15,7 @@ namespace Tpp.Effect
     public partial class TppNightVision : Fox.Core.Data 
     {
         // Properties
-        public Fox.Core.EntityPtr<Tpp.Effect.TppNightVisionParam> param;
+        public Fox.Core.EntityPtr<Tpp.Effect.TppNightVisionParam> param = new Fox.Core.EntityPtr<Tpp.Effect.TppNightVisionParam>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

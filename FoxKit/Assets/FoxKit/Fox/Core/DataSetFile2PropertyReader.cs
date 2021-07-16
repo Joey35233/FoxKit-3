@@ -26,6 +26,8 @@ namespace Fox.FoxCore.Serialization
         /// <param name="value">The value to assign to the property.</param>
         public delegate void SetProperty(string propertyName, Value value);
 
+        public delegate Type GetPtrType(string propertyName);
+
         /// <summary>
         /// Sets the value of an array property at a given index.
         /// </summary>
@@ -74,11 +76,13 @@ namespace Fox.FoxCore.Serialization
         public void Read(
             BinaryReader reader,
             OnPropertyNameUnhashedCallback onPropertyNameUnhashed,
+            GetPtrType getPtrType,
             SetProperty setProperty,
             SetPropertyElementByIndex setPropertyElementByIndex,
             SetPropertyElementByKey setPropertyElementByKey)
         {
             Debug.Assert(reader != null);
+            Debug.Assert(getPtrType != null);
             Debug.Assert(setProperty != null);
             Debug.Assert(setPropertyElementByIndex != null);
             Debug.Assert(setPropertyElementByKey != null);
@@ -92,23 +96,25 @@ namespace Fox.FoxCore.Serialization
             var name = this.unhashString(nameHash);
             onPropertyNameUnhashed(dataType, name, containerType == PropertyInfo.ContainerType.StaticArray ? arraySize : (ushort)1, containerType);
 
+            var ptrType = getPtrType(name);
+
             if (containerType == PropertyInfo.ContainerType.StaticArray && arraySize == 1)
             {
-                ReadProperty(reader, setProperty, name, dataType);
+                ReadProperty(reader, setProperty, name, dataType, ptrType);
             }
             else if (containerType == PropertyInfo.ContainerType.StringMap)
             {
-                ReadStringMap(reader, setPropertyElementByKey, name, dataType, arraySize);
+                ReadStringMap(reader, setPropertyElementByKey, name, dataType, ptrType, arraySize);
             }
             else
             {
-                ReadArray(reader, setPropertyElementByIndex, name, dataType, arraySize);
+                ReadArray(reader, setPropertyElementByIndex, name, dataType, ptrType, arraySize);
             }
 
             reader.BaseStream.AlignRead(16);
         }
 
-        private void ReadArray(BinaryReader reader, SetPropertyElementByIndex setPropertyElementByIndex, string name, PropertyInfo.PropertyType dataType, ushort arraySize)
+        private void ReadArray(BinaryReader reader, SetPropertyElementByIndex setPropertyElementByIndex, string name, PropertyInfo.PropertyType dataType, Type ptrType, ushort arraySize)
         {
             for (ushort i = 0; i < arraySize; i++)
             {
@@ -117,7 +123,7 @@ namespace Fox.FoxCore.Serialization
                 SetProperty setProperty = (name, val) => setPropertyElementByIndex(name, i, val);
                 if (dataType == PropertyInfo.PropertyType.EntityPtr)
                 {
-                    ReadEntityPtr(reader, setProperty, name);
+                    ReadEntityPtr(reader, setProperty, ptrType, name);
                 }
                 else if (dataType == PropertyInfo.PropertyType.EntityHandle)
                 {
@@ -139,7 +145,7 @@ namespace Fox.FoxCore.Serialization
             }
         }
 
-        private void ReadStringMap(BinaryReader reader, SetPropertyElementByKey setPropertyElementByKey, string name, PropertyInfo.PropertyType dataType, ushort arraySize)
+        private void ReadStringMap(BinaryReader reader, SetPropertyElementByKey setPropertyElementByKey, string name, PropertyInfo.PropertyType dataType, Type ptrType, ushort arraySize)
         {
             for (var i = 0; i < arraySize; i++)
             {
@@ -151,7 +157,7 @@ namespace Fox.FoxCore.Serialization
                 SetProperty setProperty = (name, val) => setPropertyElementByKey(name, key, val);
                 if (dataType == PropertyInfo.PropertyType.EntityPtr)
                 {
-                    ReadEntityPtr(reader, setProperty, name);
+                    ReadEntityPtr(reader, setProperty, ptrType, name);
                 }
                 else if (dataType == PropertyInfo.PropertyType.EntityHandle)
                 {
@@ -175,13 +181,13 @@ namespace Fox.FoxCore.Serialization
             }
         }
 
-        private void ReadProperty(BinaryReader reader, SetProperty setProperty, string name, PropertyInfo.PropertyType dataType)
+        private void ReadProperty(BinaryReader reader, SetProperty setProperty, string name, PropertyInfo.PropertyType dataType, Type ptrType)
         {
             // Entity references can't be resolved until the referenced Entity is loaded.
             // Register a callback to assign the property value once the Entity has been loaded.
             if (dataType == PropertyInfo.PropertyType.EntityPtr)
             {
-                ReadEntityPtr(reader, setProperty, name);
+                ReadEntityPtr(reader, setProperty, ptrType, name);
             }
             else if (dataType == PropertyInfo.PropertyType.EntityHandle)
             {
@@ -234,10 +240,10 @@ namespace Fox.FoxCore.Serialization
             setProperty(name, new Value(ptr));
         }
 
-        private void ReadEntityPtr(BinaryReader reader, SetProperty setProperty, string name)
+        private void ReadEntityPtr(BinaryReader reader, SetProperty setProperty, Type ptrType, string name)
         {
             var address = reader.ReadUInt64();
-            IEntityPtr ptr = null; // TODO
+            IEntityPtr ptr = Activator.CreateInstance(typeof(EntityPtr<>).MakeGenericType(ptrType)) as IEntityPtr;
             requestEntityPtr(address, ptr);
 
             setProperty(name, new Value(ptr));
