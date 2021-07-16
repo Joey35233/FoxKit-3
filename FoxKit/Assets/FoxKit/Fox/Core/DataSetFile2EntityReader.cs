@@ -1,6 +1,8 @@
 ﻿using Fox.FoxCore.Serialization;
 using System;
+using System.Diagnostics;
 using System.IO;
+using System.Runtime.Remoting.Messaging;
 using static Fox.FoxCore.Serialization.DataSetFile2PropertyReader;
 
 namespace Fox.Core
@@ -42,13 +44,22 @@ namespace Fox.Core
             var propertyReader = new DataSetFile2PropertyReader(unhashString, requestEntityPtr, requestEntityHandle, requestFilePtr, requestEntityLink);
             for (var i = 0; i < staticPropertyCount; i++)
             {
-                propertyReader.Read(reader, (PropertyInfo.PropertyType type, string name, ushort arraySize, PropertyInfo.ContainerType container) => OnPropertyNameUnhashed(type, name, arraySize, container, entity, isReadingDynamicProperty), setProperty, setPropertyElementByIndex, setPropertyElementByKey);
+                propertyReader.Read(reader, 
+                    (PropertyInfo.PropertyType type, string name, ushort arraySize, PropertyInfo.ContainerType container) => OnPropertyNameUnhashed(type, name, arraySize, container, entity, isReadingDynamicProperty),
+                    (propertyName) => GetPtrType(entity, propertyName),
+                    setProperty, 
+                    setPropertyElementByIndex, 
+                    setPropertyElementByKey);
             }
 
             isReadingDynamicProperty = true;
             for (var i = 0; i < dynamicPropertyCount; i++)
             {
-                propertyReader.Read(reader, (PropertyInfo.PropertyType type, string name, ushort arraySize, PropertyInfo.ContainerType container) => OnPropertyNameUnhashed(type, name, arraySize, container, entity, isReadingDynamicProperty), setProperty, setPropertyElementByIndex, setPropertyElementByKey);
+                propertyReader.Read(reader, (PropertyInfo.PropertyType type, string name, ushort arraySize, PropertyInfo.ContainerType container) => OnPropertyNameUnhashed(type, name, arraySize, container, entity, isReadingDynamicProperty), 
+                    (propertyName) => typeof(Entity),
+                    setProperty, 
+                    setPropertyElementByIndex, 
+                    setPropertyElementByKey);
             }
 
             return entity;
@@ -60,6 +71,25 @@ namespace Fox.Core
             {
                 entity.AddDynamicProperty(type, name, arraySize, container);
             }
+        }
+
+        private Type GetPtrType(Entity entity, string propertyName)
+        {
+            var foxStr = new String(propertyName);
+            var classInfo = entity.GetClassEntityInfo();
+            while (classInfo != null)
+            {
+                var properties = classInfo.StaticProperties;
+                if (properties.ContainsKey(foxStr))
+                {
+                    return properties[foxStr].PtrType;
+                }
+
+                classInfo = classInfo.Super;
+            }
+
+            UnityEngine.Debug.LogError("Unable to find property " + propertyName);
+            return null;
         }
     }
 }
