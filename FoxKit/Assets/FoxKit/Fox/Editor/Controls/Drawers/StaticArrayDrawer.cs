@@ -13,7 +13,7 @@ namespace Fox.Editor
     {
         SerializedProperty InternalListProperty;
         Type CollectionTypeArgument;
-        //object FieldConstructor
+        Func<BindableElement> FieldConstructor;
 
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
         {
@@ -22,6 +22,8 @@ namespace Fox.Editor
 
             object genericList = property.GetValue();
             CollectionTypeArgument = genericList.GetType().GetGenericArguments()[0];
+
+            FieldConstructor = CollectionDrawer.GetTypeFieldConstructor(CollectionTypeArgument);
 
             ListView listView = new ListView
             (
@@ -47,7 +49,7 @@ namespace Fox.Editor
 
         private VisualElement MakeItem()
         {
-            var entryField = new PropertyField();
+            var entryField = FieldConstructor();
             entryField.styleSheets.Add(CollectionDrawer.PropertyDrawerStyleSheet);
 
             return entryField;
@@ -55,19 +57,10 @@ namespace Fox.Editor
 
         private void BindItem(VisualElement element, int index)
         {
-            var entryField = element as PropertyField;
+            var entryField = element as IFoxField;
             var entry = InternalListProperty.GetArrayElementAtIndex(index);
 
-            entryField.BindProperty(entry);
-
-            var oldLabel = entryField.Query<Label>().First();
-            var parent = oldLabel.parent;
-            parent.Remove(oldLabel);
-            var label = new Label($"[{index}]");
-            label.AddToClassList("fox-listview-entry-label");
-            foreach (var cssClass in oldLabel.GetClasses())
-                label.AddToClassList(cssClass);
-            parent.Insert(0, label);
+            entryField.BindProperty(entry, $"[{index}]", new string[] { "fox-listview-entry-label" });
         }
     }
 }
