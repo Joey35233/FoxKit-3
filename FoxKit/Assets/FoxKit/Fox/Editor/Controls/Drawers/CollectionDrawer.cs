@@ -48,7 +48,7 @@ namespace Fox.Editor
             switch (propertyType)
             {
                 case Type _ when propertyType == typeof(bool):
-                    return () => new Toggle();
+                    return () => new BoolField();
 
                 //case Type _ when propertyType == typeof(sbyte):
                 //    return () => new Int8Field(false);
@@ -84,13 +84,27 @@ namespace Fox.Editor
 
                 case Type _ when propertyType == typeof(Fox.Core.Path):
                     return () => new PathField();
-                //case Type _ when propertyType == typeof(Vector3):
-                //case Type _ when propertyType == typeof(Vector4):
+
+                case Type _ when propertyType == typeof(Vector3):
+                    return () => new Vector3Field();
+
+                case Type _ when propertyType == typeof(Vector4):
+                    return () => new Fox.Editor.Vector4Field();
+
                 //case Type _ when propertyType == typeof(Color):
-                //case Type _ when propertyType == typeof(Quaternion):
+
+
+                case Type _ when propertyType == typeof(Quaternion):
+                    return () => new QuaternionField();
+
                 //case Type _ when propertyType == typeof(FilePtr<>):
+
+
                 //case Type _ when propertyType == typeof(EntityHandle):
-                //case Type _ when propertyType == typeof(Matrix4x4):
+
+
+                case Type _ when propertyType == typeof(Matrix4x4):
+                    return () => new Matrix4Field();
 
                 default:
                     return null;

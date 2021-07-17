@@ -9,11 +9,9 @@ namespace Fox.Editor
         private TextField InternalField;
         private SerializedProperty Property;
 
-        public StringField()
+        public StringField() : this(default)
         {
-            InternalField = new TextField();
 
-            this.Add(InternalField);
         }
 
         public StringField(string label)

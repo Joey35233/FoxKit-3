@@ -1,22 +1,24 @@
 ﻿using UnityEditor;
-using UnityEditor.UIElements;
 using UnityEngine.UIElements;
+using UnityEditor.UIElements;
 
 namespace Fox.Editor
 {
-    public class PathField : IFoxField
+    public class BoolField : IFoxField
     {
-        private TextField InternalField;
+        private Toggle InternalField;
         private SerializedProperty Property;
 
-        public PathField() : this(default)
+        public BoolField()
         {
+            InternalField = new Toggle();
 
+            this.Add(InternalField);
         }
 
-        public PathField(string label)
+        public BoolField(string label)
         {
-            InternalField = new TextField(label);
+            InternalField = new Toggle(label);
 
             this.Add(InternalField);
         }
@@ -31,8 +33,7 @@ namespace Fox.Editor
             this.Property = property;
 
             InternalField.label = label;
-            InternalField.BindProperty(property.FindPropertyRelative("_cString"));
-            InternalField.RegisterValueChangedCallback(OnValueChanged);
+            InternalField.BindProperty(property);
             InternalField.labelElement.AddToClassList("unity-property-field__label");
             if (ussClassNames != null)
                 foreach (var className in ussClassNames)
@@ -42,14 +43,14 @@ namespace Fox.Editor
         private void OnValueChanged(ChangeEvent<string> changeEvent) => Property.SetValue(new Fox.Core.Path(changeEvent.newValue));
     }
 
-    [CustomPropertyDrawer(typeof(Fox.Core.Path))]
-    public class PathDrawer : PropertyDrawer
+    [CustomPropertyDrawer(typeof(System.Boolean))]
+    public class BoolDrawer : PropertyDrawer
     {
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
         {
-            var field = new PathField();
+            var field = new BoolField();
             field.BindProperty(property);
-
+            
             return field;
         }
     }

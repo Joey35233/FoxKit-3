@@ -191,11 +191,11 @@ namespace Fox.Core
     {
         public InspectorTestData2()
         {
-            strings = new StaticArray<Path>(5);
+            strings = new StaticArray<Vector4>(5);
         }
 
-        public Path str;
+        public Vector4 str;
 
-        public StaticArray<Path> strings;
+        public StaticArray<Vector4> strings;
     }
 }
