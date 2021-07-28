@@ -1,37 +1,32 @@
 ﻿using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine.UIElements;
-using System.Reflection;
-using System;
-using System.Linq;
 
 namespace Fox.Editor
 {
-    public class StringField : BindableElement
+    public class PathField : IFoxField
     {
         private TextField InternalField;
         private SerializedProperty Property;
 
-        public StringField()
+        public PathField() : this(default)
         {
-            InternalField = new TextField();
 
-            this.Add(InternalField);
         }
 
-        public StringField(string label)
+        public PathField(string label)
         {
             InternalField = new TextField(label);
 
             this.Add(InternalField);
         }
 
-        public void BindProperty(SerializedProperty property)
+        public override void BindProperty(SerializedProperty property)
         {
             BindProperty(property, property.name);
         }
 
-        public void BindProperty(SerializedProperty property, string label)
+        public override void BindProperty(SerializedProperty property, string label, string[] ussClassNames = null)
         {
             this.Property = property;
 
@@ -39,17 +34,20 @@ namespace Fox.Editor
             InternalField.BindProperty(property.FindPropertyRelative("_cString"));
             InternalField.RegisterValueChangedCallback(OnValueChanged);
             InternalField.labelElement.AddToClassList("unity-property-field__label");
+            if (ussClassNames != null)
+                foreach (var className in ussClassNames)
+                    InternalField.labelElement.AddToClassList(className);
         }
 
-        private void OnValueChanged(ChangeEvent<string> changeEvent) => Property.SetValue(new String(changeEvent.newValue));
+        private void OnValueChanged(ChangeEvent<string> changeEvent) => Property.SetValue(new Fox.Core.Path(changeEvent.newValue));
     }
 
-    [CustomPropertyDrawer(typeof(Fox.String))]
-    public class StringDrawer : PropertyDrawer
+    [CustomPropertyDrawer(typeof(Fox.Core.Path))]
+    public class PathDrawer : PropertyDrawer
     {
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
         {
-            var field = new StringField();
+            var field = new PathField();
             field.BindProperty(property);
 
             return field;
