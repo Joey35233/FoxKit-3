@@ -91,7 +91,8 @@ namespace Fox.Editor
                 case Type _ when propertyType == typeof(Vector4):
                     return () => new Fox.Editor.Vector4Field();
 
-                //case Type _ when propertyType == typeof(Color):
+                case Type _ when propertyType == typeof(Color):
+                    return () => new Fox.Editor.ColorField();
 
 
                 case Type _ when propertyType == typeof(Quaternion):
