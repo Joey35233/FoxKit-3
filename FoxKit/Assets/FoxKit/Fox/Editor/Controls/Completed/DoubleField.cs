@@ -4,21 +4,21 @@ using UnityEditor.UIElements;
 
 namespace Fox.Editor
 {
-    public class BoolField : IFoxField
+    public class DoubleField : IFoxField
     {
-        private Toggle InternalField;
+        private UnityEditor.UIElements.DoubleField InternalField;
         private SerializedProperty Property;
 
-        public BoolField()
+        public DoubleField()
         {
-            InternalField = new Toggle();
+            InternalField = new UnityEditor.UIElements.DoubleField();
 
             this.Add(InternalField);
         }
 
-        public BoolField(string label)
+        public DoubleField(string label)
         {
-            InternalField = new Toggle(label);
+            InternalField = new UnityEditor.UIElements.DoubleField(label);
 
             this.Add(InternalField);
         }
@@ -35,20 +35,21 @@ namespace Fox.Editor
             InternalField.label = label;
             InternalField.BindProperty(property);
             InternalField.labelElement.AddToClassList("unity-property-field__label");
+            InternalField.styleSheets.Add(NumericPropertyDrawers.NumericPropertyDrawersStyleSheet);
             if (ussClassNames != null)
                 foreach (var className in ussClassNames)
                     InternalField.labelElement.AddToClassList(className);
         }
     }
 
-    [CustomPropertyDrawer(typeof(System.Boolean))]
-    public class BoolDrawer : PropertyDrawer
+    [CustomPropertyDrawer(typeof(System.Double))]
+    public class DoubleDrawer : PropertyDrawer
     {
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
         {
-            var field = new BoolField();
+            var field = new DoubleField();
             field.BindProperty(property);
-            
+
             return field;
         }
     }

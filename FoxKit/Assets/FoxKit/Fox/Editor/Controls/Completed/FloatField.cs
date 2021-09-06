@@ -4,21 +4,21 @@ using UnityEditor.UIElements;
 
 namespace Fox.Editor
 {
-    public class BoolField : IFoxField
+    public class FloatField : IFoxField
     {
-        private Toggle InternalField;
+        private UnityEditor.UIElements.FloatField InternalField;
         private SerializedProperty Property;
 
-        public BoolField()
+        public FloatField()
         {
-            InternalField = new Toggle();
+            InternalField = new UnityEditor.UIElements.FloatField();
 
             this.Add(InternalField);
         }
 
-        public BoolField(string label)
+        public FloatField(string label)
         {
-            InternalField = new Toggle(label);
+            InternalField = new UnityEditor.UIElements.FloatField(label);
 
             this.Add(InternalField);
         }
@@ -35,20 +35,21 @@ namespace Fox.Editor
             InternalField.label = label;
             InternalField.BindProperty(property);
             InternalField.labelElement.AddToClassList("unity-property-field__label");
+            InternalField.styleSheets.Add(NumericPropertyDrawers.NumericPropertyDrawersStyleSheet);
             if (ussClassNames != null)
                 foreach (var className in ussClassNames)
                     InternalField.labelElement.AddToClassList(className);
         }
     }
 
-    [CustomPropertyDrawer(typeof(System.Boolean))]
-    public class BoolDrawer : PropertyDrawer
+    [CustomPropertyDrawer(typeof(System.Single))]
+    public class FloatDrawer : PropertyDrawer
     {
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
         {
-            var field = new BoolField();
+            var field = new FloatField();
             field.BindProperty(property);
-            
+
             return field;
         }
     }

@@ -96,6 +96,7 @@ namespace Fox.Editor
         public Vector4Field(string label)
         {
             InternalField = new UnityEditor.UIElements.Vector4Field();
+            InternalField.label = label;
             InternalField.labelElement.AddToClassList("unity-property-field__label");
             InternalField.styleSheets.Add(NumericPropertyDrawers.NumericPropertyDrawersStyleSheet);
 

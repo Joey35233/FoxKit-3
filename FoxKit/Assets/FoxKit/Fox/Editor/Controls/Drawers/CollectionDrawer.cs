@@ -74,10 +74,10 @@ namespace Fox.Editor
                 //case Type _ when propertyType == typeof(ulong):
                 //    return () => new UInt64Field(false);
 
-                //case Type _ when propertyType == typeof(float):
-                //    return null;
-                //case Type _ when propertyType == typeof(double):
-                //    return null;
+                case Type _ when propertyType == typeof(float):
+                    return () => new FloatField();
+                case Type _ when propertyType == typeof(double):
+                    return () => new DoubleField();
 
                 case Type _ when propertyType == typeof(Fox.String):
                     return () => new StringField();
@@ -94,15 +94,14 @@ namespace Fox.Editor
                 case Type _ when propertyType == typeof(Color):
                     return () => new Fox.Editor.ColorField();
 
-
                 case Type _ when propertyType == typeof(Quaternion):
                     return () => new QuaternionField();
 
-                //case Type _ when propertyType == typeof(FilePtr<>):
+                case Type _ when propertyType.GetGenericTypeDefinition() == typeof(FilePtr<>):
+                    return () => new FilePtrField();
 
-
-                //case Type _ when propertyType == typeof(EntityHandle):
-
+                case Type _ when propertyType == typeof(EntityHandle):
+                    return () => new EntityHandleField();
 
                 case Type _ when propertyType == typeof(Matrix4x4):
                     return () => new Matrix4Field();

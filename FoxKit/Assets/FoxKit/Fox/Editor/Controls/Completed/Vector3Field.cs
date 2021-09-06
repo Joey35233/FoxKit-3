@@ -15,6 +15,7 @@ namespace Fox.Editor
         public Vector3Field(string label)
         {
             InternalField = new UnityEditor.UIElements.Vector3Field();
+            InternalField.label = label;
             InternalField.labelElement.AddToClassList("unity-property-field__label");
             InternalField.styleSheets.Add(NumericPropertyDrawers.NumericPropertyDrawersStyleSheet);
 
