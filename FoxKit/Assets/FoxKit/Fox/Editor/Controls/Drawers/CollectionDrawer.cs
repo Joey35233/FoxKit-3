@@ -50,29 +50,29 @@ namespace Fox.Editor
                 case Type _ when propertyType == typeof(bool):
                     return () => new BoolField();
 
-                //case Type _ when propertyType == typeof(sbyte):
-                //    return () => new Int8Field(false);
+                case Type _ when propertyType == typeof(sbyte):
+                    return () => new Int8Field(false);
 
-                //case Type _ when propertyType == typeof(byte):
-                //    return () => new UInt8Field(false);
+                case Type _ when propertyType == typeof(byte):
+                    return () => new UInt8Field(false);
 
-                //case Type _ when propertyType == typeof(short):
-                //    return () => new Int16Field(false);
+                case Type _ when propertyType == typeof(short):
+                    return () => new Int16Field(false);
 
-                //case Type _ when propertyType == typeof(ushort):
-                //    return () => new UInt16Field(false);
+                case Type _ when propertyType == typeof(ushort):
+                    return () => new UInt16Field(false);
 
-                //case Type _ when propertyType == typeof(int):
-                //    return () => new Int32Field(false);
+                case Type _ when propertyType == typeof(int):
+                    return () => new Int32Field(false);
 
-                //case Type _ when propertyType == typeof(uint):
-                //    return () => new UInt32Field(false);
+                case Type _ when propertyType == typeof(uint):
+                    return () => new UInt32Field(false);
 
-                //case Type _ when propertyType == typeof(long):
-                //    return () => new Int64Field(false);
+                case Type _ when propertyType == typeof(long):
+                    return () => new Int64Field(false);
 
-                //case Type _ when propertyType == typeof(ulong):
-                //    return () => new UInt64Field(false);
+                case Type _ when propertyType == typeof(ulong):
+                    return () => new UInt64Field(false);
 
                 case Type _ when propertyType == typeof(float):
                     return () => new FloatField();
@@ -97,7 +97,7 @@ namespace Fox.Editor
                 case Type _ when propertyType == typeof(Quaternion):
                     return () => new QuaternionField();
 
-                case Type _ when propertyType.GetGenericTypeDefinition() == typeof(FilePtr<>):
+                case Type _ when propertyType.IsGenericType && propertyType.GetGenericTypeDefinition() == typeof(FilePtr<>):
                     return () => new FilePtrField();
 
                 case Type _ when propertyType == typeof(EntityHandle):
@@ -106,8 +106,11 @@ namespace Fox.Editor
                 case Type _ when propertyType == typeof(Matrix4x4):
                     return () => new Matrix4Field();
 
+                case Type _ when propertyType == typeof(EntityLink):
+                    return () => new EntityLinkField();
+
                 default:
-                    return null;
+                    throw new ArgumentException($"Invalid Fox type: {propertyType}.");
             }
         }
     }

@@ -8,4 +8,10 @@ namespace Fox.Editor
         public abstract void BindProperty(SerializedProperty property);
         public abstract void BindProperty(SerializedProperty property, string label, string[] ussClassNames = null);
     }
+
+    public interface IFoxNumericField : IBindable
+    {
+        public abstract void BindProperty(SerializedProperty property);
+        public abstract void BindProperty(SerializedProperty property, string label, string[] ussClassNames = null);
+    }
 }

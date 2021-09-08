@@ -11,40 +11,26 @@ namespace Fox.Editor
     [CustomPropertyDrawer(typeof(Fox.Core.DynamicArray<>))]
     public class DynamicArrayDrawer : PropertyDrawer
     {
+        SerializedProperty InternalListProperty;
+        Type CollectionTypeArgument;
+        Func<BindableElement> FieldConstructor;
+
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
         {
             IList list = property.GetValue() as IList;
+            InternalListProperty = property.FindPropertyRelative("_list");
 
-            Func<VisualElement> makeItem = () =>
-            {
-                var entryField = new PropertyField();
+            object genericList = property.GetValue();
+            CollectionTypeArgument = genericList.GetType().GetGenericArguments()[0];
 
-                return entryField;
-            };
-            Action<VisualElement, int> bindItem = (e, i) =>
-            {
-                var entryField = e as PropertyField;
-                var privateList = property.FindPropertyRelative("_list");
-                var entry = privateList.GetArrayElementAtIndex(i);
-
-                entryField.BindProperty(entry);
-
-                var oldLabel = entryField.Query<Label>().First();
-                var parent = oldLabel.parent;
-                parent.Remove(oldLabel);
-                var label = new Label($"[{i}]");
-                label.AddToClassList("fox-listview-entry-label");
-                foreach (var cssClass in oldLabel.GetClasses())
-                    label.AddToClassList(cssClass);
-                parent.Insert(0, label);
-            };
+            FieldConstructor = CollectionDrawer.GetTypeFieldConstructor(CollectionTypeArgument);
 
             ListView listView = new ListView
             (
                 list,
-                20,
-                makeItem,
-                bindItem
+                CollectionDrawer.GetListEntrySize(CollectionTypeArgument),
+                MakeItem,
+                BindItem
             );
 
             listView.style.flexGrow = 1.0f;
@@ -103,6 +89,36 @@ namespace Fox.Editor
             foldout.Add(buttonContainer);
 
             return foldout;
+        }
+
+        private VisualElement MakeItem()
+        {
+            var entryField = FieldConstructor();
+            entryField.styleSheets.Add(CollectionDrawer.PropertyDrawerStyleSheet);
+
+            return entryField;
+        }
+
+        private void BindItem(VisualElement element, int index)
+        {
+            if (element is IFoxField)
+            {
+                var entryField = element as IFoxField;
+                var entry = InternalListProperty.GetArrayElementAtIndex(index);
+
+                entryField.BindProperty(entry, $"[{index}]", new string[] { "fox-listview-entry-label" });
+            }
+            else if (element is IFoxNumericField)
+            {
+                var entryField = element as IFoxNumericField;
+                var entry = InternalListProperty.GetArrayElementAtIndex(index);
+
+                entryField.BindProperty(entry, $"[{index}]", new string[] { "fox-listview-entry-label" });
+            }
+            else
+            {
+                throw new ArgumentException($"Invalid type: {element}");
+            }
         }
     }
 }

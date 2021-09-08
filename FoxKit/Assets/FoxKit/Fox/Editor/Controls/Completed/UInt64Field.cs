@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 
 namespace Fox.Editor
 {
-    public class UInt64Field : TextValueField<System.UInt64>, INotifyValueChanged<int>
+    public class UInt64Field : TextValueField<System.UInt64>, INotifyValueChanged<int>, IFoxNumericField
     {
         System.UInt64 _value;
         int INotifyValueChanged<int>.value
@@ -82,6 +82,9 @@ namespace Fox.Editor
         public UInt64Field(int maxLength)
             : this(null, true, maxLength) { }
 
+        public UInt64Field(bool hasDragger)
+            : this(null, hasDragger) { }
+
         public UInt64Field(string label, bool hasDragger = true, int maxLength = -1)
             : base(label, maxLength, new UInt64Input())
         {
@@ -98,6 +101,18 @@ namespace Fox.Editor
         public override void ApplyInputDeviceDelta(Vector3 delta, DeltaSpeed speed, System.UInt64 startValue)
         {
             integerInput.ApplyInputDeviceDelta(delta, speed, startValue);
+        }
+
+        public void BindProperty(SerializedProperty property)
+        {
+            BindProperty(property, property.name);
+        }
+
+        public void BindProperty(SerializedProperty property, string label, string[] ussClassNames = null)
+        {
+            this.label = label;
+            BindingExtensions.BindProperty(this, property);
+            labelElement.AddToClassList("unity-property-field__label");
         }
 
         class UInt64Input : TextValueInput
@@ -138,6 +153,18 @@ namespace Fox.Editor
                 ExpressionEvaluator.Evaluate(str, out v);
                 return NumericPropertyDrawers.ClampToUInt64(v);
             }
+        }
+    }
+
+    [CustomPropertyDrawer(typeof(System.UInt64))]
+    public class UInt64Drawer : PropertyDrawer
+    {
+        public override VisualElement CreatePropertyGUI(SerializedProperty property)
+        {
+            var field = new UInt64Field();
+            field.BindProperty(property);
+
+            return field;
         }
     }
 }

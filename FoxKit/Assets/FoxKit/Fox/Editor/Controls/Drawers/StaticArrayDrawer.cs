@@ -57,10 +57,20 @@ namespace Fox.Editor
 
         private void BindItem(VisualElement element, int index)
         {
-            var entryField = element as IFoxField;
-            var entry = InternalListProperty.GetArrayElementAtIndex(index);
+            if (element is IFoxField)
+            {
+                var entryField = element as IFoxField;
+                var entry = InternalListProperty.GetArrayElementAtIndex(index);
 
-            entryField.BindProperty(entry, $"[{index}]", new string[] { "fox-listview-entry-label" });
+                entryField.BindProperty(entry, $"[{index}]", new string[] { "fox-listview-entry-label" });
+            }
+            else if (element is IFoxNumericField)
+            {
+                var entryField = element as IFoxNumericField;
+                var entry = InternalListProperty.GetArrayElementAtIndex(index);
+
+                entryField.BindProperty(entry, $"[{index}]", new string[] { "fox-listview-entry-label" });
+            }
         }
     }
 }

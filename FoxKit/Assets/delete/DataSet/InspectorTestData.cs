@@ -191,11 +191,11 @@ namespace Fox.Core
     {
         public InspectorTestData2()
         {
-            strings = new StaticArray<float>(5);
+            strings = new StaticArray<byte>(5);
         }
 
-        public float str;
+        public byte str;
 
-        public StaticArray<float> strings;
+        public StaticArray<byte> strings;
     }
 }

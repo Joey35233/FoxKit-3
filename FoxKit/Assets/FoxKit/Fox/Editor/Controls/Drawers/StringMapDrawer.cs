@@ -51,38 +51,25 @@ namespace Fox.Editor
     [CustomPropertyDrawer(typeof(Fox.Core.StringMap<>))]
     public class StringMapDrawer : PropertyDrawer
     {
+        SerializedProperty InternalListProperty;
+        IStringMap InternalStringMap;
+        Type CollectionTypeArgument;
+        Func<BindableElement> FieldConstructor;
+
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
         {
-            var cellListProperty = property.FindPropertyRelative("Cells");
-            var cellList = cellListProperty.GetValue() as IList;
+            InternalListProperty = property.FindPropertyRelative("Cells");
+            IList cellList = InternalListProperty.GetValue() as IList;
 
             var stringMapList = property.GetValue() as IList;
-            var stringMap = property.GetValue() as IStringMap;
+            InternalStringMap = property.GetValue() as IStringMap;
 
-            ListView field = null;
-
-            Func<VisualElement> makeItem = () =>
-            {
-                var entryField = new PropertyField();
-
-                return entryField;
-            };
-            Action<VisualElement, int> bindItem = (e, i) =>
-            {
-                var entryField = e as PropertyField;
-                var entry = cellListProperty.GetArrayElementAtIndex(stringMap.OccupiedIndexToAbsoluteIndex(i));
-
-                entryField.BindProperty(entry);
-                var fieldLabel = entryField.Query<Label>().First();
-                fieldLabel.text = $"[{i}]";
-            };
-
-            field = new ListView
+            ListView field = new ListView
             (
                 stringMapList,
                 20,
-                makeItem,
-                bindItem
+                MakeItem,
+                BindItem
             );
             field.AddToClassList("fox-stringmap");
 
@@ -120,13 +107,13 @@ namespace Fox.Editor
                 {
                     duplicateKeyLabel.visible = false;
 
-                    if (stringMap.ContainsKey(popupResult))
+                    if (InternalStringMap.ContainsKey(popupResult))
                     {
                         duplicateKeyLabel.visible = true;
                     }
                     else
                     {
-                        stringMap.Insert(popupResult);
+                        InternalStringMap.Insert(popupResult);
 
                         property.serializedObject.ApplyModifiedProperties();
 
@@ -151,13 +138,13 @@ namespace Fox.Editor
 
                     if (field.selectedIndex != -1)
                         foreach (var index in field.selectedIndices)
-                            keys.Add(privateList.GetArrayElementAtIndex(stringMap.OccupiedIndexToAbsoluteIndex(index)).FindPropertyRelative("Key").GetValue() as String);
+                            keys.Add(privateList.GetArrayElementAtIndex(InternalStringMap.OccupiedIndexToAbsoluteIndex(index)).FindPropertyRelative("Key").GetValue() as String);
                     else
                         privateList.DeleteArrayElementAtIndex(privateList.arraySize - 1);
                 }
 
                 foreach (var key in keys)
-                    stringMap.Remove(key);
+                    InternalStringMap.Remove(key);
 
                 property.serializedObject.ApplyModifiedProperties();
 
@@ -171,6 +158,32 @@ namespace Fox.Editor
             foldout.Add(bottomContainer);
 
             return foldout;
+        }
+
+        private VisualElement MakeItem()
+        {
+            var entryField = FieldConstructor();
+            entryField.styleSheets.Add(CollectionDrawer.PropertyDrawerStyleSheet);
+
+            return entryField;
+        }
+
+        private void BindItem(VisualElement element, int index)
+        {
+            if (element is IFoxField)
+            {
+                var entryField = element as IFoxField;
+                var entry = InternalListProperty.GetArrayElementAtIndex(InternalStringMap.OccupiedIndexToAbsoluteIndex(index));
+
+                entryField.BindProperty(entry, $"[{index}]", new string[] { "fox-listview-entry-label" });
+            }
+            else if (element is IFoxNumericField)
+            {
+                var entryField = element as IFoxNumericField;
+                var entry = InternalListProperty.GetArrayElementAtIndex(InternalStringMap.OccupiedIndexToAbsoluteIndex(index));
+
+                entryField.BindProperty(entry, $"[{index}]", new string[] { "fox-listview-entry-label" });
+            }
         }
     }
 }

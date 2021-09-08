@@ -60,7 +60,7 @@ namespace Fox.Editor
         }
     }
 
-    public class Int8Field : TextValueField<System.SByte>, INotifyValueChanged<int>
+    public class Int8Field : TextValueField<System.SByte>, INotifyValueChanged<int>, IFoxNumericField
     {
         System.SByte _value;
         int INotifyValueChanged<int>.value
@@ -126,6 +126,9 @@ namespace Fox.Editor
         public Int8Field(int maxLength)
             : this(null, true, maxLength) { }
 
+        public Int8Field(bool hasDragger)
+            : this(null, hasDragger) { }
+
         public Int8Field(string label, bool hasDragger = true, int maxLength = -1)
             : base(label, maxLength, new Int8Input())
         {
@@ -139,6 +142,18 @@ namespace Fox.Editor
         public override void ApplyInputDeviceDelta(Vector3 delta, DeltaSpeed speed, System.SByte startValue)
         {
             integerInput.ApplyInputDeviceDelta(delta, speed, startValue);
+        }
+
+        public void BindProperty(SerializedProperty property)
+        {
+            BindProperty(property, property.name);
+        }
+
+        public void BindProperty(SerializedProperty property, string label, string[] ussClassNames = null)
+        {
+            this.label = label;
+            BindingExtensions.BindProperty(this, property);
+            labelElement.AddToClassList("unity-property-field__label");
         }
 
         class Int8Input : TextValueInput
@@ -179,6 +194,23 @@ namespace Fox.Editor
                 ExpressionEvaluator.Evaluate(str, out v);
                 return NumericPropertyDrawers.ClampToInt8(v);
             }
+        }
+    }
+
+    [CustomPropertyDrawer(typeof(System.SByte))]
+    public class Int8Drawer : PropertyDrawer
+    {
+        private SerializedProperty property;
+        private Int8Field field;
+
+        public override VisualElement CreatePropertyGUI(SerializedProperty property)
+        {
+            this.property = property;
+
+            field = new Int8Field(property.name);
+            field.BindProperty(property);
+
+            return field;
         }
     }
 }
