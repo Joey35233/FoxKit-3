@@ -32,22 +32,10 @@ namespace Fox.Editor
         {
             FileProperty = property.FindPropertyRelative("file");
 
-            InternalField.value = this.FileProperty.GetValue() as UnityEngine.Object;
             InternalField.label = label;
             InternalField.allowSceneObjects = false;
+            InternalField.BindProperty(FileProperty);
             InternalField.labelElement.AddToClassList("unity-property-field__label");
-
-            // TODO: Filter this by asset type
-            InternalField.objectType = typeof(UnityEngine.Object);
-            InternalField.RegisterValueChangedCallback(OnValueChanged);
-        }
-
-        private void OnValueChanged(ChangeEvent<UnityEngine.Object> evt)
-        {
-            // TODO Figure out why undo doesn't appear instantly
-            Undo.RecordObject(this.FileProperty.serializedObject.targetObject, "FilePtr");
-            this.FileProperty.SetValue(evt.newValue);
-            this.FileProperty.serializedObject.ApplyModifiedProperties();
         }
     }
 

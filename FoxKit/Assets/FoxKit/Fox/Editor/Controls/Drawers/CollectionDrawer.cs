@@ -38,6 +38,9 @@ namespace Fox.Editor
                 case Type _ when propertyType == typeof(Matrix4x4):
                     return 80;
 
+                case Type _ when propertyType == typeof(EntityLink):
+                    return 98;
+
                 default:
                     return 20;
             }

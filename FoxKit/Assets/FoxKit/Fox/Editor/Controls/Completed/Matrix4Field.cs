@@ -20,7 +20,6 @@ namespace Fox.Editor
             InternalFields = new FloatField[4, 4];
 
             InternalFoldout = new Foldout();
-
             InternalFoldout.text = label;
             InternalFoldout.styleSheets.Add(NumericPropertyDrawers.NumericPropertyDrawersStyleSheet);
 
