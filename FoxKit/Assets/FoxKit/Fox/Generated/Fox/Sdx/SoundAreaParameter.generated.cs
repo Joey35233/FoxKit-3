@@ -103,7 +103,7 @@ namespace Fox.Sdx
             switch(propertyName)
             {
                 case "auxSends":
-                    this.auxSends.Add(key, value.GetValueAsFloat());
+                    this.auxSends.Insert(key, value.GetValueAsFloat());
                     return;
                 default:
 					

@@ -85,7 +85,7 @@ namespace Fox.Phx
             switch(propertyName)
             {
                 case "connections":
-                    this.connections.Add(key, value.GetValueAsEntityPtr<Fox.Phx.PhxAssociationUnitElement>());
+                    this.connections.Insert(key, value.GetValueAsEntityPtr<Fox.Phx.PhxAssociationUnitElement>());
                     return;
                 default:
 					

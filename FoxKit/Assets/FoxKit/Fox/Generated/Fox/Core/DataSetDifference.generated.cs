@@ -67,7 +67,7 @@ namespace Fox.Core
             switch(propertyName)
             {
                 case "dataList":
-                    this.dataList.Add(key, value.GetValueAsEntityPtr<Fox.Core.EntityDifference>());
+                    this.dataList.Insert(key, value.GetValueAsEntityPtr<Fox.Core.EntityDifference>());
                     return;
                 default:
 					

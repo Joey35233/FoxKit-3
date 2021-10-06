@@ -73,7 +73,7 @@ namespace Fox.Core
             switch(propertyName)
             {
                 case "links":
-                    this.links.Add(key, value.GetValueAsEntityLink());
+                    this.links.Insert(key, value.GetValueAsEntityLink());
                     return;
                 default:
 					

@@ -70,10 +70,10 @@ namespace Fox.Core
             switch(propertyName)
             {
                 case "originalValues":
-                    this.originalValues.Add(key, value.GetValueAsEntityLink());
+                    this.originalValues.Insert(key, value.GetValueAsEntityLink());
                     return;
                 case "values":
-                    this.values.Add(key, value.GetValueAsEntityLink());
+                    this.values.Insert(key, value.GetValueAsEntityLink());
                     return;
                 default:
 					

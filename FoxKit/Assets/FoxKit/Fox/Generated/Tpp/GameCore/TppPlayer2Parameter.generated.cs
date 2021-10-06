@@ -118,10 +118,10 @@ namespace Tpp.GameCore
             switch(propertyName)
             {
                 case "vfxFiles":
-                    this.vfxFiles.Add(key, value.GetValueAsFilePtr());
+                    this.vfxFiles.Insert(key, value.GetValueAsFilePtr());
                     return;
                 case "TODO_trapTags":
-                    this.TODO_trapTags.Add(key, value.GetValueAsUInt8());
+                    this.TODO_trapTags.Insert(key, value.GetValueAsUInt8());
                     return;
                 default:
 					

@@ -73,7 +73,7 @@ namespace Fox.Core
             switch(propertyName)
             {
                 case "buckets":
-                    this.buckets.Add(key, value.GetValueAsEntityPtr<Fox.Core.Bucket>());
+                    this.buckets.Insert(key, value.GetValueAsEntityPtr<Fox.Core.Bucket>());
                     return;
                 default:
 					

@@ -67,7 +67,7 @@ namespace Fox.PartsBuilder
             switch(propertyName)
             {
                 case "connectPointNames":
-                    this.connectPointNames.Add(key, value.GetValueAsString());
+                    this.connectPointNames.Insert(key, value.GetValueAsString());
                     return;
                 default:
 					

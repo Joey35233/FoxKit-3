@@ -67,7 +67,7 @@ namespace Fox.Core
             switch(propertyName)
             {
                 case "stringMap":
-                    this.stringMap.Add(key, value.GetValueAsString());
+                    this.stringMap.Insert(key, value.GetValueAsString());
                     return;
                 default:
 					

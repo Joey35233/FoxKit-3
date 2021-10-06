@@ -133,7 +133,7 @@ namespace Fox.Geo
             switch(propertyName)
             {
                 case "moverTags":
-                    this.moverTags.Add(key, value.GetValueAsUInt8());
+                    this.moverTags.Insert(key, value.GetValueAsUInt8());
                     return;
                 default:
 					

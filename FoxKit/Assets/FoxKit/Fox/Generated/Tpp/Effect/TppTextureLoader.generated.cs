@@ -70,10 +70,10 @@ namespace Tpp.Effect
             switch(propertyName)
             {
                 case "textures":
-                    this.textures.Add(key, value.GetValueAsPath());
+                    this.textures.Insert(key, value.GetValueAsPath());
                     return;
                 case "forceLargeTextures":
-                    this.forceLargeTextures.Add(key, value.GetValueAsPath());
+                    this.forceLargeTextures.Insert(key, value.GetValueAsPath());
                     return;
                 default:
 					

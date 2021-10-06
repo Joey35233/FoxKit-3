@@ -141,7 +141,7 @@ namespace Tpp.GameKit
             switch(propertyName)
             {
                 case "noiseSeEventNames":
-                    this.noiseSeEventNames.Add(key, value.GetValueAsString());
+                    this.noiseSeEventNames.Insert(key, value.GetValueAsString());
                     return;
                 default:
 					

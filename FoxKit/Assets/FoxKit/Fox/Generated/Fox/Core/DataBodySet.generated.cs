@@ -67,7 +67,7 @@ namespace Fox.Core
             switch(propertyName)
             {
                 case "dataBodyList":
-                    this.dataBodyList.Add(key, value.GetValueAsEntityPtr<Fox.Core.DataBody>());
+                    this.dataBodyList.Insert(key, value.GetValueAsEntityPtr<Fox.Core.DataBody>());
                     return;
                 default:
 					

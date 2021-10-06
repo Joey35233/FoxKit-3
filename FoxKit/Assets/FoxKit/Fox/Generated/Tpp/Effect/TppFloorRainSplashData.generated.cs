@@ -73,7 +73,7 @@ namespace Tpp.Effect
             switch(propertyName)
             {
                 case "materialSoundList":
-                    this.materialSoundList.Add(key, value.GetValueAsString());
+                    this.materialSoundList.Insert(key, value.GetValueAsString());
                     return;
                 default:
 					

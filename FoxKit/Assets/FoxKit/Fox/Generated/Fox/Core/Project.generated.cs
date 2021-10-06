@@ -73,7 +73,7 @@ namespace Fox.Core
             switch(propertyName)
             {
                 case "dataSetPaths":
-                    this.dataSetPaths.Add(key, value.GetValueAsPath());
+                    this.dataSetPaths.Insert(key, value.GetValueAsPath());
                     return;
                 default:
 					

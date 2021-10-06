@@ -20,7 +20,7 @@ namespace Fox.Core
     }
 
     [Serializable]
-    public class StringMap<T> : IStringMap//, IList
+    public class StringMap<T> : IStringMap, IList
     {
         private const uint InitialSize = 256;
         private const uint LoadFactor = 90;
@@ -154,12 +154,6 @@ namespace Fox.Core
             }
         }
 
-        public void Insert(string key, T value)
-        {
-            var foxStr = new String(key);
-            this.Insert(foxStr, value);
-        }
-
         public void Insert(String key, T value)
         {
             if (key is null)
@@ -239,11 +233,6 @@ namespace Fox.Core
 
             CellCount--;
             return true;
-        }
-
-        public bool TryGetValue(string key, out T value)
-        {
-            return this.TryGetValue(new String(key), out value);
         }
 
         public bool TryGetValue(String key, out T value)
@@ -345,10 +334,9 @@ namespace Fox.Core
             return i - 1;
         }
 
-        public int Add(string key, object value)
+        public int Add(object value)
         {
-            //throw new NotImplementedException();
-            return -1;
+            throw new NotImplementedException();
         }
 
         public void Clear()

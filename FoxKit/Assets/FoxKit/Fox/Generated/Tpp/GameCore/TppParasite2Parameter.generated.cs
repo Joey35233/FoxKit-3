@@ -97,19 +97,19 @@ namespace Tpp.GameCore
             switch(propertyName)
             {
                 case "partsFiles":
-                    this.partsFiles.Add(key, value.GetValueAsFilePtr());
+                    this.partsFiles.Insert(key, value.GetValueAsFilePtr());
                     return;
                 case "vfxFiles":
-                    this.vfxFiles.Add(key, value.GetValueAsFilePtr());
+                    this.vfxFiles.Insert(key, value.GetValueAsFilePtr());
                     return;
                 case "fmdlFiles":
-                    this.fmdlFiles.Add(key, value.GetValueAsFilePtr());
+                    this.fmdlFiles.Insert(key, value.GetValueAsFilePtr());
                     return;
                 case "geomFiles":
-                    this.geomFiles.Add(key, value.GetValueAsFilePtr());
+                    this.geomFiles.Insert(key, value.GetValueAsFilePtr());
                     return;
                 case "fovaFiles":
-                    this.fovaFiles.Add(key, value.GetValueAsFilePtr());
+                    this.fovaFiles.Insert(key, value.GetValueAsFilePtr());
                     return;
                 default:
 					

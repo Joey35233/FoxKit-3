@@ -73,7 +73,7 @@ namespace Tpp.GameCore
             switch(propertyName)
             {
                 case "subScripts":
-                    this.subScripts.Add(key, value.GetValueAsFilePtr());
+                    this.subScripts.Insert(key, value.GetValueAsFilePtr());
                     return;
                 default:
 					

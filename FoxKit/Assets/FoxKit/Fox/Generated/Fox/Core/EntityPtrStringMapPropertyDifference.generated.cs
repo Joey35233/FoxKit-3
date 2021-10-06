@@ -70,10 +70,10 @@ namespace Fox.Core
             switch(propertyName)
             {
                 case "originalValues":
-                    this.originalValues.Add(key, value.GetValueAsEntityPtr<Fox.Core.Entity>());
+                    this.originalValues.Insert(key, value.GetValueAsEntityPtr<Fox.Core.Entity>());
                     return;
                 case "values":
-                    this.values.Add(key, value.GetValueAsEntityPtr<Fox.Core.Entity>());
+                    this.values.Insert(key, value.GetValueAsEntityPtr<Fox.Core.Entity>());
                     return;
                 default:
 					

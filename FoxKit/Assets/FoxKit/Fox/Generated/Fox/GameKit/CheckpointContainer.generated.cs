@@ -80,7 +80,7 @@ namespace Fox.GameKit
             switch(propertyName)
             {
                 case "checkPointUnits":
-                    this.checkPointUnits.Add(key, value.GetValueAsEntityPtr<Fox.GameKit.CheckpointUnit>());
+                    this.checkPointUnits.Insert(key, value.GetValueAsEntityPtr<Fox.GameKit.CheckpointUnit>());
                     return;
                 default:
 					

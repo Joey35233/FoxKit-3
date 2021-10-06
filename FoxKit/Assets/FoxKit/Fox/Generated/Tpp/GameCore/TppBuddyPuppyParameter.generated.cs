@@ -92,7 +92,7 @@ namespace Tpp.GameCore
             switch(propertyName)
             {
                 case "vfxFiles":
-                    this.vfxFiles.Add(key, value.GetValueAsFilePtr());
+                    this.vfxFiles.Insert(key, value.GetValueAsFilePtr());
                     return;
                 default:
 					

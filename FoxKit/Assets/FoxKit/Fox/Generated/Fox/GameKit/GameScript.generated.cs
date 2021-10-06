@@ -79,7 +79,7 @@ namespace Fox.GameKit
             switch(propertyName)
             {
                 case "variables":
-                    this.variables.Add(key, value.GetValueAsEntityLink());
+                    this.variables.Insert(key, value.GetValueAsEntityLink());
                     return;
                 default:
 					

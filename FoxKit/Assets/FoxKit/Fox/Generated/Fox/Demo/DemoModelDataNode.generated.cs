@@ -73,7 +73,7 @@ namespace Fox.Demo
             switch(propertyName)
             {
                 case "partNames":
-                    this.partNames.Add(key, value.GetValueAsString());
+                    this.partNames.Insert(key, value.GetValueAsString());
                     return;
                 default:
 					

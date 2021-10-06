@@ -67,7 +67,7 @@ namespace Fox.UiScene
             switch(propertyName)
             {
                 case "colors":
-                    this.colors.Add(key, value.GetValueAsColor());
+                    this.colors.Insert(key, value.GetValueAsColor());
                     return;
                 default:
 					

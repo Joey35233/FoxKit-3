@@ -98,19 +98,19 @@ namespace Fox.Demox
             switch(propertyName)
             {
                 case "evfFiles":
-                    this.evfFiles.Add(key, value.GetValueAsFilePtr());
+                    this.evfFiles.Insert(key, value.GetValueAsFilePtr());
                     return;
                 case "eventFiles":
-                    this.eventFiles.Add(key, value.GetValueAsFilePtr());
+                    this.eventFiles.Insert(key, value.GetValueAsFilePtr());
                     return;
                 case "entityParams":
-                    this.entityParams.Add(key, value.GetValueAsEntityLink());
+                    this.entityParams.Insert(key, value.GetValueAsEntityLink());
                     return;
                 case "fileParams":
-                    this.fileParams.Add(key, value.GetValueAsFilePtr());
+                    this.fileParams.Insert(key, value.GetValueAsFilePtr());
                     return;
                 case "objectNum":
-                    this.objectNum.Add(key, value.GetValueAsInt32());
+                    this.objectNum.Insert(key, value.GetValueAsInt32());
                     return;
                 default:
 					

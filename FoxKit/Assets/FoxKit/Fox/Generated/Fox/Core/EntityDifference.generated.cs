@@ -70,10 +70,10 @@ namespace Fox.Core
             switch(propertyName)
             {
                 case "entityDifferences":
-                    this.entityDifferences.Add(key, value.GetValueAsEntityPtr<Fox.Core.Entity>());
+                    this.entityDifferences.Insert(key, value.GetValueAsEntityPtr<Fox.Core.Entity>());
                     return;
                 case "propertyDifferences":
-                    this.propertyDifferences.Add(key, value.GetValueAsEntityPtr<Fox.Core.PropertyDifference>());
+                    this.propertyDifferences.Insert(key, value.GetValueAsEntityPtr<Fox.Core.PropertyDifference>());
                     return;
                 default:
 					

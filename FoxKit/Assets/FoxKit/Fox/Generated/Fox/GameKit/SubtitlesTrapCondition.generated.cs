@@ -79,7 +79,7 @@ namespace Fox.GameKit
             switch(propertyName)
             {
                 case "targetTags":
-                    this.targetTags.Add(key, value.GetValueAsUInt8());
+                    this.targetTags.Insert(key, value.GetValueAsUInt8());
                     return;
                 default:
 					

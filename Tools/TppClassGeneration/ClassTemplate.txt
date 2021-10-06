@@ -95,7 +95,7 @@ namespace {{ info.get_root_namespace() }}.{{ info.get_namespace_without_prefix()
             {
                 {% for property_name in info.get_string_map_properties() -%}
                 case "{{ info.properties[property_name].get_safe_name() }}":
-                    this.{{ info.properties[property_name].get_safe_name() }}.Add(key, {{ info.properties[property_name].get_value_extraction_string() }});
+                    this.{{ info.properties[property_name].get_safe_name() }}.Insert(key, {{ info.properties[property_name].get_value_extraction_string() }});
                     return;
                 {% endfor %}default:
 					{% if info.name == "Entity" -%}

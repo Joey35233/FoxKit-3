@@ -70,10 +70,10 @@ namespace Fox.Core
             switch(propertyName)
             {
                 case "originalValues":
-                    this.originalValues.Add(key, value.GetValueAsUInt8());
+                    this.originalValues.Insert(key, value.GetValueAsUInt8());
                     return;
                 case "values":
-                    this.values.Add(key, value.GetValueAsUInt8());
+                    this.values.Insert(key, value.GetValueAsUInt8());
                     return;
                 default:
 					

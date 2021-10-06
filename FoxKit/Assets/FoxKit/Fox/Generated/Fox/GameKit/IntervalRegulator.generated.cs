@@ -67,7 +67,7 @@ namespace Fox.GameKit
             switch(propertyName)
             {
                 case "intervalTimers":
-                    this.intervalTimers.Add(key, value.GetValueAsDouble());
+                    this.intervalTimers.Insert(key, value.GetValueAsDouble());
                     return;
                 default:
 					

@@ -79,7 +79,7 @@ namespace Fox.GameKit
             switch(propertyName)
             {
                 case "checkPointData":
-                    this.checkPointData.Add(key, value.GetValueAsEntityPtr<Fox.Core.Entity>());
+                    this.checkPointData.Insert(key, value.GetValueAsEntityPtr<Fox.Core.Entity>());
                     return;
                 default:
 					

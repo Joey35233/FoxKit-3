@@ -1,2 +1,0 @@
-﻿.entityPtrHeader { flex-direction: row; }
-TextField { flex-grow: 1; }

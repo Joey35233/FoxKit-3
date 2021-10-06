@@ -73,13 +73,13 @@ namespace Tpp.Effect
             switch(propertyName)
             {
                 case "vfxFiles":
-                    this.vfxFiles.Add(key, value.GetValueAsFilePtr());
+                    this.vfxFiles.Insert(key, value.GetValueAsFilePtr());
                     return;
                 case "geoMaterialFiles":
-                    this.geoMaterialFiles.Add(key, value.GetValueAsFilePtr());
+                    this.geoMaterialFiles.Insert(key, value.GetValueAsFilePtr());
                     return;
                 case "otherFiles":
-                    this.otherFiles.Add(key, value.GetValueAsFilePtr());
+                    this.otherFiles.Insert(key, value.GetValueAsFilePtr());
                     return;
                 default:
 					

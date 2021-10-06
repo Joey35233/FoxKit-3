@@ -73,7 +73,7 @@ namespace Tpp.System
             switch(propertyName)
             {
                 case "@params":
-                    this.@params.Add(key, value.GetValueAsEntityPtr<Tpp.System.TppDefaultParameterElement>());
+                    this.@params.Insert(key, value.GetValueAsEntityPtr<Tpp.System.TppDefaultParameterElement>());
                     return;
                 default:
 					

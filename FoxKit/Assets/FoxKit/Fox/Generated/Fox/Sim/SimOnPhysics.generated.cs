@@ -112,16 +112,16 @@ namespace Fox.Sim
             switch(propertyName)
             {
                 case "simRootBones":
-                    this.simRootBones.Add(key, value.GetValueAsEntityPtr<Fox.Sim.SimAssociationUnit>());
+                    this.simRootBones.Insert(key, value.GetValueAsEntityPtr<Fox.Sim.SimAssociationUnit>());
                     return;
                 case "simBones":
-                    this.simBones.Add(key, value.GetValueAsEntityPtr<Fox.Sim.SimAssociationUnit>());
+                    this.simBones.Insert(key, value.GetValueAsEntityPtr<Fox.Sim.SimAssociationUnit>());
                     return;
                 case "simTransBones":
-                    this.simTransBones.Add(key, value.GetValueAsEntityPtr<Fox.Sim.SimAssociationUnit>());
+                    this.simTransBones.Insert(key, value.GetValueAsEntityPtr<Fox.Sim.SimAssociationUnit>());
                     return;
                 case "simHitBones":
-                    this.simHitBones.Add(key, value.GetValueAsEntityPtr<Fox.Sim.SimAssociationUnit>());
+                    this.simHitBones.Insert(key, value.GetValueAsEntityPtr<Fox.Sim.SimAssociationUnit>());
                     return;
                 default:
 					

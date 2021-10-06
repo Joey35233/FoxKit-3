@@ -74,7 +74,7 @@ namespace Tpp.MotherBaseCore
             switch(propertyName)
             {
                 case "flags":
-                    this.flags.Add(key, value.GetValueAsInt32());
+                    this.flags.Insert(key, value.GetValueAsInt32());
                     return;
                 default:
 					

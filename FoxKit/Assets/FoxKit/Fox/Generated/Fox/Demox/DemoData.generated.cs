@@ -319,37 +319,37 @@ namespace Fox.Demox
             switch(propertyName)
             {
                 case "fmdlFiles":
-                    this.fmdlFiles.Add(key, value.GetValueAsFilePtr());
+                    this.fmdlFiles.Insert(key, value.GetValueAsFilePtr());
                     return;
                 case "helpBoneFiles":
-                    this.helpBoneFiles.Add(key, value.GetValueAsFilePtr());
+                    this.helpBoneFiles.Insert(key, value.GetValueAsFilePtr());
                     return;
                 case "partsDesc":
-                    this.partsDesc.Add(key, value.GetValueAsEntityPtr<Fox.Demo.PartsDesc>());
+                    this.partsDesc.Insert(key, value.GetValueAsEntityPtr<Fox.Demo.PartsDesc>());
                     return;
                 case "entityParams":
-                    this.entityParams.Add(key, value.GetValueAsEntityLink());
+                    this.entityParams.Insert(key, value.GetValueAsEntityLink());
                     return;
                 case "fileParams":
-                    this.fileParams.Add(key, value.GetValueAsFilePtr());
+                    this.fileParams.Insert(key, value.GetValueAsFilePtr());
                     return;
                 case "controlCharacters":
-                    this.controlCharacters.Add(key, value.GetValueAsEntityPtr<Fox.Demo.DemoControlCharacterDesc>());
+                    this.controlCharacters.Insert(key, value.GetValueAsEntityPtr<Fox.Demo.DemoControlCharacterDesc>());
                     return;
                 case "controlDatas":
-                    this.controlDatas.Add(key, value.GetValueAsEntityLink());
+                    this.controlDatas.Insert(key, value.GetValueAsEntityLink());
                     return;
                 case "controlCollectibles":
-                    this.controlCollectibles.Add(key, value.GetValueAsString());
+                    this.controlCollectibles.Insert(key, value.GetValueAsString());
                     return;
                 case "parameters":
-                    this.parameters.Add(key, value.GetValueAsEntityPtr<Fox.Demo.DemoParameter>());
+                    this.parameters.Insert(key, value.GetValueAsEntityPtr<Fox.Demo.DemoParameter>());
                     return;
                 case "setupLights":
-                    this.setupLights.Add(key, value.GetValueAsString());
+                    this.setupLights.Insert(key, value.GetValueAsString());
                     return;
                 case "objectNum":
-                    this.objectNum.Add(key, value.GetValueAsInt32());
+                    this.objectNum.Insert(key, value.GetValueAsInt32());
                     return;
                 default:
 					

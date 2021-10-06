@@ -121,43 +121,43 @@ namespace Fox.Demox
             switch(propertyName)
             {
                 case "locatorTypes":
-                    this.locatorTypes.Add(key, (DemoStreamAnimation_LocatorType)value.GetValueAsInt32());
+                    this.locatorTypes.Insert(key, (DemoStreamAnimation_LocatorType)value.GetValueAsInt32());
                     return;
                 case "cameraTypes":
-                    this.cameraTypes.Add(key, (DemoStreamAnimation_CameraType)value.GetValueAsInt32());
+                    this.cameraTypes.Insert(key, (DemoStreamAnimation_CameraType)value.GetValueAsInt32());
                     return;
                 case "modelFiles":
-                    this.modelFiles.Add(key, value.GetValueAsFilePtr());
+                    this.modelFiles.Insert(key, value.GetValueAsFilePtr());
                     return;
                 case "helpBoneFiles":
-                    this.helpBoneFiles.Add(key, value.GetValueAsFilePtr());
+                    this.helpBoneFiles.Insert(key, value.GetValueAsFilePtr());
                     return;
                 case "partsFiles":
-                    this.partsFiles.Add(key, value.GetValueAsFilePtr());
+                    this.partsFiles.Insert(key, value.GetValueAsFilePtr());
                     return;
                 case "coverModelFiles":
-                    this.coverModelFiles.Add(key, value.GetValueAsFilePtr());
+                    this.coverModelFiles.Insert(key, value.GetValueAsFilePtr());
                     return;
                 case "modelPartsDictionary":
-                    this.modelPartsDictionary.Add(key, value.GetValueAsString());
+                    this.modelPartsDictionary.Insert(key, value.GetValueAsString());
                     return;
                 case "coverModelDictionary":
-                    this.coverModelDictionary.Add(key, value.GetValueAsString());
+                    this.coverModelDictionary.Insert(key, value.GetValueAsString());
                     return;
                 case "modelProxyPaths":
-                    this.modelProxyPaths.Add(key, value.GetValueAsPath());
+                    this.modelProxyPaths.Insert(key, value.GetValueAsPath());
                     return;
                 case "partsProxyPaths":
-                    this.partsProxyPaths.Add(key, value.GetValueAsPath());
+                    this.partsProxyPaths.Insert(key, value.GetValueAsPath());
                     return;
                 case "dynamicModel":
-                    this.dynamicModel.Add(key, value.GetValueAsEntityPtr<Fox.Demox.DemoDynamicFileChangeModel>());
+                    this.dynamicModel.Insert(key, value.GetValueAsEntityPtr<Fox.Demox.DemoDynamicFileChangeModel>());
                     return;
                 case "dynamicParts":
-                    this.dynamicParts.Add(key, value.GetValueAsEntityPtr<Fox.Demox.DemoDynamicFileChangeModel>());
+                    this.dynamicParts.Insert(key, value.GetValueAsEntityPtr<Fox.Demox.DemoDynamicFileChangeModel>());
                     return;
                 case "dynamicFv2":
-                    this.dynamicFv2.Add(key, value.GetValueAsEntityPtr<Fox.Demox.DemoFv2ResourceMemory>());
+                    this.dynamicFv2.Insert(key, value.GetValueAsEntityPtr<Fox.Demox.DemoFv2ResourceMemory>());
                     return;
                 default:
 					

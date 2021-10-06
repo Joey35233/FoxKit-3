@@ -59,10 +59,14 @@ namespace Fox.Editor
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
         {
             InternalListProperty = property.FindPropertyRelative("Cells");
-            IList cellList = InternalListProperty.GetValue() as IList;
 
             var stringMapList = property.GetValue() as IList;
             InternalStringMap = property.GetValue() as IStringMap;
+
+            object genericStringMap = property.GetValue();
+            CollectionTypeArgument = genericStringMap.GetType().GetGenericArguments()[0];
+
+            FieldConstructor = CollectionDrawer.GetTypeFieldConstructor(CollectionTypeArgument);
 
             ListView field = new ListView
             (

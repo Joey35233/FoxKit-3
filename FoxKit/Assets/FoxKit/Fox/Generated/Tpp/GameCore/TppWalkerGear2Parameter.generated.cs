@@ -94,10 +94,10 @@ namespace Tpp.GameCore
             switch(propertyName)
             {
                 case "vfxFiles":
-                    this.vfxFiles.Add(key, value.GetValueAsFilePtr());
+                    this.vfxFiles.Insert(key, value.GetValueAsFilePtr());
                     return;
                 case "extraPartsFiles":
-                    this.extraPartsFiles.Add(key, value.GetValueAsFilePtr());
+                    this.extraPartsFiles.Insert(key, value.GetValueAsFilePtr());
                     return;
                 default:
 					

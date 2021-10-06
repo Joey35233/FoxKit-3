@@ -73,7 +73,7 @@ namespace Fox.Ui
             switch(propertyName)
             {
                 case "createWindowParams":
-                    this.createWindowParams.Add(key, value.GetValueAsFilePtr());
+                    this.createWindowParams.Insert(key, value.GetValueAsFilePtr());
                     return;
                 default:
 					

@@ -82,10 +82,10 @@ namespace Fox.Core
             switch(propertyName)
             {
                 case "dataSetFiles":
-                    this.dataSetFiles.Add(key, value.GetValueAsFilePtr());
+                    this.dataSetFiles.Insert(key, value.GetValueAsFilePtr());
                     return;
                 case "dataBodySets":
-                    this.dataBodySets.Add(key, value.GetValueAsEntityPtr<Fox.Core.DataBodySet>());
+                    this.dataBodySets.Insert(key, value.GetValueAsEntityPtr<Fox.Core.DataBodySet>());
                     return;
                 default:
 					

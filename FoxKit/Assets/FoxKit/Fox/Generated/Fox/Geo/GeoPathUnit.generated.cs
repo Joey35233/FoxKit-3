@@ -67,7 +67,7 @@ namespace Fox.Geo
             switch(propertyName)
             {
                 case "tags":
-                    this.tags.Add(key, value.GetValueAsUInt8());
+                    this.tags.Insert(key, value.GetValueAsUInt8());
                     return;
                 default:
 					
