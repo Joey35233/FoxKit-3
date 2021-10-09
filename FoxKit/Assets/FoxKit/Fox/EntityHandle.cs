@@ -6,7 +6,7 @@ namespace Fox.Core
     [System.Serializable]
     public class EntityHandle
     {
-        [SerializeReference]
+        [SerializeField]
         private Entity entity;
 
         private EntityHandle(Entity entity)
