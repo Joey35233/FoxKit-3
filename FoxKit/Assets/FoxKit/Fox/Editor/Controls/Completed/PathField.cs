@@ -4,10 +4,16 @@ using UnityEngine.UIElements;
 
 namespace Fox.Editor
 {
-    public class PathField : IFoxField
+    public class PathField : FoxField
     {
         private TextField InternalField;
         private SerializedProperty Property;
+
+        public override string label
+        {
+            get => InternalField.label;
+            set => InternalField.label = value;
+        }
 
         public PathField() : this(default)
         {
@@ -17,7 +23,11 @@ namespace Fox.Editor
         public PathField(string label)
         {
             InternalField = new TextField(label);
+            if (label != null)
+                IsUserAssignedLabel = true;
 
+            this.AddToClassList("fox-path-field");
+			this.AddToClassList("fox-base-field");
             this.Add(InternalField);
         }
 
@@ -26,17 +36,14 @@ namespace Fox.Editor
             BindProperty(property, property.name);
         }
 
-        public override void BindProperty(SerializedProperty property, string label, string[] ussClassNames = null)
+        public override void BindProperty(SerializedProperty property, string label)
         {
             this.Property = property;
 
-            InternalField.label = label;
+            if (!IsUserAssignedLabel)
+                InternalField.label = label;
             InternalField.BindProperty(property.FindPropertyRelative("_cString"));
             InternalField.RegisterValueChangedCallback(OnValueChanged);
-            InternalField.labelElement.AddToClassList("unity-property-field__label");
-            if (ussClassNames != null)
-                foreach (var className in ussClassNames)
-                    InternalField.labelElement.AddToClassList(className);
         }
 
         private void OnValueChanged(ChangeEvent<string> changeEvent) => Property.SetValue(new Fox.Core.Path(changeEvent.newValue));
@@ -49,6 +56,7 @@ namespace Fox.Editor
         {
             var field = new PathField();
             field.BindProperty(property);
+            field.styleSheets.Add(FoxField.FoxFieldStyleSheet);
 
             return field;
         }

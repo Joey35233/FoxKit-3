@@ -7,10 +7,16 @@ using UnityEngine.UIElements;
 
 namespace Fox.Editor
 {
-    public class FilePtrField : IFoxField
+    public class FilePtrField : FoxField
     {
-        private ObjectField InternalField;
+        private PathField InternalField;
         private SerializedProperty FileProperty;
+
+        public override string label
+        {
+            get => InternalField.label;
+            set => InternalField.label = value;
+        }
 
         public FilePtrField() : this(default)
         {
@@ -18,8 +24,12 @@ namespace Fox.Editor
 
         public FilePtrField(string label)
         {
-            InternalField = new ObjectField(label);
+            InternalField = new PathField(label);
+            if (label != null)
+                IsUserAssignedLabel = true;
 
+            this.AddToClassList("fox-fileptr-field");
+			this.AddToClassList("fox-base-field");
             this.Add(InternalField);
         }
 
@@ -28,14 +38,13 @@ namespace Fox.Editor
             BindProperty(property, property.name);
         }
 
-        public override void BindProperty(SerializedProperty property, string label, string[] ussClassNames = null)
+        public override void BindProperty(SerializedProperty property, string label)
         {
-            FileProperty = property.FindPropertyRelative("file");
+            FileProperty = property.FindPropertyRelative("path");
 
-            InternalField.label = label;
-            InternalField.allowSceneObjects = false;
+            if (!IsUserAssignedLabel)
+                InternalField.label = label;
             InternalField.BindProperty(FileProperty);
-            InternalField.labelElement.AddToClassList("unity-property-field__label");
         }
     }
 
@@ -44,10 +53,11 @@ namespace Fox.Editor
     {
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
         {
-            var container = new FilePtrField(property.name);
-            container.BindProperty(property);
+            var field = new FilePtrField(property.name);
+            field.BindProperty(property);
+            field.styleSheets.Add(FoxField.FoxFieldStyleSheet);
 
-            return container;
+            return field;
         }
     }
 }

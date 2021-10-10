@@ -4,22 +4,29 @@ using UnityEditor.UIElements;
 
 namespace Fox.Editor
 {
-    public class BoolField : IFoxField
+    public class BoolField : FoxField
     {
         private Toggle InternalField;
         private SerializedProperty Property;
 
-        public BoolField()
-        {
-            InternalField = new Toggle();
+        public override string label 
+        { 
+            get => InternalField.label; 
+            set => InternalField.label = value; 
+        }
 
-            this.Add(InternalField);
+        public BoolField() : this(default)
+        {
         }
 
         public BoolField(string label)
         {
             InternalField = new Toggle(label);
+            if (label != null)
+                IsUserAssignedLabel = true;
 
+            this.AddToClassList("fox-bool-field");
+			this.AddToClassList("fox-base-field");
             this.Add(InternalField);
         }
 
@@ -28,16 +35,13 @@ namespace Fox.Editor
             BindProperty(property, property.name);
         }
 
-        public override void BindProperty(SerializedProperty property, string label, string[] ussClassNames = null)
+        public override void BindProperty(SerializedProperty property, string label)
         {
             this.Property = property;
 
-            InternalField.label = label;
+            if (!IsUserAssignedLabel)
+                InternalField.label = label;
             InternalField.BindProperty(property);
-            InternalField.labelElement.AddToClassList("unity-property-field__label");
-            if (ussClassNames != null)
-                foreach (var className in ussClassNames)
-                    InternalField.labelElement.AddToClassList(className);
         }
     }
 
@@ -48,7 +52,8 @@ namespace Fox.Editor
         {
             var field = new BoolField();
             field.BindProperty(property);
-            
+            field.styleSheets.Add(FoxField.FoxFieldStyleSheet);
+
             return field;
         }
     }

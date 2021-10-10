@@ -1,3 +1,7 @@
+using System;
+using System.Runtime.InteropServices;
+using UnityEngine;
+
 namespace Fox.Core
 {
     using System;
@@ -8,31 +12,43 @@ namespace Fox.Core
     /// </summary>
     /// <typeparam name="T">The type of the referenced file.</typeparam>
     [Serializable]
+#pragma warning disable CS0660 // Type defines operator == or operator != but does not override Object.Equals(object o)
+#pragma warning disable CS0661 // Type defines operator == or operator != but does not override Object.GetHashCode()
     public class FilePtr<T> where T : File
+#pragma warning restore CS0661 // Type defines operator == or operator != but does not override Object.GetHashCode()
+#pragma warning restore CS0660 // Type defines operator == or operator != but does not override Object.Equals(object o)
     {
-        /// <summary>
-        /// The referenced file.
-        /// </summary>
         [SerializeField]
-        private UnityEngine.Object file;
-        private object file1;
+        public Path path;
 
-        public FilePtr(UnityEngine.Object file) => this.file = file;
-
-
-        public override string ToString()
+        private FilePtr()
         {
-            if (this.file == null)
-            {
-                return "NULL FILEPTR";
-            }
+            path = Path.Empty;
+        }
 
-            return this.file.ToString();
+        public FilePtr(Path path)
+        {
+            this.path = path;
+        }
+
+        public FilePtr(string path)
+        {
+            this.path = new Path(path);
         }
 
         public static FilePtr<T> Empty()
         {
-            return new FilePtr<T>(null);
+            return new FilePtr<T>();
+        }
+
+        public static bool operator ==(FilePtr<T> a, FilePtr<T> b)
+        {
+            return a.path == b.path;
+        }
+
+        public static bool operator !=(FilePtr<T> a, FilePtr<T> b)
+        {
+            return !(a == b);
         }
     }
 }

@@ -174,19 +174,19 @@ namespace Fox.Editor
 
         private void BindItem(VisualElement element, int index)
         {
-            if (element is IFoxField)
+            if (element is FoxField)
             {
-                var entryField = element as IFoxField;
+                var entryField = element as FoxField;
                 var entry = InternalListProperty.GetArrayElementAtIndex(InternalStringMap.OccupiedIndexToAbsoluteIndex(index));
 
-                entryField.BindProperty(entry, $"[{index}]", new string[] { "fox-listview-entry-label" });
+                entryField.BindProperty(entry, $"[{index}]");
             }
             else if (element is IFoxNumericField)
             {
                 var entryField = element as IFoxNumericField;
                 var entry = InternalListProperty.GetArrayElementAtIndex(InternalStringMap.OccupiedIndexToAbsoluteIndex(index));
 
-                entryField.BindProperty(entry, $"[{index}]", new string[] { "fox-listview-entry-label" });
+                entryField.BindProperty(entry, $"[{index}]");
             }
         }
     }

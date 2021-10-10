@@ -4,9 +4,15 @@ using UnityEditor.UIElements;
 
 namespace Fox.Editor
 {
-    public class Vector3Field : IFoxField
+    public class Vector3Field : FoxField
     {
         private UnityEditor.UIElements.Vector3Field InternalField;
+
+        public override string label
+        {
+            get => InternalField.label;
+            set => InternalField.label = value;
+        }
 
         public Vector3Field() : this(default)
         {
@@ -16,9 +22,12 @@ namespace Fox.Editor
         {
             InternalField = new UnityEditor.UIElements.Vector3Field();
             InternalField.label = label;
-            InternalField.labelElement.AddToClassList("unity-property-field__label");
-            InternalField.styleSheets.Add(NumericPropertyDrawers.NumericPropertyDrawersStyleSheet);
+            if (label != null)
+                IsUserAssignedLabel = true;
+            InternalField.styleSheets.Add(FoxField.FoxFieldStyleSheet);
 
+            this.AddToClassList("fox-vector3-field");
+			this.AddToClassList("fox-base-field");
             this.Add(InternalField);
         }
 
@@ -27,9 +36,10 @@ namespace Fox.Editor
             BindProperty(property, property.name);
         }
 
-        public override void BindProperty(SerializedProperty property, string label, string[] ussClassNames = null)
+        public override void BindProperty(SerializedProperty property, string label)
         {
-            InternalField.label = label;
+            if (!IsUserAssignedLabel)
+                InternalField.label = label;
 
             InternalField.BindProperty(property);
         }

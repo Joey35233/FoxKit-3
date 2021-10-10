@@ -4,11 +4,17 @@ using UnityEditor.UIElements;
 
 namespace Fox.Editor
 {
-    public class QuaternionField : IFoxField
+    public class QuaternionField : FoxField
     {
         private Label LabelElement;
         private VisualElement InternalContainer;
-        private FloatField[] InternalFields;
+        private UnityEditor.UIElements.FloatField[] InternalFields;
+
+        public override string label
+        {
+            get => LabelElement.text;
+            set => LabelElement.text = value;
+        }
 
         public QuaternionField() : this(default)
         {
@@ -16,12 +22,14 @@ namespace Fox.Editor
 
         public QuaternionField(string label)
         {
-            InternalFields = new FloatField[4];
+            InternalFields = new UnityEditor.UIElements.FloatField[4];
 
             this.AddToClassList("unity-base-field");
             this.AddToClassList("unity-composite-field");
 
             LabelElement = new Label(label);
+            if (label != null)
+                IsUserAssignedLabel = true;
             LabelElement.AddToClassList("unity-base-field__label");
             LabelElement.AddToClassList("unity-property-field__label");
             this.Add(LabelElement);
@@ -30,23 +38,25 @@ namespace Fox.Editor
             innerContainer.AddToClassList("unity-base-field__input");
             innerContainer.AddToClassList("unity-composite-field__input");
 
-            InternalFields[0] = new FloatField("X");
+            InternalFields[0] = new UnityEditor.UIElements.FloatField("X");
             InternalFields[0].AddToClassList("unity-composite-field__field");
             InternalFields[0].AddToClassList("unity-composite-field__field--first");
             innerContainer.Add(InternalFields[0]);
 
-            InternalFields[1] = new FloatField("Y");
+            InternalFields[1] = new UnityEditor.UIElements.FloatField("Y");
             InternalFields[1].AddToClassList("unity-composite-field__field");
             innerContainer.Add(InternalFields[1]);
 
-            InternalFields[2] = new FloatField("Z");
+            InternalFields[2] = new UnityEditor.UIElements.FloatField("Z");
             InternalFields[2].AddToClassList("unity-composite-field__field");
             innerContainer.Add(InternalFields[2]);
 
-            InternalFields[3] = new FloatField("W");
+            InternalFields[3] = new UnityEditor.UIElements.FloatField("W");
             InternalFields[3].AddToClassList("unity-composite-field__field");
             innerContainer.Add(InternalFields[3]);
 
+            this.AddToClassList("fox-quaternion-field");
+			this.AddToClassList("fox-base-field");
             this.Add(innerContainer);
         }
 
@@ -55,7 +65,7 @@ namespace Fox.Editor
             BindProperty(property, property.name);
         }
 
-        public override void BindProperty(SerializedProperty property, string label, string[] ussClassNames = null)
+        public override void BindProperty(SerializedProperty property, string label)
         {
             LabelElement.text = label;
 
@@ -73,6 +83,7 @@ namespace Fox.Editor
         {
             var field = new QuaternionField();
             field.BindProperty(property);
+            field.styleSheets.Add(FoxField.FoxFieldStyleSheet);
 
             return field;
         }

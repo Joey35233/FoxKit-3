@@ -4,10 +4,15 @@ using UnityEditor.UIElements;
 
 namespace Fox.Editor
 {
-    public class DoubleField : IFoxField
+    public class DoubleField : FoxField
     {
         private UnityEditor.UIElements.DoubleField InternalField;
-        private SerializedProperty Property;
+
+        public override string label
+        {
+            get => InternalField.label;
+            set => InternalField.label = value;
+        }
 
         public DoubleField()
         {
@@ -19,7 +24,11 @@ namespace Fox.Editor
         public DoubleField(string label)
         {
             InternalField = new UnityEditor.UIElements.DoubleField(label);
+            if (label != null)
+                IsUserAssignedLabel = true;
 
+            this.AddToClassList("fox-double-field");
+			this.AddToClassList("fox-base-field");
             this.Add(InternalField);
         }
 
@@ -28,17 +37,12 @@ namespace Fox.Editor
             BindProperty(property, property.name);
         }
 
-        public override void BindProperty(SerializedProperty property, string label, string[] ussClassNames = null)
+        public override void BindProperty(SerializedProperty property, string label)
         {
-            this.Property = property;
-
-            InternalField.label = label;
+            if (!IsUserAssignedLabel)
+                InternalField.label = label;
             InternalField.BindProperty(property);
-            InternalField.labelElement.AddToClassList("unity-property-field__label");
-            InternalField.styleSheets.Add(NumericPropertyDrawers.NumericPropertyDrawersStyleSheet);
-            if (ussClassNames != null)
-                foreach (var className in ussClassNames)
-                    InternalField.labelElement.AddToClassList(className);
+            InternalField.styleSheets.Add(FoxField.FoxFieldStyleSheet);
         }
     }
 

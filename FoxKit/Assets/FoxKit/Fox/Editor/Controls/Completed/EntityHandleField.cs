@@ -8,10 +8,16 @@ using UnityEngine;
 
 namespace Fox.Editor
 {
-    public class EntityHandleField : IFoxField
+    public class EntityHandleField : FoxField
     {
         private ObjectField InternalField;
         private SerializedProperty EntityProperty;
+
+        public override string label
+        {
+            get => InternalField.label;
+            set => InternalField.label = value;
+        }
 
         public EntityHandleField() : this(default)
         {
@@ -19,12 +25,14 @@ namespace Fox.Editor
 
         public EntityHandleField(string label)
         {
-            InternalField = new ObjectField();
-            InternalField.label = label;
+            InternalField = new ObjectField(label);
+            if (label != null)
+                IsUserAssignedLabel = true;
             InternalField.allowSceneObjects = true;
             InternalField.objectType = typeof(GameObject);
-            InternalField.labelElement.AddToClassList("unity-property-field__label");
 
+            this.AddToClassList("fox-entityhandle-field");
+			this.AddToClassList("fox-base-field");
             this.Add(InternalField);
         }
 
@@ -33,12 +41,12 @@ namespace Fox.Editor
             BindProperty(property, property.name);
         }
 
-        public override void BindProperty(SerializedProperty property, string label, string[] ussClassNames = null)
+        public override void BindProperty(SerializedProperty property, string label)
         {
             this.EntityProperty = property.FindPropertyRelative("entity");
-            //var children = EntityProperty.GetChildren().ToArray();
 
-            InternalField.label = label;
+            if (!IsUserAssignedLabel)
+                InternalField.label = label;
             InternalField.BindProperty(EntityProperty);
         }
     }
@@ -49,6 +57,7 @@ namespace Fox.Editor
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
         {
             var container = new EntityHandleField(property.name);
+            container.styleSheets.Add(FoxField.FoxFieldStyleSheet);
             container.BindProperty(property);
 
             return container;

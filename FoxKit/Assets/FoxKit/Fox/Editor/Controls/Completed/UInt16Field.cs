@@ -73,7 +73,7 @@ namespace Fox.Editor
             : base(label, maxLength, new UInt16Input())
         {
             labelElement.AddToClassList("unity-property-field__label");
-            styleSheets.Add(NumericPropertyDrawers.NumericPropertyDrawersStyleSheet);
+            styleSheets.Add(FoxField.FoxFieldStyleSheet);
 
             if (hasDragger)
                 AddLabelDragger<System.UInt16>();
@@ -89,7 +89,7 @@ namespace Fox.Editor
             BindProperty(property, property.name);
         }
 
-        public void BindProperty(SerializedProperty property, string label, string[] ussClassNames = null)
+        public void BindProperty(SerializedProperty property, string label)
         {
             this.label = label;
             BindingExtensions.BindProperty(this, property);
@@ -149,6 +149,7 @@ namespace Fox.Editor
 
             field = new UInt16Field(property.name);
             field.BindProperty(property);
+            field.styleSheets.Add(FoxField.FoxFieldStyleSheet);
 
             return field;
         }

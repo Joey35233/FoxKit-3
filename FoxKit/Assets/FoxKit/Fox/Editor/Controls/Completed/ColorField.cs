@@ -4,9 +4,15 @@ using UnityEditor.UIElements;
 
 namespace Fox.Editor
 {
-    public class ColorField : IFoxField
+    public class ColorField : FoxField
     {
         private UnityEditor.UIElements.ColorField InternalField;
+
+        public override string label
+        {
+            get => InternalField.label;
+            set => InternalField.label = value;
+        }
 
         public ColorField() : this(default)
         {
@@ -14,10 +20,12 @@ namespace Fox.Editor
 
         public ColorField(string label)
         {
-            InternalField = new UnityEditor.UIElements.ColorField();
-            InternalField.label = label;
-            InternalField.labelElement.AddToClassList("unity-property-field__label");
+            InternalField = new UnityEditor.UIElements.ColorField(label);
+            if (label != null)
+                IsUserAssignedLabel = true;
 
+            this.AddToClassList("fox-color-field");
+			this.AddToClassList("fox-base-field");
             this.Add(InternalField);
         }
 
@@ -26,9 +34,10 @@ namespace Fox.Editor
             BindProperty(property, property.name);
         }
 
-        public override void BindProperty(SerializedProperty property, string label, string[] ussClassNames = null)
+        public override void BindProperty(SerializedProperty property, string label)
         {
-            InternalField.label = label;
+            if (!IsUserAssignedLabel)
+                InternalField.label = label;
 
             InternalField.BindProperty(property);
         }
@@ -39,10 +48,11 @@ namespace Fox.Editor
     {
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
         {
-            var container = new ColorField(property.name);
-            container.BindProperty(property);
+            var field = new ColorField(property.name);
+            field.BindProperty(property);
+            field.styleSheets.Add(FoxField.FoxFieldStyleSheet);
 
-            return container;
+            return field;
         }
     }
 }

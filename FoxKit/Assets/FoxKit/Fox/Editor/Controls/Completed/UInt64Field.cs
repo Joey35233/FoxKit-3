@@ -108,7 +108,7 @@ namespace Fox.Editor
             BindProperty(property, property.name);
         }
 
-        public void BindProperty(SerializedProperty property, string label, string[] ussClassNames = null)
+        public void BindProperty(SerializedProperty property, string label)
         {
             this.label = label;
             BindingExtensions.BindProperty(this, property);
@@ -163,6 +163,7 @@ namespace Fox.Editor
         {
             var field = new UInt64Field();
             field.BindProperty(property);
+            field.styleSheets.Add(FoxField.FoxFieldStyleSheet);
 
             return field;
         }

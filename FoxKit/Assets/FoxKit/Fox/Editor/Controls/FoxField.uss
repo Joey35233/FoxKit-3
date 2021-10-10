@@ -1,0 +1,53 @@
+﻿.fox-base-field .unity-base-field__label
+{
+	padding-left: 0;
+	min-width: 120px;
+}
+
+.unity-composite-field__field--first .unity-label
+{
+	margin-left: 0;
+	margin-right: 0;
+	padding-left: 1px;
+}
+
+.unity-composite-field__field .unity-base-field__label
+{
+	min-width: 15px;
+	margin-left: 3px;
+	margin-right: 0px;
+	flex-grow: 0;
+	flex-shrink: 0;
+	flex-basis: 15px;
+}
+
+.fox-matrix4-field .unity-label
+{
+	padding-top: 1px;
+	padding-bottom: 1px;
+}
+
+.fox-quaternion-field .unity-base-text-field__input
+{
+	background-color: #DDCAE5;
+}
+.fox-vector3-field .unity-base-text-field__input
+{
+	background-color: #CEE5CA;
+}
+.fox-vector4-field .unity-base-text-field__input
+{
+	background-color: #E5CACB;
+}
+.fox-entityhandle-field .unity-object-field__input
+{
+	background-color: #E5D5CA;
+}
+.fox-string-field .unity-base-text-field__input
+{
+	background-color: #E4E5CA;
+}
+.fox-path-field .unity-base-text-field__input
+{
+	background-color: #CAE1E5;
+}

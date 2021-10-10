@@ -1,17 +1,21 @@
 ﻿using UnityEditor;
 using UnityEngine.UIElements;
-using UnityEditor.UIElements;
 
 namespace Fox.Editor
 {
-    public class EntityLinkField : IFoxField
+    public class EntityLinkField : FoxField
     {
         private Foldout InternalFoldout;
         private EntityHandleField InternalHandleField;
         private PathField InternalPackagePathField;
         private PathField InternalArchivePathField;
         private StringField InternalNameField;
-        private SerializedProperty Property;
+
+        public override string label
+        {
+            get => InternalFoldout.text;
+            set => InternalFoldout.text = value;
+        }
 
         public EntityLinkField() : this(default)
         {
@@ -20,7 +24,9 @@ namespace Fox.Editor
         public EntityLinkField(string label)
         {
             InternalFoldout = new Foldout();
-            InternalFoldout.text = label;
+                InternalFoldout.text = label;
+            if (label != null)
+                IsUserAssignedLabel = true;
             InternalFoldout.style.flexDirection = FlexDirection.Column;
 
             InternalHandleField = new EntityHandleField();
@@ -33,6 +39,8 @@ namespace Fox.Editor
             InternalFoldout.Add(InternalArchivePathField);
             InternalFoldout.Add(InternalNameField);
 
+            this.AddToClassList("fox-entitylink-field");
+			this.AddToClassList("fox-base-field");
             this.Add(InternalFoldout);
         }
 
@@ -41,11 +49,10 @@ namespace Fox.Editor
             BindProperty(property, property.name);
         }
 
-        public override void BindProperty(SerializedProperty property, string label, string[] ussClassNames = null)
+        public override void BindProperty(SerializedProperty property, string label)
         {
-            this.Property = property;
-
-            InternalFoldout.text = label;
+            if (!IsUserAssignedLabel)
+                InternalFoldout.text = label;
 
             InternalHandleField.BindProperty(property.FindPropertyRelative("handle"));
             InternalPackagePathField.BindProperty(property.FindPropertyRelative("packagePath"));

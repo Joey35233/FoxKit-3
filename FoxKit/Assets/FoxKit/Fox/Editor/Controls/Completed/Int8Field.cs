@@ -7,14 +7,8 @@ using UnityEngine.UIElements;
 
 namespace Fox.Editor
 {
-    /// <summary>
-    /// Describes a XML <c>int8</c> attribute.
-    /// </summary>
     public class UxmlInt8AttributeDescription : TypedUxmlAttributeDescription<sbyte>
     {
-        /// <summary>
-        /// Constructor.
-        /// </summary>
         public UxmlInt8AttributeDescription()
         {
             type = "int8";
@@ -22,29 +16,13 @@ namespace Fox.Editor
             defaultValue = 0;
         }
 
-        /// <summary>
-        /// The default value for the attribute, as a string.
-        /// </summary>
         public override string defaultValueAsString { get { return defaultValue.ToString(CultureInfo.InvariantCulture.NumberFormat); } }
 
-        /// <summary>
-        /// Retrieves the value of this attribute from the attribute bag. Returns it if it is found, otherwise return <see cref="defaultValue"/>.
-        /// </summary>
-        /// <param name="bag">The bag of attributes.</param>
-        /// <param name="cc">The context in which the values are retrieved.</param>
-        /// <returns>The value of the attribute.</returns>
         public override sbyte GetValueFromBag(IUxmlAttributes bag, CreationContext cc)
         {
             return GetValueFromBag(bag, cc, (s, i) => ConvertValueToInt8(s, i), defaultValue);
         }
 
-        /// <summary>
-        /// Tries to retrieve the value of this attribute from the attribute bag. Returns true if it is found, otherwise returns false.
-        /// </summary>
-        /// <param name="bag">The bag of attributes.</param>
-        /// <param name="cc">The context in which the values are retrieved.</param>
-        /// <param name="value">The value of the attribute.</param>
-        /// <returns>True if the value could be retrieved, false otherwise.</returns>
         public bool TryGetValueFromBag(IUxmlAttributes bag, CreationContext cc, ref sbyte value)
         {
             return TryGetValueFromBag(bag, cc, (s, i) => ConvertValueToInt8(s, i), defaultValue, ref value);
@@ -149,7 +127,7 @@ namespace Fox.Editor
             BindProperty(property, property.name);
         }
 
-        public void BindProperty(SerializedProperty property, string label, string[] ussClassNames = null)
+        public void BindProperty(SerializedProperty property, string label)
         {
             this.label = label;
             BindingExtensions.BindProperty(this, property);
@@ -209,6 +187,7 @@ namespace Fox.Editor
 
             field = new Int8Field(property.name);
             field.BindProperty(property);
+            field.styleSheets.Add(FoxField.FoxFieldStyleSheet);
 
             return field;
         }
