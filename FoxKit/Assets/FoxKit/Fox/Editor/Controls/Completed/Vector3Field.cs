@@ -24,10 +24,10 @@ namespace Fox.Editor
             InternalField.label = label;
             if (label != null)
                 IsUserAssignedLabel = true;
-            InternalField.styleSheets.Add(FoxField.FoxFieldStyleSheet);
 
             this.AddToClassList("fox-vector3-field");
 			this.AddToClassList("fox-base-field");
+            this.styleSheets.Add(FoxField.FoxFieldStyleSheet);
             this.Add(InternalField);
         }
 
@@ -50,10 +50,10 @@ namespace Fox.Editor
     {
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
         {
-            var container = new Vector3Field(property.name);
-            container.BindProperty(property);
+            var field = new Vector3Field(property.name);
+            field.BindProperty(property);
 
-            return container;
+            return field;
         }
     }
 }

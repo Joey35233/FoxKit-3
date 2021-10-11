@@ -60,6 +60,11 @@ namespace Fox.Editor
             return NumericPropertyDrawers.ClampToUInt16(v);
         }
 
+        public static readonly string ussBaseClassName = "fox-base-field";
+        public new static readonly string ussClassName = "fox-uint16-field";
+        public new static readonly string labelUssClassName = ussClassName + "__label";
+        public new static readonly string inputUssClassName = ussClassName + "__input";
+
         public UInt16Field()
             : this((string)null) { }
 
@@ -72,9 +77,10 @@ namespace Fox.Editor
         public UInt16Field(string label, bool hasDragger = true, int maxLength = -1)
             : base(label, maxLength, new UInt16Input())
         {
-            labelElement.AddToClassList("unity-property-field__label");
-            styleSheets.Add(FoxField.FoxFieldStyleSheet);
-
+            AddToClassList(ussBaseClassName);
+            AddToClassList(ussClassName);
+            labelElement.AddToClassList(labelUssClassName);
+            this.styleSheets.Add(FoxField.FoxFieldStyleSheet);
             if (hasDragger)
                 AddLabelDragger<System.UInt16>();
         }
@@ -93,7 +99,6 @@ namespace Fox.Editor
         {
             this.label = label;
             BindingExtensions.BindProperty(this, property);
-            labelElement.AddToClassList("unity-property-field__label");
         }
 
         class UInt16Input : TextValueInput
@@ -149,7 +154,6 @@ namespace Fox.Editor
 
             field = new UInt16Field(property.name);
             field.BindProperty(property);
-            field.styleSheets.Add(FoxField.FoxFieldStyleSheet);
 
             return field;
         }

@@ -60,6 +60,11 @@ namespace Fox.Editor
             return NumericPropertyDrawers.ClampToUInt32(v);
         }
 
+        public static readonly string ussBaseClassName = "fox-base-field";
+        public new static readonly string ussClassName = "fox-uint32-field";
+        public new static readonly string labelUssClassName = ussClassName + "__label";
+        public new static readonly string inputUssClassName = ussClassName + "__input";
+
         public UInt32Field()
             : this((string)null) { }
 
@@ -72,6 +77,10 @@ namespace Fox.Editor
         public UInt32Field(string label, bool hasDragger = true, int maxLength = -1)
             : base(label, maxLength, new UInt32Input())
         {
+            AddToClassList(ussBaseClassName);
+            AddToClassList(ussClassName);
+            labelElement.AddToClassList(labelUssClassName);
+            this.styleSheets.Add(FoxField.FoxFieldStyleSheet);
             if (hasDragger)
                 AddLabelDragger<System.UInt32>();
         }
@@ -90,7 +99,6 @@ namespace Fox.Editor
         {
             this.label = label;
             BindingExtensions.BindProperty(this, property);
-            labelElement.AddToClassList("unity-property-field__label");
         }
 
         class UInt32Input : TextValueInput
@@ -141,7 +149,6 @@ namespace Fox.Editor
         {
             var field = new UInt32Field();
             field.BindProperty(property);
-            field.styleSheets.Add(FoxField.FoxFieldStyleSheet);
 
             return field;
         }

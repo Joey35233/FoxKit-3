@@ -32,10 +32,10 @@ namespace Fox.Core
 
         public Entity Entity()
         {
-            if (entity is null)
+            if (entity == null)
                 return null;
 
-            return entity.GetComponent<FoxEntity>().Entity;
+            return entity.GetComponent<FoxEntity>()?.Entity;
         }
     }
 }

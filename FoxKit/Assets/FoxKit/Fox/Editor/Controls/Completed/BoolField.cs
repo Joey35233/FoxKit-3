@@ -27,6 +27,7 @@ namespace Fox.Editor
 
             this.AddToClassList("fox-bool-field");
 			this.AddToClassList("fox-base-field");
+            this.styleSheets.Add(FoxField.FoxFieldStyleSheet);
             this.Add(InternalField);
         }
 
@@ -52,7 +53,6 @@ namespace Fox.Editor
         {
             var field = new BoolField();
             field.BindProperty(property);
-            field.styleSheets.Add(FoxField.FoxFieldStyleSheet);
 
             return field;
         }

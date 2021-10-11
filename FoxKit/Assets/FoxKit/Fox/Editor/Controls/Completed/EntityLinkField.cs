@@ -6,6 +6,10 @@ namespace Fox.Editor
     public class EntityLinkField : FoxField
     {
         private Foldout InternalFoldout;
+        private Label InternalLabel;
+        private VisualElement InternalContainer;
+        private bool IsInline;
+
         private EntityHandleField InternalHandleField;
         private PathField InternalPackagePathField;
         private PathField InternalArchivePathField;
@@ -17,31 +21,71 @@ namespace Fox.Editor
             set => InternalFoldout.text = value;
         }
 
-        public EntityLinkField() : this(default)
+        public EntityLinkField(bool isInline = false) : this(null, isInline)
+        {
+
+        }
+
+        public EntityLinkField() : this(null)
         {
         }
 
-        public EntityLinkField(string label)
+
+        public EntityLinkField(string label) : this(label, false)
         {
-            InternalFoldout = new Foldout();
+
+        }
+
+        public EntityLinkField(string label, bool isInline)
+        {
+            IsInline = isInline;
+
+            if (!IsInline)
+            {
+                InternalFoldout = new Foldout();
                 InternalFoldout.text = label;
-            if (label != null)
-                IsUserAssignedLabel = true;
-            InternalFoldout.style.flexDirection = FlexDirection.Column;
+                if (label != null)
+                    IsUserAssignedLabel = true;
+                InternalFoldout.style.flexDirection = FlexDirection.Column;
+            }
+            else
+            {
+                this.style.flexDirection = FlexDirection.Row;
+                InternalLabel = new Label();
+                this.Add(InternalLabel);
+                InternalLabel.text = label;
+                if (label != null)
+                    IsUserAssignedLabel = true;
+            }
 
             InternalHandleField = new EntityHandleField();
             InternalPackagePathField = new PathField();
             InternalArchivePathField = new PathField();
             InternalNameField = new StringField();
 
-            InternalFoldout.Add(InternalHandleField);
-            InternalFoldout.Add(InternalPackagePathField);
-            InternalFoldout.Add(InternalArchivePathField);
-            InternalFoldout.Add(InternalNameField);
-
             this.AddToClassList("fox-entitylink-field");
 			this.AddToClassList("fox-base-field");
-            this.Add(InternalFoldout);
+
+            if (!isInline)
+            {
+                InternalFoldout.Add(InternalHandleField);
+                InternalFoldout.Add(InternalPackagePathField);
+                InternalFoldout.Add(InternalArchivePathField);
+                InternalFoldout.Add(InternalNameField);
+                this.Add(InternalFoldout);
+            }
+            else
+            {
+                InternalContainer = new VisualElement();
+                InternalContainer.style.flexDirection = FlexDirection.Column;
+                InternalContainer.style.flexGrow = 1;
+                InternalContainer.Add(InternalHandleField);
+                InternalContainer.Add(InternalPackagePathField);
+                InternalContainer.Add(InternalArchivePathField);
+                InternalContainer.Add(InternalNameField);
+                this.Add(InternalContainer);
+            }
+
         }
 
         public override void BindProperty(SerializedProperty property)
@@ -52,7 +96,12 @@ namespace Fox.Editor
         public override void BindProperty(SerializedProperty property, string label)
         {
             if (!IsUserAssignedLabel)
-                InternalFoldout.text = label;
+            {
+                if (!IsInline)
+                    InternalFoldout.text = label;
+                else
+                    InternalLabel.text = label;
+            }
 
             InternalHandleField.BindProperty(property.FindPropertyRelative("handle"));
             InternalPackagePathField.BindProperty(property.FindPropertyRelative("packagePath"));

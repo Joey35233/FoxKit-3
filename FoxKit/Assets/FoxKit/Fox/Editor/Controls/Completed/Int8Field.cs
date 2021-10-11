@@ -79,9 +79,6 @@ namespace Fox.Editor
 
         Int8Input integerInput => (Int8Input)textInputBase;
 
-        public new class UxmlFactory : UxmlFactory<Int8Field, UxmlTraits> { }
-        public new class UxmlTraits : TextValueFieldTraits<System.SByte, UxmlInt8AttributeDescription> {}
-
         protected override string ValueToString(System.SByte v)
         {
             return v.ToString(formatString, CultureInfo.InvariantCulture.NumberFormat);
@@ -94,6 +91,10 @@ namespace Fox.Editor
             return NumericPropertyDrawers.ClampToInt8(v);
         }
 
+        public new class UxmlFactory : UxmlFactory<Int8Field, UxmlTraits> { }
+        public new class UxmlTraits : TextValueFieldTraits<System.SByte, UxmlInt8AttributeDescription> { }
+
+        public static readonly string ussBaseClassName = "fox-base-field";
         public new static readonly string ussClassName = "fox-int8-field";
         public new static readonly string labelUssClassName = ussClassName + "__label";
         public new static readonly string inputUssClassName = ussClassName + "__input";
@@ -110,8 +111,10 @@ namespace Fox.Editor
         public Int8Field(string label, bool hasDragger = true, int maxLength = -1)
             : base(label, maxLength, new Int8Input())
         {
+            AddToClassList(ussBaseClassName);
             AddToClassList(ussClassName);
             labelElement.AddToClassList(labelUssClassName);
+            this.styleSheets.Add(FoxField.FoxFieldStyleSheet);
 
             if (hasDragger)
                 AddLabelDragger<System.SByte>();
@@ -131,7 +134,6 @@ namespace Fox.Editor
         {
             this.label = label;
             BindingExtensions.BindProperty(this, property);
-            labelElement.AddToClassList("unity-property-field__label");
         }
 
         class Int8Input : TextValueInput
@@ -187,7 +189,6 @@ namespace Fox.Editor
 
             field = new Int8Field(property.name);
             field.BindProperty(property);
-            field.styleSheets.Add(FoxField.FoxFieldStyleSheet);
 
             return field;
         }

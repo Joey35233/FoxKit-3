@@ -6,8 +6,12 @@ namespace Fox.Editor
 {
     public class Matrix4Field : FoxField
     {
-        // [Row, Column]
         private Foldout InternalFoldout;
+        private Label InternalLabel;
+        private VisualElement InternalContainer;
+        private bool IsInline;
+
+        // [Row, Column]
         private UnityEditor.UIElements.FloatField[,] InternalFields;
 
         public override string label
@@ -16,20 +20,39 @@ namespace Fox.Editor
             set => InternalFoldout.text = value;
         }
 
-        public Matrix4Field() : this(default)
+        public Matrix4Field(bool isInline = false) : this(null, isInline)
         {
 
         }
 
-        public Matrix4Field(string label)
+        public Matrix4Field(string label) : this(label, false)
         {
+
+        }
+        
+        public Matrix4Field(string label, bool isInline)
+        {
+            IsInline = isInline;
+
             InternalFields = new UnityEditor.UIElements.FloatField[4, 4];
 
-            InternalFoldout = new Foldout();
-            InternalFoldout.text = label;
-            if (label != null)
-                IsUserAssignedLabel = true;
-            InternalFoldout.styleSheets.Add(FoxField.FoxFieldStyleSheet);
+            if (!IsInline)
+            {
+                InternalFoldout = new Foldout();
+                InternalFoldout.text = label;
+                if (label != null)
+                    IsUserAssignedLabel = true;
+            }
+            else
+            {
+                InternalContainer = new VisualElement();
+                InternalContainer.style.flexDirection = FlexDirection.Row;
+                InternalLabel = new Label();
+                InternalContainer.Add(InternalLabel);
+                InternalLabel.text = label;
+                if (label != null)
+                    IsUserAssignedLabel = true;
+            }
 
             var innerContainer = new VisualElement();
             innerContainer.AddToClassList("unity-base-field__input");
@@ -38,6 +61,8 @@ namespace Fox.Editor
 
             {
                 var rowContainer = new VisualElement();
+                rowContainer.style.paddingTop = 1;
+                rowContainer.style.paddingBottom = 1;
                 rowContainer.AddToClassList("unity-base-field__input");
                 rowContainer.AddToClassList("unity-composite-field__input");
                 rowContainer.style.flexDirection = FlexDirection.Row;
@@ -68,6 +93,8 @@ namespace Fox.Editor
 
             {
                 var rowContainer = new VisualElement();
+                rowContainer.style.paddingTop = 1;
+                rowContainer.style.paddingBottom = 1;
                 rowContainer.AddToClassList("unity-base-field__input");
                 rowContainer.AddToClassList("unity-composite-field__input");
                 rowContainer.style.flexDirection = FlexDirection.Row;
@@ -98,6 +125,8 @@ namespace Fox.Editor
 
             {
                 var rowContainer = new VisualElement();
+                rowContainer.style.paddingTop = 1;
+                rowContainer.style.paddingBottom = 1;
                 rowContainer.AddToClassList("unity-base-field__input");
                 rowContainer.AddToClassList("unity-composite-field__input");
                 rowContainer.style.flexDirection = FlexDirection.Row;
@@ -128,6 +157,8 @@ namespace Fox.Editor
 
             {
                 var rowContainer = new VisualElement();
+                rowContainer.style.paddingTop = 1;
+                rowContainer.style.paddingBottom = 1;
                 rowContainer.AddToClassList("unity-base-field__input");
                 rowContainer.AddToClassList("unity-composite-field__input");
                 rowContainer.style.flexDirection = FlexDirection.Row;
@@ -156,11 +187,20 @@ namespace Fox.Editor
                 innerContainer.Add(rowContainer);
             }
 
-            InternalFoldout.Add(innerContainer);
-
             this.AddToClassList("fox-matrix4-field");
-			this.AddToClassList("fox-base-field");
-            this.Add(InternalFoldout);
+            this.AddToClassList("fox-base-field");
+            this.styleSheets.Add(FoxField.FoxFieldStyleSheet);
+
+            if (!isInline)
+            {
+                InternalFoldout.Add(innerContainer);
+                this.Add(InternalFoldout);
+            }
+            else
+            {
+                InternalContainer.Add(innerContainer);
+                this.Add(InternalContainer);
+            }
         }
 
         public override void BindProperty(SerializedProperty property)
@@ -171,7 +211,12 @@ namespace Fox.Editor
         public override void BindProperty(SerializedProperty property, string label)
         {
             if (!IsUserAssignedLabel)
-                InternalFoldout.text = label;
+            {
+                if (!IsInline)
+                    InternalFoldout.text = label;
+                else
+                    InternalLabel.text = label;
+            }    
 
             InternalFields[0, 0].BindProperty(property.FindPropertyRelative("e00"));
             InternalFields[0, 1].BindProperty(property.FindPropertyRelative("e01"));

@@ -71,7 +71,7 @@ namespace Fox.Editor
             ListView field = new ListView
             (
                 stringMapList,
-                20,
+                CollectionDrawer.GetListEntrySize(CollectionTypeArgument),
                 MakeItem,
                 BindItem
             );
@@ -164,30 +164,68 @@ namespace Fox.Editor
             return foldout;
         }
 
+        private class CellField : VisualElement
+        {
+            public Label Label;
+            public StringField KeyField;
+            public VisualElement DataField;
+
+            public CellField(VisualElement dataField)
+            {
+                Label = new Label();
+                Label.AddToClassList("unity-base-field__label");
+                Label.AddToClassList("unity-property-field__label");
+
+                KeyField = new StringField();
+                KeyField.SetEnabled(false);
+                KeyField.style.minWidth = 140;
+
+                DataField = dataField;
+
+                this.Add(Label);
+                this.Add(KeyField);
+                this.Add(DataField);
+
+                this.style.flexDirection = FlexDirection.Row;
+            }
+        }
+
         private VisualElement MakeItem()
         {
-            var entryField = FieldConstructor();
-            entryField.styleSheets.Add(CollectionDrawer.PropertyDrawerStyleSheet);
+            var cellField = new CellField(FieldConstructor());
+            cellField.AddToClassList("unity-base-field");
+            cellField.AddToClassList("fox-cell-field");
+            cellField.AddToClassList("unity-composite-field");
+            cellField.AddToClassList("fox-compound-field-element");
 
-            return entryField;
+            return cellField;
         }
 
         private void BindItem(VisualElement element, int index)
         {
-            if (element is FoxField)
+            var cellField = (CellField)element;
+            cellField.Label.text = $"[{index}]";
+
+            if (cellField.DataField is FoxField)
             {
-                var entryField = element as FoxField;
+                var dataField = cellField.DataField as FoxField;
                 var entry = InternalListProperty.GetArrayElementAtIndex(InternalStringMap.OccupiedIndexToAbsoluteIndex(index));
 
-                entryField.BindProperty(entry, $"[{index}]");
+                cellField.KeyField.BindProperty(entry.FindPropertyRelative("Key"), null);
+                dataField.BindProperty(entry.FindPropertyRelative("Value"), null);
             }
-            else if (element is IFoxNumericField)
+            else if (cellField.DataField is IFoxNumericField)
             {
-                var entryField = element as IFoxNumericField;
+                var dataField = cellField.DataField as IFoxNumericField;
                 var entry = InternalListProperty.GetArrayElementAtIndex(InternalStringMap.OccupiedIndexToAbsoluteIndex(index));
 
-                entryField.BindProperty(entry, $"[{index}]");
+                cellField.KeyField.BindProperty(entry.FindPropertyRelative("Key"), null);
+                dataField.BindProperty(entry.FindPropertyRelative("Value"), null);
             }
+
+            var labelElement = element.Q<Label>();
+            labelElement?.AddToClassList("fox-compound-field-element__label");
+            labelElement.style.minWidth = 20;
         }
     }
 }

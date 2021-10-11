@@ -26,6 +26,7 @@ namespace Fox.Editor
 
             this.AddToClassList("fox-float-field");
 			this.AddToClassList("fox-base-field");
+            this.styleSheets.Add(FoxField.FoxFieldStyleSheet);
             this.Add(InternalField);
         }
 
@@ -49,7 +50,6 @@ namespace Fox.Editor
         {
             var field = new FloatField();
             field.BindProperty(property);
-            field.styleSheets.Add(FoxField.FoxFieldStyleSheet);
 
             return field;
         }

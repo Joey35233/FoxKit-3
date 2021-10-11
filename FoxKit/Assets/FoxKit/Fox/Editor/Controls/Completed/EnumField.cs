@@ -25,6 +25,7 @@ namespace Fox.Editor
 
             this.AddToClassList("fox-enum-field");
             this.AddToClassList("fox-base-field");
+            this.styleSheets.Add(FoxField.FoxFieldStyleSheet);
             this.Add(InternalField);
         }
 
@@ -38,27 +39,6 @@ namespace Fox.Editor
             InternalField.label = label;
 
             InternalField.BindProperty(property);
-        }
-    }
-
-    [CustomPropertyDrawer(typeof(System.Enum), true)]
-    public class EnumDrawer : PropertyDrawer
-    {
-        public override VisualElement CreatePropertyGUI(SerializedProperty property)
-        {
-            var value = property.GetValue() as System.Enum;
-
-            //property.type
-
-            FoxField field = null;
-            if (false)
-                field = new EnumFlagsField();
-            else
-                field = new EnumField();
-
-            field.BindProperty(property);
-
-            return field;
         }
     }
 
@@ -83,6 +63,7 @@ namespace Fox.Editor
 
             this.AddToClassList("fox-enum-flags-field");
             this.AddToClassList("fox-base-field");
+            this.styleSheets.Add(FoxField.FoxFieldStyleSheet);
             this.Add(InternalField);
         }
 
@@ -99,15 +80,23 @@ namespace Fox.Editor
         }
     }
 
-    //[CustomPropertyDrawer(typeof(System.FlagsAttribute), true)]
-    //public class EnumFlagsDrawer : PropertyDrawer
-    //{
-    //    public override VisualElement CreatePropertyGUI(SerializedProperty property)
-    //    {
-    //        var container = new EnumFlagsField(property.name);
-    //        container.BindProperty(property);
+    [CustomPropertyDrawer(typeof(System.Enum), true)]
+    public class EnumDrawer : PropertyDrawer
+    {
+        public override VisualElement CreatePropertyGUI(SerializedProperty property)
+        {
+            var valueType = property.GetValue().GetType();
+            bool valueTypeHasFlagsAttribute = valueType.IsDefined(typeof(System.FlagsAttribute), false);
 
-    //        return container;
-    //    }
-    //}
+            FoxField field = null;
+            if (valueTypeHasFlagsAttribute)
+                field = new EnumFlagsField();
+            else
+                field = new EnumField();
+
+            field.BindProperty(property);
+
+            return field;
+        }
+    }
 }

@@ -33,6 +33,7 @@ namespace Fox.Editor
 
             this.AddToClassList("fox-entityhandle-field");
 			this.AddToClassList("fox-base-field");
+            this.styleSheets.Add(FoxField.FoxFieldStyleSheet);
             this.Add(InternalField);
         }
 
@@ -56,11 +57,10 @@ namespace Fox.Editor
     {
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
         {
-            var container = new EntityHandleField(property.name);
-            container.styleSheets.Add(FoxField.FoxFieldStyleSheet);
-            container.BindProperty(property);
+            var field = new EntityHandleField(property.name);
+            field.BindProperty(property);
 
-            return container;
+            return field;
         }
     }
 }

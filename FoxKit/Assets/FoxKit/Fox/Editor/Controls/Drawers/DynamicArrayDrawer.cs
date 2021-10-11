@@ -50,7 +50,7 @@ namespace Fox.Editor
             buttonContainer.style.alignItems = Align.FlexEnd;
 
             var addButton = new Button();
-            addButton.AddToClassList("fox-listview-add-button");
+            addButton.AddToClassList("fox-dynamic-field-add-button");
             addButton.text = "+";
             addButton.clicked += () =>
             {
@@ -64,7 +64,7 @@ namespace Fox.Editor
             };
 
             var removeButton = new Button();
-            removeButton.AddToClassList("fox-listview-remove-button");
+            removeButton.AddToClassList("fox-dynamic-field-remove-button");
             removeButton.text = "-";
             removeButton.clicked += () =>
             {
@@ -88,13 +88,15 @@ namespace Fox.Editor
 
             foldout.Add(buttonContainer);
 
+            foldout.AddToClassList("fox-compound-field");
+            foldout.AddToClassList("fox-dynamicarray-field");
             return foldout;
         }
 
         private VisualElement MakeItem()
         {
             var entryField = FieldConstructor();
-            entryField.styleSheets.Add(CollectionDrawer.PropertyDrawerStyleSheet);
+            entryField.AddToClassList("fox-compound-field-element");
 
             return entryField;
         }
@@ -115,10 +117,10 @@ namespace Fox.Editor
 
                 entryField.BindProperty(entry, $"[{index}]");
             }
-            else
-            {
-                throw new ArgumentException($"Invalid type: {element}");
-            }
+
+            var labelElement = element.Q<Label>();
+            labelElement?.AddToClassList("fox-compound-field-element__label");
+            labelElement.style.minWidth = 20;
         }
     }
 }

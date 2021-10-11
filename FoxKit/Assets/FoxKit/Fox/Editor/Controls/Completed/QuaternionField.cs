@@ -57,6 +57,7 @@ namespace Fox.Editor
 
             this.AddToClassList("fox-quaternion-field");
 			this.AddToClassList("fox-base-field");
+            this.styleSheets.Add(FoxField.FoxFieldStyleSheet);
             this.Add(innerContainer);
         }
 
@@ -83,7 +84,6 @@ namespace Fox.Editor
         {
             var field = new QuaternionField();
             field.BindProperty(property);
-            field.styleSheets.Add(FoxField.FoxFieldStyleSheet);
 
             return field;
         }

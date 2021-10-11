@@ -26,8 +26,12 @@ namespace Fox.Editor
             if (label != null)
                 IsUserAssignedLabel = true;
 
+            InternalField.style.marginTop = 0;
+            InternalField.style.marginBottom = 0;
+
             this.AddToClassList("fox-path-field");
 			this.AddToClassList("fox-base-field");
+            this.styleSheets.Add(FoxField.FoxFieldStyleSheet);
             this.Add(InternalField);
         }
 
@@ -56,7 +60,6 @@ namespace Fox.Editor
         {
             var field = new PathField();
             field.BindProperty(property);
-            field.styleSheets.Add(FoxField.FoxFieldStyleSheet);
 
             return field;
         }

@@ -39,6 +39,10 @@
 {
 	background-color: #E5CACB;
 }
+.fox-matrix4-field .unity-base-text-field__input
+{
+	background-color: #e5cada;
+}
 .fox-entityhandle-field .unity-object-field__input
 {
 	background-color: #E5D5CA;
@@ -50,4 +54,52 @@
 .fox-path-field .unity-base-text-field__input
 {
 	background-color: #CAE1E5;
+}
+.fox-float-field .unity-base-text-field__input
+{
+	background-color: #cae5d8;
+}
+.fox-double-field .unity-base-text-field__input
+{
+	background-color: #cad3e5;
+}
+.fox-enum-field .unity-enum-field__input
+{
+	background-color: #cecae5;
+}
+.fox-enum-flags-field .unity-enum-flags-field__input
+{
+	background-color: #cae5df;
+}
+.fox-uint8-field .unity-base-text-field__input
+{
+	background-color: #e5d5ca;
+}
+.fox-uint16-field .unity-base-text-field__input
+{
+	background-color: #cae5e4;
+}
+.fox-uint32-field .unity-base-text-field__input
+{
+	background-color: #dce5ca;
+}
+.fox-uint64-field .unity-base-text-field__input
+{
+	background-color: #cae5ce;
+}
+.fox-int8-field .unity-base-text-field__input
+{
+	background-color: #e5cad7;
+}
+.fox-int16-field .unity-base-text-field__input
+{
+	background-color: #e5cace;
+}
+.fox-int32-field .unity-base-text-field__input
+{
+	background-color: #e5e5ca;
+}
+.fox-int64-field .unity-base-text-field__input
+{
+	background-color: #e5d0ca;
 }

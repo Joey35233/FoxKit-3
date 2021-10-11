@@ -1,9 +1,10 @@
-﻿.fox-listview-entry-label {
-    min-width: 20px;
+﻿.fox-compound-field-element__label
+{
     -unity-font: url("../../Fonts/CascadiaCode-SemiLight.ttf");
 }
 
-.fox-listview-add-button {
+.fox-dynamic-field-add-button 
+{
     margin-top: 0;
     border-top-width: 0;
     margin-right: 0;
@@ -17,7 +18,8 @@
     -unity-text-align: lower-center;
 }
 
-.fox-listview-remove-button {
+.fox-dynamic-field-remove-button 
+{
     margin-top: 0;
     border-top-width: 0;
     margin-right: 0;
@@ -31,18 +33,32 @@
     font-size: 18px;
 }
 
-.fox-stringmap {
+.fox-stringmap 
+{
     flex-grow: 1;
 }
 
-.fox-stringmap-key-field .unity-label,.fox-stringmap-value-field .unity-label {
+.fox-stringmap-key-field .unity-label,.fox-stringmap-value-field .unity-label 
+{
     min-width: 28px;
 }
 
-.fox-stringmap-key-field .unity-base-field,.fox-stringmap-value-field .unity-base-field {
+.fox-stringmap-key-field .unity-base-field,.fox-stringmap-value-field .unity-base-field 
+{
     flex-grow: 1;
 }
 
-.fox-stringmap-value-field .unity-base-field__input {
+.fox-stringmap-value-field .unity-base-field__input 
+{
     margin-right: 0;
+}
+
+.fox-cell-field,.fox-quaternion-field,.fox-uint8-field,.fox-uint16-field,.fox-uint32-field,.fox-uint64-field.fox-int8-field,.fox-int16-field,.fox-int32-field,.fox-int64-field.fox-compound-field-element
+{
+	margin-left: 0px;
+	margin-right: 0px;
+	padding-left: 3px;
+	padding-right: 3px;
+	padding-top: 1px;
+	padding-bottom: 1px;
 }

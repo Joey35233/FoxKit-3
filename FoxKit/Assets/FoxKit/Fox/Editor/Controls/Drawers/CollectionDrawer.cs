@@ -39,7 +39,7 @@ namespace Fox.Editor
                     return 80;
 
                 case Type _ when propertyType == typeof(EntityLink):
-                    return 98;
+                    return 74;
 
                 default:
                     return 20;
@@ -107,10 +107,10 @@ namespace Fox.Editor
                     return () => new EntityHandleField();
 
                 case Type _ when propertyType == typeof(Matrix4x4):
-                    return () => new Matrix4Field();
+                    return () => new Matrix4Field(true);
 
                 case Type _ when propertyType == typeof(EntityLink):
-                    return () => new EntityLinkField();
+                    return () => new EntityLinkField(true);
 
                 default:
                     throw new ArgumentException($"Invalid Fox type: {propertyType}.");

@@ -30,10 +30,6 @@ namespace Fox.Editor
             return NumericPropertyDrawers.ClampToInt32(v);
         }
 
-        public new static readonly string ussClassName = "fox-int32-field";
-        public new static readonly string labelUssClassName = ussClassName + "__label";
-        public new static readonly string inputUssClassName = ussClassName + "__input";
-
         public Int32Field()
             : this((string)null) { }
 
@@ -43,12 +39,18 @@ namespace Fox.Editor
         public Int32Field(int maxLength)
             : this(null, true, maxLength) { }
 
+        public static readonly string ussBaseClassName = "fox-base-field";
+        public new static readonly string ussClassName = "fox-int32-field";
+        public new static readonly string labelUssClassName = ussClassName + "__label";
+        public new static readonly string inputUssClassName = ussClassName + "__input";
+
         public Int32Field(string label, bool hasDragger = true, int maxLength = -1)
             : base(label, maxLength, new Int32Input())
         {
+            AddToClassList(ussBaseClassName);
             AddToClassList(ussClassName);
             labelElement.AddToClassList(labelUssClassName);
-
+            this.styleSheets.Add(FoxField.FoxFieldStyleSheet);
             if (hasDragger)
                 AddLabelDragger<System.Int32>();
         }
@@ -67,7 +69,6 @@ namespace Fox.Editor
         {
             this.label = label;
             BindingExtensions.BindProperty(this, property);
-            labelElement.AddToClassList("unity-property-field__label");
         }
 
         class Int32Input : TextValueInput

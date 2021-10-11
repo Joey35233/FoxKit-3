@@ -29,6 +29,7 @@ namespace Fox.Editor
 
             this.AddToClassList("fox-double-field");
 			this.AddToClassList("fox-base-field");
+            this.styleSheets.Add(FoxField.FoxFieldStyleSheet);
             this.Add(InternalField);
         }
 
@@ -42,7 +43,6 @@ namespace Fox.Editor
             if (!IsUserAssignedLabel)
                 InternalField.label = label;
             InternalField.BindProperty(property);
-            InternalField.styleSheets.Add(FoxField.FoxFieldStyleSheet);
         }
     }
 

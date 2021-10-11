@@ -40,6 +40,7 @@ namespace Fox.Editor
             listView.reorderable = true;
 
             var foldout = new Foldout();
+            foldout.styleSheets.Add(CollectionDrawer.PropertyDrawerStyleSheet);
             foldout.text = property.name;
 
             foldout.Add(listView);
@@ -50,7 +51,7 @@ namespace Fox.Editor
         private VisualElement MakeItem()
         {
             var entryField = FieldConstructor();
-            entryField.styleSheets.Add(CollectionDrawer.PropertyDrawerStyleSheet);
+            entryField.AddToClassList("fox-compound-field-element");
 
             return entryField;
         }
@@ -71,6 +72,10 @@ namespace Fox.Editor
 
                 entryField.BindProperty(entry, $"[{index}]");
             }
+
+            var labelElement = element.Q<Label>();
+            labelElement?.AddToClassList("fox-compound-field-element__label");
+            labelElement.style.minWidth = 20;
         }
     }
 }
