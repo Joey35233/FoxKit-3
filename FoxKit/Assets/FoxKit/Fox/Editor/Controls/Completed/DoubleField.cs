@@ -11,14 +11,15 @@ namespace Fox.Editor
         public override string label
         {
             get => InternalField.label;
-            set => InternalField.label = value;
+            set
+            {
+                IsUserAssignedLabel = true;
+                InternalField.label = value;
+            }
         }
 
-        public DoubleField()
+        public DoubleField() : this(default)
         {
-            InternalField = new UnityEditor.UIElements.DoubleField();
-
-            this.Add(InternalField);
         }
 
         public DoubleField(string label)

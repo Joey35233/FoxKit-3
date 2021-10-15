@@ -17,7 +17,11 @@ namespace Fox.Editor
         public override string label
         {
             get => InternalFoldout.text;
-            set => InternalFoldout.text = value;
+            set
+            {
+                IsUserAssignedLabel = true;
+                InternalFoldout.text = value;
+            }
         }
 
         public Matrix4Field(bool isInline = false) : this(null, isInline)
@@ -48,6 +52,7 @@ namespace Fox.Editor
                 InternalContainer = new VisualElement();
                 InternalContainer.style.flexDirection = FlexDirection.Row;
                 InternalLabel = new Label();
+                InternalLabel.AddToClassList("unity-base-field__label");
                 InternalContainer.Add(InternalLabel);
                 InternalLabel.text = label;
                 if (label != null)

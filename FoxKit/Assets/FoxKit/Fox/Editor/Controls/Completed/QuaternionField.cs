@@ -13,7 +13,11 @@ namespace Fox.Editor
         public override string label
         {
             get => LabelElement.text;
-            set => LabelElement.text = value;
+            set
+            {
+                IsUserAssignedLabel = true;
+                LabelElement.text = value;
+            }
         }
 
         public QuaternionField() : this(default)

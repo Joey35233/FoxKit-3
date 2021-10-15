@@ -12,7 +12,11 @@ namespace Fox.Editor
         public override string label 
         { 
             get => InternalField.label; 
-            set => InternalField.label = value; 
+            set
+            {
+                IsUserAssignedLabel = true;
+                InternalField.label = value;
+            }
         }
 
         public BoolField() : this(default)
@@ -22,6 +26,7 @@ namespace Fox.Editor
         public BoolField(string label)
         {
             InternalField = new Toggle(label);
+            InternalField.style.marginTop = 3;
             if (label != null)
                 IsUserAssignedLabel = true;
 

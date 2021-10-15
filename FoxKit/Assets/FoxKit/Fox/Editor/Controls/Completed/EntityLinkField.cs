@@ -18,7 +18,11 @@ namespace Fox.Editor
         public override string label
         {
             get => InternalFoldout.text;
-            set => InternalFoldout.text = value;
+            set
+            {
+                IsUserAssignedLabel = true;
+                InternalFoldout.text = value;
+            }
         }
 
         public EntityLinkField(bool isInline = false) : this(null, isInline)
@@ -52,6 +56,7 @@ namespace Fox.Editor
             {
                 this.style.flexDirection = FlexDirection.Row;
                 InternalLabel = new Label();
+                InternalLabel.AddToClassList("unity-base-field__label");
                 this.Add(InternalLabel);
                 InternalLabel.text = label;
                 if (label != null)
@@ -86,6 +91,7 @@ namespace Fox.Editor
                 this.Add(InternalContainer);
             }
 
+            this.styleSheets.Add(FoxFieldStyleSheet);
         }
 
         public override void BindProperty(SerializedProperty property)

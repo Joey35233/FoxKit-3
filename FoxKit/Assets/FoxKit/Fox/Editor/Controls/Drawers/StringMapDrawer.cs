@@ -75,7 +75,7 @@ namespace Fox.Editor
                 MakeItem,
                 BindItem
             );
-            field.AddToClassList("fox-stringmap");
+            field.AddToClassList("fox-stringmap-field");
 
             field.style.height = field.itemHeight * 10;
             field.selectionType = SelectionType.Multiple;
@@ -100,7 +100,7 @@ namespace Fox.Editor
             duplicateKeyLabel.visible = false;
 
             var addButton = new Button();
-            addButton.AddToClassList("fox-listview-add-button");
+            addButton.AddToClassList("fox-dynamic-field-add-button");
             addButton.text = "+";
             addButton.clicked += () =>
             // Add item
@@ -129,7 +129,7 @@ namespace Fox.Editor
             };
 
             var removeButton = new Button();
-            removeButton.AddToClassList("fox-listview-remove-button");
+            removeButton.AddToClassList("fox-dynamic-field-remove-button");
             removeButton.text = "-";
             removeButton.clicked += () =>
             // Remove item

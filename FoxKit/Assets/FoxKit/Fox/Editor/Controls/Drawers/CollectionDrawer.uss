@@ -53,7 +53,7 @@
     margin-right: 0;
 }
 
-.fox-cell-field,.fox-quaternion-field,.fox-uint8-field,.fox-uint16-field,.fox-uint32-field,.fox-uint64-field.fox-int8-field,.fox-int16-field,.fox-int32-field,.fox-int64-field.fox-compound-field-element
+.fox-cell-field,.fox-matrix4-field,.fox-quaternion-field,.fox-entitylink-field,.fox-uint8-field,.fox-uint16-field,.fox-uint32-field,.fox-uint64-field,.fox-int8-field,.fox-int16-field,.fox-int32-field,.fox-int64-field.fox-compound-field-element
 {
 	margin-left: 0px;
 	margin-right: 0px;
