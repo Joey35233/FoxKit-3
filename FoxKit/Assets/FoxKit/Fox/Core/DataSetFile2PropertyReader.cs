@@ -14,7 +14,6 @@ namespace Fox.FoxCore.Serialization
     public class DataSetFile2PropertyReader
     {
         private Func<ulong, string> unhashString;
-        private RequestFilePtr requestFilePtr;
         private RequestEntityPtr requestEntityPtr;
         private RequestEntityHandle requestEntityHandle;
         private RequestEntityLink requestEntityLink;
@@ -44,7 +43,6 @@ namespace Fox.FoxCore.Serialization
         /// <param name="value">The value to assign to the property.</param>
         public delegate void SetPropertyElementByKey(string propertyName, string key, Value value);
 
-        public delegate void RequestFilePtr(ulong path, FilePtr<Core.File> ptr);
         public delegate void RequestEntityPtr(ulong address, IEntityPtr ptr);
         public delegate void RequestEntityHandle(ulong address, EntityHandle ptr);
 
@@ -63,11 +61,9 @@ namespace Fox.FoxCore.Serialization
             Func<ulong, string> unhashString,
             RequestEntityPtr requestEntityPtr,
             RequestEntityHandle requestEntityHandle,
-            RequestFilePtr requestFilePtr,
             RequestEntityLink requestEntityLink)
         {
             this.unhashString = unhashString;
-            this.requestFilePtr = requestFilePtr;
             this.requestEntityPtr = requestEntityPtr;
             this.requestEntityHandle = requestEntityHandle;
             this.requestEntityLink = requestEntityLink;
@@ -129,10 +125,6 @@ namespace Fox.FoxCore.Serialization
                 {
                     ReadEntityHandle(reader, setProperty, name);
                 }
-                else if (dataType == PropertyInfo.PropertyType.FilePtr)
-                {
-                    ReadFilePtr(reader, setProperty, name);
-                }
                 else if (dataType == PropertyInfo.PropertyType.EntityLink)
                 {
                     ReadEntityLink(reader, setProperty, name);
@@ -163,10 +155,6 @@ namespace Fox.FoxCore.Serialization
                 {
                     ReadEntityHandle(reader, setProperty, name);
                 }
-                else if (dataType == PropertyInfo.PropertyType.FilePtr)
-                {
-                    ReadFilePtr(reader, setProperty, name);
-                }
                 else if (dataType == PropertyInfo.PropertyType.EntityLink)
                 {
                     ReadEntityLink(reader, setProperty, name);
@@ -193,10 +181,6 @@ namespace Fox.FoxCore.Serialization
             {
                 ReadEntityHandle(reader, setProperty, name);
             }
-            else if (dataType == PropertyInfo.PropertyType.FilePtr)
-            {
-                ReadFilePtr(reader, setProperty, name);
-            }
             else if (dataType == PropertyInfo.PropertyType.EntityLink)
             {
                 ReadEntityLink(reader, setProperty, name);
@@ -220,15 +204,6 @@ namespace Fox.FoxCore.Serialization
             requestEntityLink((uint)address, packagePathHash, archivePathHash, nameInArchiveHash, entityLink);
 
             setProperty(name, new Value(entityLink));
-        }
-
-        private void ReadFilePtr(BinaryReader reader, SetProperty setProperty, string name)
-        {
-            var address = reader.ReadUInt64();
-            var ptr = FilePtr<Core.File>.Empty();
-            requestFilePtr(address, ptr);
-
-            setProperty(name, new Value(ptr));
         }
 
         private void ReadEntityHandle(BinaryReader reader, SetProperty setProperty, string name)
@@ -279,6 +254,8 @@ namespace Fox.FoxCore.Serialization
                     return new Value(unhashString(reader.ReadUInt64()));
                 case PropertyInfo.PropertyType.Path:
                     return new Value(Path.FromFilePath(unhashString(reader.ReadUInt64())));
+                case PropertyInfo.PropertyType.FilePtr:
+                    return new Value(new FilePtr<Fox.Core.File>(unhashString(reader.ReadUInt64())));
                 case PropertyInfo.PropertyType.Vector3:
                     return new Value(ReadVector3(reader));
                 case PropertyInfo.PropertyType.Vector4:

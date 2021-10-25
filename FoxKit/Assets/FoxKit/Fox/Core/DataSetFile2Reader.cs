@@ -29,7 +29,7 @@ namespace Fox.Core
             var entities = new Dictionary<ulong, Entity>();
             for (int i = 0; i < entityCount; i++)
             {
-                Entity entity = new DataSetFile2EntityReader(RequestEntityPtr, RequestEntityHandle, RequestFilePtr, RequestEntityLink).Read(reader, this.CreateEntity, (hash) => this.stringTable[hash]);
+                Entity entity = new DataSetFile2EntityReader(RequestEntityPtr, RequestEntityHandle, RequestEntityLink).Read(reader, this.CreateEntity, (hash) => this.stringTable[hash]);
                 entities.Add(entity.Address, entity);
             }
 
@@ -76,28 +76,22 @@ namespace Fox.Core
                 UnityEngine.Debug.LogError("Unable to resolve EntityPtr " + entityPtr.Key.ToString("X8"));
             }
 
-            foreach (var entityPtr in this.entityHandleRequests)
+            foreach (var entityHandle in this.entityHandleRequests)
             {
-                if (entities.ContainsKey(entityPtr.Key))
+                if (entities.ContainsKey(entityHandle.Key))
                 {
-                    foreach (var request in entityPtr.Value)
+                    foreach (var request in entityHandle.Value)
                     {
-                        request.Reset(entities[entityPtr.Key]);
+                        request.Reset(entities[entityHandle.Key]);
                     }
                 }
                 else
                 {
-                    UnityEngine.Debug.LogError("Unable to resolve EntityHandle 0x" + entityPtr.Key.ToString("X8"));
+                    UnityEngine.Debug.LogError("Unable to resolve EntityHandle 0x" + entityHandle.Key.ToString("X8"));
                 }
             }
 
-            // TODO FilePtr
             // TODO EntityLink
-        }
-
-        public void RequestFilePtr(ulong path, FilePtr<Core.File> ptr)
-        {
-
         }
 
         public void RequestEntityPtr(ulong address, IEntityPtr ptr)

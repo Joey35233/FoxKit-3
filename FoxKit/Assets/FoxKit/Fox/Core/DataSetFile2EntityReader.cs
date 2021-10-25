@@ -11,14 +11,12 @@ namespace Fox.Core
     {
         private RequestEntityPtr requestEntityPtr;
         private RequestEntityHandle requestEntityHandle;
-        private RequestFilePtr requestFilePtr;
         private RequestEntityLink requestEntityLink;
 
-        public DataSetFile2EntityReader(RequestEntityPtr requestEntityPtr, RequestEntityHandle requestEntityHandle, RequestFilePtr requestFilePtr, RequestEntityLink requestEntityLink)
+        public DataSetFile2EntityReader(RequestEntityPtr requestEntityPtr, RequestEntityHandle requestEntityHandle, RequestEntityLink requestEntityLink)
         {
             this.requestEntityPtr = requestEntityPtr ?? throw new ArgumentNullException(nameof(requestEntityPtr));
             this.requestEntityHandle = requestEntityHandle ?? throw new ArgumentNullException(nameof(requestEntityHandle));
-            this.requestFilePtr = requestFilePtr ?? throw new ArgumentNullException(nameof(requestFilePtr));
             this.requestEntityLink = requestEntityLink ?? throw new ArgumentNullException(nameof(requestEntityLink));
         }
 
@@ -41,7 +39,7 @@ namespace Fox.Core
             SetPropertyElementByIndex setPropertyElementByIndex = entity.SetPropertyElement;
             SetPropertyElementByKey setPropertyElementByKey = entity.SetPropertyElement;
 
-            var propertyReader = new DataSetFile2PropertyReader(unhashString, requestEntityPtr, requestEntityHandle, requestFilePtr, requestEntityLink);
+            var propertyReader = new DataSetFile2PropertyReader(unhashString, requestEntityPtr, requestEntityHandle, requestEntityLink);
             for (var i = 0; i < staticPropertyCount; i++)
             {
                 propertyReader.Read(reader, 

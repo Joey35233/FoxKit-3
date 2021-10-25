@@ -35,11 +35,15 @@ namespace Fox.Core
         /// <summary>
         /// The empty path.
         /// </summary>
-        public static Path Empty { get; }
+        private static Path _empty;
+        public static Path Empty
+        {
+            get => new Path { _cString = _empty.CString, _length = _empty.Length, _hash = _empty.Hash };
+        }
 
         static Path()
         {
-            Empty = new Path
+            _empty = new Path
             {
                 _cString = string.Empty,
                 _length = 0,
@@ -49,7 +53,6 @@ namespace Fox.Core
 
         private Path()
         {
-
         }
 
         public Path(string name)

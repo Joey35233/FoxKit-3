@@ -2,6 +2,7 @@ using Fox.Core;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEditor.UIElements;
 
 namespace Fox.Editor
 {
@@ -10,9 +11,9 @@ namespace Fox.Editor
     {
         public override VisualElement CreateInspectorGUI()
         {
-            var uxmlTemplate = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/FoxKit/Fox/Core/FoxEntityEditor.uxml");
-            var ui = uxmlTemplate.CloneTree();
-            return ui;
+            var field = new PropertyField(serializedObject.FindProperty("Entity"));
+
+            return field;
         }
     }
 }

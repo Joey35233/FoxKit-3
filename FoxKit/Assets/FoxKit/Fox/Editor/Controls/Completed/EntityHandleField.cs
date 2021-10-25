@@ -33,7 +33,7 @@ namespace Fox.Editor
             if (label != null)
                 IsUserAssignedLabel = true;
             InternalField.allowSceneObjects = true;
-            InternalField.objectType = typeof(GameObject);
+            InternalField.objectType = typeof(FoxEntity);
 
             this.AddToClassList("fox-entityhandle-field");
 			this.AddToClassList("fox-base-field");

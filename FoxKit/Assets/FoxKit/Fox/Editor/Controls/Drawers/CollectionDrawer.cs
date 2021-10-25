@@ -106,6 +106,9 @@ namespace Fox.Editor
                 case Type _ when propertyType == typeof(EntityHandle):
                     return () => new EntityHandleField();
 
+                case Type _ when propertyType.IsGenericType && propertyType.GetGenericTypeDefinition() == typeof(EntityPtr<>):
+                    return () => new EntityPtrField();
+
                 case Type _ when propertyType == typeof(Matrix4x4):
                     return () => new Matrix4Field(true);
 
