@@ -22,5 +22,13 @@ namespace FoxKit.Gr.Terrain
         public ushort LayoutDescriptionUnknown2;
         public ushort LayoutDescriptionUnknown3;
         public uint LayoutDescriptionUnknown4;
+
+        public Texture2D LodParam;
+        public Texture2D MaxHeight;
+        public Texture2D MinHeight;
+        public Texture2D Heightmap;
+        public Texture2D ComboTexture;
+        public Texture2D MaterialIdMap;
+        public Texture2D ConfigrationIdMap;
     }
 }

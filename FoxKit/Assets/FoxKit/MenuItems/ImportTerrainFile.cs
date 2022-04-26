@@ -20,6 +20,10 @@ namespace FoxKit.MenuItems
             var asset = tre2Reader.Read();
 
             AssetDatabase.CreateAsset(asset, $"Assets/{Path.GetFileNameWithoutExtension(assetPath)}.asset");
+
+            // Need to save the embedded textures to the asset
+            AssetDatabase.AddObjectToAsset(asset.LodParam, asset);
+
             AssetDatabase.SaveAssets();
         }
     }
