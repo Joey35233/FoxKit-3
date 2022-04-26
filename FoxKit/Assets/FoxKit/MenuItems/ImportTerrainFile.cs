@@ -23,6 +23,8 @@ namespace FoxKit.MenuItems
 
             // Need to save the embedded textures to the asset
             AssetDatabase.AddObjectToAsset(asset.LodParam, asset);
+            AssetDatabase.AddObjectToAsset(asset.MaxHeight, asset);
+            AssetDatabase.AddObjectToAsset(asset.MinHeight, asset);
 
             AssetDatabase.SaveAssets();
         }
