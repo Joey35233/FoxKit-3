@@ -28,7 +28,7 @@ namespace FoxKit.Gr.Terrain
         public Texture2D MinHeight;
         public Texture2D Heightmap;
         public Texture2D ComboTexture;
-        public Texture2D MaterialIdMap;
-        public Texture2D ConfigrationIdMap;
+        public Texture2D MaterialIds;
+        public Texture2D ConfigrationIds;
     }
 }
