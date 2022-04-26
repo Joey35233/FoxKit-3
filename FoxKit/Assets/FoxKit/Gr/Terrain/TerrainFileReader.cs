@@ -44,9 +44,13 @@ namespace FoxKit.Gr.Terrain
             ret.LayoutDescriptionUnknown4 = this.Reader.ReadUInt32();
 
             this.Reader.BaseStream.Seek(704, SeekOrigin.Begin);
-            ret.LodParam = ReadR32G32B32A32Texture(128, 128);
-            ret.MaxHeight = ReadR32Texture(128, 128);
-            ret.MinHeight = ReadR32Texture(128, 128);
+            ret.LodParam = this.ReadR32G32B32A32Texture(128, 128);
+            ret.MaxHeight = this.ReadR32Texture(128, 128);
+            ret.MinHeight = this.ReadR32Texture(128, 128);
+
+            this.Reader.BaseStream.Seek(918208, SeekOrigin.Begin);
+            ret.MaterialIdMap = this.ReadR8G8B8A8Texture(128, 128);
+            ret.ConfigrationIdMap = this.ReadR8G8B8A8Texture(128, 128);
 
             return ret;
         }
@@ -64,7 +68,7 @@ namespace FoxKit.Gr.Terrain
 
         private Texture2D ReadR32G32B32A32Texture(int width, int height)
         {
-            var ret = new Texture2D(width, height, TextureFormat.RGBA32, true);
+            var ret = new Texture2D(width, height, TextureFormat.RGBAFloat, true);
             var pixels = new Color[height * width];
 
             for (var i = 0; i < height * width; i++)
@@ -101,7 +105,28 @@ namespace FoxKit.Gr.Terrain
             ret.Apply();
             return ret;
         }
+        private Texture2D ReadR8G8B8A8Texture(int width, int height)
+        {
+            var ret = new Texture2D(width, height, TextureFormat.RGBA32, true);
+            var pixels = new Color[height * width];
 
+            for (var i = 0; i < height * width; i++)
+            {
+                var r = this.Reader.ReadByte();
+                var g = this.Reader.ReadByte();
+                var b = this.Reader.ReadByte();
+                var a = this.Reader.ReadByte();
+
+                pixels[i].r = r;
+                pixels[i].g = g;
+                pixels[i].b = b;
+                pixels[i].a = a;
+            }
+
+            ret.SetPixels(pixels);
+            ret.Apply();
+            return ret;
+        }
 
         public BinaryReader Reader { get; }
     }
