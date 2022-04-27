@@ -1,4 +1,5 @@
 using System.IO;
+using System.Linq;
 using UnityEngine;
 
 namespace FoxKit.Gr.Terrain
@@ -47,6 +48,7 @@ namespace FoxKit.Gr.Terrain
             ret.LodParam = this.ReadR32G32B32A32Texture("lodParam", 128, 128, 0, 10);
             ret.MaxHeight = this.ReadR32Texture("maxHeight", 128, 128, ret.HeightRangeMin, ret.HeightRangeMax);
             ret.MinHeight = this.ReadR32Texture("minHeight", 128, 128, ret.HeightRangeMin, ret.HeightRangeMax);
+            ret.Heightmap = this.ReadR32TileTexture("heightmap", 256, 256, ret.HeightRangeMin, ret.HeightRangeMax);
 
             this.Reader.BaseStream.Seek(918208, SeekOrigin.Begin);
             ret.MaterialIds = this.ReadR8G8B8A8Texture("materialIds", 128, 128);
@@ -122,6 +124,53 @@ namespace FoxKit.Gr.Terrain
                 var a = this.Reader.ReadByte() / 255.0f;
 
                 pixels[i] = new Color(r, g, b, a);
+            }
+
+            ret.SetPixels(pixels);
+            ret.Apply();
+            return ret;
+        }
+
+        private Texture2D ReadR32TileTexture(string name, int width, int height, float minHeight, float maxHeight)
+        {
+            var ret = new Texture2D(width, height, TextureFormat.RFloat, true);
+            ret.name = name;
+            var pixels = new Color[height * width];
+
+            var data = new float[height * width];
+            for(var i = 0; i < height * width; i++)
+            {
+                data[i] = this.Reader.ReadSingle();
+            }
+
+            const uint numTerrainBlocksW = 8;
+            const uint numTerrainBlocksH = 8;
+            const uint heightMapPitchInBlocks = 8;
+            const uint terrainBlockPitchInTexels = 32;
+            const uint heightMapPitchInTexels = heightMapPitchInBlocks * terrainBlockPitchInTexels;
+            const uint terrainBlockSizeInBytes = 0x1000;
+
+            for (var blockZ = 0; blockZ < numTerrainBlocksH; blockZ++)
+            {
+                for (var blockX = 0; blockX < numTerrainBlocksW; blockX++)
+                {
+                    var sourceHeightmapBlockData = data.Skip((int)((blockX * heightMapPitchInBlocks + blockZ) * terrainBlockSizeInBytes) / sizeof(float)).ToArray();
+
+                    for (var x = 0; x < terrainBlockPitchInTexels; x++)
+                    {
+                        for (var z = 0; z < terrainBlockPitchInTexels; z++)
+                        {
+                            var heightTexelUNORM = (sourceHeightmapBlockData[z] - minHeight) / (maxHeight - minHeight);
+
+                            uint outX = (uint)(blockZ * terrainBlockPitchInTexels + z);
+                            uint outY = (uint)(blockX * terrainBlockPitchInTexels + x);
+                            uint pixelIdx = outY * heightMapPitchInTexels + outX;
+                            pixels[pixelIdx] = new Color(heightTexelUNORM, 0, 0);
+                        }
+
+                        sourceHeightmapBlockData = sourceHeightmapBlockData.Skip((int)terrainBlockPitchInTexels).ToArray();
+                    }
+                }
             }
 
             ret.SetPixels(pixels);

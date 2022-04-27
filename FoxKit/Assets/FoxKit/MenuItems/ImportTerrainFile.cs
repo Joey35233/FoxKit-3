@@ -25,6 +25,7 @@ namespace FoxKit.MenuItems
             AssetDatabase.AddObjectToAsset(asset.LodParam, asset);
             AssetDatabase.AddObjectToAsset(asset.MaxHeight, asset);
             AssetDatabase.AddObjectToAsset(asset.MinHeight, asset);
+            AssetDatabase.AddObjectToAsset(asset.Heightmap, asset);
             AssetDatabase.AddObjectToAsset(asset.MaterialIds, asset);
             AssetDatabase.AddObjectToAsset(asset.ConfigrationIds, asset);
 
