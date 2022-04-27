@@ -44,7 +44,7 @@ namespace FoxKit.Gr.Terrain
             ret.LayoutDescriptionUnknown4 = this.Reader.ReadUInt32();
 
             this.Reader.BaseStream.Seek(704, SeekOrigin.Begin);
-            ret.LodParam = this.ReadR32G32B32A32Texture("lodParam", 128, 128);
+            ret.LodParam = this.ReadR32G32B32A32Texture("lodParam", 128, 128, 0, 10);
             ret.MaxHeight = this.ReadR32Texture("maxHeight", 128, 128, ret.HeightRangeMin, ret.HeightRangeMax);
             ret.MinHeight = this.ReadR32Texture("minHeight", 128, 128, ret.HeightRangeMin, ret.HeightRangeMax);
 
@@ -66,7 +66,7 @@ namespace FoxKit.Gr.Terrain
             return this.Reader.ReadSingle();
         }
 
-        private Texture2D ReadR32G32B32A32Texture(string name, int width, int height)
+        private Texture2D ReadR32G32B32A32Texture(string name, int width, int height, float minHeight, float maxHeight)
         {
             var ret = new Texture2D(width, height, TextureFormat.RGBAFloat, true);
             ret.name = name;
@@ -75,10 +75,10 @@ namespace FoxKit.Gr.Terrain
 
             for (var i = 0; i < height * width; i++)
             {
-                var r = this.Reader.ReadSingle();
-                var g = this.Reader.ReadSingle();
-                var b = this.Reader.ReadSingle();
-                var a = this.Reader.ReadSingle();
+                var r = (this.Reader.ReadSingle() - minHeight) / (maxHeight - minHeight);
+                var g = (this.Reader.ReadSingle() - minHeight) / (maxHeight - minHeight);
+                var b = (this.Reader.ReadSingle() - minHeight) / (maxHeight - minHeight);
+                var a = (this.Reader.ReadSingle() - minHeight) / (maxHeight - minHeight);
 
                 pixels[i].r = r;
                 pixels[i].g = g;
