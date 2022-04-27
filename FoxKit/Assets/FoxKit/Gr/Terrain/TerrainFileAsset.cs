@@ -11,8 +11,8 @@ namespace FoxKit.Gr.Terrain
         public uint MaxLodLevel;
         public float GridDistance;
         public uint HeightFormat;
-        public float HeighRangeMax;
-        public float HeighRangeMin;
+        public float HeightRangeMax;
+        public float HeightRangeMin;
         public uint ComboFormat;
         public uint WidthWorldSpace;
         public uint HeightWorldSpace;

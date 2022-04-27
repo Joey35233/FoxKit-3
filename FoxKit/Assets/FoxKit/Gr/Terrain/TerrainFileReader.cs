@@ -23,8 +23,8 @@ namespace FoxKit.Gr.Terrain
 
             this.Reader.BaseStream.Seek(208, SeekOrigin.Begin);
             ret.HeightFormat = this.ReadUintParam();
-            ret.HeighRangeMax = this.ReadFloatParam();
-            ret.HeighRangeMin = this.ReadFloatParam();
+            ret.HeightRangeMax = this.ReadFloatParam();
+            ret.HeightRangeMin = this.ReadFloatParam();
 
             this.Reader.BaseStream.Seek(304, SeekOrigin.Begin);
             ret.ComboFormat = this.ReadUintParam();
@@ -45,8 +45,8 @@ namespace FoxKit.Gr.Terrain
 
             this.Reader.BaseStream.Seek(704, SeekOrigin.Begin);
             ret.LodParam = this.ReadR32G32B32A32Texture("lodParam", 128, 128);
-            ret.MaxHeight = this.ReadR32Texture("maxHeight", 128, 128);
-            ret.MinHeight = this.ReadR32Texture("minHeight", 128, 128);
+            ret.MaxHeight = this.ReadR32Texture("maxHeight", 128, 128, ret.HeightRangeMin, ret.HeightRangeMax);
+            ret.MinHeight = this.ReadR32Texture("minHeight", 128, 128, ret.HeightRangeMin, ret.HeightRangeMax);
 
             this.Reader.BaseStream.Seek(918208, SeekOrigin.Begin);
             ret.MaterialIds = this.ReadR8G8B8A8Texture("materialIds", 128, 128);
@@ -91,7 +91,7 @@ namespace FoxKit.Gr.Terrain
             return ret;
         }
 
-        private Texture2D ReadR32Texture(string name, int width, int height)
+        private Texture2D ReadR32Texture(string name, int width, int height, float minHeight, float maxHeight)
         {
             var ret = new Texture2D(width, height, TextureFormat.RFloat, true);
             ret.name = name;
@@ -100,8 +100,7 @@ namespace FoxKit.Gr.Terrain
             for (var i = 0; i < height * width; i++)
             {
                 var r = this.Reader.ReadSingle();
-
-                pixels[i].r = r;
+                pixels[i].r = (r - minHeight) / (maxHeight - minHeight);
             }
 
             ret.SetPixels(pixels);
