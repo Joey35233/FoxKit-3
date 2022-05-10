@@ -59,7 +59,7 @@ namespace Fox.Editor
 
                 property.serializedObject.ApplyModifiedProperties();
 
-                listView.Refresh();
+                listView.Rebuild();
                 listView.ScrollToItem(privateList.arraySize + 10);
             };
 
@@ -78,7 +78,7 @@ namespace Fox.Editor
 
                 property.serializedObject.ApplyModifiedProperties();
 
-                listView.Refresh();
+                listView.Rebuild();
 
                 listView.SetSelection(privateList.arraySize - 1);
             };

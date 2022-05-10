@@ -121,7 +121,7 @@ namespace Fox.Editor
 
                         property.serializedObject.ApplyModifiedProperties();
 
-                        field.Refresh();
+                        field.Rebuild();
                     }
 
                     return;
@@ -152,7 +152,7 @@ namespace Fox.Editor
 
                 property.serializedObject.ApplyModifiedProperties();
 
-                field.Refresh();
+                field.Rebuild();
             };
 
             bottomContainer.Add(removeButton);

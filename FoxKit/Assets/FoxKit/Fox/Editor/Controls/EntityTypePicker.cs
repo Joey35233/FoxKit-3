@@ -91,14 +91,14 @@ namespace Fox.Editor
             if (string.IsNullOrEmpty(evt.newValue))
             {
                 filteredItems.AddRange(this.allItems);
-                typeList.Refresh();
+                typeList.Rebuild();
                 return;
             }
 
             filteredItems.AddRange(from item in this.allItems
                                    where item.Name.IndexOf(evt.newValue, StringComparison.OrdinalIgnoreCase) >= 0
                                    select item);
-            typeList.Refresh();
+            typeList.Rebuild();
         }
     }
 }
