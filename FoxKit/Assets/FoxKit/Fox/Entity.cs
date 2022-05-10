@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 
 namespace Fox.Core
 {
@@ -53,6 +54,15 @@ namespace Fox.Core
 
             var foxName = new String(name);
             return entity.DynamicProperties.ContainsKey(foxName);
+        }
+
+        /// <summary>
+        /// Called after importing a DataSet. Use to initialize scene data.
+        /// </summary>
+        /// <param name="gameObject">The assigned GameObject.</param>
+        public virtual void InitializeGameObject(GameObject gameObject)
+        {
+
         }
 
         public override string ToString()

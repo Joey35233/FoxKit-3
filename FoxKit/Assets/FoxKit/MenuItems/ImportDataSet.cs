@@ -33,6 +33,11 @@ namespace FoxKit.MenuItems
             UnityEngine.GameObject dataSetGameObject = null;
             foreach(var entity in entities)
             {
+                if (entity is TransformEntity)
+                {
+                    continue;
+                }
+
                 var gameObject = new UnityEngine.GameObject();
 
                 // Name the GameObject
@@ -76,6 +81,8 @@ namespace FoxKit.MenuItems
                 {
                     gameObject.transform.SetParent(dataSetGameObject.transform);
                 }
+
+                entity.InitializeGameObject(gameObject);
             }
 
             foreach(var entity in transformGameObjects.Keys)
