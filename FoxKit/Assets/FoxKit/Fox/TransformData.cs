@@ -20,11 +20,11 @@ namespace Fox.Core
             gameObject.transform.localScale = transformEntity.Get().transform_scale;
 
             // TODO spawn mesh
-            var visualizer = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            /*var visualizer = GameObject.CreatePrimitive(PrimitiveType.Cube);
             visualizer.transform.SetParent(gameObject.transform);
             visualizer.transform.localPosition = Vector3.zero;
             visualizer.transform.localRotation = Quaternion.identity;
-            visualizer.transform.localScale = Vector3.one;
+            visualizer.transform.localScale = Vector3.one;*/
         }
     }
 }
