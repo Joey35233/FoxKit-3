@@ -49,9 +49,17 @@ using UnityEngine.UIElements;
 //            ClassNameLabel = new TextField();
 //            ClassNameLabel.value = $"{EntityTypeName} ({genericType.Name})";
 //            ClassNameLabel.SetEnabled(false);
+// <<<<<<< Updated upstream
 
 //            CreateDeleteButton = new Button();
 //            CreateDeleteButton.clicked += () => CreateDeleteButton_clicked(genericType);
+// =======
+//            Foldout.Add(ClassNameLabel);
+
+//            CreateDeleteButton = new Button();
+//            CreateDeleteButton.clicked += () => CreateDeleteButton_clicked(genericType);
+//            Foldout.Add(CreateDeleteButton);
+// >>>>>>> Stashed changes
 
 //            if (CreateDeleteMode == CreateDeleteButtonMode.CreateEntity)
 //            {
@@ -59,12 +67,20 @@ using UnityEngine.UIElements;
 //            }
 //            else
 //            {
+// <<<<<<< Updated upstream
 //                CreateDeleteButton.text = "x";
+// =======
+//                CreateDeleteButton.text = "-";
+// >>>>>>> Stashed changes
 //            }
 
 //            if (entity != null)
 //            {
+// <<<<<<< Updated upstream
 //                //this.AddNestedPropertyFields();
+// =======
+//                this.AddNestedPropertyFields();
+// >>>>>>> Stashed changes
 //            }
 
 //            return Foldout;
@@ -86,8 +102,12 @@ using UnityEngine.UIElements;
 //            entityProp.serializedObject.Update();
 
 //            var childProperties = new List<SerializedProperty>();
+// <<<<<<< Updated upstream
 //            var originalChildren = entityProp.GetChildren().ToArray();
 //            foreach (var child in originalChildren)
+// =======
+//            foreach (var child in entityProp)
+// >>>>>>> Stashed changes
 //            {
 //                var childProperty = child as SerializedProperty;
 //                childProperties.Add(childProperty.Copy());
@@ -200,6 +220,7 @@ using UnityEngine.UIElements;
 //    }
 //}
 
+// <<<<<<< Updated upstream
 //namespace Fox.Editor
 //{
 //    [CustomPropertyDrawer(typeof(EntityPtr<>))]
@@ -224,3 +245,23 @@ using UnityEngine.UIElements;
 //        }
 //    }
 //}
+// =======
+//namespace Fox.Editor
+//{
+//    [CustomPropertyDrawer(typeof(EntityPtr<>))]
+//    public class EntityPtrDrawer : PropertyDrawer
+//    {
+//        public override VisualElement CreatePropertyGUI(SerializedProperty property)
+//        {
+//            var field = new PropertyField();
+//            field.label = property.name;
+
+//            var propertyTest = property.FindPropertyRelative("ptr");
+//            var propertyTestValue = propertyTest.GetValue();
+
+//            field.BindProperty(property.FindPropertyRelative("ptr"));
+//            return field;
+//        }
+//    }
+//}
+// >>>>>>> Stashed changes
