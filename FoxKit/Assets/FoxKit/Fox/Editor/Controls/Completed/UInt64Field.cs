@@ -7,57 +7,41 @@ using UnityEngine.UIElements;
 
 namespace Fox.Editor
 {
-    public class UInt64Field : TextValueField<System.UInt64>, INotifyValueChanged<int>, IFoxNumericField
+    public class UInt64Field : TextValueField<System.UInt64>, INotifyValueChanged<long>, IFoxNumericField
     {
-        System.UInt64 _value;
-        int INotifyValueChanged<int>.value
+        System.UInt64 _unsignedValue;
+        long INotifyValueChanged<long>.value
         {
             get
             {
-                this.value = _value;
-                return (int)_value;
+                this.value = _unsignedValue;
+                return unchecked((long)_unsignedValue);
             }
             set
             {
-                if (serializedObject == null)
-                    return;
-
-                if (_value == (System.UInt64)serializedObject.FindProperty(bindingPath).longValue)
+                if (_unsignedValue == unchecked((ulong)value))
                 {
-                    ((INotifyValueChanged<int>)this).SetValueWithoutNotify(value);
+                    ((INotifyValueChanged<long>)this).SetValueWithoutNotify(value);
                     return;
                 }
-                
-                // This is complete nonsense. The point is to make sure that when both are cast to int, that they are not the same value.
-                using (ChangeEvent<int> valueChangeEvent = ChangeEvent<int>.GetPooled((int)_value - 1, (int)_value))
+
+                using (ChangeEvent<long> valueChangeEvent = ChangeEvent<long>.GetPooled(unchecked((long)_unsignedValue), value))
                 {
                     valueChangeEvent.target = this;
-                    ((INotifyValueChanged<int>)this).SetValueWithoutNotify(value);
-                    long longVal = serializedObject.FindProperty(bindingPath).longValue;
-                    ulong ulongVal = (ulong)longVal;
-                    SetValueWithoutNotify(ulongVal);
+                    ((INotifyValueChanged<long>)this).SetValueWithoutNotify(value);
+                    SetValueWithoutNotify(unchecked((System.UInt64)value));
                     SendEvent(valueChangeEvent);
                 }
             }
         }
-        void INotifyValueChanged<int>.SetValueWithoutNotify(int val)
+        void INotifyValueChanged<long>.SetValueWithoutNotify(long val)
         {
-            if (serializedObject == null)
-                return;
-
-            long longVal = serializedObject.FindProperty(bindingPath).longValue;
-            ulong ulongVal = (ulong)longVal;
-            _value = ulongVal;
+            _unsignedValue = unchecked((System.UInt64)val);
         }
 
         public override void SetValueWithoutNotify(System.UInt64 newValue)
         {
-            if (serializedObject == null)
-                return;
-
-            //((INotifyValueChanged<int>)this).value = (int)newValue;
-            serializedObject.FindProperty(bindingPath).SetValue(newValue);
-            serializedObject.ApplyModifiedProperties();
+            ((INotifyValueChanged<long>)this).value = unchecked((long)newValue);
 
             base.SetValueWithoutNotify(newValue);
         }

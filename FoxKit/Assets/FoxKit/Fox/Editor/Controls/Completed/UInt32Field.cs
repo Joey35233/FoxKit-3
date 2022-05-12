@@ -9,39 +9,39 @@ namespace Fox.Editor
 {
     public class UInt32Field : TextValueField<System.UInt32>, INotifyValueChanged<int>, IFoxNumericField
     {
-        System.UInt32 _value;
+        System.UInt32 _unsignedValue;
         int INotifyValueChanged<int>.value
         {
             get
             {
-                this.value = _value;
-                return (int)_value;
+                this.value = _unsignedValue;
+                return unchecked((int)_unsignedValue);
             }
             set
             {
-                if (_value == (uint)value)
+                if (_unsignedValue == unchecked((uint)value))
                 {
                     ((INotifyValueChanged<int>)this).SetValueWithoutNotify(value);
                     return;
                 }
 
-                using (ChangeEvent<int> valueChangeEvent = ChangeEvent<int>.GetPooled((int)_value, value))
+                using (ChangeEvent<int> valueChangeEvent = ChangeEvent<int>.GetPooled(unchecked((int)_unsignedValue), value))
                 {
                     valueChangeEvent.target = this;
                     ((INotifyValueChanged<int>)this).SetValueWithoutNotify(value);
-                    SetValueWithoutNotify((System.UInt32)value);
+                    SetValueWithoutNotify(unchecked((System.UInt32)value));
                     SendEvent(valueChangeEvent);
                 }
             }
         }
         void INotifyValueChanged<int>.SetValueWithoutNotify(int val)
         {
-            _value = (System.UInt32)val;
+            _unsignedValue = unchecked((System.UInt32)val);
         }
 
         public override void SetValueWithoutNotify(System.UInt32 newValue)
         {
-            ((INotifyValueChanged<int>)this).value = (int)newValue;
+            ((INotifyValueChanged<int>)this).value = unchecked((int)newValue);
 
             base.SetValueWithoutNotify(newValue);
         }
