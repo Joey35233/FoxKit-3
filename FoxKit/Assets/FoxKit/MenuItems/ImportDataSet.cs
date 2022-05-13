@@ -7,6 +7,7 @@ using UnityEditor.SceneManagement;
 using Fox.GameCore;
 using System.Collections.Generic;
 using System;
+using System.Linq;
 
 namespace FoxKit.MenuItems
 {
@@ -21,24 +22,19 @@ namespace FoxKit.MenuItems
                 return;
             }
 
-            using var reader = new BinaryReader(System.IO.File.OpenRead(assetPath));
-            var fox2Reader = new DataSetFile2Reader();
-            var entities = fox2Reader.Read(reader);
-
             var scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene);
             scene.name = CsSystem.IO.Path.GetFileNameWithoutExtension(assetPath);
 
+            using var reader = new BinaryReader(System.IO.File.OpenRead(assetPath));
+            var fox2Reader = new DataSetFile2Reader();
+            var readResult = fox2Reader.Read(reader);
+
             var typeCount = new Dictionary<Type, int>();
             var transformGameObjects = new Dictionary<Entity, UnityEngine.GameObject>();
-            UnityEngine.GameObject dataSetGameObject = null;
-            foreach(var entity in entities)
-            {
-                if (entity is TransformEntity)
-                {
-                    continue;
-                }
 
-                var gameObject = new UnityEngine.GameObject();
+            foreach(var gameObject in readResult.GameObjects)
+            {
+                var entity = gameObject.GetComponent<FoxEntity>().Entity;
 
                 // Name the GameObject
                 if (entity is Data)
@@ -60,18 +56,6 @@ namespace FoxKit.MenuItems
 
                 }
 
-                // Make entity component
-                if (entity is DataSet)
-                {
-                    dataSetGameObject = gameObject;
-                    gameObject.name = "DataSet";
-                }
-                else
-                {
-                    var entityComponent = gameObject.AddComponent<FoxEntity>();
-                    entityComponent.Entity = entity;
-                }
-
                 // Parenting
                 if (entity is TransformData)
                 {
@@ -79,7 +63,7 @@ namespace FoxKit.MenuItems
                 }
                 else
                 {
-                    gameObject.transform.SetParent(dataSetGameObject.transform);
+                    gameObject.transform.SetParent(readResult.DataSetGameObject.transform);
                 }
 
                 entity.InitializeGameObject(gameObject);
