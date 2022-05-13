@@ -11,7 +11,6 @@ namespace Fox.Core
             var transformEntity = this.transform.Get();
             if (transformEntity == null)
             {
-                Debug.LogWarning($"{this.name}: transform is null");
                 return;
             }
 
