@@ -4,87 +4,59 @@ using UnityEditor.UIElements;
 
 namespace Fox.Editor
 {
-    public class EnumField : FoxField
+    public class EnumField : UnityEditor.UIElements.EnumField
     {
-        private UnityEditor.UIElements.EnumField InternalField;
+        public new static readonly string ussClassName = "fox-enum-field";
+        public new static readonly string labelUssClassName = ussClassName + "__label";
+        public new static readonly string inputUssClassName = ussClassName + "__input";
 
-        public override string label
-        {
-            get => InternalField.label;
-            set
-            {
-                IsUserAssignedLabel = true;
-                InternalField.label = value;
-            }
-        }
+        public VisualElement visualInput { get; }
 
-        public EnumField() : this(default)
-        {
-        }
+        public EnumField()
+            : this(null) { }
 
         public EnumField(string label)
+            : base(label)
         {
-            InternalField = new UnityEditor.UIElements.EnumField();
-            InternalField.label = label;
+            RemoveFromClassList(UnityEditor.UIElements.EnumField.ussClassName);
+            AddToClassList(ussClassName);
 
-            this.AddToClassList("fox-enum-field");
-            this.AddToClassList("fox-base-field");
-            this.styleSheets.Add(FoxField.FoxFieldStyleSheet);
-            this.Add(InternalField);
-        }
+            visualInput = this.Q(className: BaseField<System.Enum>.inputUssClassName);
+            visualInput.RemoveFromClassList(UnityEditor.UIElements.EnumField.inputUssClassName);
+            visualInput.AddToClassList(inputUssClassName);
 
-        public override void BindProperty(SerializedProperty property)
-        {
-            BindProperty(property, property.name);
-        }
+            labelElement.RemoveFromClassList(UnityEditor.UIElements.EnumField.labelUssClassName);
+            labelElement.AddToClassList(labelUssClassName);
 
-        public override void BindProperty(SerializedProperty property, string label)
-        {
-            InternalField.label = label;
-
-            InternalField.BindProperty(property);
+            this.styleSheets.Add(IFoxField.FoxFieldStyleSheet);
         }
     }
 
-    public class EnumFlagsField : FoxField
+    public class EnumFlagsField : UnityEditor.UIElements.EnumFlagsField
     {
-        private UnityEditor.UIElements.EnumFlagsField InternalField;
+        public new static readonly string ussClassName = "fox-enumflags-field";
+        public new static readonly string labelUssClassName = ussClassName + "__label";
+        public new static readonly string inputUssClassName = ussClassName + "__input";
 
-        public override string label
-        {
-            get => InternalField.label;
-            set
-            {
-                IsUserAssignedLabel = true;
-                InternalField.label = value;
-            }
-        }
+        public VisualElement visualInput { get; }
 
-        public EnumFlagsField() : this(default)
-        {
-        }
+        public EnumFlagsField()
+            : this(null) { }
 
         public EnumFlagsField(string label)
+            : base(label)
         {
-            InternalField = new UnityEditor.UIElements.EnumFlagsField();
-            InternalField.label = label;
+            RemoveFromClassList(UnityEditor.UIElements.EnumFlagsField.ussClassName);
+            AddToClassList(ussClassName);
 
-            this.AddToClassList("fox-enum-flags-field");
-            this.AddToClassList("fox-base-field");
-            this.styleSheets.Add(FoxField.FoxFieldStyleSheet);
-            this.Add(InternalField);
-        }
+            visualInput = this.Q(className: BaseField<System.Enum>.inputUssClassName);
+            visualInput.RemoveFromClassList(UnityEditor.UIElements.EnumFlagsField.inputUssClassName);
+            visualInput.AddToClassList(inputUssClassName);
 
-        public override void BindProperty(SerializedProperty property)
-        {
-            BindProperty(property, property.name);
-        }
+            labelElement.RemoveFromClassList(UnityEditor.UIElements.EnumFlagsField.labelUssClassName);
+            labelElement.AddToClassList(labelUssClassName);
 
-        public override void BindProperty(SerializedProperty property, string label)
-        {
-            InternalField.label = label;
-
-            InternalField.BindProperty(property);
+            this.styleSheets.Add(IFoxField.FoxFieldStyleSheet);
         }
     }
 
@@ -96,7 +68,7 @@ namespace Fox.Editor
             var valueType = property.GetValue().GetType();
             bool valueTypeHasFlagsAttribute = valueType.IsDefined(typeof(System.FlagsAttribute), false);
 
-            FoxField field = null;
+            BaseField<System.Enum> field = null;
             if (valueTypeHasFlagsAttribute)
                 field = new EnumFlagsField();
             else

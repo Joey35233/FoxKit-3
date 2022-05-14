@@ -7,7 +7,7 @@ using UnityEditor.UIElements;
 namespace Fox.Editor
 {
     [CustomEditor(typeof(FoxEntity))]
-    public class FoxEntityEditor : UnityEditor.Editor
+    public class TerrainFileEditor : UnityEditor.Editor
     {
         public override VisualElement CreateInspectorGUI()
         {

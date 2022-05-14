@@ -7,7 +7,38 @@ using UnityEngine.UIElements;
 
 namespace Fox.Editor
 {
-    public class UInt64Field : TextValueField<System.UInt64>, INotifyValueChanged<long>, IFoxNumericField
+    public class UxmlUInt64AttributeDescription : TypedUxmlAttributeDescription<ulong>
+    {
+        public UxmlUInt64AttributeDescription()
+        {
+            type = "uint64";
+            typeNamespace = xmlSchemaNamespace;
+            defaultValue = 0;
+        }
+
+        public override string defaultValueAsString { get { return defaultValue.ToString(CultureInfo.InvariantCulture.NumberFormat); } }
+
+        public override ulong GetValueFromBag(IUxmlAttributes bag, CreationContext cc)
+        {
+            return GetValueFromBag(bag, cc, (s, i) => ConvertValueToUInt64(s, i), defaultValue);
+        }
+
+        public bool TryGetValueFromBag(IUxmlAttributes bag, CreationContext cc, ref ulong value)
+        {
+            return TryGetValueFromBag(bag, cc, (s, i) => ConvertValueToUInt64(s, i), defaultValue, ref value);
+        }
+
+        static ulong ConvertValueToUInt64(string v, ulong defaultValue)
+        {
+            ulong l;
+            if (v == null || !UInt64.TryParse(v, out l))
+                return defaultValue;
+
+            return l;
+        }
+    }
+
+    public class UInt64Field : TextValueField<System.UInt64>, INotifyValueChanged<long>, IFoxField
     {
         System.UInt64 _unsignedValue;
         long INotifyValueChanged<long>.value
@@ -48,6 +79,9 @@ namespace Fox.Editor
 
         UInt64Input integerInput => (UInt64Input)textInputBase;
 
+        public new class UxmlFactory : UxmlFactory<UInt64Field, UxmlTraits> { }
+        public new class UxmlTraits : TextValueFieldTraits<System.UInt64, UxmlUInt64AttributeDescription> { }
+
         protected override string ValueToString(System.UInt64 v)
         {
             return v.ToString(formatString, CultureInfo.InvariantCulture.NumberFormat);
@@ -60,10 +94,11 @@ namespace Fox.Editor
             return NumericPropertyDrawers.ClampToUInt64(v);
         }
 
-        public static readonly string ussBaseClassName = "fox-base-field";
         public new static readonly string ussClassName = "fox-uint64-field";
         public new static readonly string labelUssClassName = ussClassName + "__label";
         public new static readonly string inputUssClassName = ussClassName + "__input";
+
+        public VisualElement visualInput { get; }
 
         public UInt64Field()
             : this((string)null) { }
@@ -75,12 +110,19 @@ namespace Fox.Editor
             : this(null, hasDragger) { }
 
         public UInt64Field(string label, bool hasDragger = true, int maxLength = -1)
-            : base(label, maxLength, new UInt64Input())
+            : this(label, hasDragger, maxLength, new UInt64Input())
         {
-            AddToClassList(ussBaseClassName);
+        }
+
+        private UInt64Field(string label, bool hasDragger, int maxLength, TextValueInput visInput)
+            : base(label, maxLength, visInput)
+        {
+            visualInput = visInput;
+
             AddToClassList(ussClassName);
             labelElement.AddToClassList(labelUssClassName);
-            this.styleSheets.Add(FoxField.FoxFieldStyleSheet);
+            visualInput.AddToClassList(inputUssClassName);
+            this.styleSheets.Add(IFoxField.FoxFieldStyleSheet);
             if (hasDragger)
                 AddLabelDragger<System.UInt64>();
         }
@@ -155,6 +197,10 @@ namespace Fox.Editor
         {
             var field = new UInt64Field();
             field.BindProperty(property);
+
+            field.labelElement.AddToClassList(PropertyField.labelUssClassName);
+            field.visualInput.AddToClassList(PropertyField.inputUssClassName);
+            field.AddToClassList(BaseField<System.UInt64>.alignedFieldUssClassName);
 
             return field;
         }

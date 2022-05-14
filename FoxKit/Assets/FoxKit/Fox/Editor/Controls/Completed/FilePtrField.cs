@@ -7,49 +7,34 @@ using UnityEngine.UIElements;
 
 namespace Fox.Editor
 {
-    public class FilePtrField : FoxField
+    public class FilePtrField : TextField
     {
-        private PathField InternalField;
-        private SerializedProperty FileProperty;
+        public new static readonly string ussClassName = "fox-fileptr-field";
+        public new static readonly string labelUssClassName = ussClassName + "__label";
+        public new static readonly string inputUssClassName = ussClassName + "__input";
 
-        public override string label
+        public VisualElement visualInput { get; }
+
+        public FilePtrField()
+            : this(null) { }
+
+        public FilePtrField(int maxLength)
+            : this(null, maxLength) { }
+
+        public FilePtrField(string label, int maxLength = -1)
+            : base(label, maxLength, false, false, '*')
         {
-            get => InternalField.label;
-            set
-            {
-                IsUserAssignedLabel = true;
-                InternalField.label = value;
-            }
-        }
+            RemoveFromClassList(TextField.ussClassName);
+            AddToClassList(ussClassName);
 
-        public FilePtrField() : this(default)
-        {
-        }
+            visualInput = this.Q(className: BaseField<Fox.Core.Path>.inputUssClassName);
+            visualInput.RemoveFromClassList(TextField.inputUssClassName);
+            visualInput.AddToClassList(inputUssClassName);
 
-        public FilePtrField(string label)
-        {
-            InternalField = new PathField(label);
-            if (label != null)
-                IsUserAssignedLabel = true;
+            labelElement.RemoveFromClassList(TextField.labelUssClassName);
+            labelElement.AddToClassList(labelUssClassName);
 
-            this.AddToClassList("fox-fileptr-field");
-			this.AddToClassList("fox-base-field");
-            this.styleSheets.Add(FoxField.FoxFieldStyleSheet);
-            this.Add(InternalField);
-        }
-
-        public override void BindProperty(SerializedProperty property)
-        {
-            BindProperty(property, property.name);
-        }
-
-        public override void BindProperty(SerializedProperty property, string label)
-        {
-            FileProperty = property.FindPropertyRelative("path");
-
-            if (!IsUserAssignedLabel)
-                InternalField.label = label;
-            InternalField.BindProperty(FileProperty);
+            this.styleSheets.Add(IFoxField.FoxFieldStyleSheet);
         }
     }
 
@@ -60,6 +45,10 @@ namespace Fox.Editor
         {
             var field = new FilePtrField(property.name);
             field.BindProperty(property);
+
+            field.labelElement.AddToClassList(PropertyField.labelUssClassName);
+            field.visualInput.AddToClassList(PropertyField.inputUssClassName);
+            field.AddToClassList(BaseField<UnityEngine.Color>.alignedFieldUssClassName);
 
             return field;
         }

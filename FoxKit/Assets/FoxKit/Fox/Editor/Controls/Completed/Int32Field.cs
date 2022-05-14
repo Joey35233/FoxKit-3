@@ -1,8 +1,4 @@
-﻿// Unity C# reference source
-// Copyright (c) Unity Technologies. For terms of use, see
-// https://unity3d.com/legal/licenses/Unity_Reference_Only_License
-
-using System;
+﻿using System;
 using System.Globalization;
 using UnityEditor;
 using UnityEditor.UIElements;
@@ -11,12 +7,43 @@ using UnityEngine.UIElements;
 
 namespace Fox.Editor
 {
-    public class Int32Field : TextValueField<System.Int32>, IFoxNumericField
+    public class UxmlInt32AttributeDescription : TypedUxmlAttributeDescription<int>
+    {
+        public UxmlInt32AttributeDescription()
+        {
+            type = "int32";
+            typeNamespace = xmlSchemaNamespace;
+            defaultValue = 0;
+        }
+
+        public override string defaultValueAsString { get { return defaultValue.ToString(CultureInfo.InvariantCulture.NumberFormat); } }
+
+        public override int GetValueFromBag(IUxmlAttributes bag, CreationContext cc)
+        {
+            return GetValueFromBag(bag, cc, (s, i) => ConvertValueToInt32(s, i), defaultValue);
+        }
+
+        public bool TryGetValueFromBag(IUxmlAttributes bag, CreationContext cc, ref int value)
+        {
+            return TryGetValueFromBag(bag, cc, (s, i) => ConvertValueToInt32(s, i), defaultValue, ref value);
+        }
+
+        static int ConvertValueToInt32(string v, int defaultValue)
+        {
+            int l;
+            if (v == null || !Int32.TryParse(v, out l))
+                return defaultValue;
+
+            return l;
+        }
+    }
+
+    public class Int32Field : TextValueField<System.Int32>, IFoxField
     {
         Int32Input integerInput => (Int32Input)textInputBase;
 
         public new class UxmlFactory : UxmlFactory<Int32Field, UxmlTraits> {}
-        public new class UxmlTraits : TextValueFieldTraits<System.Int32, UxmlIntAttributeDescription> {}
+        public new class UxmlTraits : TextValueFieldTraits<System.Int32, UxmlInt32AttributeDescription> {}
 
         protected override string ValueToString(System.Int32 v)
         {
@@ -30,27 +57,35 @@ namespace Fox.Editor
             return NumericPropertyDrawers.ClampToInt32(v);
         }
 
-        public Int32Field()
-            : this((string)null) { }
-
-        public Int32Field(bool hasDragger)
-            : this(null, hasDragger) { }
-
-        public Int32Field(int maxLength)
-            : this(null, true, maxLength) { }
-
-        public static readonly string ussBaseClassName = "fox-base-field";
         public new static readonly string ussClassName = "fox-int32-field";
         public new static readonly string labelUssClassName = ussClassName + "__label";
         public new static readonly string inputUssClassName = ussClassName + "__input";
 
+        public VisualElement visualInput { get; }
+
+        public Int32Field()
+            : this((string)null) { }
+
+        public Int32Field(int maxLength)
+            : this(null, true, maxLength) { }
+
+        public Int32Field(bool hasDragger)
+            : this(null, hasDragger) { }
+
         public Int32Field(string label, bool hasDragger = true, int maxLength = -1)
-            : base(label, maxLength, new Int32Input())
+            : this(label, hasDragger, maxLength, new Int32Input())
         {
-            AddToClassList(ussBaseClassName);
+        }
+
+        private Int32Field(string label, bool hasDragger, int maxLength, TextValueInput visInput)
+            : base(label, maxLength, visInput)
+        {
+            visualInput = visInput;
+
             AddToClassList(ussClassName);
             labelElement.AddToClassList(labelUssClassName);
-            this.styleSheets.Add(FoxField.FoxFieldStyleSheet);
+            visualInput.AddToClassList(inputUssClassName);
+            this.styleSheets.Add(IFoxField.FoxFieldStyleSheet);
             if (hasDragger)
                 AddLabelDragger<System.Int32>();
         }
@@ -119,7 +154,10 @@ namespace Fox.Editor
         {
             var field = new Int32Field();
             field.BindProperty(property);
-            field.styleSheets.Add(FoxField.FoxFieldStyleSheet);
+
+            field.labelElement.AddToClassList(PropertyField.labelUssClassName);
+            field.visualInput.AddToClassList(PropertyField.inputUssClassName);
+            field.AddToClassList(BaseField<System.UInt64>.alignedFieldUssClassName);
 
             return field;
         }

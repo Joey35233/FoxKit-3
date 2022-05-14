@@ -34,7 +34,7 @@ namespace Fox.Editor
             );
 
             listView.style.flexGrow = 1.0f;
-            listView.style.height = listView.itemHeight * 10;
+            listView.style.height = listView.fixedItemHeight * 10;
             listView.showBorder = true;
             listView.showAlternatingRowBackgrounds = AlternatingRowBackground.All;
             listView.reorderable = true;
@@ -46,8 +46,7 @@ namespace Fox.Editor
             foldout.Add(listView);
 
             var buttonContainer = new VisualElement();
-            buttonContainer.style.flexDirection = FlexDirection.RowReverse;
-            buttonContainer.style.alignItems = Align.FlexEnd;
+            buttonContainer.style.flexDirection = FlexDirection.Row;
 
             var addButton = new Button();
             addButton.AddToClassList("fox-dynamic-field-add-button");
@@ -83,8 +82,8 @@ namespace Fox.Editor
                 listView.SetSelection(privateList.arraySize - 1);
             };
 
-            buttonContainer.Add(removeButton);
             buttonContainer.Add(addButton);
+            buttonContainer.Add(removeButton);
 
             foldout.Add(buttonContainer);
 
@@ -103,24 +102,19 @@ namespace Fox.Editor
 
         private void BindItem(VisualElement element, int index)
         {
-            if (element is FoxField)
-            {
-                var entryField = element as FoxField;
-                var entry = InternalListProperty.GetArrayElementAtIndex(index);
+            //if (element is BindableElement)
+            //{
+            //    var entryField = element as BindableElement;
+            //    var entry = InternalListProperty.GetArrayElementAtIndex(index);
 
-                entryField.BindProperty(entry, $"[{index}]");
-            }
-            else if (element is IFoxNumericField)
-            {
-                var entryField = element as IFoxNumericField;
-                var entry = InternalListProperty.GetArrayElementAtIndex(index);
+            //    entryField.BindProperty(entry/*, $"[{index}]"*/);
+            //}
+            //else
+            //    return;
 
-                entryField.BindProperty(entry, $"[{index}]");
-            }
-
-            var labelElement = element.Q<Label>();
-            labelElement?.AddToClassList("fox-compound-field-element__label");
-            labelElement.style.minWidth = 20;
+            //var labelElement = element.Q<Label>();
+            //labelElement?.AddToClassList("fox-compound-field-element__label");
+            //labelElement.style.minWidth = 20;
         }
     }
 }

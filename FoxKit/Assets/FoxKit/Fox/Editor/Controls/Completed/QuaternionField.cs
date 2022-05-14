@@ -4,81 +4,68 @@ using UnityEditor.UIElements;
 
 namespace Fox.Editor
 {
-    public class QuaternionField : FoxField
+    public class QuaternionField : BaseField<UnityEngine.Quaternion>/*, FoxField*/
     {
-        private Label LabelElement;
-        private VisualElement InternalContainer;
-        private UnityEditor.UIElements.FloatField[] InternalFields;
+        private FloatField XField;
+        private FloatField YField;
+        private FloatField ZField;
+        private FloatField WField;
 
-        public override string label
-        {
-            get => LabelElement.text;
-            set
-            {
-                IsUserAssignedLabel = true;
-                LabelElement.text = value;
-            }
-        }
+        public new static readonly string ussClassName = "fox-quaternion-field";
+        public new static readonly string labelUssClassName = ussClassName + "__label";
+        public new static readonly string inputUssClassName = ussClassName + "__input";
+
+        public VisualElement visualInput { get; }
 
         public QuaternionField() : this(default)
         {
         }
 
         public QuaternionField(string label)
+            : this(label, new VisualElement())
         {
-            InternalFields = new UnityEditor.UIElements.FloatField[4];
-
-            this.AddToClassList("unity-base-field");
-            this.AddToClassList("unity-composite-field");
-
-            LabelElement = new Label(label);
-            if (label != null)
-                IsUserAssignedLabel = true;
-            LabelElement.AddToClassList("unity-base-field__label");
-            LabelElement.AddToClassList("unity-property-field__label");
-            this.Add(LabelElement);
-
-            var innerContainer = new VisualElement();
-            innerContainer.AddToClassList("unity-base-field__input");
-            innerContainer.AddToClassList("unity-composite-field__input");
-
-            InternalFields[0] = new UnityEditor.UIElements.FloatField("X");
-            InternalFields[0].AddToClassList("unity-composite-field__field");
-            InternalFields[0].AddToClassList("unity-composite-field__field--first");
-            innerContainer.Add(InternalFields[0]);
-
-            InternalFields[1] = new UnityEditor.UIElements.FloatField("Y");
-            InternalFields[1].AddToClassList("unity-composite-field__field");
-            innerContainer.Add(InternalFields[1]);
-
-            InternalFields[2] = new UnityEditor.UIElements.FloatField("Z");
-            InternalFields[2].AddToClassList("unity-composite-field__field");
-            innerContainer.Add(InternalFields[2]);
-
-            InternalFields[3] = new UnityEditor.UIElements.FloatField("W");
-            InternalFields[3].AddToClassList("unity-composite-field__field");
-            innerContainer.Add(InternalFields[3]);
-
-            this.AddToClassList("fox-quaternion-field");
-			this.AddToClassList("fox-base-field");
-            this.styleSheets.Add(FoxField.FoxFieldStyleSheet);
-            this.Add(innerContainer);
         }
 
-        public override void BindProperty(SerializedProperty property)
+        private QuaternionField(string label, VisualElement visInput)
+            : base(label, visInput)
         {
-            BindProperty(property, property.name);
+            visualInput = visInput;
+
+            XField = new FloatField("X");
+            XField.AddToClassList(BaseCompositeField<UnityEngine.Quaternion, FloatField, float>.firstFieldVariantUssClassName);
+            XField.AddToClassList(BaseCompositeField<UnityEngine.Quaternion, FloatField, float>.fieldUssClassName);
+            visualInput.Add(XField);
+            YField = new FloatField("Y");
+            YField.AddToClassList(BaseCompositeField<UnityEngine.Quaternion, FloatField, float>.fieldUssClassName);
+            visualInput.Add(YField);
+            ZField = new FloatField("Z");
+            ZField.AddToClassList(BaseCompositeField<UnityEngine.Quaternion, FloatField, float>.fieldUssClassName);
+            visualInput.Add(ZField);
+            WField = new FloatField("W");
+            WField.AddToClassList(BaseCompositeField<UnityEngine.Quaternion, FloatField, float>.fieldUssClassName);
+            visualInput.Add(WField);
+
+            AddToClassList(ussClassName);
+            AddToClassList(BaseCompositeField<UnityEngine.Quaternion, FloatField, float>.ussClassName);
+            labelElement.AddToClassList(labelUssClassName);
+            labelElement.AddToClassList(BaseCompositeField<UnityEngine.Quaternion, FloatField, float>.labelUssClassName);
+            visualInput.AddToClassList(inputUssClassName);
+            visualInput.AddToClassList(BaseCompositeField<UnityEngine.Quaternion, FloatField, float>.inputUssClassName);
+            this.styleSheets.Add(IFoxField.FoxFieldStyleSheet);
         }
 
-        public override void BindProperty(SerializedProperty property, string label)
-        {
-            LabelElement.text = label;
+        //public override void BindProperty(SerializedProperty property)
+        //{
+        //    BindProperty(property, property.name);
+        //}
 
-            InternalFields[0].BindProperty(property.FindPropertyRelative("x"));
-            InternalFields[1].BindProperty(property.FindPropertyRelative("y"));
-            InternalFields[2].BindProperty(property.FindPropertyRelative("z"));
-            InternalFields[3].BindProperty(property.FindPropertyRelative("w"));
-        }
+        //public override void BindProperty(SerializedProperty property, string label)
+        //{
+        //    if (!IsUserAssignedLabel)
+        //        InternalField.label = label;
+
+        //    InternalField.BindProperty(property);
+        //}
     }
 
     [CustomPropertyDrawer(typeof(UnityEngine.Quaternion))]
@@ -86,8 +73,12 @@ namespace Fox.Editor
     {
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
         {
-            var field = new QuaternionField();
+            var field = new QuaternionField(property.name);
             field.BindProperty(property);
+
+            field.labelElement.AddToClassList(PropertyField.labelUssClassName);
+            field.visualInput.AddToClassList(PropertyField.inputUssClassName);
+            field.AddToClassList(BaseField<UnityEngine.Quaternion>.alignedFieldUssClassName);
 
             return field;
         }

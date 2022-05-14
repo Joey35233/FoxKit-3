@@ -8,51 +8,37 @@ using UnityEngine;
 
 namespace Fox.Editor
 {
-    public class EntityHandleField : FoxField
+    public class EntityHandleField : ObjectField
     {
-        private ObjectField InternalField;
-        private SerializedProperty EntityProperty;
+        public new static readonly string ussClassName = "fox-entityhandle-field";
+        public new static readonly string labelUssClassName = ussClassName + "__label";
+        public new static readonly string inputUssClassName = ussClassName + "__input";
 
-        public override string label
-        {
-            get => InternalField.label;
-            set
-            {
-                IsUserAssignedLabel = true;
-                InternalField.label = value;
-            }
-        }
+        public VisualElement visualInput { get; }
 
-        public EntityHandleField() : this(default)
+        public EntityHandleField() 
+            : this(null)
         {
         }
 
         public EntityHandleField(string label)
+            : base(label)
         {
-            InternalField = new ObjectField(label);
-            if (label != null)
-                IsUserAssignedLabel = true;
-            InternalField.allowSceneObjects = true;
-            InternalField.objectType = typeof(FoxEntity);
+            RemoveFromClassList(ObjectField.ussClassName);
+            AddToClassList(ussClassName);
 
-            this.AddToClassList("fox-entityhandle-field");
-			this.AddToClassList("fox-base-field");
-            this.styleSheets.Add(FoxField.FoxFieldStyleSheet);
-            this.Add(InternalField);
-        }
+            allowSceneObjects = true;
+            objectType = typeof(FoxEntity);
 
-        public override void BindProperty(SerializedProperty property)
-        {
-            BindProperty(property, property.name);
-        }
+            visualInput = this.Q(className: BaseField<string>.inputUssClassName);
 
-        public override void BindProperty(SerializedProperty property, string label)
-        {
-            this.EntityProperty = property.FindPropertyRelative("entity");
+            //visualInput.RemoveFromClassList(ObjectField.inputUssClassName);
+            visualInput.AddToClassList(inputUssClassName);
 
-            if (!IsUserAssignedLabel)
-                InternalField.label = label;
-            InternalField.BindProperty(EntityProperty);
+            labelElement.RemoveFromClassList(ObjectField.labelUssClassName);
+            labelElement.AddToClassList(labelUssClassName);
+
+            this.styleSheets.Add(IFoxField.FoxFieldStyleSheet);
         }
     }
 
@@ -63,6 +49,10 @@ namespace Fox.Editor
         {
             var field = new EntityHandleField(property.name);
             field.BindProperty(property);
+
+            field.labelElement.AddToClassList(PropertyField.labelUssClassName);
+            field.visualInput.AddToClassList(PropertyField.inputUssClassName);
+            field.AddToClassList(BaseField<Fox.Core.EntityHandle>.alignedFieldUssClassName);
 
             return field;
         }

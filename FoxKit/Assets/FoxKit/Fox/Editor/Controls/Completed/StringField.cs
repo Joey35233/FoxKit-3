@@ -4,66 +4,51 @@ using UnityEngine.UIElements;
 
 namespace Fox.Editor
 {
-    public class StringField : FoxField
+    public class StringField : TextField
     {
-        private TextField InternalField;
-        private SerializedProperty Property;
+        public new static readonly string ussClassName = "fox-string-field";
+        public new static readonly string labelUssClassName = ussClassName + "__label";
+        public new static readonly string inputUssClassName = ussClassName + "__input";
 
-        public override string label
+        public VisualElement visualInput { get; }
+
+        public StringField()
+            : this(null) { }
+
+        public StringField(int maxLength)
+            : this(null, false, maxLength) { }
+
+        public StringField(bool multiline)
+            : this(null, multiline) { }
+
+        public StringField(string label, bool multiline = false, int maxLength = -1)
+            : base(label, maxLength, multiline, false, '*')
         {
-            get => InternalField.label;
-            set
-            {
-                IsUserAssignedLabel = true;
-                InternalField.label = value;
-            }
+            RemoveFromClassList(TextField.ussClassName);
+            AddToClassList(ussClassName);
+
+            visualInput = this.Q(className: BaseField<string>.inputUssClassName);
+            visualInput.RemoveFromClassList(TextField.inputUssClassName);
+            visualInput.AddToClassList(inputUssClassName);
+
+            labelElement.RemoveFromClassList(TextField.labelUssClassName);
+            labelElement.AddToClassList(labelUssClassName);
+
+            this.styleSheets.Add(IFoxField.FoxFieldStyleSheet);
         }
-
-        public StringField() : this(default)
-        {
-
-        }
-
-        public StringField(string label)
-        {
-            InternalField = new TextField(label);
-            if (label != null)
-                IsUserAssignedLabel = true;
-
-            InternalField.style.marginTop = 0;
-            InternalField.style.marginBottom = 0;
-
-            this.AddToClassList("fox-string-field");
-			this.AddToClassList("fox-base-field");
-            this.styleSheets.Add(FoxField.FoxFieldStyleSheet);
-            this.Add(InternalField);
-        }
-
-        public override void BindProperty(SerializedProperty property)
-        {
-            BindProperty(property, property.name);
-        }
-
-        public override void BindProperty(SerializedProperty property, string label)
-        {
-            this.Property = property;
-
-            if (!IsUserAssignedLabel)
-                InternalField.label = label;
-            InternalField.BindProperty(property.FindPropertyRelative("_cString"));
-            InternalField.RegisterValueChangedCallback(OnValueChanged);
-        }
-
-        private void OnValueChanged(ChangeEvent<string> changeEvent) => Property.SetValue(new String(changeEvent.newValue));
     }
 
-    [CustomPropertyDrawer(typeof(Fox.String))]
+        [CustomPropertyDrawer(typeof(Fox.String))]
     public class StringDrawer : PropertyDrawer
     {
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
         {
-            var field = new StringField();
+            var field = new StringField(property.name);
             field.BindProperty(property);
+
+            field.labelElement.AddToClassList(PropertyField.labelUssClassName);
+            field.visualInput.AddToClassList(PropertyField.inputUssClassName);
+            field.AddToClassList(BaseField<Fox.Core.Path>.alignedFieldUssClassName);
 
             return field;
         }

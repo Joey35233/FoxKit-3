@@ -90,8 +90,7 @@ namespace Fox.Editor
             foldout.Add(field);
 
             var bottomContainer = new VisualElement();
-            bottomContainer.style.flexDirection = FlexDirection.RowReverse;
-            bottomContainer.style.alignItems = Align.FlexEnd;
+            bottomContainer.style.flexDirection = FlexDirection.Row;
 
             var duplicateKeyLabel = new Label { text = "Cannot have two entries with the same key." };
             duplicateKeyLabel.style.color = UnityEngine.Color.red;
@@ -154,9 +153,9 @@ namespace Fox.Editor
 
                 field.Rebuild();
             };
-
-            bottomContainer.Add(removeButton);
+            
             bottomContainer.Add(addButton);
+            bottomContainer.Add(removeButton);
             bottomContainer.Add(duplicateKeyLabel);
 
             foldout.Add(bottomContainer);
@@ -203,29 +202,21 @@ namespace Fox.Editor
 
         private void BindItem(VisualElement element, int index)
         {
-            var cellField = (CellField)element;
-            cellField.Label.text = $"[{index}]";
+            //var cellField = (CellField)element;
+            //cellField.Label.text = $"[{index}]";
 
-            if (cellField.DataField is FoxField)
-            {
-                var dataField = cellField.DataField as FoxField;
-                var entry = InternalListProperty.GetArrayElementAtIndex(InternalStringMap.OccupiedIndexToAbsoluteIndex(index));
+            //if (cellField.DataField is BindableElement)
+            //{
+            //    var dataField = cellField.DataField as BindableElement;
+            //    var entry = InternalListProperty.GetArrayElementAtIndex(InternalStringMap.OccupiedIndexToAbsoluteIndex(index));
 
-                cellField.KeyField.BindProperty(entry.FindPropertyRelative("Key"), null);
-                dataField.BindProperty(entry.FindPropertyRelative("Value"), null);
-            }
-            else if (cellField.DataField is IFoxNumericField)
-            {
-                var dataField = cellField.DataField as IFoxNumericField;
-                var entry = InternalListProperty.GetArrayElementAtIndex(InternalStringMap.OccupiedIndexToAbsoluteIndex(index));
+            //    //cellField.KeyField.BindProperty(entry.FindPropertyRelative("Key"), null);
+            //    dataField.BindProperty(entry.FindPropertyRelative("Value")/*, null*/);
+            //}
 
-                cellField.KeyField.BindProperty(entry.FindPropertyRelative("Key"), null);
-                dataField.BindProperty(entry.FindPropertyRelative("Value"), null);
-            }
-
-            var labelElement = element.Q<Label>();
-            labelElement?.AddToClassList("fox-compound-field-element__label");
-            labelElement.style.minWidth = 20;
+            //var labelElement = element.Q<Label>();
+            //labelElement?.AddToClassList("fox-compound-field-element__label");
+            //labelElement.style.minWidth = 20;
         }
     }
 }

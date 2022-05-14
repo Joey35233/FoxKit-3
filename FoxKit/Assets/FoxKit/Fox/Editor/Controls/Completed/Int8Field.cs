@@ -38,7 +38,7 @@ namespace Fox.Editor
         }
     }
 
-    public class Int8Field : TextValueField<System.SByte>, INotifyValueChanged<int>, IFoxNumericField
+    public class Int8Field : TextValueField<System.SByte>, INotifyValueChanged<int>, IFoxField
     {
         System.SByte _value;
         int INotifyValueChanged<int>.value
@@ -79,6 +79,9 @@ namespace Fox.Editor
 
         Int8Input integerInput => (Int8Input)textInputBase;
 
+        public new class UxmlFactory : UxmlFactory<Int8Field, UxmlTraits> { }
+        public new class UxmlTraits : TextValueFieldTraits<System.SByte, UxmlInt8AttributeDescription> { }
+
         protected override string ValueToString(System.SByte v)
         {
             return v.ToString(formatString, CultureInfo.InvariantCulture.NumberFormat);
@@ -91,13 +94,11 @@ namespace Fox.Editor
             return NumericPropertyDrawers.ClampToInt8(v);
         }
 
-        public new class UxmlFactory : UxmlFactory<Int8Field, UxmlTraits> { }
-        public new class UxmlTraits : TextValueFieldTraits<System.SByte, UxmlInt8AttributeDescription> { }
-
-        public static readonly string ussBaseClassName = "fox-base-field";
         public new static readonly string ussClassName = "fox-int8-field";
         public new static readonly string labelUssClassName = ussClassName + "__label";
         public new static readonly string inputUssClassName = ussClassName + "__input";
+
+        public VisualElement visualInput { get; }
 
         public Int8Field()
             : this((string)null) { }
@@ -109,13 +110,19 @@ namespace Fox.Editor
             : this(null, hasDragger) { }
 
         public Int8Field(string label, bool hasDragger = true, int maxLength = -1)
-            : base(label, maxLength, new Int8Input())
+            : this(label, hasDragger, maxLength, new Int8Input())
         {
-            AddToClassList(ussBaseClassName);
+        }
+
+        private Int8Field(string label, bool hasDragger, int maxLength, TextValueInput visInput)
+            : base(label, maxLength, visInput)
+        {
+            visualInput = visInput;
+
             AddToClassList(ussClassName);
             labelElement.AddToClassList(labelUssClassName);
-            this.styleSheets.Add(FoxField.FoxFieldStyleSheet);
-
+            visualInput.AddToClassList(inputUssClassName);
+            this.styleSheets.Add(IFoxField.FoxFieldStyleSheet);
             if (hasDragger)
                 AddLabelDragger<System.SByte>();
         }
@@ -189,6 +196,10 @@ namespace Fox.Editor
 
             field = new Int8Field(property.name);
             field.BindProperty(property);
+
+            field.labelElement.AddToClassList(PropertyField.labelUssClassName);
+            field.visualInput.AddToClassList(PropertyField.inputUssClassName);
+            field.AddToClassList(BaseField<System.UInt64>.alignedFieldUssClassName);
 
             return field;
         }

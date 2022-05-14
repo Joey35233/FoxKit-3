@@ -4,49 +4,68 @@ using UnityEditor.UIElements;
 
 namespace Fox.Editor
 {
-    public class Vector4Field : FoxField
+    public class Vector4Field : BaseField<UnityEngine.Vector4>/*, FoxField*/
     {
-        private UnityEditor.UIElements.Vector4Field InternalField;
+        private FloatField XField;
+        private FloatField YField;
+        private FloatField ZField;
+        private FloatField WField;
 
-        public override string label
-        {
-            get => InternalField.label;
-            set
-            {
-                IsUserAssignedLabel = true;
-                InternalField.label = value;
-            }
-        }
+        public new static readonly string ussClassName = "fox-vector4-field";
+        public new static readonly string labelUssClassName = ussClassName + "__label";
+        public new static readonly string inputUssClassName = ussClassName + "__input";
+
+        public VisualElement visualInput { get; }
 
         public Vector4Field() : this(default)
         {
         }
 
         public Vector4Field(string label)
+            : this(label, new VisualElement())
         {
-            InternalField = new UnityEditor.UIElements.Vector4Field();
-            InternalField.label = label;
-            if (label != null)
-                IsUserAssignedLabel = true;
-
-            this.AddToClassList("fox-vector4-field");
-			this.AddToClassList("fox-base-field");
-            this.styleSheets.Add(FoxField.FoxFieldStyleSheet);
-            this.Add(InternalField);
         }
 
-        public override void BindProperty(SerializedProperty property)
+        private Vector4Field(string label, VisualElement visInput)
+            : base(label, visInput)
         {
-            BindProperty(property, property.name);
+            visualInput = visInput;
+
+            XField = new FloatField("X");
+            XField.AddToClassList(BaseCompositeField<UnityEngine.Vector3, FloatField, float>.firstFieldVariantUssClassName);
+            XField.AddToClassList(BaseCompositeField<UnityEngine.Vector3, FloatField, float>.fieldUssClassName);
+            visualInput.Add(XField);
+            YField = new FloatField("Y");
+            YField.AddToClassList(BaseCompositeField<UnityEngine.Vector3, FloatField, float>.fieldUssClassName);
+            visualInput.Add(YField);
+            ZField = new FloatField("Z");
+            ZField.AddToClassList(BaseCompositeField<UnityEngine.Vector3, FloatField, float>.fieldUssClassName);
+            visualInput.Add(ZField);
+            WField = new FloatField("W");
+            WField.AddToClassList(BaseCompositeField<UnityEngine.Vector4, FloatField, float>.fieldUssClassName);
+            visualInput.Add(WField);
+
+            AddToClassList(ussClassName);
+            AddToClassList(BaseCompositeField<UnityEngine.Vector4, FloatField, float>.ussClassName);
+            labelElement.AddToClassList(labelUssClassName);
+            labelElement.AddToClassList(BaseCompositeField<UnityEngine.Vector4, FloatField, float>.labelUssClassName);
+            visualInput.AddToClassList(inputUssClassName);
+            visualInput.AddToClassList(BaseCompositeField<UnityEngine.Vector4, FloatField, float>.inputUssClassName);
+            this.styleSheets.Add(IFoxField.FoxFieldStyleSheet);
         }
 
-        public override void BindProperty(SerializedProperty property, string label)
-        {
-            if (!IsUserAssignedLabel)
-                InternalField.label = label;
+        //public override void BindProperty(SerializedProperty property)
+        //{
+        //    BindProperty(property, property.name);
+        //}
 
-            InternalField.BindProperty(property);
-        }
+        //public override void BindProperty(SerializedProperty property, string label)
+        //{
+        //    if (!IsUserAssignedLabel)
+        //        InternalField.label = label;
+
+        //    InternalField.BindProperty(property);
+        //}
     }
 
     [CustomPropertyDrawer(typeof(UnityEngine.Vector4))]
@@ -56,6 +75,10 @@ namespace Fox.Editor
         {
             var field = new Vector4Field(property.name);
             field.BindProperty(property);
+
+            field.labelElement.AddToClassList(PropertyField.labelUssClassName);
+            field.visualInput.AddToClassList(PropertyField.inputUssClassName);
+            field.AddToClassList(BaseField<Fox.Core.Path>.alignedFieldUssClassName);
 
             return field;
         }

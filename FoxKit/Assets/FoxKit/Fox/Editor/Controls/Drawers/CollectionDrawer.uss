@@ -1,6 +1,23 @@
 ﻿.fox-compound-field-element__label
 {
     -unity-font: url("../../Fonts/CascadiaCode-SemiLight.ttf");
+    -unity-font-definition: none;
+}
+
+/* .unity-collection-view__item
+{
+    margin-left: 0;
+} */
+
+.unity-scroll-view
+{
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.fox-dynamicarray-field .unity-scroll-view,.fox-stringmap-field .unity-scroll-view
+{
+    border-bottom-left-radius: 0;
 }
 
 .fox-dynamic-field-add-button 
@@ -8,6 +25,7 @@
     margin-top: 0;
     border-top-width: 0;
     margin-right: 0;
+    margin-left: 0;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
@@ -53,7 +71,7 @@
     margin-right: 0;
 }
 
-.fox-cell-field,.fox-matrix4-field,.fox-quaternion-field,.fox-entitylink-field,.fox-uint8-field,.fox-uint16-field,.fox-uint32-field,.fox-uint64-field,.fox-int8-field,.fox-int16-field,.fox-int32-field,.fox-int64-field.fox-compound-field-element
+/*.fox-cell-field,.fox-matrix4-field,.fox-quaternion-field,.fox-entitylink-field,.fox-uint8-field,.fox-uint16-field,.fox-uint32-field,.fox-uint64-field,.fox-int8-field,.fox-int16-field,.fox-int32-field,.fox-int64-field.fox-compound-field-element
 {
 	margin-left: 0px;
 	margin-right: 0px;
@@ -61,4 +79,4 @@
 	padding-right: 3px;
 	padding-top: 1px;
 	padding-bottom: 1px;
-}
+}*/

@@ -7,7 +7,38 @@ using UnityEngine.UIElements;
 
 namespace Fox.Editor
 {
-    public class UInt16Field : TextValueField<System.UInt16>, INotifyValueChanged<int>, IFoxNumericField
+    public class UxmlUInt16AttributeDescription : TypedUxmlAttributeDescription<ushort>
+    {
+        public UxmlUInt16AttributeDescription()
+        {
+            type = "uint16";
+            typeNamespace = xmlSchemaNamespace;
+            defaultValue = 0;
+        }
+
+        public override string defaultValueAsString { get { return defaultValue.ToString(CultureInfo.InvariantCulture.NumberFormat); } }
+
+        public override ushort GetValueFromBag(IUxmlAttributes bag, CreationContext cc)
+        {
+            return GetValueFromBag(bag, cc, (s, i) => ConvertValueToUInt16(s, i), defaultValue);
+        }
+
+        public bool TryGetValueFromBag(IUxmlAttributes bag, CreationContext cc, ref ushort value)
+        {
+            return TryGetValueFromBag(bag, cc, (s, i) => ConvertValueToUInt16(s, i), defaultValue, ref value);
+        }
+
+        static ushort ConvertValueToUInt16(string v, ushort defaultValue)
+        {
+            ushort l;
+            if (v == null || !UInt16.TryParse(v, out l))
+                return defaultValue;
+
+            return l;
+        }
+    }
+
+    public class UInt16Field : TextValueField<System.UInt16>, INotifyValueChanged<int>, IFoxField
     {
         System.UInt16 _value;
         int INotifyValueChanged<int>.value
@@ -48,6 +79,9 @@ namespace Fox.Editor
 
         UInt16Input integerInput => (UInt16Input)textInputBase;
 
+        public new class UxmlFactory : UxmlFactory<UInt16Field, UxmlTraits> { }
+        public new class UxmlTraits : TextValueFieldTraits<System.UInt16, UxmlUInt16AttributeDescription> { }
+
         protected override string ValueToString(System.UInt16 v)
         {
             return v.ToString(formatString, CultureInfo.InvariantCulture.NumberFormat);
@@ -60,10 +94,11 @@ namespace Fox.Editor
             return NumericPropertyDrawers.ClampToUInt16(v);
         }
 
-        public static readonly string ussBaseClassName = "fox-base-field";
         public new static readonly string ussClassName = "fox-uint16-field";
         public new static readonly string labelUssClassName = ussClassName + "__label";
         public new static readonly string inputUssClassName = ussClassName + "__input";
+
+        public VisualElement visualInput { get; }
 
         public UInt16Field()
             : this((string)null) { }
@@ -75,12 +110,19 @@ namespace Fox.Editor
             : this(null, hasDragger) { }
 
         public UInt16Field(string label, bool hasDragger = true, int maxLength = -1)
-            : base(label, maxLength, new UInt16Input())
+            : this(label, hasDragger, maxLength, new UInt16Input())
         {
-            AddToClassList(ussBaseClassName);
+        }
+
+        private UInt16Field(string label, bool hasDragger, int maxLength, TextValueInput visInput)
+            : base(label, maxLength, visInput)
+        {
+            visualInput = visInput;
+
             AddToClassList(ussClassName);
             labelElement.AddToClassList(labelUssClassName);
-            this.styleSheets.Add(FoxField.FoxFieldStyleSheet);
+            visualInput.AddToClassList(inputUssClassName);
+            this.styleSheets.Add(IFoxField.FoxFieldStyleSheet);
             if (hasDragger)
                 AddLabelDragger<System.UInt16>();
         }
@@ -154,6 +196,10 @@ namespace Fox.Editor
 
             field = new UInt16Field(property.name);
             field.BindProperty(property);
+
+            field.labelElement.AddToClassList(PropertyField.labelUssClassName);
+            field.visualInput.AddToClassList(PropertyField.inputUssClassName);
+            field.AddToClassList(BaseField<System.UInt64>.alignedFieldUssClassName);
 
             return field;
         }

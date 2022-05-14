@@ -1,50 +1,64 @@
 ﻿using UnityEditor;
 using UnityEngine.UIElements;
 using UnityEditor.UIElements;
+using UnityEngine;
+using System.Reflection;
 
 namespace Fox.Editor
 {
-    public class ColorField : FoxField
+    public class ColorField : BaseField<UnityEngine.Color>
     {
-        private UnityEditor.UIElements.ColorField InternalField;
+        public new class UxmlFactory : UxmlFactory<ColorField, UxmlTraits> { }
 
-        public override string label
-        {
-            get => InternalField.label;
-            set
-            {
-                IsUserAssignedLabel = true;
-                InternalField.label = value;
-            }
-        }
+        public new class UxmlTraits : BaseFieldTraits<UnityEngine.Color, UxmlColorAttributeDescription> { }
 
-        public ColorField() : this(default)
-        {
+        private IMGUIContainer InternalColorField;
+
+        public new static readonly string ussClassName = "fox-color-field";
+        public new static readonly string labelUssClassName = ussClassName + "__label";
+        public new static readonly string inputUssClassName = ussClassName + "__input";
+
+        private static FieldInfo focusOnlyIfHasFocusableControlsFieldInfo = typeof(IMGUIContainer).GetField("<focusOnlyIfHasFocusableControls>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance);
+        private static MethodInfo set_visualInputMethodInfo = typeof(BaseField<UnityEngine.Color>).GetMethod("set_visualInput", BindingFlags.NonPublic | BindingFlags.Instance);
+
+        public VisualElement visualInput { get; }
+
+        public ColorField()
+            : this(null) 
+        { 
         }
 
         public ColorField(string label)
+            : base(label, null)
         {
-            InternalField = new UnityEditor.UIElements.ColorField(label);
-            if (label != null)
-                IsUserAssignedLabel = true;
+            AddToClassList(ussClassName);
+            labelElement.AddToClassList(labelUssClassName);
 
-            this.AddToClassList("fox-color-field");
-			this.AddToClassList("fox-base-field");
-            this.styleSheets.Add(FoxField.FoxFieldStyleSheet);
-            this.Add(InternalField);
+            InternalColorField = new IMGUIContainer(OnGUIHandler);
+            InternalColorField.name = "unity-internal-color-field";
+            focusOnlyIfHasFocusableControlsFieldInfo.SetValue(InternalColorField, false);
+            
+            set_visualInputMethodInfo.Invoke(this, new object[] { InternalColorField });
+            visualInput = InternalColorField;
+            visualInput.AddToClassList(inputUssClassName);
+
+            labelElement.focusable = false;
         }
 
-        public override void BindProperty(SerializedProperty property)
+        private void OnGUIHandler()
         {
-            BindProperty(property, property.name);
+            var editorGUIShowMixedValue = EditorGUI.showMixedValue;
+            EditorGUI.showMixedValue = showMixedValue;
+
+            Color newColor = EditorGUILayout.ColorField(GUIContent.none, value, false, true, true);
+            if (value != newColor)
+                value = newColor;
+
+            EditorGUI.showMixedValue = editorGUIShowMixedValue;
         }
 
-        public override void BindProperty(SerializedProperty property, string label)
+        protected override void UpdateMixedValueContent()
         {
-            if (!IsUserAssignedLabel)
-                InternalField.label = label;
-
-            InternalField.BindProperty(property);
         }
     }
 
@@ -53,8 +67,12 @@ namespace Fox.Editor
     {
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
         {
-            var field = new ColorField(property.name);
+            var field = new Fox.Editor.ColorField(property.name);
             field.BindProperty(property);
+
+            field.labelElement.AddToClassList(PropertyField.labelUssClassName);
+            field.visualInput.AddToClassList(PropertyField.inputUssClassName);
+            field.AddToClassList(BaseField<UnityEngine.Color>.alignedFieldUssClassName);
 
             return field;
         }

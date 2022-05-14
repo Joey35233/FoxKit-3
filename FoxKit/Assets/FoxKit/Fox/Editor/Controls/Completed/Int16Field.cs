@@ -7,7 +7,38 @@ using UnityEngine.UIElements;
 
 namespace Fox.Editor
 {
-    public class Int16Field : TextValueField<System.Int16>, INotifyValueChanged<int>, IFoxNumericField
+    public class UxmlInt16AttributeDescription : TypedUxmlAttributeDescription<short>
+    {
+        public UxmlInt16AttributeDescription()
+        {
+            type = "int16";
+            typeNamespace = xmlSchemaNamespace;
+            defaultValue = 0;
+        }
+
+        public override string defaultValueAsString { get { return defaultValue.ToString(CultureInfo.InvariantCulture.NumberFormat); } }
+
+        public override short GetValueFromBag(IUxmlAttributes bag, CreationContext cc)
+        {
+            return GetValueFromBag(bag, cc, (s, i) => ConvertValueToInt16(s, i), defaultValue);
+        }
+
+        public bool TryGetValueFromBag(IUxmlAttributes bag, CreationContext cc, ref short value)
+        {
+            return TryGetValueFromBag(bag, cc, (s, i) => ConvertValueToInt16(s, i), defaultValue, ref value);
+        }
+
+        static short ConvertValueToInt16(string v, short defaultValue)
+        {
+            short l;
+            if (v == null || !Int16.TryParse(v, out l))
+                return defaultValue;
+
+            return l;
+        }
+    }
+
+    public class Int16Field : TextValueField<System.Int16>, INotifyValueChanged<int>, IFoxField
     {
         System.Int16 _value;
         int INotifyValueChanged<int>.value
@@ -48,6 +79,9 @@ namespace Fox.Editor
 
         Int16Input integerInput => (Int16Input)textInputBase;
 
+        public new class UxmlFactory : UxmlFactory<Int16Field, UxmlTraits> { }
+        public new class UxmlTraits : TextValueFieldTraits<System.Int16, UxmlInt16AttributeDescription> { }
+
         protected override string ValueToString(System.Int16 v)
         {
             return v.ToString(formatString, CultureInfo.InvariantCulture.NumberFormat);
@@ -60,10 +94,11 @@ namespace Fox.Editor
             return NumericPropertyDrawers.ClampToInt16(v);
         }
 
-        public static readonly string ussBaseClassName = "fox-base-field";
         public new static readonly string ussClassName = "fox-int16-field";
         public new static readonly string labelUssClassName = ussClassName + "__label";
         public new static readonly string inputUssClassName = ussClassName + "__input";
+
+        public VisualElement visualInput { get; }
 
         public Int16Field()
             : this((string)null) { }
@@ -75,12 +110,19 @@ namespace Fox.Editor
             : this(null, hasDragger) { }
 
         public Int16Field(string label, bool hasDragger = true, int maxLength = -1)
-            : base(label, maxLength, new Int16Input())
+            : this(label, hasDragger, maxLength, new Int16Input())
         {
-            AddToClassList(ussBaseClassName);
+        }
+
+        private Int16Field(string label, bool hasDragger, int maxLength, TextValueInput visInput)
+            : base(label, maxLength, visInput)
+        {
+            visualInput = visInput;
+
             AddToClassList(ussClassName);
             labelElement.AddToClassList(labelUssClassName);
-            this.styleSheets.Add(FoxField.FoxFieldStyleSheet);
+            visualInput.AddToClassList(inputUssClassName);
+            this.styleSheets.Add(IFoxField.FoxFieldStyleSheet);
             if (hasDragger)
                 AddLabelDragger<System.Int16>();
         }
@@ -99,7 +141,6 @@ namespace Fox.Editor
         {
             this.label = label;
             BindingExtensions.BindProperty(this, property);
-            labelElement.AddToClassList("unity-property-field__label");
         }
 
         class Int16Input : TextValueInput
@@ -155,6 +196,10 @@ namespace Fox.Editor
 
             field = new Int16Field(property.name);
             field.BindProperty(property);
+
+            field.labelElement.AddToClassList(PropertyField.labelUssClassName);
+            field.visualInput.AddToClassList(PropertyField.inputUssClassName);
+            field.AddToClassList(BaseField<System.UInt64>.alignedFieldUssClassName);
 
             return field;
         }

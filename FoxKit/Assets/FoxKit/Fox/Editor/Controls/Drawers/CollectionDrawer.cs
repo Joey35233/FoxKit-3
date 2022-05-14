@@ -25,7 +25,7 @@ namespace Fox.Editor
                 case Type _ when propertyType == typeof(float):
                 case Type _ when propertyType == typeof(double):
                 case Type _ when propertyType == typeof(bool):
-                case Type _ when propertyType == typeof(Fox.String):
+                case Type _ when propertyType == typeof(String):
                 case Type _ when propertyType == typeof(Path):
                 case Type _ when propertyType == typeof(Vector3):
                 case Type _ when propertyType == typeof(Vector4):
@@ -35,14 +35,12 @@ namespace Fox.Editor
                 case Type _ when propertyType == typeof(EntityHandle):
                     return 20;
 
-                case Type _ when propertyType == typeof(Matrix4x4):
-                    return 80;
-
                 case Type _ when propertyType == typeof(EntityLink):
-                    return 74;
+                case Type _ when propertyType == typeof(Matrix4x4):
+                    return 82;
 
                 default:
-                    return 20;
+                    return 22;
             }
         }
 
@@ -78,9 +76,10 @@ namespace Fox.Editor
                     return () => new UInt64Field(false);
 
                 case Type _ when propertyType == typeof(float):
-                    return () => new FloatField();
+                    return () => new FloatField(false);
+
                 case Type _ when propertyType == typeof(double):
-                    return () => new DoubleField();
+                    return () => new DoubleField(false);
 
                 case Type _ when propertyType == typeof(Fox.String):
                     return () => new StringField();
@@ -92,10 +91,10 @@ namespace Fox.Editor
                     return () => new Vector3Field();
 
                 case Type _ when propertyType == typeof(Vector4):
-                    return () => new Fox.Editor.Vector4Field();
+                    return () => new Vector4Field();
 
                 case Type _ when propertyType == typeof(Color):
-                    return () => new Fox.Editor.ColorField();
+                    return () => new ColorField();
 
                 case Type _ when propertyType == typeof(Quaternion):
                     return () => new QuaternionField();
@@ -106,14 +105,14 @@ namespace Fox.Editor
                 case Type _ when propertyType == typeof(EntityHandle):
                     return () => new EntityHandleField();
 
-                case Type _ when propertyType.IsGenericType && propertyType.GetGenericTypeDefinition() == typeof(EntityPtr<>):
-                    return () => new EntityPtrField();
+                //case Type _ when propertyType.IsGenericType && propertyType.GetGenericTypeDefinition() == typeof(EntityPtr<>):
+                //    return () => new EntityPtrField();
 
                 case Type _ when propertyType == typeof(Matrix4x4):
-                    return () => new Matrix4Field(true);
+                    return () => new Matrix4Field();
 
                 case Type _ when propertyType == typeof(EntityLink):
-                    return () => new EntityLinkField(true);
+                    return () => new EntityLinkField();
 
                 default:
                     throw new ArgumentException($"Invalid Fox type: {propertyType}.");

@@ -44,7 +44,7 @@ namespace FoxKit.MenuItems
 
 			using (var writer = File.CreateText($"{FolderPath}/FoxFieldColorPalette.uss"))
 			{
-				writer.WriteLine("#Light");
+				writer.WriteLine("/* Light */");
 				for (int i = 0; i < sourceRow.Length; i++)
 				{
                     writer.WriteLine($".fox-{FieldNames[i]}-field .unity-base-text-field__input");
@@ -54,7 +54,7 @@ namespace FoxKit.MenuItems
 				}
 
 				writer.WriteLine();
-				writer.WriteLine("#Dark");
+				writer.WriteLine("/* Dark */");
 				for (int i = 0; i < adjustedRow.Length; i++)
                 {
                     writer.WriteLine($".fox-{FieldNames[i]}-field .unity-base-text-field__input");

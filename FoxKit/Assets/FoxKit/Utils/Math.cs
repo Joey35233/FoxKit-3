@@ -3,9 +3,22 @@ namespace FoxKit
     using UnityEngine;
     public static class FoxUtils
     {
+        public static Vector3 UnityVectorFromFoxCoordinates(float x, float y, float z)
+        {
+            return new Vector3(-x, y, z);
+        }
+        public static Vector3 UnityVectorFromFoxCoordinates(Vector3 v)
+        {
+            return new Vector3(-v.x, v.y, v.z);
+        }
+
         public static Vector4 UnityVectorFromFoxCoordinates(float x, float y, float z, float w)
         {
             return new Vector4(-x, y, z, w);
+        }
+        public static Vector4 UnityVectorFromFoxCoordinates(Vector4 v)
+        {
+            return new Vector4(-v.x, v.y, v.z, v.w);
         }
 
         public static Quaternion UnityQuaternionFromFoxCoordinates(float x, float y, float z, float w)
