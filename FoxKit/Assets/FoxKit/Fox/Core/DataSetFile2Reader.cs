@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using System.Security.Policy;
+using UnityEngine;
 
 namespace Fox.Core
 {
@@ -15,7 +16,14 @@ namespace Fox.Core
         private IDictionary<ulong, IEntityPtr> entityPtrRequests = new Dictionary<ulong, IEntityPtr>();
         private IDictionary<ulong, HashSet<EntityHandle>> entityHandleRequests = new Dictionary<ulong, HashSet<EntityHandle>>();
 
-        public List<Entity> Read(BinaryReader reader)
+        public class ReadResult
+        {
+            public List<Entity> Entities;
+            public List<GameObject> GameObjects;
+            public GameObject DataSetGameObject;
+        }
+
+        public ReadResult Read(BinaryReader reader)
         {
             var headerBytes = reader.ReadBytes(32);
             var entityCount = BitConverter.ToInt32(headerBytes, 8);
@@ -26,15 +34,38 @@ namespace Fox.Core
             this.stringTable = ReadStringTable(reader);
             reader.BaseStream.Seek(entityTableOffset, SeekOrigin.Begin);
 
+            var result = new ReadResult();
             var entities = new Dictionary<ulong, Entity>();
+            var gameObjects = new Dictionary<ulong, GameObject>();
             for (int i = 0; i < entityCount; i++)
             {
-                Entity entity = new DataSetFile2EntityReader(RequestEntityPtr, RequestEntityHandle, RequestEntityLink).Read(reader, this.CreateEntity, (hash) => this.stringTable[hash]);
+                var entity = new DataSetFile2EntityReader(RequestEntityPtr, RequestEntityHandle, RequestEntityLink).Read(reader, this.CreateEntity, (hash) => this.stringTable[hash]);
                 entities.Add(entity.Address, entity);
+
+                // Create GameObject
+                if (entity is DataElement)
+                {
+                    continue;
+                }
+
+                var gameObject = new GameObject();
+                if (entity is DataSet)
+                {
+                    gameObject.name = "DataSet";
+                    result.DataSetGameObject = gameObject;
+                    continue;
+                }
+
+                gameObjects.Add(entity.Address, gameObject);
+                var entityComponent = gameObject.AddComponent<FoxEntity>();
+                entityComponent.Entity = entity;
             }
 
-            this.ResolveRequests(entities);
-            return entities.Values.ToList();
+            this.ResolveRequests(entities, gameObjects);
+
+            result.Entities = entities.Values.ToList();
+            result.GameObjects = gameObjects.Values.ToList();
+            return result;
         }
 
         private static IDictionary<ulong, string> ReadStringTable(BinaryReader reader)
@@ -63,7 +94,7 @@ namespace Fox.Core
             return entityFactory.Create(this.stringTable[classNameHash], address, version, idA, idB);
         }
 
-        private void ResolveRequests(IDictionary<ulong, Entity> entities)
+        private void ResolveRequests(IDictionary<ulong, Entity> entities, IDictionary<ulong, GameObject> gameObjects)
         {
             foreach(var entityPtr in this.entityPtrRequests)
             {
@@ -78,11 +109,20 @@ namespace Fox.Core
 
             foreach (var entityHandle in this.entityHandleRequests)
             {
-                if (entities.ContainsKey(entityHandle.Key))
+                if (entities.ContainsKey(entityHandle.Key) && !(entities[entityHandle.Key] is DataSet))
                 {
+                    if (!gameObjects.ContainsKey(entityHandle.Key))
+                    {
+                        // Design issue here: DataElements with EntityHandles to other DataElements
+                        // This occurs in NavxAttributePathVolume due to the connections between GraphxSpatialGraphDataNode and GraphxSpatialGraphDataEdge
+                        // Not sure how to solve this just yet.
+                        UnityEngine.Debug.LogWarning("Requesting an EntityHandle to an Entity with no GameObject. This isn't currently supported.");
+                        continue;
+                    }
+
                     foreach (var request in entityHandle.Value)
                     {
-                        request.Reset(entities[entityHandle.Key]);
+                        request.Reset(gameObjects[entityHandle.Key].GetComponent<FoxEntity>());
                     }
                 }
                 else

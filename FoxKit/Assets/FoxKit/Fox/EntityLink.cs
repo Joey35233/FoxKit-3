@@ -33,7 +33,7 @@ namespace Fox.Core
         [SerializeField]
         private Fox.String nameInArchive;
 
-        public EntityLink(Entity entity, Path packagePath, Path archivePath, Fox.String nameInArchive)
+        public EntityLink(FoxEntity entity, Path packagePath, Path archivePath, Fox.String nameInArchive)
         {
             this.handle = EntityHandle.Get(entity);
             this.packagePath = packagePath;

@@ -8,23 +8,16 @@ namespace Fox.Core
     {
         public override void InitializeGameObject(GameObject gameObject)
         {
-            var transformEntity = this.transform;
-            if (transformEntity.Get() == null)
+            var transformEntity = this.transform.Get();
+            if (transformEntity == null)
             {
                 Debug.LogWarning($"{this.name}: transform is null");
                 return;
             }
 
-            gameObject.transform.position = transformEntity.Get().transform_translation;
-            gameObject.transform.rotation = transformEntity.Get().transform_rotation_quat;
-            gameObject.transform.localScale = transformEntity.Get().transform_scale;
-
-            // TODO spawn mesh
-            /*var visualizer = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            visualizer.transform.SetParent(gameObject.transform);
-            visualizer.transform.localPosition = Vector3.zero;
-            visualizer.transform.localRotation = Quaternion.identity;
-            visualizer.transform.localScale = Vector3.one;*/
+            gameObject.transform.position = transformEntity.transform_translation;
+            gameObject.transform.rotation = transformEntity.transform_rotation_quat;
+            gameObject.transform.localScale = transformEntity.transform_scale;
         }
     }
 }
