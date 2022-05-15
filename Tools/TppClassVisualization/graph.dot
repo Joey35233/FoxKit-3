@@ -1,0 +1,1462 @@
+graph
+{
+    node[shape = "box"]
+    peripheries=0
+
+Entity -- Data;
+subgraph cluster_Data
+{
+Data -- TransformData;
+subgraph cluster_TransformData
+{
+TransformData -- ShapeData;
+subgraph cluster_ShapeData
+{
+ShapeData -- SphereShape;
+ShapeData -- BoxShape;
+ShapeData -- CapsuleShape;
+}
+TransformData -- DataSetReference;
+TransformData -- Locator;
+subgraph cluster_Locator
+{
+Locator -- TppCheckPointLocator;
+}
+TransformData -- GeoShape;
+TransformData -- GeoPathUnit;
+TransformData -- GeoTrapCondition;
+subgraph cluster_GeoTrapCondition
+{
+GeoTrapCondition -- GeoTrapScriptCondition;
+GeoTrapCondition -- GeoTrapScriptModuleCondition;
+subgraph cluster_GeoTrapScriptModuleCondition
+{
+GeoTrapScriptModuleCondition -- CheckpointTrapScriptModuleCondition;
+}
+GeoTrapCondition -- GeoCheckModuleCondition;
+subgraph cluster_GeoCheckModuleCondition
+{
+GeoCheckModuleCondition -- GeoTrapExecScriptCondition;
+}
+GeoTrapCondition -- GeoModuleCondition;
+GeoTrapCondition -- SubtitlesTrapCondition;
+}
+TransformData -- GeoTrap;
+TransformData -- GeoTriggerTrap;
+TransformData -- GameObjectLocator;
+TransformData -- PointLight;
+TransformData -- DirectionalLight;
+TransformData -- SpotLight;
+TransformData -- Horizon;
+TransformData -- LightArray;
+TransformData -- Occluder;
+TransformData -- OccluderEx;
+TransformData -- OccluderArray;
+TransformData -- PhObject;
+TransformData -- PhSubObject;
+subgraph cluster_PhSubObject
+{
+PhSubObject -- PhRigidBody;
+PhSubObject -- PhShape;
+subgraph cluster_PhShape
+{
+PhShape -- PhPrimitiveShape;
+}
+PhSubObject -- PhConstraint;
+subgraph cluster_PhConstraint
+{
+PhConstraint -- PhBallsocketConstraint;
+PhConstraint -- PhHingeConstraint;
+PhConstraint -- PhShoulderConstraint;
+PhConstraint -- PhMultiShoulderConstraint;
+PhConstraint -- PhMultiHingeConstraint;
+PhConstraint -- PhStiffConstraint;
+PhConstraint -- PhCylinderConstraint;
+}
+}
+TransformData -- GkTacticalPoint;
+subgraph cluster_GkTacticalPoint
+{
+GkTacticalPoint -- TppCoverPoint;
+}
+TransformData -- GkTacticalAction;
+TransformData -- UiModelData;
+TransformData -- UiLayoutData;
+TransformData -- GraphxSpatialGraphData;
+subgraph cluster_GraphxSpatialGraphData
+{
+GraphxSpatialGraphData -- GraphxPathData;
+subgraph cluster_GraphxPathData
+{
+GraphxPathData -- GraphxPathVolume;
+subgraph cluster_GraphxPathVolume
+{
+GraphxPathVolume -- NavxNavFilterVolume;
+GraphxPathVolume -- NavxAttributePathVolume;
+}
+GraphxPathData -- GeoxPath;
+GraphxPathData -- GeoxPath2;
+GraphxPathData -- GeoxTrapAreaPath;
+GraphxPathData -- GkPathLineTarget;
+}
+}
+TransformData -- FxLocatorData;
+TransformData -- FxLocatorGroup;
+TransformData -- FxLocatorArrayData;
+TransformData -- SoundSource;
+subgraph cluster_SoundSource
+{
+SoundSource -- TppAmbientSoundSource;
+}
+TransformData -- GeoxPathPack;
+TransformData -- GeoxPartsTargetObject;
+subgraph cluster_GeoxPartsTargetObject
+{
+GeoxPartsTargetObject -- GeoxPartsTargetDefenseObject;
+GeoxPartsTargetObject -- GeoxPartsTargetOffenseObject;
+}
+TransformData -- GeoxPathWall;
+TransformData -- GeoxPolygonMarker;
+TransformData -- GeoxDynamicPolygon;
+TransformData -- GeoxDynamicBoundingVolumeArea;
+TransformData -- GeoxDynamicBoundingVolumeActivator;
+TransformData -- GeoxCollisionPrimitive;
+TransformData -- CollisionLocator;
+TransformData -- GeoxGeomSetLoader;
+TransformData -- GeoxCollisionFreeShape;
+TransformData -- GeoxCollisionPyraidFreeShape;
+TransformData -- NavxWorldGenerateParameter;
+TransformData -- NavxBounderData;
+subgraph cluster_NavxBounderData
+{
+NavxBounderData -- NavxSwitchBounderData;
+NavxBounderData -- NavxSquareGraphBounderData;
+}
+TransformData -- NavxBounderLocator;
+TransformData -- NavxNavFileLocator;
+TransformData -- NavxNavFilter;
+TransformData -- NavxKeepNavLocator;
+TransformData -- NavxHoleSimplificationParameterVolume;
+TransformData -- NavxFillNavVolume;
+TransformData -- NavxNavFileConnector;
+TransformData -- FxBaseLocator;
+TransformData -- DemoBlockPositionSetter;
+TransformData -- ProceduralDemoData;
+TransformData -- StaticModel;
+TransformData -- StaticModelArrayLocator;
+TransformData -- StageModel;
+TransformData -- Decal;
+TransformData -- DecalArray;
+TransformData -- TerrainRender;
+TransformData -- Terrain;
+TransformData -- LevelingTerrain;
+TransformData -- TerrainHole;
+TransformData -- TerrainDecal;
+TransformData -- ObjectBrush;
+TransformData -- EnvironmentArea;
+subgraph cluster_EnvironmentArea
+{
+EnvironmentArea -- WindArea;
+}
+TransformData -- DemoData;
+TransformData -- TppWaterBounding;
+TransformData -- TppDemoIntelligenceObject;
+TransformData -- TppOcean;
+TransformData -- TppDamageFilterParam;
+TransformData -- TppStar;
+TransformData -- TppSky;
+TransformData -- TppFootPrint;
+TransformData -- TppRainFilterInterruptTrans;
+TransformData -- TppLensFlareRootBase;
+subgraph cluster_TppLensFlareRootBase
+{
+TppLensFlareRootBase -- TppLensFlareRoot;
+TppLensFlareRootBase -- TppHandLightLensFlareRoot;
+}
+TransformData -- TppLensFlareShape;
+subgraph cluster_TppLensFlareShape
+{
+TppLensFlareShape -- TppLensFlareShapeArray;
+TppLensFlareShape -- TppLensFlareShapeCircle;
+}
+TransformData -- TppSunLightFlare;
+TransformData -- TppAreaVolumetricFog;
+TransformData -- TppSprintBlurData;
+TransformData -- TppLightProbe;
+TransformData -- TppLightProbeArray;
+TransformData -- TppPointLight;
+TransformData -- TppSpotLight;
+TransformData -- TppLadderData;
+TransformData -- TppCoverPointFileTransform;
+TransformData -- TppCombatLocatorData;
+TransformData -- TppGuardTargetData;
+TransformData -- MotherBaseConstructData;
+TransformData -- MotherBaseConstructLocator;
+TransformData -- MotherBaseConstructDivisionLocator;
+TransformData -- MotherBaseConstructConnectLocator;
+TransformData -- TppLandingZoneData;
+TransformData -- TppSnipePoint2Data;
+TransformData -- TppSearchMissilePointData;
+TransformData -- TppHidePointData;
+}
+Data -- DataSet;
+Data -- DataIdentifier;
+Data -- StageBlockControllerData;
+Data -- PassiveBlockControllerData;
+Data -- BlockGroupData;
+Data -- Group;
+Data -- Material;
+Data -- FoxDataLinkCollectorData;
+Data -- ScriptBlockScript;
+Data -- ScriptBlockData;
+Data -- EventDataUnit;
+Data -- FacialSettingData;
+Data -- TerrainMaterialConfigration;
+Data -- GrFilmicTonemap;
+Data -- GameObject;
+Data -- BlockScript;
+Data -- GrPluginSettings;
+Data -- ColorCorrectionData;
+Data -- GlobalCameraSettings;
+Data -- AmbientOcclusionSettings;
+Data -- GrReflectionSetting;
+Data -- PhObjectDesc;
+Data -- UiCameraData;
+Data -- UiAnimData;
+Data -- UiPaletteData;
+Data -- UiReplaceTextureData;
+Data -- UiAnimWorkMemoryData;
+Data -- UiFontData;
+Data -- UiFontGroupData;
+Data -- UiInstanceData;
+Data -- UiGraphEntry;
+subgraph cluster_UiGraphEntry
+{
+UiGraphEntry -- SubtitlesGenerator;
+}
+Data -- UiNodeData;
+subgraph cluster_UiNodeData
+{
+UiNodeData -- UiEventNode;
+subgraph cluster_UiEventNode
+{
+UiEventNode -- EvSubtitlesNode;
+UiEventNode -- EvControlSubtitlesNode;
+}
+UiNodeData -- UiActionNode;
+UiNodeData -- UiOperationNode;
+}
+Data -- UiEdgeData;
+Data -- LangData;
+Data -- SoundPackage;
+Data -- SoundDataFileInfo;
+Data -- SoundAreaGlobal;
+Data -- SoundAreaGroup;
+Data -- SoundAreaMember;
+Data -- SoundAreaEdge;
+Data -- SoundPhysicsParameter;
+Data -- PhxAssociation;
+Data -- PhxVehicleNormalEngine;
+Data -- PhxVehicleTransmission;
+Data -- PhxVehicleAxis;
+Data -- GeoxTextureMaterialRegister;
+Data -- GeoxPartsTargetUnit;
+Data -- GeoxPartsTargetExtension;
+Data -- GeoxTargetDesc;
+Data -- GeoxTargetApplicationData;
+Data -- GeoxPartsTargetFollowSkeleton;
+Data -- GeoxBoundingVolumeFileParameter;
+Data -- GeoxBoundingVolumeFileParameterLarge;
+Data -- NavxNavBlock;
+Data -- SimObject;
+subgraph cluster_SimObject
+{
+SimObject -- SimOnPhysics;
+}
+Data -- SimClothSettingData;
+Data -- DesParamData;
+Data -- DesEffectData;
+Data -- DesFixData;
+Data -- DemoModelDataNode;
+Data -- DemoFileProxy;
+Data -- StaticModelArray;
+Data -- StaticModelArrayLinkTarget;
+Data -- StaticModelArrayPathFilter;
+subgraph cluster_StaticModelArrayPathFilter
+{
+StaticModelArrayPathFilter -- TppPermeableStaticModel;
+StaticModelArrayPathFilter -- TppThermalStaticModel;
+}
+Data -- OpticalCamo;
+Data -- OverlayModel;
+Data -- TerrainDecalPack;
+Data -- TerrainBlock;
+Data -- ObjectBrushBlock;
+Data -- ObjectBrushPlugin;
+subgraph cluster_ObjectBrushPlugin
+{
+ObjectBrushPlugin -- ObjectBrushPluginStaticModel;
+ObjectBrushPlugin -- ObjectBrushPluginClone;
+subgraph cluster_ObjectBrushPluginClone
+{
+ObjectBrushPluginClone -- TppObjectBrushPluginBush;
+ObjectBrushPluginClone -- TppObjectBrushPluginFlutteringGrass;
+}
+ObjectBrushPlugin -- TppObjectBrushPluginSkeletonModel;
+}
+Data -- ViewGroupControlCondition;
+Data -- GkSmartObject;
+Data -- GkSmartObjectSet;
+Data -- SubtitlesPackage;
+Data -- SubtitlesBlockControllerData;
+Data -- SubtitlesOptionBlockControllerData;
+Data -- EnvironmentGlobal;
+subgraph cluster_EnvironmentGlobal
+{
+EnvironmentGlobal -- WindGlobal;
+}
+Data -- GameScript;
+Data -- GkEventTimerData;
+Data -- Watermark;
+Data -- StageBlockLowModel;
+Data -- StageLightFadeData;
+Data -- TexturePackLoadConditioner;
+Data -- PartDescription;
+subgraph cluster_PartDescription
+{
+PartDescription -- ModelDescription;
+subgraph cluster_ModelDescription
+{
+ModelDescription -- DestructionModelDescription;
+ModelDescription -- ConnectModelDescription;
+ModelDescription -- CoverModelDescription;
+ModelDescription -- FoxOffsetModelDescription;
+}
+PartDescription -- EffectDescription;
+PartDescription -- BounderDescription;
+PartDescription -- GeomDescription;
+PartDescription -- GeomSkeletonDescription;
+PartDescription -- FoxTargetDescription;
+PartDescription -- PhysicsDescription;
+PartDescription -- SimDescription;
+PartDescription -- SoundDescription;
+PartDescription -- ClothDescription;
+PartDescription -- VehicleDescription;
+PartDescription -- FileResourceDescription;
+}
+Data -- TppDefaultParameterContainer;
+subgraph cluster_TppDefaultParameterContainer
+{
+TppDefaultParameterContainer -- TppDefaultParameter;
+}
+Data -- TppLocationInformationData;
+Data -- TppLocationData;
+Data -- VideoPlayerMemoryBlock;
+Data -- DemoStreamAnimation;
+Data -- DemoResource;
+Data -- DemoxEffectMemoryPoolData;
+Data -- TppSoundWorld;
+Data -- TppAmbientParameter;
+Data -- TppMusicParameter;
+Data -- MusicFader;
+Data -- TppMarshModelPrimitive;
+Data -- TppPrimRiverModel;
+Data -- TppPrimRiverModelParam;
+Data -- TppPrimRiverModelTwoLayer;
+Data -- TppPrimRiverModelParamTwoLayer;
+Data -- TppPrimRiverModelOverlay;
+Data -- TppPrimRiverModelParamOverlay;
+Data -- TppWaterRippleViewport;
+Data -- TppFocusBokehFilterData;
+Data -- TppEyelidFilterData;
+Data -- TppWeatherParasiteUnitParam;
+Data -- TppWeatherSandStormData;
+Data -- TppHeatHaze;
+Data -- TppDroplets;
+Data -- TppFireLights;
+Data -- TppFirePropagationLights;
+Data -- TppGrenadeShock;
+Data -- TppSandWind;
+Data -- TppFourierOcean;
+Data -- TppWaterDropsOnCameraLens;
+Data -- TppVfxFileLoader;
+Data -- TppTextureLoader;
+Data -- TppNvgFilterNoise;
+Data -- TppModelMarkerFilterSettings;
+Data -- TppDamageFilterExposure;
+Data -- TppCollectibleIndicationParam;
+Data -- TppSkyEffectControler;
+Data -- TppWeatherCloudShadowSettings;
+Data -- TppWeatherRainData;
+Data -- TppWeatherThunder;
+Data -- TppSkyClouds3;
+Data -- TppDirtyModelData;
+Data -- TppRainFilter;
+Data -- TppRainFilterInterrupt;
+Data -- TppFloorRainSplashData;
+Data -- TppLensFlareMaterial;
+Data -- TppLensFlareField;
+subgraph cluster_TppLensFlareField
+{
+TppLensFlareField -- TppLensFlareAsymmetricField;
+}
+Data -- TppLensFlareRateGraph;
+Data -- TppTonemap;
+Data -- TppGlobalVolumetricFog;
+Data -- TppLightProbeSHCoefficients;
+Data -- TppAtmosphere;
+Data -- TppOutOfMissionRangeEffect;
+Data -- TppNightVision;
+Data -- MbdvcBootData;
+Data -- HudBootData;
+Data -- TppLadderManagerData;
+Data -- TppLadderEntryPointData;
+Data -- TppSharedGimmickData;
+Data -- TppGimmickLightLinkSetData;
+Data -- TppGimmickPowerCutAreaData;
+Data -- TppGimmickElectricCableLinkSetData;
+Data -- TppGimmickBrokenElectricCableBank;
+Data -- TppGimmickBrokenCandleBank;
+Data -- TppGimmickLightGroupingLinkSetData;
+Data -- TppPermanentGimmickData;
+Data -- TppPermanentGimmickBank;
+Data -- TppGimmickImmediateStateData;
+Data -- TppObjectBrushPluginBushData;
+Data -- TppObjectBrushSkeletonModelDestructionResource;
+Data -- TppObjectBrushSkeletonModelReserveResource;
+Data -- TppCombatLocatorSetData;
+Data -- CyprusBlockControllerData;
+Data -- CyprusBlockLoadFileData;
+Data -- CyprusMissionControllerData;
+Data -- TppAdditionalSearchableLightData;
+Data -- EmblemBlender;
+Data -- MotherBaseConstructConnectionData;
+Data -- MotherBaseReplaceTextureData;
+Data -- LuxuryBlockControllerData;
+Data -- TppPlayer2BlockControllerData;
+Data -- TppPlayer2AdditionalMotionBlockData;
+Data -- TppPlayer2AdditionalMtarData;
+Data -- TppPlayer2AdditionalPartsBlockData;
+Data -- TppVehicle2BodyData;
+Data -- TppVehicle2AttachmentData;
+Data -- TppVehicle2ReliefData;
+Data -- TppBuddy2BlockControllerData;
+Data -- TppCollectionLocatorArray;
+Data -- TppDecoyAssetsLoader;
+Data -- TppNoiseArea2;
+Data -- AvatarEditorSetupData;
+Data -- TppSimpleMissionData;
+Data -- TppSimpleMissionBlockControllerData;
+Data -- RadioData;
+Data -- TppSpeechData;
+Data -- TppMotherBaseStageBlockControllerData;
+Data -- TppMotherBaseStageClusterParameterData;
+}
+Entity -- DataElement;
+subgraph cluster_DataElement
+{
+DataElement -- TransformRTEntity;
+DataElement -- TransformEntity;
+DataElement -- ShearTransformEntity;
+DataElement -- PivotTransformEntity;
+DataElement -- TimeSection;
+DataElement -- ParameterMaskElement;
+DataElement -- FacialMaskElement;
+DataElement -- GeoTrapModuleCallbackDataElement;
+subgraph cluster_GeoTrapModuleCallbackDataElement
+{
+GeoTrapModuleCallbackDataElement -- GeoTrapScriptCallbackDataElement;
+GeoTrapModuleCallbackDataElement -- SoundSourceTrapParameter;
+GeoTrapModuleCallbackDataElement -- FoxTrapExecViewGroupControlCallbackDataElement;
+GeoTrapModuleCallbackDataElement -- TppRequestWeatherTagTrapExecDataElement;
+GeoTrapModuleCallbackDataElement -- TppCheckPointTrapExecDataElement;
+GeoTrapModuleCallbackDataElement -- TppTrapChangeEventSequenceCallbackDataElement;
+GeoTrapModuleCallbackDataElement -- TppTrapLockEventSequenceCallbackDataElement;
+GeoTrapModuleCallbackDataElement -- TppTrapExecChangeGlobalWindCallbackDataElement;
+GeoTrapModuleCallbackDataElement -- TppReflectionSettingTrapCallbackDataElement;
+GeoTrapModuleCallbackDataElement -- TppTrapExecThunderLightningCallbackDataElement;
+GeoTrapModuleCallbackDataElement -- TppTrapExecChangeVolumetricFogCallbackDataElement;
+GeoTrapModuleCallbackDataElement -- TppTrapExecOnOffVolumetricFogCallbackDataElement;
+GeoTrapModuleCallbackDataElement -- TppTrapRainFilterCallbackDataElement;
+GeoTrapModuleCallbackDataElement -- TppTrapCheckIsInViewCallbackDataElement;
+GeoTrapModuleCallbackDataElement -- TppTrapCheckIsInCameraCallbackDataElement;
+GeoTrapModuleCallbackDataElement -- TppTrapExecEnvironmentMotionCallbackDataElement;
+GeoTrapModuleCallbackDataElement -- TppTrapExecDamageCallbackDataElement;
+GeoTrapModuleCallbackDataElement -- TppTrapCheckIsCharacterCallbackDataElement;
+GeoTrapModuleCallbackDataElement -- TppTrapCheckIsCharacterWithIdCallbackDataElement;
+GeoTrapModuleCallbackDataElement -- TppTrapCheckIsPlayerCallbackDataElement;
+GeoTrapModuleCallbackDataElement -- TppTrapCheckCanSaveAsCheckPointCallbackDataElement;
+GeoTrapModuleCallbackDataElement -- TppTrapCheckIsEnemyCallbackDataElement;
+GeoTrapModuleCallbackDataElement -- TppTrapCheckIsHostageCallbackDataElement;
+GeoTrapModuleCallbackDataElement -- TppTrapCheckIsPushPadCallbackDataElement;
+GeoTrapModuleCallbackDataElement -- TppTrapCheckIsPlayerAndHostCallbackDataElement;
+GeoTrapModuleCallbackDataElement -- TppTrapCheckIsPlayerAndLocalCallbackDataElement;
+GeoTrapModuleCallbackDataElement -- TrapCheckCharacterFilterParam;
+GeoTrapModuleCallbackDataElement -- TppTrapCheckIsPlayerAliveCallbackDataElement;
+GeoTrapModuleCallbackDataElement -- TrapExecChangeLodSkeletonModelParam;
+GeoTrapModuleCallbackDataElement -- TppTrapExecLostHostageCallbackDataElement;
+GeoTrapModuleCallbackDataElement -- TppTrapExecCombatLocatorCallbackDataElement;
+}
+DataElement -- GkTacticalObjectDesc;
+DataElement -- GkTacticalActionEdge;
+DataElement -- GkTacticalActionWaypoint;
+DataElement -- UiModelNodeElement;
+DataElement -- UiFontDataElement;
+DataElement -- GraphxSpatialGraphDataNode;
+subgraph cluster_GraphxSpatialGraphDataNode
+{
+GraphxSpatialGraphDataNode -- GeoxPathNode;
+}
+DataElement -- GraphxSpatialGraphDataEdge;
+subgraph cluster_GraphxSpatialGraphDataEdge
+{
+GraphxSpatialGraphDataEdge -- GeoxPathEdge;
+}
+DataElement -- SoundAreaParameter;
+DataElement -- SoundAreaEdgeParameter;
+subgraph cluster_SoundAreaEdgeParameter
+{
+SoundAreaEdgeParameter -- TppAreaEdgeParameter;
+}
+DataElement -- PhxAssociationUnitElement;
+subgraph cluster_PhxAssociationUnitElement
+{
+PhxAssociationUnitElement -- SimAssociationUnit;
+}
+DataElement -- NavxNavigableParameter;
+DataElement -- NavxAttributeInfo;
+DataElement -- SimEngineOnPhysicsDefaultInfo;
+DataElement -- SimControlElement;
+subgraph cluster_SimControlElement
+{
+SimControlElement -- SimWindControl;
+SimControlElement -- SimGravityControl;
+SimControlElement -- SimInertialControl;
+SimControlElement -- SimDirectionControl;
+SimControlElement -- SimClothControl;
+SimControlElement -- SimHitGroupControl;
+}
+DataElement -- SimClothControlUnit;
+DataElement -- PartsDesc;
+DataElement -- ClipData;
+DataElement -- DemoParameter;
+subgraph cluster_DemoParameter
+{
+DemoParameter -- DemoRelativePlayParameter;
+DemoParameter -- TppDemoParameter;
+DemoParameter -- TppInGameDemoParameter;
+DemoParameter -- TppDemoPlayerResourceParameter;
+DemoParameter -- TppFuneralDemoParameter;
+DemoParameter -- TppTakePictureParameter;
+DemoParameter -- ChildrenIdConvertParameter;
+DemoParameter -- AvatarPhotoTextureLoadParameter;
+}
+DataElement -- DemoControlCharacterDesc;
+DataElement -- EnvironmentParameter;
+subgraph cluster_EnvironmentParameter
+{
+EnvironmentParameter -- WindParameter;
+}
+DataElement -- TppDefaultParameterElement;
+DataElement -- DemoDynamicFileChangeModel;
+DataElement -- DemoFv2ResourceMemory;
+DataElement -- TppSkyClouds3Param;
+DataElement -- TppGlobalVolumetricFogParam;
+DataElement -- TppAreaVolumetricFogParam;
+DataElement -- TppNightVisionParam;
+DataElement -- TppPermanentGimmickSearchLightParameter;
+DataElement -- TppPermanentGimmickGatlingGunParameter;
+DataElement -- TppPermanentGimmickFultonableContainerParameter;
+DataElement -- TppPermanentGimmickImportantBreakableParameter;
+DataElement -- TppPermanentGimmickMortarParameter;
+DataElement -- TppPermanentGimmickMachineGunParameter;
+DataElement -- TppPermanentGimmickDoorParameter;
+DataElement -- TppPermanentGimmickInfraredSensorParameter;
+DataElement -- TppPermanentGimmickEventAnimationParameter;
+DataElement -- TppPermanentGimmickBridgeParameter;
+DataElement -- TppPermanentGimmickWaterTowerParameter;
+DataElement -- BushLodParameter;
+DataElement -- ObjectBrushPluginBushDataElement;
+DataElement -- TppSampleGameObjectParameter;
+DataElement -- TppSampleGameObjectLocatorParameter;
+DataElement -- TppPlayer2Parameter;
+DataElement -- TppPlayer2LocatorParameter;
+DataElement -- TppHorse2Parameter;
+DataElement -- TppHorse2LocatorParameter;
+DataElement -- TppSoldier2Parameter;
+DataElement -- TppSoldier2LocatorParameter;
+DataElement -- TppHostage2Parameter;
+DataElement -- TppHostage2LocatorParameter;
+DataElement -- TppVehicle2Parameter;
+DataElement -- TppVehicle2LocatorParameter;
+DataElement -- TppVehicle2WeaponParameter;
+DataElement -- TppHeli2Parameter;
+DataElement -- TppHeli2LocatorParameter;
+DataElement -- TppBuddyQuiet2Parameter;
+DataElement -- TppBuddyQuiet2LocatorParameter;
+DataElement -- TppBossQuiet2Parameter;
+DataElement -- TppBossQuiet2LocatorParameter;
+DataElement -- TppBuddyDog2Parameter;
+DataElement -- TppBuddyDog2LocatorParameter;
+DataElement -- TppBuddyPuppyParameter;
+DataElement -- TppBuddyPuppyLocatorParameter;
+DataElement -- TppUavParameter;
+DataElement -- TppUavLocatorParameter;
+DataElement -- TppSahelan2Parameter;
+DataElement -- TppSahelan2LocatorParameter;
+DataElement -- TppParasite2Parameter;
+DataElement -- TppParasite2LocatorParameter;
+DataElement -- TppLiquid2Parameter;
+DataElement -- TppLiquid2LocatorParameter;
+DataElement -- TppVolgin2Parameter;
+DataElement -- TppVolgin2LocatorParameter;
+DataElement -- TppSecurityCamera2Parameter;
+DataElement -- TppSecurityCamera2LocatorParameter;
+DataElement -- TppCorpseParameter;
+DataElement -- TppCorpseLocatorParameter;
+DataElement -- TppMbQuietParameter;
+DataElement -- TppMbQuietLocatorParameter;
+DataElement -- TppWalkerGear2Parameter;
+DataElement -- TppWalkerGear2LocatorParameter;
+DataElement -- TppAnimalParameter;
+DataElement -- TppAnimalLocatorParameter;
+DataElement -- TppBirdParameter2;
+DataElement -- TppBirdLocatorParameter2;
+DataElement -- TppRat2Parameter;
+DataElement -- TppRat2LocatorParameter;
+DataElement -- TppWolfParameter;
+DataElement -- TppWolfLocatorParameter;
+DataElement -- TppBearParameter;
+DataElement -- TppBearLocatorParameter;
+DataElement -- TppHorse2forVrParameter;
+DataElement -- TppHorse2forVrLocatorParameter;
+DataElement -- TppVolgin2forVrParameter;
+DataElement -- TppVolgin2forVrLocatorParameter;
+DataElement -- TppPickableLocatorParameter;
+DataElement -- TppPlacedLocatorParameter;
+DataElement -- TppMarker2LocatorSystemParameter;
+DataElement -- TppMarker2LocatorParameter;
+DataElement -- TppEspionageRadioSystemParameter;
+DataElement -- TppEspionageRadioLocatorParameter;
+DataElement -- TppMotherBaseContainerParameter;
+DataElement -- TppMotherBaseContainerLocatorParameter;
+}
+Entity -- Actor;
+subgraph cluster_Actor
+{
+Actor -- Scene;
+Actor -- Application;
+Actor -- Game;
+Actor -- GrDaemon;
+Actor -- PeriodicActor;
+Actor -- PauseController;
+Actor -- FoxFadeIo;
+Actor -- TppPauseMenu;
+Actor -- TppHiSpeedDustActor;
+}
+Entity -- ComponentSet;
+subgraph cluster_ComponentSet
+{
+ComponentSet -- PointComponentSet;
+ComponentSet -- LineSegmentComponentSet;
+ComponentSet -- TransformComponentSet;
+}
+Entity -- ComponentInsertionInfo;
+subgraph cluster_ComponentInsertionInfo
+{
+ComponentInsertionInfo -- GraphxPathVertexInsertionInfo;
+}
+Entity -- Script;
+subgraph cluster_Script
+{
+Script -- SafeScript;
+}
+Entity -- Bucket;
+Entity -- BucketCollector;
+Entity -- EntityClassDictionary;
+Entity -- PropertyValueEntity;
+subgraph cluster_PropertyValueEntity
+{
+PropertyValueEntity -- Int8Entity;
+PropertyValueEntity -- UInt8Entity;
+PropertyValueEntity -- Int16Entity;
+PropertyValueEntity -- UInt16Entity;
+PropertyValueEntity -- Int32Entity;
+PropertyValueEntity -- UInt32Entity;
+PropertyValueEntity -- Int64Entity;
+PropertyValueEntity -- UInt64Entity;
+PropertyValueEntity -- FloatEntity;
+PropertyValueEntity -- DoubleEntity;
+PropertyValueEntity -- BoolEntity;
+PropertyValueEntity -- StringEntity;
+PropertyValueEntity -- PathEntity;
+PropertyValueEntity -- EntityPtrEntity;
+PropertyValueEntity -- Vector3Entity;
+PropertyValueEntity -- Vector4Entity;
+PropertyValueEntity -- QuatEntity;
+PropertyValueEntity -- Matrix3Entity;
+PropertyValueEntity -- Matrix4Entity;
+PropertyValueEntity -- ColorEntity;
+PropertyValueEntity -- FilePtrEntity;
+PropertyValueEntity -- EntityHandleEntity;
+PropertyValueEntity -- EntityLinkEntity;
+PropertyValueEntity -- WideVector3Entity;
+}
+Entity -- UInt32ArrayEntity;
+Entity -- StringArrayEntity;
+Entity -- EntityPtrArrayEntity;
+Entity -- EntityHandleArrayEntity;
+Entity -- UInt32ListEntity;
+Entity -- StringListEntity;
+Entity -- EntityPtrListEntity;
+Entity -- EntityHandleListEntity;
+Entity -- StringStringMapEntity;
+Entity -- EntityPtrStringMapEntity;
+Entity -- TagContainerEntity;
+Entity -- File;
+subgraph cluster_File
+{
+File -- RawFile;
+subgraph cluster_RawFile
+{
+RawFile -- StageBlockFile;
+RawFile -- ConnectPointFile;
+RawFile -- RigFile;
+RawFile -- GaniBaseFile;
+subgraph cluster_GaniBaseFile
+{
+GaniBaseFile -- MtFile;
+}
+RawFile -- EvbFile;
+RawFile -- MtarFile;
+RawFile -- CaarFile;
+RawFile -- SandFile;
+RawFile -- GeoGeomFile;
+RawFile -- GeoGsklFile;
+RawFile -- GeoTrapFile;
+RawFile -- GeoBoundingVolumeFile;
+RawFile -- GeoPathFixedPackFile;
+RawFile -- RailFile;
+RawFile -- RailUniqueIdFile;
+RawFile -- TerrainTileFile;
+RawFile -- TerrainFile;
+RawFile -- FmdlFile;
+RawFile -- NavNavFile;
+RawFile -- LightArrayFile;
+RawFile -- OccluderArrayFile;
+RawFile -- MogFile;
+RawFile -- TexListFile;
+RawFile -- LangFile;
+RawFile -- FxVfxBinaryFile;
+RawFile -- HelpBoneFile;
+RawFile -- FoxTerrainDecalPackFile;
+RawFile -- LadbFile;
+RawFile -- SubtitlesPackageFile;
+RawFile -- FormVariationFile2;
+RawFile -- ParametersFile;
+RawFile -- TppAmbientFile;
+RawFile -- PrecomputeSkyFile;
+RawFile -- EndingSettingFile;
+RawFile -- CoverPointFile;
+RawFile -- MotherBaseLayoutFile;
+RawFile -- TppSpeechFile;
+RawFile -- MotherBaseStageSetupFile;
+}
+File -- EntityFile;
+subgraph cluster_EntityFile
+{
+EntityFile -- DataSetFile2;
+subgraph cluster_DataSetFile2
+{
+DataSetFile2 -- EvfFile;
+DataSetFile2 -- FxVfxFile;
+DataSetFile2 -- SoundDataFile;
+}
+}
+File -- DataSetFile;
+File -- ScriptFile;
+}
+Entity -- DataBody;
+subgraph cluster_DataBody
+{
+DataBody -- CallbackProcedureDataBody;
+subgraph cluster_CallbackProcedureDataBody
+{
+CallbackProcedureDataBody -- CallbackProcedureTransformDataBody;
+}
+DataBody -- TransformDataBody;
+subgraph cluster_TransformDataBody
+{
+TransformDataBody -- ShapeDataBody;
+subgraph cluster_ShapeDataBody
+{
+ShapeDataBody -- SphereShapeBody;
+ShapeDataBody -- BoxShapeBody;
+ShapeDataBody -- CapsuleShapeBody;
+}
+TransformDataBody -- DataSetReferenceBody;
+TransformDataBody -- LocatorBody;
+TransformDataBody -- GeoShapeBody;
+TransformDataBody -- GeoPathUnitBody;
+TransformDataBody -- GeoTrapConditionBody;
+subgraph cluster_GeoTrapConditionBody
+{
+GeoTrapConditionBody -- GeoTrapScriptConditionBody;
+GeoTrapConditionBody -- GeoTrapScriptModuleConditionBody;
+subgraph cluster_GeoTrapScriptModuleConditionBody
+{
+GeoTrapScriptModuleConditionBody -- CheckpointTrapScriptModuleConditionBody;
+}
+GeoTrapConditionBody -- GeoCheckModuleConditionBody;
+subgraph cluster_GeoCheckModuleConditionBody
+{
+GeoCheckModuleConditionBody -- GeoTrapExecScriptConditionBody;
+}
+GeoTrapConditionBody -- GeoModuleConditionBody;
+GeoTrapConditionBody -- SubtitlesTrapConditionBody;
+}
+TransformDataBody -- GeoTrapBody;
+TransformDataBody -- GameObjectLocatorBody;
+TransformDataBody -- PointLightBody;
+TransformDataBody -- DirectionalLightBody;
+TransformDataBody -- SpotLightBody;
+TransformDataBody -- HorizonBody;
+TransformDataBody -- LightArrayBody;
+TransformDataBody -- GrxOccluderBody;
+TransformDataBody -- GrxOccluderExBody;
+TransformDataBody -- OccluderArrayBody;
+TransformDataBody -- GkTacticalPointBody;
+subgraph cluster_GkTacticalPointBody
+{
+GkTacticalPointBody -- TppCoverPointBody;
+}
+TransformDataBody -- GkTacticalActionBody;
+TransformDataBody -- UiModelDataBody;
+TransformDataBody -- UiLayoutDataBody;
+TransformDataBody -- GraphxSpatialGraph;
+subgraph cluster_GraphxSpatialGraph
+{
+GraphxSpatialGraph -- GraphxPath;
+subgraph cluster_GraphxPath
+{
+GraphxPath -- GraphxPathVolumeBody;
+subgraph cluster_GraphxPathVolumeBody
+{
+GraphxPathVolumeBody -- NavxNavFilterVolumeBody;
+GraphxPathVolumeBody -- NavxAttributePathVolumeBody;
+}
+GraphxPath -- GeoxPathBody;
+GraphxPath -- GeoxPath2Body;
+GraphxPath -- GeoxTrapAreaPathBody;
+GraphxPath -- GkPathLineTargetBody;
+}
+}
+TransformDataBody -- FxLocator;
+TransformDataBody -- LocatorGroupBody;
+TransformDataBody -- FxLocatorArrayDataBody;
+TransformDataBody -- SoundSourceBody;
+subgraph cluster_SoundSourceBody
+{
+SoundSourceBody -- TppAmbientSourceBody;
+}
+TransformDataBody -- GeoxPathPackBody;
+TransformDataBody -- GeoxPartsTargetObjectBody;
+subgraph cluster_GeoxPartsTargetObjectBody
+{
+GeoxPartsTargetObjectBody -- GeoxPartsTargetDefenseObjectBody;
+GeoxPartsTargetObjectBody -- GeoxPartsTargetOffenseObjectBody;
+}
+TransformDataBody -- GeoxPathWallBody;
+TransformDataBody -- GeoxPolygonMarkerBody;
+TransformDataBody -- GeoxDynamicPolygonBody;
+TransformDataBody -- GeoxCollisionPrimitiveBody;
+TransformDataBody -- GeoxGeomSetLoaderBody;
+TransformDataBody -- GeoxCollisionFreeShapeBody;
+TransformDataBody -- GeoxCollisionPyraidFreeShapeBody;
+TransformDataBody -- NavxWorldGenerateParameterBody;
+TransformDataBody -- NavxBounderDataBody;
+subgraph cluster_NavxBounderDataBody
+{
+NavxBounderDataBody -- NavxSwitchBounderDataBody;
+NavxBounderDataBody -- NavxSquareGraphBounderDataBody;
+}
+TransformDataBody -- NavxBounderLocatorBody;
+TransformDataBody -- NavxNavFileLocatorBody;
+TransformDataBody -- NavxNavFilterBody;
+TransformDataBody -- NavxKeepNavLocatorBody;
+TransformDataBody -- NavxHoleSimplificationParameterVolumeBody;
+TransformDataBody -- NavxFillNavVolumeBody;
+TransformDataBody -- NavxNavFileConnectorBody;
+TransformDataBody -- BaseLocatorBody;
+TransformDataBody -- DemoBlockPositionSetterBody;
+TransformDataBody -- StaticModelBody;
+TransformDataBody -- StaticModelArrayLocatorBody;
+TransformDataBody -- StageModelBody;
+TransformDataBody -- DecalBody;
+TransformDataBody -- DecalArrayBody;
+TransformDataBody -- TerrainRenderBody;
+TransformDataBody -- TerrainBody;
+TransformDataBody -- LevelingTerrainBody;
+TransformDataBody -- TerrainHoleBody;
+TransformDataBody -- TerrainDecalBody;
+TransformDataBody -- ObjectBrushBody;
+TransformDataBody -- EnvironmentAreaBody;
+subgraph cluster_EnvironmentAreaBody
+{
+EnvironmentAreaBody -- WindAreaBody;
+}
+TransformDataBody -- DemoDataBody;
+TransformDataBody -- TppFootPrintBody;
+TransformDataBody -- TppRainFilterInterruptTransBody;
+TransformDataBody -- TppLensFlareRootBody;
+TransformDataBody -- TppHandLightLensFlareRootBody;
+TransformDataBody -- TppLensFlareShapeBody;
+subgraph cluster_TppLensFlareShapeBody
+{
+TppLensFlareShapeBody -- TppLensFlareShapeCircleBody;
+}
+TransformDataBody -- TppAreaVolumetricFogBody;
+TransformDataBody -- TppLightProbeBody;
+TransformDataBody -- TppLightProbeArrayBody;
+TransformDataBody -- TppPointLightBody;
+TransformDataBody -- TppSpotLightBody;
+TransformDataBody -- TppLadderDataBody;
+TransformDataBody -- TppCombatLocatorDataBody;
+TransformDataBody -- TppGuardTargetDataBody;
+TransformDataBody -- MotherBaseConstructDataBody;
+TransformDataBody -- MotherBaseConstructLocatorBody;
+TransformDataBody -- MotherBaseConstructDivisionLocatorBody;
+TransformDataBody -- MotherBaseConstructConnectLocatorBody;
+TransformDataBody -- TppLandingZoneDataBody;
+TransformDataBody -- TppSnipePoint2DataBody;
+TransformDataBody -- TppSearchMissilePointDataBody;
+TransformDataBody -- TppHidePointDataBody;
+}
+DataBody -- DataBodySet;
+DataBody -- StageBlockControllerDataBody;
+DataBody -- PassiveBlockController;
+DataBody -- BlockGroup;
+DataBody -- MaterialBody;
+DataBody -- FoxDataLinkCollectorDataBody;
+DataBody -- FilmicTonemapBody;
+DataBody -- GameObjectDataBody;
+DataBody -- BlockScriptBody;
+DataBody -- PluginSettingsBody;
+DataBody -- ColorCorrection;
+DataBody -- GlobalCameraSettingsBody;
+DataBody -- AmbientOcclusionSettingsBody;
+DataBody -- ReflectionSettingBody;
+DataBody -- UiCameraDataBody;
+DataBody -- UiAnimDataBody;
+DataBody -- UiPaletteDataBody;
+DataBody -- UiAnimWorkMemoryDataBody;
+DataBody -- UiFontDataBody;
+DataBody -- UiFontGroupDataBody;
+DataBody -- UiGraphEntryBody;
+subgraph cluster_UiGraphEntryBody
+{
+UiGraphEntryBody -- SubtitlesGeneratorBody;
+}
+DataBody -- UiNodeDataBody;
+subgraph cluster_UiNodeDataBody
+{
+UiNodeDataBody -- UiEventNodeBody;
+subgraph cluster_UiEventNodeBody
+{
+UiEventNodeBody -- EvSubtitlesNodeBody;
+UiEventNodeBody -- EvControlSubtitlesNodeBody;
+}
+UiNodeDataBody -- UiActionNodeBody;
+UiNodeDataBody -- UiOperationNodeBody;
+}
+DataBody -- UiEdgeDataBody;
+DataBody -- LangDataBody;
+DataBody -- SoundPackageBody;
+DataBody -- SoundAreaGlobalBody;
+DataBody -- SoundAreaGroupBody;
+DataBody -- SoundAreaMemberBody;
+DataBody -- SoundAreaEdgeBody;
+DataBody -- GeoxTextureMaterialRegisterBody;
+DataBody -- GeoxPartsTargetUnitBody;
+DataBody -- GeoxPartsTargetExtensionBody;
+DataBody -- GeoxPartsTargetFollowSkeletonBody;
+DataBody -- NavxNavBlockBody;
+DataBody -- DemoFileProxyBody;
+DataBody -- StaticModelArrayBody;
+DataBody -- StaticModelArrayLinkTargetBody;
+DataBody -- OpticalCamoBody;
+DataBody -- OverlayModelBody;
+DataBody -- TerrainDecalPackBody;
+DataBody -- TerrainBlockBody;
+DataBody -- ObjectBrushPluginBody;
+subgraph cluster_ObjectBrushPluginBody
+{
+ObjectBrushPluginBody -- ObjectBrushPluginStaticModelBody;
+ObjectBrushPluginBody -- ObjectBrushPluginCloneBody;
+subgraph cluster_ObjectBrushPluginCloneBody
+{
+ObjectBrushPluginCloneBody -- TppObjectBrushPluginBushBody;
+ObjectBrushPluginCloneBody -- ObjectBrushPluginFlutteringGrassBody;
+}
+ObjectBrushPluginBody -- ObjectBrushPluginSkeletonModelBody;
+}
+DataBody -- GkSmartObjectBody;
+DataBody -- GkSmartObjectSetBody;
+DataBody -- SubtitlesPackageBody;
+DataBody -- SubtitlesBlockControllerDataBody;
+DataBody -- SubtitlesOptionBlockControllerDataBody;
+DataBody -- EnvironmentGlobalBody;
+subgraph cluster_EnvironmentGlobalBody
+{
+EnvironmentGlobalBody -- WindGlobalBody;
+}
+DataBody -- GameScriptBody;
+DataBody -- GkEventTimer;
+DataBody -- WatermarkBody;
+DataBody -- StageBlockLowModelBody;
+DataBody -- StageLightFadeDataBody;
+DataBody -- TexturePackLoadConditionerBody;
+DataBody -- DemoStreamAnimationBody;
+DataBody -- DemoResourceBody;
+DataBody -- DemoxEffectMemoryPoolDataBody;
+DataBody -- TppSoundWorldBody;
+DataBody -- MusicFaderBody;
+DataBody -- TppMarshModelPrimitiveBody;
+DataBody -- TppPrimRiverModelParamBody;
+DataBody -- TppPrimRiverModelParamTwoLayerBody;
+DataBody -- TppPrimRiverModelParamOverlayBody;
+DataBody -- TppFocusBokehFilterDataBody;
+DataBody -- TppEyelidFilterDataBody;
+DataBody -- TppHeatHazeDataBody;
+DataBody -- TppDropletsDataBody;
+DataBody -- TppFireLightsDataBody;
+DataBody -- TppFirePropagationLightsDataBody;
+DataBody -- TppGrenadeShockDataBody;
+DataBody -- TppSandWindDataBody;
+DataBody -- TppFourierOceanDataBody;
+DataBody -- TppWeatherRainDataBody;
+DataBody -- TppWeatherThunderBody;
+DataBody -- TppRainFilterBody;
+DataBody -- TppRainFilterInterruptBody;
+DataBody -- TppFloorRainSplashDataBody;
+DataBody -- TppLensFlareMaterialBody;
+DataBody -- TppLightProbeSHCoefficientsBody;
+DataBody -- TppAtmosphereBody;
+DataBody -- MbdvcBootBody;
+DataBody -- HudBootBody;
+DataBody -- TppCombatLocatorSetDataBody;
+DataBody -- CyprusBlockControllerDataBody;
+DataBody -- CyprusBlockLoadPointDataBody;
+DataBody -- TppPlayer2BlockControllerDataBody;
+DataBody -- TppNoiseAreaBody2;
+DataBody -- TppSimpleMissionBlockControllerDataBody;
+DataBody -- RadioDataBody;
+DataBody -- TppMotherBaseStageBlockControllerDataBody;
+DataBody -- TppMotherBaseStageClusterParameterDataBody;
+}
+Entity -- EditableBlockPackageBase;
+Entity -- Project;
+Entity -- BucketArchive;
+Entity -- PathMapper;
+Entity -- PropertyDifference;
+subgraph cluster_PropertyDifference
+{
+PropertyDifference -- Int8ArrayPropertyDifference;
+PropertyDifference -- UInt8ArrayPropertyDifference;
+PropertyDifference -- Int16ArrayPropertyDifference;
+PropertyDifference -- UInt16ArrayPropertyDifference;
+PropertyDifference -- Int32ArrayPropertyDifference;
+PropertyDifference -- UInt32ArrayPropertyDifference;
+PropertyDifference -- Int64ArrayPropertyDifference;
+PropertyDifference -- UInt64ArrayPropertyDifference;
+PropertyDifference -- FloatArrayPropertyDifference;
+PropertyDifference -- DoubleArrayPropertyDifference;
+PropertyDifference -- BoolArrayPropertyDifference;
+PropertyDifference -- StringArrayPropertyDifference;
+PropertyDifference -- PathArrayPropertyDifference;
+PropertyDifference -- EntityPtrArrayPropertyDifference;
+PropertyDifference -- Vector3ArrayPropertyDifference;
+PropertyDifference -- Vector4ArrayPropertyDifference;
+PropertyDifference -- QuatArrayPropertyDifference;
+PropertyDifference -- Matrix3ArrayPropertyDifference;
+PropertyDifference -- Matrix4ArrayPropertyDifference;
+PropertyDifference -- ColorArrayPropertyDifference;
+PropertyDifference -- FilePtrArrayPropertyDifference;
+PropertyDifference -- EntityHandleArrayPropertyDifference;
+PropertyDifference -- EntityLinkArrayPropertyDifference;
+PropertyDifference -- WideVector3ArrayPropertyDifference;
+PropertyDifference -- Int8StringMapPropertyDifference;
+PropertyDifference -- UInt8StringMapPropertyDifference;
+PropertyDifference -- Int16StringMapPropertyDifference;
+PropertyDifference -- UInt16StringMapPropertyDifference;
+PropertyDifference -- Int32StringMapPropertyDifference;
+PropertyDifference -- UInt32StringMapPropertyDifference;
+PropertyDifference -- Int64StringMapPropertyDifference;
+PropertyDifference -- UInt64StringMapPropertyDifference;
+PropertyDifference -- FloatStringMapPropertyDifference;
+PropertyDifference -- DoubleStringMapPropertyDifference;
+PropertyDifference -- BoolStringMapPropertyDifference;
+PropertyDifference -- StringStringMapPropertyDifference;
+PropertyDifference -- PathStringMapPropertyDifference;
+PropertyDifference -- EntityPtrStringMapPropertyDifference;
+PropertyDifference -- Vector3StringMapPropertyDifference;
+PropertyDifference -- Vector4StringMapPropertyDifference;
+PropertyDifference -- QuatStringMapPropertyDifference;
+PropertyDifference -- Matrix3StringMapPropertyDifference;
+PropertyDifference -- Matrix4StringMapPropertyDifference;
+PropertyDifference -- ColorStringMapPropertyDifference;
+PropertyDifference -- FilePtrStringMapPropertyDifference;
+PropertyDifference -- EntityHandleStringMapPropertyDifference;
+PropertyDifference -- EntityLinkStringMapPropertyDifference;
+PropertyDifference -- WideVector3StringMapPropertyDifference;
+}
+Entity -- EntityDifference;
+Entity -- DataSetDifference;
+Entity -- FoxFlagContainer;
+Entity -- LabelObject;
+Entity -- FoxDataLinkCollector;
+Entity -- SyncUniqueId;
+Entity -- SyncInstance;
+subgraph cluster_SyncInstance
+{
+SyncInstance -- SyncFactory2;
+SyncInstance -- NtMemberSyncInstance;
+}
+Entity -- Replay;
+Entity -- MaterialInfoBase;
+subgraph cluster_MaterialInfoBase
+{
+MaterialInfoBase -- MaterialInfo;
+MaterialInfoBase -- ColorInfo;
+MaterialInfoBase -- PhMaterialInfo;
+}
+Entity -- GeoMaterialCache;
+Entity -- CollisionObject;
+subgraph cluster_CollisionObject
+{
+CollisionObject -- CollisionPoly;
+CollisionObject -- CollisionReference;
+CollisionObject -- CollisionReferenceSet;
+CollisionObject -- CollisionGeomSet;
+CollisionObject -- CollisionSkeleton;
+CollisionObject -- GeoCollisionPrimitiveBase;
+subgraph cluster_GeoCollisionPrimitiveBase
+{
+GeoCollisionPrimitiveBase -- GeoCollisionCircle;
+GeoCollisionPrimitiveBase -- GeoCollisionRect;
+}
+CollisionObject -- GeoCollisionFreeShape;
+CollisionObject -- GeoCollisionPyramidFreeShape;
+}
+Entity -- CollisionSkeletonCreater;
+Entity -- GeoCollisionTerrain2;
+Entity -- GeoCollisionTerrainMap;
+Entity -- GeoPathGeomHeader;
+Entity -- GeoPathService;
+Entity -- GeoSearchObject;
+subgraph cluster_GeoSearchObject
+{
+GeoSearchObject -- GeoSearchPoint;
+GeoSearchObject -- GeoSearchAABB;
+GeoSearchObject -- GeoSearchOBB;
+GeoSearchObject -- GeoSearchSphere;
+GeoSearchObject -- GeoSearchLine;
+GeoSearchObject -- GeoSearchSegment;
+GeoSearchObject -- GeoSearchCapsule;
+GeoSearchObject -- GeoSearchDynamic;
+}
+Entity -- GeoSearchService;
+Entity -- TargetExtensionData;
+subgraph cluster_TargetExtensionData
+{
+TargetExtensionData -- GkTargetData;
+subgraph cluster_GkTargetData
+{
+GkTargetData -- GkOffenseTargetData;
+GkTargetData -- GkDefenseTargetData;
+GkTargetData -- TppOffenseTargetData;
+subgraph cluster_TppOffenseTargetData
+{
+TppOffenseTargetData -- TppBlastOffenseTargetData;
+}
+}
+TargetExtensionData -- BushOffenseTargetData;
+}
+Entity -- GeoTrapInfo;
+Entity -- GeoTrapGeomHeader;
+Entity -- GrCamera;
+Entity -- GrTools;
+Entity -- GrViewport;
+subgraph cluster_GrViewport
+{
+GrViewport -- TppSubViewport;
+}
+Entity -- GrGraphicsSettingManager;
+Entity -- GrRenderPlugin;
+subgraph cluster_GrRenderPlugin
+{
+GrRenderPlugin -- GrPlugin2D;
+subgraph cluster_GrPlugin2D
+{
+GrPlugin2D -- GrPlugin2DFrontmost;
+GrPlugin2D -- GrPlugin2DShrink;
+}
+GrRenderPlugin -- GrPluginAlphaModel;
+GrRenderPlugin -- GrPluginClone;
+subgraph cluster_GrPluginClone
+{
+GrPluginClone -- GrPluginCloneDeferred;
+GrPluginClone -- GrPluginCloneWireframe;
+}
+GrRenderPlugin -- GrPluginColorCorrection;
+GrRenderPlugin -- GrPluginDecal;
+GrRenderPlugin -- GrPluginRawDecal;
+GrRenderPlugin -- GrPluginDeferredGeometry;
+GrRenderPlugin -- GrPluginDeferredGeometryOpaque;
+subgraph cluster_GrPluginDeferredGeometryOpaque
+{
+GrPluginDeferredGeometryOpaque -- GrPluginDeferredGeometryDecal;
+GrPluginDeferredGeometryOpaque -- GrPluginDeferredGeometryMasked;
+}
+GrRenderPlugin -- GrPluginMaterialLayer;
+GrRenderPlugin -- GrPluginDeferredRendering;
+GrRenderPlugin -- GrPluginDeferredShading;
+GrRenderPlugin -- GrPluginDepthOfField;
+GrRenderPlugin -- GrPluginExtendFxModel;
+GrRenderPlugin -- GrPluginForwardRendering;
+GrRenderPlugin -- GrPluginOverlayModel;
+GrRenderPlugin -- GrPluginGlobalVolumetricFog;
+GrRenderPlugin -- GrPluginLightAccumulateLayer;
+GrRenderPlugin -- GrPluginLineIntegralSSAO;
+GrRenderPlugin -- GrPluginLocalLight;
+GrRenderPlugin -- GrPluginModel;
+GrRenderPlugin -- GrPluginModelSetup;
+GrRenderPlugin -- GrPluginMotionBlur;
+GrRenderPlugin -- GrPluginOccluder;
+GrRenderPlugin -- GrPluginOpticalCamouflage;
+GrRenderPlugin -- GrPluginPostFilter;
+GrRenderPlugin -- GrPluginPrecomputeSky;
+GrRenderPlugin -- GrPluginPrimitive;
+subgraph cluster_GrPluginPrimitive
+{
+GrPluginPrimitive -- GrPluginPrimitiveUnfiltered;
+subgraph cluster_GrPluginPrimitiveUnfiltered
+{
+GrPluginPrimitiveUnfiltered -- GrPluginPrimitiveDebug;
+}
+}
+GrRenderPlugin -- GrPluginScreenCapture;
+GrRenderPlugin -- GrPluginScreenSpaceAmbientOcclusion;
+GrRenderPlugin -- GrPluginShadow;
+GrRenderPlugin -- GrPluginSphericalHarmonics;
+GrRenderPlugin -- GrPluginSky;
+GrRenderPlugin -- GrPluginSunlight;
+GrRenderPlugin -- GrPluginSubSurfaceScatter;
+GrRenderPlugin -- GrPluginAmbientObscuranceSSAO;
+GrRenderPlugin -- GrPluginTerrain;
+subgraph cluster_GrPluginTerrain
+{
+GrPluginTerrain -- GrPluginTerrainDepth;
+}
+GrRenderPlugin -- GrPluginSeflShadowOfTerrain;
+GrRenderPlugin -- GrPluginThermography;
+GrRenderPlugin -- GrPluginTonemap;
+GrRenderPlugin -- GrPluginViewCallback;
+GrRenderPlugin -- GrPluginFxaa;
+GrRenderPlugin -- GrPluginWormhole;
+GrRenderPlugin -- GrPluginLocelReflection;
+}
+Entity -- GrViewportParameter;
+subgraph cluster_GrViewportParameter
+{
+GrViewportParameter -- GrFilmicTonemapParameter;
+GrViewportParameter -- GrSkyParameter;
+GrViewportParameter -- GrViewportRenderingParameters;
+GrViewportParameter -- GrViewportLightingParameters;
+GrViewportParameter -- GrViewportColorCorrectionParameters;
+}
+Entity -- NavCurrentNavigationDesc;
+Entity -- NavWorldDesc;
+Entity -- NavUnitHandleEntity;
+subgraph cluster_NavUnitHandleEntity
+{
+NavUnitHandleEntity -- NavNavigationGraphHandleEntity;
+subgraph cluster_NavNavigationGraphHandleEntity
+{
+NavNavigationGraphHandleEntity -- NavEdgeHandleEntity;
+}
+}
+Entity -- NavWorldDaemon;
+Entity -- NavNavigationParameter;
+subgraph cluster_NavNavigationParameter
+{
+NavNavigationParameter -- NavVehicleNavigationParameter;
+}
+Entity -- NavNavigationParameterHolder;
+Entity -- NclDaemon;
+Entity -- GrxShape;
+Entity -- LightUtility;
+Entity -- GrxLineSSAOParameters;
+Entity -- GrxAreaSSAOParameters;
+Entity -- GrxUtil;
+Entity -- PhDaemon;
+Entity -- PhMaterialManager;
+Entity -- PhObjectParam;
+Entity -- PhRigidBodyParam;
+Entity -- PhShapeParam;
+subgraph cluster_PhShapeParam
+{
+PhShapeParam -- PhPrimitiveShapeParam;
+PhShapeParam -- PhPolyhedronShapeParam;
+}
+Entity -- PhConstraintParam;
+subgraph cluster_PhConstraintParam
+{
+PhConstraintParam -- PhBallsocketConstraintParam;
+PhConstraintParam -- PhHingeConstraintParam;
+PhConstraintParam -- PhShoulderConstraintParam;
+PhConstraintParam -- PhMultiShoulderConstraintParam;
+PhConstraintParam -- PhMultiHingeConstraintParam;
+PhConstraintParam -- PhStiffConstraintParam;
+PhConstraintParam -- PhClothHConstraintParam;
+PhConstraintParam -- PhClothVConstraintParam;
+PhConstraintParam -- PhCylinderConstraintParam;
+PhConstraintParam -- PhxWheelConstraintParam;
+}
+Entity -- PhActionParam;
+subgraph cluster_PhActionParam
+{
+PhActionParam -- PhWindActionParam;
+}
+Entity -- MotionGraphEnterNodeCallback;
+Entity -- MotionGraphBlendValueConverter;
+subgraph cluster_MotionGraphBlendValueConverter
+{
+MotionGraphBlendValueConverter -- MotionGraphBlendValueStringConverter;
+}
+Entity -- GkTacticalObject;
+Entity -- UiDaemon;
+Entity -- UiManager;
+Entity -- UiObjControl;
+Entity -- LangDaemon;
+Entity -- PhAssociationParam;
+Entity -- PhVehicleNormalEngineParam;
+Entity -- PhVehicleAxisParam;
+Entity -- PhxWheelAssociationUnitParam;
+Entity -- GeoxTargetModifyCallbackBase;
+Entity -- SimDaemon;
+Entity -- SimObjectParam;
+Entity -- SimEngineParam;
+subgraph cluster_SimEngineParam
+{
+SimEngineParam -- SimEngineOnPhysicsParam;
+}
+Entity -- SimAssociationUnitParam;
+Entity -- SimControlParam;
+subgraph cluster_SimControlParam
+{
+SimControlParam -- SimWindControlParam;
+SimControlParam -- SimGravityControlParam;
+SimControlParam -- SimInertialControlParam;
+SimControlParam -- SimDirectionControlParam;
+SimControlParam -- SimClothControlParam;
+SimControlParam -- SimHitGroupControlParam;
+}
+Entity -- SimClothControlUnitParam;
+Entity -- DesDaemon;
+Entity -- Pad;
+Entity -- Pad2;
+Entity -- PadMapping;
+Entity -- CameraPriority;
+Entity -- Camera;
+subgraph cluster_Camera
+{
+Camera -- AimCamera;
+subgraph cluster_AimCamera
+{
+AimCamera -- OrthogonalAimCamera;
+}
+Camera -- OrthogonalCamera;
+}
+Entity -- CameraSelector;
+Entity -- GkTargetHitInfo;
+Entity -- TargetHitInfoCollector;
+Entity -- GkSightCheckParam;
+subgraph cluster_GkSightCheckParam
+{
+GkSightCheckParam -- GkConeSightCheckParam;
+}
+Entity -- GkSightCheckParamContainer;
+Entity -- SubtitlesDaemon;
+Entity -- Checkpoint;
+Entity -- CheckpointDaemon;
+Entity -- CheckpointContainer;
+Entity -- CheckpointUnit;
+Entity -- CheckpointObserver;
+subgraph cluster_CheckpointObserver
+{
+CheckpointObserver -- GameScriptCheckpointObserver;
+}
+Entity -- CheckpointData;
+Entity -- GameSequenceController;
+Entity -- EnvironmentDaemon;
+Entity -- EnvironmentManager;
+subgraph cluster_EnvironmentManager
+{
+EnvironmentManager -- WindManager;
+}
+Entity -- EnvironmentObject;
+subgraph cluster_EnvironmentObject
+{
+EnvironmentObject -- WindObject;
+}
+Entity -- GkEventTimerManager;
+Entity -- IntervalRegulator;
+Entity -- TppWeatherManager;
+Entity -- TppSystemUtility;
+Entity -- TppSoundDaemon;
+Entity -- TppMusicManager;
+Entity -- TppEffectUtility;
+Entity -- TppEffectCallbackFunction;
+Entity -- TppWeatherEffectBase;
+subgraph cluster_TppWeatherEffectBase
+{
+TppWeatherEffectBase -- TppWeatherParasiteUnit;
+TppWeatherEffectBase -- TppSkySimTimeUpdater;
+TppWeatherEffectBase -- TppWeatherCloudShadow;
+TppWeatherEffectBase -- TppWeatherClimateUpdator;
+TppWeatherEffectBase -- TppWeatherRain;
+TppWeatherEffectBase -- TppWeatherThunderEffect;
+}
+Entity -- TppMuddledFilter;
+Entity -- TppMuddledFilter2;
+Entity -- TppEyelidFilterStateManager;
+Entity -- TppCigaretteSmokeGlobalManager;
+Entity -- TppHighSpeedFilter;
+Entity -- TppBrainDamagedFilter;
+Entity -- TppDirtyModelManager;
+Entity -- TppDirtyModelController;
+Entity -- TppRainFilterInterruptManager;
+Entity -- TppLensFlareMultipleShapeManager;
+Entity -- TppImplEffectParam;
+Entity -- TppFadeOutEffectHolder;
+Entity -- TppVolumetricFogManager;
+Entity -- TppSprintBlur;
+Entity -- TppLightProbeUtility;
+Entity -- NetworkInfo;
+Entity -- UiCommonDataManager;
+Entity -- HudCommonDataManager;
+Entity -- UiSupport;
+Entity -- GetRoomListReceive;
+Entity -- GetSoldierlistReceive;
+Entity -- SetSoldierlistReceive;
+Entity -- FultonSoldierReceive;
+Entity -- GetWormholeListReceive;
+Entity -- GetWormholeAreaListReceive;
+Entity -- TppBushManager;
+Entity -- TppCoverPointProvider;
+Entity -- TppCyprusBlockControl;
+Entity -- MotherBaseConstructConnector;
+Entity -- TppSimpleGameSequenceSystem;
+Entity -- RadioDaemon;
+}
