@@ -1,0 +1,1 @@
+@"C:\Program Files\Graphviz\bin\dot.exe" -Tsvg graph.dot > graph.svg
