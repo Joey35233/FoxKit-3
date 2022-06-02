@@ -30,12 +30,13 @@ namespace Fox.Tactical
         }
         static GkTacticalObjectDesc()
         {
-            classInfo = new Fox.EntityInfo("GkTacticalObjectDesc", new Fox.Core.DataElement(0, 0, 0).GetClassEntityInfo(), 0, "Tactical", 1);
+            classInfo = new Fox.EntityInfo("GkTacticalObjectDesc", new Fox.Core.DataElement().GetClassEntityInfo(), 0, "Tactical", 1);
 			
         }
 
-        // Constructor
-		public GkTacticalObjectDesc(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public GkTacticalObjectDesc(ulong address, ulong id) : base(address, id) { }
+		public GkTacticalObjectDesc() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

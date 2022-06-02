@@ -34,14 +34,15 @@ namespace Fox.Geo
         }
         static GeoSearchLine()
         {
-            classInfo = new Fox.EntityInfo("GeoSearchLine", new Fox.Geo.GeoSearchObject(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("GeoSearchLine", new Fox.Geo.GeoSearchObject().GetClassEntityInfo(), 0, null, 0);
 			
 			classInfo.StaticProperties.Insert("p", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Vector3, 144, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("v", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Vector3, 160, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public GeoSearchLine(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public GeoSearchLine(ulong address, ulong id) : base(address, id) { }
+		public GeoSearchLine() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

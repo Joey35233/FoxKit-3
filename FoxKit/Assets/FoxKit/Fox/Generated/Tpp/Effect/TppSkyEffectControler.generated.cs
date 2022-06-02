@@ -38,7 +38,7 @@ namespace Tpp.Effect
         }
         static TppSkyEffectControler()
         {
-            classInfo = new Fox.EntityInfo("TppSkyEffectControler", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 112, null, 5);
+            classInfo = new Fox.EntityInfo("TppSkyEffectControler", new Fox.Core.Data().GetClassEntityInfo(), 112, null, 5);
 			
 			classInfo.StaticProperties.Insert("cameraLight", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityLink, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("hour", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt32, 160, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -46,8 +46,9 @@ namespace Tpp.Effect
 			classInfo.StaticProperties.Insert("second", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt32, 168, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppSkyEffectControler(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppSkyEffectControler(ulong address, ulong id) : base(address, id) { }
+		public TppSkyEffectControler() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

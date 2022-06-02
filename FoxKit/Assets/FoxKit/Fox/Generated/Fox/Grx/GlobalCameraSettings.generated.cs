@@ -44,7 +44,7 @@ namespace Fox.Grx
         }
         static GlobalCameraSettings()
         {
-            classInfo = new Fox.EntityInfo("GlobalCameraSettings", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 0, "Config", 2);
+            classInfo = new Fox.EntityInfo("GlobalCameraSettings", new Fox.Core.Data().GetClassEntityInfo(), 0, "Config", 2);
 			
 			classInfo.StaticProperties.Insert("focalDistance", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("focalLength", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 124, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -55,8 +55,9 @@ namespace Fox.Grx
 			classInfo.StaticProperties.Insert("isIgnoreMotionBlurCameraSetting", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public GlobalCameraSettings(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public GlobalCameraSettings(ulong address, ulong id) : base(address, id) { }
+		public GlobalCameraSettings() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

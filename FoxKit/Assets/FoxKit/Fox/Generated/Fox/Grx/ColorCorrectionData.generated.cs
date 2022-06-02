@@ -42,7 +42,7 @@ namespace Fox.Grx
         }
         static ColorCorrectionData()
         {
-            classInfo = new Fox.EntityInfo("ColorCorrectionData", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 112, "Config", 5);
+            classInfo = new Fox.EntityInfo("ColorCorrectionData", new Fox.Core.Data().GetClassEntityInfo(), 112, "Config", 5);
 			
 			classInfo.StaticProperties.Insert("textureLUT", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Path, 152, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("startSlope", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 144, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -52,8 +52,9 @@ namespace Fox.Grx
 			classInfo.StaticProperties.Insert("colorScale", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Color, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public ColorCorrectionData(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public ColorCorrectionData(ulong address, ulong id) : base(address, id) { }
+		public ColorCorrectionData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

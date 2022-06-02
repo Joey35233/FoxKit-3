@@ -32,13 +32,14 @@ namespace Tpp.System
         }
         static TppDefaultParameter()
         {
-            classInfo = new Fox.EntityInfo("TppDefaultParameter", new Tpp.System.TppDefaultParameterContainer(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("TppDefaultParameter", new Tpp.System.TppDefaultParameterContainer().GetClassEntityInfo(), 0, null, 0);
 			
 			classInfo.StaticProperties.Insert("groupName", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 176, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppDefaultParameter(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppDefaultParameter(ulong address, ulong id) : base(address, id) { }
+		public TppDefaultParameter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

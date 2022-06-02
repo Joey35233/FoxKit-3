@@ -34,14 +34,15 @@ namespace Fox.Core
         }
         static UInt8ArrayPropertyDifference()
         {
-            classInfo = new Fox.EntityInfo("UInt8ArrayPropertyDifference", new Fox.Core.PropertyDifference(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("UInt8ArrayPropertyDifference", new Fox.Core.PropertyDifference().GetClassEntityInfo(), 0, null, 0);
 			
 			classInfo.StaticProperties.Insert("originalValues", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt8, 72, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("values", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt8, 88, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public UInt8ArrayPropertyDifference(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public UInt8ArrayPropertyDifference(ulong address, ulong id) : base(address, id) { }
+		public UInt8ArrayPropertyDifference() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

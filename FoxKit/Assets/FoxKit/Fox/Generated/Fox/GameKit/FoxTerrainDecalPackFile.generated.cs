@@ -30,12 +30,13 @@ namespace Fox.GameKit
         }
         static FoxTerrainDecalPackFile()
         {
-            classInfo = new Fox.EntityInfo("FoxTerrainDecalPackFile", new Fox.Core.RawFile(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("FoxTerrainDecalPackFile", new Fox.Core.RawFile().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public FoxTerrainDecalPackFile(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public FoxTerrainDecalPackFile(ulong address, ulong id) : base(address, id) { }
+		public FoxTerrainDecalPackFile() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

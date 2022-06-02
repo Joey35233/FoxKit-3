@@ -32,13 +32,14 @@ namespace Fox.Gr
         }
         static GrViewportRenderingParameters()
         {
-            classInfo = new Fox.EntityInfo("GrViewportRenderingParameters", new Fox.Gr.GrViewportParameter(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("GrViewportRenderingParameters", new Fox.Gr.GrViewportParameter().GetClassEntityInfo(), 0, null, 0);
 			
 			classInfo.StaticProperties.Insert("clearColor", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Color, 48, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public GrViewportRenderingParameters(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public GrViewportRenderingParameters(ulong address, ulong id) : base(address, id) { }
+		public GrViewportRenderingParameters() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

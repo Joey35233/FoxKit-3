@@ -30,12 +30,13 @@ namespace Tpp.MotherBaseCore
         }
         static MotherBaseConstructLocatorBody()
         {
-            classInfo = new Fox.EntityInfo("MotherBaseConstructLocatorBody", new Fox.Core.TransformDataBody(0, 0, 0).GetClassEntityInfo(), 0, "TppMotherBase", 0);
+            classInfo = new Fox.EntityInfo("MotherBaseConstructLocatorBody", new Fox.Core.TransformDataBody().GetClassEntityInfo(), 0, "TppMotherBase", 0);
 			
         }
 
-        // Constructor
-		public MotherBaseConstructLocatorBody(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public MotherBaseConstructLocatorBody(ulong address, ulong id) : base(address, id) { }
+		public MotherBaseConstructLocatorBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

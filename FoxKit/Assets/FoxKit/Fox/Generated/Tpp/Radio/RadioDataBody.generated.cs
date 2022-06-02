@@ -30,12 +30,13 @@ namespace Tpp.Radio
         }
         static RadioDataBody()
         {
-            classInfo = new Fox.EntityInfo("RadioDataBody", new Fox.Core.DataBody(0, 0, 0).GetClassEntityInfo(), 0, "GameKit", 0);
+            classInfo = new Fox.EntityInfo("RadioDataBody", new Fox.Core.DataBody().GetClassEntityInfo(), 0, "GameKit", 0);
 			
         }
 
-        // Constructor
-		public RadioDataBody(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public RadioDataBody(ulong address, ulong id) : base(address, id) { }
+		public RadioDataBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

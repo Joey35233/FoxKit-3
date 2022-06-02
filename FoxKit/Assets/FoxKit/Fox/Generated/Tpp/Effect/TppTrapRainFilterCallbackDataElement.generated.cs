@@ -30,12 +30,13 @@ namespace Tpp.Effect
         }
         static TppTrapRainFilterCallbackDataElement()
         {
-            classInfo = new Fox.EntityInfo("TppTrapRainFilterCallbackDataElement", new Fox.Geo.GeoTrapModuleCallbackDataElement(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("TppTrapRainFilterCallbackDataElement", new Fox.Geo.GeoTrapModuleCallbackDataElement().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public TppTrapRainFilterCallbackDataElement(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppTrapRainFilterCallbackDataElement(ulong address, ulong id) : base(address, id) { }
+		public TppTrapRainFilterCallbackDataElement() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

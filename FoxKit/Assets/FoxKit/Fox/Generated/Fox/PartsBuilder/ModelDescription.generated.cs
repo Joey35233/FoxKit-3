@@ -54,7 +54,7 @@ namespace Fox.PartsBuilder
         }
         static ModelDescription()
         {
-            classInfo = new Fox.EntityInfo("ModelDescription", new Fox.PartsBuilder.PartDescription(0, 0, 0).GetClassEntityInfo(), 288, "PartsBuilder", 12);
+            classInfo = new Fox.EntityInfo("ModelDescription", new Fox.PartsBuilder.PartDescription().GetClassEntityInfo(), 288, "PartsBuilder", 12);
 			
 			classInfo.StaticProperties.Insert("modelFile", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.FilePtr, 152, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("connectPointFile", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.FilePtr, 176, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -70,8 +70,9 @@ namespace Fox.PartsBuilder
 			classInfo.StaticProperties.Insert("rejectFarRangeShadowCast", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Int32, 328, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, typeof(ModelDescription_RejectFarRangeShadowCast), Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public ModelDescription(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public ModelDescription(ulong address, ulong id) : base(address, id) { }
+		public ModelDescription() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

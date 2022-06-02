@@ -56,7 +56,7 @@ namespace Fox.Nav
         }
         static NavCurrentNavigationDesc()
         {
-            classInfo = new Fox.EntityInfo("NavCurrentNavigationDesc", new Fox.Core.Entity(0, 0, 0).GetClassEntityInfo(), 0, "Nav", 0);
+            classInfo = new Fox.EntityInfo("NavCurrentNavigationDesc", new Fox.Core.Entity().GetClassEntityInfo(), 0, "Nav", 0);
 			
 			classInfo.StaticProperties.Insert("destination", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Vector3, 48, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("destinationDirection", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Vector3, 80, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -73,8 +73,9 @@ namespace Fox.Nav
 			classInfo.StaticProperties.Insert("enableAutoIncrementStep", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 208, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public NavCurrentNavigationDesc(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public NavCurrentNavigationDesc(ulong address, ulong id) : base(address, id) { }
+		public NavCurrentNavigationDesc() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

@@ -102,7 +102,7 @@ namespace Fox.Grx
         }
         static SpotLight()
         {
-            classInfo = new Fox.EntityInfo("SpotLight", new Fox.Core.TransformData(0, 0, 0).GetClassEntityInfo(), 480, "Light", 18);
+            classInfo = new Fox.EntityInfo("SpotLight", new Fox.Core.TransformData().GetClassEntityInfo(), 480, "Light", 18);
 			
 			classInfo.StaticProperties.Insert("lightArea", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityLink, 336, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("irradiationPoint", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityLink, 376, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -142,8 +142,9 @@ namespace Fox.Grx
 			classInfo.StaticProperties.Insert("hasSpecular", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public SpotLight(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public SpotLight(ulong address, ulong id) : base(address, id) { }
+		public SpotLight() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

@@ -40,7 +40,7 @@ namespace Tpp.Collectible
         }
         static TppPickableLocatorParameter()
         {
-            classInfo = new Fox.EntityInfo("TppPickableLocatorParameter", new Fox.Core.DataElement(0, 0, 0).GetClassEntityInfo(), 40, null, 0);
+            classInfo = new Fox.EntityInfo("TppPickableLocatorParameter", new Fox.Core.DataElement().GetClassEntityInfo(), 40, null, 0);
 			
 			classInfo.StaticProperties.Insert("equipIdStrCode32", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt32, 56, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("countRaw", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt16, 60, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -49,8 +49,9 @@ namespace Tpp.Collectible
 			classInfo.StaticProperties.Insert("reserved", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt16, 66, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppPickableLocatorParameter(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppPickableLocatorParameter(ulong address, ulong id) : base(address, id) { }
+		public TppPickableLocatorParameter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

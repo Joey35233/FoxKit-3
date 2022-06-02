@@ -124,7 +124,7 @@ namespace Fox.Demox
         }
         static DemoData()
         {
-            classInfo = new Fox.EntityInfo("DemoData", new Fox.Core.TransformData(0, 0, 0).GetClassEntityInfo(), 1264, null, 36);
+            classInfo = new Fox.EntityInfo("DemoData", new Fox.Core.TransformData().GetClassEntityInfo(), 1264, null, 36);
 			
 			classInfo.StaticProperties.Insert("evfFiles", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.FilePtr, 304, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("onMemory", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 320, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -175,8 +175,9 @@ namespace Fox.Demox
 			classInfo.StaticProperties.Insert("blockPositionSetter", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityLink, 520, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public DemoData(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public DemoData(ulong address, ulong id) : base(address, id) { }
+		public DemoData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

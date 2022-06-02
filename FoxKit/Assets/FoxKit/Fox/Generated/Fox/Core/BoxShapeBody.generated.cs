@@ -36,15 +36,16 @@ namespace Fox.Core
         }
         static BoxShapeBody()
         {
-            classInfo = new Fox.EntityInfo("BoxShapeBody", new Fox.Core.ShapeDataBody(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("BoxShapeBody", new Fox.Core.ShapeDataBody().GetClassEntityInfo(), 0, null, 0);
 			
 			classInfo.StaticProperties.Insert("shape_center", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Vector3, 176, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("shape_size", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Vector3, 192, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("shape_rotation", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Quat, 208, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public BoxShapeBody(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public BoxShapeBody(ulong address, ulong id) : base(address, id) { }
+		public BoxShapeBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

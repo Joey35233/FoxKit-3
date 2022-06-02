@@ -37,7 +37,8 @@ namespace Fox.Core
 			classInfo.StaticProperties.Insert("seed", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt32, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
+        // Constructors
+		
 		
         
         public virtual void SetProperty(string propertyName, Fox.Value value)

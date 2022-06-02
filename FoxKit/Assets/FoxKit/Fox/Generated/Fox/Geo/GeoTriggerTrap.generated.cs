@@ -38,7 +38,7 @@ namespace Fox.Geo
         }
         static GeoTriggerTrap()
         {
-            classInfo = new Fox.EntityInfo("GeoTriggerTrap", new Fox.Core.TransformData(0, 0, 0).GetClassEntityInfo(), 288, "Trap", 1);
+            classInfo = new Fox.EntityInfo("GeoTriggerTrap", new Fox.Core.TransformData().GetClassEntityInfo(), 288, "Trap", 1);
 			
 			classInfo.StaticProperties.Insert("enable", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("stateFlag", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt32, 304, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -46,8 +46,9 @@ namespace Fox.Geo
 			classInfo.StaticProperties.Insert("groupTags", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 320, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public GeoTriggerTrap(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public GeoTriggerTrap(ulong address, ulong id) : base(address, id) { }
+		public GeoTriggerTrap() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

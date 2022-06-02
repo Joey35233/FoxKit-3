@@ -32,13 +32,14 @@ namespace Fox.Fx
         }
         static FxLocatorGroup()
         {
-            classInfo = new Fox.EntityInfo("FxLocatorGroup", new Fox.Core.TransformData(0, 0, 0).GetClassEntityInfo(), 272, "Fx", 1);
+            classInfo = new Fox.EntityInfo("FxLocatorGroup", new Fox.Core.TransformData().GetClassEntityInfo(), 272, "Fx", 1);
 			
 			classInfo.StaticProperties.Insert("groupInstanceName", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 304, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public FxLocatorGroup(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public FxLocatorGroup(ulong address, ulong id) : base(address, id) { }
+		public FxLocatorGroup() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

@@ -70,7 +70,7 @@ namespace Tpp.MotherBaseStage
         }
         static TppMotherBaseStageBlockControllerData()
         {
-            classInfo = new Fox.EntityInfo("TppMotherBaseStageBlockControllerData", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 400, null, 3);
+            classInfo = new Fox.EntityInfo("TppMotherBaseStageBlockControllerData", new Fox.Core.Data().GetClassEntityInfo(), 400, null, 3);
 			
 			classInfo.StaticProperties.Insert("createMode", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Int32, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, typeof(MbStageBlockCreateMode), Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("motherBaseId", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt16, 160, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -94,8 +94,9 @@ namespace Tpp.MotherBaseStage
 			classInfo.StaticProperties.Insert("clusterRequireRadiuses", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt32, 432, 8, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppMotherBaseStageBlockControllerData(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppMotherBaseStageBlockControllerData(ulong address, ulong id) : base(address, id) { }
+		public TppMotherBaseStageBlockControllerData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

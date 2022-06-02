@@ -42,7 +42,7 @@ namespace Fox.Core
         }
         static PassiveBlockControllerData()
         {
-            classInfo = new Fox.EntityInfo("PassiveBlockControllerData", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 0, null, 3);
+            classInfo = new Fox.EntityInfo("PassiveBlockControllerData", new Fox.Core.Data().GetClassEntityInfo(), 0, null, 3);
 			
 			classInfo.StaticProperties.Insert("enable", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("loadWithDataProperty", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 121, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -52,8 +52,9 @@ namespace Fox.Core
 			classInfo.StaticProperties.Insert("prerequisiteBlockGroupName", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 160, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public PassiveBlockControllerData(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public PassiveBlockControllerData(ulong address, ulong id) : base(address, id) { }
+		public PassiveBlockControllerData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

@@ -36,15 +36,16 @@ namespace Fox.UiScene
         }
         static UiAnimWorkMemoryData()
         {
-            classInfo = new Fox.EntityInfo("UiAnimWorkMemoryData", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 76, "Ui", 0);
+            classInfo = new Fox.EntityInfo("UiAnimWorkMemoryData", new Fox.Core.Data().GetClassEntityInfo(), 76, "Ui", 0);
 			
 			classInfo.StaticProperties.Insert("nodeAnimNum", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt32, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("shaderAnimNum", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt32, 124, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("vertexAnimNum", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt32, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public UiAnimWorkMemoryData(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public UiAnimWorkMemoryData(ulong address, ulong id) : base(address, id) { }
+		public UiAnimWorkMemoryData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

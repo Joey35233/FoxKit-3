@@ -36,15 +36,16 @@ namespace Tpp.Effect
         }
         static TppWeatherParasiteUnitParam()
         {
-            classInfo = new Fox.EntityInfo("TppWeatherParasiteUnitParam", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 96, null, 0);
+            classInfo = new Fox.EntityInfo("TppWeatherParasiteUnitParam", new Fox.Core.Data().GetClassEntityInfo(), 96, null, 0);
 			
 			classInfo.StaticProperties.Insert("vfxCameraFront", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.FilePtr, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("enableDebugMistRate", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 144, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("debugMistRate", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 148, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppWeatherParasiteUnitParam(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppWeatherParasiteUnitParam(ulong address, ulong id) : base(address, id) { }
+		public TppWeatherParasiteUnitParam() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

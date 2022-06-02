@@ -30,12 +30,13 @@ namespace Tpp.MotherBaseCore
         }
         static MotherBaseLayoutFile()
         {
-            classInfo = new Fox.EntityInfo("MotherBaseLayoutFile", new Fox.Core.RawFile(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("MotherBaseLayoutFile", new Fox.Core.RawFile().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public MotherBaseLayoutFile(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public MotherBaseLayoutFile(ulong address, ulong id) : base(address, id) { }
+		public MotherBaseLayoutFile() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

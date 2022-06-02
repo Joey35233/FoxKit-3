@@ -34,14 +34,15 @@ namespace Tpp.Effect
         }
         static TppLightProbeSHCoefficients()
         {
-            classInfo = new Fox.EntityInfo("TppLightProbeSHCoefficients", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 104, "Light", 1);
+            classInfo = new Fox.EntityInfo("TppLightProbeSHCoefficients", new Fox.Core.Data().GetClassEntityInfo(), 104, "Light", 1);
 			
 			classInfo.StaticProperties.Insert("filePath", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Path, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("lpshFile", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.FilePtr, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppLightProbeSHCoefficients(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppLightProbeSHCoefficients(ulong address, ulong id) : base(address, id) { }
+		public TppLightProbeSHCoefficients() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

@@ -32,13 +32,14 @@ namespace Fox.GameKit
         }
         static EnvironmentGlobal()
         {
-            classInfo = new Fox.EntityInfo("EnvironmentGlobal", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("EnvironmentGlobal", new Fox.Core.Data().GetClassEntityInfo(), 0, null, 0);
 			
 			classInfo.StaticProperties.Insert("parameter", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityPtr, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.Never, typeof(Fox.GameKit.EnvironmentParameter), null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public EnvironmentGlobal(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public EnvironmentGlobal(ulong address, ulong id) : base(address, id) { }
+		public EnvironmentGlobal() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

@@ -50,7 +50,7 @@ namespace Fox.Ph
         }
         static PhBallsocketConstraint()
         {
-            classInfo = new Fox.EntityInfo("PhBallsocketConstraint", new Fox.Ph.PhConstraint(0, 0, 0).GetClassEntityInfo(), 0, "Ph", 0);
+            classInfo = new Fox.EntityInfo("PhBallsocketConstraint", new Fox.Ph.PhConstraint().GetClassEntityInfo(), 0, "Ph", 0);
 			
 			classInfo.StaticProperties.Insert("limitedFlag", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("refA", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Quat, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -64,8 +64,9 @@ namespace Fox.Ph
 			classInfo.StaticProperties.Insert("stopTwist", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public PhBallsocketConstraint(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public PhBallsocketConstraint(ulong address, ulong id) : base(address, id) { }
+		public PhBallsocketConstraint() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

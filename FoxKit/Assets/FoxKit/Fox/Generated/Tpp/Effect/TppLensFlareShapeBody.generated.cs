@@ -30,12 +30,13 @@ namespace Tpp.Effect
         }
         static TppLensFlareShapeBody()
         {
-            classInfo = new Fox.EntityInfo("TppLensFlareShapeBody", new Fox.Core.TransformDataBody(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("TppLensFlareShapeBody", new Fox.Core.TransformDataBody().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public TppLensFlareShapeBody(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppLensFlareShapeBody(ulong address, ulong id) : base(address, id) { }
+		public TppLensFlareShapeBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

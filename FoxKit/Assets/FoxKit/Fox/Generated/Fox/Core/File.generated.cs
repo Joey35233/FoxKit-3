@@ -32,13 +32,14 @@ namespace Fox.Core
         }
         static File()
         {
-            classInfo = new Fox.EntityInfo("File", new Fox.Core.Entity(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("File", new Fox.Core.Entity().GetClassEntityInfo(), 0, null, 0);
 			
 			classInfo.StaticProperties.Insert("path", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Path, 48, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public File(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public File(ulong address, ulong id) : base(address, id) { }
+		public File() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

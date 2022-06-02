@@ -38,7 +38,7 @@ namespace Fox.Core
         }
         static BucketArchive()
         {
-            classInfo = new Fox.EntityInfo("BucketArchive", new Fox.Core.Entity(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("BucketArchive", new Fox.Core.Entity().GetClassEntityInfo(), 0, null, 0);
 			
 			classInfo.StaticProperties.Insert("name", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 48, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("dataSetFiles", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.FilePtr, 56, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -46,8 +46,9 @@ namespace Fox.Core
 			classInfo.StaticProperties.Insert("editableDataBodySet", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityPtr, 152, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, typeof(Fox.Core.DataBodySet), null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public BucketArchive(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public BucketArchive(ulong address, ulong id) : base(address, id) { }
+		public BucketArchive() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

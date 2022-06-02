@@ -34,14 +34,15 @@ namespace Fox.Geo
         }
         static GeoTrapScriptCallbackDataElement()
         {
-            classInfo = new Fox.EntityInfo("GeoTrapScriptCallbackDataElement", new Fox.Geo.GeoTrapModuleCallbackDataElement(0, 0, 0).GetClassEntityInfo(), 64, null, 2);
+            classInfo = new Fox.EntityInfo("GeoTrapScriptCallbackDataElement", new Fox.Geo.GeoTrapModuleCallbackDataElement().GetClassEntityInfo(), 64, null, 2);
 			
 			classInfo.StaticProperties.Insert("scriptFile", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.FilePtr, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("didAddParam", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 88, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public GeoTrapScriptCallbackDataElement(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public GeoTrapScriptCallbackDataElement(ulong address, ulong id) : base(address, id) { }
+		public GeoTrapScriptCallbackDataElement() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

@@ -30,12 +30,13 @@ namespace Fox.Sim
         }
         static SimControlParam()
         {
-            classInfo = new Fox.EntityInfo("SimControlParam", new Fox.Core.Entity(0, 0, 0).GetClassEntityInfo(), 0, "Sim", 0);
+            classInfo = new Fox.EntityInfo("SimControlParam", new Fox.Core.Entity().GetClassEntityInfo(), 0, "Sim", 0);
 			
         }
 
-        // Constructor
-		public SimControlParam(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public SimControlParam(ulong address, ulong id) : base(address, id) { }
+		public SimControlParam() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

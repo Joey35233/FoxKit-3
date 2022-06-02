@@ -36,15 +36,16 @@ namespace Tpp.GameKit
         }
         static TppGimmickLightLinkSetData()
         {
-            classInfo = new Fox.EntityInfo("TppGimmickLightLinkSetData", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 136, "Gimmick", 1);
+            classInfo = new Fox.EntityInfo("TppGimmickLightLinkSetData", new Fox.Core.Data().GetClassEntityInfo(), 136, "Gimmick", 1);
 			
 			classInfo.StaticProperties.Insert("numLightGimmick", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt32, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("ownerGimmick", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityLink, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("lightList", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityLink, 168, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppGimmickLightLinkSetData(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppGimmickLightLinkSetData(ulong address, ulong id) : base(address, id) { }
+		public TppGimmickLightLinkSetData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

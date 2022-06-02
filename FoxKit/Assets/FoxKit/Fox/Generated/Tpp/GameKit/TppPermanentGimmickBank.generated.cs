@@ -36,15 +36,16 @@ namespace Tpp.GameKit
         }
         static TppPermanentGimmickBank()
         {
-            classInfo = new Fox.EntityInfo("TppPermanentGimmickBank", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 96, "Gimmick", 0);
+            classInfo = new Fox.EntityInfo("TppPermanentGimmickBank", new Fox.Core.Data().GetClassEntityInfo(), 96, "Gimmick", 0);
 			
 			classInfo.StaticProperties.Insert("partsFile", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.FilePtr, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("flags", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt16, 144, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("instanceCount", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt8, 146, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppPermanentGimmickBank(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppPermanentGimmickBank(ulong address, ulong id) : base(address, id) { }
+		public TppPermanentGimmickBank() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

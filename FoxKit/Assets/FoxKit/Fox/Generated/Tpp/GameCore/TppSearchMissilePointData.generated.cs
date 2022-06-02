@@ -32,13 +32,14 @@ namespace Tpp.GameCore
         }
         static TppSearchMissilePointData()
         {
-            classInfo = new Fox.EntityInfo("TppSearchMissilePointData", new Fox.Core.TransformData(0, 0, 0).GetClassEntityInfo(), 272, "Sahelan2", 0);
+            classInfo = new Fox.EntityInfo("TppSearchMissilePointData", new Fox.Core.TransformData().GetClassEntityInfo(), 272, "Sahelan2", 0);
 			
 			classInfo.StaticProperties.Insert("type", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Int32, 304, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, typeof(SearchMissilePointType), Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppSearchMissilePointData(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppSearchMissilePointData(ulong address, ulong id) : base(address, id) { }
+		public TppSearchMissilePointData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

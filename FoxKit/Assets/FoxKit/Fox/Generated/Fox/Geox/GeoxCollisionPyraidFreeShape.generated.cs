@@ -38,7 +38,7 @@ namespace Fox.Geox
         }
         static GeoxCollisionPyraidFreeShape()
         {
-            classInfo = new Fox.EntityInfo("GeoxCollisionPyraidFreeShape", new Fox.Core.TransformData(0, 0, 0).GetClassEntityInfo(), 368, "Geox", 0);
+            classInfo = new Fox.EntityInfo("GeoxCollisionPyraidFreeShape", new Fox.Core.TransformData().GetClassEntityInfo(), 368, "Geox", 0);
 			
 			classInfo.StaticProperties.Insert("collisionCategory", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Int32, 384, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, typeof(CollisionPyraidFreeShape_Category), Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("collisionMaterial", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 392, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -46,8 +46,9 @@ namespace Fox.Geox
 			classInfo.StaticProperties.Insert("points", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Vector3, 304, 5, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public GeoxCollisionPyraidFreeShape(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public GeoxCollisionPyraidFreeShape(ulong address, ulong id) : base(address, id) { }
+		public GeoxCollisionPyraidFreeShape() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

@@ -32,13 +32,14 @@ namespace Tpp.System
         }
         static TppCheckPointTrapExecDataElement()
         {
-            classInfo = new Fox.EntityInfo("TppCheckPointTrapExecDataElement", new Fox.Geo.GeoTrapModuleCallbackDataElement(0, 0, 0).GetClassEntityInfo(), 48, null, 1);
+            classInfo = new Fox.EntityInfo("TppCheckPointTrapExecDataElement", new Fox.Geo.GeoTrapModuleCallbackDataElement().GetClassEntityInfo(), 48, null, 1);
 			
 			classInfo.StaticProperties.Insert("locators", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityLink, 64, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppCheckPointTrapExecDataElement(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppCheckPointTrapExecDataElement(ulong address, ulong id) : base(address, id) { }
+		public TppCheckPointTrapExecDataElement() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

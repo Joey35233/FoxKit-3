@@ -32,13 +32,14 @@ namespace Tpp.GameKit
         }
         static TppPermanentGimmickWaterTowerParameter()
         {
-            classInfo = new Fox.EntityInfo("TppPermanentGimmickWaterTowerParameter", new Fox.Core.DataElement(0, 0, 0).GetClassEntityInfo(), 32, null, 0);
+            classInfo = new Fox.EntityInfo("TppPermanentGimmickWaterTowerParameter", new Fox.Core.DataElement().GetClassEntityInfo(), 32, null, 0);
 			
 			classInfo.StaticProperties.Insert("flag1", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt32, 56, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppPermanentGimmickWaterTowerParameter(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppPermanentGimmickWaterTowerParameter(ulong address, ulong id) : base(address, id) { }
+		public TppPermanentGimmickWaterTowerParameter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

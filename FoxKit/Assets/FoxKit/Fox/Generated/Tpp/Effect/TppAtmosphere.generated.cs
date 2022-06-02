@@ -188,7 +188,7 @@ namespace Tpp.Effect
         }
         static TppAtmosphere()
         {
-            classInfo = new Fox.EntityInfo("TppAtmosphere", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 608, "Light", 21);
+            classInfo = new Fox.EntityInfo("TppAtmosphere", new Fox.Core.Data().GetClassEntityInfo(), 608, "Light", 21);
 			
 			classInfo.StaticProperties.Insert("atshFilePath", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Path, 416, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("pcspFilePath", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Path, 424, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -271,8 +271,9 @@ namespace Tpp.Effect
 			classInfo.StaticProperties.Insert("isSteppedMoveOfDirectionalLight", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppAtmosphere(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppAtmosphere(ulong address, ulong id) : base(address, id) { }
+		public TppAtmosphere() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

@@ -30,12 +30,13 @@ namespace Tpp.Effect
         }
         static TppLensFlareRootBase()
         {
-            classInfo = new Fox.EntityInfo("TppLensFlareRootBase", new Fox.Core.TransformData(0, 0, 0).GetClassEntityInfo(), 0, null, 2);
+            classInfo = new Fox.EntityInfo("TppLensFlareRootBase", new Fox.Core.TransformData().GetClassEntityInfo(), 0, null, 2);
 			
         }
 
-        // Constructor
-		public TppLensFlareRootBase(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppLensFlareRootBase(ulong address, ulong id) : base(address, id) { }
+		public TppLensFlareRootBase() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

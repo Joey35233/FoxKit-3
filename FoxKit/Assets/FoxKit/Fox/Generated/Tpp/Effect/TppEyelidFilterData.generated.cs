@@ -50,7 +50,7 @@ namespace Tpp.Effect
         }
         static TppEyelidFilterData()
         {
-            classInfo = new Fox.EntityInfo("TppEyelidFilterData", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 0, null, 1);
+            classInfo = new Fox.EntityInfo("TppEyelidFilterData", new Fox.Core.Data().GetClassEntityInfo(), 0, null, 1);
 			
 			classInfo.StaticProperties.Insert("debugDraw", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("texture", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Path, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -64,8 +64,9 @@ namespace Tpp.Effect
 			classInfo.StaticProperties.Insert("color2", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Color, 176, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppEyelidFilterData(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppEyelidFilterData(ulong address, ulong id) : base(address, id) { }
+		public TppEyelidFilterData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

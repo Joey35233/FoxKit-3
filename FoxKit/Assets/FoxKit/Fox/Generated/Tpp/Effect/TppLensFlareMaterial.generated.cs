@@ -42,7 +42,7 @@ namespace Tpp.Effect
         }
         static TppLensFlareMaterial()
         {
-            classInfo = new Fox.EntityInfo("TppLensFlareMaterial", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 208, null, 3);
+            classInfo = new Fox.EntityInfo("TppLensFlareMaterial", new Fox.Core.Data().GetClassEntityInfo(), 208, null, 3);
 			
 			classInfo.StaticProperties.Insert("texture", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Path, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("arcAlphaField", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityLink, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -52,8 +52,9 @@ namespace Tpp.Effect
 			classInfo.StaticProperties.Insert("debugDrawMaskShape", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 216, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppLensFlareMaterial(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppLensFlareMaterial(ulong address, ulong id) : base(address, id) { }
+		public TppLensFlareMaterial() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

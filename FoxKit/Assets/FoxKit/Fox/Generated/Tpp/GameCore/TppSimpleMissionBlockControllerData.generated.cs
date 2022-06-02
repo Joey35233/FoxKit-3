@@ -32,13 +32,14 @@ namespace Tpp.GameCore
         }
         static TppSimpleMissionBlockControllerData()
         {
-            classInfo = new Fox.EntityInfo("TppSimpleMissionBlockControllerData", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 68, null, 0);
+            classInfo = new Fox.EntityInfo("TppSimpleMissionBlockControllerData", new Fox.Core.Data().GetClassEntityInfo(), 68, null, 0);
 			
 			classInfo.StaticProperties.Insert("blockSizeInByte", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt32, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppSimpleMissionBlockControllerData(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppSimpleMissionBlockControllerData(ulong address, ulong id) : base(address, id) { }
+		public TppSimpleMissionBlockControllerData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

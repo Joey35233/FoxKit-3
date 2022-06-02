@@ -36,15 +36,16 @@ namespace Tpp.Effect
         }
         static TppLensFlareShapeCircle()
         {
-            classInfo = new Fox.EntityInfo("TppLensFlareShapeCircle", new Tpp.Effect.TppLensFlareShape(0, 0, 0).GetClassEntityInfo(), 688, null, 1);
+            classInfo = new Fox.EntityInfo("TppLensFlareShapeCircle", new Tpp.Effect.TppLensFlareShape().GetClassEntityInfo(), 688, null, 1);
 			
 			classInfo.StaticProperties.Insert("outerScale", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 816, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("innerScale", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 820, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("divideNum", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt32, 824, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppLensFlareShapeCircle(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppLensFlareShapeCircle(ulong address, ulong id) : base(address, id) { }
+		public TppLensFlareShapeCircle() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

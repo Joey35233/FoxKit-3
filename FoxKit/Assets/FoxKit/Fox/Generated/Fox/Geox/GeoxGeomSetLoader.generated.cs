@@ -32,13 +32,14 @@ namespace Fox.Geox
         }
         static GeoxGeomSetLoader()
         {
-            classInfo = new Fox.EntityInfo("GeoxGeomSetLoader", new Fox.Core.TransformData(0, 0, 0).GetClassEntityInfo(), 288, null, 0);
+            classInfo = new Fox.EntityInfo("GeoxGeomSetLoader", new Fox.Core.TransformData().GetClassEntityInfo(), 288, null, 0);
 			
 			classInfo.StaticProperties.Insert("geomSetFile", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.FilePtr, 304, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public GeoxGeomSetLoader(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public GeoxGeomSetLoader(ulong address, ulong id) : base(address, id) { }
+		public GeoxGeomSetLoader() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

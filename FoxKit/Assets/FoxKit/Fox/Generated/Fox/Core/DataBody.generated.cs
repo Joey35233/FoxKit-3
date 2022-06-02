@@ -34,14 +34,15 @@ namespace Fox.Core
         }
         static DataBody()
         {
-            classInfo = new Fox.EntityInfo("DataBody", new Fox.Core.Entity(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("DataBody", new Fox.Core.Entity().GetClassEntityInfo(), 0, null, 0);
 			
 			classInfo.StaticProperties.Insert("dataBodySet", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityHandle, 48, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("data", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityHandle, 56, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public DataBody(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public DataBody(ulong address, ulong id) : base(address, id) { }
+		public DataBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

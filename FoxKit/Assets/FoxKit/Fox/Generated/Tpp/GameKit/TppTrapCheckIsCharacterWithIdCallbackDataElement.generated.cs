@@ -32,13 +32,14 @@ namespace Tpp.GameKit
         }
         static TppTrapCheckIsCharacterWithIdCallbackDataElement()
         {
-            classInfo = new Fox.EntityInfo("TppTrapCheckIsCharacterWithIdCallbackDataElement", new Fox.Geo.GeoTrapModuleCallbackDataElement(0, 0, 0).GetClassEntityInfo(), 36, null, 0);
+            classInfo = new Fox.EntityInfo("TppTrapCheckIsCharacterWithIdCallbackDataElement", new Fox.Geo.GeoTrapModuleCallbackDataElement().GetClassEntityInfo(), 36, null, 0);
 			
 			classInfo.StaticProperties.Insert("checkCharacterId", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppTrapCheckIsCharacterWithIdCallbackDataElement(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppTrapCheckIsCharacterWithIdCallbackDataElement(ulong address, ulong id) : base(address, id) { }
+		public TppTrapCheckIsCharacterWithIdCallbackDataElement() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

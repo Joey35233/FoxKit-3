@@ -30,12 +30,13 @@ namespace Tpp.Ui
         }
         static GetWormholeListReceive()
         {
-            classInfo = new Fox.EntityInfo("GetWormholeListReceive", new Fox.Core.Entity(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("GetWormholeListReceive", new Fox.Core.Entity().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public GetWormholeListReceive(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public GetWormholeListReceive(ulong address, ulong id) : base(address, id) { }
+		public GetWormholeListReceive() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

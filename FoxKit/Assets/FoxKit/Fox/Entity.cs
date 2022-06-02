@@ -14,12 +14,7 @@ namespace Fox.Core
         /// <summary>
         /// Unknown.
         /// </summary>
-        private ushort IdA { get; }
-
-        /// <summary>
-        /// Unknown.
-        /// </summary>
-        private ushort IdB { get; }
+        private ulong Id { get; }
 
         /// <summary>
         /// The Entity's dynamically-added properties.

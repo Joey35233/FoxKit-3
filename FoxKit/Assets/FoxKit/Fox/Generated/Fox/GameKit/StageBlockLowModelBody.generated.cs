@@ -30,12 +30,13 @@ namespace Fox.GameKit
         }
         static StageBlockLowModelBody()
         {
-            classInfo = new Fox.EntityInfo("StageBlockLowModelBody", new Fox.Core.DataBody(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("StageBlockLowModelBody", new Fox.Core.DataBody().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public StageBlockLowModelBody(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public StageBlockLowModelBody(ulong address, ulong id) : base(address, id) { }
+		public StageBlockLowModelBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

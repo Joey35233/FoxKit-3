@@ -30,12 +30,13 @@ namespace Fox.Geo
         }
         static GeoPathFixedPackFile()
         {
-            classInfo = new Fox.EntityInfo("GeoPathFixedPackFile", new Fox.Core.RawFile(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("GeoPathFixedPackFile", new Fox.Core.RawFile().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public GeoPathFixedPackFile(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public GeoPathFixedPackFile(ulong address, ulong id) : base(address, id) { }
+		public GeoPathFixedPackFile() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

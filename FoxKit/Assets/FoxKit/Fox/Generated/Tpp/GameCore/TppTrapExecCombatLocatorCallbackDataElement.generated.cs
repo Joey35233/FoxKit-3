@@ -34,14 +34,15 @@ namespace Tpp.GameCore
         }
         static TppTrapExecCombatLocatorCallbackDataElement()
         {
-            classInfo = new Fox.EntityInfo("TppTrapExecCombatLocatorCallbackDataElement", new Fox.Geo.GeoTrapModuleCallbackDataElement(0, 0, 0).GetClassEntityInfo(), 56, null, 0);
+            classInfo = new Fox.EntityInfo("TppTrapExecCombatLocatorCallbackDataElement", new Fox.Geo.GeoTrapModuleCallbackDataElement().GetClassEntityInfo(), 56, null, 0);
 			
 			classInfo.StaticProperties.Insert("frontLineName", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("inactiveLocators", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 72, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppTrapExecCombatLocatorCallbackDataElement(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppTrapExecCombatLocatorCallbackDataElement(ulong address, ulong id) : base(address, id) { }
+		public TppTrapExecCombatLocatorCallbackDataElement() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

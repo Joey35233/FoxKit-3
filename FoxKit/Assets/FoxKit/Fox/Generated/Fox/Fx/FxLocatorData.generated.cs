@@ -46,7 +46,7 @@ namespace Fox.Fx
         }
         static FxLocatorData()
         {
-            classInfo = new Fox.EntityInfo("FxLocatorData", new Fox.Core.TransformData(0, 0, 0).GetClassEntityInfo(), 304, "Fx", 4);
+            classInfo = new Fox.EntityInfo("FxLocatorData", new Fox.Core.TransformData().GetClassEntityInfo(), 304, "Fx", 4);
 			
 			classInfo.StaticProperties.Insert("variationName", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 336, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("effectInstanceName", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 328, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -58,8 +58,9 @@ namespace Fox.Fx
 			classInfo.StaticProperties.Insert("vfxFile", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.FilePtr, 304, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public FxLocatorData(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public FxLocatorData(ulong address, ulong id) : base(address, id) { }
+		public FxLocatorData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

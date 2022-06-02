@@ -40,7 +40,7 @@ namespace Fox.Ph
         }
         static PhDaemon()
         {
-            classInfo = new Fox.EntityInfo("PhDaemon", new Fox.Core.Entity(0, 0, 0).GetClassEntityInfo(), 0, "Ph", 0);
+            classInfo = new Fox.EntityInfo("PhDaemon", new Fox.Core.Entity().GetClassEntityInfo(), 0, "Ph", 0);
 			
 			classInfo.StaticProperties.Insert("materialManager", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityPtr, 240, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, typeof(Fox.Ph.PhMaterialManager), null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("defaultFriction", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 200, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -49,8 +49,9 @@ namespace Fox.Ph
 			classInfo.StaticProperties.Insert("isUseSmallJob", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 209, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public PhDaemon(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public PhDaemon(ulong address, ulong id) : base(address, id) { }
+		public PhDaemon() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

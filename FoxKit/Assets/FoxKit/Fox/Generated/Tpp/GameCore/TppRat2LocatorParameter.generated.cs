@@ -32,13 +32,14 @@ namespace Tpp.GameCore
         }
         static TppRat2LocatorParameter()
         {
-            classInfo = new Fox.EntityInfo("TppRat2LocatorParameter", new Fox.Core.DataElement(0, 0, 0).GetClassEntityInfo(), 36, null, 0);
+            classInfo = new Fox.EntityInfo("TppRat2LocatorParameter", new Fox.Core.DataElement().GetClassEntityInfo(), 36, null, 0);
 			
 			classInfo.StaticProperties.Insert("count", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt32, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppRat2LocatorParameter(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppRat2LocatorParameter(ulong address, ulong id) : base(address, id) { }
+		public TppRat2LocatorParameter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

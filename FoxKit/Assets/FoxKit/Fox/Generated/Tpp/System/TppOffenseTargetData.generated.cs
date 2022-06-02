@@ -30,12 +30,13 @@ namespace Tpp.System
         }
         static TppOffenseTargetData()
         {
-            classInfo = new Fox.EntityInfo("TppOffenseTargetData", new Fox.GameKit.GkTargetData(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("TppOffenseTargetData", new Fox.GameKit.GkTargetData().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public TppOffenseTargetData(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppOffenseTargetData(ulong address, ulong id) : base(address, id) { }
+		public TppOffenseTargetData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

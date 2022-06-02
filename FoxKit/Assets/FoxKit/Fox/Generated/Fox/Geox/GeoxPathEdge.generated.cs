@@ -32,13 +32,14 @@ namespace Fox.Geox
         }
         static GeoxPathEdge()
         {
-            classInfo = new Fox.EntityInfo("GeoxPathEdge", new Fox.Graphx.GraphxSpatialGraphDataEdge(0, 0, 0).GetClassEntityInfo(), 56, "Geox", 0);
+            classInfo = new Fox.EntityInfo("GeoxPathEdge", new Fox.Graphx.GraphxSpatialGraphDataEdge().GetClassEntityInfo(), 56, "Geox", 0);
 			
 			classInfo.StaticProperties.Insert("edgeTags", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 72, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public GeoxPathEdge(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public GeoxPathEdge(ulong address, ulong id) : base(address, id) { }
+		public GeoxPathEdge() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

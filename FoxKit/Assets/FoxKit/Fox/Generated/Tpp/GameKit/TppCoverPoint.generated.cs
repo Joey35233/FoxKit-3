@@ -46,7 +46,7 @@ namespace Tpp.GameKit
         }
         static TppCoverPoint()
         {
-            classInfo = new Fox.EntityInfo("TppCoverPoint", new Fox.Tactical.GkTacticalPoint(0, 0, 0).GetClassEntityInfo(), 0, "TacticalPoint", 5);
+            classInfo = new Fox.EntityInfo("TppCoverPoint", new Fox.Tactical.GkTacticalPoint().GetClassEntityInfo(), 0, "TacticalPoint", 5);
 			
 			classInfo.StaticProperties.Insert("isLeftOpen", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 400, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("isRightOpen", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 401, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -58,8 +58,9 @@ namespace Tpp.GameKit
 			classInfo.StaticProperties.Insert("isBreakEnable", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 407, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppCoverPoint(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppCoverPoint(ulong address, ulong id) : base(address, id) { }
+		public TppCoverPoint() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

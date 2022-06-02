@@ -38,7 +38,7 @@ namespace Tpp.GameCore
         }
         static TppBirdParameter2()
         {
-            classInfo = new Fox.EntityInfo("TppBirdParameter2", new Fox.Core.DataElement(0, 0, 0).GetClassEntityInfo(), 144, null, 2);
+            classInfo = new Fox.EntityInfo("TppBirdParameter2", new Fox.Core.DataElement().GetClassEntityInfo(), 144, null, 2);
 			
 			classInfo.StaticProperties.Insert("partsFile", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.FilePtr, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("mtarFile", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.FilePtr, 88, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -46,8 +46,9 @@ namespace Tpp.GameCore
 			classInfo.StaticProperties.Insert("vfxFiles", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.FilePtr, 128, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppBirdParameter2(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppBirdParameter2(ulong address, ulong id) : base(address, id) { }
+		public TppBirdParameter2() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

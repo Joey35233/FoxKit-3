@@ -44,7 +44,7 @@ namespace Fox.GameKit
         }
         static GkEventTimerData()
         {
-            classInfo = new Fox.EntityInfo("GkEventTimerData", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("GkEventTimerData", new Fox.Core.Data().GetClassEntityInfo(), 0, null, 0);
 			
 			classInfo.StaticProperties.Insert("measureTime", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Double, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("startMessageName", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -55,8 +55,9 @@ namespace Fox.GameKit
 			classInfo.StaticProperties.Insert("debugViewPositionY", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 160, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public GkEventTimerData(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public GkEventTimerData(ulong address, ulong id) : base(address, id) { }
+		public GkEventTimerData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

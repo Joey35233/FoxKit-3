@@ -78,7 +78,7 @@ namespace Tpp.Effect
         }
         static TppHeatHaze()
         {
-            classInfo = new Fox.EntityInfo("TppHeatHaze", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 160, null, 1);
+            classInfo = new Fox.EntityInfo("TppHeatHaze", new Fox.Core.Data().GetClassEntityInfo(), 160, null, 1);
 			
 			classInfo.StaticProperties.Insert("distortionIntensityFullResolution", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("distortionVelocityFullResolution", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 124, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -106,8 +106,9 @@ namespace Tpp.Effect
 			classInfo.StaticProperties.Insert("hazeRangeAttenuationHalfResolution", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 212, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppHeatHaze(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppHeatHaze(ulong address, ulong id) : base(address, id) { }
+		public TppHeatHaze() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

@@ -30,12 +30,13 @@ namespace Fox.GameKit
         }
         static PadMapping()
         {
-            classInfo = new Fox.EntityInfo("PadMapping", new Fox.Core.Entity(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("PadMapping", new Fox.Core.Entity().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public PadMapping(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public PadMapping(ulong address, ulong id) : base(address, id) { }
+		public PadMapping() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

@@ -32,13 +32,14 @@ namespace Fox.PartsBuilder
         }
         static ConnectModelDescription()
         {
-            classInfo = new Fox.EntityInfo("ConnectModelDescription", new Fox.PartsBuilder.ModelDescription(0, 0, 0).GetClassEntityInfo(), 336, "PartsBuilder", 3);
+            classInfo = new Fox.EntityInfo("ConnectModelDescription", new Fox.PartsBuilder.ModelDescription().GetClassEntityInfo(), 336, "PartsBuilder", 3);
 			
 			classInfo.StaticProperties.Insert("connectPointNames", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 368, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public ConnectModelDescription(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public ConnectModelDescription(ulong address, ulong id) : base(address, id) { }
+		public ConnectModelDescription() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

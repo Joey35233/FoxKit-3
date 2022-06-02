@@ -66,7 +66,7 @@ namespace Tpp.Effect
         }
         static TppFourierOcean()
         {
-            classInfo = new Fox.EntityInfo("TppFourierOcean", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 136, null, 0);
+            classInfo = new Fox.EntityInfo("TppFourierOcean", new Fox.Core.Data().GetClassEntityInfo(), 136, null, 0);
 			
 			classInfo.StaticProperties.Insert("displacementStrenght", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("velocity", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 124, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -88,8 +88,9 @@ namespace Tpp.Effect
 			classInfo.StaticProperties.Insert("foamAmount", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 188, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppFourierOcean(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppFourierOcean(ulong address, ulong id) : base(address, id) { }
+		public TppFourierOcean() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

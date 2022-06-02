@@ -30,12 +30,13 @@ namespace Fox.Grx
         }
         static HorizonBody()
         {
-            classInfo = new Fox.EntityInfo("HorizonBody", new Fox.Core.TransformDataBody(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("HorizonBody", new Fox.Core.TransformDataBody().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public HorizonBody(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public HorizonBody(ulong address, ulong id) : base(address, id) { }
+		public HorizonBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

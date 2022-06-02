@@ -30,12 +30,13 @@ namespace Fox.Anim
         }
         static RigFile()
         {
-            classInfo = new Fox.EntityInfo("RigFile", new Fox.Core.RawFile(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("RigFile", new Fox.Core.RawFile().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public RigFile(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public RigFile(ulong address, ulong id) : base(address, id) { }
+		public RigFile() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

@@ -30,12 +30,13 @@ namespace Fox.Grx
         }
         static PeriodicActor()
         {
-            classInfo = new Fox.EntityInfo("PeriodicActor", new Fox.Core.Actor(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("PeriodicActor", new Fox.Core.Actor().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public PeriodicActor(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public PeriodicActor(ulong address, ulong id) : base(address, id) { }
+		public PeriodicActor() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

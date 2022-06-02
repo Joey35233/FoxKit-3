@@ -36,15 +36,16 @@ namespace Tpp.GameCore
         }
         static TppDecoyAssetsLoader()
         {
-            classInfo = new Fox.EntityInfo("TppDecoyAssetsLoader", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 88, null, 0);
+            classInfo = new Fox.EntityInfo("TppDecoyAssetsLoader", new Fox.Core.Data().GetClassEntityInfo(), 88, null, 0);
 			
 			classInfo.StaticProperties.Insert("decoyAssets", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.FilePtr, 120, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("playerDecoyType", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 136, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("enemyDecoyType", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 144, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppDecoyAssetsLoader(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppDecoyAssetsLoader(ulong address, ulong id) : base(address, id) { }
+		public TppDecoyAssetsLoader() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

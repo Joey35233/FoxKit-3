@@ -40,7 +40,7 @@ namespace Fox.PartsBuilder
         }
         static GeomDescription()
         {
-            classInfo = new Fox.EntityInfo("GeomDescription", new Fox.PartsBuilder.PartDescription(0, 0, 0).GetClassEntityInfo(), 176, "PartsBuilder", 3);
+            classInfo = new Fox.EntityInfo("GeomDescription", new Fox.PartsBuilder.PartDescription().GetClassEntityInfo(), 176, "PartsBuilder", 3);
 			
 			classInfo.StaticProperties.Insert("geomFile", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.FilePtr, 208, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("skeletonName", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 232, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -49,8 +49,9 @@ namespace Fox.PartsBuilder
 			classInfo.StaticProperties.Insert("offsetTranslation", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Vector3, 192, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public GeomDescription(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public GeomDescription(ulong address, ulong id) : base(address, id) { }
+		public GeomDescription() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

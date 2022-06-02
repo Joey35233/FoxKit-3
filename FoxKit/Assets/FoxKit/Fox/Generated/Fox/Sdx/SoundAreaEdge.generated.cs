@@ -36,15 +36,16 @@ namespace Fox.Sdx
         }
         static SoundAreaEdge()
         {
-            classInfo = new Fox.EntityInfo("SoundAreaEdge", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 136, "Sound", 1);
+            classInfo = new Fox.EntityInfo("SoundAreaEdge", new Fox.Core.Data().GetClassEntityInfo(), 136, "Sound", 1);
 			
 			classInfo.StaticProperties.Insert("parameter", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityPtr, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, typeof(Fox.Sdx.SoundAreaEdgeParameter), null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("prevArea", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityLink, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("nextArea", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityLink, 168, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public SoundAreaEdge(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public SoundAreaEdge(ulong address, ulong id) : base(address, id) { }
+		public SoundAreaEdge() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

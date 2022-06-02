@@ -44,7 +44,7 @@ namespace Fox.Navx
         }
         static NavxHoleSimplificationParameterVolume()
         {
-            classInfo = new Fox.EntityInfo("NavxHoleSimplificationParameterVolume", new Fox.Core.TransformData(0, 0, 0).GetClassEntityInfo(), 288, "Navx", 1);
+            classInfo = new Fox.EntityInfo("NavxHoleSimplificationParameterVolume", new Fox.Core.TransformData().GetClassEntityInfo(), 288, "Navx", 1);
 			
 			classInfo.StaticProperties.Insert("sceneName", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 304, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("worldName", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 312, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -55,8 +55,9 @@ namespace Fox.Navx
 			classInfo.StaticProperties.Insert("isNotClosePassage", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 336, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public NavxHoleSimplificationParameterVolume(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public NavxHoleSimplificationParameterVolume(ulong address, ulong id) : base(address, id) { }
+		public NavxHoleSimplificationParameterVolume() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

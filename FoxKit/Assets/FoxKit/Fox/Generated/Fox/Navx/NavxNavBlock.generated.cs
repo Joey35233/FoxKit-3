@@ -66,7 +66,7 @@ namespace Fox.Navx
         }
         static NavxNavBlock()
         {
-            classInfo = new Fox.EntityInfo("NavxNavBlock", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 248, "Navx", 9);
+            classInfo = new Fox.EntityInfo("NavxNavBlock", new Fox.Core.Data().GetClassEntityInfo(), 248, "Navx", 9);
 			
 			classInfo.StaticProperties.Insert("sceneName", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("worldName", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -88,8 +88,9 @@ namespace Fox.Navx
 			classInfo.StaticProperties.Insert("holeSimplificationReduceCount", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt32, 252, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public NavxNavBlock(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public NavxNavBlock(ulong address, ulong id) : base(address, id) { }
+		public NavxNavBlock() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

@@ -34,14 +34,15 @@ namespace Tpp.Effect
         }
         static TppFloorRainSplashData()
         {
-            classInfo = new Fox.EntityInfo("TppFloorRainSplashData", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 136, null, 1);
+            classInfo = new Fox.EntityInfo("TppFloorRainSplashData", new Fox.Core.Data().GetClassEntityInfo(), 136, null, 1);
 			
 			classInfo.StaticProperties.Insert("vfxFile", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.FilePtr, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("materialSoundList", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 144, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppFloorRainSplashData(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppFloorRainSplashData(ulong address, ulong id) : base(address, id) { }
+		public TppFloorRainSplashData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

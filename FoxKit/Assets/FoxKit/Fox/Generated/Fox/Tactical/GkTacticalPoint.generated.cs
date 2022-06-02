@@ -34,14 +34,15 @@ namespace Fox.Tactical
         }
         static GkTacticalPoint()
         {
-            classInfo = new Fox.EntityInfo("GkTacticalPoint", new Fox.Core.TransformData(0, 0, 0).GetClassEntityInfo(), 0, "TacticalPoint", 2);
+            classInfo = new Fox.EntityInfo("GkTacticalPoint", new Fox.Core.TransformData().GetClassEntityInfo(), 0, "TacticalPoint", 2);
 			
 			classInfo.StaticProperties.Insert("tags", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt8, 304, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("userData", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityLink, 352, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public GkTacticalPoint(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public GkTacticalPoint(ulong address, ulong id) : base(address, id) { }
+		public GkTacticalPoint() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

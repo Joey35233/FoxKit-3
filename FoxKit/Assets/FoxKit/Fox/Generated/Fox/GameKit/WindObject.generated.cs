@@ -30,12 +30,13 @@ namespace Fox.GameKit
         }
         static WindObject()
         {
-            classInfo = new Fox.EntityInfo("WindObject", new Fox.GameKit.EnvironmentObject(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("WindObject", new Fox.GameKit.EnvironmentObject().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public WindObject(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public WindObject(ulong address, ulong id) : base(address, id) { }
+		public WindObject() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

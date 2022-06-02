@@ -30,12 +30,13 @@ namespace Fox.Core
         }
         static DataSetFile()
         {
-            classInfo = new Fox.EntityInfo("DataSetFile", new Fox.Core.File(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("DataSetFile", new Fox.Core.File().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public DataSetFile(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public DataSetFile(ulong address, ulong id) : base(address, id) { }
+		public DataSetFile() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

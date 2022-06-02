@@ -38,7 +38,7 @@ namespace Fox.Navx
         }
         static NavxBounderLocator()
         {
-            classInfo = new Fox.EntityInfo("NavxBounderLocator", new Fox.Core.TransformData(0, 0, 0).GetClassEntityInfo(), 272, "Navx", 0);
+            classInfo = new Fox.EntityInfo("NavxBounderLocator", new Fox.Core.TransformData().GetClassEntityInfo(), 272, "Navx", 0);
 			
 			classInfo.StaticProperties.Insert("enable", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 304, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("sceneName", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 312, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -46,8 +46,9 @@ namespace Fox.Navx
 			classInfo.StaticProperties.Insert("type", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Int32, 328, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, typeof(NavxBounderLocatorType), Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public NavxBounderLocator(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public NavxBounderLocator(ulong address, ulong id) : base(address, id) { }
+		public NavxBounderLocator() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

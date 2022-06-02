@@ -34,14 +34,15 @@ namespace Fox.Core
         }
         static TransformDataBody()
         {
-            classInfo = new Fox.EntityInfo("TransformDataBody", new Fox.Core.DataBody(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("TransformDataBody", new Fox.Core.DataBody().GetClassEntityInfo(), 0, null, 0);
 			
 			classInfo.StaticProperties.Insert("boundingBox_min", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Vector3, 96, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("boundingBox_max", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Vector3, 112, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TransformDataBody(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TransformDataBody(ulong address, ulong id) : base(address, id) { }
+		public TransformDataBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

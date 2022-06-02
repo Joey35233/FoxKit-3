@@ -34,14 +34,15 @@ namespace Fox.Ui
         }
         static UiObjControl()
         {
-            classInfo = new Fox.EntityInfo("UiObjControl", new Fox.Core.Entity(0, 0, 0).GetClassEntityInfo(), 0, "Ui", 0);
+            classInfo = new Fox.EntityInfo("UiObjControl", new Fox.Core.Entity().GetClassEntityInfo(), 0, "Ui", 0);
 			
 			classInfo.StaticProperties.Insert("uigName", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Path, 96, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("uigFileName", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 104, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public UiObjControl(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public UiObjControl(ulong address, ulong id) : base(address, id) { }
+		public UiObjControl() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

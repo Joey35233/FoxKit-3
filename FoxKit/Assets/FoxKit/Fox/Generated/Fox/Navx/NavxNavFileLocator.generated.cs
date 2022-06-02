@@ -38,7 +38,7 @@ namespace Fox.Navx
         }
         static NavxNavFileLocator()
         {
-            classInfo = new Fox.EntityInfo("NavxNavFileLocator", new Fox.Core.TransformData(0, 0, 0).GetClassEntityInfo(), 304, "Navx", 2);
+            classInfo = new Fox.EntityInfo("NavxNavFileLocator", new Fox.Core.TransformData().GetClassEntityInfo(), 304, "Navx", 2);
 			
 			classInfo.StaticProperties.Insert("sceneName", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 304, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("worldName", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 312, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -46,8 +46,9 @@ namespace Fox.Navx
 			classInfo.StaticProperties.Insert("navFile", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.FilePtr, 328, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public NavxNavFileLocator(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public NavxNavFileLocator(ulong address, ulong id) : base(address, id) { }
+		public NavxNavFileLocator() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

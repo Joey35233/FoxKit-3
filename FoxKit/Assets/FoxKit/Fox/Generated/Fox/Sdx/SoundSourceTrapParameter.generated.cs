@@ -36,15 +36,16 @@ namespace Fox.Sdx
         }
         static SoundSourceTrapParameter()
         {
-            classInfo = new Fox.EntityInfo("SoundSourceTrapParameter", new Fox.Geo.GeoTrapModuleCallbackDataElement(0, 0, 0).GetClassEntityInfo(), 0, "Sound", 0);
+            classInfo = new Fox.EntityInfo("SoundSourceTrapParameter", new Fox.Geo.GeoTrapModuleCallbackDataElement().GetClassEntityInfo(), 0, "Sound", 0);
 			
 			classInfo.StaticProperties.Insert("source", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityLink, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("enterEvent", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 104, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("outEvent", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 112, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public SoundSourceTrapParameter(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public SoundSourceTrapParameter(ulong address, ulong id) : base(address, id) { }
+		public SoundSourceTrapParameter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

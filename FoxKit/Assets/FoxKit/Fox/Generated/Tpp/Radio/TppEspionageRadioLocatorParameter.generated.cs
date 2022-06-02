@@ -38,7 +38,7 @@ namespace Tpp.Radio
         }
         static TppEspionageRadioLocatorParameter()
         {
-            classInfo = new Fox.EntityInfo("TppEspionageRadioLocatorParameter", new Fox.Core.DataElement(0, 0, 0).GetClassEntityInfo(), 44, null, 0);
+            classInfo = new Fox.EntityInfo("TppEspionageRadioLocatorParameter", new Fox.Core.DataElement().GetClassEntityInfo(), 44, null, 0);
 			
 			classInfo.StaticProperties.Insert("radioLocatorId", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 56, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("minDistance", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -46,8 +46,9 @@ namespace Tpp.Radio
 			classInfo.StaticProperties.Insert("angle", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 72, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppEspionageRadioLocatorParameter(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppEspionageRadioLocatorParameter(ulong address, ulong id) : base(address, id) { }
+		public TppEspionageRadioLocatorParameter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

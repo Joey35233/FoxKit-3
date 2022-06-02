@@ -36,15 +36,16 @@ namespace Tpp.Effect
         }
         static TppWaterBounding()
         {
-            classInfo = new Fox.EntityInfo("TppWaterBounding", new Fox.Core.TransformData(0, 0, 0).GetClassEntityInfo(), 272, null, 2);
+            classInfo = new Fox.EntityInfo("TppWaterBounding", new Fox.Core.TransformData().GetClassEntityInfo(), 272, null, 2);
 			
 			classInfo.StaticProperties.Insert("enableRotate", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 304, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("debugDraw", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 305, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("type", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Int32, 308, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, typeof(TppWaterBoundingType), Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppWaterBounding(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppWaterBounding(ulong address, ulong id) : base(address, id) { }
+		public TppWaterBounding() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

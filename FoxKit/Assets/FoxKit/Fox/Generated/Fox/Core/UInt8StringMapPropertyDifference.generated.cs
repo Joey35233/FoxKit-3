@@ -34,14 +34,15 @@ namespace Fox.Core
         }
         static UInt8StringMapPropertyDifference()
         {
-            classInfo = new Fox.EntityInfo("UInt8StringMapPropertyDifference", new Fox.Core.PropertyDifference(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("UInt8StringMapPropertyDifference", new Fox.Core.PropertyDifference().GetClassEntityInfo(), 0, null, 0);
 			
 			classInfo.StaticProperties.Insert("originalValues", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt8, 72, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("values", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt8, 120, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public UInt8StringMapPropertyDifference(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public UInt8StringMapPropertyDifference(ulong address, ulong id) : base(address, id) { }
+		public UInt8StringMapPropertyDifference() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

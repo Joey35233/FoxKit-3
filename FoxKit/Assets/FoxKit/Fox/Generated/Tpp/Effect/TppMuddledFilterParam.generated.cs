@@ -61,7 +61,8 @@ namespace Tpp.Effect
 			classInfo.StaticProperties.Insert("power", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 32, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
+        // Constructors
+		
 		
         
         public virtual void SetProperty(string propertyName, Fox.Value value)

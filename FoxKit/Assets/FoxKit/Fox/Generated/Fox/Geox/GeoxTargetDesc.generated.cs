@@ -56,7 +56,7 @@ namespace Fox.Geox
         }
         static GeoxTargetDesc()
         {
-            classInfo = new Fox.EntityInfo("GeoxTargetDesc", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 264, "Target", 0);
+            classInfo = new Fox.EntityInfo("GeoxTargetDesc", new Fox.Core.Data().GetClassEntityInfo(), 264, "Target", 0);
 			
 			classInfo.StaticProperties.Insert("posArray", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Vector3, 120, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("scaleArray", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Vector3, 136, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -73,8 +73,9 @@ namespace Fox.Geox
 			classInfo.StaticProperties.Insert("applicationDataLinkArray", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityLink, 304, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public GeoxTargetDesc(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public GeoxTargetDesc(ulong address, ulong id) : base(address, id) { }
+		public GeoxTargetDesc() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

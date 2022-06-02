@@ -36,15 +36,16 @@ namespace Fox.GameKit
         }
         static ViewGroupControlCondition()
         {
-            classInfo = new Fox.EntityInfo("ViewGroupControlCondition", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 76, null, 0);
+            classInfo = new Fox.EntityInfo("ViewGroupControlCondition", new Fox.Core.Data().GetClassEntityInfo(), 76, null, 0);
 			
 			classInfo.StaticProperties.Insert("flags", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt32, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("condition", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Int32, 124, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, typeof(ViewGroupControlCondition_Condition), Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("identify", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public ViewGroupControlCondition(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public ViewGroupControlCondition(ulong address, ulong id) : base(address, id) { }
+		public ViewGroupControlCondition() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

@@ -30,12 +30,13 @@ namespace Fox.Navx
         }
         static NavxSquareGraphBounderData()
         {
-            classInfo = new Fox.EntityInfo("NavxSquareGraphBounderData", new Fox.Navx.NavxBounderData(0, 0, 0).GetClassEntityInfo(), 256, "Navx", 0);
+            classInfo = new Fox.EntityInfo("NavxSquareGraphBounderData", new Fox.Navx.NavxBounderData().GetClassEntityInfo(), 256, "Navx", 0);
 			
         }
 
-        // Constructor
-		public NavxSquareGraphBounderData(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public NavxSquareGraphBounderData(ulong address, ulong id) : base(address, id) { }
+		public NavxSquareGraphBounderData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

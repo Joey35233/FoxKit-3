@@ -34,14 +34,15 @@ namespace Fox.Core
         }
         static EntityDifference()
         {
-            classInfo = new Fox.EntityInfo("EntityDifference", new Fox.Core.Entity(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("EntityDifference", new Fox.Core.Entity().GetClassEntityInfo(), 0, null, 0);
 			
 			classInfo.StaticProperties.Insert("entityDifferences", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityPtr, 48, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, typeof(Fox.Core.Entity), null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("propertyDifferences", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityPtr, 96, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, typeof(Fox.Core.PropertyDifference), null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public EntityDifference(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public EntityDifference(ulong address, ulong id) : base(address, id) { }
+		public EntityDifference() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

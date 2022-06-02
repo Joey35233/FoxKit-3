@@ -30,12 +30,13 @@ namespace Fox.GameKit
         }
         static WindGlobal()
         {
-            classInfo = new Fox.EntityInfo("WindGlobal", new Fox.GameKit.EnvironmentGlobal(0, 0, 0).GetClassEntityInfo(), 72, "Wind", 0);
+            classInfo = new Fox.EntityInfo("WindGlobal", new Fox.GameKit.EnvironmentGlobal().GetClassEntityInfo(), 72, "Wind", 0);
 			
         }
 
-        // Constructor
-		public WindGlobal(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public WindGlobal(ulong address, ulong id) : base(address, id) { }
+		public WindGlobal() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

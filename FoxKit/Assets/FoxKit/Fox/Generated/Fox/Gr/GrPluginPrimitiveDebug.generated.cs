@@ -30,12 +30,13 @@ namespace Fox.Gr
         }
         static GrPluginPrimitiveDebug()
         {
-            classInfo = new Fox.EntityInfo("GrPluginPrimitiveDebug", new Fox.Gr.GrPluginPrimitiveUnfiltered(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("GrPluginPrimitiveDebug", new Fox.Gr.GrPluginPrimitiveUnfiltered().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public GrPluginPrimitiveDebug(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public GrPluginPrimitiveDebug(ulong address, ulong id) : base(address, id) { }
+		public GrPluginPrimitiveDebug() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

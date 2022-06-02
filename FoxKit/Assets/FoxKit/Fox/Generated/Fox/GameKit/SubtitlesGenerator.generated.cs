@@ -52,7 +52,7 @@ namespace Fox.GameKit
         }
         static SubtitlesGenerator()
         {
-            classInfo = new Fox.EntityInfo("SubtitlesGenerator", new Fox.Ui.UiGraphEntry(0, 0, 0).GetClassEntityInfo(), 192, "Subtitles", 5);
+            classInfo = new Fox.EntityInfo("SubtitlesGenerator", new Fox.Ui.UiGraphEntry().GetClassEntityInfo(), 192, "Subtitles", 5);
 			
 			classInfo.StaticProperties.Insert("key", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 152, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("color", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Color, 176, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -67,8 +67,9 @@ namespace Fox.GameKit
 			classInfo.StaticProperties.Insert("autoLineFeed", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 248, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public SubtitlesGenerator(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public SubtitlesGenerator(ulong address, ulong id) : base(address, id) { }
+		public SubtitlesGenerator() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

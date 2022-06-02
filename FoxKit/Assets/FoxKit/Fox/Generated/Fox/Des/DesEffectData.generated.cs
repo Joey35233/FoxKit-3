@@ -44,7 +44,7 @@ namespace Fox.Des
         }
         static DesEffectData()
         {
-            classInfo = new Fox.EntityInfo("DesEffectData", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 0, "Des", 1);
+            classInfo = new Fox.EntityInfo("DesEffectData", new Fox.Core.Data().GetClassEntityInfo(), 0, "Des", 1);
 			
 			classInfo.StaticProperties.Insert("effectFilePath", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Path, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("effectName", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -55,8 +55,9 @@ namespace Fox.Des
 			classInfo.StaticProperties.Insert("randomSeed", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt32, 164, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public DesEffectData(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public DesEffectData(ulong address, ulong id) : base(address, id) { }
+		public DesEffectData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

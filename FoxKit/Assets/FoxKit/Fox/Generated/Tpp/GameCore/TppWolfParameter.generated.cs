@@ -38,7 +38,7 @@ namespace Tpp.GameCore
         }
         static TppWolfParameter()
         {
-            classInfo = new Fox.EntityInfo("TppWolfParameter", new Fox.Core.DataElement(0, 0, 0).GetClassEntityInfo(), 120, null, 1);
+            classInfo = new Fox.EntityInfo("TppWolfParameter", new Fox.Core.DataElement().GetClassEntityInfo(), 120, null, 1);
 			
 			classInfo.StaticProperties.Insert("partsFile", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.FilePtr, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("mtarFile", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.FilePtr, 88, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -46,8 +46,9 @@ namespace Tpp.GameCore
 			classInfo.StaticProperties.Insert("fovaFiles", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.FilePtr, 136, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppWolfParameter(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppWolfParameter(ulong address, ulong id) : base(address, id) { }
+		public TppWolfParameter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

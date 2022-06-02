@@ -30,12 +30,13 @@ namespace Fox.Gr
         }
         static GrPluginTonemap()
         {
-            classInfo = new Fox.EntityInfo("GrPluginTonemap", new Fox.Gr.GrRenderPlugin(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("GrPluginTonemap", new Fox.Gr.GrRenderPlugin().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public GrPluginTonemap(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public GrPluginTonemap(ulong address, ulong id) : base(address, id) { }
+		public GrPluginTonemap() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

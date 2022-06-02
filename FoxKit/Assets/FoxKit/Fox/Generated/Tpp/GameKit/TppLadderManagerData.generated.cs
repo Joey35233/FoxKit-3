@@ -34,14 +34,15 @@ namespace Tpp.GameKit
         }
         static TppLadderManagerData()
         {
-            classInfo = new Fox.EntityInfo("TppLadderManagerData", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 72, null, 0);
+            classInfo = new Fox.EntityInfo("TppLadderManagerData", new Fox.Core.Data().GetClassEntityInfo(), 72, null, 0);
 			
 			classInfo.StaticProperties.Insert("maxLadderCount", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt32, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("maxBreakableLadderCount", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt32, 124, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppLadderManagerData(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppLadderManagerData(ulong address, ulong id) : base(address, id) { }
+		public TppLadderManagerData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

@@ -64,7 +64,7 @@ namespace Tpp.Effect
         }
         static TppGlobalVolumetricFogParam()
         {
-            classInfo = new Fox.EntityInfo("TppGlobalVolumetricFogParam", new Fox.Core.DataElement(0, 0, 0).GetClassEntityInfo(), 192, null, 17);
+            classInfo = new Fox.EntityInfo("TppGlobalVolumetricFogParam", new Fox.Core.DataElement().GetClassEntityInfo(), 192, null, 17);
 			
 			classInfo.StaticProperties.Insert("enable", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("selfLuminance", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 160, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -85,8 +85,9 @@ namespace Tpp.Effect
 			classInfo.StaticProperties.Insert("flags", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt32, 212, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppGlobalVolumetricFogParam(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppGlobalVolumetricFogParam(ulong address, ulong id) : base(address, id) { }
+		public TppGlobalVolumetricFogParam() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

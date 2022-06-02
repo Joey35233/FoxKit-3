@@ -30,12 +30,13 @@ namespace Fox.GameKit
         }
         static CheckpointDaemon()
         {
-            classInfo = new Fox.EntityInfo("CheckpointDaemon", new Fox.Core.Entity(0, 0, 0).GetClassEntityInfo(), 0, "GameKit", 0);
+            classInfo = new Fox.EntityInfo("CheckpointDaemon", new Fox.Core.Entity().GetClassEntityInfo(), 0, "GameKit", 0);
 			
         }
 
-        // Constructor
-		public CheckpointDaemon(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public CheckpointDaemon(ulong address, ulong id) : base(address, id) { }
+		public CheckpointDaemon() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

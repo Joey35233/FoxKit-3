@@ -30,12 +30,13 @@ namespace Tpp.System
         }
         static ParametersFile()
         {
-            classInfo = new Fox.EntityInfo("ParametersFile", new Fox.Core.RawFile(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("ParametersFile", new Fox.Core.RawFile().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public ParametersFile(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public ParametersFile(ulong address, ulong id) : base(address, id) { }
+		public ParametersFile() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

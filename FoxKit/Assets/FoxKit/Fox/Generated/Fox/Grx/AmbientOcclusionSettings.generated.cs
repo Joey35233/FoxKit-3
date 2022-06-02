@@ -38,7 +38,7 @@ namespace Fox.Grx
         }
         static AmbientOcclusionSettings()
         {
-            classInfo = new Fox.EntityInfo("AmbientOcclusionSettings", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 88, "Config", 0);
+            classInfo = new Fox.EntityInfo("AmbientOcclusionSettings", new Fox.Core.Data().GetClassEntityInfo(), 88, "Config", 0);
 			
 			classInfo.StaticProperties.Insert("method", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Int32, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, typeof(AmbientOcclusionSettings_Method), Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("attachment", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Int32, 124, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, typeof(AmbientOcclusionSettings_LightAttachment), Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -46,8 +46,9 @@ namespace Fox.Grx
 			classInfo.StaticProperties.Insert("areaSSAOParameters", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityPtr, 136, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.Never, typeof(Fox.Grx.GrxAreaSSAOParameters), null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public AmbientOcclusionSettings(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public AmbientOcclusionSettings(ulong address, ulong id) : base(address, id) { }
+		public AmbientOcclusionSettings() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

@@ -30,12 +30,13 @@ namespace Fox.Gr
         }
         static GrPluginTerrainDepth()
         {
-            classInfo = new Fox.EntityInfo("GrPluginTerrainDepth", new Fox.Gr.GrPluginTerrain(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("GrPluginTerrainDepth", new Fox.Gr.GrPluginTerrain().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public GrPluginTerrainDepth(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public GrPluginTerrainDepth(ulong address, ulong id) : base(address, id) { }
+		public GrPluginTerrainDepth() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

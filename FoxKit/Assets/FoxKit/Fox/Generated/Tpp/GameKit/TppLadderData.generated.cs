@@ -36,15 +36,16 @@ namespace Tpp.GameKit
         }
         static TppLadderData()
         {
-            classInfo = new Fox.EntityInfo("TppLadderData", new Fox.Core.TransformData(0, 0, 0).GetClassEntityInfo(), 288, "Tpp", 3);
+            classInfo = new Fox.EntityInfo("TppLadderData", new Fox.Core.TransformData().GetClassEntityInfo(), 288, "Tpp", 3);
 			
 			classInfo.StaticProperties.Insert("numSteps", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt32, 304, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("tacticalActionId", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 312, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("entryPoints", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityLink, 320, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppLadderData(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppLadderData(ulong address, ulong id) : base(address, id) { }
+		public TppLadderData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

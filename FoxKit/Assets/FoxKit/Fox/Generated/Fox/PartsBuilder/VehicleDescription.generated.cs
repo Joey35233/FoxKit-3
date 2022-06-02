@@ -32,13 +32,14 @@ namespace Fox.PartsBuilder
         }
         static VehicleDescription()
         {
-            classInfo = new Fox.EntityInfo("VehicleDescription", new Fox.PartsBuilder.PartDescription(0, 0, 0).GetClassEntityInfo(), 112, "PartsBuilder", 0);
+            classInfo = new Fox.EntityInfo("VehicleDescription", new Fox.PartsBuilder.PartDescription().GetClassEntityInfo(), 112, "PartsBuilder", 0);
 			
 			classInfo.StaticProperties.Insert("vehicleFile", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.FilePtr, 152, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public VehicleDescription(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public VehicleDescription(ulong address, ulong id) : base(address, id) { }
+		public VehicleDescription() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

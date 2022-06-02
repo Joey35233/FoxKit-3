@@ -32,13 +32,14 @@ namespace Tpp.GameCore
         }
         static TppPlayer2AdditionalMtarData()
         {
-            classInfo = new Fox.EntityInfo("TppPlayer2AdditionalMtarData", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 80, null, 1);
+            classInfo = new Fox.EntityInfo("TppPlayer2AdditionalMtarData", new Fox.Core.Data().GetClassEntityInfo(), 80, null, 1);
 			
 			classInfo.StaticProperties.Insert("mtarFiles", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.FilePtr, 120, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppPlayer2AdditionalMtarData(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppPlayer2AdditionalMtarData(ulong address, ulong id) : base(address, id) { }
+		public TppPlayer2AdditionalMtarData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

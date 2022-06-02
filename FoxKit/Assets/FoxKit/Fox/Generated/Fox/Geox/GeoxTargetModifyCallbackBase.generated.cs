@@ -30,12 +30,13 @@ namespace Fox.Geox
         }
         static GeoxTargetModifyCallbackBase()
         {
-            classInfo = new Fox.EntityInfo("GeoxTargetModifyCallbackBase", new Fox.Core.Entity(0, 0, 0).GetClassEntityInfo(), 0, "Geox", 0);
+            classInfo = new Fox.EntityInfo("GeoxTargetModifyCallbackBase", new Fox.Core.Entity().GetClassEntityInfo(), 0, "Geox", 0);
 			
         }
 
-        // Constructor
-		public GeoxTargetModifyCallbackBase(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public GeoxTargetModifyCallbackBase(ulong address, ulong id) : base(address, id) { }
+		public GeoxTargetModifyCallbackBase() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

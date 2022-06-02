@@ -32,13 +32,14 @@ namespace Tpp.Effect
         }
         static TppNightVision()
         {
-            classInfo = new Fox.EntityInfo("TppNightVision", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 72, "TppEffect", 0);
+            classInfo = new Fox.EntityInfo("TppNightVision", new Fox.Core.Data().GetClassEntityInfo(), 72, "TppEffect", 0);
 			
 			classInfo.StaticProperties.Insert("param", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityPtr, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, typeof(Tpp.Effect.TppNightVisionParam), null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppNightVision(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppNightVision(ulong address, ulong id) : base(address, id) { }
+		public TppNightVision() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

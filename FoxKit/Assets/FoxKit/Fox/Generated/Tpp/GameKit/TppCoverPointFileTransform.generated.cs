@@ -32,13 +32,14 @@ namespace Tpp.GameKit
         }
         static TppCoverPointFileTransform()
         {
-            classInfo = new Fox.EntityInfo("TppCoverPointFileTransform", new Fox.Core.TransformData(0, 0, 0).GetClassEntityInfo(), 288, null, 0);
+            classInfo = new Fox.EntityInfo("TppCoverPointFileTransform", new Fox.Core.TransformData().GetClassEntityInfo(), 288, null, 0);
 			
 			classInfo.StaticProperties.Insert("coverPointFile", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.FilePtr, 304, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppCoverPointFileTransform(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppCoverPointFileTransform(ulong address, ulong id) : base(address, id) { }
+		public TppCoverPointFileTransform() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

@@ -44,7 +44,7 @@ namespace Tpp.GameCore
         }
         static TppHeli2Parameter()
         {
-            classInfo = new Fox.EntityInfo("TppHeli2Parameter", new Fox.Core.DataElement(0, 0, 0).GetClassEntityInfo(), 344, null, 2);
+            classInfo = new Fox.EntityInfo("TppHeli2Parameter", new Fox.Core.DataElement().GetClassEntityInfo(), 344, null, 2);
 			
 			classInfo.StaticProperties.Insert("partsFiles", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.FilePtr, 56, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("fmdlFiles", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.FilePtr, 104, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -55,8 +55,9 @@ namespace Tpp.GameCore
 			classInfo.StaticProperties.Insert("mtarFile", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.FilePtr, 344, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppHeli2Parameter(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppHeli2Parameter(ulong address, ulong id) : base(address, id) { }
+		public TppHeli2Parameter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

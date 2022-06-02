@@ -34,14 +34,15 @@ namespace Tpp.GameCore
         }
         static TppLandingZoneData()
         {
-            classInfo = new Fox.EntityInfo("TppLandingZoneData", new Fox.Core.TransformData(0, 0, 0).GetClassEntityInfo(), 272, "Heli", 1);
+            classInfo = new Fox.EntityInfo("TppLandingZoneData", new Fox.Core.TransformData().GetClassEntityInfo(), 272, "Heli", 1);
 			
 			classInfo.StaticProperties.Insert("approachRoute", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 304, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("returnRoute", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 312, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppLandingZoneData(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppLandingZoneData(ulong address, ulong id) : base(address, id) { }
+		public TppLandingZoneData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

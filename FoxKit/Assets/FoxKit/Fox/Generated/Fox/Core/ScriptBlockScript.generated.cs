@@ -32,13 +32,14 @@ namespace Fox.Core
         }
         static ScriptBlockScript()
         {
-            classInfo = new Fox.EntityInfo("ScriptBlockScript", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 88, "Block", 0);
+            classInfo = new Fox.EntityInfo("ScriptBlockScript", new Fox.Core.Data().GetClassEntityInfo(), 88, "Block", 0);
 			
 			classInfo.StaticProperties.Insert("script", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.FilePtr, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public ScriptBlockScript(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public ScriptBlockScript(ulong address, ulong id) : base(address, id) { }
+		public ScriptBlockScript() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

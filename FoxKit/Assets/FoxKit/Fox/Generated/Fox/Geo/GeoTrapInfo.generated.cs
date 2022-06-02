@@ -54,7 +54,7 @@ namespace Fox.Geo
         }
         static GeoTrapInfo()
         {
-            classInfo = new Fox.EntityInfo("GeoTrapInfo", new Fox.Core.Entity(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("GeoTrapInfo", new Fox.Core.Entity().GetClassEntityInfo(), 0, null, 0);
 			
 			classInfo.StaticProperties.Insert("moverTags", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt8, 48, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("moverHandle", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityHandle, 96, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -70,8 +70,9 @@ namespace Fox.Geo
 			classInfo.StaticProperties.Insert("moverGameObjectId", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt16, 104, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public GeoTrapInfo(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public GeoTrapInfo(ulong address, ulong id) : base(address, id) { }
+		public GeoTrapInfo() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

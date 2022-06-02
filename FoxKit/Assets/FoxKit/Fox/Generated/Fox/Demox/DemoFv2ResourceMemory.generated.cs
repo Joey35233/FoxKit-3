@@ -32,13 +32,14 @@ namespace Fox.Demox
         }
         static DemoFv2ResourceMemory()
         {
-            classInfo = new Fox.EntityInfo("DemoFv2ResourceMemory", new Fox.Core.DataElement(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("DemoFv2ResourceMemory", new Fox.Core.DataElement().GetClassEntityInfo(), 0, null, 0);
 			
 			classInfo.StaticProperties.Insert("resourceSize", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Int32, 56, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public DemoFv2ResourceMemory(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public DemoFv2ResourceMemory(ulong address, ulong id) : base(address, id) { }
+		public DemoFv2ResourceMemory() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

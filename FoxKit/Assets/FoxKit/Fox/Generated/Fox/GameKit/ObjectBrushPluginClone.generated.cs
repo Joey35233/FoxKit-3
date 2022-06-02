@@ -40,7 +40,7 @@ namespace Fox.GameKit
         }
         static ObjectBrushPluginClone()
         {
-            classInfo = new Fox.EntityInfo("ObjectBrushPluginClone", new Fox.GameKit.ObjectBrushPlugin(0, 0, 0).GetClassEntityInfo(), 120, null, 3);
+            classInfo = new Fox.EntityInfo("ObjectBrushPluginClone", new Fox.GameKit.ObjectBrushPlugin().GetClassEntityInfo(), 120, null, 3);
 			
 			classInfo.StaticProperties.Insert("modelFile", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.FilePtr, 144, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("minSize", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 168, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -49,8 +49,9 @@ namespace Fox.GameKit
 			classInfo.StaticProperties.Insert("modelRejectionLevel", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Int32, 176, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, typeof(ObjectBrushPluginClone_ModelRejectionLevel), Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public ObjectBrushPluginClone(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public ObjectBrushPluginClone(ulong address, ulong id) : base(address, id) { }
+		public ObjectBrushPluginClone() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

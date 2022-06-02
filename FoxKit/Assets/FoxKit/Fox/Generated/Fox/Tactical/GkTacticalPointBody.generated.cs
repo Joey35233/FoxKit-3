@@ -32,13 +32,14 @@ namespace Fox.Tactical
         }
         static GkTacticalPointBody()
         {
-            classInfo = new Fox.EntityInfo("GkTacticalPointBody", new Fox.Core.TransformDataBody(0, 0, 0).GetClassEntityInfo(), 0, "TacticalPoint", 0);
+            classInfo = new Fox.EntityInfo("GkTacticalPointBody", new Fox.Core.TransformDataBody().GetClassEntityInfo(), 0, "TacticalPoint", 0);
 			
 			classInfo.StaticProperties.Insert("object", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityHandle, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public GkTacticalPointBody(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public GkTacticalPointBody(ulong address, ulong id) : base(address, id) { }
+		public GkTacticalPointBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

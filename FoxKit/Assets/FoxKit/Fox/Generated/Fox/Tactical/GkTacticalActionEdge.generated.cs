@@ -34,14 +34,15 @@ namespace Fox.Tactical
         }
         static GkTacticalActionEdge()
         {
-            classInfo = new Fox.EntityInfo("GkTacticalActionEdge", new Fox.Core.DataElement(0, 0, 0).GetClassEntityInfo(), 36, "TacticalAction", 0);
+            classInfo = new Fox.EntityInfo("GkTacticalActionEdge", new Fox.Core.DataElement().GetClassEntityInfo(), 36, "TacticalAction", 0);
 			
 			classInfo.StaticProperties.Insert("actionName", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 56, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("actionDirection", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Int32, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, typeof(GkTacticalActionDirection), Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public GkTacticalActionEdge(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public GkTacticalActionEdge(ulong address, ulong id) : base(address, id) { }
+		public GkTacticalActionEdge() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

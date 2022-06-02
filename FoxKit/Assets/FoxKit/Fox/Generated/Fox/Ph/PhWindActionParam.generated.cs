@@ -32,13 +32,14 @@ namespace Fox.Ph
         }
         static PhWindActionParam()
         {
-            classInfo = new Fox.EntityInfo("PhWindActionParam", new Fox.Ph.PhActionParam(0, 0, 0).GetClassEntityInfo(), 0, "Ph", 0);
+            classInfo = new Fox.EntityInfo("PhWindActionParam", new Fox.Ph.PhActionParam().GetClassEntityInfo(), 0, "Ph", 0);
 			
 			classInfo.StaticProperties.Insert("airResistanceRate", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public PhWindActionParam(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public PhWindActionParam(ulong address, ulong id) : base(address, id) { }
+		public PhWindActionParam() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

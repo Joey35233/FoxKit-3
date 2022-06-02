@@ -34,14 +34,15 @@ namespace Fox.Geo
         }
         static GeoSearchAABB()
         {
-            classInfo = new Fox.EntityInfo("GeoSearchAABB", new Fox.Geo.GeoSearchObject(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("GeoSearchAABB", new Fox.Geo.GeoSearchObject().GetClassEntityInfo(), 0, null, 0);
 			
 			classInfo.StaticProperties.Insert("min", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Vector3, 144, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("max", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Vector3, 160, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public GeoSearchAABB(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public GeoSearchAABB(ulong address, ulong id) : base(address, id) { }
+		public GeoSearchAABB() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

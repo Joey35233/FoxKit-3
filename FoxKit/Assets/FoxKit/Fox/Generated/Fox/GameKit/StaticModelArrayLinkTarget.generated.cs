@@ -34,14 +34,15 @@ namespace Fox.GameKit
         }
         static StaticModelArrayLinkTarget()
         {
-            classInfo = new Fox.EntityInfo("StaticModelArrayLinkTarget", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 72, "Model", 0);
+            classInfo = new Fox.EntityInfo("StaticModelArrayLinkTarget", new Fox.Core.Data().GetClassEntityInfo(), 72, "Model", 0);
 			
 			classInfo.StaticProperties.Insert("staticModelArray", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityHandle, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("arrayIndex", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt32, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public StaticModelArrayLinkTarget(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public StaticModelArrayLinkTarget(ulong address, ulong id) : base(address, id) { }
+		public StaticModelArrayLinkTarget() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

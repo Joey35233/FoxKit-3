@@ -34,14 +34,15 @@ namespace Fox.PartsBuilder
         }
         static DestructionModelDescription()
         {
-            classInfo = new Fox.EntityInfo("DestructionModelDescription", new Fox.PartsBuilder.ModelDescription(0, 0, 0).GetClassEntityInfo(), 336, "PartsBuilder", 2);
+            classInfo = new Fox.EntityInfo("DestructionModelDescription", new Fox.PartsBuilder.ModelDescription().GetClassEntityInfo(), 336, "PartsBuilder", 2);
 			
 			classInfo.StaticProperties.Insert("fdesFile", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.FilePtr, 368, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("desDataSetFile", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.FilePtr, 392, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public DestructionModelDescription(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public DestructionModelDescription(ulong address, ulong id) : base(address, id) { }
+		public DestructionModelDescription() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

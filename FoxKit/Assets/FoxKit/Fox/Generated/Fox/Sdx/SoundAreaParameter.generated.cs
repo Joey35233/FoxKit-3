@@ -44,7 +44,7 @@ namespace Fox.Sdx
         }
         static SoundAreaParameter()
         {
-            classInfo = new Fox.EntityInfo("SoundAreaParameter", new Fox.Core.DataElement(0, 0, 0).GetClassEntityInfo(), 104, "Sound", 4);
+            classInfo = new Fox.EntityInfo("SoundAreaParameter", new Fox.Core.DataElement().GetClassEntityInfo(), 104, "Sound", 4);
 			
 			classInfo.StaticProperties.Insert("ambientEvent", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 56, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("ambientRtpcName", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -55,8 +55,9 @@ namespace Fox.Sdx
 			classInfo.StaticProperties.Insert("dryVolume", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 144, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public SoundAreaParameter(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public SoundAreaParameter(ulong address, ulong id) : base(address, id) { }
+		public SoundAreaParameter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

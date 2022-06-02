@@ -38,7 +38,7 @@ namespace Fox.Anim
         }
         static FacialSettingData()
         {
-            classInfo = new Fox.EntityInfo("FacialSettingData", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 104, null, 2);
+            classInfo = new Fox.EntityInfo("FacialSettingData", new Fox.Core.Data().GetClassEntityInfo(), 104, null, 2);
 			
 			classInfo.StaticProperties.Insert("aspectMaskList", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityPtr, 120, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, typeof(Fox.Anim.FacialMaskElement), null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("mouthMask", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityPtr, 136, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, typeof(Fox.Anim.FacialMaskElement), null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -46,8 +46,9 @@ namespace Fox.Anim
 			classInfo.StaticProperties.Insert("rootName", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 152, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public FacialSettingData(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public FacialSettingData(ulong address, ulong id) : base(address, id) { }
+		public FacialSettingData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

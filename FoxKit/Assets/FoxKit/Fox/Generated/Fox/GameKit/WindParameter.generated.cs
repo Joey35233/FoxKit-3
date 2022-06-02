@@ -46,7 +46,7 @@ namespace Fox.GameKit
         }
         static WindParameter()
         {
-            classInfo = new Fox.EntityInfo("WindParameter", new Fox.GameKit.EnvironmentParameter(0, 0, 0).GetClassEntityInfo(), 80, null, 6);
+            classInfo = new Fox.EntityInfo("WindParameter", new Fox.GameKit.EnvironmentParameter().GetClassEntityInfo(), 80, null, 6);
 			
 			classInfo.StaticProperties.Insert("speed", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("rotation", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Quat, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -58,8 +58,9 @@ namespace Fox.GameKit
 			classInfo.StaticProperties.Insert("influenceOfGlobal", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 96, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public WindParameter(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public WindParameter(ulong address, ulong id) : base(address, id) { }
+		public WindParameter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

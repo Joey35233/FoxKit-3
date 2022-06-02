@@ -32,13 +32,14 @@ namespace Fox.Core
         }
         static Locator()
         {
-            classInfo = new Fox.EntityInfo("Locator", new Fox.Core.TransformData(0, 0, 0).GetClassEntityInfo(), 272, "Locator", 0);
+            classInfo = new Fox.EntityInfo("Locator", new Fox.Core.TransformData().GetClassEntityInfo(), 272, "Locator", 0);
 			
 			classInfo.StaticProperties.Insert("size", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 304, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public Locator(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public Locator(ulong address, ulong id) : base(address, id) { }
+		public Locator() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

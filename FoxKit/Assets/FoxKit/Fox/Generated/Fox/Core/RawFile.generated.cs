@@ -30,12 +30,13 @@ namespace Fox.Core
         }
         static RawFile()
         {
-            classInfo = new Fox.EntityInfo("RawFile", new Fox.Core.File(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("RawFile", new Fox.Core.File().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public RawFile(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public RawFile(ulong address, ulong id) : base(address, id) { }
+		public RawFile() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

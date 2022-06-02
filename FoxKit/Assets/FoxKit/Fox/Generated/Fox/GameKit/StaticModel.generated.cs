@@ -52,7 +52,7 @@ namespace Fox.GameKit
         }
         static StaticModel()
         {
-            classInfo = new Fox.EntityInfo("StaticModel", new Fox.Core.TransformData(0, 0, 0).GetClassEntityInfo(), 352, "Model", 9);
+            classInfo = new Fox.EntityInfo("StaticModel", new Fox.Core.TransformData().GetClassEntityInfo(), 352, "Model", 9);
 			
 			classInfo.StaticProperties.Insert("modelFile", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.FilePtr, 304, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("geomFile", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.FilePtr, 328, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -67,8 +67,9 @@ namespace Fox.GameKit
 			classInfo.StaticProperties.Insert("rejectFarRangeShadowCast", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Int32, 392, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, typeof(StaticModel_RejectFarRangeShadowCast), Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public StaticModel(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public StaticModel(ulong address, ulong id) : base(address, id) { }
+		public StaticModel() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

@@ -48,7 +48,7 @@ namespace Tpp.Effect
         }
         static TppAreaVolumetricFogParam()
         {
-            classInfo = new Fox.EntityInfo("TppAreaVolumetricFogParam", new Fox.Core.DataElement(0, 0, 0).GetClassEntityInfo(), 0, null, 1);
+            classInfo = new Fox.EntityInfo("TppAreaVolumetricFogParam", new Fox.Core.DataElement().GetClassEntityInfo(), 0, null, 1);
 			
 			classInfo.StaticProperties.Insert("enable", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 146, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("priority", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt8, 144, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -61,8 +61,9 @@ namespace Tpp.Effect
 			classInfo.StaticProperties.Insert("inverseFalloff", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 145, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppAreaVolumetricFogParam(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppAreaVolumetricFogParam(ulong address, ulong id) : base(address, id) { }
+		public TppAreaVolumetricFogParam() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

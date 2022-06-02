@@ -32,13 +32,14 @@ namespace Fox.GameKit
         }
         static IntervalRegulator()
         {
-            classInfo = new Fox.EntityInfo("IntervalRegulator", new Fox.Core.Entity(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("IntervalRegulator", new Fox.Core.Entity().GetClassEntityInfo(), 0, null, 0);
 			
 			classInfo.StaticProperties.Insert("intervalTimers", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Double, 48, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public IntervalRegulator(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public IntervalRegulator(ulong address, ulong id) : base(address, id) { }
+		public IntervalRegulator() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

@@ -30,12 +30,13 @@ namespace Fox.GameKit
         }
         static GkSmartObjectSetBody()
         {
-            classInfo = new Fox.EntityInfo("GkSmartObjectSetBody", new Fox.Core.DataBody(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("GkSmartObjectSetBody", new Fox.Core.DataBody().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public GkSmartObjectSetBody(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public GkSmartObjectSetBody(ulong address, ulong id) : base(address, id) { }
+		public GkSmartObjectSetBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

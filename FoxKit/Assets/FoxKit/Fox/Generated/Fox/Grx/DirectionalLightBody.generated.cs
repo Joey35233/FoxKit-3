@@ -32,13 +32,14 @@ namespace Fox.Grx
         }
         static DirectionalLightBody()
         {
-            classInfo = new Fox.EntityInfo("DirectionalLightBody", new Fox.Core.TransformDataBody(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("DirectionalLightBody", new Fox.Core.TransformDataBody().GetClassEntityInfo(), 0, null, 0);
 			
 			classInfo.StaticProperties.Insert("enable", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 136, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public DirectionalLightBody(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public DirectionalLightBody(ulong address, ulong id) : base(address, id) { }
+		public DirectionalLightBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

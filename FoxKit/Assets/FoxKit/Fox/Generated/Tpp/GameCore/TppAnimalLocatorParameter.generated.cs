@@ -34,14 +34,15 @@ namespace Tpp.GameCore
         }
         static TppAnimalLocatorParameter()
         {
-            classInfo = new Fox.EntityInfo("TppAnimalLocatorParameter", new Fox.Core.DataElement(0, 0, 0).GetClassEntityInfo(), 40, null, 1);
+            classInfo = new Fox.EntityInfo("TppAnimalLocatorParameter", new Fox.Core.DataElement().GetClassEntityInfo(), 40, null, 1);
 			
 			classInfo.StaticProperties.Insert("count", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt32, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("radius", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 68, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppAnimalLocatorParameter(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppAnimalLocatorParameter(ulong address, ulong id) : base(address, id) { }
+		public TppAnimalLocatorParameter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

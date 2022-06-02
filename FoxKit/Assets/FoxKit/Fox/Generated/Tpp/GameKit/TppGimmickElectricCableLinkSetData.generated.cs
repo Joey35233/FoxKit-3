@@ -40,7 +40,7 @@ namespace Tpp.GameKit
         }
         static TppGimmickElectricCableLinkSetData()
         {
-            classInfo = new Fox.EntityInfo("TppGimmickElectricCableLinkSetData", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 176, "Gimmick", 0);
+            classInfo = new Fox.EntityInfo("TppGimmickElectricCableLinkSetData", new Fox.Core.Data().GetClassEntityInfo(), 176, "Gimmick", 0);
 			
 			classInfo.StaticProperties.Insert("electricCableData", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityLink, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("poleData", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityLink, 160, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -49,8 +49,9 @@ namespace Tpp.GameKit
 			classInfo.StaticProperties.Insert("cnpIndex", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt8, 232, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppGimmickElectricCableLinkSetData(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppGimmickElectricCableLinkSetData(ulong address, ulong id) : base(address, id) { }
+		public TppGimmickElectricCableLinkSetData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

@@ -38,7 +38,7 @@ namespace Fox.Sdx
         }
         static SoundSource()
         {
-            classInfo = new Fox.EntityInfo("SoundSource", new Fox.Core.TransformData(0, 0, 0).GetClassEntityInfo(), 288, "Sound", 2);
+            classInfo = new Fox.EntityInfo("SoundSource", new Fox.Core.TransformData().GetClassEntityInfo(), 288, "Sound", 2);
 			
 			classInfo.StaticProperties.Insert("eventName", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 304, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("shapes", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityLink, 312, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -46,8 +46,9 @@ namespace Fox.Sdx
 			classInfo.StaticProperties.Insert("playRange", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 332, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public SoundSource(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public SoundSource(ulong address, ulong id) : base(address, id) { }
+		public SoundSource() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

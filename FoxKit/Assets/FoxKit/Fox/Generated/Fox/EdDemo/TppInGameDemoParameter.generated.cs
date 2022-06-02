@@ -30,12 +30,13 @@ namespace Fox.EdDemo
         }
         static TppInGameDemoParameter()
         {
-            classInfo = new Fox.EntityInfo("TppInGameDemoParameter", new Fox.Demo.DemoParameter(0, 0, 0).GetClassEntityInfo(), 36, null, 0);
+            classInfo = new Fox.EntityInfo("TppInGameDemoParameter", new Fox.Demo.DemoParameter().GetClassEntityInfo(), 36, null, 0);
 			
         }
 
-        // Constructor
-		public TppInGameDemoParameter(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppInGameDemoParameter(ulong address, ulong id) : base(address, id) { }
+		public TppInGameDemoParameter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

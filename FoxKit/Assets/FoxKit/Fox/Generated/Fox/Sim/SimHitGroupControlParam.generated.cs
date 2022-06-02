@@ -32,13 +32,14 @@ namespace Fox.Sim
         }
         static SimHitGroupControlParam()
         {
-            classInfo = new Fox.EntityInfo("SimHitGroupControlParam", new Fox.Sim.SimControlParam(0, 0, 0).GetClassEntityInfo(), 28, "Sim", 0);
+            classInfo = new Fox.EntityInfo("SimHitGroupControlParam", new Fox.Sim.SimControlParam().GetClassEntityInfo(), 28, "Sim", 0);
 			
 			classInfo.StaticProperties.Insert("groupIndex", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt32, 48, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public SimHitGroupControlParam(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public SimHitGroupControlParam(ulong address, ulong id) : base(address, id) { }
+		public SimHitGroupControlParam() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

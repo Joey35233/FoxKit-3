@@ -30,12 +30,13 @@ namespace Fox.Anim
         }
         static MtFile()
         {
-            classInfo = new Fox.EntityInfo("MtFile", new Fox.Anim.GaniBaseFile(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("MtFile", new Fox.Anim.GaniBaseFile().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public MtFile(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public MtFile(ulong address, ulong id) : base(address, id) { }
+		public MtFile() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

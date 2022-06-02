@@ -30,12 +30,13 @@ namespace Fox.GameKit
         }
         static EvControlSubtitlesNode()
         {
-            classInfo = new Fox.EntityInfo("EvControlSubtitlesNode", new Fox.Ui.UiEventNode(0, 0, 0).GetClassEntityInfo(), 0, "UiG", 0);
+            classInfo = new Fox.EntityInfo("EvControlSubtitlesNode", new Fox.Ui.UiEventNode().GetClassEntityInfo(), 0, "UiG", 0);
 			
         }
 
-        // Constructor
-		public EvControlSubtitlesNode(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public EvControlSubtitlesNode(ulong address, ulong id) : base(address, id) { }
+		public EvControlSubtitlesNode() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

@@ -30,12 +30,13 @@ namespace Fox.GameKit
         }
         static StaticModelArrayLocator()
         {
-            classInfo = new Fox.EntityInfo("StaticModelArrayLocator", new Fox.Core.TransformData(0, 0, 0).GetClassEntityInfo(), 272, "Locator", 1);
+            classInfo = new Fox.EntityInfo("StaticModelArrayLocator", new Fox.Core.TransformData().GetClassEntityInfo(), 272, "Locator", 1);
 			
         }
 
-        // Constructor
-		public StaticModelArrayLocator(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public StaticModelArrayLocator(ulong address, ulong id) : base(address, id) { }
+		public StaticModelArrayLocator() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

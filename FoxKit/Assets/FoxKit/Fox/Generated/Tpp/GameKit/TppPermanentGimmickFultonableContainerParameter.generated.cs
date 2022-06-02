@@ -34,14 +34,15 @@ namespace Tpp.GameKit
         }
         static TppPermanentGimmickFultonableContainerParameter()
         {
-            classInfo = new Fox.EntityInfo("TppPermanentGimmickFultonableContainerParameter", new Fox.Core.DataElement(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("TppPermanentGimmickFultonableContainerParameter", new Fox.Core.DataElement().GetClassEntityInfo(), 0, null, 0);
 			
 			classInfo.StaticProperties.Insert("fultonReadyHeight", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 56, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("fultonReadyTime", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 60, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppPermanentGimmickFultonableContainerParameter(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppPermanentGimmickFultonableContainerParameter(ulong address, ulong id) : base(address, id) { }
+		public TppPermanentGimmickFultonableContainerParameter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

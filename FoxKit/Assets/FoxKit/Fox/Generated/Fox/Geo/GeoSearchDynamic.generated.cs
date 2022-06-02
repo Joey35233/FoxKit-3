@@ -32,13 +32,14 @@ namespace Fox.Geo
         }
         static GeoSearchDynamic()
         {
-            classInfo = new Fox.EntityInfo("GeoSearchDynamic", new Fox.Geo.GeoSearchObject(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("GeoSearchDynamic", new Fox.Geo.GeoSearchObject().GetClassEntityInfo(), 0, null, 0);
 			
 			classInfo.StaticProperties.Insert("collisionObject", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityHandle, 144, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public GeoSearchDynamic(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public GeoSearchDynamic(ulong address, ulong id) : base(address, id) { }
+		public GeoSearchDynamic() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

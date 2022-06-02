@@ -30,12 +30,13 @@ namespace Tpp.GameKit
         }
         static TppCombatLocatorSetDataBody()
         {
-            classInfo = new Fox.EntityInfo("TppCombatLocatorSetDataBody", new Fox.Core.DataBody(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("TppCombatLocatorSetDataBody", new Fox.Core.DataBody().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public TppCombatLocatorSetDataBody(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppCombatLocatorSetDataBody(ulong address, ulong id) : base(address, id) { }
+		public TppCombatLocatorSetDataBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

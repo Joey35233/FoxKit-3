@@ -32,13 +32,14 @@ namespace Fox.Grx
         }
         static LightArray()
         {
-            classInfo = new Fox.EntityInfo("LightArray", new Fox.Core.TransformData(0, 0, 0).GetClassEntityInfo(), 288, "Light", 2);
+            classInfo = new Fox.EntityInfo("LightArray", new Fox.Core.TransformData().GetClassEntityInfo(), 288, "Light", 2);
 			
 			classInfo.StaticProperties.Insert("lightArrayFile", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.FilePtr, 304, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public LightArray(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public LightArray(ulong address, ulong id) : base(address, id) { }
+		public LightArray() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

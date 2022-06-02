@@ -76,7 +76,7 @@ namespace Tpp.GameKit
         }
         static ObjectBrushPluginBushDataElement()
         {
-            classInfo = new Fox.EntityInfo("ObjectBrushPluginBushDataElement", new Fox.Core.DataElement(0, 0, 0).GetClassEntityInfo(), 224, null, 20);
+            classInfo = new Fox.EntityInfo("ObjectBrushPluginBushDataElement", new Fox.Core.DataElement().GetClassEntityInfo(), 224, null, 20);
 			
 			classInfo.StaticProperties.Insert("lodMeshName", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 56, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("lodDistance", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 72, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -103,8 +103,9 @@ namespace Tpp.GameKit
 			classInfo.StaticProperties.Insert("rainEffect", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.FilePtr, 232, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public ObjectBrushPluginBushDataElement(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public ObjectBrushPluginBushDataElement(ulong address, ulong id) : base(address, id) { }
+		public ObjectBrushPluginBushDataElement() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

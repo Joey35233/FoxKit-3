@@ -30,12 +30,13 @@ namespace Fox.Character
         }
         static GkPathLineTargetBody()
         {
-            classInfo = new Fox.EntityInfo("GkPathLineTargetBody", new Fox.Graphx.GraphxPath(0, 0, 0).GetClassEntityInfo(), 0, "Character", 0);
+            classInfo = new Fox.EntityInfo("GkPathLineTargetBody", new Fox.Graphx.GraphxPath().GetClassEntityInfo(), 0, "Character", 0);
 			
         }
 
-        // Constructor
-		public GkPathLineTargetBody(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public GkPathLineTargetBody(ulong address, ulong id) : base(address, id) { }
+		public GkPathLineTargetBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

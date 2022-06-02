@@ -32,13 +32,14 @@ namespace Tpp.GameCore
         }
         static TppVehicle2ReliefData()
         {
-            classInfo = new Fox.EntityInfo("TppVehicle2ReliefData", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 68, null, 0);
+            classInfo = new Fox.EntityInfo("TppVehicle2ReliefData", new Fox.Core.Data().GetClassEntityInfo(), 68, null, 0);
 			
 			classInfo.StaticProperties.Insert("blockSizeInBytes", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt32, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppVehicle2ReliefData(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppVehicle2ReliefData(ulong address, ulong id) : base(address, id) { }
+		public TppVehicle2ReliefData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

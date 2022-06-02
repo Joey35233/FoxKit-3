@@ -40,7 +40,7 @@ namespace Fox.Grx
         }
         static Horizon()
         {
-            classInfo = new Fox.EntityInfo("Horizon", new Fox.Core.TransformData(0, 0, 0).GetClassEntityInfo(), 0, "Light", 2);
+            classInfo = new Fox.EntityInfo("Horizon", new Fox.Core.TransformData().GetClassEntityInfo(), 0, "Light", 2);
 			
 			classInfo.StaticProperties.Insert("enable", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 304, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("colorPreset", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Int32, 308, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, typeof(Horizon_ColorPreset), Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -49,8 +49,9 @@ namespace Fox.Grx
 			classInfo.StaticProperties.Insert("showObject", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 352, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public Horizon(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public Horizon(ulong address, ulong id) : base(address, id) { }
+		public Horizon() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

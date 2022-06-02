@@ -34,14 +34,15 @@ namespace Fox.Nav
         }
         static NavVehicleNavigationParameter()
         {
-            classInfo = new Fox.EntityInfo("NavVehicleNavigationParameter", new Fox.Nav.NavNavigationParameter(0, 0, 0).GetClassEntityInfo(), 0, "Nav", 0);
+            classInfo = new Fox.EntityInfo("NavVehicleNavigationParameter", new Fox.Nav.NavNavigationParameter().GetClassEntityInfo(), 0, "Nav", 0);
 			
 			classInfo.StaticProperties.Insert("turningRadii", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 48, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("turningSpeeds", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 64, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public NavVehicleNavigationParameter(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public NavVehicleNavigationParameter(ulong address, ulong id) : base(address, id) { }
+		public NavVehicleNavigationParameter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

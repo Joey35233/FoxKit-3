@@ -40,7 +40,7 @@ namespace Tpp.Effect
         }
         static TppWeatherRainData()
         {
-            classInfo = new Fox.EntityInfo("TppWeatherRainData", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 200, "TppEffect", 4);
+            classInfo = new Fox.EntityInfo("TppWeatherRainData", new Fox.Core.Data().GetClassEntityInfo(), 200, "TppEffect", 4);
 			
 			classInfo.StaticProperties.Insert("rainFilter", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityLink, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("floorRainSplash", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityLink, 160, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -49,8 +49,9 @@ namespace Tpp.Effect
 			classInfo.StaticProperties.Insert("vfxFileCameraFog", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.FilePtr, 248, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppWeatherRainData(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppWeatherRainData(ulong address, ulong id) : base(address, id) { }
+		public TppWeatherRainData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

@@ -38,7 +38,7 @@ namespace Fox.Geo
         }
         static GeoTrapCondition()
         {
-            classInfo = new Fox.EntityInfo("GeoTrapCondition", new Fox.Core.TransformData(0, 0, 0).GetClassEntityInfo(), 0, "Trap", 3);
+            classInfo = new Fox.EntityInfo("GeoTrapCondition", new Fox.Core.TransformData().GetClassEntityInfo(), 0, "Trap", 3);
 			
 			classInfo.StaticProperties.Insert("trapCategory", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 304, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("trapPriority", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt32, 312, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -46,8 +46,9 @@ namespace Fox.Geo
 			classInfo.StaticProperties.Insert("isOnce", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 317, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public GeoTrapCondition(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public GeoTrapCondition(ulong address, ulong id) : base(address, id) { }
+		public GeoTrapCondition() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

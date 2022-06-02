@@ -32,13 +32,14 @@ namespace Fox.Geox
         }
         static GeoxPolygonMarkerBody()
         {
-            classInfo = new Fox.EntityInfo("GeoxPolygonMarkerBody", new Fox.Core.TransformDataBody(0, 0, 0).GetClassEntityInfo(), 0, "Geox", 0);
+            classInfo = new Fox.EntityInfo("GeoxPolygonMarkerBody", new Fox.Core.TransformDataBody().GetClassEntityInfo(), 0, "Geox", 0);
 			
 			classInfo.StaticProperties.Insert("vertices", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Vector3, 144, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public GeoxPolygonMarkerBody(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public GeoxPolygonMarkerBody(ulong address, ulong id) : base(address, id) { }
+		public GeoxPolygonMarkerBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

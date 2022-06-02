@@ -30,12 +30,13 @@ namespace Fox.Gr
         }
         static GrPluginLightAccumulateLayer()
         {
-            classInfo = new Fox.EntityInfo("GrPluginLightAccumulateLayer", new Fox.Gr.GrRenderPlugin(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("GrPluginLightAccumulateLayer", new Fox.Gr.GrRenderPlugin().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public GrPluginLightAccumulateLayer(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public GrPluginLightAccumulateLayer(ulong address, ulong id) : base(address, id) { }
+		public GrPluginLightAccumulateLayer() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

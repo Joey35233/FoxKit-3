@@ -36,15 +36,16 @@ namespace Fox.GameKit
         }
         static StageLightFadeData()
         {
-            classInfo = new Fox.EntityInfo("StageLightFadeData", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 112, null, 0);
+            classInfo = new Fox.EntityInfo("StageLightFadeData", new Fox.Core.Data().GetClassEntityInfo(), 112, null, 0);
 			
 			classInfo.StaticProperties.Insert("lightGroup", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityLink, 120, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("colorList", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Color, 136, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("requirdTime", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 152, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public StageLightFadeData(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public StageLightFadeData(ulong address, ulong id) : base(address, id) { }
+		public StageLightFadeData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

@@ -34,14 +34,15 @@ namespace Fox.Core
         }
         static Int16ArrayPropertyDifference()
         {
-            classInfo = new Fox.EntityInfo("Int16ArrayPropertyDifference", new Fox.Core.PropertyDifference(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("Int16ArrayPropertyDifference", new Fox.Core.PropertyDifference().GetClassEntityInfo(), 0, null, 0);
 			
 			classInfo.StaticProperties.Insert("originalValues", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Int16, 72, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("values", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Int16, 88, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public Int16ArrayPropertyDifference(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public Int16ArrayPropertyDifference(ulong address, ulong id) : base(address, id) { }
+		public Int16ArrayPropertyDifference() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

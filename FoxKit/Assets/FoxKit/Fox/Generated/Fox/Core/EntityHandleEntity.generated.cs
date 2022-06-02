@@ -32,13 +32,14 @@ namespace Fox.Core
         }
         static EntityHandleEntity()
         {
-            classInfo = new Fox.EntityInfo("EntityHandleEntity", new Fox.Core.PropertyValueEntity(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("EntityHandleEntity", new Fox.Core.PropertyValueEntity().GetClassEntityInfo(), 0, null, 0);
 			
 			classInfo.StaticProperties.Insert("value", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityHandle, 56, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public EntityHandleEntity(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public EntityHandleEntity(ulong address, ulong id) : base(address, id) { }
+		public EntityHandleEntity() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

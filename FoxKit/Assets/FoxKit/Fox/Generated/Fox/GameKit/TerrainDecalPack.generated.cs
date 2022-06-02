@@ -34,14 +34,15 @@ namespace Fox.GameKit
         }
         static TerrainDecalPack()
         {
-            classInfo = new Fox.EntityInfo("TerrainDecalPack", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 104, null, 0);
+            classInfo = new Fox.EntityInfo("TerrainDecalPack", new Fox.Core.Data().GetClassEntityInfo(), 104, null, 0);
 			
 			classInfo.StaticProperties.Insert("terrainDecalPackFile", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.FilePtr, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("materialLinks", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityLink, 144, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TerrainDecalPack(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TerrainDecalPack(ulong address, ulong id) : base(address, id) { }
+		public TerrainDecalPack() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

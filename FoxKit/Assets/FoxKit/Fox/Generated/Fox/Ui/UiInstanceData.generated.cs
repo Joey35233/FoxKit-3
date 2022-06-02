@@ -34,14 +34,15 @@ namespace Fox.Ui
         }
         static UiInstanceData()
         {
-            classInfo = new Fox.EntityInfo("UiInstanceData", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 120, "Ui", 1);
+            classInfo = new Fox.EntityInfo("UiInstanceData", new Fox.Core.Data().GetClassEntityInfo(), 120, "Ui", 1);
 			
 			classInfo.StaticProperties.Insert("createWindowParams", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.FilePtr, 120, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("windowFactoryName", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 168, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public UiInstanceData(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public UiInstanceData(ulong address, ulong id) : base(address, id) { }
+		public UiInstanceData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

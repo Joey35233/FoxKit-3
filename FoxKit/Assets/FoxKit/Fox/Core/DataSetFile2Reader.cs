@@ -89,9 +89,9 @@ namespace Fox.Core
             }
         }
 
-        private Entity CreateEntity(ulong classNameHash, ulong address, ushort version, ushort idA, ushort idB)
+        private Entity CreateEntity(ulong classNameHash, ulong address, ushort version, ulong id)
         {
-            return entityFactory.Create(this.stringTable[classNameHash], address, version, idA, idB);
+            return entityFactory.Create(this.stringTable[classNameHash], address, version, id);
         }
 
         private void ResolveRequests(IDictionary<ulong, Entity> entities, IDictionary<ulong, GameObject> gameObjects)

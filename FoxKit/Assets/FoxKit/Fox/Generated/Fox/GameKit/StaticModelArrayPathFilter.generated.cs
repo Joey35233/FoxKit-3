@@ -32,13 +32,14 @@ namespace Fox.GameKit
         }
         static StaticModelArrayPathFilter()
         {
-            classInfo = new Fox.EntityInfo("StaticModelArrayPathFilter", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 80, "Model", 1);
+            classInfo = new Fox.EntityInfo("StaticModelArrayPathFilter", new Fox.Core.Data().GetClassEntityInfo(), 80, "Model", 1);
 			
 			classInfo.StaticProperties.Insert("filterPath", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Path, 120, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public StaticModelArrayPathFilter(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public StaticModelArrayPathFilter(ulong address, ulong id) : base(address, id) { }
+		public StaticModelArrayPathFilter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

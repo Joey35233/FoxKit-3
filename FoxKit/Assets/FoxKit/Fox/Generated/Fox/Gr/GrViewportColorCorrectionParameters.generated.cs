@@ -30,12 +30,13 @@ namespace Fox.Gr
         }
         static GrViewportColorCorrectionParameters()
         {
-            classInfo = new Fox.EntityInfo("GrViewportColorCorrectionParameters", new Fox.Gr.GrViewportParameter(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("GrViewportColorCorrectionParameters", new Fox.Gr.GrViewportParameter().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public GrViewportColorCorrectionParameters(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public GrViewportColorCorrectionParameters(ulong address, ulong id) : base(address, id) { }
+		public GrViewportColorCorrectionParameters() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

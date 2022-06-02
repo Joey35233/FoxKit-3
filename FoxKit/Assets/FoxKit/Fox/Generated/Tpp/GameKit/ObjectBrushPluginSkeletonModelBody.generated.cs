@@ -30,12 +30,13 @@ namespace Tpp.GameKit
         }
         static ObjectBrushPluginSkeletonModelBody()
         {
-            classInfo = new Fox.EntityInfo("ObjectBrushPluginSkeletonModelBody", new Fox.GameKit.ObjectBrushPluginBody(0, 0, 0).GetClassEntityInfo(), 0, "TppObjectBrushSkeletonModel", 0);
+            classInfo = new Fox.EntityInfo("ObjectBrushPluginSkeletonModelBody", new Fox.GameKit.ObjectBrushPluginBody().GetClassEntityInfo(), 0, "TppObjectBrushSkeletonModel", 0);
 			
         }
 
-        // Constructor
-		public ObjectBrushPluginSkeletonModelBody(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public ObjectBrushPluginSkeletonModelBody(ulong address, ulong id) : base(address, id) { }
+		public ObjectBrushPluginSkeletonModelBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

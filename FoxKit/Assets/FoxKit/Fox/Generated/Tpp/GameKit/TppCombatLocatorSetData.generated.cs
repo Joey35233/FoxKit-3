@@ -36,15 +36,16 @@ namespace Tpp.GameKit
         }
         static TppCombatLocatorSetData()
         {
-            classInfo = new Fox.EntityInfo("TppCombatLocatorSetData", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 88, "CombatLocator", 1);
+            classInfo = new Fox.EntityInfo("TppCombatLocatorSetData", new Fox.Core.Data().GetClassEntityInfo(), 88, "CombatLocator", 1);
 			
 			classInfo.StaticProperties.Insert("radius", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("lostSearchRadius", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 124, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("locators", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityLink, 128, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppCombatLocatorSetData(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppCombatLocatorSetData(ulong address, ulong id) : base(address, id) { }
+		public TppCombatLocatorSetData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

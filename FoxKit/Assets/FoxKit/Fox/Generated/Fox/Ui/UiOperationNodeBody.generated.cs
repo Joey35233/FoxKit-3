@@ -30,12 +30,13 @@ namespace Fox.Ui
         }
         static UiOperationNodeBody()
         {
-            classInfo = new Fox.EntityInfo("UiOperationNodeBody", new Fox.Ui.UiNodeDataBody(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("UiOperationNodeBody", new Fox.Ui.UiNodeDataBody().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public UiOperationNodeBody(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public UiOperationNodeBody(ulong address, ulong id) : base(address, id) { }
+		public UiOperationNodeBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

@@ -30,12 +30,13 @@ namespace Tpp.Ui
         }
         static UiSupport()
         {
-            classInfo = new Fox.EntityInfo("UiSupport", new Fox.Core.Entity(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("UiSupport", new Fox.Core.Entity().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public UiSupport(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public UiSupport(ulong address, ulong id) : base(address, id) { }
+		public UiSupport() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

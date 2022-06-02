@@ -30,12 +30,13 @@ namespace Fox.Core
         }
         static ShapeData()
         {
-            classInfo = new Fox.EntityInfo("ShapeData", new Fox.Core.TransformData(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("ShapeData", new Fox.Core.TransformData().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public ShapeData(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public ShapeData(ulong address, ulong id) : base(address, id) { }
+		public ShapeData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

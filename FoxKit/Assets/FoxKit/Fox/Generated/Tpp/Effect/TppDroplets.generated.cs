@@ -54,7 +54,7 @@ namespace Tpp.Effect
         }
         static TppDroplets()
         {
-            classInfo = new Fox.EntityInfo("TppDroplets", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 112, null, 0);
+            classInfo = new Fox.EntityInfo("TppDroplets", new Fox.Core.Data().GetClassEntityInfo(), 112, null, 0);
 			
 			classInfo.StaticProperties.Insert("timeBetweenNewDroplets", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("timeBetweenNewBigDroplets", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 124, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -70,8 +70,9 @@ namespace Tpp.Effect
 			classInfo.StaticProperties.Insert("residualWaterMaximumIntensity", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 164, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppDroplets(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppDroplets(ulong address, ulong id) : base(address, id) { }
+		public TppDroplets() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

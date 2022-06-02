@@ -30,12 +30,13 @@ namespace Fox.Grx
         }
         static PluginSettingsBody()
         {
-            classInfo = new Fox.EntityInfo("PluginSettingsBody", new Fox.Core.DataBody(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("PluginSettingsBody", new Fox.Core.DataBody().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public PluginSettingsBody(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public PluginSettingsBody(ulong address, ulong id) : base(address, id) { }
+		public PluginSettingsBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

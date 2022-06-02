@@ -48,7 +48,7 @@ namespace Tpp.Collectible
         }
         static TppCollectionLocatorArray()
         {
-            classInfo = new Fox.EntityInfo("TppCollectionLocatorArray", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 208, null, 1);
+            classInfo = new Fox.EntityInfo("TppCollectionLocatorArray", new Fox.Core.Data().GetClassEntityInfo(), 208, null, 1);
 			
 			classInfo.StaticProperties.Insert("positions", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Vector3, 120, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("rotations", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt32, 136, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -61,8 +61,9 @@ namespace Tpp.Collectible
 			classInfo.StaticProperties.Insert("segmentInfoCounts", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt16, 248, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppCollectionLocatorArray(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppCollectionLocatorArray(ulong address, ulong id) : base(address, id) { }
+		public TppCollectionLocatorArray() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

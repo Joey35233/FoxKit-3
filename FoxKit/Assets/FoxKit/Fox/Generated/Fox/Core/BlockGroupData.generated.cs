@@ -44,7 +44,7 @@ namespace Fox.Core
         }
         static BlockGroupData()
         {
-            classInfo = new Fox.EntityInfo("BlockGroupData", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 0, null, 1);
+            classInfo = new Fox.EntityInfo("BlockGroupData", new Fox.Core.Data().GetClassEntityInfo(), 0, null, 1);
 			
 			classInfo.StaticProperties.Insert("blockMemorySize", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("sizeOrder", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Int32, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, typeof(BlockGroupData_ByteOrder), Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -55,8 +55,9 @@ namespace Fox.Core
 			classInfo.StaticProperties.Insert("prerequisiteBlockGroups", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityLink, 168, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public BlockGroupData(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public BlockGroupData(ulong address, ulong id) : base(address, id) { }
+		public BlockGroupData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

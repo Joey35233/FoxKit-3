@@ -62,7 +62,7 @@ namespace Fox.UiScene
         }
         static UiModelNodeElement()
         {
-            classInfo = new Fox.EntityInfo("UiModelNodeElement", new Fox.Core.DataElement(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("UiModelNodeElement", new Fox.Core.DataElement().GetClassEntityInfo(), 0, null, 0);
 			
 			classInfo.StaticProperties.Insert("modelNodeName", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 56, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("visible", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -82,8 +82,9 @@ namespace Fox.UiScene
 			classInfo.StaticProperties.Insert("initBlendType", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Int32, 224, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public UiModelNodeElement(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public UiModelNodeElement(ulong address, ulong id) : base(address, id) { }
+		public UiModelNodeElement() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

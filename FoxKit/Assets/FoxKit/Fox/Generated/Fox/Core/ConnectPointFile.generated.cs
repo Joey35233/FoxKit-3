@@ -30,12 +30,13 @@ namespace Fox.Core
         }
         static ConnectPointFile()
         {
-            classInfo = new Fox.EntityInfo("ConnectPointFile", new Fox.Core.RawFile(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("ConnectPointFile", new Fox.Core.RawFile().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public ConnectPointFile(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public ConnectPointFile(ulong address, ulong id) : base(address, id) { }
+		public ConnectPointFile() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

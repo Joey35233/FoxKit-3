@@ -30,12 +30,13 @@ namespace Fox.MotionGraph
         }
         static MotionGraphBlendValueStringConverter()
         {
-            classInfo = new Fox.EntityInfo("MotionGraphBlendValueStringConverter", new Fox.MotionGraph.MotionGraphBlendValueConverter(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("MotionGraphBlendValueStringConverter", new Fox.MotionGraph.MotionGraphBlendValueConverter().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public MotionGraphBlendValueStringConverter(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public MotionGraphBlendValueStringConverter(ulong address, ulong id) : base(address, id) { }
+		public MotionGraphBlendValueStringConverter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

@@ -30,12 +30,13 @@ namespace Fox.Geo
         }
         static GeoTrapExecScriptConditionBody()
         {
-            classInfo = new Fox.EntityInfo("GeoTrapExecScriptConditionBody", new Fox.Geo.GeoCheckModuleConditionBody(0, 0, 0).GetClassEntityInfo(), 0, "Trap", 0);
+            classInfo = new Fox.EntityInfo("GeoTrapExecScriptConditionBody", new Fox.Geo.GeoCheckModuleConditionBody().GetClassEntityInfo(), 0, "Trap", 0);
 			
         }
 
-        // Constructor
-		public GeoTrapExecScriptConditionBody(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public GeoTrapExecScriptConditionBody(ulong address, ulong id) : base(address, id) { }
+		public GeoTrapExecScriptConditionBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

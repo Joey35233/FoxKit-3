@@ -44,7 +44,7 @@ namespace Fox.UiScene
         }
         static UiAnimData()
         {
-            classInfo = new Fox.EntityInfo("UiAnimData", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 0, "Ui", 4);
+            classInfo = new Fox.EntityInfo("UiAnimData", new Fox.Core.Data().GetClassEntityInfo(), 0, "Ui", 4);
 			
 			classInfo.StaticProperties.Insert("data", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.FilePtr, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("data_s", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.FilePtr, 144, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -55,8 +55,9 @@ namespace Fox.UiScene
 			classInfo.StaticProperties.Insert("destNodeNames", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 232, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public UiAnimData(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public UiAnimData(ulong address, ulong id) : base(address, id) { }
+		public UiAnimData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

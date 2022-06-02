@@ -46,7 +46,7 @@ namespace Fox.Ph
         }
         static PhMultiShoulderConstraint()
         {
-            classInfo = new Fox.EntityInfo("PhMultiShoulderConstraint", new Fox.Ph.PhConstraint(0, 0, 0).GetClassEntityInfo(), 0, "Ph", 0);
+            classInfo = new Fox.EntityInfo("PhMultiShoulderConstraint", new Fox.Ph.PhConstraint().GetClassEntityInfo(), 0, "Ph", 0);
 			
 			classInfo.StaticProperties.Insert("refVec0", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Quat, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("refVec1", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Quat, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -58,8 +58,9 @@ namespace Fox.Ph
 			classInfo.StaticProperties.Insert("isPoweredFlag", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public PhMultiShoulderConstraint(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public PhMultiShoulderConstraint(ulong address, ulong id) : base(address, id) { }
+		public PhMultiShoulderConstraint() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

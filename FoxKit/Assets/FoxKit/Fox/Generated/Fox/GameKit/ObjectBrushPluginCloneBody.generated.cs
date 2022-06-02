@@ -30,12 +30,13 @@ namespace Fox.GameKit
         }
         static ObjectBrushPluginCloneBody()
         {
-            classInfo = new Fox.EntityInfo("ObjectBrushPluginCloneBody", new Fox.GameKit.ObjectBrushPluginBody(0, 0, 0).GetClassEntityInfo(), 0, "ObjectBrush", 0);
+            classInfo = new Fox.EntityInfo("ObjectBrushPluginCloneBody", new Fox.GameKit.ObjectBrushPluginBody().GetClassEntityInfo(), 0, "ObjectBrush", 0);
 			
         }
 
-        // Constructor
-		public ObjectBrushPluginCloneBody(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public ObjectBrushPluginCloneBody(ulong address, ulong id) : base(address, id) { }
+		public ObjectBrushPluginCloneBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

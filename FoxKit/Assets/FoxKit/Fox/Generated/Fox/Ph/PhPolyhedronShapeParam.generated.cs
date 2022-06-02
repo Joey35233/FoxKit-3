@@ -34,14 +34,15 @@ namespace Fox.Ph
         }
         static PhPolyhedronShapeParam()
         {
-            classInfo = new Fox.EntityInfo("PhPolyhedronShapeParam", new Fox.Ph.PhShapeParam(0, 0, 0).GetClassEntityInfo(), 0, "Ph", 0);
+            classInfo = new Fox.EntityInfo("PhPolyhedronShapeParam", new Fox.Ph.PhShapeParam().GetClassEntityInfo(), 0, "Ph", 0);
 			
 			classInfo.StaticProperties.Insert("verts", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Vector3, 112, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("polys", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt32, 128, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public PhPolyhedronShapeParam(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public PhPolyhedronShapeParam(ulong address, ulong id) : base(address, id) { }
+		public PhPolyhedronShapeParam() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

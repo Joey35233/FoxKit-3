@@ -30,12 +30,13 @@ namespace Fox.GameKit
         }
         static FoxFadeIo()
         {
-            classInfo = new Fox.EntityInfo("FoxFadeIo", new Fox.Core.Actor(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("FoxFadeIo", new Fox.Core.Actor().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public FoxFadeIo(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public FoxFadeIo(ulong address, ulong id) : base(address, id) { }
+		public FoxFadeIo() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

@@ -68,7 +68,7 @@ namespace Fox.GameKit
         }
         static Decal()
         {
-            classInfo = new Fox.EntityInfo("Decal", new Fox.Core.TransformData(0, 0, 0).GetClassEntityInfo(), 0, "Decal", 12);
+            classInfo = new Fox.EntityInfo("Decal", new Fox.Core.TransformData().GetClassEntityInfo(), 0, "Decal", 12);
 			
 			classInfo.StaticProperties.Insert("material", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityLink, 304, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("projectionMode", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Int32, 344, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, typeof(Decal_ProjectionMode), Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -91,8 +91,9 @@ namespace Fox.GameKit
 			classInfo.StaticProperties.Insert("isSSDecal", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public Decal(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public Decal(ulong address, ulong id) : base(address, id) { }
+		public Decal() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

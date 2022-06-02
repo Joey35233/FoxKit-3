@@ -14,41 +14,41 @@ namespace Fox.Core
     public class EntityPtr<T> : IEntityPtr where T : Entity
     {
         [SerializeReference]
-        private T ptr;
+        private T _ptr;
 
         public T Get()
         {
-            return this.ptr;
+            return this._ptr;
         }
 
         public void Reset(T newPtr)
         {
-            this.ptr = newPtr;
+            this._ptr = newPtr;
         }
 
         public void Reset()
         {
-            this.ptr = null;
+            this._ptr = null;
         }
 
         public void Reset(Entity newPtr)
         {
-            this.ptr = (T)newPtr;
+            this._ptr = (T)newPtr;
         }
 
         Entity IEntityPtr.Get()
         {
-            return this.ptr;
+            return this._ptr;
         }
 
         public EntityPtr(T entity)
         {
-            this.ptr = entity;
+            this._ptr = entity;
         }
 
         public EntityPtr()
         {
-            this.ptr = null;
+            this._ptr = null;
         }
     }
 }

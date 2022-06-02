@@ -34,14 +34,15 @@ namespace Fox.Phx
         }
         static PhxVehicleTransmission()
         {
-            classInfo = new Fox.EntityInfo("PhxVehicleTransmission", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 0, "Phx", 0);
+            classInfo = new Fox.EntityInfo("PhxVehicleTransmission", new Fox.Core.Data().GetClassEntityInfo(), 0, "Phx", 0);
 			
 			classInfo.StaticProperties.Insert("gearRatios", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 120, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("finalGearRatio", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 136, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public PhxVehicleTransmission(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public PhxVehicleTransmission(ulong address, ulong id) : base(address, id) { }
+		public PhxVehicleTransmission() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

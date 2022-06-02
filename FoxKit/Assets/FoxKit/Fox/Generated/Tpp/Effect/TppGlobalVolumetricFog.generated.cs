@@ -32,13 +32,14 @@ namespace Tpp.Effect
         }
         static TppGlobalVolumetricFog()
         {
-            classInfo = new Fox.EntityInfo("TppGlobalVolumetricFog", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 72, "TppEffect", 1);
+            classInfo = new Fox.EntityInfo("TppGlobalVolumetricFog", new Fox.Core.Data().GetClassEntityInfo(), 72, "TppEffect", 1);
 			
 			classInfo.StaticProperties.Insert("param", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityPtr, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.Never, typeof(Tpp.Effect.TppGlobalVolumetricFogParam), null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppGlobalVolumetricFog(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppGlobalVolumetricFog(ulong address, ulong id) : base(address, id) { }
+		public TppGlobalVolumetricFog() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

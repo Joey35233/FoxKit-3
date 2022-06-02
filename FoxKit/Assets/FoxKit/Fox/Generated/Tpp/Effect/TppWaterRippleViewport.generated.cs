@@ -38,7 +38,7 @@ namespace Tpp.Effect
         }
         static TppWaterRippleViewport()
         {
-            classInfo = new Fox.EntityInfo("TppWaterRippleViewport", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 80, null, 0);
+            classInfo = new Fox.EntityInfo("TppWaterRippleViewport", new Fox.Core.Data().GetClassEntityInfo(), 80, null, 0);
 			
 			classInfo.StaticProperties.Insert("rippleTextureName", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("viewportWidth", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt32, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -46,8 +46,9 @@ namespace Tpp.Effect
 			classInfo.StaticProperties.Insert("debugView", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 136, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppWaterRippleViewport(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppWaterRippleViewport(ulong address, ulong id) : base(address, id) { }
+		public TppWaterRippleViewport() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

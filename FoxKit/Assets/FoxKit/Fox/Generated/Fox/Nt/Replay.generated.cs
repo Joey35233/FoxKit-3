@@ -30,12 +30,13 @@ namespace Fox.Nt
         }
         static Replay()
         {
-            classInfo = new Fox.EntityInfo("Replay", new Fox.Core.Entity(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("Replay", new Fox.Core.Entity().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public Replay(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public Replay(ulong address, ulong id) : base(address, id) { }
+		public Replay() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

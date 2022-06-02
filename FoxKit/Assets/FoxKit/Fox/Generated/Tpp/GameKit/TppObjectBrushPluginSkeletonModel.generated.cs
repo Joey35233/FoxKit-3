@@ -60,7 +60,7 @@ namespace Tpp.GameKit
         }
         static TppObjectBrushPluginSkeletonModel()
         {
-            classInfo = new Fox.EntityInfo("TppObjectBrushPluginSkeletonModel", new Fox.GameKit.ObjectBrushPlugin(0, 0, 0).GetClassEntityInfo(), 248, null, 7);
+            classInfo = new Fox.EntityInfo("TppObjectBrushPluginSkeletonModel", new Fox.GameKit.ObjectBrushPlugin().GetClassEntityInfo(), 248, null, 7);
 			
 			classInfo.StaticProperties.Insert("modelFile", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.FilePtr, 144, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("geomFile", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.FilePtr, 160, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -79,8 +79,9 @@ namespace Tpp.GameKit
 			classInfo.StaticProperties.Insert("lodLengthForHighEnd", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 300, 4, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppObjectBrushPluginSkeletonModel(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppObjectBrushPluginSkeletonModel(ulong address, ulong id) : base(address, id) { }
+		public TppObjectBrushPluginSkeletonModel() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

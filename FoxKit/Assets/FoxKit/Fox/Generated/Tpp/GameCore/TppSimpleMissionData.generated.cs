@@ -34,14 +34,15 @@ namespace Tpp.GameCore
         }
         static TppSimpleMissionData()
         {
-            classInfo = new Fox.EntityInfo("TppSimpleMissionData", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 136, null, 1);
+            classInfo = new Fox.EntityInfo("TppSimpleMissionData", new Fox.Core.Data().GetClassEntityInfo(), 136, null, 1);
 			
 			classInfo.StaticProperties.Insert("script", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.FilePtr, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("subScripts", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.FilePtr, 144, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppSimpleMissionData(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppSimpleMissionData(ulong address, ulong id) : base(address, id) { }
+		public TppSimpleMissionData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

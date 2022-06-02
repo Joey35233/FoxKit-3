@@ -34,14 +34,15 @@ namespace Fox.GameKit
         }
         static StageModel()
         {
-            classInfo = new Fox.EntityInfo("StageModel", new Fox.Core.TransformData(0, 0, 0).GetClassEntityInfo(), 0, "Model", 0);
+            classInfo = new Fox.EntityInfo("StageModel", new Fox.Core.TransformData().GetClassEntityInfo(), 0, "Model", 0);
 			
 			classInfo.StaticProperties.Insert("modelPath", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Path, 304, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("geomPath", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Path, 312, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public StageModel(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public StageModel(ulong address, ulong id) : base(address, id) { }
+		public StageModel() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

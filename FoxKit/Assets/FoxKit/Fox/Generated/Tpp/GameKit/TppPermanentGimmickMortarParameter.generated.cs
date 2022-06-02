@@ -40,7 +40,7 @@ namespace Tpp.GameKit
         }
         static TppPermanentGimmickMortarParameter()
         {
-            classInfo = new Fox.EntityInfo("TppPermanentGimmickMortarParameter", new Fox.Core.DataElement(0, 0, 0).GetClassEntityInfo(), 88, null, 1);
+            classInfo = new Fox.EntityInfo("TppPermanentGimmickMortarParameter", new Fox.Core.DataElement().GetClassEntityInfo(), 88, null, 1);
 			
 			classInfo.StaticProperties.Insert("rotationLimitLeftRight", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 56, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("rotationLimitUp", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 60, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -49,8 +49,9 @@ namespace Tpp.GameKit
 			classInfo.StaticProperties.Insert("flareShellPartsFile", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.FilePtr, 96, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppPermanentGimmickMortarParameter(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppPermanentGimmickMortarParameter(ulong address, ulong id) : base(address, id) { }
+		public TppPermanentGimmickMortarParameter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

@@ -34,14 +34,15 @@ namespace Fox.Gr
         }
         static GrFilmicTonemapParameter()
         {
-            classInfo = new Fox.EntityInfo("GrFilmicTonemapParameter", new Fox.Gr.GrViewportParameter(0, 0, 0).GetClassEntityInfo(), 0, null, 2);
+            classInfo = new Fox.EntityInfo("GrFilmicTonemapParameter", new Fox.Gr.GrViewportParameter().GetClassEntityInfo(), 0, null, 2);
 			
 			classInfo.StaticProperties.Insert("enable", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 80, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("parameters", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Vector4, 48, 2, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public GrFilmicTonemapParameter(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public GrFilmicTonemapParameter(ulong address, ulong id) : base(address, id) { }
+		public GrFilmicTonemapParameter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

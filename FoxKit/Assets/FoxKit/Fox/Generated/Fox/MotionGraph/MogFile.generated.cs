@@ -30,12 +30,13 @@ namespace Fox.MotionGraph
         }
         static MogFile()
         {
-            classInfo = new Fox.EntityInfo("MogFile", new Fox.Core.RawFile(0, 0, 0).GetClassEntityInfo(), 0, null, 6);
+            classInfo = new Fox.EntityInfo("MogFile", new Fox.Core.RawFile().GetClassEntityInfo(), 0, null, 6);
 			
         }
 
-        // Constructor
-		public MogFile(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public MogFile(ulong address, ulong id) : base(address, id) { }
+		public MogFile() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

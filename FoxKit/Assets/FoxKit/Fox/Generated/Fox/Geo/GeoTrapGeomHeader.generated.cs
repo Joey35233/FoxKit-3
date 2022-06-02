@@ -30,12 +30,13 @@ namespace Fox.Geo
         }
         static GeoTrapGeomHeader()
         {
-            classInfo = new Fox.EntityInfo("GeoTrapGeomHeader", new Fox.Core.Entity(0, 0, 0).GetClassEntityInfo(), 0, "Trap", 0);
+            classInfo = new Fox.EntityInfo("GeoTrapGeomHeader", new Fox.Core.Entity().GetClassEntityInfo(), 0, "Trap", 0);
 			
         }
 
-        // Constructor
-		public GeoTrapGeomHeader(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public GeoTrapGeomHeader(ulong address, ulong id) : base(address, id) { }
+		public GeoTrapGeomHeader() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

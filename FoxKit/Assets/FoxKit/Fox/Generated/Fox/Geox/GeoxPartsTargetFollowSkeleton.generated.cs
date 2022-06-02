@@ -36,15 +36,16 @@ namespace Fox.Geox
         }
         static GeoxPartsTargetFollowSkeleton()
         {
-            classInfo = new Fox.EntityInfo("GeoxPartsTargetFollowSkeleton", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 0, "Target", 2);
+            classInfo = new Fox.EntityInfo("GeoxPartsTargetFollowSkeleton", new Fox.Core.Data().GetClassEntityInfo(), 0, "Target", 2);
 			
 			classInfo.StaticProperties.Insert("skeletonNames", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 120, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("objectLinks", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityLink, 144, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("partsTargetUnitHandle", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityHandle, 160, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public GeoxPartsTargetFollowSkeleton(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public GeoxPartsTargetFollowSkeleton(ulong address, ulong id) : base(address, id) { }
+		public GeoxPartsTargetFollowSkeleton() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

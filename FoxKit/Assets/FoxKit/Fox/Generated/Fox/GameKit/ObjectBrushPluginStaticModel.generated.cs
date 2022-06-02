@@ -46,7 +46,7 @@ namespace Fox.GameKit
         }
         static ObjectBrushPluginStaticModel()
         {
-            classInfo = new Fox.EntityInfo("ObjectBrushPluginStaticModel", new Fox.GameKit.ObjectBrushPlugin(0, 0, 0).GetClassEntityInfo(), 152, null, 3);
+            classInfo = new Fox.EntityInfo("ObjectBrushPluginStaticModel", new Fox.GameKit.ObjectBrushPlugin().GetClassEntityInfo(), 152, null, 3);
 			
 			classInfo.StaticProperties.Insert("modelFile", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.FilePtr, 144, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("geomFile", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.FilePtr, 168, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -58,8 +58,9 @@ namespace Fox.GameKit
 			classInfo.StaticProperties.Insert("isGeomActivity", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 212, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public ObjectBrushPluginStaticModel(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public ObjectBrushPluginStaticModel(ulong address, ulong id) : base(address, id) { }
+		public ObjectBrushPluginStaticModel() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

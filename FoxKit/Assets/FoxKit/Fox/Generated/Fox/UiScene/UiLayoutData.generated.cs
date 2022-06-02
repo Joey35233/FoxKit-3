@@ -46,7 +46,7 @@ namespace Fox.UiScene
         }
         static UiLayoutData()
         {
-            classInfo = new Fox.EntityInfo("UiLayoutData", new Fox.Core.TransformData(0, 0, 0).GetClassEntityInfo(), 0, "Ui", 6);
+            classInfo = new Fox.EntityInfo("UiLayoutData", new Fox.Core.TransformData().GetClassEntityInfo(), 0, "Ui", 6);
 			
 			classInfo.StaticProperties.Insert("layoutPath", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Path, 304, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("color", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Color, 320, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -58,8 +58,9 @@ namespace Fox.UiScene
 			classInfo.StaticProperties.Insert("fontTableIndex", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Int32, 372, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public UiLayoutData(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public UiLayoutData(ulong address, ulong id) : base(address, id) { }
+		public UiLayoutData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

@@ -38,7 +38,7 @@ namespace Fox.Phx
         }
         static PhxAssociation()
         {
-            classInfo = new Fox.EntityInfo("PhxAssociation", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 152, "Phx", 1);
+            classInfo = new Fox.EntityInfo("PhxAssociation", new Fox.Core.Data().GetClassEntityInfo(), 152, "Phx", 1);
 			
 			classInfo.StaticProperties.Insert("physicsData", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityLink, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("connections", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityPtr, 160, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, typeof(Fox.Phx.PhxAssociationUnitElement), null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -46,8 +46,9 @@ namespace Fox.Phx
 			classInfo.StaticProperties.Insert("connectType", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt32, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public PhxAssociation(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public PhxAssociation(ulong address, ulong id) : base(address, id) { }
+		public PhxAssociation() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

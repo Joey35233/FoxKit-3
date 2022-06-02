@@ -38,7 +38,7 @@ namespace Tpp.Effect
         }
         static TppRainFilterInterrupt()
         {
-            classInfo = new Fox.EntityInfo("TppRainFilterInterrupt", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 208, null, 2);
+            classInfo = new Fox.EntityInfo("TppRainFilterInterrupt", new Fox.Core.Data().GetClassEntityInfo(), 208, null, 2);
 			
 			classInfo.StaticProperties.Insert("planeMatrices", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Matrix4, 208, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("maskTextures", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Path, 192, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -46,8 +46,9 @@ namespace Tpp.Effect
 			classInfo.StaticProperties.Insert("levels", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt32, 240, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppRainFilterInterrupt(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppRainFilterInterrupt(ulong address, ulong id) : base(address, id) { }
+		public TppRainFilterInterrupt() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

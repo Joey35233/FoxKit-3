@@ -38,7 +38,7 @@ namespace Tpp.GameCore
         }
         static TppMotherBaseContainerLocatorParameter()
         {
-            classInfo = new Fox.EntityInfo("TppMotherBaseContainerLocatorParameter", new Fox.Core.DataElement(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("TppMotherBaseContainerLocatorParameter", new Fox.Core.DataElement().GetClassEntityInfo(), 0, null, 0);
 			
 			classInfo.StaticProperties.Insert("containerPriority", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt32, 56, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("containerKind", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt32, 60, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -46,8 +46,9 @@ namespace Tpp.GameCore
 			classInfo.StaticProperties.Insert("divisionType", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt32, 68, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppMotherBaseContainerLocatorParameter(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppMotherBaseContainerLocatorParameter(ulong address, ulong id) : base(address, id) { }
+		public TppMotherBaseContainerLocatorParameter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

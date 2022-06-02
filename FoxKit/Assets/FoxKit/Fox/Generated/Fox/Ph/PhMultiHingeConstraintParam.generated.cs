@@ -52,7 +52,7 @@ namespace Fox.Ph
         }
         static PhMultiHingeConstraintParam()
         {
-            classInfo = new Fox.EntityInfo("PhMultiHingeConstraintParam", new Fox.Ph.PhConstraintParam(0, 0, 0).GetClassEntityInfo(), 112, "Ph", 0);
+            classInfo = new Fox.EntityInfo("PhMultiHingeConstraintParam", new Fox.Ph.PhConstraintParam().GetClassEntityInfo(), 112, "Ph", 0);
 			
 			classInfo.StaticProperties.Insert("axis", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Vector3, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("limitedFlag", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 80, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -67,8 +67,9 @@ namespace Fox.Ph
 			classInfo.StaticProperties.Insert("velocityRate", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 112, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public PhMultiHingeConstraintParam(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public PhMultiHingeConstraintParam(ulong address, ulong id) : base(address, id) { }
+		public PhMultiHingeConstraintParam() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

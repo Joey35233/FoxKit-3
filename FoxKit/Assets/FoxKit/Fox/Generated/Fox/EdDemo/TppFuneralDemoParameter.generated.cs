@@ -34,14 +34,15 @@ namespace Fox.EdDemo
         }
         static TppFuneralDemoParameter()
         {
-            classInfo = new Fox.EntityInfo("TppFuneralDemoParameter", new Fox.Demo.DemoParameter(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("TppFuneralDemoParameter", new Fox.Demo.DemoParameter().GetClassEntityInfo(), 0, null, 0);
 			
 			classInfo.StaticProperties.Insert("fova2File", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.FilePtr, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("mtarFile", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.FilePtr, 88, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppFuneralDemoParameter(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppFuneralDemoParameter(ulong address, ulong id) : base(address, id) { }
+		public TppFuneralDemoParameter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

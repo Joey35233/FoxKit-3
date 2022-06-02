@@ -48,7 +48,7 @@ namespace Fox.Ui
         }
         static UiFontDataElement()
         {
-            classInfo = new Fox.EntityInfo("UiFontDataElement", new Fox.Core.DataElement(0, 0, 0).GetClassEntityInfo(), 128, null, 2);
+            classInfo = new Fox.EntityInfo("UiFontDataElement", new Fox.Core.DataElement().GetClassEntityInfo(), 128, null, 2);
 			
 			classInfo.StaticProperties.Insert("language", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 56, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("fontName", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -61,8 +61,9 @@ namespace Fox.Ui
 			classInfo.StaticProperties.Insert("fontEdge", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Vector4, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public UiFontDataElement(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public UiFontDataElement(ulong address, ulong id) : base(address, id) { }
+		public UiFontDataElement() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

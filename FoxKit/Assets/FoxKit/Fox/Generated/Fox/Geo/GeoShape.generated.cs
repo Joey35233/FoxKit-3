@@ -34,14 +34,15 @@ namespace Fox.Geo
         }
         static GeoShape()
         {
-            classInfo = new Fox.EntityInfo("GeoShape", new Fox.Core.TransformData(0, 0, 0).GetClassEntityInfo(), 0, "Geo", 0);
+            classInfo = new Fox.EntityInfo("GeoShape", new Fox.Core.TransformData().GetClassEntityInfo(), 0, "Geo", 0);
 			
 			classInfo.StaticProperties.Insert("geometryType", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Int32, 304, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, typeof(GeoShapeType), Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("isDispShape", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 308, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public GeoShape(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public GeoShape(ulong address, ulong id) : base(address, id) { }
+		public GeoShape() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

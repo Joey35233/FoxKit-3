@@ -38,7 +38,7 @@ namespace Fox.GameKit
         }
         static GkConeSightCheckParam()
         {
-            classInfo = new Fox.EntityInfo("GkConeSightCheckParam", new Fox.GameKit.GkSightCheckParam(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("GkConeSightCheckParam", new Fox.GameKit.GkSightCheckParam().GetClassEntityInfo(), 0, null, 0);
 			
 			classInfo.StaticProperties.Insert("range", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 48, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("angleLeftRight", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 52, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -46,8 +46,9 @@ namespace Fox.GameKit
 			classInfo.StaticProperties.Insert("headBackDistance", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 60, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public GkConeSightCheckParam(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public GkConeSightCheckParam(ulong address, ulong id) : base(address, id) { }
+		public GkConeSightCheckParam() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

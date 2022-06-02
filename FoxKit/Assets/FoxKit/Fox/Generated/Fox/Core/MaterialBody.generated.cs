@@ -30,12 +30,13 @@ namespace Fox.Core
         }
         static MaterialBody()
         {
-            classInfo = new Fox.EntityInfo("MaterialBody", new Fox.Core.DataBody(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("MaterialBody", new Fox.Core.DataBody().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public MaterialBody(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public MaterialBody(ulong address, ulong id) : base(address, id) { }
+		public MaterialBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

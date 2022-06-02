@@ -32,13 +32,14 @@ namespace Fox.Ui
         }
         static UiFontGroupData()
         {
-            classInfo = new Fox.EntityInfo("UiFontGroupData", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 80, "Ui", 0);
+            classInfo = new Fox.EntityInfo("UiFontGroupData", new Fox.Core.Data().GetClassEntityInfo(), 80, "Ui", 0);
 			
 			classInfo.StaticProperties.Insert("fonts", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityPtr, 120, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, typeof(Fox.Ui.UiFontDataElement), null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public UiFontGroupData(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public UiFontGroupData(ulong address, ulong id) : base(address, id) { }
+		public UiFontGroupData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

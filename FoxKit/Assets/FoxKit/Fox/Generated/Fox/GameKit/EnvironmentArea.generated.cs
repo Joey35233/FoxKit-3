@@ -38,7 +38,7 @@ namespace Fox.GameKit
         }
         static EnvironmentArea()
         {
-            classInfo = new Fox.EntityInfo("EnvironmentArea", new Fox.Core.TransformData(0, 0, 0).GetClassEntityInfo(), 0, null, 3);
+            classInfo = new Fox.EntityInfo("EnvironmentArea", new Fox.Core.TransformData().GetClassEntityInfo(), 0, null, 3);
 			
 			classInfo.StaticProperties.Insert("parameter", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityPtr, 304, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.Never, typeof(Fox.GameKit.EnvironmentParameter), null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("priority", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt32, 312, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -46,8 +46,9 @@ namespace Fox.GameKit
 			classInfo.StaticProperties.Insert("shapes", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityLink, 320, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public EnvironmentArea(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public EnvironmentArea(ulong address, ulong id) : base(address, id) { }
+		public EnvironmentArea() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

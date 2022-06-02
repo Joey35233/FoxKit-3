@@ -52,7 +52,7 @@ namespace Tpp.Effect
         }
         static TppLensFlareField()
         {
-            classInfo = new Fox.EntityInfo("TppLensFlareField", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 144, null, 2);
+            classInfo = new Fox.EntityInfo("TppLensFlareField", new Fox.Core.Data().GetClassEntityInfo(), 144, null, 2);
 			
 			classInfo.StaticProperties.Insert("shapeType", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Int32, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, typeof(TppLensFlareFieldShapeType), Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("interpType", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Int32, 124, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, typeof(TppLensFlareFieldInterpType), Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -67,8 +67,9 @@ namespace Tpp.Effect
 			classInfo.StaticProperties.Insert("reverse", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 184, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppLensFlareField(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppLensFlareField(ulong address, ulong id) : base(address, id) { }
+		public TppLensFlareField() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

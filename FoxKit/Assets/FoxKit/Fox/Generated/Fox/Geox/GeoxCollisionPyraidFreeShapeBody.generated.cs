@@ -30,12 +30,13 @@ namespace Fox.Geox
         }
         static GeoxCollisionPyraidFreeShapeBody()
         {
-            classInfo = new Fox.EntityInfo("GeoxCollisionPyraidFreeShapeBody", new Fox.Core.TransformDataBody(0, 0, 0).GetClassEntityInfo(), 0, "Geox", 0);
+            classInfo = new Fox.EntityInfo("GeoxCollisionPyraidFreeShapeBody", new Fox.Core.TransformDataBody().GetClassEntityInfo(), 0, "Geox", 0);
 			
         }
 
-        // Constructor
-		public GeoxCollisionPyraidFreeShapeBody(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public GeoxCollisionPyraidFreeShapeBody(ulong address, ulong id) : base(address, id) { }
+		public GeoxCollisionPyraidFreeShapeBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

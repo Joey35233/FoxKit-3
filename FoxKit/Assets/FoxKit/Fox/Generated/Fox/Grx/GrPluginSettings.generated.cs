@@ -80,7 +80,7 @@ namespace Fox.Grx
         }
         static GrPluginSettings()
         {
-            classInfo = new Fox.EntityInfo("GrPluginSettings", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 120, "Config", 25);
+            classInfo = new Fox.EntityInfo("GrPluginSettings", new Fox.Core.Data().GetClassEntityInfo(), 120, "Config", 25);
 			
 			classInfo.StaticProperties.Insert("motionBlurConvolutionLevel", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt32, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("exposureCompensation", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 132, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -109,8 +109,9 @@ namespace Fox.Grx
 			classInfo.StaticProperties.Insert("isShrinkSHBuffer", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public GrPluginSettings(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public GrPluginSettings(ulong address, ulong id) : base(address, id) { }
+		public GrPluginSettings() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

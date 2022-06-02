@@ -30,12 +30,13 @@ namespace Fox.Geo
         }
         static GeoCollisionTerrainMap()
         {
-            classInfo = new Fox.EntityInfo("GeoCollisionTerrainMap", new Fox.Core.Entity(0, 0, 0).GetClassEntityInfo(), 0, "Collision", 0);
+            classInfo = new Fox.EntityInfo("GeoCollisionTerrainMap", new Fox.Core.Entity().GetClassEntityInfo(), 0, "Collision", 0);
 			
         }
 
-        // Constructor
-		public GeoCollisionTerrainMap(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public GeoCollisionTerrainMap(ulong address, ulong id) : base(address, id) { }
+		public GeoCollisionTerrainMap() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

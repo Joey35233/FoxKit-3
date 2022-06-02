@@ -42,7 +42,7 @@ namespace Tpp.Effect
         }
         static TppFocusBokehFilterData()
         {
-            classInfo = new Fox.EntityInfo("TppFocusBokehFilterData", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("TppFocusBokehFilterData", new Fox.Core.Data().GetClassEntityInfo(), 0, null, 0);
 			
 			classInfo.StaticProperties.Insert("debugDraw", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("debugDrawIndex", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt32, 124, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -52,8 +52,9 @@ namespace Tpp.Effect
 			classInfo.StaticProperties.Insert("targetLocators", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityLink, 144, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppFocusBokehFilterData(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppFocusBokehFilterData(ulong address, ulong id) : base(address, id) { }
+		public TppFocusBokehFilterData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

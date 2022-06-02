@@ -42,7 +42,7 @@ namespace Tpp.Effect
         }
         static TppDamageFilterExposure()
         {
-            classInfo = new Fox.EntityInfo("TppDamageFilterExposure", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 88, null, 1);
+            classInfo = new Fox.EntityInfo("TppDamageFilterExposure", new Fox.Core.Data().GetClassEntityInfo(), 88, null, 1);
 			
 			classInfo.StaticProperties.Insert("exposureCompensation", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("minExposure", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 124, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -52,8 +52,9 @@ namespace Tpp.Effect
 			classInfo.StaticProperties.Insert("maxBeatInterval", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 140, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppDamageFilterExposure(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppDamageFilterExposure(ulong address, ulong id) : base(address, id) { }
+		public TppDamageFilterExposure() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

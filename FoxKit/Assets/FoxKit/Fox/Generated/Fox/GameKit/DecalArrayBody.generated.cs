@@ -30,12 +30,13 @@ namespace Fox.GameKit
         }
         static DecalArrayBody()
         {
-            classInfo = new Fox.EntityInfo("DecalArrayBody", new Fox.Core.TransformDataBody(0, 0, 0).GetClassEntityInfo(), 0, null, 1);
+            classInfo = new Fox.EntityInfo("DecalArrayBody", new Fox.Core.TransformDataBody().GetClassEntityInfo(), 0, null, 1);
 			
         }
 
-        // Constructor
-		public DecalArrayBody(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public DecalArrayBody(ulong address, ulong id) : base(address, id) { }
+		public DecalArrayBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

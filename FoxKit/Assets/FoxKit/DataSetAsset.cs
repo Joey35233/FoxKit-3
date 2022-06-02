@@ -11,7 +11,7 @@ namespace FoxKit
         public InspectorTestData test = new InspectorTestData();
 
         [SerializeReference]
-        public Fox.Core.DataSet dataSet = new Fox.Core.DataSet(0, 0, 0);
+        public Fox.Core.DataSet dataSet = new Fox.Core.DataSet();
 
         [MenuItem("FoxKit/Debug/FOX2/Create DataSet")]
         public static void CreateMyAsset()

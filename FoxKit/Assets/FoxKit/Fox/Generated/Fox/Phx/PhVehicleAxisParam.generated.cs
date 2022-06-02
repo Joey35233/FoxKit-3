@@ -34,14 +34,15 @@ namespace Fox.Phx
         }
         static PhVehicleAxisParam()
         {
-            classInfo = new Fox.EntityInfo("PhVehicleAxisParam", new Fox.Core.Entity(0, 0, 0).GetClassEntityInfo(), 32, "Phx", 1);
+            classInfo = new Fox.EntityInfo("PhVehicleAxisParam", new Fox.Core.Entity().GetClassEntityInfo(), 32, "Phx", 1);
 			
 			classInfo.StaticProperties.Insert("maxBreakTorque", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 48, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("useDifferential", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 52, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public PhVehicleAxisParam(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public PhVehicleAxisParam(ulong address, ulong id) : base(address, id) { }
+		public PhVehicleAxisParam() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

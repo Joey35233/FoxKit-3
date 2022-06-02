@@ -30,12 +30,13 @@ namespace Fox.Gr
         }
         static GrPluginDeferredGeometryMasked()
         {
-            classInfo = new Fox.EntityInfo("GrPluginDeferredGeometryMasked", new Fox.Gr.GrPluginDeferredGeometryOpaque(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("GrPluginDeferredGeometryMasked", new Fox.Gr.GrPluginDeferredGeometryOpaque().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public GrPluginDeferredGeometryMasked(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public GrPluginDeferredGeometryMasked(ulong address, ulong id) : base(address, id) { }
+		public GrPluginDeferredGeometryMasked() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

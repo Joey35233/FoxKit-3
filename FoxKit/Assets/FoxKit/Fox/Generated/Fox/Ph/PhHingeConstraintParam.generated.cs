@@ -38,7 +38,7 @@ namespace Fox.Ph
         }
         static PhHingeConstraintParam()
         {
-            classInfo = new Fox.EntityInfo("PhHingeConstraintParam", new Fox.Ph.PhConstraintParam(0, 0, 0).GetClassEntityInfo(), 80, "Ph", 1);
+            classInfo = new Fox.EntityInfo("PhHingeConstraintParam", new Fox.Ph.PhConstraintParam().GetClassEntityInfo(), 80, "Ph", 1);
 			
 			classInfo.StaticProperties.Insert("axis", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Vector3, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("limitedFlag", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 80, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -46,8 +46,9 @@ namespace Fox.Ph
 			classInfo.StaticProperties.Insert("limitLo", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 88, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public PhHingeConstraintParam(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public PhHingeConstraintParam(ulong address, ulong id) : base(address, id) { }
+		public PhHingeConstraintParam() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

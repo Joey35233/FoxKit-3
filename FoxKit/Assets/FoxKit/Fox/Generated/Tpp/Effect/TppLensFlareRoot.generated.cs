@@ -40,7 +40,7 @@ namespace Tpp.Effect
         }
         static TppLensFlareRoot()
         {
-            classInfo = new Fox.EntityInfo("TppLensFlareRoot", new Tpp.Effect.TppLensFlareRootBase(0, 0, 0).GetClassEntityInfo(), 0, null, 3);
+            classInfo = new Fox.EntityInfo("TppLensFlareRoot", new Tpp.Effect.TppLensFlareRootBase().GetClassEntityInfo(), 0, null, 3);
 			
 			classInfo.StaticProperties.Insert("useDebugLightPosition", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 304, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("lightPositionX", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 308, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -49,8 +49,9 @@ namespace Tpp.Effect
 			classInfo.StaticProperties.Insert("shapes", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityLink, 320, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppLensFlareRoot(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppLensFlareRoot(ulong address, ulong id) : base(address, id) { }
+		public TppLensFlareRoot() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

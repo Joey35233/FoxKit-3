@@ -30,12 +30,13 @@ namespace Fox.Ph
         }
         static PhPrimitiveShapeParam()
         {
-            classInfo = new Fox.EntityInfo("PhPrimitiveShapeParam", new Fox.Ph.PhShapeParam(0, 0, 0).GetClassEntityInfo(), 96, "Ph", 0);
+            classInfo = new Fox.EntityInfo("PhPrimitiveShapeParam", new Fox.Ph.PhShapeParam().GetClassEntityInfo(), 96, "Ph", 0);
 			
         }
 
-        // Constructor
-		public PhPrimitiveShapeParam(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public PhPrimitiveShapeParam(ulong address, ulong id) : base(address, id) { }
+		public PhPrimitiveShapeParam() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

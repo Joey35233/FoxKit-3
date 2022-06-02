@@ -40,7 +40,7 @@ namespace Fox.GameKit
         }
         static OpticalCamo()
         {
-            classInfo = new Fox.EntityInfo("OpticalCamo", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 0, "Camouflage", 0);
+            classInfo = new Fox.EntityInfo("OpticalCamo", new Fox.Core.Data().GetClassEntityInfo(), 0, "Camouflage", 0);
 			
 			classInfo.StaticProperties.Insert("target", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityHandle, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("isOn", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -49,8 +49,9 @@ namespace Fox.GameKit
 			classInfo.StaticProperties.Insert("lightBendVOffset", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt32, 164, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public OpticalCamo(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public OpticalCamo(ulong address, ulong id) : base(address, id) { }
+		public OpticalCamo() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

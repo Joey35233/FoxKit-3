@@ -34,14 +34,15 @@ namespace Tpp.Sound
         }
         static TppAmbientSoundSource()
         {
-            classInfo = new Fox.EntityInfo("TppAmbientSoundSource", new Fox.Sdx.SoundSource(0, 0, 0).GetClassEntityInfo(), 304, "Sound", 0);
+            classInfo = new Fox.EntityInfo("TppAmbientSoundSource", new Fox.Sdx.SoundSource().GetClassEntityInfo(), 304, "Sound", 0);
 			
 			classInfo.StaticProperties.Insert("volumeRtpc", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 336, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("ambientIndex", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt8, 344, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppAmbientSoundSource(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppAmbientSoundSource(ulong address, ulong id) : base(address, id) { }
+		public TppAmbientSoundSource() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

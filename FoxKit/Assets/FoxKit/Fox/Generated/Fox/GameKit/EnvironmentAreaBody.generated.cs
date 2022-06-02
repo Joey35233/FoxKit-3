@@ -34,14 +34,15 @@ namespace Fox.GameKit
         }
         static EnvironmentAreaBody()
         {
-            classInfo = new Fox.EntityInfo("EnvironmentAreaBody", new Fox.Core.TransformDataBody(0, 0, 0).GetClassEntityInfo(), 0, null, 1);
+            classInfo = new Fox.EntityInfo("EnvironmentAreaBody", new Fox.Core.TransformDataBody().GetClassEntityInfo(), 0, null, 1);
 			
 			classInfo.StaticProperties.Insert("tag", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("manager", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityHandle, 144, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public EnvironmentAreaBody(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public EnvironmentAreaBody(ulong address, ulong id) : base(address, id) { }
+		public EnvironmentAreaBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

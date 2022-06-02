@@ -46,7 +46,7 @@ namespace Fox.GameKit
         }
         static Watermark()
         {
-            classInfo = new Fox.EntityInfo("Watermark", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 0, null, 1);
+            classInfo = new Fox.EntityInfo("Watermark", new Fox.Core.Data().GetClassEntityInfo(), 0, null, 1);
 			
 			classInfo.StaticProperties.Insert("isVisible", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("standard", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Int32, 124, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, typeof(Watermark_StandardMode), Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -58,8 +58,9 @@ namespace Fox.GameKit
 			classInfo.StaticProperties.Insert("texturePath", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Path, 152, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public Watermark(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public Watermark(ulong address, ulong id) : base(address, id) { }
+		public Watermark() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

@@ -44,7 +44,7 @@ namespace Tpp.GameKit
         }
         static TppPermanentGimmickGatlingGunParameter()
         {
-            classInfo = new Fox.EntityInfo("TppPermanentGimmickGatlingGunParameter", new Fox.Core.DataElement(0, 0, 0).GetClassEntityInfo(), 80, null, 0);
+            classInfo = new Fox.EntityInfo("TppPermanentGimmickGatlingGunParameter", new Fox.Core.DataElement().GetClassEntityInfo(), 80, null, 0);
 			
 			classInfo.StaticProperties.Insert("life", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt32, 56, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("maxXAxisAngle", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 68, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -55,8 +55,9 @@ namespace Tpp.GameKit
 			classInfo.StaticProperties.Insert("mtarFile", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.FilePtr, 88, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppPermanentGimmickGatlingGunParameter(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppPermanentGimmickGatlingGunParameter(ulong address, ulong id) : base(address, id) { }
+		public TppPermanentGimmickGatlingGunParameter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

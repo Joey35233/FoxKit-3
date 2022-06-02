@@ -30,12 +30,13 @@ namespace Fox.Geox
         }
         static GeoxPartsTargetFollowSkeletonBody()
         {
-            classInfo = new Fox.EntityInfo("GeoxPartsTargetFollowSkeletonBody", new Fox.Core.DataBody(0, 0, 0).GetClassEntityInfo(), 0, "Target", 0);
+            classInfo = new Fox.EntityInfo("GeoxPartsTargetFollowSkeletonBody", new Fox.Core.DataBody().GetClassEntityInfo(), 0, "Target", 0);
 			
         }
 
-        // Constructor
-		public GeoxPartsTargetFollowSkeletonBody(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public GeoxPartsTargetFollowSkeletonBody(ulong address, ulong id) : base(address, id) { }
+		public GeoxPartsTargetFollowSkeletonBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

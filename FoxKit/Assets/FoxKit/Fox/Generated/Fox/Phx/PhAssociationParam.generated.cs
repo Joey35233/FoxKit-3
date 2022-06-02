@@ -32,13 +32,14 @@ namespace Fox.Phx
         }
         static PhAssociationParam()
         {
-            classInfo = new Fox.EntityInfo("PhAssociationParam", new Fox.Core.Entity(0, 0, 0).GetClassEntityInfo(), 28, "Phx", 0);
+            classInfo = new Fox.EntityInfo("PhAssociationParam", new Fox.Core.Entity().GetClassEntityInfo(), 28, "Phx", 0);
 			
 			classInfo.StaticProperties.Insert("connectType", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt32, 48, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public PhAssociationParam(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public PhAssociationParam(ulong address, ulong id) : base(address, id) { }
+		public PhAssociationParam() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

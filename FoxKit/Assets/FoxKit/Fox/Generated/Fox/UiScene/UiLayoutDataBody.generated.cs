@@ -30,12 +30,13 @@ namespace Fox.UiScene
         }
         static UiLayoutDataBody()
         {
-            classInfo = new Fox.EntityInfo("UiLayoutDataBody", new Fox.Core.TransformDataBody(0, 0, 0).GetClassEntityInfo(), 0, "Ui", 0);
+            classInfo = new Fox.EntityInfo("UiLayoutDataBody", new Fox.Core.TransformDataBody().GetClassEntityInfo(), 0, "Ui", 0);
 			
         }
 
-        // Constructor
-		public UiLayoutDataBody(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public UiLayoutDataBody(ulong address, ulong id) : base(address, id) { }
+		public UiLayoutDataBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

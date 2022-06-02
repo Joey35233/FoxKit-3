@@ -34,14 +34,15 @@ namespace Tpp.System
         }
         static TppCheckPointLocator()
         {
-            classInfo = new Fox.EntityInfo("TppCheckPointLocator", new Fox.Core.Locator(0, 0, 0).GetClassEntityInfo(), 0, null, 1);
+            classInfo = new Fox.EntityInfo("TppCheckPointLocator", new Fox.Core.Locator().GetClassEntityInfo(), 0, null, 1);
 			
 			classInfo.StaticProperties.Insert("checkPointId", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt16, 320, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("usePlayerRotation", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 322, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppCheckPointLocator(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppCheckPointLocator(ulong address, ulong id) : base(address, id) { }
+		public TppCheckPointLocator() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

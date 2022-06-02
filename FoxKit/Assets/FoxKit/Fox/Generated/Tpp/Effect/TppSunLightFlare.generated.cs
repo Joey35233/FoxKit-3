@@ -32,13 +32,14 @@ namespace Tpp.Effect
         }
         static TppSunLightFlare()
         {
-            classInfo = new Fox.EntityInfo("TppSunLightFlare", new Fox.Core.TransformData(0, 0, 0).GetClassEntityInfo(), 272, null, 1);
+            classInfo = new Fox.EntityInfo("TppSunLightFlare", new Fox.Core.TransformData().GetClassEntityInfo(), 272, null, 1);
 			
 			classInfo.StaticProperties.Insert("flareName", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 304, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppSunLightFlare(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppSunLightFlare(ulong address, ulong id) : base(address, id) { }
+		public TppSunLightFlare() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

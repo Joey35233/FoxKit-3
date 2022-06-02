@@ -34,14 +34,15 @@ namespace Fox.Sim
         }
         static SimAssociationUnitParam()
         {
-            classInfo = new Fox.EntityInfo("SimAssociationUnitParam", new Fox.Core.Entity(0, 0, 0).GetClassEntityInfo(), 32, "Sim", 2);
+            classInfo = new Fox.EntityInfo("SimAssociationUnitParam", new Fox.Core.Entity().GetClassEntityInfo(), 32, "Sim", 2);
 			
 			classInfo.StaticProperties.Insert("boneName", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 48, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("initialized", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 56, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public SimAssociationUnitParam(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public SimAssociationUnitParam(ulong address, ulong id) : base(address, id) { }
+		public SimAssociationUnitParam() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

@@ -42,7 +42,7 @@ namespace Fox.Ui
         }
         static UiEventNode()
         {
-            classInfo = new Fox.EntityInfo("UiEventNode", new Fox.Ui.UiNodeData(0, 0, 0).GetClassEntityInfo(), 0, "UiG", 7);
+            classInfo = new Fox.EntityInfo("UiEventNode", new Fox.Ui.UiNodeData().GetClassEntityInfo(), 0, "UiG", 7);
 			
 			classInfo.StaticProperties.Insert("inputPhaseCount", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt32, 296, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("inputOperationCount", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt32, 300, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -52,8 +52,9 @@ namespace Fox.Ui
 			classInfo.StaticProperties.Insert("kind", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Int32, 280, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, typeof(UiEventNodeKind), Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public UiEventNode(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public UiEventNode(ulong address, ulong id) : base(address, id) { }
+		public UiEventNode() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

@@ -30,12 +30,13 @@ namespace Fox.Ph
         }
         static PhMaterialManager()
         {
-            classInfo = new Fox.EntityInfo("PhMaterialManager", new Fox.Core.Entity(0, 0, 0).GetClassEntityInfo(), 0, "Ph", 0);
+            classInfo = new Fox.EntityInfo("PhMaterialManager", new Fox.Core.Entity().GetClassEntityInfo(), 0, "Ph", 0);
 			
         }
 
-        // Constructor
-		public PhMaterialManager(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public PhMaterialManager(ulong address, ulong id) : base(address, id) { }
+		public PhMaterialManager() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

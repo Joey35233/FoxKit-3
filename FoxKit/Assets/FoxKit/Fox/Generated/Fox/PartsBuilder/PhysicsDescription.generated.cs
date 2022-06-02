@@ -32,13 +32,14 @@ namespace Fox.PartsBuilder
         }
         static PhysicsDescription()
         {
-            classInfo = new Fox.EntityInfo("PhysicsDescription", new Fox.PartsBuilder.PartDescription(0, 0, 0).GetClassEntityInfo(), 112, "PartsBuilder", 0);
+            classInfo = new Fox.EntityInfo("PhysicsDescription", new Fox.PartsBuilder.PartDescription().GetClassEntityInfo(), 112, "PartsBuilder", 0);
 			
 			classInfo.StaticProperties.Insert("physicsFile", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.FilePtr, 152, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public PhysicsDescription(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public PhysicsDescription(ulong address, ulong id) : base(address, id) { }
+		public PhysicsDescription() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

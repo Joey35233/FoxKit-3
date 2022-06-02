@@ -30,12 +30,13 @@ namespace Tpp.Effect
         }
         static TppRainFilterInterruptManager()
         {
-            classInfo = new Fox.EntityInfo("TppRainFilterInterruptManager", new Fox.Core.Entity(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("TppRainFilterInterruptManager", new Fox.Core.Entity().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public TppRainFilterInterruptManager(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppRainFilterInterruptManager(ulong address, ulong id) : base(address, id) { }
+		public TppRainFilterInterruptManager() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

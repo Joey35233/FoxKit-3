@@ -52,7 +52,7 @@ namespace Fox.EdDemo
         }
         static TppDemoParameter()
         {
-            classInfo = new Fox.EntityInfo("TppDemoParameter", new Fox.Demo.DemoParameter(0, 0, 0).GetClassEntityInfo(), 68, null, 3);
+            classInfo = new Fox.EntityInfo("TppDemoParameter", new Fox.Demo.DemoParameter().GetClassEntityInfo(), 68, null, 3);
 			
 			classInfo.StaticProperties.Insert("pauseEnable", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("fadeSerchLightEnable", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 65, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -67,8 +67,9 @@ namespace Fox.EdDemo
 			classInfo.StaticProperties.Insert("weatherType", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Int32, 92, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, typeof(TppDemoParameter_WeatherType), Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppDemoParameter(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppDemoParameter(ulong address, ulong id) : base(address, id) { }
+		public TppDemoParameter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

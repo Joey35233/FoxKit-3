@@ -38,7 +38,7 @@ namespace Tpp.Effect
         }
         static TppLightProbeArray()
         {
-            classInfo = new Fox.EntityInfo("TppLightProbeArray", new Fox.Core.TransformData(0, 0, 0).GetClassEntityInfo(), 336, "Light", 2);
+            classInfo = new Fox.EntityInfo("TppLightProbeArray", new Fox.Core.TransformData().GetClassEntityInfo(), 336, "Light", 2);
 			
 			classInfo.StaticProperties.Insert("drawRejectionLevels", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Int32, 304, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, typeof(TppLightProbeArray_DrawRejectionLevel), Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("relatedLights", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityLink, 320, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -46,8 +46,9 @@ namespace Tpp.Effect
 			classInfo.StaticProperties.Insert("lightArrayFile", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.FilePtr, 352, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppLightProbeArray(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppLightProbeArray(ulong address, ulong id) : base(address, id) { }
+		public TppLightProbeArray() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

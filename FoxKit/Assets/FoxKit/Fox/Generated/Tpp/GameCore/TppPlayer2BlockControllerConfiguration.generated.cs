@@ -52,7 +52,8 @@ namespace Tpp.GameCore
 			classInfo.StaticProperties.Insert("partsBlockSize", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt32, 20, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
+        // Constructors
+		
 		
         
         public virtual void SetProperty(string propertyName, Fox.Value value)

@@ -44,7 +44,7 @@ namespace Fox.Phx
         }
         static PhxVehicleNormalEngine()
         {
-            classInfo = new Fox.EntityInfo("PhxVehicleNormalEngine", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 120, "Phx", 1);
+            classInfo = new Fox.EntityInfo("PhxVehicleNormalEngine", new Fox.Core.Data().GetClassEntityInfo(), 120, "Phx", 1);
 			
 			classInfo.StaticProperties.Insert("vehicleAxes", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityLink, 128, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("torqueDistributions", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 144, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -55,8 +55,9 @@ namespace Fox.Phx
 			classInfo.StaticProperties.Insert("specPointBreakTorque", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 0, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public PhxVehicleNormalEngine(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public PhxVehicleNormalEngine(ulong address, ulong id) : base(address, id) { }
+		public PhxVehicleNormalEngine() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

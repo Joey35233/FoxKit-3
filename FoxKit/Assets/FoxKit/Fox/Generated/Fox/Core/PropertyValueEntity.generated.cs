@@ -30,12 +30,13 @@ namespace Fox.Core
         }
         static PropertyValueEntity()
         {
-            classInfo = new Fox.EntityInfo("PropertyValueEntity", new Fox.Core.Entity(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("PropertyValueEntity", new Fox.Core.Entity().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public PropertyValueEntity(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public PropertyValueEntity(ulong address, ulong id) : base(address, id) { }
+		public PropertyValueEntity() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

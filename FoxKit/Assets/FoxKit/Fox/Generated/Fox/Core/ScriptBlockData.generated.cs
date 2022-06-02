@@ -36,15 +36,16 @@ namespace Fox.Core
         }
         static ScriptBlockData()
         {
-            classInfo = new Fox.EntityInfo("ScriptBlockData", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 88, "Block", 0);
+            classInfo = new Fox.EntityInfo("ScriptBlockData", new Fox.Core.Data().GetClassEntityInfo(), 88, "Block", 0);
 			
 			classInfo.StaticProperties.Insert("enabled", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 140, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("sizeInBytes", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt32, 136, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("prerequisites", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 120, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public ScriptBlockData(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public ScriptBlockData(ulong address, ulong id) : base(address, id) { }
+		public ScriptBlockData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

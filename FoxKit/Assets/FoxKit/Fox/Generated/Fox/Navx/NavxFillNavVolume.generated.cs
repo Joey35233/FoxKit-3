@@ -36,15 +36,16 @@ namespace Fox.Navx
         }
         static NavxFillNavVolume()
         {
-            classInfo = new Fox.EntityInfo("NavxFillNavVolume", new Fox.Core.TransformData(0, 0, 0).GetClassEntityInfo(), 288, "Navx", 0);
+            classInfo = new Fox.EntityInfo("NavxFillNavVolume", new Fox.Core.TransformData().GetClassEntityInfo(), 288, "Navx", 0);
 			
 			classInfo.StaticProperties.Insert("sceneName", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 304, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("worldName", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 312, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("attributes", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 320, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public NavxFillNavVolume(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public NavxFillNavVolume(ulong address, ulong id) : base(address, id) { }
+		public NavxFillNavVolume() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

@@ -32,13 +32,14 @@ namespace Fox.Core
         }
         static TagContainerEntity()
         {
-            classInfo = new Fox.EntityInfo("TagContainerEntity", new Fox.Core.Entity(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("TagContainerEntity", new Fox.Core.Entity().GetClassEntityInfo(), 0, null, 0);
 			
 			classInfo.StaticProperties.Insert("tags", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt8, 48, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TagContainerEntity(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TagContainerEntity(ulong address, ulong id) : base(address, id) { }
+		public TagContainerEntity() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

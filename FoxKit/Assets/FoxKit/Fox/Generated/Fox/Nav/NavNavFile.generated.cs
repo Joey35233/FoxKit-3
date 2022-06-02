@@ -30,12 +30,13 @@ namespace Fox.Nav
         }
         static NavNavFile()
         {
-            classInfo = new Fox.EntityInfo("NavNavFile", new Fox.Core.RawFile(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("NavNavFile", new Fox.Core.RawFile().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public NavNavFile(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public NavNavFile(ulong address, ulong id) : base(address, id) { }
+		public NavNavFile() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

@@ -78,7 +78,7 @@ namespace Fox.Grx
         }
         static DirectionalLight()
         {
-            classInfo = new Fox.EntityInfo("DirectionalLight", new Fox.Core.TransformData(0, 0, 0).GetClassEntityInfo(), 352, "Light", 8);
+            classInfo = new Fox.EntityInfo("DirectionalLight", new Fox.Core.TransformData().GetClassEntityInfo(), 352, "Light", 8);
 			
 			classInfo.StaticProperties.Insert("color", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Color, 304, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("direction", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Vector3, 320, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -106,8 +106,9 @@ namespace Fox.Grx
 			classInfo.StaticProperties.Insert("enableDistanceFade", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public DirectionalLight(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public DirectionalLight(ulong address, ulong id) : base(address, id) { }
+		public DirectionalLight() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

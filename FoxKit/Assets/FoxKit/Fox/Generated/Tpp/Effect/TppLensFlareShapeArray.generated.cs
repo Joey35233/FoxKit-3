@@ -46,7 +46,7 @@ namespace Tpp.Effect
         }
         static TppLensFlareShapeArray()
         {
-            classInfo = new Fox.EntityInfo("TppLensFlareShapeArray", new Tpp.Effect.TppLensFlareShape(0, 0, 0).GetClassEntityInfo(), 768, null, 0);
+            classInfo = new Fox.EntityInfo("TppLensFlareShapeArray", new Tpp.Effect.TppLensFlareShape().GetClassEntityInfo(), 768, null, 0);
 			
 			classInfo.StaticProperties.Insert("spriteCount", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt32, 816, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("offsetScaleMin", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 820, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -58,8 +58,9 @@ namespace Tpp.Effect
 			classInfo.StaticProperties.Insert("randomSeed", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt32, 880, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppLensFlareShapeArray(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppLensFlareShapeArray(ulong address, ulong id) : base(address, id) { }
+		public TppLensFlareShapeArray() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

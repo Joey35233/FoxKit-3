@@ -34,14 +34,15 @@ namespace Fox.Ph
         }
         static PhClothHConstraintParam()
         {
-            classInfo = new Fox.EntityInfo("PhClothHConstraintParam", new Fox.Ph.PhConstraintParam(0, 0, 0).GetClassEntityInfo(), 0, "Ph", 0);
+            classInfo = new Fox.EntityInfo("PhClothHConstraintParam", new Fox.Ph.PhConstraintParam().GetClassEntityInfo(), 0, "Ph", 0);
 			
 			classInfo.StaticProperties.Insert("expansionRatio", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("contractionRatio", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 68, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public PhClothHConstraintParam(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public PhClothHConstraintParam(ulong address, ulong id) : base(address, id) { }
+		public PhClothHConstraintParam() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

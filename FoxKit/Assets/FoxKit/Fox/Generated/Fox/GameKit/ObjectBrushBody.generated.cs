@@ -34,14 +34,15 @@ namespace Fox.GameKit
         }
         static ObjectBrushBody()
         {
-            classInfo = new Fox.EntityInfo("ObjectBrushBody", new Fox.Core.TransformDataBody(0, 0, 0).GetClassEntityInfo(), 0, "ObjectBrush", 0);
+            classInfo = new Fox.EntityInfo("ObjectBrushBody", new Fox.Core.TransformDataBody().GetClassEntityInfo(), 0, "ObjectBrush", 0);
 			
 			classInfo.StaticProperties.Insert("pluginBodyHandle", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityHandle, 144, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("numPlugins", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt32, 208, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public ObjectBrushBody(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public ObjectBrushBody(ulong address, ulong id) : base(address, id) { }
+		public ObjectBrushBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

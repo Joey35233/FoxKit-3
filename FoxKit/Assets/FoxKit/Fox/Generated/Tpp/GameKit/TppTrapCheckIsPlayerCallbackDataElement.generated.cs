@@ -30,12 +30,13 @@ namespace Tpp.GameKit
         }
         static TppTrapCheckIsPlayerCallbackDataElement()
         {
-            classInfo = new Fox.EntityInfo("TppTrapCheckIsPlayerCallbackDataElement", new Fox.Geo.GeoTrapModuleCallbackDataElement(0, 0, 0).GetClassEntityInfo(), 32, null, 0);
+            classInfo = new Fox.EntityInfo("TppTrapCheckIsPlayerCallbackDataElement", new Fox.Geo.GeoTrapModuleCallbackDataElement().GetClassEntityInfo(), 32, null, 0);
 			
         }
 
-        // Constructor
-		public TppTrapCheckIsPlayerCallbackDataElement(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppTrapCheckIsPlayerCallbackDataElement(ulong address, ulong id) : base(address, id) { }
+		public TppTrapCheckIsPlayerCallbackDataElement() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

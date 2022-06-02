@@ -32,13 +32,14 @@ namespace Fox.Nav
         }
         static NavNavigationGraphHandleEntity()
         {
-            classInfo = new Fox.EntityInfo("NavNavigationGraphHandleEntity", new Fox.Nav.NavUnitHandleEntity(0, 0, 0).GetClassEntityInfo(), 0, "Nav", 0);
+            classInfo = new Fox.EntityInfo("NavNavigationGraphHandleEntity", new Fox.Nav.NavUnitHandleEntity().GetClassEntityInfo(), 0, "Nav", 0);
 			
 			classInfo.StaticProperties.Insert("subId", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt32, 56, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public NavNavigationGraphHandleEntity(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public NavNavigationGraphHandleEntity(ulong address, ulong id) : base(address, id) { }
+		public NavNavigationGraphHandleEntity() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

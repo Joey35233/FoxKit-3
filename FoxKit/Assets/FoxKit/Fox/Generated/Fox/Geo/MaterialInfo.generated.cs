@@ -30,12 +30,13 @@ namespace Fox.Geo
         }
         static MaterialInfo()
         {
-            classInfo = new Fox.EntityInfo("MaterialInfo", new Fox.Geo.MaterialInfoBase(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("MaterialInfo", new Fox.Geo.MaterialInfoBase().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public MaterialInfo(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public MaterialInfo(ulong address, ulong id) : base(address, id) { }
+		public MaterialInfo() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

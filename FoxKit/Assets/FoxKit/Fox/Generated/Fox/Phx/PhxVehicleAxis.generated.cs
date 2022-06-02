@@ -68,7 +68,7 @@ namespace Fox.Phx
         }
         static PhxVehicleAxis()
         {
-            classInfo = new Fox.EntityInfo("PhxVehicleAxis", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 128, "Phx", 1);
+            classInfo = new Fox.EntityInfo("PhxVehicleAxis", new Fox.Core.Data().GetClassEntityInfo(), 128, "Phx", 1);
 			
 			classInfo.StaticProperties.Insert("vehicleAxisParam", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityPtr, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, typeof(Fox.Phx.PhVehicleAxisParam), null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("wheelConstraintParam", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityPtr, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, typeof(Fox.Phx.PhxWheelConstraintParam), null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -91,8 +91,9 @@ namespace Fox.Phx
 			classInfo.StaticProperties.Insert("AssignedBoneNames", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 0, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public PhxVehicleAxis(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public PhxVehicleAxis(ulong address, ulong id) : base(address, id) { }
+		public PhxVehicleAxis() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

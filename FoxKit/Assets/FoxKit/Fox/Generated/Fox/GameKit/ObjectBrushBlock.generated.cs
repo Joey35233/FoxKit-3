@@ -38,7 +38,7 @@ namespace Fox.GameKit
         }
         static ObjectBrushBlock()
         {
-            classInfo = new Fox.EntityInfo("ObjectBrushBlock", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 128, null, 3);
+            classInfo = new Fox.EntityInfo("ObjectBrushBlock", new Fox.Core.Data().GetClassEntityInfo(), 128, null, 3);
 			
 			classInfo.StaticProperties.Insert("filePath", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Path, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("obrbFile", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.FilePtr, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -46,8 +46,9 @@ namespace Fox.GameKit
 			classInfo.StaticProperties.Insert("objectBrushName", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 160, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public ObjectBrushBlock(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public ObjectBrushBlock(ulong address, ulong id) : base(address, id) { }
+		public ObjectBrushBlock() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

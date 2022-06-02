@@ -36,15 +36,16 @@ namespace Fox.Sdx
         }
         static SoundDataFileInfo()
         {
-            classInfo = new Fox.EntityInfo("SoundDataFileInfo", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 112, "Sound", 0);
+            classInfo = new Fox.EntityInfo("SoundDataFileInfo", new Fox.Core.Data().GetClassEntityInfo(), 112, "Sound", 0);
 			
 			classInfo.StaticProperties.Insert("loadBanks", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 120, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("prepareBanks", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 136, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("prepareEvents", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 152, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public SoundDataFileInfo(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public SoundDataFileInfo(ulong address, ulong id) : base(address, id) { }
+		public SoundDataFileInfo() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

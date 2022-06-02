@@ -62,7 +62,7 @@ namespace Fox.Demox
         }
         static DemoStreamAnimation()
         {
-            classInfo = new Fox.EntityInfo("DemoStreamAnimation", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 712, null, 3);
+            classInfo = new Fox.EntityInfo("DemoStreamAnimation", new Fox.Core.Data().GetClassEntityInfo(), 712, null, 3);
 			
 			classInfo.StaticProperties.Insert("streamPath", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Path, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("demoLength", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt32, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -82,8 +82,9 @@ namespace Fox.Demox
 			classInfo.StaticProperties.Insert("dynamicFv2", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityPtr, 712, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, typeof(Fox.Demox.DemoFv2ResourceMemory), null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public DemoStreamAnimation(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public DemoStreamAnimation(ulong address, ulong id) : base(address, id) { }
+		public DemoStreamAnimation() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

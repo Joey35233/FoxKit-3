@@ -30,12 +30,13 @@ namespace Fox.Geo
         }
         static GeoSearchObject()
         {
-            classInfo = new Fox.EntityInfo("GeoSearchObject", new Fox.Core.Entity(0, 0, 0).GetClassEntityInfo(), 0, null, 1);
+            classInfo = new Fox.EntityInfo("GeoSearchObject", new Fox.Core.Entity().GetClassEntityInfo(), 0, null, 1);
 			
         }
 
-        // Constructor
-		public GeoSearchObject(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public GeoSearchObject(ulong address, ulong id) : base(address, id) { }
+		public GeoSearchObject() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

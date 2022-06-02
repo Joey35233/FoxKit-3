@@ -34,14 +34,15 @@ namespace Fox.EdDemo
         }
         static DemoRelativePlayParameter()
         {
-            classInfo = new Fox.EntityInfo("DemoRelativePlayParameter", new Fox.Demo.DemoParameter(0, 0, 0).GetClassEntityInfo(), 40, null, 0);
+            classInfo = new Fox.EntityInfo("DemoRelativePlayParameter", new Fox.Demo.DemoParameter().GetClassEntityInfo(), 40, null, 0);
 			
 			classInfo.StaticProperties.Insert("rootCharacterId", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("lookAtCharacterId", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 72, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public DemoRelativePlayParameter(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public DemoRelativePlayParameter(ulong address, ulong id) : base(address, id) { }
+		public DemoRelativePlayParameter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

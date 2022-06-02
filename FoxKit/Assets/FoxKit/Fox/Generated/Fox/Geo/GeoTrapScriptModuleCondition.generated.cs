@@ -36,15 +36,16 @@ namespace Fox.Geo
         }
         static GeoTrapScriptModuleCondition()
         {
-            classInfo = new Fox.EntityInfo("GeoTrapScriptModuleCondition", new Fox.Geo.GeoTrapCondition(0, 0, 0).GetClassEntityInfo(), 0, "Trap", 1);
+            classInfo = new Fox.EntityInfo("GeoTrapScriptModuleCondition", new Fox.Geo.GeoTrapCondition().GetClassEntityInfo(), 0, "Trap", 1);
 			
 			classInfo.StaticProperties.Insert("isAndCheck", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 320, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("checkScriptPathArray", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Path, 328, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("execScriptPathArray", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Path, 344, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public GeoTrapScriptModuleCondition(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public GeoTrapScriptModuleCondition(ulong address, ulong id) : base(address, id) { }
+		public GeoTrapScriptModuleCondition() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

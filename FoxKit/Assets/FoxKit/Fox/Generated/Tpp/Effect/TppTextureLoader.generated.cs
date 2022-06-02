@@ -34,14 +34,15 @@ namespace Tpp.Effect
         }
         static TppTextureLoader()
         {
-            classInfo = new Fox.EntityInfo("TppTextureLoader", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 160, null, 1);
+            classInfo = new Fox.EntityInfo("TppTextureLoader", new Fox.Core.Data().GetClassEntityInfo(), 160, null, 1);
 			
 			classInfo.StaticProperties.Insert("textures", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Path, 120, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("forceLargeTextures", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Path, 168, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppTextureLoader(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppTextureLoader(ulong address, ulong id) : base(address, id) { }
+		public TppTextureLoader() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

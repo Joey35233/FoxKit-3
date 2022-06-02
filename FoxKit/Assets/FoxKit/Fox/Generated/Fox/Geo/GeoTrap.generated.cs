@@ -34,14 +34,15 @@ namespace Fox.Geo
         }
         static GeoTrap()
         {
-            classInfo = new Fox.EntityInfo("GeoTrap", new Fox.Core.TransformData(0, 0, 0).GetClassEntityInfo(), 288, "Trap", 2);
+            classInfo = new Fox.EntityInfo("GeoTrap", new Fox.Core.TransformData().GetClassEntityInfo(), 288, "Trap", 2);
 			
 			classInfo.StaticProperties.Insert("conditionArray", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityLink, 304, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("enable", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 320, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public GeoTrap(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public GeoTrap(ulong address, ulong id) : base(address, id) { }
+		public GeoTrap() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

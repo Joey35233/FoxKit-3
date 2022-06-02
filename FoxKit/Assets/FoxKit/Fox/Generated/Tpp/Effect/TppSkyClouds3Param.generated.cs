@@ -76,7 +76,7 @@ namespace Tpp.Effect
         }
         static TppSkyClouds3Param()
         {
-            classInfo = new Fox.EntityInfo("TppSkyClouds3Param", new Fox.Core.DataElement(0, 0, 0).GetClassEntityInfo(), 0, "TppEffect", 3);
+            classInfo = new Fox.EntityInfo("TppSkyClouds3Param", new Fox.Core.DataElement().GetClassEntityInfo(), 0, "TppEffect", 3);
 			
 			classInfo.StaticProperties.Insert("enable", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 172, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("followCamera", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 173, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -103,8 +103,9 @@ namespace Tpp.Effect
 			classInfo.StaticProperties.Insert("textureColorHandling", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Int32, 168, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, typeof(TppSkyClouds3Param_TexColor), Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppSkyClouds3Param(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppSkyClouds3Param(ulong address, ulong id) : base(address, id) { }
+		public TppSkyClouds3Param() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

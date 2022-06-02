@@ -30,12 +30,13 @@ namespace Tpp.Effect
         }
         static TppLightProbeSHCoefficientsBody()
         {
-            classInfo = new Fox.EntityInfo("TppLightProbeSHCoefficientsBody", new Fox.Core.DataBody(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("TppLightProbeSHCoefficientsBody", new Fox.Core.DataBody().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public TppLightProbeSHCoefficientsBody(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppLightProbeSHCoefficientsBody(ulong address, ulong id) : base(address, id) { }
+		public TppLightProbeSHCoefficientsBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

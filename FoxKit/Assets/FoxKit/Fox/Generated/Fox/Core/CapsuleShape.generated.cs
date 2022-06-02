@@ -36,15 +36,16 @@ namespace Fox.Core
         }
         static CapsuleShape()
         {
-            classInfo = new Fox.EntityInfo("CapsuleShape", new Fox.Core.ShapeData(0, 0, 0).GetClassEntityInfo(), 0, "Shape", 0);
+            classInfo = new Fox.EntityInfo("CapsuleShape", new Fox.Core.ShapeData().GetClassEntityInfo(), 0, "Shape", 0);
 			
 			classInfo.StaticProperties.Insert("point0", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Vector3, 304, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("point1", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Vector3, 320, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("radius", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 336, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public CapsuleShape(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public CapsuleShape(ulong address, ulong id) : base(address, id) { }
+		public CapsuleShape() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

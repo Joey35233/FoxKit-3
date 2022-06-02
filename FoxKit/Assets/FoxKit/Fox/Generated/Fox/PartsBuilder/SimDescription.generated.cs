@@ -34,14 +34,15 @@ namespace Fox.PartsBuilder
         }
         static SimDescription()
         {
-            classInfo = new Fox.EntityInfo("SimDescription", new Fox.PartsBuilder.PartDescription(0, 0, 0).GetClassEntityInfo(), 120, "PartsBuilder", 1);
+            classInfo = new Fox.EntityInfo("SimDescription", new Fox.PartsBuilder.PartDescription().GetClassEntityInfo(), 120, "PartsBuilder", 1);
 			
 			classInfo.StaticProperties.Insert("simFile", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.FilePtr, 152, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("isActive", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 176, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public SimDescription(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public SimDescription(ulong address, ulong id) : base(address, id) { }
+		public SimDescription() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

@@ -34,14 +34,15 @@ namespace Fox.Ui
         }
         static UiGraphEntry()
         {
-            classInfo = new Fox.EntityInfo("UiGraphEntry", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 96, "Ui", 1);
+            classInfo = new Fox.EntityInfo("UiGraphEntry", new Fox.Core.Data().GetClassEntityInfo(), 96, "Ui", 1);
 			
 			classInfo.StaticProperties.Insert("files", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.FilePtr, 120, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("rawFiles", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.FilePtr, 136, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public UiGraphEntry(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public UiGraphEntry(ulong address, ulong id) : base(address, id) { }
+		public UiGraphEntry() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

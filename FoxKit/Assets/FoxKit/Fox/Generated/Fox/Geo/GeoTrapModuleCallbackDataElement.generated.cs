@@ -32,13 +32,14 @@ namespace Fox.Geo
         }
         static GeoTrapModuleCallbackDataElement()
         {
-            classInfo = new Fox.EntityInfo("GeoTrapModuleCallbackDataElement", new Fox.Core.DataElement(0, 0, 0).GetClassEntityInfo(), 32, null, 0);
+            classInfo = new Fox.EntityInfo("GeoTrapModuleCallbackDataElement", new Fox.Core.DataElement().GetClassEntityInfo(), 32, null, 0);
 			
 			classInfo.StaticProperties.Insert("funcName", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 56, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public GeoTrapModuleCallbackDataElement(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public GeoTrapModuleCallbackDataElement(ulong address, ulong id) : base(address, id) { }
+		public GeoTrapModuleCallbackDataElement() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

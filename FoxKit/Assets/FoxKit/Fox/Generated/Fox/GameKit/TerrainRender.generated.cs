@@ -82,7 +82,7 @@ namespace Fox.GameKit
         }
         static TerrainRender()
         {
-            classInfo = new Fox.EntityInfo("TerrainRender", new Fox.Core.TransformData(0, 0, 0).GetClassEntityInfo(), 960, null, 9);
+            classInfo = new Fox.EntityInfo("TerrainRender", new Fox.Core.TransformData().GetClassEntityInfo(), 960, null, 9);
 			
 			classInfo.StaticProperties.Insert("filePath", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Path, 304, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("loadFilePath", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Path, 312, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -112,8 +112,9 @@ namespace Fox.GameKit
 			classInfo.StaticProperties.Insert("worldTextureTilePathes", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Path, 1056, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TerrainRender(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TerrainRender(ulong address, ulong id) : base(address, id) { }
+		public TerrainRender() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

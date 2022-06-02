@@ -30,12 +30,13 @@ namespace Tpp.Radio
         }
         static TppEspionageRadioSystemParameter()
         {
-            classInfo = new Fox.EntityInfo("TppEspionageRadioSystemParameter", new Fox.Core.DataElement(0, 0, 0).GetClassEntityInfo(), 28, null, 0);
+            classInfo = new Fox.EntityInfo("TppEspionageRadioSystemParameter", new Fox.Core.DataElement().GetClassEntityInfo(), 28, null, 0);
 			
         }
 
-        // Constructor
-		public TppEspionageRadioSystemParameter(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppEspionageRadioSystemParameter(ulong address, ulong id) : base(address, id) { }
+		public TppEspionageRadioSystemParameter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

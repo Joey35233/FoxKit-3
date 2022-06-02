@@ -30,12 +30,13 @@ namespace Tpp.Effect
         }
         static TppEyelidFilterStateManager()
         {
-            classInfo = new Fox.EntityInfo("TppEyelidFilterStateManager", new Fox.Core.Entity(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("TppEyelidFilterStateManager", new Fox.Core.Entity().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public TppEyelidFilterStateManager(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppEyelidFilterStateManager(ulong address, ulong id) : base(address, id) { }
+		public TppEyelidFilterStateManager() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

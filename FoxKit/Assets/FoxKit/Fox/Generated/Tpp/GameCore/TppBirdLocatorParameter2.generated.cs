@@ -40,7 +40,7 @@ namespace Tpp.GameCore
         }
         static TppBirdLocatorParameter2()
         {
-            classInfo = new Fox.EntityInfo("TppBirdLocatorParameter2", new Fox.Core.DataElement(0, 0, 0).GetClassEntityInfo(), 80, null, 2);
+            classInfo = new Fox.EntityInfo("TppBirdLocatorParameter2", new Fox.Core.DataElement().GetClassEntityInfo(), 80, null, 2);
 			
 			classInfo.StaticProperties.Insert("count", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt32, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("grounds", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Vector3, 72, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -49,8 +49,9 @@ namespace Tpp.GameCore
 			classInfo.StaticProperties.Insert("height", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt8, 105, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppBirdLocatorParameter2(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppBirdLocatorParameter2(ulong address, ulong id) : base(address, id) { }
+		public TppBirdLocatorParameter2() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

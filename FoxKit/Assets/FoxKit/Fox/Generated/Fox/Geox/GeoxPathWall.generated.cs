@@ -38,7 +38,7 @@ namespace Fox.Geox
         }
         static GeoxPathWall()
         {
-            classInfo = new Fox.EntityInfo("GeoxPathWall", new Fox.Core.TransformData(0, 0, 0).GetClassEntityInfo(), 288, "Geox", 0);
+            classInfo = new Fox.EntityInfo("GeoxPathWall", new Fox.Core.TransformData().GetClassEntityInfo(), 288, "Geox", 0);
 			
 			classInfo.StaticProperties.Insert("height", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 304, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("isVisibleGeom", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 328, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -46,8 +46,9 @@ namespace Fox.Geox
 			classInfo.StaticProperties.Insert("collisionAttributeTags", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 312, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public GeoxPathWall(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public GeoxPathWall(ulong address, ulong id) : base(address, id) { }
+		public GeoxPathWall() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

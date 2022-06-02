@@ -56,7 +56,7 @@ namespace Tpp.Effect
         }
         static TppOutOfMissionRangeEffect()
         {
-            classInfo = new Fox.EntityInfo("TppOutOfMissionRangeEffect", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 144, "TppEffect", 2);
+            classInfo = new Fox.EntityInfo("TppOutOfMissionRangeEffect", new Fox.Core.Data().GetClassEntityInfo(), 144, "TppEffect", 2);
 			
 			classInfo.StaticProperties.Insert("enable", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 204, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("lutTexture", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Path, 160, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -73,8 +73,9 @@ namespace Tpp.Effect
 			classInfo.StaticProperties.Insert("cinemaScopeShift", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 200, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppOutOfMissionRangeEffect(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppOutOfMissionRangeEffect(ulong address, ulong id) : base(address, id) { }
+		public TppOutOfMissionRangeEffect() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

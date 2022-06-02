@@ -30,12 +30,13 @@ namespace Fox.Grx
         }
         static GrxOccluderBody()
         {
-            classInfo = new Fox.EntityInfo("GrxOccluderBody", new Fox.Core.TransformDataBody(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("GrxOccluderBody", new Fox.Core.TransformDataBody().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public GrxOccluderBody(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public GrxOccluderBody(ulong address, ulong id) : base(address, id) { }
+		public GrxOccluderBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

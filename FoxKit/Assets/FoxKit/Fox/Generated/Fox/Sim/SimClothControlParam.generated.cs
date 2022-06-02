@@ -34,14 +34,15 @@ namespace Fox.Sim
         }
         static SimClothControlParam()
         {
-            classInfo = new Fox.EntityInfo("SimClothControlParam", new Fox.Sim.SimControlParam(0, 0, 0).GetClassEntityInfo(), 32, "Sim", 1);
+            classInfo = new Fox.EntityInfo("SimClothControlParam", new Fox.Sim.SimControlParam().GetClassEntityInfo(), 32, "Sim", 1);
 			
 			classInfo.StaticProperties.Insert("windCoefficient", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 48, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("isLoop", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 52, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public SimClothControlParam(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public SimClothControlParam(ulong address, ulong id) : base(address, id) { }
+		public SimClothControlParam() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

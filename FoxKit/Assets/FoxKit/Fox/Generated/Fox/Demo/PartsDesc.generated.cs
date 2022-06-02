@@ -38,7 +38,7 @@ namespace Fox.Demo
         }
         static PartsDesc()
         {
-            classInfo = new Fox.EntityInfo("PartsDesc", new Fox.Core.DataElement(0, 0, 0).GetClassEntityInfo(), 0, null, 1);
+            classInfo = new Fox.EntityInfo("PartsDesc", new Fox.Core.DataElement().GetClassEntityInfo(), 0, null, 1);
 			
 			classInfo.StaticProperties.Insert("instanceName", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 56, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("partsFile", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.FilePtr, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -46,8 +46,9 @@ namespace Fox.Demo
 			classInfo.StaticProperties.Insert("partName", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 96, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public PartsDesc(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public PartsDesc(ulong address, ulong id) : base(address, id) { }
+		public PartsDesc() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

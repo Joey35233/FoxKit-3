@@ -32,13 +32,14 @@ namespace Fox.Geox
         }
         static GeoxPolygonMarker()
         {
-            classInfo = new Fox.EntityInfo("GeoxPolygonMarker", new Fox.Core.TransformData(0, 0, 0).GetClassEntityInfo(), 0, "Geox", 0);
+            classInfo = new Fox.EntityInfo("GeoxPolygonMarker", new Fox.Core.TransformData().GetClassEntityInfo(), 0, "Geox", 0);
 			
 			classInfo.StaticProperties.Insert("needRecoil", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 304, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public GeoxPolygonMarker(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public GeoxPolygonMarker(ulong address, ulong id) : base(address, id) { }
+		public GeoxPolygonMarker() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

@@ -44,7 +44,7 @@ namespace Tpp.MotherBaseCore
         }
         static MotherBaseConstructData()
         {
-            classInfo = new Fox.EntityInfo("MotherBaseConstructData", new Fox.Core.TransformData(0, 0, 0).GetClassEntityInfo(), 288, "TppMotherBase", 6);
+            classInfo = new Fox.EntityInfo("MotherBaseConstructData", new Fox.Core.TransformData().GetClassEntityInfo(), 288, "TppMotherBase", 6);
 			
 			classInfo.StaticProperties.Insert("type", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Int32, 368, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, typeof(MbConstructDataType), Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("index", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt16, 372, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -55,8 +55,9 @@ namespace Tpp.MotherBaseCore
 			classInfo.StaticProperties.Insert("plant", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt8, 395, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public MotherBaseConstructData(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public MotherBaseConstructData(ulong address, ulong id) : base(address, id) { }
+		public MotherBaseConstructData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

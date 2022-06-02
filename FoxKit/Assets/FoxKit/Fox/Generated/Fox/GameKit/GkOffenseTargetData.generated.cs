@@ -44,7 +44,7 @@ namespace Fox.GameKit
         }
         static GkOffenseTargetData()
         {
-            classInfo = new Fox.EntityInfo("GkOffenseTargetData", new Fox.GameKit.GkTargetData(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("GkOffenseTargetData", new Fox.GameKit.GkTargetData().GetClassEntityInfo(), 0, null, 0);
 			
 			classInfo.StaticProperties.Insert("attackTargetName", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 72, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("weaponName", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 56, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -55,8 +55,9 @@ namespace Fox.GameKit
 			classInfo.StaticProperties.Insert("isAttackDirection", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 112, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public GkOffenseTargetData(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public GkOffenseTargetData(ulong address, ulong id) : base(address, id) { }
+		public GkOffenseTargetData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

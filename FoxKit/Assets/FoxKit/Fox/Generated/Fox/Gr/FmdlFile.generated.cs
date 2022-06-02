@@ -30,12 +30,13 @@ namespace Fox.Gr
         }
         static FmdlFile()
         {
-            classInfo = new Fox.EntityInfo("FmdlFile", new Fox.Core.RawFile(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("FmdlFile", new Fox.Core.RawFile().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public FmdlFile(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public FmdlFile(ulong address, ulong id) : base(address, id) { }
+		public FmdlFile() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

@@ -34,14 +34,15 @@ namespace Fox.Geox
         }
         static GeoxDynamicBoundingVolumeActivator()
         {
-            classInfo = new Fox.EntityInfo("GeoxDynamicBoundingVolumeActivator", new Fox.Core.TransformData(0, 0, 0).GetClassEntityInfo(), 288, null, 0);
+            classInfo = new Fox.EntityInfo("GeoxDynamicBoundingVolumeActivator", new Fox.Core.TransformData().GetClassEntityInfo(), 288, null, 0);
 			
 			classInfo.StaticProperties.Insert("gridSize", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Vector3, 304, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("allocateSize", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt32, 320, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public GeoxDynamicBoundingVolumeActivator(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public GeoxDynamicBoundingVolumeActivator(ulong address, ulong id) : base(address, id) { }
+		public GeoxDynamicBoundingVolumeActivator() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

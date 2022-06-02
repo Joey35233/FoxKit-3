@@ -30,12 +30,13 @@ namespace Tpp.GameKit
         }
         static EmblemBlender()
         {
-            classInfo = new Fox.EntityInfo("EmblemBlender", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 64, "TppGameKit", 0);
+            classInfo = new Fox.EntityInfo("EmblemBlender", new Fox.Core.Data().GetClassEntityInfo(), 64, "TppGameKit", 0);
 			
         }
 
-        // Constructor
-		public EmblemBlender(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public EmblemBlender(ulong address, ulong id) : base(address, id) { }
+		public EmblemBlender() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

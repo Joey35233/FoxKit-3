@@ -20,19 +20,22 @@ namespace Fox.Core
             this.requestEntityLink = requestEntityLink ?? throw new ArgumentNullException(nameof(requestEntityLink));
         }
 
-        public Entity Read(BinaryReader reader, Func<ulong, ulong, ushort, ushort, ushort, Entity> createEntity, Func<ulong, string> unhashString)
+        public Entity Read(BinaryReader reader, Func<ulong, ulong, ushort, ulong, Entity> createEntity, Func<ulong, string> unhashString)
         {
-            var headerBytes = reader.ReadBytes(64);
-            var classId = BitConverter.ToInt16(headerBytes, 2);
+            var headerSize = reader.ReadUInt16(); Debug.Assert(headerSize == 0x40);
+            reader.BaseStream.Position -= 2;
+
+            var headerBytes = reader.ReadBytes(headerSize);
+            var classId = BitConverter.ToInt32(headerBytes, 4);
+            var ent_cString = BitConverter.ToUInt32(headerBytes, 6); Debug.Assert(ent_cString == 0x00746E65); // "ent\0"
             var address = BitConverter.ToUInt64(headerBytes, 10);
-            var idA = BitConverter.ToUInt16(headerBytes, 18);
-            var idB = BitConverter.ToUInt16(headerBytes, 20);
+            var id = BitConverter.ToUInt64(headerBytes, 18);
             var version = BitConverter.ToUInt16(headerBytes, 26);
             var classNameHash = BitConverter.ToUInt64(headerBytes, 28);
             var staticPropertyCount = BitConverter.ToUInt16(headerBytes, 36);
             var dynamicPropertyCount = BitConverter.ToUInt16(headerBytes, 38);
 
-            var entity = createEntity(classNameHash, address, version, idA, idB);
+            var entity = createEntity(classNameHash, address, version, id);
             var isReadingDynamicProperty = false;
 
             SetProperty setProperty = entity.SetProperty;

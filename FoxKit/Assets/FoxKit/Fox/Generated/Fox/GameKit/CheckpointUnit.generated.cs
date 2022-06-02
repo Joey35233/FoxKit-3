@@ -36,15 +36,16 @@ namespace Fox.GameKit
         }
         static CheckpointUnit()
         {
-            classInfo = new Fox.EntityInfo("CheckpointUnit", new Fox.Core.Entity(0, 0, 0).GetClassEntityInfo(), 0, "GameKit", 0);
+            classInfo = new Fox.EntityInfo("CheckpointUnit", new Fox.Core.Entity().GetClassEntityInfo(), 0, "GameKit", 0);
 			
 			classInfo.StaticProperties.Insert("checkPointParam", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityPtr, 48, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, typeof(Fox.Core.Entity), null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("checkPointData", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityPtr, 56, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, typeof(Fox.Core.Entity), null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("isReplacable", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 104, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public CheckpointUnit(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public CheckpointUnit(ulong address, ulong id) : base(address, id) { }
+		public CheckpointUnit() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

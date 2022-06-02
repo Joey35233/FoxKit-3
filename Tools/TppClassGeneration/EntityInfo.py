@@ -79,7 +79,7 @@ class EntityInfo:
         if self.is_root():
             return "null"
         else:
-            return f'new {self.get_parent_string()}(0, 0, 0).GetClassEntityInfo()' #base.GetClassEntityInfo()"
+            return f'new {self.get_parent_string()}().GetClassEntityInfo()' #base.GetClassEntityInfo()"
 
     def get_non_collection_properties(self):
         """Gets the non-collection properties.

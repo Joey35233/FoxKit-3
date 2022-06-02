@@ -34,14 +34,15 @@ namespace Fox.Demo
         }
         static DemoFileProxy()
         {
-            classInfo = new Fox.EntityInfo("DemoFileProxy", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("DemoFileProxy", new Fox.Core.Data().GetClassEntityInfo(), 0, null, 0);
 			
 			classInfo.StaticProperties.Insert("fmdlFiles", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.FilePtr, 120, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("partsFiles", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.FilePtr, 136, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public DemoFileProxy(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public DemoFileProxy(ulong address, ulong id) : base(address, id) { }
+		public DemoFileProxy() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

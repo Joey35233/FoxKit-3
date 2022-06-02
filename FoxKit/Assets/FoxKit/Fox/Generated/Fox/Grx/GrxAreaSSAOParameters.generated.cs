@@ -52,7 +52,7 @@ namespace Fox.Grx
         }
         static GrxAreaSSAOParameters()
         {
-            classInfo = new Fox.EntityInfo("GrxAreaSSAOParameters", new Fox.Core.Entity(0, 0, 0).GetClassEntityInfo(), 68, null, 0);
+            classInfo = new Fox.EntityInfo("GrxAreaSSAOParameters", new Fox.Core.Entity().GetClassEntityInfo(), 68, null, 0);
 			
 			classInfo.StaticProperties.Insert("resolution", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Int32, 48, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, typeof(GrxAreaSSAOParameters_Resolution), Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("radius", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 52, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -67,8 +67,9 @@ namespace Fox.Grx
 			classInfo.StaticProperties.Insert("blurSceneScale", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 88, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public GrxAreaSSAOParameters(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public GrxAreaSSAOParameters(ulong address, ulong id) : base(address, id) { }
+		public GrxAreaSSAOParameters() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

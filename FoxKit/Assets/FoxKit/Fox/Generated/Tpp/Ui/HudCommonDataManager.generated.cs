@@ -30,12 +30,13 @@ namespace Tpp.Ui
         }
         static HudCommonDataManager()
         {
-            classInfo = new Fox.EntityInfo("HudCommonDataManager", new Fox.Core.Entity(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("HudCommonDataManager", new Fox.Core.Entity().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public HudCommonDataManager(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public HudCommonDataManager(ulong address, ulong id) : base(address, id) { }
+		public HudCommonDataManager() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

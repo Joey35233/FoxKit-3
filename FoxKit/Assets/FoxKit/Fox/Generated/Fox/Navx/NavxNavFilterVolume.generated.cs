@@ -32,13 +32,14 @@ namespace Fox.Navx
         }
         static NavxNavFilterVolume()
         {
-            classInfo = new Fox.EntityInfo("NavxNavFilterVolume", new Fox.Graphx.GraphxPathVolume(0, 0, 0).GetClassEntityInfo(), 320, null, 0);
+            classInfo = new Fox.EntityInfo("NavxNavFilterVolume", new Fox.Graphx.GraphxPathVolume().GetClassEntityInfo(), 320, null, 0);
 			
 			classInfo.StaticProperties.Insert("worldName", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 352, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public NavxNavFilterVolume(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public NavxNavFilterVolume(ulong address, ulong id) : base(address, id) { }
+		public NavxNavFilterVolume() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

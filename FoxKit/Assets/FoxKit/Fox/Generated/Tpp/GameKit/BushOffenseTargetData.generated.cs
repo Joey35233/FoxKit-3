@@ -40,7 +40,7 @@ namespace Tpp.GameKit
         }
         static BushOffenseTargetData()
         {
-            classInfo = new Fox.EntityInfo("BushOffenseTargetData", new Fox.Geo.TargetExtensionData(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("BushOffenseTargetData", new Fox.Geo.TargetExtensionData().GetClassEntityInfo(), 0, null, 0);
 			
 			classInfo.StaticProperties.Insert("uniqueId", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt32, 48, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("flag", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt32, 52, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -49,8 +49,9 @@ namespace Tpp.GameKit
 			classInfo.StaticProperties.Insert("direction", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Vector3, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public BushOffenseTargetData(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public BushOffenseTargetData(ulong address, ulong id) : base(address, id) { }
+		public BushOffenseTargetData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

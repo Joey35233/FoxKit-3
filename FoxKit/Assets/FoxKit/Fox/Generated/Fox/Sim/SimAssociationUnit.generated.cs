@@ -36,15 +36,16 @@ namespace Fox.Sim
         }
         static SimAssociationUnit()
         {
-            classInfo = new Fox.EntityInfo("SimAssociationUnit", new Fox.Phx.PhxAssociationUnitElement(0, 0, 0).GetClassEntityInfo(), 160, "Sim", 1);
+            classInfo = new Fox.EntityInfo("SimAssociationUnit", new Fox.Phx.PhxAssociationUnitElement().GetClassEntityInfo(), 160, "Sim", 1);
 			
 			classInfo.StaticProperties.Insert("param", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityPtr, 192, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, typeof(Fox.Sim.SimAssociationUnitParam), null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("boneName", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("initialized", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public SimAssociationUnit(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public SimAssociationUnit(ulong address, ulong id) : base(address, id) { }
+		public SimAssociationUnit() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

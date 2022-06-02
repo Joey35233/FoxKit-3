@@ -34,14 +34,15 @@ namespace Fox.Sdx
         }
         static SoundAreaGlobal()
         {
-            classInfo = new Fox.EntityInfo("SoundAreaGlobal", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 80, "Sound", 1);
+            classInfo = new Fox.EntityInfo("SoundAreaGlobal", new Fox.Core.Data().GetClassEntityInfo(), 80, "Sound", 1);
 			
 			classInfo.StaticProperties.Insert("parameter", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityPtr, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, typeof(Fox.Sdx.SoundAreaParameter), null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("volumeRtpc", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public SoundAreaGlobal(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public SoundAreaGlobal(ulong address, ulong id) : base(address, id) { }
+		public SoundAreaGlobal() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

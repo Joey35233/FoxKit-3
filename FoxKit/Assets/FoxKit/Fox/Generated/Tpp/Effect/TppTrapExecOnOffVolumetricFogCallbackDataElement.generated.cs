@@ -32,13 +32,14 @@ namespace Tpp.Effect
         }
         static TppTrapExecOnOffVolumetricFogCallbackDataElement()
         {
-            classInfo = new Fox.EntityInfo("TppTrapExecOnOffVolumetricFogCallbackDataElement", new Fox.Geo.GeoTrapModuleCallbackDataElement(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("TppTrapExecOnOffVolumetricFogCallbackDataElement", new Fox.Geo.GeoTrapModuleCallbackDataElement().GetClassEntityInfo(), 0, null, 0);
 			
 			classInfo.StaticProperties.Insert("areaVolumetricFog", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityLink, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppTrapExecOnOffVolumetricFogCallbackDataElement(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppTrapExecOnOffVolumetricFogCallbackDataElement(ulong address, ulong id) : base(address, id) { }
+		public TppTrapExecOnOffVolumetricFogCallbackDataElement() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

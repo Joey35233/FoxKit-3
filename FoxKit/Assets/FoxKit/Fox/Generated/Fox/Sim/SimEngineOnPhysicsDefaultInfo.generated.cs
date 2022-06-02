@@ -40,7 +40,7 @@ namespace Fox.Sim
         }
         static SimEngineOnPhysicsDefaultInfo()
         {
-            classInfo = new Fox.EntityInfo("SimEngineOnPhysicsDefaultInfo", new Fox.Core.DataElement(0, 0, 0).GetClassEntityInfo(), 0, "Sim", 1);
+            classInfo = new Fox.EntityInfo("SimEngineOnPhysicsDefaultInfo", new Fox.Core.DataElement().GetClassEntityInfo(), 0, "Sim", 1);
 			
 			classInfo.StaticProperties.Insert("defaultRadius", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 56, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("defaultLimit", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 60, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -49,8 +49,9 @@ namespace Fox.Sim
 			classInfo.StaticProperties.Insert("defaultMass", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 72, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public SimEngineOnPhysicsDefaultInfo(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public SimEngineOnPhysicsDefaultInfo(ulong address, ulong id) : base(address, id) { }
+		public SimEngineOnPhysicsDefaultInfo() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

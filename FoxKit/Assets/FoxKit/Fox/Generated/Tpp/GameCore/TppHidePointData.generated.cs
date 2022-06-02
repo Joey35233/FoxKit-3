@@ -32,13 +32,14 @@ namespace Tpp.GameCore
         }
         static TppHidePointData()
         {
-            classInfo = new Fox.EntityInfo("TppHidePointData", new Fox.Core.TransformData(0, 0, 0).GetClassEntityInfo(), 272, "Sahelan2", 0);
+            classInfo = new Fox.EntityInfo("TppHidePointData", new Fox.Core.TransformData().GetClassEntityInfo(), 272, "Sahelan2", 0);
 			
 			classInfo.StaticProperties.Insert("type", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Int32, 304, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, typeof(HidePointType), Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppHidePointData(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppHidePointData(ulong address, ulong id) : base(address, id) { }
+		public TppHidePointData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

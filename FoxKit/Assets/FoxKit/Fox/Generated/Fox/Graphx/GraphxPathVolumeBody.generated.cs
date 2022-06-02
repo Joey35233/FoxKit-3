@@ -30,12 +30,13 @@ namespace Fox.Graphx
         }
         static GraphxPathVolumeBody()
         {
-            classInfo = new Fox.EntityInfo("GraphxPathVolumeBody", new Fox.Graphx.GraphxPath(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("GraphxPathVolumeBody", new Fox.Graphx.GraphxPath().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public GraphxPathVolumeBody(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public GraphxPathVolumeBody(ulong address, ulong id) : base(address, id) { }
+		public GraphxPathVolumeBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

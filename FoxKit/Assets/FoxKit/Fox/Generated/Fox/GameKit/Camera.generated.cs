@@ -80,7 +80,7 @@ namespace Fox.GameKit
         }
         static Camera()
         {
-            classInfo = new Fox.EntityInfo("Camera", new Fox.Core.Entity(0, 0, 0).GetClassEntityInfo(), 0, null, 10);
+            classInfo = new Fox.EntityInfo("Camera", new Fox.Core.Entity().GetClassEntityInfo(), 0, null, 10);
 			
 			classInfo.StaticProperties.Insert("priorityName", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 264, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("enable", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 224, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -109,8 +109,9 @@ namespace Fox.GameKit
 			classInfo.StaticProperties.Insert("keyValue", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public Camera(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public Camera(ulong address, ulong id) : base(address, id) { }
+		public Camera() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

@@ -30,12 +30,13 @@ namespace Tpp.Sound
         }
         static TppAmbientFile()
         {
-            classInfo = new Fox.EntityInfo("TppAmbientFile", new Fox.Core.RawFile(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("TppAmbientFile", new Fox.Core.RawFile().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public TppAmbientFile(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppAmbientFile(ulong address, ulong id) : base(address, id) { }
+		public TppAmbientFile() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

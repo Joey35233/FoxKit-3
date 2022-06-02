@@ -32,13 +32,14 @@ namespace Fox.GameKit
         }
         static GkTargetData()
         {
-            classInfo = new Fox.EntityInfo("GkTargetData", new Fox.Geo.TargetExtensionData(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("GkTargetData", new Fox.Geo.TargetExtensionData().GetClassEntityInfo(), 0, null, 0);
 			
 			classInfo.StaticProperties.Insert("characterObjectHandle", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityHandle, 48, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public GkTargetData(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public GkTargetData(ulong address, ulong id) : base(address, id) { }
+		public GkTargetData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

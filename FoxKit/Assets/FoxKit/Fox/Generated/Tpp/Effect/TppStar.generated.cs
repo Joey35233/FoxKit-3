@@ -50,7 +50,7 @@ namespace Tpp.Effect
         }
         static TppStar()
         {
-            classInfo = new Fox.EntityInfo("TppStar", new Fox.Core.TransformData(0, 0, 0).GetClassEntityInfo(), 384, "TppEffect", 1);
+            classInfo = new Fox.EntityInfo("TppStar", new Fox.Core.TransformData().GetClassEntityInfo(), 384, "TppEffect", 1);
 			
 			classInfo.StaticProperties.Insert("enable", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 424, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("color", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Color, 400, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -64,8 +64,9 @@ namespace Tpp.Effect
 			classInfo.StaticProperties.Insert("scaleArray", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 368, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppStar(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppStar(ulong address, ulong id) : base(address, id) { }
+		public TppStar() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

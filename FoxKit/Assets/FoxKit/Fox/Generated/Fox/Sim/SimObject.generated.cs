@@ -36,15 +36,16 @@ namespace Fox.Sim
         }
         static SimObject()
         {
-            classInfo = new Fox.EntityInfo("SimObject", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 0, "Sim", 1);
+            classInfo = new Fox.EntityInfo("SimObject", new Fox.Core.Data().GetClassEntityInfo(), 0, "Sim", 1);
 			
 			classInfo.StaticProperties.Insert("objectParam", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityPtr, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, typeof(Fox.Sim.SimObjectParam), null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("engineParam", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityPtr, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, typeof(Fox.Sim.SimEngineParam), null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("controls", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityPtr, 136, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, typeof(Fox.Sim.SimControlElement), null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public SimObject(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public SimObject(ulong address, ulong id) : base(address, id) { }
+		public SimObject() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

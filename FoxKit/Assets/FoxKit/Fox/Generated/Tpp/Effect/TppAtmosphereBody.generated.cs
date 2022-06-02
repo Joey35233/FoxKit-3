@@ -48,7 +48,7 @@ namespace Tpp.Effect
         }
         static TppAtmosphereBody()
         {
-            classInfo = new Fox.EntityInfo("TppAtmosphereBody", new Fox.Core.DataBody(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("TppAtmosphereBody", new Fox.Core.DataBody().GetClassEntityInfo(), 0, null, 0);
 			
 			classInfo.StaticProperties.Insert("hour", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt32, 188, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("minute", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt32, 192, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -61,8 +61,9 @@ namespace Tpp.Effect
 			classInfo.StaticProperties.Insert("cloudiness", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 184, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppAtmosphereBody(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppAtmosphereBody(ulong address, ulong id) : base(address, id) { }
+		public TppAtmosphereBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

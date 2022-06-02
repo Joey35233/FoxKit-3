@@ -34,14 +34,15 @@ namespace Fox.GameKit
         }
         static OrthogonalCamera()
         {
-            classInfo = new Fox.EntityInfo("OrthogonalCamera", new Fox.GameKit.Camera(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("OrthogonalCamera", new Fox.GameKit.Camera().GetClassEntityInfo(), 0, null, 0);
 			
 			classInfo.StaticProperties.Insert("type", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Int32, 448, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, typeof(OrthogonalCamera_ViewType), Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("scale", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 452, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public OrthogonalCamera(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public OrthogonalCamera(ulong address, ulong id) : base(address, id) { }
+		public OrthogonalCamera() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

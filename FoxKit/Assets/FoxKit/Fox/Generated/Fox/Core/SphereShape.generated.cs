@@ -32,13 +32,14 @@ namespace Fox.Core
         }
         static SphereShape()
         {
-            classInfo = new Fox.EntityInfo("SphereShape", new Fox.Core.ShapeData(0, 0, 0).GetClassEntityInfo(), 256, "Shape", 0);
+            classInfo = new Fox.EntityInfo("SphereShape", new Fox.Core.ShapeData().GetClassEntityInfo(), 256, "Shape", 0);
 			
 			classInfo.StaticProperties.Insert("radius", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public SphereShape(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public SphereShape(ulong address, ulong id) : base(address, id) { }
+		public SphereShape() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

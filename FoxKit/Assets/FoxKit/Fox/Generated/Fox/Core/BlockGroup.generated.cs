@@ -30,12 +30,13 @@ namespace Fox.Core
         }
         static BlockGroup()
         {
-            classInfo = new Fox.EntityInfo("BlockGroup", new Fox.Core.DataBody(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("BlockGroup", new Fox.Core.DataBody().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public BlockGroup(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public BlockGroup(ulong address, ulong id) : base(address, id) { }
+		public BlockGroup() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

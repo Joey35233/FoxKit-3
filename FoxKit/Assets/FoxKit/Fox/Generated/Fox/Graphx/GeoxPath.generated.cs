@@ -32,13 +32,14 @@ namespace Fox.Graphx
         }
         static GeoxPath()
         {
-            classInfo = new Fox.EntityInfo("GeoxPath", new Fox.Graphx.GraphxPathData(0, 0, 0).GetClassEntityInfo(), 304, "Geox", 0);
+            classInfo = new Fox.EntityInfo("GeoxPath", new Fox.Graphx.GraphxPathData().GetClassEntityInfo(), 304, "Geox", 0);
 			
 			classInfo.StaticProperties.Insert("selectIndex", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Int32, 336, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public GeoxPath(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public GeoxPath(ulong address, ulong id) : base(address, id) { }
+		public GeoxPath() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

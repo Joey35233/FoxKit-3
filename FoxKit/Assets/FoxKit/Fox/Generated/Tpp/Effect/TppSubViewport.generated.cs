@@ -30,12 +30,13 @@ namespace Tpp.Effect
         }
         static TppSubViewport()
         {
-            classInfo = new Fox.EntityInfo("TppSubViewport", new Fox.Gr.GrViewport(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("TppSubViewport", new Fox.Gr.GrViewport().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public TppSubViewport(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppSubViewport(ulong address, ulong id) : base(address, id) { }
+		public TppSubViewport() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

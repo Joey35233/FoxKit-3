@@ -36,15 +36,16 @@ namespace Fox.Ph
         }
         static PhObjectDesc()
         {
-            classInfo = new Fox.EntityInfo("PhObjectDesc", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 112, "Ph", 0);
+            classInfo = new Fox.EntityInfo("PhObjectDesc", new Fox.Core.Data().GetClassEntityInfo(), 112, "Ph", 0);
 			
 			classInfo.StaticProperties.Insert("bodies", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityPtr, 120, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, typeof(Fox.Core.Entity), null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("constraints", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityPtr, 136, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, typeof(Fox.Ph.PhConstraintParam), null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("bodyIndices", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Int32, 152, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public PhObjectDesc(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public PhObjectDesc(ulong address, ulong id) : base(address, id) { }
+		public PhObjectDesc() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

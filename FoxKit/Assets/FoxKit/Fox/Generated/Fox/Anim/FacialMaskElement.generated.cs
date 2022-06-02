@@ -34,14 +34,15 @@ namespace Fox.Anim
         }
         static FacialMaskElement()
         {
-            classInfo = new Fox.EntityInfo("FacialMaskElement", new Fox.Core.DataElement(0, 0, 0).GetClassEntityInfo(), 64, null, 1);
+            classInfo = new Fox.EntityInfo("FacialMaskElement", new Fox.Core.DataElement().GetClassEntityInfo(), 64, null, 1);
 			
 			classInfo.StaticProperties.Insert("skelList", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 56, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("shaderList", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityPtr, 72, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, typeof(Fox.Anim.ParameterMaskElement), null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public FacialMaskElement(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public FacialMaskElement(ulong address, ulong id) : base(address, id) { }
+		public FacialMaskElement() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

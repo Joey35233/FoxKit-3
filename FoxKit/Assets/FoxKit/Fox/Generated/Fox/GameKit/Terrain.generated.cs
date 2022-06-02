@@ -66,7 +66,7 @@ namespace Fox.GameKit
         }
         static Terrain()
         {
-            classInfo = new Fox.EntityInfo("Terrain", new Fox.Core.TransformData(0, 0, 0).GetClassEntityInfo(), 0, null, 14);
+            classInfo = new Fox.EntityInfo("Terrain", new Fox.Core.TransformData().GetClassEntityInfo(), 0, null, 14);
 			
 			classInfo.StaticProperties.Insert("filePath", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Path, 304, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("loadFilePath", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Path, 312, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -88,8 +88,9 @@ namespace Fox.GameKit
 			classInfo.StaticProperties.Insert("isUseWorldTexture", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 1032, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public Terrain(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public Terrain(ulong address, ulong id) : base(address, id) { }
+		public Terrain() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

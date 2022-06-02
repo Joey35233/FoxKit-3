@@ -66,7 +66,7 @@ namespace Tpp.Effect
         }
         static TppOcean()
         {
-            classInfo = new Fox.EntityInfo("TppOcean", new Fox.Core.TransformData(0, 0, 0).GetClassEntityInfo(), 352, null, 12);
+            classInfo = new Fox.EntityInfo("TppOcean", new Fox.Core.TransformData().GetClassEntityInfo(), 352, null, 12);
 			
 			classInfo.StaticProperties.Insert("enable", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 304, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("guantanamoOcean", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 305, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -88,8 +88,9 @@ namespace Tpp.Effect
 			classInfo.StaticProperties.Insert("collisionDatas", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityLink, 376, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppOcean(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppOcean(ulong address, ulong id) : base(address, id) { }
+		public TppOcean() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

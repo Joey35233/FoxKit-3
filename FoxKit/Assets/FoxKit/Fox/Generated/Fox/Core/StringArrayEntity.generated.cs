@@ -32,13 +32,14 @@ namespace Fox.Core
         }
         static StringArrayEntity()
         {
-            classInfo = new Fox.EntityInfo("StringArrayEntity", new Fox.Core.Entity(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("StringArrayEntity", new Fox.Core.Entity().GetClassEntityInfo(), 0, null, 0);
 			
 			classInfo.StaticProperties.Insert("array", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 48, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public StringArrayEntity(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public StringArrayEntity(ulong address, ulong id) : base(address, id) { }
+		public StringArrayEntity() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

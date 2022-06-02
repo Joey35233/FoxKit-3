@@ -42,7 +42,7 @@ namespace Tpp.GameCore
         }
         static TppHorse2Parameter()
         {
-            classInfo = new Fox.EntityInfo("TppHorse2Parameter", new Fox.Core.DataElement(0, 0, 0).GetClassEntityInfo(), 192, null, 4);
+            classInfo = new Fox.EntityInfo("TppHorse2Parameter", new Fox.Core.DataElement().GetClassEntityInfo(), 192, null, 4);
 			
 			classInfo.StaticProperties.Insert("partsFile", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.FilePtr, 56, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("motionGraphFile", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.FilePtr, 80, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -52,8 +52,9 @@ namespace Tpp.GameCore
 			classInfo.StaticProperties.Insert("fovaFiles", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.FilePtr, 200, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppHorse2Parameter(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppHorse2Parameter(ulong address, ulong id) : base(address, id) { }
+		public TppHorse2Parameter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

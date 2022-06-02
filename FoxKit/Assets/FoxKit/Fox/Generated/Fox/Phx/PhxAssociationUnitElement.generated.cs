@@ -40,7 +40,7 @@ namespace Fox.Phx
         }
         static PhxAssociationUnitElement()
         {
-            classInfo = new Fox.EntityInfo("PhxAssociationUnitElement", new Fox.Core.DataElement(0, 0, 0).GetClassEntityInfo(), 144, "Phx", 2);
+            classInfo = new Fox.EntityInfo("PhxAssociationUnitElement", new Fox.Core.DataElement().GetClassEntityInfo(), 144, "Phx", 2);
 			
 			classInfo.StaticProperties.Insert("body", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityLink, 56, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("constraint", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityLink, 96, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -49,8 +49,9 @@ namespace Fox.Phx
 			classInfo.StaticProperties.Insert("offsetRot", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Quat, 176, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public PhxAssociationUnitElement(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public PhxAssociationUnitElement(ulong address, ulong id) : base(address, id) { }
+		public PhxAssociationUnitElement() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

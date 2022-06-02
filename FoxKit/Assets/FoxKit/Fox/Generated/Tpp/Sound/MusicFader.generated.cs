@@ -36,15 +36,16 @@ namespace Tpp.Sound
         }
         static MusicFader()
         {
-            classInfo = new Fox.EntityInfo("MusicFader", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 0, "Sound", 0);
+            classInfo = new Fox.EntityInfo("MusicFader", new Fox.Core.Data().GetClassEntityInfo(), 0, "Sound", 0);
 			
 			classInfo.StaticProperties.Insert("shapes", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityLink, 120, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("rtpcName", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 136, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("fadeRange", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 144, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public MusicFader(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public MusicFader(ulong address, ulong id) : base(address, id) { }
+		public MusicFader() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

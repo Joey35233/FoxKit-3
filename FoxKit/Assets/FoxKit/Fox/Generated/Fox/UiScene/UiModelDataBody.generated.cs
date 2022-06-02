@@ -30,12 +30,13 @@ namespace Fox.UiScene
         }
         static UiModelDataBody()
         {
-            classInfo = new Fox.EntityInfo("UiModelDataBody", new Fox.Core.TransformDataBody(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("UiModelDataBody", new Fox.Core.TransformDataBody().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public UiModelDataBody(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public UiModelDataBody(ulong address, ulong id) : base(address, id) { }
+		public UiModelDataBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

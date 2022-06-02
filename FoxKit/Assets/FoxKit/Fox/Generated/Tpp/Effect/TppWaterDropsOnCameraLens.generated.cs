@@ -50,7 +50,7 @@ namespace Tpp.Effect
         }
         static TppWaterDropsOnCameraLens()
         {
-            classInfo = new Fox.EntityInfo("TppWaterDropsOnCameraLens", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 112, null, 1);
+            classInfo = new Fox.EntityInfo("TppWaterDropsOnCameraLens", new Fox.Core.Data().GetClassEntityInfo(), 112, null, 1);
 			
 			classInfo.StaticProperties.Insert("diffulseTexture", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Path, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("normalTexture", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Path, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -64,8 +64,9 @@ namespace Tpp.Effect
 			classInfo.StaticProperties.Insert("waitMax", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 164, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppWaterDropsOnCameraLens(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppWaterDropsOnCameraLens(ulong address, ulong id) : base(address, id) { }
+		public TppWaterDropsOnCameraLens() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

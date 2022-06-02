@@ -78,7 +78,7 @@ namespace Tpp.Effect
         }
         static TppRainFilter()
         {
-            classInfo = new Fox.EntityInfo("TppRainFilter", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 224, null, 2);
+            classInfo = new Fox.EntityInfo("TppRainFilter", new Fox.Core.Data().GetClassEntityInfo(), 224, null, 2);
 			
 			classInfo.StaticProperties.Insert("enable", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 272, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("startFadeInDistance", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 236, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -106,8 +106,9 @@ namespace Tpp.Effect
 			classInfo.StaticProperties.Insert("maskTexPath", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Path, 200, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppRainFilter(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppRainFilter(ulong address, ulong id) : base(address, id) { }
+		public TppRainFilter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

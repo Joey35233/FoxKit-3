@@ -30,12 +30,13 @@ namespace Fox.Demox
         }
         static StageLightFadeDataBody()
         {
-            classInfo = new Fox.EntityInfo("StageLightFadeDataBody", new Fox.Core.DataBody(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("StageLightFadeDataBody", new Fox.Core.DataBody().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public StageLightFadeDataBody(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public StageLightFadeDataBody(ulong address, ulong id) : base(address, id) { }
+		public StageLightFadeDataBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

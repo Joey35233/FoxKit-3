@@ -34,14 +34,15 @@ namespace Tpp.GameCore
         }
         static TppSpeechData()
         {
-            classInfo = new Fox.EntityInfo("TppSpeechData", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 88, "TppGameCore", 0);
+            classInfo = new Fox.EntityInfo("TppSpeechData", new Fox.Core.Data().GetClassEntityInfo(), 88, "TppGameCore", 0);
 			
 			classInfo.StaticProperties.Insert("enabled", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 136, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("files", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.FilePtr, 120, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppSpeechData(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppSpeechData(ulong address, ulong id) : base(address, id) { }
+		public TppSpeechData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

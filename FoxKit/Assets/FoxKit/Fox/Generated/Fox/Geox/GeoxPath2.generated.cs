@@ -36,15 +36,16 @@ namespace Fox.Geox
         }
         static GeoxPath2()
         {
-            classInfo = new Fox.EntityInfo("GeoxPath2", new Fox.Graphx.GraphxPathData(0, 0, 0).GetClassEntityInfo(), 320, "Geox", 1);
+            classInfo = new Fox.EntityInfo("GeoxPath2", new Fox.Graphx.GraphxPathData().GetClassEntityInfo(), 320, "Geox", 1);
 			
 			classInfo.StaticProperties.Insert("selectIndex", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Int32, 336, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("enable", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 340, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("tags", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 344, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public GeoxPath2(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public GeoxPath2(ulong address, ulong id) : base(address, id) { }
+		public GeoxPath2() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

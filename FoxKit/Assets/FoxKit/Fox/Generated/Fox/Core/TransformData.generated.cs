@@ -52,7 +52,7 @@ namespace Fox.Core
         }
         static TransformData()
         {
-            classInfo = new Fox.EntityInfo("TransformData", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 0, null, 4);
+            classInfo = new Fox.EntityInfo("TransformData", new Fox.Core.Data().GetClassEntityInfo(), 0, null, 4);
 			
 			classInfo.StaticProperties.Insert("parent", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityHandle, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("transform", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityPtr, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, typeof(Fox.Core.TransformEntity), null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -67,8 +67,9 @@ namespace Fox.Core
 			classInfo.StaticProperties.Insert("worldTransform", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Matrix4, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TransformData(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TransformData(ulong address, ulong id) : base(address, id) { }
+		public TransformData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

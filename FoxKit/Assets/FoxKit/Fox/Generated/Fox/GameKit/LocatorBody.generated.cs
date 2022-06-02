@@ -30,12 +30,13 @@ namespace Fox.GameKit
         }
         static LocatorBody()
         {
-            classInfo = new Fox.EntityInfo("LocatorBody", new Fox.Core.TransformDataBody(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("LocatorBody", new Fox.Core.TransformDataBody().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public LocatorBody(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public LocatorBody(ulong address, ulong id) : base(address, id) { }
+		public LocatorBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

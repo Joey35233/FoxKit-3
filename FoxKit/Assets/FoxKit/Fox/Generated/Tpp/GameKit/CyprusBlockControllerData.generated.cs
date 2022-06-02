@@ -56,7 +56,7 @@ namespace Tpp.GameKit
         }
         static CyprusBlockControllerData()
         {
-            classInfo = new Fox.EntityInfo("CyprusBlockControllerData", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 120, null, 5);
+            classInfo = new Fox.EntityInfo("CyprusBlockControllerData", new Fox.Core.Data().GetClassEntityInfo(), 120, null, 5);
 			
 			classInfo.StaticProperties.Insert("enable", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("stageName", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -73,8 +73,9 @@ namespace Tpp.GameKit
 			classInfo.StaticProperties.Insert("demoBlockSizeInByte", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt32, 184, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public CyprusBlockControllerData(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public CyprusBlockControllerData(ulong address, ulong id) : base(address, id) { }
+		public CyprusBlockControllerData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

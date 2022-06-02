@@ -30,12 +30,13 @@ namespace Fox.Gr
         }
         static GrPluginDeferredGeometryDecal()
         {
-            classInfo = new Fox.EntityInfo("GrPluginDeferredGeometryDecal", new Fox.Gr.GrPluginDeferredGeometryOpaque(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("GrPluginDeferredGeometryDecal", new Fox.Gr.GrPluginDeferredGeometryOpaque().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public GrPluginDeferredGeometryDecal(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public GrPluginDeferredGeometryDecal(ulong address, ulong id) : base(address, id) { }
+		public GrPluginDeferredGeometryDecal() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

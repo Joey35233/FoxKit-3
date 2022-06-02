@@ -30,12 +30,13 @@ namespace Fox.GameKit
         }
         static SubtitlesGeneratorBody()
         {
-            classInfo = new Fox.EntityInfo("SubtitlesGeneratorBody", new Fox.Ui.UiGraphEntryBody(0, 0, 0).GetClassEntityInfo(), 0, "Subtitles", 0);
+            classInfo = new Fox.EntityInfo("SubtitlesGeneratorBody", new Fox.Ui.UiGraphEntryBody().GetClassEntityInfo(), 0, "Subtitles", 0);
 			
         }
 
-        // Constructor
-		public SubtitlesGeneratorBody(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public SubtitlesGeneratorBody(ulong address, ulong id) : base(address, id) { }
+		public SubtitlesGeneratorBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

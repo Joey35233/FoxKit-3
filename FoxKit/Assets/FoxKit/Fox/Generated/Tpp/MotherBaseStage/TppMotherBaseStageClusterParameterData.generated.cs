@@ -70,7 +70,7 @@ namespace Tpp.MotherBaseStage
         }
         static TppMotherBaseStageClusterParameterData()
         {
-            classInfo = new Fox.EntityInfo("TppMotherBaseStageClusterParameterData", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 496, null, 3);
+            classInfo = new Fox.EntityInfo("TppMotherBaseStageClusterParameterData", new Fox.Core.Data().GetClassEntityInfo(), 496, null, 3);
 			
 			classInfo.StaticProperties.Insert("enable", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 544, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("cluster00divisionPackageIds", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt8, 120, 12, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -94,8 +94,9 @@ namespace Tpp.MotherBaseStage
 			classInfo.StaticProperties.Insert("cluster07loadAreaVertices", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Int16, 528, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppMotherBaseStageClusterParameterData(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppMotherBaseStageClusterParameterData(ulong address, ulong id) : base(address, id) { }
+		public TppMotherBaseStageClusterParameterData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

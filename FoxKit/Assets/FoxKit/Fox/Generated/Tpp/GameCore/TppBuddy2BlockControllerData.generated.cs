@@ -30,12 +30,13 @@ namespace Tpp.GameCore
         }
         static TppBuddy2BlockControllerData()
         {
-            classInfo = new Fox.EntityInfo("TppBuddy2BlockControllerData", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 64, null, 0);
+            classInfo = new Fox.EntityInfo("TppBuddy2BlockControllerData", new Fox.Core.Data().GetClassEntityInfo(), 64, null, 0);
 			
         }
 
-        // Constructor
-		public TppBuddy2BlockControllerData(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppBuddy2BlockControllerData(ulong address, ulong id) : base(address, id) { }
+		public TppBuddy2BlockControllerData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

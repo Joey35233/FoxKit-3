@@ -30,12 +30,13 @@ namespace Fox.UiScene
         }
         static UiAnimWorkMemoryDataBody()
         {
-            classInfo = new Fox.EntityInfo("UiAnimWorkMemoryDataBody", new Fox.Core.DataBody(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("UiAnimWorkMemoryDataBody", new Fox.Core.DataBody().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public UiAnimWorkMemoryDataBody(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public UiAnimWorkMemoryDataBody(ulong address, ulong id) : base(address, id) { }
+		public UiAnimWorkMemoryDataBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

@@ -30,12 +30,13 @@ namespace Tpp.Effect
         }
         static TppFireLights()
         {
-            classInfo = new Fox.EntityInfo("TppFireLights", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 64, null, 0);
+            classInfo = new Fox.EntityInfo("TppFireLights", new Fox.Core.Data().GetClassEntityInfo(), 64, null, 0);
 			
         }
 
-        // Constructor
-		public TppFireLights(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppFireLights(ulong address, ulong id) : base(address, id) { }
+		public TppFireLights() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

@@ -30,12 +30,13 @@ namespace Fox.Geo
         }
         static GeoGsklFile()
         {
-            classInfo = new Fox.EntityInfo("GeoGsklFile", new Fox.Core.RawFile(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("GeoGsklFile", new Fox.Core.RawFile().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public GeoGsklFile(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public GeoGsklFile(ulong address, ulong id) : base(address, id) { }
+		public GeoGsklFile() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

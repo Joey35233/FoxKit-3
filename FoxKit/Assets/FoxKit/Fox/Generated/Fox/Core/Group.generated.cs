@@ -36,15 +36,16 @@ namespace Fox.Core
         }
         static Group()
         {
-            classInfo = new Fox.EntityInfo("Group", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 120, "Group", 2);
+            classInfo = new Fox.EntityInfo("Group", new Fox.Core.Data().GetClassEntityInfo(), 120, "Group", 2);
 			
 			classInfo.StaticProperties.Insert("parentGroup", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityLink, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("members", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityLink, 160, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("deleteFromPackage", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 176, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public Group(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public Group(ulong address, ulong id) : base(address, id) { }
+		public Group() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

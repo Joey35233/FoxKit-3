@@ -72,7 +72,7 @@ namespace Fox.Ph
         }
         static PhRigidBodyParam()
         {
-            classInfo = new Fox.EntityInfo("PhRigidBodyParam", new Fox.Core.Entity(0, 0, 0).GetClassEntityInfo(), 320, "Ph", 5);
+            classInfo = new Fox.EntityInfo("PhRigidBodyParam", new Fox.Core.Entity().GetClassEntityInfo(), 320, "Ph", 5);
 			
 			classInfo.StaticProperties.Insert("defaultPosition", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Vector3, 48, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("defaultRotation", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Quat, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -97,8 +97,9 @@ namespace Fox.Ph
 			classInfo.StaticProperties.Insert("isNoGravity", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 161, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public PhRigidBodyParam(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public PhRigidBodyParam(ulong address, ulong id) : base(address, id) { }
+		public PhRigidBodyParam() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

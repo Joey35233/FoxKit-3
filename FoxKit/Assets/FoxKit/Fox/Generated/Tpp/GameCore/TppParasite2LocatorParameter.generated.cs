@@ -30,12 +30,13 @@ namespace Tpp.GameCore
         }
         static TppParasite2LocatorParameter()
         {
-            classInfo = new Fox.EntityInfo("TppParasite2LocatorParameter", new Fox.Core.DataElement(0, 0, 0).GetClassEntityInfo(), 28, null, 0);
+            classInfo = new Fox.EntityInfo("TppParasite2LocatorParameter", new Fox.Core.DataElement().GetClassEntityInfo(), 28, null, 0);
 			
         }
 
-        // Constructor
-		public TppParasite2LocatorParameter(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppParasite2LocatorParameter(ulong address, ulong id) : base(address, id) { }
+		public TppParasite2LocatorParameter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

@@ -34,14 +34,15 @@ namespace Fox.Navx
         }
         static NavxAttributeInfo()
         {
-            classInfo = new Fox.EntityInfo("NavxAttributeInfo", new Fox.Core.DataElement(0, 0, 0).GetClassEntityInfo(), 36, null, 0);
+            classInfo = new Fox.EntityInfo("NavxAttributeInfo", new Fox.Core.DataElement().GetClassEntityInfo(), 36, null, 0);
 			
 			classInfo.StaticProperties.Insert("name", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 56, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("simplificationThreshold", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public NavxAttributeInfo(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public NavxAttributeInfo(ulong address, ulong id) : base(address, id) { }
+		public NavxAttributeInfo() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

@@ -30,12 +30,13 @@ namespace Fox.Nt
         }
         static SyncFactory2()
         {
-            classInfo = new Fox.EntityInfo("SyncFactory2", new Fox.Nt.SyncInstance(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("SyncFactory2", new Fox.Nt.SyncInstance().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public SyncFactory2(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public SyncFactory2(ulong address, ulong id) : base(address, id) { }
+		public SyncFactory2() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

@@ -30,12 +30,13 @@ namespace Fox.Grx
         }
         static GlobalCameraSettingsBody()
         {
-            classInfo = new Fox.EntityInfo("GlobalCameraSettingsBody", new Fox.Core.DataBody(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("GlobalCameraSettingsBody", new Fox.Core.DataBody().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public GlobalCameraSettingsBody(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public GlobalCameraSettingsBody(ulong address, ulong id) : base(address, id) { }
+		public GlobalCameraSettingsBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

@@ -44,7 +44,7 @@ namespace Tpp.Effect
         }
         static TppGrenadeShock()
         {
-            classInfo = new Fox.EntityInfo("TppGrenadeShock", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 92, null, 1);
+            classInfo = new Fox.EntityInfo("TppGrenadeShock", new Fox.Core.Data().GetClassEntityInfo(), 92, null, 1);
 			
 			classInfo.StaticProperties.Insert("redConeSaturationDuration", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("greenConeSaturationDuration", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 124, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -55,8 +55,9 @@ namespace Tpp.Effect
 			classInfo.StaticProperties.Insert("rotationSpeed", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 144, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppGrenadeShock(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppGrenadeShock(ulong address, ulong id) : base(address, id) { }
+		public TppGrenadeShock() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

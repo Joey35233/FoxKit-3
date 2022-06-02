@@ -30,12 +30,13 @@ namespace Fox.Geox
         }
         static GeoxPartsTargetOffenseObjectBody()
         {
-            classInfo = new Fox.EntityInfo("GeoxPartsTargetOffenseObjectBody", new Fox.Geox.GeoxPartsTargetObjectBody(0, 0, 0).GetClassEntityInfo(), 0, "Target", 0);
+            classInfo = new Fox.EntityInfo("GeoxPartsTargetOffenseObjectBody", new Fox.Geox.GeoxPartsTargetObjectBody().GetClassEntityInfo(), 0, "Target", 0);
 			
         }
 
-        // Constructor
-		public GeoxPartsTargetOffenseObjectBody(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public GeoxPartsTargetOffenseObjectBody(ulong address, ulong id) : base(address, id) { }
+		public GeoxPartsTargetOffenseObjectBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

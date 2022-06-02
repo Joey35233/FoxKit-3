@@ -38,7 +38,7 @@ namespace Tpp.System
         }
         static TppLocationInformationData()
         {
-            classInfo = new Fox.EntityInfo("TppLocationInformationData", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 0, null, 2);
+            classInfo = new Fox.EntityInfo("TppLocationInformationData", new Fox.Core.Data().GetClassEntityInfo(), 0, null, 2);
 			
 			classInfo.StaticProperties.Insert("locationId", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt16, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("locationPathString", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -46,8 +46,9 @@ namespace Tpp.System
 			classInfo.StaticProperties.Insert("loadScriptPath", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Path, 136, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppLocationInformationData(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppLocationInformationData(ulong address, ulong id) : base(address, id) { }
+		public TppLocationInformationData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

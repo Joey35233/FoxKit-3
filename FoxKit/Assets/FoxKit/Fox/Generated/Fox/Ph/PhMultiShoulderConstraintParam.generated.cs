@@ -46,7 +46,7 @@ namespace Fox.Ph
         }
         static PhMultiShoulderConstraintParam()
         {
-            classInfo = new Fox.EntityInfo("PhMultiShoulderConstraintParam", new Fox.Ph.PhConstraintParam(0, 0, 0).GetClassEntityInfo(), 112, "Ph", 0);
+            classInfo = new Fox.EntityInfo("PhMultiShoulderConstraintParam", new Fox.Ph.PhConstraintParam().GetClassEntityInfo(), 112, "Ph", 0);
 			
 			classInfo.StaticProperties.Insert("refVec0", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Vector3, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("refVec1", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Vector3, 80, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -58,8 +58,9 @@ namespace Fox.Ph
 			classInfo.StaticProperties.Insert("isPoweredFlag", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 116, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public PhMultiShoulderConstraintParam(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public PhMultiShoulderConstraintParam(ulong address, ulong id) : base(address, id) { }
+		public PhMultiShoulderConstraintParam() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

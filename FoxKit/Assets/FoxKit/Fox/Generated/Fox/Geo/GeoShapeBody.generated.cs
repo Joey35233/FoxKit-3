@@ -30,12 +30,13 @@ namespace Fox.Geo
         }
         static GeoShapeBody()
         {
-            classInfo = new Fox.EntityInfo("GeoShapeBody", new Fox.Core.TransformDataBody(0, 0, 0).GetClassEntityInfo(), 0, "Geo", 0);
+            classInfo = new Fox.EntityInfo("GeoShapeBody", new Fox.Core.TransformDataBody().GetClassEntityInfo(), 0, "Geo", 0);
 			
         }
 
-        // Constructor
-		public GeoShapeBody(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public GeoShapeBody(ulong address, ulong id) : base(address, id) { }
+		public GeoShapeBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

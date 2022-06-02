@@ -30,12 +30,13 @@ namespace Tpp.GameKit
         }
         static TppTrapCheckCanSaveAsCheckPointCallbackDataElement()
         {
-            classInfo = new Fox.EntityInfo("TppTrapCheckCanSaveAsCheckPointCallbackDataElement", new Fox.Geo.GeoTrapModuleCallbackDataElement(0, 0, 0).GetClassEntityInfo(), 32, null, 0);
+            classInfo = new Fox.EntityInfo("TppTrapCheckCanSaveAsCheckPointCallbackDataElement", new Fox.Geo.GeoTrapModuleCallbackDataElement().GetClassEntityInfo(), 32, null, 0);
 			
         }
 
-        // Constructor
-		public TppTrapCheckCanSaveAsCheckPointCallbackDataElement(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppTrapCheckCanSaveAsCheckPointCallbackDataElement(ulong address, ulong id) : base(address, id) { }
+		public TppTrapCheckCanSaveAsCheckPointCallbackDataElement() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

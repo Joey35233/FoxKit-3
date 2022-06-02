@@ -32,13 +32,14 @@ namespace Fox.Gr
         }
         static GrViewportLightingParameters()
         {
-            classInfo = new Fox.EntityInfo("GrViewportLightingParameters", new Fox.Gr.GrViewportParameter(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("GrViewportLightingParameters", new Fox.Gr.GrViewportParameter().GetClassEntityInfo(), 0, null, 0);
 			
 			classInfo.StaticProperties.Insert("flags", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt32, 48, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public GrViewportLightingParameters(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public GrViewportLightingParameters(ulong address, ulong id) : base(address, id) { }
+		public GrViewportLightingParameters() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

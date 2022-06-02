@@ -30,12 +30,13 @@ namespace Fox.Gr
         }
         static GrPluginDeferredShading()
         {
-            classInfo = new Fox.EntityInfo("GrPluginDeferredShading", new Fox.Gr.GrRenderPlugin(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("GrPluginDeferredShading", new Fox.Gr.GrRenderPlugin().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public GrPluginDeferredShading(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public GrPluginDeferredShading(ulong address, ulong id) : base(address, id) { }
+		public GrPluginDeferredShading() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

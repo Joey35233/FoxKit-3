@@ -40,7 +40,7 @@ namespace Fox.Geo
         }
         static GeoModuleCondition()
         {
-            classInfo = new Fox.EntityInfo("GeoModuleCondition", new Fox.Geo.GeoTrapCondition(0, 0, 0).GetClassEntityInfo(), 352, "Trap", 0);
+            classInfo = new Fox.EntityInfo("GeoModuleCondition", new Fox.Geo.GeoTrapCondition().GetClassEntityInfo(), 352, "Trap", 0);
 			
 			classInfo.StaticProperties.Insert("isAndCheck", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 320, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("checkFuncNames", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 328, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -49,8 +49,9 @@ namespace Fox.Geo
 			classInfo.StaticProperties.Insert("execCallbackDataElements", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityPtr, 376, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, typeof(Fox.Geo.GeoTrapModuleCallbackDataElement), null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public GeoModuleCondition(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public GeoModuleCondition(ulong address, ulong id) : base(address, id) { }
+		public GeoModuleCondition() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

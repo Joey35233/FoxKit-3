@@ -30,12 +30,13 @@ namespace Fox.Core
         }
         static PointComponentSet()
         {
-            classInfo = new Fox.EntityInfo("PointComponentSet", new Fox.Core.ComponentSet(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("PointComponentSet", new Fox.Core.ComponentSet().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public PointComponentSet(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public PointComponentSet(ulong address, ulong id) : base(address, id) { }
+		public PointComponentSet() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

@@ -38,7 +38,7 @@ namespace Fox.Geox
         }
         static GeoxPartsTargetOffenseObject()
         {
-            classInfo = new Fox.EntityInfo("GeoxPartsTargetOffenseObject", new Fox.Geox.GeoxPartsTargetObject(0, 0, 0).GetClassEntityInfo(), 0, "Target", 1);
+            classInfo = new Fox.EntityInfo("GeoxPartsTargetOffenseObject", new Fox.Geox.GeoxPartsTargetObject().GetClassEntityInfo(), 0, "Target", 1);
 			
 			classInfo.StaticProperties.Insert("isAnyOffenseCallback", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 400, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("isNoDefenseCallback", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 401, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -46,8 +46,9 @@ namespace Fox.Geox
 			classInfo.StaticProperties.Insert("isNameCheck", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 403, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public GeoxPartsTargetOffenseObject(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public GeoxPartsTargetOffenseObject(ulong address, ulong id) : base(address, id) { }
+		public GeoxPartsTargetOffenseObject() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

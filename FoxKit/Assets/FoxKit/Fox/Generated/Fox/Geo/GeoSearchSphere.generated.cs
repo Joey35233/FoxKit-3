@@ -32,13 +32,14 @@ namespace Fox.Geo
         }
         static GeoSearchSphere()
         {
-            classInfo = new Fox.EntityInfo("GeoSearchSphere", new Fox.Geo.GeoSearchObject(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("GeoSearchSphere", new Fox.Geo.GeoSearchObject().GetClassEntityInfo(), 0, null, 0);
 			
 			classInfo.StaticProperties.Insert("p", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Vector4, 144, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public GeoSearchSphere(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public GeoSearchSphere(ulong address, ulong id) : base(address, id) { }
+		public GeoSearchSphere() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

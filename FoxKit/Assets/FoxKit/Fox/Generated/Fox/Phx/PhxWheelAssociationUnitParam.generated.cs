@@ -32,13 +32,14 @@ namespace Fox.Phx
         }
         static PhxWheelAssociationUnitParam()
         {
-            classInfo = new Fox.EntityInfo("PhxWheelAssociationUnitParam", new Fox.Core.Entity(0, 0, 0).GetClassEntityInfo(), 32, "Phx", 0);
+            classInfo = new Fox.EntityInfo("PhxWheelAssociationUnitParam", new Fox.Core.Entity().GetClassEntityInfo(), 32, "Phx", 0);
 			
 			classInfo.StaticProperties.Insert("boneName", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 48, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public PhxWheelAssociationUnitParam(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public PhxWheelAssociationUnitParam(ulong address, ulong id) : base(address, id) { }
+		public PhxWheelAssociationUnitParam() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

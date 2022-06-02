@@ -34,14 +34,15 @@ namespace Fox.Graphx
         }
         static GraphxSpatialGraphDataEdge()
         {
-            classInfo = new Fox.EntityInfo("GraphxSpatialGraphDataEdge", new Fox.Core.DataElement(0, 0, 0).GetClassEntityInfo(), 36, "Graphx", 0);
+            classInfo = new Fox.EntityInfo("GraphxSpatialGraphDataEdge", new Fox.Core.DataElement().GetClassEntityInfo(), 36, "Graphx", 0);
 			
 			classInfo.StaticProperties.Insert("prevNode", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityHandle, 56, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("nextNode", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityHandle, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public GraphxSpatialGraphDataEdge(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public GraphxSpatialGraphDataEdge(ulong address, ulong id) : base(address, id) { }
+		public GraphxSpatialGraphDataEdge() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

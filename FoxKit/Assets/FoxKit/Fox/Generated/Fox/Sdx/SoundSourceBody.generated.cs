@@ -30,12 +30,13 @@ namespace Fox.Sdx
         }
         static SoundSourceBody()
         {
-            classInfo = new Fox.EntityInfo("SoundSourceBody", new Fox.Core.TransformDataBody(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("SoundSourceBody", new Fox.Core.TransformDataBody().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public SoundSourceBody(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public SoundSourceBody(ulong address, ulong id) : base(address, id) { }
+		public SoundSourceBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

@@ -30,12 +30,13 @@ namespace Fox.Core
         }
         static SafeScript()
         {
-            classInfo = new Fox.EntityInfo("SafeScript", new Fox.Core.Script(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("SafeScript", new Fox.Core.Script().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public SafeScript(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public SafeScript(ulong address, ulong id) : base(address, id) { }
+		public SafeScript() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

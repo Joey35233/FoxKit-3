@@ -30,12 +30,13 @@ namespace Fox.Demo
         }
         static DemoBlockPositionSetter()
         {
-            classInfo = new Fox.EntityInfo("DemoBlockPositionSetter", new Fox.Core.TransformData(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("DemoBlockPositionSetter", new Fox.Core.TransformData().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public DemoBlockPositionSetter(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public DemoBlockPositionSetter(ulong address, ulong id) : base(address, id) { }
+		public DemoBlockPositionSetter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

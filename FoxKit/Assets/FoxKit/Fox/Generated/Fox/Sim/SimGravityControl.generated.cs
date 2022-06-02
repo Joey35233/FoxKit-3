@@ -34,14 +34,15 @@ namespace Fox.Sim
         }
         static SimGravityControl()
         {
-            classInfo = new Fox.EntityInfo("SimGravityControl", new Fox.Sim.SimControlElement(0, 0, 0).GetClassEntityInfo(), 64, "Sim", 0);
+            classInfo = new Fox.EntityInfo("SimGravityControl", new Fox.Sim.SimControlElement().GetClassEntityInfo(), 64, "Sim", 0);
 			
 			classInfo.StaticProperties.Insert("controlParam", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityPtr, 72, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, typeof(Fox.Sim.SimGravityControlParam), null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("gravityCoefficient", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 80, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public SimGravityControl(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public SimGravityControl(ulong address, ulong id) : base(address, id) { }
+		public SimGravityControl() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

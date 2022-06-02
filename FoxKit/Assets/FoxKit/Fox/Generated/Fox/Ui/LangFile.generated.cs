@@ -30,12 +30,13 @@ namespace Fox.Ui
         }
         static LangFile()
         {
-            classInfo = new Fox.EntityInfo("LangFile", new Fox.Core.RawFile(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("LangFile", new Fox.Core.RawFile().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public LangFile(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public LangFile(ulong address, ulong id) : base(address, id) { }
+		public LangFile() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

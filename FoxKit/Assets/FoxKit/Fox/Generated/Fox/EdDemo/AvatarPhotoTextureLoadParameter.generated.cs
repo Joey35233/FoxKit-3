@@ -30,12 +30,13 @@ namespace Fox.EdDemo
         }
         static AvatarPhotoTextureLoadParameter()
         {
-            classInfo = new Fox.EntityInfo("AvatarPhotoTextureLoadParameter", new Fox.Demo.DemoParameter(0, 0, 0).GetClassEntityInfo(), 36, null, 0);
+            classInfo = new Fox.EntityInfo("AvatarPhotoTextureLoadParameter", new Fox.Demo.DemoParameter().GetClassEntityInfo(), 36, null, 0);
 			
         }
 
-        // Constructor
-		public AvatarPhotoTextureLoadParameter(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public AvatarPhotoTextureLoadParameter(ulong address, ulong id) : base(address, id) { }
+		public AvatarPhotoTextureLoadParameter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

@@ -42,7 +42,7 @@ namespace Fox.GameKit
         }
         static ObjectBrush()
         {
-            classInfo = new Fox.EntityInfo("ObjectBrush", new Fox.Core.TransformData(0, 0, 0).GetClassEntityInfo(), 352, null, 4);
+            classInfo = new Fox.EntityInfo("ObjectBrush", new Fox.Core.TransformData().GetClassEntityInfo(), 352, null, 4);
 			
 			classInfo.StaticProperties.Insert("pluginHandle", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityHandle, 304, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("blockDataName", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 320, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -52,8 +52,9 @@ namespace Fox.GameKit
 			classInfo.StaticProperties.Insert("numBlocks", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt32, 376, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public ObjectBrush(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public ObjectBrush(ulong address, ulong id) : base(address, id) { }
+		public ObjectBrush() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

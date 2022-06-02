@@ -30,12 +30,13 @@ namespace Fox.Graphx
         }
         static GraphxPath()
         {
-            classInfo = new Fox.EntityInfo("GraphxPath", new Fox.Graphx.GraphxSpatialGraph(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("GraphxPath", new Fox.Graphx.GraphxSpatialGraph().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public GraphxPath(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public GraphxPath(ulong address, ulong id) : base(address, id) { }
+		public GraphxPath() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

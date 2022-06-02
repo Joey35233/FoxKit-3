@@ -1,4 +1,5 @@
 ﻿using UnityEditor;
+using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -9,9 +10,14 @@ namespace Fox.Editor
     {
         public override VisualElement CreateInspectorGUI()
         {
-            var uxmlTemplate = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/delete/DataSet/Editor/InspectorTestComponentEditor.uxml");
-            var ui = uxmlTemplate.CloneTree();
-            return ui;
+            VisualElement wrapper = new();
+
+            foreach (SerializedProperty child in serializedObject.FindProperty("data").GetChildren())
+            {
+                wrapper.Add(new PropertyField(child));
+            }
+
+            return wrapper;
         }
     }
     [CustomEditor(typeof(InspectorTestComponent2))]
@@ -19,9 +25,14 @@ namespace Fox.Editor
     {
         public override VisualElement CreateInspectorGUI()
         {
-            var uxmlTemplate = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>("Assets/delete/DataSet/Editor/InspectorTestComponentEditor.uxml");
-            var ui = uxmlTemplate.CloneTree();
-            return ui;
+            VisualElement wrapper = new();
+
+            foreach (SerializedProperty child in serializedObject.FindProperty("data").GetChildren())
+            {
+                wrapper.Add(new PropertyField(child));
+            }
+
+            return wrapper;
         }
     }
 }

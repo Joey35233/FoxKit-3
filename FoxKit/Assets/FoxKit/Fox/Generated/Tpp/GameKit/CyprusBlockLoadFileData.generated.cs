@@ -36,15 +36,16 @@ namespace Tpp.GameKit
         }
         static CyprusBlockLoadFileData()
         {
-            classInfo = new Fox.EntityInfo("CyprusBlockLoadFileData", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 112, null, 2);
+            classInfo = new Fox.EntityInfo("CyprusBlockLoadFileData", new Fox.Core.Data().GetClassEntityInfo(), 112, null, 2);
 			
 			classInfo.StaticProperties.Insert("path", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Path, 128, 5, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("block", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt32, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("load", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt32, 124, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public CyprusBlockLoadFileData(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public CyprusBlockLoadFileData(ulong address, ulong id) : base(address, id) { }
+		public CyprusBlockLoadFileData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

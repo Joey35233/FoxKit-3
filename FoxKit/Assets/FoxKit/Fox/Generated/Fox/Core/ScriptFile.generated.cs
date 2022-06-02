@@ -30,12 +30,13 @@ namespace Fox.Core
         }
         static ScriptFile()
         {
-            classInfo = new Fox.EntityInfo("ScriptFile", new Fox.Core.File(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("ScriptFile", new Fox.Core.File().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public ScriptFile(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public ScriptFile(ulong address, ulong id) : base(address, id) { }
+		public ScriptFile() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

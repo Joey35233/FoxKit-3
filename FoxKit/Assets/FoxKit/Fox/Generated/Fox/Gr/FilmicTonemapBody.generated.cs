@@ -30,12 +30,13 @@ namespace Fox.Gr
         }
         static FilmicTonemapBody()
         {
-            classInfo = new Fox.EntityInfo("FilmicTonemapBody", new Fox.Core.DataBody(0, 0, 0).GetClassEntityInfo(), 0, null, 1);
+            classInfo = new Fox.EntityInfo("FilmicTonemapBody", new Fox.Core.DataBody().GetClassEntityInfo(), 0, null, 1);
 			
         }
 
-        // Constructor
-		public FilmicTonemapBody(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public FilmicTonemapBody(ulong address, ulong id) : base(address, id) { }
+		public FilmicTonemapBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

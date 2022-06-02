@@ -30,12 +30,13 @@ namespace Fox.Core
         }
         static EntityClassDictionary()
         {
-            classInfo = new Fox.EntityInfo("EntityClassDictionary", new Fox.Core.Entity(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("EntityClassDictionary", new Fox.Core.Entity().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public EntityClassDictionary(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public EntityClassDictionary(ulong address, ulong id) : base(address, id) { }
+		public EntityClassDictionary() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

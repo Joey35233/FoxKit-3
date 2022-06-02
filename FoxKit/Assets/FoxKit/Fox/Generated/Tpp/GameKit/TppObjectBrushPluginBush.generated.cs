@@ -38,7 +38,7 @@ namespace Tpp.GameKit
         }
         static TppObjectBrushPluginBush()
         {
-            classInfo = new Fox.EntityInfo("TppObjectBrushPluginBush", new Fox.GameKit.ObjectBrushPluginClone(0, 0, 0).GetClassEntityInfo(), 168, null, 3);
+            classInfo = new Fox.EntityInfo("TppObjectBrushPluginBush", new Fox.GameKit.ObjectBrushPluginClone().GetClassEntityInfo(), 168, null, 3);
 			
 			classInfo.StaticProperties.Insert("reservedCount", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt32, 184, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("upgradeLodRateForHighEnd", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 188, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -46,8 +46,9 @@ namespace Tpp.GameKit
 			classInfo.StaticProperties.Insert("externalGimmickParameter", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityLink, 200, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppObjectBrushPluginBush(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppObjectBrushPluginBush(ulong address, ulong id) : base(address, id) { }
+		public TppObjectBrushPluginBush() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

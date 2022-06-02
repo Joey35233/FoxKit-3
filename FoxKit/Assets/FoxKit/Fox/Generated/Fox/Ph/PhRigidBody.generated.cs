@@ -72,7 +72,7 @@ namespace Fox.Ph
         }
         static PhRigidBody()
         {
-            classInfo = new Fox.EntityInfo("PhRigidBody", new Fox.Ph.PhSubObject(0, 0, 0).GetClassEntityInfo(), 0, "Ph", 3);
+            classInfo = new Fox.EntityInfo("PhRigidBody", new Fox.Ph.PhSubObject().GetClassEntityInfo(), 0, "Ph", 3);
 			
 			classInfo.StaticProperties.Insert("param", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityPtr, 304, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, typeof(Fox.Ph.PhRigidBodyParam), null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("defaultPosition", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Vector3, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -97,8 +97,9 @@ namespace Fox.Ph
 			classInfo.StaticProperties.Insert("material", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public PhRigidBody(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public PhRigidBody(ulong address, ulong id) : base(address, id) { }
+		public PhRigidBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

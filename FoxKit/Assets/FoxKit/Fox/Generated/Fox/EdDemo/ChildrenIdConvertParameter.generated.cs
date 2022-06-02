@@ -52,7 +52,7 @@ namespace Fox.EdDemo
         }
         static ChildrenIdConvertParameter()
         {
-            classInfo = new Fox.EntityInfo("ChildrenIdConvertParameter", new Fox.Demo.DemoParameter(0, 0, 0).GetClassEntityInfo(), 60, null, 0);
+            classInfo = new Fox.EntityInfo("ChildrenIdConvertParameter", new Fox.Demo.DemoParameter().GetClassEntityInfo(), 60, null, 0);
 			
 			classInfo.StaticProperties.Insert("injuryId", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("yellowHoodId", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 72, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -67,8 +67,9 @@ namespace Fox.EdDemo
 			classInfo.StaticProperties.Insert("enableInjuredChildSpecialization", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 109, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public ChildrenIdConvertParameter(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public ChildrenIdConvertParameter(ulong address, ulong id) : base(address, id) { }
+		public ChildrenIdConvertParameter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

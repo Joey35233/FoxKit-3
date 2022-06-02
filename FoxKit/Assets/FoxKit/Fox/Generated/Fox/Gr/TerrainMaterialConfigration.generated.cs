@@ -38,7 +38,7 @@ namespace Fox.Gr
         }
         static TerrainMaterialConfigration()
         {
-            classInfo = new Fox.EntityInfo("TerrainMaterialConfigration", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 128, null, 0);
+            classInfo = new Fox.EntityInfo("TerrainMaterialConfigration", new Fox.Core.Data().GetClassEntityInfo(), 128, null, 0);
 			
 			classInfo.StaticProperties.Insert("slot0", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt32, 120, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("slot1", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt32, 136, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -46,8 +46,9 @@ namespace Fox.Gr
 			classInfo.StaticProperties.Insert("slot3", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt32, 168, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TerrainMaterialConfigration(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TerrainMaterialConfigration(ulong address, ulong id) : base(address, id) { }
+		public TerrainMaterialConfigration() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

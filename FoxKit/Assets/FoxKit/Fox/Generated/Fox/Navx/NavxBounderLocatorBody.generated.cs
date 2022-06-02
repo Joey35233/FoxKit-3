@@ -30,12 +30,13 @@ namespace Fox.Navx
         }
         static NavxBounderLocatorBody()
         {
-            classInfo = new Fox.EntityInfo("NavxBounderLocatorBody", new Fox.Core.TransformDataBody(0, 0, 0).GetClassEntityInfo(), 0, "Navx", 0);
+            classInfo = new Fox.EntityInfo("NavxBounderLocatorBody", new Fox.Core.TransformDataBody().GetClassEntityInfo(), 0, "Navx", 0);
 			
         }
 
-        // Constructor
-		public NavxBounderLocatorBody(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public NavxBounderLocatorBody(ulong address, ulong id) : base(address, id) { }
+		public NavxBounderLocatorBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

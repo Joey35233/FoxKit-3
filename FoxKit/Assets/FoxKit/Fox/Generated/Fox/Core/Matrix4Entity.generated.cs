@@ -32,13 +32,14 @@ namespace Fox.Core
         }
         static Matrix4Entity()
         {
-            classInfo = new Fox.EntityInfo("Matrix4Entity", new Fox.Core.PropertyValueEntity(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("Matrix4Entity", new Fox.Core.PropertyValueEntity().GetClassEntityInfo(), 0, null, 0);
 			
 			classInfo.StaticProperties.Insert("value", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Matrix4, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public Matrix4Entity(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public Matrix4Entity(ulong address, ulong id) : base(address, id) { }
+		public Matrix4Entity() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

@@ -106,7 +106,7 @@ namespace Tpp.Effect
         }
         static TppSpotLight()
         {
-            classInfo = new Fox.EntityInfo("TppSpotLight", new Fox.Core.TransformData(0, 0, 0).GetClassEntityInfo(), 496, "Light", 1);
+            classInfo = new Fox.EntityInfo("TppSpotLight", new Fox.Core.TransformData().GetClassEntityInfo(), 496, "Light", 1);
 			
 			classInfo.StaticProperties.Insert("color", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Color, 304, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("reachPoint", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Vector3, 320, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -148,8 +148,9 @@ namespace Tpp.Effect
 			classInfo.StaticProperties.Insert("importFilePath", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Path, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppSpotLight(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppSpotLight(ulong address, ulong id) : base(address, id) { }
+		public TppSpotLight() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

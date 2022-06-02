@@ -30,12 +30,13 @@ namespace Tpp.System
         }
         static TppBlastOffenseTargetData()
         {
-            classInfo = new Fox.EntityInfo("TppBlastOffenseTargetData", new Tpp.System.TppOffenseTargetData(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("TppBlastOffenseTargetData", new Tpp.System.TppOffenseTargetData().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public TppBlastOffenseTargetData(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppBlastOffenseTargetData(ulong address, ulong id) : base(address, id) { }
+		public TppBlastOffenseTargetData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

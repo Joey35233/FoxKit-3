@@ -40,7 +40,7 @@ namespace Tpp.Sound
         }
         static TppAmbientParameter()
         {
-            classInfo = new Fox.EntityInfo("TppAmbientParameter", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 136, "Sound", 1);
+            classInfo = new Fox.EntityInfo("TppAmbientParameter", new Fox.Core.Data().GetClassEntityInfo(), 136, "Sound", 1);
 			
 			classInfo.StaticProperties.Insert("ambientEvent", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("objectRtpcName", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -49,8 +49,9 @@ namespace Tpp.Sound
 			classInfo.StaticProperties.Insert("dryVolume", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 192, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppAmbientParameter(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppAmbientParameter(ulong address, ulong id) : base(address, id) { }
+		public TppAmbientParameter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

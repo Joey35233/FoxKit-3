@@ -32,13 +32,14 @@ namespace Fox.Core
         }
         static DataBodySet()
         {
-            classInfo = new Fox.EntityInfo("DataBodySet", new Fox.Core.DataBody(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("DataBodySet", new Fox.Core.DataBody().GetClassEntityInfo(), 0, null, 0);
 			
 			classInfo.StaticProperties.Insert("dataBodyList", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityPtr, 88, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, typeof(Fox.Core.DataBody), null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public DataBodySet(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public DataBodySet(ulong address, ulong id) : base(address, id) { }
+		public DataBodySet() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

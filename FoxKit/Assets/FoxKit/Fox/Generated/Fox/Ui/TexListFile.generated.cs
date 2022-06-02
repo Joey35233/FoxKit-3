@@ -30,12 +30,13 @@ namespace Fox.Ui
         }
         static TexListFile()
         {
-            classInfo = new Fox.EntityInfo("TexListFile", new Fox.Core.RawFile(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("TexListFile", new Fox.Core.RawFile().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public TexListFile(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TexListFile(ulong address, ulong id) : base(address, id) { }
+		public TexListFile() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

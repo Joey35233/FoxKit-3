@@ -34,14 +34,15 @@ namespace Fox.GameKit
         }
         static GkDefenseTargetData()
         {
-            classInfo = new Fox.EntityInfo("GkDefenseTargetData", new Fox.GameKit.GkTargetData(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("GkDefenseTargetData", new Fox.GameKit.GkTargetData().GetClassEntityInfo(), 0, null, 0);
 			
 			classInfo.StaticProperties.Insert("name", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 56, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("skeletonName", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public GkDefenseTargetData(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public GkDefenseTargetData(ulong address, ulong id) : base(address, id) { }
+		public GkDefenseTargetData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

@@ -30,12 +30,13 @@ namespace Tpp.GameKit
         }
         static TppThermalStaticModel()
         {
-            classInfo = new Fox.EntityInfo("TppThermalStaticModel", new Fox.GameKit.StaticModelArrayPathFilter(0, 0, 0).GetClassEntityInfo(), 80, "Gimmick", 0);
+            classInfo = new Fox.EntityInfo("TppThermalStaticModel", new Fox.GameKit.StaticModelArrayPathFilter().GetClassEntityInfo(), 80, "Gimmick", 0);
 			
         }
 
-        // Constructor
-		public TppThermalStaticModel(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppThermalStaticModel(ulong address, ulong id) : base(address, id) { }
+		public TppThermalStaticModel() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

@@ -32,13 +32,14 @@ namespace Fox.Geox
         }
         static GeoxTrapAreaPath()
         {
-            classInfo = new Fox.EntityInfo("GeoxTrapAreaPath", new Fox.Graphx.GraphxPathData(0, 0, 0).GetClassEntityInfo(), 304, "Geox", 0);
+            classInfo = new Fox.EntityInfo("GeoxTrapAreaPath", new Fox.Graphx.GraphxPathData().GetClassEntityInfo(), 304, "Geox", 0);
 			
 			classInfo.StaticProperties.Insert("height", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 336, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public GeoxTrapAreaPath(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public GeoxTrapAreaPath(ulong address, ulong id) : base(address, id) { }
+		public GeoxTrapAreaPath() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

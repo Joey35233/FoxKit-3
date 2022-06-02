@@ -30,12 +30,13 @@ namespace Tpp.Effect
         }
         static TppHighSpeedFilter()
         {
-            classInfo = new Fox.EntityInfo("TppHighSpeedFilter", new Fox.Core.Entity(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("TppHighSpeedFilter", new Fox.Core.Entity().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public TppHighSpeedFilter(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppHighSpeedFilter(ulong address, ulong id) : base(address, id) { }
+		public TppHighSpeedFilter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

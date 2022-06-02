@@ -34,14 +34,15 @@ namespace Fox.Sim
         }
         static SimInertialControl()
         {
-            classInfo = new Fox.EntityInfo("SimInertialControl", new Fox.Sim.SimControlElement(0, 0, 0).GetClassEntityInfo(), 56, "Sim", 0);
+            classInfo = new Fox.EntityInfo("SimInertialControl", new Fox.Sim.SimControlElement().GetClassEntityInfo(), 56, "Sim", 0);
 			
 			classInfo.StaticProperties.Insert("controlParam", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityPtr, 72, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, typeof(Fox.Sim.SimInertialControlParam), null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("inertialCoefficient", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public SimInertialControl(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public SimInertialControl(ulong address, ulong id) : base(address, id) { }
+		public SimInertialControl() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

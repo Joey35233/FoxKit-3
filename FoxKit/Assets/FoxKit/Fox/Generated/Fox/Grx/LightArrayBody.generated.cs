@@ -30,12 +30,13 @@ namespace Fox.Grx
         }
         static LightArrayBody()
         {
-            classInfo = new Fox.EntityInfo("LightArrayBody", new Fox.Core.TransformDataBody(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("LightArrayBody", new Fox.Core.TransformDataBody().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public LightArrayBody(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public LightArrayBody(ulong address, ulong id) : base(address, id) { }
+		public LightArrayBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

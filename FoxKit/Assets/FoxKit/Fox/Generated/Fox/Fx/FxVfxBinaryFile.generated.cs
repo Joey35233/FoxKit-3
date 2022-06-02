@@ -30,12 +30,13 @@ namespace Fox.Fx
         }
         static FxVfxBinaryFile()
         {
-            classInfo = new Fox.EntityInfo("FxVfxBinaryFile", new Fox.Core.RawFile(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("FxVfxBinaryFile", new Fox.Core.RawFile().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public FxVfxBinaryFile(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public FxVfxBinaryFile(ulong address, ulong id) : base(address, id) { }
+		public FxVfxBinaryFile() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

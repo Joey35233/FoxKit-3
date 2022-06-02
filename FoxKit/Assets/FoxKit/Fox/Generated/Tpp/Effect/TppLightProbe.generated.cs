@@ -78,7 +78,7 @@ namespace Tpp.Effect
         }
         static TppLightProbe()
         {
-            classInfo = new Fox.EntityInfo("TppLightProbe", new Fox.Core.TransformData(0, 0, 0).GetClassEntityInfo(), 448, "Light", 4);
+            classInfo = new Fox.EntityInfo("TppLightProbe", new Fox.Core.TransformData().GetClassEntityInfo(), 448, "Light", 4);
 			
 			classInfo.StaticProperties.Insert("enable", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 508, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("lightArea", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityLink, 336, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -106,8 +106,9 @@ namespace Tpp.Effect
 			classInfo.StaticProperties.Insert("packingGeneration", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Int32, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, typeof(TppLightProbe_PackingGeneration), Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppLightProbe(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppLightProbe(ulong address, ulong id) : base(address, id) { }
+		public TppLightProbe() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

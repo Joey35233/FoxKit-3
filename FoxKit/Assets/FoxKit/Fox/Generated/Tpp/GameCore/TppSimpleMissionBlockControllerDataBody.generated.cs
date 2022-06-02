@@ -30,12 +30,13 @@ namespace Tpp.GameCore
         }
         static TppSimpleMissionBlockControllerDataBody()
         {
-            classInfo = new Fox.EntityInfo("TppSimpleMissionBlockControllerDataBody", new Fox.Core.DataBody(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("TppSimpleMissionBlockControllerDataBody", new Fox.Core.DataBody().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public TppSimpleMissionBlockControllerDataBody(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppSimpleMissionBlockControllerDataBody(ulong address, ulong id) : base(address, id) { }
+		public TppSimpleMissionBlockControllerDataBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

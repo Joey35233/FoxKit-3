@@ -30,12 +30,13 @@ namespace Fox.Geox
         }
         static GeoxDynamicBoundingVolumeArea()
         {
-            classInfo = new Fox.EntityInfo("GeoxDynamicBoundingVolumeArea", new Fox.Core.TransformData(0, 0, 0).GetClassEntityInfo(), 256, null, 0);
+            classInfo = new Fox.EntityInfo("GeoxDynamicBoundingVolumeArea", new Fox.Core.TransformData().GetClassEntityInfo(), 256, null, 0);
 			
         }
 
-        // Constructor
-		public GeoxDynamicBoundingVolumeArea(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public GeoxDynamicBoundingVolumeArea(ulong address, ulong id) : base(address, id) { }
+		public GeoxDynamicBoundingVolumeArea() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

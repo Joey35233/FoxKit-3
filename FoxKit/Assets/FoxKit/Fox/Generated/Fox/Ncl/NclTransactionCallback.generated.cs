@@ -34,7 +34,8 @@ namespace Fox.Ncl
 			
         }
 
-        // Constructor
+        // Constructors
+		
 		
         
         public virtual void SetProperty(string propertyName, Fox.Value value)

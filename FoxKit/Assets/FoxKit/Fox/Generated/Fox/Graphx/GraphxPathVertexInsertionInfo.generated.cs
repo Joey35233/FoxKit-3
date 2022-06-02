@@ -30,12 +30,13 @@ namespace Fox.Graphx
         }
         static GraphxPathVertexInsertionInfo()
         {
-            classInfo = new Fox.EntityInfo("GraphxPathVertexInsertionInfo", new Fox.Core.ComponentInsertionInfo(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("GraphxPathVertexInsertionInfo", new Fox.Core.ComponentInsertionInfo().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public GraphxPathVertexInsertionInfo(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public GraphxPathVertexInsertionInfo(ulong address, ulong id) : base(address, id) { }
+		public GraphxPathVertexInsertionInfo() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

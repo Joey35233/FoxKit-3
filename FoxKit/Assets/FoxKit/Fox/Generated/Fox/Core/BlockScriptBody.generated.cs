@@ -30,12 +30,13 @@ namespace Fox.Core
         }
         static BlockScriptBody()
         {
-            classInfo = new Fox.EntityInfo("BlockScriptBody", new Fox.Core.DataBody(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("BlockScriptBody", new Fox.Core.DataBody().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public BlockScriptBody(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public BlockScriptBody(ulong address, ulong id) : base(address, id) { }
+		public BlockScriptBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

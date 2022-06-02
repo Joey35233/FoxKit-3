@@ -30,12 +30,13 @@ namespace Tpp.GameKit
         }
         static TppPermeableStaticModel()
         {
-            classInfo = new Fox.EntityInfo("TppPermeableStaticModel", new Fox.GameKit.StaticModelArrayPathFilter(0, 0, 0).GetClassEntityInfo(), 80, "Gimmick", 1);
+            classInfo = new Fox.EntityInfo("TppPermeableStaticModel", new Fox.GameKit.StaticModelArrayPathFilter().GetClassEntityInfo(), 80, "Gimmick", 1);
 			
         }
 
-        // Constructor
-		public TppPermeableStaticModel(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppPermeableStaticModel(ulong address, ulong id) : base(address, id) { }
+		public TppPermeableStaticModel() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

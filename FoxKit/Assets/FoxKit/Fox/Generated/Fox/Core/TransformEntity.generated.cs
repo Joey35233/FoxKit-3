@@ -42,7 +42,7 @@ namespace Fox.Core
         }
         static TransformEntity()
         {
-            classInfo = new Fox.EntityInfo("TransformEntity", new Fox.Core.DataElement(0, 0, 0).GetClassEntityInfo(), 80, null, 0);
+            classInfo = new Fox.EntityInfo("TransformEntity", new Fox.Core.DataElement().GetClassEntityInfo(), 80, null, 0);
 			
 			classInfo.StaticProperties.Insert("transform_scale", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Vector3, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("transform_rotation_quat", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Quat, 80, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -52,8 +52,9 @@ namespace Fox.Core
 			classInfo.StaticProperties.Insert("translation", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Vector3, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TransformEntity(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TransformEntity(ulong address, ulong id) : base(address, id) { }
+		public TransformEntity() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

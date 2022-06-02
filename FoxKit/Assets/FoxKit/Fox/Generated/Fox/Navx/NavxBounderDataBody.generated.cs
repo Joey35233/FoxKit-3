@@ -32,13 +32,14 @@ namespace Fox.Navx
         }
         static NavxBounderDataBody()
         {
-            classInfo = new Fox.EntityInfo("NavxBounderDataBody", new Fox.Core.TransformDataBody(0, 0, 0).GetClassEntityInfo(), 0, "Navx", 0);
+            classInfo = new Fox.EntityInfo("NavxBounderDataBody", new Fox.Core.TransformDataBody().GetClassEntityInfo(), 0, "Navx", 0);
 			
 			classInfo.StaticProperties.Insert("select", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public NavxBounderDataBody(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public NavxBounderDataBody(ulong address, ulong id) : base(address, id) { }
+		public NavxBounderDataBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

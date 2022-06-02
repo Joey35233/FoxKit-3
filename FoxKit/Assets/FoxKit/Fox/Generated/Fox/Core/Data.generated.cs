@@ -36,15 +36,16 @@ namespace Fox.Core
         }
         static Data()
         {
-            classInfo = new Fox.EntityInfo("Data", new Fox.Core.Entity(0, 0, 0).GetClassEntityInfo(), -1, null, 2);
+            classInfo = new Fox.EntityInfo("Data", new Fox.Core.Entity().GetClassEntityInfo(), -1, null, 2);
 			
 			classInfo.StaticProperties.Insert("name", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 72, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("dataSet", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityHandle, 80, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("referencePath", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public Data(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public Data(ulong address, ulong id) : base(address, id) { }
+		public Data() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

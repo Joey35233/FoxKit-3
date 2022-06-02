@@ -40,7 +40,7 @@ namespace Fox.Ph
         }
         static PhPrimitiveShape()
         {
-            classInfo = new Fox.EntityInfo("PhPrimitiveShape", new Fox.Ph.PhShape(0, 0, 0).GetClassEntityInfo(), 272, "Ph", 0);
+            classInfo = new Fox.EntityInfo("PhPrimitiveShape", new Fox.Ph.PhShape().GetClassEntityInfo(), 272, "Ph", 0);
 			
 			classInfo.StaticProperties.Insert("type", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Int32, 312, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, typeof(PhPrimitiveShapeType), Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("size", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Vector3, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -49,8 +49,9 @@ namespace Fox.Ph
 			classInfo.StaticProperties.Insert("radius2", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public PhPrimitiveShape(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public PhPrimitiveShape(ulong address, ulong id) : base(address, id) { }
+		public PhPrimitiveShape() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

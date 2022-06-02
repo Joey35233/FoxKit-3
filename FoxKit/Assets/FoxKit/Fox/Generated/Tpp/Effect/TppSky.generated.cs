@@ -98,7 +98,7 @@ namespace Tpp.Effect
         }
         static TppSky()
         {
-            classInfo = new Fox.EntityInfo("TppSky", new Fox.Core.TransformData(0, 0, 0).GetClassEntityInfo(), 432, "TppEffect", 11);
+            classInfo = new Fox.EntityInfo("TppSky", new Fox.Core.TransformData().GetClassEntityInfo(), 432, "TppEffect", 11);
 			
 			classInfo.StaticProperties.Insert("enable", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 464, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("priority", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt32, 420, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -136,8 +136,9 @@ namespace Tpp.Effect
 			classInfo.StaticProperties.Insert("cylDensityLayerWindInfluence", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 396, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppSky(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppSky(ulong address, ulong id) : base(address, id) { }
+		public TppSky() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

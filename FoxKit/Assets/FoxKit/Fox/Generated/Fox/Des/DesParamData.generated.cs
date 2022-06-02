@@ -44,7 +44,7 @@ namespace Fox.Des
         }
         static DesParamData()
         {
-            classInfo = new Fox.EntityInfo("DesParamData", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 92, "Des", 2);
+            classInfo = new Fox.EntityInfo("DesParamData", new Fox.Core.Data().GetClassEntityInfo(), 92, "Des", 2);
 			
 			classInfo.StaticProperties.Insert("density", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("friction", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 124, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -55,8 +55,9 @@ namespace Fox.Des
 			classInfo.StaticProperties.Insert("physicalCoefficient", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 152, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public DesParamData(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public DesParamData(ulong address, ulong id) : base(address, id) { }
+		public DesParamData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

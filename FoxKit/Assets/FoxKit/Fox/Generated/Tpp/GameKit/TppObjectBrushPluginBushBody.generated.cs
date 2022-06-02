@@ -30,12 +30,13 @@ namespace Tpp.GameKit
         }
         static TppObjectBrushPluginBushBody()
         {
-            classInfo = new Fox.EntityInfo("TppObjectBrushPluginBushBody", new Fox.GameKit.ObjectBrushPluginCloneBody(0, 0, 0).GetClassEntityInfo(), 0, "ObjectBrush", 0);
+            classInfo = new Fox.EntityInfo("TppObjectBrushPluginBushBody", new Fox.GameKit.ObjectBrushPluginCloneBody().GetClassEntityInfo(), 0, "ObjectBrush", 0);
 			
         }
 
-        // Constructor
-		public TppObjectBrushPluginBushBody(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppObjectBrushPluginBushBody(ulong address, ulong id) : base(address, id) { }
+		public TppObjectBrushPluginBushBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

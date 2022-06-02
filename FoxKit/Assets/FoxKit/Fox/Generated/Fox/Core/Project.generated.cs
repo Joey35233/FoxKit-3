@@ -34,14 +34,15 @@ namespace Fox.Core
         }
         static Project()
         {
-            classInfo = new Fox.EntityInfo("Project", new Fox.Core.Entity(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("Project", new Fox.Core.Entity().GetClassEntityInfo(), 0, null, 0);
 			
 			classInfo.StaticProperties.Insert("dataSetPaths", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Path, 48, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("currentDataSetPath", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Path, 96, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public Project(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public Project(ulong address, ulong id) : base(address, id) { }
+		public Project() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

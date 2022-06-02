@@ -48,7 +48,7 @@ namespace Fox.Sim
         }
         static SimClothSettingData()
         {
-            classInfo = new Fox.EntityInfo("SimClothSettingData", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 100, "Sim", 1);
+            classInfo = new Fox.EntityInfo("SimClothSettingData", new Fox.Core.Data().GetClassEntityInfo(), 100, "Sim", 1);
 			
 			classInfo.StaticProperties.Insert("iteration", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt32, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("mass", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 124, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -61,8 +61,9 @@ namespace Fox.Sim
 			classInfo.StaticProperties.Insert("noHitSkinMesh", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 152, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public SimClothSettingData(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public SimClothSettingData(ulong address, ulong id) : base(address, id) { }
+		public SimClothSettingData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

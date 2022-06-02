@@ -34,14 +34,15 @@ namespace Fox.Anim
         }
         static ParameterMaskElement()
         {
-            classInfo = new Fox.EntityInfo("ParameterMaskElement", new Fox.Core.DataElement(0, 0, 0).GetClassEntityInfo(), 56, null, 0);
+            classInfo = new Fox.EntityInfo("ParameterMaskElement", new Fox.Core.DataElement().GetClassEntityInfo(), 56, null, 0);
 			
 			classInfo.StaticProperties.Insert("unitNameList", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 56, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("nodeName", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 72, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public ParameterMaskElement(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public ParameterMaskElement(ulong address, ulong id) : base(address, id) { }
+		public ParameterMaskElement() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

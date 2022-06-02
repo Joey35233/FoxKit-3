@@ -30,12 +30,13 @@ namespace Tpp.Effect
         }
         static TppDirtyModelData()
         {
-            classInfo = new Fox.EntityInfo("TppDirtyModelData", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 64, null, 0);
+            classInfo = new Fox.EntityInfo("TppDirtyModelData", new Fox.Core.Data().GetClassEntityInfo(), 64, null, 0);
 			
         }
 
-        // Constructor
-		public TppDirtyModelData(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppDirtyModelData(ulong address, ulong id) : base(address, id) { }
+		public TppDirtyModelData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

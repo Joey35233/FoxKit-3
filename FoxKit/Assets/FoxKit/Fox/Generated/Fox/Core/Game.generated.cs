@@ -32,13 +32,14 @@ namespace Fox.Core
         }
         static Game()
         {
-            classInfo = new Fox.EntityInfo("Game", new Fox.Core.Actor(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("Game", new Fox.Core.Actor().GetClassEntityInfo(), 0, null, 0);
 			
 			classInfo.StaticProperties.Insert("bucketCollector", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityPtr, 168, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, typeof(Fox.Core.BucketCollector), null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public Game(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public Game(ulong address, ulong id) : base(address, id) { }
+		public Game() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

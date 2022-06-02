@@ -38,7 +38,7 @@ namespace Tpp.GameKit
         }
         static TppGimmickBrokenElectricCableBank()
         {
-            classInfo = new Fox.EntityInfo("TppGimmickBrokenElectricCableBank", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 128, "Gimmick", 0);
+            classInfo = new Fox.EntityInfo("TppGimmickBrokenElectricCableBank", new Fox.Core.Data().GetClassEntityInfo(), 128, "Gimmick", 0);
 			
 			classInfo.StaticProperties.Insert("referencePartsPath", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Path, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("modelFile", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.FilePtr, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -46,8 +46,9 @@ namespace Tpp.GameKit
 			classInfo.StaticProperties.Insert("instanceCount", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt8, 176, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppGimmickBrokenElectricCableBank(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppGimmickBrokenElectricCableBank(ulong address, ulong id) : base(address, id) { }
+		public TppGimmickBrokenElectricCableBank() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

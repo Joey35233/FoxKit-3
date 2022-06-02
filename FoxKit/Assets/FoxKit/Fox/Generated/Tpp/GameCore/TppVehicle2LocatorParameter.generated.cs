@@ -30,12 +30,13 @@ namespace Tpp.GameCore
         }
         static TppVehicle2LocatorParameter()
         {
-            classInfo = new Fox.EntityInfo("TppVehicle2LocatorParameter", new Fox.Core.DataElement(0, 0, 0).GetClassEntityInfo(), 28, null, 2);
+            classInfo = new Fox.EntityInfo("TppVehicle2LocatorParameter", new Fox.Core.DataElement().GetClassEntityInfo(), 28, null, 2);
 			
         }
 
-        // Constructor
-		public TppVehicle2LocatorParameter(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppVehicle2LocatorParameter(ulong address, ulong id) : base(address, id) { }
+		public TppVehicle2LocatorParameter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

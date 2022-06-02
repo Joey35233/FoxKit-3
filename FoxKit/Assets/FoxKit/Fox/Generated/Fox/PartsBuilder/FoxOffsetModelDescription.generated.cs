@@ -34,14 +34,15 @@ namespace Fox.PartsBuilder
         }
         static FoxOffsetModelDescription()
         {
-            classInfo = new Fox.EntityInfo("FoxOffsetModelDescription", new Fox.PartsBuilder.ModelDescription(0, 0, 0).GetClassEntityInfo(), 0, "PartsBuilder", 0);
+            classInfo = new Fox.EntityInfo("FoxOffsetModelDescription", new Fox.PartsBuilder.ModelDescription().GetClassEntityInfo(), 0, "PartsBuilder", 0);
 			
 			classInfo.StaticProperties.Insert("offsetTranslation", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Vector3, 368, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("offsetRotQuat", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Quat, 384, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public FoxOffsetModelDescription(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public FoxOffsetModelDescription(ulong address, ulong id) : base(address, id) { }
+		public FoxOffsetModelDescription() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

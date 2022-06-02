@@ -34,14 +34,15 @@ namespace Fox.Nav
         }
         static NavUnitHandleEntity()
         {
-            classInfo = new Fox.EntityInfo("NavUnitHandleEntity", new Fox.Core.Entity(0, 0, 0).GetClassEntityInfo(), 0, "Nav", 0);
+            classInfo = new Fox.EntityInfo("NavUnitHandleEntity", new Fox.Core.Entity().GetClassEntityInfo(), 0, "Nav", 0);
 			
 			classInfo.StaticProperties.Insert("uid", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt32, 48, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("index", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt16, 52, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public NavUnitHandleEntity(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public NavUnitHandleEntity(ulong address, ulong id) : base(address, id) { }
+		public NavUnitHandleEntity() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

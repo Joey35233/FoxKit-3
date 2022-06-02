@@ -36,15 +36,16 @@ namespace Fox.Phx
         }
         static PhVehicleNormalEngineParam()
         {
-            classInfo = new Fox.EntityInfo("PhVehicleNormalEngineParam", new Fox.Core.Entity(0, 0, 0).GetClassEntityInfo(), 72, "Phx", 0);
+            classInfo = new Fox.EntityInfo("PhVehicleNormalEngineParam", new Fox.Core.Entity().GetClassEntityInfo(), 72, "Phx", 0);
 			
 			classInfo.StaticProperties.Insert("specPointAngularVelocity", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 48, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("specPointTorque", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 64, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("specPointBreakTorque", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 80, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public PhVehicleNormalEngineParam(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public PhVehicleNormalEngineParam(ulong address, ulong id) : base(address, id) { }
+		public PhVehicleNormalEngineParam() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

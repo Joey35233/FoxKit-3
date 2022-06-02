@@ -32,13 +32,14 @@ namespace Fox.Gr
         }
         static GrSkyParameter()
         {
-            classInfo = new Fox.EntityInfo("GrSkyParameter", new Fox.Gr.GrViewportParameter(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("GrSkyParameter", new Fox.Gr.GrViewportParameter().GetClassEntityInfo(), 0, null, 0);
 			
 			classInfo.StaticProperties.Insert("isAtmosphereOnly", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 48, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public GrSkyParameter(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public GrSkyParameter(ulong address, ulong id) : base(address, id) { }
+		public GrSkyParameter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

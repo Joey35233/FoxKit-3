@@ -32,13 +32,14 @@ namespace Fox.Ui
         }
         static LangData()
         {
-            classInfo = new Fox.EntityInfo("LangData", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 88, "Lang", 1);
+            classInfo = new Fox.EntityInfo("LangData", new Fox.Core.Data().GetClassEntityInfo(), 88, "Lang", 1);
 			
 			classInfo.StaticProperties.Insert("langFile", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.FilePtr, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public LangData(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public LangData(ulong address, ulong id) : base(address, id) { }
+		public LangData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

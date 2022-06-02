@@ -30,12 +30,13 @@ namespace Fox.Sdx
         }
         static SoundAreaGlobalBody()
         {
-            classInfo = new Fox.EntityInfo("SoundAreaGlobalBody", new Fox.Core.DataBody(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("SoundAreaGlobalBody", new Fox.Core.DataBody().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public SoundAreaGlobalBody(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public SoundAreaGlobalBody(ulong address, ulong id) : base(address, id) { }
+		public SoundAreaGlobalBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

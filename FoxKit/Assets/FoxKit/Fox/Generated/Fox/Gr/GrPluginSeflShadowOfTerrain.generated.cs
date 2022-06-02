@@ -30,12 +30,13 @@ namespace Fox.Gr
         }
         static GrPluginSeflShadowOfTerrain()
         {
-            classInfo = new Fox.EntityInfo("GrPluginSeflShadowOfTerrain", new Fox.Gr.GrRenderPlugin(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("GrPluginSeflShadowOfTerrain", new Fox.Gr.GrRenderPlugin().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public GrPluginSeflShadowOfTerrain(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public GrPluginSeflShadowOfTerrain(ulong address, ulong id) : base(address, id) { }
+		public GrPluginSeflShadowOfTerrain() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

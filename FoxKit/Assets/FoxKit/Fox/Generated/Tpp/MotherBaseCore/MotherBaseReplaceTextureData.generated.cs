@@ -34,14 +34,15 @@ namespace Tpp.MotherBaseCore
         }
         static MotherBaseReplaceTextureData()
         {
-            classInfo = new Fox.EntityInfo("MotherBaseReplaceTextureData", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 128, "TppMotherBase", 0);
+            classInfo = new Fox.EntityInfo("MotherBaseReplaceTextureData", new Fox.Core.Data().GetClassEntityInfo(), 128, "TppMotherBase", 0);
 			
 			classInfo.StaticProperties.Insert("pathCodes", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt64, 120, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("flags", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Int32, 136, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public MotherBaseReplaceTextureData(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public MotherBaseReplaceTextureData(ulong address, ulong id) : base(address, id) { }
+		public MotherBaseReplaceTextureData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

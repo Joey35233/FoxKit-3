@@ -30,12 +30,13 @@ namespace Fox.Gr
         }
         static GrPluginSphericalHarmonics()
         {
-            classInfo = new Fox.EntityInfo("GrPluginSphericalHarmonics", new Fox.Gr.GrRenderPlugin(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("GrPluginSphericalHarmonics", new Fox.Gr.GrRenderPlugin().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public GrPluginSphericalHarmonics(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public GrPluginSphericalHarmonics(ulong address, ulong id) : base(address, id) { }
+		public GrPluginSphericalHarmonics() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

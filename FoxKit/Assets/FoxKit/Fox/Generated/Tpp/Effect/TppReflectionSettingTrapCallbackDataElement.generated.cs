@@ -34,14 +34,15 @@ namespace Tpp.Effect
         }
         static TppReflectionSettingTrapCallbackDataElement()
         {
-            classInfo = new Fox.EntityInfo("TppReflectionSettingTrapCallbackDataElement", new Fox.Geo.GeoTrapModuleCallbackDataElement(0, 0, 0).GetClassEntityInfo(), 48, null, 1);
+            classInfo = new Fox.EntityInfo("TppReflectionSettingTrapCallbackDataElement", new Fox.Geo.GeoTrapModuleCallbackDataElement().GetClassEntityInfo(), 48, null, 1);
 			
 			classInfo.StaticProperties.Insert("reflectionTexturePath", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Path, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("reflectionTexturePathForGoOut", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Path, 72, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppReflectionSettingTrapCallbackDataElement(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppReflectionSettingTrapCallbackDataElement(ulong address, ulong id) : base(address, id) { }
+		public TppReflectionSettingTrapCallbackDataElement() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

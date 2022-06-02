@@ -30,12 +30,13 @@ namespace Tpp.GameCore
         }
         static TppSpeechFile()
         {
-            classInfo = new Fox.EntityInfo("TppSpeechFile", new Fox.Core.RawFile(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("TppSpeechFile", new Fox.Core.RawFile().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public TppSpeechFile(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppSpeechFile(ulong address, ulong id) : base(address, id) { }
+		public TppSpeechFile() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

@@ -36,15 +36,16 @@ namespace Tpp.System
         }
         static TppLocationData()
         {
-            classInfo = new Fox.EntityInfo("TppLocationData", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 104, null, 3);
+            classInfo = new Fox.EntityInfo("TppLocationData", new Fox.Core.Data().GetClassEntityInfo(), 104, null, 3);
 			
 			classInfo.StaticProperties.Insert("locationId", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt16, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("scriptPath", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Path, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("weatherParametersFile", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.FilePtr, 136, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppLocationData(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppLocationData(ulong address, ulong id) : base(address, id) { }
+		public TppLocationData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

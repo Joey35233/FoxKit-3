@@ -30,12 +30,13 @@ namespace Fox.GameKit
         }
         static TerrainHoleBody()
         {
-            classInfo = new Fox.EntityInfo("TerrainHoleBody", new Fox.Core.TransformDataBody(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("TerrainHoleBody", new Fox.Core.TransformDataBody().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public TerrainHoleBody(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TerrainHoleBody(ulong address, ulong id) : base(address, id) { }
+		public TerrainHoleBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

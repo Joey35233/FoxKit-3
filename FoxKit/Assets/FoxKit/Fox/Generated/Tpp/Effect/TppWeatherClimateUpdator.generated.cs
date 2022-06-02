@@ -30,12 +30,13 @@ namespace Tpp.Effect
         }
         static TppWeatherClimateUpdator()
         {
-            classInfo = new Fox.EntityInfo("TppWeatherClimateUpdator", new Tpp.Effect.TppWeatherEffectBase(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("TppWeatherClimateUpdator", new Tpp.Effect.TppWeatherEffectBase().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public TppWeatherClimateUpdator(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppWeatherClimateUpdator(ulong address, ulong id) : base(address, id) { }
+		public TppWeatherClimateUpdator() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

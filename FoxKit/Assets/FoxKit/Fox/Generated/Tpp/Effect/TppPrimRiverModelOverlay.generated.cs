@@ -42,7 +42,7 @@ namespace Tpp.Effect
         }
         static TppPrimRiverModelOverlay()
         {
-            classInfo = new Fox.EntityInfo("TppPrimRiverModelOverlay", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 120, null, 0);
+            classInfo = new Fox.EntityInfo("TppPrimRiverModelOverlay", new Fox.Core.Data().GetClassEntityInfo(), 120, null, 0);
 			
 			classInfo.StaticProperties.Insert("primRiverGroupName", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("visibility", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -52,8 +52,9 @@ namespace Tpp.Effect
 			classInfo.StaticProperties.Insert("maskTextureName", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 184, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppPrimRiverModelOverlay(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppPrimRiverModelOverlay(ulong address, ulong id) : base(address, id) { }
+		public TppPrimRiverModelOverlay() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

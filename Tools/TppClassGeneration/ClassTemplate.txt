@@ -38,12 +38,16 @@ namespace {{ info.get_root_namespace() }}.{{ info.get_namespace_without_prefix()
 			{%- endfor %}
         }
 
-        // Constructor
-		{% if info.is_entity() %}public {{ info.name }}(ulong address, ushort idA, ushort idB){% if info.parent %} : base(address, idA, idB) { }{% else %}
+        // Constructors
+		{% if info.is_entity() %}public {{ info.name }}(ulong address, ulong id){% if info.parent %} : base(address, id) { }{% else %}
         {
             this.Address = address;
-            this.IdA = idA;
-            this.IdB = idB;
+            this.Id = id;
+        }{% endif %}{% endif %}
+		{% if info.is_entity() %}public {{ info.name }}(){% if info.parent %} : base() { }{% else %}
+        {
+            this.Address = 0;
+            this.Id = 0;
         }{% endif %}{% endif %}
         
         public {% if info.is_root() %}virtual{% else %}override{% endif %} void SetProperty(string propertyName, Fox.Value value)

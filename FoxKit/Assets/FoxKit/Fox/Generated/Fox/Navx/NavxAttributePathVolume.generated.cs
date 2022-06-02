@@ -34,14 +34,15 @@ namespace Fox.Navx
         }
         static NavxAttributePathVolume()
         {
-            classInfo = new Fox.EntityInfo("NavxAttributePathVolume", new Fox.Graphx.GraphxPathVolume(0, 0, 0).GetClassEntityInfo(), 336, null, 0);
+            classInfo = new Fox.EntityInfo("NavxAttributePathVolume", new Fox.Graphx.GraphxPathVolume().GetClassEntityInfo(), 336, null, 0);
 			
 			classInfo.StaticProperties.Insert("worldName", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 352, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("attributeInfos", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityPtr, 360, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, typeof(Fox.Navx.NavxAttributeInfo), null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public NavxAttributePathVolume(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public NavxAttributePathVolume(ulong address, ulong id) : base(address, id) { }
+		public NavxAttributePathVolume() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

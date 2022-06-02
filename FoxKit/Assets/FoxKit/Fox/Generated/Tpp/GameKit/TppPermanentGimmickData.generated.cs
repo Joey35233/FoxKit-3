@@ -40,7 +40,7 @@ namespace Tpp.GameKit
         }
         static TppPermanentGimmickData()
         {
-            classInfo = new Fox.EntityInfo("TppPermanentGimmickData", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 144, "Gimmick", 0);
+            classInfo = new Fox.EntityInfo("TppPermanentGimmickData", new Fox.Core.Data().GetClassEntityInfo(), 144, "Gimmick", 0);
 			
 			classInfo.StaticProperties.Insert("partsFile", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.FilePtr, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("locaterFile", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.FilePtr, 144, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -49,8 +49,9 @@ namespace Tpp.GameKit
 			classInfo.StaticProperties.Insert("flags2", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt32, 172, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppPermanentGimmickData(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppPermanentGimmickData(ulong address, ulong id) : base(address, id) { }
+		public TppPermanentGimmickData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

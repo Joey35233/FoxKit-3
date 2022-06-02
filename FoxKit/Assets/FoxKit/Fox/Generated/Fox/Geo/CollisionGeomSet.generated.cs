@@ -30,12 +30,13 @@ namespace Fox.Geo
         }
         static CollisionGeomSet()
         {
-            classInfo = new Fox.EntityInfo("CollisionGeomSet", new Fox.Geo.CollisionObject(0, 0, 0).GetClassEntityInfo(), 0, "Collision", 0);
+            classInfo = new Fox.EntityInfo("CollisionGeomSet", new Fox.Geo.CollisionObject().GetClassEntityInfo(), 0, "Collision", 0);
 			
         }
 
-        // Constructor
-		public CollisionGeomSet(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public CollisionGeomSet(ulong address, ulong id) : base(address, id) { }
+		public CollisionGeomSet() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

@@ -30,12 +30,13 @@ namespace Fox.Gr
         }
         static GrPluginSky()
         {
-            classInfo = new Fox.EntityInfo("GrPluginSky", new Fox.Gr.GrRenderPlugin(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("GrPluginSky", new Fox.Gr.GrRenderPlugin().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public GrPluginSky(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public GrPluginSky(ulong address, ulong id) : base(address, id) { }
+		public GrPluginSky() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

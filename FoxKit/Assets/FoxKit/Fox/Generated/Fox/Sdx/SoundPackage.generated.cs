@@ -34,14 +34,15 @@ namespace Fox.Sdx
         }
         static SoundPackage()
         {
-            classInfo = new Fox.EntityInfo("SoundPackage", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 96, "Sound", 1);
+            classInfo = new Fox.EntityInfo("SoundPackage", new Fox.Core.Data().GetClassEntityInfo(), 96, "Sound", 1);
 			
 			classInfo.StaticProperties.Insert("soundDataFile", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.FilePtr, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("syncLoad", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 144, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public SoundPackage(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public SoundPackage(ulong address, ulong id) : base(address, id) { }
+		public SoundPackage() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

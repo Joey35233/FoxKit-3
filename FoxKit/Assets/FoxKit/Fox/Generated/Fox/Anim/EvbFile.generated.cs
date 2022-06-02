@@ -30,12 +30,13 @@ namespace Fox.Anim
         }
         static EvbFile()
         {
-            classInfo = new Fox.EntityInfo("EvbFile", new Fox.Core.RawFile(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("EvbFile", new Fox.Core.RawFile().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public EvbFile(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public EvbFile(ulong address, ulong id) : base(address, id) { }
+		public EvbFile() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

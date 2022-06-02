@@ -32,13 +32,14 @@ namespace Fox.Navx
         }
         static NavxNavFilter()
         {
-            classInfo = new Fox.EntityInfo("NavxNavFilter", new Fox.Core.TransformData(0, 0, 0).GetClassEntityInfo(), 272, "Navx", 0);
+            classInfo = new Fox.EntityInfo("NavxNavFilter", new Fox.Core.TransformData().GetClassEntityInfo(), 272, "Navx", 0);
 			
 			classInfo.StaticProperties.Insert("worldName", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 304, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public NavxNavFilter(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public NavxNavFilter(ulong address, ulong id) : base(address, id) { }
+		public NavxNavFilter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

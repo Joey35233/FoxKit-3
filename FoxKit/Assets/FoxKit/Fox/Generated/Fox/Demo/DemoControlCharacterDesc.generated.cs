@@ -50,7 +50,7 @@ namespace Fox.Demo
         }
         static DemoControlCharacterDesc()
         {
-            classInfo = new Fox.EntityInfo("DemoControlCharacterDesc", new Fox.Core.DataElement(0, 0, 0).GetClassEntityInfo(), 128, null, 2);
+            classInfo = new Fox.EntityInfo("DemoControlCharacterDesc", new Fox.Core.DataElement().GetClassEntityInfo(), 128, null, 2);
 			
 			classInfo.StaticProperties.Insert("characterId", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 56, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("releaseGroupName", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -64,8 +64,9 @@ namespace Fox.Demo
 			classInfo.StaticProperties.Insert("startRotation", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Quat, 160, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public DemoControlCharacterDesc(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public DemoControlCharacterDesc(ulong address, ulong id) : base(address, id) { }
+		public DemoControlCharacterDesc() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

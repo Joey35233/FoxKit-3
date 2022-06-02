@@ -36,15 +36,16 @@ namespace Fox.GameKit
         }
         static CheckpointContainer()
         {
-            classInfo = new Fox.EntityInfo("CheckpointContainer", new Fox.Core.Entity(0, 0, 0).GetClassEntityInfo(), 0, "GameKit", 0);
+            classInfo = new Fox.EntityInfo("CheckpointContainer", new Fox.Core.Entity().GetClassEntityInfo(), 0, "GameKit", 0);
 			
 			classInfo.StaticProperties.Insert("checkPointUnits", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityPtr, 48, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, typeof(Fox.GameKit.CheckpointUnit), null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("passedCheckpoints", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 96, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("latestCheckpointTag", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 112, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public CheckpointContainer(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public CheckpointContainer(ulong address, ulong id) : base(address, id) { }
+		public CheckpointContainer() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

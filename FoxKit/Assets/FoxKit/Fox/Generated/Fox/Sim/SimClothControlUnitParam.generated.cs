@@ -42,7 +42,7 @@ namespace Fox.Sim
         }
         static SimClothControlUnitParam()
         {
-            classInfo = new Fox.EntityInfo("SimClothControlUnitParam", new Fox.Core.Entity(0, 0, 0).GetClassEntityInfo(), 52, "Sim", 0);
+            classInfo = new Fox.EntityInfo("SimClothControlUnitParam", new Fox.Core.Entity().GetClassEntityInfo(), 52, "Sim", 0);
 			
 			classInfo.StaticProperties.Insert("mass", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 52, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("thickness", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 56, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -52,8 +52,9 @@ namespace Fox.Sim
 			classInfo.StaticProperties.Insert("contractionRatio", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 68, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public SimClothControlUnitParam(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public SimClothControlUnitParam(ulong address, ulong id) : base(address, id) { }
+		public SimClothControlUnitParam() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

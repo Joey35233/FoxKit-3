@@ -30,12 +30,13 @@ namespace Fox.PartsBuilder
         }
         static CoverModelDescription()
         {
-            classInfo = new Fox.EntityInfo("CoverModelDescription", new Fox.PartsBuilder.ModelDescription(0, 0, 0).GetClassEntityInfo(), 288, "PartsBuilder", 0);
+            classInfo = new Fox.EntityInfo("CoverModelDescription", new Fox.PartsBuilder.ModelDescription().GetClassEntityInfo(), 288, "PartsBuilder", 0);
 			
         }
 
-        // Constructor
-		public CoverModelDescription(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public CoverModelDescription(ulong address, ulong id) : base(address, id) { }
+		public CoverModelDescription() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

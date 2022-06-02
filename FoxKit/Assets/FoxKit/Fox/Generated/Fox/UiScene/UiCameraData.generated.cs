@@ -50,7 +50,7 @@ namespace Fox.UiScene
         }
         static UiCameraData()
         {
-            classInfo = new Fox.EntityInfo("UiCameraData", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 0, "Ui", 0);
+            classInfo = new Fox.EntityInfo("UiCameraData", new Fox.Core.Data().GetClassEntityInfo(), 0, "Ui", 0);
 			
 			classInfo.StaticProperties.Insert("cameraName", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("translate", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Vector3, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -64,8 +64,9 @@ namespace Fox.UiScene
 			classInfo.StaticProperties.Insert("debug", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt32, 184, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, typeof(UiCameraDataFlag), Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public UiCameraData(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public UiCameraData(ulong address, ulong id) : base(address, id) { }
+		public UiCameraData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

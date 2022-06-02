@@ -30,12 +30,13 @@ namespace Fox.Core
         }
         static FoxDataLinkCollectorDataBody()
         {
-            classInfo = new Fox.EntityInfo("FoxDataLinkCollectorDataBody", new Fox.Core.DataBody(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("FoxDataLinkCollectorDataBody", new Fox.Core.DataBody().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public FoxDataLinkCollectorDataBody(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public FoxDataLinkCollectorDataBody(ulong address, ulong id) : base(address, id) { }
+		public FoxDataLinkCollectorDataBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

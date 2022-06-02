@@ -30,12 +30,13 @@ namespace Fox.Geox
         }
         static GeoxPathBody()
         {
-            classInfo = new Fox.EntityInfo("GeoxPathBody", new Fox.Graphx.GraphxPath(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("GeoxPathBody", new Fox.Graphx.GraphxPath().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public GeoxPathBody(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public GeoxPathBody(ulong address, ulong id) : base(address, id) { }
+		public GeoxPathBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

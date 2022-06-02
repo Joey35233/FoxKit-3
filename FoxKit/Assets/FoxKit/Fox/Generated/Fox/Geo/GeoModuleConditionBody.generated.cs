@@ -30,12 +30,13 @@ namespace Fox.Geo
         }
         static GeoModuleConditionBody()
         {
-            classInfo = new Fox.EntityInfo("GeoModuleConditionBody", new Fox.Geo.GeoTrapConditionBody(0, 0, 0).GetClassEntityInfo(), 0, "Trap", 0);
+            classInfo = new Fox.EntityInfo("GeoModuleConditionBody", new Fox.Geo.GeoTrapConditionBody().GetClassEntityInfo(), 0, "Trap", 0);
 			
         }
 
-        // Constructor
-		public GeoModuleConditionBody(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public GeoModuleConditionBody(ulong address, ulong id) : base(address, id) { }
+		public GeoModuleConditionBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

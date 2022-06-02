@@ -49,7 +49,8 @@ namespace Tpp.GameCore
 			classInfo.StaticProperties.Insert("partsTypeInitial", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 40, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
+        // Constructors
+		
 		
         
         public virtual void SetProperty(string propertyName, Fox.Value value)

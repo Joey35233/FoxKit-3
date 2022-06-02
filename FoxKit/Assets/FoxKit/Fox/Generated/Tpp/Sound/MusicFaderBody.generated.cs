@@ -30,12 +30,13 @@ namespace Tpp.Sound
         }
         static MusicFaderBody()
         {
-            classInfo = new Fox.EntityInfo("MusicFaderBody", new Fox.Core.DataBody(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("MusicFaderBody", new Fox.Core.DataBody().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public MusicFaderBody(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public MusicFaderBody(ulong address, ulong id) : base(address, id) { }
+		public MusicFaderBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

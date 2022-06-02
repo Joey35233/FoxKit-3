@@ -48,7 +48,7 @@ namespace Tpp.GameKit
         }
         static TppPermanentGimmickSearchLightParameter()
         {
-            classInfo = new Fox.EntityInfo("TppPermanentGimmickSearchLightParameter", new Fox.Core.DataElement(0, 0, 0).GetClassEntityInfo(), 64, null, 0);
+            classInfo = new Fox.EntityInfo("TppPermanentGimmickSearchLightParameter", new Fox.Core.DataElement().GetClassEntityInfo(), 64, null, 0);
 			
 			classInfo.StaticProperties.Insert("rotationLimitLeftRight", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 56, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("rotationLimitUp", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 60, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -61,8 +61,9 @@ namespace Tpp.GameKit
 			classInfo.StaticProperties.Insert("rangeUpDownDim", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 88, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppPermanentGimmickSearchLightParameter(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppPermanentGimmickSearchLightParameter(ulong address, ulong id) : base(address, id) { }
+		public TppPermanentGimmickSearchLightParameter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

@@ -34,14 +34,15 @@ namespace Fox.GameKit
         }
         static StaticModelArrayBody()
         {
-            classInfo = new Fox.EntityInfo("StaticModelArrayBody", new Fox.Core.DataBody(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("StaticModelArrayBody", new Fox.Core.DataBody().GetClassEntityInfo(), 0, null, 0);
 			
 			classInfo.StaticProperties.Insert("isVisible", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 96, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("isGeomActive", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 97, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public StaticModelArrayBody(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public StaticModelArrayBody(ulong address, ulong id) : base(address, id) { }
+		public StaticModelArrayBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

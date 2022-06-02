@@ -30,12 +30,13 @@ namespace Fox.EdDemo
         }
         static TppTakePictureParameter()
         {
-            classInfo = new Fox.EntityInfo("TppTakePictureParameter", new Fox.Demo.DemoParameter(0, 0, 0).GetClassEntityInfo(), 32, null, 0);
+            classInfo = new Fox.EntityInfo("TppTakePictureParameter", new Fox.Demo.DemoParameter().GetClassEntityInfo(), 32, null, 0);
 			
         }
 
-        // Constructor
-		public TppTakePictureParameter(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppTakePictureParameter(ulong address, ulong id) : base(address, id) { }
+		public TppTakePictureParameter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

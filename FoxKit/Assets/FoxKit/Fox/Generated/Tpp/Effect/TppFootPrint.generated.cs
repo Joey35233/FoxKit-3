@@ -42,7 +42,7 @@ namespace Tpp.Effect
         }
         static TppFootPrint()
         {
-            classInfo = new Fox.EntityInfo("TppFootPrint", new Fox.Core.TransformData(0, 0, 0).GetClassEntityInfo(), 416, null, 1);
+            classInfo = new Fox.EntityInfo("TppFootPrint", new Fox.Core.TransformData().GetClassEntityInfo(), 416, null, 1);
 			
 			classInfo.StaticProperties.Insert("matrices", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Matrix4, 368, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("footChara", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt32, 384, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -52,8 +52,9 @@ namespace Tpp.Effect
 			classInfo.StaticProperties.Insert("enable", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 448, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppFootPrint(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppFootPrint(ulong address, ulong id) : base(address, id) { }
+		public TppFootPrint() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

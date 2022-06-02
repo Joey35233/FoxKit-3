@@ -30,12 +30,13 @@ namespace Fox.GameKit
         }
         static TerrainBlockBody()
         {
-            classInfo = new Fox.EntityInfo("TerrainBlockBody", new Fox.Core.DataBody(0, 0, 0).GetClassEntityInfo(), 0, "Terrain", 0);
+            classInfo = new Fox.EntityInfo("TerrainBlockBody", new Fox.Core.DataBody().GetClassEntityInfo(), 0, "Terrain", 0);
 			
         }
 
-        // Constructor
-		public TerrainBlockBody(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TerrainBlockBody(ulong address, ulong id) : base(address, id) { }
+		public TerrainBlockBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

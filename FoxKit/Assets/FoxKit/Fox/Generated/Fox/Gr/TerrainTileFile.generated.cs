@@ -30,12 +30,13 @@ namespace Fox.Gr
         }
         static TerrainTileFile()
         {
-            classInfo = new Fox.EntityInfo("TerrainTileFile", new Fox.Core.RawFile(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("TerrainTileFile", new Fox.Core.RawFile().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public TerrainTileFile(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TerrainTileFile(ulong address, ulong id) : base(address, id) { }
+		public TerrainTileFile() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

@@ -32,13 +32,14 @@ namespace Fox.Ui
         }
         static UiOperationNode()
         {
-            classInfo = new Fox.EntityInfo("UiOperationNode", new Fox.Ui.UiNodeData(0, 0, 0).GetClassEntityInfo(), 0, "UiG", 0);
+            classInfo = new Fox.EntityInfo("UiOperationNode", new Fox.Ui.UiNodeData().GetClassEntityInfo(), 0, "UiG", 0);
 			
 			classInfo.StaticProperties.Insert("kind", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Int32, 280, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, typeof(UiOperationNodeKind), Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public UiOperationNode(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public UiOperationNode(ulong address, ulong id) : base(address, id) { }
+		public UiOperationNode() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

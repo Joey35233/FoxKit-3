@@ -40,7 +40,7 @@ namespace Tpp.MotherBaseCore
         }
         static MotherBaseConstructLocator()
         {
-            classInfo = new Fox.EntityInfo("MotherBaseConstructLocator", new Fox.Core.TransformData(0, 0, 0).GetClassEntityInfo(), 288, "TppMotherBase", 2);
+            classInfo = new Fox.EntityInfo("MotherBaseConstructLocator", new Fox.Core.TransformData().GetClassEntityInfo(), 288, "TppMotherBase", 2);
 			
 			classInfo.StaticProperties.Insert("type", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Int32, 304, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("index", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt16, 308, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -49,8 +49,9 @@ namespace Tpp.MotherBaseCore
 			classInfo.StaticProperties.Insert("staticModels", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityLink, 312, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public MotherBaseConstructLocator(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public MotherBaseConstructLocator(ulong address, ulong id) : base(address, id) { }
+		public MotherBaseConstructLocator() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

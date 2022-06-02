@@ -40,7 +40,7 @@ namespace Fox.Anim
         }
         static EventDataUnit()
         {
-            classInfo = new Fox.EntityInfo("EventDataUnit", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 136, null, 2);
+            classInfo = new Fox.EntityInfo("EventDataUnit", new Fox.Core.Data().GetClassEntityInfo(), 136, null, 2);
 			
 			classInfo.StaticProperties.Insert("eventName", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("sections", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityPtr, 128, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, typeof(Fox.Anim.TimeSection), null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -49,8 +49,9 @@ namespace Fox.Anim
 			classInfo.StaticProperties.Insert("paramFloat", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 176, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public EventDataUnit(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public EventDataUnit(ulong address, ulong id) : base(address, id) { }
+		public EventDataUnit() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

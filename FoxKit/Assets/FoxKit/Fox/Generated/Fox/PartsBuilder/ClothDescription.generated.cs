@@ -36,15 +36,16 @@ namespace Fox.PartsBuilder
         }
         static ClothDescription()
         {
-            classInfo = new Fox.EntityInfo("ClothDescription", new Fox.PartsBuilder.PartDescription(0, 0, 0).GetClassEntityInfo(), 160, "PartsBuilder", 1);
+            classInfo = new Fox.EntityInfo("ClothDescription", new Fox.PartsBuilder.PartDescription().GetClassEntityInfo(), 160, "PartsBuilder", 1);
 			
 			classInfo.StaticProperties.Insert("clothFile", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.FilePtr, 152, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("clothSettingFile", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.FilePtr, 176, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("clothHitFile", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.FilePtr, 200, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public ClothDescription(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public ClothDescription(ulong address, ulong id) : base(address, id) { }
+		public ClothDescription() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

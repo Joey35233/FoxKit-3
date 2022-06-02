@@ -44,7 +44,7 @@ namespace Tpp.GameKit
         }
         static TppObjectBrushSkeletonModelDestructionResource()
         {
-            classInfo = new Fox.EntityInfo("TppObjectBrushSkeletonModelDestructionResource", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 152, null, 0);
+            classInfo = new Fox.EntityInfo("TppObjectBrushSkeletonModelDestructionResource", new Fox.Core.Data().GetClassEntityInfo(), 152, null, 0);
 			
 			classInfo.StaticProperties.Insert("rootCount", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt32, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("trunkCount", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt32, 124, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -55,8 +55,9 @@ namespace Tpp.GameKit
 			classInfo.StaticProperties.Insert("trunkPartsFile", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.FilePtr, 192, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppObjectBrushSkeletonModelDestructionResource(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppObjectBrushSkeletonModelDestructionResource(ulong address, ulong id) : base(address, id) { }
+		public TppObjectBrushSkeletonModelDestructionResource() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

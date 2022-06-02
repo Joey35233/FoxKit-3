@@ -40,7 +40,7 @@ namespace Tpp.System
         }
         static VideoPlayerMemoryBlock()
         {
-            classInfo = new Fox.EntityInfo("VideoPlayerMemoryBlock", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 84, null, 0);
+            classInfo = new Fox.EntityInfo("VideoPlayerMemoryBlock", new Fox.Core.Data().GetClassEntityInfo(), 84, null, 0);
 			
 			classInfo.StaticProperties.Insert("identify", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("videoFormat", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -49,8 +49,9 @@ namespace Tpp.System
 			classInfo.StaticProperties.Insert("videoAllocateSize", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt32, 144, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public VideoPlayerMemoryBlock(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public VideoPlayerMemoryBlock(ulong address, ulong id) : base(address, id) { }
+		public VideoPlayerMemoryBlock() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

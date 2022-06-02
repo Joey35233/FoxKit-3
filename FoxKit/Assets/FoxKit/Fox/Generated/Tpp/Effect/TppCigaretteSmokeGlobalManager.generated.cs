@@ -30,12 +30,13 @@ namespace Tpp.Effect
         }
         static TppCigaretteSmokeGlobalManager()
         {
-            classInfo = new Fox.EntityInfo("TppCigaretteSmokeGlobalManager", new Fox.Core.Entity(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("TppCigaretteSmokeGlobalManager", new Fox.Core.Entity().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public TppCigaretteSmokeGlobalManager(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppCigaretteSmokeGlobalManager(ulong address, ulong id) : base(address, id) { }
+		public TppCigaretteSmokeGlobalManager() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

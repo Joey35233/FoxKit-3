@@ -32,13 +32,14 @@ namespace Fox.Geox
         }
         static GeoxBoundingVolumeFileParameter()
         {
-            classInfo = new Fox.EntityInfo("GeoxBoundingVolumeFileParameter", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 80, null, 0);
+            classInfo = new Fox.EntityInfo("GeoxBoundingVolumeFileParameter", new Fox.Core.Data().GetClassEntityInfo(), 80, null, 0);
 			
 			classInfo.StaticProperties.Insert("gridSize", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Vector3, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public GeoxBoundingVolumeFileParameter(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public GeoxBoundingVolumeFileParameter(ulong address, ulong id) : base(address, id) { }
+		public GeoxBoundingVolumeFileParameter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

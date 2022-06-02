@@ -38,7 +38,7 @@ namespace Tpp.GameKit
         }
         static TppObjectBrushPluginFlutteringGrass()
         {
-            classInfo = new Fox.EntityInfo("TppObjectBrushPluginFlutteringGrass", new Fox.GameKit.ObjectBrushPluginClone(0, 0, 0).GetClassEntityInfo(), 136, null, 0);
+            classInfo = new Fox.EntityInfo("TppObjectBrushPluginFlutteringGrass", new Fox.GameKit.ObjectBrushPluginClone().GetClassEntityInfo(), 136, null, 0);
 			
 			classInfo.StaticProperties.Insert("baseCycleSpeedRate", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 184, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("windAmplitude", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 188, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -46,8 +46,9 @@ namespace Tpp.GameKit
 			classInfo.StaticProperties.Insert("windDirYAxisFixZero", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 196, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppObjectBrushPluginFlutteringGrass(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppObjectBrushPluginFlutteringGrass(ulong address, ulong id) : base(address, id) { }
+		public TppObjectBrushPluginFlutteringGrass() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

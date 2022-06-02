@@ -30,12 +30,13 @@ namespace Fox.Geo
         }
         static GeoCollisionFreeShape()
         {
-            classInfo = new Fox.EntityInfo("GeoCollisionFreeShape", new Fox.Geo.CollisionObject(0, 0, 0).GetClassEntityInfo(), 0, "Collision", 0);
+            classInfo = new Fox.EntityInfo("GeoCollisionFreeShape", new Fox.Geo.CollisionObject().GetClassEntityInfo(), 0, "Collision", 0);
 			
         }
 
-        // Constructor
-		public GeoCollisionFreeShape(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public GeoCollisionFreeShape(ulong address, ulong id) : base(address, id) { }
+		public GeoCollisionFreeShape() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

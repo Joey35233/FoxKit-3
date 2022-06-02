@@ -34,14 +34,15 @@ namespace Tpp.Ui
         }
         static HudBootData()
         {
-            classInfo = new Fox.EntityInfo("HudBootData", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 96, null, 1);
+            classInfo = new Fox.EntityInfo("HudBootData", new Fox.Core.Data().GetClassEntityInfo(), 96, null, 1);
 			
 			classInfo.StaticProperties.Insert("uigFiles", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.FilePtr, 120, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("rawFiles", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.FilePtr, 136, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public HudBootData(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public HudBootData(ulong address, ulong id) : base(address, id) { }
+		public HudBootData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

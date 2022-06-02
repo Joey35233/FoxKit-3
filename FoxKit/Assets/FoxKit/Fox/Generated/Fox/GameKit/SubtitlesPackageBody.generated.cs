@@ -30,12 +30,13 @@ namespace Fox.GameKit
         }
         static SubtitlesPackageBody()
         {
-            classInfo = new Fox.EntityInfo("SubtitlesPackageBody", new Fox.Core.DataBody(0, 0, 0).GetClassEntityInfo(), 0, "Subtitles", 0);
+            classInfo = new Fox.EntityInfo("SubtitlesPackageBody", new Fox.Core.DataBody().GetClassEntityInfo(), 0, "Subtitles", 0);
 			
         }
 
-        // Constructor
-		public SubtitlesPackageBody(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public SubtitlesPackageBody(ulong address, ulong id) : base(address, id) { }
+		public SubtitlesPackageBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

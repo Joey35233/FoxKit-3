@@ -50,7 +50,7 @@ namespace Fox.Sim
         }
         static SimOnPhysics()
         {
-            classInfo = new Fox.EntityInfo("SimOnPhysics", new Fox.Sim.SimObject(0, 0, 0).GetClassEntityInfo(), 328, "Sim", 2);
+            classInfo = new Fox.EntityInfo("SimOnPhysics", new Fox.Sim.SimObject().GetClassEntityInfo(), 328, "Sim", 2);
 			
 			classInfo.StaticProperties.Insert("simRootBones", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityPtr, 152, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, typeof(Fox.Sim.SimAssociationUnit), null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("simBones", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityPtr, 200, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, typeof(Fox.Sim.SimAssociationUnit), null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -64,8 +64,9 @@ namespace Fox.Sim
 			classInfo.StaticProperties.Insert("convertMoveToWind", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public SimOnPhysics(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public SimOnPhysics(ulong address, ulong id) : base(address, id) { }
+		public SimOnPhysics() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

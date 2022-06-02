@@ -36,15 +36,16 @@ namespace Tpp.GameCore
         }
         static TppPlayer2AdditionalPartsBlockData()
         {
-            classInfo = new Fox.EntityInfo("TppPlayer2AdditionalPartsBlockData", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 76, null, 1);
+            classInfo = new Fox.EntityInfo("TppPlayer2AdditionalPartsBlockData", new Fox.Core.Data().GetClassEntityInfo(), 76, null, 1);
 			
 			classInfo.StaticProperties.Insert("count", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt32, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("size", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt32, 124, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("prerequisiteToResident", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppPlayer2AdditionalPartsBlockData(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppPlayer2AdditionalPartsBlockData(ulong address, ulong id) : base(address, id) { }
+		public TppPlayer2AdditionalPartsBlockData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

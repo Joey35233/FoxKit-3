@@ -32,13 +32,14 @@ namespace Tpp.Radio
         }
         static RadioData()
         {
-            classInfo = new Fox.EntityInfo("RadioData", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 80, "GameKit", 2);
+            classInfo = new Fox.EntityInfo("RadioData", new Fox.Core.Data().GetClassEntityInfo(), 80, "GameKit", 2);
 			
 			classInfo.StaticProperties.Insert("radioDataFile", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.FilePtr, 120, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public RadioData(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public RadioData(ulong address, ulong id) : base(address, id) { }
+		public RadioData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

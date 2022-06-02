@@ -30,12 +30,13 @@ namespace Tpp.Effect
         }
         static PrecomputeSkyFile()
         {
-            classInfo = new Fox.EntityInfo("PrecomputeSkyFile", new Fox.Core.RawFile(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("PrecomputeSkyFile", new Fox.Core.RawFile().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public PrecomputeSkyFile(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public PrecomputeSkyFile(ulong address, ulong id) : base(address, id) { }
+		public PrecomputeSkyFile() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

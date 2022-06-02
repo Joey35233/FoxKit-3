@@ -32,13 +32,14 @@ namespace Fox.Core
         }
         static DataSetFile2()
         {
-            classInfo = new Fox.EntityInfo("DataSetFile2", new Fox.Core.EntityFile(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("DataSetFile2", new Fox.Core.EntityFile().GetClassEntityInfo(), 0, null, 0);
 			
 			classInfo.StaticProperties.Insert("dataSet", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityPtr, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.Never, typeof(Fox.Core.DataSet), null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public DataSetFile2(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public DataSetFile2(ulong address, ulong id) : base(address, id) { }
+		public DataSetFile2() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

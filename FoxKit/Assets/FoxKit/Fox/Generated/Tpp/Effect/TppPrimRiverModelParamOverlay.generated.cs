@@ -66,7 +66,7 @@ namespace Tpp.Effect
         }
         static TppPrimRiverModelParamOverlay()
         {
-            classInfo = new Fox.EntityInfo("TppPrimRiverModelParamOverlay", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 168, null, 3);
+            classInfo = new Fox.EntityInfo("TppPrimRiverModelParamOverlay", new Fox.Core.Data().GetClassEntityInfo(), 168, null, 3);
 			
 			classInfo.StaticProperties.Insert("primRiverGroupName", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("visibility", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -88,8 +88,9 @@ namespace Tpp.Effect
 			classInfo.StaticProperties.Insert("debugReset", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 241, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppPrimRiverModelParamOverlay(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppPrimRiverModelParamOverlay(ulong address, ulong id) : base(address, id) { }
+		public TppPrimRiverModelParamOverlay() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

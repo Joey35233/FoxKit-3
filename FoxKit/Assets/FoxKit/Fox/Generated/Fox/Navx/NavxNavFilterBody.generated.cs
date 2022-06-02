@@ -30,12 +30,13 @@ namespace Fox.Navx
         }
         static NavxNavFilterBody()
         {
-            classInfo = new Fox.EntityInfo("NavxNavFilterBody", new Fox.Core.TransformDataBody(0, 0, 0).GetClassEntityInfo(), 0, "Navx", 0);
+            classInfo = new Fox.EntityInfo("NavxNavFilterBody", new Fox.Core.TransformDataBody().GetClassEntityInfo(), 0, "Navx", 0);
 			
         }
 
-        // Constructor
-		public NavxNavFilterBody(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public NavxNavFilterBody(ulong address, ulong id) : base(address, id) { }
+		public NavxNavFilterBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

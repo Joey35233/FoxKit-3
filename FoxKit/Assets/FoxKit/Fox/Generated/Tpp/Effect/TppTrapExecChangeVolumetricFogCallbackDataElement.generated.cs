@@ -64,7 +64,7 @@ namespace Tpp.Effect
         }
         static TppTrapExecChangeVolumetricFogCallbackDataElement()
         {
-            classInfo = new Fox.EntityInfo("TppTrapExecChangeVolumetricFogCallbackDataElement", new Fox.Geo.GeoTrapModuleCallbackDataElement(0, 0, 0).GetClassEntityInfo(), 0, null, 4);
+            classInfo = new Fox.EntityInfo("TppTrapExecChangeVolumetricFogCallbackDataElement", new Fox.Geo.GeoTrapModuleCallbackDataElement().GetClassEntityInfo(), 0, null, 4);
 			
 			classInfo.StaticProperties.Insert("ignoreYAxis", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 164, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("ignoreZAxis", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 165, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -85,8 +85,9 @@ namespace Tpp.Effect
 			classInfo.StaticProperties.Insert("areaVolumetricFog", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityLink, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppTrapExecChangeVolumetricFogCallbackDataElement(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppTrapExecChangeVolumetricFogCallbackDataElement(ulong address, ulong id) : base(address, id) { }
+		public TppTrapExecChangeVolumetricFogCallbackDataElement() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

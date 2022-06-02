@@ -34,14 +34,15 @@ namespace Fox.Ncl
         }
         static NclDaemon()
         {
-            classInfo = new Fox.EntityInfo("NclDaemon", new Fox.Core.Entity(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("NclDaemon", new Fox.Core.Entity().GetClassEntityInfo(), 0, null, 0);
 			
 			classInfo.StaticProperties.Insert("exIp", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 184, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("inIp", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 192, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public NclDaemon(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public NclDaemon(ulong address, ulong id) : base(address, id) { }
+		public NclDaemon() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

@@ -30,12 +30,13 @@ namespace Tpp.MarkerLocator
         }
         static TppMarker2LocatorSystemParameter()
         {
-            classInfo = new Fox.EntityInfo("TppMarker2LocatorSystemParameter", new Fox.Core.DataElement(0, 0, 0).GetClassEntityInfo(), 28, null, 0);
+            classInfo = new Fox.EntityInfo("TppMarker2LocatorSystemParameter", new Fox.Core.DataElement().GetClassEntityInfo(), 28, null, 0);
 			
         }
 
-        // Constructor
-		public TppMarker2LocatorSystemParameter(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppMarker2LocatorSystemParameter(ulong address, ulong id) : base(address, id) { }
+		public TppMarker2LocatorSystemParameter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

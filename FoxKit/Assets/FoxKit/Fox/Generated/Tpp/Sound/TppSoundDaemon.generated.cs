@@ -32,13 +32,14 @@ namespace Tpp.Sound
         }
         static TppSoundDaemon()
         {
-            classInfo = new Fox.EntityInfo("TppSoundDaemon", new Fox.Core.Entity(0, 0, 0).GetClassEntityInfo(), 0, "Sound", 0);
+            classInfo = new Fox.EntityInfo("TppSoundDaemon", new Fox.Core.Entity().GetClassEntityInfo(), 0, "Sound", 0);
 			
 			classInfo.StaticProperties.Insert("keepNoticeEnable", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 240, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppSoundDaemon(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppSoundDaemon(ulong address, ulong id) : base(address, id) { }
+		public TppSoundDaemon() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

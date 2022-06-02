@@ -30,12 +30,13 @@ namespace Tpp.MotherBaseStage
         }
         static MotherBaseStageSetupFile()
         {
-            classInfo = new Fox.EntityInfo("MotherBaseStageSetupFile", new Fox.Core.RawFile(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("MotherBaseStageSetupFile", new Fox.Core.RawFile().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public MotherBaseStageSetupFile(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public MotherBaseStageSetupFile(ulong address, ulong id) : base(address, id) { }
+		public MotherBaseStageSetupFile() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

@@ -30,12 +30,13 @@ namespace Tpp.GameKit
         }
         static TppCoverPointBody()
         {
-            classInfo = new Fox.EntityInfo("TppCoverPointBody", new Fox.Tactical.GkTacticalPointBody(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("TppCoverPointBody", new Fox.Tactical.GkTacticalPointBody().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public TppCoverPointBody(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppCoverPointBody(ulong address, ulong id) : base(address, id) { }
+		public TppCoverPointBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

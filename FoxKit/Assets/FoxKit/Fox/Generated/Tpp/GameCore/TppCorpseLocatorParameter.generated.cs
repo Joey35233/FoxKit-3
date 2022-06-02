@@ -34,14 +34,15 @@ namespace Tpp.GameCore
         }
         static TppCorpseLocatorParameter()
         {
-            classInfo = new Fox.EntityInfo("TppCorpseLocatorParameter", new Fox.Core.DataElement(0, 0, 0).GetClassEntityInfo(), 36, null, 0);
+            classInfo = new Fox.EntityInfo("TppCorpseLocatorParameter", new Fox.Core.DataElement().GetClassEntityInfo(), 36, null, 0);
 			
 			classInfo.StaticProperties.Insert("identifier", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 56, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("isEmplaced", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppCorpseLocatorParameter(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppCorpseLocatorParameter(ulong address, ulong id) : base(address, id) { }
+		public TppCorpseLocatorParameter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

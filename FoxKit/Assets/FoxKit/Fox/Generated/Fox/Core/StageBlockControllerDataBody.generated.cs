@@ -30,12 +30,13 @@ namespace Fox.Core
         }
         static StageBlockControllerDataBody()
         {
-            classInfo = new Fox.EntityInfo("StageBlockControllerDataBody", new Fox.Core.DataBody(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("StageBlockControllerDataBody", new Fox.Core.DataBody().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public StageBlockControllerDataBody(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public StageBlockControllerDataBody(ulong address, ulong id) : base(address, id) { }
+		public StageBlockControllerDataBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

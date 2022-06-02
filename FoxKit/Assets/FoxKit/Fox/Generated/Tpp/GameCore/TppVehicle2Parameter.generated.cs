@@ -32,13 +32,14 @@ namespace Tpp.GameCore
         }
         static TppVehicle2Parameter()
         {
-            classInfo = new Fox.EntityInfo("TppVehicle2Parameter", new Fox.Core.DataElement(0, 0, 0).GetClassEntityInfo(), 32, null, 6);
+            classInfo = new Fox.EntityInfo("TppVehicle2Parameter", new Fox.Core.DataElement().GetClassEntityInfo(), 32, null, 6);
 			
 			classInfo.StaticProperties.Insert("maxBodyTypeCount", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt8, 56, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppVehicle2Parameter(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppVehicle2Parameter(ulong address, ulong id) : base(address, id) { }
+		public TppVehicle2Parameter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

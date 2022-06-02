@@ -30,12 +30,13 @@ namespace Fox.Ui
         }
         static LangDaemon()
         {
-            classInfo = new Fox.EntityInfo("LangDaemon", new Fox.Core.Entity(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("LangDaemon", new Fox.Core.Entity().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public LangDaemon(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public LangDaemon(ulong address, ulong id) : base(address, id) { }
+		public LangDaemon() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

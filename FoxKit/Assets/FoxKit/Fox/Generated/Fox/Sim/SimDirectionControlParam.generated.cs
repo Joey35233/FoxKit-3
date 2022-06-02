@@ -34,14 +34,15 @@ namespace Fox.Sim
         }
         static SimDirectionControlParam()
         {
-            classInfo = new Fox.EntityInfo("SimDirectionControlParam", new Fox.Sim.SimControlParam(0, 0, 0).GetClassEntityInfo(), 48, "Sim", 0);
+            classInfo = new Fox.EntityInfo("SimDirectionControlParam", new Fox.Sim.SimControlParam().GetClassEntityInfo(), 48, "Sim", 0);
 			
 			classInfo.StaticProperties.Insert("refBone", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 48, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("offset", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Quat, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public SimDirectionControlParam(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public SimDirectionControlParam(ulong address, ulong id) : base(address, id) { }
+		public SimDirectionControlParam() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

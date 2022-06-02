@@ -30,12 +30,13 @@ namespace Fox.Gr
         }
         static GrTools()
         {
-            classInfo = new Fox.EntityInfo("GrTools", new Fox.Core.Entity(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("GrTools", new Fox.Core.Entity().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public GrTools(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public GrTools(ulong address, ulong id) : base(address, id) { }
+		public GrTools() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

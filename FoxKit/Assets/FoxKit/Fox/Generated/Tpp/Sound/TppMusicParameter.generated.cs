@@ -70,7 +70,7 @@ namespace Tpp.Sound
         }
         static TppMusicParameter()
         {
-            classInfo = new Fox.EntityInfo("TppMusicParameter", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 144, "Sound", 9);
+            classInfo = new Fox.EntityInfo("TppMusicParameter", new Fox.Core.Data().GetClassEntityInfo(), 144, "Sound", 9);
 			
 			classInfo.StaticProperties.Insert("tag", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("playEvent", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -94,8 +94,9 @@ namespace Tpp.Sound
 			classInfo.StaticProperties.Insert("neutralSwitchEvent", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 152, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppMusicParameter(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppMusicParameter(ulong address, ulong id) : base(address, id) { }
+		public TppMusicParameter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

@@ -38,7 +38,7 @@ namespace Fox.Sim
         }
         static SimEngineOnPhysicsParam()
         {
-            classInfo = new Fox.EntityInfo("SimEngineOnPhysicsParam", new Fox.Sim.SimEngineParam(0, 0, 0).GetClassEntityInfo(), 36, "Sim", 3);
+            classInfo = new Fox.EntityInfo("SimEngineOnPhysicsParam", new Fox.Sim.SimEngineParam().GetClassEntityInfo(), 36, "Sim", 3);
 			
 			classInfo.StaticProperties.Insert("isEnableGeoCheck", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 57, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("convertMoveToWind", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 56, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -46,8 +46,9 @@ namespace Fox.Sim
 			classInfo.StaticProperties.Insert("maxLodLevel", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Int32, 52, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public SimEngineOnPhysicsParam(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public SimEngineOnPhysicsParam(ulong address, ulong id) : base(address, id) { }
+		public SimEngineOnPhysicsParam() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

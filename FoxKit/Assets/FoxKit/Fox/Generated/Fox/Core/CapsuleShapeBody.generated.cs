@@ -34,14 +34,15 @@ namespace Fox.Core
         }
         static CapsuleShapeBody()
         {
-            classInfo = new Fox.EntityInfo("CapsuleShapeBody", new Fox.Core.ShapeDataBody(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("CapsuleShapeBody", new Fox.Core.ShapeDataBody().GetClassEntityInfo(), 0, null, 0);
 			
 			classInfo.StaticProperties.Insert("shape_p0", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Vector4, 176, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("shape_p1", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Vector4, 192, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public CapsuleShapeBody(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public CapsuleShapeBody(ulong address, ulong id) : base(address, id) { }
+		public CapsuleShapeBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

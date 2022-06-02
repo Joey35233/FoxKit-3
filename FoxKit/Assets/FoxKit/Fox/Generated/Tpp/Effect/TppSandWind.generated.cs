@@ -46,7 +46,7 @@ namespace Tpp.Effect
         }
         static TppSandWind()
         {
-            classInfo = new Fox.EntityInfo("TppSandWind", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 96, null, 0);
+            classInfo = new Fox.EntityInfo("TppSandWind", new Fox.Core.Data().GetClassEntityInfo(), 96, null, 0);
 			
 			classInfo.StaticProperties.Insert("intensity", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("velocity", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 124, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -58,8 +58,9 @@ namespace Tpp.Effect
 			classInfo.StaticProperties.Insert("closeSandRelativeVelocity", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 148, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppSandWind(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppSandWind(ulong address, ulong id) : base(address, id) { }
+		public TppSandWind() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

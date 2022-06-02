@@ -30,12 +30,13 @@ namespace Fox.Fx
         }
         static LocatorGroupBody()
         {
-            classInfo = new Fox.EntityInfo("LocatorGroupBody", new Fox.Core.TransformDataBody(0, 0, 0).GetClassEntityInfo(), 0, "Fx", 0);
+            classInfo = new Fox.EntityInfo("LocatorGroupBody", new Fox.Core.TransformDataBody().GetClassEntityInfo(), 0, "Fx", 0);
 			
         }
 
-        // Constructor
-		public LocatorGroupBody(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public LocatorGroupBody(ulong address, ulong id) : base(address, id) { }
+		public LocatorGroupBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

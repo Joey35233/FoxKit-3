@@ -32,13 +32,14 @@ namespace Fox.GameKit
         }
         static WindArea()
         {
-            classInfo = new Fox.EntityInfo("WindArea", new Fox.GameKit.EnvironmentArea(0, 0, 0).GetClassEntityInfo(), 0, "Wind", 1);
+            classInfo = new Fox.EntityInfo("WindArea", new Fox.GameKit.EnvironmentArea().GetClassEntityInfo(), 0, "Wind", 1);
 			
 			classInfo.StaticProperties.Insert("influenceOfGlobal", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public WindArea(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public WindArea(ulong address, ulong id) : base(address, id) { }
+		public WindArea() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

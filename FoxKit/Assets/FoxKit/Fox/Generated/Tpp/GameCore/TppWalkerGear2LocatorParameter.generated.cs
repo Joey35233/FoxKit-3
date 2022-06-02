@@ -32,13 +32,14 @@ namespace Tpp.GameCore
         }
         static TppWalkerGear2LocatorParameter()
         {
-            classInfo = new Fox.EntityInfo("TppWalkerGear2LocatorParameter", new Fox.Core.DataElement(0, 0, 0).GetClassEntityInfo(), 32, null, 0);
+            classInfo = new Fox.EntityInfo("TppWalkerGear2LocatorParameter", new Fox.Core.DataElement().GetClassEntityInfo(), 32, null, 0);
 			
 			classInfo.StaticProperties.Insert("identifier", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 56, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppWalkerGear2LocatorParameter(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppWalkerGear2LocatorParameter(ulong address, ulong id) : base(address, id) { }
+		public TppWalkerGear2LocatorParameter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

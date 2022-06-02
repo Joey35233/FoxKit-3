@@ -30,12 +30,13 @@ namespace Fox.GameKit
         }
         static FormVariationFile2()
         {
-            classInfo = new Fox.EntityInfo("FormVariationFile2", new Fox.Core.RawFile(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("FormVariationFile2", new Fox.Core.RawFile().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public FormVariationFile2(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public FormVariationFile2(ulong address, ulong id) : base(address, id) { }
+		public FormVariationFile2() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

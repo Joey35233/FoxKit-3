@@ -30,12 +30,13 @@ namespace Fox.GameKit
         }
         static OverlayModelBody()
         {
-            classInfo = new Fox.EntityInfo("OverlayModelBody", new Fox.Core.DataBody(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("OverlayModelBody", new Fox.Core.DataBody().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public OverlayModelBody(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public OverlayModelBody(ulong address, ulong id) : base(address, id) { }
+		public OverlayModelBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

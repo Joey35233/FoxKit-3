@@ -30,12 +30,13 @@ namespace Fox.Gr
         }
         static GrCamera()
         {
-            classInfo = new Fox.EntityInfo("GrCamera", new Fox.Core.Entity(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("GrCamera", new Fox.Core.Entity().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public GrCamera(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public GrCamera(ulong address, ulong id) : base(address, id) { }
+		public GrCamera() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

@@ -52,7 +52,7 @@ namespace Tpp.GameCore
         }
         static TppPlayer2BlockControllerData()
         {
-            classInfo = new Fox.EntityInfo("TppPlayer2BlockControllerData", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 136, null, 3);
+            classInfo = new Fox.EntityInfo("TppPlayer2BlockControllerData", new Fox.Core.Data().GetClassEntityInfo(), 136, null, 3);
 			
 			classInfo.StaticProperties.Insert("configuration_commonMotionBlockSize", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt32, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("configuration_commonMotionBlockSizePs3", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt32, 124, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -67,8 +67,9 @@ namespace Tpp.GameCore
 			classInfo.StaticProperties.Insert("instanceSettings_partsTypeInitial", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 184, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppPlayer2BlockControllerData(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppPlayer2BlockControllerData(ulong address, ulong id) : base(address, id) { }
+		public TppPlayer2BlockControllerData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

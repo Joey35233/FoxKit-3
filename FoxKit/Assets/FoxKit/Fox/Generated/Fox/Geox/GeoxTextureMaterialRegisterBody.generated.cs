@@ -30,12 +30,13 @@ namespace Fox.Geox
         }
         static GeoxTextureMaterialRegisterBody()
         {
-            classInfo = new Fox.EntityInfo("GeoxTextureMaterialRegisterBody", new Fox.Core.DataBody(0, 0, 0).GetClassEntityInfo(), 0, "Geox", 0);
+            classInfo = new Fox.EntityInfo("GeoxTextureMaterialRegisterBody", new Fox.Core.DataBody().GetClassEntityInfo(), 0, "Geox", 0);
 			
         }
 
-        // Constructor
-		public GeoxTextureMaterialRegisterBody(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public GeoxTextureMaterialRegisterBody(ulong address, ulong id) : base(address, id) { }
+		public GeoxTextureMaterialRegisterBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

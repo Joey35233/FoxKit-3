@@ -30,12 +30,13 @@ namespace Fox.GameKit
         }
         static SubtitlesTrapConditionBody()
         {
-            classInfo = new Fox.EntityInfo("SubtitlesTrapConditionBody", new Fox.Geo.GeoTrapConditionBody(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("SubtitlesTrapConditionBody", new Fox.Geo.GeoTrapConditionBody().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public SubtitlesTrapConditionBody(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public SubtitlesTrapConditionBody(ulong address, ulong id) : base(address, id) { }
+		public SubtitlesTrapConditionBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

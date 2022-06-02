@@ -48,7 +48,7 @@ namespace Fox.Tactical
         }
         static GkTacticalAction()
         {
-            classInfo = new Fox.EntityInfo("GkTacticalAction", new Fox.Core.TransformData(0, 0, 0).GetClassEntityInfo(), 368, "TacticalAction", 7);
+            classInfo = new Fox.EntityInfo("GkTacticalAction", new Fox.Core.TransformData().GetClassEntityInfo(), 368, "TacticalAction", 7);
 			
 			classInfo.StaticProperties.Insert("enable", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 304, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("enableInGame", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 305, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -61,8 +61,9 @@ namespace Fox.Tactical
 			classInfo.StaticProperties.Insert("attribute", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt32, 416, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public GkTacticalAction(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public GkTacticalAction(ulong address, ulong id) : base(address, id) { }
+		public GkTacticalAction() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

@@ -38,7 +38,7 @@ namespace Fox.Sim
         }
         static SimClothControl()
         {
-            classInfo = new Fox.EntityInfo("SimClothControl", new Fox.Sim.SimControlElement(0, 0, 0).GetClassEntityInfo(), 72, "Sim", 0);
+            classInfo = new Fox.EntityInfo("SimClothControl", new Fox.Sim.SimControlElement().GetClassEntityInfo(), 72, "Sim", 0);
 			
 			classInfo.StaticProperties.Insert("controlParam", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityPtr, 72, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, typeof(Fox.Sim.SimClothControlParam), null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("clothControlUnits", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityPtr, 80, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.Never, typeof(Fox.Sim.SimClothControlUnit), null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -46,8 +46,9 @@ namespace Fox.Sim
 			classInfo.StaticProperties.Insert("isLoop", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public SimClothControl(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public SimClothControl(ulong address, ulong id) : base(address, id) { }
+		public SimClothControl() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

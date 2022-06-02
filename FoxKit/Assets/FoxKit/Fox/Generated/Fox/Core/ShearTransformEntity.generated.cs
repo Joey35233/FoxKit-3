@@ -34,14 +34,15 @@ namespace Fox.Core
         }
         static ShearTransformEntity()
         {
-            classInfo = new Fox.EntityInfo("ShearTransformEntity", new Fox.Core.DataElement(0, 0, 0).GetClassEntityInfo(), 48, null, 0);
+            classInfo = new Fox.EntityInfo("ShearTransformEntity", new Fox.Core.DataElement().GetClassEntityInfo(), 48, null, 0);
 			
 			classInfo.StaticProperties.Insert("shearTransform_shear", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Vector3, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("shear", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Vector3, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public ShearTransformEntity(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public ShearTransformEntity(ulong address, ulong id) : base(address, id) { }
+		public ShearTransformEntity() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

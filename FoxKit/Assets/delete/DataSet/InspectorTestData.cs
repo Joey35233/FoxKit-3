@@ -99,7 +99,7 @@ namespace Fox.Core
         public bool bool_property;
         public Fox.String String_property;
         public Path Path_property;
-        public EntityPtr<Entity> EntityPtr_property;
+        public EntityPtr<TransformEntity> EntityPtr_property;
         public Vector3 Vector3_property;
         public Vector4 Vector4_property;
         public Quaternion Quaternion_property;
@@ -191,11 +191,11 @@ namespace Fox.Core
     {
         public InspectorTestData2()
         {
-            strings = new StringMap<String>(5);
+            arrays = new StaticArray<StaticArray<int>>(1);
+            for (int i = 0; i < 1; i++)
+                arrays[i] = new StaticArray<int>(1);
         }
 
-        public String str;
-
-        public StringMap<String> strings;
+        public StaticArray<StaticArray<int>> arrays;
     }
 }

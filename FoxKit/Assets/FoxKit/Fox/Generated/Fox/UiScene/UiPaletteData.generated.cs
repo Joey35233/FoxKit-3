@@ -32,13 +32,14 @@ namespace Fox.UiScene
         }
         static UiPaletteData()
         {
-            classInfo = new Fox.EntityInfo("UiPaletteData", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 112, "Ui", 0);
+            classInfo = new Fox.EntityInfo("UiPaletteData", new Fox.Core.Data().GetClassEntityInfo(), 112, "Ui", 0);
 			
 			classInfo.StaticProperties.Insert("colors", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Color, 120, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public UiPaletteData(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public UiPaletteData(ulong address, ulong id) : base(address, id) { }
+		public UiPaletteData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

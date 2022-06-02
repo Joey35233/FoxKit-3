@@ -32,13 +32,14 @@ namespace Fox.Core
         }
         static EntityPtrStringMapEntity()
         {
-            classInfo = new Fox.EntityInfo("EntityPtrStringMapEntity", new Fox.Core.Entity(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("EntityPtrStringMapEntity", new Fox.Core.Entity().GetClassEntityInfo(), 0, null, 0);
 			
 			classInfo.StaticProperties.Insert("stringMap", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityPtr, 48, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, typeof(Fox.Core.Entity), null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public EntityPtrStringMapEntity(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public EntityPtrStringMapEntity(ulong address, ulong id) : base(address, id) { }
+		public EntityPtrStringMapEntity() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

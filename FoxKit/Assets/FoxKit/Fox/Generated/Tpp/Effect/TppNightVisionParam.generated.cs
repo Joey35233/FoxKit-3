@@ -48,7 +48,7 @@ namespace Tpp.Effect
         }
         static TppNightVisionParam()
         {
-            classInfo = new Fox.EntityInfo("TppNightVisionParam", new Fox.Core.DataElement(0, 0, 0).GetClassEntityInfo(), 120, null, 2);
+            classInfo = new Fox.EntityInfo("TppNightVisionParam", new Fox.Core.DataElement().GetClassEntityInfo(), 120, null, 2);
 			
 			classInfo.StaticProperties.Insert("enable", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 108, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("colorCorrectionLUT", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Path, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -61,8 +61,9 @@ namespace Tpp.Effect
 			classInfo.StaticProperties.Insert("tonemapRange", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 104, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppNightVisionParam(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppNightVisionParam(ulong address, ulong id) : base(address, id) { }
+		public TppNightVisionParam() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

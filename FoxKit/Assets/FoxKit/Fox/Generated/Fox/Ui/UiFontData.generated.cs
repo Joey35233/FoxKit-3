@@ -36,15 +36,16 @@ namespace Fox.Ui
         }
         static UiFontData()
         {
-            classInfo = new Fox.EntityInfo("UiFontData", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 0, "Ui", 0);
+            classInfo = new Fox.EntityInfo("UiFontData", new Fox.Core.Data().GetClassEntityInfo(), 0, "Ui", 0);
 			
 			classInfo.StaticProperties.Insert("fontName", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("texturePath", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Path, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("fontFile", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.FilePtr, 136, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public UiFontData(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public UiFontData(ulong address, ulong id) : base(address, id) { }
+		public UiFontData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

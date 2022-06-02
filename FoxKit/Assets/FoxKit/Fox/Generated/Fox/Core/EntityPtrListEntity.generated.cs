@@ -32,13 +32,14 @@ namespace Fox.Core
         }
         static EntityPtrListEntity()
         {
-            classInfo = new Fox.EntityInfo("EntityPtrListEntity", new Fox.Core.Entity(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("EntityPtrListEntity", new Fox.Core.Entity().GetClassEntityInfo(), 0, null, 0);
 			
 			classInfo.StaticProperties.Insert("list", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityPtr, 48, 1, Fox.Core.PropertyInfo.ContainerType.List, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, typeof(Fox.Core.Entity), null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public EntityPtrListEntity(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public EntityPtrListEntity(ulong address, ulong id) : base(address, id) { }
+		public EntityPtrListEntity() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

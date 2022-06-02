@@ -40,7 +40,7 @@ namespace Fox.Grx
         }
         static OccluderEx()
         {
-            classInfo = new Fox.EntityInfo("OccluderEx", new Fox.Core.TransformData(0, 0, 0).GetClassEntityInfo(), 0, "Area", 0);
+            classInfo = new Fox.EntityInfo("OccluderEx", new Fox.Core.TransformData().GetClassEntityInfo(), 0, "Area", 0);
 			
 			classInfo.StaticProperties.Insert("isEnable", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 304, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("isOneSideMode", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 305, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -49,8 +49,9 @@ namespace Fox.Grx
 			classInfo.StaticProperties.Insert("positions", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Vector3, 320, 7, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public OccluderEx(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public OccluderEx(ulong address, ulong id) : base(address, id) { }
+		public OccluderEx() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

@@ -30,12 +30,13 @@ namespace Fox.Geox
         }
         static GeoxTrapAreaPathBody()
         {
-            classInfo = new Fox.EntityInfo("GeoxTrapAreaPathBody", new Fox.Graphx.GraphxPath(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("GeoxTrapAreaPathBody", new Fox.Graphx.GraphxPath().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public GeoxTrapAreaPathBody(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public GeoxTrapAreaPathBody(ulong address, ulong id) : base(address, id) { }
+		public GeoxTrapAreaPathBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

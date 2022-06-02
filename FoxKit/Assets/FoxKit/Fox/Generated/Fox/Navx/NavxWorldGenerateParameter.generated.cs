@@ -74,7 +74,7 @@ namespace Fox.Navx
         }
         static NavxWorldGenerateParameter()
         {
-            classInfo = new Fox.EntityInfo("NavxWorldGenerateParameter", new Fox.Core.TransformData(0, 0, 0).GetClassEntityInfo(), 400, "Navx", 27);
+            classInfo = new Fox.EntityInfo("NavxWorldGenerateParameter", new Fox.Core.TransformData().GetClassEntityInfo(), 400, "Navx", 27);
 			
 			classInfo.StaticProperties.Insert("resolution", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 304, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("verticalThreshold", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 308, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -100,8 +100,9 @@ namespace Fox.Navx
 			classInfo.StaticProperties.Insert("loadFox2FileListScriptPath", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Path, 440, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public NavxWorldGenerateParameter(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public NavxWorldGenerateParameter(ulong address, ulong id) : base(address, id) { }
+		public NavxWorldGenerateParameter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

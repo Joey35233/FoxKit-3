@@ -156,7 +156,7 @@ namespace Fox.Core
         }
         static StageBlockControllerData()
         {
-            classInfo = new Fox.EntityInfo("StageBlockControllerData", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 288, null, 8);
+            classInfo = new Fox.EntityInfo("StageBlockControllerData", new Fox.Core.Data().GetClassEntityInfo(), 288, null, 8);
 			
 			classInfo.StaticProperties.Insert("enable", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("stageName", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -223,8 +223,9 @@ namespace Fox.Core
 			classInfo.StaticProperties.Insert("lod1LargeBlock3Count", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt8, 359, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public StageBlockControllerData(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public StageBlockControllerData(ulong address, ulong id) : base(address, id) { }
+		public StageBlockControllerData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

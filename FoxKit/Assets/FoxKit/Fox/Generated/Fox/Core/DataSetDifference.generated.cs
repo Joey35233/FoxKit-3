@@ -32,13 +32,14 @@ namespace Fox.Core
         }
         static DataSetDifference()
         {
-            classInfo = new Fox.EntityInfo("DataSetDifference", new Fox.Core.Entity(0, 0, 0).GetClassEntityInfo(), 72, null, 0);
+            classInfo = new Fox.EntityInfo("DataSetDifference", new Fox.Core.Entity().GetClassEntityInfo(), 72, null, 0);
 			
 			classInfo.StaticProperties.Insert("dataList", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityPtr, 48, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, typeof(Fox.Core.EntityDifference), null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public DataSetDifference(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public DataSetDifference(ulong address, ulong id) : base(address, id) { }
+		public DataSetDifference() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

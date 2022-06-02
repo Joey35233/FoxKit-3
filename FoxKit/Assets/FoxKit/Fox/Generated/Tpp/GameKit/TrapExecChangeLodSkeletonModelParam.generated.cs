@@ -32,13 +32,14 @@ namespace Tpp.GameKit
         }
         static TrapExecChangeLodSkeletonModelParam()
         {
-            classInfo = new Fox.EntityInfo("TrapExecChangeLodSkeletonModelParam", new Fox.Geo.GeoTrapModuleCallbackDataElement(0, 0, 0).GetClassEntityInfo(), 36, null, 0);
+            classInfo = new Fox.EntityInfo("TrapExecChangeLodSkeletonModelParam", new Fox.Geo.GeoTrapModuleCallbackDataElement().GetClassEntityInfo(), 36, null, 0);
 			
 			classInfo.StaticProperties.Insert("lodRate", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TrapExecChangeLodSkeletonModelParam(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TrapExecChangeLodSkeletonModelParam(ulong address, ulong id) : base(address, id) { }
+		public TrapExecChangeLodSkeletonModelParam() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

@@ -62,7 +62,7 @@ namespace Fox.GameKit
         }
         static TerrainDecal()
         {
-            classInfo = new Fox.EntityInfo("TerrainDecal", new Fox.Core.TransformData(0, 0, 0).GetClassEntityInfo(), 384, "Terrain", 9);
+            classInfo = new Fox.EntityInfo("TerrainDecal", new Fox.Core.TransformData().GetClassEntityInfo(), 384, "Terrain", 9);
 			
 			classInfo.StaticProperties.Insert("material", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityLink, 312, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("gridColor", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Color, 384, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -82,8 +82,9 @@ namespace Fox.GameKit
 			classInfo.StaticProperties.Insert("serializedGraphNodes", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Vector3, 416, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TerrainDecal(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TerrainDecal(ulong address, ulong id) : base(address, id) { }
+		public TerrainDecal() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

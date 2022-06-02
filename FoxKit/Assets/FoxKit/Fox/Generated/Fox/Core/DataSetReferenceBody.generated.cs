@@ -30,12 +30,13 @@ namespace Fox.Core
         }
         static DataSetReferenceBody()
         {
-            classInfo = new Fox.EntityInfo("DataSetReferenceBody", new Fox.Core.TransformDataBody(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("DataSetReferenceBody", new Fox.Core.TransformDataBody().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public DataSetReferenceBody(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public DataSetReferenceBody(ulong address, ulong id) : base(address, id) { }
+		public DataSetReferenceBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

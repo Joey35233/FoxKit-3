@@ -30,12 +30,13 @@ namespace Tpp.GameKit
         }
         static ObjectBrushPluginFlutteringGrassBody()
         {
-            classInfo = new Fox.EntityInfo("ObjectBrushPluginFlutteringGrassBody", new Fox.GameKit.ObjectBrushPluginCloneBody(0, 0, 0).GetClassEntityInfo(), 0, "TppObjectBrushFlutteringGrass", 0);
+            classInfo = new Fox.EntityInfo("ObjectBrushPluginFlutteringGrassBody", new Fox.GameKit.ObjectBrushPluginCloneBody().GetClassEntityInfo(), 0, "TppObjectBrushFlutteringGrass", 0);
 			
         }
 
-        // Constructor
-		public ObjectBrushPluginFlutteringGrassBody(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public ObjectBrushPluginFlutteringGrassBody(ulong address, ulong id) : base(address, id) { }
+		public ObjectBrushPluginFlutteringGrassBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

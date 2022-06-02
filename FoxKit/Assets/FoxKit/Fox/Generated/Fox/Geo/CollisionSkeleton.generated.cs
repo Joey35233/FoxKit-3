@@ -32,13 +32,14 @@ namespace Fox.Geo
         }
         static CollisionSkeleton()
         {
-            classInfo = new Fox.EntityInfo("CollisionSkeleton", new Fox.Geo.CollisionObject(0, 0, 0).GetClassEntityInfo(), 0, "Collision", 0);
+            classInfo = new Fox.EntityInfo("CollisionSkeleton", new Fox.Geo.CollisionObject().GetClassEntityInfo(), 0, "Collision", 0);
 			
 			classInfo.StaticProperties.Insert("gsklFilePtr", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.FilePtr, 96, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public CollisionSkeleton(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public CollisionSkeleton(ulong address, ulong id) : base(address, id) { }
+		public CollisionSkeleton() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

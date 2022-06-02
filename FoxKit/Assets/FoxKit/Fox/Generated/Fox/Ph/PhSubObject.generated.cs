@@ -30,12 +30,13 @@ namespace Fox.Ph
         }
         static PhSubObject()
         {
-            classInfo = new Fox.EntityInfo("PhSubObject", new Fox.Core.TransformData(0, 0, 0).GetClassEntityInfo(), 0, "Ph", 0);
+            classInfo = new Fox.EntityInfo("PhSubObject", new Fox.Core.TransformData().GetClassEntityInfo(), 0, "Ph", 0);
 			
         }
 
-        // Constructor
-		public PhSubObject(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public PhSubObject(ulong address, ulong id) : base(address, id) { }
+		public PhSubObject() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

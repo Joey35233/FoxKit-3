@@ -30,12 +30,13 @@ namespace Fox.Grx
         }
         static OccluderArrayFile()
         {
-            classInfo = new Fox.EntityInfo("OccluderArrayFile", new Fox.Core.RawFile(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("OccluderArrayFile", new Fox.Core.RawFile().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public OccluderArrayFile(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public OccluderArrayFile(ulong address, ulong id) : base(address, id) { }
+		public OccluderArrayFile() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

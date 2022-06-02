@@ -30,12 +30,13 @@ namespace Fox.Gr
         }
         static GrDaemon()
         {
-            classInfo = new Fox.EntityInfo("GrDaemon", new Fox.Core.Actor(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("GrDaemon", new Fox.Core.Actor().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public GrDaemon(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public GrDaemon(ulong address, ulong id) : base(address, id) { }
+		public GrDaemon() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

@@ -30,12 +30,13 @@ namespace Tpp.GameCore
         }
         static TppHeli2LocatorParameter()
         {
-            classInfo = new Fox.EntityInfo("TppHeli2LocatorParameter", new Fox.Core.DataElement(0, 0, 0).GetClassEntityInfo(), 28, null, 0);
+            classInfo = new Fox.EntityInfo("TppHeli2LocatorParameter", new Fox.Core.DataElement().GetClassEntityInfo(), 28, null, 0);
 			
         }
 
-        // Constructor
-		public TppHeli2LocatorParameter(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppHeli2LocatorParameter(ulong address, ulong id) : base(address, id) { }
+		public TppHeli2LocatorParameter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

@@ -34,14 +34,15 @@ namespace Fox.GameKit
         }
         static OverlayModel()
         {
-            classInfo = new Fox.EntityInfo("OverlayModel", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 0, "OverlayModel", 0);
+            classInfo = new Fox.EntityInfo("OverlayModel", new Fox.Core.Data().GetClassEntityInfo(), 0, "OverlayModel", 0);
 			
 			classInfo.StaticProperties.Insert("target", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityLink, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("isOn", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 160, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public OverlayModel(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public OverlayModel(ulong address, ulong id) : base(address, id) { }
+		public OverlayModel() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

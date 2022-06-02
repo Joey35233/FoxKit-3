@@ -30,12 +30,13 @@ namespace Fox.Core
         }
         static LineSegmentComponentSet()
         {
-            classInfo = new Fox.EntityInfo("LineSegmentComponentSet", new Fox.Core.ComponentSet(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("LineSegmentComponentSet", new Fox.Core.ComponentSet().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public LineSegmentComponentSet(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public LineSegmentComponentSet(ulong address, ulong id) : base(address, id) { }
+		public LineSegmentComponentSet() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

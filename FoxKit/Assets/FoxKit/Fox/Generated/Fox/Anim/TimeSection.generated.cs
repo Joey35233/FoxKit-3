@@ -34,14 +34,15 @@ namespace Fox.Anim
         }
         static TimeSection()
         {
-            classInfo = new Fox.EntityInfo("TimeSection", new Fox.Core.DataElement(0, 0, 0).GetClassEntityInfo(), 36, null, 1);
+            classInfo = new Fox.EntityInfo("TimeSection", new Fox.Core.DataElement().GetClassEntityInfo(), 36, null, 1);
 			
 			classInfo.StaticProperties.Insert("startFrame", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Int32, 56, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("endFrame", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Int32, 60, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TimeSection(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TimeSection(ulong address, ulong id) : base(address, id) { }
+		public TimeSection() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

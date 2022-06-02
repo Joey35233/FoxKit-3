@@ -32,13 +32,14 @@ namespace Fox.GameKit
         }
         static CheckpointTrapScriptModuleConditionBody()
         {
-            classInfo = new Fox.EntityInfo("CheckpointTrapScriptModuleConditionBody", new Fox.Geo.GeoTrapScriptModuleConditionBody(0, 0, 0).GetClassEntityInfo(), 0, "GameKit", 0);
+            classInfo = new Fox.EntityInfo("CheckpointTrapScriptModuleConditionBody", new Fox.Geo.GeoTrapScriptModuleConditionBody().GetClassEntityInfo(), 0, "GameKit", 0);
 			
 			classInfo.StaticProperties.Insert("checkpointName", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 192, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public CheckpointTrapScriptModuleConditionBody(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public CheckpointTrapScriptModuleConditionBody(ulong address, ulong id) : base(address, id) { }
+		public CheckpointTrapScriptModuleConditionBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

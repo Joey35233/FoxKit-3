@@ -30,12 +30,13 @@ namespace Tpp.GameCore
         }
         static TppBuddyPuppyLocatorParameter()
         {
-            classInfo = new Fox.EntityInfo("TppBuddyPuppyLocatorParameter", new Fox.Core.DataElement(0, 0, 0).GetClassEntityInfo(), 28, null, 0);
+            classInfo = new Fox.EntityInfo("TppBuddyPuppyLocatorParameter", new Fox.Core.DataElement().GetClassEntityInfo(), 28, null, 0);
 			
         }
 
-        // Constructor
-		public TppBuddyPuppyLocatorParameter(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppBuddyPuppyLocatorParameter(ulong address, ulong id) : base(address, id) { }
+		public TppBuddyPuppyLocatorParameter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

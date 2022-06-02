@@ -30,12 +30,13 @@ namespace Tpp.Effect
         }
         static TppFocusBokehFilterDataBody()
         {
-            classInfo = new Fox.EntityInfo("TppFocusBokehFilterDataBody", new Fox.Core.DataBody(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("TppFocusBokehFilterDataBody", new Fox.Core.DataBody().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public TppFocusBokehFilterDataBody(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppFocusBokehFilterDataBody(ulong address, ulong id) : base(address, id) { }
+		public TppFocusBokehFilterDataBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

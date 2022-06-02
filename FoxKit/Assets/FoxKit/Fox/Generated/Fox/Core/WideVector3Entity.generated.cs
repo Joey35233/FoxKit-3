@@ -32,13 +32,14 @@ namespace Fox.Core
         }
         static WideVector3Entity()
         {
-            classInfo = new Fox.EntityInfo("WideVector3Entity", new Fox.Core.PropertyValueEntity(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("WideVector3Entity", new Fox.Core.PropertyValueEntity().GetClassEntityInfo(), 0, null, 0);
 			
 			classInfo.StaticProperties.Insert("value", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.WideVector3, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public WideVector3Entity(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public WideVector3Entity(ulong address, ulong id) : base(address, id) { }
+		public WideVector3Entity() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

@@ -36,15 +36,16 @@ namespace Tpp.GameCore
         }
         static TppNoiseArea2()
         {
-            classInfo = new Fox.EntityInfo("TppNoiseArea2", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 88, null, 1);
+            classInfo = new Fox.EntityInfo("TppNoiseArea2", new Fox.Core.Data().GetClassEntityInfo(), 88, null, 1);
 			
 			classInfo.StaticProperties.Insert("shapes", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityLink, 120, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("areaIndex", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Int16, 136, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("subIndex", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Int16, 138, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppNoiseArea2(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppNoiseArea2(ulong address, ulong id) : base(address, id) { }
+		public TppNoiseArea2() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

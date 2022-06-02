@@ -32,13 +32,14 @@ namespace Fox.Sim
         }
         static SimControlElement()
         {
-            classInfo = new Fox.EntityInfo("SimControlElement", new Fox.Core.DataElement(0, 0, 0).GetClassEntityInfo(), 0, "Sim", 0);
+            classInfo = new Fox.EntityInfo("SimControlElement", new Fox.Core.DataElement().GetClassEntityInfo(), 0, "Sim", 0);
 			
 			classInfo.StaticProperties.Insert("bones", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 56, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public SimControlElement(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public SimControlElement(ulong address, ulong id) : base(address, id) { }
+		public SimControlElement() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

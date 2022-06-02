@@ -50,7 +50,7 @@ namespace Fox.Demox
         }
         static DemoResource()
         {
-            classInfo = new Fox.EntityInfo("DemoResource", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 120, null, 1);
+            classInfo = new Fox.EntityInfo("DemoResource", new Fox.Core.Data().GetClassEntityInfo(), 120, null, 1);
 			
 			classInfo.StaticProperties.Insert("enable", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("demoIdentifierName", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -64,8 +64,9 @@ namespace Fox.Demox
 			classInfo.StaticProperties.Insert("demoPacketNum", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt32, 176, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public DemoResource(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public DemoResource(ulong address, ulong id) : base(address, id) { }
+		public DemoResource() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

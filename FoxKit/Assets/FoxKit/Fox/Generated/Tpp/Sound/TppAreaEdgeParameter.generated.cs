@@ -38,7 +38,7 @@ namespace Tpp.Sound
         }
         static TppAreaEdgeParameter()
         {
-            classInfo = new Fox.EntityInfo("TppAreaEdgeParameter", new Fox.Sdx.SoundAreaEdgeParameter(0, 0, 0).GetClassEntityInfo(), 48, "Sound", 0);
+            classInfo = new Fox.EntityInfo("TppAreaEdgeParameter", new Fox.Sdx.SoundAreaEdgeParameter().GetClassEntityInfo(), 48, "Sound", 0);
 			
 			classInfo.StaticProperties.Insert("connectedClearObstruction", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("connectedClearOcclusion", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 68, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -46,8 +46,9 @@ namespace Tpp.Sound
 			classInfo.StaticProperties.Insert("connectedBlockedOcclusion", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 76, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppAreaEdgeParameter(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppAreaEdgeParameter(ulong address, ulong id) : base(address, id) { }
+		public TppAreaEdgeParameter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

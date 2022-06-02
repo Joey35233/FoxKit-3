@@ -52,7 +52,7 @@ namespace Fox.Core
         }
         static Material()
         {
-            classInfo = new Fox.EntityInfo("Material", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 176, "Material", 6);
+            classInfo = new Fox.EntityInfo("Material", new Fox.Core.Data().GetClassEntityInfo(), 176, "Material", 6);
 			
 			classInfo.StaticProperties.Insert("materialName", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("shader", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Path, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -67,8 +67,9 @@ namespace Fox.Core
 			classInfo.StaticProperties.Insert("residentFlag", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 216, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public Material(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public Material(ulong address, ulong id) : base(address, id) { }
+		public Material() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

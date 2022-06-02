@@ -68,7 +68,7 @@ namespace Fox.Sdx
         }
         static SoundPhysicsParameter()
         {
-            classInfo = new Fox.EntityInfo("SoundPhysicsParameter", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 140, "Sound", 1);
+            classInfo = new Fox.EntityInfo("SoundPhysicsParameter", new Fox.Core.Data().GetClassEntityInfo(), 140, "Sound", 1);
 			
 			classInfo.StaticProperties.Insert("hitEvent", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("rollStartEvent", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -91,8 +91,9 @@ namespace Fox.Sdx
 			classInfo.StaticProperties.Insert("rollUpperRtpc", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 224, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public SoundPhysicsParameter(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public SoundPhysicsParameter(ulong address, ulong id) : base(address, id) { }
+		public SoundPhysicsParameter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

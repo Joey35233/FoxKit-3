@@ -32,13 +32,14 @@ namespace Fox.Tactical
         }
         static GkTacticalActionWaypoint()
         {
-            classInfo = new Fox.EntityInfo("GkTacticalActionWaypoint", new Fox.Core.DataElement(0, 0, 0).GetClassEntityInfo(), 48, "TacticalAction", 0);
+            classInfo = new Fox.EntityInfo("GkTacticalActionWaypoint", new Fox.Core.DataElement().GetClassEntityInfo(), 48, "TacticalAction", 0);
 			
 			classInfo.StaticProperties.Insert("position", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Vector3, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public GkTacticalActionWaypoint(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public GkTacticalActionWaypoint(ulong address, ulong id) : base(address, id) { }
+		public GkTacticalActionWaypoint() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

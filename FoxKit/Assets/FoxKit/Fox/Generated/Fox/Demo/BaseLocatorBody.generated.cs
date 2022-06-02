@@ -30,12 +30,13 @@ namespace Fox.Demo
         }
         static BaseLocatorBody()
         {
-            classInfo = new Fox.EntityInfo("BaseLocatorBody", new Fox.Core.TransformDataBody(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("BaseLocatorBody", new Fox.Core.TransformDataBody().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public BaseLocatorBody(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public BaseLocatorBody(ulong address, ulong id) : base(address, id) { }
+		public BaseLocatorBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

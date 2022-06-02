@@ -30,12 +30,13 @@ namespace Fox.Navx
         }
         static NavxWorldGenerateParameterBody()
         {
-            classInfo = new Fox.EntityInfo("NavxWorldGenerateParameterBody", new Fox.Core.TransformDataBody(0, 0, 0).GetClassEntityInfo(), 0, "Navx", 0);
+            classInfo = new Fox.EntityInfo("NavxWorldGenerateParameterBody", new Fox.Core.TransformDataBody().GetClassEntityInfo(), 0, "Navx", 0);
 			
         }
 
-        // Constructor
-		public NavxWorldGenerateParameterBody(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public NavxWorldGenerateParameterBody(ulong address, ulong id) : base(address, id) { }
+		public NavxWorldGenerateParameterBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

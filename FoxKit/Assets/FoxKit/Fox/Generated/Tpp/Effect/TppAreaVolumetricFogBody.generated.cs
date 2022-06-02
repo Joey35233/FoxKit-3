@@ -30,12 +30,13 @@ namespace Tpp.Effect
         }
         static TppAreaVolumetricFogBody()
         {
-            classInfo = new Fox.EntityInfo("TppAreaVolumetricFogBody", new Fox.Core.TransformDataBody(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("TppAreaVolumetricFogBody", new Fox.Core.TransformDataBody().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public TppAreaVolumetricFogBody(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppAreaVolumetricFogBody(ulong address, ulong id) : base(address, id) { }
+		public TppAreaVolumetricFogBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

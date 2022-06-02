@@ -58,7 +58,7 @@ namespace Tpp.Effect
         }
         static TppWeatherSandStormData()
         {
-            classInfo = new Fox.EntityInfo("TppWeatherSandStormData", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 240, "TppEffect", 3);
+            classInfo = new Fox.EntityInfo("TppWeatherSandStormData", new Fox.Core.Data().GetClassEntityInfo(), 240, "TppEffect", 3);
 			
 			classInfo.StaticProperties.Insert("vfxFileSandStormStart", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.FilePtr, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("vfxFileSandStormFar", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.FilePtr, 144, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -76,8 +76,9 @@ namespace Tpp.Effect
 			classInfo.StaticProperties.Insert("noiseSunLightColorMul", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 272, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppWeatherSandStormData(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppWeatherSandStormData(ulong address, ulong id) : base(address, id) { }
+		public TppWeatherSandStormData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

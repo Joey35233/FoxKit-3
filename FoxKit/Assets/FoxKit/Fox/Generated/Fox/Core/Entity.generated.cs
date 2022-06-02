@@ -34,12 +34,16 @@ namespace Fox.Core
 			
         }
 
-        // Constructor
-		public Entity(ulong address, ushort idA, ushort idB)
+        // Constructors
+		public Entity(ulong address, ulong id)
         {
             this.Address = address;
-            this.IdA = idA;
-            this.IdB = idB;
+            this.Id = id;
+        }
+		public Entity()
+        {
+            this.Address = 0;
+            this.Id = 0;
         }
         
         public virtual void SetProperty(string propertyName, Fox.Value value)

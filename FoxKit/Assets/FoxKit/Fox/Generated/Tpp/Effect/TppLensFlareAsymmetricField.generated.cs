@@ -42,7 +42,7 @@ namespace Tpp.Effect
         }
         static TppLensFlareAsymmetricField()
         {
-            classInfo = new Fox.EntityInfo("TppLensFlareAsymmetricField", new Tpp.Effect.TppLensFlareField(0, 0, 0).GetClassEntityInfo(), 176, null, 0);
+            classInfo = new Fox.EntityInfo("TppLensFlareAsymmetricField", new Tpp.Effect.TppLensFlareField().GetClassEntityInfo(), 176, null, 0);
 			
 			classInfo.StaticProperties.Insert("verticalInnerScale", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 208, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("verticalCenterScale", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 216, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -52,8 +52,9 @@ namespace Tpp.Effect
 			classInfo.StaticProperties.Insert("verticalOuterValue", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 228, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppLensFlareAsymmetricField(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppLensFlareAsymmetricField(ulong address, ulong id) : base(address, id) { }
+		public TppLensFlareAsymmetricField() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

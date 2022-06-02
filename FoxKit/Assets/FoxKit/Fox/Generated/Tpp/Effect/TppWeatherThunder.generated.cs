@@ -60,7 +60,7 @@ namespace Tpp.Effect
         }
         static TppWeatherThunder()
         {
-            classInfo = new Fox.EntityInfo("TppWeatherThunder", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 0, "TppEffect", 4);
+            classInfo = new Fox.EntityInfo("TppWeatherThunder", new Fox.Core.Data().GetClassEntityInfo(), 0, "TppEffect", 4);
 			
 			classInfo.StaticProperties.Insert("enable", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 253, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("color", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Color, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -79,8 +79,9 @@ namespace Tpp.Effect
 			classInfo.StaticProperties.Insert("spotLightLumen", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 248, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppWeatherThunder(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppWeatherThunder(ulong address, ulong id) : base(address, id) { }
+		public TppWeatherThunder() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

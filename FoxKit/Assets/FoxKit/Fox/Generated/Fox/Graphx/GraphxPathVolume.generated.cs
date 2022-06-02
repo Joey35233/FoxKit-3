@@ -32,13 +32,14 @@ namespace Fox.Graphx
         }
         static GraphxPathVolume()
         {
-            classInfo = new Fox.EntityInfo("GraphxPathVolume", new Fox.Graphx.GraphxPathData(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("GraphxPathVolume", new Fox.Graphx.GraphxPathData().GetClassEntityInfo(), 0, null, 0);
 			
 			classInfo.StaticProperties.Insert("topPos", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Vector3, 336, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public GraphxPathVolume(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public GraphxPathVolume(ulong address, ulong id) : base(address, id) { }
+		public GraphxPathVolume() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

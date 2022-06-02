@@ -58,7 +58,7 @@ namespace Fox.Grx
         }
         static GrxLineSSAOParameters()
         {
-            classInfo = new Fox.EntityInfo("GrxLineSSAOParameters", new Fox.Core.Entity(0, 0, 0).GetClassEntityInfo(), 80, null, 3);
+            classInfo = new Fox.EntityInfo("GrxLineSSAOParameters", new Fox.Core.Entity().GetClassEntityInfo(), 80, null, 3);
 			
 			classInfo.StaticProperties.Insert("innerRadius", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 48, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("outerRadius", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 52, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -76,8 +76,9 @@ namespace Fox.Grx
 			classInfo.StaticProperties.Insert("gainonRange", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 100, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public GrxLineSSAOParameters(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public GrxLineSSAOParameters(ulong address, ulong id) : base(address, id) { }
+		public GrxLineSSAOParameters() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

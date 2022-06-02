@@ -56,7 +56,7 @@ namespace Fox.Phx
         }
         static PhxWheelConstraintParam()
         {
-            classInfo = new Fox.EntityInfo("PhxWheelConstraintParam", new Fox.Ph.PhConstraintParam(0, 0, 0).GetClassEntityInfo(), 160, "Phx", 2);
+            classInfo = new Fox.EntityInfo("PhxWheelConstraintParam", new Fox.Ph.PhConstraintParam().GetClassEntityInfo(), 160, "Phx", 2);
 			
 			classInfo.StaticProperties.Insert("defaultRotation", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Quat, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("positionL", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Vector3, 80, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -73,8 +73,9 @@ namespace Fox.Phx
 			classInfo.StaticProperties.Insert("inertia", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 172, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public PhxWheelConstraintParam(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public PhxWheelConstraintParam(ulong address, ulong id) : base(address, id) { }
+		public PhxWheelConstraintParam() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

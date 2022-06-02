@@ -30,12 +30,13 @@ namespace Fox.Core
         }
         static Application()
         {
-            classInfo = new Fox.EntityInfo("Application", new Fox.Core.Actor(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("Application", new Fox.Core.Actor().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public Application(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public Application(ulong address, ulong id) : base(address, id) { }
+		public Application() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

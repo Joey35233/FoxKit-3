@@ -32,13 +32,14 @@ namespace Fox.GameKit
         }
         static OrthogonalAimCamera()
         {
-            classInfo = new Fox.EntityInfo("OrthogonalAimCamera", new Fox.GameKit.AimCamera(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("OrthogonalAimCamera", new Fox.GameKit.AimCamera().GetClassEntityInfo(), 0, null, 0);
 			
 			classInfo.StaticProperties.Insert("scale", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 496, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public OrthogonalAimCamera(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public OrthogonalAimCamera(ulong address, ulong id) : base(address, id) { }
+		public OrthogonalAimCamera() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

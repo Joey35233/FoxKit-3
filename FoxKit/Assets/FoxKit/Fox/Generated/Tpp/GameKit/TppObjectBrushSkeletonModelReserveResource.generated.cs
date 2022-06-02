@@ -40,7 +40,7 @@ namespace Tpp.GameKit
         }
         static TppObjectBrushSkeletonModelReserveResource()
         {
-            classInfo = new Fox.EntityInfo("TppObjectBrushSkeletonModelReserveResource", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 84, null, 0);
+            classInfo = new Fox.EntityInfo("TppObjectBrushSkeletonModelReserveResource", new Fox.Core.Data().GetClassEntityInfo(), 84, null, 0);
 			
 			classInfo.StaticProperties.Insert("pluginName", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("reserveLodLevel0", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt32, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -49,8 +49,9 @@ namespace Tpp.GameKit
 			classInfo.StaticProperties.Insert("reserveLodLevel3", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt32, 140, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppObjectBrushSkeletonModelReserveResource(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppObjectBrushSkeletonModelReserveResource(ulong address, ulong id) : base(address, id) { }
+		public TppObjectBrushSkeletonModelReserveResource() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

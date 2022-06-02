@@ -30,12 +30,13 @@ namespace Fox.Ui
         }
         static UiGraphEntryBody()
         {
-            classInfo = new Fox.EntityInfo("UiGraphEntryBody", new Fox.Core.DataBody(0, 0, 0).GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.EntityInfo("UiGraphEntryBody", new Fox.Core.DataBody().GetClassEntityInfo(), 0, null, 0);
 			
         }
 
-        // Constructor
-		public UiGraphEntryBody(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public UiGraphEntryBody(ulong address, ulong id) : base(address, id) { }
+		public UiGraphEntryBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

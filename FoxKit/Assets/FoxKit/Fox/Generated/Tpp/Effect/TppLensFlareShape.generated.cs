@@ -88,7 +88,7 @@ namespace Tpp.Effect
         }
         static TppLensFlareShape()
         {
-            classInfo = new Fox.EntityInfo("TppLensFlareShape", new Fox.Core.TransformData(0, 0, 0).GetClassEntityInfo(), 672, null, 11);
+            classInfo = new Fox.EntityInfo("TppLensFlareShape", new Fox.Core.TransformData().GetClassEntityInfo(), 672, null, 11);
 			
 			classInfo.StaticProperties.Insert("material", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityLink, 304, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("width", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 344, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -121,8 +121,9 @@ namespace Tpp.Effect
 			classInfo.StaticProperties.Insert("scaleOnZoom", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 732, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppLensFlareShape(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppLensFlareShape(ulong address, ulong id) : base(address, id) { }
+		public TppLensFlareShape() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

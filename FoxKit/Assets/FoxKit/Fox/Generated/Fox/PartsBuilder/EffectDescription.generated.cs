@@ -60,7 +60,7 @@ namespace Fox.PartsBuilder
         }
         static EffectDescription()
         {
-            classInfo = new Fox.EntityInfo("EffectDescription", new Fox.PartsBuilder.PartDescription(0, 0, 0).GetClassEntityInfo(), 232, "PartsBuilder", 6);
+            classInfo = new Fox.EntityInfo("EffectDescription", new Fox.PartsBuilder.PartDescription().GetClassEntityInfo(), 232, "PartsBuilder", 6);
 			
 			classInfo.StaticProperties.Insert("connectDestinationSkelNames", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 152, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("connectDestinationCnpNames", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.String, 168, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -79,8 +79,9 @@ namespace Fox.PartsBuilder
 			classInfo.StaticProperties.Insert("effectFileFromFilePtr", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.FilePtr, 280, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public EffectDescription(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public EffectDescription(ulong address, ulong id) : base(address, id) { }
+		public EffectDescription() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

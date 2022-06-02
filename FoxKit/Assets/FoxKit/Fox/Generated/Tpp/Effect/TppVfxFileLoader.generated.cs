@@ -36,15 +36,16 @@ namespace Tpp.Effect
         }
         static TppVfxFileLoader()
         {
-            classInfo = new Fox.EntityInfo("TppVfxFileLoader", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 208, null, 2);
+            classInfo = new Fox.EntityInfo("TppVfxFileLoader", new Fox.Core.Data().GetClassEntityInfo(), 208, null, 2);
 			
 			classInfo.StaticProperties.Insert("vfxFiles", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.FilePtr, 120, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("geoMaterialFiles", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.FilePtr, 168, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("otherFiles", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.FilePtr, 216, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppVfxFileLoader(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppVfxFileLoader(ulong address, ulong id) : base(address, id) { }
+		public TppVfxFileLoader() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

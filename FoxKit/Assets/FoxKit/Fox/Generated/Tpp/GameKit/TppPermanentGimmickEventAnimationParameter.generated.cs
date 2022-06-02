@@ -38,7 +38,7 @@ namespace Tpp.GameKit
         }
         static TppPermanentGimmickEventAnimationParameter()
         {
-            classInfo = new Fox.EntityInfo("TppPermanentGimmickEventAnimationParameter", new Fox.Core.DataElement(0, 0, 0).GetClassEntityInfo(), 56, null, 0);
+            classInfo = new Fox.EntityInfo("TppPermanentGimmickEventAnimationParameter", new Fox.Core.DataElement().GetClassEntityInfo(), 56, null, 0);
 			
 			classInfo.StaticProperties.Insert("flag1", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt32, 56, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("defaultAnimPath", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Path, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -46,8 +46,9 @@ namespace Tpp.GameKit
 			classInfo.StaticProperties.Insert("fadeTime", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Float, 60, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppPermanentGimmickEventAnimationParameter(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppPermanentGimmickEventAnimationParameter(ulong address, ulong id) : base(address, id) { }
+		public TppPermanentGimmickEventAnimationParameter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

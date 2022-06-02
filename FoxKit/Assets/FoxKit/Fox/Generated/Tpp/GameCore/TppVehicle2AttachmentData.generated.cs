@@ -44,7 +44,7 @@ namespace Tpp.GameCore
         }
         static TppVehicle2AttachmentData()
         {
-            classInfo = new Fox.EntityInfo("TppVehicle2AttachmentData", new Fox.Core.Data(0, 0, 0).GetClassEntityInfo(), 120, null, 1);
+            classInfo = new Fox.EntityInfo("TppVehicle2AttachmentData", new Fox.Core.Data().GetClassEntityInfo(), 120, null, 1);
 			
 			classInfo.StaticProperties.Insert("vehicleTypeCode", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt8, 177, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
 			classInfo.StaticProperties.Insert("attachmentImplTypeIndex", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.UInt8, 178, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
@@ -55,8 +55,9 @@ namespace Tpp.GameCore
 			classInfo.StaticProperties.Insert("weaponParams", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.EntityPtr, 120, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, typeof(Tpp.GameCore.TppVehicle2WeaponParameter), null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public TppVehicle2AttachmentData(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public TppVehicle2AttachmentData(ulong address, ulong id) : base(address, id) { }
+		public TppVehicle2AttachmentData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {

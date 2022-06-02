@@ -32,13 +32,14 @@ namespace Fox.Geo
         }
         static GeoPathUnitBody()
         {
-            classInfo = new Fox.EntityInfo("GeoPathUnitBody", new Fox.Core.TransformDataBody(0, 0, 0).GetClassEntityInfo(), 0, "Path", 0);
+            classInfo = new Fox.EntityInfo("GeoPathUnitBody", new Fox.Core.TransformDataBody().GetClassEntityInfo(), 0, "Path", 0);
 			
 			classInfo.StaticProperties.Insert("isGeomActive", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.Bool, 136, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
         }
 
-        // Constructor
-		public GeoPathUnitBody(ulong address, ushort idA, ushort idB) : base(address, idA, idB) { }
+        // Constructors
+		public GeoPathUnitBody(ulong address, ulong id) : base(address, id) { }
+		public GeoPathUnitBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
         {
