@@ -84,7 +84,7 @@ namespace Fox.Editor
             field.reorderable = false;
 
             var foldout = new Foldout();
-            foldout.styleSheets.Add(CollectionDrawer.PropertyDrawerStyleSheet);
+            //foldout.styleSheets.Add(CollectionDrawer.PropertyDrawerStyleSheet);
             foldout.text = property.name;
 
             foldout.Add(field);

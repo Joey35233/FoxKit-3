@@ -1,0 +1,152 @@
+.unity-collection-view__item > .unity-base-field__label
+{
+    -unity-font: url("Fonts/CascadiaCode-SemiLight.ttf");
+    -unity-font-definition: none;
+}
+
+.unity-scroll-view
+{
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.fox-dynamicarray-field .unity-scroll-view, .fox-staticarray-field .unity-scroll-view, .fox-stringmap-field .unity-scroll-view
+{
+    border-bottom-left-radius: 0;
+}
+
+.fox-dynamicarray-field__add-button, .fox-staticarray-field__add-button
+{
+    width: 32px;
+    font-size: 18px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    -unity-text-align: middle-center;
+    -unity-font-style: normal;
+}
+
+.fox-dynamicarray-field__remove-button, .fox-staticarray-field__remove-button
+{
+    width: 32px;
+    font-size: 18px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 0;
+    -unity-text-align: middle-center;
+    -unity-font-style: normal;
+}
+
+.fox-dynamicarray-field > .unity-list-view > .unity-list-view__footer, .fox-staticarray-field > .unity-list-view > .unity-list-view__footer
+{
+    align-self: flex-start;
+    margin-top: 0;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0;
+    padding-right: 0;
+    border-top-width: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.fox-stringmap 
+{
+    flex-grow: 1;
+}
+
+.fox-stringmap-key-field .unity-label,.fox-stringmap-value-field .unity-label 
+{
+    min-width: 28px;
+}
+
+.fox-stringmap-key-field .unity-base-field,.fox-stringmap-value-field .unity-base-field 
+{
+    flex-grow: 1;
+}
+
+.fox-stringmap-value-field .unity-base-field__input 
+{
+    margin-right: 0;
+}
+
+.fox-entityhandle-field .unity-base-text-field__input
+{
+	background-color: #DDCAE5
+}
+.fox-string-field .unity-base-text-field__input
+{
+	background-color: #CEE5CA
+}
+.fox-path-field .unity-base-text-field__input
+{
+	background-color: #E5CACB
+}
+.fox-fileptr-field .unity-base-text-field__input
+{
+	background-color: #E5CADA
+}
+.fox-float-field .unity-base-text-field__input
+{
+	background-color: #E5D5CA
+}
+.fox-double-field .unity-base-text-field__input
+{
+	background-color: #E4E5CA
+}
+.fox-enum-field .unity-base-text-field__input
+{
+	background-color: #CAE1E5
+}
+.fox-enum-flags-field .unity-base-text-field__input
+{
+	background-color: #E2CEC8
+}
+.fox-uint8-field .unity-base-text-field__input
+{
+	background-color: #CAE5D8
+}
+.fox-uint16-field .unity-base-text-field__input
+{
+	background-color: #CAD3E5
+}
+.fox-uint32-field .unity-base-text-field__input
+{
+	background-color: #CECAE5
+}
+.fox-uint64-field .unity-base-text-field__input
+{
+	background-color: #CAE5DF
+}
+.fox-int8-field .unity-base-text-field__input
+{
+	background-color: #E5D5CA
+}
+.fox-int16-field .unity-base-text-field__input
+{
+	background-color: #CAE5E4
+}
+.fox-int32-field .unity-base-text-field__input
+{
+	background-color: #DCE5CA
+}
+.fox-int64-field .unity-base-text-field__input
+{
+	background-color: #CAE5CE
+}
+.fox-vector3-field .unity-base-text-field__input
+{
+	background-color: #E5CAD7
+}
+.fox-vector4-field .unity-base-text-field__input
+{
+	background-color: #E5CACE
+}
+.fox-quaternion-field .unity-base-text-field__input
+{
+	background-color: #E5E5CA
+}
+.fox-matrix4-field .unity-base-text-field__input
+{
+	background-color: #E5D0CA
+}

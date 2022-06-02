@@ -1,5 +1,3 @@
-#define FOX_EDITOR_DEBUG
-
 using System.Collections;
 using System.Collections.Generic;
 
@@ -12,15 +10,7 @@ namespace FoxKit.Fx.Editor
 {
 	public class FxModuleGraphEditor : BaseGraphWindow
 	{
-#if FOX_EDITOR_DEBUG
-        [MenuItem("FoxKit/Debug/FxModuleGraph")]
-        private static void Init()
-        {
-            ShowEditor();
-        }
-#endif
-
-        BaseGraph tmpGraph;
+		BaseGraph tmpGraph;
 
 		[MenuItem("FoxKit/Debug/FxModuleGraph")]
 		public static BaseGraphWindow ShowEditor()
