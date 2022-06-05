@@ -208,6 +208,9 @@ namespace Fox.Editor
         where T : DataElement, new()
     {
         private VisualElement PropertyContainer;
+        private Button CreateButton;
+        private Button DeleteButton;
+
         private SerializedProperty ReferenceProperty;
 
         public enum CreateDeleteButtonMode
@@ -246,45 +249,17 @@ namespace Fox.Editor
             var buttonContainer = new VisualElement();
             buttonContainer.style.flexDirection = FlexDirection.Row;
 
-            void createButton_onClick()
-            {
-                var thisvar = this;
+            CreateButton = new Button(CreateButton_onClick);
+            CreateButton.AddToClassList(createButtonUssClassName);
+            CreateButton.text = "＋";
 
-                if (ReferenceProperty is null/* || panel is null*/)
-                    return;
 
-                ReferenceProperty.managedReferenceValue = new T();
-                ReferenceProperty.serializedObject.ApplyModifiedProperties();
+            DeleteButton = new Button(DeleteButton_onClick);
+            DeleteButton.AddToClassList(deleteButtonUssClassName);
+            DeleteButton.text = "－";
 
-                foreach (var child in ReferenceProperty.GetChildren())
-                    PropertyContainer.Add(new Label(child.name));
-
-                return;
-            };
-            var createButton = new Button(createButton_onClick);
-            createButton.text = "＋";
-            createButton.AddToClassList(createButtonUssClassName);
-
-            void deleteButton_onClick()
-            {
-                var thisvar = this;
-
-                if (ReferenceProperty is null/* || panel is null*/)
-                    return;
-
-                ReferenceProperty.managedReferenceValue = null;
-                ReferenceProperty.serializedObject.ApplyModifiedProperties();
-
-                PropertyContainer.Clear();
-
-                return;
-            };
-            var deleteButton = new Button(deleteButton_onClick);
-            deleteButton.AddToClassList(deleteButtonUssClassName);
-            deleteButton.text = "－";
-
-            buttonContainer.Add(createButton);
-            buttonContainer.Add(deleteButton);
+            buttonContainer.Add(CreateButton);
+            buttonContainer.Add(DeleteButton);
             visualInput.Add(buttonContainer);
 
             visualInput.Add(PropertyContainer);
@@ -293,6 +268,62 @@ namespace Fox.Editor
             labelElement.AddToClassList(labelUssClassName);
             visualInput.AddToClassList(inputUssClassName);
             this.styleSheets.Add(IFoxField.FoxFieldStyleSheet);
+        }
+
+        protected override void ExecuteDefaultActionAtTarget(EventBase evt)
+        {
+            base.ExecuteDefaultActionAtTarget(evt);
+
+            Type evtType = evt.GetType();
+            if ((evtType.Name == "SerializedPropertyBindEvent") && !string.IsNullOrWhiteSpace(bindingPath))
+            {
+                SerializedProperty serializedProperty = evtType.GetProperty("bindProperty").GetValue(evt) as SerializedProperty;
+
+                PropertyContainer.Clear();
+
+                ReferenceProperty = serializedProperty.FindPropertyRelative("_ptr");
+                foreach (SerializedProperty child in ReferenceProperty.GetChildren())
+                {
+                    PropertyContainer.Add(new PropertyField(child));
+                }
+
+                BindingExtensions.TrackPropertyValue(PropertyContainer, ReferenceProperty, null);
+
+                // Stop the EntityPtrField itself's binding event; it's just a container for the actual BindableElements.
+                evt.StopPropagation();
+            }
+            else if (evtType.Name == "SerializedPropertyChangeEvent")
+            {
+                var serializedPropertyChangeEvent = evt as SerializedPropertyChangeEvent;
+
+                return;
+            }
+            else
+            {
+                return;
+            }
+        }
+
+        private void CreateButton_onClick()
+        {
+            if (ReferenceProperty is null)
+                return;
+
+            ReferenceProperty.serializedObject.Update();
+            ReferenceProperty.SetValue(new T());
+
+            return;
+        }
+
+        private void DeleteButton_onClick()
+        {
+            if (ReferenceProperty is null)
+                return;
+
+            ReferenceProperty.serializedObject.Update();
+            ReferenceProperty.SetValue(null);
+
+            return;
         }
 
         public void BindProperty(SerializedProperty property)
@@ -304,9 +335,7 @@ namespace Fox.Editor
             if (label is not null)
                 this.label = label;
 
-            ReferenceProperty = property.FindPropertyRelative("_ptr");
-            foreach (var child in ReferenceProperty.GetChildren())
-                PropertyContainer.Add(new Label(child.name));
+            BindingExtensions.BindProperty(this, property);
         }
     }
 

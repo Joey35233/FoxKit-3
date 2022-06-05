@@ -417,7 +417,7 @@ MonoBehaviour:
         hash: 0
     EntityPtr_property:
       _ptr:
-        rid: 5429111378501697536
+        rid: 5429111378501697548
     Vector3_property: {x: 0, y: 0, z: 0}
     Vector4_property: {x: 0, y: 0, z: 0, w: 0}
     Quaternion_property: {x: 0, y: 0, z: 0, w: 0}
@@ -50851,7 +50851,7 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 5429111378501697536
+    - rid: 5429111378501697548
       type: {class: TransformEntity, ns: Fox.Core, asm: Assembly-CSharp}
       data:
         owner:
