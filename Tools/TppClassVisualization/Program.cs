@@ -2,17 +2,18 @@
 using System.Text.Json;
 using System.Text.Json.Nodes;
 
-void RecurseTree(Tree.Node node)
+static void PrintRecursive(Tree.Node node)
 {
-    Console.WriteLine($"{node.Reference.parent} -- {node.Reference.name};");
-    if (node.Children.Count > 0)
-    {
-        Console.WriteLine($"subgraph cluster_{node.Reference.name}");
-        Console.WriteLine("{");
-        foreach (var child in node.Children)
-            RecurseTree(child);
-        Console.WriteLine("}");
-    }
+    if (node.Parent is null)
+        Console.WriteLine($"{node.Reference.name};");
+    else
+        Console.WriteLine($"{node.Reference.parent} -- {node.Reference.name};");
+
+    Console.WriteLine($"subgraph cluster_{node.Reference.name}");
+    Console.WriteLine("{");
+    foreach (var child in node.Children)
+        PrintRecursive(child);
+    Console.WriteLine("}");
 }
 
 using (var streamReader = new FileStream("../../../../TppClassGeneration/TppClassDefinitions.json", FileMode.Open))
@@ -23,13 +24,13 @@ using (var streamReader = new FileStream("../../../../TppClassGeneration/TppClas
     List<Class> classes = (from serializedClass in document.RootElement.EnumerateArray() select serializedClass.Deserialize<Class>()!).ToList();
 
     // Build tree
-    Tree tree = new Tree { Children = new List<Tree.Node>(), FullRegistry = new Dictionary<string, Tree.Node>() };
+    Tree tree = new Tree { Root = new Tree.Node { Parent = null, Children = new List<Tree.Node>(), Reference = null }, FullRegistry = new Dictionary<string, Tree.Node>() };
     foreach (var @class in classes)
     {
         if (@class.parent == null)
         {
             var node = new Tree.Node { Parent = null, Children = new List<Tree.Node>(), Reference = @class };
-            tree.Children.Add(node);
+            tree.Root.Children.Add(node);
             tree.FullRegistry.Add(@class.name, node);
         }
     }
@@ -49,9 +50,8 @@ using (var streamReader = new FileStream("../../../../TppClassGeneration/TppClas
         continue;
     } while (tree.FullRegistry.Count < classes.Count);
 
-    foreach (var topChild in tree.Children)
-        foreach (var child in topChild.Children)
-            RecurseTree(child);
+    foreach (var topLevelNode in tree.Root.Children)
+        PrintRecursive(topLevelNode);
 
     Console.ReadKey();
 }
@@ -65,7 +65,7 @@ public class Tree
         public List<Node> Children;
     }
 
-    public List<Node> Children;
+    public Node Root;
 
     public Dictionary<string, Node> FullRegistry;
 };
