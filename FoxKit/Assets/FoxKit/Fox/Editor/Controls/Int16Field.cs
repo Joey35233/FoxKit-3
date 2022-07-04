@@ -202,6 +202,7 @@ namespace Fox.Editor
             this.property = property;
 
             field = new Int16Field(property.name);
+            field.BindProperty(property);
 
             field.labelElement.AddToClassList(PropertyField.labelUssClassName);
             field.visualInput.AddToClassList(PropertyField.inputUssClassName);

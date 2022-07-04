@@ -153,6 +153,7 @@ namespace Fox.Editor
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
         {
             var field = new Int64Field(property.name);
+            field.BindProperty(property);
 
             field.labelElement.AddToClassList(PropertyField.labelUssClassName);
             field.visualInput.AddToClassList(PropertyField.inputUssClassName);

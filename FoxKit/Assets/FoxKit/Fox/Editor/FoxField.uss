@@ -10,12 +10,12 @@
     padding-bottom: 0;
 }
 
-.fox-dynamicarray-field .unity-scroll-view, .fox-staticarray-field .unity-scroll-view, .fox-stringmap-field .unity-scroll-view
+.unity-list-view__scroll-view--with-footer
 {
     border-bottom-left-radius: 0;
 }
 
-.fox-dynamicarray-field__add-button, .fox-staticarray-field__add-button
+#unity-list-view__add-button
 {
     width: 32px;
     font-size: 18px;
@@ -26,7 +26,7 @@
     -unity-font-style: normal;
 }
 
-.fox-dynamicarray-field__remove-button, .fox-staticarray-field__remove-button
+#unity-list-view__remove-button
 {
     width: 32px;
     font-size: 18px;
@@ -37,7 +37,7 @@
     -unity-font-style: normal;
 }
 
-.fox-dynamicarray-field > .unity-list-view > .unity-list-view__footer, .fox-staticarray-field > .unity-list-view > .unity-list-view__footer
+.unity-list-view__footer
 {
     align-self: flex-start;
     margin-top: 0;

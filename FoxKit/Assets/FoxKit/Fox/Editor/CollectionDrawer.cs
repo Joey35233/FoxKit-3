@@ -103,8 +103,8 @@ namespace Fox.Editor
                 case Type _ when propertyType == typeof(EntityHandle):
                     return () => new EntityHandleField();
 
-                //case Type _ when propertyType.IsGenericType && propertyType.GetGenericTypeDefinition() == typeof(EntityPtr<>):
-                //    return () => new EntityPtrField();
+                case Type _ when propertyType.IsGenericType && propertyType.GetGenericTypeDefinition() == typeof(EntityPtr<>):
+                    return () => new TextField();
 
                 case Type _ when propertyType == typeof(Matrix4x4):
                     return () => new Matrix4Field();
@@ -178,8 +178,8 @@ namespace Fox.Editor
                 case Type type when type == typeof(EntityHandle):
                     return () => new EntityHandleField();
 
-                //case Type type when type.IsGenericType && type.GetGenericTypeDefinition() == typeof(EntityPtr<>):
-                //    return () => new EntityPtrField();
+                case Type type when type.IsGenericType && type.GetGenericTypeDefinition() == typeof(EntityPtr<>):
+                    return () => Activator.CreateInstance(typeof(EntityPtrField<>).MakeGenericType(new Type[] { type.GenericTypeArguments[0] })) as IFoxField;
 
                 case Type type when type == typeof(Matrix4x4):
                     return () => new Matrix4Field();

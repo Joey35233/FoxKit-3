@@ -310,9 +310,9 @@ namespace Fox.Core
             return total / CellCount + 1;
         }
 
-        public bool IsFixedSize => throw new NotImplementedException();
+        public bool IsFixedSize => false;
 
-        public bool IsReadOnly => throw new NotImplementedException();
+        public bool IsReadOnly => false;
 
         public int Count => (int)CellCount;
 

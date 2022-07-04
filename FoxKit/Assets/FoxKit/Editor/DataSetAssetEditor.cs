@@ -41,7 +41,7 @@ namespace FoxKit
 
         private void AddEntityButton_clicked()
         {
-            EntityTypePicker.Show(typeof(Fox.Core.Data), EntityTypePicker_onTypeSelected);
+            EntityTypePickerPopup.ShowPopup(typeof(Fox.Core.Data)/*, EntityTypePicker_onTypeSelected*/);
         }
 
         private void EntityTypePicker_onTypeSelected(Type obj)

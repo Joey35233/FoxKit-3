@@ -4,7 +4,7 @@ using UnityEditor.UIElements;
 
 namespace Fox.Editor
 {
-    public class EnumField : UnityEditor.UIElements.EnumField, IFoxField
+    public class EnumField : UnityEngine.UIElements.EnumField, IFoxField
     {
         public new static readonly string ussClassName = "fox-enum-field";
         public new static readonly string labelUssClassName = ussClassName + "__label";
@@ -18,14 +18,14 @@ namespace Fox.Editor
         public EnumField(string label)
             : base(label)
         {
-            RemoveFromClassList(UnityEditor.UIElements.EnumField.ussClassName);
+            RemoveFromClassList(UnityEngine.UIElements.EnumField.ussClassName);
             AddToClassList(ussClassName);
 
             visualInput = this.Q(className: BaseField<System.Enum>.inputUssClassName);
-            visualInput.RemoveFromClassList(UnityEditor.UIElements.EnumField.inputUssClassName);
+            visualInput.RemoveFromClassList(UnityEngine.UIElements.EnumField.inputUssClassName);
             visualInput.AddToClassList(inputUssClassName);
 
-            labelElement.RemoveFromClassList(UnityEditor.UIElements.EnumField.labelUssClassName);
+            labelElement.RemoveFromClassList(UnityEngine.UIElements.EnumField.labelUssClassName);
             labelElement.AddToClassList(labelUssClassName);
 
             this.styleSheets.Add(IFoxField.FoxFieldStyleSheet);
@@ -39,7 +39,7 @@ namespace Fox.Editor
         {
             if (label is not null)
                 this.label = label;
-            BindingExtensions.BindProperty(visualInput as IBindable, property);
+            BindingExtensions.BindProperty(this, property);
         }
     }
 
@@ -78,7 +78,7 @@ namespace Fox.Editor
         {
             if (label is not null)
                 this.label = label;
-            BindingExtensions.BindProperty(visualInput as IBindable, property);
+            BindingExtensions.BindProperty(this, property);
         }
     }
 
@@ -90,15 +90,30 @@ namespace Fox.Editor
             var valueType = property.GetValue().GetType();
             bool valueTypeHasFlagsAttribute = valueType.IsDefined(typeof(System.FlagsAttribute), false);
 
-            IFoxField field = null;
+            IFoxField foxField = null;
             if (valueTypeHasFlagsAttribute)
-                field = new EnumFlagsField();
+            {
+                EnumFlagsField field = new EnumFlagsField(property.name);
+                field.labelElement.AddToClassList(PropertyField.labelUssClassName);
+                field.visualInput.AddToClassList(PropertyField.inputUssClassName);
+                field.AddToClassList(BaseField<Fox.Core.Path>.alignedFieldUssClassName);
+
+                foxField = field;
+            }
             else
-                field = new EnumField();
+            {
+                EnumField field = new EnumField(property.name);
+                field.labelElement.AddToClassList(PropertyField.labelUssClassName);
+                field.visualInput.AddToClassList(PropertyField.inputUssClassName);
+                field.AddToClassList(BaseField<Fox.Core.Path>.alignedFieldUssClassName);
 
-            field.BindProperty(property);
+                foxField = field;
+            }
 
-            return field as VisualElement;
+            foxField.BindProperty(property);
+
+
+            return foxField as VisualElement;
         }
     }
 }

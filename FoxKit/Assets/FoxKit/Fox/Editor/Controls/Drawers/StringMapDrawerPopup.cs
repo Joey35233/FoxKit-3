@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Fox.Editor
 {
     public static class StringMapDrawerPopup
-    {  
+    {
         public static String ShowPopup()
         {
             var window = EditorWindow.GetWindow<StringMapDrawerPopupWindow>(true, "Create StringMap Key");

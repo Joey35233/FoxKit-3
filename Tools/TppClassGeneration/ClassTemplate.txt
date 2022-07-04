@@ -12,6 +12,7 @@ using Fox;
 
 namespace {{ info.get_root_namespace() }}.{{ info.get_namespace_without_prefix() }}
 {
+    [UnityEditor.InitializeOnLoad]
     public partial class {{ info.name }} {% if info.parent %}: {{ info.get_parent_string() }} {% endif %}
     {
         {% if not info.properties|length == 0 %}// Properties{% endif %}{% for property_name in info.properties %}
@@ -19,21 +20,21 @@ namespace {{ info.get_root_namespace() }}.{{ info.get_namespace_without_prefix()
         {% endfor %}
         // PropertyInfo
         private static Fox.EntityInfo classInfo;
-        public static new Fox.EntityInfo ClassInfo
+        public static {% if not info.is_root() %}new{% endif %} Fox.EntityInfo ClassInfo
         {
             get
             {
                 return classInfo;
             }
         }
-        public {% if info.is_root() %}virtual{% else %} override{% endif %} Fox.EntityInfo GetClassEntityInfo()
+        public {% if info.is_root() %}virtual{% else %}override{% endif %} Fox.EntityInfo GetClassEntityInfo()
         {
             return classInfo;
         }
         static {{ info.name }}()
         {
-            classInfo = new Fox.EntityInfo("{{ info.name }}", {{ info.get_parent_entity_info_string() }}, {{ info.id }}, {{ info.get_category_string() }}, {{ info.version }});
-			{% for property_name in info.properties %}
+            classInfo = new Fox.EntityInfo("{{ info.name }}", typeof({{ info.name }}), {{ info.get_parent_entity_info_string() }}, {{ info.id }}, {{ info.get_category_string() }}, {{ info.version }});
+			{%- for property_name in info.properties %}
 			{{ info.properties[property_name].get_property_info_instantiation_string() }}
 			{%- endfor %}
         }
@@ -44,11 +45,11 @@ namespace {{ info.get_root_namespace() }}.{{ info.get_namespace_without_prefix()
             this.Address = address;
             this.Id = id;
         }{% endif %}{% endif %}
-		{% if info.is_entity() %}public {{ info.name }}(){% if info.parent %} : base() { }{% else %}
+		public {{ info.name }}(){% if info.parent %} : base() { }{% else %}
         {
-            this.Address = 0;
-            this.Id = 0;
-        }{% endif %}{% endif %}
+            {% if info.is_entity() %}this.Address = 0;
+            this.Id = 0;{% endif %}
+        }{% endif %}
         
         public {% if info.is_root() %}virtual{% else %}override{% endif %} void SetProperty(string propertyName, Fox.Value value)
         {
@@ -59,15 +60,15 @@ namespace {{ info.get_root_namespace() }}.{{ info.get_namespace_without_prefix()
                     this.{{ info.properties[property_name].get_safe_name() }} = {{ info.properties[property_name].get_value_extraction_string() }};
                     return;
                 {% endfor %}default:
-				    {% if info.name == "Entity" -%}
+				    {%- if info.name == "Entity" %}
 					if (this.DynamicProperties.TryGetValue(propertyName, out DynamicProperty property))
 					{
 						property.SetValue(value);
 						return;
 					}
 					{%- endif %}
-                    {% if info.is_root() %}throw new CsSystem.MissingMemberException("Unrecognized property", propertyName);{% else %}base.SetProperty(propertyName, value);{% endif %}
-                    return;
+                    {% if info.is_root() %}throw new CsSystem.MissingMemberException("Unrecognized property", propertyName);{% else %}base.SetProperty(propertyName, value);
+                    return;{%- endif %}
             }
         }
         
@@ -81,15 +82,15 @@ namespace {{ info.get_root_namespace() }}.{{ info.get_namespace_without_prefix()
                     this.{{ info.properties[property_name].get_safe_name() }}[index] = {{ info.properties[property_name].get_value_extraction_string() }};
                     return;
                 {% endfor %}default:
-					{% if info.name == "Entity" -%}
+					{%- if info.name == "Entity" %}
 					if (this.DynamicProperties.TryGetValue(propertyName, out DynamicProperty property))
 					{
 						property.SetElement(index, value);
 						return;
 					}
 					{%- endif %}
-                    {% if info.is_root() %}throw new CsSystem.MissingMemberException("Unrecognized property", propertyName);{% else %}base.SetPropertyElement(propertyName, index, value);{% endif %}
-                    return;
+                    {% if info.is_root() %}throw new CsSystem.MissingMemberException("Unrecognized property", propertyName);{% else %}base.SetPropertyElement(propertyName, index, value);
+                    return;{%- endif %}
             }
         }
         
@@ -102,15 +103,15 @@ namespace {{ info.get_root_namespace() }}.{{ info.get_namespace_without_prefix()
                     this.{{ info.properties[property_name].get_safe_name() }}.Insert(key, {{ info.properties[property_name].get_value_extraction_string() }});
                     return;
                 {% endfor %}default:
-					{% if info.name == "Entity" -%}
+					{%- if info.name == "Entity" %}
 					if (this.DynamicProperties.TryGetValue(propertyName, out DynamicProperty property))
 					{
 						property.SetElement(key, value);
 						return;
 					}
 					{%- endif %}
-                    {% if info.is_root() %}throw new CsSystem.MissingMemberException("Unrecognized property", propertyName);{% else %}base.SetPropertyElement(propertyName, key, value);{% endif %}
-                    return;
+                    {% if info.is_root() %}throw new CsSystem.MissingMemberException("Unrecognized property", propertyName);{% else %}base.SetPropertyElement(propertyName, key, value);
+                    return;{%- endif %}
             }
         }
     }

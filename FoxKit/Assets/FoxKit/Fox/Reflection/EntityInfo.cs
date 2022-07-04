@@ -9,13 +9,41 @@ namespace Fox
     /// </summary>
     public sealed class EntityInfo
     {
-        public EntityInfo(string name, EntityInfo super, short id, string category, ushort version)
+        private static readonly Dictionary<Type, EntityInfo> EntityInfos = new Dictionary<Type, EntityInfo>();
+
+        public static EntityInfo GetEntityInfo<T>()
+        {
+            return GetEntityInfo(typeof(T));
+        }
+        public static EntityInfo GetEntityInfo(Type type)
+        {
+            return EntityInfos.TryGetValue(type, out var entityInfo) ? entityInfo : null;
+        }
+
+        public EntityInfo(string name, Type type, EntityInfo super, short id, string category, ushort version)
         {
             Name = name;
+            Type = type;
             Super = super;
             Id = id;
             Category = category;
             Version = version;
+
+            Children = new List<EntityInfo>();
+            AllChildren = new List<EntityInfo>();
+
+            //if (super == null)
+            //    UnityEngine.Debug.Log($"{name}.Super == null");
+            Super?.Children.Add(this);
+
+            EntityInfo superIterator = Super;
+            while (superIterator != null)
+            {
+                superIterator.AllChildren.Add(this);
+                superIterator = superIterator.Super;
+            }
+
+            EntityInfos.Add(Type, this);
         }
 
         /// <summary>
@@ -24,9 +52,24 @@ namespace Fox
         public string Name { get; }
 
         /// <summary>
+        /// Type of the class.
+        /// </summary>
+        public Type Type { get; }
+
+        /// <summary>
         /// EntityInfo of the parent class, or null if there is no parent.
         /// </summary>
         public EntityInfo Super { get; }
+
+        /// <summary>
+        /// EntityInfos of the immediate children.
+        /// </summary>
+        public List<EntityInfo> Children { get; private set; }
+
+        /// <summary>
+        /// EntityInfos of all descendants.
+        /// </summary>
+        public List<EntityInfo> AllChildren { get; private set; }
 
         /// <summary>
         /// ID of the class.

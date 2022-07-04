@@ -123,6 +123,1879 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &61159493
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 61159495}
+  - component: {fileID: 61159494}
+  m_Layer: 0
+  m_Name: GameObject (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &61159494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 61159493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a9d39e34eef90c4ea43d3bbc0eff518, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Entity:
+    rid: 1910165229070188544
+  references:
+    version: 2
+    RefIds:
+    - rid: 1910165229070188544
+      type: {class: TppAmbientParameter, ns: Tpp.Sound, asm: Assembly-CSharp}
+      data:
+        name:
+          _cString: 
+          _length: 0
+          _hash:
+            hash: 0
+        dataSet:
+          entity: {fileID: 0}
+        referencePath:
+          _cString: 
+          _length: 0
+          _hash:
+            hash: 0
+        ambientEvent:
+          _cString: 
+          _length: 0
+          _hash:
+            hash: 0
+        objectRtpcName:
+          _cString: 
+          _length: 0
+          _hash:
+            hash: 0
+        objectRtpcValue: 0
+        auxSends:
+          Threshold: 230
+          HashMask: 255
+          CellCount: 5
+          Cells:
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: new0
+              _length: 4
+              _hash:
+                hash: 153640397463605
+            Value: 3
+          - Distance: 0
+            Key:
+              _cString: new4
+              _length: 4
+              _hash:
+                hash: 260413429722422
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: new1
+              _length: 4
+              _hash:
+                hash: 75822373828714
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: new2
+              _length: 4
+              _hash:
+                hash: 166505118451629
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: new3
+              _length: 4
+              _hash:
+                hash: 8763582091988
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: 
+              _length: 0
+              _hash:
+                hash: 0
+            Value: 0
+        dryVolume: 0
+--- !u!4 &61159495
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 61159493}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &139624966
 GameObject:
   m_ObjectHideFlags: 0
@@ -50862,3 +52735,95 @@ MonoBehaviour:
         scale: {x: 0, y: 0, z: 0}
         rotQuat: {x: 0, y: 0, z: 0, w: 0}
         translation: {x: 0, y: 0, z: 0}
+--- !u!1 &2135556124
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2135556126}
+  - component: {fileID: 2135556125}
+  m_Layer: 0
+  m_Name: GameObject (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2135556125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2135556124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2054ca4b17548743b0ca1260155772d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Entity:
+    rid: 1910165229070188554
+  references:
+    version: 2
+    RefIds:
+    - rid: 1910165229070188554
+      type: {class: TppPermanentGimmickData, ns: Tpp.GameKit, asm: Assembly-CSharp}
+      data:
+        name:
+          _cString: 
+          _length: 0
+          _hash:
+            hash: 0
+        dataSet:
+          entity: {fileID: 0}
+        referencePath:
+          _cString: 
+          _length: 0
+          _hash:
+            hash: 0
+        partsFile:
+          path:
+            _cString: 
+            _length: 0
+            _hash:
+              hash: 1125899906842624
+        locaterFile:
+          path:
+            _cString: 
+            _length: 0
+            _hash:
+              hash: 1125899906842624
+        parameters:
+          _ptr:
+            rid: 1910165265878351882
+        flags1: 0
+        flags2: 0
+    - rid: 1910165265878351882
+      type: {class: TransformEntity, ns: Fox.Core, asm: Assembly-CSharp}
+      data:
+        owner:
+          entity: {fileID: 0}
+        transform_scale: {x: 0, y: 0, z: 0}
+        transform_rotation_quat: {x: 0, y: 0, z: 0, w: 0}
+        transform_translation: {x: 0, y: 0, z: 0}
+        scale: {x: 0, y: 0, z: 0}
+        rotQuat: {x: 0, y: 0, z: 0, w: 0}
+        translation: {x: 0, y: 0, z: 0}
+--- !u!4 &2135556126
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2135556124}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

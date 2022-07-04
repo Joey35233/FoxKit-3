@@ -54,9 +54,6 @@ namespace Fox.Editor
             ListViewInput.virtualizationMethod = CollectionVirtualizationMethod.DynamicHeight;
             ListViewInput.showAddRemoveFooter = true;
 
-            var buttonContainer = new VisualElement();
-            buttonContainer.style.flexDirection = FlexDirection.Row;
-
             var addButton = ListViewInput.Q<Button>(name: "unity-list-view__add-button");
             addButton.text = "＋";
             addButton.AddToClassList(addButtonUssClassName);
@@ -71,7 +68,10 @@ namespace Fox.Editor
             this.styleSheets.Add(IFoxField.FoxFieldStyleSheet);
         }
 
-        private VisualElement MakeItem() => FieldConstructor() as VisualElement;
+        private VisualElement MakeItem()
+        {
+            return FieldConstructor() as VisualElement;
+        }
 
         private void BindItem(VisualElement element, int index)
         {

@@ -20,6 +20,7 @@ namespace Fox.Editor
             return wrapper;
         }
     }
+
     [CustomEditor(typeof(InspectorTestComponent2))]
     public class InspectorTestComponent2Editor : UnityEditor.Editor
     {
@@ -33,6 +34,28 @@ namespace Fox.Editor
             }
 
             return wrapper;
+        }
+    }
+
+    [CustomEditor(typeof(InspectorTestComponent3))]
+    public class InspectorTestComponent3Editor : UnityEditor.Editor
+    {
+        public override VisualElement CreateInspectorGUI()
+        {
+            var field = new PropertyField(serializedObject.FindProperty("Entity"));
+
+            return field;
+        }
+    }
+
+    [CustomEditor(typeof(InspectorTestComponent4))]
+    public class InspectorTestComponent4Editor : UnityEditor.Editor
+    {
+        public override VisualElement CreateInspectorGUI()
+        {
+            var field = new PropertyField(serializedObject.FindProperty("Entity"));
+
+            return field;
         }
     }
 }
