@@ -178,7 +178,7 @@ MonoBehaviour:
           entity: {fileID: 0}
         transform:
           _ptr:
-            rid: -2
+            rid: 6799876025759826038
         shearTransform:
           _ptr:
             rid: -2
@@ -243,6 +243,17 @@ MonoBehaviour:
           - {x: 0, y: 0, z: 0}
           - {x: 0, y: 0, z: 0}
           - {x: 0, y: 0, z: 0}
+    - rid: 6799876025759826038
+      type: {class: TransformEntity, ns: Fox.Core, asm: Assembly-CSharp}
+      data:
+        owner:
+          entity: {fileID: 0}
+        transform_scale: {x: 0, y: 0, z: 0}
+        transform_rotation_quat: {x: 0, y: 0, z: 0, w: 0}
+        transform_translation: {x: 0, y: 0, z: 0}
+        scale: {x: 0, y: 0, z: 0}
+        rotQuat: {x: 0, y: 0, z: 0, w: 0}
+        translation: {x: 0, y: 0, z: 0}
 --- !u!4 &61159495
 Transform:
   m_ObjectHideFlags: 0
@@ -405,7 +416,7 @@ MonoBehaviour:
         auxSends:
           Threshold: 230
           HashMask: 255
-          CellCount: 3
+          CellCount: 5
           Cells:
           - Distance: 0
             Key:
@@ -416,10 +427,10 @@ MonoBehaviour:
             Value: 0
           - Distance: 0
             Key:
-              _cString: 
-              _length: 0
+              _cString: hi3
+              _length: 3
               _hash:
-                hash: 0
+                hash: 268903983500801
             Value: 0
           - Distance: 0
             Key:
@@ -941,10 +952,10 @@ MonoBehaviour:
             Value: 0
           - Distance: 0
             Key:
-              _cString: 
-              _length: 0
+              _cString: hi4
+              _length: 3
               _hash:
-                hash: 0
+                hash: 46819861830476
             Value: 0
           - Distance: 0
             Key:

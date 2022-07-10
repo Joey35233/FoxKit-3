@@ -205,8 +205,8 @@ namespace Fox.Editor
 
             Label label = field.KeyField.labelElement;
             label.text = $"[{index}]";
-            label.style.minWidth = 25;
-            label.style.flexBasis = 25;
+            label.style.minWidth = 40;
+            label.style.flexBasis = 40;
 
             return;
         }
