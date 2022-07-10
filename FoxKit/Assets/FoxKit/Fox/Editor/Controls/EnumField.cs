@@ -22,7 +22,7 @@ namespace Fox.Editor
             AddToClassList(ussClassName);
 
             visualInput = this.Q(className: BaseField<System.Enum>.inputUssClassName);
-            visualInput.RemoveFromClassList(UnityEngine.UIElements.EnumField.inputUssClassName);
+            //visualInput.RemoveFromClassList(UnityEngine.UIElements.EnumField.inputUssClassName);
             visualInput.AddToClassList(inputUssClassName);
 
             labelElement.RemoveFromClassList(UnityEngine.UIElements.EnumField.labelUssClassName);
@@ -31,16 +31,16 @@ namespace Fox.Editor
             this.styleSheets.Add(IFoxField.FoxFieldStyleSheet);
         }
 
-        public void BindProperty(SerializedProperty property)
-        {
-            BindProperty(property, null);
-        }
-        public void BindProperty(SerializedProperty property, string label)
-        {
-            if (label is not null)
-                this.label = label;
-            BindingExtensions.BindProperty(this, property);
-        }
+        //public void BindProperty(SerializedProperty property)
+        //{
+        //    BindProperty(property, null);
+        //}
+        //public void BindProperty(SerializedProperty property, string label)
+        //{
+        //    if (label is not null)
+        //        this.label = label;
+        //    BindingExtensions.BindProperty(this, property);
+        //}
     }
 
     public class EnumFlagsField : UnityEditor.UIElements.EnumFlagsField, IFoxField
@@ -70,16 +70,16 @@ namespace Fox.Editor
             this.styleSheets.Add(IFoxField.FoxFieldStyleSheet);
         }
 
-        public void BindProperty(SerializedProperty property)
-        {
-            BindProperty(property, null);
-        }
-        public void BindProperty(SerializedProperty property, string label)
-        {
-            if (label is not null)
-                this.label = label;
-            BindingExtensions.BindProperty(this, property);
-        }
+        //public void BindProperty(SerializedProperty property)
+        //{
+        //    BindProperty(property, null);
+        //}
+        //public void BindProperty(SerializedProperty property, string label)
+        //{
+        //    if (label is not null)
+        //        this.label = label;
+        //    BindingExtensions.BindProperty(this, property);
+        //}
     }
 
     [CustomPropertyDrawer(typeof(System.Enum), true)]
@@ -111,7 +111,6 @@ namespace Fox.Editor
             }
 
             foxField.BindProperty(property);
-
 
             return foxField as VisualElement;
         }

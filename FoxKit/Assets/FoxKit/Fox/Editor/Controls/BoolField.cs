@@ -55,16 +55,16 @@ namespace Fox.Editor
         // Lots of internal PseudoState-managing code
         //protected override void UpdateMixedValueContent() {}
 
-        public void BindProperty(SerializedProperty property)
-        {
-            BindProperty(property, null);
-        }
-        public void BindProperty(SerializedProperty property, string label)
-        {
-            if (label is not null)
-                this.label = label;
-            BindingExtensions.BindProperty(this, property);
-        }
+        //public void BindProperty(SerializedProperty property)
+        //{
+        //    BindProperty(property, null);
+        //}
+        //public void BindProperty(SerializedProperty property, string label)
+        //{
+        //    if (label is not null)
+        //        this.label = label;
+        //    BindingExtensions.BindProperty(this, property);
+        //}
     }
 
     [CustomPropertyDrawer(typeof(System.Boolean))]

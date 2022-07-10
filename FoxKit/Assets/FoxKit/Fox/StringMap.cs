@@ -366,7 +366,38 @@ namespace Fox.Core
 
         public void RemoveAt(int index)
         {
-            throw new NotImplementedException();
+            if ((uint)index >= Cells.Length)
+                return;
+
+            uint lastIndex = (uint)index;
+            uint nextIndex = (uint)index;
+            while (true)
+            {
+                nextIndex = (nextIndex + 1) & HashMask; // Loop index back to 0 if it will exceed Capacity.
+
+                ref Cell cell = ref Cells[nextIndex];
+
+                if (IsCellEmpty(ref cell))
+                {
+                    Cells[index].Key = null;
+                    break;
+                }
+                else if (cell.Distance == 0)
+                {
+                    Cells[index].Key = null;
+                    break;
+                }
+                else
+                {
+                    Cells[lastIndex] = Cells[nextIndex];
+                    Cells[lastIndex].Distance--;
+                }
+
+
+                lastIndex = nextIndex; // Loop index back to 0 if it will exceed Capacity.
+            }
+
+            CellCount--;
         }
 
         public void CopyTo(Array array, int index)

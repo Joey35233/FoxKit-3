@@ -1,4 +1,5 @@
-﻿using UnityEditor;
+﻿using System;
+using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine.UIElements;
 
@@ -80,19 +81,39 @@ namespace Fox.Editor
             this.styleSheets.Add(IFoxField.FoxFieldStyleSheet);
         }
 
-        public void BindProperty(SerializedProperty property)
+        protected override void ExecuteDefaultActionAtTarget(EventBase evt)
         {
-            BindProperty(property, null);
+            base.ExecuteDefaultActionAtTarget(evt);
+
+            // UNITYENHANCEMENT: https://github.com/Joey35233/FoxKit-3/issues/12
+            Type evtType = evt.GetType();
+            if ((evtType.Name == "SerializedPropertyBindEvent") && !string.IsNullOrWhiteSpace(bindingPath))
+            {
+                SerializedProperty entityLinkProperty = evtType.GetProperty("bindProperty").GetValue(evt) as SerializedProperty;
+
+
+                InternalHandleField.BindProperty(entityLinkProperty.FindPropertyRelative("handle"));
+                InternalPackagePathField.BindProperty(entityLinkProperty.FindPropertyRelative("packagePath"));
+                InternalArchivePathField.BindProperty(entityLinkProperty.FindPropertyRelative("archivePath"));
+                InternalNameField.BindProperty(entityLinkProperty.FindPropertyRelative("nameInArchive"));
+
+                evt.StopPropagation();
+            }
         }
-        public void BindProperty(SerializedProperty property, string label)
-        {
-            if (label is not null)
-                this.label = label;
-            InternalHandleField.BindProperty(property.FindPropertyRelative("handle"));
-            InternalPackagePathField.BindProperty(property.FindPropertyRelative("packagePath"));
-            InternalArchivePathField.BindProperty(property.FindPropertyRelative("archivePath"));
-            InternalNameField.BindProperty(property.FindPropertyRelative("nameInArchive"));
-        }
+
+        //public void BindProperty(SerializedProperty property)
+        //{
+        //    BindProperty(property, null);
+        //}
+        //public void BindProperty(SerializedProperty property, string label)
+        //{
+        //    if (label is not null)
+        //        this.label = label;
+        //    InternalHandleField.BindProperty(property.FindPropertyRelative("handle"));
+        //    InternalPackagePathField.BindProperty(property.FindPropertyRelative("packagePath"));
+        //    InternalArchivePathField.BindProperty(property.FindPropertyRelative("archivePath"));
+        //    InternalNameField.BindProperty(property.FindPropertyRelative("nameInArchive"));
+        //}
     }
 
     [CustomPropertyDrawer(typeof(Fox.Core.EntityLink))]

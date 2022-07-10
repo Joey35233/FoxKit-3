@@ -1,6 +1,7 @@
 ﻿using UnityEditor;
 using UnityEngine.UIElements;
 using UnityEditor.UIElements;
+using System;
 
 namespace Fox.Editor
 {
@@ -54,19 +55,39 @@ namespace Fox.Editor
             this.styleSheets.Add(IFoxField.FoxFieldStyleSheet);
         }
 
-        public void BindProperty(SerializedProperty property)
+        protected override void ExecuteDefaultActionAtTarget(EventBase evt)
         {
-            BindProperty(property, null);
+            base.ExecuteDefaultActionAtTarget(evt);
+
+            // UNITYENHANCEMENT: https://github.com/Joey35233/FoxKit-3/issues/12
+            Type evtType = evt.GetType();
+            if ((evtType.Name == "SerializedPropertyBindEvent") && !string.IsNullOrWhiteSpace(bindingPath))
+            {
+                SerializedProperty quaternionProperty = evtType.GetProperty("bindProperty").GetValue(evt) as SerializedProperty;
+
+                BindingExtensions.BindProperty(XField, quaternionProperty.FindPropertyRelative("x"));
+                BindingExtensions.BindProperty(YField, quaternionProperty.FindPropertyRelative("y"));
+                BindingExtensions.BindProperty(ZField, quaternionProperty.FindPropertyRelative("z"));
+                BindingExtensions.BindProperty(WField, quaternionProperty.FindPropertyRelative("w"));
+
+                // Stop the QuaternionField itself's binding event; it's just a container for the actual BindableElements.
+                evt.StopPropagation();
+            }
         }
-        public void BindProperty(SerializedProperty property, string label)
-        {
-            if (label is not null)
-                this.label = label;
-            BindingExtensions.BindProperty(XField, property.FindPropertyRelative("x"));
-            BindingExtensions.BindProperty(YField, property.FindPropertyRelative("y"));
-            BindingExtensions.BindProperty(ZField, property.FindPropertyRelative("z"));
-            BindingExtensions.BindProperty(WField, property.FindPropertyRelative("w"));
-        }
+
+        //public void BindProperty(SerializedProperty property)
+        //{
+        //    BindProperty(property, null);
+        //}
+        //public void BindProperty(SerializedProperty property, string label)
+        //{
+        //    if (label is not null)
+        //        this.label = label;
+        //    BindingExtensions.BindProperty(XField, property.FindPropertyRelative("x"));
+        //    BindingExtensions.BindProperty(YField, property.FindPropertyRelative("y"));
+        //    BindingExtensions.BindProperty(ZField, property.FindPropertyRelative("z"));
+        //    BindingExtensions.BindProperty(WField, property.FindPropertyRelative("w"));
+        //}
     }
 
     [CustomPropertyDrawer(typeof(UnityEngine.Quaternion))]

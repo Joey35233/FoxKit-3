@@ -7,20 +7,28 @@ using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine.UIElements;
 
+// UNITYBUG: https://github.com/Joey35233/FoxKit-3/issues/9
+// Unfortunately, I have had to implement manual binding, rather than via SerializedPropertyChangeEvent.
+// This means that any programmatic changes to the data, such as via Undo or scripting, will not automatically be reflected in the UI.
+
 namespace Fox.Editor
 {
     public class EntityPtrField<T> : BaseField<Fox.Core.EntityPtr<T>>, IFoxField 
         where T : Entity, new()
     {
         private VisualElement PropertyContainer;
+        private VisualElement Header;
         private Button CreateDeleteButton;
         private Label EntityLabel;
 
         public new static readonly string ussClassName = "fox-entityptr-field";
         public new static readonly string labelUssClassName = ussClassName + "__label";
         public new static readonly string inputUssClassName = ussClassName + "__input";
+        public static readonly string headerUssClassName = ussClassName + "__header";
+        public static readonly string headerLivePtrUssClassName = headerUssClassName + "--live-ptr";
         public static readonly string createButtonUssClassName = ussClassName + "__create-button";
         public static readonly string deleteButtonUssClassName = ussClassName + "__delete-button";
+        public static readonly string propertyContainerUssClassName = ussClassName + "__property-container";
 
         public VisualElement visualInput { get; }
 
@@ -49,10 +57,8 @@ namespace Fox.Editor
         {
             visualInput = visInput;
 
-            PropertyContainer = new VisualElement();
-
-            var header = new VisualElement();
-            header.style.flexDirection = FlexDirection.Row;
+            PropertyContainer = new ScrollView(ScrollViewMode.VerticalAndHorizontal);
+            PropertyContainer.AddToClassList(propertyContainerUssClassName);
 
             CreateDeleteButton = new Button(CreateDeleteButton_clicked);
 
@@ -60,9 +66,11 @@ namespace Fox.Editor
 
             ButtonMode = CreateDeleteButtonMode.CreateEntity;
 
-            header.Add(CreateDeleteButton);
-            header.Add(EntityLabel);
-            visualInput.Add(header);
+            Header = new VisualElement();
+            Header.AddToClassList(headerUssClassName);
+            Header.Add(CreateDeleteButton);
+            Header.Add(EntityLabel);
+            visualInput.Add(Header);
 
             visualInput.Add(PropertyContainer);
 
@@ -76,54 +84,62 @@ namespace Fox.Editor
         {
             base.ExecuteDefaultActionAtTarget(evt);
 
+            // UNITYENHANCEMENT: https://github.com/Joey35233/FoxKit-3/issues/12
             Type evtType = evt.GetType();
             if ((evtType.Name == "SerializedPropertyBindEvent") && !string.IsNullOrWhiteSpace(bindingPath))
             {
                 SerializedProperty entityPtrProperty = evtType.GetProperty("bindProperty").GetValue(evt) as SerializedProperty;
-                PtrProperty = entityPtrProperty.FindPropertyRelative("_ptr");
 
-                if (PtrProperty != null)
-                {
-                    OnPtrPropertyChanged(PtrProperty);
+                OnPtrPropertyChanged(entityPtrProperty.FindPropertyRelative("_ptr"));
 
-                    BindingExtensions.TrackPropertyValue(this, PtrProperty, OnPtrPropertyChanged);
-                    BindingExtensions.TrackPropertyValue(this, entityPtrProperty, (SerializedProperty property) => UnityEngine.Debug.Log("Parent changed!"));
-                }
+                // UNITYBUG: https://github.com/Joey35233/FoxKit-3/issues/9
+                // BindingExtensions.TrackPropertyValue(this, PtrProperty, OnPtrPropertyChanged);
 
                 // Stop the EntityPtrField itself's binding event; it's just a container for the actual BindableElements.
                 evt.StopPropagation();
             }
-            else if (evt is SerializedPropertyChangeEvent changeEvent)
-            {
-                OnPtrPropertyChanged(changeEvent.changedProperty);
-            }
+            // UNITYBUG: https://github.com/Joey35233/FoxKit-3/issues/9
+            //else if (evt is SerializedPropertyChangeEvent changeEvent)
+            //{
+            //    OnPtrPropertyChanged(changeEvent.changedProperty);
+            //}
         }
 
+        // UNITYBUG: https://github.com/Joey35233/FoxKit-3/issues/9
         private void OnPtrPropertyChanged(SerializedProperty property)
         {
+            // The only place that makes me wonder if this is necessary is changeEvent.changedProperty.
             PtrProperty = property.Copy();
 
-            UnityEngine.Debug.Log("EntityPtr<T> property changed callback!");
+            // [－] clicked
             if (PtrProperty.managedReferenceValue is null)
             {
+                Header.RemoveFromClassList(headerLivePtrUssClassName);
+
                 ButtonMode = CreateDeleteButtonMode.CreateEntity;
                 CreateDeleteButton.text = "＋";
                 CreateDeleteButton.RemoveFromClassList(deleteButtonUssClassName);
                 CreateDeleteButton.AddToClassList(createButtonUssClassName);
 
-                EntityLabel.text = "null";
+                EntityLabel.text = $"<b>null</b> ({typeof(T).Name})";
 
                 PropertyContainer.Clear();
+                PropertyContainer.visible = false;
             }
+            // [＋] clicked
             else
             {
+                Header.AddToClassList(headerLivePtrUssClassName);
+
                 ButtonMode = CreateDeleteButtonMode.DeleteEntity;
                 CreateDeleteButton.text = "－";
                 CreateDeleteButton.RemoveFromClassList(createButtonUssClassName);
                 CreateDeleteButton.AddToClassList(deleteButtonUssClassName);
 
-                EntityLabel.text = $"{PtrProperty.managedReferenceValue.GetType().Name} ({typeof(T).Name})";
+                EntityLabel.text = $"<b>{PtrProperty.managedReferenceValue.GetType().Name}</b> ({typeof(T).Name})";
+                EntityLabel.enableRichText = true;
 
+                PropertyContainer.visible = true;
                 PropertyContainer.Clear();
                 foreach (SerializedProperty child in PtrProperty.GetChildren())
                 {
@@ -136,38 +152,52 @@ namespace Fox.Editor
 
         private void CreateDeleteButton_clicked()
         {
-            if (PtrProperty == null)
-                return;
-
             switch (ButtonMode)
             {
+                // [＋] clicked
                 case CreateDeleteButtonMode.CreateEntity:
                     {
                         SpecificEntityType = EntityTypePickerPopup.ShowPopup(typeof(T)).Type;
                         PtrProperty.managedReferenceValue = Activator.CreateInstance(SpecificEntityType);
-                        PtrProperty.serializedObject.ApplyModifiedProperties();
+                        // UNITYBUG: https://github.com/Joey35233/FoxKit-3/issues/9
+                        // Disable undo functionality until bug is fixed.
+                        // PtrProperty.serializedObject.ApplyModifiedProperties();
+                        PtrProperty.serializedObject.ApplyModifiedPropertiesWithoutUndo();
+
+                        // UNITYBUG: https://github.com/Joey35233/FoxKit-3/issues/9
+                        // This line should not exist.
+                        OnPtrPropertyChanged(PtrProperty);
                     }
                     break;
+                // [－] clicked
                 case CreateDeleteButtonMode.DeleteEntity:
                     {
                         PtrProperty.managedReferenceValue = null;
-                        PtrProperty.serializedObject.ApplyModifiedProperties();
+
+                        // UNITYBUG: https://github.com/Joey35233/FoxKit-3/issues/9
+                        // Disable undo functionality until bug is fixed.
+                        // PtrProperty.serializedObject.ApplyModifiedProperties();
+                        PtrProperty.serializedObject.ApplyModifiedPropertiesWithoutUndo();
+
+                        // UNITYBUG: https://github.com/Joey35233/FoxKit-3/issues/9
+                        // This line should not exist.
+                        OnPtrPropertyChanged(PtrProperty);
                     }
                     break;
             }
         }
 
-        public void BindProperty(SerializedProperty property)
-        {
-            BindProperty(property, null);
-        }
-        public void BindProperty(SerializedProperty property, string label)
-        {
-            if (label is not null)
-                this.label = label;
+        //public void BindProperty(SerializedProperty property)
+        //{
+        //    BindProperty(property, null);
+        //}
+        //public void BindProperty(SerializedProperty property, string label)
+        //{
+        //    if (label is not null)
+        //        this.label = label;
 
-            BindingExtensions.BindProperty(this, property);
-        }
+        //    BindingExtensions.BindProperty(this, property);
+        //}
     }
 
     [CustomPropertyDrawer(typeof(Core.EntityPtr<>))]

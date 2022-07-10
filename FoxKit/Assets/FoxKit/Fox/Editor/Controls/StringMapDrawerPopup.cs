@@ -4,11 +4,11 @@ using UnityEngine;
 
 namespace Fox.Editor
 {
-    public static class StringMapDrawerPopup
+    public static class StringMapKeyPicker
     {
         public static String ShowPopup()
         {
-            var window = EditorWindow.GetWindow<StringMapDrawerPopupWindow>(true, "Create StringMap Key");
+            var window = EditorWindow.GetWindow<StringMapKeyPickerWindow>(true, "Create StringMap Cell");
             window.maxSize = new Vector2(250, 70);
             window.minSize = window.maxSize;
             window.ShowModal();
@@ -16,7 +16,7 @@ namespace Fox.Editor
             return window.returnValue;
         }
 
-        private class StringMapDrawerPopupWindow : EditorWindow
+        private class StringMapKeyPickerWindow : EditorWindow
         {
             private string _returnValue;
             public String returnValue;

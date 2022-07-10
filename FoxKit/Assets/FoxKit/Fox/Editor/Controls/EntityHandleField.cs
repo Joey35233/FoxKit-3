@@ -41,16 +41,16 @@ namespace Fox.Editor
             this.styleSheets.Add(IFoxField.FoxFieldStyleSheet);
         }
 
-        public void BindProperty(SerializedProperty property)
-        {
-            BindProperty(property, null);
-        }
-        public void BindProperty(SerializedProperty property, string label)
-        {
-            if (label is not null)
-                this.label = label;
-            BindingExtensions.BindProperty(this, property);
-        }
+        //public void BindProperty(SerializedProperty property)
+        //{
+        //    BindProperty(property, null);
+        //}
+        //public void BindProperty(SerializedProperty property, string label)
+        //{
+        //    if (label is not null)
+        //        this.label = label;
+        //    BindingExtensions.BindProperty(this, property);
+        //}
     }
 
     [CustomPropertyDrawer(typeof(EntityHandle))]

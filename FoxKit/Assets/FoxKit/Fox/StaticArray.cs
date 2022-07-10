@@ -37,17 +37,23 @@ namespace Fox.Core
 
         public void Insert(int index, T item)
         {
-            _list.Insert(index, item);
+            if (index < Count)
+                _list.Insert(index, item);
+            else
+                throw new ArgumentOutOfRangeException();
         }
 
         public void RemoveAt(int index)
         {
-            _list.RemoveAt(index);
+            if (index < Count)
+                _list.RemoveAt(index);
+            else
+                throw new ArgumentOutOfRangeException();
         }
 
         public void Add(T item)
         {
-            _list.Add(item);
+            throw new NotImplementedException();
         }
 
         public void Clear()
@@ -67,7 +73,7 @@ namespace Fox.Core
 
         public bool Remove(T item)
         {
-            return _list.Remove(item);
+            throw new NotImplementedException();
         }
 
         public IEnumerator<T> GetEnumerator()
@@ -102,7 +108,10 @@ namespace Fox.Core
 
         void IList.Insert(int index, object value)
         {
-            _list.Insert(index, (T)value);
+            if (index < Count)
+                _list.Insert(index, (T)value);
+            else
+                throw new ArgumentOutOfRangeException();
         }
 
         void IList.Remove(object value)
@@ -112,7 +121,7 @@ namespace Fox.Core
 
         void IList.RemoveAt(int index)
         {
-            RemoveAt(index);
+            throw new NotImplementedException();
         }
 
         void ICollection.CopyTo(Array array, int index)

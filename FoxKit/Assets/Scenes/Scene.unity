@@ -153,11 +153,230 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Entity:
-    rid: 1910165229070188544
+    rid: 6799875912713895966
   references:
     version: 2
     RefIds:
-    - rid: 1910165229070188544
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 6799875912713895966
+      type: {class: GeoxCollisionFreeShape, ns: Fox.Geox, asm: Assembly-CSharp}
+      data:
+        name:
+          _cString: 
+          _length: 0
+          _hash:
+            hash: 0
+        dataSet:
+          entity: {fileID: 0}
+        referencePath:
+          _cString: 
+          _length: 0
+          _hash:
+            hash: 0
+        parent:
+          entity: {fileID: 0}
+        transform:
+          _ptr:
+            rid: -2
+        shearTransform:
+          _ptr:
+            rid: -2
+        pivotTransform:
+          _ptr:
+            rid: -2
+        children:
+          _list: []
+        flags: 0
+        inheritTransform: 0
+        visibility: 0
+        selection: 0
+        worldMatrix:
+          e00: 0
+          e01: 0
+          e02: 0
+          e03: 0
+          e10: 0
+          e11: 0
+          e12: 0
+          e13: 0
+          e20: 0
+          e21: 0
+          e22: 0
+          e23: 0
+          e30: 0
+          e31: 0
+          e32: 0
+          e33: 0
+        worldTransform:
+          e00: 0
+          e01: 0
+          e02: 0
+          e03: 0
+          e10: 0
+          e11: 0
+          e12: 0
+          e13: 0
+          e20: 0
+          e21: 0
+          e22: 0
+          e23: 0
+          e30: 0
+          e31: 0
+          e32: 0
+          e33: 0
+        collisionCategory: 0
+        collisionMaterial:
+          _cString: 
+          _length: 0
+          _hash:
+            hash: 0
+        collisionAttributeNames:
+          _list: []
+        points:
+          _list:
+          - {x: 0, y: 0, z: 0}
+          - {x: 0, y: 0, z: 0}
+          - {x: 0, y: 0, z: 0}
+          - {x: 0, y: 0, z: 0}
+          - {x: 0, y: 0, z: 0}
+          - {x: 0, y: 0, z: 0}
+          - {x: 0, y: 0, z: 0}
+          - {x: 0, y: 0, z: 0}
+--- !u!4 &61159495
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 61159493}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &139624966
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 139624969}
+  - component: {fileID: 139624968}
+  - component: {fileID: 139624967}
+  m_Layer: 0
+  m_Name: Main Camera
+  m_TagString: MainCamera
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!81 &139624967
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 139624966}
+  m_Enabled: 1
+--- !u!20 &139624968
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 139624966}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_FocalLength: 50
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 60
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: -1
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
+--- !u!4 &139624969
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 139624966}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &505352375
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 505352377}
+  - component: {fileID: 505352376}
+  m_Layer: 0
+  m_Name: GameObject (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &505352376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 505352375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2054ca4b17548743b0ca1260155772d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Entity:
+    rid: 6799875981253804040
+  references:
+    version: 2
+    RefIds:
+    - rid: 6799875981253804040
       type: {class: TppAmbientParameter, ns: Tpp.Sound, asm: Assembly-CSharp}
       data:
         name:
@@ -186,7 +405,7 @@ MonoBehaviour:
         auxSends:
           Threshold: 230
           HashMask: 255
-          CellCount: 5
+          CellCount: 3
           Cells:
           - Distance: 0
             Key:
@@ -561,17 +780,10 @@ MonoBehaviour:
             Value: 0
           - Distance: 0
             Key:
-              _cString: new0
-              _length: 4
-              _hash:
-                hash: 153640397463605
-            Value: 3
-          - Distance: 0
-            Key:
-              _cString: new4
-              _length: 4
+              _cString: 
+              _length: 0
               _hash:
-                hash: 260413429722422
+                hash: 0
             Value: 0
           - Distance: 0
             Key:
@@ -764,10 +976,10 @@ MonoBehaviour:
             Value: 0
           - Distance: 0
             Key:
-              _cString: 
-              _length: 0
+              _cString: hi
+              _length: 2
               _hash:
-                hash: 0
+                hash: 86933426811729
             Value: 0
           - Distance: 0
             Key:
@@ -932,10 +1144,10 @@ MonoBehaviour:
             Value: 0
           - Distance: 0
             Key:
-              _cString: new1
-              _length: 4
+              _cString: hi1
+              _length: 3
               _hash:
-                hash: 75822373828714
+                hash: 112065916217705
             Value: 0
           - Distance: 0
             Key:
@@ -1401,10 +1613,10 @@ MonoBehaviour:
             Value: 0
           - Distance: 0
             Key:
-              _cString: new2
-              _length: 4
+              _cString: 
+              _length: 0
               _hash:
-                hash: 166505118451629
+                hash: 0
             Value: 0
           - Distance: 0
             Key:
@@ -1674,10 +1886,10 @@ MonoBehaviour:
             Value: 0
           - Distance: 0
             Key:
-              _cString: new3
-              _length: 4
+              _cString: 
+              _length: 0
               _hash:
-                hash: 8763582091988
+                hash: 0
             Value: 0
           - Distance: 0
             Key:
@@ -1685,6 +1897,13 @@ MonoBehaviour:
               _length: 0
               _hash:
                 hash: 0
+            Value: 0
+          - Distance: 0
+            Key:
+              _cString: hi2
+              _length: 3
+              _hash:
+                hash: 250302116803285
             Value: 0
           - Distance: 0
             Key:
@@ -1981,104 +2200,20 @@ MonoBehaviour:
                 hash: 0
             Value: 0
         dryVolume: 0
---- !u!4 &61159495
+--- !u!4 &505352377
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 61159493}
+  m_GameObject: {fileID: 505352375}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.55618143, y: 1.4434404, z: -1.608758}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &139624966
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 139624969}
-  - component: {fileID: 139624968}
-  - component: {fileID: 139624967}
-  m_Layer: 0
-  m_Name: Main Camera
-  m_TagString: MainCamera
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!81 &139624967
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 139624966}
-  m_Enabled: 1
---- !u!20 &139624968
-Camera:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 139624966}
-  m_Enabled: 1
-  serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
-  m_projectionMatrixMode: 1
-  m_GateFitMode: 2
-  m_FOVAxisMode: 0
-  m_SensorSize: {x: 36, y: 24}
-  m_LensShift: {x: 0, y: 0}
-  m_FocalLength: 50
-  m_NormalizedViewPortRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
-  field of view: 60
-  orthographic: 0
-  orthographic size: 5
-  m_Depth: -1
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 0
-  m_TargetEye: 3
-  m_HDR: 1
-  m_AllowMSAA: 1
-  m_AllowDynamicResolution: 0
-  m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
-  m_StereoConvergence: 10
-  m_StereoSeparation: 0.022
---- !u!4 &139624969
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 139624966}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1678502340
 GameObject:
@@ -52798,10 +52933,10 @@ MonoBehaviour:
               hash: 1125899906842624
         parameters:
           _ptr:
-            rid: 1910165265878351882
+            rid: 6799875912713895960
         flags1: 0
         flags2: 0
-    - rid: 1910165265878351882
+    - rid: 6799875912713895960
       type: {class: TransformEntity, ns: Fox.Core, asm: Assembly-CSharp}
       data:
         owner:

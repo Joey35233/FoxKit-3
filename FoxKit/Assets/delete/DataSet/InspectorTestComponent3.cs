@@ -6,6 +6,6 @@
     public class InspectorTestComponent3 : MonoBehaviour
     {
         [SerializeReference]
-        public Tpp.Sound.TppAmbientParameter Entity = new Tpp.Sound.TppAmbientParameter();
+        public Fox.Geox.GeoxCollisionFreeShape Entity = new Fox.Geox.GeoxCollisionFreeShape();
     }
 }

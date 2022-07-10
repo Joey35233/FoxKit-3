@@ -6,6 +6,6 @@
     public class InspectorTestComponent4 : MonoBehaviour
     {
         [SerializeReference]
-        public Tpp.GameKit.TppPermanentGimmickData Entity = new Tpp.GameKit.TppPermanentGimmickData();
+        public Tpp.Sound.TppAmbientParameter Entity = new Tpp.Sound.TppAmbientParameter();
     }
 }

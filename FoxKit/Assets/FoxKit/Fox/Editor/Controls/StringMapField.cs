@@ -8,8 +8,13 @@ using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine.UIElements;
 
+// UNITYBUG: https://github.com/Joey35233/FoxKit-3/issues/9
+// Unfortunately, I have had to implement manual binding, rather than via SerializedPropertyChangeEvent.
+// This means that any programmatic changes to the data, such as via Undo or scripting, will not automatically be reflected in the UI.
+
 namespace Fox.Editor
 {
+    // UNITYENHANCEMENT: https://github.com/Joey35233/FoxKit-3/issues/11
     public class CellField : VisualElement
     {
         public StringField KeyField;
@@ -19,8 +24,11 @@ namespace Fox.Editor
         {
             KeyField = new StringField();
             KeyField.SetEnabled(false);
+            KeyField.AddToClassList(BaseCompositeField<UnityEngine.Vector3, FloatField, float>.firstFieldVariantUssClassName);
+            KeyField.AddToClassList(BaseCompositeField<UnityEngine.Vector3, FloatField, float>.fieldUssClassName);
 
             DataField = dataField;
+            DataField.AddToClassList(BaseCompositeField<UnityEngine.Vector3, FloatField, float>.fieldUssClassName);
 
             this.Add(KeyField);
             this.Add(DataField);
@@ -33,11 +41,7 @@ namespace Fox.Editor
     {
         private ListView ListViewInput;
 
-        private static Func<IFoxField> FieldConstructor = CollectionDrawer.GetTypeFieldConstructor2(typeof(T));
-
-        private static Type SerializedObjectListType = Type.GetType("UnityEditor.UIElements.Bindings.SerializedObjectList, UnityEditor.UIElementsModule");
-        private static TypeInfo SerializedObjectListTypeInfo = SerializedObjectListType.GetTypeInfo();
-        private static MethodInfo GetSerializedObjectListArraySizeMethodInfo = SerializedObjectListTypeInfo.GetMethod("get_ArraySize");
+        private static Func<IFoxField> FieldConstructor = FoxFieldUtils.GetTypeFieldConstructor(typeof(T));
 
         private SerializedProperty StringMapProperty;
 
@@ -75,9 +79,10 @@ namespace Fox.Editor
             ListViewInput.virtualizationMethod = CollectionVirtualizationMethod.DynamicHeight;
             ListViewInput.showAddRemoveFooter = false;
 
-            var footer = new VisualElement();
-            footer.name = ListView.footerUssClassName;
-            footer.AddToClassList(ListView.footerUssClassName);
+            // Technically, the header is the footer, just at the top.
+            var header = new VisualElement();
+            header.name = ListView.footerUssClassName;
+            header.AddToClassList(ListView.footerUssClassName);
 
             var addButton = new Button(AddButton_clicked);
             addButton.name = ListView.ussClassName + "__add-button";
@@ -89,10 +94,10 @@ namespace Fox.Editor
             removeButton.text = "－";
             removeButton.AddToClassList(removeButtonUssClassName);
 
-            footer.Add(removeButton);
-            footer.Add(addButton);
+            header.Add(removeButton);
+            header.Add(addButton);
 
-            ListViewInput.hierarchy.Add(footer);
+            ListViewInput.hierarchy.Insert(0, header);
             ListViewInput.AddToClassList(ListView.listViewWithFooterUssClassName);
             ListViewInput.Q<ScrollView>(className: ListView.listScrollViewUssClassName).AddToClassList(ListView.scrollViewWithFooterUssClassName);
 
@@ -109,57 +114,74 @@ namespace Fox.Editor
             Type evtType = evt.GetType();
             if ((evtType.Name == "SerializedPropertyBindEvent") && !string.IsNullOrWhiteSpace(bindingPath))
             {
-                SerializedProperty property = evtType.GetProperty("bindProperty").GetValue(evt) as SerializedProperty;
-                StringMapProperty = property;
+                SerializedProperty stringMapProperty = evtType.GetProperty("bindProperty").GetValue(evt) as SerializedProperty;
+                StringMapProperty = stringMapProperty;
 
-                if (StringMapProperty != null)
-                {
-                    BindingExtensions.TrackPropertyValue(this, StringMapProperty, null);
+                ListViewInput.itemsSource = StringMapProperty.GetValue() as IList;
+                OnPropertyChanged();
 
-                    OnPropertyChanged();
-                }
+                // UNITYBUG: https://github.com/Joey35233/FoxKit-3/issues/9
+                // BindingExtensions.TrackPropertyValue(this, StringMapProperty, null);
 
                 // Stop the StringMapField itself's binding event; it's just a container for the actual BindableElements.
                 evt.StopPropagation();
             }
-            else if (evt is SerializedPropertyChangeEvent)
-            {
-                OnPropertyChanged();
-            }
+            // UNITYBUG: https://github.com/Joey35233/FoxKit-3/issues/9
+            //else if (evt is SerializedPropertyChangeEvent)
+            //{
+            //    OnPropertyChanged();
+            //}
         }
         private void OnPropertyChanged()
         {
-            UnityEngine.Debug.Log("StringMap<T> property changed!");
-            if (ListViewInput.itemsSource == null)
-            {
-                ListViewInput.itemsSource = StringMapProperty.GetValue() as IList;
-            }
-            ListViewInput.Rebuild();
+            ListViewInput.RefreshItems();
         }
 
         private void AddButton_clicked()
         {
-            StringMapProperty.serializedObject.Update();
-            Undo.RecordObject(StringMapProperty.serializedObject.targetObject, "Insert Cell");
-
-            var stringMap = ListViewInput.itemsSource as StringMap<T>;
-            String key = StringMapDrawerPopup.ShowPopup();
+            String key = StringMapKeyPicker.ShowPopup();
             if (key != null)
             {
+                StringMapProperty.serializedObject.Update();
+
+                // UNITYBUG: https://github.com/Joey35233/FoxKit-3/issues/9
+                // Undo.RecordObject(StringMapProperty.serializedObject.targetObject, $"Insert cell");
+
+                var stringMap = ListViewInput.itemsSource as StringMap<T>;
                 stringMap.Insert(key, default);
 
-                StringMapProperty.serializedObject.ApplyModifiedProperties();
+                // Apply without Undo so that the registered Undo event above works correctly.
+                StringMapProperty.serializedObject.ApplyModifiedPropertiesWithoutUndo();
+
+                // UNITYBUG: https://github.com/Joey35233/FoxKit-3/issues/9
+                // This line should not exist.
+                OnPropertyChanged();
             }
         }
 
         private void RemoveButton_clicked()
         {
-            StringMapProperty.serializedObject.Update();
-            Undo.RecordObject(StringMapProperty.serializedObject.targetObject, "Remove Cell");
-
             if (ListViewInput.selectedIndex != -1)
+            {
+                StringMapProperty.serializedObject.Update();
+
+                // UNITYBUG: https://github.com/Joey35233/FoxKit-3/issues/9
+                // Disable undo functionality until bug is fixed.
+                // Undo.RecordObject(StringMapProperty.serializedObject.targetObject, $"Remove cell");
+
                 foreach (var selectedIndex in ListViewInput.selectedIndices)
-                    ListViewInput.itemsSource.RemoveAt((ListViewInput.itemsSource as IStringMap).OccupiedIndexToAbsoluteIndex()
+                {
+                    int absoluteIndex = (ListViewInput.itemsSource as IStringMap).OccupiedIndexToAbsoluteIndex(selectedIndex);
+                    ListViewInput.itemsSource.RemoveAt(absoluteIndex);
+                }
+
+                // Apply without Undo so that the registered Undo event above works correctly.
+                StringMapProperty.serializedObject.ApplyModifiedPropertiesWithoutUndo();
+
+                // UNITYBUG: https://github.com/Joey35233/FoxKit-3/issues/9
+                // This line should not exist.
+                OnPropertyChanged();
+            }
         }
 
         private VisualElement MakeItem()

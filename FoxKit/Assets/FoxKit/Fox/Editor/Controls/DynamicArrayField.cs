@@ -13,7 +13,7 @@ namespace Fox.Editor
     {
         private ListView ListViewInput;
 
-        private static Func<IFoxField> FieldConstructor = CollectionDrawer.GetTypeFieldConstructor2(typeof(T));
+        private static Func<IFoxField> FieldConstructor = FoxFieldUtils.GetTypeFieldConstructorWithLabelPlaceholder(typeof(T));
         
         private static Type SerializedObjectListType = Type.GetType("UnityEditor.UIElements.Bindings.SerializedObjectList, UnityEditor.UIElementsModule");
         private static TypeInfo SerializedObjectListTypeInfo = SerializedObjectListType.GetTypeInfo();
@@ -62,10 +62,30 @@ namespace Fox.Editor
             removeButton.AddToClassList(removeButtonUssClassName);
             removeButton.text = "－";
 
+            VisualElement footer = ListViewInput.Q(name: ListView.footerUssClassName);
+            ListViewInput.Remove(footer);
+            ListViewInput.hierarchy.Insert(0, footer); // Technically, this is now the header.
+
             AddToClassList(ussClassName);
             labelElement.AddToClassList(labelUssClassName);
             visualInput.AddToClassList(inputUssClassName);
             this.styleSheets.Add(IFoxField.FoxFieldStyleSheet);
+        }
+
+        protected override void ExecuteDefaultActionAtTarget(EventBase evt)
+        {
+            base.ExecuteDefaultActionAtTarget(evt);
+
+            // UNITYENHANCEMENT: https://github.com/Joey35233/FoxKit-3/issues/12
+            Type evtType = evt.GetType();
+            if ((evtType.Name == "SerializedPropertyBindEvent") && !string.IsNullOrWhiteSpace(bindingPath))
+            {
+                SerializedProperty dynamicArrayProperty = evtType.GetProperty("bindProperty").GetValue(evt) as SerializedProperty;
+
+                BindingExtensions.BindProperty(ListViewInput, dynamicArrayProperty.FindPropertyRelative("_list"));
+
+                evt.StopPropagation();
+            }
         }
 
         private VisualElement MakeItem()
@@ -75,13 +95,8 @@ namespace Fox.Editor
 
         private void BindItem(VisualElement element, int index)
         {
-            SerializedProperty arraySize = GetSerializedObjectListArraySizeMethodInfo.Invoke(ListViewInput.itemsSource, null) as SerializedProperty;
-
-            if (index >= arraySize.intValue)
-                return;
-
             SerializedProperty itemProperty = ListViewInput.itemsSource[index] as SerializedProperty;
-            (element as IFoxField).BindProperty(itemProperty, itemProperty.name);
+            (element as IFoxField).BindProperty(itemProperty);
 
             element.AddToClassList(BaseCompositeField<UnityEngine.Vector4, FloatField, float>.fieldUssClassName);
             element.AddToClassList(BaseCompositeField<UnityEngine.Vector4, FloatField, float>.firstFieldVariantUssClassName);
@@ -94,16 +109,16 @@ namespace Fox.Editor
             return;
         }
 
-        public void BindProperty(SerializedProperty property)
-        {
-            BindProperty(property, null);
-        }
-        public void BindProperty(SerializedProperty property, string label)
-        {
-            if (label is not null)
-                this.label = label;
-            BindingExtensions.BindProperty(ListViewInput, property.FindPropertyRelative("_list"));
-        }
+        //public void BindProperty(SerializedProperty property)
+        //{
+        //    BindProperty(property, null);
+        //}
+        //public void BindProperty(SerializedProperty property, string label)
+        //{
+        //    if (label is not null)
+        //        this.label = label;
+        //    BindingExtensions.BindProperty(ListViewInput, property.FindPropertyRelative("_list"));
+        //}
     }
 
     [CustomPropertyDrawer(typeof(Core.DynamicArray<>))]

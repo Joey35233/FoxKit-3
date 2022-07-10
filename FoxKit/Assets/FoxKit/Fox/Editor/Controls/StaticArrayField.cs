@@ -10,17 +10,11 @@ namespace Fox.Editor
     {
         private ListView ListViewInput;
 
-        private static Func<IFoxField> FieldConstructor = CollectionDrawer.GetTypeFieldConstructor2(typeof(T));
-
-        private static Type SerializedObjectListType = Type.GetType("UnityEditor.UIElements.Bindings.SerializedObjectList, UnityEditor.UIElementsModule");
-        private static TypeInfo SerializedObjectListTypeInfo = SerializedObjectListType.GetTypeInfo();
-        private static MethodInfo GetSerializedObjectListArraySizeMethodInfo = SerializedObjectListTypeInfo.GetMethod("get_ArraySize");
+        private static Func<IFoxField> FieldConstructor = FoxFieldUtils.GetTypeFieldConstructorWithLabelPlaceholder(typeof(T));
 
         public new static readonly string ussClassName = "fox-staticarray-field";
         public new static readonly string labelUssClassName = ussClassName + "__label";
         public new static readonly string inputUssClassName = ussClassName + "__input";
-        public static readonly string addButtonUssClassName = ussClassName + "__add-button";
-        public static readonly string removeButtonUssClassName = ussClassName + "__remove-button";
 
         public VisualElement visualInput { get; }
 
@@ -49,20 +43,27 @@ namespace Fox.Editor
             ListViewInput.reorderable = false;
             ListViewInput.showBoundCollectionSize = false;
             ListViewInput.virtualizationMethod = CollectionVirtualizationMethod.DynamicHeight;
-            ListViewInput.showAddRemoveFooter = true;
-
-            var addButton = ListViewInput.Q<Button>(name: "unity-list-view__add-button");
-            addButton.text = "＋";
-            addButton.AddToClassList(addButtonUssClassName);
-
-            var removeButton = ListViewInput.Q<Button>(name: "unity-list-view__remove-button");
-            removeButton.AddToClassList(removeButtonUssClassName);
-            removeButton.text = "－";
 
             AddToClassList(ussClassName);
             labelElement.AddToClassList(labelUssClassName);
             visualInput.AddToClassList(inputUssClassName);
             this.styleSheets.Add(IFoxField.FoxFieldStyleSheet);
+        }
+
+        protected override void ExecuteDefaultActionAtTarget(EventBase evt)
+        {
+            base.ExecuteDefaultActionAtTarget(evt);
+
+            // UNITYENHANCEMENT: https://github.com/Joey35233/FoxKit-3/issues/12
+            Type evtType = evt.GetType();
+            if ((evtType.Name == "SerializedPropertyBindEvent") && !string.IsNullOrWhiteSpace(bindingPath))
+            {
+                SerializedProperty staticArrayProperty = evtType.GetProperty("bindProperty").GetValue(evt) as SerializedProperty;
+
+                BindingExtensions.BindProperty(ListViewInput, staticArrayProperty.FindPropertyRelative("_list"));
+
+                evt.StopPropagation();
+            }
         }
 
         private VisualElement MakeItem()
@@ -72,13 +73,8 @@ namespace Fox.Editor
 
         private void BindItem(VisualElement element, int index)
         {
-            SerializedProperty arraySize = GetSerializedObjectListArraySizeMethodInfo.Invoke(ListViewInput.itemsSource, null) as SerializedProperty;
-
-            if (index >= arraySize.intValue)
-                return;
-
             SerializedProperty itemProperty = ListViewInput.itemsSource[index] as SerializedProperty;
-            (element as IFoxField).BindProperty(itemProperty, itemProperty.name);
+            (element as IFoxField).BindProperty(itemProperty);
 
             element.AddToClassList(BaseCompositeField<UnityEngine.Vector4, FloatField, float>.fieldUssClassName);
             element.AddToClassList(BaseCompositeField<UnityEngine.Vector4, FloatField, float>.firstFieldVariantUssClassName);
@@ -91,16 +87,16 @@ namespace Fox.Editor
             return;
         }
 
-        public void BindProperty(SerializedProperty property)
-        {
-            BindProperty(property, null);
-        }
-        public void BindProperty(SerializedProperty property, string label)
-        {
-            if (label is not null)
-                this.label = label;
-            BindingExtensions.BindProperty(ListViewInput, property.FindPropertyRelative("_list"));
-        }
+        //public void BindProperty(SerializedProperty property)
+        //{
+        //    BindProperty(property, null);
+        //}
+        //public void BindProperty(SerializedProperty property, string label)
+        //{
+        //    if (label is not null)
+        //        this.label = label;
+        //    BindingExtensions.BindProperty(ListViewInput, property.FindPropertyRelative("_list"));
+        //}
     }
 
     [CustomPropertyDrawer(typeof(Core.StaticArray<>))]
