@@ -3,6 +3,7 @@ using UnityEditor;
 using System;
 using UnityEngine;
 using Fox.Core;
+using System.Reflection;
 
 namespace Fox.Editor
 {
@@ -86,7 +87,10 @@ namespace Fox.Editor
                 case Type type when type == typeof(EntityLink):
                     return () => new EntityLinkField();
 
-                case Type type when type.GetGenericTypeDefinition() == typeof(StaticArray<>):
+                case Type type when type.IsEnum:
+                    return type.IsDefined(typeof(FlagsAttribute), inherit: false) ? () => new EnumFlagsField() : () => new EnumField();
+
+                case Type type when type.IsGenericType && type.GetGenericTypeDefinition() == typeof(StaticArray<>):
                     return () => Activator.CreateInstance(typeof(StaticArrayField<>).MakeGenericType(new Type[] { type.GenericTypeArguments[0] })) as IFoxField;
 
                 default:
@@ -164,7 +168,10 @@ namespace Fox.Editor
                 case Type type when type == typeof(EntityLink):
                     return () => new EntityLinkField("p");
 
-                case Type type when type.GetGenericTypeDefinition() == typeof(StaticArray<>):
+                case Type type when type.IsEnum:
+                    return type.IsDefined(typeof(FlagsAttribute), inherit: false) ? () => new EnumFlagsField("p") : () => new EnumField("p");
+
+                case Type type when type.IsGenericType && type.GetGenericTypeDefinition() == typeof(StaticArray<>):
                     return () => Activator.CreateInstance(typeof(StaticArrayField<>).MakeGenericType(new Type[] { type.GenericTypeArguments[0] }), new object[] { "p" }) as IFoxField;
 
                 default:

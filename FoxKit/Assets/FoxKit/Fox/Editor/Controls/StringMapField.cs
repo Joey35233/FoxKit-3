@@ -24,6 +24,8 @@ namespace Fox.Editor
         {
             KeyField = new StringField();
             KeyField.SetEnabled(false);
+            KeyField.style.flexBasis = new StyleLength(StyleKeyword.Auto);
+            KeyField.style.flexGrow = 0;
             KeyField.AddToClassList(BaseCompositeField<UnityEngine.Vector3, FloatField, float>.firstFieldVariantUssClassName);
             KeyField.AddToClassList(BaseCompositeField<UnityEngine.Vector3, FloatField, float>.fieldUssClassName);
 
