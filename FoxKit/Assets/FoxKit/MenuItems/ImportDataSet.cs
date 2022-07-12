@@ -72,13 +72,12 @@ namespace FoxKit.MenuItems
             foreach(var entity in transformGameObjects.Keys)
             {
                 var transformData = entity as TransformData;
-                var parent = transformData.parent;
-                if (parent.Entity() == null)
-                {
-                    continue;
-                }
 
-                var parentGameObject = transformGameObjects[parent.Entity()];
+                var parent = transformData.parent;
+                if (parent.Entity == null)
+                    continue;
+
+                var parentGameObject = transformGameObjects[parent.Entity];
                 var gameObject = transformGameObjects[entity];
                 gameObject.transform.SetParent(parentGameObject.transform);
             }

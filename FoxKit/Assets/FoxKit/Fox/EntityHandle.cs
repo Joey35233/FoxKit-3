@@ -6,12 +6,13 @@ namespace Fox.Core
     [System.Serializable]
     public class EntityHandle
     {
-        [SerializeField]
-        private FoxEntity entity;
+        [SerializeReference]
+        private Entity _entity;
+        public Entity Entity { get => _entity; }
 
-        private EntityHandle(FoxEntity entity)
+        private EntityHandle(Entity entity)
         {
-            this.entity = entity;
+            this._entity = entity;
         }
 
         public static EntityHandle Empty()
@@ -19,22 +20,14 @@ namespace Fox.Core
             return new EntityHandle(null);
         }
 
-        public static EntityHandle Get(FoxEntity entity)
+        public static EntityHandle Get(Entity entity)
         {
             return new EntityHandle(entity);
         }
 
-        public void Reset(FoxEntity entityGameObject)
+        public void Reset(Entity entity)
         {
-            this.entity = entityGameObject;
-        }
-
-        public Entity Entity()
-        {
-            if (entity == null)
-                return null;
-
-            return this.entity.Entity;
+            _entity = entity;
         }
     }
 }

@@ -109,20 +109,20 @@ namespace Fox.Core
 
             foreach (var entityHandle in this.entityHandleRequests)
             {
-                if (entities.ContainsKey(entityHandle.Key) && !(entities[entityHandle.Key] is DataSet))
+                if (entities.ContainsKey(entityHandle.Key))
                 {
                     if (!gameObjects.ContainsKey(entityHandle.Key))
                     {
-                        // Design issue here: DataElements with EntityHandles to other DataElements
-                        // This occurs in NavxAttributePathVolume due to the connections between GraphxSpatialGraphDataNode and GraphxSpatialGraphDataEdge
-                        // Not sure how to solve this just yet.
-                        UnityEngine.Debug.LogWarning("Requesting an EntityHandle to an Entity with no GameObject. This isn't currently supported.");
+                        foreach (var request in entityHandle.Value)
+                        {
+                            request.Reset(entities[entityHandle.Key]);
+                        }
                         continue;
                     }
 
                     foreach (var request in entityHandle.Value)
                     {
-                        request.Reset(gameObjects[entityHandle.Key].GetComponent<FoxEntity>());
+                        request.Reset(gameObjects[entityHandle.Key].GetComponent<FoxEntity>().Entity);
                     }
                 }
                 else
