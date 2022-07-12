@@ -50,7 +50,7 @@ namespace Tpp.System
         }
 
         // Constructors
-		public VideoPlayerMemoryBlock(ulong address, ulong id) : base(address, id) { }
+		public VideoPlayerMemoryBlock(ulong id) : base(id) { }
 		public VideoPlayerMemoryBlock() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

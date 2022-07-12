@@ -35,7 +35,7 @@ namespace Fox.Ui
         }
 
         // Constructors
-		public TexListFile(ulong address, ulong id) : base(address, id) { }
+		public TexListFile(ulong id) : base(id) { }
 		public TexListFile() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

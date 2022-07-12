@@ -35,7 +35,7 @@ namespace Fox.GameKit
         }
 
         // Constructors
-		public WatermarkBody(ulong address, ulong id) : base(address, id) { }
+		public WatermarkBody(ulong id) : base(id) { }
 		public WatermarkBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

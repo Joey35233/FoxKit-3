@@ -38,7 +38,7 @@ namespace Fox.PartsBuilder
         }
 
         // Constructors
-		public GeomSkeletonDescription(ulong address, ulong id) : base(address, id) { }
+		public GeomSkeletonDescription(ulong id) : base(id) { }
 		public GeomSkeletonDescription() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

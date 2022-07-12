@@ -47,7 +47,7 @@ namespace Fox.Core
         }
 
         // Constructors
-		public PivotTransformEntity(ulong address, ulong id) : base(address, id) { }
+		public PivotTransformEntity(ulong id) : base(id) { }
 		public PivotTransformEntity() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

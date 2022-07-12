@@ -35,7 +35,7 @@ namespace Fox.Ui
         }
 
         // Constructors
-		public UiFontDataBody(ulong address, ulong id) : base(address, id) { }
+		public UiFontDataBody(ulong id) : base(id) { }
 		public UiFontDataBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

@@ -47,7 +47,7 @@ namespace Fox.Gr
         }
 
         // Constructors
-		public TerrainMaterialConfigration(ulong address, ulong id) : base(address, id) { }
+		public TerrainMaterialConfigration(ulong id) : base(id) { }
 		public TerrainMaterialConfigration() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

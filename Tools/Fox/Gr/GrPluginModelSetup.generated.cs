@@ -35,7 +35,7 @@ namespace Fox.Gr
         }
 
         // Constructors
-		public GrPluginModelSetup(ulong address, ulong id) : base(address, id) { }
+		public GrPluginModelSetup(ulong id) : base(id) { }
 		public GrPluginModelSetup() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

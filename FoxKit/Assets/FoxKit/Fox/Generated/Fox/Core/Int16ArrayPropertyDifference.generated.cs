@@ -41,7 +41,7 @@ namespace Fox.Core
         }
 
         // Constructors
-		public Int16ArrayPropertyDifference(ulong address, ulong id) : base(address, id) { }
+		public Int16ArrayPropertyDifference(ulong id) : base(id) { }
 		public Int16ArrayPropertyDifference() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

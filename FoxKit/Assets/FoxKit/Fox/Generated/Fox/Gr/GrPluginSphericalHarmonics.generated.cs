@@ -35,7 +35,7 @@ namespace Fox.Gr
         }
 
         // Constructors
-		public GrPluginSphericalHarmonics(ulong address, ulong id) : base(address, id) { }
+		public GrPluginSphericalHarmonics(ulong id) : base(id) { }
 		public GrPluginSphericalHarmonics() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

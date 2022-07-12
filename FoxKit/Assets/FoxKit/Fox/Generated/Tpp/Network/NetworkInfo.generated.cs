@@ -47,7 +47,7 @@ namespace Tpp.Network
         }
 
         // Constructors
-		public NetworkInfo(ulong address, ulong id) : base(address, id) { }
+		public NetworkInfo(ulong id) : base(id) { }
 		public NetworkInfo() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

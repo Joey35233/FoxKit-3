@@ -35,7 +35,7 @@ namespace Fox.Core
         }
 
         // Constructors
-		public CallbackProcedureDataBody(ulong address, ulong id) : base(address, id) { }
+		public CallbackProcedureDataBody(ulong id) : base(id) { }
 		public CallbackProcedureDataBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

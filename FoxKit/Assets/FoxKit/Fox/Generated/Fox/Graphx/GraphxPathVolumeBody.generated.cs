@@ -35,7 +35,7 @@ namespace Fox.Graphx
         }
 
         // Constructors
-		public GraphxPathVolumeBody(ulong address, ulong id) : base(address, id) { }
+		public GraphxPathVolumeBody(ulong id) : base(id) { }
 		public GraphxPathVolumeBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

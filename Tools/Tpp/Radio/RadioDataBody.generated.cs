@@ -35,7 +35,7 @@ namespace Tpp.Radio
         }
 
         // Constructors
-		public RadioDataBody(ulong address, ulong id) : base(address, id) { }
+		public RadioDataBody(ulong id) : base(id) { }
 		public RadioDataBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

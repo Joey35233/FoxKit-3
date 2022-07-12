@@ -38,7 +38,7 @@ namespace Tpp.GameKit
         }
 
         // Constructors
-		public TppPermanentGimmickWaterTowerParameter(ulong address, ulong id) : base(address, id) { }
+		public TppPermanentGimmickWaterTowerParameter(ulong id) : base(id) { }
 		public TppPermanentGimmickWaterTowerParameter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

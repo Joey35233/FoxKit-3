@@ -38,7 +38,7 @@ namespace Tpp.GameCore
         }
 
         // Constructors
-		public AvatarEditorSetupData(ulong address, ulong id) : base(address, id) { }
+		public AvatarEditorSetupData(ulong id) : base(id) { }
 		public AvatarEditorSetupData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

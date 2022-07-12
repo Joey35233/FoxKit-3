@@ -95,7 +95,7 @@ namespace Tpp.MotherBaseStage
         }
 
         // Constructors
-		public TppMotherBaseStageClusterParameterData(ulong address, ulong id) : base(address, id) { }
+		public TppMotherBaseStageClusterParameterData(ulong id) : base(id) { }
 		public TppMotherBaseStageClusterParameterData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

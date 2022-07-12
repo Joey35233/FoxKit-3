@@ -35,7 +35,7 @@ namespace Tpp.Ui
         }
 
         // Constructors
-		public UiSupport(ulong address, ulong id) : base(address, id) { }
+		public UiSupport(ulong id) : base(id) { }
 		public UiSupport() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

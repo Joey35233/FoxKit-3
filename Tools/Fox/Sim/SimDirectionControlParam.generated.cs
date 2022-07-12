@@ -41,7 +41,7 @@ namespace Fox.Sim
         }
 
         // Constructors
-		public SimDirectionControlParam(ulong address, ulong id) : base(address, id) { }
+		public SimDirectionControlParam(ulong id) : base(id) { }
 		public SimDirectionControlParam() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

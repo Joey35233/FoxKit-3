@@ -41,7 +41,7 @@ namespace Fox.Navx
         }
 
         // Constructors
-		public NavxAttributePathVolume(ulong address, ulong id) : base(address, id) { }
+		public NavxAttributePathVolume(ulong id) : base(id) { }
 		public NavxAttributePathVolume() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

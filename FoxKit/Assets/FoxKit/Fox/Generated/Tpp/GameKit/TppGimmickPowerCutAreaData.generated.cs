@@ -38,7 +38,7 @@ namespace Tpp.GameKit
         }
 
         // Constructors
-		public TppGimmickPowerCutAreaData(ulong address, ulong id) : base(address, id) { }
+		public TppGimmickPowerCutAreaData(ulong id) : base(id) { }
 		public TppGimmickPowerCutAreaData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

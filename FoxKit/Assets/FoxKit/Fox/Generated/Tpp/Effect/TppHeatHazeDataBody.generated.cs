@@ -35,7 +35,7 @@ namespace Tpp.Effect
         }
 
         // Constructors
-		public TppHeatHazeDataBody(ulong address, ulong id) : base(address, id) { }
+		public TppHeatHazeDataBody(ulong id) : base(id) { }
 		public TppHeatHazeDataBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

@@ -35,7 +35,7 @@ namespace Tpp.GameKit
         }
 
         // Constructors
-		public CoverPointFile(ulong address, ulong id) : base(address, id) { }
+		public CoverPointFile(ulong id) : base(id) { }
 		public CoverPointFile() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

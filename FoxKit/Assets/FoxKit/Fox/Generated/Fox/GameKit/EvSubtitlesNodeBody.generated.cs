@@ -35,7 +35,7 @@ namespace Fox.GameKit
         }
 
         // Constructors
-		public EvSubtitlesNodeBody(ulong address, ulong id) : base(address, id) { }
+		public EvSubtitlesNodeBody(ulong id) : base(id) { }
 		public EvSubtitlesNodeBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

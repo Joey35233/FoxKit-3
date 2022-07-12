@@ -41,7 +41,7 @@ namespace Tpp.Sound
         }
 
         // Constructors
-		public TppAmbientSoundSource(ulong address, ulong id) : base(address, id) { }
+		public TppAmbientSoundSource(ulong id) : base(id) { }
 		public TppAmbientSoundSource() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

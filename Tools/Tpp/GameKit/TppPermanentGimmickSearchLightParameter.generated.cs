@@ -62,7 +62,7 @@ namespace Tpp.GameKit
         }
 
         // Constructors
-		public TppPermanentGimmickSearchLightParameter(ulong address, ulong id) : base(address, id) { }
+		public TppPermanentGimmickSearchLightParameter(ulong id) : base(id) { }
 		public TppPermanentGimmickSearchLightParameter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

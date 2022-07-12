@@ -35,7 +35,7 @@ namespace Fox.Gr
         }
 
         // Constructors
-		public GrPluginScreenSpaceAmbientOcclusion(ulong address, ulong id) : base(address, id) { }
+		public GrPluginScreenSpaceAmbientOcclusion(ulong id) : base(id) { }
 		public GrPluginScreenSpaceAmbientOcclusion() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

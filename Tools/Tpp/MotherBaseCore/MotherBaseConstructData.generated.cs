@@ -56,7 +56,7 @@ namespace Tpp.MotherBaseCore
         }
 
         // Constructors
-		public MotherBaseConstructData(ulong address, ulong id) : base(address, id) { }
+		public MotherBaseConstructData(ulong id) : base(id) { }
 		public MotherBaseConstructData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

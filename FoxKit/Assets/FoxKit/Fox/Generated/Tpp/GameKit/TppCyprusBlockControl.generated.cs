@@ -35,7 +35,7 @@ namespace Tpp.GameKit
         }
 
         // Constructors
-		public TppCyprusBlockControl(ulong address, ulong id) : base(address, id) { }
+		public TppCyprusBlockControl(ulong id) : base(id) { }
 		public TppCyprusBlockControl() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

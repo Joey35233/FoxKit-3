@@ -35,7 +35,7 @@ namespace Fox.Core
         }
 
         // Constructors
-		public StageBlockControllerDataBody(ulong address, ulong id) : base(address, id) { }
+		public StageBlockControllerDataBody(ulong id) : base(id) { }
 		public StageBlockControllerDataBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

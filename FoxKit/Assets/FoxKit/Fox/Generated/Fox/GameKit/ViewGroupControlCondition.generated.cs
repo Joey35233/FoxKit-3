@@ -44,7 +44,7 @@ namespace Fox.GameKit
         }
 
         // Constructors
-		public ViewGroupControlCondition(ulong address, ulong id) : base(address, id) { }
+		public ViewGroupControlCondition(ulong id) : base(id) { }
 		public ViewGroupControlCondition() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

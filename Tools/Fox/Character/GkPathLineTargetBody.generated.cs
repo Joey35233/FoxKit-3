@@ -35,7 +35,7 @@ namespace Fox.Character
         }
 
         // Constructors
-		public GkPathLineTargetBody(ulong address, ulong id) : base(address, id) { }
+		public GkPathLineTargetBody(ulong id) : base(id) { }
 		public GkPathLineTargetBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

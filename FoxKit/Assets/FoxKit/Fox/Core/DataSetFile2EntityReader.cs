@@ -7,18 +7,24 @@ using static Fox.FoxCore.Serialization.DataSetFile2PropertyReader;
 
 namespace Fox.Core
 {
-    public class DataSetFile2EntityReader
+    public struct AddressedEntity
+    {
+        public ulong Address;
+        public Entity Entity;
+    }
+
+    public class DataSetFile2AddressedEntityReader
     {
         private RequestEntityPtr requestEntityPtr;
         private RequestEntityHandle requestEntityHandle;
 
-        public DataSetFile2EntityReader(RequestEntityPtr requestEntityPtr, RequestEntityHandle requestEntityHandle)
+        public DataSetFile2AddressedEntityReader(RequestEntityPtr requestEntityPtr, RequestEntityHandle requestEntityHandle)
         {
             this.requestEntityPtr = requestEntityPtr ?? throw new ArgumentNullException(nameof(requestEntityPtr));
             this.requestEntityHandle = requestEntityHandle ?? throw new ArgumentNullException(nameof(requestEntityHandle));
         }
 
-        public Entity Read(BinaryReader reader, Func<ulong, ulong, ushort, ulong, Entity> createEntity, Func<ulong, string> unhashString)
+        public AddressedEntity Read(BinaryReader reader, Func<ulong, ushort, ulong, Entity> createEntity, Func<ulong, string> unhashString)
         {
             var headerSize = reader.ReadUInt16(); Debug.Assert(headerSize == 0x40);
             reader.BaseStream.Position -= 2;
@@ -33,7 +39,7 @@ namespace Fox.Core
             var staticPropertyCount = BitConverter.ToUInt16(headerBytes, 36);
             var dynamicPropertyCount = BitConverter.ToUInt16(headerBytes, 38);
 
-            var entity = createEntity(classNameHash, address, version, id);
+            var entity = createEntity(classNameHash, version, id);
             var isReadingDynamicProperty = false;
 
             SetProperty setProperty = entity.SetProperty;
@@ -61,7 +67,7 @@ namespace Fox.Core
                     setPropertyElementByKey);
             }
 
-            return entity;
+            return new AddressedEntity { Address = address, Entity = entity };
         }
 
         private static void OnPropertyNameUnhashed(PropertyInfo.PropertyType type, string name, ushort arraySize, PropertyInfo.ContainerType container, Entity entity, bool isReadingDynamicProperty)

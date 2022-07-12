@@ -38,7 +38,7 @@ namespace Fox.Geox
         }
 
         // Constructors
-		public GeoxBoundingVolumeFileParameter(ulong address, ulong id) : base(address, id) { }
+		public GeoxBoundingVolumeFileParameter(ulong id) : base(id) { }
 		public GeoxBoundingVolumeFileParameter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

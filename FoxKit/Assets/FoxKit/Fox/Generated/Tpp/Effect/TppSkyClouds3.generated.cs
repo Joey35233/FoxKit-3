@@ -38,7 +38,7 @@ namespace Tpp.Effect
         }
 
         // Constructors
-		public TppSkyClouds3(ulong address, ulong id) : base(address, id) { }
+		public TppSkyClouds3(ulong id) : base(id) { }
 		public TppSkyClouds3() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

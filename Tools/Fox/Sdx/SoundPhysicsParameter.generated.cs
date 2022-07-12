@@ -92,7 +92,7 @@ namespace Fox.Sdx
         }
 
         // Constructors
-		public SoundPhysicsParameter(ulong address, ulong id) : base(address, id) { }
+		public SoundPhysicsParameter(ulong id) : base(id) { }
 		public SoundPhysicsParameter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

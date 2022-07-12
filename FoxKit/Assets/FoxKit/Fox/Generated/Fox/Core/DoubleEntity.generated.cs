@@ -38,7 +38,7 @@ namespace Fox.Core
         }
 
         // Constructors
-		public DoubleEntity(ulong address, ulong id) : base(address, id) { }
+		public DoubleEntity(ulong id) : base(id) { }
 		public DoubleEntity() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

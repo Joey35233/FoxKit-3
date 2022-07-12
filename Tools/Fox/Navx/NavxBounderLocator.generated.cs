@@ -47,7 +47,7 @@ namespace Fox.Navx
         }
 
         // Constructors
-		public NavxBounderLocator(ulong address, ulong id) : base(address, id) { }
+		public NavxBounderLocator(ulong id) : base(id) { }
 		public NavxBounderLocator() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

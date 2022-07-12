@@ -41,7 +41,7 @@ namespace Tpp.GameKit
         }
 
         // Constructors
-		public TppTrapExecDamageCallbackDataElement(ulong address, ulong id) : base(address, id) { }
+		public TppTrapExecDamageCallbackDataElement(ulong id) : base(id) { }
 		public TppTrapExecDamageCallbackDataElement() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

@@ -56,7 +56,7 @@ namespace Fox.Phx
         }
 
         // Constructors
-		public PhxVehicleNormalEngine(ulong address, ulong id) : base(address, id) { }
+		public PhxVehicleNormalEngine(ulong id) : base(id) { }
 		public PhxVehicleNormalEngine() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

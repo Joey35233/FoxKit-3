@@ -35,7 +35,7 @@ namespace Fox.Nt
         }
 
         // Constructors
-		public Replay(ulong address, ulong id) : base(address, id) { }
+		public Replay(ulong id) : base(id) { }
 		public Replay() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

@@ -38,7 +38,7 @@ namespace Tpp.GameCore
         }
 
         // Constructors
-		public TppSampleGameObjectParameter(ulong address, ulong id) : base(address, id) { }
+		public TppSampleGameObjectParameter(ulong id) : base(id) { }
 		public TppSampleGameObjectParameter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

@@ -53,7 +53,7 @@ namespace Fox.Ui
         }
 
         // Constructors
-		public UiEventNode(ulong address, ulong id) : base(address, id) { }
+		public UiEventNode(ulong id) : base(id) { }
 		public UiEventNode() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

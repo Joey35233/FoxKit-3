@@ -41,7 +41,7 @@ namespace Fox.Ui
         }
 
         // Constructors
-		public UiObjControl(ulong address, ulong id) : base(address, id) { }
+		public UiObjControl(ulong id) : base(id) { }
 		public UiObjControl() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

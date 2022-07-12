@@ -41,7 +41,7 @@ namespace Fox.Sim
         }
 
         // Constructors
-		public SimGravityControl(ulong address, ulong id) : base(address, id) { }
+		public SimGravityControl(ulong id) : base(id) { }
 		public SimGravityControl() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

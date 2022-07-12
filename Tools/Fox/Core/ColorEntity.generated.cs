@@ -38,7 +38,7 @@ namespace Fox.Core
         }
 
         // Constructors
-		public ColorEntity(ulong address, ulong id) : base(address, id) { }
+		public ColorEntity(ulong id) : base(id) { }
 		public ColorEntity() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

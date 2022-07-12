@@ -62,7 +62,7 @@ namespace Tpp.GameKit
         }
 
         // Constructors
-		public TppSharedGimmickData(ulong address, ulong id) : base(address, id) { }
+		public TppSharedGimmickData(ulong id) : base(id) { }
 		public TppSharedGimmickData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

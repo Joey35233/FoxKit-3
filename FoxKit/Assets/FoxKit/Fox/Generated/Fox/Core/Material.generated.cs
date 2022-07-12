@@ -68,7 +68,7 @@ namespace Fox.Core
         }
 
         // Constructors
-		public Material(ulong address, ulong id) : base(address, id) { }
+		public Material(ulong id) : base(id) { }
 		public Material() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

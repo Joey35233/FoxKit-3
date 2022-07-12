@@ -35,7 +35,7 @@ namespace Fox.Core
         }
 
         // Constructors
-		public RawFile(ulong address, ulong id) : base(address, id) { }
+		public RawFile(ulong id) : base(id) { }
 		public RawFile() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

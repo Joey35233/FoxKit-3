@@ -41,7 +41,7 @@ namespace Tpp.MotherBaseCore
         }
 
         // Constructors
-		public MotherBaseReplaceTextureData(ulong address, ulong id) : base(address, id) { }
+		public MotherBaseReplaceTextureData(ulong id) : base(id) { }
 		public MotherBaseReplaceTextureData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

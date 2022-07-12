@@ -38,7 +38,7 @@ namespace Fox.Geo
         }
 
         // Constructors
-		public GeoSearchDynamic(ulong address, ulong id) : base(address, id) { }
+		public GeoSearchDynamic(ulong id) : base(id) { }
 		public GeoSearchDynamic() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

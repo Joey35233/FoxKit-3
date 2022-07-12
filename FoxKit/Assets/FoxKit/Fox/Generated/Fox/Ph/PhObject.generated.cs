@@ -41,7 +41,7 @@ namespace Fox.Ph
         }
 
         // Constructors
-		public PhObject(ulong address, ulong id) : base(address, id) { }
+		public PhObject(ulong id) : base(id) { }
 		public PhObject() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

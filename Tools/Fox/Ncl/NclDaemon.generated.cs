@@ -41,7 +41,7 @@ namespace Fox.Ncl
         }
 
         // Constructors
-		public NclDaemon(ulong address, ulong id) : base(address, id) { }
+		public NclDaemon(ulong id) : base(id) { }
 		public NclDaemon() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

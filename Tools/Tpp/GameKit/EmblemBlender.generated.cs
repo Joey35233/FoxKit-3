@@ -35,7 +35,7 @@ namespace Tpp.GameKit
         }
 
         // Constructors
-		public EmblemBlender(ulong address, ulong id) : base(address, id) { }
+		public EmblemBlender(ulong id) : base(id) { }
 		public EmblemBlender() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

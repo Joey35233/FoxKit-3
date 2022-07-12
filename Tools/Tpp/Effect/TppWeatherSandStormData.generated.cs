@@ -77,7 +77,7 @@ namespace Tpp.Effect
         }
 
         // Constructors
-		public TppWeatherSandStormData(ulong address, ulong id) : base(address, id) { }
+		public TppWeatherSandStormData(ulong id) : base(id) { }
 		public TppWeatherSandStormData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

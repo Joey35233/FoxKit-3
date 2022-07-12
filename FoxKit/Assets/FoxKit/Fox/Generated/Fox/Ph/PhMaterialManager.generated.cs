@@ -35,7 +35,7 @@ namespace Fox.Ph
         }
 
         // Constructors
-		public PhMaterialManager(ulong address, ulong id) : base(address, id) { }
+		public PhMaterialManager(ulong id) : base(id) { }
 		public PhMaterialManager() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

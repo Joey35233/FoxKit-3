@@ -65,7 +65,7 @@ namespace Tpp.Effect
         }
 
         // Constructors
-		public TppEyelidFilterData(ulong address, ulong id) : base(address, id) { }
+		public TppEyelidFilterData(ulong id) : base(id) { }
 		public TppEyelidFilterData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

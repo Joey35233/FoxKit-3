@@ -53,7 +53,7 @@ namespace Fox.Sim
         }
 
         // Constructors
-		public SimClothControlUnitParam(ulong address, ulong id) : base(address, id) { }
+		public SimClothControlUnitParam(ulong id) : base(id) { }
 		public SimClothControlUnitParam() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

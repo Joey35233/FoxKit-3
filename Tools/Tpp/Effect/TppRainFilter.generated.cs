@@ -107,7 +107,7 @@ namespace Tpp.Effect
         }
 
         // Constructors
-		public TppRainFilter(ulong address, ulong id) : base(address, id) { }
+		public TppRainFilter(ulong id) : base(id) { }
 		public TppRainFilter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

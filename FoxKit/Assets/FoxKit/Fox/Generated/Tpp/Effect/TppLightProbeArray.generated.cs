@@ -47,7 +47,7 @@ namespace Tpp.Effect
         }
 
         // Constructors
-		public TppLightProbeArray(ulong address, ulong id) : base(address, id) { }
+		public TppLightProbeArray(ulong id) : base(id) { }
 		public TppLightProbeArray() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

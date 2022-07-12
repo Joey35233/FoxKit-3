@@ -35,7 +35,7 @@ namespace Fox.Geo
         }
 
         // Constructors
-		public RailFile(ulong address, ulong id) : base(address, id) { }
+		public RailFile(ulong id) : base(id) { }
 		public RailFile() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

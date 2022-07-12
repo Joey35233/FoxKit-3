@@ -47,7 +47,7 @@ namespace Fox.GameKit
         }
 
         // Constructors
-		public GkEventTimer(ulong address, ulong id) : base(address, id) { }
+		public GkEventTimer(ulong id) : base(id) { }
 		public GkEventTimer() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

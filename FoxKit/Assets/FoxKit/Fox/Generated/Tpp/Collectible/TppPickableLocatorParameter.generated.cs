@@ -50,7 +50,7 @@ namespace Tpp.Collectible
         }
 
         // Constructors
-		public TppPickableLocatorParameter(ulong address, ulong id) : base(address, id) { }
+		public TppPickableLocatorParameter(ulong id) : base(id) { }
 		public TppPickableLocatorParameter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

@@ -35,7 +35,7 @@ namespace Fox.Gr
         }
 
         // Constructors
-		public GrViewportColorCorrectionParameters(ulong address, ulong id) : base(address, id) { }
+		public GrViewportColorCorrectionParameters(ulong id) : base(id) { }
 		public GrViewportColorCorrectionParameters() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

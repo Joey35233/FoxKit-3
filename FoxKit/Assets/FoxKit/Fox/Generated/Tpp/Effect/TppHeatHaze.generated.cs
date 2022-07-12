@@ -107,7 +107,7 @@ namespace Tpp.Effect
         }
 
         // Constructors
-		public TppHeatHaze(ulong address, ulong id) : base(address, id) { }
+		public TppHeatHaze(ulong id) : base(id) { }
 		public TppHeatHaze() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

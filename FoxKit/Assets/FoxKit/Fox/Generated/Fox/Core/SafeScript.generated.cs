@@ -35,7 +35,7 @@ namespace Fox.Core
         }
 
         // Constructors
-		public SafeScript(ulong address, ulong id) : base(address, id) { }
+		public SafeScript(ulong id) : base(id) { }
 		public SafeScript() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

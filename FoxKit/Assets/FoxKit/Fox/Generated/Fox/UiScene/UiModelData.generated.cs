@@ -74,7 +74,7 @@ namespace Fox.UiScene
         }
 
         // Constructors
-		public UiModelData(ulong address, ulong id) : base(address, id) { }
+		public UiModelData(ulong id) : base(id) { }
 		public UiModelData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

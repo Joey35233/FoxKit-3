@@ -35,7 +35,7 @@ namespace Tpp.GameKit
         }
 
         // Constructors
-		public TppCombatLocatorSetDataBody(ulong address, ulong id) : base(address, id) { }
+		public TppCombatLocatorSetDataBody(ulong id) : base(id) { }
 		public TppCombatLocatorSetDataBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

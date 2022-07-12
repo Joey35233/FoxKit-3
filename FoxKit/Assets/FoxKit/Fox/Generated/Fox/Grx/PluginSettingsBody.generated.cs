@@ -35,7 +35,7 @@ namespace Fox.Grx
         }
 
         // Constructors
-		public PluginSettingsBody(ulong address, ulong id) : base(address, id) { }
+		public PluginSettingsBody(ulong id) : base(id) { }
 		public PluginSettingsBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

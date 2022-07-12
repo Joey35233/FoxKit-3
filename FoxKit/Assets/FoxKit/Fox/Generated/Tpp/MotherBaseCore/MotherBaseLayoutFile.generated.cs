@@ -35,7 +35,7 @@ namespace Tpp.MotherBaseCore
         }
 
         // Constructors
-		public MotherBaseLayoutFile(ulong address, ulong id) : base(address, id) { }
+		public MotherBaseLayoutFile(ulong id) : base(id) { }
 		public MotherBaseLayoutFile() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

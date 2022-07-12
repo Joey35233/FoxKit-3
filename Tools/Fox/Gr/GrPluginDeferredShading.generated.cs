@@ -35,7 +35,7 @@ namespace Fox.Gr
         }
 
         // Constructors
-		public GrPluginDeferredShading(ulong address, ulong id) : base(address, id) { }
+		public GrPluginDeferredShading(ulong id) : base(id) { }
 		public GrPluginDeferredShading() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

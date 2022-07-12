@@ -74,7 +74,7 @@ namespace Fox.Nav
         }
 
         // Constructors
-		public NavCurrentNavigationDesc(ulong address, ulong id) : base(address, id) { }
+		public NavCurrentNavigationDesc(ulong id) : base(id) { }
 		public NavCurrentNavigationDesc() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

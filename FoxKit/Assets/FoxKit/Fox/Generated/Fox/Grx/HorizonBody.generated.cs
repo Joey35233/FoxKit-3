@@ -35,7 +35,7 @@ namespace Fox.Grx
         }
 
         // Constructors
-		public HorizonBody(ulong address, ulong id) : base(address, id) { }
+		public HorizonBody(ulong id) : base(id) { }
 		public HorizonBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

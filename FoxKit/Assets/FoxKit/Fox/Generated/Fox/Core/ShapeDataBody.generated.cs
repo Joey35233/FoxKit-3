@@ -35,7 +35,7 @@ namespace Fox.Core
         }
 
         // Constructors
-		public ShapeDataBody(ulong address, ulong id) : base(address, id) { }
+		public ShapeDataBody(ulong id) : base(id) { }
 		public ShapeDataBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

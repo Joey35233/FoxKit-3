@@ -35,7 +35,7 @@ namespace Fox.Gr
         }
 
         // Constructors
-		public GrTools(ulong address, ulong id) : base(address, id) { }
+		public GrTools(ulong id) : base(id) { }
 		public GrTools() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

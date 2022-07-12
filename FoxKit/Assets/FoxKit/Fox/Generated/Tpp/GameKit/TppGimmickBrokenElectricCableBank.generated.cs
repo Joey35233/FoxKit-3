@@ -47,7 +47,7 @@ namespace Tpp.GameKit
         }
 
         // Constructors
-		public TppGimmickBrokenElectricCableBank(ulong address, ulong id) : base(address, id) { }
+		public TppGimmickBrokenElectricCableBank(ulong id) : base(id) { }
 		public TppGimmickBrokenElectricCableBank() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

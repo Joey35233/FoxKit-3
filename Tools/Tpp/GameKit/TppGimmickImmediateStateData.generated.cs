@@ -38,7 +38,7 @@ namespace Tpp.GameKit
         }
 
         // Constructors
-		public TppGimmickImmediateStateData(ulong address, ulong id) : base(address, id) { }
+		public TppGimmickImmediateStateData(ulong id) : base(id) { }
 		public TppGimmickImmediateStateData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

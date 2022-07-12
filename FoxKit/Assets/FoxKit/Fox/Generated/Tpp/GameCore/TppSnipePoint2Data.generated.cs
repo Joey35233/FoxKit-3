@@ -38,7 +38,7 @@ namespace Tpp.GameCore
         }
 
         // Constructors
-		public TppSnipePoint2Data(ulong address, ulong id) : base(address, id) { }
+		public TppSnipePoint2Data(ulong id) : base(id) { }
 		public TppSnipePoint2Data() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

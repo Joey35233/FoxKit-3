@@ -56,7 +56,7 @@ namespace Fox.GameKit
         }
 
         // Constructors
-		public GkOffenseTargetData(ulong address, ulong id) : base(address, id) { }
+		public GkOffenseTargetData(ulong id) : base(id) { }
 		public GkOffenseTargetData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

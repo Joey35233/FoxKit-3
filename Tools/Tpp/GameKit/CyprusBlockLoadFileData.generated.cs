@@ -44,7 +44,7 @@ namespace Tpp.GameKit
         }
 
         // Constructors
-		public CyprusBlockLoadFileData(ulong address, ulong id) : base(address, id) { }
+		public CyprusBlockLoadFileData(ulong id) : base(id) { }
 		public CyprusBlockLoadFileData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

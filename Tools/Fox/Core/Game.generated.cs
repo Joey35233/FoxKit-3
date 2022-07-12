@@ -38,7 +38,7 @@ namespace Fox.Core
         }
 
         // Constructors
-		public Game(ulong address, ulong id) : base(address, id) { }
+		public Game(ulong id) : base(id) { }
 		public Game() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

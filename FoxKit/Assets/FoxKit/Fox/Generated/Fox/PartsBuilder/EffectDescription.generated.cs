@@ -80,7 +80,7 @@ namespace Fox.PartsBuilder
         }
 
         // Constructors
-		public EffectDescription(ulong address, ulong id) : base(address, id) { }
+		public EffectDescription(ulong id) : base(id) { }
 		public EffectDescription() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

@@ -35,7 +35,7 @@ namespace Fox.GameKit
         }
 
         // Constructors
-		public SubtitlesDaemon(ulong address, ulong id) : base(address, id) { }
+		public SubtitlesDaemon(ulong id) : base(id) { }
 		public SubtitlesDaemon() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

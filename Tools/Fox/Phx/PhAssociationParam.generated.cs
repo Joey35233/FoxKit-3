@@ -38,7 +38,7 @@ namespace Fox.Phx
         }
 
         // Constructors
-		public PhAssociationParam(ulong address, ulong id) : base(address, id) { }
+		public PhAssociationParam(ulong id) : base(id) { }
 		public PhAssociationParam() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

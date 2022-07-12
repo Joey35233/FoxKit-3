@@ -53,7 +53,7 @@ namespace Fox.EdDemo
         }
 
         // Constructors
-		public TppDemoPlayerResourceParameter(ulong address, ulong id) : base(address, id) { }
+		public TppDemoPlayerResourceParameter(ulong id) : base(id) { }
 		public TppDemoPlayerResourceParameter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

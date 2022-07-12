@@ -53,7 +53,7 @@ namespace Tpp.Effect
         }
 
         // Constructors
-		public TppDamageFilterExposure(ulong address, ulong id) : base(address, id) { }
+		public TppDamageFilterExposure(ulong id) : base(id) { }
 		public TppDamageFilterExposure() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

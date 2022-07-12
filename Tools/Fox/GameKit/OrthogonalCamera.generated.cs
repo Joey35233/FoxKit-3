@@ -41,7 +41,7 @@ namespace Fox.GameKit
         }
 
         // Constructors
-		public OrthogonalCamera(ulong address, ulong id) : base(address, id) { }
+		public OrthogonalCamera(ulong id) : base(id) { }
 		public OrthogonalCamera() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

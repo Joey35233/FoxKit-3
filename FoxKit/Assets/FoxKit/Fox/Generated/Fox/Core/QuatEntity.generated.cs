@@ -38,7 +38,7 @@ namespace Fox.Core
         }
 
         // Constructors
-		public QuatEntity(ulong address, ulong id) : base(address, id) { }
+		public QuatEntity(ulong id) : base(id) { }
 		public QuatEntity() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

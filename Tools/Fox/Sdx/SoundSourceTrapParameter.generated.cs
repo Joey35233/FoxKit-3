@@ -44,7 +44,7 @@ namespace Fox.Sdx
         }
 
         // Constructors
-		public SoundSourceTrapParameter(ulong address, ulong id) : base(address, id) { }
+		public SoundSourceTrapParameter(ulong id) : base(id) { }
 		public SoundSourceTrapParameter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

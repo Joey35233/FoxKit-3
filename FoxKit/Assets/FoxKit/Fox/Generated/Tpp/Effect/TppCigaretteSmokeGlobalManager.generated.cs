@@ -35,7 +35,7 @@ namespace Tpp.Effect
         }
 
         // Constructors
-		public TppCigaretteSmokeGlobalManager(ulong address, ulong id) : base(address, id) { }
+		public TppCigaretteSmokeGlobalManager(ulong id) : base(id) { }
 		public TppCigaretteSmokeGlobalManager() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

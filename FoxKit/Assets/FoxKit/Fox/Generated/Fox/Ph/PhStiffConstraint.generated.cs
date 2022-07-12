@@ -41,7 +41,7 @@ namespace Fox.Ph
         }
 
         // Constructors
-		public PhStiffConstraint(ulong address, ulong id) : base(address, id) { }
+		public PhStiffConstraint(ulong id) : base(id) { }
 		public PhStiffConstraint() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

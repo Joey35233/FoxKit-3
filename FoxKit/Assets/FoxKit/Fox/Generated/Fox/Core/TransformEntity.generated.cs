@@ -53,7 +53,7 @@ namespace Fox.Core
         }
 
         // Constructors
-		public TransformEntity(ulong address, ulong id) : base(address, id) { }
+		public TransformEntity(ulong id) : base(id) { }
 		public TransformEntity() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

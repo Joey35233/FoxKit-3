@@ -35,7 +35,7 @@ namespace Fox.Anim
         }
 
         // Constructors
-		public EvfFile(ulong address, ulong id) : base(address, id) { }
+		public EvfFile(ulong id) : base(id) { }
 		public EvfFile() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

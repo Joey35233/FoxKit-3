@@ -41,7 +41,7 @@ namespace Fox.Ph
         }
 
         // Constructors
-		public PhPolyhedronShapeParam(ulong address, ulong id) : base(address, id) { }
+		public PhPolyhedronShapeParam(ulong id) : base(id) { }
 		public PhPolyhedronShapeParam() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

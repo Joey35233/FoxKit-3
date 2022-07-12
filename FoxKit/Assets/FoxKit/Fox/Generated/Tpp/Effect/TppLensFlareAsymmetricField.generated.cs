@@ -53,7 +53,7 @@ namespace Tpp.Effect
         }
 
         // Constructors
-		public TppLensFlareAsymmetricField(ulong address, ulong id) : base(address, id) { }
+		public TppLensFlareAsymmetricField(ulong id) : base(id) { }
 		public TppLensFlareAsymmetricField() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

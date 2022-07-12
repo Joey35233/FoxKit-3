@@ -44,7 +44,7 @@ namespace Tpp.GameKit
         }
 
         // Constructors
-		public BushLodParameter(ulong address, ulong id) : base(address, id) { }
+		public BushLodParameter(ulong id) : base(id) { }
 		public BushLodParameter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

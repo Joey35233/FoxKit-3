@@ -38,7 +38,7 @@ namespace Fox.Core
         }
 
         // Constructors
-		public EntityHandleArrayEntity(ulong address, ulong id) : base(address, id) { }
+		public EntityHandleArrayEntity(ulong id) : base(id) { }
 		public EntityHandleArrayEntity() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

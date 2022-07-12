@@ -38,7 +38,7 @@ namespace Fox.Nav
         }
 
         // Constructors
-		public NavNavigationGraphHandleEntity(ulong address, ulong id) : base(address, id) { }
+		public NavNavigationGraphHandleEntity(ulong id) : base(id) { }
 		public NavNavigationGraphHandleEntity() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

@@ -44,7 +44,7 @@ namespace Tpp.GameCore
         }
 
         // Constructors
-		public TppRat2Parameter(ulong address, ulong id) : base(address, id) { }
+		public TppRat2Parameter(ulong id) : base(id) { }
 		public TppRat2Parameter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

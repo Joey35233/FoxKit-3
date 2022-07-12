@@ -38,7 +38,7 @@ namespace Tpp.System
         }
 
         // Constructors
-		public TppDefaultParameterElement(ulong address, ulong id) : base(address, id) { }
+		public TppDefaultParameterElement(ulong id) : base(id) { }
 		public TppDefaultParameterElement() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

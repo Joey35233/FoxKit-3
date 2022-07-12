@@ -71,7 +71,7 @@ namespace Tpp.Effect
         }
 
         // Constructors
-		public TppDroplets(ulong address, ulong id) : base(address, id) { }
+		public TppDroplets(ulong id) : base(id) { }
 		public TppDroplets() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

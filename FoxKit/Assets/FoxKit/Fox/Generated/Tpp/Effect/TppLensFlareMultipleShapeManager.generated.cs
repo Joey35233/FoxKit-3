@@ -35,7 +35,7 @@ namespace Tpp.Effect
         }
 
         // Constructors
-		public TppLensFlareMultipleShapeManager(ulong address, ulong id) : base(address, id) { }
+		public TppLensFlareMultipleShapeManager(ulong id) : base(id) { }
 		public TppLensFlareMultipleShapeManager() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

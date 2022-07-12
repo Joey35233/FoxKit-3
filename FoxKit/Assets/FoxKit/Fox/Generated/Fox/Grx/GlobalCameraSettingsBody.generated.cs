@@ -35,7 +35,7 @@ namespace Fox.Grx
         }
 
         // Constructors
-		public GlobalCameraSettingsBody(ulong address, ulong id) : base(address, id) { }
+		public GlobalCameraSettingsBody(ulong id) : base(id) { }
 		public GlobalCameraSettingsBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

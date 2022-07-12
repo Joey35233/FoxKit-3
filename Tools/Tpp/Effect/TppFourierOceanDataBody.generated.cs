@@ -35,7 +35,7 @@ namespace Tpp.Effect
         }
 
         // Constructors
-		public TppFourierOceanDataBody(ulong address, ulong id) : base(address, id) { }
+		public TppFourierOceanDataBody(ulong id) : base(id) { }
 		public TppFourierOceanDataBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

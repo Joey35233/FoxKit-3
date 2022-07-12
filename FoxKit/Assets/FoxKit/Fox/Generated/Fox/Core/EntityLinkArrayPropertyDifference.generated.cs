@@ -41,7 +41,7 @@ namespace Fox.Core
         }
 
         // Constructors
-		public EntityLinkArrayPropertyDifference(ulong address, ulong id) : base(address, id) { }
+		public EntityLinkArrayPropertyDifference(ulong id) : base(id) { }
 		public EntityLinkArrayPropertyDifference() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

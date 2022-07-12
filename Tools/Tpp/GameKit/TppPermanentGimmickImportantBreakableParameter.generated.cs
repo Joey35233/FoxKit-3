@@ -44,7 +44,7 @@ namespace Tpp.GameKit
         }
 
         // Constructors
-		public TppPermanentGimmickImportantBreakableParameter(ulong address, ulong id) : base(address, id) { }
+		public TppPermanentGimmickImportantBreakableParameter(ulong id) : base(id) { }
 		public TppPermanentGimmickImportantBreakableParameter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

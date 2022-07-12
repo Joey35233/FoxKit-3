@@ -59,7 +59,7 @@ namespace Fox.Fx
         }
 
         // Constructors
-		public FxLocatorData(ulong address, ulong id) : base(address, id) { }
+		public FxLocatorData(ulong id) : base(id) { }
 		public FxLocatorData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

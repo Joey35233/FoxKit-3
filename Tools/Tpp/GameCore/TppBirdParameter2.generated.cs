@@ -47,7 +47,7 @@ namespace Tpp.GameCore
         }
 
         // Constructors
-		public TppBirdParameter2(ulong address, ulong id) : base(address, id) { }
+		public TppBirdParameter2(ulong id) : base(id) { }
 		public TppBirdParameter2() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

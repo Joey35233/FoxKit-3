@@ -50,7 +50,7 @@ namespace Tpp.GameCore
         }
 
         // Constructors
-		public TppBuddyQuiet2Parameter(ulong address, ulong id) : base(address, id) { }
+		public TppBuddyQuiet2Parameter(ulong id) : base(id) { }
 		public TppBuddyQuiet2Parameter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

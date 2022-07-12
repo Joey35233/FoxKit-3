@@ -35,7 +35,7 @@ namespace Tpp.Effect
         }
 
         // Constructors
-		public TppDropletsDataBody(ulong address, ulong id) : base(address, id) { }
+		public TppDropletsDataBody(ulong id) : base(id) { }
 		public TppDropletsDataBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

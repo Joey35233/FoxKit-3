@@ -53,7 +53,7 @@ namespace Fox.Grx
         }
 
         // Constructors
-		public ColorCorrectionData(ulong address, ulong id) : base(address, id) { }
+		public ColorCorrectionData(ulong id) : base(id) { }
 		public ColorCorrectionData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

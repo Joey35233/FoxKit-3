@@ -35,7 +35,7 @@ namespace Fox.Fx
         }
 
         // Constructors
-		public FxVfxFile(ulong address, ulong id) : base(address, id) { }
+		public FxVfxFile(ulong id) : base(id) { }
 		public FxVfxFile() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

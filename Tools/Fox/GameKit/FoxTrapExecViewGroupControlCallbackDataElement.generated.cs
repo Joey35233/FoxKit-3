@@ -38,7 +38,7 @@ namespace Fox.GameKit
         }
 
         // Constructors
-		public FoxTrapExecViewGroupControlCallbackDataElement(ulong address, ulong id) : base(address, id) { }
+		public FoxTrapExecViewGroupControlCallbackDataElement(ulong id) : base(id) { }
 		public FoxTrapExecViewGroupControlCallbackDataElement() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

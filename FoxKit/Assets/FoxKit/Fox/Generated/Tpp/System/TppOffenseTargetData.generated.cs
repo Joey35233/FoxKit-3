@@ -35,7 +35,7 @@ namespace Tpp.System
         }
 
         // Constructors
-		public TppOffenseTargetData(ulong address, ulong id) : base(address, id) { }
+		public TppOffenseTargetData(ulong id) : base(id) { }
 		public TppOffenseTargetData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

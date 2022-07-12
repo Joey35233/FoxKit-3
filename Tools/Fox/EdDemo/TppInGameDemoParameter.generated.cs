@@ -35,7 +35,7 @@ namespace Fox.EdDemo
         }
 
         // Constructors
-		public TppInGameDemoParameter(ulong address, ulong id) : base(address, id) { }
+		public TppInGameDemoParameter(ulong id) : base(id) { }
 		public TppInGameDemoParameter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

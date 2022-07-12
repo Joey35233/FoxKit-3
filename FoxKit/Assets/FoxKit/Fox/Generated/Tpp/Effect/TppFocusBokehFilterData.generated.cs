@@ -53,7 +53,7 @@ namespace Tpp.Effect
         }
 
         // Constructors
-		public TppFocusBokehFilterData(ulong address, ulong id) : base(address, id) { }
+		public TppFocusBokehFilterData(ulong id) : base(id) { }
 		public TppFocusBokehFilterData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

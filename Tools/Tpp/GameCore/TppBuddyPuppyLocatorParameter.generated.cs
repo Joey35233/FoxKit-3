@@ -35,7 +35,7 @@ namespace Tpp.GameCore
         }
 
         // Constructors
-		public TppBuddyPuppyLocatorParameter(ulong address, ulong id) : base(address, id) { }
+		public TppBuddyPuppyLocatorParameter(ulong id) : base(id) { }
 		public TppBuddyPuppyLocatorParameter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

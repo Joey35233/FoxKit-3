@@ -35,7 +35,7 @@ namespace Fox.Gr
         }
 
         // Constructors
-		public GrPluginGlobalVolumetricFog(ulong address, ulong id) : base(address, id) { }
+		public GrPluginGlobalVolumetricFog(ulong id) : base(id) { }
 		public GrPluginGlobalVolumetricFog() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

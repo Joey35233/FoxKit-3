@@ -35,14 +35,13 @@ namespace Fox.Core
         }
 
         // Constructors
-		public Entity(ulong address, ulong id)
+		public Entity(ulong id)
         {
-            this.Address = address;
             this.Id = id;
         }
 		public Entity()
         {
-            this.Address = 0;
+            
             this.Id = 0;
         }
         

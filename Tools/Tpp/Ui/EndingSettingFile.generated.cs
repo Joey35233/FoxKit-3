@@ -35,7 +35,7 @@ namespace Tpp.Ui
         }
 
         // Constructors
-		public EndingSettingFile(ulong address, ulong id) : base(address, id) { }
+		public EndingSettingFile(ulong id) : base(id) { }
 		public EndingSettingFile() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

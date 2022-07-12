@@ -35,7 +35,7 @@ namespace Fox.Core
         }
 
         // Constructors
-		public TransformComponentSet(ulong address, ulong id) : base(address, id) { }
+		public TransformComponentSet(ulong id) : base(id) { }
 		public TransformComponentSet() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

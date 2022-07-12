@@ -35,7 +35,7 @@ namespace Tpp.Effect
         }
 
         // Constructors
-		public TppSkySimTimeUpdater(ulong address, ulong id) : base(address, id) { }
+		public TppSkySimTimeUpdater(ulong id) : base(id) { }
 		public TppSkySimTimeUpdater() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

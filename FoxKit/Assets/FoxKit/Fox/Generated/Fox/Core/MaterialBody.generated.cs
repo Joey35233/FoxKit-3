@@ -35,7 +35,7 @@ namespace Fox.Core
         }
 
         // Constructors
-		public MaterialBody(ulong address, ulong id) : base(address, id) { }
+		public MaterialBody(ulong id) : base(id) { }
 		public MaterialBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

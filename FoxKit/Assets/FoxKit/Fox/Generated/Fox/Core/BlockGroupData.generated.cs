@@ -56,7 +56,7 @@ namespace Fox.Core
         }
 
         // Constructors
-		public BlockGroupData(ulong address, ulong id) : base(address, id) { }
+		public BlockGroupData(ulong id) : base(id) { }
 		public BlockGroupData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

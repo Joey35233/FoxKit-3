@@ -38,7 +38,7 @@ namespace Tpp.GameKit
         }
 
         // Constructors
-		public TrapExecChangeLodSkeletonModelParam(ulong address, ulong id) : base(address, id) { }
+		public TrapExecChangeLodSkeletonModelParam(ulong id) : base(id) { }
 		public TrapExecChangeLodSkeletonModelParam() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

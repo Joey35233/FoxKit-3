@@ -35,7 +35,7 @@ namespace Tpp.GameKit
         }
 
         // Constructors
-		public TppTrapCheckIsEnemyCallbackDataElement(ulong address, ulong id) : base(address, id) { }
+		public TppTrapCheckIsEnemyCallbackDataElement(ulong id) : base(id) { }
 		public TppTrapCheckIsEnemyCallbackDataElement() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

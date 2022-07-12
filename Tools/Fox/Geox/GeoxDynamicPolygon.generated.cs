@@ -44,7 +44,7 @@ namespace Fox.Geox
         }
 
         // Constructors
-		public GeoxDynamicPolygon(ulong address, ulong id) : base(address, id) { }
+		public GeoxDynamicPolygon(ulong id) : base(id) { }
 		public GeoxDynamicPolygon() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

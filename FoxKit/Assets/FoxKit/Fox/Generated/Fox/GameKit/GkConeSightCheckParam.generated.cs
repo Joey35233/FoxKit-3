@@ -47,7 +47,7 @@ namespace Fox.GameKit
         }
 
         // Constructors
-		public GkConeSightCheckParam(ulong address, ulong id) : base(address, id) { }
+		public GkConeSightCheckParam(ulong id) : base(id) { }
 		public GkConeSightCheckParam() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

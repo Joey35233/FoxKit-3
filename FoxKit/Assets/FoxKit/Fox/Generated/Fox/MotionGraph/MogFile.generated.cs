@@ -35,7 +35,7 @@ namespace Fox.MotionGraph
         }
 
         // Constructors
-		public MogFile(ulong address, ulong id) : base(address, id) { }
+		public MogFile(ulong id) : base(id) { }
 		public MogFile() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

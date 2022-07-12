@@ -44,7 +44,7 @@ namespace Tpp.Effect
         }
 
         // Constructors
-		public TppTonemap(ulong address, ulong id) : base(address, id) { }
+		public TppTonemap(ulong id) : base(id) { }
 		public TppTonemap() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

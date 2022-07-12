@@ -35,7 +35,7 @@ namespace Fox.GameKit
         }
 
         // Constructors
-		public PadMapping(ulong address, ulong id) : base(address, id) { }
+		public PadMapping(ulong id) : base(id) { }
 		public PadMapping() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

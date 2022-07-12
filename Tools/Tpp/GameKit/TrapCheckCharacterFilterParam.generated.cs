@@ -53,7 +53,7 @@ namespace Tpp.GameKit
         }
 
         // Constructors
-		public TrapCheckCharacterFilterParam(ulong address, ulong id) : base(address, id) { }
+		public TrapCheckCharacterFilterParam(ulong id) : base(id) { }
 		public TrapCheckCharacterFilterParam() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

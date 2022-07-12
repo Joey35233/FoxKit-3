@@ -74,7 +74,7 @@ namespace Tpp.GameKit
         }
 
         // Constructors
-		public CyprusBlockControllerData(ulong address, ulong id) : base(address, id) { }
+		public CyprusBlockControllerData(ulong id) : base(id) { }
 		public CyprusBlockControllerData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

@@ -44,7 +44,7 @@ namespace Tpp.GameCore
         }
 
         // Constructors
-		public TppPlayer2AdditionalPartsBlockData(ulong address, ulong id) : base(address, id) { }
+		public TppPlayer2AdditionalPartsBlockData(ulong id) : base(id) { }
 		public TppPlayer2AdditionalPartsBlockData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

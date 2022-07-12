@@ -98,7 +98,7 @@ namespace Fox.Ph
         }
 
         // Constructors
-		public PhRigidBodyParam(ulong address, ulong id) : base(address, id) { }
+		public PhRigidBodyParam(ulong id) : base(id) { }
 		public PhRigidBodyParam() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

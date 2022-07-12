@@ -56,7 +56,7 @@ namespace Fox.Des
         }
 
         // Constructors
-		public DesParamData(ulong address, ulong id) : base(address, id) { }
+		public DesParamData(ulong id) : base(id) { }
 		public DesParamData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

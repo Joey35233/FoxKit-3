@@ -35,7 +35,7 @@ namespace Fox.Geo
         }
 
         // Constructors
-		public GeoModuleConditionBody(ulong address, ulong id) : base(address, id) { }
+		public GeoModuleConditionBody(ulong id) : base(id) { }
 		public GeoModuleConditionBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

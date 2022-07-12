@@ -35,7 +35,7 @@ namespace Fox.Gr
         }
 
         // Constructors
-		public GrPluginTonemap(ulong address, ulong id) : base(address, id) { }
+		public GrPluginTonemap(ulong id) : base(id) { }
 		public GrPluginTonemap() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

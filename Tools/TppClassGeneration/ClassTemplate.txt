@@ -40,14 +40,13 @@ namespace {{ info.get_root_namespace() }}.{{ info.get_namespace_without_prefix()
         }
 
         // Constructors
-		{% if info.is_entity() %}public {{ info.name }}(ulong address, ulong id){% if info.parent %} : base(address, id) { }{% else %}
+		{% if info.is_entity() %}public {{ info.name }}(ulong id){% if info.parent %} : base(id) { }{% else %}
         {
-            this.Address = address;
             this.Id = id;
         }{% endif %}{% endif %}
 		public {{ info.name }}(){% if info.parent %} : base() { }{% else %}
         {
-            {% if info.is_entity() %}this.Address = 0;
+            {% if info.is_entity() %}
             this.Id = 0;{% endif %}
         }{% endif %}
         

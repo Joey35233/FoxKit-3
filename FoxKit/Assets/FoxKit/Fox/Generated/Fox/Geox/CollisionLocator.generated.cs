@@ -41,7 +41,7 @@ namespace Fox.Geox
         }
 
         // Constructors
-		public CollisionLocator(ulong address, ulong id) : base(address, id) { }
+		public CollisionLocator(ulong id) : base(id) { }
 		public CollisionLocator() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

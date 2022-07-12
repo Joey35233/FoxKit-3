@@ -44,7 +44,7 @@ namespace Tpp.GameKit
         }
 
         // Constructors
-		public TppLadderData(ulong address, ulong id) : base(address, id) { }
+		public TppLadderData(ulong id) : base(id) { }
 		public TppLadderData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

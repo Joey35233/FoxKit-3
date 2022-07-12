@@ -68,7 +68,7 @@ namespace Tpp.Effect
         }
 
         // Constructors
-		public TppLensFlareField(ulong address, ulong id) : base(address, id) { }
+		public TppLensFlareField(ulong id) : base(id) { }
 		public TppLensFlareField() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

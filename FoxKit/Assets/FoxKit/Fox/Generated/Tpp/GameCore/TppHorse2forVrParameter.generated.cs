@@ -47,7 +47,7 @@ namespace Tpp.GameCore
         }
 
         // Constructors
-		public TppHorse2forVrParameter(ulong address, ulong id) : base(address, id) { }
+		public TppHorse2forVrParameter(ulong id) : base(id) { }
 		public TppHorse2forVrParameter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

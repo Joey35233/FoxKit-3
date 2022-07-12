@@ -35,7 +35,7 @@ namespace Tpp.GameCore
         }
 
         // Constructors
-		public TppHeli2LocatorParameter(ulong address, ulong id) : base(address, id) { }
+		public TppHeli2LocatorParameter(ulong id) : base(id) { }
 		public TppHeli2LocatorParameter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

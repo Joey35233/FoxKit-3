@@ -38,7 +38,7 @@ namespace Tpp.GameKit
         }
 
         // Constructors
-		public TppAdditionalSearchableLightData(ulong address, ulong id) : base(address, id) { }
+		public TppAdditionalSearchableLightData(ulong id) : base(id) { }
 		public TppAdditionalSearchableLightData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

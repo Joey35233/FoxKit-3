@@ -35,7 +35,7 @@ namespace Fox.Gr
         }
 
         // Constructors
-		public GrPluginColorCorrection(ulong address, ulong id) : base(address, id) { }
+		public GrPluginColorCorrection(ulong id) : base(id) { }
 		public GrPluginColorCorrection() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

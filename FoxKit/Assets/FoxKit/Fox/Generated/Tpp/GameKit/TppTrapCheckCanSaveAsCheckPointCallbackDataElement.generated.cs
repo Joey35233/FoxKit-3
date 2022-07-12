@@ -35,7 +35,7 @@ namespace Tpp.GameKit
         }
 
         // Constructors
-		public TppTrapCheckCanSaveAsCheckPointCallbackDataElement(ulong address, ulong id) : base(address, id) { }
+		public TppTrapCheckCanSaveAsCheckPointCallbackDataElement(ulong id) : base(id) { }
 		public TppTrapCheckCanSaveAsCheckPointCallbackDataElement() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

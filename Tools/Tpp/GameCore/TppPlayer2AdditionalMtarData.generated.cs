@@ -38,7 +38,7 @@ namespace Tpp.GameCore
         }
 
         // Constructors
-		public TppPlayer2AdditionalMtarData(ulong address, ulong id) : base(address, id) { }
+		public TppPlayer2AdditionalMtarData(ulong id) : base(id) { }
 		public TppPlayer2AdditionalMtarData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

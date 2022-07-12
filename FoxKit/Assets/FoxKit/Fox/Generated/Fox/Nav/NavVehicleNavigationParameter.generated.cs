@@ -41,7 +41,7 @@ namespace Fox.Nav
         }
 
         // Constructors
-		public NavVehicleNavigationParameter(ulong address, ulong id) : base(address, id) { }
+		public NavVehicleNavigationParameter(ulong id) : base(id) { }
 		public NavVehicleNavigationParameter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

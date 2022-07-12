@@ -35,7 +35,7 @@ namespace Tpp.Effect
         }
 
         // Constructors
-		public TppEffectUtility(ulong address, ulong id) : base(address, id) { }
+		public TppEffectUtility(ulong id) : base(id) { }
 		public TppEffectUtility() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

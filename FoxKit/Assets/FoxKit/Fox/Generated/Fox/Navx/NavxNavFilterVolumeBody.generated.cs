@@ -35,7 +35,7 @@ namespace Fox.Navx
         }
 
         // Constructors
-		public NavxNavFilterVolumeBody(ulong address, ulong id) : base(address, id) { }
+		public NavxNavFilterVolumeBody(ulong id) : base(id) { }
 		public NavxNavFilterVolumeBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

@@ -35,7 +35,7 @@ namespace Fox.GameKit
         }
 
         // Constructors
-		public StageModelBody(ulong address, ulong id) : base(address, id) { }
+		public StageModelBody(ulong id) : base(id) { }
 		public StageModelBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

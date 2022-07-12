@@ -38,7 +38,7 @@ namespace Fox.Grx
         }
 
         // Constructors
-		public SpotLightBody(ulong address, ulong id) : base(address, id) { }
+		public SpotLightBody(ulong id) : base(id) { }
 		public SpotLightBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

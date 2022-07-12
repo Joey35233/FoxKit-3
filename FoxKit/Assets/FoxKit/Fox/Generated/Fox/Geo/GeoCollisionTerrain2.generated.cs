@@ -35,7 +35,7 @@ namespace Fox.Geo
         }
 
         // Constructors
-		public GeoCollisionTerrain2(ulong address, ulong id) : base(address, id) { }
+		public GeoCollisionTerrain2(ulong id) : base(id) { }
 		public GeoCollisionTerrain2() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

@@ -38,7 +38,7 @@ namespace Fox.PartsBuilder
         }
 
         // Constructors
-		public SoundDescription(ulong address, ulong id) : base(address, id) { }
+		public SoundDescription(ulong id) : base(id) { }
 		public SoundDescription() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

@@ -38,7 +38,7 @@ namespace Tpp.GameCore
         }
 
         // Constructors
-		public TppWalkerGear2LocatorParameter(ulong address, ulong id) : base(address, id) { }
+		public TppWalkerGear2LocatorParameter(ulong id) : base(id) { }
 		public TppWalkerGear2LocatorParameter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

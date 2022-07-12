@@ -65,7 +65,7 @@ namespace Tpp.Effect
         }
 
         // Constructors
-		public TppStar(ulong address, ulong id) : base(address, id) { }
+		public TppStar(ulong id) : base(id) { }
 		public TppStar() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

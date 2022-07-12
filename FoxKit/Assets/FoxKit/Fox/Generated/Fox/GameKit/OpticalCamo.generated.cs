@@ -50,7 +50,7 @@ namespace Fox.GameKit
         }
 
         // Constructors
-		public OpticalCamo(ulong address, ulong id) : base(address, id) { }
+		public OpticalCamo(ulong id) : base(id) { }
 		public OpticalCamo() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

@@ -35,7 +35,7 @@ namespace Fox.Geo
         }
 
         // Constructors
-		public GeoPathFixedPackFile(ulong address, ulong id) : base(address, id) { }
+		public GeoPathFixedPackFile(ulong id) : base(id) { }
 		public GeoPathFixedPackFile() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

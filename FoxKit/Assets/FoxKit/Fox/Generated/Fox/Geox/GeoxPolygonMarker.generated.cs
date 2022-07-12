@@ -38,7 +38,7 @@ namespace Fox.Geox
         }
 
         // Constructors
-		public GeoxPolygonMarker(ulong address, ulong id) : base(address, id) { }
+		public GeoxPolygonMarker(ulong id) : base(id) { }
 		public GeoxPolygonMarker() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

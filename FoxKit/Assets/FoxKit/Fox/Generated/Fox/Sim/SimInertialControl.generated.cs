@@ -41,7 +41,7 @@ namespace Fox.Sim
         }
 
         // Constructors
-		public SimInertialControl(ulong address, ulong id) : base(address, id) { }
+		public SimInertialControl(ulong id) : base(id) { }
 		public SimInertialControl() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

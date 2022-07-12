@@ -35,7 +35,7 @@ namespace Tpp.Ui
         }
 
         // Constructors
-		public FultonSoldierReceive(ulong address, ulong id) : base(address, id) { }
+		public FultonSoldierReceive(ulong id) : base(id) { }
 		public FultonSoldierReceive() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

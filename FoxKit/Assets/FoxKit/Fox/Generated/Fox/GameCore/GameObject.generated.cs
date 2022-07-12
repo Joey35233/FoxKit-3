@@ -50,7 +50,7 @@ namespace Fox.GameCore
         }
 
         // Constructors
-		public GameObject(ulong address, ulong id) : base(address, id) { }
+		public GameObject(ulong id) : base(id) { }
 		public GameObject() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

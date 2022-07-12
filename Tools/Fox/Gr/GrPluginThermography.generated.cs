@@ -35,7 +35,7 @@ namespace Fox.Gr
         }
 
         // Constructors
-		public GrPluginThermography(ulong address, ulong id) : base(address, id) { }
+		public GrPluginThermography(ulong id) : base(id) { }
 		public GrPluginThermography() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

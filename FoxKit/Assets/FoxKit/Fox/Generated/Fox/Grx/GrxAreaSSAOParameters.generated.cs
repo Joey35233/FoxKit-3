@@ -68,7 +68,7 @@ namespace Fox.Grx
         }
 
         // Constructors
-		public GrxAreaSSAOParameters(ulong address, ulong id) : base(address, id) { }
+		public GrxAreaSSAOParameters(ulong id) : base(id) { }
 		public GrxAreaSSAOParameters() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

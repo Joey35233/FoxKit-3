@@ -44,7 +44,7 @@ namespace Fox.Core
         }
 
         // Constructors
-		public Group(ulong address, ulong id) : base(address, id) { }
+		public Group(ulong id) : base(id) { }
 		public Group() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

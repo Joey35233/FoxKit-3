@@ -50,7 +50,7 @@ namespace Fox.Sim
         }
 
         // Constructors
-		public SimEngineOnPhysicsDefaultInfo(ulong address, ulong id) : base(address, id) { }
+		public SimEngineOnPhysicsDefaultInfo(ulong id) : base(id) { }
 		public SimEngineOnPhysicsDefaultInfo() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

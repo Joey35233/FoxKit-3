@@ -44,7 +44,7 @@ namespace Tpp.MotherBaseCore
         }
 
         // Constructors
-		public MotherBaseConstructConnectLocator(ulong address, ulong id) : base(address, id) { }
+		public MotherBaseConstructConnectLocator(ulong id) : base(id) { }
 		public MotherBaseConstructConnectLocator() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

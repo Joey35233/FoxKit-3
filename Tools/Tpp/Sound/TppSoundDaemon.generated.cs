@@ -38,7 +38,7 @@ namespace Tpp.Sound
         }
 
         // Constructors
-		public TppSoundDaemon(ulong address, ulong id) : base(address, id) { }
+		public TppSoundDaemon(ulong id) : base(id) { }
 		public TppSoundDaemon() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

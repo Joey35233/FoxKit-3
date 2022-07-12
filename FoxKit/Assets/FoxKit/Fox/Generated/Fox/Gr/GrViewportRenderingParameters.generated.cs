@@ -38,7 +38,7 @@ namespace Fox.Gr
         }
 
         // Constructors
-		public GrViewportRenderingParameters(ulong address, ulong id) : base(address, id) { }
+		public GrViewportRenderingParameters(ulong id) : base(id) { }
 		public GrViewportRenderingParameters() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

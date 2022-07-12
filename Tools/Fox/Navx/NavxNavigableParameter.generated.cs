@@ -59,7 +59,7 @@ namespace Fox.Navx
         }
 
         // Constructors
-		public NavxNavigableParameter(ulong address, ulong id) : base(address, id) { }
+		public NavxNavigableParameter(ulong id) : base(id) { }
 		public NavxNavigableParameter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

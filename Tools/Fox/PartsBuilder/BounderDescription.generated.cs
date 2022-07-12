@@ -38,7 +38,7 @@ namespace Fox.PartsBuilder
         }
 
         // Constructors
-		public BounderDescription(ulong address, ulong id) : base(address, id) { }
+		public BounderDescription(ulong id) : base(id) { }
 		public BounderDescription() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

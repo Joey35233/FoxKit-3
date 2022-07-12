@@ -35,7 +35,7 @@ namespace Fox.Core
         }
 
         // Constructors
-		public EntityClassDictionary(ulong address, ulong id) : base(address, id) { }
+		public EntityClassDictionary(ulong id) : base(id) { }
 		public EntityClassDictionary() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

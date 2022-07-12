@@ -35,7 +35,7 @@ namespace Fox.Anim
         }
 
         // Constructors
-		public GaniBaseFile(ulong address, ulong id) : base(address, id) { }
+		public GaniBaseFile(ulong id) : base(id) { }
 		public GaniBaseFile() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

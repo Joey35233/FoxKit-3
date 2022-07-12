@@ -38,7 +38,7 @@ namespace Tpp.GameKit
         }
 
         // Constructors
-		public TppPermanentGimmickDoorParameter(ulong address, ulong id) : base(address, id) { }
+		public TppPermanentGimmickDoorParameter(ulong id) : base(id) { }
 		public TppPermanentGimmickDoorParameter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

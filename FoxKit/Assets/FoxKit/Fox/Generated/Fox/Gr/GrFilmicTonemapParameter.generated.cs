@@ -41,7 +41,7 @@ namespace Fox.Gr
         }
 
         // Constructors
-		public GrFilmicTonemapParameter(ulong address, ulong id) : base(address, id) { }
+		public GrFilmicTonemapParameter(ulong id) : base(id) { }
 		public GrFilmicTonemapParameter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

@@ -35,7 +35,7 @@ namespace Tpp.Ui
         }
 
         // Constructors
-		public GetRoomListReceive(ulong address, ulong id) : base(address, id) { }
+		public GetRoomListReceive(ulong id) : base(id) { }
 		public GetRoomListReceive() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

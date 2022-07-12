@@ -41,7 +41,7 @@ namespace Tpp.GameCore
         }
 
         // Constructors
-		public TppTrapExecCombatLocatorCallbackDataElement(ulong address, ulong id) : base(address, id) { }
+		public TppTrapExecCombatLocatorCallbackDataElement(ulong id) : base(id) { }
 		public TppTrapExecCombatLocatorCallbackDataElement() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

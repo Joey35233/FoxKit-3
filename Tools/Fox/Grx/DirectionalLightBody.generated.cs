@@ -38,7 +38,7 @@ namespace Fox.Grx
         }
 
         // Constructors
-		public DirectionalLightBody(ulong address, ulong id) : base(address, id) { }
+		public DirectionalLightBody(ulong id) : base(id) { }
 		public DirectionalLightBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

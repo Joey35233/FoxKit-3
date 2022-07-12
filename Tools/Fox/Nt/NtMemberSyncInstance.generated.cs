@@ -35,7 +35,7 @@ namespace Fox.Nt
         }
 
         // Constructors
-		public NtMemberSyncInstance(ulong address, ulong id) : base(address, id) { }
+		public NtMemberSyncInstance(ulong id) : base(id) { }
 		public NtMemberSyncInstance() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

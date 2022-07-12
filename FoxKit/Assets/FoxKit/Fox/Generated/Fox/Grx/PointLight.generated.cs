@@ -113,7 +113,7 @@ namespace Fox.Grx
         }
 
         // Constructors
-		public PointLight(ulong address, ulong id) : base(address, id) { }
+		public PointLight(ulong id) : base(id) { }
 		public PointLight() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

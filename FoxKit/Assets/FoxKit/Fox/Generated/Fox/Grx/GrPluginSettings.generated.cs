@@ -110,7 +110,7 @@ namespace Fox.Grx
         }
 
         // Constructors
-		public GrPluginSettings(ulong address, ulong id) : base(address, id) { }
+		public GrPluginSettings(ulong id) : base(id) { }
 		public GrPluginSettings() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

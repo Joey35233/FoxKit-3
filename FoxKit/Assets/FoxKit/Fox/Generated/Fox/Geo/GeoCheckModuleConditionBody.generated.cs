@@ -35,7 +35,7 @@ namespace Fox.Geo
         }
 
         // Constructors
-		public GeoCheckModuleConditionBody(ulong address, ulong id) : base(address, id) { }
+		public GeoCheckModuleConditionBody(ulong id) : base(id) { }
 		public GeoCheckModuleConditionBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

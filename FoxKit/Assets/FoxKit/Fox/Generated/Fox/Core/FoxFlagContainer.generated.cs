@@ -41,7 +41,7 @@ namespace Fox.Core
         }
 
         // Constructors
-		public FoxFlagContainer(ulong address, ulong id) : base(address, id) { }
+		public FoxFlagContainer(ulong id) : base(id) { }
 		public FoxFlagContainer() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

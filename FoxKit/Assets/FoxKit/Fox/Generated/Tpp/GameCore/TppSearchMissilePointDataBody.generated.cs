@@ -35,7 +35,7 @@ namespace Tpp.GameCore
         }
 
         // Constructors
-		public TppSearchMissilePointDataBody(ulong address, ulong id) : base(address, id) { }
+		public TppSearchMissilePointDataBody(ulong id) : base(id) { }
 		public TppSearchMissilePointDataBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

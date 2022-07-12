@@ -35,7 +35,7 @@ namespace Fox.Core
         }
 
         // Constructors
-		public PointComponentSet(ulong address, ulong id) : base(address, id) { }
+		public PointComponentSet(ulong id) : base(id) { }
 		public PointComponentSet() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

@@ -7,11 +7,6 @@ namespace Fox.Core
     public partial class Entity
     {
         /// <summary>
-        /// The numeric identifier of the Entity, unique to its DataSet.
-        /// </summary>
-        public ulong Address { get; }
-
-        /// <summary>
         /// Unknown.
         /// </summary>
         private ulong Id { get; }
@@ -62,7 +57,7 @@ namespace Fox.Core
 
         public override string ToString()
         {
-            return $"{this.GetType().Name}: 0x{this.Address:X16}";
+            return $"{this.GetType().Name}";
         }
     }
 }

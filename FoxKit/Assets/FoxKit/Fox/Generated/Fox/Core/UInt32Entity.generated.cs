@@ -38,7 +38,7 @@ namespace Fox.Core
         }
 
         // Constructors
-		public UInt32Entity(ulong address, ulong id) : base(address, id) { }
+		public UInt32Entity(ulong id) : base(id) { }
 		public UInt32Entity() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

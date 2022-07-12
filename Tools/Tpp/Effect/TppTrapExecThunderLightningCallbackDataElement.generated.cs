@@ -44,7 +44,7 @@ namespace Tpp.Effect
         }
 
         // Constructors
-		public TppTrapExecThunderLightningCallbackDataElement(ulong address, ulong id) : base(address, id) { }
+		public TppTrapExecThunderLightningCallbackDataElement(ulong id) : base(id) { }
 		public TppTrapExecThunderLightningCallbackDataElement() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

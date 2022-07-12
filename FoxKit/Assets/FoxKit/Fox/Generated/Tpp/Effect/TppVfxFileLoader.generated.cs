@@ -44,7 +44,7 @@ namespace Tpp.Effect
         }
 
         // Constructors
-		public TppVfxFileLoader(ulong address, ulong id) : base(address, id) { }
+		public TppVfxFileLoader(ulong id) : base(id) { }
 		public TppVfxFileLoader() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

@@ -35,7 +35,7 @@ namespace Tpp.Ui
         }
 
         // Constructors
-		public GetWormholeListReceive(ulong address, ulong id) : base(address, id) { }
+		public GetWormholeListReceive(ulong id) : base(id) { }
 		public GetWormholeListReceive() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

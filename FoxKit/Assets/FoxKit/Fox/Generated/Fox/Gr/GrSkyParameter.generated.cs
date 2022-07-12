@@ -38,7 +38,7 @@ namespace Fox.Gr
         }
 
         // Constructors
-		public GrSkyParameter(ulong address, ulong id) : base(address, id) { }
+		public GrSkyParameter(ulong id) : base(id) { }
 		public GrSkyParameter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

@@ -65,7 +65,7 @@ namespace Fox.UiScene
         }
 
         // Constructors
-		public UiCameraData(ulong address, ulong id) : base(address, id) { }
+		public UiCameraData(ulong id) : base(id) { }
 		public UiCameraData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

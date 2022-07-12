@@ -35,7 +35,7 @@ namespace Tpp.Effect
         }
 
         // Constructors
-		public TppMuddledFilter(ulong address, ulong id) : base(address, id) { }
+		public TppMuddledFilter(ulong id) : base(id) { }
 		public TppMuddledFilter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

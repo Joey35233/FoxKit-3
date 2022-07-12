@@ -35,7 +35,7 @@ namespace Fox.UiScene
         }
 
         // Constructors
-		public UiAnimWorkMemoryDataBody(ulong address, ulong id) : base(address, id) { }
+		public UiAnimWorkMemoryDataBody(ulong id) : base(id) { }
 		public UiAnimWorkMemoryDataBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

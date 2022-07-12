@@ -38,7 +38,7 @@ namespace Fox.Geo
         }
 
         // Constructors
-		public CollisionSkeleton(ulong address, ulong id) : base(address, id) { }
+		public CollisionSkeleton(ulong id) : base(id) { }
 		public CollisionSkeleton() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

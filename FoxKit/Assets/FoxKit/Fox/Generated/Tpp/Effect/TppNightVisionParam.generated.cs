@@ -62,7 +62,7 @@ namespace Tpp.Effect
         }
 
         // Constructors
-		public TppNightVisionParam(ulong address, ulong id) : base(address, id) { }
+		public TppNightVisionParam(ulong id) : base(id) { }
 		public TppNightVisionParam() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

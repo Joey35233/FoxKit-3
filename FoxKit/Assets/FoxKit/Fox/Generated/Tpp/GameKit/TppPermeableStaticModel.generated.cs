@@ -35,7 +35,7 @@ namespace Tpp.GameKit
         }
 
         // Constructors
-		public TppPermeableStaticModel(ulong address, ulong id) : base(address, id) { }
+		public TppPermeableStaticModel(ulong id) : base(id) { }
 		public TppPermeableStaticModel() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

@@ -35,7 +35,7 @@ namespace Tpp.Ui
         }
 
         // Constructors
-		public UiCommonDataManager(ulong address, ulong id) : base(address, id) { }
+		public UiCommonDataManager(ulong id) : base(id) { }
 		public UiCommonDataManager() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

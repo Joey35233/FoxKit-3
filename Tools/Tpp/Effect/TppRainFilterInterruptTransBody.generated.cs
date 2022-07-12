@@ -35,7 +35,7 @@ namespace Tpp.Effect
         }
 
         // Constructors
-		public TppRainFilterInterruptTransBody(ulong address, ulong id) : base(address, id) { }
+		public TppRainFilterInterruptTransBody(ulong id) : base(id) { }
 		public TppRainFilterInterruptTransBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

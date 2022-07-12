@@ -47,7 +47,7 @@ namespace Fox.Anim
         }
 
         // Constructors
-		public FacialSettingData(ulong address, ulong id) : base(address, id) { }
+		public FacialSettingData(ulong id) : base(id) { }
 		public FacialSettingData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

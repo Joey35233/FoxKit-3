@@ -35,7 +35,7 @@ namespace Tpp.MotherBaseCore
         }
 
         // Constructors
-		public MotherBaseConstructLocatorBody(ulong address, ulong id) : base(address, id) { }
+		public MotherBaseConstructLocatorBody(ulong id) : base(id) { }
 		public MotherBaseConstructLocatorBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

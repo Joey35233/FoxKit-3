@@ -59,7 +59,7 @@ namespace Fox.Demox
         }
 
         // Constructors
-		public ProceduralDemoData(ulong address, ulong id) : base(address, id) { }
+		public ProceduralDemoData(ulong id) : base(id) { }
 		public ProceduralDemoData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

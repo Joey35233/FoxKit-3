@@ -44,7 +44,7 @@ namespace Fox.Navx
         }
 
         // Constructors
-		public NavxNavFileConnector(ulong address, ulong id) : base(address, id) { }
+		public NavxNavFileConnector(ulong id) : base(id) { }
 		public NavxNavFileConnector() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

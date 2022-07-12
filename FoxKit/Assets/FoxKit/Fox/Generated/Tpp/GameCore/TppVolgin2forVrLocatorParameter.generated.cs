@@ -38,7 +38,7 @@ namespace Tpp.GameCore
         }
 
         // Constructors
-		public TppVolgin2forVrLocatorParameter(ulong address, ulong id) : base(address, id) { }
+		public TppVolgin2forVrLocatorParameter(ulong id) : base(id) { }
 		public TppVolgin2forVrLocatorParameter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

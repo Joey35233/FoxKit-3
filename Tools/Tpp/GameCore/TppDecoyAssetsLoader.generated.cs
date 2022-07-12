@@ -44,7 +44,7 @@ namespace Tpp.GameCore
         }
 
         // Constructors
-		public TppDecoyAssetsLoader(ulong address, ulong id) : base(address, id) { }
+		public TppDecoyAssetsLoader(ulong id) : base(id) { }
 		public TppDecoyAssetsLoader() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

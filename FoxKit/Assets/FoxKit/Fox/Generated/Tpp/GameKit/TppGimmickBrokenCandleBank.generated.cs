@@ -50,7 +50,7 @@ namespace Tpp.GameKit
         }
 
         // Constructors
-		public TppGimmickBrokenCandleBank(ulong address, ulong id) : base(address, id) { }
+		public TppGimmickBrokenCandleBank(ulong id) : base(id) { }
 		public TppGimmickBrokenCandleBank() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

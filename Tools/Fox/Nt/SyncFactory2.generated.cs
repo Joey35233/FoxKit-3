@@ -35,7 +35,7 @@ namespace Fox.Nt
         }
 
         // Constructors
-		public SyncFactory2(ulong address, ulong id) : base(address, id) { }
+		public SyncFactory2(ulong id) : base(id) { }
 		public SyncFactory2() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

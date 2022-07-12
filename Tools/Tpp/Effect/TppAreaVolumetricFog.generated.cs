@@ -38,7 +38,7 @@ namespace Tpp.Effect
         }
 
         // Constructors
-		public TppAreaVolumetricFog(ulong address, ulong id) : base(address, id) { }
+		public TppAreaVolumetricFog(ulong id) : base(id) { }
 		public TppAreaVolumetricFog() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

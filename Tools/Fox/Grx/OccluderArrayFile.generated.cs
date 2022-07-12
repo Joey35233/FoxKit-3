@@ -35,7 +35,7 @@ namespace Fox.Grx
         }
 
         // Constructors
-		public OccluderArrayFile(ulong address, ulong id) : base(address, id) { }
+		public OccluderArrayFile(ulong id) : base(id) { }
 		public OccluderArrayFile() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

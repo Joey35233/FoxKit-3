@@ -71,7 +71,7 @@ namespace Fox.GameKit
         }
 
         // Constructors
-		public StaticModelArray(ulong address, ulong id) : base(address, id) { }
+		public StaticModelArray(ulong id) : base(id) { }
 		public StaticModelArray() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

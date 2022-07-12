@@ -38,7 +38,7 @@ namespace Fox.Core
         }
 
         // Constructors
-		public SphereShapeBody(ulong address, ulong id) : base(address, id) { }
+		public SphereShapeBody(ulong id) : base(id) { }
 		public SphereShapeBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

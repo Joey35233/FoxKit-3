@@ -50,7 +50,7 @@ namespace Fox.Geox
         }
 
         // Constructors
-		public GeoxCollisionPrimitive(ulong address, ulong id) : base(address, id) { }
+		public GeoxCollisionPrimitive(ulong id) : base(id) { }
 		public GeoxCollisionPrimitive() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

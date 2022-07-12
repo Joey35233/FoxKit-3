@@ -41,7 +41,7 @@ namespace Tpp.Ui
         }
 
         // Constructors
-		public MbdvcBootData(ulong address, ulong id) : base(address, id) { }
+		public MbdvcBootData(ulong id) : base(id) { }
 		public MbdvcBootData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

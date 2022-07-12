@@ -35,7 +35,7 @@ namespace Fox.Anim
         }
 
         // Constructors
-		public RigFile(ulong address, ulong id) : base(address, id) { }
+		public RigFile(ulong id) : base(id) { }
 		public RigFile() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

@@ -35,7 +35,7 @@ namespace Fox.PartsBuilder
         }
 
         // Constructors
-		public CoverModelDescription(ulong address, ulong id) : base(address, id) { }
+		public CoverModelDescription(ulong id) : base(id) { }
 		public CoverModelDescription() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

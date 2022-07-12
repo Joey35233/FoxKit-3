@@ -35,7 +35,7 @@ namespace Fox.GameKit
         }
 
         // Constructors
-		public PauseController(ulong address, ulong id) : base(address, id) { }
+		public PauseController(ulong id) : base(id) { }
 		public PauseController() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

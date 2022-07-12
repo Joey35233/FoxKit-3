@@ -80,7 +80,7 @@ namespace Tpp.GameKit
         }
 
         // Constructors
-		public TppObjectBrushPluginSkeletonModel(ulong address, ulong id) : base(address, id) { }
+		public TppObjectBrushPluginSkeletonModel(ulong id) : base(id) { }
 		public TppObjectBrushPluginSkeletonModel() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

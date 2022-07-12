@@ -38,7 +38,7 @@ namespace Fox.Ph
         }
 
         // Constructors
-		public PhWindActionParam(ulong address, ulong id) : base(address, id) { }
+		public PhWindActionParam(ulong id) : base(id) { }
 		public PhWindActionParam() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

@@ -35,7 +35,7 @@ namespace Fox.Ui
         }
 
         // Constructors
-		public LangDataBody(ulong address, ulong id) : base(address, id) { }
+		public LangDataBody(ulong id) : base(id) { }
 		public LangDataBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

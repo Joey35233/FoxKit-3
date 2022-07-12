@@ -41,7 +41,7 @@ namespace Tpp.System
         }
 
         // Constructors
-		public TppCheckPointLocator(ulong address, ulong id) : base(address, id) { }
+		public TppCheckPointLocator(ulong id) : base(id) { }
 		public TppCheckPointLocator() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

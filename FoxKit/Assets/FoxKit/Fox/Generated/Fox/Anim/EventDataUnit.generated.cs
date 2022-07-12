@@ -50,7 +50,7 @@ namespace Fox.Anim
         }
 
         // Constructors
-		public EventDataUnit(ulong address, ulong id) : base(address, id) { }
+		public EventDataUnit(ulong id) : base(id) { }
 		public EventDataUnit() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

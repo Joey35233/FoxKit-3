@@ -35,7 +35,7 @@ namespace Fox.Sdx
         }
 
         // Constructors
-		public SoundDataFile(ulong address, ulong id) : base(address, id) { }
+		public SoundDataFile(ulong id) : base(id) { }
 		public SoundDataFile() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

@@ -35,7 +35,7 @@ namespace Tpp.Sound
         }
 
         // Constructors
-		public MusicFaderBody(ulong address, ulong id) : base(address, id) { }
+		public MusicFaderBody(ulong id) : base(id) { }
 		public MusicFaderBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

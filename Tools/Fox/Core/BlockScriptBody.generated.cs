@@ -35,7 +35,7 @@ namespace Fox.Core
         }
 
         // Constructors
-		public BlockScriptBody(ulong address, ulong id) : base(address, id) { }
+		public BlockScriptBody(ulong id) : base(id) { }
 		public BlockScriptBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

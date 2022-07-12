@@ -35,7 +35,7 @@ namespace Fox.Gr
         }
 
         // Constructors
-		public GrPluginSunlight(ulong address, ulong id) : base(address, id) { }
+		public GrPluginSunlight(ulong id) : base(id) { }
 		public GrPluginSunlight() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

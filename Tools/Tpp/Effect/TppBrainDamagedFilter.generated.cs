@@ -35,7 +35,7 @@ namespace Tpp.Effect
         }
 
         // Constructors
-		public TppBrainDamagedFilter(ulong address, ulong id) : base(address, id) { }
+		public TppBrainDamagedFilter(ulong id) : base(id) { }
 		public TppBrainDamagedFilter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

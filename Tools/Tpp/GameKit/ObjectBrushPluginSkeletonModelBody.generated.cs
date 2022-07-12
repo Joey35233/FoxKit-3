@@ -35,7 +35,7 @@ namespace Tpp.GameKit
         }
 
         // Constructors
-		public ObjectBrushPluginSkeletonModelBody(ulong address, ulong id) : base(address, id) { }
+		public ObjectBrushPluginSkeletonModelBody(ulong id) : base(id) { }
 		public ObjectBrushPluginSkeletonModelBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

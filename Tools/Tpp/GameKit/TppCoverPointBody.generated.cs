@@ -35,7 +35,7 @@ namespace Tpp.GameKit
         }
 
         // Constructors
-		public TppCoverPointBody(ulong address, ulong id) : base(address, id) { }
+		public TppCoverPointBody(ulong id) : base(id) { }
 		public TppCoverPointBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

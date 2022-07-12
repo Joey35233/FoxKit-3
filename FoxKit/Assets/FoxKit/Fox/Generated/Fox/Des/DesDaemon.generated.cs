@@ -35,7 +35,7 @@ namespace Fox.Des
         }
 
         // Constructors
-		public DesDaemon(ulong address, ulong id) : base(address, id) { }
+		public DesDaemon(ulong id) : base(id) { }
 		public DesDaemon() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

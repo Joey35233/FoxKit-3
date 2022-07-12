@@ -35,7 +35,7 @@ namespace Fox.Gr
         }
 
         // Constructors
-		public GrPluginSeflShadowOfTerrain(ulong address, ulong id) : base(address, id) { }
+		public GrPluginSeflShadowOfTerrain(ulong id) : base(id) { }
 		public GrPluginSeflShadowOfTerrain() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

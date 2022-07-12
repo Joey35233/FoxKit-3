@@ -38,7 +38,7 @@ namespace Fox.GameKit
         }
 
         // Constructors
-		public IntervalRegulator(ulong address, ulong id) : base(address, id) { }
+		public IntervalRegulator(ulong id) : base(id) { }
 		public IntervalRegulator() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

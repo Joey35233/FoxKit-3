@@ -68,7 +68,7 @@ namespace Fox.EdDemo
         }
 
         // Constructors
-		public TppDemoParameter(ulong address, ulong id) : base(address, id) { }
+		public TppDemoParameter(ulong id) : base(id) { }
 		public TppDemoParameter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

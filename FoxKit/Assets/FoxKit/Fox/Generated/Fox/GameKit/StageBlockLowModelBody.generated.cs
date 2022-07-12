@@ -35,7 +35,7 @@ namespace Fox.GameKit
         }
 
         // Constructors
-		public StageBlockLowModelBody(ulong address, ulong id) : base(address, id) { }
+		public StageBlockLowModelBody(ulong id) : base(id) { }
 		public StageBlockLowModelBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

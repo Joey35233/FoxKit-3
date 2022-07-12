@@ -35,7 +35,7 @@ namespace Fox.Demo
         }
 
         // Constructors
-		public DemoParameter(ulong address, ulong id) : base(address, id) { }
+		public DemoParameter(ulong id) : base(id) { }
 		public DemoParameter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

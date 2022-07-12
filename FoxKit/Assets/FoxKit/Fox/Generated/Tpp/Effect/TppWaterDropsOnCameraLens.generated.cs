@@ -65,7 +65,7 @@ namespace Tpp.Effect
         }
 
         // Constructors
-		public TppWaterDropsOnCameraLens(ulong address, ulong id) : base(address, id) { }
+		public TppWaterDropsOnCameraLens(ulong id) : base(id) { }
 		public TppWaterDropsOnCameraLens() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

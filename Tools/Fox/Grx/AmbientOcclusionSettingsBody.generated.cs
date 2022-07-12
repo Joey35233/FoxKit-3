@@ -35,7 +35,7 @@ namespace Fox.Grx
         }
 
         // Constructors
-		public AmbientOcclusionSettingsBody(ulong address, ulong id) : base(address, id) { }
+		public AmbientOcclusionSettingsBody(ulong id) : base(id) { }
 		public AmbientOcclusionSettingsBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

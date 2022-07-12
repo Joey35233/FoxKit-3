@@ -62,7 +62,7 @@ namespace Fox.Tactical
         }
 
         // Constructors
-		public GkTacticalAction(ulong address, ulong id) : base(address, id) { }
+		public GkTacticalAction(ulong id) : base(id) { }
 		public GkTacticalAction() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

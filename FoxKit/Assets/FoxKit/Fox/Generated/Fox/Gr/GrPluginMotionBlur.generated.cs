@@ -35,7 +35,7 @@ namespace Fox.Gr
         }
 
         // Constructors
-		public GrPluginMotionBlur(ulong address, ulong id) : base(address, id) { }
+		public GrPluginMotionBlur(ulong id) : base(id) { }
 		public GrPluginMotionBlur() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

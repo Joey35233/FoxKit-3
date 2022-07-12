@@ -50,7 +50,7 @@ namespace Tpp.Effect
         }
 
         // Constructors
-		public TppLensFlareRoot(ulong address, ulong id) : base(address, id) { }
+		public TppLensFlareRoot(ulong id) : base(id) { }
 		public TppLensFlareRoot() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

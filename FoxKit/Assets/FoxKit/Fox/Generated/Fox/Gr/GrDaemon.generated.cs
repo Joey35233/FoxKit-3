@@ -35,7 +35,7 @@ namespace Fox.Gr
         }
 
         // Constructors
-		public GrDaemon(ulong address, ulong id) : base(address, id) { }
+		public GrDaemon(ulong id) : base(id) { }
 		public GrDaemon() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

@@ -47,7 +47,7 @@ namespace Tpp.GameKit
         }
 
         // Constructors
-		public TppTrapExecEnvironmentMotionCallbackDataElement(ulong address, ulong id) : base(address, id) { }
+		public TppTrapExecEnvironmentMotionCallbackDataElement(ulong id) : base(id) { }
 		public TppTrapExecEnvironmentMotionCallbackDataElement() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

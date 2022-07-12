@@ -44,7 +44,7 @@ namespace Tpp.GameCore
         }
 
         // Constructors
-		public TppLiquid2Parameter(ulong address, ulong id) : base(address, id) { }
+		public TppLiquid2Parameter(ulong id) : base(id) { }
 		public TppLiquid2Parameter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

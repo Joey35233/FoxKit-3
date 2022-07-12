@@ -137,7 +137,7 @@ namespace Tpp.Effect
         }
 
         // Constructors
-		public TppSky(ulong address, ulong id) : base(address, id) { }
+		public TppSky(ulong id) : base(id) { }
 		public TppSky() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

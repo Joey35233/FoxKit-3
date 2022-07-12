@@ -39,26 +39,26 @@ namespace Fox.Core
             var gameObjects = new Dictionary<ulong, GameObject>();
             for (int i = 0; i < entityCount; i++)
             {
-                var entity = new DataSetFile2EntityReader(RequestEntityPtr, RequestEntityHandle).Read(reader, this.CreateEntity, (hash) => this.stringTable[hash]);
-                entities.Add(entity.Address, entity);
+                var addressedEntity = new DataSetFile2AddressedEntityReader(RequestEntityPtr, RequestEntityHandle).Read(reader, this.CreateEntity, (hash) => this.stringTable[hash]);
+                entities.Add(addressedEntity.Address, addressedEntity.Entity);
 
                 // Create GameObject
-                if (entity is DataElement)
+                if (addressedEntity.Entity is DataElement)
                 {
                     continue;
                 }
 
                 var gameObject = new GameObject();
-                if (entity is DataSet)
+                if (addressedEntity.Entity is DataSet)
                 {
                     gameObject.name = "DataSet";
                     result.DataSetGameObject = gameObject;
                     continue;
                 }
 
-                gameObjects.Add(entity.Address, gameObject);
+                gameObjects.Add(addressedEntity.Address, gameObject);
                 var entityComponent = gameObject.AddComponent<FoxEntity>();
-                entityComponent.Entity = entity;
+                entityComponent.Entity = addressedEntity.Entity;
             }
 
             this.ResolveRequests(entities, gameObjects);
@@ -89,9 +89,9 @@ namespace Fox.Core
             }
         }
 
-        private Entity CreateEntity(ulong classNameHash, ulong address, ushort version, ulong id)
+        private Entity CreateEntity(ulong classNameHash, ushort version, ulong id)
         {
-            return entityFactory.Create(this.stringTable[classNameHash], address, version, id);
+            return entityFactory.Create(this.stringTable[classNameHash], version, id);
         }
 
         private void ResolveRequests(IDictionary<ulong, Entity> entities, IDictionary<ulong, GameObject> gameObjects)

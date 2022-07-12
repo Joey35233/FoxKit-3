@@ -38,7 +38,7 @@ namespace Fox.GameKit
         }
 
         // Constructors
-		public SubtitlesOptionBlockControllerData(ulong address, ulong id) : base(address, id) { }
+		public SubtitlesOptionBlockControllerData(ulong id) : base(id) { }
 		public SubtitlesOptionBlockControllerData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

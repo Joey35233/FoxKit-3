@@ -35,7 +35,7 @@ namespace Tpp.GameCore
         }
 
         // Constructors
-		public TppHidePointDataBody(ulong address, ulong id) : base(address, id) { }
+		public TppHidePointDataBody(ulong id) : base(id) { }
 		public TppHidePointDataBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

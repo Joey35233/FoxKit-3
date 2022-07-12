@@ -41,7 +41,7 @@ namespace Tpp.GameKit
         }
 
         // Constructors
-		public TppTrapCheckIsPushPadCallbackDataElement(ulong address, ulong id) : base(address, id) { }
+		public TppTrapCheckIsPushPadCallbackDataElement(ulong id) : base(id) { }
 		public TppTrapCheckIsPushPadCallbackDataElement() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

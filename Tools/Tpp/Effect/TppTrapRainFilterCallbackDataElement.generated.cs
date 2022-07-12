@@ -35,7 +35,7 @@ namespace Tpp.Effect
         }
 
         // Constructors
-		public TppTrapRainFilterCallbackDataElement(ulong address, ulong id) : base(address, id) { }
+		public TppTrapRainFilterCallbackDataElement(ulong id) : base(id) { }
 		public TppTrapRainFilterCallbackDataElement() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

@@ -35,7 +35,7 @@ namespace Tpp.Effect
         }
 
         // Constructors
-		public TppWeatherThunderEffect(ulong address, ulong id) : base(address, id) { }
+		public TppWeatherThunderEffect(ulong id) : base(id) { }
 		public TppWeatherThunderEffect() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

@@ -35,7 +35,7 @@ namespace Fox.EdDemo
         }
 
         // Constructors
-		public TppTakePictureParameter(ulong address, ulong id) : base(address, id) { }
+		public TppTakePictureParameter(ulong id) : base(id) { }
 		public TppTakePictureParameter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

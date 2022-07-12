@@ -35,7 +35,7 @@ namespace Fox.Grx
         }
 
         // Constructors
-		public LightUtility(ulong address, ulong id) : base(address, id) { }
+		public LightUtility(ulong id) : base(id) { }
 		public LightUtility() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

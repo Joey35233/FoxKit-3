@@ -35,7 +35,7 @@ namespace Fox.MotionGraph
         }
 
         // Constructors
-		public MotionGraphBlendValueConverter(ulong address, ulong id) : base(address, id) { }
+		public MotionGraphBlendValueConverter(ulong id) : base(id) { }
 		public MotionGraphBlendValueConverter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

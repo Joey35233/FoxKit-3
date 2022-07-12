@@ -35,7 +35,7 @@ namespace Fox.Nav
         }
 
         // Constructors
-		public NavNavFile(ulong address, ulong id) : base(address, id) { }
+		public NavNavFile(ulong id) : base(id) { }
 		public NavNavFile() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

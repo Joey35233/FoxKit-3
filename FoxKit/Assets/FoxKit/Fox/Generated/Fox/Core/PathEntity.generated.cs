@@ -38,7 +38,7 @@ namespace Fox.Core
         }
 
         // Constructors
-		public PathEntity(ulong address, ulong id) : base(address, id) { }
+		public PathEntity(ulong id) : base(id) { }
 		public PathEntity() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

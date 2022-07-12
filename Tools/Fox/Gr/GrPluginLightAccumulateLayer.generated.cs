@@ -35,7 +35,7 @@ namespace Fox.Gr
         }
 
         // Constructors
-		public GrPluginLightAccumulateLayer(ulong address, ulong id) : base(address, id) { }
+		public GrPluginLightAccumulateLayer(ulong id) : base(id) { }
 		public GrPluginLightAccumulateLayer() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

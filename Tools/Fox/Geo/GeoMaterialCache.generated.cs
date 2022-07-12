@@ -35,7 +35,7 @@ namespace Fox.Geo
         }
 
         // Constructors
-		public GeoMaterialCache(ulong address, ulong id) : base(address, id) { }
+		public GeoMaterialCache(ulong id) : base(id) { }
 		public GeoMaterialCache() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

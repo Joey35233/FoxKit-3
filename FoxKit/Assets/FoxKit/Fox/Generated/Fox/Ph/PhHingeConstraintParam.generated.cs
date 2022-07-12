@@ -47,7 +47,7 @@ namespace Fox.Ph
         }
 
         // Constructors
-		public PhHingeConstraintParam(ulong address, ulong id) : base(address, id) { }
+		public PhHingeConstraintParam(ulong id) : base(id) { }
 		public PhHingeConstraintParam() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

@@ -95,7 +95,7 @@ namespace Tpp.MotherBaseStage
         }
 
         // Constructors
-		public TppMotherBaseStageBlockControllerData(ulong address, ulong id) : base(address, id) { }
+		public TppMotherBaseStageBlockControllerData(ulong id) : base(id) { }
 		public TppMotherBaseStageBlockControllerData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

@@ -35,7 +35,7 @@ namespace Tpp.Effect
         }
 
         // Constructors
-		public PrecomputeSkyFile(ulong address, ulong id) : base(address, id) { }
+		public PrecomputeSkyFile(ulong id) : base(id) { }
 		public PrecomputeSkyFile() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

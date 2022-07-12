@@ -38,7 +38,7 @@ namespace Tpp.GameCore
         }
 
         // Constructors
-		public TppVehicle2ReliefData(ulong address, ulong id) : base(address, id) { }
+		public TppVehicle2ReliefData(ulong id) : base(id) { }
 		public TppVehicle2ReliefData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

@@ -38,7 +38,7 @@ namespace Tpp.GameCore
         }
 
         // Constructors
-		public TppLiquid2LocatorParameter(ulong address, ulong id) : base(address, id) { }
+		public TppLiquid2LocatorParameter(ulong id) : base(id) { }
 		public TppLiquid2LocatorParameter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

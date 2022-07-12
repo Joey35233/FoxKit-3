@@ -35,7 +35,7 @@ namespace Fox.Geox
         }
 
         // Constructors
-		public GeoxPartsTargetExtensionBody(ulong address, ulong id) : base(address, id) { }
+		public GeoxPartsTargetExtensionBody(ulong id) : base(id) { }
 		public GeoxPartsTargetExtensionBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

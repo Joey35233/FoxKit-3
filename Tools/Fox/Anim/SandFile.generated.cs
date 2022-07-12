@@ -35,7 +35,7 @@ namespace Fox.Anim
         }
 
         // Constructors
-		public SandFile(ulong address, ulong id) : base(address, id) { }
+		public SandFile(ulong id) : base(id) { }
 		public SandFile() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

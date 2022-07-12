@@ -35,7 +35,7 @@ namespace Fox.GameKit
         }
 
         // Constructors
-		public WindGlobal(ulong address, ulong id) : base(address, id) { }
+		public WindGlobal(ulong id) : base(id) { }
 		public WindGlobal() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

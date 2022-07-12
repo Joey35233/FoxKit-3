@@ -41,7 +41,7 @@ namespace Fox.GameKit
         }
 
         // Constructors
-		public TerrainDecalPack(ulong address, ulong id) : base(address, id) { }
+		public TerrainDecalPack(ulong id) : base(id) { }
 		public TerrainDecalPack() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

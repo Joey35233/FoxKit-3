@@ -56,7 +56,7 @@ namespace Fox.Navx
         }
 
         // Constructors
-		public NavxHoleSimplificationParameterVolume(ulong address, ulong id) : base(address, id) { }
+		public NavxHoleSimplificationParameterVolume(ulong id) : base(id) { }
 		public NavxHoleSimplificationParameterVolume() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

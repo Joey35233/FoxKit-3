@@ -35,7 +35,7 @@ namespace Fox.Gr
         }
 
         // Constructors
-		public FmdlFile(ulong address, ulong id) : base(address, id) { }
+		public FmdlFile(ulong id) : base(id) { }
 		public FmdlFile() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

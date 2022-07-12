@@ -35,7 +35,7 @@ namespace Fox.Geo
         }
 
         // Constructors
-		public CollisionGeomSet(ulong address, ulong id) : base(address, id) { }
+		public CollisionGeomSet(ulong id) : base(id) { }
 		public CollisionGeomSet() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

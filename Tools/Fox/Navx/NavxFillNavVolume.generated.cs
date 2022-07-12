@@ -44,7 +44,7 @@ namespace Fox.Navx
         }
 
         // Constructors
-		public NavxFillNavVolume(ulong address, ulong id) : base(address, id) { }
+		public NavxFillNavVolume(ulong id) : base(id) { }
 		public NavxFillNavVolume() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

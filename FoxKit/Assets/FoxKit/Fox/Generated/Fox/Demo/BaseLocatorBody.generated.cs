@@ -35,7 +35,7 @@ namespace Fox.Demo
         }
 
         // Constructors
-		public BaseLocatorBody(ulong address, ulong id) : base(address, id) { }
+		public BaseLocatorBody(ulong id) : base(id) { }
 		public BaseLocatorBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

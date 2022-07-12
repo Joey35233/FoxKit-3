@@ -35,7 +35,7 @@ namespace Fox.Core
         }
 
         // Constructors
-		public Scene(ulong address, ulong id) : base(address, id) { }
+		public Scene(ulong id) : base(id) { }
 		public Scene() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

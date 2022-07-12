@@ -47,7 +47,7 @@ namespace Fox.Ph
         }
 
         // Constructors
-		public PhShapeParam(ulong address, ulong id) : base(address, id) { }
+		public PhShapeParam(ulong id) : base(id) { }
 		public PhShapeParam() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

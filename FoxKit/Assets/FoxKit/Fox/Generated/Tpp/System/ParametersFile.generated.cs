@@ -35,7 +35,7 @@ namespace Tpp.System
         }
 
         // Constructors
-		public ParametersFile(ulong address, ulong id) : base(address, id) { }
+		public ParametersFile(ulong id) : base(id) { }
 		public ParametersFile() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

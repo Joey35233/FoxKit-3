@@ -35,7 +35,7 @@ namespace Fox.GameKit
         }
 
         // Constructors
-		public DecalArrayBody(ulong address, ulong id) : base(address, id) { }
+		public DecalArrayBody(ulong id) : base(id) { }
 		public DecalArrayBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

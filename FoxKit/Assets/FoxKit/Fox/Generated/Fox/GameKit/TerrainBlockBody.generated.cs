@@ -35,7 +35,7 @@ namespace Fox.GameKit
         }
 
         // Constructors
-		public TerrainBlockBody(ulong address, ulong id) : base(address, id) { }
+		public TerrainBlockBody(ulong id) : base(id) { }
 		public TerrainBlockBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

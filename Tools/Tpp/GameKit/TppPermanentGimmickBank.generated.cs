@@ -44,7 +44,7 @@ namespace Tpp.GameKit
         }
 
         // Constructors
-		public TppPermanentGimmickBank(ulong address, ulong id) : base(address, id) { }
+		public TppPermanentGimmickBank(ulong id) : base(id) { }
 		public TppPermanentGimmickBank() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

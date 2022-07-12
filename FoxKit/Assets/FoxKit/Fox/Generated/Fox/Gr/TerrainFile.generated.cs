@@ -35,7 +35,7 @@ namespace Fox.Gr
         }
 
         // Constructors
-		public TerrainFile(ulong address, ulong id) : base(address, id) { }
+		public TerrainFile(ulong id) : base(id) { }
 		public TerrainFile() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

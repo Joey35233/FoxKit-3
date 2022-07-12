@@ -59,7 +59,7 @@ namespace Tpp.Effect
         }
 
         // Constructors
-		public TppLensFlareShapeArray(ulong address, ulong id) : base(address, id) { }
+		public TppLensFlareShapeArray(ulong id) : base(id) { }
 		public TppLensFlareShapeArray() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

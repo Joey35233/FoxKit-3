@@ -35,7 +35,7 @@ namespace Tpp.GameCore
         }
 
         // Constructors
-		public TppLandingZoneDataBody(ulong address, ulong id) : base(address, id) { }
+		public TppLandingZoneDataBody(ulong id) : base(id) { }
 		public TppLandingZoneDataBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

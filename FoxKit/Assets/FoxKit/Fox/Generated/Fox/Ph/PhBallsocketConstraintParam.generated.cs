@@ -65,7 +65,7 @@ namespace Fox.Ph
         }
 
         // Constructors
-		public PhBallsocketConstraintParam(ulong address, ulong id) : base(address, id) { }
+		public PhBallsocketConstraintParam(ulong id) : base(id) { }
 		public PhBallsocketConstraintParam() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

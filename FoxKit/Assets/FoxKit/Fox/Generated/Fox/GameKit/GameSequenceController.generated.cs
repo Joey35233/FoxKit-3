@@ -35,7 +35,7 @@ namespace Fox.GameKit
         }
 
         // Constructors
-		public GameSequenceController(ulong address, ulong id) : base(address, id) { }
+		public GameSequenceController(ulong id) : base(id) { }
 		public GameSequenceController() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

@@ -44,7 +44,7 @@ namespace Fox.GameKit
         }
 
         // Constructors
-		public LevelingTerrain(ulong address, ulong id) : base(address, id) { }
+		public LevelingTerrain(ulong id) : base(id) { }
 		public LevelingTerrain() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

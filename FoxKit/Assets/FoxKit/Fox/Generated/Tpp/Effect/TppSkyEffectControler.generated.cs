@@ -47,7 +47,7 @@ namespace Tpp.Effect
         }
 
         // Constructors
-		public TppSkyEffectControler(ulong address, ulong id) : base(address, id) { }
+		public TppSkyEffectControler(ulong id) : base(id) { }
 		public TppSkyEffectControler() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

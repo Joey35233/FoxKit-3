@@ -41,7 +41,7 @@ namespace Fox.Graphx
         }
 
         // Constructors
-		public GraphxSpatialGraphData(ulong address, ulong id) : base(address, id) { }
+		public GraphxSpatialGraphData(ulong id) : base(id) { }
 		public GraphxSpatialGraphData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

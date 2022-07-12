@@ -41,7 +41,7 @@ namespace Tpp.GameCore
         }
 
         // Constructors
-		public TppSpeechData(ulong address, ulong id) : base(address, id) { }
+		public TppSpeechData(ulong id) : base(id) { }
 		public TppSpeechData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

@@ -47,7 +47,7 @@ namespace Tpp.Sound
         }
 
         // Constructors
-		public TppAreaEdgeParameter(ulong address, ulong id) : base(address, id) { }
+		public TppAreaEdgeParameter(ulong id) : base(id) { }
 		public TppAreaEdgeParameter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

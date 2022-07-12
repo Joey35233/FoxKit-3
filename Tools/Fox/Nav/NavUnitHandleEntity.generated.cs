@@ -41,7 +41,7 @@ namespace Fox.Nav
         }
 
         // Constructors
-		public NavUnitHandleEntity(ulong address, ulong id) : base(address, id) { }
+		public NavUnitHandleEntity(ulong id) : base(id) { }
 		public NavUnitHandleEntity() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

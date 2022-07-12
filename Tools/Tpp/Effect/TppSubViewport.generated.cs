@@ -35,7 +35,7 @@ namespace Tpp.Effect
         }
 
         // Constructors
-		public TppSubViewport(ulong address, ulong id) : base(address, id) { }
+		public TppSubViewport(ulong id) : base(id) { }
 		public TppSubViewport() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

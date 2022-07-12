@@ -35,7 +35,7 @@ namespace Fox.GameCore
         }
 
         // Constructors
-		public GameObjectLocatorBody(ulong address, ulong id) : base(address, id) { }
+		public GameObjectLocatorBody(ulong id) : base(id) { }
 		public GameObjectLocatorBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

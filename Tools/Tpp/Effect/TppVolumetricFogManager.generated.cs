@@ -35,7 +35,7 @@ namespace Tpp.Effect
         }
 
         // Constructors
-		public TppVolumetricFogManager(ulong address, ulong id) : base(address, id) { }
+		public TppVolumetricFogManager(ulong id) : base(id) { }
 		public TppVolumetricFogManager() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

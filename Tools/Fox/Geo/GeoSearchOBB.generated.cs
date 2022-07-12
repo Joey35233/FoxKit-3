@@ -44,7 +44,7 @@ namespace Fox.Geo
         }
 
         // Constructors
-		public GeoSearchOBB(ulong address, ulong id) : base(address, id) { }
+		public GeoSearchOBB(ulong id) : base(id) { }
 		public GeoSearchOBB() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

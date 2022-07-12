@@ -44,7 +44,7 @@ namespace Fox.PartsBuilder
         }
 
         // Constructors
-		public ClothDescription(ulong address, ulong id) : base(address, id) { }
+		public ClothDescription(ulong id) : base(id) { }
 		public ClothDescription() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

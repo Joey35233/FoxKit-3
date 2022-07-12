@@ -92,7 +92,7 @@ namespace Fox.Phx
         }
 
         // Constructors
-		public PhxVehicleAxis(ulong address, ulong id) : base(address, id) { }
+		public PhxVehicleAxis(ulong id) : base(id) { }
 		public PhxVehicleAxis() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

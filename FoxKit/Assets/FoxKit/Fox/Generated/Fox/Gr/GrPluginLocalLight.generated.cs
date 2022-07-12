@@ -35,7 +35,7 @@ namespace Fox.Gr
         }
 
         // Constructors
-		public GrPluginLocalLight(ulong address, ulong id) : base(address, id) { }
+		public GrPluginLocalLight(ulong id) : base(id) { }
 		public GrPluginLocalLight() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

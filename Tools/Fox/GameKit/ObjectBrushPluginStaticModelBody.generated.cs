@@ -35,7 +35,7 @@ namespace Fox.GameKit
         }
 
         // Constructors
-		public ObjectBrushPluginStaticModelBody(ulong address, ulong id) : base(address, id) { }
+		public ObjectBrushPluginStaticModelBody(ulong id) : base(id) { }
 		public ObjectBrushPluginStaticModelBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

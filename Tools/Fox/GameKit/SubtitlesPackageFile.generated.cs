@@ -35,7 +35,7 @@ namespace Fox.GameKit
         }
 
         // Constructors
-		public SubtitlesPackageFile(ulong address, ulong id) : base(address, id) { }
+		public SubtitlesPackageFile(ulong id) : base(id) { }
 		public SubtitlesPackageFile() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

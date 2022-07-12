@@ -35,7 +35,7 @@ namespace Fox.Grx
         }
 
         // Constructors
-		public PeriodicActor(ulong address, ulong id) : base(address, id) { }
+		public PeriodicActor(ulong id) : base(id) { }
 		public PeriodicActor() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

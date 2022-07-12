@@ -35,7 +35,7 @@ namespace Fox.Gr
         }
 
         // Constructors
-		public GrGraphicsSettingManager(ulong address, ulong id) : base(address, id) { }
+		public GrGraphicsSettingManager(ulong id) : base(id) { }
 		public GrGraphicsSettingManager() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

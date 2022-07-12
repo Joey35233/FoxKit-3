@@ -41,7 +41,7 @@ namespace Fox.Core
         }
 
         // Constructors
-		public ShearTransformEntity(ulong address, ulong id) : base(address, id) { }
+		public ShearTransformEntity(ulong id) : base(id) { }
 		public ShearTransformEntity() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

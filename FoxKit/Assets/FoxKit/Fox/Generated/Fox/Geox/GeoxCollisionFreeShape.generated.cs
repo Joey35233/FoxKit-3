@@ -47,7 +47,7 @@ namespace Fox.Geox
         }
 
         // Constructors
-		public GeoxCollisionFreeShape(ulong address, ulong id) : base(address, id) { }
+		public GeoxCollisionFreeShape(ulong id) : base(id) { }
 		public GeoxCollisionFreeShape() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

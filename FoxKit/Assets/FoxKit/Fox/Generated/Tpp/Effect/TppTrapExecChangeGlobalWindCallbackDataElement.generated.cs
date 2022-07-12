@@ -56,7 +56,7 @@ namespace Tpp.Effect
         }
 
         // Constructors
-		public TppTrapExecChangeGlobalWindCallbackDataElement(ulong address, ulong id) : base(address, id) { }
+		public TppTrapExecChangeGlobalWindCallbackDataElement(ulong id) : base(id) { }
 		public TppTrapExecChangeGlobalWindCallbackDataElement() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

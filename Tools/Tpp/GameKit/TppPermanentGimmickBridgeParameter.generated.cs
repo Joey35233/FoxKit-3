@@ -38,7 +38,7 @@ namespace Tpp.GameKit
         }
 
         // Constructors
-		public TppPermanentGimmickBridgeParameter(ulong address, ulong id) : base(address, id) { }
+		public TppPermanentGimmickBridgeParameter(ulong id) : base(id) { }
 		public TppPermanentGimmickBridgeParameter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

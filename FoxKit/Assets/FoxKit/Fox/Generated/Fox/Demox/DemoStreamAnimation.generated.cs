@@ -83,7 +83,7 @@ namespace Fox.Demox
         }
 
         // Constructors
-		public DemoStreamAnimation(ulong address, ulong id) : base(address, id) { }
+		public DemoStreamAnimation(ulong id) : base(id) { }
 		public DemoStreamAnimation() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

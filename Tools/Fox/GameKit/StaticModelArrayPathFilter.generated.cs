@@ -38,7 +38,7 @@ namespace Fox.GameKit
         }
 
         // Constructors
-		public StaticModelArrayPathFilter(ulong address, ulong id) : base(address, id) { }
+		public StaticModelArrayPathFilter(ulong id) : base(id) { }
 		public StaticModelArrayPathFilter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

@@ -41,7 +41,7 @@ namespace Tpp.GameCore
         }
 
         // Constructors
-		public TppSecurityCamera2Parameter(ulong address, ulong id) : base(address, id) { }
+		public TppSecurityCamera2Parameter(ulong id) : base(id) { }
 		public TppSecurityCamera2Parameter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

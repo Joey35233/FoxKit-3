@@ -35,7 +35,7 @@ namespace Tpp.MotherBaseStage
         }
 
         // Constructors
-		public MotherBaseStageSetupFile(ulong address, ulong id) : base(address, id) { }
+		public MotherBaseStageSetupFile(ulong id) : base(id) { }
 		public MotherBaseStageSetupFile() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

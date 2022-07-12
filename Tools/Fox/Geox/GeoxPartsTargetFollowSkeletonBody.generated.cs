@@ -35,7 +35,7 @@ namespace Fox.Geox
         }
 
         // Constructors
-		public GeoxPartsTargetFollowSkeletonBody(ulong address, ulong id) : base(address, id) { }
+		public GeoxPartsTargetFollowSkeletonBody(ulong id) : base(id) { }
 		public GeoxPartsTargetFollowSkeletonBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

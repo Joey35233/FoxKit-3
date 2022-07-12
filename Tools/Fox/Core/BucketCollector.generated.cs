@@ -41,7 +41,7 @@ namespace Fox.Core
         }
 
         // Constructors
-		public BucketCollector(ulong address, ulong id) : base(address, id) { }
+		public BucketCollector(ulong id) : base(id) { }
 		public BucketCollector() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

@@ -272,7 +272,7 @@ namespace Tpp.Effect
         }
 
         // Constructors
-		public TppAtmosphere(ulong address, ulong id) : base(address, id) { }
+		public TppAtmosphere(ulong id) : base(id) { }
 		public TppAtmosphere() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

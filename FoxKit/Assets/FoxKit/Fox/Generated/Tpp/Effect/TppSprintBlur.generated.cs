@@ -35,7 +35,7 @@ namespace Tpp.Effect
         }
 
         // Constructors
-		public TppSprintBlur(ulong address, ulong id) : base(address, id) { }
+		public TppSprintBlur(ulong id) : base(id) { }
 		public TppSprintBlur() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

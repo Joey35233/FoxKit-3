@@ -65,7 +65,7 @@ namespace Fox.Demo
         }
 
         // Constructors
-		public DemoControlCharacterDesc(ulong address, ulong id) : base(address, id) { }
+		public DemoControlCharacterDesc(ulong id) : base(id) { }
 		public DemoControlCharacterDesc() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

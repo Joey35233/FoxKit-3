@@ -41,7 +41,7 @@ namespace Tpp.Effect
         }
 
         // Constructors
-		public TppReflectionSettingTrapCallbackDataElement(ulong address, ulong id) : base(address, id) { }
+		public TppReflectionSettingTrapCallbackDataElement(ulong id) : base(id) { }
 		public TppReflectionSettingTrapCallbackDataElement() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

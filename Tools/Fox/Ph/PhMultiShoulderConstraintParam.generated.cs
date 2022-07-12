@@ -59,7 +59,7 @@ namespace Fox.Ph
         }
 
         // Constructors
-		public PhMultiShoulderConstraintParam(ulong address, ulong id) : base(address, id) { }
+		public PhMultiShoulderConstraintParam(ulong id) : base(id) { }
 		public PhMultiShoulderConstraintParam() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

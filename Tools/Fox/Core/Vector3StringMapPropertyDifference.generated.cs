@@ -41,7 +41,7 @@ namespace Fox.Core
         }
 
         // Constructors
-		public Vector3StringMapPropertyDifference(ulong address, ulong id) : base(address, id) { }
+		public Vector3StringMapPropertyDifference(ulong id) : base(id) { }
 		public Vector3StringMapPropertyDifference() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

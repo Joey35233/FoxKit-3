@@ -41,7 +41,7 @@ namespace Tpp.System
         }
 
         // Constructors
-		public TppDefaultParameterContainer(ulong address, ulong id) : base(address, id) { }
+		public TppDefaultParameterContainer(ulong id) : base(id) { }
 		public TppDefaultParameterContainer() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

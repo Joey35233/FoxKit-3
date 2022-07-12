@@ -35,7 +35,7 @@ namespace Fox.Core
         }
 
         // Constructors
-		public FoxDataLinkCollectorDataBody(ulong address, ulong id) : base(address, id) { }
+		public FoxDataLinkCollectorDataBody(ulong id) : base(id) { }
 		public FoxDataLinkCollectorDataBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

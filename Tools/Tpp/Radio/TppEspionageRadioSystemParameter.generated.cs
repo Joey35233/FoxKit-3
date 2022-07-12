@@ -35,7 +35,7 @@ namespace Tpp.Radio
         }
 
         // Constructors
-		public TppEspionageRadioSystemParameter(ulong address, ulong id) : base(address, id) { }
+		public TppEspionageRadioSystemParameter(ulong id) : base(id) { }
 		public TppEspionageRadioSystemParameter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

@@ -38,7 +38,7 @@ namespace Tpp.System
         }
 
         // Constructors
-		public TppCheckPointTrapExecDataElement(ulong address, ulong id) : base(address, id) { }
+		public TppCheckPointTrapExecDataElement(ulong id) : base(id) { }
 		public TppCheckPointTrapExecDataElement() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

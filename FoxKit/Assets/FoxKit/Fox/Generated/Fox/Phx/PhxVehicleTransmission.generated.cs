@@ -41,7 +41,7 @@ namespace Fox.Phx
         }
 
         // Constructors
-		public PhxVehicleTransmission(ulong address, ulong id) : base(address, id) { }
+		public PhxVehicleTransmission(ulong id) : base(id) { }
 		public PhxVehicleTransmission() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

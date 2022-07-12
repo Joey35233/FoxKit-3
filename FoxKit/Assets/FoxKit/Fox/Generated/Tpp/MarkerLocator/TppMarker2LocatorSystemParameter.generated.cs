@@ -35,7 +35,7 @@ namespace Tpp.MarkerLocator
         }
 
         // Constructors
-		public TppMarker2LocatorSystemParameter(ulong address, ulong id) : base(address, id) { }
+		public TppMarker2LocatorSystemParameter(ulong id) : base(id) { }
 		public TppMarker2LocatorSystemParameter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

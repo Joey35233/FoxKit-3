@@ -44,7 +44,7 @@ namespace Tpp.System
         }
 
         // Constructors
-		public TppRequestWeatherTagTrapExecDataElement(ulong address, ulong id) : base(address, id) { }
+		public TppRequestWeatherTagTrapExecDataElement(ulong id) : base(id) { }
 		public TppRequestWeatherTagTrapExecDataElement() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

@@ -104,7 +104,7 @@ namespace Tpp.GameKit
         }
 
         // Constructors
-		public ObjectBrushPluginBushDataElement(ulong address, ulong id) : base(address, id) { }
+		public ObjectBrushPluginBushDataElement(ulong id) : base(id) { }
 		public ObjectBrushPluginBushDataElement() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

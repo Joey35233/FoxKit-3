@@ -176,7 +176,7 @@ namespace Fox.Demox
         }
 
         // Constructors
-		public DemoData(ulong address, ulong id) : base(address, id) { }
+		public DemoData(ulong id) : base(id) { }
 		public DemoData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

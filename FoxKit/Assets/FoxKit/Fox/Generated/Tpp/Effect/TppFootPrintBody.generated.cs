@@ -35,7 +35,7 @@ namespace Tpp.Effect
         }
 
         // Constructors
-		public TppFootPrintBody(ulong address, ulong id) : base(address, id) { }
+		public TppFootPrintBody(ulong id) : base(id) { }
 		public TppFootPrintBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

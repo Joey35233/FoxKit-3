@@ -47,7 +47,7 @@ namespace Fox.Demox
         }
 
         // Constructors
-		public DemoDynamicFileChangeModel(ulong address, ulong id) : base(address, id) { }
+		public DemoDynamicFileChangeModel(ulong id) : base(id) { }
 		public DemoDynamicFileChangeModel() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

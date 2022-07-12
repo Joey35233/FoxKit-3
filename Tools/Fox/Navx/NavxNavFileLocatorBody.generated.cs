@@ -35,7 +35,7 @@ namespace Fox.Navx
         }
 
         // Constructors
-		public NavxNavFileLocatorBody(ulong address, ulong id) : base(address, id) { }
+		public NavxNavFileLocatorBody(ulong id) : base(id) { }
 		public NavxNavFileLocatorBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

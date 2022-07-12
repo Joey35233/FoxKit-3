@@ -44,7 +44,7 @@ namespace Tpp.GameCore
         }
 
         // Constructors
-		public TppVolgin2Parameter(ulong address, ulong id) : base(address, id) { }
+		public TppVolgin2Parameter(ulong id) : base(id) { }
 		public TppVolgin2Parameter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

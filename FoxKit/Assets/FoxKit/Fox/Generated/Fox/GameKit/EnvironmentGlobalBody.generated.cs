@@ -38,7 +38,7 @@ namespace Fox.GameKit
         }
 
         // Constructors
-		public EnvironmentGlobalBody(ulong address, ulong id) : base(address, id) { }
+		public EnvironmentGlobalBody(ulong id) : base(id) { }
 		public EnvironmentGlobalBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

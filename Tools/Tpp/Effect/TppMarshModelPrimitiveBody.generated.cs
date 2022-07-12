@@ -35,7 +35,7 @@ namespace Tpp.Effect
         }
 
         // Constructors
-		public TppMarshModelPrimitiveBody(ulong address, ulong id) : base(address, id) { }
+		public TppMarshModelPrimitiveBody(ulong id) : base(id) { }
 		public TppMarshModelPrimitiveBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

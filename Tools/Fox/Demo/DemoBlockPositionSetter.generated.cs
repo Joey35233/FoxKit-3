@@ -35,7 +35,7 @@ namespace Fox.Demo
         }
 
         // Constructors
-		public DemoBlockPositionSetter(ulong address, ulong id) : base(address, id) { }
+		public DemoBlockPositionSetter(ulong id) : base(id) { }
 		public DemoBlockPositionSetter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

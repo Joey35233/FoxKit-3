@@ -35,7 +35,7 @@ namespace Fox.GameKit
         }
 
         // Constructors
-		public OverlayModelBody(ulong address, ulong id) : base(address, id) { }
+		public OverlayModelBody(ulong id) : base(id) { }
 		public OverlayModelBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

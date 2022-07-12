@@ -35,7 +35,7 @@ namespace Fox.Gr
         }
 
         // Constructors
-		public GrPluginPrimitiveUnfiltered(ulong address, ulong id) : base(address, id) { }
+		public GrPluginPrimitiveUnfiltered(ulong id) : base(id) { }
 		public GrPluginPrimitiveUnfiltered() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

@@ -47,7 +47,7 @@ namespace Tpp.GameKit
         }
 
         // Constructors
-		public TppObjectBrushPluginFlutteringGrass(ulong address, ulong id) : base(address, id) { }
+		public TppObjectBrushPluginFlutteringGrass(ulong id) : base(id) { }
 		public TppObjectBrushPluginFlutteringGrass() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

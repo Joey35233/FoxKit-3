@@ -38,7 +38,7 @@ namespace Tpp.Effect
         }
 
         // Constructors
-		public TppDemoIntelligenceObject(ulong address, ulong id) : base(address, id) { }
+		public TppDemoIntelligenceObject(ulong id) : base(id) { }
 		public TppDemoIntelligenceObject() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

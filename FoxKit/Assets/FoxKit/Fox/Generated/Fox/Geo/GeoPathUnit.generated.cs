@@ -38,7 +38,7 @@ namespace Fox.Geo
         }
 
         // Constructors
-		public GeoPathUnit(ulong address, ulong id) : base(address, id) { }
+		public GeoPathUnit(ulong id) : base(id) { }
 		public GeoPathUnit() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

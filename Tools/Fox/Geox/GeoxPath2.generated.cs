@@ -44,7 +44,7 @@ namespace Fox.Geox
         }
 
         // Constructors
-		public GeoxPath2(ulong address, ulong id) : base(address, id) { }
+		public GeoxPath2(ulong id) : base(id) { }
 		public GeoxPath2() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

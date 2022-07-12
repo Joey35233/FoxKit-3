@@ -35,7 +35,7 @@ namespace Fox.GameKit
         }
 
         // Constructors
-		public CameraPriority(ulong address, ulong id) : base(address, id) { }
+		public CameraPriority(ulong id) : base(id) { }
 		public CameraPriority() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

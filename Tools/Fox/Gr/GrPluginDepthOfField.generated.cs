@@ -35,7 +35,7 @@ namespace Fox.Gr
         }
 
         // Constructors
-		public GrPluginDepthOfField(ulong address, ulong id) : base(address, id) { }
+		public GrPluginDepthOfField(ulong id) : base(id) { }
 		public GrPluginDepthOfField() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

@@ -41,7 +41,7 @@ namespace Fox.Core
         }
 
         // Constructors
-		public CapsuleShapeBody(ulong address, ulong id) : base(address, id) { }
+		public CapsuleShapeBody(ulong id) : base(id) { }
 		public CapsuleShapeBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

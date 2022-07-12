@@ -35,7 +35,7 @@ namespace Fox.Graphx
         }
 
         // Constructors
-		public GraphxPath(ulong address, ulong id) : base(address, id) { }
+		public GraphxPath(ulong id) : base(id) { }
 		public GraphxPath() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

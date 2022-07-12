@@ -35,7 +35,7 @@ namespace Fox.MotionGraph
         }
 
         // Constructors
-		public MotionGraphEnterNodeCallback(ulong address, ulong id) : base(address, id) { }
+		public MotionGraphEnterNodeCallback(ulong id) : base(id) { }
 		public MotionGraphEnterNodeCallback() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

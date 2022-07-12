@@ -107,7 +107,7 @@ namespace Fox.Grx
         }
 
         // Constructors
-		public DirectionalLight(ulong address, ulong id) : base(address, id) { }
+		public DirectionalLight(ulong id) : base(id) { }
 		public DirectionalLight() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

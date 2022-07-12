@@ -35,7 +35,7 @@ namespace Fox.Gr
         }
 
         // Constructors
-		public GrPluginSky(ulong address, ulong id) : base(address, id) { }
+		public GrPluginSky(ulong id) : base(id) { }
 		public GrPluginSky() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

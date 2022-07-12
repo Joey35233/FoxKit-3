@@ -47,7 +47,7 @@ namespace Tpp.GameCore
         }
 
         // Constructors
-		public TppMotherBaseContainerLocatorParameter(ulong address, ulong id) : base(address, id) { }
+		public TppMotherBaseContainerLocatorParameter(ulong id) : base(id) { }
 		public TppMotherBaseContainerLocatorParameter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

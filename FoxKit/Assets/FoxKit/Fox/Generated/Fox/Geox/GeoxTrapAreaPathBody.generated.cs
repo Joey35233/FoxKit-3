@@ -35,7 +35,7 @@ namespace Fox.Geox
         }
 
         // Constructors
-		public GeoxTrapAreaPathBody(ulong address, ulong id) : base(address, id) { }
+		public GeoxTrapAreaPathBody(ulong id) : base(id) { }
 		public GeoxTrapAreaPathBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

@@ -35,7 +35,7 @@ namespace Fox.Grx
         }
 
         // Constructors
-		public GrxShape(ulong address, ulong id) : base(address, id) { }
+		public GrxShape(ulong id) : base(id) { }
 		public GrxShape() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

@@ -35,7 +35,7 @@ namespace Fox.Navx
         }
 
         // Constructors
-		public NavxWorldGenerateParameterBody(ulong address, ulong id) : base(address, id) { }
+		public NavxWorldGenerateParameterBody(ulong id) : base(id) { }
 		public NavxWorldGenerateParameterBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

@@ -38,7 +38,7 @@ namespace Fox.GameKit
         }
 
         // Constructors
-		public GkSmartObject(ulong address, ulong id) : base(address, id) { }
+		public GkSmartObject(ulong id) : base(id) { }
 		public GkSmartObject() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

@@ -74,7 +74,7 @@ namespace Tpp.GameKit
         }
 
         // Constructors
-		public TppBushManager(ulong address, ulong id) : base(address, id) { }
+		public TppBushManager(ulong id) : base(id) { }
 		public TppBushManager() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

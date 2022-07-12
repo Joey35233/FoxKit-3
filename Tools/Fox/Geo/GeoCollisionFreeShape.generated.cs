@@ -35,7 +35,7 @@ namespace Fox.Geo
         }
 
         // Constructors
-		public GeoCollisionFreeShape(ulong address, ulong id) : base(address, id) { }
+		public GeoCollisionFreeShape(ulong id) : base(id) { }
 		public GeoCollisionFreeShape() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

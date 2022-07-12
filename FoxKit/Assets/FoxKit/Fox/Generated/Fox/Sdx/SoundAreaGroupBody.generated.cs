@@ -35,7 +35,7 @@ namespace Fox.Sdx
         }
 
         // Constructors
-		public SoundAreaGroupBody(ulong address, ulong id) : base(address, id) { }
+		public SoundAreaGroupBody(ulong id) : base(id) { }
 		public SoundAreaGroupBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

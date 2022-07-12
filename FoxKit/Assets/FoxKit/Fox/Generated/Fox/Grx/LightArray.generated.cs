@@ -38,7 +38,7 @@ namespace Fox.Grx
         }
 
         // Constructors
-		public LightArray(ulong address, ulong id) : base(address, id) { }
+		public LightArray(ulong id) : base(id) { }
 		public LightArray() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

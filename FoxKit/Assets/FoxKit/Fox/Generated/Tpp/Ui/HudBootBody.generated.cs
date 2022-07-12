@@ -35,7 +35,7 @@ namespace Tpp.Ui
         }
 
         // Constructors
-		public HudBootBody(ulong address, ulong id) : base(address, id) { }
+		public HudBootBody(ulong id) : base(id) { }
 		public HudBootBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

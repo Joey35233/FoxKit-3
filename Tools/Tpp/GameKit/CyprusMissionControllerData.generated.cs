@@ -35,7 +35,7 @@ namespace Tpp.GameKit
         }
 
         // Constructors
-		public CyprusMissionControllerData(ulong address, ulong id) : base(address, id) { }
+		public CyprusMissionControllerData(ulong id) : base(id) { }
 		public CyprusMissionControllerData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

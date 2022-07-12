@@ -56,7 +56,7 @@ namespace Fox.Des
         }
 
         // Constructors
-		public DesEffectData(ulong address, ulong id) : base(address, id) { }
+		public DesEffectData(ulong id) : base(id) { }
 		public DesEffectData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

@@ -41,7 +41,7 @@ namespace Fox.Core
         }
 
         // Constructors
-		public TransformDataBody(ulong address, ulong id) : base(address, id) { }
+		public TransformDataBody(ulong id) : base(id) { }
 		public TransformDataBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

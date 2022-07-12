@@ -38,7 +38,7 @@ namespace Tpp.GameKit
         }
 
         // Constructors
-		public TppCoverPointFileTransform(ulong address, ulong id) : base(address, id) { }
+		public TppCoverPointFileTransform(ulong id) : base(id) { }
 		public TppCoverPointFileTransform() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

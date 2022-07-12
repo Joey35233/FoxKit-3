@@ -44,7 +44,7 @@ namespace Tpp.GameKit
         }
 
         // Constructors
-		public TppGuardTargetData(ulong address, ulong id) : base(address, id) { }
+		public TppGuardTargetData(ulong id) : base(id) { }
 		public TppGuardTargetData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

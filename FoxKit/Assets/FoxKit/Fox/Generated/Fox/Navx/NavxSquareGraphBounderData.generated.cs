@@ -35,7 +35,7 @@ namespace Fox.Navx
         }
 
         // Constructors
-		public NavxSquareGraphBounderData(ulong address, ulong id) : base(address, id) { }
+		public NavxSquareGraphBounderData(ulong id) : base(id) { }
 		public NavxSquareGraphBounderData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

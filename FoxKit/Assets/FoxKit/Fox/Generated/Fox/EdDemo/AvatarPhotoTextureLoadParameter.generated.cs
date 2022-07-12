@@ -35,7 +35,7 @@ namespace Fox.EdDemo
         }
 
         // Constructors
-		public AvatarPhotoTextureLoadParameter(ulong address, ulong id) : base(address, id) { }
+		public AvatarPhotoTextureLoadParameter(ulong id) : base(id) { }
 		public AvatarPhotoTextureLoadParameter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

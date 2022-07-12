@@ -44,7 +44,7 @@ namespace Fox.Geox
         }
 
         // Constructors
-		public GeoxTextureMaterialRegister(ulong address, ulong id) : base(address, id) { }
+		public GeoxTextureMaterialRegister(ulong id) : base(id) { }
 		public GeoxTextureMaterialRegister() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

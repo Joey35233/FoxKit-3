@@ -38,7 +38,7 @@ namespace Tpp.GameCore
         }
 
         // Constructors
-		public TppMbQuietLocatorParameter(ulong address, ulong id) : base(address, id) { }
+		public TppMbQuietLocatorParameter(ulong id) : base(id) { }
 		public TppMbQuietLocatorParameter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

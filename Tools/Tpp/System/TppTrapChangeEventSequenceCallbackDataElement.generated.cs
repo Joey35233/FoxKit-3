@@ -41,7 +41,7 @@ namespace Tpp.System
         }
 
         // Constructors
-		public TppTrapChangeEventSequenceCallbackDataElement(ulong address, ulong id) : base(address, id) { }
+		public TppTrapChangeEventSequenceCallbackDataElement(ulong id) : base(id) { }
 		public TppTrapChangeEventSequenceCallbackDataElement() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

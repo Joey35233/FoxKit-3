@@ -35,7 +35,7 @@ namespace Fox.Core
         }
 
         // Constructors
-		public ComponentInsertionInfo(ulong address, ulong id) : base(address, id) { }
+		public ComponentInsertionInfo(ulong id) : base(id) { }
 		public ComponentInsertionInfo() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

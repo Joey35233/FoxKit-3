@@ -35,7 +35,7 @@ namespace Fox.Demox
         }
 
         // Constructors
-		public DemoxEffectMemoryPoolDataBody(ulong address, ulong id) : base(address, id) { }
+		public DemoxEffectMemoryPoolDataBody(ulong id) : base(id) { }
 		public DemoxEffectMemoryPoolDataBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

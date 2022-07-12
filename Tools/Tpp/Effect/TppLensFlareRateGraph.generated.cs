@@ -68,7 +68,7 @@ namespace Tpp.Effect
         }
 
         // Constructors
-		public TppLensFlareRateGraph(ulong address, ulong id) : base(address, id) { }
+		public TppLensFlareRateGraph(ulong id) : base(id) { }
 		public TppLensFlareRateGraph() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

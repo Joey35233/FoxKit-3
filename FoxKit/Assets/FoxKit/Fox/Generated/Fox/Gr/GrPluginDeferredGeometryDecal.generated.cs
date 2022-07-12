@@ -35,7 +35,7 @@ namespace Fox.Gr
         }
 
         // Constructors
-		public GrPluginDeferredGeometryDecal(ulong address, ulong id) : base(address, id) { }
+		public GrPluginDeferredGeometryDecal(ulong id) : base(id) { }
 		public GrPluginDeferredGeometryDecal() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

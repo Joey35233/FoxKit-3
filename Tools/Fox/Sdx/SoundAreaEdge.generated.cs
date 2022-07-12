@@ -44,7 +44,7 @@ namespace Fox.Sdx
         }
 
         // Constructors
-		public SoundAreaEdge(ulong address, ulong id) : base(address, id) { }
+		public SoundAreaEdge(ulong id) : base(id) { }
 		public SoundAreaEdge() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

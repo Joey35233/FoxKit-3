@@ -50,7 +50,7 @@ namespace Tpp.GameKit
         }
 
         // Constructors
-		public TppGimmickElectricCableLinkSetData(ulong address, ulong id) : base(address, id) { }
+		public TppGimmickElectricCableLinkSetData(ulong id) : base(id) { }
 		public TppGimmickElectricCableLinkSetData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

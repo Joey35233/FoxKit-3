@@ -35,7 +35,7 @@ namespace Fox.Geo
         }
 
         // Constructors
-		public GeoGeomFile(ulong address, ulong id) : base(address, id) { }
+		public GeoGeomFile(ulong id) : base(id) { }
 		public GeoGeomFile() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

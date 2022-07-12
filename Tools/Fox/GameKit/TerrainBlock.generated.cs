@@ -50,7 +50,7 @@ namespace Fox.GameKit
         }
 
         // Constructors
-		public TerrainBlock(ulong address, ulong id) : base(address, id) { }
+		public TerrainBlock(ulong id) : base(id) { }
 		public TerrainBlock() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

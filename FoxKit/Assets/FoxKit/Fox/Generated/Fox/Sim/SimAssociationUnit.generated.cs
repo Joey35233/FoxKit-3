@@ -44,7 +44,7 @@ namespace Fox.Sim
         }
 
         // Constructors
-		public SimAssociationUnit(ulong address, ulong id) : base(address, id) { }
+		public SimAssociationUnit(ulong id) : base(id) { }
 		public SimAssociationUnit() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

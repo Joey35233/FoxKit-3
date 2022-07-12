@@ -38,7 +38,7 @@ namespace Fox.Demox
         }
 
         // Constructors
-		public DemoFv2ResourceMemory(ulong address, ulong id) : base(address, id) { }
+		public DemoFv2ResourceMemory(ulong id) : base(id) { }
 		public DemoFv2ResourceMemory() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

@@ -41,7 +41,7 @@ namespace Fox.PartsBuilder
         }
 
         // Constructors
-		public SimDescription(ulong address, ulong id) : base(address, id) { }
+		public SimDescription(ulong id) : base(id) { }
 		public SimDescription() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

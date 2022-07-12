@@ -41,7 +41,7 @@ namespace Fox.Core
         }
 
         // Constructors
-		public ColorStringMapPropertyDifference(ulong address, ulong id) : base(address, id) { }
+		public ColorStringMapPropertyDifference(ulong id) : base(id) { }
 		public ColorStringMapPropertyDifference() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

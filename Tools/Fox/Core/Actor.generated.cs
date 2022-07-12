@@ -44,7 +44,7 @@ namespace Fox.Core
         }
 
         // Constructors
-		public Actor(ulong address, ulong id) : base(address, id) { }
+		public Actor(ulong id) : base(id) { }
 		public Actor() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

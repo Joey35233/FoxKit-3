@@ -35,7 +35,7 @@ namespace Fox.Gr
         }
 
         // Constructors
-		public GrPluginAmbientObscuranceSSAO(ulong address, ulong id) : base(address, id) { }
+		public GrPluginAmbientObscuranceSSAO(ulong id) : base(id) { }
 		public GrPluginAmbientObscuranceSSAO() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

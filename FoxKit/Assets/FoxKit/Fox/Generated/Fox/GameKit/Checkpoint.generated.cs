@@ -35,7 +35,7 @@ namespace Fox.GameKit
         }
 
         // Constructors
-		public Checkpoint(ulong address, ulong id) : base(address, id) { }
+		public Checkpoint(ulong id) : base(id) { }
 		public Checkpoint() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

@@ -35,7 +35,7 @@ namespace Fox.Anim
         }
 
         // Constructors
-		public CaarFile(ulong address, ulong id) : base(address, id) { }
+		public CaarFile(ulong id) : base(id) { }
 		public CaarFile() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

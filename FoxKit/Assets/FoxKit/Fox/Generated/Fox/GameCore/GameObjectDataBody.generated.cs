@@ -35,7 +35,7 @@ namespace Fox.GameCore
         }
 
         // Constructors
-		public GameObjectDataBody(ulong address, ulong id) : base(address, id) { }
+		public GameObjectDataBody(ulong id) : base(id) { }
 		public GameObjectDataBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

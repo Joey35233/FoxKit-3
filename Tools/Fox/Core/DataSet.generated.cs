@@ -38,7 +38,7 @@ namespace Fox.Core
         }
 
         // Constructors
-		public DataSet(ulong address, ulong id) : base(address, id) { }
+		public DataSet(ulong id) : base(id) { }
 		public DataSet() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

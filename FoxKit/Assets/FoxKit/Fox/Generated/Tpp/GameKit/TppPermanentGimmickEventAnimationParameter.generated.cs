@@ -47,7 +47,7 @@ namespace Tpp.GameKit
         }
 
         // Constructors
-		public TppPermanentGimmickEventAnimationParameter(ulong address, ulong id) : base(address, id) { }
+		public TppPermanentGimmickEventAnimationParameter(ulong id) : base(id) { }
 		public TppPermanentGimmickEventAnimationParameter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

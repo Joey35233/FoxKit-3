@@ -35,7 +35,7 @@ namespace Fox.Gr
         }
 
         // Constructors
-		public GrCamera(ulong address, ulong id) : base(address, id) { }
+		public GrCamera(ulong id) : base(id) { }
 		public GrCamera() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

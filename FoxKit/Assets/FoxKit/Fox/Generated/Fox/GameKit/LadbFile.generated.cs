@@ -35,7 +35,7 @@ namespace Fox.GameKit
         }
 
         // Constructors
-		public LadbFile(ulong address, ulong id) : base(address, id) { }
+		public LadbFile(ulong id) : base(id) { }
 		public LadbFile() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

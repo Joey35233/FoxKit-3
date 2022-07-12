@@ -41,7 +41,7 @@ namespace Fox.Ui
         }
 
         // Constructors
-		public UiGraphEntry(ulong address, ulong id) : base(address, id) { }
+		public UiGraphEntry(ulong id) : base(id) { }
 		public UiGraphEntry() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

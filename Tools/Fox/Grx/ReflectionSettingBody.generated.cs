@@ -35,7 +35,7 @@ namespace Fox.Grx
         }
 
         // Constructors
-		public ReflectionSettingBody(ulong address, ulong id) : base(address, id) { }
+		public ReflectionSettingBody(ulong id) : base(id) { }
 		public ReflectionSettingBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

@@ -38,7 +38,7 @@ namespace Fox.Sim
         }
 
         // Constructors
-		public SimHitGroupControl(ulong address, ulong id) : base(address, id) { }
+		public SimHitGroupControl(ulong id) : base(id) { }
 		public SimHitGroupControl() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

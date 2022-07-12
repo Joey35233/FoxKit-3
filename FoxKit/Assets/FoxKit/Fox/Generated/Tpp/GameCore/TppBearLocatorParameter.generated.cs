@@ -41,7 +41,7 @@ namespace Tpp.GameCore
         }
 
         // Constructors
-		public TppBearLocatorParameter(ulong address, ulong id) : base(address, id) { }
+		public TppBearLocatorParameter(ulong id) : base(id) { }
 		public TppBearLocatorParameter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

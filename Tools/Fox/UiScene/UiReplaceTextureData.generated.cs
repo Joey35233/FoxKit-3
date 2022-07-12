@@ -38,7 +38,7 @@ namespace Fox.UiScene
         }
 
         // Constructors
-		public UiReplaceTextureData(ulong address, ulong id) : base(address, id) { }
+		public UiReplaceTextureData(ulong id) : base(id) { }
 		public UiReplaceTextureData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

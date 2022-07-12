@@ -35,7 +35,7 @@ namespace Fox.Gr
         }
 
         // Constructors
-		public GrPluginMaterialLayer(ulong address, ulong id) : base(address, id) { }
+		public GrPluginMaterialLayer(ulong id) : base(id) { }
 		public GrPluginMaterialLayer() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

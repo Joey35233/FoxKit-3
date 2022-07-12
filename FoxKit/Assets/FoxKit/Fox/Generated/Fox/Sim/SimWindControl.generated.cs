@@ -41,7 +41,7 @@ namespace Fox.Sim
         }
 
         // Constructors
-		public SimWindControl(ulong address, ulong id) : base(address, id) { }
+		public SimWindControl(ulong id) : base(id) { }
 		public SimWindControl() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

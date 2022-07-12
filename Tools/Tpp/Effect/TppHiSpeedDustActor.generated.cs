@@ -35,7 +35,7 @@ namespace Tpp.Effect
         }
 
         // Constructors
-		public TppHiSpeedDustActor(ulong address, ulong id) : base(address, id) { }
+		public TppHiSpeedDustActor(ulong id) : base(id) { }
 		public TppHiSpeedDustActor() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

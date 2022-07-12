@@ -35,7 +35,7 @@ namespace Tpp.System
         }
 
         // Constructors
-		public TppPauseMenu(ulong address, ulong id) : base(address, id) { }
+		public TppPauseMenu(ulong id) : base(id) { }
 		public TppPauseMenu() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

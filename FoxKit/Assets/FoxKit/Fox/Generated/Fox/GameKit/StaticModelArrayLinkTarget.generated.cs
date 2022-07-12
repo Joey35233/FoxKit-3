@@ -41,7 +41,7 @@ namespace Fox.GameKit
         }
 
         // Constructors
-		public StaticModelArrayLinkTarget(ulong address, ulong id) : base(address, id) { }
+		public StaticModelArrayLinkTarget(ulong id) : base(id) { }
 		public StaticModelArrayLinkTarget() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

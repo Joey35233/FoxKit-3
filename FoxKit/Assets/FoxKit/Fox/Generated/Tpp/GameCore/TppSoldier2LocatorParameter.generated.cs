@@ -38,7 +38,7 @@ namespace Tpp.GameCore
         }
 
         // Constructors
-		public TppSoldier2LocatorParameter(ulong address, ulong id) : base(address, id) { }
+		public TppSoldier2LocatorParameter(ulong id) : base(id) { }
 		public TppSoldier2LocatorParameter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

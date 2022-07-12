@@ -35,7 +35,7 @@ namespace Fox.GameKit
         }
 
         // Constructors
-		public FoxFadeIo(ulong address, ulong id) : base(address, id) { }
+		public FoxFadeIo(ulong id) : base(id) { }
 		public FoxFadeIo() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

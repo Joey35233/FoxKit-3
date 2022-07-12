@@ -38,7 +38,7 @@ namespace Tpp.GameCore
         }
 
         // Constructors
-		public TppSahelan2LocatorParameter(ulong address, ulong id) : base(address, id) { }
+		public TppSahelan2LocatorParameter(ulong id) : base(id) { }
 		public TppSahelan2LocatorParameter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

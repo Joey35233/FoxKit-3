@@ -35,7 +35,7 @@ namespace Fox.Gr
         }
 
         // Constructors
-		public GrPluginScreenCapture(ulong address, ulong id) : base(address, id) { }
+		public GrPluginScreenCapture(ulong id) : base(id) { }
 		public GrPluginScreenCapture() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

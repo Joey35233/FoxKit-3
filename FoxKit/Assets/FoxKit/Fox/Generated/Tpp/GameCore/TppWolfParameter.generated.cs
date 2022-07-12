@@ -47,7 +47,7 @@ namespace Tpp.GameCore
         }
 
         // Constructors
-		public TppWolfParameter(ulong address, ulong id) : base(address, id) { }
+		public TppWolfParameter(ulong id) : base(id) { }
 		public TppWolfParameter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

@@ -35,7 +35,7 @@ namespace Fox.Geo
         }
 
         // Constructors
-		public MaterialInfoBase(ulong address, ulong id) : base(address, id) { }
+		public MaterialInfoBase(ulong id) : base(id) { }
 		public MaterialInfoBase() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

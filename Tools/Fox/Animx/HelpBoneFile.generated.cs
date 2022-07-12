@@ -35,7 +35,7 @@ namespace Fox.Animx
         }
 
         // Constructors
-		public HelpBoneFile(ulong address, ulong id) : base(address, id) { }
+		public HelpBoneFile(ulong id) : base(id) { }
 		public HelpBoneFile() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

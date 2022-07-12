@@ -38,7 +38,7 @@ namespace Fox.Geo
         }
 
         // Constructors
-		public GeoTrapBody(ulong address, ulong id) : base(address, id) { }
+		public GeoTrapBody(ulong id) : base(id) { }
 		public GeoTrapBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

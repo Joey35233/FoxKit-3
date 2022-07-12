@@ -41,7 +41,7 @@ namespace Fox.Graphx
         }
 
         // Constructors
-		public GraphxSpatialGraphDataEdge(ulong address, ulong id) : base(address, id) { }
+		public GraphxSpatialGraphDataEdge(ulong id) : base(id) { }
 		public GraphxSpatialGraphDataEdge() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

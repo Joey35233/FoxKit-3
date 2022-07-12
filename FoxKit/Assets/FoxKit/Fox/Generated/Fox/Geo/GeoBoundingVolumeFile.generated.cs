@@ -35,7 +35,7 @@ namespace Fox.Geo
         }
 
         // Constructors
-		public GeoBoundingVolumeFile(ulong address, ulong id) : base(address, id) { }
+		public GeoBoundingVolumeFile(ulong id) : base(id) { }
 		public GeoBoundingVolumeFile() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

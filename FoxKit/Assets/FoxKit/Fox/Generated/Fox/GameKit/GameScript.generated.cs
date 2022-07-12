@@ -44,7 +44,7 @@ namespace Fox.GameKit
         }
 
         // Constructors
-		public GameScript(ulong address, ulong id) : base(address, id) { }
+		public GameScript(ulong id) : base(id) { }
 		public GameScript() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

@@ -44,7 +44,7 @@ namespace Fox.PartsBuilder
         }
 
         // Constructors
-		public PartDescription(ulong address, ulong id) : base(address, id) { }
+		public PartDescription(ulong id) : base(id) { }
 		public PartDescription() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

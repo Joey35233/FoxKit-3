@@ -101,7 +101,7 @@ namespace Fox.Navx
         }
 
         // Constructors
-		public NavxWorldGenerateParameter(ulong address, ulong id) : base(address, id) { }
+		public NavxWorldGenerateParameter(ulong id) : base(id) { }
 		public NavxWorldGenerateParameter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

@@ -44,7 +44,7 @@ namespace Fox.Core
         }
 
         // Constructors
-		public Data(ulong address, ulong id) : base(address, id) { }
+		public Data(ulong id) : base(id) { }
 		public Data() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

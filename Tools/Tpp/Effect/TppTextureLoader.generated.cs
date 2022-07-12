@@ -41,7 +41,7 @@ namespace Tpp.Effect
         }
 
         // Constructors
-		public TppTextureLoader(ulong address, ulong id) : base(address, id) { }
+		public TppTextureLoader(ulong id) : base(id) { }
 		public TppTextureLoader() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

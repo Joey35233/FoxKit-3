@@ -65,7 +65,7 @@ namespace Fox.Sim
         }
 
         // Constructors
-		public SimOnPhysics(ulong address, ulong id) : base(address, id) { }
+		public SimOnPhysics(ulong id) : base(id) { }
 		public SimOnPhysics() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

@@ -38,7 +38,7 @@ namespace Fox.Core
         }
 
         // Constructors
-		public DataElement(ulong address, ulong id) : base(address, id) { }
+		public DataElement(ulong id) : base(id) { }
 		public DataElement() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

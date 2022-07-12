@@ -35,7 +35,7 @@ namespace Fox.Navx
         }
 
         // Constructors
-		public NavxNavBlockBody(ulong address, ulong id) : base(address, id) { }
+		public NavxNavBlockBody(ulong id) : base(id) { }
 		public NavxNavBlockBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

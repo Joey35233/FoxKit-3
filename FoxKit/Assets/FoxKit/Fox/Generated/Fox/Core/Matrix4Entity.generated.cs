@@ -38,7 +38,7 @@ namespace Fox.Core
         }
 
         // Constructors
-		public Matrix4Entity(ulong address, ulong id) : base(address, id) { }
+		public Matrix4Entity(ulong id) : base(id) { }
 		public Matrix4Entity() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

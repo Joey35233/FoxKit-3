@@ -53,7 +53,7 @@ namespace Fox.Core
         }
 
         // Constructors
-		public PassiveBlockControllerData(ulong address, ulong id) : base(address, id) { }
+		public PassiveBlockControllerData(ulong id) : base(id) { }
 		public PassiveBlockControllerData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

@@ -35,7 +35,7 @@ namespace Tpp.MotherBaseCore
         }
 
         // Constructors
-		public MotherBaseConstructConnector(ulong address, ulong id) : base(address, id) { }
+		public MotherBaseConstructConnector(ulong id) : base(id) { }
 		public MotherBaseConstructConnector() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

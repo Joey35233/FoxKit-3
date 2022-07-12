@@ -35,7 +35,7 @@ namespace Tpp.GameKit
         }
 
         // Constructors
-		public TppTrapCheckIsPlayerAndHostCallbackDataElement(ulong address, ulong id) : base(address, id) { }
+		public TppTrapCheckIsPlayerAndHostCallbackDataElement(ulong id) : base(id) { }
 		public TppTrapCheckIsPlayerAndHostCallbackDataElement() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

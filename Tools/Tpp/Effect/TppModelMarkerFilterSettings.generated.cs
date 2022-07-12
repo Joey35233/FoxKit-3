@@ -56,7 +56,7 @@ namespace Tpp.Effect
         }
 
         // Constructors
-		public TppModelMarkerFilterSettings(ulong address, ulong id) : base(address, id) { }
+		public TppModelMarkerFilterSettings(ulong id) : base(id) { }
 		public TppModelMarkerFilterSettings() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

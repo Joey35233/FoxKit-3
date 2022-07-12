@@ -35,7 +35,7 @@ namespace Fox.GameKit
         }
 
         // Constructors
-		public GameScriptCheckpointObserver(ulong address, ulong id) : base(address, id) { }
+		public GameScriptCheckpointObserver(ulong id) : base(id) { }
 		public GameScriptCheckpointObserver() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

@@ -53,7 +53,7 @@ namespace Fox.GameKit
         }
 
         // Constructors
-		public ObjectBrush(ulong address, ulong id) : base(address, id) { }
+		public ObjectBrush(ulong id) : base(id) { }
 		public ObjectBrush() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

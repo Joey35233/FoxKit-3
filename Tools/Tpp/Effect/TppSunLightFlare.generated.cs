@@ -38,7 +38,7 @@ namespace Tpp.Effect
         }
 
         // Constructors
-		public TppSunLightFlare(ulong address, ulong id) : base(address, id) { }
+		public TppSunLightFlare(ulong id) : base(id) { }
 		public TppSunLightFlare() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

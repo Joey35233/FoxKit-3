@@ -38,7 +38,7 @@ namespace Fox.GameKit
         }
 
         // Constructors
-		public TexturePackLoadConditioner(ulong address, ulong id) : base(address, id) { }
+		public TexturePackLoadConditioner(ulong id) : base(id) { }
 		public TexturePackLoadConditioner() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

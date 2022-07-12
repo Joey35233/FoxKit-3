@@ -35,7 +35,7 @@ namespace Tpp.Effect
         }
 
         // Constructors
-		public TppFireLightsDataBody(ulong address, ulong id) : base(address, id) { }
+		public TppFireLightsDataBody(ulong id) : base(id) { }
 		public TppFireLightsDataBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

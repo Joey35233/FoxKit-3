@@ -35,7 +35,7 @@ namespace Tpp.Effect
         }
 
         // Constructors
-		public TppDirtyModelController(ulong address, ulong id) : base(address, id) { }
+		public TppDirtyModelController(ulong id) : base(id) { }
 		public TppDirtyModelController() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

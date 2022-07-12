@@ -38,7 +38,7 @@ namespace Tpp.GameCore
         }
 
         // Constructors
-		public TppSimpleMissionBlockControllerData(ulong address, ulong id) : base(address, id) { }
+		public TppSimpleMissionBlockControllerData(ulong id) : base(id) { }
 		public TppSimpleMissionBlockControllerData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

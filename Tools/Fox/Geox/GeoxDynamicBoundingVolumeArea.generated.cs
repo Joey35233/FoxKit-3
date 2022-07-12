@@ -35,7 +35,7 @@ namespace Fox.Geox
         }
 
         // Constructors
-		public GeoxDynamicBoundingVolumeArea(ulong address, ulong id) : base(address, id) { }
+		public GeoxDynamicBoundingVolumeArea(ulong id) : base(id) { }
 		public GeoxDynamicBoundingVolumeArea() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

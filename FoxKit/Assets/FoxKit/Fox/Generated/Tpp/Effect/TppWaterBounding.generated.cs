@@ -44,7 +44,7 @@ namespace Tpp.Effect
         }
 
         // Constructors
-		public TppWaterBounding(ulong address, ulong id) : base(address, id) { }
+		public TppWaterBounding(ulong id) : base(id) { }
 		public TppWaterBounding() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

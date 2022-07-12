@@ -89,7 +89,7 @@ namespace Tpp.Effect
         }
 
         // Constructors
-		public TppFourierOcean(ulong address, ulong id) : base(address, id) { }
+		public TppFourierOcean(ulong id) : base(id) { }
 		public TppFourierOcean() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

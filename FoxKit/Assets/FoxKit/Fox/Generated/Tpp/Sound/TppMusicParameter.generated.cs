@@ -95,7 +95,7 @@ namespace Tpp.Sound
         }
 
         // Constructors
-		public TppMusicParameter(ulong address, ulong id) : base(address, id) { }
+		public TppMusicParameter(ulong id) : base(id) { }
 		public TppMusicParameter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

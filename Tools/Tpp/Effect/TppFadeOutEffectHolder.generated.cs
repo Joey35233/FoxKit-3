@@ -35,7 +35,7 @@ namespace Tpp.Effect
         }
 
         // Constructors
-		public TppFadeOutEffectHolder(ulong address, ulong id) : base(address, id) { }
+		public TppFadeOutEffectHolder(ulong id) : base(id) { }
 		public TppFadeOutEffectHolder() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

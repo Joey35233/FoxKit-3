@@ -35,7 +35,7 @@ namespace Fox.Core
         }
 
         // Constructors
-		public EditableBlockPackageBase(ulong address, ulong id) : base(address, id) { }
+		public EditableBlockPackageBase(ulong id) : base(id) { }
 		public EditableBlockPackageBase() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

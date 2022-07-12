@@ -35,7 +35,7 @@ namespace Tpp.Sound
         }
 
         // Constructors
-		public TppSoundWorldBody(ulong address, ulong id) : base(address, id) { }
+		public TppSoundWorldBody(ulong id) : base(id) { }
 		public TppSoundWorldBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

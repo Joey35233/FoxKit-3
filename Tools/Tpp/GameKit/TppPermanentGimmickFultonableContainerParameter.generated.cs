@@ -41,7 +41,7 @@ namespace Tpp.GameKit
         }
 
         // Constructors
-		public TppPermanentGimmickFultonableContainerParameter(ulong address, ulong id) : base(address, id) { }
+		public TppPermanentGimmickFultonableContainerParameter(ulong id) : base(id) { }
 		public TppPermanentGimmickFultonableContainerParameter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

@@ -35,7 +35,7 @@ namespace Fox.Gr
         }
 
         // Constructors
-		public GrPluginLineIntegralSSAO(ulong address, ulong id) : base(address, id) { }
+		public GrPluginLineIntegralSSAO(ulong id) : base(id) { }
 		public GrPluginLineIntegralSSAO() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

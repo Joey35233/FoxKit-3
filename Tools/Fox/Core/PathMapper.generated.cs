@@ -35,7 +35,7 @@ namespace Fox.Core
         }
 
         // Constructors
-		public PathMapper(ulong address, ulong id) : base(address, id) { }
+		public PathMapper(ulong id) : base(id) { }
 		public PathMapper() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

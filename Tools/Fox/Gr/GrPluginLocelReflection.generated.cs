@@ -35,7 +35,7 @@ namespace Fox.Gr
         }
 
         // Constructors
-		public GrPluginLocelReflection(ulong address, ulong id) : base(address, id) { }
+		public GrPluginLocelReflection(ulong id) : base(id) { }
 		public GrPluginLocelReflection() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

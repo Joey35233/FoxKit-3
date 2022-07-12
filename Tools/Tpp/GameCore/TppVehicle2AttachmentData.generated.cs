@@ -56,7 +56,7 @@ namespace Tpp.GameCore
         }
 
         // Constructors
-		public TppVehicle2AttachmentData(ulong address, ulong id) : base(address, id) { }
+		public TppVehicle2AttachmentData(ulong id) : base(id) { }
 		public TppVehicle2AttachmentData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

@@ -47,7 +47,7 @@ namespace Fox.Geo
         }
 
         // Constructors
-		public GeoTriggerTrap(ulong address, ulong id) : base(address, id) { }
+		public GeoTriggerTrap(ulong id) : base(id) { }
 		public GeoTriggerTrap() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

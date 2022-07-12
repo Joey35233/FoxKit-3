@@ -119,7 +119,7 @@ namespace Tpp.Effect
         }
 
         // Constructors
-		public TppPointLight(ulong address, ulong id) : base(address, id) { }
+		public TppPointLight(ulong id) : base(id) { }
 		public TppPointLight() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

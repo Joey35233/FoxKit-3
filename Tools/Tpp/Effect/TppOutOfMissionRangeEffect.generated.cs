@@ -74,7 +74,7 @@ namespace Tpp.Effect
         }
 
         // Constructors
-		public TppOutOfMissionRangeEffect(ulong address, ulong id) : base(address, id) { }
+		public TppOutOfMissionRangeEffect(ulong id) : base(id) { }
 		public TppOutOfMissionRangeEffect() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

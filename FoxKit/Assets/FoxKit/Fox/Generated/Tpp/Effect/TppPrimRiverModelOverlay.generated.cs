@@ -53,7 +53,7 @@ namespace Tpp.Effect
         }
 
         // Constructors
-		public TppPrimRiverModelOverlay(ulong address, ulong id) : base(address, id) { }
+		public TppPrimRiverModelOverlay(ulong id) : base(id) { }
 		public TppPrimRiverModelOverlay() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

@@ -50,7 +50,7 @@ namespace Tpp.GameKit
         }
 
         // Constructors
-		public TppObjectBrushSkeletonModelReserveResource(ulong address, ulong id) : base(address, id) { }
+		public TppObjectBrushSkeletonModelReserveResource(ulong id) : base(id) { }
 		public TppObjectBrushSkeletonModelReserveResource() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

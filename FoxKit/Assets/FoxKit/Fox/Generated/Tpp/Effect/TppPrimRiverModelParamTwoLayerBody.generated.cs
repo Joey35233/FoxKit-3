@@ -35,7 +35,7 @@ namespace Tpp.Effect
         }
 
         // Constructors
-		public TppPrimRiverModelParamTwoLayerBody(ulong address, ulong id) : base(address, id) { }
+		public TppPrimRiverModelParamTwoLayerBody(ulong id) : base(id) { }
 		public TppPrimRiverModelParamTwoLayerBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

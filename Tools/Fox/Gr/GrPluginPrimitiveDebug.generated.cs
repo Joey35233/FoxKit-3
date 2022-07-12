@@ -35,7 +35,7 @@ namespace Fox.Gr
         }
 
         // Constructors
-		public GrPluginPrimitiveDebug(ulong address, ulong id) : base(address, id) { }
+		public GrPluginPrimitiveDebug(ulong id) : base(id) { }
 		public GrPluginPrimitiveDebug() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

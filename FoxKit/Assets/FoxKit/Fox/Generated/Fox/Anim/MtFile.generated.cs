@@ -35,7 +35,7 @@ namespace Fox.Anim
         }
 
         // Constructors
-		public MtFile(ulong address, ulong id) : base(address, id) { }
+		public MtFile(ulong id) : base(id) { }
 		public MtFile() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

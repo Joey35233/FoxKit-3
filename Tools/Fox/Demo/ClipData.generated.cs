@@ -50,7 +50,7 @@ namespace Fox.Demo
         }
 
         // Constructors
-		public ClipData(ulong address, ulong id) : base(address, id) { }
+		public ClipData(ulong id) : base(id) { }
 		public ClipData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

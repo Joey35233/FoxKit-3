@@ -41,7 +41,7 @@ namespace Tpp.Effect
         }
 
         // Constructors
-		public TppLightProbeSHCoefficients(ulong address, ulong id) : base(address, id) { }
+		public TppLightProbeSHCoefficients(ulong id) : base(id) { }
 		public TppLightProbeSHCoefficients() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

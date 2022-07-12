@@ -68,7 +68,7 @@ namespace Fox.EdDemo
         }
 
         // Constructors
-		public ChildrenIdConvertParameter(ulong address, ulong id) : base(address, id) { }
+		public ChildrenIdConvertParameter(ulong id) : base(id) { }
 		public ChildrenIdConvertParameter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

@@ -44,7 +44,7 @@ namespace Fox.GameKit
         }
 
         // Constructors
-		public StageLightFadeData(ulong address, ulong id) : base(address, id) { }
+		public StageLightFadeData(ulong id) : base(id) { }
 		public StageLightFadeData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

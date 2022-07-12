@@ -35,7 +35,7 @@ namespace Fox.Geox
         }
 
         // Constructors
-		public GeoxTargetModifyCallbackBase(ulong address, ulong id) : base(address, id) { }
+		public GeoxTargetModifyCallbackBase(ulong id) : base(id) { }
 		public GeoxTargetModifyCallbackBase() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

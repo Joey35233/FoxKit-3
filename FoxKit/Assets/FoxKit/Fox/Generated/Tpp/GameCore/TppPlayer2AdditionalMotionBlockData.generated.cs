@@ -59,7 +59,7 @@ namespace Tpp.GameCore
         }
 
         // Constructors
-		public TppPlayer2AdditionalMotionBlockData(ulong address, ulong id) : base(address, id) { }
+		public TppPlayer2AdditionalMotionBlockData(ulong id) : base(id) { }
 		public TppPlayer2AdditionalMotionBlockData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

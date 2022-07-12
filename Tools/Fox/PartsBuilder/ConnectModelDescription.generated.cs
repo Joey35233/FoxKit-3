@@ -38,7 +38,7 @@ namespace Fox.PartsBuilder
         }
 
         // Constructors
-		public ConnectModelDescription(ulong address, ulong id) : base(address, id) { }
+		public ConnectModelDescription(ulong id) : base(id) { }
 		public ConnectModelDescription() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

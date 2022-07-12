@@ -38,7 +38,7 @@ namespace Fox.Geox
         }
 
         // Constructors
-		public GeoxPathEdge(ulong address, ulong id) : base(address, id) { }
+		public GeoxPathEdge(ulong id) : base(id) { }
 		public GeoxPathEdge() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

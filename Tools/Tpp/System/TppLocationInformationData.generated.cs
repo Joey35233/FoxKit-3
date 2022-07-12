@@ -47,7 +47,7 @@ namespace Tpp.System
         }
 
         // Constructors
-		public TppLocationInformationData(ulong address, ulong id) : base(address, id) { }
+		public TppLocationInformationData(ulong id) : base(id) { }
 		public TppLocationInformationData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

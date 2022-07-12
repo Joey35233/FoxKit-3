@@ -35,7 +35,7 @@ namespace Fox.Navx
         }
 
         // Constructors
-		public NavxSwitchBounderData(ulong address, ulong id) : base(address, id) { }
+		public NavxSwitchBounderData(ulong id) : base(id) { }
 		public NavxSwitchBounderData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

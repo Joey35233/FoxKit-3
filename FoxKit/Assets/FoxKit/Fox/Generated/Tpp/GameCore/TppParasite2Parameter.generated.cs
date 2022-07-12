@@ -59,7 +59,7 @@ namespace Tpp.GameCore
         }
 
         // Constructors
-		public TppParasite2Parameter(ulong address, ulong id) : base(address, id) { }
+		public TppParasite2Parameter(ulong id) : base(id) { }
 		public TppParasite2Parameter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

@@ -38,7 +38,7 @@ namespace Tpp.Effect
         }
 
         // Constructors
-		public TppTrapExecOnOffVolumetricFogCallbackDataElement(ulong address, ulong id) : base(address, id) { }
+		public TppTrapExecOnOffVolumetricFogCallbackDataElement(ulong id) : base(id) { }
 		public TppTrapExecOnOffVolumetricFogCallbackDataElement() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

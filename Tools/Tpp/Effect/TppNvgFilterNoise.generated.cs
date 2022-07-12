@@ -62,7 +62,7 @@ namespace Tpp.Effect
         }
 
         // Constructors
-		public TppNvgFilterNoise(ulong address, ulong id) : base(address, id) { }
+		public TppNvgFilterNoise(ulong id) : base(id) { }
 		public TppNvgFilterNoise() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

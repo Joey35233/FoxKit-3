@@ -50,7 +50,7 @@ namespace Tpp.GameKit
         }
 
         // Constructors
-		public TppPermanentGimmickMortarParameter(ulong address, ulong id) : base(address, id) { }
+		public TppPermanentGimmickMortarParameter(ulong id) : base(id) { }
 		public TppPermanentGimmickMortarParameter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

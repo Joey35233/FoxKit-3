@@ -38,7 +38,7 @@ namespace Tpp.Collectible
         }
 
         // Constructors
-		public TppPlacedLocatorParameter(ulong address, ulong id) : base(address, id) { }
+		public TppPlacedLocatorParameter(ulong id) : base(id) { }
 		public TppPlacedLocatorParameter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

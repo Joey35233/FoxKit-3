@@ -35,7 +35,7 @@ namespace Fox.Demox
         }
 
         // Constructors
-		public StageLightFadeDataBody(ulong address, ulong id) : base(address, id) { }
+		public StageLightFadeDataBody(ulong id) : base(id) { }
 		public StageLightFadeDataBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

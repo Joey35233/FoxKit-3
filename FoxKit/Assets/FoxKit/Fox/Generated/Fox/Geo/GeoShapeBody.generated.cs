@@ -35,7 +35,7 @@ namespace Fox.Geo
         }
 
         // Constructors
-		public GeoShapeBody(ulong address, ulong id) : base(address, id) { }
+		public GeoShapeBody(ulong id) : base(id) { }
 		public GeoShapeBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

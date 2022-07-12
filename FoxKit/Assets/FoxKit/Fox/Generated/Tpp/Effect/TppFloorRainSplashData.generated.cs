@@ -41,7 +41,7 @@ namespace Tpp.Effect
         }
 
         // Constructors
-		public TppFloorRainSplashData(ulong address, ulong id) : base(address, id) { }
+		public TppFloorRainSplashData(ulong id) : base(id) { }
 		public TppFloorRainSplashData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

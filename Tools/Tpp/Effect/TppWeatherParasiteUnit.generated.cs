@@ -35,7 +35,7 @@ namespace Tpp.Effect
         }
 
         // Constructors
-		public TppWeatherParasiteUnit(ulong address, ulong id) : base(address, id) { }
+		public TppWeatherParasiteUnit(ulong id) : base(id) { }
 		public TppWeatherParasiteUnit() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

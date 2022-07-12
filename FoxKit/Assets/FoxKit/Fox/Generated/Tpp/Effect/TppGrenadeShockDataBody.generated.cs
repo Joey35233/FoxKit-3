@@ -35,7 +35,7 @@ namespace Tpp.Effect
         }
 
         // Constructors
-		public TppGrenadeShockDataBody(ulong address, ulong id) : base(address, id) { }
+		public TppGrenadeShockDataBody(ulong id) : base(id) { }
 		public TppGrenadeShockDataBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

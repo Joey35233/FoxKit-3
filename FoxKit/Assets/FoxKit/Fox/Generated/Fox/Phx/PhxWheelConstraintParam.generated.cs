@@ -74,7 +74,7 @@ namespace Fox.Phx
         }
 
         // Constructors
-		public PhxWheelConstraintParam(ulong address, ulong id) : base(address, id) { }
+		public PhxWheelConstraintParam(ulong id) : base(id) { }
 		public PhxWheelConstraintParam() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

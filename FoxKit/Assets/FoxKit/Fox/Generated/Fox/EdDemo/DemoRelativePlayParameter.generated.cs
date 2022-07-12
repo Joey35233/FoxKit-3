@@ -41,7 +41,7 @@ namespace Fox.EdDemo
         }
 
         // Constructors
-		public DemoRelativePlayParameter(ulong address, ulong id) : base(address, id) { }
+		public DemoRelativePlayParameter(ulong id) : base(id) { }
 		public DemoRelativePlayParameter() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

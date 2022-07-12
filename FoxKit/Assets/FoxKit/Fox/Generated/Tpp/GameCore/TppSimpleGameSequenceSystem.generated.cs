@@ -35,7 +35,7 @@ namespace Tpp.GameCore
         }
 
         // Constructors
-		public TppSimpleGameSequenceSystem(ulong address, ulong id) : base(address, id) { }
+		public TppSimpleGameSequenceSystem(ulong id) : base(id) { }
 		public TppSimpleGameSequenceSystem() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

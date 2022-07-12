@@ -41,7 +41,7 @@ namespace Fox.Anim
         }
 
         // Constructors
-		public ParameterMaskElement(ulong address, ulong id) : base(address, id) { }
+		public ParameterMaskElement(ulong id) : base(id) { }
 		public ParameterMaskElement() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

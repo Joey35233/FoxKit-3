@@ -35,7 +35,7 @@ namespace Fox.Core
         }
 
         // Constructors
-		public LabelObject(ulong address, ulong id) : base(address, id) { }
+		public LabelObject(ulong id) : base(id) { }
 		public LabelObject() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

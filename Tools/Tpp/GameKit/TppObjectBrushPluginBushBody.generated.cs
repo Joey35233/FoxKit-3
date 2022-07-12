@@ -35,7 +35,7 @@ namespace Tpp.GameKit
         }
 
         // Constructors
-		public TppObjectBrushPluginBushBody(ulong address, ulong id) : base(address, id) { }
+		public TppObjectBrushPluginBushBody(ulong id) : base(id) { }
 		public TppObjectBrushPluginBushBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

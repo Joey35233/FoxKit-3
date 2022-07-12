@@ -41,7 +41,7 @@ namespace Fox.Nav
         }
 
         // Constructors
-		public NavWorldDesc(ulong address, ulong id) : base(address, id) { }
+		public NavWorldDesc(ulong id) : base(id) { }
 		public NavWorldDesc() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

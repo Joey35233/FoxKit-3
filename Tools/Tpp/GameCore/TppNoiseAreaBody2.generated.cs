@@ -35,7 +35,7 @@ namespace Tpp.GameCore
         }
 
         // Constructors
-		public TppNoiseAreaBody2(ulong address, ulong id) : base(address, id) { }
+		public TppNoiseAreaBody2(ulong id) : base(id) { }
 		public TppNoiseAreaBody2() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

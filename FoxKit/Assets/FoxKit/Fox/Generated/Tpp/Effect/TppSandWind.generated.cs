@@ -59,7 +59,7 @@ namespace Tpp.Effect
         }
 
         // Constructors
-		public TppSandWind(ulong address, ulong id) : base(address, id) { }
+		public TppSandWind(ulong id) : base(id) { }
 		public TppSandWind() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

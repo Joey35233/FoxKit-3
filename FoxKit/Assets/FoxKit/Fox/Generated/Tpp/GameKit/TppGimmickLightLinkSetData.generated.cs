@@ -44,7 +44,7 @@ namespace Tpp.GameKit
         }
 
         // Constructors
-		public TppGimmickLightLinkSetData(ulong address, ulong id) : base(address, id) { }
+		public TppGimmickLightLinkSetData(ulong id) : base(id) { }
 		public TppGimmickLightLinkSetData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

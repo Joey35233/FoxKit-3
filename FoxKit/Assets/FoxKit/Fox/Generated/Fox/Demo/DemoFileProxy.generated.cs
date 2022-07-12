@@ -41,7 +41,7 @@ namespace Fox.Demo
         }
 
         // Constructors
-		public DemoFileProxy(ulong address, ulong id) : base(address, id) { }
+		public DemoFileProxy(ulong id) : base(id) { }
 		public DemoFileProxy() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

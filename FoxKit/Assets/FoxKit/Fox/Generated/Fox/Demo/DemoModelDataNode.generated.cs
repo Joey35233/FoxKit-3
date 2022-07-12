@@ -41,7 +41,7 @@ namespace Fox.Demo
         }
 
         // Constructors
-		public DemoModelDataNode(ulong address, ulong id) : base(address, id) { }
+		public DemoModelDataNode(ulong id) : base(id) { }
 		public DemoModelDataNode() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

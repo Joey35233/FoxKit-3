@@ -35,7 +35,7 @@ namespace Fox.Graphx
         }
 
         // Constructors
-		public GraphxPathVertexInsertionInfo(ulong address, ulong id) : base(address, id) { }
+		public GraphxPathVertexInsertionInfo(ulong id) : base(id) { }
 		public GraphxPathVertexInsertionInfo() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

@@ -38,7 +38,7 @@ namespace Fox.GameKit
         }
 
         // Constructors
-		public CheckpointTrapScriptModuleConditionBody(ulong address, ulong id) : base(address, id) { }
+		public CheckpointTrapScriptModuleConditionBody(ulong id) : base(id) { }
 		public CheckpointTrapScriptModuleConditionBody() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

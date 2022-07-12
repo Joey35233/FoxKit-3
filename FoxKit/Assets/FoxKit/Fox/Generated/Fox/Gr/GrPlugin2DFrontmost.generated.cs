@@ -35,7 +35,7 @@ namespace Fox.Gr
         }
 
         // Constructors
-		public GrPlugin2DFrontmost(ulong address, ulong id) : base(address, id) { }
+		public GrPlugin2DFrontmost(ulong id) : base(id) { }
 		public GrPlugin2DFrontmost() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

@@ -35,7 +35,7 @@ namespace Fox.Gr
         }
 
         // Constructors
-		public GrPluginRawDecal(ulong address, ulong id) : base(address, id) { }
+		public GrPluginRawDecal(ulong id) : base(id) { }
 		public GrPluginRawDecal() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

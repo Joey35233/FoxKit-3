@@ -41,7 +41,7 @@ namespace Fox.Sdx
         }
 
         // Constructors
-		public SoundAreaGlobal(ulong address, ulong id) : base(address, id) { }
+		public SoundAreaGlobal(ulong id) : base(id) { }
 		public SoundAreaGlobal() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

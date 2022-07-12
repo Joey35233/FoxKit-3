@@ -224,7 +224,7 @@ namespace Fox.Core
         }
 
         // Constructors
-		public StageBlockControllerData(ulong address, ulong id) : base(address, id) { }
+		public StageBlockControllerData(ulong id) : base(id) { }
 		public StageBlockControllerData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

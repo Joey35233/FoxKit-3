@@ -35,7 +35,7 @@ namespace Tpp.Effect
         }
 
         // Constructors
-		public TppWeatherClimateUpdator(ulong address, ulong id) : base(address, id) { }
+		public TppWeatherClimateUpdator(ulong id) : base(id) { }
 		public TppWeatherClimateUpdator() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

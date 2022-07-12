@@ -80,7 +80,7 @@ namespace Fox.Ui
         }
 
         // Constructors
-		public UiNodeData(ulong address, ulong id) : base(address, id) { }
+		public UiNodeData(ulong id) : base(id) { }
 		public UiNodeData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

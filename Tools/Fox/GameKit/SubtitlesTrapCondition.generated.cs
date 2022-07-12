@@ -44,7 +44,7 @@ namespace Fox.GameKit
         }
 
         // Constructors
-		public SubtitlesTrapCondition(ulong address, ulong id) : base(address, id) { }
+		public SubtitlesTrapCondition(ulong id) : base(id) { }
 		public SubtitlesTrapCondition() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

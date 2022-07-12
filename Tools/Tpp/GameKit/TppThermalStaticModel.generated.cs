@@ -35,7 +35,7 @@ namespace Tpp.GameKit
         }
 
         // Constructors
-		public TppThermalStaticModel(ulong address, ulong id) : base(address, id) { }
+		public TppThermalStaticModel(ulong id) : base(id) { }
 		public TppThermalStaticModel() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)

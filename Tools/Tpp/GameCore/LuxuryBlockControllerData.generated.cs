@@ -56,7 +56,7 @@ namespace Tpp.GameCore
         }
 
         // Constructors
-		public LuxuryBlockControllerData(ulong address, ulong id) : base(address, id) { }
+		public LuxuryBlockControllerData(ulong id) : base(id) { }
 		public LuxuryBlockControllerData() : base() { }
         
         public override void SetProperty(string propertyName, Fox.Value value)
