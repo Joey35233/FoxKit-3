@@ -39,7 +39,7 @@ namespace Fox.Core
             var gameObjects = new Dictionary<ulong, GameObject>();
             for (int i = 0; i < entityCount; i++)
             {
-                var entity = new DataSetFile2EntityReader(RequestEntityPtr, RequestEntityHandle, RequestEntityLink).Read(reader, this.CreateEntity, (hash) => this.stringTable[hash]);
+                var entity = new DataSetFile2EntityReader(RequestEntityPtr, RequestEntityHandle).Read(reader, this.CreateEntity, (hash) => this.stringTable[hash]);
                 entities.Add(entity.Address, entity);
 
                 // Create GameObject
@@ -157,11 +157,6 @@ namespace Fox.Core
             }
 
             this.entityHandleRequests[address].Add(ptr);
-        }
-
-        public void RequestEntityLink(ulong address, ulong packagePath, ulong archivePath, ulong nameInArchive, EntityLink entityLink)
-        {
-
         }
     }
 }

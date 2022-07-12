@@ -11,13 +11,11 @@ namespace Fox.Core
     {
         private RequestEntityPtr requestEntityPtr;
         private RequestEntityHandle requestEntityHandle;
-        private RequestEntityLink requestEntityLink;
 
-        public DataSetFile2EntityReader(RequestEntityPtr requestEntityPtr, RequestEntityHandle requestEntityHandle, RequestEntityLink requestEntityLink)
+        public DataSetFile2EntityReader(RequestEntityPtr requestEntityPtr, RequestEntityHandle requestEntityHandle)
         {
             this.requestEntityPtr = requestEntityPtr ?? throw new ArgumentNullException(nameof(requestEntityPtr));
             this.requestEntityHandle = requestEntityHandle ?? throw new ArgumentNullException(nameof(requestEntityHandle));
-            this.requestEntityLink = requestEntityLink ?? throw new ArgumentNullException(nameof(requestEntityLink));
         }
 
         public Entity Read(BinaryReader reader, Func<ulong, ulong, ushort, ulong, Entity> createEntity, Func<ulong, string> unhashString)
@@ -42,7 +40,7 @@ namespace Fox.Core
             SetPropertyElementByIndex setPropertyElementByIndex = entity.SetPropertyElement;
             SetPropertyElementByKey setPropertyElementByKey = entity.SetPropertyElement;
 
-            var propertyReader = new DataSetFile2PropertyReader(unhashString, requestEntityPtr, requestEntityHandle, requestEntityLink);
+            var propertyReader = new DataSetFile2PropertyReader(unhashString, requestEntityPtr, requestEntityHandle);
             for (var i = 0; i < staticPropertyCount; i++)
             {
                 propertyReader.Read(reader, 

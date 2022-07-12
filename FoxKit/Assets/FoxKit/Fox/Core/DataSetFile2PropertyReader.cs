@@ -16,7 +16,6 @@ namespace Fox.FoxCore.Serialization
         private Func<ulong, string> unhashString;
         private RequestEntityPtr requestEntityPtr;
         private RequestEntityHandle requestEntityHandle;
-        private RequestEntityLink requestEntityLink;
 
         /// <summary>
         /// Sets the value of a property.
@@ -60,13 +59,11 @@ namespace Fox.FoxCore.Serialization
         public DataSetFile2PropertyReader(
             Func<ulong, string> unhashString,
             RequestEntityPtr requestEntityPtr,
-            RequestEntityHandle requestEntityHandle,
-            RequestEntityLink requestEntityLink)
+            RequestEntityHandle requestEntityHandle)
         {
             this.unhashString = unhashString;
             this.requestEntityPtr = requestEntityPtr;
             this.requestEntityHandle = requestEntityHandle;
-            this.requestEntityLink = requestEntityLink;
         }
 
         public void Read(
@@ -200,8 +197,7 @@ namespace Fox.FoxCore.Serialization
             var nameInArchiveHash = BitConverter.ToUInt64(bytes, 16);
             var address = BitConverter.ToUInt64(bytes, 24);
 
-            var entityLink = EntityLink.Empty();
-            requestEntityLink((uint)address, packagePathHash, archivePathHash, nameInArchiveHash, entityLink);
+            var entityLink = new EntityLink(Path.FromFilePath(unhashString(packagePathHash)), Path.FromFilePath(unhashString(archivePathHash)), unhashString(nameInArchiveHash));
 
             setProperty(name, new Value(entityLink));
         }

@@ -12,7 +12,6 @@ namespace Fox.Core
         /// <summary>
         /// The referenced Entity.
         /// </summary>
-        [SerializeField]
         private EntityHandle handle;
 
         /// <summary>
@@ -28,14 +27,13 @@ namespace Fox.Core
         private Path archivePath;
 
         /// <summary>
-        /// The referenced Entity.
+        /// The referenced Entity's name.
         /// </summary>
         [SerializeField]
         private Fox.String nameInArchive;
 
-        public EntityLink(FoxEntity entity, Path packagePath, Path archivePath, Fox.String nameInArchive)
+        public EntityLink(Path packagePath, Path archivePath, Fox.String nameInArchive)
         {
-            this.handle = EntityHandle.Get(entity);
             this.packagePath = packagePath;
             this.archivePath = archivePath;
             this.nameInArchive = nameInArchive;
@@ -66,7 +64,7 @@ namespace Fox.Core
 
         internal static EntityLink Empty()
         {
-            return new EntityLink(null, null, null, null);
+            return new EntityLink(null, null, null);
         }
     }
 }
