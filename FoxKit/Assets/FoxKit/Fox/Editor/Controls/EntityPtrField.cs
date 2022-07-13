@@ -7,10 +7,6 @@ using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine.UIElements;
 
-// UNITYBUG: https://github.com/Joey35233/FoxKit-3/issues/9
-// Unfortunately, I have had to implement manual binding, rather than via SerializedPropertyChangeEvent.
-// This means that any programmatic changes to the data, such as via Undo or scripting, will not automatically be reflected in the UI.
-
 namespace Fox.Editor
 {
     public class EntityPtrField<T> : BaseField<Fox.Core.EntityPtr<T>>, IFoxField 
@@ -84,33 +80,24 @@ namespace Fox.Editor
         {
             base.ExecuteDefaultActionAtTarget(evt);
 
-            // UNITYENHANCEMENT: https://github.com/Joey35233/FoxKit-3/issues/12
-            Type evtType = evt.GetType();
-            if ((evtType.Name == "SerializedPropertyBindEvent") && !string.IsNullOrWhiteSpace(bindingPath))
+            if (evt.eventTypeId == FoxFieldUtils.SerializedPropertyBindEventTypeId && !string.IsNullOrWhiteSpace(bindingPath))
             {
-                SerializedProperty entityPtrProperty = evtType.GetProperty("bindProperty").GetValue(evt) as SerializedProperty;
+                // UNITYENHANCEMENT: https://github.com/Joey35233/FoxKit-3/issues/12
+                SerializedProperty entityPtrProperty = FoxFieldUtils.SerializedPropertyBindEventType.GetProperty("bindProperty").GetValue(evt) as SerializedProperty;
 
-                OnPtrPropertyChanged(entityPtrProperty.FindPropertyRelative("_ptr"));
+                PtrProperty = entityPtrProperty.FindPropertyRelative("_ptr");
 
-                // UNITYBUG: https://github.com/Joey35233/FoxKit-3/issues/9
-                // BindingExtensions.TrackPropertyValue(this, PtrProperty, OnPtrPropertyChanged);
+                BindingExtensions.TrackPropertyValue(this, PtrProperty, OnPropertyChanged);
+
+                OnPropertyChanged(null);
 
                 // Stop the EntityPtrField itself's binding event; it's just a container for the actual BindableElements.
                 evt.StopPropagation();
             }
-            // UNITYBUG: https://github.com/Joey35233/FoxKit-3/issues/9
-            //else if (evt is SerializedPropertyChangeEvent changeEvent)
-            //{
-            //    OnPtrPropertyChanged(changeEvent.changedProperty);
-            //}
         }
 
-        // UNITYBUG: https://github.com/Joey35233/FoxKit-3/issues/9
-        private void OnPtrPropertyChanged(SerializedProperty property)
+        private void OnPropertyChanged(SerializedProperty property)
         {
-            // The only place that makes me wonder if this is necessary is changeEvent.changedProperty.
-            PtrProperty = property.Copy();
-
             // [－] clicked
             if (PtrProperty.managedReferenceValue is null)
             {
@@ -159,14 +146,7 @@ namespace Fox.Editor
                     {
                         SpecificEntityType = EntityTypePickerPopup.ShowPopup(typeof(T)).Type;
                         PtrProperty.managedReferenceValue = Activator.CreateInstance(SpecificEntityType);
-                        // UNITYBUG: https://github.com/Joey35233/FoxKit-3/issues/9
-                        // Disable undo functionality until bug is fixed.
-                        // PtrProperty.serializedObject.ApplyModifiedProperties();
-                        PtrProperty.serializedObject.ApplyModifiedPropertiesWithoutUndo();
-
-                        // UNITYBUG: https://github.com/Joey35233/FoxKit-3/issues/9
-                        // This line should not exist.
-                        OnPtrPropertyChanged(PtrProperty);
+                        PtrProperty.serializedObject.ApplyModifiedProperties();
                     }
                     break;
                 // [－] clicked
@@ -174,14 +154,7 @@ namespace Fox.Editor
                     {
                         PtrProperty.managedReferenceValue = null;
 
-                        // UNITYBUG: https://github.com/Joey35233/FoxKit-3/issues/9
-                        // Disable undo functionality until bug is fixed.
-                        // PtrProperty.serializedObject.ApplyModifiedProperties();
-                        PtrProperty.serializedObject.ApplyModifiedPropertiesWithoutUndo();
-
-                        // UNITYBUG: https://github.com/Joey35233/FoxKit-3/issues/9
-                        // This line should not exist.
-                        OnPtrPropertyChanged(PtrProperty);
+                        PtrProperty.serializedObject.ApplyModifiedProperties();
                     }
                     break;
             }

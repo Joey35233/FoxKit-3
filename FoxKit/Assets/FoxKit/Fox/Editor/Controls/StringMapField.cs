@@ -8,10 +8,6 @@ using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine.UIElements;
 
-// UNITYBUG: https://github.com/Joey35233/FoxKit-3/issues/9
-// Unfortunately, I have had to implement manual binding, rather than via SerializedPropertyChangeEvent.
-// This means that any programmatic changes to the data, such as via Undo or scripting, will not automatically be reflected in the UI.
-
 namespace Fox.Editor
 {
     // UNITYENHANCEMENT: https://github.com/Joey35233/FoxKit-3/issues/11
@@ -114,28 +110,23 @@ namespace Fox.Editor
             base.ExecuteDefaultActionAtTarget(evt);
 
             Type evtType = evt.GetType();
-            if ((evtType.Name == "SerializedPropertyBindEvent") && !string.IsNullOrWhiteSpace(bindingPath))
+            if (evt.eventTypeId == FoxFieldUtils.SerializedPropertyBindEventTypeId && !string.IsNullOrWhiteSpace(bindingPath))
             {
+                // UNITYENHANCEMENT: https://github.com/Joey35233/FoxKit-3/issues/12
                 SerializedProperty stringMapProperty = evtType.GetProperty("bindProperty").GetValue(evt) as SerializedProperty;
                 StringMapProperty = stringMapProperty;
 
-                ListViewInput.itemsSource = StringMapProperty.GetValue() as IList;
-                OnPropertyChanged();
+                BindingExtensions.TrackPropertyValue(this, StringMapProperty, OnPropertyChanged);
 
-                // UNITYBUG: https://github.com/Joey35233/FoxKit-3/issues/9
-                // BindingExtensions.TrackPropertyValue(this, StringMapProperty, null);
+                OnPropertyChanged(null);
 
                 // Stop the StringMapField itself's binding event; it's just a container for the actual BindableElements.
                 evt.StopPropagation();
             }
-            // UNITYBUG: https://github.com/Joey35233/FoxKit-3/issues/9
-            //else if (evt is SerializedPropertyChangeEvent)
-            //{
-            //    OnPropertyChanged();
-            //}
         }
-        private void OnPropertyChanged()
+        private void OnPropertyChanged(SerializedProperty property)
         {
+            ListViewInput.itemsSource = StringMapProperty.GetValue() as IList;
             ListViewInput.RefreshItems();
         }
 
@@ -144,20 +135,15 @@ namespace Fox.Editor
             String key = StringMapKeyPicker.ShowPopup();
             if (key != null)
             {
-                StringMapProperty.serializedObject.Update();
+                // StringMapProperty.serializedObject.Update();
 
-                // UNITYBUG: https://github.com/Joey35233/FoxKit-3/issues/9
-                // Undo.RecordObject(StringMapProperty.serializedObject.targetObject, $"Insert cell");
+                Undo.RecordObject(StringMapProperty.serializedObject.targetObject, $"Insert cell");
 
                 var stringMap = ListViewInput.itemsSource as StringMap<T>;
                 stringMap.Insert(key, default);
 
                 // Apply without Undo so that the registered Undo event above works correctly.
                 StringMapProperty.serializedObject.ApplyModifiedPropertiesWithoutUndo();
-
-                // UNITYBUG: https://github.com/Joey35233/FoxKit-3/issues/9
-                // This line should not exist.
-                OnPropertyChanged();
             }
         }
 
@@ -165,11 +151,9 @@ namespace Fox.Editor
         {
             if (ListViewInput.selectedIndex != -1)
             {
-                StringMapProperty.serializedObject.Update();
+                // StringMapProperty.serializedObject.Update();
 
-                // UNITYBUG: https://github.com/Joey35233/FoxKit-3/issues/9
-                // Disable undo functionality until bug is fixed.
-                // Undo.RecordObject(StringMapProperty.serializedObject.targetObject, $"Remove cell");
+                Undo.RecordObject(StringMapProperty.serializedObject.targetObject, $"Remove cell");
 
                 foreach (var selectedIndex in ListViewInput.selectedIndices)
                 {
@@ -179,10 +163,6 @@ namespace Fox.Editor
 
                 // Apply without Undo so that the registered Undo event above works correctly.
                 StringMapProperty.serializedObject.ApplyModifiedPropertiesWithoutUndo();
-
-                // UNITYBUG: https://github.com/Joey35233/FoxKit-3/issues/9
-                // This line should not exist.
-                OnPropertyChanged();
             }
         }
 

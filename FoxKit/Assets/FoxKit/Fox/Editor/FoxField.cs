@@ -17,6 +17,10 @@ namespace Fox.Editor
 
     public static class FoxFieldUtils
     {
+        public static readonly Type SerializedPropertyBindEventType = typeof(UnityEditor.Editor).Assembly.GetType("UnityEditor.UIElements.SerializedPropertyBindEvent");
+        private static MethodInfo SerializedPropertyBindEventTypeIDMethod = SerializedPropertyBindEventType.GetMethod("TypeId", BindingFlags.Public | BindingFlags.Static | BindingFlags.FlattenHierarchy);
+        public static readonly long SerializedPropertyBindEventTypeId = (long)SerializedPropertyBindEventTypeIDMethod.Invoke(null, null);
+
         public static Func<IFoxField> GetTypeFieldConstructor(Type propertyType)
         {
             switch (propertyType)
