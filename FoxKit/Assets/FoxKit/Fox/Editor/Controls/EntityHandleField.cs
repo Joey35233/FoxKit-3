@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace Fox.Editor
 {
-    public class EntityHandleField : ObjectField, IFoxField
+    public class EntityHandleField : UnityEditor.UIElements.ObjectField, IFoxField
     {
         public new static readonly string ussClassName = "fox-entityhandle-field";
         public new static readonly string labelUssClassName = ussClassName + "__label";

@@ -68,7 +68,7 @@ namespace Fox.Editor
                     fixedItemHeight = 22,
                     selectionType = SelectionType.Single,
                 };
-                TypesListInput.onSelectionChange += TypeList_onSelectionChange;
+                TypesListInput.selectionChanged += TypeList_selectionChanged;
                 TypesListInput.AddToClassList(typesListUssClassName);
 
                 ToolbarSearchInput = new ToolbarSearchField();
@@ -107,7 +107,7 @@ namespace Fox.Editor
                 TypesListInput.Rebuild();
             }
 
-            private void TypeList_onSelectionChange(IEnumerable<object> obj)
+            private void TypeList_selectionChanged(IEnumerable<object> obj)
             {
                 var type = obj.ToList()[0] as EntityInfo;
                 this.returnValue = type;

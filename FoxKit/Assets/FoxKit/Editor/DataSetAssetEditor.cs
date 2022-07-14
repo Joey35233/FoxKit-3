@@ -83,11 +83,11 @@ namespace FoxKit
             listView.bindItem = bindItem;
             listView.itemsSource = items;
             listView.selectionType = SelectionType.Single;
-            listView.onSelectionChange += ListView_onSelectionChange;
+            listView.selectionChanged += ListView_selectionChanged;
             listView.showBoundCollectionSize = false;
         }
 
-        private void ListView_onSelectionChange(IEnumerable<object> obj)
+        private void ListView_selectionChanged(IEnumerable<object> obj)
         {
             var inspectedEntityLabel = this.rootElement.Q<Label>(InspectedEntityLabelName);
             var inspectedEntityProperties = this.rootElement.Q<PropertyField>(InspectedEntityPropertiesName);

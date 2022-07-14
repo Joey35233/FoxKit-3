@@ -290,8 +290,8 @@ namespace Fox.Editor
         {
         }
 
-        private ObjectField(string label, VisualElement visualInput)
-            : base(label, -1, '\0', visualInput)
+        private ObjectField(string label, VisualElement visInput)
+            : base(label, visInput)
         {
             visualInput.focusable = false;
             labelElement.focusable = false;
