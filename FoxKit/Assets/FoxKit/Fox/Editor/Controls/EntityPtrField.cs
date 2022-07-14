@@ -144,9 +144,12 @@ namespace Fox.Editor
                 // [＋] clicked
                 case CreateDeleteButtonMode.CreateEntity:
                     {
-                        SpecificEntityType = EntityTypePickerPopup.ShowPopup(typeof(T)).Type;
-                        PtrProperty.managedReferenceValue = Activator.CreateInstance(SpecificEntityType);
-                        PtrProperty.serializedObject.ApplyModifiedProperties();
+                        SpecificEntityType = EntityTypePickerPopup.ShowPopup(typeof(T))?.Type;
+                        if (SpecificEntityType != null)
+                        {
+                            PtrProperty.managedReferenceValue = Activator.CreateInstance(SpecificEntityType);
+                            PtrProperty.serializedObject.ApplyModifiedProperties();
+                        }
                     }
                     break;
                 // [－] clicked

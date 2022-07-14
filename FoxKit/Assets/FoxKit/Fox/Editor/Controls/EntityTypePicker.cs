@@ -33,7 +33,7 @@ namespace Fox.Editor
             public static readonly string searchFieldUssClassName = ussClassName + "__search-field";
             public static readonly string typesListUssClassName = ussClassName + "__types-list";
 
-            public VisualElement visualInput { get; }
+            public VisualElement visualInput { get; private set; };
 
             private readonly IList<EntityInfo> allItems = new List<EntityInfo>();
             private readonly List<EntityInfo> filteredItems = new List<EntityInfo>();
@@ -43,7 +43,7 @@ namespace Fox.Editor
 
             public void Draw()
             {
-                VisualElement visualInput = new VisualElement();
+                visualInput = new VisualElement();
                 visualInput.style.flexDirection = FlexDirection.Column;
                 visualInput.style.flexGrow = 1.0f;
                 visualInput.AddToClassList(inputUssClassName);
