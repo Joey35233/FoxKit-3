@@ -13,8 +13,8 @@ namespace Fox.Core
     {
         private static readonly EntityFactory entityFactory = new EntityFactory();
         private IDictionary<ulong, string> stringTable;
-        private IDictionary<ulong, IEntityPtr> entityPtrRequests = new Dictionary<ulong, IEntityPtr>();
-        private IDictionary<ulong, HashSet<EntityHandle>> entityHandleRequests = new Dictionary<ulong, HashSet<EntityHandle>>();
+        private IDictionary<ulong, Action<Entity>> entityPtrSetRequests = new Dictionary<ulong, Action<Entity>>();
+        private IDictionary<ulong, HashSet<Action<Entity>>> entityHandleSetRequests = new Dictionary<ulong, HashSet<Action<Entity>>>();
 
         public class ReadResult
         {
@@ -39,7 +39,7 @@ namespace Fox.Core
             var gameObjects = new Dictionary<ulong, GameObject>();
             for (int i = 0; i < entityCount; i++)
             {
-                var addressedEntity = new DataSetFile2AddressedEntityReader(RequestEntityPtr, RequestEntityHandle).Read(reader, this.CreateEntity, (hash) => this.stringTable[hash]);
+                var addressedEntity = new DataSetFile2AddressedEntityReader(RequestSetEntityPtr, RequestSetEntityHandle).Read(reader, this.CreateEntity, (hash) => this.stringTable[hash]);
                 entities.Add(addressedEntity.Address, addressedEntity.Entity);
 
                 // Create GameObject
@@ -96,67 +96,67 @@ namespace Fox.Core
 
         private void ResolveRequests(IDictionary<ulong, Entity> entities, IDictionary<ulong, GameObject> gameObjects)
         {
-            foreach(var entityPtr in this.entityPtrRequests)
+            foreach(var setEntityPtr in this.entityPtrSetRequests)
             {
-                if (entities.ContainsKey(entityPtr.Key))
+                if (entities.ContainsKey(setEntityPtr.Key))
                 {
-                    entityPtr.Value.Reset(entities[entityPtr.Key]);
+                    setEntityPtr.Value(entities[setEntityPtr.Key]);
                     continue;
                 }
 
-                UnityEngine.Debug.LogError("Unable to resolve EntityPtr " + entityPtr.Key.ToString("X8"));
+                UnityEngine.Debug.LogError("Unable to resolve EntityPtr " + setEntityPtr.Key.ToString("X8"));
             }
 
-            foreach (var entityHandle in this.entityHandleRequests)
+            foreach (var setEntityHandle in this.entityHandleSetRequests)
             {
-                if (entities.ContainsKey(entityHandle.Key))
+                if (entities.ContainsKey(setEntityHandle.Key))
                 {
-                    if (!gameObjects.ContainsKey(entityHandle.Key))
+                    if (!gameObjects.ContainsKey(setEntityHandle.Key))
                     {
-                        foreach (var request in entityHandle.Value)
+                        foreach (var request in setEntityHandle.Value)
                         {
-                            request.Reset(entities[entityHandle.Key]);
+                            request(entities[setEntityHandle.Key]);
                         }
                         continue;
                     }
 
-                    foreach (var request in entityHandle.Value)
+                    foreach (var request in setEntityHandle.Value)
                     {
-                        request.Reset(gameObjects[entityHandle.Key].GetComponent<FoxEntity>().Entity);
+                        request(gameObjects[setEntityHandle.Key].GetComponent<FoxEntity>().Entity);
                     }
                 }
                 else
                 {
-                    UnityEngine.Debug.LogError("Unable to resolve EntityHandle 0x" + entityHandle.Key.ToString("X8"));
+                    UnityEngine.Debug.LogError("Unable to resolve EntityHandle 0x" + setEntityHandle.Key.ToString("X8"));
                 }
             }
 
             // TODO EntityLink
         }
 
-        public void RequestEntityPtr(ulong address, IEntityPtr ptr)
+        public void RequestSetEntityPtr(ulong address, Action<Entity> setPtr)
         {
             if (address == 0)
             {
                 return;
             }
 
-            this.entityPtrRequests.Add(address, ptr);
+            this.entityPtrSetRequests.Add(address, setPtr);
         }
 
-        public void RequestEntityHandle(ulong address, EntityHandle ptr)
+        public void RequestSetEntityHandle(ulong address, Action<Entity> setHandle)
         {
             if (address == 0)
             {
                 return;
             }
 
-            if (!this.entityHandleRequests.ContainsKey(address))
+            if (!this.entityHandleSetRequests.ContainsKey(address))
             {
-                this.entityHandleRequests.Add(address, new HashSet<EntityHandle>());
+                this.entityHandleSetRequests.Add(address, new HashSet<Action<Entity>>());
             }
 
-            this.entityHandleRequests[address].Add(ptr);
+            this.entityHandleSetRequests[address].Add(setHandle);
         }
     }
 }

@@ -14,8 +14,8 @@ namespace Fox.FoxCore.Serialization
     public class DataSetFile2PropertyReader
     {
         private Func<ulong, string> unhashString;
-        private RequestEntityPtr requestEntityPtr;
-        private RequestEntityHandle requestEntityHandle;
+        private RequestSetEntityPtr requestSetEntityPtr;
+        private RequestSetEntityHandle requestSetEntityHandle;
 
         /// <summary>
         /// Sets the value of a property.
@@ -42,8 +42,8 @@ namespace Fox.FoxCore.Serialization
         /// <param name="value">The value to assign to the property.</param>
         public delegate void SetPropertyElementByKey(string propertyName, string key, Value value);
 
-        public delegate void RequestEntityPtr(ulong address, IEntityPtr ptr);
-        public delegate void RequestEntityHandle(ulong address, EntityHandle ptr);
+        public delegate void RequestSetEntityPtr(ulong address, Action<Entity> setEntityPtr);
+        public delegate void RequestSetEntityHandle(ulong address, Action<Entity> setEntityHandle);
 
         /// <summary>
         /// Callback to invoke when a property's name has been unhashed.
@@ -58,12 +58,12 @@ namespace Fox.FoxCore.Serialization
 
         public DataSetFile2PropertyReader(
             Func<ulong, string> unhashString,
-            RequestEntityPtr requestEntityPtr,
-            RequestEntityHandle requestEntityHandle)
+            RequestSetEntityPtr requestEntityPtr,
+            RequestSetEntityHandle requestEntityHandle)
         {
             this.unhashString = unhashString;
-            this.requestEntityPtr = requestEntityPtr;
-            this.requestEntityHandle = requestEntityHandle;
+            this.requestSetEntityPtr = requestEntityPtr;
+            this.requestSetEntityHandle = requestEntityHandle;
         }
 
         public void Read(
@@ -205,19 +205,13 @@ namespace Fox.FoxCore.Serialization
         private void ReadEntityHandle(BinaryReader reader, SetProperty setProperty, string name)
         {
             var address = reader.ReadUInt64();
-            var ptr = EntityHandle.Empty();
-            requestEntityHandle(address, ptr);
-
-            setProperty(name, new Value(ptr));
+            requestSetEntityHandle(address, (Entity ptr) => setProperty(name, new Value(EntityHandle.Get(ptr))));
         }
 
         private void ReadEntityPtr(BinaryReader reader, SetProperty setProperty, Type ptrType, string name)
         {
             var address = reader.ReadUInt64();
-            IEntityPtr ptr = Activator.CreateInstance(typeof(EntityPtr<>).MakeGenericType(ptrType)) as IEntityPtr;
-            requestEntityPtr(address, ptr);
-
-            setProperty(name, new Value(ptr));
+            requestSetEntityPtr(address, (Entity ptr) => { var entityPtr = Activator.CreateInstance(typeof(EntityPtr<>).MakeGenericType(ptrType)) as IEntityPtr; entityPtr.Reset(ptr); setProperty(name, new Value(entityPtr)); });
         }
 
         private Value ReadPropertyValue(BinaryReader reader, PropertyInfo.PropertyType type)

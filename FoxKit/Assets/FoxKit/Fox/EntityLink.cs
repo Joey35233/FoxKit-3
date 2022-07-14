@@ -7,7 +7,7 @@ namespace Fox.Core
     /// Stores a reference to an Entity.
     /// </summary>
     [Serializable]
-    public class EntityLink : System.IEquatable<EntityLink>
+    public struct EntityLink : System.IEquatable<EntityLink>
     {
         /// <summary>
         /// The referenced Entity.
@@ -34,6 +34,7 @@ namespace Fox.Core
 
         public EntityLink(Path packagePath, Path archivePath, Fox.String nameInArchive)
         {
+            this.handle = EntityHandle.Empty();
             this.packagePath = packagePath;
             this.archivePath = archivePath;
             this.nameInArchive = nameInArchive;

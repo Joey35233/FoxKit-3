@@ -11,7 +11,7 @@ namespace Fox.Core
     }
 
     [System.Serializable]
-    public class EntityPtr<T> : IEntityPtr where T : Entity
+    public struct EntityPtr<T> : IEntityPtr where T : Entity
     {
         [SerializeReference]
         private T _ptr;
@@ -44,11 +44,6 @@ namespace Fox.Core
         public EntityPtr(T entity)
         {
             this._ptr = entity;
-        }
-
-        public EntityPtr()
-        {
-            this._ptr = null;
         }
     }
 }

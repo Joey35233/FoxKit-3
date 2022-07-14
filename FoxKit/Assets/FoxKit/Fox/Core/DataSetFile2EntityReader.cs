@@ -15,13 +15,13 @@ namespace Fox.Core
 
     public class DataSetFile2AddressedEntityReader
     {
-        private RequestEntityPtr requestEntityPtr;
-        private RequestEntityHandle requestEntityHandle;
+        private RequestSetEntityPtr requestSetEntityPtr;
+        private RequestSetEntityHandle requestSetEntityHandle;
 
-        public DataSetFile2AddressedEntityReader(RequestEntityPtr requestEntityPtr, RequestEntityHandle requestEntityHandle)
+        public DataSetFile2AddressedEntityReader(RequestSetEntityPtr requestSetEntityPtr, RequestSetEntityHandle requestSetEntityHandle)
         {
-            this.requestEntityPtr = requestEntityPtr ?? throw new ArgumentNullException(nameof(requestEntityPtr));
-            this.requestEntityHandle = requestEntityHandle ?? throw new ArgumentNullException(nameof(requestEntityHandle));
+            this.requestSetEntityPtr = requestSetEntityPtr ?? throw new ArgumentNullException(nameof(requestSetEntityPtr));
+            this.requestSetEntityHandle = requestSetEntityHandle ?? throw new ArgumentNullException(nameof(requestSetEntityHandle));
         }
 
         public AddressedEntity Read(BinaryReader reader, Func<ulong, ushort, ulong, Entity> createEntity, Func<ulong, string> unhashString)
@@ -46,7 +46,7 @@ namespace Fox.Core
             SetPropertyElementByIndex setPropertyElementByIndex = entity.SetPropertyElement;
             SetPropertyElementByKey setPropertyElementByKey = entity.SetPropertyElement;
 
-            var propertyReader = new DataSetFile2PropertyReader(unhashString, requestEntityPtr, requestEntityHandle);
+            var propertyReader = new DataSetFile2PropertyReader(unhashString, requestSetEntityPtr, requestSetEntityHandle);
             for (var i = 0; i < staticPropertyCount; i++)
             {
                 propertyReader.Read(reader, 
