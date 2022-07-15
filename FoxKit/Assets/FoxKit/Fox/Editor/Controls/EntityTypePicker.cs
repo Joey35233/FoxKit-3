@@ -33,7 +33,7 @@ namespace Fox.Editor
             public static readonly string searchFieldUssClassName = ussClassName + "__search-field";
             public static readonly string typesListUssClassName = ussClassName + "__types-list";
 
-            public VisualElement visualInput { get; private set; };
+            public VisualElement visualInput { get; private set; }
 
             private readonly IList<EntityInfo> allItems = new List<EntityInfo>();
             private readonly List<EntityInfo> filteredItems = new List<EntityInfo>();
