@@ -38,7 +38,7 @@ namespace Fox.Editor
         }
     }
 
-    public class Int64Field : TextValueField<System.Int64>, IFoxField
+    public class Int64Field : TextValueField<System.Int64>, IFoxField, ICustomBindable
     {
         Int64Input integerInput => (Int64Input)textInputBase;
 
@@ -54,7 +54,7 @@ namespace Fox.Editor
         {
             System.Numerics.BigInteger v;
             ExpressionEvaluator.Evaluate(str, out v);
-            return NumericPropertyDrawers.ClampToInt64(v);
+            return NumericPropertyFields.ClampToInt64(v);
         }
 
         public new static readonly string ussClassName = "fox-int64-field";
@@ -95,16 +95,16 @@ namespace Fox.Editor
             integerInput.ApplyInputDeviceDelta(delta, speed, startValue);
         }
 
-        //public void BindProperty(SerializedProperty property)
-        //{
-        //    BindProperty(property, null);
-        //}
-        //public void BindProperty(SerializedProperty property, string label)
-        //{
-        //    if (label is not null)
-        //        this.label = label;
-        //    BindingExtensions.BindProperty(this, property);
-        //}
+        public void BindProperty(SerializedProperty property)
+        {
+            BindProperty(property, null);
+        }
+        public void BindProperty(SerializedProperty property, string label)
+        {
+            if (label is not null)
+                this.label = label;
+            BindingExtensions.BindProperty(this, property);
+        }
 
         class Int64Input : TextValueInput
         {
@@ -115,7 +115,7 @@ namespace Fox.Editor
                 formatString = "#################0";
             }
 
-            protected override string allowedCharacters => NumericPropertyDrawers.IntegerExpressionCharacterWhitelist;
+            protected override string allowedCharacters => NumericPropertyFields.IntegerExpressionCharacterWhitelist;
 
             public override void ApplyInputDeviceDelta(Vector3 delta, DeltaSpeed speed, System.Int64 startValue)
             {
@@ -125,11 +125,11 @@ namespace Fox.Editor
                 v += (System.Numerics.BigInteger)Math.Round(NumericFieldDraggerUtility.NiceDelta(delta, acceleration) * sensitivity);
                 if (parentIntegerField.isDelayed)
                 {
-                    text = ValueToString(NumericPropertyDrawers.ClampToInt64(v));
+                    text = ValueToString(NumericPropertyFields.ClampToInt64(v));
                 }
                 else
                 {
-                    parentIntegerField.value = NumericPropertyDrawers.ClampToInt64(v);
+                    parentIntegerField.value = NumericPropertyFields.ClampToInt64(v);
                 }
             }
 
@@ -142,7 +142,7 @@ namespace Fox.Editor
             {
                 System.Numerics.BigInteger v;
                 ExpressionEvaluator.Evaluate(str, out v);
-                return NumericPropertyDrawers.ClampToInt64(v);
+                return NumericPropertyFields.ClampToInt64(v);
             }
         }
     }

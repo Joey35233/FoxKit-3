@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Fox.Editor
 {
-    public class DoubleField : TextValueField<double>, IFoxField
+    public class DoubleField : TextValueField<double>, IFoxField, ICustomBindable
     {
         DoubleInput doubleInput => (DoubleInput)textInputBase;
 
@@ -23,7 +23,7 @@ namespace Fox.Editor
         protected override double StringToValue(string str)
         {
             double v;
-            NumericPropertyDrawers.StringToDouble(str, out v);
+            NumericPropertyFields.StringToDouble(str, out v);
             return v;
         }
 
@@ -72,16 +72,16 @@ namespace Fox.Editor
             doubleInput.ApplyInputDeviceDelta(delta, speed, startValue);
         }
 
-        //public void BindProperty(SerializedProperty property)
-        //{
-        //    BindProperty(property, null);
-        //}
-        //public void BindProperty(SerializedProperty property, string label)
-        //{
-        //    if (label is not null)
-        //        this.label = label;
-        //    BindingExtensions.BindProperty(this, property);
-        //}
+        public void BindProperty(SerializedProperty property)
+        {
+            BindProperty(property, null);
+        }
+        public void BindProperty(SerializedProperty property, string label)
+        {
+            if (label is not null)
+                this.label = label;
+            BindingExtensions.BindProperty(this, property);
+        }
 
         class DoubleInput : TextValueInput
         {
@@ -92,7 +92,7 @@ namespace Fox.Editor
                 formatString = "R";
             }
 
-            protected override string allowedCharacters => NumericPropertyDrawers.FloatExpressionCharacterWhitelist;
+            protected override string allowedCharacters => NumericPropertyFields.FloatExpressionCharacterWhitelist;
 
             public override void ApplyInputDeviceDelta(UnityEngine.Vector3 delta, DeltaSpeed speed, double startValue)
             {
@@ -100,7 +100,7 @@ namespace Fox.Editor
                 float acceleration = NumericFieldDraggerUtility.Acceleration(speed == DeltaSpeed.Fast, speed == DeltaSpeed.Slow);
                 double v = StringToValue(text);
                 v += NumericFieldDraggerUtility.NiceDelta(delta, acceleration) * sensitivity;
-                v = NumericPropertyDrawers.RoundBasedOnMinimumDifference(v, sensitivity);
+                v = NumericPropertyFields.RoundBasedOnMinimumDifference(v, sensitivity);
                 if (parentDoubleField.isDelayed)
                 {
                     text = ValueToString(v);
@@ -119,7 +119,7 @@ namespace Fox.Editor
             protected override double StringToValue(string str)
             {
                 double v;
-                NumericPropertyDrawers.StringToDouble(str, out v);
+                NumericPropertyFields.StringToDouble(str, out v);
                 return v;
             }
         }

@@ -101,9 +101,9 @@ namespace FoxKit
             }
             else
             {
-                var entity = dataSet.dataList[list.selectedIndex] as Data;
-                inspectedEntityLabel.text = entity.name + $" ({entity.GetType().Name})";
-                inspectedEntityProperties.Unbind();
+                //var entity = dataSet.dataList[list.selectedIndex] as Data;
+                //inspectedEntityLabel.text = entity.name + $" ({entity.GetType().Name})";
+                //inspectedEntityProperties.Unbind();
             }
 
             var dataListProperty = GetDataListProperty();

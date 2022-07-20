@@ -5,7 +5,7 @@ using System;
 
 namespace Fox.Editor
 {
-    public class Matrix4Field : BaseField<UnityEngine.Matrix4x4>, IFoxField
+    public class Matrix4Field : BaseField<UnityEngine.Matrix4x4>, IFoxField, ICustomBindable
     {
         private FloatField[,] InternalFields;
 
@@ -65,58 +65,60 @@ namespace Fox.Editor
             base.ExecuteDefaultActionAtTarget(evt);
 
             // UNITYENHANCEMENT: https://github.com/Joey35233/FoxKit-3/issues/12
-            Type evtType = evt.GetType();
-            if ((evtType.Name == "SerializedPropertyBindEvent") && !string.IsNullOrWhiteSpace(bindingPath))
+            if (evt.eventTypeId == FoxFieldUtils.SerializedPropertyBindEventTypeId && !string.IsNullOrWhiteSpace(bindingPath))
             {
-                SerializedProperty matrixProperty = evtType.GetProperty("bindProperty").GetValue(evt) as SerializedProperty;
+                SerializedProperty property = FoxFieldUtils.SerializedPropertyBindEventBindProperty.GetValue(evt) as SerializedProperty;
 
-                BindingExtensions.BindProperty(InternalFields[0, 0], matrixProperty.FindPropertyRelative("e00"));
-                BindingExtensions.BindProperty(InternalFields[0, 1], matrixProperty.FindPropertyRelative("e01"));
-                BindingExtensions.BindProperty(InternalFields[0, 2], matrixProperty.FindPropertyRelative("e02"));
-                BindingExtensions.BindProperty(InternalFields[0, 3], matrixProperty.FindPropertyRelative("e03"));
-                BindingExtensions.BindProperty(InternalFields[1, 0], matrixProperty.FindPropertyRelative("e10"));
-                BindingExtensions.BindProperty(InternalFields[1, 1], matrixProperty.FindPropertyRelative("e11"));
-                BindingExtensions.BindProperty(InternalFields[1, 2], matrixProperty.FindPropertyRelative("e12"));
-                BindingExtensions.BindProperty(InternalFields[1, 3], matrixProperty.FindPropertyRelative("e13"));
-                BindingExtensions.BindProperty(InternalFields[2, 0], matrixProperty.FindPropertyRelative("e20"));
-                BindingExtensions.BindProperty(InternalFields[2, 1], matrixProperty.FindPropertyRelative("e21"));
-                BindingExtensions.BindProperty(InternalFields[2, 2], matrixProperty.FindPropertyRelative("e22"));
-                BindingExtensions.BindProperty(InternalFields[2, 3], matrixProperty.FindPropertyRelative("e23"));
-                BindingExtensions.BindProperty(InternalFields[3, 0], matrixProperty.FindPropertyRelative("e30"));
-                BindingExtensions.BindProperty(InternalFields[3, 1], matrixProperty.FindPropertyRelative("e31"));
-                BindingExtensions.BindProperty(InternalFields[3, 2], matrixProperty.FindPropertyRelative("e32"));
-                BindingExtensions.BindProperty(InternalFields[3, 3], matrixProperty.FindPropertyRelative("e33"));
+                if (property.propertyType != SerializedPropertyType.Float)
+                {
+                    BindingExtensions.BindProperty(InternalFields[0, 0], property.FindPropertyRelative("e00"));
+                    BindingExtensions.BindProperty(InternalFields[0, 1], property.FindPropertyRelative("e01"));
+                    BindingExtensions.BindProperty(InternalFields[0, 2], property.FindPropertyRelative("e02"));
+                    BindingExtensions.BindProperty(InternalFields[0, 3], property.FindPropertyRelative("e03"));
+                    BindingExtensions.BindProperty(InternalFields[1, 0], property.FindPropertyRelative("e10"));
+                    BindingExtensions.BindProperty(InternalFields[1, 1], property.FindPropertyRelative("e11"));
+                    BindingExtensions.BindProperty(InternalFields[1, 2], property.FindPropertyRelative("e12"));
+                    BindingExtensions.BindProperty(InternalFields[1, 3], property.FindPropertyRelative("e13"));
+                    BindingExtensions.BindProperty(InternalFields[2, 0], property.FindPropertyRelative("e20"));
+                    BindingExtensions.BindProperty(InternalFields[2, 1], property.FindPropertyRelative("e21"));
+                    BindingExtensions.BindProperty(InternalFields[2, 2], property.FindPropertyRelative("e22"));
+                    BindingExtensions.BindProperty(InternalFields[2, 3], property.FindPropertyRelative("e23"));
+                    BindingExtensions.BindProperty(InternalFields[3, 0], property.FindPropertyRelative("e30"));
+                    BindingExtensions.BindProperty(InternalFields[3, 1], property.FindPropertyRelative("e31"));
+                    BindingExtensions.BindProperty(InternalFields[3, 2], property.FindPropertyRelative("e32"));
+                    BindingExtensions.BindProperty(InternalFields[3, 3], property.FindPropertyRelative("e33"));
 
-                // Stop the Matrix4Field itself's binding event; it's just a container for the actual BindableElements.
-                evt.StopPropagation();
+                    // Stop the Matrix4Field itself's binding event; it's just a container for the actual BindableElements.
+                    evt.StopPropagation();
+                }
             }
         }
 
-        //public void BindProperty(SerializedProperty property)
-        //{
-        //    BindProperty(property, null);
-        //}
-        //public void BindProperty(SerializedProperty property, string label)
-        //{
-        //    if (label is not null)
-        //        this.label = label;
-        //    BindingExtensions.BindProperty(InternalFields[0, 0], property.FindPropertyRelative("e00"));
-        //    BindingExtensions.BindProperty(InternalFields[0, 1], property.FindPropertyRelative("e01"));
-        //    BindingExtensions.BindProperty(InternalFields[0, 2], property.FindPropertyRelative("e02"));
-        //    BindingExtensions.BindProperty(InternalFields[0, 3], property.FindPropertyRelative("e03"));
-        //    BindingExtensions.BindProperty(InternalFields[1, 0], property.FindPropertyRelative("e10"));
-        //    BindingExtensions.BindProperty(InternalFields[1, 1], property.FindPropertyRelative("e11"));
-        //    BindingExtensions.BindProperty(InternalFields[1, 2], property.FindPropertyRelative("e12"));
-        //    BindingExtensions.BindProperty(InternalFields[1, 3], property.FindPropertyRelative("e13"));
-        //    BindingExtensions.BindProperty(InternalFields[2, 0], property.FindPropertyRelative("e20"));
-        //    BindingExtensions.BindProperty(InternalFields[2, 1], property.FindPropertyRelative("e21"));
-        //    BindingExtensions.BindProperty(InternalFields[2, 2], property.FindPropertyRelative("e22"));
-        //    BindingExtensions.BindProperty(InternalFields[2, 3], property.FindPropertyRelative("e23"));
-        //    BindingExtensions.BindProperty(InternalFields[3, 0], property.FindPropertyRelative("e30"));
-        //    BindingExtensions.BindProperty(InternalFields[3, 1], property.FindPropertyRelative("e31"));
-        //    BindingExtensions.BindProperty(InternalFields[3, 2], property.FindPropertyRelative("e32"));
-        //    BindingExtensions.BindProperty(InternalFields[3, 3], property.FindPropertyRelative("e33"));
-        //}
+        public void BindProperty(SerializedProperty property)
+        {
+            BindProperty(property, null);
+        }
+        public void BindProperty(SerializedProperty property, string label)
+        {
+            if (label is not null)
+                this.label = label;
+            BindingExtensions.BindProperty(InternalFields[0, 0], property.FindPropertyRelative("e00"));
+            BindingExtensions.BindProperty(InternalFields[0, 1], property.FindPropertyRelative("e01"));
+            BindingExtensions.BindProperty(InternalFields[0, 2], property.FindPropertyRelative("e02"));
+            BindingExtensions.BindProperty(InternalFields[0, 3], property.FindPropertyRelative("e03"));
+            BindingExtensions.BindProperty(InternalFields[1, 0], property.FindPropertyRelative("e10"));
+            BindingExtensions.BindProperty(InternalFields[1, 1], property.FindPropertyRelative("e11"));
+            BindingExtensions.BindProperty(InternalFields[1, 2], property.FindPropertyRelative("e12"));
+            BindingExtensions.BindProperty(InternalFields[1, 3], property.FindPropertyRelative("e13"));
+            BindingExtensions.BindProperty(InternalFields[2, 0], property.FindPropertyRelative("e20"));
+            BindingExtensions.BindProperty(InternalFields[2, 1], property.FindPropertyRelative("e21"));
+            BindingExtensions.BindProperty(InternalFields[2, 2], property.FindPropertyRelative("e22"));
+            BindingExtensions.BindProperty(InternalFields[2, 3], property.FindPropertyRelative("e23"));
+            BindingExtensions.BindProperty(InternalFields[3, 0], property.FindPropertyRelative("e30"));
+            BindingExtensions.BindProperty(InternalFields[3, 1], property.FindPropertyRelative("e31"));
+            BindingExtensions.BindProperty(InternalFields[3, 2], property.FindPropertyRelative("e32"));
+            BindingExtensions.BindProperty(InternalFields[3, 3], property.FindPropertyRelative("e33"));
+        }
     }
 
     [CustomPropertyDrawer(typeof(UnityEngine.Matrix4x4))]

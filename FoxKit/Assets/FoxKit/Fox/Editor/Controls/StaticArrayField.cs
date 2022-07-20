@@ -6,11 +6,11 @@ using UnityEngine.UIElements;
 
 namespace Fox.Editor
 {
-    public class StaticArrayField<T> : BaseField<Fox.Core.StaticArray<T>>, IFoxField
+    public class StaticArrayField<T> : BaseField<Fox.Core.StaticArray<T>>, IFoxField, ICustomBindable
     {
         private ListView ListViewInput;
 
-        private static Func<IFoxField> FieldConstructor = FoxFieldUtils.GetTypeFieldConstructorWithLabelPlaceholder(typeof(T));
+        private static Func<IFoxField> FieldConstructor = FoxFieldUtils.GetTypeFieldConstructor(typeof(T));
 
         public new static readonly string ussClassName = "fox-staticarray-field";
         public new static readonly string labelUssClassName = ussClassName + "__label";
@@ -55,14 +55,15 @@ namespace Fox.Editor
             base.ExecuteDefaultActionAtTarget(evt);
 
             // UNITYENHANCEMENT: https://github.com/Joey35233/FoxKit-3/issues/12
-            Type evtType = evt.GetType();
-            if ((evtType.Name == "SerializedPropertyBindEvent") && !string.IsNullOrWhiteSpace(bindingPath))
+            if (evt.eventTypeId == FoxFieldUtils.SerializedPropertyBindEventTypeId && !string.IsNullOrWhiteSpace(bindingPath))
             {
-                SerializedProperty staticArrayProperty = evtType.GetProperty("bindProperty").GetValue(evt) as SerializedProperty;
+                SerializedProperty property = FoxFieldUtils.SerializedPropertyBindEventBindProperty.GetValue(evt) as SerializedProperty;
+                if (!property.isArray)
+                {
+                    BindingExtensions.BindProperty(ListViewInput, property.FindPropertyRelative("_list"));
 
-                BindingExtensions.BindProperty(ListViewInput, staticArrayProperty.FindPropertyRelative("_list"));
-
-                evt.StopPropagation();
+                    evt.StopPropagation();
+                }
             }
         }
 
@@ -74,29 +75,28 @@ namespace Fox.Editor
         private void BindItem(VisualElement element, int index)
         {
             SerializedProperty itemProperty = ListViewInput.itemsSource[index] as SerializedProperty;
-            (element as IFoxField).BindProperty(itemProperty);
+            (element as ICustomBindable).BindProperty(itemProperty, $"[{index}]");
 
             element.AddToClassList(BaseCompositeField<UnityEngine.Vector4, FloatField, float>.fieldUssClassName);
             element.AddToClassList(BaseCompositeField<UnityEngine.Vector4, FloatField, float>.firstFieldVariantUssClassName);
 
-            Label label = element.Q<Label>();
-            label.text = $"[{index}]";
+            Label label = element.Q<Label>(className: BaseField<float>.labelUssClassName);
             label.style.minWidth = 40;
             label.style.flexBasis = 40;
 
             return;
         }
 
-        //public void BindProperty(SerializedProperty property)
-        //{
-        //    BindProperty(property, null);
-        //}
-        //public void BindProperty(SerializedProperty property, string label)
-        //{
-        //    if (label is not null)
-        //        this.label = label;
-        //    BindingExtensions.BindProperty(ListViewInput, property.FindPropertyRelative("_list"));
-        //}
+        public void BindProperty(SerializedProperty property)
+        {
+            BindProperty(property, null);
+        }
+        public void BindProperty(SerializedProperty property, string label)
+        {
+            if (label is not null)
+                this.label = label;
+            BindingExtensions.BindProperty(ListViewInput, property.FindPropertyRelative("_list"));
+        }
     }
 
     [CustomPropertyDrawer(typeof(Core.StaticArray<>))]

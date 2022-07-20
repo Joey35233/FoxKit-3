@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 
 namespace Fox.Editor
 {
-    public class FilePtrField : TextField, IFoxField
+    public class FilePtrField : TextField, IFoxField, ICustomBindable
     {
         public new static readonly string ussClassName = "fox-fileptr-field";
         public new static readonly string labelUssClassName = ussClassName + "__label";
@@ -42,37 +42,32 @@ namespace Fox.Editor
             base.ExecuteDefaultActionAtTarget(evt);
 
             // UNITYENHANCEMENT: https://github.com/Joey35233/FoxKit-3/issues/12
-            Type evtType = evt.GetType();
-            if ((evtType.Name == "SerializedPropertyBindEvent") && !string.IsNullOrWhiteSpace(bindingPath))
+            if (evt.eventTypeId == FoxFieldUtils.SerializedPropertyBindEventTypeId && !string.IsNullOrWhiteSpace(bindingPath))
             {
-                SerializedProperty filePtrProperty = evtType.GetProperty("bindProperty").GetValue(evt) as SerializedProperty;
+                SerializedProperty property = FoxFieldUtils.SerializedPropertyBindEventBindProperty.GetValue(evt) as SerializedProperty;
 
-                if (filePtrProperty.propertyType == SerializedPropertyType.String)
+                if (property.propertyType != SerializedPropertyType.String)
                 {
-
-                }
-                else
-                {
-                    BindingExtensions.BindProperty(this, filePtrProperty.FindPropertyRelative("path._cString"));
+                    BindingExtensions.BindProperty(this, property.FindPropertyRelative("path._cString"));
 
                     evt.StopPropagation();
                 }
             }
         }
 
-        //public void BindProperty(SerializedProperty property)
-        //{
-        //    BindProperty(property, null);
-        //}
-        //public void BindProperty(SerializedProperty property, string label)
-        //{
-        //    if (label is not null)
-        //        this.label = label;
-        //    BindingExtensions.BindProperty(this, property.FindPropertyRelative("path._cString"));
-        //}
+        public void BindProperty(SerializedProperty property)
+        {
+            BindProperty(property, null);
+        }
+        public void BindProperty(SerializedProperty property, string label)
+        {
+            if (label is not null)
+                this.label = label;
+            BindingExtensions.BindProperty(this, property.FindPropertyRelative("path._cString"));
+        }
     }
 
-    [CustomPropertyDrawer(typeof(FilePtr<>))]
+    [CustomPropertyDrawer(typeof(FilePtr))]
     public class FilePtrDrawer : PropertyDrawer
     {
         public override VisualElement CreatePropertyGUI(SerializedProperty property)

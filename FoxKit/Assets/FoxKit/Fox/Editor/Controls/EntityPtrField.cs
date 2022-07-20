@@ -9,7 +9,7 @@ using UnityEngine.UIElements;
 
 namespace Fox.Editor
 {
-    public class EntityPtrField<T> : BaseField<Fox.Core.EntityPtr<T>>, IFoxField 
+    public class EntityPtrField<T> : BaseField<Fox.Core.EntityPtr<T>>, IFoxField, ICustomBindable
         where T : Entity, new()
     {
         private VisualElement PropertyContainer;
@@ -80,12 +80,12 @@ namespace Fox.Editor
         {
             base.ExecuteDefaultActionAtTarget(evt);
 
+            // UNITYENHANCEMENT: https://github.com/Joey35233/FoxKit-3/issues/12
             if (evt.eventTypeId == FoxFieldUtils.SerializedPropertyBindEventTypeId && !string.IsNullOrWhiteSpace(bindingPath))
             {
-                // UNITYENHANCEMENT: https://github.com/Joey35233/FoxKit-3/issues/12
-                SerializedProperty entityPtrProperty = FoxFieldUtils.SerializedPropertyBindEventType.GetProperty("bindProperty").GetValue(evt) as SerializedProperty;
+                SerializedProperty property = FoxFieldUtils.SerializedPropertyBindEventBindProperty.GetValue(evt) as SerializedProperty;
 
-                PtrProperty = entityPtrProperty.FindPropertyRelative("_ptr");
+                PtrProperty = property.FindPropertyRelative("_ptr");
 
                 BindingExtensions.TrackPropertyValue(this, PtrProperty, OnPropertyChanged);
 
@@ -128,12 +128,9 @@ namespace Fox.Editor
 
                 PropertyContainer.visible = true;
                 PropertyContainer.Clear();
-                foreach (SerializedProperty child in PtrProperty.GetChildren())
-                {
-                    var propField = new PropertyField(child);
-                    propField.BindProperty(child);
-                    PropertyContainer.Add(propField);
-                }
+                ICustomBindable entityField = Activator.CreateInstance(typeof(EntityField<>).MakeGenericType(new Type[] { typeof(T) })) as ICustomBindable;
+                entityField.BindProperty(PtrProperty);
+                PropertyContainer.Add(entityField as VisualElement);
             }
         }
 
@@ -163,17 +160,21 @@ namespace Fox.Editor
             }
         }
 
-        //public void BindProperty(SerializedProperty property)
-        //{
-        //    BindProperty(property, null);
-        //}
-        //public void BindProperty(SerializedProperty property, string label)
-        //{
-        //    if (label is not null)
-        //        this.label = label;
+        public void BindProperty(SerializedProperty property)
+        {
+            BindProperty(property, null);
+        }
+        public void BindProperty(SerializedProperty property, string label)
+        {
+            if (label is not null)
+                this.label = label;
 
-        //    BindingExtensions.BindProperty(this, property);
-        //}
+            PtrProperty = property.FindPropertyRelative("_ptr");
+
+            BindingExtensions.TrackPropertyValue(this, PtrProperty, OnPropertyChanged);
+
+            OnPropertyChanged(null);
+        }
     }
 
     [CustomPropertyDrawer(typeof(Core.EntityPtr<>))]

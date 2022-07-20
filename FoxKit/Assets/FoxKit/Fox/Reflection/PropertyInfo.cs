@@ -83,6 +83,11 @@ namespace Fox.Core
         }
 
         /// <summary>
+        /// Name of the property.
+        /// </summary>
+        public String Name { get; }
+
+        /// <summary>
         /// Type of data stored in the property.
         /// </summary>
         public PropertyType Type { get; }
@@ -129,6 +134,7 @@ namespace Fox.Core
 
         public PropertyInfo
         (
+            String name,
             PropertyType type,
             uint offset,
             uint arraySize = 1,
@@ -140,6 +146,7 @@ namespace Fox.Core
             PropertyStorage storage = PropertyStorage.Instance
         )
         {
+            this.Name = name;
             this.Type = type;
             this.Offset = offset;
             this.ArraySize = arraySize;
@@ -149,6 +156,86 @@ namespace Fox.Core
             this.Enum = enumType;
             this.Readable = readable;
             this.Writable = writable;
+        }
+
+        public static Type GetTypeFromPropertyInfo(PropertyInfo propertyInfo)
+        {
+            PropertyType propertyType = propertyInfo.Type;
+
+            switch (propertyType)
+            {
+                case PropertyType.Int8:
+                    return typeof(System.SByte);
+
+                case PropertyType.UInt8:
+                    return typeof(System.Byte);
+
+                case PropertyType.Int16:
+                    return typeof(System.Int16);
+
+                case PropertyType.UInt16:
+                    return typeof(System.UInt16);
+
+                case PropertyType.Int32:
+                    return typeof(System.Int32);
+
+                case PropertyType.UInt32:
+                    return typeof(System.UInt32);
+
+                case PropertyType.Int64:
+                    return typeof(System.Int64);
+
+                case PropertyType.UInt64:
+                    return typeof(System.UInt64);
+
+                case PropertyType.Float:
+                    return typeof(System.Single);
+
+                case PropertyType.Double:
+                    return typeof(System.Double);
+
+                case PropertyType.Bool:
+                    return typeof(bool);
+
+                case PropertyType.String:
+                    return typeof(String);
+
+                case PropertyType.Path:
+                    return typeof(Path);
+
+                case PropertyType.EntityPtr:
+                    return typeof(EntityPtr<>).MakeGenericType(new Type[] { propertyInfo.PtrType });
+
+                case PropertyType.Vector3:
+                    return typeof(UnityEngine.Vector3);
+
+                case PropertyType.Vector4:
+                    return typeof(UnityEngine.Vector4);
+
+                case PropertyType.Quat:
+                    return typeof(UnityEngine.Quaternion);
+
+                //case PropertyType.Matrix3:
+                //    return typeof(UnityEngine.Matrix3x3);
+
+                case PropertyType.Matrix4:
+                    return typeof(UnityEngine.Matrix4x4);
+
+                case PropertyType.Color:
+                    return typeof(UnityEngine.Color);
+
+                case PropertyType.FilePtr:
+                    return typeof(FilePtr);
+
+                case PropertyType.EntityHandle:
+                    return typeof(EntityHandle);
+
+                case PropertyType.EntityLink:
+                    return typeof(EntityLink);
+
+                default:
+                    throw new ArgumentException($"Invalid Fox type: {propertyType}.");
+            }
         }
     }
 }

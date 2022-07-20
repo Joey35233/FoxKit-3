@@ -8,7 +8,7 @@ namespace Fox.Core
     {
         [SerializeReference]
         private Entity _entity;
-        public Entity Entity { get => _entity; }
+        public Entity Entity { get => _entity; set { _entity = value; } }
 
         private EntityHandle(Entity entity)
         {

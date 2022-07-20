@@ -38,51 +38,66 @@ namespace Fox.Editor
         }
     }
 
-    public class UInt32Field : TextValueField<System.UInt32>, INotifyValueChanged<int>, IFoxField
+    public class UInt32Field : TextValueField<System.UInt32>, INotifyValueChanged<int>, IFoxField, ICustomBindable
     {
-        System.UInt32 unpackedInternalValue;
-        int INotifyValueChanged<int>.value
+        public override System.UInt32 value
         {
-            get
-            {
-                int packedInternalValue = unchecked((int)unpackedInternalValue);
-                return packedInternalValue;
-            }
+            get => base.value;
             set
             {
-                System.UInt32 unpackedValue = unchecked((System.UInt32)value);
-                if (unpackedValue != unpackedInternalValue)
+                System.UInt32 newValue = value;
+                int packedNewValue = unchecked((int)newValue);
+                if (newValue != this.value)
                 {
                     if (panel != null)
                     {
-                        int packedInternalValue = unchecked((int)unpackedInternalValue);
-                        using (ChangeEvent<int> evt = ChangeEvent<int>.GetPooled(packedInternalValue, value))
+                        int packedOldValue = unchecked((int)this.value);
+
+                        // Sends ChangeEvent<System.UInt32> and uses its SetValueWithoutNotify function
+                        base.value = newValue;
+
+                        using (ChangeEvent<int> evt = ChangeEvent<int>.GetPooled(packedOldValue, packedNewValue))
                         {
                             evt.target = this;
-                            ((INotifyValueChanged<int>)this).SetValueWithoutNotify(value);
-                            SetValueWithoutNotify(unpackedValue);
                             SendEvent(evt);
                         }
                     }
                     else
                     {
-                        ((INotifyValueChanged<int>)this).SetValueWithoutNotify(value);
-                        SetValueWithoutNotify(unpackedValue);
+                        SetValueWithoutNotify(newValue);
                     }
                 }
             }
         }
-        public override void SetValueWithoutNotify(System.UInt32 newValue)
+        int INotifyValueChanged<int>.value
         {
-            ((INotifyValueChanged<int>)this).value = unchecked((int)newValue);
+            get => unchecked((int)this.value);
+            set
+            {
+                System.UInt32 newValue = unchecked((System.UInt32)value);
+                if (newValue != this.value)
+                {
+                    if (panel != null)
+                    {
+                        int packedOldValue = unchecked((int)this.value);
 
-            base.SetValueWithoutNotify(newValue);
+                        // Sends ChangeEvent<System.UInt32> and uses its SetValueWithoutNotify function
+                        base.value = newValue;
+
+                        using (ChangeEvent<int> evt = ChangeEvent<int>.GetPooled(packedOldValue, value))
+                        {
+                            evt.target = this;
+                            SendEvent(evt);
+                        }
+                    }
+                    else
+                    {
+                        SetValueWithoutNotify(newValue);
+                    }
+                }
+            }
         }
-        void INotifyValueChanged<int>.SetValueWithoutNotify(int newValue)
-        {
-            System.UInt32 unpackedNewValue = unchecked((System.UInt32)newValue);
-            unpackedInternalValue = unpackedNewValue;
-        }
+        void INotifyValueChanged<int>.SetValueWithoutNotify(int newValue) { throw new NotImplementedException(); }
 
         UInt32Input integerInput => (UInt32Input)textInputBase;
 
@@ -98,7 +113,7 @@ namespace Fox.Editor
         {
             System.Numerics.BigInteger v;
             ExpressionEvaluator.Evaluate(str, out v);
-            return NumericPropertyDrawers.ClampToUInt32(v);
+            return NumericPropertyFields.ClampToUInt32(v);
         }
 
         public new static readonly string ussClassName = "fox-uint32-field";
@@ -139,16 +154,16 @@ namespace Fox.Editor
             integerInput.ApplyInputDeviceDelta(delta, speed, startValue);
         }
 
-        //public void BindProperty(SerializedProperty property)
-        //{
-        //    BindProperty(property, null);
-        //}
-        //public void BindProperty(SerializedProperty property, string label)
-        //{
-        //    if (label is not null)
-        //        this.label = label;
-        //    BindingExtensions.BindProperty(this, property);
-        //}
+        public void BindProperty(SerializedProperty property)
+        {
+            BindProperty(property, null);
+        }
+        public void BindProperty(SerializedProperty property, string label)
+        {
+            if (label is not null)
+                this.label = label;
+            BindingExtensions.BindProperty(this, property);
+        }
 
         class UInt32Input : TextValueInput
         {
@@ -159,7 +174,7 @@ namespace Fox.Editor
                 formatString = "#######0";
             }
 
-            protected override string allowedCharacters => NumericPropertyDrawers.IntegerExpressionCharacterWhitelist;
+            protected override string allowedCharacters => NumericPropertyFields.IntegerExpressionCharacterWhitelist;
 
             public override void ApplyInputDeviceDelta(Vector3 delta, DeltaSpeed speed, System.UInt32 startValue)
             {
@@ -169,11 +184,11 @@ namespace Fox.Editor
                 v += (System.Numerics.BigInteger)Math.Round(NumericFieldDraggerUtility.NiceDelta(delta, acceleration) * sensitivity);
                 if (parentIntegerField.isDelayed)
                 {
-                    text = ValueToString(NumericPropertyDrawers.ClampToUInt32(v));
+                    text = ValueToString(NumericPropertyFields.ClampToUInt32(v));
                 }
                 else
                 {
-                    parentIntegerField.value = NumericPropertyDrawers.ClampToUInt32(v);
+                    parentIntegerField.value = NumericPropertyFields.ClampToUInt32(v);
                 }
             }
 
@@ -186,7 +201,7 @@ namespace Fox.Editor
             {
                 System.Numerics.BigInteger v;
                 ExpressionEvaluator.Evaluate(str, out v);
-                return NumericPropertyDrawers.ClampToUInt32(v);
+                return NumericPropertyFields.ClampToUInt32(v);
             }
         }
     }

@@ -30,9 +30,9 @@ namespace Fox.Core
         /// The referenced Entity's name.
         /// </summary>
         [SerializeField]
-        private Fox.String nameInArchive;
+        private Fox.Core.String nameInArchive;
 
-        public EntityLink(Path packagePath, Path archivePath, Fox.String nameInArchive)
+        public EntityLink(Path packagePath, Path archivePath, Fox.Core.String nameInArchive)
         {
             this.handle = EntityHandle.Empty();
             this.packagePath = packagePath;

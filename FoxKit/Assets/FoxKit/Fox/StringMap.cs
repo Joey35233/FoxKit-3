@@ -20,7 +20,7 @@ namespace Fox.Core
     }
 
     [Serializable]
-    public class StringMap<T> : IStringMap, IList
+    public class StringMap<T> : IStringMap, IList, IEnumerable<KeyValuePair<String, T>>
     {
         private const uint InitialSize = 256;
         private const uint LoadFactor = 90;
@@ -405,9 +405,71 @@ namespace Fox.Core
             throw new NotImplementedException();
         }
 
-        public IEnumerator GetEnumerator()
+        IEnumerator IEnumerable.GetEnumerator()
         {
             throw new NotImplementedException();
+        }
+
+        public IEnumerator<KeyValuePair<String, T>> GetEnumerator()
+        {
+            return new Enumerator(this);
+        }
+
+        public struct Enumerator : IEnumerator<KeyValuePair<String, T>>, IDictionaryEnumerator
+        {
+            private StringMap<T> stringMap;
+            private int absoluteCellsIndex;
+            private int index;
+            private KeyValuePair<String, T> current;
+
+            internal Enumerator(StringMap<T> stringMap)
+            {
+                this.stringMap = stringMap;
+                absoluteCellsIndex = 0;
+                index = 0;
+                current = new KeyValuePair<String, T>();
+            }
+
+            public bool MoveNext()
+            {
+                while ((uint)index < (uint)stringMap.Count)
+                {
+                    var cell = stringMap.Cells[absoluteCellsIndex];
+                    if (cell.Key is not null && !cell.Key.IsPseudoNull())
+                    {
+                        current = new KeyValuePair<String, T>(stringMap.Cells[absoluteCellsIndex].Key, stringMap.Cells[absoluteCellsIndex].Value);
+                        absoluteCellsIndex++;
+                        index++;
+                        return true;
+                    }
+                    absoluteCellsIndex++;
+                }
+
+                index = stringMap.Count + 1;
+                current = new KeyValuePair<String, T>();
+                return false;
+            }
+
+            public KeyValuePair<String, T> Current => current;
+
+            public void Dispose()
+            {
+            }
+
+            object IEnumerator.Current => (index == 0 || (index == stringMap.Count + 1)) ? throw new IndexOutOfRangeException() : new KeyValuePair<String, T>(current.Key, current.Value);
+
+            void IEnumerator.Reset()
+            {
+                absoluteCellsIndex = 0;
+                index = 0;
+                current = new KeyValuePair<String, T>();
+            }
+
+            DictionaryEntry IDictionaryEnumerator.Entry => (index == 0 || (index == stringMap.Count + 1)) ? throw new IndexOutOfRangeException() : new DictionaryEntry(current.Key, current.Value);
+
+            object IDictionaryEnumerator.Key => (index == 0 || (index == stringMap.Count + 1)) ? throw new IndexOutOfRangeException() : current.Key;
+
+            object IDictionaryEnumerator.Value => (index == 0 || (index == stringMap.Count + 1)) ? throw new IndexOutOfRangeException() : current.Value;
         }
     }
 }

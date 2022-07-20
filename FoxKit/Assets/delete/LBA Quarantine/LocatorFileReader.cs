@@ -227,16 +227,16 @@ namespace Fox
             return result;
         }
 
-        private static Fox.String UnhashLocatorName(uint hash)
+        private static Fox.Core.String UnhashLocatorName(uint hash)
         {
             // TODO
-            return new Fox.String(hash.ToString());
+            return new Fox.Core.String(hash.ToString());
         }
 
-        private static Fox.String UnhashDataSetName(uint hash)
+        private static Fox.Core.String UnhashDataSetName(uint hash)
         {
             // TODO
-            return new Fox.String(hash.ToString());
+            return new Fox.Core.String(hash.ToString());
         }
 
         private PowerCutAreaLocatorBinary ReadPowerCutAreaLocator()
@@ -246,14 +246,14 @@ namespace Fox
             return new PowerCutAreaLocatorBinary(translation, rotation);
         }
 
-        private NamedLocatorBinary ReadNamedLocator(Fox.String locatorName, Fox.String dataSetName)
+        private NamedLocatorBinary ReadNamedLocator(Fox.Core.String locatorName, Fox.Core.String dataSetName)
         {
             var translation = this.ReadVector4();
             var rotation = this.ReadQuaternion();
             return new NamedLocatorBinary(translation, rotation, locatorName, dataSetName);
         }
 
-        private ScaledLocatorBinary ReadScaledLocator(Fox.String locatorName, Fox.String dataSetName)
+        private ScaledLocatorBinary ReadScaledLocator(Fox.Core.String locatorName, Fox.Core.String dataSetName)
         {
             var translation = this.ReadVector4();
             var rotation = this.ReadQuaternion();

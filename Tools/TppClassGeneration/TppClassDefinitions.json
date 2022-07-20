@@ -12676,7 +12676,7 @@
       {
         "arraySize": 1,
         "container": "StaticArray",
-        "enum": null,
+        "enum": "PhRigidBodyType",
         "exportFlag": "  ",
         "name": "motionType",
         "offset": 156,
@@ -21423,7 +21423,7 @@
       {
         "arraySize": 1,
         "container": "StaticArray",
-        "enum": null,
+        "enum": "SimLodLevelName",
         "exportFlag": "rw",
         "name": "minLodLevel",
         "offset": 48,
@@ -21434,7 +21434,7 @@
       {
         "arraySize": 1,
         "container": "StaticArray",
-        "enum": null,
+        "enum": "SimLodLevelName",
         "exportFlag": "rw",
         "name": "maxLodLevel",
         "offset": 52,

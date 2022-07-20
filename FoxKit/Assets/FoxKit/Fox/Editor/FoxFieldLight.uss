@@ -1,7 +1,6 @@
 .unity-collection-view__item > .unity-base-field__label
 {
     -unity-font: url("Fonts/CascadiaCode-SemiLight.ttf");
-    -unity-font-definition: none;
 }
 
 .fox-entityptr-field__header

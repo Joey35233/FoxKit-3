@@ -4,7 +4,7 @@ using UnityEditor.UIElements;
 
 namespace Fox.Editor
 {
-    public class EnumField : UnityEngine.UIElements.EnumField, IFoxField
+    public class EnumField : UnityEngine.UIElements.EnumField, IFoxField, ICustomBindable
     {
         public new static readonly string ussClassName = "fox-enum-field";
         public new static readonly string labelUssClassName = ussClassName + "__label";
@@ -31,19 +31,19 @@ namespace Fox.Editor
             this.styleSheets.Add(IFoxField.FoxFieldStyleSheet);
         }
 
-        //public void BindProperty(SerializedProperty property)
-        //{
-        //    BindProperty(property, null);
-        //}
-        //public void BindProperty(SerializedProperty property, string label)
-        //{
-        //    if (label is not null)
-        //        this.label = label;
-        //    BindingExtensions.BindProperty(this, property);
-        //}
+        public void BindProperty(SerializedProperty property)
+        {
+            BindProperty(property, null);
+        }
+        public void BindProperty(SerializedProperty property, string label)
+        {
+            if (label is not null)
+                this.label = label;
+            BindingExtensions.BindProperty(this, property);
+        }
     }
 
-    public class EnumFlagsField : UnityEditor.UIElements.EnumFlagsField, IFoxField
+    public class EnumFlagsField : UnityEditor.UIElements.EnumFlagsField, IFoxField, ICustomBindable
     {
         public new static readonly string ussClassName = "fox-enumflags-field";
         public new static readonly string labelUssClassName = ussClassName + "__label";
@@ -70,16 +70,16 @@ namespace Fox.Editor
             this.styleSheets.Add(IFoxField.FoxFieldStyleSheet);
         }
 
-        //public void BindProperty(SerializedProperty property)
-        //{
-        //    BindProperty(property, null);
-        //}
-        //public void BindProperty(SerializedProperty property, string label)
-        //{
-        //    if (label is not null)
-        //        this.label = label;
-        //    BindingExtensions.BindProperty(this, property);
-        //}
+        public void BindProperty(SerializedProperty property)
+        {
+            BindProperty(property, null);
+        }
+        public void BindProperty(SerializedProperty property, string label)
+        {
+            if (label is not null)
+                this.label = label;
+            BindingExtensions.BindProperty(this, property);
+        }
     }
 
     [CustomPropertyDrawer(typeof(System.Enum), true)]
@@ -87,7 +87,7 @@ namespace Fox.Editor
     {
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
         {
-            var valueType = property.GetValue().GetType();
+            var valueType = fieldInfo.FieldType;
             bool valueTypeHasFlagsAttribute = valueType.IsDefined(typeof(System.FlagsAttribute), false);
 
             IFoxField foxField = null;

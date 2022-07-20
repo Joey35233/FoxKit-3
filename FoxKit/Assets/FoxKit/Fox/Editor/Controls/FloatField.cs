@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Fox.Editor
 {
-    public class FloatField : TextValueField<float>, IFoxField
+    public class FloatField : TextValueField<float>, IFoxField, ICustomBindable
     {
         FloatInput floatInput => (FloatInput)textInputBase;
 
@@ -21,8 +21,8 @@ namespace Fox.Editor
         protected override float StringToValue(string str)
         {
             double v;
-            NumericPropertyDrawers.StringToDouble(str, out v);
-            return NumericPropertyDrawers.ClampToFloat(v);
+            NumericPropertyFields.StringToDouble(str, out v);
+            return NumericPropertyFields.ClampToFloat(v);
         }
 
         public new static readonly string ussClassName = "fox-float-field";
@@ -64,16 +64,16 @@ namespace Fox.Editor
             floatInput.ApplyInputDeviceDelta(delta, speed, startValue);
         }
 
-        //public void BindProperty(SerializedProperty property)
-        //{
-        //    BindProperty(property, null);
-        //}
-        //public void BindProperty(SerializedProperty property, string label)
-        //{
-        //    if (label is not null)
-        //        this.label = label;
-        //    BindingExtensions.BindProperty(this, property);
-        //}
+        public void BindProperty(SerializedProperty property)
+        {
+            BindProperty(property, null);
+        }
+        public void BindProperty(SerializedProperty property, string label)
+        {
+            if (label is not null)
+                this.label = label;
+            BindingExtensions.BindProperty(this, property);
+        }
 
         class FloatInput : TextValueInput
         {
@@ -84,7 +84,7 @@ namespace Fox.Editor
                 formatString = "g7";
             }
 
-            protected override string allowedCharacters => NumericPropertyDrawers.FloatExpressionCharacterWhitelist;
+            protected override string allowedCharacters => NumericPropertyFields.FloatExpressionCharacterWhitelist;
 
             public override void ApplyInputDeviceDelta(Vector3 delta, DeltaSpeed speed, float startValue)
             {
@@ -92,14 +92,14 @@ namespace Fox.Editor
                 float acceleration = NumericFieldDraggerUtility.Acceleration(speed == DeltaSpeed.Fast, speed == DeltaSpeed.Slow);
                 double v = StringToValue(text);
                 v += NumericFieldDraggerUtility.NiceDelta(delta, acceleration) * sensitivity;
-                v = NumericPropertyDrawers.RoundBasedOnMinimumDifference(v, sensitivity);
+                v = NumericPropertyFields.RoundBasedOnMinimumDifference(v, sensitivity);
                 if (parentFloatField.isDelayed)
                 {
-                    text = ValueToString(NumericPropertyDrawers.ClampToFloat(v));
+                    text = ValueToString(NumericPropertyFields.ClampToFloat(v));
                 }
                 else
                 {
-                    parentFloatField.value = NumericPropertyDrawers.ClampToFloat(v);
+                    parentFloatField.value = NumericPropertyFields.ClampToFloat(v);
                 }
             }
 
@@ -111,8 +111,8 @@ namespace Fox.Editor
             protected override float StringToValue(string str)
             {
                 double v;
-                NumericPropertyDrawers.StringToDouble(str, out v);
-                return NumericPropertyDrawers.ClampToFloat(v);
+                NumericPropertyFields.StringToDouble(str, out v);
+                return NumericPropertyFields.ClampToFloat(v);
             }
         }
     }

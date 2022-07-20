@@ -38,51 +38,66 @@ namespace Fox.Editor
         }
     }
 
-    public class UInt64Field : TextValueField<System.UInt64>, INotifyValueChanged<long>, IFoxField
+    public class UInt64Field : TextValueField<System.UInt64>, INotifyValueChanged<long>, IFoxField, ICustomBindable
     {
-        System.UInt64 unpackedInternalValue;
-        long INotifyValueChanged<long>.value
+        public override System.UInt64 value
         {
-            get
-            {
-                long packedInternalValue = unchecked((long)unpackedInternalValue);
-                return packedInternalValue;
-            }
+            get => base.value;
             set
             {
-                System.UInt64 unpackedValue = unchecked((System.UInt64)value);
-                if (unpackedValue != unpackedInternalValue)
+                System.UInt64 newValue = value;
+                long packedNewValue = unchecked((long)newValue);
+                if (newValue != this.value)
                 {
                     if (panel != null)
                     {
-                        long packedInternalValue = unchecked((long)unpackedInternalValue);
-                        using (ChangeEvent<long> evt = ChangeEvent<long>.GetPooled(packedInternalValue, value))
+                        long packedOldValue = unchecked((long)this.value);
+
+                        // Sends ChangeEvent<System.UInt64> and uses its SetValueWithoutNotify function
+                        base.value = newValue;
+
+                        using (ChangeEvent<long> evt = ChangeEvent<long>.GetPooled(packedOldValue, packedNewValue))
                         {
                             evt.target = this;
-                            ((INotifyValueChanged<long>)this).SetValueWithoutNotify(value);
-                            SetValueWithoutNotify(unpackedValue);
                             SendEvent(evt);
                         }
                     }
                     else
                     {
-                        ((INotifyValueChanged<long>)this).SetValueWithoutNotify(value);
-                        SetValueWithoutNotify(unpackedValue);
+                        SetValueWithoutNotify(newValue);
                     }
                 }
             }
         }
-        public override void SetValueWithoutNotify(System.UInt64 newValue)
+        long INotifyValueChanged<long>.value
         {
-            ((INotifyValueChanged<long>)this).value = unchecked((long)newValue);
+            get => unchecked((long)this.value);
+            set
+            {
+                System.UInt64 newValue = unchecked((System.UInt64)value);
+                if (newValue != this.value)
+                {
+                    if (panel != null)
+                    {
+                        long packedOldValue = unchecked((long)this.value);
 
-            base.SetValueWithoutNotify(newValue);
+                        // Sends ChangeEvent<System.UInt64> and uses its SetValueWithoutNotify function
+                        base.value = newValue;
+
+                        using (ChangeEvent<long> evt = ChangeEvent<long>.GetPooled(packedOldValue, value))
+                        {
+                            evt.target = this;
+                            SendEvent(evt);
+                        }
+                    }
+                    else
+                    {
+                        SetValueWithoutNotify(newValue);
+                    }
+                }
+            }
         }
-        void INotifyValueChanged<long>.SetValueWithoutNotify(long newValue)
-        {
-            System.UInt64 unpackedNewValue = unchecked((System.UInt64)newValue);
-            unpackedInternalValue = unpackedNewValue;
-        }
+        void INotifyValueChanged<long>.SetValueWithoutNotify(long newValue) { throw new NotImplementedException(); }
 
         UInt64Input integerInput => (UInt64Input)textInputBase;
 
@@ -98,7 +113,7 @@ namespace Fox.Editor
         {
             System.Numerics.BigInteger v;
             ExpressionEvaluator.Evaluate(str, out v);
-            return NumericPropertyDrawers.ClampToUInt64(v);
+            return NumericPropertyFields.ClampToUInt64(v);
         }
 
         public new static readonly string ussClassName = "fox-uint64-field";
@@ -139,16 +154,16 @@ namespace Fox.Editor
             integerInput.ApplyInputDeviceDelta(delta, speed, startValue);
         }
 
-        //public void BindProperty(SerializedProperty property)
-        //{
-        //    BindProperty(property, null);
-        //}
-        //public void BindProperty(SerializedProperty property, string label)
-        //{
-        //    if (label is not null)
-        //        this.label = label;
-        //    BindingExtensions.BindProperty(this, property);
-        //}
+        public void BindProperty(SerializedProperty property)
+        {
+            BindProperty(property, null);
+        }
+        public void BindProperty(SerializedProperty property, string label)
+        {
+            if (label is not null)
+                this.label = label;
+            BindingExtensions.BindProperty(this, property);
+        }
 
         class UInt64Input : TextValueInput
         {
@@ -159,7 +174,7 @@ namespace Fox.Editor
                 formatString = "#################0";
             }
 
-            protected override string allowedCharacters => NumericPropertyDrawers.IntegerExpressionCharacterWhitelist;
+            protected override string allowedCharacters => NumericPropertyFields.IntegerExpressionCharacterWhitelist;
 
             public override void ApplyInputDeviceDelta(Vector3 delta, DeltaSpeed speed, System.UInt64 startValue)
             {
@@ -169,11 +184,11 @@ namespace Fox.Editor
                 v += (System.Numerics.BigInteger)Math.Round(NumericFieldDraggerUtility.NiceDelta(delta, acceleration) * sensitivity);
                 if (parentIntegerField.isDelayed)
                 {
-                    text = ValueToString(NumericPropertyDrawers.ClampToUInt64(v));
+                    text = ValueToString(NumericPropertyFields.ClampToUInt64(v));
                 }
                 else
                 {
-                    parentIntegerField.value = NumericPropertyDrawers.ClampToUInt64(v);
+                    parentIntegerField.value = NumericPropertyFields.ClampToUInt64(v);
                 }
             }
 
@@ -186,7 +201,7 @@ namespace Fox.Editor
             {
                 System.Numerics.BigInteger v;
                 ExpressionEvaluator.Evaluate(str, out v);
-                return NumericPropertyDrawers.ClampToUInt64(v);
+                return NumericPropertyFields.ClampToUInt64(v);
             }
         }
     }

@@ -5,7 +5,7 @@ using System;
 
 namespace Fox.Editor
 {
-    public class Vector3Field : BaseField<UnityEngine.Vector3>, IFoxField
+    public class Vector3Field : BaseField<UnityEngine.Vector3>, IFoxField, ICustomBindable
     {
         private FloatField XField;
         private FloatField YField;
@@ -56,32 +56,34 @@ namespace Fox.Editor
             base.ExecuteDefaultActionAtTarget(evt);
 
             // UNITYENHANCEMENT: https://github.com/Joey35233/FoxKit-3/issues/12
-            Type evtType = evt.GetType();
-            if ((evtType.Name == "SerializedPropertyBindEvent") && !string.IsNullOrWhiteSpace(bindingPath))
+            if (evt.eventTypeId == FoxFieldUtils.SerializedPropertyBindEventTypeId && !string.IsNullOrWhiteSpace(bindingPath))
             {
-                SerializedProperty vector3Property = evtType.GetProperty("bindProperty").GetValue(evt) as SerializedProperty;
+                SerializedProperty property = FoxFieldUtils.SerializedPropertyBindEventBindProperty.GetValue(evt) as SerializedProperty;
 
-                BindingExtensions.BindProperty(XField, vector3Property.FindPropertyRelative("x"));
-                BindingExtensions.BindProperty(YField, vector3Property.FindPropertyRelative("y"));
-                BindingExtensions.BindProperty(ZField, vector3Property.FindPropertyRelative("z"));
+                if (property.propertyType != SerializedPropertyType.Float)
+                {
+                    BindingExtensions.BindProperty(XField, property.FindPropertyRelative("x"));
+                    BindingExtensions.BindProperty(YField, property.FindPropertyRelative("y"));
+                    BindingExtensions.BindProperty(ZField, property.FindPropertyRelative("z"));
 
-                // Stop the Vector3Field itself's binding event; it's just a container for the actual BindableElements.
-                evt.StopPropagation();
+                    // Stop the Vector3Field itself's binding event; it's just a container for the actual BindableElements.
+                    evt.StopPropagation();
+                }
             }
         }
 
-        //public void BindProperty(SerializedProperty property)
-        //{
-        //    BindProperty(property, null);
-        //}
-        //public void BindProperty(SerializedProperty property, string label)
-        //{
-        //    if (label is not null)
-        //        this.label = label;
-        //    BindingExtensions.BindProperty(XField, property.FindPropertyRelative("x"));
-        //    BindingExtensions.BindProperty(YField, property.FindPropertyRelative("y"));
-        //    BindingExtensions.BindProperty(ZField, property.FindPropertyRelative("z"));
-        //}
+        public void BindProperty(SerializedProperty property)
+        {
+            BindProperty(property, null);
+        }
+        public void BindProperty(SerializedProperty property, string label)
+        {
+            if (label is not null)
+                this.label = label;
+            BindingExtensions.BindProperty(XField, property.FindPropertyRelative("x"));
+            BindingExtensions.BindProperty(YField, property.FindPropertyRelative("y"));
+            BindingExtensions.BindProperty(ZField, property.FindPropertyRelative("z"));
+        }
     }
 
     [CustomPropertyDrawer(typeof(UnityEngine.Vector3))]

@@ -38,51 +38,66 @@ namespace Fox.Editor
         }
     }
 
-    public class Int8Field : TextValueField<System.SByte>, INotifyValueChanged<int>, IFoxField
+    public class Int8Field : TextValueField<System.SByte>, INotifyValueChanged<int>, IFoxField, ICustomBindable
     {
-        System.SByte unpackedInternalValue;
-        int INotifyValueChanged<int>.value
+        public override System.SByte value
         {
-            get
-            {
-                int packedInternalValue = unchecked((int)unpackedInternalValue);
-                return packedInternalValue;
-            }
+            get => base.value;
             set
             {
-                System.SByte unpackedValue = unchecked((System.SByte)value);
-                if (unpackedValue != unpackedInternalValue)
+                System.SByte newValue = value;
+                int packedNewValue = unchecked((int)newValue);
+                if (newValue != this.value)
                 {
                     if (panel != null)
                     {
-                        int packedInternalValue = unchecked((int)unpackedInternalValue);
-                        using (ChangeEvent<int> evt = ChangeEvent<int>.GetPooled(packedInternalValue, value))
+                        int packedOldValue = unchecked((int)this.value);
+
+                        // Sends ChangeEvent<System.SByte> and uses its SetValueWithoutNotify function
+                        base.value = newValue;
+
+                        using (ChangeEvent<int> evt = ChangeEvent<int>.GetPooled(packedOldValue, packedNewValue))
                         {
                             evt.target = this;
-                            ((INotifyValueChanged<int>)this).SetValueWithoutNotify(value);
-                            SetValueWithoutNotify(unpackedValue);
                             SendEvent(evt);
                         }
                     }
                     else
                     {
-                        ((INotifyValueChanged<int>)this).SetValueWithoutNotify(value);
-                        SetValueWithoutNotify(unpackedValue);
+                        SetValueWithoutNotify(newValue);
                     }
                 }
             }
         }
-        public override void SetValueWithoutNotify(System.SByte newValue)
+        int INotifyValueChanged<int>.value
         {
-            ((INotifyValueChanged<int>)this).value = unchecked((int)newValue);
+            get => unchecked((int)this.value);
+            set
+            {
+                System.SByte newValue = unchecked((System.SByte)value);
+                if (newValue != this.value)
+                {
+                    if (panel != null)
+                    {
+                        int packedOldValue = unchecked((int)this.value);
 
-            base.SetValueWithoutNotify(newValue);
+                        // Sends ChangeEvent<System.SByte> and uses its SetValueWithoutNotify function
+                        base.value = newValue;
+
+                        using (ChangeEvent<int> evt = ChangeEvent<int>.GetPooled(packedOldValue, value))
+                        {
+                            evt.target = this;
+                            SendEvent(evt);
+                        }
+                    }
+                    else
+                    {
+                        SetValueWithoutNotify(newValue);
+                    }
+                }
+            }
         }
-        void INotifyValueChanged<int>.SetValueWithoutNotify(int newValue)
-        {
-            System.SByte unpackedNewValue = unchecked((System.SByte)newValue);
-            unpackedInternalValue = unpackedNewValue;
-        }
+        void INotifyValueChanged<int>.SetValueWithoutNotify(int newValue) { throw new NotImplementedException(); }
 
         Int8Input integerInput => (Int8Input)textInputBase;
 
@@ -98,7 +113,7 @@ namespace Fox.Editor
         {
             int v;
             ExpressionEvaluator.Evaluate(str, out v);
-            return NumericPropertyDrawers.ClampToInt8(v);
+            return NumericPropertyFields.ClampToInt8(v);
         }
 
         public new static readonly string ussClassName = "fox-int8-field";
@@ -139,16 +154,16 @@ namespace Fox.Editor
             integerInput.ApplyInputDeviceDelta(delta, speed, startValue);
         }
 
-        //public void BindProperty(SerializedProperty property)
-        //{
-        //    BindProperty(property, null);
-        //}
-        //public void BindProperty(SerializedProperty property, string label)
-        //{
-        //    if (label is not null)
-        //        this.label = label;
-        //    BindingExtensions.BindProperty(this, property);
-        //}
+        public void BindProperty(SerializedProperty property)
+        {
+            BindProperty(property, null);
+        }
+        public void BindProperty(SerializedProperty property, string label)
+        {
+            if (label is not null)
+                this.label = label;
+            BindingExtensions.BindProperty(this, property);
+        }
 
         class Int8Input : TextValueInput
         {
@@ -159,7 +174,7 @@ namespace Fox.Editor
                 formatString = "0";
             }
 
-            protected override string allowedCharacters => NumericPropertyDrawers.IntegerExpressionCharacterWhitelist;
+            protected override string allowedCharacters => NumericPropertyFields.IntegerExpressionCharacterWhitelist;
 
             public override void ApplyInputDeviceDelta(Vector3 delta, DeltaSpeed speed, System.SByte startValue)
             {
@@ -169,11 +184,11 @@ namespace Fox.Editor
                 v += (int)Math.Round(NumericFieldDraggerUtility.NiceDelta(delta, acceleration) * sensitivity);
                 if (parentIntegerField.isDelayed)
                 {
-                    text = ValueToString(NumericPropertyDrawers.ClampToInt8(v));
+                    text = ValueToString(NumericPropertyFields.ClampToInt8(v));
                 }
                 else
                 {
-                    parentIntegerField.value = NumericPropertyDrawers.ClampToInt8(v);
+                    parentIntegerField.value = NumericPropertyFields.ClampToInt8(v);
                 }
             }
 
@@ -186,7 +201,7 @@ namespace Fox.Editor
             {
                 int v;
                 ExpressionEvaluator.Evaluate(str, out v);
-                return NumericPropertyDrawers.ClampToInt8(v);
+                return NumericPropertyFields.ClampToInt8(v);
             }
         }
     }

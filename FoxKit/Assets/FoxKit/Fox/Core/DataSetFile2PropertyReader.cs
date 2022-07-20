@@ -113,7 +113,8 @@ namespace Fox.FoxCore.Serialization
             {
                 // Entity references can't be resolved until the referenced Entity is loaded.
                 // Register a callback to assign the property value once the Entity has been loaded.
-                SetProperty setProperty = (name, val) => setPropertyElementByIndex(name, i, val);
+                ushort index = i;
+                SetProperty setProperty = (name, val) => setPropertyElementByIndex(name, index, val);
                 if (dataType == PropertyInfo.PropertyType.EntityPtr)
                 {
                     ReadEntityPtr(reader, setProperty, ptrType, name);
@@ -129,7 +130,7 @@ namespace Fox.FoxCore.Serialization
                 else
                 {
                     var value = ReadPropertyValue(reader, dataType);
-                    setPropertyElementByIndex(name, i, value);
+                    setPropertyElementByIndex(name, index, value);
                 }
             }
         }
@@ -245,7 +246,7 @@ namespace Fox.FoxCore.Serialization
                 case PropertyInfo.PropertyType.Path:
                     return new Value(Path.FromFilePath(unhashString(reader.ReadUInt64())));
                 case PropertyInfo.PropertyType.FilePtr:
-                    return new Value(new FilePtr<Fox.Core.File>(unhashString(reader.ReadUInt64())));
+                    return new Value(new FilePtr(unhashString(reader.ReadUInt64())));
                 case PropertyInfo.PropertyType.Vector3:
                     return new Value(ReadVector3(reader));
                 case PropertyInfo.PropertyType.Vector4:

@@ -5,7 +5,7 @@ using UnityEngine.UIElements;
 
 namespace Fox.Editor
 {
-    public class EntityLinkField : BaseField<Fox.Core.EntityLink>, IFoxField
+    public class EntityLinkField : BaseField<Fox.Core.EntityLink>, IFoxField, ICustomBindable
     {
         private PathField InternalPackagePathField;
         private PathField InternalArchivePathField;
@@ -75,32 +75,33 @@ namespace Fox.Editor
             base.ExecuteDefaultActionAtTarget(evt);
 
             // UNITYENHANCEMENT: https://github.com/Joey35233/FoxKit-3/issues/12
-            Type evtType = evt.GetType();
-            if ((evtType.Name == "SerializedPropertyBindEvent") && !string.IsNullOrWhiteSpace(bindingPath))
+            if (evt.eventTypeId == FoxFieldUtils.SerializedPropertyBindEventTypeId && !string.IsNullOrWhiteSpace(bindingPath))
             {
-                SerializedProperty entityLinkProperty = evtType.GetProperty("bindProperty").GetValue(evt) as SerializedProperty;
+                SerializedProperty property = FoxFieldUtils.SerializedPropertyBindEventBindProperty.GetValue(evt) as SerializedProperty;
 
-                InternalPackagePathField.BindProperty(entityLinkProperty.FindPropertyRelative("packagePath"));
-                InternalArchivePathField.BindProperty(entityLinkProperty.FindPropertyRelative("archivePath"));
-                InternalNameField.BindProperty(entityLinkProperty.FindPropertyRelative("nameInArchive"));
+                if (property.type == "EntityLink")
+                {
+                    InternalPackagePathField.BindProperty(property.FindPropertyRelative("packagePath"));
+                    InternalArchivePathField.BindProperty(property.FindPropertyRelative("archivePath"));
+                    InternalNameField.BindProperty(property.FindPropertyRelative("nameInArchive"));
 
-                evt.StopPropagation();
+                    evt.StopPropagation();
+                }
             }
         }
 
-        //public void BindProperty(SerializedProperty property)
-        //{
-        //    BindProperty(property, null);
-        //}
-        //public void BindProperty(SerializedProperty property, string label)
-        //{
-        //    if (label is not null)
-        //        this.label = label;
-        //    InternalHandleField.BindProperty(property.FindPropertyRelative("handle"));
-        //    InternalPackagePathField.BindProperty(property.FindPropertyRelative("packagePath"));
-        //    InternalArchivePathField.BindProperty(property.FindPropertyRelative("archivePath"));
-        //    InternalNameField.BindProperty(property.FindPropertyRelative("nameInArchive"));
-        //}
+        public void BindProperty(SerializedProperty property)
+        {
+            BindProperty(property, null);
+        }
+        public void BindProperty(SerializedProperty property, string label)
+        {
+            if (label is not null)
+                this.label = label;
+            InternalPackagePathField.BindProperty(property.FindPropertyRelative("packagePath"));
+            InternalArchivePathField.BindProperty(property.FindPropertyRelative("archivePath"));
+            InternalNameField.BindProperty(property.FindPropertyRelative("nameInArchive"));
+        }
     }
 
     [CustomPropertyDrawer(typeof(Fox.Core.EntityLink))]

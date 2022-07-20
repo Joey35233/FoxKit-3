@@ -10,32 +10,7 @@ using UnityEngine.UIElements;
 
 namespace Fox.Editor
 {
-    // UNITYENHANCEMENT: https://github.com/Joey35233/FoxKit-3/issues/11
-    public class CellField : VisualElement
-    {
-        public StringField KeyField;
-        public BindableElement DataField;
-
-        public CellField(BindableElement dataField)
-        {
-            KeyField = new StringField();
-            KeyField.SetEnabled(false);
-            KeyField.style.flexBasis = new StyleLength(StyleKeyword.Auto);
-            KeyField.style.flexGrow = 0;
-            KeyField.AddToClassList(BaseCompositeField<UnityEngine.Vector3, FloatField, float>.firstFieldVariantUssClassName);
-            KeyField.AddToClassList(BaseCompositeField<UnityEngine.Vector3, FloatField, float>.fieldUssClassName);
-
-            DataField = dataField;
-            DataField.AddToClassList(BaseCompositeField<UnityEngine.Vector3, FloatField, float>.fieldUssClassName);
-
-            this.Add(KeyField);
-            this.Add(DataField);
-
-            this.style.flexDirection = FlexDirection.Row;
-        }
-    }
-
-    public class StringMapField<T> : BaseField<Fox.Core.StringMap<T>>, IFoxField
+    public class StringMapField<T> : BaseField<Fox.Core.StringMap<T>>, IFoxField, ICustomBindable
     {
         private ListView ListViewInput;
 
@@ -109,19 +84,22 @@ namespace Fox.Editor
         {
             base.ExecuteDefaultActionAtTarget(evt);
 
-            Type evtType = evt.GetType();
+            // UNITYENHANCEMENT: https://github.com/Joey35233/FoxKit-3/issues/12
             if (evt.eventTypeId == FoxFieldUtils.SerializedPropertyBindEventTypeId && !string.IsNullOrWhiteSpace(bindingPath))
             {
-                // UNITYENHANCEMENT: https://github.com/Joey35233/FoxKit-3/issues/12
-                SerializedProperty stringMapProperty = evtType.GetProperty("bindProperty").GetValue(evt) as SerializedProperty;
-                StringMapProperty = stringMapProperty;
+                SerializedProperty property = FoxFieldUtils.SerializedPropertyBindEventBindProperty.GetValue(evt) as SerializedProperty;
 
-                BindingExtensions.TrackPropertyValue(this, StringMapProperty, OnPropertyChanged);
+                if (property.type.StartsWith("Fox.Core.StringMap"))
+                {
+                    StringMapProperty = property;
 
-                OnPropertyChanged(null);
+                    BindingExtensions.TrackPropertyValue(this, StringMapProperty, OnPropertyChanged);
 
-                // Stop the StringMapField itself's binding event; it's just a container for the actual BindableElements.
-                evt.StopPropagation();
+                    OnPropertyChanged(null);
+
+                    // Stop the StringMapField itself's binding event; it's just a container for the actual BindableElements.
+                    evt.StopPropagation();
+                }
             }
         }
         private void OnPropertyChanged(SerializedProperty property)
@@ -132,7 +110,7 @@ namespace Fox.Editor
 
         private void AddButton_clicked()
         {
-            String key = StringMapKeyPicker.ShowPopup();
+            string key = StringMapKeyPicker.ShowPopup();
             if (key != null)
             {
                 // StringMapProperty.serializedObject.Update();
@@ -185,7 +163,7 @@ namespace Fox.Editor
             field.AddToClassList(BaseCompositeField<UnityEngine.Vector4, FloatField, float>.fieldUssClassName);
             field.AddToClassList(BaseCompositeField<UnityEngine.Vector4, FloatField, float>.firstFieldVariantUssClassName);
 
-            Label label = field.KeyField.labelElement;
+            Label label = field.labelElement;
             label.text = $"[{index}]";
             label.style.minWidth = 40;
             label.style.flexBasis = 40;
@@ -201,7 +179,55 @@ namespace Fox.Editor
         {
             if (label is not null)
                 this.label = label;
-            BindingExtensions.BindProperty(this, property);
+            StringMapProperty = property.Copy();
+
+            BindingExtensions.TrackPropertyValue(this, StringMapProperty, OnPropertyChanged);
+
+            OnPropertyChanged(null);
+        }
+
+        private class CellField : VisualElement
+        {
+            public StringField KeyField;
+            public BindableElement DataField;
+
+            public static readonly string ussClassName = "fox-stringmap-cell-field";
+            public static readonly string labelUssClassName = ussClassName + "__label";
+            public static readonly string inputUssClassName = ussClassName + "__input";
+
+            public Label labelElement;
+            public VisualElement visualInput { get; }
+
+            public CellField(BindableElement dataField)
+            {
+                labelElement = new Label();
+                this.Add(labelElement);
+
+                visualInput = new VisualElement();
+                this.Add(visualInput);
+
+                KeyField = new StringField();
+                KeyField.SetEnabled(false);
+                KeyField.style.flexBasis = new StyleLength(StyleKeyword.Auto);
+                KeyField.style.flexGrow = 0;
+                KeyField.AddToClassList(BaseCompositeField<UnityEngine.Vector3, FloatField, float>.firstFieldVariantUssClassName);
+                KeyField.AddToClassList(BaseCompositeField<UnityEngine.Vector3, FloatField, float>.fieldUssClassName);
+                visualInput.Add(KeyField);
+
+                DataField = dataField;
+                DataField.AddToClassList(BaseCompositeField<UnityEngine.Vector3, FloatField, float>.fieldUssClassName);
+                visualInput.Add(DataField);
+
+                AddToClassList(ussClassName);
+                labelElement.AddToClassList(BaseField<float>.ussClassName);
+                AddToClassList(BaseCompositeField<UnityEngine.Vector4, FloatField, float>.ussClassName);
+                labelElement.AddToClassList(labelUssClassName);
+                labelElement.AddToClassList(BaseField<float>.labelUssClassName);
+                labelElement.AddToClassList(BaseCompositeField<UnityEngine.Vector4, FloatField, float>.labelUssClassName);
+                visualInput.AddToClassList(inputUssClassName);
+                visualInput.AddToClassList(BaseField<float>.inputUssClassName);
+                visualInput.AddToClassList(BaseCompositeField<UnityEngine.Vector4, FloatField, float>.inputUssClassName);
+            }
         }
     }
 

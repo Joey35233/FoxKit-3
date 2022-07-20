@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Fox.Core;
+using System;
 using System.Collections.Generic;
 using System.Reflection;
 using UnityEditor;
@@ -8,12 +9,10 @@ using Object = UnityEngine.Object;
 
 namespace Fox.Editor
 {
-    public class ObjectField : /*TextInput*/BaseField<Object>
+    public class EntityHandleFieldTest : BaseField<FoxEntity>
     {
-
-        public override void SetValueWithoutNotify(Object newValue)
+        public override void SetValueWithoutNotify(FoxEntity newValue)
         {
-            newValue = TryReadComponentFromGameObject(newValue, objectType);
             var valueChanged = !EqualityComparer<Object>.Default.Equals(this.value, newValue);
 
             base.SetValueWithoutNotify(newValue);
@@ -24,84 +23,35 @@ namespace Fox.Editor
             }
         }
 
-        private Type m_objectType;
-
-        /// <summary>
-        /// The type of the objects that can be assigned.
-        /// </summary>
-        public Type objectType
-        {
-            get { return m_objectType; }
-            set
-            {
-                if (m_objectType != value)
-                {
-                    m_objectType = value;
-                    m_ObjectFieldDisplay.Update();
-                }
-            }
-        }
-
-        /// <summary>
-        /// Allows scene objects to be assigned to the field.
-        /// </summary>
-        public bool allowSceneObjects { get; set; }
-
-        protected override void UpdateMixedValueContent()
-        {
-            m_ObjectFieldDisplay?.ShowMixedValue(showMixedValue);
-        }
-
         private class ObjectFieldDisplay : VisualElement
         {
-            private readonly ObjectField m_ObjectField;
-            private readonly Image m_ObjectIcon;
+            private readonly EntityHandleFieldTest m_ObjectField;
             private readonly Label m_ObjectLabel;
 
             static readonly string ussClassName = "unity-object-field-display";
-            static readonly string iconUssClassName = ussClassName + "__icon";
             static readonly string labelUssClassName = ussClassName + "__label";
             static readonly string acceptDropVariantUssClassName = ussClassName + "--accept-drop";
 
-            internal void ShowMixedValue(bool show)
-            {
-                if (show)
-                {
-                    m_ObjectLabel.text = mixedValueString;
-                    m_ObjectLabel.AddToClassList(mixedValueLabelUssClassName);
-                    m_ObjectIcon.image = null;
-                }
-                else
-                {
-                    m_ObjectLabel.RemoveFromClassList(mixedValueLabelUssClassName);
-                    Update();
-                }
-            }
-
-            public ObjectFieldDisplay(ObjectField objectField)
+            public ObjectFieldDisplay(EntityHandleFieldTest objectField)
             {
                 AddToClassList(ussClassName);
-                m_ObjectIcon = new Image { scaleMode = ScaleMode.ScaleAndCrop, pickingMode = PickingMode.Ignore };
-                m_ObjectIcon.AddToClassList(iconUssClassName);
                 m_ObjectLabel = new Label { pickingMode = PickingMode.Ignore };
                 m_ObjectLabel.AddToClassList(labelUssClassName);
                 m_ObjectField = objectField;
 
                 Update();
 
-                Add(m_ObjectIcon);
                 Add(m_ObjectLabel);
             }
 
+            // JOEY: This is the fundamental display code. This whole inner class needs to be hooked into the TextValueField.
             public void Update()
             {
-                GUIContent content = EditorGUIUtility.ObjectContent(m_ObjectField.value, m_ObjectField.objectType);
-                m_ObjectIcon.image = content.image;
+                GUIContent content = EditorGUIUtility.ObjectContent(m_ObjectField.value, typeof(FoxEntity));
                 m_ObjectLabel.text = content.text;
             }
 
-            [EventInterest(typeof(MouseDownEvent), typeof(KeyDownEvent),
-                typeof(DragUpdatedEvent), typeof(DragPerformEvent), typeof(DragLeaveEvent))]
+            [EventInterest(typeof(MouseDownEvent), typeof(KeyDownEvent), typeof(DragUpdatedEvent), typeof(DragPerformEvent), typeof(DragLeaveEvent))]
             protected override void ExecuteDefaultActionAtTarget(EventBase evt)
             {
                 base.ExecuteDefaultActionAtTarget(evt);
@@ -154,12 +104,9 @@ namespace Fox.Editor
 
             private void OnMouseDown(MouseDownEvent evt)
             {
-                Object actualTargetObject = m_ObjectField.value;
-                Component com = actualTargetObject as Component;
-                if (com)
-                    actualTargetObject = com.gameObject;
+                GameObject targetGameObject = m_ObjectField.value?.gameObject;
 
-                if (actualTargetObject == null)
+                if (targetGameObject == null)
                     return;
 
                 // One click shows where the referenced object is, or pops up a preview
@@ -167,18 +114,18 @@ namespace Fox.Editor
                 {
                     // ping object
                     bool anyModifiersPressed = evt.shiftKey || evt.ctrlKey;
-                    if (!anyModifiersPressed && actualTargetObject)
+                    if (!anyModifiersPressed && targetGameObject)
                     {
-                        EditorGUIUtility.PingObject(actualTargetObject);
+                        EditorGUIUtility.PingObject(targetGameObject);
                     }
                     evt.StopPropagation();
                 }
                 // Double click opens the asset in external app or changes selection to referenced object
                 else if (evt.clickCount == 2)
                 {
-                    if (actualTargetObject)
+                    if (targetGameObject)
                     {
-                        AssetDatabase.OpenAsset(actualTargetObject);
+                        AssetDatabase.OpenAsset(targetGameObject);
                         GUIUtility.ExitGUI();
                     }
                     evt.StopPropagation();
@@ -195,37 +142,23 @@ namespace Fox.Editor
                 m_ObjectField.value = null;
             }
 
-            private Object DNDValidateObject()
+            private FoxEntity GetDragAndDropObject()
             {
                 Object[] references = DragAndDrop.objectReferences;
-                // Object validatedObject = EditorGUI.ValidateObjectFieldAssignment(references, m_ObjectField.objectType, null, EditorGUI.ObjectFieldValidatorOptions.None);
-                Object validatedObject = null;
-                if (references[0] != null && references[0] is GameObject && typeof(Component).IsAssignableFrom(m_ObjectField.objectType))
+
+                FoxEntity validatedObject = null;
+                if (references[0] != null && references[0] is GameObject && (references[0] as GameObject).TryGetComponent<FoxEntity>(out validatedObject))
                 {
-                    GameObject go = (GameObject)references[0];
-                    references = go.GetComponents(typeof(Component));
-                }
-                foreach (Object i in references)
-                {
-                    if (i != null && m_ObjectField.objectType.IsAssignableFrom(i.GetType()))
-                    {
-                        validatedObject = i;
-                        break;
-                    }
+                    if (!EditorUtility.IsPersistent(validatedObject))
+                        return validatedObject;
                 }
 
-                if (validatedObject != null)
-                {
-                    // If scene objects are not allowed and object is a scene object then clear
-                    if (!m_ObjectField.allowSceneObjects && !EditorUtility.IsPersistent(validatedObject))
-                        validatedObject = null;
-                }
-                return validatedObject;
+                return null;
             }
 
             private void OnDragUpdated(EventBase evt)
             {
-                Object validatedObject = DNDValidateObject();
+                FoxEntity validatedObject = GetDragAndDropObject();
                 if (validatedObject != null)
                 {
                     DragAndDrop.visualMode = DragAndDropVisualMode.Generic;
@@ -237,7 +170,7 @@ namespace Fox.Editor
 
             private void OnDragPerform(EventBase evt)
             {
-                Object validatedObject = DNDValidateObject();
+                FoxEntity validatedObject = GetDragAndDropObject();
                 if (validatedObject != null)
                 {
                     DragAndDrop.visualMode = DragAndDropVisualMode.Generic;
@@ -251,11 +184,12 @@ namespace Fox.Editor
             }
         }
 
+        // Literally just a button that calls this.ShowObjectSelector
         private class ObjectFieldSelector : VisualElement
         {
-            private readonly ObjectField m_ObjectField;
+            private readonly EntityHandleFieldTest m_ObjectField;
 
-            public ObjectFieldSelector(ObjectField objectField)
+            public ObjectFieldSelector(EntityHandleFieldTest objectField)
             {
                 m_ObjectField = objectField;
             }
@@ -283,23 +217,22 @@ namespace Fox.Editor
 
         public VisualElement visualInput { get; }
 
-        public ObjectField()
+        public EntityHandleFieldTest()
             : this(null) { }
-        public ObjectField(string label)
+
+        public EntityHandleFieldTest(string label)
             : this(label, new VisualElement())
         {
         }
 
-        private ObjectField(string label, VisualElement visInput)
-            : base(label, visInput)
+        private EntityHandleFieldTest(string label, VisualElement visualInput)
+            : base(label, new VisualElement())
         {
             visualInput.focusable = false;
             labelElement.focusable = false;
 
             AddToClassList(ussClassName);
             labelElement.AddToClassList(labelUssClassName);
-
-            allowSceneObjects = true;
 
             m_ObjectFieldDisplay = new ObjectFieldDisplay(this) { focusable = true };
             m_ObjectFieldDisplay.AddToClassList(objectUssClassName);
@@ -325,94 +258,16 @@ namespace Fox.Editor
             });
         }
 
-        internal void OnObjectChanged(Object obj)
+        private FoxEntity TryReadFoxEntityFromGameObject(Object obj)
         {
-            value = TryReadComponentFromGameObject(obj, objectType);
+            var gameObject = obj as GameObject;
+
+            return gameObject?.GetComponent<FoxEntity>();
         }
 
         internal void ShowObjectSelector()
         {
-            // Since we have nothing useful to do on the object selector closing action, we just do not assign any callback
-            // All the object changes will be notified through the OnObjectChanged and a "cancellation" (Escape key) on the ObjectSelector is calling the closing callback without any good object
-            ObjectSelector.Show(value, objectType, null, allowSceneObjects, null, null, OnObjectChanged);
-        }
-
-        private Object TryReadComponentFromGameObject(Object obj, Type type)
-        {
-            var go = obj as GameObject;
-            if (go != null && type != null && type.IsSubclassOf(typeof(Component)))
-            {
-                var comp = go.GetComponent(objectType);
-                if (comp != null)
-                    return comp;
-            }
-
-            return obj;
-        }
-
-        //class ObjectFieldInput : TextField.TextInputBase
-        //{
-        //    ObjectField parentObjectField => (ObjectField)parent;
-
-        //    internal ObjectFieldInput(string hey)
-        //    {
-        //        textEdition.AcceptCharacter = AcceptCharacter;
-        //    }
-
-        //    protected string allowedCharacters => "0123456789abcdefABCDEF";
-
-        //    internal override bool AcceptCharacter(char c)
-        //    {
-        //        return base.AcceptCharacter(c) && c != 0 && allowedCharacters.IndexOf(c) != -1;
-        //    }
-
-        //    public string formatString => UINumericFieldsUtils.k_IntFieldFormatString;
-
-        //    protected string ValueToString(Hash128 value)
-        //    {
-        //        return value.ToString();
-        //    }
-
-        //    protected override Hash128 StringToValue(string str)
-        //    {
-        //        // Hash128.Parse does not accept strings of Length == 1, but works well with Length in the range [2, 32]
-        //        if (str.Length == 1 && ulong.TryParse(str, out var val))
-        //            return new Hash128(val, 0L);
-
-        //        return Hash128.Parse(str);
-        //    }
-        //}
-    }
-
-    public static class ObjectSelector
-    {
-        private static Type ObjectSelectorType = typeof(UnityEditor.Editor).Assembly.GetType("UnityEditor.ObjectSelector");
-        private static PropertyInfo ObjectSelectorGetProperty = ObjectSelectorType.GetProperty("get", BindingFlags.Public | BindingFlags.Static);
-        private static MethodInfo ObjectSelectorShowMethod = ObjectSelectorType.GetMethod("Show", BindingFlags.NonPublic | BindingFlags.Instance, null,
-                new Type[]
-                {
-                    typeof(UnityEngine.Object),
-                    typeof(System.Type),
-                    typeof(UnityEngine.Object),
-                    typeof(bool),
-                    typeof(List<int>),
-                    typeof(Action<UnityEngine.Object>),
-                    typeof(Action<UnityEngine.Object>)
-                }
-                , new ParameterModifier[0]
-            );
-
-        private static object ObjectSelectorInstance = ObjectSelectorGetProperty.GetValue(null);
-
-        public static void ShowObjectPicker<T>(T obj, T objectBeingEdited, bool allowSceneObjects, List<int> allowedInstanceIDs = null, Action<Object> onObjectSelectorClosed = null, Action<Object> onObjectSelectedUpdated = null) where T : UnityEngine.Object
-        {
-            Show(obj, typeof(T), objectBeingEdited, allowSceneObjects, allowedInstanceIDs, onObjectSelectorClosed, onObjectSelectedUpdated);
-        }
-
-        public static void Show(Object obj, Type requiredType, Object objectBeingEdited, bool allowSceneObjects, List<int> allowedInstanceIDs = null, Action<Object> onObjectSelectorClosed = null, Action<Object> onObjectSelectedUpdated = null)
-        {
-            ObjectSelectorShowMethod.Invoke(ObjectSelectorInstance, new object[] { obj, requiredType, objectBeingEdited, allowSceneObjects, allowedInstanceIDs, onObjectSelectorClosed, onObjectSelectedUpdated });
+            ObjectSelector.Show(obj: value, requiredType: typeof(FoxEntity), objectBeingEdited: null, allowSceneObjects: true, null, null, (Object obj) => value = TryReadFoxEntityFromGameObject(obj));
         }
     }
-
 }

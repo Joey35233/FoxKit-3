@@ -5,7 +5,7 @@ using System.Reflection;
 
 namespace Fox.Editor
 {
-    public class BoolField : BaseBoolField, IFoxField
+    public class BoolField : BaseBoolField, IFoxField, ICustomBindable
     {
         public new class UxmlFactory : UxmlFactory<Toggle, UxmlTraits> { }
 
@@ -55,16 +55,16 @@ namespace Fox.Editor
         // Lots of internal PseudoState-managing code
         //protected override void UpdateMixedValueContent() {}
 
-        //public void BindProperty(SerializedProperty property)
-        //{
-        //    BindProperty(property, null);
-        //}
-        //public void BindProperty(SerializedProperty property, string label)
-        //{
-        //    if (label is not null)
-        //        this.label = label;
-        //    BindingExtensions.BindProperty(this, property);
-        //}
+        public void BindProperty(SerializedProperty property)
+        {
+            BindProperty(property, null);
+        }
+        public void BindProperty(SerializedProperty property, string label)
+        {
+            if (label is not null)
+                this.label = label;
+            BindingExtensions.BindProperty(this, property);
+        }
     }
 
     [CustomPropertyDrawer(typeof(System.Boolean))]

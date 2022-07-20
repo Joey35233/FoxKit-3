@@ -22,13 +22,13 @@
         private short b;
         
         [SerializeField]
-        private Fox.String locatorName;
+        private Fox.Core.String locatorName;
 
         // FIXME: This should be a Path
         [SerializeField]
-        private Fox.String dataSetName;
+        private Fox.Core.String dataSetName;
 
-        public ScaledLocatorBinary(UnityEngine.Vector4 translation, UnityEngine.Quaternion rotation, UnityEngine.Vector3 scale, short a, short b, Fox.String locatorName, Fox.String dataSetName)
+        public ScaledLocatorBinary(UnityEngine.Vector4 translation, UnityEngine.Quaternion rotation, UnityEngine.Vector3 scale, short a, short b, Fox.Core.String locatorName, Fox.Core.String dataSetName)
         {
             this.translation = translation;
             this.rotation = rotation;

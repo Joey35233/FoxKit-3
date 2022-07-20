@@ -23,7 +23,7 @@ namespace Fox.Core
                 return false;
             }
 
-            var propertyInfo = new PropertyInfo(type, 0, arraySize, container);
+            var propertyInfo = new PropertyInfo(name, type, 0, arraySize, container);
             this.DynamicProperties.Insert(name, new DynamicProperty(propertyInfo));
             return true;
         }

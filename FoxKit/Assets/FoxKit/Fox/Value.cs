@@ -2,7 +2,7 @@
 using System;
 using UnityEngine;
 
-namespace Fox
+namespace Fox.Core
 {
     public class Value
     {
@@ -74,7 +74,7 @@ namespace Fox
             this.value = entityHandle;
         }
 
-        public Value(FilePtr<File> filePtr)
+        public Value(FilePtr filePtr)
         {
             this.value = filePtr;
         }
@@ -179,9 +179,9 @@ namespace Fox
             return (EntityHandle)this.value;
         }
 
-        internal FilePtr<File> GetValueAsFilePtr()
+        internal FilePtr GetValueAsFilePtr()
         {
-            return (FilePtr<File>)this.value;
+            return (FilePtr)this.value;
         }
 
         internal Color GetValueAsColor()

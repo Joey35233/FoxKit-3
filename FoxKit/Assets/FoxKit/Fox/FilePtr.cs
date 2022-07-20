@@ -8,13 +8,12 @@ namespace Fox.Core
     using UnityEngine;
 
     /// <summary>
-    /// Stores a typed reference to a file.
+    /// Stores a reference to a file.
     /// </summary>
-    /// <typeparam name="T">The type of the referenced file.</typeparam>
     [Serializable]
 #pragma warning disable CS0660 // Type defines operator == or operator != but does not override Object.Equals(object o)
 #pragma warning disable CS0661 // Type defines operator == or operator != but does not override Object.GetHashCode()
-    public class FilePtr<T> where T : File
+    public class FilePtr
 #pragma warning restore CS0661 // Type defines operator == or operator != but does not override Object.GetHashCode()
 #pragma warning restore CS0660 // Type defines operator == or operator != but does not override Object.Equals(object o)
     {
@@ -36,17 +35,17 @@ namespace Fox.Core
             this.path = new Path(path);
         }
 
-        public static FilePtr<T> Empty()
+        public static FilePtr Empty()
         {
-            return new FilePtr<T>();
+            return new FilePtr();
         }
 
-        public static bool operator ==(FilePtr<T> a, FilePtr<T> b)
+        public static bool operator ==(FilePtr a, FilePtr b)
         {
             return a.path == b.path;
         }
 
-        public static bool operator !=(FilePtr<T> a, FilePtr<T> b)
+        public static bool operator !=(FilePtr a, FilePtr b)
         {
             return !(a == b);
         }
