@@ -36,6 +36,9 @@ namespace Fox.Editor
         {
             switch (propertyType)
             {
+                case Type type when type.IsEnum:
+                    return type.IsDefined(typeof(FlagsAttribute), inherit: false) ? () => new EnumFlagsField() : () => new EnumField();
+
                 case Type type when type == typeof(bool):
                     return () => new BoolField();
 
@@ -101,9 +104,6 @@ namespace Fox.Editor
 
                 case Type type when type == typeof(EntityLink):
                     return () => new EntityLinkField();
-
-                case Type type when type.IsEnum:
-                    return type.IsDefined(typeof(FlagsAttribute), inherit: false) ? () => new EnumFlagsField() : () => new EnumField();
 
                 default:
                     throw new ArgumentException($"Invalid Fox type: {propertyType}.");

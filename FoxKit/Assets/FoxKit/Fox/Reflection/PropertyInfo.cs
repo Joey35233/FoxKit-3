@@ -162,6 +162,9 @@ namespace Fox.Core
         {
             PropertyType propertyType = propertyInfo.Type;
 
+            if (propertyInfo.Enum != null)
+                return propertyInfo.Enum;
+
             switch (propertyType)
             {
                 case PropertyType.Int8:
