@@ -14,6 +14,7 @@ namespace Fox.Editor
     {
         private VisualElement PropertyContainer;
         private VisualElement Header;
+        private Button CopyButton;
         private Button CreateDeleteButton;
         private Label EntityLabel;
 
@@ -22,6 +23,7 @@ namespace Fox.Editor
         public new static readonly string inputUssClassName = ussClassName + "__input";
         public static readonly string headerUssClassName = ussClassName + "__header";
         public static readonly string headerLivePtrUssClassName = headerUssClassName + "--live-ptr";
+        public static readonly string copyButtonUssClassName = ussClassName + "__copy-button";
         public static readonly string createButtonUssClassName = ussClassName + "__create-button";
         public static readonly string deleteButtonUssClassName = ussClassName + "__delete-button";
         public static readonly string propertyContainerUssClassName = ussClassName + "__property-container";
@@ -53,27 +55,31 @@ namespace Fox.Editor
         {
             visualInput = visInput;
 
-            PropertyContainer = new ScrollView(ScrollViewMode.VerticalAndHorizontal);
-            PropertyContainer.AddToClassList(propertyContainerUssClassName);
-
-            CreateDeleteButton = new Button(CreateDeleteButton_clicked);
-
-            EntityLabel = new Label();
-
-            ButtonMode = CreateDeleteButtonMode.CreateEntity;
-
             Header = new VisualElement();
             Header.AddToClassList(headerUssClassName);
+
+            ButtonMode = CreateDeleteButtonMode.CreateEntity;
+            CreateDeleteButton = new Button(CreateDeleteButton_clicked);
             Header.Add(CreateDeleteButton);
+
+            EntityLabel = new Label();
             Header.Add(EntityLabel);
+
+            CopyButton = new Button(() => EditorGUIUtility.systemCopyBuffer = PtrProperty.managedReferenceId.ToString());
+            CopyButton.text = "Copy";
+            CopyButton.AddToClassList(copyButtonUssClassName);
+            Header.Add(CopyButton);
+
             visualInput.Add(Header);
+
+            PropertyContainer = new ScrollView(ScrollViewMode.VerticalAndHorizontal);
+            PropertyContainer.AddToClassList(propertyContainerUssClassName);
 
             visualInput.Add(PropertyContainer);
 
             AddToClassList(ussClassName);
             labelElement.AddToClassList(labelUssClassName);
             visualInput.AddToClassList(inputUssClassName);
-            this.styleSheets.Add(IFoxField.FoxFieldStyleSheet);
         }
 
         protected override void ExecuteDefaultActionAtTarget(EventBase evt)

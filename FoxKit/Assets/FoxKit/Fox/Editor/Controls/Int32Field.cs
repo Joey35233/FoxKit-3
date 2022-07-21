@@ -7,43 +7,9 @@ using UnityEngine.UIElements;
 
 namespace Fox.Editor
 {
-    public class UxmlInt32AttributeDescription : TypedUxmlAttributeDescription<int>
-    {
-        public UxmlInt32AttributeDescription()
-        {
-            type = "int32";
-            typeNamespace = xmlSchemaNamespace;
-            defaultValue = 0;
-        }
-
-        public override string defaultValueAsString { get { return defaultValue.ToString(CultureInfo.InvariantCulture.NumberFormat); } }
-
-        public override int GetValueFromBag(IUxmlAttributes bag, CreationContext cc)
-        {
-            return GetValueFromBag(bag, cc, (s, i) => ConvertValueToInt32(s, i), defaultValue);
-        }
-
-        public bool TryGetValueFromBag(IUxmlAttributes bag, CreationContext cc, ref int value)
-        {
-            return TryGetValueFromBag(bag, cc, (s, i) => ConvertValueToInt32(s, i), defaultValue, ref value);
-        }
-
-        static int ConvertValueToInt32(string v, int defaultValue)
-        {
-            int l;
-            if (v == null || !Int32.TryParse(v, out l))
-                return defaultValue;
-
-            return l;
-        }
-    }
-
     public class Int32Field : TextValueField<System.Int32>, IFoxField, ICustomBindable
     {
         Int32Input integerInput => (Int32Input)textInputBase;
-
-        public new class UxmlFactory : UxmlFactory<Int32Field, UxmlTraits> {}
-        public new class UxmlTraits : TextValueFieldTraits<System.Int32, UxmlInt32AttributeDescription> {}
 
         protected override string ValueToString(System.Int32 v)
         {

@@ -7,37 +7,6 @@ using UnityEngine.UIElements;
 
 namespace Fox.Editor
 {
-    public class UxmlUInt32AttributeDescription : TypedUxmlAttributeDescription<uint>
-    {
-        public UxmlUInt32AttributeDescription()
-        {
-            type = "uint32";
-            typeNamespace = xmlSchemaNamespace;
-            defaultValue = 0;
-        }
-
-        public override string defaultValueAsString { get { return defaultValue.ToString(CultureInfo.InvariantCulture.NumberFormat); } }
-
-        public override uint GetValueFromBag(IUxmlAttributes bag, CreationContext cc)
-        {
-            return GetValueFromBag(bag, cc, (s, i) => ConvertValueToUInt32(s, i), defaultValue);
-        }
-
-        public bool TryGetValueFromBag(IUxmlAttributes bag, CreationContext cc, ref uint value)
-        {
-            return TryGetValueFromBag(bag, cc, (s, i) => ConvertValueToUInt32(s, i), defaultValue, ref value);
-        }
-
-        static uint ConvertValueToUInt32(string v, uint defaultValue)
-        {
-            uint l;
-            if (v == null || !UInt32.TryParse(v, out l))
-                return defaultValue;
-
-            return l;
-        }
-    }
-
     public class UInt32Field : TextValueField<System.UInt32>, INotifyValueChanged<int>, IFoxField, ICustomBindable
     {
         public override System.UInt32 value
@@ -100,9 +69,6 @@ namespace Fox.Editor
         void INotifyValueChanged<int>.SetValueWithoutNotify(int newValue) { throw new NotImplementedException(); }
 
         UInt32Input integerInput => (UInt32Input)textInputBase;
-
-        public new class UxmlFactory : UxmlFactory<UInt32Field, UxmlTraits> { }
-        public new class UxmlTraits : TextValueFieldTraits<System.UInt32, UxmlUInt32AttributeDescription> { }
 
         protected override string ValueToString(System.UInt32 v)
         {

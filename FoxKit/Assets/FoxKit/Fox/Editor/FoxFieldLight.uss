@@ -1,6 +1,7 @@
 .unity-collection-view__item > .unity-base-field__label
 {
     -unity-font: url("Fonts/CascadiaCode-SemiLight.ttf");
+    -unity-font-definition: none;
 }
 
 .fox-entityptr-field__header
@@ -30,16 +31,44 @@
 .fox-entityptr-field__header > .unity-button
 {
     background-color: var(--unity-colors-toolbar_button-background-focus);
-    width: 32px;
-    font-size: 18px;
     border-color: var(--unity-theme-border-color-4);
-    border-width: 0;
-    border-right-width: 1px;
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
+    border-bottom-width: 0;
+    border-top-width: 0;
     margin: 0;
     -unity-text-align: middle-center;
     -unity-font-style: normal;
+}
+.fox-entityptr-field__header > .unity-button:hover
+{
+    background-color: var(--unity-colors-button-background-hover);
+}
+
+.fox-entityptr-field__create-button, .fox-entityptr-field__delete-button
+{
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-left-width: 0;
+    border-right-width: 1px;
+    width: 32px;
+    font-size: 18px;
+}
+.fox-entityptr-field__header--live-ptr > .unity-label
+{
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.fox-entityptr-field__copy-button
+{
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-left-width: 1px;
+    border-right-width: 0;
+    font-size: 12px;
+}
+.fox-entityptr-field__header--live-ptr > .fox-entityptr-field__copy-button
+{
+    border-bottom-right-radius: 0;
 }
 
 .fox-entityptr-field__header > .unity-label
@@ -55,17 +84,6 @@
     border-bottom-right-radius: 3px;
     -unity-text-align: middle-left;
     -unity-font-style: normal;
-}
-
-.fox-entityptr-field__header--live-ptr > .unity-button
-{
-    border-bottom-left-radius: 0;
-}
-
-.fox-entityptr-field__header--live-ptr > .unity-label
-{
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
 }
 
 .fox-entityptr-field__property-container

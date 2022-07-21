@@ -7,37 +7,6 @@ using UnityEngine.UIElements;
 
 namespace Fox.Editor
 {
-    public class UxmlUInt16AttributeDescription : TypedUxmlAttributeDescription<ushort>
-    {
-        public UxmlUInt16AttributeDescription()
-        {
-            type = "uint16";
-            typeNamespace = xmlSchemaNamespace;
-            defaultValue = 0;
-        }
-
-        public override string defaultValueAsString { get { return defaultValue.ToString(CultureInfo.InvariantCulture.NumberFormat); } }
-
-        public override ushort GetValueFromBag(IUxmlAttributes bag, CreationContext cc)
-        {
-            return GetValueFromBag(bag, cc, (s, i) => ConvertValueToUInt16(s, i), defaultValue);
-        }
-
-        public bool TryGetValueFromBag(IUxmlAttributes bag, CreationContext cc, ref ushort value)
-        {
-            return TryGetValueFromBag(bag, cc, (s, i) => ConvertValueToUInt16(s, i), defaultValue, ref value);
-        }
-
-        static ushort ConvertValueToUInt16(string v, ushort defaultValue)
-        {
-            ushort l;
-            if (v == null || !UInt16.TryParse(v, out l))
-                return defaultValue;
-
-            return l;
-        }
-    }
-
     public class UInt16Field : TextValueField<System.UInt16>, INotifyValueChanged<int>, IFoxField, ICustomBindable
     {
         public override System.UInt16 value
@@ -100,9 +69,6 @@ namespace Fox.Editor
         void INotifyValueChanged<int>.SetValueWithoutNotify(int newValue) { throw new NotImplementedException(); }
 
         UInt16Input integerInput => (UInt16Input)textInputBase;
-
-        public new class UxmlFactory : UxmlFactory<UInt16Field, UxmlTraits> { }
-        public new class UxmlTraits : TextValueFieldTraits<System.UInt16, UxmlUInt16AttributeDescription> { }
 
         protected override string ValueToString(System.UInt16 v)
         {

@@ -10,9 +10,6 @@ namespace Fox.Editor
     {
         FloatInput floatInput => (FloatInput)textInputBase;
 
-        public new class UxmlFactory : UxmlFactory<FloatField, UxmlTraits> { }
-        public new class UxmlTraits : TextValueFieldTraits<float, UxmlFloatAttributeDescription> { }
-
         protected override string ValueToString(float v)
         {
             return v.ToString(formatString, CultureInfo.InvariantCulture.NumberFormat);

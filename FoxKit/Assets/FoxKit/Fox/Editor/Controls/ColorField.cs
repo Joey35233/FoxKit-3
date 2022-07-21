@@ -8,10 +8,6 @@ namespace Fox.Editor
 {
     public class ColorField : BaseField<UnityEngine.Color>, IFoxField, ICustomBindable
     {
-        public new class UxmlFactory : UxmlFactory<ColorField, UxmlTraits> { }
-
-        public new class UxmlTraits : BaseFieldTraits<UnityEngine.Color, UxmlColorAttributeDescription> { }
-
         private IMGUIContainer InternalColorField;
 
         public new static readonly string ussClassName = "fox-color-field";

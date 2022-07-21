@@ -7,37 +7,6 @@ using UnityEngine.UIElements;
 
 namespace Fox.Editor
 {
-    public class UxmlUInt64AttributeDescription : TypedUxmlAttributeDescription<ulong>
-    {
-        public UxmlUInt64AttributeDescription()
-        {
-            type = "uint64";
-            typeNamespace = xmlSchemaNamespace;
-            defaultValue = 0;
-        }
-
-        public override string defaultValueAsString { get { return defaultValue.ToString(CultureInfo.InvariantCulture.NumberFormat); } }
-
-        public override ulong GetValueFromBag(IUxmlAttributes bag, CreationContext cc)
-        {
-            return GetValueFromBag(bag, cc, (s, i) => ConvertValueToUInt64(s, i), defaultValue);
-        }
-
-        public bool TryGetValueFromBag(IUxmlAttributes bag, CreationContext cc, ref ulong value)
-        {
-            return TryGetValueFromBag(bag, cc, (s, i) => ConvertValueToUInt64(s, i), defaultValue, ref value);
-        }
-
-        static ulong ConvertValueToUInt64(string v, ulong defaultValue)
-        {
-            ulong l;
-            if (v == null || !UInt64.TryParse(v, out l))
-                return defaultValue;
-
-            return l;
-        }
-    }
-
     public class UInt64Field : TextValueField<System.UInt64>, INotifyValueChanged<long>, IFoxField, ICustomBindable
     {
         public override System.UInt64 value
@@ -100,9 +69,6 @@ namespace Fox.Editor
         void INotifyValueChanged<long>.SetValueWithoutNotify(long newValue) { throw new NotImplementedException(); }
 
         UInt64Input integerInput => (UInt64Input)textInputBase;
-
-        public new class UxmlFactory : UxmlFactory<UInt64Field, UxmlTraits> { }
-        public new class UxmlTraits : TextValueFieldTraits<System.UInt64, UxmlUInt64AttributeDescription> { }
 
         protected override string ValueToString(System.UInt64 v)
         {

@@ -10,15 +10,10 @@ namespace Fox.Editor
     {
         DoubleInput doubleInput => (DoubleInput)textInputBase;
 
-        public new class UxmlFactory : UxmlFactory<DoubleField, UxmlTraits> { }
-        public new class UxmlTraits : TextValueFieldTraits<double, UxmlDoubleAttributeDescription> { }
-
-
         protected override string ValueToString(double v)
         {
             return v.ToString(formatString, CultureInfo.InvariantCulture.NumberFormat);
         }
-
 
         protected override double StringToValue(string str)
         {
