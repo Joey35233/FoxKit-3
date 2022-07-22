@@ -39,8 +39,8 @@ namespace Fox.Sim
         static SimWindControl()
         {
             classInfo = new Fox.EntityInfo("SimWindControl", typeof(SimWindControl), new Fox.Sim.SimControlElement().GetClassEntityInfo(), 56, "Sim", 0);
-			classInfo.StaticProperties.Insert("controlParam", new Fox.Core.PropertyInfo("controlParam", Fox.Core.PropertyInfo.PropertyType.EntityPtr, 72, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, typeof(Fox.Sim.SimWindControlParam), null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
-			classInfo.StaticProperties.Insert("windCoefficient", new Fox.Core.PropertyInfo("windCoefficient", Fox.Core.PropertyInfo.PropertyType.Float, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("controlParam", Fox.Core.PropertyInfo.PropertyType.EntityPtr, 72, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, typeof(Fox.Sim.SimWindControlParam), null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("windCoefficient", Fox.Core.PropertyInfo.PropertyType.Float, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Accessor));
         }
 
         // Constructors

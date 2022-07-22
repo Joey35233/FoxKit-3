@@ -35,7 +35,7 @@ namespace Fox.Graphx
         static GeoxPath()
         {
             classInfo = new Fox.EntityInfo("GeoxPath", typeof(GeoxPath), new Fox.Graphx.GraphxPathData().GetClassEntityInfo(), 304, "Geox", 0);
-			classInfo.StaticProperties.Insert("selectIndex", new Fox.Core.PropertyInfo("selectIndex", Fox.Core.PropertyInfo.PropertyType.Int32, 336, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("selectIndex", Fox.Core.PropertyInfo.PropertyType.Int32, 336, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
         }
 
         // Constructors

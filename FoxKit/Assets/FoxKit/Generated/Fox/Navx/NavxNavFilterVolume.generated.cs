@@ -35,7 +35,7 @@ namespace Fox.Navx
         static NavxNavFilterVolume()
         {
             classInfo = new Fox.EntityInfo("NavxNavFilterVolume", typeof(NavxNavFilterVolume), new Fox.Graphx.GraphxPathVolume().GetClassEntityInfo(), 320, null, 0);
-			classInfo.StaticProperties.Insert("worldName", new Fox.Core.PropertyInfo("worldName", Fox.Core.PropertyInfo.PropertyType.String, 352, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("worldName", Fox.Core.PropertyInfo.PropertyType.String, 352, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
         }
 
         // Constructors

@@ -35,7 +35,7 @@ namespace Fox.Core
         static FoxDataLinkCollectorData()
         {
             classInfo = new Fox.EntityInfo("FoxDataLinkCollectorData", typeof(FoxDataLinkCollectorData), new Fox.Core.Data().GetClassEntityInfo(), 112, null, 0);
-			classInfo.StaticProperties.Insert("links", new Fox.Core.PropertyInfo("links", Fox.Core.PropertyInfo.PropertyType.EntityLink, 120, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("links", Fox.Core.PropertyInfo.PropertyType.EntityLink, 120, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
         }
 
         // Constructors

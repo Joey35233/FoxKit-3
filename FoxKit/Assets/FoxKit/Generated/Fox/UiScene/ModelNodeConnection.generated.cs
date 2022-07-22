@@ -38,8 +38,8 @@ namespace Fox.UiScene
         static ModelNodeConnection()
         {
             classInfo = new Fox.EntityInfo("ModelNodeConnection", typeof(ModelNodeConnection), null, 0, null, 0);
-			classInfo.StaticProperties.Insert("connectModelDataHandle", new Fox.Core.PropertyInfo("connectModelDataHandle", Fox.Core.PropertyInfo.PropertyType.EntityHandle, 8, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
-			classInfo.StaticProperties.Insert("connectModelNodeName", new Fox.Core.PropertyInfo("connectModelNodeName", Fox.Core.PropertyInfo.PropertyType.String, 16, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("connectModelDataHandle", Fox.Core.PropertyInfo.PropertyType.EntityHandle, 8, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("connectModelNodeName", Fox.Core.PropertyInfo.PropertyType.String, 16, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
         }
 
         // Constructors

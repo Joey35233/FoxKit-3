@@ -38,8 +38,8 @@ namespace Tpp.System
         static TppCheckPointLocator()
         {
             classInfo = new Fox.EntityInfo("TppCheckPointLocator", typeof(TppCheckPointLocator), new Fox.Core.Locator().GetClassEntityInfo(), 0, null, 1);
-			classInfo.StaticProperties.Insert("checkPointId", new Fox.Core.PropertyInfo("checkPointId", Fox.Core.PropertyInfo.PropertyType.UInt16, 320, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
-			classInfo.StaticProperties.Insert("usePlayerRotation", new Fox.Core.PropertyInfo("usePlayerRotation", Fox.Core.PropertyInfo.PropertyType.Bool, 322, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("checkPointId", Fox.Core.PropertyInfo.PropertyType.UInt16, 320, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("usePlayerRotation", Fox.Core.PropertyInfo.PropertyType.Bool, 322, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
         }
 
         // Constructors

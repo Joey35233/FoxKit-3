@@ -35,7 +35,7 @@ namespace Tpp.Effect
         static TppTrapExecOnOffVolumetricFogCallbackDataElement()
         {
             classInfo = new Fox.EntityInfo("TppTrapExecOnOffVolumetricFogCallbackDataElement", typeof(TppTrapExecOnOffVolumetricFogCallbackDataElement), new Fox.Geo.GeoTrapModuleCallbackDataElement().GetClassEntityInfo(), 0, null, 0);
-			classInfo.StaticProperties.Insert("areaVolumetricFog", new Fox.Core.PropertyInfo("areaVolumetricFog", Fox.Core.PropertyInfo.PropertyType.EntityLink, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("areaVolumetricFog", Fox.Core.PropertyInfo.PropertyType.EntityLink, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
         }
 
         // Constructors

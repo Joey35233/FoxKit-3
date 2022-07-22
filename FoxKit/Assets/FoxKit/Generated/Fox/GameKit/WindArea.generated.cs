@@ -36,7 +36,7 @@ namespace Fox.GameKit
         static WindArea()
         {
             classInfo = new Fox.EntityInfo("WindArea", typeof(WindArea), new Fox.GameKit.EnvironmentArea().GetClassEntityInfo(), 0, "Wind", 1);
-			classInfo.StaticProperties.Insert("influenceOfGlobal", new Fox.Core.PropertyInfo("influenceOfGlobal", Fox.Core.PropertyInfo.PropertyType.Float, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("influenceOfGlobal", Fox.Core.PropertyInfo.PropertyType.Float, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Accessor));
         }
 
         // Constructors

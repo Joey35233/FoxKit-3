@@ -35,7 +35,7 @@ namespace Fox.Geo
         static GeoSearchDynamic()
         {
             classInfo = new Fox.EntityInfo("GeoSearchDynamic", typeof(GeoSearchDynamic), new Fox.Geo.GeoSearchObject().GetClassEntityInfo(), 0, null, 0);
-			classInfo.StaticProperties.Insert("collisionObject", new Fox.Core.PropertyInfo("collisionObject", Fox.Core.PropertyInfo.PropertyType.EntityHandle, 144, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("collisionObject", Fox.Core.PropertyInfo.PropertyType.EntityHandle, 144, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
         }
 
         // Constructors

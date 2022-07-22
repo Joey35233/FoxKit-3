@@ -51,7 +51,28 @@ namespace FoxKit.MenuItems
 				//writer.WriteLine("@import url(\"FoxField.uss\");");
 				writer.WriteLine(foxFieldSheet);
 				writer.WriteLine();
-				for (int i = 0; i < sourceRow.Length; i++)
+				writer.WriteLine($".fox-entityhandle-field__input");
+				writer.WriteLine("{");
+				writer.WriteLine($"\tbackground-color: #{ColorUtility.ToHtmlStringRGB(sourceRow[0])}");
+				writer.WriteLine("}");
+				writer.WriteLine($".fox-entityhandle-field__input > .unity-label");
+				writer.WriteLine("{");
+				writer.WriteLine($"\tbackground-color: #{ColorUtility.ToHtmlStringRGB(sourceRow[0])}");
+				writer.WriteLine("}");
+				writer.WriteLine($".fox-entityhandle-field__input > .unity-button");
+				writer.WriteLine("{");
+				writer.WriteLine($"\tbackground-color: #{ColorUtility.ToHtmlStringRGB(sourceRow[0])}");
+				writer.WriteLine("}");
+				writer.WriteLine($".fox-entityhandle-field__input > .unity-button:hover");
+				writer.WriteLine("{");
+				{
+					float h = 0, s = 0, v = 0;
+					Color.RGBToHSV(sourceRow[0], out h, out s, out v);
+					v = Mathf.Clamp01(v * 1.222f);
+					writer.WriteLine($"\tbackground-color: #{ColorUtility.ToHtmlStringRGB(Color.HSVToRGB(h, s, v))}");
+				}
+				writer.WriteLine("}");
+				for (int i = 1; i < sourceRow.Length; i++)
 				{
 					writer.WriteLine($".fox-{FieldNames[i]}-field .unity-base-text-field__input");
                     writer.WriteLine("{");
@@ -65,6 +86,27 @@ namespace FoxKit.MenuItems
 				//writer.WriteLine("@import url(\"FoxField.uss\");");
 				writer.WriteLine(foxFieldSheet);
 				writer.WriteLine();
+				writer.WriteLine($".fox-entityhandle-field__input");
+				writer.WriteLine("{");
+				writer.WriteLine($"\tbackground-color: #{ColorUtility.ToHtmlStringRGB(adjustedRow[0])}");
+				writer.WriteLine("}");
+				writer.WriteLine($".fox-entityhandle-field__input > .unity-label");
+				writer.WriteLine("{");
+				writer.WriteLine($"\tbackground-color: #{ColorUtility.ToHtmlStringRGB(adjustedRow[0])}");
+				writer.WriteLine("}");
+				writer.WriteLine($".fox-entityhandle-field__input > .unity-button");
+				writer.WriteLine("{");
+				writer.WriteLine($"\tbackground-color: #{ColorUtility.ToHtmlStringRGB(adjustedRow[0])}");
+				writer.WriteLine("}");
+				writer.WriteLine($".fox-entityhandle-field__input > .unity-button:hover");
+				writer.WriteLine("{");
+				{
+					float h = 0, s = 0, v = 0;
+					Color.RGBToHSV(adjustedRow[0], out h, out s, out v);
+					v = Mathf.Clamp01(v * 1.469f);
+					writer.WriteLine($"\tbackground-color: #{ColorUtility.ToHtmlStringRGB(Color.HSVToRGB(h, s, v))}");
+				}
+				writer.WriteLine("}");
 				for (int i = 0; i < adjustedRow.Length; i++)
 				{
 					writer.WriteLine($".fox-{FieldNames[i]}-field .unity-base-text-field__input");

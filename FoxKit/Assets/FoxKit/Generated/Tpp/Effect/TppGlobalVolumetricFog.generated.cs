@@ -35,7 +35,7 @@ namespace Tpp.Effect
         static TppGlobalVolumetricFog()
         {
             classInfo = new Fox.EntityInfo("TppGlobalVolumetricFog", typeof(TppGlobalVolumetricFog), new Fox.Core.Data().GetClassEntityInfo(), 72, "TppEffect", 1);
-			classInfo.StaticProperties.Insert("param", new Fox.Core.PropertyInfo("param", Fox.Core.PropertyInfo.PropertyType.EntityPtr, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.Never, typeof(Tpp.Effect.TppGlobalVolumetricFogParam), null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("param", Fox.Core.PropertyInfo.PropertyType.EntityPtr, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.Never, typeof(Tpp.Effect.TppGlobalVolumetricFogParam), null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
         }
 
         // Constructors

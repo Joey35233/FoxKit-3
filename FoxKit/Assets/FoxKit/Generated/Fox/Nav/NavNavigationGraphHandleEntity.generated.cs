@@ -35,7 +35,7 @@ namespace Fox.Nav
         static NavNavigationGraphHandleEntity()
         {
             classInfo = new Fox.EntityInfo("NavNavigationGraphHandleEntity", typeof(NavNavigationGraphHandleEntity), new Fox.Nav.NavUnitHandleEntity().GetClassEntityInfo(), 0, "Nav", 0);
-			classInfo.StaticProperties.Insert("subId", new Fox.Core.PropertyInfo("subId", Fox.Core.PropertyInfo.PropertyType.UInt32, 56, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("subId", Fox.Core.PropertyInfo.PropertyType.UInt32, 56, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
         }
 
         // Constructors

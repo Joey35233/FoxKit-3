@@ -35,7 +35,7 @@ namespace Tpp.GameCore
         static TppBuddyDog2LocatorParameter()
         {
             classInfo = new Fox.EntityInfo("TppBuddyDog2LocatorParameter", typeof(TppBuddyDog2LocatorParameter), new Fox.Core.DataElement().GetClassEntityInfo(), 32, null, 0);
-			classInfo.StaticProperties.Insert("identifier", new Fox.Core.PropertyInfo("identifier", Fox.Core.PropertyInfo.PropertyType.String, 56, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("identifier", Fox.Core.PropertyInfo.PropertyType.String, 56, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
         }
 
         // Constructors

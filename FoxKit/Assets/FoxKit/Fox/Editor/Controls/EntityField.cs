@@ -67,17 +67,20 @@ namespace Fox.Editor
                 {
                     PropertyInfo propertyInfo = pair.Value;
 
-                    if (propertyInfo.Readable == PropertyInfo.PropertyExport.Never)
+                    if (propertyInfo.Readable == PropertyInfo.PropertyExport.Never || propertyInfo.Backing == PropertyInfo.BackingType.Accessor)
                         continue;
 
-                    if (entityInfo.Super != null && propertyInfo.Offset == 0)
+                    if (info == Data.ClassInfo && propertyInfo.Name == "name")
                         continue;
 
                     ICustomBindable propertyField = FoxFieldUtils.GetCustomBindableField(propertyInfo);
                     propertyField.BindProperty(property.FindPropertyRelative($"<{propertyInfo.Name}>k__BackingField"), pair.Key);
                     VisualElement fieldElement = propertyField as VisualElement;
+                    var labelElement = fieldElement.Query<Label>(className: BaseField<float>.labelUssClassName).First();
+                    labelElement.style.minWidth = StyleKeyword.Auto;
+                    labelElement.style.width = entityInfo.LongestNamedProperty.Name.Length * 8f;
                     fieldElement.SetEnabled(propertyInfo.Writable != PropertyInfo.PropertyExport.Never);
-                    visualInput.Add(propertyField as VisualElement);
+                    visualInput.Add(fieldElement);
                 }
             }
 

@@ -35,7 +35,7 @@ namespace Tpp.GameCore
         static TppMotherBaseContainerParameter()
         {
             classInfo = new Fox.EntityInfo("TppMotherBaseContainerParameter", typeof(TppMotherBaseContainerParameter), new Fox.Core.DataElement().GetClassEntityInfo(), 0, null, 1);
-			classInfo.StaticProperties.Insert("modelPath", new Fox.Core.PropertyInfo("modelPath", Fox.Core.PropertyInfo.PropertyType.Path, 56, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("modelPath", Fox.Core.PropertyInfo.PropertyType.Path, 56, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
         }
 
         // Constructors

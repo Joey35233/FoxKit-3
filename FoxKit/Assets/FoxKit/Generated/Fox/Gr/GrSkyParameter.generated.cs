@@ -35,7 +35,7 @@ namespace Fox.Gr
         static GrSkyParameter()
         {
             classInfo = new Fox.EntityInfo("GrSkyParameter", typeof(GrSkyParameter), new Fox.Gr.GrViewportParameter().GetClassEntityInfo(), 0, null, 0);
-			classInfo.StaticProperties.Insert("isAtmosphereOnly", new Fox.Core.PropertyInfo("isAtmosphereOnly", Fox.Core.PropertyInfo.PropertyType.Bool, 48, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("isAtmosphereOnly", Fox.Core.PropertyInfo.PropertyType.Bool, 48, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
         }
 
         // Constructors

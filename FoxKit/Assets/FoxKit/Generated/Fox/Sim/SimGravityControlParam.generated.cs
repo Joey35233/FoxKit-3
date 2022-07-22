@@ -35,7 +35,7 @@ namespace Fox.Sim
         static SimGravityControlParam()
         {
             classInfo = new Fox.EntityInfo("SimGravityControlParam", typeof(SimGravityControlParam), new Fox.Sim.SimControlParam().GetClassEntityInfo(), 48, "Sim", 0);
-			classInfo.StaticProperties.Insert("customGravity", new Fox.Core.PropertyInfo("customGravity", Fox.Core.PropertyInfo.PropertyType.Vector3, 48, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("customGravity", Fox.Core.PropertyInfo.PropertyType.Vector3, 48, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
         }
 
         // Constructors

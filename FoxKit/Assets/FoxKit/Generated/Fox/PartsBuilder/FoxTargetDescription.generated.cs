@@ -35,7 +35,7 @@ namespace Fox.PartsBuilder
         static FoxTargetDescription()
         {
             classInfo = new Fox.EntityInfo("FoxTargetDescription", typeof(FoxTargetDescription), new Fox.PartsBuilder.PartDescription().GetClassEntityInfo(), 112, "PartsBuilder", 1);
-			classInfo.StaticProperties.Insert("targetFile", new Fox.Core.PropertyInfo("targetFile", Fox.Core.PropertyInfo.PropertyType.FilePtr, 152, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("targetFile", Fox.Core.PropertyInfo.PropertyType.FilePtr, 152, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
         }
 
         // Constructors

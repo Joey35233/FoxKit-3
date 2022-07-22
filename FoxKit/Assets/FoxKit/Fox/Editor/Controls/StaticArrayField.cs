@@ -79,12 +79,6 @@ namespace Fox.Editor
 
             element.AddToClassList(BaseCompositeField<UnityEngine.Vector4, FloatField, float>.fieldUssClassName);
             element.AddToClassList(BaseCompositeField<UnityEngine.Vector4, FloatField, float>.firstFieldVariantUssClassName);
-
-            Label label = element.Q<Label>(className: BaseField<float>.labelUssClassName);
-            label.style.minWidth = 40;
-            label.style.flexBasis = 40;
-
-            return;
         }
 
         public void BindProperty(SerializedProperty property)

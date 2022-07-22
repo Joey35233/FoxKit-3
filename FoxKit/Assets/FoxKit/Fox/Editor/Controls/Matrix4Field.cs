@@ -42,6 +42,8 @@ namespace Fox.Editor
                     field.labelElement.style.flexBasis = 22;
                     if (j == 0)
                         field.AddToClassList(BaseCompositeField<UnityEngine.Quaternion, FloatField, float>.firstFieldVariantUssClassName);
+                    else if (j == 3)
+                        field.AddToClassList("unity-composite-field__field--last");
                     field.AddToClassList(BaseCompositeField<UnityEngine.Quaternion, FloatField, float>.fieldUssClassName);
                     InternalFields[i, j] = field;
                     rowContainer.Add(field);

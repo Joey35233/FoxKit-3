@@ -63,6 +63,15 @@ namespace Fox.Core
         }
 
         /// <summary>
+        /// Whether the property has an actual data backing or is merely an accessor getter and/or setter function.
+        /// </summary>
+        public enum BackingType
+        {
+            Field,
+            Accessor
+        }
+
+        /// <summary>
         /// Unknown.
         /// </summary>
         public enum PropertyStorage
@@ -96,6 +105,11 @@ namespace Fox.Core
         /// Offset at which the property's value is stored in C++.
         /// </summary>
         public uint Offset { get; }
+
+        /// <summary>
+        /// Whether the property has an actual data backing or is merely an accessor getter and/or setter function.
+        /// </summary>
+        public BackingType Backing { get; }
 
         /// <summary>
         /// Only used for StaticArrays to indicate the number of elements in the array.
@@ -143,12 +157,14 @@ namespace Fox.Core
             PropertyExport writable = PropertyExport.EditorAndGame,
             Type ptrType = null,
             Type enumType = null,
-            PropertyStorage storage = PropertyStorage.Instance
+            PropertyStorage storage = PropertyStorage.Instance,
+            BackingType backing = BackingType.Field
         )
         {
             this.Name = name;
             this.Type = type;
             this.Offset = offset;
+            this.Backing = backing;
             this.ArraySize = arraySize;
             this.Container = container;
             this.Storage = storage;

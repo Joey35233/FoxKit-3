@@ -35,7 +35,7 @@ namespace Tpp.System
         static TppDefaultParameterElement()
         {
             classInfo = new Fox.EntityInfo("TppDefaultParameterElement", typeof(TppDefaultParameterElement), new Fox.Core.DataElement().GetClassEntityInfo(), 0, null, 0);
-			classInfo.StaticProperties.Insert("paramName", new Fox.Core.PropertyInfo("paramName", Fox.Core.PropertyInfo.PropertyType.String, 56, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("paramName", Fox.Core.PropertyInfo.PropertyType.String, 56, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
         }
 
         // Constructors

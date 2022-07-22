@@ -12,6 +12,8 @@ namespace Fox.Editor
     public class EntityPtrField<T> : BaseField<Fox.Core.EntityPtr<T>>, IFoxField, ICustomBindable
         where T : Entity, new()
     {
+        private SerializedProperty PtrProperty;
+
         private VisualElement PropertyContainer;
         private VisualElement Header;
         private Button CopyButton;
@@ -29,8 +31,6 @@ namespace Fox.Editor
         public static readonly string propertyContainerUssClassName = ussClassName + "__property-container";
 
         public VisualElement visualInput { get; }
-
-        private SerializedProperty PtrProperty;
 
         public enum CreateDeleteButtonMode
         {

@@ -35,7 +35,7 @@ namespace Tpp.GameKit
         static TppCoverPointFileTransform()
         {
             classInfo = new Fox.EntityInfo("TppCoverPointFileTransform", typeof(TppCoverPointFileTransform), new Fox.Core.TransformData().GetClassEntityInfo(), 288, null, 0);
-			classInfo.StaticProperties.Insert("coverPointFile", new Fox.Core.PropertyInfo("coverPointFile", Fox.Core.PropertyInfo.PropertyType.FilePtr, 304, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("coverPointFile", Fox.Core.PropertyInfo.PropertyType.FilePtr, 304, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
         }
 
         // Constructors

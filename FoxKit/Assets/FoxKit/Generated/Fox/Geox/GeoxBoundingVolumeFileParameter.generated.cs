@@ -35,7 +35,7 @@ namespace Fox.Geox
         static GeoxBoundingVolumeFileParameter()
         {
             classInfo = new Fox.EntityInfo("GeoxBoundingVolumeFileParameter", typeof(GeoxBoundingVolumeFileParameter), new Fox.Core.Data().GetClassEntityInfo(), 80, null, 0);
-			classInfo.StaticProperties.Insert("gridSize", new Fox.Core.PropertyInfo("gridSize", Fox.Core.PropertyInfo.PropertyType.Vector3, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("gridSize", Fox.Core.PropertyInfo.PropertyType.Vector3, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
         }
 
         // Constructors

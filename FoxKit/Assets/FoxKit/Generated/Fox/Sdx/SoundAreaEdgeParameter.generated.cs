@@ -35,7 +35,7 @@ namespace Fox.Sdx
         static SoundAreaEdgeParameter()
         {
             classInfo = new Fox.EntityInfo("SoundAreaEdgeParameter", typeof(SoundAreaEdgeParameter), new Fox.Core.DataElement().GetClassEntityInfo(), 0, "Sound", 2);
-			classInfo.StaticProperties.Insert("fadeTime", new Fox.Core.PropertyInfo("fadeTime", Fox.Core.PropertyInfo.PropertyType.UInt32, 56, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("fadeTime", Fox.Core.PropertyInfo.PropertyType.UInt32, 56, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
         }
 
         // Constructors

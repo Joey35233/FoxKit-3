@@ -35,7 +35,7 @@ namespace Fox.Geox
         static GeoxTrapAreaPath()
         {
             classInfo = new Fox.EntityInfo("GeoxTrapAreaPath", typeof(GeoxTrapAreaPath), new Fox.Graphx.GraphxPathData().GetClassEntityInfo(), 304, "Geox", 0);
-			classInfo.StaticProperties.Insert("height", new Fox.Core.PropertyInfo("height", Fox.Core.PropertyInfo.PropertyType.Float, 336, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("height", Fox.Core.PropertyInfo.PropertyType.Float, 336, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
         }
 
         // Constructors

@@ -35,7 +35,7 @@ namespace Fox.Navx
         static NavxBounderDataBody()
         {
             classInfo = new Fox.EntityInfo("NavxBounderDataBody", typeof(NavxBounderDataBody), new Fox.Core.TransformDataBody().GetClassEntityInfo(), 0, "Navx", 0);
-			classInfo.StaticProperties.Insert("select", new Fox.Core.PropertyInfo("select", Fox.Core.PropertyInfo.PropertyType.Bool, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("select", Fox.Core.PropertyInfo.PropertyType.Bool, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
         }
 
         // Constructors

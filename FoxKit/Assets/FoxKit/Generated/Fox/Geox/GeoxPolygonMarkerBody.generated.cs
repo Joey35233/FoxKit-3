@@ -35,7 +35,7 @@ namespace Fox.Geox
         static GeoxPolygonMarkerBody()
         {
             classInfo = new Fox.EntityInfo("GeoxPolygonMarkerBody", typeof(GeoxPolygonMarkerBody), new Fox.Core.TransformDataBody().GetClassEntityInfo(), 0, "Geox", 0);
-			classInfo.StaticProperties.Insert("vertices", new Fox.Core.PropertyInfo("vertices", Fox.Core.PropertyInfo.PropertyType.Vector3, 144, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("vertices", Fox.Core.PropertyInfo.PropertyType.Vector3, 144, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
         }
 
         // Constructors

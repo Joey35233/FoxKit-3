@@ -32,8 +32,6 @@ namespace Fox
             Children = new List<EntityInfo>();
             AllChildren = new List<EntityInfo>();
 
-            //if (super == null)
-            //    UnityEngine.Debug.Log($"{name}.Super == null");
             Super?.Children.Add(this);
 
             EntityInfo superIterator = Super;
@@ -44,12 +42,14 @@ namespace Fox
             }
 
             EntityInfos.Add(Type, this);
+
+            LongestNamedProperty = Super?.LongestNamedProperty;
         }
 
         /// <summary>
         /// Name of the class.
         /// </summary>
-        public string Name { get; }
+        public String Name { get; }
 
         /// <summary>
         /// Type of the class.
@@ -87,9 +87,19 @@ namespace Fox
         public ushort Version { get; }
 
         /// <summary>
-        /// Metadata for all static properties.
+        /// Metadata for all static properties in their original order.
+        /// </summary>
+        public Core.DynamicArray<Fox.Core.PropertyInfo> OrderedStaticProperties { get; } = new Core.DynamicArray<Fox.Core.PropertyInfo>();
+
+        /// <summary>
+        /// Metadata for all static properties in a StringMap for fast lookup.
         /// </summary>
         public Core.StringMap<Fox.Core.PropertyInfo> StaticProperties { get; } = new Core.StringMap<Fox.Core.PropertyInfo>();
+
+        /// <summary>
+        /// PropertyInfo of the property with the longest name.
+        /// </summary>
+        public Fox.Core.PropertyInfo LongestNamedProperty { get; private set; }
 
         /// <summary>
         /// Checks if an EntityInfo instance or any of its superclasses contains a property with the given name.
@@ -97,7 +107,7 @@ namespace Fox
         /// <param name="entityInfo">The EntityInfo.</param>
         /// <param name="name">The name of the property to find.</param>
         /// <returns>True if a property with the given name was found, else false.</returns>
-        public static bool HasPropertyWithName(EntityInfo entityInfo, string name)
+        public static bool HasPropertyWithName(EntityInfo entityInfo, String name)
         {
             while (entityInfo != null)
             {
@@ -111,6 +121,21 @@ namespace Fox
             }
 
             return false;
+        }
+
+        /// <summary>
+        /// Adds static property to entityInfo.
+        /// </summary>
+        /// <param name="propertyInfo">The property's PropertyInfo.</param>
+        public void AddStaticProperty(Fox.Core.PropertyInfo propertyInfo)
+        {
+            OrderedStaticProperties.Add(propertyInfo);
+            StaticProperties.Insert(propertyInfo.Name, propertyInfo);
+
+            if (LongestNamedProperty == null)
+                LongestNamedProperty = propertyInfo;
+            else if (propertyInfo.Name.Length > LongestNamedProperty.Name.Length)
+                LongestNamedProperty = propertyInfo;
         }
 
         public override string ToString()

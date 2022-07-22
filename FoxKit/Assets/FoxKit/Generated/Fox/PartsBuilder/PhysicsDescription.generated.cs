@@ -35,7 +35,7 @@ namespace Fox.PartsBuilder
         static PhysicsDescription()
         {
             classInfo = new Fox.EntityInfo("PhysicsDescription", typeof(PhysicsDescription), new Fox.PartsBuilder.PartDescription().GetClassEntityInfo(), 112, "PartsBuilder", 0);
-			classInfo.StaticProperties.Insert("physicsFile", new Fox.Core.PropertyInfo("physicsFile", Fox.Core.PropertyInfo.PropertyType.FilePtr, 152, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("physicsFile", Fox.Core.PropertyInfo.PropertyType.FilePtr, 152, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
         }
 
         // Constructors

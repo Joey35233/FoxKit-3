@@ -35,7 +35,7 @@ namespace Fox.Grx
         static OccluderArray()
         {
             classInfo = new Fox.EntityInfo("OccluderArray", typeof(OccluderArray), new Fox.Core.TransformData().GetClassEntityInfo(), 288, "Area", 1);
-			classInfo.StaticProperties.Insert("occluderArrayFile", new Fox.Core.PropertyInfo("occluderArrayFile", Fox.Core.PropertyInfo.PropertyType.FilePtr, 304, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("occluderArrayFile", Fox.Core.PropertyInfo.PropertyType.FilePtr, 304, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
         }
 
         // Constructors

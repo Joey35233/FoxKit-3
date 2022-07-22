@@ -35,7 +35,7 @@ namespace Fox.Geox
         static GeoxGeomSetLoader()
         {
             classInfo = new Fox.EntityInfo("GeoxGeomSetLoader", typeof(GeoxGeomSetLoader), new Fox.Core.TransformData().GetClassEntityInfo(), 288, null, 0);
-			classInfo.StaticProperties.Insert("geomSetFile", new Fox.Core.PropertyInfo("geomSetFile", Fox.Core.PropertyInfo.PropertyType.FilePtr, 304, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("geomSetFile", Fox.Core.PropertyInfo.PropertyType.FilePtr, 304, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
         }
 
         // Constructors

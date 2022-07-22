@@ -165,8 +165,6 @@ namespace Fox.Editor
 
             Label label = field.labelElement;
             label.text = $"[{index}]";
-            label.style.minWidth = 40;
-            label.style.flexBasis = 40;
 
             return;
         }
@@ -216,6 +214,7 @@ namespace Fox.Editor
 
                 DataField = dataField;
                 DataField.AddToClassList(BaseCompositeField<UnityEngine.Vector3, FloatField, float>.fieldUssClassName);
+                DataField.AddToClassList("unity-composite-field__field--last");
                 visualInput.Add(DataField);
 
                 AddToClassList(ussClassName);

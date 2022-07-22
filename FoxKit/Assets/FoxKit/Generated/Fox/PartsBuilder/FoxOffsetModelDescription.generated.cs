@@ -38,8 +38,8 @@ namespace Fox.PartsBuilder
         static FoxOffsetModelDescription()
         {
             classInfo = new Fox.EntityInfo("FoxOffsetModelDescription", typeof(FoxOffsetModelDescription), new Fox.PartsBuilder.ModelDescription().GetClassEntityInfo(), 0, "PartsBuilder", 0);
-			classInfo.StaticProperties.Insert("offsetTranslation", new Fox.Core.PropertyInfo("offsetTranslation", Fox.Core.PropertyInfo.PropertyType.Vector3, 368, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
-			classInfo.StaticProperties.Insert("offsetRotQuat", new Fox.Core.PropertyInfo("offsetRotQuat", Fox.Core.PropertyInfo.PropertyType.Quat, 384, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("offsetTranslation", Fox.Core.PropertyInfo.PropertyType.Vector3, 368, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("offsetRotQuat", Fox.Core.PropertyInfo.PropertyType.Quat, 384, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
         }
 
         // Constructors

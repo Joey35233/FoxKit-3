@@ -35,7 +35,7 @@ namespace Tpp.GameCore
         static TppVehicle2Parameter()
         {
             classInfo = new Fox.EntityInfo("TppVehicle2Parameter", typeof(TppVehicle2Parameter), new Fox.Core.DataElement().GetClassEntityInfo(), 32, null, 6);
-			classInfo.StaticProperties.Insert("maxBodyTypeCount", new Fox.Core.PropertyInfo("maxBodyTypeCount", Fox.Core.PropertyInfo.PropertyType.UInt8, 56, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("maxBodyTypeCount", Fox.Core.PropertyInfo.PropertyType.UInt8, 56, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
         }
 
         // Constructors

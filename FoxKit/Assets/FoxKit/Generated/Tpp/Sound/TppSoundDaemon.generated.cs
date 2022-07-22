@@ -35,7 +35,7 @@ namespace Tpp.Sound
         static TppSoundDaemon()
         {
             classInfo = new Fox.EntityInfo("TppSoundDaemon", typeof(TppSoundDaemon), new Fox.Core.Entity().GetClassEntityInfo(), 0, "Sound", 0);
-			classInfo.StaticProperties.Insert("keepNoticeEnable", new Fox.Core.PropertyInfo("keepNoticeEnable", Fox.Core.PropertyInfo.PropertyType.Bool, 240, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("keepNoticeEnable", Fox.Core.PropertyInfo.PropertyType.Bool, 240, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
         }
 
         // Constructors

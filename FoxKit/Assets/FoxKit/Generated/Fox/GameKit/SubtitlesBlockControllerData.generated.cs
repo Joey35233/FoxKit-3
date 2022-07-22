@@ -35,7 +35,7 @@ namespace Fox.GameKit
         static SubtitlesBlockControllerData()
         {
             classInfo = new Fox.EntityInfo("SubtitlesBlockControllerData", typeof(SubtitlesBlockControllerData), new Fox.Core.Data().GetClassEntityInfo(), 88, "Subtitles", 1);
-			classInfo.StaticProperties.Insert("packageFileNames", new Fox.Core.PropertyInfo("packageFileNames", Fox.Core.PropertyInfo.PropertyType.String, 120, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("packageFileNames", Fox.Core.PropertyInfo.PropertyType.String, 120, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
         }
 
         // Constructors

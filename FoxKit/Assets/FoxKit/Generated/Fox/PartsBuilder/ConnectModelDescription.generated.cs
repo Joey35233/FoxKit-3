@@ -35,7 +35,7 @@ namespace Fox.PartsBuilder
         static ConnectModelDescription()
         {
             classInfo = new Fox.EntityInfo("ConnectModelDescription", typeof(ConnectModelDescription), new Fox.PartsBuilder.ModelDescription().GetClassEntityInfo(), 336, "PartsBuilder", 3);
-			classInfo.StaticProperties.Insert("connectPointNames", new Fox.Core.PropertyInfo("connectPointNames", Fox.Core.PropertyInfo.PropertyType.String, 368, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("connectPointNames", Fox.Core.PropertyInfo.PropertyType.String, 368, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
         }
 
         // Constructors

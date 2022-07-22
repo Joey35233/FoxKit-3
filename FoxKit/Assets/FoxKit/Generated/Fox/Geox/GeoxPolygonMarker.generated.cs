@@ -35,7 +35,7 @@ namespace Fox.Geox
         static GeoxPolygonMarker()
         {
             classInfo = new Fox.EntityInfo("GeoxPolygonMarker", typeof(GeoxPolygonMarker), new Fox.Core.TransformData().GetClassEntityInfo(), 0, "Geox", 0);
-			classInfo.StaticProperties.Insert("needRecoil", new Fox.Core.PropertyInfo("needRecoil", Fox.Core.PropertyInfo.PropertyType.Bool, 304, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("needRecoil", Fox.Core.PropertyInfo.PropertyType.Bool, 304, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
         }
 
         // Constructors

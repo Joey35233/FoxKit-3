@@ -35,7 +35,7 @@ namespace Fox.Fx
         static FxLocatorArrayData()
         {
             classInfo = new Fox.EntityInfo("FxLocatorArrayData", typeof(FxLocatorArrayData), new Fox.Core.TransformData().GetClassEntityInfo(), 288, "Fx", 0);
-			classInfo.StaticProperties.Insert("vfxlbFile", new Fox.Core.PropertyInfo("vfxlbFile", Fox.Core.PropertyInfo.PropertyType.FilePtr, 304, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("vfxlbFile", Fox.Core.PropertyInfo.PropertyType.FilePtr, 304, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
         }
 
         // Constructors

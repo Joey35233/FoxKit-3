@@ -35,7 +35,7 @@ namespace Fox.Fx
         static FxLocatorGroup()
         {
             classInfo = new Fox.EntityInfo("FxLocatorGroup", typeof(FxLocatorGroup), new Fox.Core.TransformData().GetClassEntityInfo(), 272, "Fx", 1);
-			classInfo.StaticProperties.Insert("groupInstanceName", new Fox.Core.PropertyInfo("groupInstanceName", Fox.Core.PropertyInfo.PropertyType.String, 304, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("groupInstanceName", Fox.Core.PropertyInfo.PropertyType.String, 304, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
         }
 
         // Constructors

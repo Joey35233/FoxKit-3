@@ -35,7 +35,7 @@ namespace Fox.GameKit
         static GkSmartObjectSet()
         {
             classInfo = new Fox.EntityInfo("GkSmartObjectSet", typeof(GkSmartObjectSet), new Fox.Core.Data().GetClassEntityInfo(), 0, null, 0);
-			classInfo.StaticProperties.Insert("objects", new Fox.Core.PropertyInfo("objects", Fox.Core.PropertyInfo.PropertyType.EntityLink, 120, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("objects", Fox.Core.PropertyInfo.PropertyType.EntityLink, 120, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
         }
 
         // Constructors

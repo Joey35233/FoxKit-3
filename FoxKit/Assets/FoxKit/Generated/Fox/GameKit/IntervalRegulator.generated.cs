@@ -35,7 +35,7 @@ namespace Fox.GameKit
         static IntervalRegulator()
         {
             classInfo = new Fox.EntityInfo("IntervalRegulator", typeof(IntervalRegulator), new Fox.Core.Entity().GetClassEntityInfo(), 0, null, 0);
-			classInfo.StaticProperties.Insert("intervalTimers", new Fox.Core.PropertyInfo("intervalTimers", Fox.Core.PropertyInfo.PropertyType.Double, 48, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("intervalTimers", Fox.Core.PropertyInfo.PropertyType.Double, 48, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
         }
 
         // Constructors

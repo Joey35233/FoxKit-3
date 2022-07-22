@@ -35,7 +35,7 @@ namespace Fox.Geo
         static GeoTrapModuleCallbackDataElement()
         {
             classInfo = new Fox.EntityInfo("GeoTrapModuleCallbackDataElement", typeof(GeoTrapModuleCallbackDataElement), new Fox.Core.DataElement().GetClassEntityInfo(), 32, null, 0);
-			classInfo.StaticProperties.Insert("funcName", new Fox.Core.PropertyInfo("funcName", Fox.Core.PropertyInfo.PropertyType.String, 56, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("funcName", Fox.Core.PropertyInfo.PropertyType.String, 56, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
         }
 
         // Constructors

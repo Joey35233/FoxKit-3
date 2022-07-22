@@ -35,7 +35,7 @@ namespace Fox.Sim
         static SimHitGroupControlParam()
         {
             classInfo = new Fox.EntityInfo("SimHitGroupControlParam", typeof(SimHitGroupControlParam), new Fox.Sim.SimControlParam().GetClassEntityInfo(), 28, "Sim", 0);
-			classInfo.StaticProperties.Insert("groupIndex", new Fox.Core.PropertyInfo("groupIndex", Fox.Core.PropertyInfo.PropertyType.UInt32, 48, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("groupIndex", Fox.Core.PropertyInfo.PropertyType.UInt32, 48, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
         }
 
         // Constructors

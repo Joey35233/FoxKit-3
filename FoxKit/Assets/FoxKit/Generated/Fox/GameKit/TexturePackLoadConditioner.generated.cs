@@ -35,7 +35,7 @@ namespace Fox.GameKit
         static TexturePackLoadConditioner()
         {
             classInfo = new Fox.EntityInfo("TexturePackLoadConditioner", typeof(TexturePackLoadConditioner), new Fox.Core.Data().GetClassEntityInfo(), 72, "Texture", 0);
-			classInfo.StaticProperties.Insert("texturePackPath", new Fox.Core.PropertyInfo("texturePackPath", Fox.Core.PropertyInfo.PropertyType.Path, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("texturePackPath", Fox.Core.PropertyInfo.PropertyType.Path, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
         }
 
         // Constructors

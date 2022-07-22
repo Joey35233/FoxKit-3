@@ -35,7 +35,7 @@ namespace Fox.Phx
         static PhxWheelAssociationUnitParam()
         {
             classInfo = new Fox.EntityInfo("PhxWheelAssociationUnitParam", typeof(PhxWheelAssociationUnitParam), new Fox.Core.Entity().GetClassEntityInfo(), 32, "Phx", 0);
-			classInfo.StaticProperties.Insert("boneName", new Fox.Core.PropertyInfo("boneName", Fox.Core.PropertyInfo.PropertyType.String, 48, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("boneName", Fox.Core.PropertyInfo.PropertyType.String, 48, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
         }
 
         // Constructors

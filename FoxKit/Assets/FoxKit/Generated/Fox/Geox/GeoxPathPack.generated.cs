@@ -35,7 +35,7 @@ namespace Fox.Geox
         static GeoxPathPack()
         {
             classInfo = new Fox.EntityInfo("GeoxPathPack", typeof(GeoxPathPack), new Fox.Core.TransformData().GetClassEntityInfo(), 288, "Path", 0);
-			classInfo.StaticProperties.Insert("pathFixedPackFile", new Fox.Core.PropertyInfo("pathFixedPackFile", Fox.Core.PropertyInfo.PropertyType.FilePtr, 304, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("pathFixedPackFile", Fox.Core.PropertyInfo.PropertyType.FilePtr, 304, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
         }
 
         // Constructors

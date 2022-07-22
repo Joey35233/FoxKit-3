@@ -35,7 +35,7 @@ namespace Fox.GameKit
         static CheckpointObserver()
         {
             classInfo = new Fox.EntityInfo("CheckpointObserver", typeof(CheckpointObserver), new Fox.Core.Entity().GetClassEntityInfo(), 0, "GameKit", 0);
-			classInfo.StaticProperties.Insert("observerTag", new Fox.Core.PropertyInfo("observerTag", Fox.Core.PropertyInfo.PropertyType.String, 48, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("observerTag", Fox.Core.PropertyInfo.PropertyType.String, 48, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
         }
 
         // Constructors

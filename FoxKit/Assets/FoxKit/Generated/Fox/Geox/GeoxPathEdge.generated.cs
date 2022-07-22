@@ -35,7 +35,7 @@ namespace Fox.Geox
         static GeoxPathEdge()
         {
             classInfo = new Fox.EntityInfo("GeoxPathEdge", typeof(GeoxPathEdge), new Fox.Graphx.GraphxSpatialGraphDataEdge().GetClassEntityInfo(), 56, "Geox", 0);
-			classInfo.StaticProperties.Insert("edgeTags", new Fox.Core.PropertyInfo("edgeTags", Fox.Core.PropertyInfo.PropertyType.String, 72, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("edgeTags", Fox.Core.PropertyInfo.PropertyType.String, 72, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
         }
 
         // Constructors

@@ -35,7 +35,7 @@ namespace Fox.GameKit
         static OrthogonalAimCamera()
         {
             classInfo = new Fox.EntityInfo("OrthogonalAimCamera", typeof(OrthogonalAimCamera), new Fox.GameKit.AimCamera().GetClassEntityInfo(), 0, null, 0);
-			classInfo.StaticProperties.Insert("scale", new Fox.Core.PropertyInfo("scale", Fox.Core.PropertyInfo.PropertyType.Float, 496, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("scale", Fox.Core.PropertyInfo.PropertyType.Float, 496, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
         }
 
         // Constructors

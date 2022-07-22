@@ -35,7 +35,7 @@ namespace Fox.UiScene
         static UiPaletteData()
         {
             classInfo = new Fox.EntityInfo("UiPaletteData", typeof(UiPaletteData), new Fox.Core.Data().GetClassEntityInfo(), 112, "Ui", 0);
-			classInfo.StaticProperties.Insert("colors", new Fox.Core.PropertyInfo("colors", Fox.Core.PropertyInfo.PropertyType.Color, 120, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("colors", Fox.Core.PropertyInfo.PropertyType.Color, 120, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
         }
 
         // Constructors

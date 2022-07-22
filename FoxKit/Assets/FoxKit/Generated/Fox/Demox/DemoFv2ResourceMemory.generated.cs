@@ -35,7 +35,7 @@ namespace Fox.Demox
         static DemoFv2ResourceMemory()
         {
             classInfo = new Fox.EntityInfo("DemoFv2ResourceMemory", typeof(DemoFv2ResourceMemory), new Fox.Core.DataElement().GetClassEntityInfo(), 0, null, 0);
-			classInfo.StaticProperties.Insert("resourceSize", new Fox.Core.PropertyInfo("resourceSize", Fox.Core.PropertyInfo.PropertyType.Int32, 56, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("resourceSize", Fox.Core.PropertyInfo.PropertyType.Int32, 56, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
         }
 
         // Constructors

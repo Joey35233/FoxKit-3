@@ -35,7 +35,7 @@ namespace Fox.Phx
         static PhAssociationParam()
         {
             classInfo = new Fox.EntityInfo("PhAssociationParam", typeof(PhAssociationParam), new Fox.Core.Entity().GetClassEntityInfo(), 28, "Phx", 0);
-			classInfo.StaticProperties.Insert("connectType", new Fox.Core.PropertyInfo("connectType", Fox.Core.PropertyInfo.PropertyType.UInt32, 48, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("connectType", Fox.Core.PropertyInfo.PropertyType.UInt32, 48, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
         }
 
         // Constructors

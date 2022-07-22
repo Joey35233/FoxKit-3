@@ -35,7 +35,7 @@ namespace Fox.Ph
         static PhWindActionParam()
         {
             classInfo = new Fox.EntityInfo("PhWindActionParam", typeof(PhWindActionParam), new Fox.Ph.PhActionParam().GetClassEntityInfo(), 0, "Ph", 0);
-			classInfo.StaticProperties.Insert("airResistanceRate", new Fox.Core.PropertyInfo("airResistanceRate", Fox.Core.PropertyInfo.PropertyType.Float, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("airResistanceRate", Fox.Core.PropertyInfo.PropertyType.Float, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
         }
 
         // Constructors

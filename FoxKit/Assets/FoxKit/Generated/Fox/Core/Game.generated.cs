@@ -35,7 +35,7 @@ namespace Fox.Core
         static Game()
         {
             classInfo = new Fox.EntityInfo("Game", typeof(Game), new Fox.Core.Actor().GetClassEntityInfo(), 0, null, 0);
-			classInfo.StaticProperties.Insert("bucketCollector", new Fox.Core.PropertyInfo("bucketCollector", Fox.Core.PropertyInfo.PropertyType.EntityPtr, 168, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, typeof(Fox.Core.BucketCollector), null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("bucketCollector", Fox.Core.PropertyInfo.PropertyType.EntityPtr, 168, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, typeof(Fox.Core.BucketCollector), null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
         }
 
         // Constructors

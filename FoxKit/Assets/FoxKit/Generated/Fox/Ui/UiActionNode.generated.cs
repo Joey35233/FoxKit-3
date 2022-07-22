@@ -35,7 +35,7 @@ namespace Fox.Ui
         static UiActionNode()
         {
             classInfo = new Fox.EntityInfo("UiActionNode", typeof(UiActionNode), new Fox.Ui.UiNodeData().GetClassEntityInfo(), 0, "UiG", 1);
-			classInfo.StaticProperties.Insert("kind", new Fox.Core.PropertyInfo("kind", Fox.Core.PropertyInfo.PropertyType.Int32, 280, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, typeof(UiActionNodeKind), Fox.Core.PropertyInfo.PropertyStorage.Instance));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("kind", Fox.Core.PropertyInfo.PropertyType.Int32, 280, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, typeof(UiActionNodeKind), Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
         }
 
         // Constructors

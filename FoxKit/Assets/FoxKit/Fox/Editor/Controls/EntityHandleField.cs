@@ -27,6 +27,8 @@ namespace Fox.Editor
                         var previousValue = this.value;
                         SetValueWithoutNotify(newValue);
 
+                        Update();
+
                         // "Custom binding"
                         if (newValue.Entity != EntityProperty.managedReferenceValue)
                         {
@@ -44,6 +46,8 @@ namespace Fox.Editor
                     {
                         SetValueWithoutNotify(value);
 
+                        Update();
+
                         // "Custom binding"
                         if (newValue.Entity != EntityProperty.managedReferenceValue)
                         {
@@ -55,11 +59,16 @@ namespace Fox.Editor
             }
         }
 
-        private VisualElement DummyField;
+        private Button PasteButton;
+        private Label EntityLabel;
+        private Button DeleteButton;
 
         public new static readonly string ussClassName = "fox-entityhandle-field";
         public new static readonly string labelUssClassName = ussClassName + "__label";
         public new static readonly string inputUssClassName = ussClassName + "__input";
+        public static readonly string inputLivePtrUssClassName = inputUssClassName + "--live-ptr";
+        public static readonly string pasteButtonUssClassName = ussClassName + "__paste-button";
+        public static readonly string deleteButtonUssClassName = ussClassName + "__delete-button";
 
         public VisualElement visualInput { get; }
 
@@ -74,14 +83,59 @@ namespace Fox.Editor
         {
             visualInput = visInput;
 
-            //DummyField = new VisualElement();
-            //DummyField.AddToClassList("unity-base-text-field__input");
-            //visualInput.Add(DummyField);
+            DeleteButton = new Button(DeleteButton_clicked);
+            DeleteButton.text = "－";
+            DeleteButton.AddToClassList(deleteButtonUssClassName);
+            visualInput.Add(DeleteButton);
+
+            EntityLabel = new Label();
+            visualInput.Add(EntityLabel);
+
+            PasteButton = new Button(PasteButton_clicked);
+            PasteButton.text = "Paste";
+            PasteButton.AddToClassList(pasteButtonUssClassName);
+            visualInput.Add(PasteButton);
 
             AddToClassList(ussClassName);
             visualInput.AddToClassList(inputUssClassName);
-            visualInput.AddToClassList("unity-base-text-field__input");
             labelElement.AddToClassList(labelUssClassName);
+
+            Update();
+        }
+
+        private void PasteButton_clicked()
+        {
+            long address = 0;
+            if (long.TryParse(EditorGUIUtility.systemCopyBuffer, out address))
+            {
+                if (address != UnityEngine.Serialization.ManagedReferenceUtility.RefIdNull)
+                {
+                    EntityProperty.managedReferenceId = address;
+                    EntityProperty.serializedObject.ApplyModifiedProperties();
+                }
+            }
+        }
+
+        private void DeleteButton_clicked()
+        {
+            EntityProperty.managedReferenceId = UnityEngine.Serialization.ManagedReferenceUtility.RefIdNull;
+            EntityProperty.serializedObject.ApplyModifiedProperties();
+        }
+
+        private void Update()
+        {
+            if (value.Entity == null)
+            {
+                EntityLabel.style.display = DisplayStyle.None;
+                EntityLabel.text = "<b>null</b>";
+                visualInput.RemoveFromClassList(inputLivePtrUssClassName);
+            }
+            else
+            {
+                EntityLabel.style.display = DisplayStyle.Flex;
+                EntityLabel.text = $"<b>{value.Entity.GetClassEntityInfo().Name}</b>";
+                visualInput.AddToClassList(inputLivePtrUssClassName);
+            }
         }
 
         protected override void ExecuteDefaultActionAtTarget(EventBase evt)

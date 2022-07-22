@@ -35,7 +35,7 @@ namespace Fox.Geox
         static GeoxPartsTargetUnit()
         {
             classInfo = new Fox.EntityInfo("GeoxPartsTargetUnit", typeof(GeoxPartsTargetUnit), new Fox.Core.Data().GetClassEntityInfo(), 0, "Target", 0);
-			classInfo.StaticProperties.Insert("objectArray", new Fox.Core.PropertyInfo("objectArray", Fox.Core.PropertyInfo.PropertyType.EntityPtr, 120, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, typeof(Fox.Geox.GeoxPartsTargetObject), null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("objectArray", Fox.Core.PropertyInfo.PropertyType.EntityPtr, 120, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, typeof(Fox.Geox.GeoxPartsTargetObject), null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
         }
 
         // Constructors

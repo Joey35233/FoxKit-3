@@ -35,7 +35,7 @@ namespace Fox.Sim
         static SimInertialControlParam()
         {
             classInfo = new Fox.EntityInfo("SimInertialControlParam", typeof(SimInertialControlParam), new Fox.Sim.SimControlParam().GetClassEntityInfo(), 28, "Sim", 0);
-			classInfo.StaticProperties.Insert("coefficient", new Fox.Core.PropertyInfo("coefficient", Fox.Core.PropertyInfo.PropertyType.Float, 48, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("coefficient", Fox.Core.PropertyInfo.PropertyType.Float, 48, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
         }
 
         // Constructors

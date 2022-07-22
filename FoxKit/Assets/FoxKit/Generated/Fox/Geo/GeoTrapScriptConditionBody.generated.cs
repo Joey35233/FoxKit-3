@@ -35,7 +35,7 @@ namespace Fox.Geo
         static GeoTrapScriptConditionBody()
         {
             classInfo = new Fox.EntityInfo("GeoTrapScriptConditionBody", typeof(GeoTrapScriptConditionBody), new Fox.Geo.GeoTrapConditionBody().GetClassEntityInfo(), 0, "Trap", 0);
-			classInfo.StaticProperties.Insert("script", new Fox.Core.PropertyInfo("script", Fox.Core.PropertyInfo.PropertyType.EntityPtr, 160, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, typeof(Fox.Core.SafeScript), null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("script", Fox.Core.PropertyInfo.PropertyType.EntityPtr, 160, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, typeof(Fox.Core.SafeScript), null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
         }
 
         // Constructors

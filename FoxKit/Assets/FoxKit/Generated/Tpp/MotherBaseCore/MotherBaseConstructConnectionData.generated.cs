@@ -35,7 +35,7 @@ namespace Tpp.MotherBaseCore
         static MotherBaseConstructConnectionData()
         {
             classInfo = new Fox.EntityInfo("MotherBaseConstructConnectionData", typeof(MotherBaseConstructConnectionData), new Fox.Core.Data().GetClassEntityInfo(), 80, "TppMotherBase", 0);
-			classInfo.StaticProperties.Insert("constructConnectionList", new Fox.Core.PropertyInfo("constructConnectionList", Fox.Core.PropertyInfo.PropertyType.UInt64, 120, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("constructConnectionList", Fox.Core.PropertyInfo.PropertyType.UInt64, 120, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
         }
 
         // Constructors

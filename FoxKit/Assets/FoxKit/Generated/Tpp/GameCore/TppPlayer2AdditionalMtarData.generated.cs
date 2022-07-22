@@ -35,7 +35,7 @@ namespace Tpp.GameCore
         static TppPlayer2AdditionalMtarData()
         {
             classInfo = new Fox.EntityInfo("TppPlayer2AdditionalMtarData", typeof(TppPlayer2AdditionalMtarData), new Fox.Core.Data().GetClassEntityInfo(), 80, null, 1);
-			classInfo.StaticProperties.Insert("mtarFiles", new Fox.Core.PropertyInfo("mtarFiles", Fox.Core.PropertyInfo.PropertyType.FilePtr, 120, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("mtarFiles", Fox.Core.PropertyInfo.PropertyType.FilePtr, 120, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
         }
 
         // Constructors

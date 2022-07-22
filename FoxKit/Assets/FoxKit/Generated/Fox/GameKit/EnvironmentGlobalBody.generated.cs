@@ -35,7 +35,7 @@ namespace Fox.GameKit
         static EnvironmentGlobalBody()
         {
             classInfo = new Fox.EntityInfo("EnvironmentGlobalBody", typeof(EnvironmentGlobalBody), new Fox.Core.DataBody().GetClassEntityInfo(), 0, null, 0);
-			classInfo.StaticProperties.Insert("tag", new Fox.Core.PropertyInfo("tag", Fox.Core.PropertyInfo.PropertyType.String, 88, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("tag", Fox.Core.PropertyInfo.PropertyType.String, 88, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
         }
 
         // Constructors

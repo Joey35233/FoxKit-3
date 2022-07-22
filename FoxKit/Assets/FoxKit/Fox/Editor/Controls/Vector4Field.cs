@@ -44,6 +44,7 @@ namespace Fox.Editor
             visualInput.Add(ZField);
             WField = new FloatField("W");
             WField.AddToClassList(BaseCompositeField<UnityEngine.Vector4, FloatField, float>.fieldUssClassName);
+            ZField.AddToClassList("unity-composite-field__field--last");
             visualInput.Add(WField);
 
             AddToClassList(ussClassName);

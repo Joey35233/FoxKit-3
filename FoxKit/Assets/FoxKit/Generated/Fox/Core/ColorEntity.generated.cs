@@ -35,7 +35,7 @@ namespace Fox.Core
         static ColorEntity()
         {
             classInfo = new Fox.EntityInfo("ColorEntity", typeof(ColorEntity), new Fox.Core.PropertyValueEntity().GetClassEntityInfo(), 0, null, 0);
-			classInfo.StaticProperties.Insert("value", new Fox.Core.PropertyInfo("value", Fox.Core.PropertyInfo.PropertyType.Color, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("value", Fox.Core.PropertyInfo.PropertyType.Color, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
         }
 
         // Constructors

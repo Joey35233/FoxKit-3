@@ -35,7 +35,7 @@ namespace Fox.Core
         static SphereShapeBody()
         {
             classInfo = new Fox.EntityInfo("SphereShapeBody", typeof(SphereShapeBody), new Fox.Core.ShapeDataBody().GetClassEntityInfo(), 0, null, 0);
-			classInfo.StaticProperties.Insert("shape_p", new Fox.Core.PropertyInfo("shape_p", Fox.Core.PropertyInfo.PropertyType.Vector4, 176, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("shape_p", Fox.Core.PropertyInfo.PropertyType.Vector4, 176, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
         }
 
         // Constructors

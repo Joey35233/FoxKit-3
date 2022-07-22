@@ -35,7 +35,7 @@ namespace Fox.PartsBuilder
         static GeomSkeletonDescription()
         {
             classInfo = new Fox.EntityInfo("GeomSkeletonDescription", typeof(GeomSkeletonDescription), new Fox.PartsBuilder.PartDescription().GetClassEntityInfo(), 112, "PartsBuilder", 1);
-			classInfo.StaticProperties.Insert("gsklFile", new Fox.Core.PropertyInfo("gsklFile", Fox.Core.PropertyInfo.PropertyType.FilePtr, 152, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("gsklFile", Fox.Core.PropertyInfo.PropertyType.FilePtr, 152, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
         }
 
         // Constructors

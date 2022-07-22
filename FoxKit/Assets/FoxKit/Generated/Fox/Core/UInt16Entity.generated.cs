@@ -35,7 +35,7 @@ namespace Fox.Core
         static UInt16Entity()
         {
             classInfo = new Fox.EntityInfo("UInt16Entity", typeof(UInt16Entity), new Fox.Core.PropertyValueEntity().GetClassEntityInfo(), 0, null, 0);
-			classInfo.StaticProperties.Insert("value", new Fox.Core.PropertyInfo("value", Fox.Core.PropertyInfo.PropertyType.UInt16, 56, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("value", Fox.Core.PropertyInfo.PropertyType.UInt16, 56, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
         }
 
         // Constructors

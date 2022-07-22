@@ -35,7 +35,7 @@ namespace Fox.Ui
         static UiFontGroupData()
         {
             classInfo = new Fox.EntityInfo("UiFontGroupData", typeof(UiFontGroupData), new Fox.Core.Data().GetClassEntityInfo(), 80, "Ui", 0);
-			classInfo.StaticProperties.Insert("fonts", new Fox.Core.PropertyInfo("fonts", Fox.Core.PropertyInfo.PropertyType.EntityPtr, 120, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, typeof(Fox.Ui.UiFontDataElement), null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("fonts", Fox.Core.PropertyInfo.PropertyType.EntityPtr, 120, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, typeof(Fox.Ui.UiFontDataElement), null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
         }
 
         // Constructors

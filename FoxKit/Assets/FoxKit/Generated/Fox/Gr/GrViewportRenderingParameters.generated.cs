@@ -35,7 +35,7 @@ namespace Fox.Gr
         static GrViewportRenderingParameters()
         {
             classInfo = new Fox.EntityInfo("GrViewportRenderingParameters", typeof(GrViewportRenderingParameters), new Fox.Gr.GrViewportParameter().GetClassEntityInfo(), 0, null, 0);
-			classInfo.StaticProperties.Insert("clearColor", new Fox.Core.PropertyInfo("clearColor", Fox.Core.PropertyInfo.PropertyType.Color, 48, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("clearColor", Fox.Core.PropertyInfo.PropertyType.Color, 48, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
         }
 
         // Constructors

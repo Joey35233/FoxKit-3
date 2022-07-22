@@ -35,7 +35,7 @@ namespace Fox.PartsBuilder
         static SoundDescription()
         {
             classInfo = new Fox.EntityInfo("SoundDescription", typeof(SoundDescription), new Fox.PartsBuilder.PartDescription().GetClassEntityInfo(), 112, "PartsBuilder", 0);
-			classInfo.StaticProperties.Insert("soundFile", new Fox.Core.PropertyInfo("soundFile", Fox.Core.PropertyInfo.PropertyType.FilePtr, 152, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("soundFile", Fox.Core.PropertyInfo.PropertyType.FilePtr, 152, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
         }
 
         // Constructors

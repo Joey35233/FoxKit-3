@@ -35,7 +35,7 @@ namespace Fox.Tactical
         static GkTacticalPointBody()
         {
             classInfo = new Fox.EntityInfo("GkTacticalPointBody", typeof(GkTacticalPointBody), new Fox.Core.TransformDataBody().GetClassEntityInfo(), 0, "TacticalPoint", 0);
-			classInfo.StaticProperties.Insert("object", new Fox.Core.PropertyInfo("object", Fox.Core.PropertyInfo.PropertyType.EntityHandle, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("object", Fox.Core.PropertyInfo.PropertyType.EntityHandle, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
         }
 
         // Constructors

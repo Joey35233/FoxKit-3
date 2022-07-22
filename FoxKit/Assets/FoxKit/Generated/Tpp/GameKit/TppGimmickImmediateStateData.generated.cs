@@ -35,7 +35,7 @@ namespace Tpp.GameKit
         static TppGimmickImmediateStateData()
         {
             classInfo = new Fox.EntityInfo("TppGimmickImmediateStateData", typeof(TppGimmickImmediateStateData), new Fox.Core.Data().GetClassEntityInfo(), 68, "Gimmick", 0);
-			classInfo.StaticProperties.Insert("numMaxMemory", new Fox.Core.PropertyInfo("numMaxMemory", Fox.Core.PropertyInfo.PropertyType.UInt32, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("numMaxMemory", Fox.Core.PropertyInfo.PropertyType.UInt32, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
         }
 
         // Constructors

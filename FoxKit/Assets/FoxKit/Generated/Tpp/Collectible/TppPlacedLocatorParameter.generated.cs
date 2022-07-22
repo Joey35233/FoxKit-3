@@ -35,7 +35,7 @@ namespace Tpp.Collectible
         static TppPlacedLocatorParameter()
         {
             classInfo = new Fox.EntityInfo("TppPlacedLocatorParameter", typeof(TppPlacedLocatorParameter), new Fox.Core.DataElement().GetClassEntityInfo(), 32, null, 0);
-			classInfo.StaticProperties.Insert("equipIdStrCode32", new Fox.Core.PropertyInfo("equipIdStrCode32", Fox.Core.PropertyInfo.PropertyType.UInt32, 56, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("equipIdStrCode32", Fox.Core.PropertyInfo.PropertyType.UInt32, 56, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
         }
 
         // Constructors

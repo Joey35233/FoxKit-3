@@ -35,7 +35,7 @@ namespace Fox.Graphx
         static GraphxPathVolume()
         {
             classInfo = new Fox.EntityInfo("GraphxPathVolume", typeof(GraphxPathVolume), new Fox.Graphx.GraphxPathData().GetClassEntityInfo(), 0, null, 0);
-			classInfo.StaticProperties.Insert("topPos", new Fox.Core.PropertyInfo("topPos", Fox.Core.PropertyInfo.PropertyType.Vector3, 336, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("topPos", Fox.Core.PropertyInfo.PropertyType.Vector3, 336, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
         }
 
         // Constructors

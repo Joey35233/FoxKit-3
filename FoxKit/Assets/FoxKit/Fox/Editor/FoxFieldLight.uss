@@ -2,6 +2,88 @@
 {
     -unity-font: url("Fonts/CascadiaCode-SemiLight.ttf");
     -unity-font-definition: none;
+    min-width: 40px;
+    flex-basis: 40px;
+}
+
+.unity-base-field__inspector-field
+{
+    margin-right: 0;
+}
+
+.unity-composite-field__field--last .unity-base-field__input
+{
+    margin-right: 0;
+}
+
+.fox-entityhandle-field__input
+{
+    height: 18px;
+    flex-direction: row;
+    flex-grow: 1;
+    align-self: flex-start;
+    padding-left: 0;
+    padding-right: 0;
+    border-color: var(--unity-theme-border-color-4);
+    border-width: 1px;
+    border-radius: 3px;
+    -unity-overflow-clip-box: content-box;
+}
+
+.fox-entityhandle-field__input > .unity-label
+{
+    display: none;
+    display: flex;
+    flex-grow: 1;
+    height: 16px;
+    width: 32px;
+    font-size: 12px;
+    border-width: 0;
+    margin: 0;
+    padding-left: 6px;
+    -unity-text-align: middle-left;
+    -unity-font-style: normal;
+}
+.fox-entityhandle-field__input--live-ptr > .unity-label
+{
+    display: flex;
+}
+
+.fox-entityhandle-field__input > .unity-button
+{
+    border-color: var(--unity-theme-border-color-4);
+    border-bottom-width: 0;
+    border-top-width: 0;
+    margin: 0;
+    -unity-text-align: middle-center;
+    -unity-font-style: normal;
+}
+.fox-entityhandle-field__paste-button
+{
+    flex-grow: 1;
+    border-left-width: 0px;
+    border-right-width: 0px;
+}
+.fox-entityhandle-field__input--live-ptr > .fox-entityhandle-field__paste-button
+{
+    flex-grow: 0;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-right-width: 0px;
+    border-left-width: 1px;
+}
+.fox-entityhandle-field__delete-button
+{
+    display: none;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-left-width: 0;
+    border-right-width: 1px;
+    font-size: 18px;
+}
+.fox-entityhandle-field__input--live-ptr > .fox-entityhandle-field__delete-button
+{
+    display: flex;
 }
 
 .fox-entityptr-field__header
@@ -55,6 +137,10 @@
 .fox-entityptr-field__header--live-ptr > .unity-label
 {
     border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+.fox-entityptr-field__header--live-ptr > .fox-entityptr-field__create-button, .fox-entityptr-field__delete-button
+{
     border-bottom-left-radius: 0;
 }
 
@@ -184,9 +270,21 @@
     background-color: var(--unity-colors-dropdown-background);
 }
 
-.fox-entityhandle-field .unity-base-text-field__input
+.fox-entityhandle-field__input
 {
-	background-color: #DDCAE5
+	background-color: #CEACDC
+}
+.fox-entityhandle-field__input > .unity-label
+{
+	background-color: #CEACDC
+}
+.fox-entityhandle-field__input > .unity-button
+{
+	background-color: #CEACDC
+}
+.fox-entityhandle-field__input > .unity-button:hover
+{
+	background-color: #EFC7FF
 }
 .fox-string-field .unity-base-text-field__input
 {

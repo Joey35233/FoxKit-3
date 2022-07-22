@@ -35,7 +35,7 @@ namespace Fox.Geo
         static CollisionObject()
         {
             classInfo = new Fox.EntityInfo("CollisionObject", typeof(CollisionObject), new Fox.Core.Entity().GetClassEntityInfo(), 0, "Collision", 1);
-			classInfo.StaticProperties.Insert("ownerHandle", new Fox.Core.PropertyInfo("ownerHandle", Fox.Core.PropertyInfo.PropertyType.EntityHandle, 72, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("ownerHandle", Fox.Core.PropertyInfo.PropertyType.EntityHandle, 72, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
         }
 
         // Constructors

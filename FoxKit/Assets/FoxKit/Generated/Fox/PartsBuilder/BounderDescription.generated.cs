@@ -35,7 +35,7 @@ namespace Fox.PartsBuilder
         static BounderDescription()
         {
             classInfo = new Fox.EntityInfo("BounderDescription", typeof(BounderDescription), new Fox.PartsBuilder.PartDescription().GetClassEntityInfo(), 0, "PartsBuilder", 0);
-			classInfo.StaticProperties.Insert("bounderFile", new Fox.Core.PropertyInfo("bounderFile", Fox.Core.PropertyInfo.PropertyType.FilePtr, 152, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("bounderFile", Fox.Core.PropertyInfo.PropertyType.FilePtr, 152, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
         }
 
         // Constructors

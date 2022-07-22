@@ -35,7 +35,7 @@ namespace Fox.GameKit
         static StaticModelArrayPathFilter()
         {
             classInfo = new Fox.EntityInfo("StaticModelArrayPathFilter", typeof(StaticModelArrayPathFilter), new Fox.Core.Data().GetClassEntityInfo(), 80, "Model", 1);
-			classInfo.StaticProperties.Insert("filterPath", new Fox.Core.PropertyInfo("filterPath", Fox.Core.PropertyInfo.PropertyType.Path, 120, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("filterPath", Fox.Core.PropertyInfo.PropertyType.Path, 120, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
         }
 
         // Constructors

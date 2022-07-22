@@ -35,7 +35,7 @@ namespace Tpp.GameKit
         static TppObjectBrushPluginBushData()
         {
             classInfo = new Fox.EntityInfo("TppObjectBrushPluginBushData", typeof(TppObjectBrushPluginBushData), new Fox.Core.Data().GetClassEntityInfo(), 0, null, 0);
-			classInfo.StaticProperties.Insert("parameter", new Fox.Core.PropertyInfo("parameter", Fox.Core.PropertyInfo.PropertyType.EntityPtr, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, typeof(Tpp.GameKit.ObjectBrushPluginBushDataElement), null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("parameter", Fox.Core.PropertyInfo.PropertyType.EntityPtr, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, typeof(Tpp.GameKit.ObjectBrushPluginBushDataElement), null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
         }
 
         // Constructors

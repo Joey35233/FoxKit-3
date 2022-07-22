@@ -38,8 +38,8 @@ namespace Fox.Core
         static CapsuleShapeBody()
         {
             classInfo = new Fox.EntityInfo("CapsuleShapeBody", typeof(CapsuleShapeBody), new Fox.Core.ShapeDataBody().GetClassEntityInfo(), 0, null, 0);
-			classInfo.StaticProperties.Insert("shape_p0", new Fox.Core.PropertyInfo("shape_p0", Fox.Core.PropertyInfo.PropertyType.Vector4, 176, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
-			classInfo.StaticProperties.Insert("shape_p1", new Fox.Core.PropertyInfo("shape_p1", Fox.Core.PropertyInfo.PropertyType.Vector4, 192, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("shape_p0", Fox.Core.PropertyInfo.PropertyType.Vector4, 176, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("shape_p1", Fox.Core.PropertyInfo.PropertyType.Vector4, 192, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
         }
 
         // Constructors
