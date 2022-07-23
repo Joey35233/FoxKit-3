@@ -63,10 +63,24 @@ namespace Fox.Editor
             {
                 EntityInfo info = supers[i];
 
-                foreach (KeyValuePair<String, PropertyInfo> pair in info.StaticProperties)
+                if (info.Id != Entity.ClassInfo.Id)
                 {
-                    PropertyInfo propertyInfo = pair.Value;
+                    var headerLabel = new Label();
+                    headerLabel.text = $"<b>{info.Name}</b>";
+                    headerLabel.style.fontSize = 16;
+                    visualInput.Add(headerLabel);
 
+                    var headerLine = new VisualElement();
+                    headerLine.style.flexGrow = 1;
+                    headerLine.style.height = 0;
+                    headerLine.style.borderTopColor = Color.gray;
+                    headerLine.style.borderTopWidth = 1;
+                    headerLine.style.marginBottom = 4;
+                    visualInput.Add(headerLine);
+                }
+
+                foreach (PropertyInfo propertyInfo in info.OrderedStaticProperties)
+                {
                     if (propertyInfo.Readable == PropertyInfo.PropertyExport.Never || propertyInfo.Backing == PropertyInfo.BackingType.Accessor)
                         continue;
 
@@ -74,11 +88,14 @@ namespace Fox.Editor
                         continue;
 
                     ICustomBindable propertyField = FoxFieldUtils.GetCustomBindableField(propertyInfo);
-                    propertyField.BindProperty(property.FindPropertyRelative($"<{propertyInfo.Name}>k__BackingField"), pair.Key);
+                    propertyField.BindProperty(property.FindPropertyRelative($"<{propertyInfo.Name}>k__BackingField"), propertyInfo.Name);
                     VisualElement fieldElement = propertyField as VisualElement;
                     var labelElement = fieldElement.Query<Label>(className: BaseField<float>.labelUssClassName).First();
-                    labelElement.style.minWidth = StyleKeyword.Auto;
-                    labelElement.style.width = entityInfo.LongestNamedProperty.Name.Length * 8f;
+                    if (entityInfo.LongestNamedVisibleFieldProperty is not null)
+                    {
+                        labelElement.style.minWidth = StyleKeyword.Auto;
+                        labelElement.style.width = info.LongestNamedVisibleFieldProperty.Name.Length * 8f;
+                    }
                     fieldElement.SetEnabled(propertyInfo.Writable != PropertyInfo.PropertyExport.Never);
                     visualInput.Add(fieldElement);
                 }

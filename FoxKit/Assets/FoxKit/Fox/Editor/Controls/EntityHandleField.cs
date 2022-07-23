@@ -8,6 +8,7 @@ using UnityEngine;
 using System.Text;
 using System;
 using System.Reflection;
+using Object = UnityEngine.Object;
 
 namespace Fox.Editor
 {
@@ -72,7 +73,7 @@ namespace Fox.Editor
 
         public VisualElement visualInput { get; }
 
-        public EntityHandleField() 
+        public EntityHandleField()
             : this(null) { }
 
         public EntityHandleField(string label)
@@ -138,26 +139,6 @@ namespace Fox.Editor
             }
         }
 
-        protected override void ExecuteDefaultActionAtTarget(EventBase evt)
-        {
-            base.ExecuteDefaultActionAtTarget(evt);
-
-            // UNITYENHANCEMENT: https://github.com/Joey35233/FoxKit-3/issues/12
-            if (evt.eventTypeId == FoxFieldUtils.SerializedPropertyBindEventTypeId && !string.IsNullOrWhiteSpace(bindingPath))
-            {
-                SerializedProperty property = FoxFieldUtils.SerializedPropertyBindEventBindProperty.GetValue(evt) as SerializedProperty;
-
-                EntityProperty = property.FindPropertyRelative("_entity");
-
-                BindingExtensions.TrackPropertyValue(this, EntityProperty, OnPropertyChanged);
-
-                OnPropertyChanged(null);
-
-                // Stop the EntityPtrField itself's binding event; it's just a container for the actual BindableElements.
-                evt.StopPropagation();
-            }
-        }
-
         private void OnPropertyChanged(SerializedProperty property)
         {
             value = EntityHandle.Get(EntityProperty.managedReferenceValue as Entity);
@@ -176,6 +157,153 @@ namespace Fox.Editor
             BindingExtensions.TrackPropertyValue(this, EntityProperty, OnPropertyChanged);
 
             OnPropertyChanged(null);
+        }
+
+        // UNITYENHANCEMENT: https://github.com/Joey35233/FoxKit-3/issues/12
+        //[EventInterest(typeof(MouseDownEvent), typeof(KeyDownEvent), typeof(DragUpdatedEvent), typeof(DragPerformEvent), typeof(DragLeaveEvent))]
+        protected override void ExecuteDefaultActionAtTarget(EventBase evt)
+        {
+            base.ExecuteDefaultActionAtTarget(evt);
+
+            if (evt == null)
+            {
+                return;
+            }
+
+            if (evt.eventTypeId == FoxFieldUtils.SerializedPropertyBindEventTypeId && !string.IsNullOrWhiteSpace(bindingPath))
+            {
+                SerializedProperty property = FoxFieldUtils.SerializedPropertyBindEventBindProperty.GetValue(evt) as SerializedProperty;
+
+                EntityProperty = property.FindPropertyRelative("_entity");
+
+                BindingExtensions.TrackPropertyValue(this, EntityProperty, OnPropertyChanged);
+
+                OnPropertyChanged(null);
+
+                // Stop the EntityPtrField itself's binding event; it's just a container for the actual BindableElements.
+                evt.StopPropagation();
+            }
+
+            if ((evt as MouseDownEvent)?.button == (int)MouseButton.LeftMouse)
+                OnMouseDown(evt as MouseDownEvent);
+            else if (evt.eventTypeId == KeyDownEvent.TypeId())
+            {
+                var kdEvt = evt as KeyDownEvent;
+
+                if (((evt as KeyDownEvent)?.keyCode == KeyCode.Space) ||
+                    ((evt as KeyDownEvent)?.keyCode == KeyCode.KeypadEnter) ||
+                    ((evt as KeyDownEvent)?.keyCode == KeyCode.Return))
+                {
+                    OnKeyboardEnter();
+                }
+                else if (kdEvt.keyCode == KeyCode.Delete ||
+                         kdEvt.keyCode == KeyCode.Backspace)
+                {
+                    OnKeyboardDelete();
+                }
+            }
+            else if (evt.eventTypeId == DragUpdatedEvent.TypeId())
+                OnDragUpdated(evt);
+            else if (evt.eventTypeId == DragPerformEvent.TypeId())
+                OnDragPerform(evt);
+            else if (evt.eventTypeId == DragLeaveEvent.TypeId())
+                OnDragLeave();
+        }
+
+        //[EventInterest(typeof(MouseDownEvent))]
+        //internal override void ExecuteDefaultActionDisabledAtTarget(EventBase evt)
+        //{
+        //    base.ExecuteDefaultActionDisabledAtTarget(evt);
+
+        //    if ((evt as MouseDownEvent)?.button == (int)MouseButton.LeftMouse)
+        //        OnMouseDown(evt as MouseDownEvent);
+        //}
+
+        private void OnDragLeave()
+        {
+            // Make sure we've cleared the accept drop look, whether we we in a drop operation or not.
+            RemoveFromClassList("unity-object-field-display--accept-drop");
+        }
+
+        private void OnMouseDown(MouseDownEvent evt)
+        {
+            //GameObject targetGameObject = value?.gameObject;
+
+            //if (targetGameObject == null)
+            //    return;
+
+            //// One click shows where the referenced object is, or pops up a preview
+            //if (evt.clickCount == 1)
+            //{
+            //    // ping object
+            //    bool anyModifiersPressed = evt.shiftKey || evt.ctrlKey;
+            //    if (!anyModifiersPressed && targetGameObject)
+            //    {
+            //        EditorGUIUtility.PingObject(targetGameObject);
+            //    }
+            //    evt.StopPropagation();
+            //}
+            //// Double click opens the asset in external app or changes selection to referenced object
+            //else if (evt.clickCount == 2)
+            //{
+            //    if (targetGameObject)
+            //    {
+            //        AssetDatabase.OpenAsset(targetGameObject);
+            //        GUIUtility.ExitGUI();
+            //    }
+            //    evt.StopPropagation();
+            //}
+        }
+
+        private void OnKeyboardEnter()
+        {
+            //m_ObjectField.ShowObjectSelector();
+        }
+
+        private void OnKeyboardDelete()
+        {
+            value = new EntityHandle();
+        }
+
+        private FoxEntity GetDragAndDropObject()
+        {
+            Object[] references = DragAndDrop.objectReferences;
+
+            FoxEntity validatedObject = null;
+            if (references[0] != null && references[0] is GameObject && (references[0] as GameObject).TryGetComponent<FoxEntity>(out validatedObject))
+            {
+                if (!EditorUtility.IsPersistent(validatedObject))
+                    return validatedObject;
+            }
+
+            return null;
+        }
+
+        private void OnDragUpdated(EventBase evt)
+        {
+            FoxEntity validatedObject = GetDragAndDropObject();
+            if (validatedObject != null)
+            {
+                DragAndDrop.visualMode = DragAndDropVisualMode.Generic;
+                AddToClassList("unity-object-field-display--accept-drop");
+
+                evt.StopPropagation();
+            }
+        }
+
+        private void OnDragPerform(EventBase evt)
+        {
+            FoxEntity validatedObject = GetDragAndDropObject();
+            if (validatedObject != null)
+            {
+                DragAndDrop.visualMode = DragAndDropVisualMode.Generic;
+                value = EntityHandle.Get(validatedObject.Entity);
+
+                DragAndDrop.AcceptDrag();
+                RemoveFromClassList("unity-object-field-display--accept-drop");
+
+                evt.StopPropagation();
+            }
         }
     }
 

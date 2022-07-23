@@ -7,6 +7,7 @@ namespace Fox.Editor
 {
     public class EntityLinkField : BaseField<Fox.Core.EntityLink>, IFoxField, ICustomBindable
     {
+        private EntityHandleField InternalHandleField;
         private PathField InternalPackagePathField;
         private PathField InternalArchivePathField;
         private StringField InternalNameField;
@@ -29,39 +30,50 @@ namespace Fox.Editor
             : base(label, visInput)
         {
             visualInput = visInput;
-            
+
             VisualElement row0 = new();
             row0.AddToClassList(BaseCompositeField<UnityEngine.Quaternion, FloatField, float>.fieldGroupUssClassName);
+            InternalHandleField = new EntityHandleField();
+            InternalHandleField.AddToClassList(BaseCompositeField<UnityEngine.Quaternion, FloatField, float>.firstFieldVariantUssClassName);
+            InternalHandleField.AddToClassList(BaseCompositeField<UnityEngine.Quaternion, FloatField, float>.fieldUssClassName);
+            InternalHandleField.Q(className: BaseField<UnityEngine.Quaternion>.ussClassName).AddToClassList(BaseCompositeField<UnityEngine.Quaternion, FloatField, float>.firstFieldVariantUssClassName);
+            InternalHandleField.Q(className: BaseField<UnityEngine.Quaternion>.ussClassName).AddToClassList(BaseCompositeField<UnityEngine.Quaternion, FloatField, float>.fieldUssClassName);
+            InternalHandleField.Q(className: BaseField<UnityEngine.Quaternion>.ussClassName).AddToClassList("unity-composite-field__field--last");
+            row0.Add(InternalHandleField);
+            visualInput.Add(row0);
+
+            VisualElement row1 = new();
+            row1.AddToClassList(BaseCompositeField<UnityEngine.Quaternion, FloatField, float>.fieldGroupUssClassName);
             InternalPackagePathField = new PathField();
             InternalPackagePathField.AddToClassList(BaseCompositeField<UnityEngine.Quaternion, FloatField, float>.firstFieldVariantUssClassName);
             InternalPackagePathField.AddToClassList(BaseCompositeField<UnityEngine.Quaternion, FloatField, float>.fieldUssClassName);
             InternalPackagePathField.Q(className: BaseField<UnityEngine.Quaternion>.ussClassName).AddToClassList(BaseCompositeField<UnityEngine.Quaternion, FloatField, float>.firstFieldVariantUssClassName);
             InternalPackagePathField.Q(className: BaseField<UnityEngine.Quaternion>.ussClassName).AddToClassList(BaseCompositeField<UnityEngine.Quaternion, FloatField, float>.fieldUssClassName);
             InternalPackagePathField.Q(className: BaseField<UnityEngine.Quaternion>.ussClassName).AddToClassList("unity-composite-field__field--last");
-            row0.Add(InternalPackagePathField);
-            visualInput.Add(row0);
+            row1.Add(InternalPackagePathField);
+            visualInput.Add(row1);
 
-            VisualElement row1 = new();
-            row1.AddToClassList(BaseCompositeField<UnityEngine.Quaternion, FloatField, float>.fieldGroupUssClassName);
+            VisualElement row2 = new();
+            row2.AddToClassList(BaseCompositeField<UnityEngine.Quaternion, FloatField, float>.fieldGroupUssClassName);
             InternalArchivePathField = new PathField();
             InternalArchivePathField.AddToClassList(BaseCompositeField<UnityEngine.Quaternion, FloatField, float>.firstFieldVariantUssClassName);
             InternalArchivePathField.AddToClassList(BaseCompositeField<UnityEngine.Quaternion, FloatField, float>.fieldUssClassName);
             InternalArchivePathField.Q(className: BaseField<UnityEngine.Quaternion>.ussClassName).AddToClassList(BaseCompositeField<UnityEngine.Quaternion, FloatField, float>.firstFieldVariantUssClassName);
             InternalArchivePathField.Q(className: BaseField<UnityEngine.Quaternion>.ussClassName).AddToClassList(BaseCompositeField<UnityEngine.Quaternion, FloatField, float>.fieldUssClassName);
             InternalArchivePathField.Q(className: BaseField<UnityEngine.Quaternion>.ussClassName).AddToClassList("unity-composite-field__field--last");
-            row1.Add(InternalArchivePathField);
-            visualInput.Add(row1);
+            row2.Add(InternalArchivePathField);
+            visualInput.Add(row2);
 
-            VisualElement row2 = new();
-            row2.AddToClassList(BaseCompositeField<UnityEngine.Quaternion, FloatField, float>.fieldGroupUssClassName);
+            VisualElement row3 = new();
+            row3.AddToClassList(BaseCompositeField<UnityEngine.Quaternion, FloatField, float>.fieldGroupUssClassName);
             InternalNameField = new StringField();
             InternalNameField.AddToClassList(BaseCompositeField<UnityEngine.Quaternion, FloatField, float>.firstFieldVariantUssClassName);
             InternalNameField.AddToClassList(BaseCompositeField<UnityEngine.Quaternion, FloatField, float>.fieldUssClassName);
             InternalNameField.Q(className: BaseField<UnityEngine.Quaternion>.ussClassName).AddToClassList(BaseCompositeField<UnityEngine.Quaternion, FloatField, float>.firstFieldVariantUssClassName);
             InternalNameField.Q(className: BaseField<UnityEngine.Quaternion>.ussClassName).AddToClassList(BaseCompositeField<UnityEngine.Quaternion, FloatField, float>.fieldUssClassName);
             InternalNameField.Q(className: BaseField<UnityEngine.Quaternion>.ussClassName).AddToClassList("unity-composite-field__field--last");
-            row2.Add(InternalNameField);
-            visualInput.Add(row2);
+            row3.Add(InternalNameField);
+            visualInput.Add(row3);
 
             AddToClassList(ussClassName);
             AddToClassList(BaseCompositeField<UnityEngine.Quaternion, FloatField, float>.ussClassName);
@@ -84,6 +96,7 @@ namespace Fox.Editor
 
                 if (property.type == "EntityLink")
                 {
+                    InternalHandleField.BindProperty(property.FindPropertyRelative("handle"));
                     InternalPackagePathField.BindProperty(property.FindPropertyRelative("packagePath"));
                     InternalArchivePathField.BindProperty(property.FindPropertyRelative("archivePath"));
                     InternalNameField.BindProperty(property.FindPropertyRelative("nameInArchive"));
@@ -101,6 +114,7 @@ namespace Fox.Editor
         {
             if (label is not null)
                 this.label = label;
+            InternalHandleField.BindProperty(property.FindPropertyRelative("handle"));
             InternalPackagePathField.BindProperty(property.FindPropertyRelative("packagePath"));
             InternalArchivePathField.BindProperty(property.FindPropertyRelative("archivePath"));
             InternalNameField.BindProperty(property.FindPropertyRelative("nameInArchive"));

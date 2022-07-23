@@ -42,8 +42,6 @@ namespace Fox
             }
 
             EntityInfos.Add(Type, this);
-
-            LongestNamedProperty = Super?.LongestNamedProperty;
         }
 
         /// <summary>
@@ -99,7 +97,7 @@ namespace Fox
         /// <summary>
         /// PropertyInfo of the property with the longest name.
         /// </summary>
-        public Fox.Core.PropertyInfo LongestNamedProperty { get; private set; }
+        public Fox.Core.PropertyInfo LongestNamedVisibleFieldProperty { get; private set; }
 
         /// <summary>
         /// Checks if an EntityInfo instance or any of its superclasses contains a property with the given name.
@@ -132,10 +130,13 @@ namespace Fox
             OrderedStaticProperties.Add(propertyInfo);
             StaticProperties.Insert(propertyInfo.Name, propertyInfo);
 
-            if (LongestNamedProperty == null)
-                LongestNamedProperty = propertyInfo;
-            else if (propertyInfo.Name.Length > LongestNamedProperty.Name.Length)
-                LongestNamedProperty = propertyInfo;
+            if (propertyInfo.Readable != Core.PropertyInfo.PropertyExport.Never && propertyInfo.Backing == Core.PropertyInfo.BackingType.Field)
+            {
+                if (LongestNamedVisibleFieldProperty == null)
+                    LongestNamedVisibleFieldProperty = propertyInfo;
+                else if (propertyInfo.Name.Length > LongestNamedVisibleFieldProperty.Name.Length)
+                    LongestNamedVisibleFieldProperty = propertyInfo;
+            }
         }
 
         public override string ToString()
