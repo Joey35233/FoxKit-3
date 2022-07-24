@@ -75,3 +75,4 @@ crashlytics-build.properties
 # Fox
 *.fox2.unity
 *.fox2.unity.meta
+/[Aa]ssets/Lib/*[Ff]mdl*/
