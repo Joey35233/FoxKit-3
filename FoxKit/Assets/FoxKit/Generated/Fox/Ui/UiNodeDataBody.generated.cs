@@ -17,13 +17,13 @@ namespace Fox.Ui
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        protected Fox.Core.DynamicArray<Fox.Core.EntityHandle> inputEdges { get; set; } = new Fox.Core.DynamicArray<Fox.Core.EntityHandle>();
+        protected Fox.FoxKernel.DynamicArray<Fox.Core.EntityHandle> inputEdges { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.Core.EntityHandle>();
         
         [field: UnityEngine.SerializeField]
-        protected Fox.Core.DynamicArray<Fox.Core.EntityHandle> outputEdges { get; set; } = new Fox.Core.DynamicArray<Fox.Core.EntityHandle>();
+        protected Fox.FoxKernel.DynamicArray<Fox.Core.EntityHandle> outputEdges { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.Core.EntityHandle>();
         
         [field: UnityEngine.SerializeField]
-        protected Fox.Core.Path uigName { get; set; }
+        protected Fox.FoxKernel.Path uigName { get; set; }
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

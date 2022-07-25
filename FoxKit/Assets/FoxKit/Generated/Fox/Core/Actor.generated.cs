@@ -17,13 +17,13 @@ namespace Fox.Core
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String name { get; set; }
+        public Fox.FoxKernel.String name { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String actorLevelName { get; protected set; }
+        public Fox.FoxKernel.String actorLevelName { get; protected set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String sceneName { get; protected set; }
+        public Fox.FoxKernel.String sceneName { get; protected set; }
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

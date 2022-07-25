@@ -20,10 +20,10 @@ namespace Tpp.GameKit
         protected uint flag1 { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.Path defaultAnimPath { get; set; }
+        public Fox.FoxKernel.Path defaultAnimPath { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.Path eventAnimPath { get; set; }
+        public Fox.FoxKernel.Path eventAnimPath { get; set; }
         
         [field: UnityEngine.SerializeField]
         public float fadeTime { get; set; }

@@ -23,13 +23,13 @@ namespace Tpp.GameKit
         public Fox.Core.EntityLink poleData { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.String> electricCable { get; set; } = new Fox.Core.DynamicArray<Fox.Core.String>();
+        public Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String> electricCable { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String>();
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.String> pole { get; set; } = new Fox.Core.DynamicArray<Fox.Core.String>();
+        public Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String> pole { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String>();
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<byte> cnpIndex { get; set; } = new Fox.Core.DynamicArray<byte>();
+        public Fox.FoxKernel.DynamicArray<byte> cnpIndex { get; set; } = new Fox.FoxKernel.DynamicArray<byte>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;
@@ -79,11 +79,11 @@ namespace Tpp.GameKit
             switch(propertyName)
             {
                 case "electricCable":
-                    while(this.electricCable.Count <= index) { this.electricCable.Add(default(Fox.Core.String)); }
+                    while(this.electricCable.Count <= index) { this.electricCable.Add(default(Fox.FoxKernel.String)); }
                     this.electricCable[index] = value.GetValueAsString();
                     return;
                 case "pole":
-                    while(this.pole.Count <= index) { this.pole.Add(default(Fox.Core.String)); }
+                    while(this.pole.Count <= index) { this.pole.Add(default(Fox.FoxKernel.String)); }
                     this.pole[index] = value.GetValueAsString();
                     return;
                 case "cnpIndex":

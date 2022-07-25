@@ -17,7 +17,7 @@ namespace Tpp.Effect
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String rippleTextureName { get; set; }
+        public Fox.FoxKernel.String rippleTextureName { get; set; }
         
         [field: UnityEngine.SerializeField]
         public uint viewportWidth { get; set; }

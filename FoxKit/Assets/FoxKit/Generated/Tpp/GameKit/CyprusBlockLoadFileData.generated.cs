@@ -17,7 +17,7 @@ namespace Tpp.GameKit
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.StaticArray<Fox.Core.Path> path { get; set; } = new Fox.Core.StaticArray<Fox.Core.Path>(5);
+        public Fox.FoxKernel.StaticArray<Fox.FoxKernel.Path> path { get; set; } = new Fox.FoxKernel.StaticArray<Fox.FoxKernel.Path>(5);
         
         [field: UnityEngine.SerializeField]
         public uint block { get; set; }

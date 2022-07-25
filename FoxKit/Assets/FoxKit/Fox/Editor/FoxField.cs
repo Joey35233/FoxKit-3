@@ -6,6 +6,8 @@ using Fox.Core;
 using System.Reflection;
 using static Fox.Core.PropertyInfo;
 using PropertyInfo = Fox.Core.PropertyInfo;
+using Fox.FoxKernel;
+using String = Fox.FoxKernel.String;
 
 namespace Fox.Editor
 {
@@ -72,10 +74,10 @@ namespace Fox.Editor
                 case Type type when type == typeof(double):
                     return () => new DoubleField(false);
 
-                case Type type when type == typeof(Fox.Core.String):
+                case Type type when type == typeof(String):
                     return () => new StringField();
 
-                case Type type when type == typeof(Fox.Core.Path):
+                case Type type when type == typeof(Path):
                     return () => new PathField();
 
                 case Type type when type == typeof(Vector3):
@@ -147,10 +149,10 @@ namespace Fox.Editor
                 case Type type when type == typeof(double):
                     return () => new DoubleField("p", false);
 
-                case Type type when type == typeof(Fox.Core.String):
+                case Type type when type == typeof(String):
                     return () => new StringField("p");
 
-                case Type type when type == typeof(Fox.Core.Path):
+                case Type type when type == typeof(Path):
                     return () => new PathField("p");
 
                 case Type type when type == typeof(Vector3):

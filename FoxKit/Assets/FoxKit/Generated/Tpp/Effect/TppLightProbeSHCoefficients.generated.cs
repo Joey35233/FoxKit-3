@@ -17,7 +17,7 @@ namespace Tpp.Effect
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.Path filePath { get; set; }
+        public Fox.FoxKernel.Path filePath { get; set; }
         
         [field: UnityEngine.SerializeField]
         public Fox.Core.FilePtr lpshFile { get; set; }

@@ -17,22 +17,22 @@ namespace Fox.Sdx
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String ambientEvent { get; set; }
+        public Fox.FoxKernel.String ambientEvent { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String ambientRtpcName { get; set; }
+        public Fox.FoxKernel.String ambientRtpcName { get; set; }
         
         [field: UnityEngine.SerializeField]
         public float ambientRtpcValue { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String objectRtpcName { get; set; }
+        public Fox.FoxKernel.String objectRtpcName { get; set; }
         
         [field: UnityEngine.SerializeField]
         public float objectRtpcValue { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.StringMap<float> auxSends { get; set; } = new Fox.Core.StringMap<float>();
+        public Fox.FoxKernel.StringMap<float> auxSends { get; set; } = new Fox.FoxKernel.StringMap<float>();
         
         [field: UnityEngine.SerializeField]
         public float dryVolume { get; set; }

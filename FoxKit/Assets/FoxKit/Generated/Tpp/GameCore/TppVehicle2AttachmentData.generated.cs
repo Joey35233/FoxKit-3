@@ -29,13 +29,13 @@ namespace Tpp.GameCore
         protected byte attachmentInstanceCount { get; set; }
         
         [field: UnityEngine.SerializeField]
-        protected Fox.Core.String bodyCnpName { get; set; }
+        protected Fox.FoxKernel.String bodyCnpName { get; set; }
         
         [field: UnityEngine.SerializeField]
-        protected Fox.Core.String attachmentBoneName { get; set; }
+        protected Fox.FoxKernel.String attachmentBoneName { get; set; }
         
         [field: UnityEngine.SerializeField]
-        protected Fox.Core.DynamicArray<Fox.Core.EntityPtr<Tpp.GameCore.TppVehicle2WeaponParameter>> weaponParams { get; set; } = new Fox.Core.DynamicArray<Fox.Core.EntityPtr<Tpp.GameCore.TppVehicle2WeaponParameter>>();
+        protected Fox.FoxKernel.DynamicArray<Fox.Core.EntityPtr<Tpp.GameCore.TppVehicle2WeaponParameter>> weaponParams { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.Core.EntityPtr<Tpp.GameCore.TppVehicle2WeaponParameter>>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

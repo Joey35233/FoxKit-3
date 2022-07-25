@@ -17,7 +17,7 @@ namespace Fox.GameKit
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.String> packageFileNames { get; set; } = new Fox.Core.DynamicArray<Fox.Core.String>();
+        public Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String> packageFileNames { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;
@@ -57,7 +57,7 @@ namespace Fox.GameKit
             switch(propertyName)
             {
                 case "packageFileNames":
-                    while(this.packageFileNames.Count <= index) { this.packageFileNames.Add(default(Fox.Core.String)); }
+                    while(this.packageFileNames.Count <= index) { this.packageFileNames.Add(default(Fox.FoxKernel.String)); }
                     this.packageFileNames[index] = value.GetValueAsString();
                     return;
                 default:

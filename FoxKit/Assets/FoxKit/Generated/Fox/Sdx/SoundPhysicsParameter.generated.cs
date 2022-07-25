@@ -17,28 +17,28 @@ namespace Fox.Sdx
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String hitEvent { get; set; }
+        public Fox.FoxKernel.String hitEvent { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String rollStartEvent { get; set; }
+        public Fox.FoxKernel.String rollStartEvent { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String rollEndEvent { get; set; }
+        public Fox.FoxKernel.String rollEndEvent { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String hitRtpcName { get; set; }
+        public Fox.FoxKernel.String hitRtpcName { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String rollRtpcName { get; set; }
+        public Fox.FoxKernel.String rollRtpcName { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String switchName { get; set; }
+        public Fox.FoxKernel.String switchName { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String generalEvent1 { get; set; }
+        public Fox.FoxKernel.String generalEvent1 { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String generalEvent2 { get; set; }
+        public Fox.FoxKernel.String generalEvent2 { get; set; }
         
         [field: UnityEngine.SerializeField]
         public float hitLowerPower { get; set; }

@@ -20,7 +20,7 @@ namespace Fox.Sim
         protected Fox.Core.EntityPtr<Fox.Sim.SimClothControlParam> controlParam { get; set; } = new Fox.Core.EntityPtr<Fox.Sim.SimClothControlParam>();
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.EntityPtr<Fox.Sim.SimClothControlUnit>> clothControlUnits { get; protected set; } = new Fox.Core.DynamicArray<Fox.Core.EntityPtr<Fox.Sim.SimClothControlUnit>>();
+        public Fox.FoxKernel.DynamicArray<Fox.Core.EntityPtr<Fox.Sim.SimClothControlUnit>> clothControlUnits { get; protected set; } = new Fox.FoxKernel.DynamicArray<Fox.Core.EntityPtr<Fox.Sim.SimClothControlUnit>>();
         
         public float windCoefficient { get => Get_windCoefficient(); set { Set_windCoefficient(value); } }
         protected partial float Get_windCoefficient();

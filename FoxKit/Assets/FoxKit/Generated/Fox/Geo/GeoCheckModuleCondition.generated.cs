@@ -20,10 +20,10 @@ namespace Fox.Geo
         public bool isAndCheck { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.String> checkFuncNames { get; set; } = new Fox.Core.DynamicArray<Fox.Core.String>();
+        public Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String> checkFuncNames { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String>();
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.EntityPtr<Fox.Geo.GeoTrapModuleCallbackDataElement>> checkCallbackDataElements { get; protected set; } = new Fox.Core.DynamicArray<Fox.Core.EntityPtr<Fox.Geo.GeoTrapModuleCallbackDataElement>>();
+        public Fox.FoxKernel.DynamicArray<Fox.Core.EntityPtr<Fox.Geo.GeoTrapModuleCallbackDataElement>> checkCallbackDataElements { get; protected set; } = new Fox.FoxKernel.DynamicArray<Fox.Core.EntityPtr<Fox.Geo.GeoTrapModuleCallbackDataElement>>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;
@@ -68,7 +68,7 @@ namespace Fox.Geo
             switch(propertyName)
             {
                 case "checkFuncNames":
-                    while(this.checkFuncNames.Count <= index) { this.checkFuncNames.Add(default(Fox.Core.String)); }
+                    while(this.checkFuncNames.Count <= index) { this.checkFuncNames.Add(default(Fox.FoxKernel.String)); }
                     this.checkFuncNames[index] = value.GetValueAsString();
                     return;
                 case "checkCallbackDataElements":

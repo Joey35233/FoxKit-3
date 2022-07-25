@@ -17,13 +17,13 @@ namespace Fox.GameKit
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String attackTargetName { get; set; }
+        public Fox.FoxKernel.String attackTargetName { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String weaponName { get; set; }
+        public Fox.FoxKernel.String weaponName { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String bulletName { get; set; }
+        public Fox.FoxKernel.String bulletName { get; set; }
         
         [field: UnityEngine.SerializeField]
         public float force { get; set; }

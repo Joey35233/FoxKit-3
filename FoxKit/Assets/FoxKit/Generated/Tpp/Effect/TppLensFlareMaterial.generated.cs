@@ -17,7 +17,7 @@ namespace Tpp.Effect
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.Path texture { get; set; }
+        public Fox.FoxKernel.Path texture { get; set; }
         
         [field: UnityEngine.SerializeField]
         public Fox.Core.EntityLink arcAlphaField { get; set; }

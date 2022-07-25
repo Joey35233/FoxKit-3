@@ -23,13 +23,13 @@ namespace Fox.Phx
         protected Fox.Core.EntityPtr<Fox.Phx.PhxWheelConstraintParam> wheelConstraintParam { get; set; } = new Fox.Core.EntityPtr<Fox.Phx.PhxWheelConstraintParam>();
         
         [field: UnityEngine.SerializeField]
-        protected Fox.Core.DynamicArray<Fox.Core.EntityPtr<Fox.Phx.PhxWheelAssociationUnitParam>> wheelAssociationUnitParams { get; set; } = new Fox.Core.DynamicArray<Fox.Core.EntityPtr<Fox.Phx.PhxWheelAssociationUnitParam>>();
+        protected Fox.FoxKernel.DynamicArray<Fox.Core.EntityPtr<Fox.Phx.PhxWheelAssociationUnitParam>> wheelAssociationUnitParams { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.Core.EntityPtr<Fox.Phx.PhxWheelAssociationUnitParam>>();
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<float> torqueDistributions { get; set; } = new Fox.Core.DynamicArray<float>();
+        public Fox.FoxKernel.DynamicArray<float> torqueDistributions { get; set; } = new Fox.FoxKernel.DynamicArray<float>();
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<float> gearRatios { get; set; } = new Fox.Core.DynamicArray<float>();
+        public Fox.FoxKernel.DynamicArray<float> gearRatios { get; set; } = new Fox.FoxKernel.DynamicArray<float>();
         
         public UnityEngine.Vector3 wheelFront { get => Get_wheelFront(); set { Set_wheelFront(value); } }
         protected partial UnityEngine.Vector3 Get_wheelFront();
@@ -83,9 +83,9 @@ namespace Fox.Phx
         protected partial bool Get_useDifferential();
         protected partial void Set_useDifferential(bool value);
         
-        public Fox.Core.DynamicArray<Fox.Core.String> AssignedBoneNames { get => Get_AssignedBoneNames(); set { Set_AssignedBoneNames(value); } }
-        protected partial Fox.Core.DynamicArray<Fox.Core.String> Get_AssignedBoneNames();
-        protected partial void Set_AssignedBoneNames(Fox.Core.DynamicArray<Fox.Core.String> value);
+        public Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String> AssignedBoneNames { get => Get_AssignedBoneNames(); set { Set_AssignedBoneNames(value); } }
+        protected partial Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String> Get_AssignedBoneNames();
+        protected partial void Set_AssignedBoneNames(Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String> value);
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;
@@ -200,7 +200,7 @@ namespace Fox.Phx
                     this.gearRatios[index] = value.GetValueAsFloat();
                     return;
                 case "AssignedBoneNames":
-                    while(this.AssignedBoneNames.Count <= index) { this.AssignedBoneNames.Add(default(Fox.Core.String)); }
+                    while(this.AssignedBoneNames.Count <= index) { this.AssignedBoneNames.Add(default(Fox.FoxKernel.String)); }
                     this.AssignedBoneNames[index] = value.GetValueAsString();
                     return;
                 default:

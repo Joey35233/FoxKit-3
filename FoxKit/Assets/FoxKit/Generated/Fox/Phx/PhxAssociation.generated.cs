@@ -20,7 +20,7 @@ namespace Fox.Phx
         public Fox.Core.EntityLink physicsData { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.StringMap<Fox.Core.EntityPtr<Fox.Phx.PhxAssociationUnitElement>> connections { get; set; } = new Fox.Core.StringMap<Fox.Core.EntityPtr<Fox.Phx.PhxAssociationUnitElement>>();
+        public Fox.FoxKernel.StringMap<Fox.Core.EntityPtr<Fox.Phx.PhxAssociationUnitElement>> connections { get; set; } = new Fox.FoxKernel.StringMap<Fox.Core.EntityPtr<Fox.Phx.PhxAssociationUnitElement>>();
         
         [field: UnityEngine.SerializeField]
         protected Fox.Core.EntityPtr<Fox.Phx.PhAssociationParam> param { get; set; } = new Fox.Core.EntityPtr<Fox.Phx.PhAssociationParam>();

@@ -20,13 +20,13 @@ namespace Tpp.System
         public ushort locationId { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String locationPathString { get; set; }
+        public Fox.FoxKernel.String locationPathString { get; set; }
         
         [field: UnityEngine.SerializeField]
         public byte locationType { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.Path loadScriptPath { get; set; }
+        public Fox.FoxKernel.Path loadScriptPath { get; set; }
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

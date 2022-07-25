@@ -17,7 +17,7 @@ namespace Tpp.Sound
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String volumeRtpc { get; set; }
+        public Fox.FoxKernel.String volumeRtpc { get; set; }
         
         [field: UnityEngine.SerializeField]
         public byte ambientIndex { get; set; }

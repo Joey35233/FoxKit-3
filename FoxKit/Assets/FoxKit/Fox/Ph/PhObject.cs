@@ -1,4 +1,5 @@
 ﻿using Fox.Core;
+using Fox.FoxKernel;
 
 namespace Fox.Ph
 {
@@ -6,7 +7,7 @@ namespace Fox.Ph
     {
         private PhObjectParam objectParam => (param.Get() as PhObjectParam);
 
-        protected partial Fox.Core.String Get_worldName() => objectParam.GetWorldName();
-        protected partial void Set_worldName(Fox.Core.String value) { objectParam.SetWorldName(value); }
+        protected partial String Get_worldName() => objectParam.GetWorldName();
+        protected partial void Set_worldName(String value) { objectParam.SetWorldName(value); }
     }
 }

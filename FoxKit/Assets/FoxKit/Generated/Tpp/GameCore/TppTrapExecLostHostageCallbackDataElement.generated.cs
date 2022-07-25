@@ -17,7 +17,7 @@ namespace Tpp.GameCore
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String hostageName { get; set; }
+        public Fox.FoxKernel.String hostageName { get; set; }
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

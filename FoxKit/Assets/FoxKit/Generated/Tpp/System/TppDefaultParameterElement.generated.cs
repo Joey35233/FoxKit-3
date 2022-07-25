@@ -17,7 +17,7 @@ namespace Tpp.System
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String paramName { get; protected set; }
+        public Fox.FoxKernel.String paramName { get; protected set; }
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

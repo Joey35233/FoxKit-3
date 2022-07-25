@@ -20,7 +20,7 @@ namespace Tpp.System
         public Fox.Core.EntityLink eventSequenceManager { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String sequenceIdIsSmaller { get; set; }
+        public Fox.FoxKernel.String sequenceIdIsSmaller { get; set; }
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

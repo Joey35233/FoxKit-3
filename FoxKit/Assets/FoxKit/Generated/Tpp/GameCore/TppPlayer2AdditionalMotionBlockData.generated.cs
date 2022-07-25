@@ -35,10 +35,10 @@ namespace Tpp.GameCore
         public uint weaponVramSyncBufferSize { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.Path fpkPath { get; set; }
+        public Fox.FoxKernel.Path fpkPath { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.Path vramFpkPath { get; set; }
+        public Fox.FoxKernel.Path vramFpkPath { get; set; }
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

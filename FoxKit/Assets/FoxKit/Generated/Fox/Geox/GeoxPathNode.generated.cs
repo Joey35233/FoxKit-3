@@ -17,7 +17,7 @@ namespace Fox.Geox
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.String> nodeTags { get; set; } = new Fox.Core.DynamicArray<Fox.Core.String>();
+        public Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String> nodeTags { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;
@@ -57,7 +57,7 @@ namespace Fox.Geox
             switch(propertyName)
             {
                 case "nodeTags":
-                    while(this.nodeTags.Count <= index) { this.nodeTags.Add(default(Fox.Core.String)); }
+                    while(this.nodeTags.Count <= index) { this.nodeTags.Add(default(Fox.FoxKernel.String)); }
                     this.nodeTags[index] = value.GetValueAsString();
                     return;
                 default:

@@ -17,7 +17,7 @@ namespace Fox.Fx
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String groupInstanceName { get; set; }
+        public Fox.FoxKernel.String groupInstanceName { get; set; }
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

@@ -17,7 +17,7 @@ namespace Fox.UiScene
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String cameraName { get; set; }
+        public Fox.FoxKernel.String cameraName { get; set; }
         
         [field: UnityEngine.SerializeField]
         public UnityEngine.Vector3 translate { get; set; }

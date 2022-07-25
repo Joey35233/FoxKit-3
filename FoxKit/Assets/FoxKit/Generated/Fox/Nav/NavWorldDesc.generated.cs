@@ -17,10 +17,10 @@ namespace Fox.Nav
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        protected Fox.Core.String sceneName { get; set; }
+        protected Fox.FoxKernel.String sceneName { get; set; }
         
         [field: UnityEngine.SerializeField]
-        protected Fox.Core.String worldName { get; set; }
+        protected Fox.FoxKernel.String worldName { get; set; }
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

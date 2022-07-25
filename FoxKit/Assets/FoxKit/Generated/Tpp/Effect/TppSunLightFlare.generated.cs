@@ -17,7 +17,7 @@ namespace Tpp.Effect
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String flareName { get; set; }
+        public Fox.FoxKernel.String flareName { get; set; }
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

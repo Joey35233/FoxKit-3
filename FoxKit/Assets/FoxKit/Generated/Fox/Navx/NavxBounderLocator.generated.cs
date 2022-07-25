@@ -20,10 +20,10 @@ namespace Fox.Navx
         public bool enable { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String sceneName { get; set; }
+        public Fox.FoxKernel.String sceneName { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String worldName { get; set; }
+        public Fox.FoxKernel.String worldName { get; set; }
         
         [field: UnityEngine.SerializeField]
         public NavxBounderLocatorType type { get; set; }

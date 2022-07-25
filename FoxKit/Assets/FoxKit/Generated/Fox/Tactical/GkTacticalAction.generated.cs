@@ -23,22 +23,22 @@ namespace Fox.Tactical
         public bool enableInGame { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String worldName { get; set; }
+        public Fox.FoxKernel.String worldName { get; set; }
         
         [field: UnityEngine.SerializeField]
         public Fox.Core.EntityLink userData { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String userId { get; set; }
+        public Fox.FoxKernel.String userId { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.EntityPtr<Fox.Tactical.GkTacticalActionWaypoint>> waypoints { get; set; } = new Fox.Core.DynamicArray<Fox.Core.EntityPtr<Fox.Tactical.GkTacticalActionWaypoint>>();
+        public Fox.FoxKernel.DynamicArray<Fox.Core.EntityPtr<Fox.Tactical.GkTacticalActionWaypoint>> waypoints { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.Core.EntityPtr<Fox.Tactical.GkTacticalActionWaypoint>>();
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.EntityPtr<Fox.Tactical.GkTacticalActionEdge>> edges { get; set; } = new Fox.Core.DynamicArray<Fox.Core.EntityPtr<Fox.Tactical.GkTacticalActionEdge>>();
+        public Fox.FoxKernel.DynamicArray<Fox.Core.EntityPtr<Fox.Tactical.GkTacticalActionEdge>> edges { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.Core.EntityPtr<Fox.Tactical.GkTacticalActionEdge>>();
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.String> attributeNames { get; set; } = new Fox.Core.DynamicArray<Fox.Core.String>();
+        public Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String> attributeNames { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String>();
         
         [field: UnityEngine.SerializeField]
         public uint attribute { get; set; }
@@ -115,7 +115,7 @@ namespace Fox.Tactical
                     this.edges[index] = value.GetValueAsEntityPtr<Fox.Tactical.GkTacticalActionEdge>();
                     return;
                 case "attributeNames":
-                    while(this.attributeNames.Count <= index) { this.attributeNames.Add(default(Fox.Core.String)); }
+                    while(this.attributeNames.Count <= index) { this.attributeNames.Add(default(Fox.FoxKernel.String)); }
                     this.attributeNames[index] = value.GetValueAsString();
                     return;
                 default:

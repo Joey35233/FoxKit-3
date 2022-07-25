@@ -30,13 +30,13 @@ namespace Fox.Core
         public uint blockCount { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.Path> block { get; set; } = new Fox.Core.DynamicArray<Fox.Core.Path>();
+        public Fox.FoxKernel.DynamicArray<Fox.FoxKernel.Path> block { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.FoxKernel.Path>();
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.EntityLink> relatedBlockGroups { get; set; } = new Fox.Core.DynamicArray<Fox.Core.EntityLink>();
+        public Fox.FoxKernel.DynamicArray<Fox.Core.EntityLink> relatedBlockGroups { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.Core.EntityLink>();
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.EntityLink> prerequisiteBlockGroups { get; set; } = new Fox.Core.DynamicArray<Fox.Core.EntityLink>();
+        public Fox.FoxKernel.DynamicArray<Fox.Core.EntityLink> prerequisiteBlockGroups { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.Core.EntityLink>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;
@@ -94,7 +94,7 @@ namespace Fox.Core
             switch(propertyName)
             {
                 case "block":
-                    while(this.block.Count <= index) { this.block.Add(default(Fox.Core.Path)); }
+                    while(this.block.Count <= index) { this.block.Add(default(Fox.FoxKernel.Path)); }
                     this.block[index] = value.GetValueAsPath();
                     return;
                 case "relatedBlockGroups":

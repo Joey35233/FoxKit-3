@@ -17,13 +17,13 @@ namespace Tpp.GameCore
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        protected Fox.Core.String attackId { get; set; }
+        protected Fox.FoxKernel.String attackId { get; set; }
         
         [field: UnityEngine.SerializeField]
-        protected Fox.Core.String equipId { get; set; }
+        protected Fox.FoxKernel.String equipId { get; set; }
         
         [field: UnityEngine.SerializeField]
-        protected Fox.Core.String bulletId { get; set; }
+        protected Fox.FoxKernel.String bulletId { get; set; }
         
         [field: UnityEngine.SerializeField]
         protected byte weaponImplTypeIndex { get; set; }
@@ -38,16 +38,16 @@ namespace Tpp.GameCore
         protected Fox.Core.FilePtr ammoFile { get; set; }
         
         [field: UnityEngine.SerializeField]
-        protected Fox.Core.String ownerCnpName { get; set; }
+        protected Fox.FoxKernel.String ownerCnpName { get; set; }
         
         [field: UnityEngine.SerializeField]
-        protected Fox.Core.String weaponBoneName { get; set; }
+        protected Fox.FoxKernel.String weaponBoneName { get; set; }
         
         [field: UnityEngine.SerializeField]
-        protected Fox.Core.String turretBoneName { get; set; }
+        protected Fox.FoxKernel.String turretBoneName { get; set; }
         
         [field: UnityEngine.SerializeField]
-        protected Fox.Core.String barrelBoneName { get; set; }
+        protected Fox.FoxKernel.String barrelBoneName { get; set; }
         
         [field: UnityEngine.SerializeField]
         protected float minPitch { get; set; }

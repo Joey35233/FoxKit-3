@@ -17,19 +17,19 @@ namespace Fox.EdDemo
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String playerInstanceName { get; set; }
+        public Fox.FoxKernel.String playerInstanceName { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String partsFile { get; set; }
+        public Fox.FoxKernel.String partsFile { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String handFv2File { get; set; }
+        public Fox.FoxKernel.String handFv2File { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String headFv2File { get; set; }
+        public Fox.FoxKernel.String headFv2File { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String camoFv2File { get; set; }
+        public Fox.FoxKernel.String camoFv2File { get; set; }
         
         [field: UnityEngine.SerializeField]
         public bool needReload { get; set; }

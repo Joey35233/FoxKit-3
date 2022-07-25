@@ -17,10 +17,10 @@ namespace Tpp.System
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String id { get; set; }
+        public Fox.FoxKernel.String id { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.StringMap<Fox.Core.EntityPtr<Tpp.System.TppDefaultParameterElement>> @params { get; set; } = new Fox.Core.StringMap<Fox.Core.EntityPtr<Tpp.System.TppDefaultParameterElement>>();
+        public Fox.FoxKernel.StringMap<Fox.Core.EntityPtr<Tpp.System.TppDefaultParameterElement>> @params { get; set; } = new Fox.FoxKernel.StringMap<Fox.Core.EntityPtr<Tpp.System.TppDefaultParameterElement>>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

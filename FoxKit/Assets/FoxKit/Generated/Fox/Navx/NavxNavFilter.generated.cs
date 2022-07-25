@@ -17,7 +17,7 @@ namespace Fox.Navx
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String worldName { get; set; }
+        public Fox.FoxKernel.String worldName { get; set; }
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

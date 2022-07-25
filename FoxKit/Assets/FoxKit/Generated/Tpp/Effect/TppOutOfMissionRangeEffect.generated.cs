@@ -20,7 +20,7 @@ namespace Tpp.Effect
         public bool enable { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.Path lutTexture { get; set; }
+        public Fox.FoxKernel.Path lutTexture { get; set; }
         
         [field: UnityEngine.SerializeField]
         public float startSlope { get; set; }

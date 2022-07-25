@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Fox.FoxKernel;
+using String = Fox.FoxKernel.String;
+using System;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine.UIElements;
@@ -68,7 +70,7 @@ namespace Fox.Editor
         }
     }
 
-    [CustomPropertyDrawer(typeof(Fox.Core.String))]
+    [CustomPropertyDrawer(typeof(String))]
     public class StringDrawer : PropertyDrawer
     {
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
@@ -78,7 +80,7 @@ namespace Fox.Editor
 
             field.labelElement.AddToClassList(PropertyField.labelUssClassName);
             field.visualInput.AddToClassList(PropertyField.inputUssClassName);
-            field.AddToClassList(BaseField<Fox.Core.Path>.alignedFieldUssClassName);
+            field.AddToClassList(BaseField<String>.alignedFieldUssClassName);
 
             return field;
         }

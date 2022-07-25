@@ -23,7 +23,7 @@ namespace Tpp.GameKit
         public uint trunkCount { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String pluginName { get; set; }
+        public Fox.FoxKernel.String pluginName { get; set; }
         
         [field: UnityEngine.SerializeField]
         public uint flags { get; set; }

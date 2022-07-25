@@ -17,16 +17,16 @@ namespace Fox.GameKit
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.EntityHandle> pluginHandle { get; set; } = new Fox.Core.DynamicArray<Fox.Core.EntityHandle>();
+        public Fox.FoxKernel.DynamicArray<Fox.Core.EntityHandle> pluginHandle { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.Core.EntityHandle>();
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.String> blockDataName { get; set; } = new Fox.Core.DynamicArray<Fox.Core.String>();
+        public Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String> blockDataName { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String>();
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.Path filePath { get; set; }
+        public Fox.FoxKernel.Path filePath { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.Path loadFilePath { get; set; }
+        public Fox.FoxKernel.Path loadFilePath { get; set; }
         
         [field: UnityEngine.SerializeField]
         public Fox.Core.FilePtr obrFile { get; set; }
@@ -93,7 +93,7 @@ namespace Fox.GameKit
                     this.pluginHandle[index] = value.GetValueAsEntityHandle();
                     return;
                 case "blockDataName":
-                    while(this.blockDataName.Count <= index) { this.blockDataName.Add(default(Fox.Core.String)); }
+                    while(this.blockDataName.Count <= index) { this.blockDataName.Add(default(Fox.FoxKernel.String)); }
                     this.blockDataName[index] = value.GetValueAsString();
                     return;
                 default:

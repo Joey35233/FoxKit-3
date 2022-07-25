@@ -17,10 +17,10 @@ namespace Fox.GameKit
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.Path modelPath { get; set; }
+        public Fox.FoxKernel.Path modelPath { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.Path geomPath { get; set; }
+        public Fox.FoxKernel.Path geomPath { get; set; }
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

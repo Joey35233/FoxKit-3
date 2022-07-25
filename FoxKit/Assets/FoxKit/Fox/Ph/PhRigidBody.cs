@@ -1,4 +1,5 @@
 ﻿using Fox.Core;
+using Fox.FoxKernel;
 
 namespace Fox.Ph
 {
@@ -63,7 +64,7 @@ namespace Fox.Ph
         protected partial PhRigidBodyType Get_motionType() => rigidBodyParam.GetMotionType();
         protected partial void Set_motionType(PhRigidBodyType value) { rigidBodyParam.SetMotionType(value); }
 
-        protected partial Fox.Core.String Get_material() => rigidBodyParam.GetMaterial();
-        protected partial void Set_material(Fox.Core.String value) { rigidBodyParam.SetMaterial(value); }
+        protected partial String Get_material() => rigidBodyParam.GetMaterial();
+        protected partial void Set_material(String value) { rigidBodyParam.SetMaterial(value); }
     }
 }

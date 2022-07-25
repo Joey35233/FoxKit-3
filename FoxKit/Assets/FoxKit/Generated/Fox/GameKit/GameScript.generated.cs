@@ -20,10 +20,10 @@ namespace Fox.GameKit
         public bool enable { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.Path scriptPath { get; set; }
+        public Fox.FoxKernel.Path scriptPath { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.StringMap<Fox.Core.EntityLink> variables { get; set; } = new Fox.Core.StringMap<Fox.Core.EntityLink>();
+        public Fox.FoxKernel.StringMap<Fox.Core.EntityLink> variables { get; set; } = new Fox.FoxKernel.StringMap<Fox.Core.EntityLink>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

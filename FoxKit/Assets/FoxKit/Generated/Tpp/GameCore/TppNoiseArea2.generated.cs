@@ -17,7 +17,7 @@ namespace Tpp.GameCore
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.EntityLink> shapes { get; set; } = new Fox.Core.DynamicArray<Fox.Core.EntityLink>();
+        public Fox.FoxKernel.DynamicArray<Fox.Core.EntityLink> shapes { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.Core.EntityLink>();
         
         [field: UnityEngine.SerializeField]
         public short areaIndex { get; set; }

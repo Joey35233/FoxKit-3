@@ -17,7 +17,7 @@ namespace Fox.UiScene
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.Path> texturePath { get; set; } = new Fox.Core.DynamicArray<Fox.Core.Path>();
+        public Fox.FoxKernel.DynamicArray<Fox.FoxKernel.Path> texturePath { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.FoxKernel.Path>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;
@@ -57,7 +57,7 @@ namespace Fox.UiScene
             switch(propertyName)
             {
                 case "texturePath":
-                    while(this.texturePath.Count <= index) { this.texturePath.Add(default(Fox.Core.Path)); }
+                    while(this.texturePath.Count <= index) { this.texturePath.Add(default(Fox.FoxKernel.Path)); }
                     this.texturePath[index] = value.GetValueAsPath();
                     return;
                 default:

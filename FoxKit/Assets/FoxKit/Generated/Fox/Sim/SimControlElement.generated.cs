@@ -17,7 +17,7 @@ namespace Fox.Sim
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.String> bones { get; set; } = new Fox.Core.DynamicArray<Fox.Core.String>();
+        public Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String> bones { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;
@@ -57,7 +57,7 @@ namespace Fox.Sim
             switch(propertyName)
             {
                 case "bones":
-                    while(this.bones.Count <= index) { this.bones.Add(default(Fox.Core.String)); }
+                    while(this.bones.Count <= index) { this.bones.Add(default(Fox.FoxKernel.String)); }
                     this.bones[index] = value.GetValueAsString();
                     return;
                 default:

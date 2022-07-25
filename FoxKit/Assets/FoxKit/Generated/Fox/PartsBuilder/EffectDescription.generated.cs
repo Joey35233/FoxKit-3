@@ -17,22 +17,22 @@ namespace Fox.PartsBuilder
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.String> connectDestinationSkelNames { get; set; } = new Fox.Core.DynamicArray<Fox.Core.String>();
+        public Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String> connectDestinationSkelNames { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String>();
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.String> connectDestinationCnpNames { get; set; } = new Fox.Core.DynamicArray<Fox.Core.String>();
+        public Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String> connectDestinationCnpNames { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String>();
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<UnityEngine.Vector3> offsetSkelPositions { get; set; } = new Fox.Core.DynamicArray<UnityEngine.Vector3>();
+        public Fox.FoxKernel.DynamicArray<UnityEngine.Vector3> offsetSkelPositions { get; set; } = new Fox.FoxKernel.DynamicArray<UnityEngine.Vector3>();
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<UnityEngine.Vector3> offsetCnpPositions { get; set; } = new Fox.Core.DynamicArray<UnityEngine.Vector3>();
+        public Fox.FoxKernel.DynamicArray<UnityEngine.Vector3> offsetCnpPositions { get; set; } = new Fox.FoxKernel.DynamicArray<UnityEngine.Vector3>();
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<UnityEngine.Vector4> generalSkelParameters { get; set; } = new Fox.Core.DynamicArray<UnityEngine.Vector4>();
+        public Fox.FoxKernel.DynamicArray<UnityEngine.Vector4> generalSkelParameters { get; set; } = new Fox.FoxKernel.DynamicArray<UnityEngine.Vector4>();
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<UnityEngine.Vector4> generalCnpParameters { get; set; } = new Fox.Core.DynamicArray<UnityEngine.Vector4>();
+        public Fox.FoxKernel.DynamicArray<UnityEngine.Vector4> generalCnpParameters { get; set; } = new Fox.FoxKernel.DynamicArray<UnityEngine.Vector4>();
         
         [field: UnityEngine.SerializeField]
         public bool effectConnect { get; set; }
@@ -53,10 +53,10 @@ namespace Fox.PartsBuilder
         public EffectKind effectKind { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String effectVariationName { get; set; }
+        public Fox.FoxKernel.String effectVariationName { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String effectFileFromVfxFileLoader { get; set; }
+        public Fox.FoxKernel.String effectFileFromVfxFileLoader { get; set; }
         
         [field: UnityEngine.SerializeField]
         public Fox.Core.FilePtr effectFileFromFilePtr { get; set; }
@@ -140,11 +140,11 @@ namespace Fox.PartsBuilder
             switch(propertyName)
             {
                 case "connectDestinationSkelNames":
-                    while(this.connectDestinationSkelNames.Count <= index) { this.connectDestinationSkelNames.Add(default(Fox.Core.String)); }
+                    while(this.connectDestinationSkelNames.Count <= index) { this.connectDestinationSkelNames.Add(default(Fox.FoxKernel.String)); }
                     this.connectDestinationSkelNames[index] = value.GetValueAsString();
                     return;
                 case "connectDestinationCnpNames":
-                    while(this.connectDestinationCnpNames.Count <= index) { this.connectDestinationCnpNames.Add(default(Fox.Core.String)); }
+                    while(this.connectDestinationCnpNames.Count <= index) { this.connectDestinationCnpNames.Add(default(Fox.FoxKernel.String)); }
                     this.connectDestinationCnpNames[index] = value.GetValueAsString();
                     return;
                 case "offsetSkelPositions":

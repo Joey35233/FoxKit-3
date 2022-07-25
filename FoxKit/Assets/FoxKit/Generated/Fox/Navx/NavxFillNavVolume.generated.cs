@@ -17,13 +17,13 @@ namespace Fox.Navx
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String sceneName { get; set; }
+        public Fox.FoxKernel.String sceneName { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String worldName { get; set; }
+        public Fox.FoxKernel.String worldName { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.String> attributes { get; set; } = new Fox.Core.DynamicArray<Fox.Core.String>();
+        public Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String> attributes { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;
@@ -71,7 +71,7 @@ namespace Fox.Navx
             switch(propertyName)
             {
                 case "attributes":
-                    while(this.attributes.Count <= index) { this.attributes.Add(default(Fox.Core.String)); }
+                    while(this.attributes.Count <= index) { this.attributes.Add(default(Fox.FoxKernel.String)); }
                     this.attributes[index] = value.GetValueAsString();
                     return;
                 default:

@@ -17,7 +17,7 @@ namespace Fox.Demox
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.FilePtr> evfFiles { get; set; } = new Fox.Core.DynamicArray<Fox.Core.FilePtr>();
+        public Fox.FoxKernel.DynamicArray<Fox.Core.FilePtr> evfFiles { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.Core.FilePtr>();
         
         [field: UnityEngine.SerializeField]
         public bool onMemory { get; set; }
@@ -29,25 +29,25 @@ namespace Fox.Demox
         public int priority { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.Path scriptPath { get; set; }
+        public Fox.FoxKernel.Path scriptPath { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.StringMap<Fox.Core.FilePtr> fmdlFiles { get; set; } = new Fox.Core.StringMap<Fox.Core.FilePtr>();
+        public Fox.FoxKernel.StringMap<Fox.Core.FilePtr> fmdlFiles { get; set; } = new Fox.FoxKernel.StringMap<Fox.Core.FilePtr>();
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.StringMap<Fox.Core.FilePtr> helpBoneFiles { get; set; } = new Fox.Core.StringMap<Fox.Core.FilePtr>();
+        public Fox.FoxKernel.StringMap<Fox.Core.FilePtr> helpBoneFiles { get; set; } = new Fox.FoxKernel.StringMap<Fox.Core.FilePtr>();
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.StringMap<Fox.Core.EntityPtr<Fox.Demo.PartsDesc>> partsDesc { get; set; } = new Fox.Core.StringMap<Fox.Core.EntityPtr<Fox.Demo.PartsDesc>>();
+        public Fox.FoxKernel.StringMap<Fox.Core.EntityPtr<Fox.Demo.PartsDesc>> partsDesc { get; set; } = new Fox.FoxKernel.StringMap<Fox.Core.EntityPtr<Fox.Demo.PartsDesc>>();
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.EntityPtr<Fox.Demo.ClipData>> clipDatas { get; set; } = new Fox.Core.DynamicArray<Fox.Core.EntityPtr<Fox.Demo.ClipData>>();
+        public Fox.FoxKernel.DynamicArray<Fox.Core.EntityPtr<Fox.Demo.ClipData>> clipDatas { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.Core.EntityPtr<Fox.Demo.ClipData>>();
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.Path> loadFiles { get; set; } = new Fox.Core.DynamicArray<Fox.Core.Path>();
+        public Fox.FoxKernel.DynamicArray<Fox.FoxKernel.Path> loadFiles { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.FoxKernel.Path>();
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String demoId { get; set; }
+        public Fox.FoxKernel.String demoId { get; set; }
         
         [field: UnityEngine.SerializeField]
         public Fox.Core.EntityLink playingRoot { get; set; }
@@ -56,16 +56,16 @@ namespace Fox.Demox
         public Fox.Core.EntityLink streamAnimation { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.Path demoStreamPath { get; set; }
+        public Fox.FoxKernel.Path demoStreamPath { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.Path motionPath { get; set; }
+        public Fox.FoxKernel.Path motionPath { get; set; }
         
         [field: UnityEngine.SerializeField]
         public Fox.Core.FilePtr motionFile { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.Path audioPath { get; set; }
+        public Fox.FoxKernel.Path audioPath { get; set; }
         
         [field: UnityEngine.SerializeField]
         public Fox.Core.FilePtr subtitleFile { get; set; }
@@ -77,28 +77,28 @@ namespace Fox.Demox
         public Fox.Core.FilePtr nodeDataFile { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.String> stringParams { get; set; } = new Fox.Core.DynamicArray<Fox.Core.String>();
+        public Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String> stringParams { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String>();
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.StringMap<Fox.Core.EntityLink> entityParams { get; set; } = new Fox.Core.StringMap<Fox.Core.EntityLink>();
+        public Fox.FoxKernel.StringMap<Fox.Core.EntityLink> entityParams { get; set; } = new Fox.FoxKernel.StringMap<Fox.Core.EntityLink>();
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.StringMap<Fox.Core.FilePtr> fileParams { get; set; } = new Fox.Core.StringMap<Fox.Core.FilePtr>();
+        public Fox.FoxKernel.StringMap<Fox.Core.FilePtr> fileParams { get; set; } = new Fox.FoxKernel.StringMap<Fox.Core.FilePtr>();
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.StringMap<Fox.Core.EntityPtr<Fox.Demo.DemoControlCharacterDesc>> controlCharacters { get; set; } = new Fox.Core.StringMap<Fox.Core.EntityPtr<Fox.Demo.DemoControlCharacterDesc>>();
+        public Fox.FoxKernel.StringMap<Fox.Core.EntityPtr<Fox.Demo.DemoControlCharacterDesc>> controlCharacters { get; set; } = new Fox.FoxKernel.StringMap<Fox.Core.EntityPtr<Fox.Demo.DemoControlCharacterDesc>>();
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.StringMap<Fox.Core.EntityLink> controlDatas { get; set; } = new Fox.Core.StringMap<Fox.Core.EntityLink>();
+        public Fox.FoxKernel.StringMap<Fox.Core.EntityLink> controlDatas { get; set; } = new Fox.FoxKernel.StringMap<Fox.Core.EntityLink>();
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.StringMap<Fox.Core.String> controlCollectibles { get; set; } = new Fox.Core.StringMap<Fox.Core.String>();
+        public Fox.FoxKernel.StringMap<Fox.FoxKernel.String> controlCollectibles { get; set; } = new Fox.FoxKernel.StringMap<Fox.FoxKernel.String>();
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.StringMap<Fox.Core.EntityPtr<Fox.Demo.DemoParameter>> parameters { get; set; } = new Fox.Core.StringMap<Fox.Core.EntityPtr<Fox.Demo.DemoParameter>>();
+        public Fox.FoxKernel.StringMap<Fox.Core.EntityPtr<Fox.Demo.DemoParameter>> parameters { get; set; } = new Fox.FoxKernel.StringMap<Fox.Core.EntityPtr<Fox.Demo.DemoParameter>>();
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.StringMap<Fox.Core.String> setupLights { get; set; } = new Fox.Core.StringMap<Fox.Core.String>();
+        public Fox.FoxKernel.StringMap<Fox.FoxKernel.String> setupLights { get; set; } = new Fox.FoxKernel.StringMap<Fox.FoxKernel.String>();
         
         [field: UnityEngine.SerializeField]
         public Utility_InterpType cameraInterpType { get; set; }
@@ -146,13 +146,13 @@ namespace Fox.Demox
         public int eventSkipCacheNum { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.String> highestTextureStreamModel { get; set; } = new Fox.Core.DynamicArray<Fox.Core.String>();
+        public Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String> highestTextureStreamModel { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String>();
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.Path> highestTexture { get; set; } = new Fox.Core.DynamicArray<Fox.Core.Path>();
+        public Fox.FoxKernel.DynamicArray<Fox.FoxKernel.Path> highestTexture { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.FoxKernel.Path>();
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.StringMap<int> objectNum { get; set; } = new Fox.Core.StringMap<int>();
+        public Fox.FoxKernel.StringMap<int> objectNum { get; set; } = new Fox.FoxKernel.StringMap<int>();
         
         [field: UnityEngine.SerializeField]
         public Fox.Core.EntityLink blockPositionSetter { get; set; }
@@ -339,19 +339,19 @@ namespace Fox.Demox
                     this.clipDatas[index] = value.GetValueAsEntityPtr<Fox.Demo.ClipData>();
                     return;
                 case "loadFiles":
-                    while(this.loadFiles.Count <= index) { this.loadFiles.Add(default(Fox.Core.Path)); }
+                    while(this.loadFiles.Count <= index) { this.loadFiles.Add(default(Fox.FoxKernel.Path)); }
                     this.loadFiles[index] = value.GetValueAsPath();
                     return;
                 case "stringParams":
-                    while(this.stringParams.Count <= index) { this.stringParams.Add(default(Fox.Core.String)); }
+                    while(this.stringParams.Count <= index) { this.stringParams.Add(default(Fox.FoxKernel.String)); }
                     this.stringParams[index] = value.GetValueAsString();
                     return;
                 case "highestTextureStreamModel":
-                    while(this.highestTextureStreamModel.Count <= index) { this.highestTextureStreamModel.Add(default(Fox.Core.String)); }
+                    while(this.highestTextureStreamModel.Count <= index) { this.highestTextureStreamModel.Add(default(Fox.FoxKernel.String)); }
                     this.highestTextureStreamModel[index] = value.GetValueAsString();
                     return;
                 case "highestTexture":
-                    while(this.highestTexture.Count <= index) { this.highestTexture.Add(default(Fox.Core.Path)); }
+                    while(this.highestTexture.Count <= index) { this.highestTexture.Add(default(Fox.FoxKernel.Path)); }
                     this.highestTexture[index] = value.GetValueAsPath();
                     return;
                 default:

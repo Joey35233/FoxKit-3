@@ -17,10 +17,10 @@ namespace Fox.Graphx
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.EntityPtr<Fox.Graphx.GraphxSpatialGraphDataNode>> nodes { get; set; } = new Fox.Core.DynamicArray<Fox.Core.EntityPtr<Fox.Graphx.GraphxSpatialGraphDataNode>>();
+        public Fox.FoxKernel.DynamicArray<Fox.Core.EntityPtr<Fox.Graphx.GraphxSpatialGraphDataNode>> nodes { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.Core.EntityPtr<Fox.Graphx.GraphxSpatialGraphDataNode>>();
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.EntityPtr<Fox.Graphx.GraphxSpatialGraphDataEdge>> edges { get; set; } = new Fox.Core.DynamicArray<Fox.Core.EntityPtr<Fox.Graphx.GraphxSpatialGraphDataEdge>>();
+        public Fox.FoxKernel.DynamicArray<Fox.Core.EntityPtr<Fox.Graphx.GraphxSpatialGraphDataEdge>> edges { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.Core.EntityPtr<Fox.Graphx.GraphxSpatialGraphDataEdge>>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

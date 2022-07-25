@@ -17,13 +17,13 @@ namespace Fox.GameKit
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        protected Fox.Core.StringMap<Fox.Core.EntityPtr<Fox.GameKit.CheckpointUnit>> checkPointUnits { get; set; } = new Fox.Core.StringMap<Fox.Core.EntityPtr<Fox.GameKit.CheckpointUnit>>();
+        protected Fox.FoxKernel.StringMap<Fox.Core.EntityPtr<Fox.GameKit.CheckpointUnit>> checkPointUnits { get; set; } = new Fox.FoxKernel.StringMap<Fox.Core.EntityPtr<Fox.GameKit.CheckpointUnit>>();
         
         [field: UnityEngine.SerializeField]
-        protected Fox.Core.DynamicArray<Fox.Core.String> passedCheckpoints { get; set; } = new Fox.Core.DynamicArray<Fox.Core.String>();
+        protected Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String> passedCheckpoints { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String>();
         
         [field: UnityEngine.SerializeField]
-        protected Fox.Core.String latestCheckpointTag { get; set; }
+        protected Fox.FoxKernel.String latestCheckpointTag { get; set; }
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;
@@ -68,7 +68,7 @@ namespace Fox.GameKit
             switch(propertyName)
             {
                 case "passedCheckpoints":
-                    while(this.passedCheckpoints.Count <= index) { this.passedCheckpoints.Add(default(Fox.Core.String)); }
+                    while(this.passedCheckpoints.Count <= index) { this.passedCheckpoints.Add(default(Fox.FoxKernel.String)); }
                     this.passedCheckpoints[index] = value.GetValueAsString();
                     return;
                 default:

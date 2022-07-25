@@ -17,10 +17,10 @@ namespace Fox.Navx
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String worldName { get; set; }
+        public Fox.FoxKernel.String worldName { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.EntityPtr<Fox.Navx.NavxAttributeInfo>> attributeInfos { get; set; } = new Fox.Core.DynamicArray<Fox.Core.EntityPtr<Fox.Navx.NavxAttributeInfo>>();
+        public Fox.FoxKernel.DynamicArray<Fox.Core.EntityPtr<Fox.Navx.NavxAttributeInfo>> attributeInfos { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.Core.EntityPtr<Fox.Navx.NavxAttributeInfo>>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

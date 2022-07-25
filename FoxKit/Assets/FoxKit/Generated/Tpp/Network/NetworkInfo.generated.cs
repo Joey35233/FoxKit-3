@@ -20,13 +20,13 @@ namespace Tpp.Network
         public uint userId { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String userName { get; set; }
+        public Fox.FoxKernel.String userName { get; set; }
         
         [field: UnityEngine.SerializeField]
         public uint playerId { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String playerName { get; set; }
+        public Fox.FoxKernel.String playerName { get; set; }
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

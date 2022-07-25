@@ -1,10 +1,11 @@
-﻿using Fox.Core;
+﻿using Fox.FoxKernel;
+using Fox.Core;
 using FoxKit.Utils;
 using System;
 using System.IO;
 using UnityEngine;
+using Path = Fox.FoxKernel.Path;
 using Debug = UnityEngine.Debug;
-using Path = Fox.Core.Path;
 using Quaternion = UnityEngine.Quaternion;
 using Vector3 = UnityEngine.Vector3;
 using Vector4 = UnityEngine.Vector4;
@@ -267,44 +268,34 @@ namespace Fox.FoxCore.Serialization
 
         private static Vector3 ReadVector3(BinaryReader reader)
         {
-            //Translaiton, so inverting X
             var bytes = reader.ReadBytes(4 * 4);
             var x = BitConverter.ToSingle(bytes, 0);
             var y = BitConverter.ToSingle(bytes, 4);
             var z = BitConverter.ToSingle(bytes, 8);
 
-            return new Vector3(-x, y, z);
+            return new Vector3(x, y, z);
         }
 
         private static Vector4 ReadVector4(BinaryReader reader)
         {
-            //Translaiton, so inverting X
             var bytes = reader.ReadBytes(4 * 4);
             var x = BitConverter.ToSingle(bytes, 0);
             var y = BitConverter.ToSingle(bytes, 4);
             var z = BitConverter.ToSingle(bytes, 8);
             var w = BitConverter.ToSingle(bytes, 12);
 
-            return new Vector4(-x, y, z, w);
+            return new Vector4(x, y, z, w);
         }
 
         private static Quaternion ReadQuaternion(BinaryReader reader)
         {
-            //Quaternion conversion from FoxKit-1's FoxUtils.cs - inverting Euler X
             var bytes = reader.ReadBytes(4 * 4);
             var x = BitConverter.ToSingle(bytes, 0);
             var y = BitConverter.ToSingle(bytes, 4);
             var z = BitConverter.ToSingle(bytes, 8);
             var w = BitConverter.ToSingle(bytes, 12);
 
-            var angle = 0.0f;
-            var axis = Vector3.zero;
-            var unityQuaternion = new Quaternion(x, y, z, w);
-            unityQuaternion.ToAngleAxis(out angle, out axis);
-            axis.x = -axis.x;
-            var newQuat = Quaternion.AngleAxis(-angle, axis);
-
-            return new Quaternion(newQuat.x, newQuat.y, newQuat.z, newQuat.w);
+            return new Quaternion(x, y, z, w);
         }
 
         private static Color ReadColor(BinaryReader reader)
@@ -347,37 +338,9 @@ namespace Fox.FoxCore.Serialization
             var column2 = new Vector4(m31, m32, m33, m34);
             var column3 = new Vector4(m41, m42, m43, m44);
 
-            var foxMatrix = new Matrix4x4();
-            foxMatrix.SetColumn(0, column0);
-            foxMatrix.SetColumn(1, column1);
-            foxMatrix.SetColumn(2, column2);
-            foxMatrix.SetColumn(3, column3);
+            var matrix = new Matrix4x4(column0, column1, column2, column3);
 
-            //Convert translation from foxMatrix to unityMatrix - just invert X:
-            var foxMatrixTransform = foxMatrix.GetColumn(3);
-            var unityMatrixTransform = new Vector3(-foxMatrixTransform.x, foxMatrixTransform.y, foxMatrixTransform.z);
-
-            //Convert rotation from foxMatrix to unityMatrix:
-			// TODO: further testing when this can be visualized: whether Unity's Matrix4x4.rotation can properly get Fox quats from Fox Matrix4.
-			// Testing with FoxKit-1 was kind of confusing, but StaticModelArray.cs had its already working pre-built in Matrix4 > Quaternion conversion
-			// which used Quaternion.LookRotation on columns 0 and 1 as Vector3s to get properly working Unity rotation Quaternions.
-            var angle = 0.0f;
-            var axis = Vector3.zero;
-            var foxMatrixQuaternion = foxMatrix.rotation;
-            foxMatrixQuaternion.ToAngleAxis(out angle, out axis);
-            axis.x = -axis.x;
-            var unityMatrixQuaternion = Quaternion.AngleAxis(-angle, axis);
-
-            //Get scale from foxMatrix to unityMatrix:
-			// TODO: further testing when this can be visualized: whether X actually has to be inverted.
-			// Testing this with FoxKit-1 was kind of confusing, but StaticModelArray.cs had to invert X on its own,
-			// despite any edits to this conversion in FoxUtils.cs.
-            var unityMatrixScale = new Vector3(-foxMatrix.lossyScale.x, foxMatrix.lossyScale.y, foxMatrix.lossyScale.z);
-
-            var unityMatrix = new Matrix4x4();
-            unityMatrix.SetTRS(unityMatrixTransform, unityMatrixQuaternion, unityMatrixScale);
-
-            return unityMatrix;
+            return matrix;
         }
     }
 }

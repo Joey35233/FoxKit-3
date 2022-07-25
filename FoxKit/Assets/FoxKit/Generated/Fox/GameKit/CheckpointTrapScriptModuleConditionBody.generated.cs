@@ -17,7 +17,7 @@ namespace Fox.GameKit
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        protected Fox.Core.String checkpointName { get; set; }
+        protected Fox.FoxKernel.String checkpointName { get; set; }
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

@@ -17,10 +17,10 @@ namespace Fox.Anim
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.String> unitNameList { get; set; } = new Fox.Core.DynamicArray<Fox.Core.String>();
+        public Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String> unitNameList { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String>();
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String nodeName { get; set; }
+        public Fox.FoxKernel.String nodeName { get; set; }
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;
@@ -64,7 +64,7 @@ namespace Fox.Anim
             switch(propertyName)
             {
                 case "unitNameList":
-                    while(this.unitNameList.Count <= index) { this.unitNameList.Add(default(Fox.Core.String)); }
+                    while(this.unitNameList.Count <= index) { this.unitNameList.Add(default(Fox.FoxKernel.String)); }
                     this.unitNameList[index] = value.GetValueAsString();
                     return;
                 default:

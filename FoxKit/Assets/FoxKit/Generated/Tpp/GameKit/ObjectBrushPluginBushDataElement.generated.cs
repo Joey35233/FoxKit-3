@@ -17,13 +17,13 @@ namespace Tpp.GameKit
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.String> lodMeshName { get; set; } = new Fox.Core.DynamicArray<Fox.Core.String>();
+        public Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String> lodMeshName { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String>();
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<float> lodDistance { get; set; } = new Fox.Core.DynamicArray<float>();
+        public Fox.FoxKernel.DynamicArray<float> lodDistance { get; set; } = new Fox.FoxKernel.DynamicArray<float>();
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<float> lodDistanceHighEnd { get; set; } = new Fox.Core.DynamicArray<float>();
+        public Fox.FoxKernel.DynamicArray<float> lodDistanceHighEnd { get; set; } = new Fox.FoxKernel.DynamicArray<float>();
         
         [field: UnityEngine.SerializeField]
         public float rotationRate { get; set; }
@@ -59,7 +59,7 @@ namespace Tpp.GameKit
         public float stopEyeHeight { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String noiseSeType { get; set; }
+        public Fox.FoxKernel.String noiseSeType { get; set; }
         
         [field: UnityEngine.SerializeField]
         public uint bushFlags { get; set; }
@@ -205,7 +205,7 @@ namespace Tpp.GameKit
             switch(propertyName)
             {
                 case "lodMeshName":
-                    while(this.lodMeshName.Count <= index) { this.lodMeshName.Add(default(Fox.Core.String)); }
+                    while(this.lodMeshName.Count <= index) { this.lodMeshName.Add(default(Fox.FoxKernel.String)); }
                     this.lodMeshName[index] = value.GetValueAsString();
                     return;
                 case "lodDistance":

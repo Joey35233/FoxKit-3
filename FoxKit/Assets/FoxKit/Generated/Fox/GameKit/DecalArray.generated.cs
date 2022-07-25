@@ -50,25 +50,25 @@ namespace Fox.GameKit
         protected uint decalFlags { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<UnityEngine.Vector3> scales { get; set; } = new Fox.Core.DynamicArray<UnityEngine.Vector3>();
+        public Fox.FoxKernel.DynamicArray<UnityEngine.Vector3> scales { get; set; } = new Fox.FoxKernel.DynamicArray<UnityEngine.Vector3>();
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<UnityEngine.Quaternion> rotations { get; set; } = new Fox.Core.DynamicArray<UnityEngine.Quaternion>();
+        public Fox.FoxKernel.DynamicArray<UnityEngine.Quaternion> rotations { get; set; } = new Fox.FoxKernel.DynamicArray<UnityEngine.Quaternion>();
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<UnityEngine.Vector3> translations { get; set; } = new Fox.Core.DynamicArray<UnityEngine.Vector3>();
+        public Fox.FoxKernel.DynamicArray<UnityEngine.Vector3> translations { get; set; } = new Fox.FoxKernel.DynamicArray<UnityEngine.Vector3>();
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.EntityLink> targets { get; set; } = new Fox.Core.DynamicArray<Fox.Core.EntityLink>();
+        public Fox.FoxKernel.DynamicArray<Fox.Core.EntityLink> targets { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.Core.EntityLink>();
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<uint> targetIndices { get; set; } = new Fox.Core.DynamicArray<uint>();
+        public Fox.FoxKernel.DynamicArray<uint> targetIndices { get; set; } = new Fox.FoxKernel.DynamicArray<uint>();
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<uint> targetStartIndices { get; set; } = new Fox.Core.DynamicArray<uint>();
+        public Fox.FoxKernel.DynamicArray<uint> targetStartIndices { get; set; } = new Fox.FoxKernel.DynamicArray<uint>();
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<int> renderingPriorities { get; set; } = new Fox.Core.DynamicArray<int>();
+        public Fox.FoxKernel.DynamicArray<int> renderingPriorities { get; set; } = new Fox.FoxKernel.DynamicArray<int>();
         
         public bool isDisableAlbedo { get => Get_isDisableAlbedo(); set { Set_isDisableAlbedo(value); } }
         protected partial bool Get_isDisableAlbedo();

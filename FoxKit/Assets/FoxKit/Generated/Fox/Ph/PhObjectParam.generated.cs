@@ -17,7 +17,7 @@ namespace Fox.Ph
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        protected Fox.Core.String worldName { get; set; }
+        protected Fox.FoxKernel.String worldName { get; set; }
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

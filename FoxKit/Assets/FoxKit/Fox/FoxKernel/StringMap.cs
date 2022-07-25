@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
 
-namespace Fox.Core
+namespace Fox.FoxKernel
 {
     public interface IStringMap
     {

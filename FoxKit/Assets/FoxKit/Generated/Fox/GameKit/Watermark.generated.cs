@@ -38,7 +38,7 @@ namespace Fox.GameKit
         public float alphaBlend { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.Path texturePath { get; set; }
+        public Fox.FoxKernel.Path texturePath { get; set; }
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

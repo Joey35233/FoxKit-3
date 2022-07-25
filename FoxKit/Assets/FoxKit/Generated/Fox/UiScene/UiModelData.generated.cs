@@ -20,13 +20,13 @@ namespace Fox.UiScene
         public Fox.Core.FilePtr data { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String sceneName { get; set; }
+        public Fox.FoxKernel.String sceneName { get; set; }
         
         [field: UnityEngine.SerializeField]
         public int priority { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.EntityLink> animations { get; set; } = new Fox.Core.DynamicArray<Fox.Core.EntityLink>();
+        public Fox.FoxKernel.DynamicArray<Fox.Core.EntityLink> animations { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.Core.EntityLink>();
         
         [field: UnityEngine.SerializeField]
         public bool useLayoutCamera { get; set; }
@@ -44,7 +44,7 @@ namespace Fox.UiScene
         public Fox.Core.EntityHandle connection_connectModelDataHandle { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String connection_connectModelNodeName { get; set; }
+        public Fox.FoxKernel.String connection_connectModelNodeName { get; set; }
         
         [field: UnityEngine.SerializeField]
         public UnityEngine.Color color { get; set; }
@@ -53,7 +53,7 @@ namespace Fox.UiScene
         public UiInheritanceSetting inheritanceSetting { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.EntityPtr<Fox.UiScene.UiModelNodeElement>> modelNodes { get; set; } = new Fox.Core.DynamicArray<Fox.Core.EntityPtr<Fox.UiScene.UiModelNodeElement>>();
+        public Fox.FoxKernel.DynamicArray<Fox.Core.EntityPtr<Fox.UiScene.UiModelNodeElement>> modelNodes { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.Core.EntityPtr<Fox.UiScene.UiModelNodeElement>>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

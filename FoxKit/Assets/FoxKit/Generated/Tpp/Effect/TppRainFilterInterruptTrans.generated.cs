@@ -17,16 +17,16 @@ namespace Tpp.Effect
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<UnityEngine.Matrix4x4> planeMatrices { get; set; } = new Fox.Core.DynamicArray<UnityEngine.Matrix4x4>();
+        public Fox.FoxKernel.DynamicArray<UnityEngine.Matrix4x4> planeMatrices { get; set; } = new Fox.FoxKernel.DynamicArray<UnityEngine.Matrix4x4>();
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.Path> maskTextures { get; set; } = new Fox.Core.DynamicArray<Fox.Core.Path>();
+        public Fox.FoxKernel.DynamicArray<Fox.FoxKernel.Path> maskTextures { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.FoxKernel.Path>();
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<uint> interruptFlags { get; set; } = new Fox.Core.DynamicArray<uint>();
+        public Fox.FoxKernel.DynamicArray<uint> interruptFlags { get; set; } = new Fox.FoxKernel.DynamicArray<uint>();
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<uint> levels { get; set; } = new Fox.Core.DynamicArray<uint>();
+        public Fox.FoxKernel.DynamicArray<uint> levels { get; set; } = new Fox.FoxKernel.DynamicArray<uint>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;
@@ -73,7 +73,7 @@ namespace Tpp.Effect
                     this.planeMatrices[index] = value.GetValueAsMatrix4();
                     return;
                 case "maskTextures":
-                    while(this.maskTextures.Count <= index) { this.maskTextures.Add(default(Fox.Core.Path)); }
+                    while(this.maskTextures.Count <= index) { this.maskTextures.Add(default(Fox.FoxKernel.Path)); }
                     this.maskTextures[index] = value.GetValueAsPath();
                     return;
                 case "interruptFlags":

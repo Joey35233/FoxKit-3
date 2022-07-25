@@ -17,10 +17,10 @@ namespace Fox.Core
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.Path> originalValues { get; set; } = new Fox.Core.DynamicArray<Fox.Core.Path>();
+        public Fox.FoxKernel.DynamicArray<Fox.FoxKernel.Path> originalValues { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.FoxKernel.Path>();
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.Path> values { get; set; } = new Fox.Core.DynamicArray<Fox.Core.Path>();
+        public Fox.FoxKernel.DynamicArray<Fox.FoxKernel.Path> values { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.FoxKernel.Path>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;
@@ -61,11 +61,11 @@ namespace Fox.Core
             switch(propertyName)
             {
                 case "originalValues":
-                    while(this.originalValues.Count <= index) { this.originalValues.Add(default(Fox.Core.Path)); }
+                    while(this.originalValues.Count <= index) { this.originalValues.Add(default(Fox.FoxKernel.Path)); }
                     this.originalValues[index] = value.GetValueAsPath();
                     return;
                 case "values":
-                    while(this.values.Count <= index) { this.values.Add(default(Fox.Core.Path)); }
+                    while(this.values.Count <= index) { this.values.Add(default(Fox.FoxKernel.Path)); }
                     this.values[index] = value.GetValueAsPath();
                     return;
                 default:

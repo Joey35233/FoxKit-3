@@ -17,10 +17,10 @@ namespace Tpp.GameCore
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String approachRoute { get; set; }
+        public Fox.FoxKernel.String approachRoute { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String returnRoute { get; set; }
+        public Fox.FoxKernel.String returnRoute { get; set; }
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

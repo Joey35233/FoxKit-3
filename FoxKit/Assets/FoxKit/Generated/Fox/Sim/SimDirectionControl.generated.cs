@@ -19,9 +19,9 @@ namespace Fox.Sim
         [field: UnityEngine.SerializeField]
         protected Fox.Core.EntityPtr<Fox.Sim.SimDirectionControlParam> controlParam { get; set; } = new Fox.Core.EntityPtr<Fox.Sim.SimDirectionControlParam>();
         
-        public Fox.Core.String refBone { get => Get_refBone(); set { Set_refBone(value); } }
-        protected partial Fox.Core.String Get_refBone();
-        protected partial void Set_refBone(Fox.Core.String value);
+        public Fox.FoxKernel.String refBone { get => Get_refBone(); set { Set_refBone(value); } }
+        protected partial Fox.FoxKernel.String Get_refBone();
+        protected partial void Set_refBone(Fox.FoxKernel.String value);
         
         public UnityEngine.Quaternion offset { get => Get_offset(); set { Set_offset(value); } }
         protected partial UnityEngine.Quaternion Get_offset();

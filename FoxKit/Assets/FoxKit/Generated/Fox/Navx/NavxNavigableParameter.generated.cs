@@ -17,7 +17,7 @@ namespace Fox.Navx
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String name { get; set; }
+        public Fox.FoxKernel.String name { get; set; }
         
         [field: UnityEngine.SerializeField]
         public bool isDefault { get; set; }

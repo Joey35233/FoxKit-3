@@ -1,4 +1,5 @@
 ﻿using Fox.Core;
+using Fox.FoxKernel;
 
 namespace Fox.Ph
 {
@@ -61,7 +62,7 @@ namespace Fox.Ph
         internal PhRigidBodyType GetMotionType() => motionType;
         internal void SetMotionType(PhRigidBodyType value) { motionType = value; }
 
-        internal Fox.Core.String GetMaterial() => material;
-        internal void SetMaterial(Fox.Core.String value) { material = value; }
+        internal String GetMaterial() => material;
+        internal void SetMaterial(String value) { material = value; }
     }
 }

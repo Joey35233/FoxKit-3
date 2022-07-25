@@ -17,7 +17,7 @@ namespace Fox.GameCore
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String typeName { get; set; }
+        public Fox.FoxKernel.String typeName { get; set; }
         
         [field: UnityEngine.SerializeField]
         public uint groupId { get; set; }

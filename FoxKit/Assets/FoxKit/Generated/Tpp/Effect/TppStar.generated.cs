@@ -29,22 +29,22 @@ namespace Tpp.Effect
         public float direction { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String bgModelName { get; set; }
+        public Fox.FoxKernel.String bgModelName { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.String> modelNameArray { get; set; } = new Fox.Core.DynamicArray<Fox.Core.String>();
+        public Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String> modelNameArray { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String>();
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.String> nameArray { get; set; } = new Fox.Core.DynamicArray<Fox.Core.String>();
+        public Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String> nameArray { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String>();
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<float> latitudeArray { get; set; } = new Fox.Core.DynamicArray<float>();
+        public Fox.FoxKernel.DynamicArray<float> latitudeArray { get; set; } = new Fox.FoxKernel.DynamicArray<float>();
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<float> longitudeArray { get; set; } = new Fox.Core.DynamicArray<float>();
+        public Fox.FoxKernel.DynamicArray<float> longitudeArray { get; set; } = new Fox.FoxKernel.DynamicArray<float>();
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<float> scaleArray { get; set; } = new Fox.Core.DynamicArray<float>();
+        public Fox.FoxKernel.DynamicArray<float> scaleArray { get; set; } = new Fox.FoxKernel.DynamicArray<float>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;
@@ -108,11 +108,11 @@ namespace Tpp.Effect
             switch(propertyName)
             {
                 case "modelNameArray":
-                    while(this.modelNameArray.Count <= index) { this.modelNameArray.Add(default(Fox.Core.String)); }
+                    while(this.modelNameArray.Count <= index) { this.modelNameArray.Add(default(Fox.FoxKernel.String)); }
                     this.modelNameArray[index] = value.GetValueAsString();
                     return;
                 case "nameArray":
-                    while(this.nameArray.Count <= index) { this.nameArray.Add(default(Fox.Core.String)); }
+                    while(this.nameArray.Count <= index) { this.nameArray.Add(default(Fox.FoxKernel.String)); }
                     this.nameArray[index] = value.GetValueAsString();
                     return;
                 case "latitudeArray":

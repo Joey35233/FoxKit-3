@@ -17,10 +17,10 @@ namespace Fox.Anim
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.String> skelList { get; set; } = new Fox.Core.DynamicArray<Fox.Core.String>();
+        public Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String> skelList { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String>();
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.EntityPtr<Fox.Anim.ParameterMaskElement>> shaderList { get; set; } = new Fox.Core.DynamicArray<Fox.Core.EntityPtr<Fox.Anim.ParameterMaskElement>>();
+        public Fox.FoxKernel.DynamicArray<Fox.Core.EntityPtr<Fox.Anim.ParameterMaskElement>> shaderList { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.Core.EntityPtr<Fox.Anim.ParameterMaskElement>>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;
@@ -61,7 +61,7 @@ namespace Fox.Anim
             switch(propertyName)
             {
                 case "skelList":
-                    while(this.skelList.Count <= index) { this.skelList.Add(default(Fox.Core.String)); }
+                    while(this.skelList.Count <= index) { this.skelList.Add(default(Fox.FoxKernel.String)); }
                     this.skelList[index] = value.GetValueAsString();
                     return;
                 case "shaderList":

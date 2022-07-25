@@ -17,7 +17,7 @@ namespace Fox.Core
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        protected Fox.Core.DynamicArray<Fox.Core.String> list { get; set; } = new Fox.Core.DynamicArray<Fox.Core.String>();
+        protected Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String> list { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;
@@ -57,7 +57,7 @@ namespace Fox.Core
             switch(propertyName)
             {
                 case "list":
-                    while(this.list.Count <= index) { this.list.Add(default(Fox.Core.String)); }
+                    while(this.list.Count <= index) { this.list.Add(default(Fox.FoxKernel.String)); }
                     this.list[index] = value.GetValueAsString();
                     return;
                 default:

@@ -17,19 +17,19 @@ namespace Fox.Des
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.Path effectFilePath { get; set; }
+        public Fox.FoxKernel.Path effectFilePath { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String effectName { get; set; }
+        public Fox.FoxKernel.String effectName { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String setModelName { get; set; }
+        public Fox.FoxKernel.String setModelName { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.Path connectPointFilePath { get; set; }
+        public Fox.FoxKernel.Path connectPointFilePath { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String connectPointName { get; set; }
+        public Fox.FoxKernel.String connectPointName { get; set; }
         
         [field: UnityEngine.SerializeField]
         public DesEffectDataDesEffectFlag effectFlag { get; set; }

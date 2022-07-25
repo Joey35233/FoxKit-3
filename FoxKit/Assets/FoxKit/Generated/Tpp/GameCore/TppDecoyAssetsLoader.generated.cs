@@ -17,13 +17,13 @@ namespace Tpp.GameCore
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.FilePtr> decoyAssets { get; set; } = new Fox.Core.DynamicArray<Fox.Core.FilePtr>();
+        public Fox.FoxKernel.DynamicArray<Fox.Core.FilePtr> decoyAssets { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.Core.FilePtr>();
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String playerDecoyType { get; set; }
+        public Fox.FoxKernel.String playerDecoyType { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String enemyDecoyType { get; set; }
+        public Fox.FoxKernel.String enemyDecoyType { get; set; }
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

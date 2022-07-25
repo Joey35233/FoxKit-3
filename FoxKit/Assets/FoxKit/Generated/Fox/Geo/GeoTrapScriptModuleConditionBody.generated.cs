@@ -17,10 +17,10 @@ namespace Fox.Geo
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        protected Fox.Core.DynamicArray<Fox.Core.EntityPtr<Fox.Core.SafeScript>> checkScriptArray { get; set; } = new Fox.Core.DynamicArray<Fox.Core.EntityPtr<Fox.Core.SafeScript>>();
+        protected Fox.FoxKernel.DynamicArray<Fox.Core.EntityPtr<Fox.Core.SafeScript>> checkScriptArray { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.Core.EntityPtr<Fox.Core.SafeScript>>();
         
         [field: UnityEngine.SerializeField]
-        protected Fox.Core.DynamicArray<Fox.Core.EntityPtr<Fox.Core.SafeScript>> execScriptArray { get; set; } = new Fox.Core.DynamicArray<Fox.Core.EntityPtr<Fox.Core.SafeScript>>();
+        protected Fox.FoxKernel.DynamicArray<Fox.Core.EntityPtr<Fox.Core.SafeScript>> execScriptArray { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.Core.EntityPtr<Fox.Core.SafeScript>>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

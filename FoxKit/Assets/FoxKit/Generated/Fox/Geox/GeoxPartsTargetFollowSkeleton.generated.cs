@@ -17,10 +17,10 @@ namespace Fox.Geox
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.String> skeletonNames { get; set; } = new Fox.Core.DynamicArray<Fox.Core.String>();
+        public Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String> skeletonNames { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String>();
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.EntityLink> objectLinks { get; set; } = new Fox.Core.DynamicArray<Fox.Core.EntityLink>();
+        public Fox.FoxKernel.DynamicArray<Fox.Core.EntityLink> objectLinks { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.Core.EntityLink>();
         
         [field: UnityEngine.SerializeField]
         public Fox.Core.EntityHandle partsTargetUnitHandle { get; set; }
@@ -68,7 +68,7 @@ namespace Fox.Geox
             switch(propertyName)
             {
                 case "skeletonNames":
-                    while(this.skeletonNames.Count <= index) { this.skeletonNames.Add(default(Fox.Core.String)); }
+                    while(this.skeletonNames.Count <= index) { this.skeletonNames.Add(default(Fox.FoxKernel.String)); }
                     this.skeletonNames[index] = value.GetValueAsString();
                     return;
                 case "objectLinks":

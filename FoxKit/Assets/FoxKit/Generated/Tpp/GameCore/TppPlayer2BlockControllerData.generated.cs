@@ -35,19 +35,19 @@ namespace Tpp.GameCore
         public uint configuration_partsBlockSize { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String instanceSettings_instancePackagePath { get; set; }
+        public Fox.FoxKernel.String instanceSettings_instancePackagePath { get; set; }
         
         [field: UnityEngine.SerializeField]
         public uint instanceSettings_instanceBlockSize { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String instanceSettings_commonMotionTypeName { get; set; }
+        public Fox.FoxKernel.String instanceSettings_commonMotionTypeName { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.String> instanceSettings_partsTypeNames { get; set; } = new Fox.Core.DynamicArray<Fox.Core.String>();
+        public Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String> instanceSettings_partsTypeNames { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String>();
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.String> instanceSettings_partsTypeInitial { get; set; } = new Fox.Core.DynamicArray<Fox.Core.String>();
+        public Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String> instanceSettings_partsTypeInitial { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;
@@ -124,11 +124,11 @@ namespace Tpp.GameCore
             switch(propertyName)
             {
                 case "instanceSettings_partsTypeNames":
-                    while(this.instanceSettings_partsTypeNames.Count <= index) { this.instanceSettings_partsTypeNames.Add(default(Fox.Core.String)); }
+                    while(this.instanceSettings_partsTypeNames.Count <= index) { this.instanceSettings_partsTypeNames.Add(default(Fox.FoxKernel.String)); }
                     this.instanceSettings_partsTypeNames[index] = value.GetValueAsString();
                     return;
                 case "instanceSettings_partsTypeInitial":
-                    while(this.instanceSettings_partsTypeInitial.Count <= index) { this.instanceSettings_partsTypeInitial.Add(default(Fox.Core.String)); }
+                    while(this.instanceSettings_partsTypeInitial.Count <= index) { this.instanceSettings_partsTypeInitial.Add(default(Fox.FoxKernel.String)); }
                     this.instanceSettings_partsTypeInitial[index] = value.GetValueAsString();
                     return;
                 default:

@@ -17,7 +17,7 @@ namespace Fox.Geo
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.StringMap<byte> moverTags { get; protected set; } = new Fox.Core.StringMap<byte>();
+        public Fox.FoxKernel.StringMap<byte> moverTags { get; protected set; } = new Fox.FoxKernel.StringMap<byte>();
         
         [field: UnityEngine.SerializeField]
         public Fox.Core.EntityHandle moverHandle { get; protected set; }
@@ -29,7 +29,7 @@ namespace Fox.Geo
         public UnityEngine.Vector3 moverRotation { get; protected set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String trapName { get; protected set; }
+        public Fox.FoxKernel.String trapName { get; protected set; }
         
         [field: UnityEngine.SerializeField]
         public UnityEngine.Vector3 trapPosition { get; protected set; }
@@ -44,7 +44,7 @@ namespace Fox.Geo
         public Fox.Core.EntityHandle conditionBodyHandle { get; protected set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String trapFlagString { get; protected set; }
+        public Fox.FoxKernel.String trapFlagString { get; protected set; }
         
         [field: UnityEngine.SerializeField]
         public uint trapFlag { get; protected set; }

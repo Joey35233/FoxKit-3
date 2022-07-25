@@ -23,14 +23,10 @@ namespace FoxKit.MenuItems
                 return;
             }
 
-            var scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene);
-            scene.name = CsSystem.IO.Path.GetFileNameWithoutExtension(assetPath);
-
             using var reader = new BinaryReader(System.IO.File.OpenRead(assetPath));
             var trapReader = new GeoTrapFileReader();
-            trapReader.Read(reader);
-
-            EditorSceneManager.SaveScene(scene, "Assets/Scenes/" + CsSystem.IO.Path.GetFileName(assetPath) + ".unity");
+            var scene = trapReader.Read(reader);
+            scene.name = CsSystem.IO.Path.GetFileNameWithoutExtension(assetPath);
         }
     }
 }

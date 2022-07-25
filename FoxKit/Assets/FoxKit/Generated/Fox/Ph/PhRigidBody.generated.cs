@@ -95,9 +95,9 @@ namespace Fox.Ph
         protected partial PhRigidBodyType Get_motionType();
         protected partial void Set_motionType(PhRigidBodyType value);
         
-        public Fox.Core.String material { get => Get_material(); set { Set_material(value); } }
-        protected partial Fox.Core.String Get_material();
-        protected partial void Set_material(Fox.Core.String value);
+        public Fox.FoxKernel.String material { get => Get_material(); set { Set_material(value); } }
+        protected partial Fox.FoxKernel.String Get_material();
+        protected partial void Set_material(Fox.FoxKernel.String value);
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

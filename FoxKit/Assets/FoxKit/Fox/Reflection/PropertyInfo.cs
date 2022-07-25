@@ -217,10 +217,10 @@ namespace Fox.Core
                     return typeof(bool);
 
                 case PropertyType.String:
-                    return typeof(String);
+                    return typeof(FoxKernel.String);
 
                 case PropertyType.Path:
-                    return typeof(Path);
+                    return typeof(FoxKernel.Path);
 
                 case PropertyType.EntityPtr:
                     return typeof(EntityPtr<>).MakeGenericType(new Type[] { propertyInfo.PtrType });

@@ -1,16 +1,13 @@
-﻿using Fox.Core;
+﻿using Fox.FoxKernel;
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine.UIElements;
 
 namespace Fox.Editor
 {
-    public class StringMapField<T> : BaseField<Fox.Core.StringMap<T>>, IFoxField, ICustomBindable
+    public class StringMapField<T> : BaseField<StringMap<T>>, IFoxField, ICustomBindable
     {
         private ListView ListViewInput;
 
@@ -230,7 +227,7 @@ namespace Fox.Editor
         }
     }
 
-    [CustomPropertyDrawer(typeof(Core.StringMap<>))]
+    [CustomPropertyDrawer(typeof(StringMap<>))]
     public class StringMapDrawer : PropertyDrawer
     {
         public override VisualElement CreatePropertyGUI(SerializedProperty property)

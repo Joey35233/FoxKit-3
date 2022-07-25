@@ -20,13 +20,13 @@ namespace Fox.GameKit
         public double measureTime { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String startMessageName { get; set; }
+        public Fox.FoxKernel.String startMessageName { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String interruptMessageName { get; set; }
+        public Fox.FoxKernel.String interruptMessageName { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String alarmMessageName { get; set; }
+        public Fox.FoxKernel.String alarmMessageName { get; set; }
         
         [field: UnityEngine.SerializeField]
         public bool enableDebugView { get; set; }

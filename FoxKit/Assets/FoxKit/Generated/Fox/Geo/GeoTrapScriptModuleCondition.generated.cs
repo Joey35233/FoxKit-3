@@ -20,10 +20,10 @@ namespace Fox.Geo
         public bool isAndCheck { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.Path> checkScriptPathArray { get; set; } = new Fox.Core.DynamicArray<Fox.Core.Path>();
+        public Fox.FoxKernel.DynamicArray<Fox.FoxKernel.Path> checkScriptPathArray { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.FoxKernel.Path>();
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.Path> execScriptPathArray { get; set; } = new Fox.Core.DynamicArray<Fox.Core.Path>();
+        public Fox.FoxKernel.DynamicArray<Fox.FoxKernel.Path> execScriptPathArray { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.FoxKernel.Path>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;
@@ -68,11 +68,11 @@ namespace Fox.Geo
             switch(propertyName)
             {
                 case "checkScriptPathArray":
-                    while(this.checkScriptPathArray.Count <= index) { this.checkScriptPathArray.Add(default(Fox.Core.Path)); }
+                    while(this.checkScriptPathArray.Count <= index) { this.checkScriptPathArray.Add(default(Fox.FoxKernel.Path)); }
                     this.checkScriptPathArray[index] = value.GetValueAsPath();
                     return;
                 case "execScriptPathArray":
-                    while(this.execScriptPathArray.Count <= index) { this.execScriptPathArray.Add(default(Fox.Core.Path)); }
+                    while(this.execScriptPathArray.Count <= index) { this.execScriptPathArray.Add(default(Fox.FoxKernel.Path)); }
                     this.execScriptPathArray[index] = value.GetValueAsPath();
                     return;
                 default:

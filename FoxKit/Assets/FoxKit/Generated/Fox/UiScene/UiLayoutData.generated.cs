@@ -17,7 +17,7 @@ namespace Fox.UiScene
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.Path layoutPath { get; set; }
+        public Fox.FoxKernel.Path layoutPath { get; set; }
         
         [field: UnityEngine.SerializeField]
         public UnityEngine.Color color { get; set; }
@@ -32,7 +32,7 @@ namespace Fox.UiScene
         public Fox.Core.EntityHandle connection_connectModelDataHandle { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String connection_connectModelNodeName { get; set; }
+        public Fox.FoxKernel.String connection_connectModelNodeName { get; set; }
         
         [field: UnityEngine.SerializeField]
         public bool useParentCamera { get; set; }

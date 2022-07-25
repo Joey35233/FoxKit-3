@@ -17,10 +17,10 @@ namespace Tpp.System
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String identify { get; set; }
+        public Fox.FoxKernel.String identify { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String videoFormat { get; set; }
+        public Fox.FoxKernel.String videoFormat { get; set; }
         
         [field: UnityEngine.SerializeField]
         public uint videoWidth { get; set; }

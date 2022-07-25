@@ -1,4 +1,5 @@
 ﻿using Fox.Core;
+using Fox.FoxKernel;
 
 namespace Fox.Phx
 {
@@ -46,15 +47,15 @@ namespace Fox.Phx
         protected partial bool Get_useDifferential() => vehicleAxis.GetUseDifferential();
         protected partial void Set_useDifferential(bool value) { vehicleAxis.SetUseDifferential(value); }
 
-        protected partial Fox.Core.DynamicArray<Fox.Core.String> Get_AssignedBoneNames()
+        protected partial DynamicArray<String> Get_AssignedBoneNames()
         {
-            DynamicArray<Fox.Core.String> assignedBoneNames = new DynamicArray<String>();
+            DynamicArray<String> assignedBoneNames = new DynamicArray<String>();
             foreach (var wheelAssociationUnit in wheelAssociationUnitParams)
                 assignedBoneNames.Add(wheelAssociationUnit.Get().GetBoneName());
 
             return assignedBoneNames;
         }
-        protected partial void Set_AssignedBoneNames(Fox.Core.DynamicArray<Fox.Core.String> value)
+        protected partial void Set_AssignedBoneNames(DynamicArray<String> value)
         {
             int i = 0;
             foreach (var wheelAssociationUnit in wheelAssociationUnitParams)

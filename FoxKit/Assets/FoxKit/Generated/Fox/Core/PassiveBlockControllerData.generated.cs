@@ -23,16 +23,16 @@ namespace Fox.Core
         public bool loadWithDataProperty { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.Path scriptPath { get; set; }
+        public Fox.FoxKernel.Path scriptPath { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.EntityLink> blockGroups { get; set; } = new Fox.Core.DynamicArray<Fox.Core.EntityLink>();
+        public Fox.FoxKernel.DynamicArray<Fox.Core.EntityLink> blockGroups { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.Core.EntityLink>();
         
         [field: UnityEngine.SerializeField]
         public bool isAddRelatedBlockGroupEachOther { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String prerequisiteBlockGroupName { get; set; }
+        public Fox.FoxKernel.String prerequisiteBlockGroupName { get; set; }
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

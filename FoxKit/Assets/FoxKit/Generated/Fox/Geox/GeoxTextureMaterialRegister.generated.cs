@@ -20,10 +20,10 @@ namespace Fox.Geox
         public Fox.Core.EntityLink materialLink { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String collisionMaterialName { get; set; }
+        public Fox.FoxKernel.String collisionMaterialName { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String collisionColorName { get; set; }
+        public Fox.FoxKernel.String collisionColorName { get; set; }
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

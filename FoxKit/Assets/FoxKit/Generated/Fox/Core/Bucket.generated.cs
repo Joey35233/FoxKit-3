@@ -20,25 +20,25 @@ namespace Fox.Core
         protected Fox.Core.EntityHandle collector { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String name { get; protected set; }
+        public Fox.FoxKernel.String name { get; protected set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String sceneName { get; protected set; }
+        public Fox.FoxKernel.String sceneName { get; protected set; }
         
         [field: UnityEngine.SerializeField]
-        protected Fox.Core.DynamicArray<Fox.Core.EntityPtr<Fox.Core.Actor>> actors { get; set; } = new Fox.Core.DynamicArray<Fox.Core.EntityPtr<Fox.Core.Actor>>();
+        protected Fox.FoxKernel.DynamicArray<Fox.Core.EntityPtr<Fox.Core.Actor>> actors { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.Core.EntityPtr<Fox.Core.Actor>>();
         
         [field: UnityEngine.SerializeField]
-        protected Fox.Core.StringMap<Fox.Core.FilePtr> dataSetFiles { get; set; } = new Fox.Core.StringMap<Fox.Core.FilePtr>();
+        protected Fox.FoxKernel.StringMap<Fox.Core.FilePtr> dataSetFiles { get; set; } = new Fox.FoxKernel.StringMap<Fox.Core.FilePtr>();
         
         [field: UnityEngine.SerializeField]
-        protected Fox.Core.StringMap<Fox.Core.EntityPtr<Fox.Core.DataBodySet>> dataBodySets { get; set; } = new Fox.Core.StringMap<Fox.Core.EntityPtr<Fox.Core.DataBodySet>>();
+        protected Fox.FoxKernel.StringMap<Fox.Core.EntityPtr<Fox.Core.DataBodySet>> dataBodySets { get; set; } = new Fox.FoxKernel.StringMap<Fox.Core.EntityPtr<Fox.Core.DataBodySet>>();
         
         [field: UnityEngine.SerializeField]
         protected Fox.Core.EntityPtr<Fox.Core.DataSet> editableDataSet { get; set; } = new Fox.Core.EntityPtr<Fox.Core.DataSet>();
         
         [field: UnityEngine.SerializeField]
-        protected Fox.Core.Path editableDataSetPath { get; set; }
+        protected Fox.FoxKernel.Path editableDataSetPath { get; set; }
         
         [field: UnityEngine.SerializeField]
         protected Fox.Core.EntityPtr<Fox.Core.DataBodySet> editableDataBodySet { get; set; } = new Fox.Core.EntityPtr<Fox.Core.DataBodySet>();

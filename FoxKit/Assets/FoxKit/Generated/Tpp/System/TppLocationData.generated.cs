@@ -20,7 +20,7 @@ namespace Tpp.System
         public ushort locationId { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.Path scriptPath { get; set; }
+        public Fox.FoxKernel.Path scriptPath { get; set; }
         
         [field: UnityEngine.SerializeField]
         public Fox.Core.FilePtr weatherParametersFile { get; set; }

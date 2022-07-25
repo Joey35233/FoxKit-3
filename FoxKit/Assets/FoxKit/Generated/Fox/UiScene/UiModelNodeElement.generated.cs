@@ -17,7 +17,7 @@ namespace Fox.UiScene
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String modelNodeName { get; set; }
+        public Fox.FoxKernel.String modelNodeName { get; set; }
         
         [field: UnityEngine.SerializeField]
         public bool visible { get; set; }

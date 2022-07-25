@@ -5,7 +5,7 @@ using UnityEngine.UIElements;
 
 namespace Fox.Editor
 {
-    public class EntityLinkField : BaseField<Fox.Core.EntityLink>, IFoxField, ICustomBindable
+    public class EntityLinkField : BaseField<Core.EntityLink>, IFoxField, ICustomBindable
     {
         private EntityHandleField InternalHandleField;
         private PathField InternalPackagePathField;
@@ -121,7 +121,7 @@ namespace Fox.Editor
         }
     }
 
-    [CustomPropertyDrawer(typeof(Fox.Core.EntityLink))]
+    [CustomPropertyDrawer(typeof(Core.EntityLink))]
     public class EntityLinkDrawer : PropertyDrawer
     {
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
@@ -131,7 +131,7 @@ namespace Fox.Editor
 
             field.labelElement.AddToClassList(PropertyField.labelUssClassName);
             field.visualInput.AddToClassList(PropertyField.inputUssClassName);
-            field.AddToClassList(BaseField<Fox.Core.Path>.alignedFieldUssClassName);
+            field.AddToClassList(BaseField<Core.EntityLink>.alignedFieldUssClassName);
 
             return field;
         }

@@ -17,7 +17,7 @@ namespace Tpp.Effect
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String primRiverGroupName { get; set; }
+        public Fox.FoxKernel.String primRiverGroupName { get; set; }
         
         [field: UnityEngine.SerializeField]
         public bool visibility { get; set; }
@@ -29,7 +29,7 @@ namespace Tpp.Effect
         public float raise { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.EntityLink> staticModels { get; set; } = new Fox.Core.DynamicArray<Fox.Core.EntityLink>();
+        public Fox.FoxKernel.DynamicArray<Fox.Core.EntityLink> staticModels { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.Core.EntityLink>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

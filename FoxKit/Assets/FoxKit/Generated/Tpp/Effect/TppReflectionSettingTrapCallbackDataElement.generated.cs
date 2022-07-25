@@ -17,10 +17,10 @@ namespace Tpp.Effect
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.Path reflectionTexturePath { get; set; }
+        public Fox.FoxKernel.Path reflectionTexturePath { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.Path reflectionTexturePathForGoOut { get; set; }
+        public Fox.FoxKernel.Path reflectionTexturePathForGoOut { get; set; }
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

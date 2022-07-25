@@ -17,7 +17,7 @@ namespace Fox.Core
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        protected Fox.Core.Path value { get; set; }
+        protected Fox.FoxKernel.Path value { get; set; }
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

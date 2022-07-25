@@ -17,7 +17,7 @@ namespace Fox.GameKit
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String parentDataName { get; set; }
+        public Fox.FoxKernel.String parentDataName { get; set; }
         
         [field: UnityEngine.SerializeField]
         public bool visibility { get; set; }

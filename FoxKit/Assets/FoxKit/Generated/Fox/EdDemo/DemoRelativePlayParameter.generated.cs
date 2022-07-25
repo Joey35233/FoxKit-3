@@ -17,10 +17,10 @@ namespace Fox.EdDemo
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String rootCharacterId { get; set; }
+        public Fox.FoxKernel.String rootCharacterId { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String lookAtCharacterId { get; set; }
+        public Fox.FoxKernel.String lookAtCharacterId { get; set; }
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

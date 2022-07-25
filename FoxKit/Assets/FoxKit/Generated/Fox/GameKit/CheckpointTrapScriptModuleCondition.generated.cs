@@ -17,7 +17,7 @@ namespace Fox.GameKit
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.Path> checkpointScriptArray { get; set; } = new Fox.Core.DynamicArray<Fox.Core.Path>();
+        public Fox.FoxKernel.DynamicArray<Fox.FoxKernel.Path> checkpointScriptArray { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.FoxKernel.Path>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;
@@ -57,7 +57,7 @@ namespace Fox.GameKit
             switch(propertyName)
             {
                 case "checkpointScriptArray":
-                    while(this.checkpointScriptArray.Count <= index) { this.checkpointScriptArray.Add(default(Fox.Core.Path)); }
+                    while(this.checkpointScriptArray.Count <= index) { this.checkpointScriptArray.Add(default(Fox.FoxKernel.Path)); }
                     this.checkpointScriptArray[index] = value.GetValueAsPath();
                     return;
                 default:

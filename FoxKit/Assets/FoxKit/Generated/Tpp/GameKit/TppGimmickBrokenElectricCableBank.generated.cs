@@ -17,7 +17,7 @@ namespace Tpp.GameKit
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.Path referencePartsPath { get; set; }
+        public Fox.FoxKernel.Path referencePartsPath { get; set; }
         
         [field: UnityEngine.SerializeField]
         public Fox.Core.FilePtr modelFile { get; set; }

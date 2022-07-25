@@ -17,28 +17,28 @@ namespace Fox.Demox
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.StringMap<Fox.Core.FilePtr> evfFiles { get; set; } = new Fox.Core.StringMap<Fox.Core.FilePtr>();
+        public Fox.FoxKernel.StringMap<Fox.Core.FilePtr> evfFiles { get; set; } = new Fox.FoxKernel.StringMap<Fox.Core.FilePtr>();
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.StringMap<Fox.Core.FilePtr> eventFiles { get; set; } = new Fox.Core.StringMap<Fox.Core.FilePtr>();
+        public Fox.FoxKernel.StringMap<Fox.Core.FilePtr> eventFiles { get; set; } = new Fox.FoxKernel.StringMap<Fox.Core.FilePtr>();
         
         [field: UnityEngine.SerializeField]
         public int priority { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String demoId { get; set; }
+        public Fox.FoxKernel.String demoId { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.String> stringParams { get; set; } = new Fox.Core.DynamicArray<Fox.Core.String>();
+        public Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String> stringParams { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String>();
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.StringMap<Fox.Core.EntityLink> entityParams { get; set; } = new Fox.Core.StringMap<Fox.Core.EntityLink>();
+        public Fox.FoxKernel.StringMap<Fox.Core.EntityLink> entityParams { get; set; } = new Fox.FoxKernel.StringMap<Fox.Core.EntityLink>();
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.StringMap<Fox.Core.FilePtr> fileParams { get; set; } = new Fox.Core.StringMap<Fox.Core.FilePtr>();
+        public Fox.FoxKernel.StringMap<Fox.Core.FilePtr> fileParams { get; set; } = new Fox.FoxKernel.StringMap<Fox.Core.FilePtr>();
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.StringMap<int> objectNum { get; set; } = new Fox.Core.StringMap<int>();
+        public Fox.FoxKernel.StringMap<int> objectNum { get; set; } = new Fox.FoxKernel.StringMap<int>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;
@@ -91,7 +91,7 @@ namespace Fox.Demox
             switch(propertyName)
             {
                 case "stringParams":
-                    while(this.stringParams.Count <= index) { this.stringParams.Add(default(Fox.Core.String)); }
+                    while(this.stringParams.Count <= index) { this.stringParams.Add(default(Fox.FoxKernel.String)); }
                     this.stringParams[index] = value.GetValueAsString();
                     return;
                 default:

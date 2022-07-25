@@ -103,7 +103,7 @@ namespace Fox.Editor
 
             field.labelElement.AddToClassList(PropertyField.labelUssClassName);
             field.visualInput.AddToClassList(PropertyField.inputUssClassName);
-            field.AddToClassList(BaseField<Fox.Core.Path>.alignedFieldUssClassName);
+            field.AddToClassList(BaseField<UnityEngine.Vector4>.alignedFieldUssClassName);
 
             return field;
         }

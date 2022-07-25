@@ -20,7 +20,7 @@ namespace Tpp.GameKit
         public bool onlyOnce { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String offenseName { get; set; }
+        public Fox.FoxKernel.String offenseName { get; set; }
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

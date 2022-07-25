@@ -20,10 +20,10 @@ namespace Fox.Sdx
         public Fox.Core.EntityLink source { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String enterEvent { get; set; }
+        public Fox.FoxKernel.String enterEvent { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String outEvent { get; set; }
+        public Fox.FoxKernel.String outEvent { get; set; }
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

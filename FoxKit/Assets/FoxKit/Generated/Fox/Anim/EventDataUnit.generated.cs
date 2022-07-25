@@ -17,19 +17,19 @@ namespace Fox.Anim
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String eventName { get; set; }
+        public Fox.FoxKernel.String eventName { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.EntityPtr<Fox.Anim.TimeSection>> sections { get; set; } = new Fox.Core.DynamicArray<Fox.Core.EntityPtr<Fox.Anim.TimeSection>>();
+        public Fox.FoxKernel.DynamicArray<Fox.Core.EntityPtr<Fox.Anim.TimeSection>> sections { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.Core.EntityPtr<Fox.Anim.TimeSection>>();
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.String> paramString { get; set; } = new Fox.Core.DynamicArray<Fox.Core.String>();
+        public Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String> paramString { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String>();
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<int> paramInt { get; set; } = new Fox.Core.DynamicArray<int>();
+        public Fox.FoxKernel.DynamicArray<int> paramInt { get; set; } = new Fox.FoxKernel.DynamicArray<int>();
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<float> paramFloat { get; set; } = new Fox.Core.DynamicArray<float>();
+        public Fox.FoxKernel.DynamicArray<float> paramFloat { get; set; } = new Fox.FoxKernel.DynamicArray<float>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;
@@ -80,7 +80,7 @@ namespace Fox.Anim
                     this.sections[index] = value.GetValueAsEntityPtr<Fox.Anim.TimeSection>();
                     return;
                 case "paramString":
-                    while(this.paramString.Count <= index) { this.paramString.Add(default(Fox.Core.String)); }
+                    while(this.paramString.Count <= index) { this.paramString.Add(default(Fox.FoxKernel.String)); }
                     this.paramString[index] = value.GetValueAsString();
                     return;
                 case "paramInt":

@@ -20,7 +20,7 @@ namespace Fox.Sdx
         public Fox.Core.EntityPtr<Fox.Sdx.SoundAreaParameter> parameter { get; set; } = new Fox.Core.EntityPtr<Fox.Sdx.SoundAreaParameter>();
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String volumeRtpc { get; set; }
+        public Fox.FoxKernel.String volumeRtpc { get; set; }
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

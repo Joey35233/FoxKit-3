@@ -17,16 +17,16 @@ namespace Fox.Ui
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String language { get; set; }
+        public Fox.FoxKernel.String language { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String fontName { get; set; }
+        public Fox.FoxKernel.String fontName { get; set; }
         
         [field: UnityEngine.SerializeField]
         public Fox.Core.FilePtr fontFile { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.Path texturePath { get; set; }
+        public Fox.FoxKernel.Path texturePath { get; set; }
         
         [field: UnityEngine.SerializeField]
         public float fontWidth { get; set; }

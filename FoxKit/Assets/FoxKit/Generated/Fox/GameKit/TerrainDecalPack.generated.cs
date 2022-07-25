@@ -20,7 +20,7 @@ namespace Fox.GameKit
         public Fox.Core.FilePtr terrainDecalPackFile { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.EntityLink> materialLinks { get; set; } = new Fox.Core.DynamicArray<Fox.Core.EntityLink>();
+        public Fox.FoxKernel.DynamicArray<Fox.Core.EntityLink> materialLinks { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.Core.EntityLink>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

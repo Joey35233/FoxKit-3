@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Fox.FoxKernel;
+using String = Fox.FoxKernel.String;
+using System;
 using UnityEngine;
 
 namespace Fox.Core

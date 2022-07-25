@@ -17,10 +17,10 @@ namespace Tpp.GameCore
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String frontLineName { get; set; }
+        public Fox.FoxKernel.String frontLineName { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.String> inactiveLocators { get; set; } = new Fox.Core.DynamicArray<Fox.Core.String>();
+        public Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String> inactiveLocators { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;
@@ -64,7 +64,7 @@ namespace Tpp.GameCore
             switch(propertyName)
             {
                 case "inactiveLocators":
-                    while(this.inactiveLocators.Count <= index) { this.inactiveLocators.Add(default(Fox.Core.String)); }
+                    while(this.inactiveLocators.Count <= index) { this.inactiveLocators.Add(default(Fox.FoxKernel.String)); }
                     this.inactiveLocators[index] = value.GetValueAsString();
                     return;
                 default:

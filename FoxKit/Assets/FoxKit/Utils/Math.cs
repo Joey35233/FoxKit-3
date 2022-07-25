@@ -33,5 +33,16 @@ namespace FoxKit
 
             return new Quaternion(newQuat.x, newQuat.y, newQuat.z, newQuat.w);
         }
+        public static Quaternion UnityQuaternionFromFoxCoordinates(Quaternion v)
+        {
+            var angle = 0.0f;
+            var axis = Vector3.zero;
+            v.ToAngleAxis(out angle, out axis);
+            axis.x = -axis.x;
+
+            var newQuat = Quaternion.AngleAxis(-angle, axis);
+
+            return new Quaternion(newQuat.x, newQuat.y, newQuat.z, newQuat.w);
+        }
     }
 }

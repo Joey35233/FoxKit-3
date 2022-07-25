@@ -17,7 +17,7 @@ namespace Fox.Ui
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.EntityPtr<Fox.Ui.UiFontDataElement>> fonts { get; set; } = new Fox.Core.DynamicArray<Fox.Core.EntityPtr<Fox.Ui.UiFontDataElement>>();
+        public Fox.FoxKernel.DynamicArray<Fox.Core.EntityPtr<Fox.Ui.UiFontDataElement>> fonts { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.Core.EntityPtr<Fox.Ui.UiFontDataElement>>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

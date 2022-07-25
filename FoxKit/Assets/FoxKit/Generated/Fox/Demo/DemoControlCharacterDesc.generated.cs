@@ -17,13 +17,13 @@ namespace Fox.Demo
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String characterId { get; set; }
+        public Fox.FoxKernel.String characterId { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String releaseGroupName { get; set; }
+        public Fox.FoxKernel.String releaseGroupName { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String releaseTag { get; set; }
+        public Fox.FoxKernel.String releaseTag { get; set; }
         
         [field: UnityEngine.SerializeField]
         public bool controlledAtStart { get; set; }
@@ -35,10 +35,10 @@ namespace Fox.Demo
         public UnityEngine.Quaternion rotation { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String startGroupName { get; set; }
+        public Fox.FoxKernel.String startGroupName { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String startTag { get; set; }
+        public Fox.FoxKernel.String startTag { get; set; }
         
         [field: UnityEngine.SerializeField]
         public UnityEngine.Vector3 startTranslation { get; set; }

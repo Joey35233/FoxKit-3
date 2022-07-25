@@ -17,13 +17,13 @@ namespace Fox.Core
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String name { get; set; }
+        public Fox.FoxKernel.String name { get; set; }
         
         [field: UnityEngine.SerializeField]
         protected Fox.Core.EntityHandle dataSet { get; set; }
         
-        public Fox.Core.String referencePath { get => Get_referencePath(); }
-        protected partial Fox.Core.String Get_referencePath();
+        public Fox.FoxKernel.String referencePath { get => Get_referencePath(); }
+        protected partial Fox.FoxKernel.String Get_referencePath();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

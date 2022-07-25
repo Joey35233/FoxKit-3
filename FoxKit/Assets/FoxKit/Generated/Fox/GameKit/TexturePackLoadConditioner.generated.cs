@@ -17,7 +17,7 @@ namespace Fox.GameKit
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.Path texturePackPath { get; set; }
+        public Fox.FoxKernel.Path texturePackPath { get; set; }
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

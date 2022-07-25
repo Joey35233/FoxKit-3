@@ -17,10 +17,10 @@ namespace Fox.Ui
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        protected Fox.Core.Path uigName { get; set; }
+        protected Fox.FoxKernel.Path uigName { get; set; }
         
         [field: UnityEngine.SerializeField]
-        protected Fox.Core.String uigFileName { get; set; }
+        protected Fox.FoxKernel.String uigFileName { get; set; }
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

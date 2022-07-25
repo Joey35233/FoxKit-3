@@ -26,7 +26,7 @@ namespace Fox.Des
         public float restitution { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String materialName { get; set; }
+        public Fox.FoxKernel.String materialName { get; set; }
         
         [field: UnityEngine.SerializeField]
         public ParamDataDesCondition desCondition { get; set; }

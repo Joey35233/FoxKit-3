@@ -23,13 +23,13 @@ namespace Fox.Geox
         public CollisionPrimitive_PrimType primitiveType { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String groupTag { get; set; }
+        public Fox.FoxKernel.String groupTag { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String collisionMaterial { get; set; }
+        public Fox.FoxKernel.String collisionMaterial { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.String> collisionAttributeNames { get; set; } = new Fox.Core.DynamicArray<Fox.Core.String>();
+        public Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String> collisionAttributeNames { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;
@@ -85,7 +85,7 @@ namespace Fox.Geox
             switch(propertyName)
             {
                 case "collisionAttributeNames":
-                    while(this.collisionAttributeNames.Count <= index) { this.collisionAttributeNames.Add(default(Fox.Core.String)); }
+                    while(this.collisionAttributeNames.Count <= index) { this.collisionAttributeNames.Add(default(Fox.FoxKernel.String)); }
                     this.collisionAttributeNames[index] = value.GetValueAsString();
                     return;
                 default:

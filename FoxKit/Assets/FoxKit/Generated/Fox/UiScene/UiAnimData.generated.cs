@@ -32,10 +32,10 @@ namespace Fox.UiScene
         public UiAnimDataFlag flag { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.String> srcNodeNames { get; set; } = new Fox.Core.DynamicArray<Fox.Core.String>();
+        public Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String> srcNodeNames { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String>();
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.String> destNodeNames { get; set; } = new Fox.Core.DynamicArray<Fox.Core.String>();
+        public Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String> destNodeNames { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;
@@ -96,11 +96,11 @@ namespace Fox.UiScene
             switch(propertyName)
             {
                 case "srcNodeNames":
-                    while(this.srcNodeNames.Count <= index) { this.srcNodeNames.Add(default(Fox.Core.String)); }
+                    while(this.srcNodeNames.Count <= index) { this.srcNodeNames.Add(default(Fox.FoxKernel.String)); }
                     this.srcNodeNames[index] = value.GetValueAsString();
                     return;
                 case "destNodeNames":
-                    while(this.destNodeNames.Count <= index) { this.destNodeNames.Add(default(Fox.Core.String)); }
+                    while(this.destNodeNames.Count <= index) { this.destNodeNames.Add(default(Fox.FoxKernel.String)); }
                     this.destNodeNames[index] = value.GetValueAsString();
                     return;
                 default:

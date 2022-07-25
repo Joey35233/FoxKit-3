@@ -17,7 +17,7 @@ namespace Fox.GameKit
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        protected Fox.Core.StringMap<double> intervalTimers { get; set; } = new Fox.Core.StringMap<double>();
+        protected Fox.FoxKernel.StringMap<double> intervalTimers { get; set; } = new Fox.FoxKernel.StringMap<double>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

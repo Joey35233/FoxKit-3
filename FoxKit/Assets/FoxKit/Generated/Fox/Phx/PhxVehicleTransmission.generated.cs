@@ -17,7 +17,7 @@ namespace Fox.Phx
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<float> gearRatios { get; set; } = new Fox.Core.DynamicArray<float>();
+        public Fox.FoxKernel.DynamicArray<float> gearRatios { get; set; } = new Fox.FoxKernel.DynamicArray<float>();
         
         [field: UnityEngine.SerializeField]
         public float finalGearRatio { get; set; }

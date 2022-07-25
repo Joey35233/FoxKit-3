@@ -17,13 +17,13 @@ namespace Fox.PartsBuilder
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.EntityLink> depends { get; set; } = new Fox.Core.DynamicArray<Fox.Core.EntityLink>();
+        public Fox.FoxKernel.DynamicArray<Fox.Core.EntityLink> depends { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.Core.EntityLink>();
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String partName { get; set; }
+        public Fox.FoxKernel.String partName { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String buildType { get; set; }
+        public Fox.FoxKernel.String buildType { get; set; }
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

@@ -17,7 +17,7 @@ namespace Fox.Geo
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        protected Fox.Core.String trapCategory { get; set; }
+        protected Fox.FoxKernel.String trapCategory { get; set; }
         
         [field: UnityEngine.SerializeField]
         protected uint trapPriority { get; set; }

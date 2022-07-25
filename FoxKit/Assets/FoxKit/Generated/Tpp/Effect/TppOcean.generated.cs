@@ -53,10 +53,10 @@ namespace Tpp.Effect
         public float windSpeed { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.Path waveParamTexture { get; set; }
+        public Fox.FoxKernel.Path waveParamTexture { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.Path whitecapTexture { get; set; }
+        public Fox.FoxKernel.Path whitecapTexture { get; set; }
         
         [field: UnityEngine.SerializeField]
         public float horizonDistance { get; set; }
@@ -68,7 +68,7 @@ namespace Tpp.Effect
         public uint randomSeed { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.EntityLink> collisionDatas { get; set; } = new Fox.Core.DynamicArray<Fox.Core.EntityLink>();
+        public Fox.FoxKernel.DynamicArray<Fox.Core.EntityLink> collisionDatas { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.Core.EntityLink>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

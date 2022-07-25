@@ -17,7 +17,7 @@ namespace Fox.Phx
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        protected Fox.Core.String boneName { get; set; }
+        protected Fox.FoxKernel.String boneName { get; set; }
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

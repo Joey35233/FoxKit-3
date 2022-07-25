@@ -44,6 +44,8 @@ namespace Fox
             return (uint)(a.hash & (ulong)b);
         }
 
+        public ulong GetBacking() => this.hash;
+
         public override string ToString()
         {
             return hash.ToString("x");

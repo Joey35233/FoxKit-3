@@ -20,7 +20,7 @@ namespace Tpp.Effect
         public bool enable { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.Path colorCorrectionLUT { get; set; }
+        public Fox.FoxKernel.Path colorCorrectionLUT { get; set; }
         
         [field: UnityEngine.SerializeField]
         public float exposureCompensation { get; set; }

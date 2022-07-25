@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Fox.FoxKernel;
+using System;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine.UIElements;
@@ -25,7 +26,7 @@ namespace Fox.Editor
             RemoveFromClassList(TextField.ussClassName);
             AddToClassList(ussClassName);
 
-            visualInput = this.Q(className: BaseField<Fox.Core.Path>.inputUssClassName);
+            visualInput = this.Q(className: BaseField<Path>.inputUssClassName);
             visualInput.RemoveFromClassList(TextField.inputUssClassName);
             visualInput.AddToClassList(inputUssClassName);
 
@@ -65,7 +66,7 @@ namespace Fox.Editor
         }
     }
 
-    [CustomPropertyDrawer(typeof(Fox.Core.Path))]
+    [CustomPropertyDrawer(typeof(Path))]
     public class PathDrawer : PropertyDrawer
     {
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
@@ -75,7 +76,7 @@ namespace Fox.Editor
 
             field.labelElement.AddToClassList(PropertyField.labelUssClassName);
             field.visualInput.AddToClassList(PropertyField.inputUssClassName);
-            field.AddToClassList(BaseField<Fox.Core.Path>.alignedFieldUssClassName);
+            field.AddToClassList(BaseField<Path>.alignedFieldUssClassName);
 
             return field;
         }

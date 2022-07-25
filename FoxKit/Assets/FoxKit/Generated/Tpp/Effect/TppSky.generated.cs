@@ -26,7 +26,7 @@ namespace Tpp.Effect
         public Fox.Core.FilePtr model { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.Path cloudTexture { get; set; }
+        public Fox.FoxKernel.Path cloudTexture { get; set; }
         
         [field: UnityEngine.SerializeField]
         public uint textureRepeats { get; set; }
@@ -89,7 +89,7 @@ namespace Tpp.Effect
         public float dom3DensityLayerWindInfluence { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.Path cylCloudTexture { get; set; }
+        public Fox.FoxKernel.Path cylCloudTexture { get; set; }
         
         [field: UnityEngine.SerializeField]
         public uint cylTextureRepeats { get; set; }

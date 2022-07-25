@@ -20,13 +20,13 @@ namespace Fox.Geox
         public CollisionFreeShape_Category collisionCategory { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String collisionMaterial { get; protected set; }
+        public Fox.FoxKernel.String collisionMaterial { get; protected set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.String> collisionAttributeNames { get; set; } = new Fox.Core.DynamicArray<Fox.Core.String>();
+        public Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String> collisionAttributeNames { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String>();
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.StaticArray<UnityEngine.Vector3> points { get; set; } = new Fox.Core.StaticArray<UnityEngine.Vector3>(8);
+        public Fox.FoxKernel.StaticArray<UnityEngine.Vector3> points { get; set; } = new Fox.FoxKernel.StaticArray<UnityEngine.Vector3>(8);
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;
@@ -75,7 +75,7 @@ namespace Fox.Geox
             switch(propertyName)
             {
                 case "collisionAttributeNames":
-                    while(this.collisionAttributeNames.Count <= index) { this.collisionAttributeNames.Add(default(Fox.Core.String)); }
+                    while(this.collisionAttributeNames.Count <= index) { this.collisionAttributeNames.Add(default(Fox.FoxKernel.String)); }
                     this.collisionAttributeNames[index] = value.GetValueAsString();
                     return;
                 case "points":

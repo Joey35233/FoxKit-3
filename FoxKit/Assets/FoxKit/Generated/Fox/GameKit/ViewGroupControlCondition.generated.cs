@@ -23,7 +23,7 @@ namespace Fox.GameKit
         public ViewGroupControlCondition_Condition condition { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String identify { get; set; }
+        public Fox.FoxKernel.String identify { get; set; }
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

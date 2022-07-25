@@ -27,7 +27,7 @@ namespace Fox.Editor
             RemoveFromClassList(TextField.ussClassName);
             AddToClassList(ussClassName);
 
-            visualInput = this.Q(className: BaseField<Fox.Core.Path>.inputUssClassName);
+            visualInput = this.Q(className: BaseField<FilePtr>.inputUssClassName);
             visualInput.RemoveFromClassList(TextField.inputUssClassName);
             visualInput.AddToClassList(inputUssClassName);
 

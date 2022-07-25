@@ -17,7 +17,7 @@ namespace Fox.Grx
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.Path textureLUT { get; set; }
+        public Fox.FoxKernel.Path textureLUT { get; set; }
         
         [field: UnityEngine.SerializeField]
         public float startSlope { get; set; }

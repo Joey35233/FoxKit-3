@@ -17,7 +17,7 @@ namespace Fox.GameKit
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String key { get; set; }
+        public Fox.FoxKernel.String key { get; set; }
         
         [field: UnityEngine.SerializeField]
         public UnityEngine.Color color { get; set; }
@@ -44,7 +44,7 @@ namespace Fox.GameKit
         public SubtitlesGenerator_TextBoxAlign bAlign { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String fontName { get; set; }
+        public Fox.FoxKernel.String fontName { get; set; }
         
         [field: UnityEngine.SerializeField]
         public bool autoLineFeed { get; set; }

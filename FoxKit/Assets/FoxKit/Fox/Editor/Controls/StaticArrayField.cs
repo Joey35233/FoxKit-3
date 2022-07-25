@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Fox.FoxKernel;
+using System;
 using System.Reflection;
 using UnityEditor;
 using UnityEditor.UIElements;
@@ -6,7 +7,7 @@ using UnityEngine.UIElements;
 
 namespace Fox.Editor
 {
-    public class StaticArrayField<T> : BaseField<Fox.Core.StaticArray<T>>, IFoxField, ICustomBindable
+    public class StaticArrayField<T> : BaseField<StaticArray<T>>, IFoxField, ICustomBindable
     {
         private ListView ListViewInput;
 
@@ -93,7 +94,7 @@ namespace Fox.Editor
         }
     }
 
-    [CustomPropertyDrawer(typeof(Core.StaticArray<>))]
+    [CustomPropertyDrawer(typeof(StaticArray<>))]
     public class StaticArrayDrawer : PropertyDrawer
     {
         public override VisualElement CreatePropertyGUI(SerializedProperty property)

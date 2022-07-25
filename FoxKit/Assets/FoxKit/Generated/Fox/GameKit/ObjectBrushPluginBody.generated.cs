@@ -17,16 +17,16 @@ namespace Fox.GameKit
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String name { get; set; }
+        public Fox.FoxKernel.String name { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String pluginName { get; set; }
+        public Fox.FoxKernel.String pluginName { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String modelName { get; set; }
+        public Fox.FoxKernel.String modelName { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String thumbnailPath { get; set; }
+        public Fox.FoxKernel.String thumbnailPath { get; set; }
         
         [field: UnityEngine.SerializeField]
         public uint numObjects { get; set; }

@@ -20,7 +20,7 @@ namespace Fox.PartsBuilder
         public Fox.Core.FilePtr geomFile { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String skeletonName { get; set; }
+        public Fox.FoxKernel.String skeletonName { get; set; }
         
         [field: UnityEngine.SerializeField]
         public UnityEngine.Vector3 offsetScale { get; set; }

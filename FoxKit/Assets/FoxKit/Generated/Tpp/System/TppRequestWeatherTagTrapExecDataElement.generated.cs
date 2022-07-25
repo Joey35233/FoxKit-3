@@ -17,7 +17,7 @@ namespace Tpp.System
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String tagName { get; set; }
+        public Fox.FoxKernel.String tagName { get; set; }
         
         [field: UnityEngine.SerializeField]
         public byte priority { get; set; }

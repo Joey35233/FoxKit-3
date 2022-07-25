@@ -17,7 +17,7 @@ namespace Tpp.GameKit
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String checkCharacterId { get; set; }
+        public Fox.FoxKernel.String checkCharacterId { get; set; }
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

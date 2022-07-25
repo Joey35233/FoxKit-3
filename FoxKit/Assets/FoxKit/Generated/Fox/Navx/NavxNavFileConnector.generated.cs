@@ -17,13 +17,13 @@ namespace Fox.Navx
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String sceneName { get; set; }
+        public Fox.FoxKernel.String sceneName { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String worldName { get; set; }
+        public Fox.FoxKernel.String worldName { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String groupName { get; set; }
+        public Fox.FoxKernel.String groupName { get; set; }
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

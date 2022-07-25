@@ -17,19 +17,19 @@ namespace Tpp.Effect
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String primRiverGroupName { get; set; }
+        public Fox.FoxKernel.String primRiverGroupName { get; set; }
         
         [field: UnityEngine.SerializeField]
         public bool visibility { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String baseTextureName { get; set; }
+        public Fox.FoxKernel.String baseTextureName { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String normalTextureName { get; set; }
+        public Fox.FoxKernel.String normalTextureName { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String cubeMapName { get; set; }
+        public Fox.FoxKernel.String cubeMapName { get; set; }
         
         [field: UnityEngine.SerializeField]
         public Fox.Core.EntityLink lightCaptureLocator { get; set; }

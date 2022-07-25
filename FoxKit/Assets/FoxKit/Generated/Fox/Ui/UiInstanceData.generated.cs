@@ -17,10 +17,10 @@ namespace Fox.Ui
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.StringMap<Fox.Core.FilePtr> createWindowParams { get; set; } = new Fox.Core.StringMap<Fox.Core.FilePtr>();
+        public Fox.FoxKernel.StringMap<Fox.Core.FilePtr> createWindowParams { get; set; } = new Fox.FoxKernel.StringMap<Fox.Core.FilePtr>();
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String windowFactoryName { get; set; }
+        public Fox.FoxKernel.String windowFactoryName { get; set; }
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

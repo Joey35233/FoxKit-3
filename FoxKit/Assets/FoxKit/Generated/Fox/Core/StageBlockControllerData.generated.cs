@@ -20,22 +20,22 @@ namespace Fox.Core
         public bool enable { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String stageName { get; set; }
+        public Fox.FoxKernel.String stageName { get; set; }
         
         [field: UnityEngine.SerializeField]
         public bool useBaseDirectoryPathAndName { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String baseDirectoryPath { get; set; }
+        public Fox.FoxKernel.String baseDirectoryPath { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String baseName { get; set; }
+        public Fox.FoxKernel.String baseName { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String smallBlock1BaseDirectoryPath { get; set; }
+        public Fox.FoxKernel.String smallBlock1BaseDirectoryPath { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String smallBlock1BaseName { get; set; }
+        public Fox.FoxKernel.String smallBlock1BaseName { get; set; }
         
         [field: UnityEngine.SerializeField]
         public uint blockSizeX { get; set; }
@@ -116,10 +116,10 @@ namespace Fox.Core
         public Fox.Core.FilePtr stageBlockFile { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String lod0BaseDirectoryPath { get; set; }
+        public Fox.FoxKernel.String lod0BaseDirectoryPath { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String lod0BaseName { get; set; }
+        public Fox.FoxKernel.String lod0BaseName { get; set; }
         
         [field: UnityEngine.SerializeField]
         public uint lod0blockSizeInBytes { get; set; }
@@ -161,10 +161,10 @@ namespace Fox.Core
         public byte lod0LargeBlock3Count { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String lod1BaseDirectoryPath { get; set; }
+        public Fox.FoxKernel.String lod1BaseDirectoryPath { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String lod1BaseName { get; set; }
+        public Fox.FoxKernel.String lod1BaseName { get; set; }
         
         [field: UnityEngine.SerializeField]
         public uint lod1blockSizeInBytes { get; set; }

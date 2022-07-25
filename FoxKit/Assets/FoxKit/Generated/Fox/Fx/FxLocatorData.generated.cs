@@ -17,10 +17,10 @@ namespace Fox.Fx
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String variationName { get; set; }
+        public Fox.FoxKernel.String variationName { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String effectInstanceName { get; set; }
+        public Fox.FoxKernel.String effectInstanceName { get; set; }
         
         [field: UnityEngine.SerializeField]
         public bool enableUserRandomSeed { get; set; }

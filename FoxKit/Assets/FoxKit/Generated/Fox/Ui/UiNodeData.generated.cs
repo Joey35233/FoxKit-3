@@ -17,34 +17,34 @@ namespace Fox.Ui
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.EntityLink> inputEdges { get; set; } = new Fox.Core.DynamicArray<Fox.Core.EntityLink>();
+        public Fox.FoxKernel.DynamicArray<Fox.Core.EntityLink> inputEdges { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.Core.EntityLink>();
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.EntityLink> outputEdges { get; set; } = new Fox.Core.DynamicArray<Fox.Core.EntityLink>();
+        public Fox.FoxKernel.DynamicArray<Fox.Core.EntityLink> outputEdges { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.Core.EntityLink>();
         
         [field: UnityEngine.SerializeField]
         public uint inputPortCount { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<UiNodeType> inputPortTypes { get; set; } = new Fox.Core.DynamicArray<UiNodeType>();
+        public Fox.FoxKernel.DynamicArray<UiNodeType> inputPortTypes { get; set; } = new Fox.FoxKernel.DynamicArray<UiNodeType>();
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.String> inputPropertyNames { get; set; } = new Fox.Core.DynamicArray<Fox.Core.String>();
+        public Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String> inputPropertyNames { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String>();
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<UiNodePropType> inputPropertyTypes { get; set; } = new Fox.Core.DynamicArray<UiNodePropType>();
+        public Fox.FoxKernel.DynamicArray<UiNodePropType> inputPropertyTypes { get; set; } = new Fox.FoxKernel.DynamicArray<UiNodePropType>();
         
         [field: UnityEngine.SerializeField]
         public uint outputPortCount { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<UiNodeType> outputPortTypes { get; set; } = new Fox.Core.DynamicArray<UiNodeType>();
+        public Fox.FoxKernel.DynamicArray<UiNodeType> outputPortTypes { get; set; } = new Fox.FoxKernel.DynamicArray<UiNodeType>();
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.String> outputPropertyNames { get; set; } = new Fox.Core.DynamicArray<Fox.Core.String>();
+        public Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String> outputPropertyNames { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String>();
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<UiNodePropType> outputPropertyTypes { get; set; } = new Fox.Core.DynamicArray<UiNodePropType>();
+        public Fox.FoxKernel.DynamicArray<UiNodePropType> outputPropertyTypes { get; set; } = new Fox.FoxKernel.DynamicArray<UiNodePropType>();
         
         [field: UnityEngine.SerializeField]
         public float xPosition { get; set; }
@@ -59,7 +59,7 @@ namespace Fox.Ui
         public UiNodeType type { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String nodeName { get; set; }
+        public Fox.FoxKernel.String nodeName { get; set; }
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;
@@ -146,7 +146,7 @@ namespace Fox.Ui
                     this.inputPortTypes[index] = (UiNodeType)value.GetValueAsInt32();
                     return;
                 case "inputPropertyNames":
-                    while(this.inputPropertyNames.Count <= index) { this.inputPropertyNames.Add(default(Fox.Core.String)); }
+                    while(this.inputPropertyNames.Count <= index) { this.inputPropertyNames.Add(default(Fox.FoxKernel.String)); }
                     this.inputPropertyNames[index] = value.GetValueAsString();
                     return;
                 case "inputPropertyTypes":
@@ -158,7 +158,7 @@ namespace Fox.Ui
                     this.outputPortTypes[index] = (UiNodeType)value.GetValueAsInt32();
                     return;
                 case "outputPropertyNames":
-                    while(this.outputPropertyNames.Count <= index) { this.outputPropertyNames.Add(default(Fox.Core.String)); }
+                    while(this.outputPropertyNames.Count <= index) { this.outputPropertyNames.Add(default(Fox.FoxKernel.String)); }
                     this.outputPropertyNames[index] = value.GetValueAsString();
                     return;
                 case "outputPropertyTypes":

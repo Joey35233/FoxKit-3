@@ -17,7 +17,7 @@ namespace Fox.PartsBuilder
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.StringMap<Fox.Core.String> connectPointNames { get; set; } = new Fox.Core.StringMap<Fox.Core.String>();
+        public Fox.FoxKernel.StringMap<Fox.FoxKernel.String> connectPointNames { get; set; } = new Fox.FoxKernel.StringMap<Fox.FoxKernel.String>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

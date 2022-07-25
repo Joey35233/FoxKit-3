@@ -17,10 +17,10 @@ namespace Tpp.GameKit
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.EntityLink> ownerGimmickList { get; set; } = new Fox.Core.DynamicArray<Fox.Core.EntityLink>();
+        public Fox.FoxKernel.DynamicArray<Fox.Core.EntityLink> ownerGimmickList { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.Core.EntityLink>();
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.String> gimmickNameList { get; set; } = new Fox.Core.DynamicArray<Fox.Core.String>();
+        public Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String> gimmickNameList { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String>();
         
         [field: UnityEngine.SerializeField]
         public Fox.Core.EntityLink light { get; set; }
@@ -72,7 +72,7 @@ namespace Tpp.GameKit
                     this.ownerGimmickList[index] = value.GetValueAsEntityLink();
                     return;
                 case "gimmickNameList":
-                    while(this.gimmickNameList.Count <= index) { this.gimmickNameList.Add(default(Fox.Core.String)); }
+                    while(this.gimmickNameList.Count <= index) { this.gimmickNameList.Add(default(Fox.FoxKernel.String)); }
                     this.gimmickNameList[index] = value.GetValueAsString();
                     return;
                 default:

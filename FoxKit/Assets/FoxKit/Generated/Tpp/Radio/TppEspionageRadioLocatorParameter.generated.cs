@@ -17,7 +17,7 @@ namespace Tpp.Radio
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String radioLocatorId { get; set; }
+        public Fox.FoxKernel.String radioLocatorId { get; set; }
         
         [field: UnityEngine.SerializeField]
         public float minDistance { get; set; }

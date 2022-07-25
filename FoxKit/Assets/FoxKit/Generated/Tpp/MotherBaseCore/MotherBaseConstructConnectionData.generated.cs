@@ -17,7 +17,7 @@ namespace Tpp.MotherBaseCore
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<ulong> constructConnectionList { get; set; } = new Fox.Core.DynamicArray<ulong>();
+        public Fox.FoxKernel.DynamicArray<ulong> constructConnectionList { get; set; } = new Fox.FoxKernel.DynamicArray<ulong>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

@@ -1,10 +1,11 @@
 ﻿using Fox.Core;
+using Fox.FoxKernel;
 
 namespace Fox.Phx
 {
     public partial class PhxWheelAssociationUnitParam : Fox.Core.Entity
     {
-        internal Fox.Core.String GetBoneName() => boneName;
-        internal void SetBoneName(Fox.Core.String value) => boneName = value;
+        internal String GetBoneName() => boneName;
+        internal void SetBoneName(String value) => boneName = value;
     }
 }

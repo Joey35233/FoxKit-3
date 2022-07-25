@@ -17,7 +17,7 @@ namespace Fox.GameKit
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String lowModelBasePath { get; set; }
+        public Fox.FoxKernel.String lowModelBasePath { get; set; }
         
         [field: UnityEngine.SerializeField]
         public uint minIndexX { get; set; }

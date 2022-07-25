@@ -77,16 +77,16 @@ namespace Tpp.Effect
         public float wallAlphaRate { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.Path normalWallTexPath { get; set; }
+        public Fox.FoxKernel.Path normalWallTexPath { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.Path normalFloorTexPath { get; set; }
+        public Fox.FoxKernel.Path normalFloorTexPath { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.Path reflectionCubeMapTexPath { get; set; }
+        public Fox.FoxKernel.Path reflectionCubeMapTexPath { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.Path maskTexPath { get; set; }
+        public Fox.FoxKernel.Path maskTexPath { get; set; }
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

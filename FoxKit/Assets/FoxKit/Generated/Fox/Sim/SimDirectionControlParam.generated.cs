@@ -17,7 +17,7 @@ namespace Fox.Sim
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        protected Fox.Core.String refBone { get; set; }
+        protected Fox.FoxKernel.String refBone { get; set; }
         
         [field: UnityEngine.SerializeField]
         protected UnityEngine.Quaternion offset { get; set; }

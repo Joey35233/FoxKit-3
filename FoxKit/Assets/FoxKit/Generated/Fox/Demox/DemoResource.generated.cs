@@ -20,10 +20,10 @@ namespace Fox.Demox
         public bool enable { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String demoIdentifierName { get; set; }
+        public Fox.FoxKernel.String demoIdentifierName { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.String> demoIdentifierKey { get; set; } = new Fox.Core.DynamicArray<Fox.Core.String>();
+        public Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String> demoIdentifierKey { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String>();
         
         [field: UnityEngine.SerializeField]
         public uint streamBufferSizeInKbytes { get; set; }
@@ -120,7 +120,7 @@ namespace Fox.Demox
             switch(propertyName)
             {
                 case "demoIdentifierKey":
-                    while(this.demoIdentifierKey.Count <= index) { this.demoIdentifierKey.Add(default(Fox.Core.String)); }
+                    while(this.demoIdentifierKey.Count <= index) { this.demoIdentifierKey.Add(default(Fox.FoxKernel.String)); }
                     this.demoIdentifierKey[index] = value.GetValueAsString();
                     return;
                 default:

@@ -17,13 +17,13 @@ namespace Fox.GameKit
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.FilePtr> subtitlesPackage { get; set; } = new Fox.Core.DynamicArray<Fox.Core.FilePtr>();
+        public Fox.FoxKernel.DynamicArray<Fox.Core.FilePtr> subtitlesPackage { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.Core.FilePtr>();
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.FilePtr> subtitlesStreamData { get; set; } = new Fox.Core.DynamicArray<Fox.Core.FilePtr>();
+        public Fox.FoxKernel.DynamicArray<Fox.Core.FilePtr> subtitlesStreamData { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.Core.FilePtr>();
         
         [field: UnityEngine.SerializeField]
-        protected Fox.Core.DynamicArray<Fox.Core.Path> subtitlesStreamPath { get; set; } = new Fox.Core.DynamicArray<Fox.Core.Path>();
+        protected Fox.FoxKernel.DynamicArray<Fox.FoxKernel.Path> subtitlesStreamPath { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.FoxKernel.Path>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;
@@ -73,7 +73,7 @@ namespace Fox.GameKit
                     this.subtitlesStreamData[index] = value.GetValueAsFilePtr();
                     return;
                 case "subtitlesStreamPath":
-                    while(this.subtitlesStreamPath.Count <= index) { this.subtitlesStreamPath.Add(default(Fox.Core.Path)); }
+                    while(this.subtitlesStreamPath.Count <= index) { this.subtitlesStreamPath.Add(default(Fox.FoxKernel.Path)); }
                     this.subtitlesStreamPath[index] = value.GetValueAsPath();
                     return;
                 default:

@@ -17,7 +17,7 @@ namespace Fox.UiScene
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.StringMap<UnityEngine.Color> colors { get; set; } = new Fox.Core.StringMap<UnityEngine.Color>();
+        public Fox.FoxKernel.StringMap<UnityEngine.Color> colors { get; set; } = new Fox.FoxKernel.StringMap<UnityEngine.Color>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

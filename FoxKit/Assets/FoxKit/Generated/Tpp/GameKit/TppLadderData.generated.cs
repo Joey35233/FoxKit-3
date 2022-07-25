@@ -20,10 +20,10 @@ namespace Tpp.GameKit
         public uint numSteps { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String tacticalActionId { get; set; }
+        public Fox.FoxKernel.String tacticalActionId { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.EntityLink> entryPoints { get; set; } = new Fox.Core.DynamicArray<Fox.Core.EntityLink>();
+        public Fox.FoxKernel.DynamicArray<Fox.Core.EntityLink> entryPoints { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.Core.EntityLink>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

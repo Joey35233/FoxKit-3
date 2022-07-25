@@ -17,10 +17,10 @@ namespace Tpp.Ui
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.FilePtr> uigFiles { get; set; } = new Fox.Core.DynamicArray<Fox.Core.FilePtr>();
+        public Fox.FoxKernel.DynamicArray<Fox.Core.FilePtr> uigFiles { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.Core.FilePtr>();
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.FilePtr> rawFiles { get; set; } = new Fox.Core.DynamicArray<Fox.Core.FilePtr>();
+        public Fox.FoxKernel.DynamicArray<Fox.Core.FilePtr> rawFiles { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.Core.FilePtr>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

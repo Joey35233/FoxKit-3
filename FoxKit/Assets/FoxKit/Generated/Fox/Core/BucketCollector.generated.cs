@@ -17,7 +17,7 @@ namespace Fox.Core
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        protected Fox.Core.StringMap<Fox.Core.EntityPtr<Fox.Core.Bucket>> buckets { get; set; } = new Fox.Core.StringMap<Fox.Core.EntityPtr<Fox.Core.Bucket>>();
+        protected Fox.FoxKernel.StringMap<Fox.Core.EntityPtr<Fox.Core.Bucket>> buckets { get; set; } = new Fox.FoxKernel.StringMap<Fox.Core.EntityPtr<Fox.Core.Bucket>>();
         
         [field: UnityEngine.SerializeField]
         protected Fox.Core.EntityPtr<Fox.Core.Bucket> mainBucket { get; set; } = new Fox.Core.EntityPtr<Fox.Core.Bucket>();

@@ -96,7 +96,7 @@ namespace Fox.Editor
                 EnumFlagsField field = new EnumFlagsField(property.name);
                 field.labelElement.AddToClassList(PropertyField.labelUssClassName);
                 field.visualInput.AddToClassList(PropertyField.inputUssClassName);
-                field.AddToClassList(BaseField<Fox.Core.Path>.alignedFieldUssClassName);
+                field.AddToClassList(BaseField<System.Enum>.alignedFieldUssClassName);
 
                 foxField = field;
             }
@@ -105,7 +105,7 @@ namespace Fox.Editor
                 EnumField field = new EnumField(property.name);
                 field.labelElement.AddToClassList(PropertyField.labelUssClassName);
                 field.visualInput.AddToClassList(PropertyField.inputUssClassName);
-                field.AddToClassList(BaseField<Fox.Core.Path>.alignedFieldUssClassName);
+                field.AddToClassList(BaseField<System.Enum>.alignedFieldUssClassName);
 
                 foxField = field;
             }

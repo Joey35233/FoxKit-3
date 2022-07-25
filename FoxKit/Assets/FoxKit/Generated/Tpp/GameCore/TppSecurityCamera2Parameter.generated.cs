@@ -20,7 +20,7 @@ namespace Tpp.GameCore
         public Fox.Core.FilePtr partsFile { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.StringMap<Fox.Core.FilePtr> vfxFiles { get; set; } = new Fox.Core.StringMap<Fox.Core.FilePtr>();
+        public Fox.FoxKernel.StringMap<Fox.Core.FilePtr> vfxFiles { get; set; } = new Fox.FoxKernel.StringMap<Fox.Core.FilePtr>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

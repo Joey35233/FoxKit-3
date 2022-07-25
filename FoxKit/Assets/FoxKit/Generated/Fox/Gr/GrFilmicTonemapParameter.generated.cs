@@ -20,7 +20,7 @@ namespace Fox.Gr
         public bool enable { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.StaticArray<UnityEngine.Vector4> parameters { get; protected set; } = new Fox.Core.StaticArray<UnityEngine.Vector4>(2);
+        public Fox.FoxKernel.StaticArray<UnityEngine.Vector4> parameters { get; protected set; } = new Fox.FoxKernel.StaticArray<UnityEngine.Vector4>(2);
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

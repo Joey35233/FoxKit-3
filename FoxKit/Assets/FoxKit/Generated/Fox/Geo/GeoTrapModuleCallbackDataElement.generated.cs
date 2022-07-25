@@ -17,7 +17,7 @@ namespace Fox.Geo
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String funcName { get; set; }
+        public Fox.FoxKernel.String funcName { get; set; }
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

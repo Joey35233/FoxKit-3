@@ -17,19 +17,19 @@ namespace Tpp.GameCore
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String instancePackagePath { get; set; }
+        public Fox.FoxKernel.String instancePackagePath { get; set; }
         
         [field: UnityEngine.SerializeField]
         public uint instanceBlockSize { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String commonMotionTypeName { get; set; }
+        public Fox.FoxKernel.String commonMotionTypeName { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.String> partsTypeNames { get; set; } = new Fox.Core.DynamicArray<Fox.Core.String>();
+        public Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String> partsTypeNames { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String>();
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.String> partsTypeInitial { get; set; } = new Fox.Core.DynamicArray<Fox.Core.String>();
+        public Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String> partsTypeInitial { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;
@@ -84,11 +84,11 @@ namespace Tpp.GameCore
             switch(propertyName)
             {
                 case "partsTypeNames":
-                    while(this.partsTypeNames.Count <= index) { this.partsTypeNames.Add(default(Fox.Core.String)); }
+                    while(this.partsTypeNames.Count <= index) { this.partsTypeNames.Add(default(Fox.FoxKernel.String)); }
                     this.partsTypeNames[index] = value.GetValueAsString();
                     return;
                 case "partsTypeInitial":
-                    while(this.partsTypeInitial.Count <= index) { this.partsTypeInitial.Add(default(Fox.Core.String)); }
+                    while(this.partsTypeInitial.Count <= index) { this.partsTypeInitial.Add(default(Fox.FoxKernel.String)); }
                     this.partsTypeInitial[index] = value.GetValueAsString();
                     return;
                 default:

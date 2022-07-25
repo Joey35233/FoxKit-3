@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Fox.FoxKernel;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ using UnityEngine.UIElements;
 
 namespace Fox.Editor
 {
-    public class DynamicArrayField<T> : BaseField<Fox.Core.DynamicArray<T>>, IFoxField, ICustomBindable
+    public class DynamicArrayField<T> : BaseField<DynamicArray<T>>, IFoxField, ICustomBindable
     {
         private ListView ListViewInput;
 
@@ -116,7 +117,7 @@ namespace Fox.Editor
         }
     }
 
-    [CustomPropertyDrawer(typeof(Core.DynamicArray<>))]
+    [CustomPropertyDrawer(typeof(DynamicArray<>))]
     public class DynamicArrayDrawer : PropertyDrawer
     {
         public override VisualElement CreatePropertyGUI(SerializedProperty property)

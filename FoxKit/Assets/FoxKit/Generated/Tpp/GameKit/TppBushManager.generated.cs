@@ -47,13 +47,13 @@ namespace Tpp.GameKit
         protected UnityEngine.Vector3 cameraPos { get; set; }
         
         [field: UnityEngine.SerializeField]
-        protected Fox.Core.DynamicArray<Fox.Core.String> existMaterials { get; set; } = new Fox.Core.DynamicArray<Fox.Core.String>();
+        protected Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String> existMaterials { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String>();
         
         [field: UnityEngine.SerializeField]
-        protected Fox.Core.DynamicArray<Fox.Core.String> noiseSeType { get; set; } = new Fox.Core.DynamicArray<Fox.Core.String>();
+        protected Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String> noiseSeType { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String>();
         
         [field: UnityEngine.SerializeField]
-        protected Fox.Core.StringMap<Fox.Core.String> noiseSeEventNames { get; set; } = new Fox.Core.StringMap<Fox.Core.String>();
+        protected Fox.FoxKernel.StringMap<Fox.FoxKernel.String> noiseSeEventNames { get; set; } = new Fox.FoxKernel.StringMap<Fox.FoxKernel.String>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;
@@ -135,11 +135,11 @@ namespace Tpp.GameKit
             switch(propertyName)
             {
                 case "existMaterials":
-                    while(this.existMaterials.Count <= index) { this.existMaterials.Add(default(Fox.Core.String)); }
+                    while(this.existMaterials.Count <= index) { this.existMaterials.Add(default(Fox.FoxKernel.String)); }
                     this.existMaterials[index] = value.GetValueAsString();
                     return;
                 case "noiseSeType":
-                    while(this.noiseSeType.Count <= index) { this.noiseSeType.Add(default(Fox.Core.String)); }
+                    while(this.noiseSeType.Count <= index) { this.noiseSeType.Add(default(Fox.FoxKernel.String)); }
                     this.noiseSeType[index] = value.GetValueAsString();
                     return;
                 default:

@@ -17,28 +17,28 @@ namespace Fox.Phx
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.EntityLink> vehicleAxes { get; set; } = new Fox.Core.DynamicArray<Fox.Core.EntityLink>();
+        public Fox.FoxKernel.DynamicArray<Fox.Core.EntityLink> vehicleAxes { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.Core.EntityLink>();
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<float> torqueDistributions { get; set; } = new Fox.Core.DynamicArray<float>();
+        public Fox.FoxKernel.DynamicArray<float> torqueDistributions { get; set; } = new Fox.FoxKernel.DynamicArray<float>();
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<float> gearRatios { get; set; } = new Fox.Core.DynamicArray<float>();
+        public Fox.FoxKernel.DynamicArray<float> gearRatios { get; set; } = new Fox.FoxKernel.DynamicArray<float>();
         
         [field: UnityEngine.SerializeField]
         protected Fox.Core.EntityPtr<Fox.Phx.PhVehicleNormalEngineParam> vehicleNormalEngineParam { get; set; } = new Fox.Core.EntityPtr<Fox.Phx.PhVehicleNormalEngineParam>();
         
-        public Fox.Core.DynamicArray<float> specPointAngularVelocity { get => Get_specPointAngularVelocity(); set { Set_specPointAngularVelocity(value); } }
-        protected partial Fox.Core.DynamicArray<float> Get_specPointAngularVelocity();
-        protected partial void Set_specPointAngularVelocity(Fox.Core.DynamicArray<float> value);
+        public Fox.FoxKernel.DynamicArray<float> specPointAngularVelocity { get => Get_specPointAngularVelocity(); set { Set_specPointAngularVelocity(value); } }
+        protected partial Fox.FoxKernel.DynamicArray<float> Get_specPointAngularVelocity();
+        protected partial void Set_specPointAngularVelocity(Fox.FoxKernel.DynamicArray<float> value);
         
-        public Fox.Core.DynamicArray<float> specPointTorque { get => Get_specPointTorque(); set { Set_specPointTorque(value); } }
-        protected partial Fox.Core.DynamicArray<float> Get_specPointTorque();
-        protected partial void Set_specPointTorque(Fox.Core.DynamicArray<float> value);
+        public Fox.FoxKernel.DynamicArray<float> specPointTorque { get => Get_specPointTorque(); set { Set_specPointTorque(value); } }
+        protected partial Fox.FoxKernel.DynamicArray<float> Get_specPointTorque();
+        protected partial void Set_specPointTorque(Fox.FoxKernel.DynamicArray<float> value);
         
-        public Fox.Core.DynamicArray<float> specPointBreakTorque { get => Get_specPointBreakTorque(); set { Set_specPointBreakTorque(value); } }
-        protected partial Fox.Core.DynamicArray<float> Get_specPointBreakTorque();
-        protected partial void Set_specPointBreakTorque(Fox.Core.DynamicArray<float> value);
+        public Fox.FoxKernel.DynamicArray<float> specPointBreakTorque { get => Get_specPointBreakTorque(); set { Set_specPointBreakTorque(value); } }
+        protected partial Fox.FoxKernel.DynamicArray<float> Get_specPointBreakTorque();
+        protected partial void Set_specPointBreakTorque(Fox.FoxKernel.DynamicArray<float> value);
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

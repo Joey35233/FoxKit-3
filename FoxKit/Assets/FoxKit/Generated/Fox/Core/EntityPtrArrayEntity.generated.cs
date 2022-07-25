@@ -17,7 +17,7 @@ namespace Fox.Core
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.EntityPtr<Fox.Core.Entity>> array { get; set; } = new Fox.Core.DynamicArray<Fox.Core.EntityPtr<Fox.Core.Entity>>();
+        public Fox.FoxKernel.DynamicArray<Fox.Core.EntityPtr<Fox.Core.Entity>> array { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.Core.EntityPtr<Fox.Core.Entity>>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

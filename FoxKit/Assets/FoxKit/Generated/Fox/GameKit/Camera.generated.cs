@@ -17,7 +17,7 @@ namespace Fox.GameKit
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        protected Fox.Core.String priorityName { get; set; }
+        protected Fox.FoxKernel.String priorityName { get; set; }
         
         [field: UnityEngine.SerializeField]
         protected bool enable { get; set; }

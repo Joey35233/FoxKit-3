@@ -17,7 +17,7 @@ namespace Fox.Sim
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String defaultViewPort { get; set; }
+        public Fox.FoxKernel.String defaultViewPort { get; set; }
         
         [field: UnityEngine.SerializeField]
         public int maxActiveClothNum { get; set; }

@@ -17,7 +17,7 @@ namespace Fox.Geox
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.String> edgeTags { get; set; } = new Fox.Core.DynamicArray<Fox.Core.String>();
+        public Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String> edgeTags { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;
@@ -57,7 +57,7 @@ namespace Fox.Geox
             switch(propertyName)
             {
                 case "edgeTags":
-                    while(this.edgeTags.Count <= index) { this.edgeTags.Add(default(Fox.Core.String)); }
+                    while(this.edgeTags.Count <= index) { this.edgeTags.Add(default(Fox.FoxKernel.String)); }
                     this.edgeTags[index] = value.GetValueAsString();
                     return;
                 default:

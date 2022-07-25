@@ -17,7 +17,7 @@ namespace Tpp.GameCore
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String identifier { get; set; }
+        public Fox.FoxKernel.String identifier { get; set; }
         
         [field: UnityEngine.SerializeField]
         public bool isEmplaced { get; set; }

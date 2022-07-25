@@ -23,7 +23,7 @@ namespace Fox.Sim
         protected Fox.Core.EntityPtr<Fox.Sim.SimEngineParam> engineParam { get; set; } = new Fox.Core.EntityPtr<Fox.Sim.SimEngineParam>();
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.EntityPtr<Fox.Sim.SimControlElement>> controls { get; set; } = new Fox.Core.DynamicArray<Fox.Core.EntityPtr<Fox.Sim.SimControlElement>>();
+        public Fox.FoxKernel.DynamicArray<Fox.Core.EntityPtr<Fox.Sim.SimControlElement>> controls { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.Core.EntityPtr<Fox.Sim.SimControlElement>>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

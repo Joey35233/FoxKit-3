@@ -71,13 +71,13 @@ namespace Tpp.Effect
         public uint cylinderTexRepeat { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.Path domeTexture { get; set; }
+        public Fox.FoxKernel.Path domeTexture { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.Path midCylinderTexture { get; set; }
+        public Fox.FoxKernel.Path midCylinderTexture { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.Path lowCylinderTexture { get; set; }
+        public Fox.FoxKernel.Path lowCylinderTexture { get; set; }
         
         [field: UnityEngine.SerializeField]
         public TppSkyClouds3Param_ColorSpace colorSpace { get; set; }

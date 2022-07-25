@@ -1,5 +1,6 @@
 ﻿using Fox;
 using Fox.Core;
+using Fox.FoxKernel;
 using CsSystem = System;
 
 namespace Tpp.Effect
@@ -33,7 +34,7 @@ namespace Tpp.Effect
         protected partial bool Get_hasSpecular() => throw new CsSystem.NotImplementedException();
         protected partial void Set_hasSpecular(bool value) { throw new CsSystem.NotImplementedException(); }
 
-        protected partial Fox.Core.Path Get_importFilePath() => throw new CsSystem.NotImplementedException();
-        protected partial void Set_importFilePath(Fox.Core.Path value) { throw new CsSystem.NotImplementedException(); }
+        protected partial Path Get_importFilePath() => throw new CsSystem.NotImplementedException();
+        protected partial void Set_importFilePath(Path value) { throw new CsSystem.NotImplementedException(); }
     }
 }

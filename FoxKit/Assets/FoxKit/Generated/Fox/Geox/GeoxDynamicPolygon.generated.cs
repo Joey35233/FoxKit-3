@@ -20,10 +20,10 @@ namespace Fox.Geox
         public bool isVisibleGeom { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<UnityEngine.Vector3> vertices { get; set; } = new Fox.Core.DynamicArray<UnityEngine.Vector3>();
+        public Fox.FoxKernel.DynamicArray<UnityEngine.Vector3> vertices { get; set; } = new Fox.FoxKernel.DynamicArray<UnityEngine.Vector3>();
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.String> collisionAttributeTags { get; set; } = new Fox.Core.DynamicArray<Fox.Core.String>();
+        public Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String> collisionAttributeTags { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;
@@ -72,7 +72,7 @@ namespace Fox.Geox
                     this.vertices[index] = value.GetValueAsVector3();
                     return;
                 case "collisionAttributeTags":
-                    while(this.collisionAttributeTags.Count <= index) { this.collisionAttributeTags.Add(default(Fox.Core.String)); }
+                    while(this.collisionAttributeTags.Count <= index) { this.collisionAttributeTags.Add(default(Fox.FoxKernel.String)); }
                     this.collisionAttributeTags[index] = value.GetValueAsString();
                     return;
                 default:

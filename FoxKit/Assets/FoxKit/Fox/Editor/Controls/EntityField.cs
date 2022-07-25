@@ -5,6 +5,7 @@ using UnityEngine.UIElements;
 using UnityEditor.UIElements;
 using System.Collections.Generic;
 using System.Linq;
+using Fox.FoxKernel;
 
 namespace Fox.Editor
 {

@@ -17,10 +17,10 @@ namespace Tpp.Effect
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.Path atshFilePath { get; set; }
+        public Fox.FoxKernel.Path atshFilePath { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.Path pcspFilePath { get; set; }
+        public Fox.FoxKernel.Path pcspFilePath { get; set; }
         
         [field: UnityEngine.SerializeField]
         public Fox.Core.FilePtr atshFilePtr { get; set; }
@@ -132,10 +132,10 @@ namespace Tpp.Effect
         public float sunMoonIntensity { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.Path sunTexture { get; set; }
+        public Fox.FoxKernel.Path sunTexture { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.Path moonTexture { get; set; }
+        public Fox.FoxKernel.Path moonTexture { get; set; }
         
         [field: UnityEngine.SerializeField]
         public UnityEngine.Color moonColor { get; set; }
@@ -198,7 +198,7 @@ namespace Tpp.Effect
         public uint numBands { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<UnityEngine.Vector4> coefficients { get; set; } = new Fox.Core.DynamicArray<UnityEngine.Vector4>();
+        public Fox.FoxKernel.DynamicArray<UnityEngine.Vector4> coefficients { get; set; } = new Fox.FoxKernel.DynamicArray<UnityEngine.Vector4>();
         
         [field: UnityEngine.SerializeField]
         public float cloudiness { get; set; }

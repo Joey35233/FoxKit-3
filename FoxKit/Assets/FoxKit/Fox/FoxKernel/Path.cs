@@ -1,14 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using UnityEngine;
 
-namespace Fox.Core
+namespace Fox.FoxKernel
 {
-    [Serializable, StructLayout(LayoutKind.Explicit, Size=16, CharSet=CharSet.Ansi)]
+    [Serializable, StructLayout(LayoutKind.Explicit, Size = 16, CharSet = CharSet.Ansi)]
 #pragma warning disable CS0660 // Type defines operator == or operator != but does not override Object.Equals(object o)
 #pragma warning disable CS0661 // Type defines operator == or operator != but does not override Object.GetHashCode()
-    public class String
+    public class Path
 #pragma warning restore CS0661 // Type defines operator == or operator != but does not override Object.GetHashCode()
 #pragma warning restore CS0660 // Type defines operator == or operator != but does not override Object.Equals(object o)
     {
@@ -27,39 +26,42 @@ namespace Fox.Core
         }
 
         [SerializeField, FieldOffset(12)]
-        private StrCode _hash;
-        public StrCode Hash
+        private PathFileNameCode _hash;
+        public PathFileNameCode Hash
         {
             get => _hash;
         }
 
         /// <summary>
-        /// The empty string.
+        /// The empty path.
         /// </summary>
-        public static Fox.Core.String Empty { get; }
-
-        static String()
+        private static Path _empty;
+        public static Path Empty
         {
-            Empty = new String
+            get => new Path { _cString = _empty.CString, _length = _empty.Length, _hash = _empty.Hash };
+        }
+
+        static Path()
+        {
+            _empty = new Path
             {
                 _cString = string.Empty,
                 _length = 0,
-                _hash = new StrCode(string.Empty)
+                _hash = new PathFileNameCode(string.Empty)
             };
         }
 
-        private String()
+        private Path()
         {
-
         }
 
-        public String(string name)
+        public Path(string name)
         {
             if (!string.IsNullOrEmpty(name))
             {
                 this._cString = name;
                 this._length = name.Length;
-                this._hash = new StrCode(name);
+                this._hash = new PathFileNameCode(name);
             }
             else
             {
@@ -69,27 +71,19 @@ namespace Fox.Core
             }
         }
 
-        public static bool operator==(String a, String b)
+        public static bool operator ==(Path a, Path b)
         {
-            return a?.Hash == b?.Hash;
+            return a.Hash == b.Hash;
         }
 
-        public static bool operator!=(String a, String b)
+        public static bool operator !=(Path a, Path b)
         {
             return !(a == b);
         }
 
-        public override string ToString()
+        internal static Path FromFilePath(string v)
         {
-            return CString;
+            return new Path(v);
         }
-
-        public bool IsPseudoNull()
-        {
-            return (Length == 0) && (Hash != Empty.Hash);
-        }
-
-        public static implicit operator String(string @string) => new String(@string);
-        public static implicit operator string(String @string) => @string.CString;
     }
 }

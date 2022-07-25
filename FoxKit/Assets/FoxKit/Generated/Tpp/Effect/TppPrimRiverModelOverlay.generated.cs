@@ -17,7 +17,7 @@ namespace Tpp.Effect
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String primRiverGroupName { get; set; }
+        public Fox.FoxKernel.String primRiverGroupName { get; set; }
         
         [field: UnityEngine.SerializeField]
         public bool visibility { get; set; }
@@ -32,7 +32,7 @@ namespace Tpp.Effect
         public Fox.Core.EntityLink staticModel { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String maskTextureName { get; set; }
+        public Fox.FoxKernel.String maskTextureName { get; set; }
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

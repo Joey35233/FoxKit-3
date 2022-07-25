@@ -20,7 +20,7 @@ namespace Fox.UiScene
         public Fox.Core.EntityHandle connectModelDataHandle { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String connectModelNodeName { get; set; }
+        public Fox.FoxKernel.String connectModelNodeName { get; set; }
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

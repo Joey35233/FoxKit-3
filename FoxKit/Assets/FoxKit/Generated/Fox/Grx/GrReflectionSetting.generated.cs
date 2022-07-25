@@ -17,7 +17,7 @@ namespace Fox.Grx
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.Path reflectionTexturePath { get; set; }
+        public Fox.FoxKernel.Path reflectionTexturePath { get; set; }
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

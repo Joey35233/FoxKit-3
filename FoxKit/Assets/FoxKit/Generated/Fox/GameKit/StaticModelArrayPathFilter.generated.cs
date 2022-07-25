@@ -17,7 +17,7 @@ namespace Fox.GameKit
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.Path> filterPath { get; set; } = new Fox.Core.DynamicArray<Fox.Core.Path>();
+        public Fox.FoxKernel.DynamicArray<Fox.FoxKernel.Path> filterPath { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.FoxKernel.Path>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;
@@ -57,7 +57,7 @@ namespace Fox.GameKit
             switch(propertyName)
             {
                 case "filterPath":
-                    while(this.filterPath.Count <= index) { this.filterPath.Add(default(Fox.Core.Path)); }
+                    while(this.filterPath.Count <= index) { this.filterPath.Add(default(Fox.FoxKernel.Path)); }
                     this.filterPath[index] = value.GetValueAsPath();
                     return;
                 default:

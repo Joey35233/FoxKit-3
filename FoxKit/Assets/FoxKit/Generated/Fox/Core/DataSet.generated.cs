@@ -17,7 +17,7 @@ namespace Fox.Core
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        protected Fox.Core.StringMap<Fox.Core.EntityPtr<Fox.Core.Data>> dataList { get; set; } = new Fox.Core.StringMap<Fox.Core.EntityPtr<Fox.Core.Data>>();
+        protected Fox.FoxKernel.StringMap<Fox.Core.EntityPtr<Fox.Core.Data>> dataList { get; set; } = new Fox.FoxKernel.StringMap<Fox.Core.EntityPtr<Fox.Core.Data>>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

@@ -1,4 +1,7 @@
-﻿namespace Fox
+﻿using Fox.FoxKernel;
+using String = Fox.FoxKernel.String;
+
+namespace Fox
 {
     using System;
     using UnityEngine;
@@ -13,13 +16,13 @@
         private UnityEngine.Quaternion rotation;
 
         [SerializeField]
-        private Fox.Core.String locatorName;
+        private String locatorName;
 
         // FIXME: This should be a Path
         [SerializeField]
-        private Fox.Core.String dataSetName;
+        private String dataSetName;
 
-        public NamedLocatorBinary(UnityEngine.Vector4 translation, UnityEngine.Quaternion rotation, Fox.Core.String locatorName, Fox.Core.String dataSetName)
+        public NamedLocatorBinary(UnityEngine.Vector4 translation, UnityEngine.Quaternion rotation, String locatorName, String dataSetName)
         {
             this.translation = translation;
             this.rotation = rotation;

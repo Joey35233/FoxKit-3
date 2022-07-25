@@ -17,16 +17,16 @@ namespace Fox.Navx
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String sceneName { get; set; }
+        public Fox.FoxKernel.String sceneName { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String worldName { get; set; }
+        public Fox.FoxKernel.String worldName { get; set; }
         
         [field: UnityEngine.SerializeField]
         public uint tileId { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.Path filePath { get; set; }
+        public Fox.FoxKernel.Path filePath { get; set; }
         
         [field: UnityEngine.SerializeField]
         public Fox.Core.FilePtr filePtr { get; set; }

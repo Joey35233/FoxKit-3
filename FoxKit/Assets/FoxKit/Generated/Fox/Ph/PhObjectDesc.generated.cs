@@ -17,13 +17,13 @@ namespace Fox.Ph
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.EntityPtr<Fox.Core.Entity>> bodies { get; set; } = new Fox.Core.DynamicArray<Fox.Core.EntityPtr<Fox.Core.Entity>>();
+        public Fox.FoxKernel.DynamicArray<Fox.Core.EntityPtr<Fox.Core.Entity>> bodies { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.Core.EntityPtr<Fox.Core.Entity>>();
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.EntityPtr<Fox.Ph.PhConstraintParam>> constraints { get; set; } = new Fox.Core.DynamicArray<Fox.Core.EntityPtr<Fox.Ph.PhConstraintParam>>();
+        public Fox.FoxKernel.DynamicArray<Fox.Core.EntityPtr<Fox.Ph.PhConstraintParam>> constraints { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.Core.EntityPtr<Fox.Ph.PhConstraintParam>>();
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<int> bodyIndices { get; set; } = new Fox.Core.DynamicArray<int>();
+        public Fox.FoxKernel.DynamicArray<int> bodyIndices { get; set; } = new Fox.FoxKernel.DynamicArray<int>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

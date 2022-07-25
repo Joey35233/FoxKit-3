@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Fox.FoxKernel;
+using String = Fox.FoxKernel.String;
+using System;
 using System.Collections.Generic;
 using System.Reflection;
 
@@ -87,12 +89,12 @@ namespace Fox
         /// <summary>
         /// Metadata for all static properties in their original order.
         /// </summary>
-        public Core.DynamicArray<Fox.Core.PropertyInfo> OrderedStaticProperties { get; } = new Core.DynamicArray<Fox.Core.PropertyInfo>();
+        public DynamicArray<Core.PropertyInfo> OrderedStaticProperties { get; } = new DynamicArray<Core.PropertyInfo>();
 
         /// <summary>
         /// Metadata for all static properties in a StringMap for fast lookup.
         /// </summary>
-        public Core.StringMap<Fox.Core.PropertyInfo> StaticProperties { get; } = new Core.StringMap<Fox.Core.PropertyInfo>();
+        public StringMap<Core.PropertyInfo> StaticProperties { get; } = new StringMap<Core.PropertyInfo>();
 
         /// <summary>
         /// PropertyInfo of the property with the longest name.

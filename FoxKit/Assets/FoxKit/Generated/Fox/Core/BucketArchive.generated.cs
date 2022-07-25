@@ -17,13 +17,13 @@ namespace Fox.Core
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        protected Fox.Core.String name { get; set; }
+        protected Fox.FoxKernel.String name { get; set; }
         
         [field: UnityEngine.SerializeField]
-        protected Fox.Core.StringMap<Fox.Core.FilePtr> dataSetFiles { get; set; } = new Fox.Core.StringMap<Fox.Core.FilePtr>();
+        protected Fox.FoxKernel.StringMap<Fox.Core.FilePtr> dataSetFiles { get; set; } = new Fox.FoxKernel.StringMap<Fox.Core.FilePtr>();
         
         [field: UnityEngine.SerializeField]
-        protected Fox.Core.StringMap<Fox.Core.EntityPtr<Fox.Core.DataBodySet>> dataBodySets { get; set; } = new Fox.Core.StringMap<Fox.Core.EntityPtr<Fox.Core.DataBodySet>>();
+        protected Fox.FoxKernel.StringMap<Fox.Core.EntityPtr<Fox.Core.DataBodySet>> dataBodySets { get; set; } = new Fox.FoxKernel.StringMap<Fox.Core.EntityPtr<Fox.Core.DataBodySet>>();
         
         [field: UnityEngine.SerializeField]
         protected Fox.Core.EntityPtr<Fox.Core.DataBodySet> editableDataBodySet { get; set; } = new Fox.Core.EntityPtr<Fox.Core.DataBodySet>();

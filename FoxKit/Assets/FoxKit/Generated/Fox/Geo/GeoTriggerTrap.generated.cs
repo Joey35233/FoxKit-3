@@ -24,10 +24,10 @@ namespace Fox.Geo
         protected uint stateFlag { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String uniqueId { get; set; }
+        public Fox.FoxKernel.String uniqueId { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.String> groupTags { get; set; } = new Fox.Core.DynamicArray<Fox.Core.String>();
+        public Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String> groupTags { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;
@@ -79,7 +79,7 @@ namespace Fox.Geo
             switch(propertyName)
             {
                 case "groupTags":
-                    while(this.groupTags.Count <= index) { this.groupTags.Add(default(Fox.Core.String)); }
+                    while(this.groupTags.Count <= index) { this.groupTags.Add(default(Fox.FoxKernel.String)); }
                     this.groupTags[index] = value.GetValueAsString();
                     return;
                 default:

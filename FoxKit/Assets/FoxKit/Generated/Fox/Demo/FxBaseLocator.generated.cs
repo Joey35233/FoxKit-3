@@ -17,7 +17,7 @@ namespace Fox.Demo
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String drawText { get; set; }
+        public Fox.FoxKernel.String drawText { get; set; }
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

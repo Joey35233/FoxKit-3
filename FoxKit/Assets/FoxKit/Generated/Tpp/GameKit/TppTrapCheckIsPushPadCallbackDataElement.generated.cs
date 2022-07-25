@@ -20,7 +20,7 @@ namespace Tpp.GameKit
         public uint padNumber { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.String> checkButtons { get; set; } = new Fox.Core.DynamicArray<Fox.Core.String>();
+        public Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String> checkButtons { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;
@@ -64,7 +64,7 @@ namespace Tpp.GameKit
             switch(propertyName)
             {
                 case "checkButtons":
-                    while(this.checkButtons.Count <= index) { this.checkButtons.Add(default(Fox.Core.String)); }
+                    while(this.checkButtons.Count <= index) { this.checkButtons.Add(default(Fox.FoxKernel.String)); }
                     this.checkButtons[index] = value.GetValueAsString();
                     return;
                 default:

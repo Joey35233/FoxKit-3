@@ -95,7 +95,7 @@ namespace Tpp.Effect
         public bool notDrawMultiple { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String seName { get; set; }
+        public Fox.FoxKernel.String seName { get; set; }
         
         [field: UnityEngine.SerializeField]
         public float seCallThreshold { get; set; }

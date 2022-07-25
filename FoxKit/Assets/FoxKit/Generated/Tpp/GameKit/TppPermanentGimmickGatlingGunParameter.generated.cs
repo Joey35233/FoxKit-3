@@ -32,7 +32,7 @@ namespace Tpp.GameKit
         public float minYAxisAngle { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.Path animPath { get; set; }
+        public Fox.FoxKernel.Path animPath { get; set; }
         
         [field: UnityEngine.SerializeField]
         public Fox.Core.FilePtr mtarFile { get; set; }

@@ -17,16 +17,16 @@ namespace Tpp.GameKit
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.EntityLink> targetShapes { get; set; } = new Fox.Core.DynamicArray<Fox.Core.EntityLink>();
+        public Fox.FoxKernel.DynamicArray<Fox.Core.EntityLink> targetShapes { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.Core.EntityLink>();
         
         [field: UnityEngine.SerializeField]
         protected TppTrapEnvironmentType environmentType { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String environmentTypeString { get; set; }
+        public Fox.FoxKernel.String environmentTypeString { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String offenseName { get; set; }
+        public Fox.FoxKernel.String offenseName { get; set; }
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

@@ -5,7 +5,7 @@ using System.Collections.ObjectModel;
 
 using UnityEngine;
 
-namespace Fox.Core
+namespace Fox.FoxKernel
 {
     [System.Serializable]
     public class StaticArray<T> : IList<T>, IList

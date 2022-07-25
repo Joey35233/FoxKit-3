@@ -17,7 +17,7 @@ namespace Fox.Sim
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String boneName { get; set; }
+        public Fox.FoxKernel.String boneName { get; set; }
         
         [field: UnityEngine.SerializeField]
         public bool initialized { get; protected set; }

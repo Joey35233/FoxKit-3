@@ -17,10 +17,10 @@ namespace Fox.Demo
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String name { get; set; }
+        public Fox.FoxKernel.String name { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String cameraName { get; set; }
+        public Fox.FoxKernel.String cameraName { get; set; }
         
         [field: UnityEngine.SerializeField]
         public int startFrame { get; set; }

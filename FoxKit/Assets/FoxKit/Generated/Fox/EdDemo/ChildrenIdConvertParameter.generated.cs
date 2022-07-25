@@ -17,19 +17,19 @@ namespace Fox.EdDemo
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String injuryId { get; set; }
+        public Fox.FoxKernel.String injuryId { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String yellowHoodId { get; set; }
+        public Fox.FoxKernel.String yellowHoodId { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String afloId { get; set; }
+        public Fox.FoxKernel.String afloId { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String shortAfloId { get; set; }
+        public Fox.FoxKernel.String shortAfloId { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String blackCoatId { get; set; }
+        public Fox.FoxKernel.String blackCoatId { get; set; }
         
         [field: UnityEngine.SerializeField]
         public byte injuryPriority { get; set; }

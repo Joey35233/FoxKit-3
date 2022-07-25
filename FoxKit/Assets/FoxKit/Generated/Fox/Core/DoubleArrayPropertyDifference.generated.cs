@@ -17,10 +17,10 @@ namespace Fox.Core
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<double> originalValues { get; set; } = new Fox.Core.DynamicArray<double>();
+        public Fox.FoxKernel.DynamicArray<double> originalValues { get; set; } = new Fox.FoxKernel.DynamicArray<double>();
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<double> values { get; set; } = new Fox.Core.DynamicArray<double>();
+        public Fox.FoxKernel.DynamicArray<double> values { get; set; } = new Fox.FoxKernel.DynamicArray<double>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

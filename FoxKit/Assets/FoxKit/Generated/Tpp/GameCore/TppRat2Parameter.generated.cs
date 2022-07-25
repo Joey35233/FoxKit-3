@@ -23,7 +23,7 @@ namespace Tpp.GameCore
         public Fox.Core.FilePtr mtarFile { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.FilePtr> fovaFiles { get; set; } = new Fox.Core.DynamicArray<Fox.Core.FilePtr>();
+        public Fox.FoxKernel.DynamicArray<Fox.Core.FilePtr> fovaFiles { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.Core.FilePtr>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

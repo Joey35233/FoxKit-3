@@ -17,22 +17,22 @@ namespace Tpp.GameKit
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.FilePtr> modelFile { get; set; } = new Fox.Core.DynamicArray<Fox.Core.FilePtr>();
+        public Fox.FoxKernel.DynamicArray<Fox.Core.FilePtr> modelFile { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.Core.FilePtr>();
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.FilePtr> geomFile { get; set; } = new Fox.Core.DynamicArray<Fox.Core.FilePtr>();
+        public Fox.FoxKernel.DynamicArray<Fox.Core.FilePtr> geomFile { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.Core.FilePtr>();
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.Path> animFile { get; set; } = new Fox.Core.DynamicArray<Fox.Core.Path>();
+        public Fox.FoxKernel.DynamicArray<Fox.FoxKernel.Path> animFile { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.FoxKernel.Path>();
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.Path> animWindyFile { get; set; } = new Fox.Core.DynamicArray<Fox.Core.Path>();
+        public Fox.FoxKernel.DynamicArray<Fox.FoxKernel.Path> animWindyFile { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.FoxKernel.Path>();
         
         [field: UnityEngine.SerializeField]
         public Fox.Core.FilePtr mtarFile { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String soundSeType { get; set; }
+        public Fox.FoxKernel.String soundSeType { get; set; }
         
         [field: UnityEngine.SerializeField]
         public float minSize { get; set; }
@@ -56,10 +56,10 @@ namespace Tpp.GameKit
         public uint reserveResourcePerBlock { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.StaticArray<float> lodLength { get; set; } = new Fox.Core.StaticArray<float>(4);
+        public Fox.FoxKernel.StaticArray<float> lodLength { get; set; } = new Fox.FoxKernel.StaticArray<float>(4);
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.StaticArray<float> lodLengthForHighEnd { get; set; } = new Fox.Core.StaticArray<float>(4);
+        public Fox.FoxKernel.StaticArray<float> lodLengthForHighEnd { get; set; } = new Fox.FoxKernel.StaticArray<float>(4);
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;
@@ -148,11 +148,11 @@ namespace Tpp.GameKit
                     this.geomFile[index] = value.GetValueAsFilePtr();
                     return;
                 case "animFile":
-                    while(this.animFile.Count <= index) { this.animFile.Add(default(Fox.Core.Path)); }
+                    while(this.animFile.Count <= index) { this.animFile.Add(default(Fox.FoxKernel.Path)); }
                     this.animFile[index] = value.GetValueAsPath();
                     return;
                 case "animWindyFile":
-                    while(this.animWindyFile.Count <= index) { this.animWindyFile.Add(default(Fox.Core.Path)); }
+                    while(this.animWindyFile.Count <= index) { this.animWindyFile.Add(default(Fox.FoxKernel.Path)); }
                     this.animWindyFile[index] = value.GetValueAsPath();
                     return;
                 case "lodLength":

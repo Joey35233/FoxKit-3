@@ -26,7 +26,7 @@ namespace Fox.Geo
         public bool execExit { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.Path execScriptPath { get; set; }
+        public Fox.FoxKernel.Path execScriptPath { get; set; }
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

@@ -17,10 +17,10 @@ namespace Tpp.MotherBaseCore
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<ulong> pathCodes { get; set; } = new Fox.Core.DynamicArray<ulong>();
+        public Fox.FoxKernel.DynamicArray<ulong> pathCodes { get; set; } = new Fox.FoxKernel.DynamicArray<ulong>();
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.StringMap<int> flags { get; set; } = new Fox.Core.StringMap<int>();
+        public Fox.FoxKernel.StringMap<int> flags { get; set; } = new Fox.FoxKernel.StringMap<int>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

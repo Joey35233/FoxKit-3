@@ -20,7 +20,7 @@ namespace Tpp.Effect
         public bool debugDraw { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.Path texture { get; set; }
+        public Fox.FoxKernel.Path texture { get; set; }
         
         [field: UnityEngine.SerializeField]
         public float centerX { get; set; }

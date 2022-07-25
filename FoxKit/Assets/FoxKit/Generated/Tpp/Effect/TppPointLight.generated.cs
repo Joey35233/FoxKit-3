@@ -23,7 +23,7 @@ namespace Tpp.Effect
         public UnityEngine.Vector3 reachPoint { get; set; }
         
         [field: UnityEngine.SerializeField]
-        protected Fox.Core.DynamicArray<uint> BynaryData { get; set; } = new Fox.Core.DynamicArray<uint>();
+        protected Fox.FoxKernel.DynamicArray<uint> BynaryData { get; set; } = new Fox.FoxKernel.DynamicArray<uint>();
         
         [field: UnityEngine.SerializeField]
         public Fox.Core.EntityLink lightArea { get; set; }
@@ -105,9 +105,9 @@ namespace Tpp.Effect
         protected partial bool Get_hasSpecular();
         protected partial void Set_hasSpecular(bool value);
         
-        public Fox.Core.Path importFilePath { get => Get_importFilePath(); set { Set_importFilePath(value); } }
-        protected partial Fox.Core.Path Get_importFilePath();
-        protected partial void Set_importFilePath(Fox.Core.Path value);
+        public Fox.FoxKernel.Path importFilePath { get => Get_importFilePath(); set { Set_importFilePath(value); } }
+        protected partial Fox.FoxKernel.Path Get_importFilePath();
+        protected partial void Set_importFilePath(Fox.FoxKernel.Path value);
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

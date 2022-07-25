@@ -20,7 +20,7 @@ namespace Tpp.GameCore
         public Fox.Core.FilePtr motionGraphFile { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.StringMap<Fox.Core.FilePtr> vfxFiles { get; set; } = new Fox.Core.StringMap<Fox.Core.FilePtr>();
+        public Fox.FoxKernel.StringMap<Fox.Core.FilePtr> vfxFiles { get; set; } = new Fox.FoxKernel.StringMap<Fox.Core.FilePtr>();
         
         [field: UnityEngine.SerializeField]
         public uint lifeMax { get; set; }
@@ -41,10 +41,10 @@ namespace Tpp.GameCore
         public float lifeRecoveryCooldownTimer { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String partsType { get; set; }
+        public Fox.FoxKernel.String partsType { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.StringMap<byte> TODO_trapTags { get; set; } = new Fox.Core.StringMap<byte>();
+        public Fox.FoxKernel.StringMap<byte> TODO_trapTags { get; set; } = new Fox.FoxKernel.StringMap<byte>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

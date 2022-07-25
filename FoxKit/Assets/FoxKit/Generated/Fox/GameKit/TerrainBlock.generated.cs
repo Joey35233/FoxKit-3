@@ -20,13 +20,13 @@ namespace Fox.GameKit
         public uint id { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String terrainName { get; set; }
+        public Fox.FoxKernel.String terrainName { get; set; }
         
         [field: UnityEngine.SerializeField]
         public Fox.Core.FilePtr filePtr { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.Path filePath { get; set; }
+        public Fox.FoxKernel.Path filePath { get; set; }
         
         [field: UnityEngine.SerializeField]
         public UnityEngine.Vector3 pos { get; set; }

@@ -17,7 +17,7 @@ namespace Fox.Tactical
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String actionName { get; set; }
+        public Fox.FoxKernel.String actionName { get; set; }
         
         [field: UnityEngine.SerializeField]
         public GkTacticalActionDirection actionDirection { get; set; }

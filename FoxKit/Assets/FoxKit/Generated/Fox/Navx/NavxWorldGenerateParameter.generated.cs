@@ -53,19 +53,19 @@ namespace Fox.Navx
         public bool doesGenerateFillNavVolumeInRadius { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.Path roughGraphFilePath { get; set; }
+        public Fox.FoxKernel.Path roughGraphFilePath { get; set; }
         
         [field: UnityEngine.SerializeField]
         public Fox.Core.FilePtr roughGraphFilePtr { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String worldName { get; set; }
+        public Fox.FoxKernel.String worldName { get; set; }
         
         [field: UnityEngine.SerializeField]
         public uint maxFileSizeInKb { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.EntityPtr<Fox.Navx.NavxNavigableParameter>> parameters { get; set; } = new Fox.Core.DynamicArray<Fox.Core.EntityPtr<Fox.Navx.NavxNavigableParameter>>();
+        public Fox.FoxKernel.DynamicArray<Fox.Core.EntityPtr<Fox.Navx.NavxNavigableParameter>> parameters { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.Core.EntityPtr<Fox.Navx.NavxNavigableParameter>>();
         
         [field: UnityEngine.SerializeField]
         public uint sectorSizeHorizontal { get; set; }
@@ -77,10 +77,10 @@ namespace Fox.Navx
         public uint searchSpaceBucketSizeHorizontal { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.String> collisionAttributes { get; set; } = new Fox.Core.DynamicArray<Fox.Core.String>();
+        public Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String> collisionAttributes { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String>();
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.Path loadFox2FileListScriptPath { get; set; }
+        public Fox.FoxKernel.Path loadFox2FileListScriptPath { get; set; }
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;
@@ -205,7 +205,7 @@ namespace Fox.Navx
                     this.parameters[index] = value.GetValueAsEntityPtr<Fox.Navx.NavxNavigableParameter>();
                     return;
                 case "collisionAttributes":
-                    while(this.collisionAttributes.Count <= index) { this.collisionAttributes.Add(default(Fox.Core.String)); }
+                    while(this.collisionAttributes.Count <= index) { this.collisionAttributes.Add(default(Fox.FoxKernel.String)); }
                     this.collisionAttributes[index] = value.GetValueAsString();
                     return;
                 default:

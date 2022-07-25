@@ -17,16 +17,16 @@ namespace Tpp.Effect
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.Path baseTexturePath { get; set; }
+        public Fox.FoxKernel.Path baseTexturePath { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.Path normalTexturePath { get; set; }
+        public Fox.FoxKernel.Path normalTexturePath { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.Path specularTexturePath { get; set; }
+        public Fox.FoxKernel.Path specularTexturePath { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.Path cubeMapPath { get; set; }
+        public Fox.FoxKernel.Path cubeMapPath { get; set; }
         
         [field: UnityEngine.SerializeField]
         public bool visibility { get; set; }
@@ -53,7 +53,7 @@ namespace Tpp.Effect
         public bool debugReset { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.EntityLink> staticModels { get; set; } = new Fox.Core.DynamicArray<Fox.Core.EntityLink>();
+        public Fox.FoxKernel.DynamicArray<Fox.Core.EntityLink> staticModels { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.Core.EntityLink>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

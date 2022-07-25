@@ -17,10 +17,10 @@ namespace Fox.Core
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.String> originalValues { get; set; } = new Fox.Core.DynamicArray<Fox.Core.String>();
+        public Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String> originalValues { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String>();
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.String> values { get; set; } = new Fox.Core.DynamicArray<Fox.Core.String>();
+        public Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String> values { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;
@@ -61,11 +61,11 @@ namespace Fox.Core
             switch(propertyName)
             {
                 case "originalValues":
-                    while(this.originalValues.Count <= index) { this.originalValues.Add(default(Fox.Core.String)); }
+                    while(this.originalValues.Count <= index) { this.originalValues.Add(default(Fox.FoxKernel.String)); }
                     this.originalValues[index] = value.GetValueAsString();
                     return;
                 case "values":
-                    while(this.values.Count <= index) { this.values.Add(default(Fox.Core.String)); }
+                    while(this.values.Count <= index) { this.values.Add(default(Fox.FoxKernel.String)); }
                     this.values[index] = value.GetValueAsString();
                     return;
                 default:

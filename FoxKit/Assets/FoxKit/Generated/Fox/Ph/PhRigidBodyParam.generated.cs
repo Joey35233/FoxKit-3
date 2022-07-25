@@ -74,7 +74,7 @@ namespace Fox.Ph
         protected PhRigidBodyType motionType { get; set; }
         
         [field: UnityEngine.SerializeField]
-        protected Fox.Core.String material { get; set; }
+        protected Fox.FoxKernel.String material { get; set; }
         
         [field: UnityEngine.SerializeField]
         protected bool isNoGravity { get; set; }

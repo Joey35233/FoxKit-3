@@ -38,37 +38,37 @@ namespace Tpp.Sound
         public float endEvening { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String situationEvent { get; set; }
+        public Fox.FoxKernel.String situationEvent { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String clockRtpc { get; set; }
+        public Fox.FoxKernel.String clockRtpc { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String windVelocityRtpc { get; set; }
+        public Fox.FoxKernel.String windVelocityRtpc { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String windDirectionRtpc { get; set; }
+        public Fox.FoxKernel.String windDirectionRtpc { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String rainRtpc { get; set; }
+        public Fox.FoxKernel.String rainRtpc { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String heightRtpc { get; set; }
+        public Fox.FoxKernel.String heightRtpc { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.StaticArray<Fox.Core.EntityLink> ambientParameter { get; set; } = new Fox.Core.StaticArray<Fox.Core.EntityLink>(8);
+        public Fox.FoxKernel.StaticArray<Fox.Core.EntityLink> ambientParameter { get; set; } = new Fox.FoxKernel.StaticArray<Fox.Core.EntityLink>(8);
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String categoryFpvStateGroup { get; set; }
+        public Fox.FoxKernel.String categoryFpvStateGroup { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String categoryFpvStateValue { get; set; }
+        public Fox.FoxKernel.String categoryFpvStateValue { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String dashStartEventName { get; set; }
+        public Fox.FoxKernel.String dashStartEventName { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String dashFinishEventName { get; set; }
+        public Fox.FoxKernel.String dashFinishEventName { get; set; }
         
         [field: UnityEngine.SerializeField]
         public float blockedObstruction { get; set; }

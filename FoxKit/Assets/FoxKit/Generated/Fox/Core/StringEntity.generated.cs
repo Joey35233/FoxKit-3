@@ -17,7 +17,7 @@ namespace Fox.Core
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        protected Fox.Core.String value { get; set; }
+        protected Fox.FoxKernel.String value { get; set; }
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

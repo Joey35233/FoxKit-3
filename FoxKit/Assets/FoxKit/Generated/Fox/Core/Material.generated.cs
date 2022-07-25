@@ -17,22 +17,22 @@ namespace Fox.Core
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String materialName { get; set; }
+        public Fox.FoxKernel.String materialName { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.Path shader { get; set; }
+        public Fox.FoxKernel.Path shader { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.Path diffuseTexture { get; set; }
+        public Fox.FoxKernel.Path diffuseTexture { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.Path srmTexture { get; set; }
+        public Fox.FoxKernel.Path srmTexture { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.Path normalTexture { get; set; }
+        public Fox.FoxKernel.Path normalTexture { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.Path materialMapTexture { get; set; }
+        public Fox.FoxKernel.Path materialMapTexture { get; set; }
         
         [field: UnityEngine.SerializeField]
         public byte materialIndex { get; set; }
@@ -44,7 +44,7 @@ namespace Fox.Core
         public UnityEngine.Color specularColor { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.Path fmtrPath { get; set; }
+        public Fox.FoxKernel.Path fmtrPath { get; set; }
         
         [field: UnityEngine.SerializeField]
         public bool residentFlag { get; set; }

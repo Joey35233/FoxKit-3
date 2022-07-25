@@ -17,13 +17,13 @@ namespace Fox.Sdx
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.String> loadBanks { get; set; } = new Fox.Core.DynamicArray<Fox.Core.String>();
+        public Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String> loadBanks { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String>();
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.String> prepareBanks { get; set; } = new Fox.Core.DynamicArray<Fox.Core.String>();
+        public Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String> prepareBanks { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String>();
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.String> prepareEvents { get; set; } = new Fox.Core.DynamicArray<Fox.Core.String>();
+        public Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String> prepareEvents { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;
@@ -65,15 +65,15 @@ namespace Fox.Sdx
             switch(propertyName)
             {
                 case "loadBanks":
-                    while(this.loadBanks.Count <= index) { this.loadBanks.Add(default(Fox.Core.String)); }
+                    while(this.loadBanks.Count <= index) { this.loadBanks.Add(default(Fox.FoxKernel.String)); }
                     this.loadBanks[index] = value.GetValueAsString();
                     return;
                 case "prepareBanks":
-                    while(this.prepareBanks.Count <= index) { this.prepareBanks.Add(default(Fox.Core.String)); }
+                    while(this.prepareBanks.Count <= index) { this.prepareBanks.Add(default(Fox.FoxKernel.String)); }
                     this.prepareBanks[index] = value.GetValueAsString();
                     return;
                 case "prepareEvents":
-                    while(this.prepareEvents.Count <= index) { this.prepareEvents.Add(default(Fox.Core.String)); }
+                    while(this.prepareEvents.Count <= index) { this.prepareEvents.Add(default(Fox.FoxKernel.String)); }
                     this.prepareEvents[index] = value.GetValueAsString();
                     return;
                 default:

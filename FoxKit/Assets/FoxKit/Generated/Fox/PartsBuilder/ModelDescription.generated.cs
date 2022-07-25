@@ -35,7 +35,7 @@ namespace Fox.PartsBuilder
         public Fox.Core.FilePtr facialSettingFile { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.String> invisibleMeshNames { get; set; } = new Fox.Core.DynamicArray<Fox.Core.String>();
+        public Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String> invisibleMeshNames { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String>();
         
         [field: UnityEngine.SerializeField]
         public float lodFarPixelSize { get; set; }
@@ -134,7 +134,7 @@ namespace Fox.PartsBuilder
             switch(propertyName)
             {
                 case "invisibleMeshNames":
-                    while(this.invisibleMeshNames.Count <= index) { this.invisibleMeshNames.Add(default(Fox.Core.String)); }
+                    while(this.invisibleMeshNames.Count <= index) { this.invisibleMeshNames.Add(default(Fox.FoxKernel.String)); }
                     this.invisibleMeshNames[index] = value.GetValueAsString();
                     return;
                 default:

@@ -23,7 +23,7 @@ namespace Fox.Core
         public uint sizeInBytes { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.String> prerequisites { get; set; } = new Fox.Core.DynamicArray<Fox.Core.String>();
+        public Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String> prerequisites { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;
@@ -71,7 +71,7 @@ namespace Fox.Core
             switch(propertyName)
             {
                 case "prerequisites":
-                    while(this.prerequisites.Count <= index) { this.prerequisites.Add(default(Fox.Core.String)); }
+                    while(this.prerequisites.Count <= index) { this.prerequisites.Add(default(Fox.FoxKernel.String)); }
                     this.prerequisites[index] = value.GetValueAsString();
                     return;
                 default:

@@ -17,10 +17,10 @@ namespace Tpp.Effect
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.Path diffulseTexture { get; set; }
+        public Fox.FoxKernel.Path diffulseTexture { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.Path normalTexture { get; set; }
+        public Fox.FoxKernel.Path normalTexture { get; set; }
         
         [field: UnityEngine.SerializeField]
         public float sizeMin { get; set; }

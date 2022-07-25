@@ -23,7 +23,7 @@ namespace Fox.Geox
         public bool enable { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.String> tags { get; set; } = new Fox.Core.DynamicArray<Fox.Core.String>();
+        public Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String> tags { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;
@@ -71,7 +71,7 @@ namespace Fox.Geox
             switch(propertyName)
             {
                 case "tags":
-                    while(this.tags.Count <= index) { this.tags.Add(default(Fox.Core.String)); }
+                    while(this.tags.Count <= index) { this.tags.Add(default(Fox.FoxKernel.String)); }
                     this.tags[index] = value.GetValueAsString();
                     return;
                 default:

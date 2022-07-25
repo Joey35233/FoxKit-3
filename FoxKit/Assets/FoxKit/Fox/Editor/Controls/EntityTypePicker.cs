@@ -101,7 +101,7 @@ namespace Fox.Editor
                     filteredItems.AddRange(this.allItems);
                 else
                     filteredItems.AddRange(from item in this.allItems
-                                           where item.Name.IndexOf(evt.newValue, StringComparison.OrdinalIgnoreCase) >= 0
+                                           where item.Name.CString.IndexOf(evt.newValue, StringComparison.OrdinalIgnoreCase) >= 0
                                            select item);
 
                 TypesListInput.Rebuild();

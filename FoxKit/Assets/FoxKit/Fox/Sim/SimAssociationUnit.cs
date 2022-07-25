@@ -1,4 +1,5 @@
 ﻿using Fox.Core;
+using Fox.FoxKernel;
 
 namespace Fox.Sim
 {
@@ -6,8 +7,8 @@ namespace Fox.Sim
     {
         private SimAssociationUnitParam associationUnit => (param.Get() as SimAssociationUnitParam);
 
-        protected partial Fox.Core.String Get_boneName() => associationUnit.boneName;
-        protected partial void Set_boneName(Fox.Core.String value) { associationUnit.boneName = value; }
+        protected partial String Get_boneName() => associationUnit.boneName;
+        protected partial void Set_boneName(String value) { associationUnit.boneName = value; }
 
         protected partial bool Get_initialized() => associationUnit.initialized;
         protected partial void Set_initialized(bool value) { associationUnit.SetInitialized(value); }

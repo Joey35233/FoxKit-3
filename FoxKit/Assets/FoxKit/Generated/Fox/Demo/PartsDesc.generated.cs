@@ -17,16 +17,16 @@ namespace Fox.Demo
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String instanceName { get; set; }
+        public Fox.FoxKernel.String instanceName { get; set; }
         
         [field: UnityEngine.SerializeField]
         public Fox.Core.FilePtr partsFile { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.Path modelPath { get; set; }
+        public Fox.FoxKernel.Path modelPath { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String partName { get; set; }
+        public Fox.FoxKernel.String partName { get; set; }
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

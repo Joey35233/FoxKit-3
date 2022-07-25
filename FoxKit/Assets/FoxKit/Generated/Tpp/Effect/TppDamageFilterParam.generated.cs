@@ -35,10 +35,10 @@ namespace Tpp.Effect
         public float burnSpritePosition { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String damageColorCorrectionTextureName { get; set; }
+        public Fox.FoxKernel.String damageColorCorrectionTextureName { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String injuryColorCorrectionTextureName { get; set; }
+        public Fox.FoxKernel.String injuryColorCorrectionTextureName { get; set; }
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

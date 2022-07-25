@@ -17,13 +17,13 @@ namespace Fox.GameKit
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.Path filePath { get; set; }
+        public Fox.FoxKernel.Path filePath { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.Path loadFilePath { get; set; }
+        public Fox.FoxKernel.Path loadFilePath { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.Path dummyFilePath { get; set; }
+        public Fox.FoxKernel.Path dummyFilePath { get; set; }
         
         [field: UnityEngine.SerializeField]
         public Fox.Core.FilePtr filePtr { get; set; }
@@ -44,22 +44,22 @@ namespace Fox.GameKit
         public bool isDebugMaterial { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.StaticArray<Fox.Core.EntityLink> materials { get; set; } = new Fox.Core.StaticArray<Fox.Core.EntityLink>(16);
+        public Fox.FoxKernel.StaticArray<Fox.Core.EntityLink> materials { get; set; } = new Fox.FoxKernel.StaticArray<Fox.Core.EntityLink>(16);
         
         [field: UnityEngine.SerializeField]
         public float lodParam { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.EntityLink> materialConfigs { get; set; } = new Fox.Core.DynamicArray<Fox.Core.EntityLink>();
+        public Fox.FoxKernel.DynamicArray<Fox.Core.EntityLink> materialConfigs { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.Core.EntityLink>();
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.Path packedAlbedoTexturePath { get; protected set; }
+        public Fox.FoxKernel.Path packedAlbedoTexturePath { get; protected set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.Path packedNormalTexturePath { get; protected set; }
+        public Fox.FoxKernel.Path packedNormalTexturePath { get; protected set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.Path packedSrmTexturePath { get; protected set; }
+        public Fox.FoxKernel.Path packedSrmTexturePath { get; protected set; }
         
         [field: UnityEngine.SerializeField]
         public ulong packedMaterialIdentify { get; protected set; }
@@ -68,7 +68,7 @@ namespace Fox.GameKit
         public bool isFourceUsePackedMaterialTexture { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.Path baseColorTexture { get; set; }
+        public Fox.FoxKernel.Path baseColorTexture { get; set; }
         
         [field: UnityEngine.SerializeField]
         public float materialLodScale { get; set; }
@@ -92,7 +92,7 @@ namespace Fox.GameKit
         public uint worldTextureDividedNumZ { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.Path> worldTextureTilePathes { get; set; } = new Fox.Core.DynamicArray<Fox.Core.Path>();
+        public Fox.FoxKernel.DynamicArray<Fox.FoxKernel.Path> worldTextureTilePathes { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.FoxKernel.Path>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;
@@ -234,7 +234,7 @@ namespace Fox.GameKit
                     this.materialConfigs[index] = value.GetValueAsEntityLink();
                     return;
                 case "worldTextureTilePathes":
-                    while(this.worldTextureTilePathes.Count <= index) { this.worldTextureTilePathes.Add(default(Fox.Core.Path)); }
+                    while(this.worldTextureTilePathes.Count <= index) { this.worldTextureTilePathes.Add(default(Fox.FoxKernel.Path)); }
                     this.worldTextureTilePathes[index] = value.GetValueAsPath();
                     return;
                 default:

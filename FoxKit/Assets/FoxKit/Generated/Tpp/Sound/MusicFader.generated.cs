@@ -17,10 +17,10 @@ namespace Tpp.Sound
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.EntityLink> shapes { get; set; } = new Fox.Core.DynamicArray<Fox.Core.EntityLink>();
+        public Fox.FoxKernel.DynamicArray<Fox.Core.EntityLink> shapes { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.Core.EntityLink>();
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String rtpcName { get; set; }
+        public Fox.FoxKernel.String rtpcName { get; set; }
         
         [field: UnityEngine.SerializeField]
         public float fadeRange { get; set; }

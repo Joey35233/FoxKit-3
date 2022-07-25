@@ -17,7 +17,7 @@ namespace Tpp.GameKit
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String pluginName { get; set; }
+        public Fox.FoxKernel.String pluginName { get; set; }
         
         [field: UnityEngine.SerializeField]
         public uint reserveLodLevel0 { get; set; }

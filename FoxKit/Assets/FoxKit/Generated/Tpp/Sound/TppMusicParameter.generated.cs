@@ -17,64 +17,64 @@ namespace Tpp.Sound
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String tag { get; set; }
+        public Fox.FoxKernel.String tag { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String playEvent { get; set; }
+        public Fox.FoxKernel.String playEvent { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String daySwitchEvent { get; set; }
+        public Fox.FoxKernel.String daySwitchEvent { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String nightSwitchEvent { get; set; }
+        public Fox.FoxKernel.String nightSwitchEvent { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String dangerEasySwitchEvent { get; set; }
+        public Fox.FoxKernel.String dangerEasySwitchEvent { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String dangerOuterSwitchEvent { get; set; }
+        public Fox.FoxKernel.String dangerOuterSwitchEvent { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String dangerHardSwitchEvent { get; set; }
+        public Fox.FoxKernel.String dangerHardSwitchEvent { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String dangerEasyLostSwitchEvent { get; set; }
+        public Fox.FoxKernel.String dangerEasyLostSwitchEvent { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String dangerOuterLostSwitchEvent { get; set; }
+        public Fox.FoxKernel.String dangerOuterLostSwitchEvent { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String dangerHardLostSwitchEvent { get; set; }
+        public Fox.FoxKernel.String dangerHardLostSwitchEvent { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String dangerEvasionSwitchEvent { get; set; }
+        public Fox.FoxKernel.String dangerEvasionSwitchEvent { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String dangerStrongSwitchEvent { get; set; }
+        public Fox.FoxKernel.String dangerStrongSwitchEvent { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String safetyReflexSwitchEvent { get; set; }
+        public Fox.FoxKernel.String safetyReflexSwitchEvent { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String safetyNeutralToSneakSwitchEvent { get; set; }
+        public Fox.FoxKernel.String safetyNeutralToSneakSwitchEvent { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String safetySneakSwitchEvent { get; set; }
+        public Fox.FoxKernel.String safetySneakSwitchEvent { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String safetyCautionSwitchEvent { get; set; }
+        public Fox.FoxKernel.String safetyCautionSwitchEvent { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String safetyNoticeSwitchEvent { get; set; }
+        public Fox.FoxKernel.String safetyNoticeSwitchEvent { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String safetyCautionNoticeSwitchEvent { get; set; }
+        public Fox.FoxKernel.String safetyCautionNoticeSwitchEvent { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String safetyAlertToCautionSwitchEvent { get; set; }
+        public Fox.FoxKernel.String safetyAlertToCautionSwitchEvent { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String neutralSwitchEvent { get; set; }
+        public Fox.FoxKernel.String neutralSwitchEvent { get; set; }
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

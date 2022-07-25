@@ -17,10 +17,10 @@ namespace Fox.Ncl
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String exIp { get; set; }
+        public Fox.FoxKernel.String exIp { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String inIp { get; set; }
+        public Fox.FoxKernel.String inIp { get; set; }
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

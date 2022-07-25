@@ -17,13 +17,13 @@ namespace Fox.GameKit
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.StringMap<byte> targetTags { get; set; } = new Fox.Core.StringMap<byte>();
+        public Fox.FoxKernel.StringMap<byte> targetTags { get; set; } = new Fox.FoxKernel.StringMap<byte>();
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String enterSubtitlesFileName { get; set; }
+        public Fox.FoxKernel.String enterSubtitlesFileName { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String outSubtitlesFileName { get; set; }
+        public Fox.FoxKernel.String outSubtitlesFileName { get; set; }
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

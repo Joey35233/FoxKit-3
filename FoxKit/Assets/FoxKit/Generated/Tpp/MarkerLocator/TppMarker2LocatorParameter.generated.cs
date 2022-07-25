@@ -17,10 +17,10 @@ namespace Tpp.MarkerLocator
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String markerType { get; set; }
+        public Fox.FoxKernel.String markerType { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String markerId { get; set; }
+        public Fox.FoxKernel.String markerId { get; set; }
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

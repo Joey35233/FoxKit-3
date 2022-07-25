@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using Fox.FoxKernel;
 
 namespace Fox.Core
 {

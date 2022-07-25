@@ -32,10 +32,10 @@ namespace Fox.Geox
         public bool isValid { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String categoryTag { get; set; }
+        public Fox.FoxKernel.String categoryTag { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.String> groupTags { get; set; } = new Fox.Core.DynamicArray<Fox.Core.String>();
+        public Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String> groupTags { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String>();
         
         [field: UnityEngine.SerializeField]
         public Fox.Core.EntityLink applicationDataLink { get; set; }
@@ -106,7 +106,7 @@ namespace Fox.Geox
             switch(propertyName)
             {
                 case "groupTags":
-                    while(this.groupTags.Count <= index) { this.groupTags.Add(default(Fox.Core.String)); }
+                    while(this.groupTags.Count <= index) { this.groupTags.Add(default(Fox.FoxKernel.String)); }
                     this.groupTags[index] = value.GetValueAsString();
                     return;
                 default:

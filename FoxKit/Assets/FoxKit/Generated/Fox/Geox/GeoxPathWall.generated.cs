@@ -26,7 +26,7 @@ namespace Fox.Geox
         public Face_Mode faceFlag { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.String> collisionAttributeTags { get; set; } = new Fox.Core.DynamicArray<Fox.Core.String>();
+        public Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String> collisionAttributeTags { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.FoxKernel.String>();
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;
@@ -78,7 +78,7 @@ namespace Fox.Geox
             switch(propertyName)
             {
                 case "collisionAttributeTags":
-                    while(this.collisionAttributeTags.Count <= index) { this.collisionAttributeTags.Add(default(Fox.Core.String)); }
+                    while(this.collisionAttributeTags.Count <= index) { this.collisionAttributeTags.Add(default(Fox.FoxKernel.String)); }
                     this.collisionAttributeTags[index] = value.GetValueAsString();
                     return;
                 default:

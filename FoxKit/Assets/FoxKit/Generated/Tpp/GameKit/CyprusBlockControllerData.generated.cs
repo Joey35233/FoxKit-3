@@ -20,13 +20,13 @@ namespace Tpp.GameKit
         public bool enable { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String stageName { get; set; }
+        public Fox.FoxKernel.String stageName { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.Path commonFilePath { get; set; }
+        public Fox.FoxKernel.Path commonFilePath { get; set; }
         
         [field: UnityEngine.SerializeField]
-        public Fox.Core.String basePath { get; set; }
+        public Fox.FoxKernel.String basePath { get; set; }
         
         [field: UnityEngine.SerializeField]
         public uint commonBlockSizeInByte { get; set; }

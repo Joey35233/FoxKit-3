@@ -17,7 +17,7 @@ namespace Tpp.GameCore
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.Path modelPath { get; set; }
+        public Fox.FoxKernel.Path modelPath { get; set; }
         
         // PropertyInfo
         private static Fox.EntityInfo classInfo;

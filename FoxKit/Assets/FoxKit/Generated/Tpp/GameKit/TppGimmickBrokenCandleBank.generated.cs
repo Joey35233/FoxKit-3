@@ -17,7 +17,7 @@ namespace Tpp.GameKit
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.DynamicArray<Fox.Core.Path> referencePartsPathList { get; set; } = new Fox.Core.DynamicArray<Fox.Core.Path>();
+        public Fox.FoxKernel.DynamicArray<Fox.FoxKernel.Path> referencePartsPathList { get; set; } = new Fox.FoxKernel.DynamicArray<Fox.FoxKernel.Path>();
         
         [field: UnityEngine.SerializeField]
         public Fox.Core.FilePtr modelFile { get; set; }
@@ -85,7 +85,7 @@ namespace Tpp.GameKit
             switch(propertyName)
             {
                 case "referencePartsPathList":
-                    while(this.referencePartsPathList.Count <= index) { this.referencePartsPathList.Add(default(Fox.Core.Path)); }
+                    while(this.referencePartsPathList.Count <= index) { this.referencePartsPathList.Add(default(Fox.FoxKernel.Path)); }
                     this.referencePartsPathList[index] = value.GetValueAsPath();
                     return;
                 default:
