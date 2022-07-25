@@ -4,14 +4,18 @@ namespace Fox.Core
 {
     class DynamicProperty
     {
+        public PropertyInfo PropertyInfo;
+
+        public Value Value;
+
         public DynamicProperty(PropertyInfo propertyInfo)
         {
+            PropertyInfo = propertyInfo;
         }
-
 
         public void SetValue(Value val)
         {
-            throw new NotImplementedException();
+            Value = val;
         }
 
         internal void SetElement(ushort index, Value value)

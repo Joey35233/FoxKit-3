@@ -11,12 +11,12 @@ using System.Linq;
 
 namespace FoxKit.MenuItems
 {
-    public static class ImportDataSet
+    public static class ImportDataSetFile2
     {
-        [MenuItem("FoxKit/Import/DataSet")]
+        [MenuItem("FoxKit/Import/DataSetFile2")]
         private static void OnImportAsset()
         {
-            var assetPath = EditorUtility.OpenFilePanel("Import DataSet", "", "fox2,bnd,clo,des,evf,fsd,lad,parts,ph,phsd,sdf,sim,tgt,vdp,veh,vfxlf");
+            var assetPath = EditorUtility.OpenFilePanel("Import DataSetFile2", "", "fox2,bnd,clo,des,evf,fsd,lad,parts,ph,phsd,sdf,sim,tgt,vdp,veh,vfxlf");
             if (string.IsNullOrEmpty(assetPath))
             {
                 return;
