@@ -1,5 +1,5 @@
-﻿using Fox.FoxKernel;
-using String = Fox.FoxKernel.String;
+﻿using Fox.Kernel;
+using String = Fox.Kernel.String;
 
 namespace Fox
 {

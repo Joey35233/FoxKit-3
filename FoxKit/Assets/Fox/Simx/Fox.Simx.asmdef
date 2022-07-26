@@ -1,0 +1,18 @@
+{
+    "name": "Fox.Simx",
+    "rootNamespace": "",
+    "references": [
+        "GUID:12ed3fd8f46960440986ce896a1927d0",
+        "GUID:fc768b19e502f2947acce9a7994617e8",
+        "GUID:4faf2a3db44da974399026183e8d7985"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

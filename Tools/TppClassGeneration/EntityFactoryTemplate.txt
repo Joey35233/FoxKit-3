@@ -23,14 +23,14 @@ namespace Fox
 			{% endfor %}
         };
 
-        public Fox.Core.Entity Create(string className, ushort version, ulong id)
+        public Fox.Core.Entity Create(string className, ulong id)
         {
-            if (!this.Constructors.ContainsKey(className))
-            {
-                throw new System.ArgumentException($"Unrecognized class name: {className}");
-            }
+			if (!this.Constructors.TryGetValue(className, out var constructor))
+			{
+				throw new System.ArgumentException($"Unrecognized class name: {className}");
+			}
 
-            return this.Constructors[className](id);
+			return constructor(id);
         }
     }
 }

@@ -1,0 +1,19 @@
+{
+    "name": "Fox.Uix",
+    "rootNamespace": "",
+    "references": [
+        "GUID:6215282ee75f28a44abd0d6e20f2a4a5",
+        "GUID:3e6e7090655bd8349aace8bb0ba74d58",
+        "GUID:e7304858b3b58a74e9233b618f9456e4",
+        "GUID:00d06c022d43d374194ac7916e26d2de"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

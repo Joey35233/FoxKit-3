@@ -40,8 +40,8 @@ class PropertyInfo:
             "float" : "float",
             "double" : "double",
             "bool" : "bool",
-            "String" : "Fox.FoxKernel.String",
-            "Path" : "Fox.FoxKernel.Path",
+            "String" : "Fox.Kernel.String",
+            "Path" : "Fox.Kernel.Path",
             "EntityPtr" : "Fox.Core.EntityPtr",
             "Vector3" : "UnityEngine.Vector3",
             "Vector4" : "UnityEngine.Vector4",
@@ -122,10 +122,10 @@ class PropertyInfo:
         if self.container == "StaticArray":
             if self.array_size == 1:
                 return value_type_string
-            return f'Fox.FoxKernel.StaticArray<{value_type_string}>'
+            return f'Fox.Kernel.StaticArray<{value_type_string}>'
         if self.container == "StringMap":
-            return f'Fox.FoxKernel.StringMap<{value_type_string}>'
-        return f'Fox.FoxKernel.DynamicArray<{value_type_string}>'
+            return f'Fox.Kernel.StringMap<{value_type_string}>'
+        return f'Fox.Kernel.DynamicArray<{value_type_string}>'
 
     def has_setter(self):
         """Gets whether the property has a setter.
@@ -160,10 +160,10 @@ class PropertyInfo:
         if not self.is_collection_property() and self.data_type == "EntityPtr":
             return f'new {value_type_string}()'
         if self.container == "StaticArray":
-            return f'new Fox.FoxKernel.StaticArray<{value_type_string}>({self.array_size})'
+            return f'new Fox.Kernel.StaticArray<{value_type_string}>({self.array_size})'
         if self.container == "StringMap":
-            return f'new Fox.FoxKernel.StringMap<{value_type_string}>()'
-        return f'new Fox.FoxKernel.DynamicArray<{value_type_string}>()'
+            return f'new Fox.Kernel.StringMap<{value_type_string}>()'
+        return f'new Fox.Kernel.DynamicArray<{value_type_string}>()'
 
     def get_value_getter_type_string(self):
         """Gets the type string to use with Value.GetValueAs...

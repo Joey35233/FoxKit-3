@@ -5,7 +5,7 @@
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "2bf4b84d116714502934358dc2673b65f6b3f97f"
+      "hash": "9833a319b856de724ab612766d2bf24b43ceee02"
     },
     "com.unity.ai.navigation": {
       "version": "1.1.0-pre.1",
@@ -76,7 +76,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.test-framework": {
-      "version": "1.1.31",
+      "version": "1.1.33",
       "depth": 0,
       "source": "registry",
       "dependencies": {

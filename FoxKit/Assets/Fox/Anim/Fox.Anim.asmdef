@@ -1,0 +1,19 @@
+{
+    "name": "Fox.Anim",
+    "rootNamespace": "",
+    "references": [
+        "Fox.Kernel",
+        "Fox.Fs",
+        "Fox.Core",
+        "Fox.Nio"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

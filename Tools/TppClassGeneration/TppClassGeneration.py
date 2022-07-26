@@ -52,7 +52,7 @@ def generate_classes ():
         root_namespace = get_root_namespace(definitions[class_name].namespace)
         trimmed_namespace = get_namespace_without_prefix(definitions[class_name].namespace)
         output_path = make_output_path(definitions[class_name].name, root_namespace, trimmed_namespace)
-        Path(f'../{root_namespace}/{trimmed_namespace}').mkdir(parents=True, exist_ok=True)
+        Path(f'../{root_namespace}/{trimmed_namespace}/Generated').mkdir(parents=True, exist_ok=True)
 
         output_file = open(output_path,"w")
         output_file.write(result)
@@ -101,7 +101,7 @@ def make_output_path (type_name, type_root_namespace, type_namespace):
 
     """
 
-    return f'../{type_root_namespace}/{type_namespace}/{type_name}.generated.cs'
+    return f'../{type_root_namespace}/{type_namespace}/Generated/{type_name}.generated.cs'
 
 generate_classes()
 generate_enums()

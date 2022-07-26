@@ -8,7 +8,7 @@ namespace Fox
     using UnityEngine;
     using UnityEditor;
     using FoxKit;
-    using String = Fox.FoxKernel.String;
+    using String = Fox.Kernel.String;
 
 
     /// <summary>

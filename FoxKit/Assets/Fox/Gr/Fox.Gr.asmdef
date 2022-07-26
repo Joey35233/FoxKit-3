@@ -1,0 +1,18 @@
+{
+    "name": "Fox.Gr",
+    "rootNamespace": "",
+    "references": [
+        "GUID:6215282ee75f28a44abd0d6e20f2a4a5",
+        "GUID:fb29eb41f6444e24e807a401c751ea0e",
+        "GUID:3e6e7090655bd8349aace8bb0ba74d58"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

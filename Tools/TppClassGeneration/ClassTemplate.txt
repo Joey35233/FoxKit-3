@@ -28,21 +28,21 @@ namespace {{ info.get_root_namespace() }}.{{ info.get_namespace_without_prefix()
         {%- endif %}
         {% endfor %}
         // PropertyInfo
-        private static Fox.EntityInfo classInfo;
-        public static {% if not info.is_root() %}new{% endif %} Fox.EntityInfo ClassInfo
+        private static Fox.Core.EntityInfo classInfo;
+        public static {% if not info.is_root() %}new{% endif %} Fox.Core.EntityInfo ClassInfo
         {
             get
             {
                 return classInfo;
             }
         }
-        public {% if info.is_root() %}virtual{% else %}override{% endif %} Fox.EntityInfo GetClassEntityInfo()
+        public {% if info.is_root() %}virtual{% else %}override{% endif %} Fox.Core.EntityInfo GetClassEntityInfo()
         {
             return classInfo;
         }
         static {{ info.name }}()
         {
-            classInfo = new Fox.EntityInfo("{{ info.name }}", typeof({{ info.name }}), {{ info.get_parent_entity_info_string() }}, {{ info.id }}, {{ info.get_category_string() }}, {{ info.version }});
+            classInfo = new Fox.Core.EntityInfo("{{ info.name }}", typeof({{ info.name }}), {{ info.get_parent_entity_info_string() }}, {{ info.id }}, {{ info.get_category_string() }}, {{ info.version }});
 			{%- for property_name in info.properties %}
 			{{ info.properties[property_name].get_property_info_instantiation_string() }}
 			{%- endfor %}
