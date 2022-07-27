@@ -11,7 +11,6 @@ namespace Fox.Core
 {
     public class DataSetFile2Reader
     {
-        private static readonly EntityFactory entityFactory = new EntityFactory();
         private IDictionary<ulong, string> stringTable;
         private IDictionary<ulong, Action<Entity>> entityPtrSetRequests = new Dictionary<ulong, Action<Entity>>();
         private IDictionary<ulong, HashSet<Action<Entity>>> entityHandleSetRequests = new Dictionary<ulong, HashSet<Action<Entity>>>();
@@ -89,9 +88,9 @@ namespace Fox.Core
             }
         }
 
-        private Entity CreateEntity(ulong classNameHash, ushort version, ulong id)
+        private Entity CreateEntity(ulong classNameHash)
         {
-            return entityFactory.Create(this.stringTable[classNameHash], version, id);
+            return EntityInfo.ConstructEntity(classNameHash);
         }
 
         private void ResolveRequests(IDictionary<ulong, Entity> entities, IDictionary<ulong, GameObject> gameObjects)

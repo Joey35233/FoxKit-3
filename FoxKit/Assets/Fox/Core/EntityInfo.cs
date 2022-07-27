@@ -11,7 +11,9 @@ namespace Fox.Core
     /// </summary>
     public sealed class EntityInfo
     {
-        private static readonly Dictionary<Type, EntityInfo> EntityInfos = new Dictionary<Type, EntityInfo>();
+        private static readonly Dictionary<Type, EntityInfo> EntityInfoMap = new Dictionary<Type, EntityInfo>();
+        
+        private static readonly Dictionary<ulong, EntityInfo> EntityInfoNameMap = new Dictionary<ulong, EntityInfo>();
 
         public static EntityInfo GetEntityInfo<T>()
         {
@@ -19,10 +21,35 @@ namespace Fox.Core
         }
         public static EntityInfo GetEntityInfo(Type type)
         {
-            return EntityInfos.TryGetValue(type, out var entityInfo) ? entityInfo : null;
+            return EntityInfoMap.TryGetValue(type, out var entityInfo) ? entityInfo : null;
+        }
+        public static EntityInfo GetEntityInfo(uint name)
+        {
+            return EntityInfoNameMap.TryGetValue(name, out var entityInfo) ? entityInfo : null;
         }
 
-        public EntityInfo(string name, Type type, EntityInfo super, short id, string category, ushort version)
+        public static Entity ConstructEntity(Type type)
+        {
+            return ConstructEntity(GetEntityInfo(type));
+        }
+        public static Entity ConstructEntity(ulong hash)
+        {
+            return ConstructEntity(EntityInfoNameMap.TryGetValue(hash, out var entityInfo) ? entityInfo : null);
+        }
+        public static Entity ConstructEntity(EntityInfo entityInfo)
+        {
+            try
+            {
+                return Activator.CreateInstance(entityInfo.Type) as Entity;
+            }
+            catch
+            {
+                System.Diagnostics.Debugger.Break();
+                return null;
+            }
+        }
+
+        public EntityInfo(String name, Type type, EntityInfo super, short id, string category, ushort version)
         {
             Name = name;
             Type = type;
@@ -43,7 +70,8 @@ namespace Fox.Core
                 superIterator = superIterator.Super;
             }
 
-            EntityInfos.Add(Type, this);
+            EntityInfoMap.Add(Type, this);
+            EntityInfoNameMap.Add(name.Hash.GetBacking(), this);
         }
 
         /// <summary>

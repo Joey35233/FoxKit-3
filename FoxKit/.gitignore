@@ -76,10 +76,3 @@ crashlytics-build.properties
 *.fox2.unity
 *.fox2.unity.meta
 /[Aa]ssets/Lib/*[Ff]mdl*/
-*.ftex
-*.ftex.meta
-*.1.ftexs
-*.1.ftexs.meta
-/[Aa]ssets/tpp
-/[Aa]ssets/tpp.meta
-/[Aa]ssets/fox.meta

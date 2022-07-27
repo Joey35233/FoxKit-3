@@ -24,7 +24,7 @@ namespace Fox.Core
             this.requestSetEntityHandle = requestSetEntityHandle ?? throw new ArgumentNullException(nameof(requestSetEntityHandle));
         }
 
-        public AddressedEntity Read(BinaryReader reader, Func<ulong, ushort, ulong, Entity> createEntity, Func<ulong, string> unhashString)
+        public AddressedEntity Read(BinaryReader reader, Func<ulong, Entity> createEntity, Func<ulong, string> unhashString)
         {
             var headerSize = reader.ReadUInt16(); Debug.Assert(headerSize == 0x40);
             reader.BaseStream.Position -= 2;
@@ -39,7 +39,7 @@ namespace Fox.Core
             var staticPropertyCount = BitConverter.ToUInt16(headerBytes, 36);
             var dynamicPropertyCount = BitConverter.ToUInt16(headerBytes, 38);
 
-            var entity = createEntity(classNameHash, version, id);
+            var entity = createEntity(classNameHash);
             var isReadingDynamicProperty = false;
 
             SetProperty setProperty = entity.SetProperty;
