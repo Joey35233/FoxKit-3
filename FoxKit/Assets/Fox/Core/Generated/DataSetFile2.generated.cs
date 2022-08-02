@@ -34,17 +34,17 @@ namespace Fox.Core
         }
         static DataSetFile2()
         {
-            classInfo = new Fox.Core.EntityInfo("DataSetFile2", typeof(DataSetFile2), new Fox.Core.EntityFile().GetClassEntityInfo(), 0, null, 0);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("dataSet", Fox.Core.PropertyInfo.PropertyType.EntityPtr, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.Never, typeof(Fox.Core.DataSet), null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Accessor));
+            classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("DataSetFile2"), typeof(DataSetFile2), new Fox.Core.EntityFile().GetClassEntityInfo(), 0, null, 0);
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("dataSet"), Fox.Core.PropertyInfo.PropertyType.EntityPtr, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.Never, typeof(Fox.Core.DataSet), null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Accessor));
         }
 
         // Constructors
 		public DataSetFile2(ulong id) : base(id) { }
 		public DataSetFile2() : base() { }
         
-        public override void SetProperty(string propertyName, Fox.Core.Value value)
+        public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
         {
-            switch(propertyName)
+            switch(propertyName.CString)
             {
                 default:
                     base.SetProperty(propertyName, value);
@@ -52,9 +52,9 @@ namespace Fox.Core
             }
         }
         
-        public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+        public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
         {
-            switch(propertyName)
+            switch(propertyName.CString)
             {
                 default:
                     base.SetPropertyElement(propertyName, index, value);
@@ -62,9 +62,9 @@ namespace Fox.Core
             }
         }
         
-        public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+        public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
         {
-            switch(propertyName)
+            switch(propertyName.CString)
             {
                 default:
                     base.SetPropertyElement(propertyName, key, value);

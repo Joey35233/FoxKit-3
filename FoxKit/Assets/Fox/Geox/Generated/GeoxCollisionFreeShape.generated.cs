@@ -43,20 +43,20 @@ namespace Fox.Geox
         }
         static GeoxCollisionFreeShape()
         {
-            classInfo = new Fox.Core.EntityInfo("GeoxCollisionFreeShape", typeof(GeoxCollisionFreeShape), new Fox.Core.TransformData().GetClassEntityInfo(), 416, "Geox", 0);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("collisionCategory", Fox.Core.PropertyInfo.PropertyType.Int32, 432, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, typeof(CollisionFreeShape_Category), Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("collisionMaterial", Fox.Core.PropertyInfo.PropertyType.String, 440, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("collisionAttributeNames", Fox.Core.PropertyInfo.PropertyType.String, 448, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("points", Fox.Core.PropertyInfo.PropertyType.Vector3, 304, 8, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+            classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("GeoxCollisionFreeShape"), typeof(GeoxCollisionFreeShape), new Fox.Core.TransformData().GetClassEntityInfo(), 416, "Geox", 0);
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("collisionCategory"), Fox.Core.PropertyInfo.PropertyType.Int32, 432, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, typeof(CollisionFreeShape_Category), Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("collisionMaterial"), Fox.Core.PropertyInfo.PropertyType.String, 440, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("collisionAttributeNames"), Fox.Core.PropertyInfo.PropertyType.String, 448, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("points"), Fox.Core.PropertyInfo.PropertyType.Vector3, 304, 8, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
         }
 
         // Constructors
 		public GeoxCollisionFreeShape(ulong id) : base(id) { }
 		public GeoxCollisionFreeShape() : base() { }
         
-        public override void SetProperty(string propertyName, Fox.Core.Value value)
+        public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
         {
-            switch(propertyName)
+            switch(propertyName.CString)
             {
                 case "collisionCategory":
                     this.collisionCategory = (CollisionFreeShape_Category)value.GetValueAsInt32();
@@ -70,9 +70,9 @@ namespace Fox.Geox
             }
         }
         
-        public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+        public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
         {
-            switch(propertyName)
+            switch(propertyName.CString)
             {
                 case "collisionAttributeNames":
                     while(this.collisionAttributeNames.Count <= index) { this.collisionAttributeNames.Add(default(Fox.Kernel.String)); }
@@ -88,9 +88,9 @@ namespace Fox.Geox
             }
         }
         
-        public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+        public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
         {
-            switch(propertyName)
+            switch(propertyName.CString)
             {
                 default:
                     base.SetPropertyElement(propertyName, key, value);

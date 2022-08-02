@@ -18,7 +18,7 @@ namespace Fox.Core
         /// </summary>
         private StringMap<DynamicProperty> DynamicProperties { get; } = new StringMap<DynamicProperty>();
 
-        public bool AddDynamicProperty(PropertyInfo.PropertyType type, string name, ushort arraySize, PropertyInfo.ContainerType container)
+        public bool AddDynamicProperty(PropertyInfo.PropertyType type, String name, ushort arraySize, PropertyInfo.ContainerType container)
         {
             if (HasPropertyWithName(this, name))
             {
@@ -36,7 +36,7 @@ namespace Fox.Core
         /// <param name="entity">The Entity.</param>
         /// <param name="name">The name of the property to find.</param>
         /// <returns>True if a static or dynamic property was found, else false.</returns>
-        private static bool HasPropertyWithName(Entity entity, string name)
+        private static bool HasPropertyWithName(Entity entity, String name)
         {
             var hasStaticProperty = EntityInfo.HasPropertyWithName(entity.GetClassEntityInfo(), name);
             if (hasStaticProperty)
@@ -44,8 +44,7 @@ namespace Fox.Core
                 return true;
             }
 
-            var foxName = new String(name);
-            return entity.DynamicProperties.ContainsKey(foxName);
+            return entity.DynamicProperties.ContainsKey(name);
         }
 
         /// <summary>

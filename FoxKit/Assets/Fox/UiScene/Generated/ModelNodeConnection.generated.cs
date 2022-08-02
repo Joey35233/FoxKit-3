@@ -37,9 +37,9 @@ namespace Fox.UiScene
         }
         static ModelNodeConnection()
         {
-            classInfo = new Fox.Core.EntityInfo("ModelNodeConnection", typeof(ModelNodeConnection), null, 0, null, 0);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("connectModelDataHandle", Fox.Core.PropertyInfo.PropertyType.EntityHandle, 8, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("connectModelNodeName", Fox.Core.PropertyInfo.PropertyType.String, 16, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+            classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("ModelNodeConnection"), typeof(ModelNodeConnection), null, 0, null, 0);
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("connectModelDataHandle"), Fox.Core.PropertyInfo.PropertyType.EntityHandle, 8, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("connectModelNodeName"), Fox.Core.PropertyInfo.PropertyType.String, 16, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
         }
 
         // Constructors
@@ -49,9 +49,9 @@ namespace Fox.UiScene
             
         }
         
-        public virtual void SetProperty(string propertyName, Fox.Core.Value value)
+        public virtual void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
         {
-            switch(propertyName)
+            switch(propertyName.CString)
             {
                 case "connectModelDataHandle":
                     this.connectModelDataHandle = value.GetValueAsEntityHandle();
@@ -60,25 +60,25 @@ namespace Fox.UiScene
                     this.connectModelNodeName = value.GetValueAsString();
                     return;
                 default:
-                    throw new CsSystem.MissingMemberException("Unrecognized property", propertyName);
+                    throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
             }
         }
         
-        public virtual void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+        public virtual void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
         {
-            switch(propertyName)
+            switch(propertyName.CString)
             {
                 default:
-                    throw new CsSystem.MissingMemberException("Unrecognized property", propertyName);
+                    throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
             }
         }
         
-        public virtual void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+        public virtual void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
         {
-            switch(propertyName)
+            switch(propertyName.CString)
             {
                 default:
-                    throw new CsSystem.MissingMemberException("Unrecognized property", propertyName);
+                    throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
             }
         }
     }

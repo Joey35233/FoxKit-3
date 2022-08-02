@@ -31,16 +31,16 @@ namespace Fox.Geo
         }
         static RailUniqueIdFile()
         {
-            classInfo = new Fox.Core.EntityInfo("RailUniqueIdFile", typeof(RailUniqueIdFile), new Fox.Core.RawFile().GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("RailUniqueIdFile"), typeof(RailUniqueIdFile), new Fox.Core.RawFile().GetClassEntityInfo(), 0, null, 0);
         }
 
         // Constructors
 		public RailUniqueIdFile(ulong id) : base(id) { }
 		public RailUniqueIdFile() : base() { }
         
-        public override void SetProperty(string propertyName, Fox.Core.Value value)
+        public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
         {
-            switch(propertyName)
+            switch(propertyName.CString)
             {
                 default:
                     base.SetProperty(propertyName, value);
@@ -48,9 +48,9 @@ namespace Fox.Geo
             }
         }
         
-        public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+        public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
         {
-            switch(propertyName)
+            switch(propertyName.CString)
             {
                 default:
                     base.SetPropertyElement(propertyName, index, value);
@@ -58,9 +58,9 @@ namespace Fox.Geo
             }
         }
         
-        public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+        public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
         {
-            switch(propertyName)
+            switch(propertyName.CString)
             {
                 default:
                     base.SetPropertyElement(propertyName, key, value);

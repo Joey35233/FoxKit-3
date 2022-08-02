@@ -34,17 +34,17 @@ namespace Fox.Geox
         }
         static GeoxPartsTargetUnit()
         {
-            classInfo = new Fox.Core.EntityInfo("GeoxPartsTargetUnit", typeof(GeoxPartsTargetUnit), new Fox.Core.Data().GetClassEntityInfo(), 0, "Target", 0);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("objectArray", Fox.Core.PropertyInfo.PropertyType.EntityPtr, 120, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, typeof(Fox.Geox.GeoxPartsTargetObject), null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+            classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("GeoxPartsTargetUnit"), typeof(GeoxPartsTargetUnit), new Fox.Core.Data().GetClassEntityInfo(), 0, "Target", 0);
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("objectArray"), Fox.Core.PropertyInfo.PropertyType.EntityPtr, 120, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, typeof(Fox.Geox.GeoxPartsTargetObject), null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
         }
 
         // Constructors
 		public GeoxPartsTargetUnit(ulong id) : base(id) { }
 		public GeoxPartsTargetUnit() : base() { }
         
-        public override void SetProperty(string propertyName, Fox.Core.Value value)
+        public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
         {
-            switch(propertyName)
+            switch(propertyName.CString)
             {
                 default:
                     base.SetProperty(propertyName, value);
@@ -52,9 +52,9 @@ namespace Fox.Geox
             }
         }
         
-        public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+        public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
         {
-            switch(propertyName)
+            switch(propertyName.CString)
             {
                 case "objectArray":
                     while(this.objectArray.Count <= index) { this.objectArray.Add(default(Fox.Core.EntityPtr<Fox.Geox.GeoxPartsTargetObject>)); }
@@ -66,9 +66,9 @@ namespace Fox.Geox
             }
         }
         
-        public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+        public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
         {
-            switch(propertyName)
+            switch(propertyName.CString)
             {
                 default:
                     base.SetPropertyElement(propertyName, key, value);

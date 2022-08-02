@@ -34,17 +34,17 @@ namespace Fox.Geox
         }
         static GeoxPathEdge()
         {
-            classInfo = new Fox.Core.EntityInfo("GeoxPathEdge", typeof(GeoxPathEdge), new Fox.Graphx.GraphxSpatialGraphDataEdge().GetClassEntityInfo(), 56, "Geox", 0);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("edgeTags", Fox.Core.PropertyInfo.PropertyType.String, 72, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+            classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("GeoxPathEdge"), typeof(GeoxPathEdge), new Fox.Graphx.GraphxSpatialGraphDataEdge().GetClassEntityInfo(), 56, "Geox", 0);
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("edgeTags"), Fox.Core.PropertyInfo.PropertyType.String, 72, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
         }
 
         // Constructors
 		public GeoxPathEdge(ulong id) : base(id) { }
 		public GeoxPathEdge() : base() { }
         
-        public override void SetProperty(string propertyName, Fox.Core.Value value)
+        public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
         {
-            switch(propertyName)
+            switch(propertyName.CString)
             {
                 default:
                     base.SetProperty(propertyName, value);
@@ -52,9 +52,9 @@ namespace Fox.Geox
             }
         }
         
-        public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+        public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
         {
-            switch(propertyName)
+            switch(propertyName.CString)
             {
                 case "edgeTags":
                     while(this.edgeTags.Count <= index) { this.edgeTags.Add(default(Fox.Kernel.String)); }
@@ -66,9 +66,9 @@ namespace Fox.Geox
             }
         }
         
-        public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+        public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
         {
-            switch(propertyName)
+            switch(propertyName.CString)
             {
                 default:
                     base.SetPropertyElement(propertyName, key, value);

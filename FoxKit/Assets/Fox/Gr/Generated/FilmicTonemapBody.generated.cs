@@ -31,16 +31,16 @@ namespace Fox.Gr
         }
         static FilmicTonemapBody()
         {
-            classInfo = new Fox.Core.EntityInfo("FilmicTonemapBody", typeof(FilmicTonemapBody), new Fox.Core.DataBody().GetClassEntityInfo(), 0, null, 1);
+            classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("FilmicTonemapBody"), typeof(FilmicTonemapBody), new Fox.Core.DataBody().GetClassEntityInfo(), 0, null, 1);
         }
 
         // Constructors
 		public FilmicTonemapBody(ulong id) : base(id) { }
 		public FilmicTonemapBody() : base() { }
         
-        public override void SetProperty(string propertyName, Fox.Core.Value value)
+        public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
         {
-            switch(propertyName)
+            switch(propertyName.CString)
             {
                 default:
                     base.SetProperty(propertyName, value);
@@ -48,9 +48,9 @@ namespace Fox.Gr
             }
         }
         
-        public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+        public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
         {
-            switch(propertyName)
+            switch(propertyName.CString)
             {
                 default:
                     base.SetPropertyElement(propertyName, index, value);
@@ -58,9 +58,9 @@ namespace Fox.Gr
             }
         }
         
-        public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+        public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
         {
-            switch(propertyName)
+            switch(propertyName.CString)
             {
                 default:
                     base.SetPropertyElement(propertyName, key, value);

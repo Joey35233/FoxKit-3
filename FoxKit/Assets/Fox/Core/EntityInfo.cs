@@ -13,7 +13,7 @@ namespace Fox.Core
     {
         private static readonly Dictionary<Type, EntityInfo> EntityInfoMap = new Dictionary<Type, EntityInfo>();
         
-        private static readonly Dictionary<ulong, EntityInfo> EntityInfoNameMap = new Dictionary<ulong, EntityInfo>();
+        private static readonly StringMap<EntityInfo> EntityInfoNameMap = new StringMap<EntityInfo>();
 
         public static EntityInfo GetEntityInfo<T>()
         {
@@ -23,7 +23,7 @@ namespace Fox.Core
         {
             return EntityInfoMap.TryGetValue(type, out var entityInfo) ? entityInfo : null;
         }
-        public static EntityInfo GetEntityInfo(uint name)
+        public static EntityInfo GetEntityInfo(String name)
         {
             return EntityInfoNameMap.TryGetValue(name, out var entityInfo) ? entityInfo : null;
         }
@@ -32,21 +32,13 @@ namespace Fox.Core
         {
             return ConstructEntity(GetEntityInfo(type));
         }
-        public static Entity ConstructEntity(ulong hash)
+        public static Entity ConstructEntity(String name)
         {
-            return ConstructEntity(EntityInfoNameMap.TryGetValue(hash, out var entityInfo) ? entityInfo : null);
+            return ConstructEntity(GetEntityInfo(name));
         }
         public static Entity ConstructEntity(EntityInfo entityInfo)
         {
-            try
-            {
-                return Activator.CreateInstance(entityInfo.Type) as Entity;
-            }
-            catch
-            {
-                System.Diagnostics.Debugger.Break();
-                return null;
-            }
+            return Activator.CreateInstance(entityInfo.Type) as Entity;
         }
 
         public EntityInfo(String name, Type type, EntityInfo super, short id, string category, ushort version)
@@ -71,7 +63,7 @@ namespace Fox.Core
             }
 
             EntityInfoMap.Add(Type, this);
-            EntityInfoNameMap.Add(name.Hash.GetBacking(), this);
+            EntityInfoNameMap.Insert(name, this);
         }
 
         /// <summary>
@@ -139,8 +131,7 @@ namespace Fox.Core
         {
             while (entityInfo != null)
             {
-                var foxName = new String(name);
-                if (entityInfo.StaticProperties.ContainsKey(foxName))
+                if (entityInfo.StaticProperties.ContainsKey(name))
                 {
                     return true;
                 }
@@ -171,7 +162,7 @@ namespace Fox.Core
 
         public override string ToString()
         {
-            return this.Name;
+            return this.Name.ToString();
         }
     }
 }

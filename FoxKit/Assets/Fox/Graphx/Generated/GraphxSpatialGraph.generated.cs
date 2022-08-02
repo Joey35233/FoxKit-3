@@ -31,16 +31,16 @@ namespace Fox.Graphx
         }
         static GraphxSpatialGraph()
         {
-            classInfo = new Fox.Core.EntityInfo("GraphxSpatialGraph", typeof(GraphxSpatialGraph), new Fox.Core.TransformDataBody().GetClassEntityInfo(), 0, "Graphx", 0);
+            classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("GraphxSpatialGraph"), typeof(GraphxSpatialGraph), new Fox.Core.TransformDataBody().GetClassEntityInfo(), 0, "Graphx", 0);
         }
 
         // Constructors
 		public GraphxSpatialGraph(ulong id) : base(id) { }
 		public GraphxSpatialGraph() : base() { }
         
-        public override void SetProperty(string propertyName, Fox.Core.Value value)
+        public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
         {
-            switch(propertyName)
+            switch(propertyName.CString)
             {
                 default:
                     base.SetProperty(propertyName, value);
@@ -48,9 +48,9 @@ namespace Fox.Graphx
             }
         }
         
-        public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+        public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
         {
-            switch(propertyName)
+            switch(propertyName.CString)
             {
                 default:
                     base.SetPropertyElement(propertyName, index, value);
@@ -58,9 +58,9 @@ namespace Fox.Graphx
             }
         }
         
-        public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+        public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
         {
-            switch(propertyName)
+            switch(propertyName.CString)
             {
                 default:
                     base.SetPropertyElement(propertyName, key, value);

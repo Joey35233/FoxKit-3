@@ -1,11 +1,10 @@
-﻿using Fox.Kernel;
+﻿using System;
+using Fox.Kernel;
 using String = Fox.Kernel.String;
+using UnityEngine;
 
 namespace Fox
 {
-    using System;
-    using UnityEngine;
-
     [Serializable]
     public sealed class ScaledLocatorBinary
     {

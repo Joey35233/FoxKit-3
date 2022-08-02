@@ -58,14 +58,14 @@ def generate_classes ():
         output_file.write(result)
         output_file.close()
 
-    # Generate EntityFactory
-    entity_factory_template_file = open(entity_factory_template_path, "r")
-    entity_factory_template = Template(entity_factory_template_file.read())
-    result = entity_factory_template.render(info = definitions)
+    ## Generate EntityFactory
+    #entity_factory_template_file = open(entity_factory_template_path, "r")
+    #entity_factory_template = Template(entity_factory_template_file.read())
+    #result = entity_factory_template.render(info = definitions)
 
-    output_file = open(f'../EntityFactory.generated.cs', "w")
-    output_file.write(result)
-    output_file.close()
+    #output_file = open(f'../EntityFactory.generated.cs', "w")
+    #output_file.write(result)
+    #output_file.close()
 
 def generate_enums ():
     template_file = open(enum_template_path, "r")

@@ -1,15 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using UnityEngine;
 
 namespace Fox.Kernel
 {
     [Serializable, StructLayout(LayoutKind.Explicit, Size = 16, CharSet = CharSet.Ansi)]
-#pragma warning disable CS0660 // Type defines operator == or operator != but does not override Object.Equals(object o)
-#pragma warning disable CS0661 // Type defines operator == or operator != but does not override Object.GetHashCode()
-    public class Path
-#pragma warning restore CS0661 // Type defines operator == or operator != but does not override Object.GetHashCode()
-#pragma warning restore CS0660 // Type defines operator == or operator != but does not override Object.Equals(object o)
+    public class Path : IEquatable<string>
     {
         [SerializeField, FieldOffset(0)]
         private string _cString;
@@ -26,34 +23,35 @@ namespace Fox.Kernel
         }
 
         [SerializeField, FieldOffset(12)]
-        private PathFileNameCode _hash;
-        public PathFileNameCode Hash
+        private PathFileNameAndExtCode _hash;
+        public PathFileNameAndExtCode Hash
         {
             get => _hash;
         }
 
+        //public PathFileNameAndExtCode Hash32 => (StrCode32)Hash;
+
         /// <summary>
-        /// The empty path.
+        /// The empty string.
         /// </summary>
-        private static Path _empty;
-        public static Path Empty
-        {
-            get => new Path { _cString = _empty.CString, _length = _empty.Length, _hash = _empty.Hash };
-        }
+        public static Path Empty { get; }
 
         static Path()
         {
-            _empty = new Path
+            Empty = new Path
             {
                 _cString = string.Empty,
                 _length = 0,
-                _hash = new PathFileNameCode(string.Empty)
+                _hash = new PathFileNameAndExtCode(string.Empty)
             };
         }
 
         private Path()
         {
+
         }
+
+        public Path(ReadOnlySpan<char> value) : this(new string(value)) { }
 
         public Path(string name)
         {
@@ -61,7 +59,7 @@ namespace Fox.Kernel
             {
                 this._cString = name;
                 this._length = name.Length;
-                this._hash = new PathFileNameCode(name);
+                this._hash = new PathFileNameAndExtCode(name);
             }
             else
             {
@@ -71,19 +69,56 @@ namespace Fox.Kernel
             }
         }
 
-        public static bool operator ==(Path a, Path b)
+        public Path(PathFileNameAndExtCode hash)
         {
-            return a.Hash == b.Hash;
+            this._cString = null;
+            this._length = -1;
+            this._hash = hash;
         }
 
+        public bool IsPseudoNull() => (Length == 0) && (Hash == 0);
+
+        public bool IsHashed() => (Length == 0) && (Hash != Empty.Hash);
+
+        public override string ToString()
+        {
+            return IsHashed() ? Hash.ToString() : CString;
+        }
+
+        // Kernel.Path
+        public static bool operator ==(Path a, Path b)
+        {
+            return a?.Hash == b?.Hash;
+        }
         public static bool operator !=(Path a, Path b)
         {
             return !(a == b);
         }
 
-        internal static Path FromFilePath(string v)
+        // System.String comparisons
+        public static bool operator ==(Path a, string b)
         {
-            return new Path(v);
+            return a?.Hash == new PathFileNameAndExtCode(b);
+        }
+        public static bool operator !=(Path a, string b)
+        {
+            return !(a == b);
+        }
+
+        // Generic overrides
+        public override bool Equals(object obj)
+        {
+            return obj is Path rhs && this == rhs;
+        }
+
+        public override int GetHashCode()
+        {
+            return unchecked((int)Hash.GetHashCode());
+        }
+
+        public bool Equals(string other)
+        {
+            return Hash == new PathFileNameAndExtCode(other);
         }
     }
 }

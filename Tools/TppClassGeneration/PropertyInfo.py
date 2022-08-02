@@ -267,7 +267,7 @@ class PropertyInfo:
         enum_str = "null"
         if self.enum_type:
             enum_str = f'typeof({self.enum_type})'
-        return f'classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("{self.name}", Fox.Core.PropertyInfo.PropertyType.{self.get_value_getter_type_string()}, {self.offset}, {self.array_size}, Fox.Core.PropertyInfo.ContainerType.{self.container}, {self.get_readable_string()}, {self.get_writable_string()}, {self.get_entity_ptr_type_string()}, {enum_str}, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.{"Accessor" if self.is_accessor_property() else "Field"}));'
+        return f'classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("{self.name}"), Fox.Core.PropertyInfo.PropertyType.{self.get_value_getter_type_string()}, {self.offset}, {self.array_size}, Fox.Core.PropertyInfo.ContainerType.{self.container}, {self.get_readable_string()}, {self.get_writable_string()}, {self.get_entity_ptr_type_string()}, {enum_str}, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.{"Accessor" if self.is_accessor_property() else "Field"}));'
 
     def is_collection_property(self):
         """Gets whether or not the property is a collection property.

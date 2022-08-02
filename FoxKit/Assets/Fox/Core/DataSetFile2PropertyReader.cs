@@ -3,6 +3,7 @@ using Fox.Core;
 using System;
 using System.IO;
 using UnityEngine;
+using String = Fox.Kernel.String;
 using Path = Fox.Kernel.Path;
 using Debug = UnityEngine.Debug;
 using Quaternion = UnityEngine.Quaternion;
@@ -14,7 +15,7 @@ namespace Fox.FoxCore.Serialization
 {
     public class DataSetFile2PropertyReader
     {
-        private Func<ulong, string> unhashString;
+        private Func<StrCode, String> unhashString;
         private RequestSetEntityPtr requestSetEntityPtr;
         private RequestSetEntityHandle requestSetEntityHandle;
 
@@ -23,9 +24,9 @@ namespace Fox.FoxCore.Serialization
         /// </summary>
         /// <param name="propertyName">Name of the property whose value to set.</param>
         /// <param name="value">The value to assign to the property.</param>
-        public delegate void SetProperty(string propertyName, Value value);
+        public delegate void SetProperty(String propertyName, Value value);
 
-        public delegate Type GetPtrType(string propertyName);
+        public delegate Type GetPtrType(String propertyName);
 
         /// <summary>
         /// Sets the value of an array property at a given index.
@@ -33,7 +34,7 @@ namespace Fox.FoxCore.Serialization
         /// <param name="propertyName">Name of the property whose value to set.</param>
         /// <param name="index">The array index.</param>
         /// <param name="value">The value to assign to the property.</param>
-        public delegate void SetPropertyElementByIndex(string propertyName, ushort index, Value value);
+        public delegate void SetPropertyElementByIndex(String propertyName, ushort index, Value value);
 
         /// <summary>
         /// Sets the value of a StringMap property at a given key.
@@ -41,7 +42,7 @@ namespace Fox.FoxCore.Serialization
         /// <param name="propertyName">Name of the property whose value to set.</param>
         /// <param name="key">The StringMap key.</param>
         /// <param name="value">The value to assign to the property.</param>
-        public delegate void SetPropertyElementByKey(string propertyName, string key, Value value);
+        public delegate void SetPropertyElementByKey(String propertyName, String key, Value value);
 
         public delegate void RequestSetEntityPtr(ulong address, Action<Entity> setEntityPtr);
         public delegate void RequestSetEntityHandle(ulong address, Action<Entity> setEntityHandle);
@@ -53,12 +54,12 @@ namespace Fox.FoxCore.Serialization
         /// <param name="name">Unhashed name of the property.</param>
         /// <param name="arraySize">ArraySize of the property. Must be 1 unless a StaticArray.</param>
         /// <param name="container">Container type of the property.</param>
-        public delegate void OnPropertyNameUnhashedCallback(PropertyInfo.PropertyType type, string name, ushort arraySize, PropertyInfo.ContainerType container);
+        public delegate void OnPropertyNameUnhashedCallback(PropertyInfo.PropertyType type, String name, ushort arraySize, PropertyInfo.ContainerType container);
 
         public delegate void RequestEntityLink(ulong address, ulong packagePath, ulong archivePath, ulong nameInArchive, EntityLink entityLink);
 
         public DataSetFile2PropertyReader(
-            Func<ulong, string> unhashString,
+            Func<StrCode, String> unhashString,
             RequestSetEntityPtr requestEntityPtr,
             RequestSetEntityHandle requestEntityHandle)
         {
@@ -81,13 +82,13 @@ namespace Fox.FoxCore.Serialization
             Debug.Assert(setPropertyElementByIndex != null);
             Debug.Assert(setPropertyElementByKey != null);
 
-            var headerBytes = reader.ReadBytes(32);
-            var nameHash = BitConverter.ToUInt64(headerBytes, 0);
-            var dataType = (PropertyInfo.PropertyType)headerBytes[8];
-            var containerType = (PropertyInfo.ContainerType)headerBytes[9];
-            var arraySize = BitConverter.ToUInt16(headerBytes, 10);
+            byte[] headerBytes = reader.ReadBytes(32);
+            StrCode nameHash = HashingBitConverter.ToStrCode(headerBytes, 0);
+            PropertyInfo.PropertyType dataType = (PropertyInfo.PropertyType)headerBytes[8];
+            PropertyInfo.ContainerType containerType = (PropertyInfo.ContainerType)headerBytes[9];
+            ushort arraySize = BitConverter.ToUInt16(headerBytes, 10);
 
-            var name = this.unhashString(nameHash);
+            String name = this.unhashString(nameHash);
             onPropertyNameUnhashed(dataType, name, containerType == PropertyInfo.ContainerType.StaticArray ? arraySize : (ushort)1, containerType);
 
             var ptrType = getPtrType(name);
@@ -108,7 +109,7 @@ namespace Fox.FoxCore.Serialization
             reader.BaseStream.AlignRead(16);
         }
 
-        private void ReadArray(BinaryReader reader, SetPropertyElementByIndex setPropertyElementByIndex, string name, PropertyInfo.PropertyType dataType, Type ptrType, ushort arraySize)
+        private void ReadArray(BinaryReader reader, SetPropertyElementByIndex setPropertyElementByIndex, String name, PropertyInfo.PropertyType dataType, Type ptrType, ushort arraySize)
         {
             for (ushort i = 0; i < arraySize; i++)
             {
@@ -136,11 +137,11 @@ namespace Fox.FoxCore.Serialization
             }
         }
 
-        private void ReadStringMap(BinaryReader reader, SetPropertyElementByKey setPropertyElementByKey, string name, PropertyInfo.PropertyType dataType, Type ptrType, ushort arraySize)
+        private void ReadStringMap(BinaryReader reader, SetPropertyElementByKey setPropertyElementByKey, String name, PropertyInfo.PropertyType dataType, Type ptrType, ushort arraySize)
         {
             for (var i = 0; i < arraySize; i++)
             {
-                var keyHash = reader.ReadUInt64();
+                StrCode keyHash = reader.ReadStrCode();
                 var key = unhashString(keyHash);
 
                 // Entity references can't be resolved until the referenced Entity is loaded.
@@ -168,7 +169,7 @@ namespace Fox.FoxCore.Serialization
             }
         }
 
-        private void ReadProperty(BinaryReader reader, SetProperty setProperty, string name, PropertyInfo.PropertyType dataType, Type ptrType)
+        private void ReadProperty(BinaryReader reader, SetProperty setProperty, String name, PropertyInfo.PropertyType dataType, Type ptrType)
         {
             // Entity references can't be resolved until the referenced Entity is loaded.
             // Register a callback to assign the property value once the Entity has been loaded.
@@ -191,24 +192,24 @@ namespace Fox.FoxCore.Serialization
             }
         }
 
-        private void ReadEntityLink(BinaryReader reader, SetProperty setProperty, string name)
+        private void ReadEntityLink(BinaryReader reader, SetProperty setProperty, String name)
         {
             var bytes = reader.ReadBytes(32);
-            var packagePathHash = BitConverter.ToUInt64(bytes, 0);
-            var archivePathHash = BitConverter.ToUInt64(bytes, 8);
-            var nameInArchiveHash = BitConverter.ToUInt64(bytes, 16);
+            var packagePathHash = HashingBitConverter.ToStrCode(bytes, 0);
+            var archivePathHash = HashingBitConverter.ToStrCode(bytes, 8);
+            var nameInArchiveHash = HashingBitConverter.ToStrCode(bytes, 16);
             var address = BitConverter.ToUInt64(bytes, 24);
 
-            requestSetEntityHandle(address, (Entity ptr) => setProperty(name, new Value(new EntityLink(EntityHandle.Get(ptr), new Path(unhashString(packagePathHash)), new Path(unhashString(archivePathHash)), unhashString(nameInArchiveHash)))));
+            requestSetEntityHandle(address, (Entity ptr) => setProperty(name, new Value(new EntityLink(EntityHandle.Get(ptr), new Path(unhashString(packagePathHash).CString), new Path(unhashString(archivePathHash).CString), unhashString(nameInArchiveHash)))));
         }
 
-        private void ReadEntityHandle(BinaryReader reader, SetProperty setProperty, string name)
+        private void ReadEntityHandle(BinaryReader reader, SetProperty setProperty, String name)
         {
             var address = reader.ReadUInt64();
             requestSetEntityHandle(address, (Entity ptr) => setProperty(name, new Value(EntityHandle.Get(ptr))));
         }
 
-        private void ReadEntityPtr(BinaryReader reader, SetProperty setProperty, Type ptrType, string name)
+        private void ReadEntityPtr(BinaryReader reader, SetProperty setProperty, Type ptrType, String name)
         {
             var address = reader.ReadUInt64();
             requestSetEntityPtr(address, (Entity ptr) => { var entityPtr = Activator.CreateInstance(typeof(EntityPtr<>).MakeGenericType(ptrType)) as IEntityPtr; entityPtr.Reset(ptr); setProperty(name, new Value(entityPtr)); });
@@ -241,11 +242,11 @@ namespace Fox.FoxCore.Serialization
                 case PropertyInfo.PropertyType.Bool:
                     return new Value(reader.ReadBoolean());
                 case PropertyInfo.PropertyType.String:
-                    return new Value(unhashString(reader.ReadUInt64()));
+                    return new Value(unhashString(reader.ReadStrCode()));
                 case PropertyInfo.PropertyType.Path:
-                    return new Value(new Path(unhashString(reader.ReadUInt64())));
+                    return new Value(new Path(unhashString(reader.ReadStrCode()).CString));
                 case PropertyInfo.PropertyType.FilePtr:
-                    return new Value(new FilePtr(unhashString(reader.ReadUInt64())));
+                    return new Value(new FilePtr(unhashString(reader.ReadStrCode()).CString));
                 case PropertyInfo.PropertyType.Vector3:
                     return new Value(ReadVector3(reader));
                 case PropertyInfo.PropertyType.Vector4:

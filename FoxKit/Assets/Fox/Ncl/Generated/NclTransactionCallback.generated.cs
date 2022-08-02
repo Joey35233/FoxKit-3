@@ -31,7 +31,7 @@ namespace Fox.Ncl
         }
         static NclTransactionCallback()
         {
-            classInfo = new Fox.Core.EntityInfo("NclTransactionCallback", typeof(NclTransactionCallback), null, 0, null, 0);
+            classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("NclTransactionCallback"), typeof(NclTransactionCallback), null, 0, null, 0);
         }
 
         // Constructors
@@ -41,30 +41,30 @@ namespace Fox.Ncl
             
         }
         
-        public virtual void SetProperty(string propertyName, Fox.Core.Value value)
+        public virtual void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
         {
-            switch(propertyName)
+            switch(propertyName.CString)
             {
                 default:
-                    throw new CsSystem.MissingMemberException("Unrecognized property", propertyName);
+                    throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
             }
         }
         
-        public virtual void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+        public virtual void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
         {
-            switch(propertyName)
+            switch(propertyName.CString)
             {
                 default:
-                    throw new CsSystem.MissingMemberException("Unrecognized property", propertyName);
+                    throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
             }
         }
         
-        public virtual void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+        public virtual void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
         {
-            switch(propertyName)
+            switch(propertyName.CString)
             {
                 default:
-                    throw new CsSystem.MissingMemberException("Unrecognized property", propertyName);
+                    throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
             }
         }
     }

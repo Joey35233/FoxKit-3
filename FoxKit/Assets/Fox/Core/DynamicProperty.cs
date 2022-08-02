@@ -1,4 +1,5 @@
 ﻿using System;
+using String = Fox.Kernel.String;
 
 namespace Fox.Core
 {
@@ -22,7 +23,7 @@ namespace Fox.Core
         {
             throw new NotImplementedException();
         }
-        internal void SetElement(string key, Value value)
+        internal void SetElement(String key, Value value)
         {
             throw new NotImplementedException();
         }

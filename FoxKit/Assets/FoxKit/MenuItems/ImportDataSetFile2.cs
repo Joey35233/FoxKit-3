@@ -39,7 +39,7 @@ namespace FoxKit.MenuItems
                 // Name the GameObject
                 if (entity is Data)
                 {
-                    gameObject.name = (entity as Data).name;
+                    gameObject.name = (entity as Data).name.CString;
                 }
                 else
                 {

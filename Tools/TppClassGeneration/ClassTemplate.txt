@@ -42,7 +42,7 @@ namespace {{ info.get_root_namespace() }}.{{ info.get_namespace_without_prefix()
         }
         static {{ info.name }}()
         {
-            classInfo = new Fox.Core.EntityInfo("{{ info.name }}", typeof({{ info.name }}), {{ info.get_parent_entity_info_string() }}, {{ info.id }}, {{ info.get_category_string() }}, {{ info.version }});
+            classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("{{ info.name }}"), typeof({{ info.name }}), {{ info.get_parent_entity_info_string() }}, {{ info.id }}, {{ info.get_category_string() }}, {{ info.version }});
 			{%- for property_name in info.properties %}
 			{{ info.properties[property_name].get_property_info_instantiation_string() }}
 			{%- endfor %}
@@ -59,9 +59,9 @@ namespace {{ info.get_root_namespace() }}.{{ info.get_namespace_without_prefix()
             this.Id = 0;{% endif %}
         }{% endif %}
         
-        public {% if info.is_root() %}virtual{% else %}override{% endif %} void SetProperty(string propertyName, Fox.Core.Value value)
+        public {% if info.is_root() %}virtual{% else %}override{% endif %} void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
         {
-            switch(propertyName)
+            switch(propertyName.CString)
             {
                 {% for property_name in info.get_non_collection_properties() -%}
                 {%- if info.properties[property_name].has_public_set() or not info.properties[property_name].is_accessor_property() -%}
@@ -77,14 +77,14 @@ namespace {{ info.get_root_namespace() }}.{{ info.get_namespace_without_prefix()
 						return;
 					}
 					{%- endif %}
-                    {% if info.is_root() %}throw new CsSystem.MissingMemberException("Unrecognized property", propertyName);{% else %}base.SetProperty(propertyName, value);
+                    {% if info.is_root() %}throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());{% else %}base.SetProperty(propertyName, value);
                     return;{%- endif %}
             }
         }
         
-        public {% if info.is_root() %}virtual{% else %}override{% endif %} void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+        public {% if info.is_root() %}virtual{% else %}override{% endif %} void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
         {
-            switch(propertyName)
+            switch(propertyName.CString)
             {
                 {% for property_name in info.get_array_properties() -%}
                 case "{{ info.properties[property_name].get_safe_name() }}":
@@ -99,14 +99,14 @@ namespace {{ info.get_root_namespace() }}.{{ info.get_namespace_without_prefix()
 						return;
 					}
 					{%- endif %}
-                    {% if info.is_root() %}throw new CsSystem.MissingMemberException("Unrecognized property", propertyName);{% else %}base.SetPropertyElement(propertyName, index, value);
+                    {% if info.is_root() %}throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());{% else %}base.SetPropertyElement(propertyName, index, value);
                     return;{%- endif %}
             }
         }
         
-        public {% if info.is_root() %}virtual{% else %}override{% endif %} void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+        public {% if info.is_root() %}virtual{% else %}override{% endif %} void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
         {
-            switch(propertyName)
+            switch(propertyName.CString)
             {
                 {% for property_name in info.get_string_map_properties() -%}
                 case "{{ info.properties[property_name].get_safe_name() }}":
@@ -120,7 +120,7 @@ namespace {{ info.get_root_namespace() }}.{{ info.get_namespace_without_prefix()
 						return;
 					}
 					{%- endif %}
-                    {% if info.is_root() %}throw new CsSystem.MissingMemberException("Unrecognized property", propertyName);{% else %}base.SetPropertyElement(propertyName, key, value);
+                    {% if info.is_root() %}throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());{% else %}base.SetPropertyElement(propertyName, key, value);
                     return;{%- endif %}
             }
         }

@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Fox.Kernel;
+using String = Fox.Kernel.String;
+using Fox.Fs;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -11,7 +14,7 @@ namespace Fox.Core
 {
     public class DataSetFile2Reader
     {
-        private IDictionary<ulong, string> stringTable;
+        private IDictionary<StrCode, String> stringTable;
         private IDictionary<ulong, Action<Entity>> entityPtrSetRequests = new Dictionary<ulong, Action<Entity>>();
         private IDictionary<ulong, HashSet<Action<Entity>>> entityHandleSetRequests = new Dictionary<ulong, HashSet<Action<Entity>>>();
 
@@ -38,7 +41,7 @@ namespace Fox.Core
             var gameObjects = new Dictionary<ulong, GameObject>();
             for (int i = 0; i < entityCount; i++)
             {
-                var addressedEntity = new DataSetFile2AddressedEntityReader(RequestSetEntityPtr, RequestSetEntityHandle).Read(reader, this.CreateEntity, (hash) => this.stringTable[hash]);
+                var addressedEntity = new DataSetFile2AddressedEntityReader(RequestSetEntityPtr, RequestSetEntityHandle).Read(reader, (hash) => this.stringTable[hash]);
                 entities.Add(addressedEntity.Address, addressedEntity.Entity);
 
                 // Create GameObject
@@ -67,16 +70,16 @@ namespace Fox.Core
             return result;
         }
 
-        private static IDictionary<ulong, string> ReadStringTable(BinaryReader reader)
+        private static IDictionary<StrCode, String> ReadStringTable(BinaryReader reader)
         {
-            var dictionary = new Dictionary<ulong, string>
+            var dictionary = new Dictionary<StrCode, String>
             {
-                { 203000540209048, string.Empty }
+                { String.Empty.Hash, String.Empty }
             };
 
             while (true)
             {
-                var hash = reader.ReadUInt64();
+                var hash = reader.ReadStrCode();
                 if (hash == 0)
                 {
                     return dictionary;
@@ -84,13 +87,8 @@ namespace Fox.Core
 
                 var length = reader.ReadInt32();
                 var literal = reader.ReadChars(length);
-                dictionary.Add(hash, new string(literal));
+                dictionary.Add(hash, new String(new string(literal)));
             }
-        }
-
-        private Entity CreateEntity(ulong classNameHash)
-        {
-            return EntityInfo.ConstructEntity(classNameHash);
         }
 
         private void ResolveRequests(IDictionary<ulong, Entity> entities, IDictionary<ulong, GameObject> gameObjects)

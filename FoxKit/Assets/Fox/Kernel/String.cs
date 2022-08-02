@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Fox.Kernel
 {
     [Serializable, StructLayout(LayoutKind.Explicit, Size=16, CharSet=CharSet.Ansi)]
-    public class String
+    public class String : IEquatable<string>
     {
         [SerializeField, FieldOffset(0)]
         private string _cString;
@@ -29,6 +29,8 @@ namespace Fox.Kernel
             get => _hash;
         }
 
+        public StrCode32 Hash32 => (StrCode32)Hash;
+
         /// <summary>
         /// The empty string.
         /// </summary>
@@ -49,6 +51,8 @@ namespace Fox.Kernel
 
         }
 
+        public String(ReadOnlySpan<char> value) : this(new string(value)) { }
+
         public String(string name)
         {
             if (!string.IsNullOrEmpty(name))
@@ -65,23 +69,43 @@ namespace Fox.Kernel
             }
         }
 
+        public String(StrCode hash)
+        {
+            this._cString = null;
+            this._length = -1;
+            this._hash = hash;
+        }
+
+        public bool IsPseudoNull() => (Length == 0) && (Hash == 0);
+
+        public bool IsHashed() => (Length == 0) && (Hash != Empty.Hash);
+
+        public override string ToString()
+        {
+            return IsHashed() ? Hash.ToString() : CString;
+        }
+
+        // Kernel.String
         public static bool operator==(String a, String b)
         {
             return a?.Hash == b?.Hash;
         }
-
-        public static bool operator!=(String a, String b)
+        public static bool operator !=(String a, String b)
         {
             return !(a == b);
         }
 
-        public override string ToString()
+        // System.String comparisons
+        public static bool operator ==(String a, string b)
         {
-            return CString;
+            return a?.Hash == new StrCode(b);
+        }
+        public static bool operator !=(String a, string b)
+        {
+            return !(a == b);
         }
 
-        public bool IsPseudoNull() => (Length == 0) && (Hash != Empty.Hash);
-
+        // Generic overrides
         public override bool Equals(object obj)
         {
             return obj is String rhs && this == rhs;
@@ -89,10 +113,12 @@ namespace Fox.Kernel
 
         public override int GetHashCode()
         {
-            return unchecked((int)Hash.GetBacking());
+            return unchecked((int)Hash.GetHashCode());
         }
 
-        public static implicit operator String(string @string) => new String(@string);
-        public static implicit operator string(String @string) => @string.CString;
+        public bool Equals(string other)
+        {
+            return Hash == new StrCode(other);
+        }
     }
 }

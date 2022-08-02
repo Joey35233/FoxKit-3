@@ -62,7 +62,7 @@ namespace Fox.Editor
                     name = "Types",
                     itemsSource = (System.Collections.IList)this.allItems, 
                     makeItem = () => new Label(), 
-                    bindItem = (VisualElement e, int i) => (e as Label).text = this.filteredItems[i].Name, 
+                    bindItem = (VisualElement e, int i) => (e as Label).text = this.filteredItems[i].Name.CString, 
                     showAlternatingRowBackgrounds = AlternatingRowBackground.All, 
                     virtualizationMethod = CollectionVirtualizationMethod.FixedHeight, 
                     fixedItemHeight = 22,

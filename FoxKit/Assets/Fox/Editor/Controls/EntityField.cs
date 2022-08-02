@@ -89,7 +89,7 @@ namespace Fox.Editor
                         continue;
 
                     ICustomBindable propertyField = FoxFieldUtils.GetCustomBindableField(propertyInfo);
-                    propertyField.BindProperty(property.FindPropertyRelative($"<{propertyInfo.Name}>k__BackingField"), propertyInfo.Name);
+                    propertyField.BindProperty(property.FindPropertyRelative($"<{propertyInfo.Name}>k__BackingField"), propertyInfo.Name.CString);
                     VisualElement fieldElement = propertyField as VisualElement;
                     var labelElement = fieldElement.Query<Label>(className: BaseField<float>.labelUssClassName).First();
                     if (entityInfo.LongestNamedVisibleFieldProperty is not null)

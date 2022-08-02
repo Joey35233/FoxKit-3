@@ -31,16 +31,16 @@ namespace Tpp.Effect
         }
         static TppMuddledFilter2()
         {
-            classInfo = new Fox.Core.EntityInfo("TppMuddledFilter2", typeof(TppMuddledFilter2), new Fox.Core.Entity().GetClassEntityInfo(), 0, null, 0);
+            classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("TppMuddledFilter2"), typeof(TppMuddledFilter2), new Fox.Core.Entity().GetClassEntityInfo(), 0, null, 0);
         }
 
         // Constructors
 		public TppMuddledFilter2(ulong id) : base(id) { }
 		public TppMuddledFilter2() : base() { }
         
-        public override void SetProperty(string propertyName, Fox.Core.Value value)
+        public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
         {
-            switch(propertyName)
+            switch(propertyName.CString)
             {
                 default:
                     base.SetProperty(propertyName, value);
@@ -48,9 +48,9 @@ namespace Tpp.Effect
             }
         }
         
-        public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+        public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
         {
-            switch(propertyName)
+            switch(propertyName.CString)
             {
                 default:
                     base.SetPropertyElement(propertyName, index, value);
@@ -58,9 +58,9 @@ namespace Tpp.Effect
             }
         }
         
-        public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+        public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
         {
-            switch(propertyName)
+            switch(propertyName.CString)
             {
                 default:
                     base.SetPropertyElement(propertyName, key, value);

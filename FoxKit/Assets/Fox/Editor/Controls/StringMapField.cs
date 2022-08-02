@@ -1,4 +1,5 @@
 ﻿using Fox.Kernel;
+using String = Fox.Kernel.String;
 using System;
 using System.Collections;
 using UnityEditor;
@@ -115,7 +116,7 @@ namespace Fox.Editor
                 Undo.RecordObject(StringMapProperty.serializedObject.targetObject, $"Insert cell");
 
                 var stringMap = ListViewInput.itemsSource as StringMap<T>;
-                stringMap.Insert(key, default);
+                stringMap.Insert(new String(key), default);
 
                 // Apply without Undo so that the registered Undo event above works correctly.
                 StringMapProperty.serializedObject.ApplyModifiedPropertiesWithoutUndo();

@@ -1,9 +1,11 @@
-﻿using Fox.Core;
+﻿using Fox.Kernel;
+using Fox.Core;
 using System;
 using System.IO;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using static UnityEngine.Debug;
+using String = Fox.Kernel.String;
 
 namespace Fox.Geo
 {
@@ -109,7 +111,7 @@ namespace Fox.Geo
                         var shapeGameObject = new GameObject();
                         shapeGameObject.name = $"GeoxTrapAreaPath{pathShapeCount.ToString("D4")}";
                         var shapeFoxEntityComponent = shapeGameObject.AddComponent<FoxEntity>();
-                        // Geox.GeoxTrapAreaPath trapAreaPathEntity = (Geox.GeoxTrapAreaPath)(shapeFoxEntityComponent.Entity = new Geox.GeoxTrapAreaPath());
+                        shapeFoxEntityComponent.Entity = EntityInfo.ConstructEntity(new String("GeoxTrapAreaPath"));
 
                         uint pointCount = reader.ReadUInt32();
                         uint pointsOffset = reader.ReadUInt32();

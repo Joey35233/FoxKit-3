@@ -31,16 +31,16 @@ namespace Tpp.Radio
         }
         static TppEspionageRadioSystemParameter()
         {
-            classInfo = new Fox.Core.EntityInfo("TppEspionageRadioSystemParameter", typeof(TppEspionageRadioSystemParameter), new Fox.Core.DataElement().GetClassEntityInfo(), 28, null, 0);
+            classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("TppEspionageRadioSystemParameter"), typeof(TppEspionageRadioSystemParameter), new Fox.Core.DataElement().GetClassEntityInfo(), 28, null, 0);
         }
 
         // Constructors
 		public TppEspionageRadioSystemParameter(ulong id) : base(id) { }
 		public TppEspionageRadioSystemParameter() : base() { }
         
-        public override void SetProperty(string propertyName, Fox.Core.Value value)
+        public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
         {
-            switch(propertyName)
+            switch(propertyName.CString)
             {
                 default:
                     base.SetProperty(propertyName, value);
@@ -48,9 +48,9 @@ namespace Tpp.Radio
             }
         }
         
-        public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+        public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
         {
-            switch(propertyName)
+            switch(propertyName.CString)
             {
                 default:
                     base.SetPropertyElement(propertyName, index, value);
@@ -58,9 +58,9 @@ namespace Tpp.Radio
             }
         }
         
-        public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+        public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
         {
-            switch(propertyName)
+            switch(propertyName.CString)
             {
                 default:
                     base.SetPropertyElement(propertyName, key, value);

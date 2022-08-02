@@ -31,16 +31,16 @@ namespace Tpp.Effect
         }
         static TppLensFlareRootBase()
         {
-            classInfo = new Fox.Core.EntityInfo("TppLensFlareRootBase", typeof(TppLensFlareRootBase), new Fox.Core.TransformData().GetClassEntityInfo(), 0, null, 2);
+            classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("TppLensFlareRootBase"), typeof(TppLensFlareRootBase), new Fox.Core.TransformData().GetClassEntityInfo(), 0, null, 2);
         }
 
         // Constructors
 		public TppLensFlareRootBase(ulong id) : base(id) { }
 		public TppLensFlareRootBase() : base() { }
         
-        public override void SetProperty(string propertyName, Fox.Core.Value value)
+        public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
         {
-            switch(propertyName)
+            switch(propertyName.CString)
             {
                 default:
                     base.SetProperty(propertyName, value);
@@ -48,9 +48,9 @@ namespace Tpp.Effect
             }
         }
         
-        public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+        public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
         {
-            switch(propertyName)
+            switch(propertyName.CString)
             {
                 default:
                     base.SetPropertyElement(propertyName, index, value);
@@ -58,9 +58,9 @@ namespace Tpp.Effect
             }
         }
         
-        public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+        public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
         {
-            switch(propertyName)
+            switch(propertyName.CString)
             {
                 default:
                     base.SetPropertyElement(propertyName, key, value);
