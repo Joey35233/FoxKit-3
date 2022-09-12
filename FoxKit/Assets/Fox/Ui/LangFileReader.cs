@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
-using Fox.Fs;
+using Fox.Fio;
+using Fox.Kernel;
 
 namespace Fox.Ui
 {
-
     public class LangFileReader
     {
         public enum Endianess

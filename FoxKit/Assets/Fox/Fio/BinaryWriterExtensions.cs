@@ -1,0 +1,25 @@
+﻿using System.IO;
+using System.Text;
+using Fox.Kernel;
+
+namespace Fox.Fio
+{
+    public static class BinaryWriterExtensions
+    {
+        public static void WriteStrCode(this BinaryWriter writer, StrCode hash)
+        {
+            writer.Write(HashingBitConverter.StrCodeToUInt64(hash));
+        }
+
+        public static void WriteStrCode32(this BinaryWriter writer, StrCode32 hash)
+        {
+            writer.Write(HashingBitConverter.StrCode32ToUInt32(hash));
+        }
+
+        public static void WriteNullTerminatedString(this BinaryWriter writer, String str)
+        {
+            writer.Write(str.CString.ToCharArray());
+            writer.Write('/');
+        }
+    }
+}

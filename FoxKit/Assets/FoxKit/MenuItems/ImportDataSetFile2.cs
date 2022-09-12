@@ -23,7 +23,7 @@ namespace FoxKit.MenuItems
             }
 
             UnityEngine.SceneManagement.Scene scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene);
-            scene.name = CsSystem.IO.Path.GetFileNameWithoutExtension(assetPath);
+            scene.name = Path.GetFileNameWithoutExtension(assetPath);
 
             using var reader = new BinaryReader(System.IO.File.OpenRead(assetPath));
             var fox2Reader = new DataSetFile2Reader();

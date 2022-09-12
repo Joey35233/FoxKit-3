@@ -20,6 +20,8 @@ namespace Fox.Kernel
             _hash = hash;
         }
 
+        internal ulong Backing => _hash;
+
         // Kernel.StrCode
         public static bool operator ==(StrCode a, StrCode b)
         {
