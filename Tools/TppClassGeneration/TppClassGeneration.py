@@ -22,7 +22,7 @@ def load_definitions (path):
         for entry in data:
             properties = {}
             for property in entry["properties"]:
-                properties[property["name"]] = PropertyInfo(property["name"], property["type"], property["offset"], property["arraySize"], property["container"], property["ptrType"], property["enum"], property["exportFlag"], result)
+                properties[property["name"]] = PropertyInfo(property["name"], property["type"], property["offset"], property["arraySize"], property["container"], property["ptrType"], property["enum"], property["exportFlag"], entry["name"], result)
             result[entry["name"]] = EntityInfo(entry["name"], entry["namespace"], entry["parent"], entry["category"], entry["version"], entry["id"], properties, result)
 
     return result
@@ -52,20 +52,20 @@ def generate_classes ():
         root_namespace = get_root_namespace(definitions[class_name].namespace)
         trimmed_namespace = get_namespace_without_prefix(definitions[class_name].namespace)
         output_path = make_output_path(definitions[class_name].name, root_namespace, trimmed_namespace)
-        Path(f'../{root_namespace}/{trimmed_namespace}').mkdir(parents=True, exist_ok=True)
+        Path(f'../{root_namespace}/{trimmed_namespace}/Generated').mkdir(parents=True, exist_ok=True)
 
         output_file = open(output_path,"w")
         output_file.write(result)
         output_file.close()
 
-    # Generate EntityFactory
-    entity_factory_template_file = open(entity_factory_template_path, "r")
-    entity_factory_template = Template(entity_factory_template_file.read())
-    result = entity_factory_template.render(info = definitions)
+    ## Generate EntityFactory
+    #entity_factory_template_file = open(entity_factory_template_path, "r")
+    #entity_factory_template = Template(entity_factory_template_file.read())
+    #result = entity_factory_template.render(info = definitions)
 
-    output_file = open(f'../EntityFactory.generated.cs', "w")
-    output_file.write(result)
-    output_file.close()
+    #output_file = open(f'../EntityFactory.generated.cs', "w")
+    #output_file.write(result)
+    #output_file.close()
 
 def generate_enums ():
     template_file = open(enum_template_path, "r")
@@ -101,7 +101,7 @@ def make_output_path (type_name, type_root_namespace, type_namespace):
 
     """
 
-    return f'../{type_root_namespace}/{type_namespace}/{type_name}.generated.cs'
+    return f'../{type_root_namespace}/{type_namespace}/Generated/{type_name}.generated.cs'
 
 generate_classes()
 generate_enums()

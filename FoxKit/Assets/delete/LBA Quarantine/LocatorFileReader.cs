@@ -1,3 +1,5 @@
+
+
 namespace Fox
 {
     using System;
@@ -6,6 +8,7 @@ namespace Fox
     using UnityEngine;
     using UnityEditor;
     using FoxKit;
+    using String = Fox.Kernel.String;
 
 
     /// <summary>
@@ -227,16 +230,16 @@ namespace Fox
             return result;
         }
 
-        private static Fox.String UnhashLocatorName(uint hash)
+        private static String UnhashLocatorName(uint hash)
         {
             // TODO
-            return new Fox.String(hash.ToString());
+            return new String(hash.ToString());
         }
 
-        private static Fox.String UnhashDataSetName(uint hash)
+        private static String UnhashDataSetName(uint hash)
         {
             // TODO
-            return new Fox.String(hash.ToString());
+            return new String(hash.ToString());
         }
 
         private PowerCutAreaLocatorBinary ReadPowerCutAreaLocator()
@@ -246,14 +249,14 @@ namespace Fox
             return new PowerCutAreaLocatorBinary(translation, rotation);
         }
 
-        private NamedLocatorBinary ReadNamedLocator(Fox.String locatorName, Fox.String dataSetName)
+        private NamedLocatorBinary ReadNamedLocator(String locatorName, String dataSetName)
         {
             var translation = this.ReadVector4();
             var rotation = this.ReadQuaternion();
             return new NamedLocatorBinary(translation, rotation, locatorName, dataSetName);
         }
 
-        private ScaledLocatorBinary ReadScaledLocator(Fox.String locatorName, Fox.String dataSetName)
+        private ScaledLocatorBinary ReadScaledLocator(String locatorName, String dataSetName)
         {
             var translation = this.ReadVector4();
             var rotation = this.ReadQuaternion();

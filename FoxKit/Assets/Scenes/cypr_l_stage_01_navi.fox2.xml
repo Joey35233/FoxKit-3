@@ -1,0 +1,2042 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<fox formatVersion="2" fileVersion="0" originalVersion="Tue Jul 12 09:27:31 UTC-04:00 2022">
+  <classes>
+    <class name="Entity" super="" version="2" />
+    <class name="Data" super="Entity" version="2" />
+    <class name="DataSet" super="" version="0" />
+    <class name="NavxAttributePathVolume" super="" version="0" />
+    <class name="TransformEntity" super="" version="0" />
+    <class name="GraphxSpatialGraphDataNode" super="" version="0" />
+    <class name="GraphxSpatialGraphDataEdge" super="" version="0" />
+    <class name="NavxAttributeInfo" super="" version="0" />
+    <class name="NavxNavBlock" super="" version="9" />
+    <class name="NavxWorldGenerateParameter" super="" version="27" />
+    <class name="NavxNavigableParameter" super="" version="9" />
+    <class name="NavxNavFileLocator" super="" version="2" />
+    <class name="NavxNavFilter" super="" version="0" />
+    <class name="NavxBounderLocator" super="" version="0" />
+    <class name="TexturePackLoadConditioner" super="" version="0" />
+  </classes>
+  <entities>
+    <entity class="DataSet" classVersion="0" addr="0x02F17FD0" unknown1="232" unknown2="796979">
+      <staticProperties>
+        <property name="name" type="String" container="StaticArray" arraySize="1">
+          <value></value>
+        </property>
+        <property name="dataSet" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x00000000</value>
+        </property>
+        <property name="dataList" type="EntityPtr" container="StringMap" arraySize="26">
+          <value key="EdNavAttributePathVolume0000">0x02F19690</value>
+          <value key="NavxNavBlock_79">0x02F1A500</value>
+          <value key="NavxNavBlock_111">0x02F1A650</value>
+          <value key="NavxWorldGenerateParameter_main">0x02F1A6C0</value>
+          <value key="NavxWorldGenerateParameter_sky">0x02F1BB50</value>
+          <value key="NavxNavFileLocator0000">0x02F1BD80</value>
+          <value key="NavxNavFilter0000">0x02F1C090</value>
+          <value key="NavxNavFilter0004">0x02F1C2C0</value>
+          <value key="NavxNavFilter0008">0x02F1C790</value>
+          <value key="NavxNavFilter0009">0x02F1C9C0</value>
+          <value key="NavxNavFilter0010">0x02F1CCD0</value>
+          <value key="NavxNavFilter0011">0x02F1CF00</value>
+          <value key="NavxNavFilter0012">0x02F1D210</value>
+          <value key="NavxNavFilter0013">0x02F1D440</value>
+          <value key="NavxNavFilter0018">0x02F1D750</value>
+          <value key="NavxNavFilter0020">0x02F1D980</value>
+          <value key="NavxNavFilter0021">0x02F1DC90</value>
+          <value key="NavxNavFilter0022">0x02F1DEC0</value>
+          <value key="NavxNavFilter0024">0x02F1E1D0</value>
+          <value key="NavxNavFilter0025">0x02F1E400</value>
+          <value key="NavxNavFilter0026">0x02F1E710</value>
+          <value key="NavxNavFilter0023">0x02F1E940</value>
+          <value key="NavxNavFilter0019">0x02F1EC50</value>
+          <value key="NavxNavFilter0014">0x02F1F510</value>
+          <value key="NavxBounderLocator0000">0x043B0400</value>
+          <value key="TexturePackLoadConditioner0000">0x06F3ADC0</value>
+        </property>
+      </staticProperties>
+      <dynamicProperties />
+    </entity>
+    <entity class="NavxAttributePathVolume" classVersion="0" addr="0x02F19690" unknown1="336" unknown2="797029">
+      <staticProperties>
+        <property name="name" type="String" container="StaticArray" arraySize="1">
+          <value>EdNavAttributePathVolume0000</value>
+        </property>
+        <property name="dataSet" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x02F17FD0</value>
+        </property>
+        <property name="parent" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x00000000</value>
+        </property>
+        <property name="transform" type="EntityPtr" container="StaticArray" arraySize="1">
+          <value>0x02F19700</value>
+        </property>
+        <property name="shearTransform" type="EntityPtr" container="StaticArray" arraySize="1">
+          <value>0x00000000</value>
+        </property>
+        <property name="pivotTransform" type="EntityPtr" container="StaticArray" arraySize="1">
+          <value>0x00000000</value>
+        </property>
+        <property name="children" type="EntityHandle" container="List" />
+        <property name="flags" type="uint32" container="StaticArray" arraySize="1">
+          <value>2147483655</value>
+        </property>
+        <property name="nodes" type="EntityPtr" container="DynamicArray" arraySize="6">
+          <value>0x02F19A10</value>
+          <value>0x02F19A80</value>
+          <value>0x02F19BD0</value>
+          <value>0x02F19380</value>
+          <value>0x02F19C40</value>
+          <value>0x02F19D90</value>
+        </property>
+        <property name="edges" type="EntityPtr" container="DynamicArray" arraySize="6">
+          <value>0x02F19E00</value>
+          <value>0x02F19F50</value>
+          <value>0x02F19FC0</value>
+          <value>0x02F1A110</value>
+          <value>0x02F1A2D0</value>
+          <value>0x02F1A340</value>
+        </property>
+        <property name="topPos" type="Vector3" container="StaticArray" arraySize="1">
+          <value x="0" y="3" z="0" w="0" />
+        </property>
+        <property name="worldName" type="String" container="StaticArray" arraySize="1">
+          <value></value>
+        </property>
+        <property name="attributeInfos" type="EntityPtr" container="DynamicArray" arraySize="1">
+          <value>0x02F1A490</value>
+        </property>
+      </staticProperties>
+      <dynamicProperties />
+    </entity>
+    <entity class="TransformEntity" classVersion="0" addr="0x02F19700" unknown1="80" unknown2="797032">
+      <staticProperties>
+        <property name="owner" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x02F19690</value>
+        </property>
+        <property name="transform_scale" type="Vector3" container="StaticArray" arraySize="1">
+          <value x="1" y="1" z="1" w="0" />
+        </property>
+        <property name="transform_rotation_quat" type="Quat" container="StaticArray" arraySize="1">
+          <value x="0" y="0" z="0" w="1" />
+        </property>
+        <property name="transform_translation" type="Vector3" container="StaticArray" arraySize="1">
+          <value x="-60.81192" y="105.625" z="-1713.7926" w="0" />
+        </property>
+      </staticProperties>
+      <dynamicProperties />
+    </entity>
+    <entity class="GraphxSpatialGraphDataNode" classVersion="0" addr="0x02F19A10" unknown1="80" unknown2="797038">
+      <staticProperties>
+        <property name="owner" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x02F19690</value>
+        </property>
+        <property name="position" type="Vector3" container="StaticArray" arraySize="1">
+          <value x="-0.200008" y="1.5E-05" z="5.399756" w="0" />
+        </property>
+        <property name="inlinks" type="EntityHandle" container="DynamicArray" />
+        <property name="outlinks" type="EntityHandle" container="DynamicArray" arraySize="2">
+          <value>0x02F19E00</value>
+          <value>0x02F1A340</value>
+        </property>
+      </staticProperties>
+      <dynamicProperties />
+    </entity>
+    <entity class="GraphxSpatialGraphDataNode" classVersion="0" addr="0x02F19A80" unknown1="80" unknown2="797042">
+      <staticProperties>
+        <property name="owner" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x02F19690</value>
+        </property>
+        <property name="position" type="Vector3" container="StaticArray" arraySize="1">
+          <value x="18.6689854" y="1.5E-05" z="5.888672" w="0" />
+        </property>
+        <property name="inlinks" type="EntityHandle" container="DynamicArray" />
+        <property name="outlinks" type="EntityHandle" container="DynamicArray" arraySize="2">
+          <value>0x02F19E00</value>
+          <value>0x02F19F50</value>
+        </property>
+      </staticProperties>
+      <dynamicProperties />
+    </entity>
+    <entity class="GraphxSpatialGraphDataNode" classVersion="0" addr="0x02F19BD0" unknown1="80" unknown2="797046">
+      <staticProperties>
+        <property name="owner" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x02F19690</value>
+        </property>
+        <property name="position" type="Vector3" container="StaticArray" arraySize="1">
+          <value x="18.5168362" y="1.5E-05" z="1.507746" w="0" />
+        </property>
+        <property name="inlinks" type="EntityHandle" container="DynamicArray" />
+        <property name="outlinks" type="EntityHandle" container="DynamicArray" arraySize="2">
+          <value>0x02F19F50</value>
+          <value>0x02F19FC0</value>
+        </property>
+      </staticProperties>
+      <dynamicProperties />
+    </entity>
+    <entity class="GraphxSpatialGraphDataNode" classVersion="0" addr="0x02F19380" unknown1="80" unknown2="797050">
+      <staticProperties>
+        <property name="owner" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x02F19690</value>
+        </property>
+        <property name="position" type="Vector3" container="StaticArray" arraySize="1">
+          <value x="15.3146877" y="1.5E-05" z="1.526819" w="0" />
+        </property>
+        <property name="inlinks" type="EntityHandle" container="DynamicArray" />
+        <property name="outlinks" type="EntityHandle" container="DynamicArray" arraySize="2">
+          <value>0x02F19FC0</value>
+          <value>0x02F1A110</value>
+        </property>
+      </staticProperties>
+      <dynamicProperties />
+    </entity>
+    <entity class="GraphxSpatialGraphDataNode" classVersion="0" addr="0x02F19C40" unknown1="80" unknown2="797054">
+      <staticProperties>
+        <property name="owner" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x02F19690</value>
+        </property>
+        <property name="position" type="Vector3" container="StaticArray" arraySize="1">
+          <value x="15.4103909" y="1.5E-05" z="-20.0350342" w="0" />
+        </property>
+        <property name="inlinks" type="EntityHandle" container="DynamicArray" />
+        <property name="outlinks" type="EntityHandle" container="DynamicArray" arraySize="2">
+          <value>0x02F1A110</value>
+          <value>0x02F1A2D0</value>
+        </property>
+      </staticProperties>
+      <dynamicProperties />
+    </entity>
+    <entity class="GraphxSpatialGraphDataNode" classVersion="0" addr="0x02F19D90" unknown1="80" unknown2="797058">
+      <staticProperties>
+        <property name="owner" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x02F19690</value>
+        </property>
+        <property name="position" type="Vector3" container="StaticArray" arraySize="1">
+          <value x="0.260529" y="1.5E-05" z="-19.96719" w="0" />
+        </property>
+        <property name="inlinks" type="EntityHandle" container="DynamicArray" />
+        <property name="outlinks" type="EntityHandle" container="DynamicArray" arraySize="2">
+          <value>0x02F1A2D0</value>
+          <value>0x02F1A340</value>
+        </property>
+      </staticProperties>
+      <dynamicProperties />
+    </entity>
+    <entity class="GraphxSpatialGraphDataEdge" classVersion="0" addr="0x02F19E00" unknown1="36" unknown2="797062">
+      <staticProperties>
+        <property name="owner" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x02F19690</value>
+        </property>
+        <property name="prevNode" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x02F19A10</value>
+        </property>
+        <property name="nextNode" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x02F19A80</value>
+        </property>
+      </staticProperties>
+      <dynamicProperties />
+    </entity>
+    <entity class="GraphxSpatialGraphDataEdge" classVersion="0" addr="0x02F19F50" unknown1="36" unknown2="797066">
+      <staticProperties>
+        <property name="owner" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x02F19690</value>
+        </property>
+        <property name="prevNode" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x02F19A80</value>
+        </property>
+        <property name="nextNode" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x02F19BD0</value>
+        </property>
+      </staticProperties>
+      <dynamicProperties />
+    </entity>
+    <entity class="GraphxSpatialGraphDataEdge" classVersion="0" addr="0x02F19FC0" unknown1="36" unknown2="797070">
+      <staticProperties>
+        <property name="owner" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x02F19690</value>
+        </property>
+        <property name="prevNode" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x02F19BD0</value>
+        </property>
+        <property name="nextNode" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x02F19380</value>
+        </property>
+      </staticProperties>
+      <dynamicProperties />
+    </entity>
+    <entity class="GraphxSpatialGraphDataEdge" classVersion="0" addr="0x02F1A110" unknown1="36" unknown2="797074">
+      <staticProperties>
+        <property name="owner" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x02F19690</value>
+        </property>
+        <property name="prevNode" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x02F19380</value>
+        </property>
+        <property name="nextNode" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x02F19C40</value>
+        </property>
+      </staticProperties>
+      <dynamicProperties />
+    </entity>
+    <entity class="GraphxSpatialGraphDataEdge" classVersion="0" addr="0x02F1A2D0" unknown1="36" unknown2="797078">
+      <staticProperties>
+        <property name="owner" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x02F19690</value>
+        </property>
+        <property name="prevNode" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x02F19C40</value>
+        </property>
+        <property name="nextNode" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x02F19D90</value>
+        </property>
+      </staticProperties>
+      <dynamicProperties />
+    </entity>
+    <entity class="GraphxSpatialGraphDataEdge" classVersion="0" addr="0x02F1A340" unknown1="36" unknown2="797082">
+      <staticProperties>
+        <property name="owner" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x02F19690</value>
+        </property>
+        <property name="prevNode" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x02F19D90</value>
+        </property>
+        <property name="nextNode" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x02F19A10</value>
+        </property>
+      </staticProperties>
+      <dynamicProperties />
+    </entity>
+    <entity class="NavxAttributeInfo" classVersion="0" addr="0x02F1A490" unknown1="36" unknown2="797086">
+      <staticProperties>
+        <property name="owner" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x02F19690</value>
+        </property>
+        <property name="name" type="String" container="StaticArray" arraySize="1">
+          <value>Behind</value>
+        </property>
+        <property name="simplificationThreshold" type="float" container="StaticArray" arraySize="1">
+          <value>0</value>
+        </property>
+      </staticProperties>
+      <dynamicProperties />
+    </entity>
+    <entity class="NavxNavBlock" classVersion="9" addr="0x02F1A500" unknown1="248" unknown2="797088">
+      <staticProperties>
+        <property name="name" type="String" container="StaticArray" arraySize="1">
+          <value>NavxNavBlock_79</value>
+        </property>
+        <property name="dataSet" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x02F17FD0</value>
+        </property>
+        <property name="sceneName" type="String" container="StaticArray" arraySize="1">
+          <value>MainScene</value>
+        </property>
+        <property name="worldName" type="String" container="StaticArray" arraySize="1">
+          <value></value>
+        </property>
+        <property name="tileId" type="uint32" container="StaticArray" arraySize="1">
+          <value>79</value>
+        </property>
+        <property name="filePath" type="Path" container="StaticArray" arraySize="1">
+          <value>/Assets/tpp/level/location/cypr/block_large/block_l_stage_01/cypr_l_stage_01_navi0000.nav2</value>
+        </property>
+        <property name="filePtr" type="FilePtr" container="StaticArray" arraySize="1">
+          <value>/Assets/tpp/level/location/cypr/block_large/block_l_stage_01/cypr_l_stage_01_navi0000.nav2</value>
+        </property>
+        <property name="remainingFilePtr" type="FilePtr" container="StaticArray" arraySize="1">
+          <value></value>
+        </property>
+        <property name="isSplit" type="bool" container="StaticArray" arraySize="1">
+          <value>false</value>
+        </property>
+        <property name="maxFileSizeInKb" type="uint32" container="StaticArray" arraySize="1">
+          <value>0</value>
+        </property>
+        <property name="useBlockParameter" type="bool" container="StaticArray" arraySize="1">
+          <value>false</value>
+        </property>
+        <property name="verticalThreshold" type="float" container="StaticArray" arraySize="1">
+          <value>0</value>
+        </property>
+        <property name="simplificationThreshold" type="float" container="StaticArray" arraySize="1">
+          <value>0</value>
+        </property>
+        <property name="doesHoleSimplification" type="bool" container="StaticArray" arraySize="1">
+          <value>false</value>
+        </property>
+        <property name="holeSimplificationConvexThreshold" type="float" container="StaticArray" arraySize="1">
+          <value>0.2</value>
+        </property>
+        <property name="holeSimplificationObbExpandThreshold" type="float" container="StaticArray" arraySize="1">
+          <value>10</value>
+        </property>
+        <property name="holeSimplificationObbToAabbThreshold" type="float" container="StaticArray" arraySize="1">
+          <value>10</value>
+        </property>
+        <property name="holeSimplificationSmoothingThreshold" type="float" container="StaticArray" arraySize="1">
+          <value>1</value>
+        </property>
+        <property name="isHoleSimplificationDoesNotClosePassage" type="bool" container="StaticArray" arraySize="1">
+          <value>false</value>
+        </property>
+        <property name="holeSimplificationReduceCount" type="uint32" container="StaticArray" arraySize="1">
+          <value>1</value>
+        </property>
+      </staticProperties>
+      <dynamicProperties />
+    </entity>
+    <entity class="NavxNavBlock" classVersion="9" addr="0x02F1A650" unknown1="248" unknown2="797090">
+      <staticProperties>
+        <property name="name" type="String" container="StaticArray" arraySize="1">
+          <value>NavxNavBlock_111</value>
+        </property>
+        <property name="dataSet" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x02F17FD0</value>
+        </property>
+        <property name="sceneName" type="String" container="StaticArray" arraySize="1">
+          <value>MainScene</value>
+        </property>
+        <property name="worldName" type="String" container="StaticArray" arraySize="1">
+          <value></value>
+        </property>
+        <property name="tileId" type="uint32" container="StaticArray" arraySize="1">
+          <value>111</value>
+        </property>
+        <property name="filePath" type="Path" container="StaticArray" arraySize="1">
+          <value>/Assets/tpp/level/location/cypr/block_large/block_l_stage_01/cypr_l_stage_01_navi0001.nav2</value>
+        </property>
+        <property name="filePtr" type="FilePtr" container="StaticArray" arraySize="1">
+          <value>/Assets/tpp/level/location/cypr/block_large/block_l_stage_01/cypr_l_stage_01_navi0001.nav2</value>
+        </property>
+        <property name="remainingFilePtr" type="FilePtr" container="StaticArray" arraySize="1">
+          <value></value>
+        </property>
+        <property name="isSplit" type="bool" container="StaticArray" arraySize="1">
+          <value>false</value>
+        </property>
+        <property name="maxFileSizeInKb" type="uint32" container="StaticArray" arraySize="1">
+          <value>0</value>
+        </property>
+        <property name="useBlockParameter" type="bool" container="StaticArray" arraySize="1">
+          <value>false</value>
+        </property>
+        <property name="verticalThreshold" type="float" container="StaticArray" arraySize="1">
+          <value>0</value>
+        </property>
+        <property name="simplificationThreshold" type="float" container="StaticArray" arraySize="1">
+          <value>0</value>
+        </property>
+        <property name="doesHoleSimplification" type="bool" container="StaticArray" arraySize="1">
+          <value>false</value>
+        </property>
+        <property name="holeSimplificationConvexThreshold" type="float" container="StaticArray" arraySize="1">
+          <value>0.2</value>
+        </property>
+        <property name="holeSimplificationObbExpandThreshold" type="float" container="StaticArray" arraySize="1">
+          <value>10</value>
+        </property>
+        <property name="holeSimplificationObbToAabbThreshold" type="float" container="StaticArray" arraySize="1">
+          <value>10</value>
+        </property>
+        <property name="holeSimplificationSmoothingThreshold" type="float" container="StaticArray" arraySize="1">
+          <value>1</value>
+        </property>
+        <property name="isHoleSimplificationDoesNotClosePassage" type="bool" container="StaticArray" arraySize="1">
+          <value>false</value>
+        </property>
+        <property name="holeSimplificationReduceCount" type="uint32" container="StaticArray" arraySize="1">
+          <value>1</value>
+        </property>
+      </staticProperties>
+      <dynamicProperties />
+    </entity>
+    <entity class="NavxWorldGenerateParameter" classVersion="27" addr="0x02F1A6C0" unknown1="400" unknown2="797092">
+      <staticProperties>
+        <property name="name" type="String" container="StaticArray" arraySize="1">
+          <value>NavxWorldGenerateParameter_main</value>
+        </property>
+        <property name="dataSet" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x02F17FD0</value>
+        </property>
+        <property name="parent" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x00000000</value>
+        </property>
+        <property name="transform" type="EntityPtr" container="StaticArray" arraySize="1">
+          <value>0x02F1A880</value>
+        </property>
+        <property name="shearTransform" type="EntityPtr" container="StaticArray" arraySize="1">
+          <value>0x00000000</value>
+        </property>
+        <property name="pivotTransform" type="EntityPtr" container="StaticArray" arraySize="1">
+          <value>0x00000000</value>
+        </property>
+        <property name="children" type="EntityHandle" container="List" />
+        <property name="flags" type="uint32" container="StaticArray" arraySize="1">
+          <value>7</value>
+        </property>
+        <property name="resolution" type="float" container="StaticArray" arraySize="1">
+          <value>0.1</value>
+        </property>
+        <property name="verticalThreshold" type="float" container="StaticArray" arraySize="1">
+          <value>1.5</value>
+        </property>
+        <property name="doesDivideIslandWithSector" type="bool" container="StaticArray" arraySize="1">
+          <value>false</value>
+        </property>
+        <property name="doesHoleSimplification" type="bool" container="StaticArray" arraySize="1">
+          <value>false</value>
+        </property>
+        <property name="holeSimplificationConvexThreshold" type="float" container="StaticArray" arraySize="1">
+          <value>0.2</value>
+        </property>
+        <property name="holeSimplificationObbExpandThreshold" type="float" container="StaticArray" arraySize="1">
+          <value>10</value>
+        </property>
+        <property name="holeSimplificationObbToAabbThreshold" type="float" container="StaticArray" arraySize="1">
+          <value>10</value>
+        </property>
+        <property name="holeSimplificationSmoothingThreshold" type="float" container="StaticArray" arraySize="1">
+          <value>1</value>
+        </property>
+        <property name="isHoleSimplificationDoesNotClosePassage" type="bool" container="StaticArray" arraySize="1">
+          <value>false</value>
+        </property>
+        <property name="holeSimplificationReduceCount" type="uint32" container="StaticArray" arraySize="1">
+          <value>1</value>
+        </property>
+        <property name="doesAdjustSearchSpaceToNavmesh" type="bool" container="StaticArray" arraySize="1">
+          <value>false</value>
+        </property>
+        <property name="doesGenerateFillNavVolumeInRadius" type="bool" container="StaticArray" arraySize="1">
+          <value>true</value>
+        </property>
+        <property name="roughGraphFilePath" type="Path" container="StaticArray" arraySize="1">
+          <value></value>
+        </property>
+        <property name="roughGraphFilePtr" type="FilePtr" container="StaticArray" arraySize="1">
+          <value></value>
+        </property>
+        <property name="worldName" type="String" container="StaticArray" arraySize="1">
+          <value></value>
+        </property>
+        <property name="maxFileSizeInKb" type="uint32" container="StaticArray" arraySize="1">
+          <value>190</value>
+        </property>
+        <property name="parameters" type="EntityPtr" container="DynamicArray" arraySize="11">
+          <value>0x02F1AB90</value>
+          <value>0x02F1AC00</value>
+          <value>0x02F1AD50</value>
+          <value>0x02F1AF10</value>
+          <value>0x02F1B0D0</value>
+          <value>0x02F1B290</value>
+          <value>0x02F1B450</value>
+          <value>0x02F1B610</value>
+          <value>0x02F1B680</value>
+          <value>0x02F1B7D0</value>
+          <value>0x02F1B990</value>
+        </property>
+        <property name="sectorSizeHorizontal" type="uint32" container="StaticArray" arraySize="1">
+          <value>16</value>
+        </property>
+        <property name="tileSizeHorizontal" type="uint32" container="StaticArray" arraySize="1">
+          <value>128</value>
+        </property>
+        <property name="searchSpaceBucketSizeHorizontal" type="uint32" container="StaticArray" arraySize="1">
+          <value>10</value>
+        </property>
+        <property name="collisionAttributes" type="String" container="DynamicArray" arraySize="2">
+          <value>ENEMY</value>
+          <value>PLAYER</value>
+        </property>
+        <property name="loadFox2FileListScriptPath" type="Path" container="StaticArray" arraySize="1">
+          <value></value>
+        </property>
+      </staticProperties>
+      <dynamicProperties />
+    </entity>
+    <entity class="TransformEntity" classVersion="0" addr="0x02F1A880" unknown1="80" unknown2="797095">
+      <staticProperties>
+        <property name="owner" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x02F1A6C0</value>
+        </property>
+        <property name="transform_scale" type="Vector3" container="StaticArray" arraySize="1">
+          <value x="4096" y="1280" z="4096" w="0" />
+        </property>
+        <property name="transform_rotation_quat" type="Quat" container="StaticArray" arraySize="1">
+          <value x="0" y="0" z="0" w="1" />
+        </property>
+        <property name="transform_translation" type="Vector3" container="StaticArray" arraySize="1">
+          <value x="-2048" y="-32" z="-2048" w="0" />
+        </property>
+      </staticProperties>
+      <dynamicProperties />
+    </entity>
+    <entity class="NavxNavigableParameter" classVersion="9" addr="0x02F1AB90" unknown1="60" unknown2="797101">
+      <staticProperties>
+        <property name="owner" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x02F1A6C0</value>
+        </property>
+        <property name="name" type="String" container="StaticArray" arraySize="1">
+          <value>Human</value>
+        </property>
+        <property name="isDefault" type="bool" container="StaticArray" arraySize="1">
+          <value>true</value>
+        </property>
+        <property name="radius" type="float" container="StaticArray" arraySize="1">
+          <value>0.4</value>
+        </property>
+        <property name="simplificationThreshold" type="float" container="StaticArray" arraySize="1">
+          <value>0.4</value>
+        </property>
+        <property name="height" type="float" container="StaticArray" arraySize="1">
+          <value>2</value>
+        </property>
+        <property name="maxClimbableAngle" type="float" container="StaticArray" arraySize="1">
+          <value>45.1</value>
+        </property>
+        <property name="maxStepSize" type="float" container="StaticArray" arraySize="1">
+          <value>0.3</value>
+        </property>
+        <property name="minArea" type="float" container="StaticArray" arraySize="1">
+          <value>0.4</value>
+        </property>
+      </staticProperties>
+      <dynamicProperties />
+    </entity>
+    <entity class="NavxNavigableParameter" classVersion="9" addr="0x02F1AC00" unknown1="60" unknown2="797103">
+      <staticProperties>
+        <property name="owner" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x02F1A6C0</value>
+        </property>
+        <property name="name" type="String" container="StaticArray" arraySize="1">
+          <value>Vehicle</value>
+        </property>
+        <property name="isDefault" type="bool" container="StaticArray" arraySize="1">
+          <value>false</value>
+        </property>
+        <property name="radius" type="float" container="StaticArray" arraySize="1">
+          <value>3.5</value>
+        </property>
+        <property name="simplificationThreshold" type="float" container="StaticArray" arraySize="1">
+          <value>4</value>
+        </property>
+        <property name="height" type="float" container="StaticArray" arraySize="1">
+          <value>5</value>
+        </property>
+        <property name="maxClimbableAngle" type="float" container="StaticArray" arraySize="1">
+          <value>45.1</value>
+        </property>
+        <property name="maxStepSize" type="float" container="StaticArray" arraySize="1">
+          <value>0.3</value>
+        </property>
+        <property name="minArea" type="float" container="StaticArray" arraySize="1">
+          <value>0.4</value>
+        </property>
+      </staticProperties>
+      <dynamicProperties />
+    </entity>
+    <entity class="NavxNavigableParameter" classVersion="9" addr="0x02F1AD50" unknown1="60" unknown2="797105">
+      <staticProperties>
+        <property name="owner" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x02F1A6C0</value>
+        </property>
+        <property name="name" type="String" container="StaticArray" arraySize="1">
+          <value>Middle</value>
+        </property>
+        <property name="isDefault" type="bool" container="StaticArray" arraySize="1">
+          <value>false</value>
+        </property>
+        <property name="radius" type="float" container="StaticArray" arraySize="1">
+          <value>4</value>
+        </property>
+        <property name="simplificationThreshold" type="float" container="StaticArray" arraySize="1">
+          <value>4</value>
+        </property>
+        <property name="height" type="float" container="StaticArray" arraySize="1">
+          <value>2</value>
+        </property>
+        <property name="maxClimbableAngle" type="float" container="StaticArray" arraySize="1">
+          <value>45</value>
+        </property>
+        <property name="maxStepSize" type="float" container="StaticArray" arraySize="1">
+          <value>0.3</value>
+        </property>
+        <property name="minArea" type="float" container="StaticArray" arraySize="1">
+          <value>0.4</value>
+        </property>
+      </staticProperties>
+      <dynamicProperties />
+    </entity>
+    <entity class="NavxNavigableParameter" classVersion="9" addr="0x02F1AF10" unknown1="60" unknown2="797107">
+      <staticProperties>
+        <property name="owner" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x02F1A6C0</value>
+        </property>
+        <property name="name" type="String" container="StaticArray" arraySize="1">
+          <value>HumanHighCost</value>
+        </property>
+        <property name="isDefault" type="bool" container="StaticArray" arraySize="1">
+          <value>false</value>
+        </property>
+        <property name="radius" type="float" container="StaticArray" arraySize="1">
+          <value>0.4</value>
+        </property>
+        <property name="simplificationThreshold" type="float" container="StaticArray" arraySize="1">
+          <value>4</value>
+        </property>
+        <property name="height" type="float" container="StaticArray" arraySize="1">
+          <value>2</value>
+        </property>
+        <property name="maxClimbableAngle" type="float" container="StaticArray" arraySize="1">
+          <value>45.1</value>
+        </property>
+        <property name="maxStepSize" type="float" container="StaticArray" arraySize="1">
+          <value>0.3</value>
+        </property>
+        <property name="minArea" type="float" container="StaticArray" arraySize="1">
+          <value>0.4</value>
+        </property>
+      </staticProperties>
+      <dynamicProperties />
+    </entity>
+    <entity class="NavxNavigableParameter" classVersion="9" addr="0x02F1B0D0" unknown1="60" unknown2="797109">
+      <staticProperties>
+        <property name="owner" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x02F1A6C0</value>
+        </property>
+        <property name="name" type="String" container="StaticArray" arraySize="1">
+          <value>HumanCombat</value>
+        </property>
+        <property name="isDefault" type="bool" container="StaticArray" arraySize="1">
+          <value>false</value>
+        </property>
+        <property name="radius" type="float" container="StaticArray" arraySize="1">
+          <value>0.4</value>
+        </property>
+        <property name="simplificationThreshold" type="float" container="StaticArray" arraySize="1">
+          <value>4</value>
+        </property>
+        <property name="height" type="float" container="StaticArray" arraySize="1">
+          <value>2</value>
+        </property>
+        <property name="maxClimbableAngle" type="float" container="StaticArray" arraySize="1">
+          <value>45.1</value>
+        </property>
+        <property name="maxStepSize" type="float" container="StaticArray" arraySize="1">
+          <value>0.3</value>
+        </property>
+        <property name="minArea" type="float" container="StaticArray" arraySize="1">
+          <value>0.4</value>
+        </property>
+      </staticProperties>
+      <dynamicProperties />
+    </entity>
+    <entity class="NavxNavigableParameter" classVersion="9" addr="0x02F1B290" unknown1="60" unknown2="797111">
+      <staticProperties>
+        <property name="owner" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x02F1A6C0</value>
+        </property>
+        <property name="name" type="String" container="StaticArray" arraySize="1">
+          <value>Horse</value>
+        </property>
+        <property name="isDefault" type="bool" container="StaticArray" arraySize="1">
+          <value>false</value>
+        </property>
+        <property name="radius" type="float" container="StaticArray" arraySize="1">
+          <value>0.4</value>
+        </property>
+        <property name="simplificationThreshold" type="float" container="StaticArray" arraySize="1">
+          <value>4</value>
+        </property>
+        <property name="height" type="float" container="StaticArray" arraySize="1">
+          <value>2</value>
+        </property>
+        <property name="maxClimbableAngle" type="float" container="StaticArray" arraySize="1">
+          <value>45.1</value>
+        </property>
+        <property name="maxStepSize" type="float" container="StaticArray" arraySize="1">
+          <value>0.3</value>
+        </property>
+        <property name="minArea" type="float" container="StaticArray" arraySize="1">
+          <value>0.4</value>
+        </property>
+      </staticProperties>
+      <dynamicProperties />
+    </entity>
+    <entity class="NavxNavigableParameter" classVersion="9" addr="0x02F1B450" unknown1="60" unknown2="797113">
+      <staticProperties>
+        <property name="owner" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x02F1A6C0</value>
+        </property>
+        <property name="name" type="String" container="StaticArray" arraySize="1">
+          <value>WalkerGear</value>
+        </property>
+        <property name="isDefault" type="bool" container="StaticArray" arraySize="1">
+          <value>false</value>
+        </property>
+        <property name="radius" type="float" container="StaticArray" arraySize="1">
+          <value>0.4</value>
+        </property>
+        <property name="simplificationThreshold" type="float" container="StaticArray" arraySize="1">
+          <value>4</value>
+        </property>
+        <property name="height" type="float" container="StaticArray" arraySize="1">
+          <value>2</value>
+        </property>
+        <property name="maxClimbableAngle" type="float" container="StaticArray" arraySize="1">
+          <value>45.1</value>
+        </property>
+        <property name="maxStepSize" type="float" container="StaticArray" arraySize="1">
+          <value>0.3</value>
+        </property>
+        <property name="minArea" type="float" container="StaticArray" arraySize="1">
+          <value>0.4</value>
+        </property>
+      </staticProperties>
+      <dynamicProperties />
+    </entity>
+    <entity class="NavxNavigableParameter" classVersion="9" addr="0x02F1B610" unknown1="60" unknown2="797115">
+      <staticProperties>
+        <property name="owner" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x02F1A6C0</value>
+        </property>
+        <property name="name" type="String" container="StaticArray" arraySize="1">
+          <value>Dog</value>
+        </property>
+        <property name="isDefault" type="bool" container="StaticArray" arraySize="1">
+          <value>false</value>
+        </property>
+        <property name="radius" type="float" container="StaticArray" arraySize="1">
+          <value>0.4</value>
+        </property>
+        <property name="simplificationThreshold" type="float" container="StaticArray" arraySize="1">
+          <value>4</value>
+        </property>
+        <property name="height" type="float" container="StaticArray" arraySize="1">
+          <value>2</value>
+        </property>
+        <property name="maxClimbableAngle" type="float" container="StaticArray" arraySize="1">
+          <value>45.1</value>
+        </property>
+        <property name="maxStepSize" type="float" container="StaticArray" arraySize="1">
+          <value>0.3</value>
+        </property>
+        <property name="minArea" type="float" container="StaticArray" arraySize="1">
+          <value>0.4</value>
+        </property>
+      </staticProperties>
+      <dynamicProperties />
+    </entity>
+    <entity class="NavxNavigableParameter" classVersion="9" addr="0x02F1B680" unknown1="60" unknown2="797117">
+      <staticProperties>
+        <property name="owner" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x02F1A6C0</value>
+        </property>
+        <property name="name" type="String" container="StaticArray" arraySize="1">
+          <value>Animal</value>
+        </property>
+        <property name="isDefault" type="bool" container="StaticArray" arraySize="1">
+          <value>false</value>
+        </property>
+        <property name="radius" type="float" container="StaticArray" arraySize="1">
+          <value>3.5</value>
+        </property>
+        <property name="simplificationThreshold" type="float" container="StaticArray" arraySize="1">
+          <value>4</value>
+        </property>
+        <property name="height" type="float" container="StaticArray" arraySize="1">
+          <value>5</value>
+        </property>
+        <property name="maxClimbableAngle" type="float" container="StaticArray" arraySize="1">
+          <value>45.1</value>
+        </property>
+        <property name="maxStepSize" type="float" container="StaticArray" arraySize="1">
+          <value>0.3</value>
+        </property>
+        <property name="minArea" type="float" container="StaticArray" arraySize="1">
+          <value>0.4</value>
+        </property>
+      </staticProperties>
+      <dynamicProperties />
+    </entity>
+    <entity class="NavxNavigableParameter" classVersion="9" addr="0x02F1B7D0" unknown1="60" unknown2="797119">
+      <staticProperties>
+        <property name="owner" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x02F1A6C0</value>
+        </property>
+        <property name="name" type="String" container="StaticArray" arraySize="1">
+          <value>Event</value>
+        </property>
+        <property name="isDefault" type="bool" container="StaticArray" arraySize="1">
+          <value>false</value>
+        </property>
+        <property name="radius" type="float" container="StaticArray" arraySize="1">
+          <value>0.4</value>
+        </property>
+        <property name="simplificationThreshold" type="float" container="StaticArray" arraySize="1">
+          <value>4</value>
+        </property>
+        <property name="height" type="float" container="StaticArray" arraySize="1">
+          <value>2</value>
+        </property>
+        <property name="maxClimbableAngle" type="float" container="StaticArray" arraySize="1">
+          <value>45.1</value>
+        </property>
+        <property name="maxStepSize" type="float" container="StaticArray" arraySize="1">
+          <value>0.3</value>
+        </property>
+        <property name="minArea" type="float" container="StaticArray" arraySize="1">
+          <value>0.4</value>
+        </property>
+      </staticProperties>
+      <dynamicProperties />
+    </entity>
+    <entity class="NavxNavigableParameter" classVersion="9" addr="0x02F1B990" unknown1="60" unknown2="797121">
+      <staticProperties>
+        <property name="owner" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x02F1A6C0</value>
+        </property>
+        <property name="name" type="String" container="StaticArray" arraySize="1">
+          <value>Child</value>
+        </property>
+        <property name="isDefault" type="bool" container="StaticArray" arraySize="1">
+          <value>false</value>
+        </property>
+        <property name="radius" type="float" container="StaticArray" arraySize="1">
+          <value>0.4</value>
+        </property>
+        <property name="simplificationThreshold" type="float" container="StaticArray" arraySize="1">
+          <value>4</value>
+        </property>
+        <property name="height" type="float" container="StaticArray" arraySize="1">
+          <value>2</value>
+        </property>
+        <property name="maxClimbableAngle" type="float" container="StaticArray" arraySize="1">
+          <value>45.1</value>
+        </property>
+        <property name="maxStepSize" type="float" container="StaticArray" arraySize="1">
+          <value>0.3</value>
+        </property>
+        <property name="minArea" type="float" container="StaticArray" arraySize="1">
+          <value>0.4</value>
+        </property>
+      </staticProperties>
+      <dynamicProperties />
+    </entity>
+    <entity class="NavxWorldGenerateParameter" classVersion="27" addr="0x02F1BB50" unknown1="400" unknown2="797123">
+      <staticProperties>
+        <property name="name" type="String" container="StaticArray" arraySize="1">
+          <value>NavxWorldGenerateParameter_sky</value>
+        </property>
+        <property name="dataSet" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x02F17FD0</value>
+        </property>
+        <property name="parent" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x00000000</value>
+        </property>
+        <property name="transform" type="EntityPtr" container="StaticArray" arraySize="1">
+          <value>0x02F1BBC0</value>
+        </property>
+        <property name="shearTransform" type="EntityPtr" container="StaticArray" arraySize="1">
+          <value>0x00000000</value>
+        </property>
+        <property name="pivotTransform" type="EntityPtr" container="StaticArray" arraySize="1">
+          <value>0x00000000</value>
+        </property>
+        <property name="children" type="EntityHandle" container="List" />
+        <property name="flags" type="uint32" container="StaticArray" arraySize="1">
+          <value>7</value>
+        </property>
+        <property name="resolution" type="float" container="StaticArray" arraySize="1">
+          <value>1</value>
+        </property>
+        <property name="verticalThreshold" type="float" container="StaticArray" arraySize="1">
+          <value>1</value>
+        </property>
+        <property name="doesDivideIslandWithSector" type="bool" container="StaticArray" arraySize="1">
+          <value>false</value>
+        </property>
+        <property name="doesHoleSimplification" type="bool" container="StaticArray" arraySize="1">
+          <value>false</value>
+        </property>
+        <property name="holeSimplificationConvexThreshold" type="float" container="StaticArray" arraySize="1">
+          <value>0.2</value>
+        </property>
+        <property name="holeSimplificationObbExpandThreshold" type="float" container="StaticArray" arraySize="1">
+          <value>10</value>
+        </property>
+        <property name="holeSimplificationObbToAabbThreshold" type="float" container="StaticArray" arraySize="1">
+          <value>10</value>
+        </property>
+        <property name="holeSimplificationSmoothingThreshold" type="float" container="StaticArray" arraySize="1">
+          <value>1</value>
+        </property>
+        <property name="isHoleSimplificationDoesNotClosePassage" type="bool" container="StaticArray" arraySize="1">
+          <value>false</value>
+        </property>
+        <property name="holeSimplificationReduceCount" type="uint32" container="StaticArray" arraySize="1">
+          <value>1</value>
+        </property>
+        <property name="doesAdjustSearchSpaceToNavmesh" type="bool" container="StaticArray" arraySize="1">
+          <value>false</value>
+        </property>
+        <property name="doesGenerateFillNavVolumeInRadius" type="bool" container="StaticArray" arraySize="1">
+          <value>true</value>
+        </property>
+        <property name="roughGraphFilePath" type="Path" container="StaticArray" arraySize="1">
+          <value></value>
+        </property>
+        <property name="roughGraphFilePtr" type="FilePtr" container="StaticArray" arraySize="1">
+          <value></value>
+        </property>
+        <property name="worldName" type="String" container="StaticArray" arraySize="1">
+          <value>sky</value>
+        </property>
+        <property name="maxFileSizeInKb" type="uint32" container="StaticArray" arraySize="1">
+          <value>300</value>
+        </property>
+        <property name="parameters" type="EntityPtr" container="DynamicArray" arraySize="1">
+          <value>0x02F1BD10</value>
+        </property>
+        <property name="sectorSizeHorizontal" type="uint32" container="StaticArray" arraySize="1">
+          <value>64</value>
+        </property>
+        <property name="tileSizeHorizontal" type="uint32" container="StaticArray" arraySize="1">
+          <value>64</value>
+        </property>
+        <property name="searchSpaceBucketSizeHorizontal" type="uint32" container="StaticArray" arraySize="1">
+          <value>64</value>
+        </property>
+        <property name="collisionAttributes" type="String" container="DynamicArray" arraySize="2">
+          <value>CHARA</value>
+          <value>PLAYER</value>
+        </property>
+        <property name="loadFox2FileListScriptPath" type="Path" container="StaticArray" arraySize="1">
+          <value></value>
+        </property>
+      </staticProperties>
+      <dynamicProperties />
+    </entity>
+    <entity class="TransformEntity" classVersion="0" addr="0x02F1BBC0" unknown1="80" unknown2="797126">
+      <staticProperties>
+        <property name="owner" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x02F1BB50</value>
+        </property>
+        <property name="transform_scale" type="Vector3" container="StaticArray" arraySize="1">
+          <value x="64" y="40" z="64" w="0" />
+        </property>
+        <property name="transform_rotation_quat" type="Quat" container="StaticArray" arraySize="1">
+          <value x="0" y="0" z="0" w="1" />
+        </property>
+        <property name="transform_translation" type="Vector3" container="StaticArray" arraySize="1">
+          <value x="-32" y="-20" z="-32" w="0" />
+        </property>
+      </staticProperties>
+      <dynamicProperties />
+    </entity>
+    <entity class="NavxNavigableParameter" classVersion="9" addr="0x02F1BD10" unknown1="60" unknown2="797128">
+      <staticProperties>
+        <property name="owner" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x02F1BB50</value>
+        </property>
+        <property name="name" type="String" container="StaticArray" arraySize="1">
+          <value>Stand</value>
+        </property>
+        <property name="isDefault" type="bool" container="StaticArray" arraySize="1">
+          <value>true</value>
+        </property>
+        <property name="radius" type="float" container="StaticArray" arraySize="1">
+          <value>1</value>
+        </property>
+        <property name="simplificationThreshold" type="float" container="StaticArray" arraySize="1">
+          <value>1</value>
+        </property>
+        <property name="height" type="float" container="StaticArray" arraySize="1">
+          <value>2</value>
+        </property>
+        <property name="maxClimbableAngle" type="float" container="StaticArray" arraySize="1">
+          <value>90</value>
+        </property>
+        <property name="maxStepSize" type="float" container="StaticArray" arraySize="1">
+          <value>0.3</value>
+        </property>
+        <property name="minArea" type="float" container="StaticArray" arraySize="1">
+          <value>0.4</value>
+        </property>
+      </staticProperties>
+      <dynamicProperties />
+    </entity>
+    <entity class="NavxNavFileLocator" classVersion="2" addr="0x02F1BD80" unknown1="304" unknown2="797130">
+      <staticProperties>
+        <property name="name" type="String" container="StaticArray" arraySize="1">
+          <value>NavxNavFileLocator0000</value>
+        </property>
+        <property name="dataSet" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x02F17FD0</value>
+        </property>
+        <property name="parent" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x00000000</value>
+        </property>
+        <property name="transform" type="EntityPtr" container="StaticArray" arraySize="1">
+          <value>0x02F1BED0</value>
+        </property>
+        <property name="shearTransform" type="EntityPtr" container="StaticArray" arraySize="1">
+          <value>0x00000000</value>
+        </property>
+        <property name="pivotTransform" type="EntityPtr" container="StaticArray" arraySize="1">
+          <value>0x00000000</value>
+        </property>
+        <property name="children" type="EntityHandle" container="List" />
+        <property name="flags" type="uint32" container="StaticArray" arraySize="1">
+          <value>7</value>
+        </property>
+        <property name="sceneName" type="String" container="StaticArray" arraySize="1">
+          <value>MainScene</value>
+        </property>
+        <property name="worldName" type="String" container="StaticArray" arraySize="1">
+          <value>sky</value>
+        </property>
+        <property name="enable" type="bool" container="StaticArray" arraySize="1">
+          <value>true</value>
+        </property>
+        <property name="navFile" type="FilePtr" container="StaticArray" arraySize="1">
+          <value>/Assets/tpp/level/location/cypr/block_common/cypr_common_nav_sky.nav2</value>
+        </property>
+      </staticProperties>
+      <dynamicProperties />
+    </entity>
+    <entity class="TransformEntity" classVersion="0" addr="0x02F1BED0" unknown1="80" unknown2="797133">
+      <staticProperties>
+        <property name="owner" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x02F1BD80</value>
+        </property>
+        <property name="transform_scale" type="Vector3" container="StaticArray" arraySize="1">
+          <value x="1" y="1" z="1" w="0" />
+        </property>
+        <property name="transform_rotation_quat" type="Quat" container="StaticArray" arraySize="1">
+          <value x="0" y="0" z="0" w="1" />
+        </property>
+        <property name="transform_translation" type="Vector3" container="StaticArray" arraySize="1">
+          <value x="-65.59685" y="111.786522" z="-1655.37085" w="0" />
+        </property>
+      </staticProperties>
+      <dynamicProperties />
+    </entity>
+    <entity class="NavxNavFilter" classVersion="0" addr="0x02F1C090" unknown1="272" unknown2="797137">
+      <staticProperties>
+        <property name="name" type="String" container="StaticArray" arraySize="1">
+          <value>NavxNavFilter0000</value>
+        </property>
+        <property name="dataSet" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x02F17FD0</value>
+        </property>
+        <property name="parent" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x00000000</value>
+        </property>
+        <property name="transform" type="EntityPtr" container="StaticArray" arraySize="1">
+          <value>0x02F1C100</value>
+        </property>
+        <property name="shearTransform" type="EntityPtr" container="StaticArray" arraySize="1">
+          <value>0x00000000</value>
+        </property>
+        <property name="pivotTransform" type="EntityPtr" container="StaticArray" arraySize="1">
+          <value>0x00000000</value>
+        </property>
+        <property name="children" type="EntityHandle" container="List" />
+        <property name="flags" type="uint32" container="StaticArray" arraySize="1">
+          <value>7</value>
+        </property>
+        <property name="worldName" type="String" container="StaticArray" arraySize="1">
+          <value></value>
+        </property>
+      </staticProperties>
+      <dynamicProperties />
+    </entity>
+    <entity class="TransformEntity" classVersion="0" addr="0x02F1C100" unknown1="80" unknown2="797140">
+      <staticProperties>
+        <property name="owner" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x02F1C090</value>
+        </property>
+        <property name="transform_scale" type="Vector3" container="StaticArray" arraySize="1">
+          <value x="6.1" y="1.65" z="4.5" w="0" />
+        </property>
+        <property name="transform_rotation_quat" type="Quat" container="StaticArray" arraySize="1">
+          <value x="0" y="0" z="0" w="1" />
+        </property>
+        <property name="transform_translation" type="Vector3" container="StaticArray" arraySize="1">
+          <value x="-64.02539" y="93.70194" z="-1687.50342" w="1" />
+        </property>
+      </staticProperties>
+      <dynamicProperties />
+    </entity>
+    <entity class="NavxNavFilter" classVersion="0" addr="0x02F1C2C0" unknown1="272" unknown2="797144">
+      <staticProperties>
+        <property name="name" type="String" container="StaticArray" arraySize="1">
+          <value>NavxNavFilter0004</value>
+        </property>
+        <property name="dataSet" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x02F17FD0</value>
+        </property>
+        <property name="parent" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x00000000</value>
+        </property>
+        <property name="transform" type="EntityPtr" container="StaticArray" arraySize="1">
+          <value>0x02F1C5D0</value>
+        </property>
+        <property name="shearTransform" type="EntityPtr" container="StaticArray" arraySize="1">
+          <value>0x00000000</value>
+        </property>
+        <property name="pivotTransform" type="EntityPtr" container="StaticArray" arraySize="1">
+          <value>0x00000000</value>
+        </property>
+        <property name="children" type="EntityHandle" container="List" />
+        <property name="flags" type="uint32" container="StaticArray" arraySize="1">
+          <value>7</value>
+        </property>
+        <property name="worldName" type="String" container="StaticArray" arraySize="1">
+          <value></value>
+        </property>
+      </staticProperties>
+      <dynamicProperties />
+    </entity>
+    <entity class="TransformEntity" classVersion="0" addr="0x02F1C5D0" unknown1="80" unknown2="797147">
+      <staticProperties>
+        <property name="owner" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x02F1C2C0</value>
+        </property>
+        <property name="transform_scale" type="Vector3" container="StaticArray" arraySize="1">
+          <value x="1.3" y="2.25" z="1" w="0" />
+        </property>
+        <property name="transform_rotation_quat" type="Quat" container="StaticArray" arraySize="1">
+          <value x="0" y="0" z="0" w="1" />
+        </property>
+        <property name="transform_translation" type="Vector3" container="StaticArray" arraySize="1">
+          <value x="-68.52535" y="94.001976" z="-1707.59521" w="1" />
+        </property>
+      </staticProperties>
+      <dynamicProperties />
+    </entity>
+    <entity class="NavxNavFilter" classVersion="0" addr="0x02F1C790" unknown1="272" unknown2="797151">
+      <staticProperties>
+        <property name="name" type="String" container="StaticArray" arraySize="1">
+          <value>NavxNavFilter0008</value>
+        </property>
+        <property name="dataSet" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x02F17FD0</value>
+        </property>
+        <property name="parent" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x00000000</value>
+        </property>
+        <property name="transform" type="EntityPtr" container="StaticArray" arraySize="1">
+          <value>0x02F1C800</value>
+        </property>
+        <property name="shearTransform" type="EntityPtr" container="StaticArray" arraySize="1">
+          <value>0x00000000</value>
+        </property>
+        <property name="pivotTransform" type="EntityPtr" container="StaticArray" arraySize="1">
+          <value>0x00000000</value>
+        </property>
+        <property name="children" type="EntityHandle" container="List" />
+        <property name="flags" type="uint32" container="StaticArray" arraySize="1">
+          <value>7</value>
+        </property>
+        <property name="worldName" type="String" container="StaticArray" arraySize="1">
+          <value></value>
+        </property>
+      </staticProperties>
+      <dynamicProperties />
+    </entity>
+    <entity class="TransformEntity" classVersion="0" addr="0x02F1C800" unknown1="80" unknown2="797154">
+      <staticProperties>
+        <property name="owner" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x02F1C790</value>
+        </property>
+        <property name="transform_scale" type="Vector3" container="StaticArray" arraySize="1">
+          <value x="1.15" y="2.25" z="1.15" w="0" />
+        </property>
+        <property name="transform_rotation_quat" type="Quat" container="StaticArray" arraySize="1">
+          <value x="0" y="0" z="0" w="1" />
+        </property>
+        <property name="transform_translation" type="Vector3" container="StaticArray" arraySize="1">
+          <value x="-58.05494" y="94.00204" z="-1706.36829" w="1" />
+        </property>
+      </staticProperties>
+      <dynamicProperties />
+    </entity>
+    <entity class="NavxNavFilter" classVersion="0" addr="0x02F1C9C0" unknown1="272" unknown2="797158">
+      <staticProperties>
+        <property name="name" type="String" container="StaticArray" arraySize="1">
+          <value>NavxNavFilter0009</value>
+        </property>
+        <property name="dataSet" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x02F17FD0</value>
+        </property>
+        <property name="parent" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x00000000</value>
+        </property>
+        <property name="transform" type="EntityPtr" container="StaticArray" arraySize="1">
+          <value>0x02F1CB10</value>
+        </property>
+        <property name="shearTransform" type="EntityPtr" container="StaticArray" arraySize="1">
+          <value>0x00000000</value>
+        </property>
+        <property name="pivotTransform" type="EntityPtr" container="StaticArray" arraySize="1">
+          <value>0x00000000</value>
+        </property>
+        <property name="children" type="EntityHandle" container="List" />
+        <property name="flags" type="uint32" container="StaticArray" arraySize="1">
+          <value>7</value>
+        </property>
+        <property name="worldName" type="String" container="StaticArray" arraySize="1">
+          <value></value>
+        </property>
+      </staticProperties>
+      <dynamicProperties />
+    </entity>
+    <entity class="TransformEntity" classVersion="0" addr="0x02F1CB10" unknown1="80" unknown2="797161">
+      <staticProperties>
+        <property name="owner" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x02F1C9C0</value>
+        </property>
+        <property name="transform_scale" type="Vector3" container="StaticArray" arraySize="1">
+          <value x="1.6" y="2.25" z="1.55" w="0" />
+        </property>
+        <property name="transform_rotation_quat" type="Quat" container="StaticArray" arraySize="1">
+          <value x="0" y="-0.382683" z="0" w="0.92388" />
+        </property>
+        <property name="transform_translation" type="Vector3" container="StaticArray" arraySize="1">
+          <value x="-58.5449562" y="94.00196" z="-1702.276" w="1" />
+        </property>
+      </staticProperties>
+      <dynamicProperties />
+    </entity>
+    <entity class="NavxNavFilter" classVersion="0" addr="0x02F1CCD0" unknown1="272" unknown2="797165">
+      <staticProperties>
+        <property name="name" type="String" container="StaticArray" arraySize="1">
+          <value>NavxNavFilter0010</value>
+        </property>
+        <property name="dataSet" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x02F17FD0</value>
+        </property>
+        <property name="parent" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x00000000</value>
+        </property>
+        <property name="transform" type="EntityPtr" container="StaticArray" arraySize="1">
+          <value>0x02F1CD40</value>
+        </property>
+        <property name="shearTransform" type="EntityPtr" container="StaticArray" arraySize="1">
+          <value>0x00000000</value>
+        </property>
+        <property name="pivotTransform" type="EntityPtr" container="StaticArray" arraySize="1">
+          <value>0x00000000</value>
+        </property>
+        <property name="children" type="EntityHandle" container="List" />
+        <property name="flags" type="uint32" container="StaticArray" arraySize="1">
+          <value>7</value>
+        </property>
+        <property name="worldName" type="String" container="StaticArray" arraySize="1">
+          <value></value>
+        </property>
+      </staticProperties>
+      <dynamicProperties />
+    </entity>
+    <entity class="TransformEntity" classVersion="0" addr="0x02F1CD40" unknown1="80" unknown2="797168">
+      <staticProperties>
+        <property name="owner" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x02F1CCD0</value>
+        </property>
+        <property name="transform_scale" type="Vector3" container="StaticArray" arraySize="1">
+          <value x="1.95" y="2.25" z="2.05" w="0" />
+        </property>
+        <property name="transform_rotation_quat" type="Quat" container="StaticArray" arraySize="1">
+          <value x="0" y="0" z="0" w="1" />
+        </property>
+        <property name="transform_translation" type="Vector3" container="StaticArray" arraySize="1">
+          <value x="-59.6331558" y="94.001976" z="-1697.62207" w="1" />
+        </property>
+      </staticProperties>
+      <dynamicProperties />
+    </entity>
+    <entity class="NavxNavFilter" classVersion="0" addr="0x02F1CF00" unknown1="272" unknown2="797172">
+      <staticProperties>
+        <property name="name" type="String" container="StaticArray" arraySize="1">
+          <value>NavxNavFilter0011</value>
+        </property>
+        <property name="dataSet" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x02F17FD0</value>
+        </property>
+        <property name="parent" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x00000000</value>
+        </property>
+        <property name="transform" type="EntityPtr" container="StaticArray" arraySize="1">
+          <value>0x02F1D050</value>
+        </property>
+        <property name="shearTransform" type="EntityPtr" container="StaticArray" arraySize="1">
+          <value>0x00000000</value>
+        </property>
+        <property name="pivotTransform" type="EntityPtr" container="StaticArray" arraySize="1">
+          <value>0x00000000</value>
+        </property>
+        <property name="children" type="EntityHandle" container="List" />
+        <property name="flags" type="uint32" container="StaticArray" arraySize="1">
+          <value>7</value>
+        </property>
+        <property name="worldName" type="String" container="StaticArray" arraySize="1">
+          <value></value>
+        </property>
+      </staticProperties>
+      <dynamicProperties />
+    </entity>
+    <entity class="TransformEntity" classVersion="0" addr="0x02F1D050" unknown1="80" unknown2="797175">
+      <staticProperties>
+        <property name="owner" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x02F1CF00</value>
+        </property>
+        <property name="transform_scale" type="Vector3" container="StaticArray" arraySize="1">
+          <value x="1.65" y="2.25" z="1.45" w="0" />
+        </property>
+        <property name="transform_rotation_quat" type="Quat" container="StaticArray" arraySize="1">
+          <value x="0" y="0" z="0" w="1" />
+        </property>
+        <property name="transform_translation" type="Vector3" container="StaticArray" arraySize="1">
+          <value x="-62.5445328" y="94.00193" z="-1701.03723" w="1" />
+        </property>
+      </staticProperties>
+      <dynamicProperties />
+    </entity>
+    <entity class="NavxNavFilter" classVersion="0" addr="0x02F1D210" unknown1="272" unknown2="797179">
+      <staticProperties>
+        <property name="name" type="String" container="StaticArray" arraySize="1">
+          <value>NavxNavFilter0012</value>
+        </property>
+        <property name="dataSet" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x02F17FD0</value>
+        </property>
+        <property name="parent" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x00000000</value>
+        </property>
+        <property name="transform" type="EntityPtr" container="StaticArray" arraySize="1">
+          <value>0x02F1D280</value>
+        </property>
+        <property name="shearTransform" type="EntityPtr" container="StaticArray" arraySize="1">
+          <value>0x00000000</value>
+        </property>
+        <property name="pivotTransform" type="EntityPtr" container="StaticArray" arraySize="1">
+          <value>0x00000000</value>
+        </property>
+        <property name="children" type="EntityHandle" container="List" />
+        <property name="flags" type="uint32" container="StaticArray" arraySize="1">
+          <value>7</value>
+        </property>
+        <property name="worldName" type="String" container="StaticArray" arraySize="1">
+          <value></value>
+        </property>
+      </staticProperties>
+      <dynamicProperties />
+    </entity>
+    <entity class="TransformEntity" classVersion="0" addr="0x02F1D280" unknown1="80" unknown2="797182">
+      <staticProperties>
+        <property name="owner" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x02F1D210</value>
+        </property>
+        <property name="transform_scale" type="Vector3" container="StaticArray" arraySize="1">
+          <value x="1.25" y="2.25" z="1.25" w="0" />
+        </property>
+        <property name="transform_rotation_quat" type="Quat" container="StaticArray" arraySize="1">
+          <value x="0" y="0" z="0" w="1" />
+        </property>
+        <property name="transform_translation" type="Vector3" container="StaticArray" arraySize="1">
+          <value x="-66.83107" y="94.00199" z="-1700.84729" w="1" />
+        </property>
+      </staticProperties>
+      <dynamicProperties />
+    </entity>
+    <entity class="NavxNavFilter" classVersion="0" addr="0x02F1D440" unknown1="272" unknown2="797186">
+      <staticProperties>
+        <property name="name" type="String" container="StaticArray" arraySize="1">
+          <value>NavxNavFilter0013</value>
+        </property>
+        <property name="dataSet" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x02F17FD0</value>
+        </property>
+        <property name="parent" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x00000000</value>
+        </property>
+        <property name="transform" type="EntityPtr" container="StaticArray" arraySize="1">
+          <value>0x02F1D590</value>
+        </property>
+        <property name="shearTransform" type="EntityPtr" container="StaticArray" arraySize="1">
+          <value>0x00000000</value>
+        </property>
+        <property name="pivotTransform" type="EntityPtr" container="StaticArray" arraySize="1">
+          <value>0x00000000</value>
+        </property>
+        <property name="children" type="EntityHandle" container="List" />
+        <property name="flags" type="uint32" container="StaticArray" arraySize="1">
+          <value>7</value>
+        </property>
+        <property name="worldName" type="String" container="StaticArray" arraySize="1">
+          <value></value>
+        </property>
+      </staticProperties>
+      <dynamicProperties />
+    </entity>
+    <entity class="TransformEntity" classVersion="0" addr="0x02F1D590" unknown1="80" unknown2="797189">
+      <staticProperties>
+        <property name="owner" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x02F1D440</value>
+        </property>
+        <property name="transform_scale" type="Vector3" container="StaticArray" arraySize="1">
+          <value x="2.4" y="2.25" z="1.85" w="0" />
+        </property>
+        <property name="transform_rotation_quat" type="Quat" container="StaticArray" arraySize="1">
+          <value x="0" y="0" z="0" w="1" />
+        </property>
+        <property name="transform_translation" type="Vector3" container="StaticArray" arraySize="1">
+          <value x="-68.22205" y="94.0019455" z="-1700.18909" w="1" />
+        </property>
+      </staticProperties>
+      <dynamicProperties />
+    </entity>
+    <entity class="NavxNavFilter" classVersion="0" addr="0x02F1D750" unknown1="272" unknown2="797193">
+      <staticProperties>
+        <property name="name" type="String" container="StaticArray" arraySize="1">
+          <value>NavxNavFilter0018</value>
+        </property>
+        <property name="dataSet" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x02F17FD0</value>
+        </property>
+        <property name="parent" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x00000000</value>
+        </property>
+        <property name="transform" type="EntityPtr" container="StaticArray" arraySize="1">
+          <value>0x02F1D7C0</value>
+        </property>
+        <property name="shearTransform" type="EntityPtr" container="StaticArray" arraySize="1">
+          <value>0x00000000</value>
+        </property>
+        <property name="pivotTransform" type="EntityPtr" container="StaticArray" arraySize="1">
+          <value>0x00000000</value>
+        </property>
+        <property name="children" type="EntityHandle" container="List" />
+        <property name="flags" type="uint32" container="StaticArray" arraySize="1">
+          <value>7</value>
+        </property>
+        <property name="worldName" type="String" container="StaticArray" arraySize="1">
+          <value></value>
+        </property>
+      </staticProperties>
+      <dynamicProperties />
+    </entity>
+    <entity class="TransformEntity" classVersion="0" addr="0x02F1D7C0" unknown1="80" unknown2="797196">
+      <staticProperties>
+        <property name="owner" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x02F1D750</value>
+        </property>
+        <property name="transform_scale" type="Vector3" container="StaticArray" arraySize="1">
+          <value x="1.8" y="2.25" z="1.95" w="0" />
+        </property>
+        <property name="transform_rotation_quat" type="Quat" container="StaticArray" arraySize="1">
+          <value x="0" y="0" z="0" w="1" />
+        </property>
+        <property name="transform_translation" type="Vector3" container="StaticArray" arraySize="1">
+          <value x="-56.8443756" y="94.00202" z="-1693.44519" w="1" />
+        </property>
+      </staticProperties>
+      <dynamicProperties />
+    </entity>
+    <entity class="NavxNavFilter" classVersion="0" addr="0x02F1D980" unknown1="272" unknown2="797200">
+      <staticProperties>
+        <property name="name" type="String" container="StaticArray" arraySize="1">
+          <value>NavxNavFilter0020</value>
+        </property>
+        <property name="dataSet" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x02F17FD0</value>
+        </property>
+        <property name="parent" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x00000000</value>
+        </property>
+        <property name="transform" type="EntityPtr" container="StaticArray" arraySize="1">
+          <value>0x02F1DAD0</value>
+        </property>
+        <property name="shearTransform" type="EntityPtr" container="StaticArray" arraySize="1">
+          <value>0x00000000</value>
+        </property>
+        <property name="pivotTransform" type="EntityPtr" container="StaticArray" arraySize="1">
+          <value>0x00000000</value>
+        </property>
+        <property name="children" type="EntityHandle" container="List" />
+        <property name="flags" type="uint32" container="StaticArray" arraySize="1">
+          <value>7</value>
+        </property>
+        <property name="worldName" type="String" container="StaticArray" arraySize="1">
+          <value></value>
+        </property>
+      </staticProperties>
+      <dynamicProperties />
+    </entity>
+    <entity class="TransformEntity" classVersion="0" addr="0x02F1DAD0" unknown1="80" unknown2="797203">
+      <staticProperties>
+        <property name="owner" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x02F1D980</value>
+        </property>
+        <property name="transform_scale" type="Vector3" container="StaticArray" arraySize="1">
+          <value x="1.55" y="2.25" z="1.3" w="0" />
+        </property>
+        <property name="transform_rotation_quat" type="Quat" container="StaticArray" arraySize="1">
+          <value x="0" y="-0.3894" z="0" w="0.921069" />
+        </property>
+        <property name="transform_translation" type="Vector3" container="StaticArray" arraySize="1">
+          <value x="-53.9395332" y="94.0019" z="-1696.528" w="1" />
+        </property>
+      </staticProperties>
+      <dynamicProperties />
+    </entity>
+    <entity class="NavxNavFilter" classVersion="0" addr="0x02F1DC90" unknown1="272" unknown2="797207">
+      <staticProperties>
+        <property name="name" type="String" container="StaticArray" arraySize="1">
+          <value>NavxNavFilter0021</value>
+        </property>
+        <property name="dataSet" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x02F17FD0</value>
+        </property>
+        <property name="parent" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x00000000</value>
+        </property>
+        <property name="transform" type="EntityPtr" container="StaticArray" arraySize="1">
+          <value>0x02F1DD00</value>
+        </property>
+        <property name="shearTransform" type="EntityPtr" container="StaticArray" arraySize="1">
+          <value>0x00000000</value>
+        </property>
+        <property name="pivotTransform" type="EntityPtr" container="StaticArray" arraySize="1">
+          <value>0x00000000</value>
+        </property>
+        <property name="children" type="EntityHandle" container="List" />
+        <property name="flags" type="uint32" container="StaticArray" arraySize="1">
+          <value>7</value>
+        </property>
+        <property name="worldName" type="String" container="StaticArray" arraySize="1">
+          <value></value>
+        </property>
+      </staticProperties>
+      <dynamicProperties />
+    </entity>
+    <entity class="TransformEntity" classVersion="0" addr="0x02F1DD00" unknown1="80" unknown2="797210">
+      <staticProperties>
+        <property name="owner" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x02F1DC90</value>
+        </property>
+        <property name="transform_scale" type="Vector3" container="StaticArray" arraySize="1">
+          <value x="1.65" y="2.25" z="2.35" w="0" />
+        </property>
+        <property name="transform_rotation_quat" type="Quat" container="StaticArray" arraySize="1">
+          <value x="0" y="0" z="0" w="1" />
+        </property>
+        <property name="transform_translation" type="Vector3" container="StaticArray" arraySize="1">
+          <value x="-68.91477" y="94.0019455" z="-1711.0448" w="1" />
+        </property>
+      </staticProperties>
+      <dynamicProperties />
+    </entity>
+    <entity class="NavxNavFilter" classVersion="0" addr="0x02F1DEC0" unknown1="272" unknown2="797214">
+      <staticProperties>
+        <property name="name" type="String" container="StaticArray" arraySize="1">
+          <value>NavxNavFilter0022</value>
+        </property>
+        <property name="dataSet" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x02F17FD0</value>
+        </property>
+        <property name="parent" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x00000000</value>
+        </property>
+        <property name="transform" type="EntityPtr" container="StaticArray" arraySize="1">
+          <value>0x02F1E010</value>
+        </property>
+        <property name="shearTransform" type="EntityPtr" container="StaticArray" arraySize="1">
+          <value>0x00000000</value>
+        </property>
+        <property name="pivotTransform" type="EntityPtr" container="StaticArray" arraySize="1">
+          <value>0x00000000</value>
+        </property>
+        <property name="children" type="EntityHandle" container="List" />
+        <property name="flags" type="uint32" container="StaticArray" arraySize="1">
+          <value>7</value>
+        </property>
+        <property name="worldName" type="String" container="StaticArray" arraySize="1">
+          <value></value>
+        </property>
+      </staticProperties>
+      <dynamicProperties />
+    </entity>
+    <entity class="TransformEntity" classVersion="0" addr="0x02F1E010" unknown1="80" unknown2="797217">
+      <staticProperties>
+        <property name="owner" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x02F1DEC0</value>
+        </property>
+        <property name="transform_scale" type="Vector3" container="StaticArray" arraySize="1">
+          <value x="1.4" y="2.25" z="1.35" w="0" />
+        </property>
+        <property name="transform_rotation_quat" type="Quat" container="StaticArray" arraySize="1">
+          <value x="0" y="0" z="0" w="1" />
+        </property>
+        <property name="transform_translation" type="Vector3" container="StaticArray" arraySize="1">
+          <value x="-69.9398041" y="94.00193" z="-1710.69592" w="1" />
+        </property>
+      </staticProperties>
+      <dynamicProperties />
+    </entity>
+    <entity class="NavxNavFilter" classVersion="0" addr="0x02F1E1D0" unknown1="272" unknown2="797221">
+      <staticProperties>
+        <property name="name" type="String" container="StaticArray" arraySize="1">
+          <value>NavxNavFilter0024</value>
+        </property>
+        <property name="dataSet" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x02F17FD0</value>
+        </property>
+        <property name="parent" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x00000000</value>
+        </property>
+        <property name="transform" type="EntityPtr" container="StaticArray" arraySize="1">
+          <value>0x02F1E240</value>
+        </property>
+        <property name="shearTransform" type="EntityPtr" container="StaticArray" arraySize="1">
+          <value>0x00000000</value>
+        </property>
+        <property name="pivotTransform" type="EntityPtr" container="StaticArray" arraySize="1">
+          <value>0x00000000</value>
+        </property>
+        <property name="children" type="EntityHandle" container="List" />
+        <property name="flags" type="uint32" container="StaticArray" arraySize="1">
+          <value>7</value>
+        </property>
+        <property name="worldName" type="String" container="StaticArray" arraySize="1">
+          <value></value>
+        </property>
+      </staticProperties>
+      <dynamicProperties />
+    </entity>
+    <entity class="TransformEntity" classVersion="0" addr="0x02F1E240" unknown1="80" unknown2="797224">
+      <staticProperties>
+        <property name="owner" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x02F1E1D0</value>
+        </property>
+        <property name="transform_scale" type="Vector3" container="StaticArray" arraySize="1">
+          <value x="0.8" y="2.25" z="0.65" w="0" />
+        </property>
+        <property name="transform_rotation_quat" type="Quat" container="StaticArray" arraySize="1">
+          <value x="0" y="0" z="0" w="1" />
+        </property>
+        <property name="transform_translation" type="Vector3" container="StaticArray" arraySize="1">
+          <value x="-74.32536" y="94.00193" z="-1695.25427" w="1" />
+        </property>
+      </staticProperties>
+      <dynamicProperties />
+    </entity>
+    <entity class="NavxNavFilter" classVersion="0" addr="0x02F1E400" unknown1="272" unknown2="797228">
+      <staticProperties>
+        <property name="name" type="String" container="StaticArray" arraySize="1">
+          <value>NavxNavFilter0025</value>
+        </property>
+        <property name="dataSet" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x02F17FD0</value>
+        </property>
+        <property name="parent" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x00000000</value>
+        </property>
+        <property name="transform" type="EntityPtr" container="StaticArray" arraySize="1">
+          <value>0x02F1E550</value>
+        </property>
+        <property name="shearTransform" type="EntityPtr" container="StaticArray" arraySize="1">
+          <value>0x00000000</value>
+        </property>
+        <property name="pivotTransform" type="EntityPtr" container="StaticArray" arraySize="1">
+          <value>0x00000000</value>
+        </property>
+        <property name="children" type="EntityHandle" container="List" />
+        <property name="flags" type="uint32" container="StaticArray" arraySize="1">
+          <value>7</value>
+        </property>
+        <property name="worldName" type="String" container="StaticArray" arraySize="1">
+          <value></value>
+        </property>
+      </staticProperties>
+      <dynamicProperties />
+    </entity>
+    <entity class="TransformEntity" classVersion="0" addr="0x02F1E550" unknown1="80" unknown2="797231">
+      <staticProperties>
+        <property name="owner" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x02F1E400</value>
+        </property>
+        <property name="transform_scale" type="Vector3" container="StaticArray" arraySize="1">
+          <value x="1.5" y="2.25" z="1.55" w="0" />
+        </property>
+        <property name="transform_rotation_quat" type="Quat" container="StaticArray" arraySize="1">
+          <value x="0" y="0" z="0" w="1" />
+        </property>
+        <property name="transform_translation" type="Vector3" container="StaticArray" arraySize="1">
+          <value x="-76.1429" y="94.0019455" z="-1693.70813" w="1" />
+        </property>
+      </staticProperties>
+      <dynamicProperties />
+    </entity>
+    <entity class="NavxNavFilter" classVersion="0" addr="0x02F1E710" unknown1="272" unknown2="797235">
+      <staticProperties>
+        <property name="name" type="String" container="StaticArray" arraySize="1">
+          <value>NavxNavFilter0026</value>
+        </property>
+        <property name="dataSet" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x02F17FD0</value>
+        </property>
+        <property name="parent" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x00000000</value>
+        </property>
+        <property name="transform" type="EntityPtr" container="StaticArray" arraySize="1">
+          <value>0x02F1E780</value>
+        </property>
+        <property name="shearTransform" type="EntityPtr" container="StaticArray" arraySize="1">
+          <value>0x00000000</value>
+        </property>
+        <property name="pivotTransform" type="EntityPtr" container="StaticArray" arraySize="1">
+          <value>0x00000000</value>
+        </property>
+        <property name="children" type="EntityHandle" container="List" />
+        <property name="flags" type="uint32" container="StaticArray" arraySize="1">
+          <value>7</value>
+        </property>
+        <property name="worldName" type="String" container="StaticArray" arraySize="1">
+          <value></value>
+        </property>
+      </staticProperties>
+      <dynamicProperties />
+    </entity>
+    <entity class="TransformEntity" classVersion="0" addr="0x02F1E780" unknown1="80" unknown2="797238">
+      <staticProperties>
+        <property name="owner" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x02F1E710</value>
+        </property>
+        <property name="transform_scale" type="Vector3" container="StaticArray" arraySize="1">
+          <value x="1.5" y="2.25" z="1.3" w="0" />
+        </property>
+        <property name="transform_rotation_quat" type="Quat" container="StaticArray" arraySize="1">
+          <value x="0" y="0" z="0" w="1" />
+        </property>
+        <property name="transform_translation" type="Vector3" container="StaticArray" arraySize="1">
+          <value x="-71.85491" y="94.0019455" z="-1693.68884" w="1" />
+        </property>
+      </staticProperties>
+      <dynamicProperties />
+    </entity>
+    <entity class="NavxNavFilter" classVersion="0" addr="0x02F1E940" unknown1="272" unknown2="797242">
+      <staticProperties>
+        <property name="name" type="String" container="StaticArray" arraySize="1">
+          <value>NavxNavFilter0023</value>
+        </property>
+        <property name="dataSet" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x02F17FD0</value>
+        </property>
+        <property name="parent" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x00000000</value>
+        </property>
+        <property name="transform" type="EntityPtr" container="StaticArray" arraySize="1">
+          <value>0x02F1EA90</value>
+        </property>
+        <property name="shearTransform" type="EntityPtr" container="StaticArray" arraySize="1">
+          <value>0x00000000</value>
+        </property>
+        <property name="pivotTransform" type="EntityPtr" container="StaticArray" arraySize="1">
+          <value>0x00000000</value>
+        </property>
+        <property name="children" type="EntityHandle" container="List" />
+        <property name="flags" type="uint32" container="StaticArray" arraySize="1">
+          <value>7</value>
+        </property>
+        <property name="worldName" type="String" container="StaticArray" arraySize="1">
+          <value></value>
+        </property>
+      </staticProperties>
+      <dynamicProperties />
+    </entity>
+    <entity class="TransformEntity" classVersion="0" addr="0x02F1EA90" unknown1="80" unknown2="797245">
+      <staticProperties>
+        <property name="owner" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x02F1E940</value>
+        </property>
+        <property name="transform_scale" type="Vector3" container="StaticArray" arraySize="1">
+          <value x="0.75" y="2.25" z="0.75" w="0" />
+        </property>
+        <property name="transform_rotation_quat" type="Quat" container="StaticArray" arraySize="1">
+          <value x="0" y="0" z="0" w="1" />
+        </property>
+        <property name="transform_translation" type="Vector3" container="StaticArray" arraySize="1">
+          <value x="-74.7497" y="94.0019455" z="-1697.57422" w="1" />
+        </property>
+      </staticProperties>
+      <dynamicProperties />
+    </entity>
+    <entity class="NavxNavFilter" classVersion="0" addr="0x02F1EC50" unknown1="272" unknown2="797249">
+      <staticProperties>
+        <property name="name" type="String" container="StaticArray" arraySize="1">
+          <value>NavxNavFilter0019</value>
+        </property>
+        <property name="dataSet" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x02F17FD0</value>
+        </property>
+        <property name="parent" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x00000000</value>
+        </property>
+        <property name="transform" type="EntityPtr" container="StaticArray" arraySize="1">
+          <value>0x02F1ECC0</value>
+        </property>
+        <property name="shearTransform" type="EntityPtr" container="StaticArray" arraySize="1">
+          <value>0x00000000</value>
+        </property>
+        <property name="pivotTransform" type="EntityPtr" container="StaticArray" arraySize="1">
+          <value>0x00000000</value>
+        </property>
+        <property name="children" type="EntityHandle" container="List" />
+        <property name="flags" type="uint32" container="StaticArray" arraySize="1">
+          <value>7</value>
+        </property>
+        <property name="worldName" type="String" container="StaticArray" arraySize="1">
+          <value></value>
+        </property>
+      </staticProperties>
+      <dynamicProperties />
+    </entity>
+    <entity class="TransformEntity" classVersion="0" addr="0x02F1ECC0" unknown1="80" unknown2="797252">
+      <staticProperties>
+        <property name="owner" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x02F1EC50</value>
+        </property>
+        <property name="transform_scale" type="Vector3" container="StaticArray" arraySize="1">
+          <value x="1.1" y="2.25" z="1.45" w="0" />
+        </property>
+        <property name="transform_rotation_quat" type="Quat" container="StaticArray" arraySize="1">
+          <value x="0" y="0" z="0" w="1" />
+        </property>
+        <property name="transform_translation" type="Vector3" container="StaticArray" arraySize="1">
+          <value x="-69.66564" y="94.0019455" z="-1703.51245" w="1" />
+        </property>
+      </staticProperties>
+      <dynamicProperties />
+    </entity>
+    <entity class="NavxNavFilter" classVersion="0" addr="0x02F1F510" unknown1="272" unknown2="797272">
+      <staticProperties>
+        <property name="name" type="String" container="StaticArray" arraySize="1">
+          <value>NavxNavFilter0014</value>
+        </property>
+        <property name="dataSet" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x02F17FD0</value>
+        </property>
+        <property name="parent" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x00000000</value>
+        </property>
+        <property name="transform" type="EntityPtr" container="StaticArray" arraySize="1">
+          <value>0x02F1F580</value>
+        </property>
+        <property name="shearTransform" type="EntityPtr" container="StaticArray" arraySize="1">
+          <value>0x00000000</value>
+        </property>
+        <property name="pivotTransform" type="EntityPtr" container="StaticArray" arraySize="1">
+          <value>0x00000000</value>
+        </property>
+        <property name="children" type="EntityHandle" container="List" />
+        <property name="flags" type="uint32" container="StaticArray" arraySize="1">
+          <value>7</value>
+        </property>
+        <property name="worldName" type="String" container="StaticArray" arraySize="1">
+          <value></value>
+        </property>
+      </staticProperties>
+      <dynamicProperties />
+    </entity>
+    <entity class="TransformEntity" classVersion="0" addr="0x02F1F580" unknown1="80" unknown2="797275">
+      <staticProperties>
+        <property name="owner" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x02F1F510</value>
+        </property>
+        <property name="transform_scale" type="Vector3" container="StaticArray" arraySize="1">
+          <value x="1.6" y="2.25" z="3.85" w="0" />
+        </property>
+        <property name="transform_rotation_quat" type="Quat" container="StaticArray" arraySize="1">
+          <value x="0" y="0" z="0" w="1" />
+        </property>
+        <property name="transform_translation" type="Vector3" container="StaticArray" arraySize="1">
+          <value x="-67.05612" y="94.00205" z="-1704.60559" w="1" />
+        </property>
+      </staticProperties>
+      <dynamicProperties />
+    </entity>
+    <entity class="NavxBounderLocator" classVersion="0" addr="0x043B0400" unknown1="272" unknown2="857059">
+      <staticProperties>
+        <property name="name" type="String" container="StaticArray" arraySize="1">
+          <value>NavxBounderLocator0000</value>
+        </property>
+        <property name="dataSet" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x02F17FD0</value>
+        </property>
+        <property name="parent" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x00000000</value>
+        </property>
+        <property name="transform" type="EntityPtr" container="StaticArray" arraySize="1">
+          <value>0x043B0550</value>
+        </property>
+        <property name="shearTransform" type="EntityPtr" container="StaticArray" arraySize="1">
+          <value>0x00000000</value>
+        </property>
+        <property name="pivotTransform" type="EntityPtr" container="StaticArray" arraySize="1">
+          <value>0x00000000</value>
+        </property>
+        <property name="children" type="EntityHandle" container="List" />
+        <property name="flags" type="uint32" container="StaticArray" arraySize="1">
+          <value>7</value>
+        </property>
+        <property name="enable" type="bool" container="StaticArray" arraySize="1">
+          <value>true</value>
+        </property>
+        <property name="sceneName" type="String" container="StaticArray" arraySize="1">
+          <value>MainScene</value>
+        </property>
+        <property name="worldName" type="String" container="StaticArray" arraySize="1">
+          <value></value>
+        </property>
+        <property name="type" type="int32" container="StaticArray" arraySize="1">
+          <value>0</value>
+        </property>
+      </staticProperties>
+      <dynamicProperties />
+    </entity>
+    <entity class="TransformEntity" classVersion="0" addr="0x043B0550" unknown1="80" unknown2="857060">
+      <staticProperties>
+        <property name="owner" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x043B0400</value>
+        </property>
+        <property name="transform_scale" type="Vector3" container="StaticArray" arraySize="1">
+          <value x="1" y="1" z="1" w="0" />
+        </property>
+        <property name="transform_rotation_quat" type="Quat" container="StaticArray" arraySize="1">
+          <value x="0" y="0" z="0" w="1" />
+        </property>
+        <property name="transform_translation" type="Vector3" container="StaticArray" arraySize="1">
+          <value x="-77.4964" y="97.375" z="-1723.42407" w="0" />
+        </property>
+      </staticProperties>
+      <dynamicProperties />
+    </entity>
+    <entity class="TexturePackLoadConditioner" classVersion="0" addr="0x06F3ADC0" unknown1="72" unknown2="0">
+      <staticProperties>
+        <property name="name" type="String" container="StaticArray" arraySize="1">
+          <value>TexturePackLoadConditioner0000</value>
+        </property>
+        <property name="dataSet" type="EntityHandle" container="StaticArray" arraySize="1">
+          <value>0x02F17FD0</value>
+        </property>
+        <property name="texturePackPath" type="Path" container="StaticArray" arraySize="1">
+          <value></value>
+        </property>
+      </staticProperties>
+      <dynamicProperties />
+    </entity>
+  </entities>
+</fox>

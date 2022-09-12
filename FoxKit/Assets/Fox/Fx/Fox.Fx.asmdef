@@ -1,0 +1,27 @@
+{
+    "name": "Fox.Fx",
+    "rootNamespace": "",
+    "references": [
+        "GUID:6215282ee75f28a44abd0d6e20f2a4a5",
+        "GUID:3e6e7090655bd8349aace8bb0ba74d58",
+        "GUID:2a23f950f6072004ca709e9808c3b34d",
+        "GUID:fc768b19e502f2947acce9a7994617e8",
+        "GUID:fb29eb41f6444e24e807a401c751ea0e",
+        "GUID:46163a9f248e4dc49aa56eab99ef988e",
+        "GUID:db3d8564ad49c9943994cfc411ae1224",
+        "GUID:9bb4367371efc0e4e8f5074a8ef9a451",
+        "GUID:4b109decc9eeccc479e5a7f515115d2f",
+        "GUID:483a3e9620f286145b23fdf8629197d7",
+        "GUID:a432eb0a70c5c4a37ab50d59671586f8",
+        "GUID:ca937d03ee5dd4d699091438dc0f3ae6"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

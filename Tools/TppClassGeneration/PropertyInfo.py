@@ -1,7 +1,7 @@
 class PropertyInfo:
     """Entity property metadata."""
 
-    def __init__(self, name, data_type, offset, array_size, container, ptr_type, enum_type, export_flag, definitions):
+    def __init__(self, name, data_type, offset, array_size, container, ptr_type, enum_type, export_flag, entity_name, definitions):
         """Creates a new PropertyInfo.
 
         Args:
@@ -13,6 +13,7 @@ class PropertyInfo:
                 ptr_type (str): For EntityPtr properties, the type of the Entity pointed to.
                 enum_type (str): The enum type.
                 export_flag (str): Readable/writable settings for the property.
+                entity_name (str): Name of owning entity.
                 definitions (dict): Dictionary of all EntityInfos.
 
         """
@@ -24,6 +25,7 @@ class PropertyInfo:
         self.ptr_type = ptr_type
         self.enum_type = enum_type
         self.export_flag = export_flag
+        self.entity_name = entity_name
         self.definitions = definitions
 
         self.data_type_strings = {
@@ -38,8 +40,8 @@ class PropertyInfo:
             "float" : "float",
             "double" : "double",
             "bool" : "bool",
-            "String" : "Fox.String",
-            "Path" : "Fox.Core.Path",
+            "String" : "Fox.Kernel.String",
+            "Path" : "Fox.Kernel.Path",
             "EntityPtr" : "Fox.Core.EntityPtr",
             "Vector3" : "UnityEngine.Vector3",
             "Vector4" : "UnityEngine.Vector4",
@@ -106,8 +108,6 @@ class PropertyInfo:
             result = f'{self.enum_type}'
         if self.data_type == "EntityPtr":
             result = f'{result}<{self.definitions[self.ptr_type].get_root_namespace()}.{self.definitions[self.ptr_type].get_namespace_without_prefix()}.{self.ptr_type}>'
-        elif self.data_type == "FilePtr":
-            result = f'{result}<Fox.Core.File>'
         return result
 
     def get_property_full_type_string(self):
@@ -122,10 +122,10 @@ class PropertyInfo:
         if self.container == "StaticArray":
             if self.array_size == 1:
                 return value_type_string
-            return f'Fox.Core.StaticArray<{value_type_string}>'
+            return f'Fox.Kernel.StaticArray<{value_type_string}>'
         if self.container == "StringMap":
-            return f'Fox.Core.StringMap<{value_type_string}>'
-        return f'Fox.Core.DynamicArray<{value_type_string}>'
+            return f'Fox.Kernel.StringMap<{value_type_string}>'
+        return f'Fox.Kernel.DynamicArray<{value_type_string}>'
 
     def has_setter(self):
         """Gets whether the property has a setter.
@@ -160,10 +160,10 @@ class PropertyInfo:
         if not self.is_collection_property() and self.data_type == "EntityPtr":
             return f'new {value_type_string}()'
         if self.container == "StaticArray":
-            return f'new Fox.Core.StaticArray<{value_type_string}>({self.array_size})'
+            return f'new Fox.Kernel.StaticArray<{value_type_string}>({self.array_size})'
         if self.container == "StringMap":
-            return f'new Fox.Core.StringMap<{value_type_string}>()'
-        return f'new Fox.Core.DynamicArray<{value_type_string}>()'
+            return f'new Fox.Kernel.StringMap<{value_type_string}>()'
+        return f'new Fox.Kernel.DynamicArray<{value_type_string}>()'
 
     def get_value_getter_type_string(self):
         """Gets the type string to use with Value.GetValueAs...
@@ -209,6 +209,30 @@ class PropertyInfo:
             return "Fox.Core.PropertyInfo.PropertyExport.EditorOnly"
         return "Fox.Core.PropertyInfo.PropertyExport.Never"
 
+    def has_public_get(self):
+        """Gets whether or not the property should be public and have a public getter.
+        
+        Returns:
+                True if the property should be public and have a public getter.
+
+        """
+        
+        if self.export_flag[0] == 'R' or self.export_flag[0] == 'r':
+            return True
+        return False
+
+    def has_public_set(self):
+        """Gets whether or not the property should have a public setter.
+        
+        Returns:
+                True if the property should have a public setter.
+
+        """
+        
+        if self.export_flag[1] == 'W' or self.export_flag[1] == 'w':
+            return True
+        return False
+
     def get_writable_string(self):
         """Gets the property writability enum string.
         
@@ -243,7 +267,7 @@ class PropertyInfo:
         enum_str = "null"
         if self.enum_type:
             enum_str = f'typeof({self.enum_type})'
-        return f'classInfo.StaticProperties.Insert("{self.name}", new Fox.Core.PropertyInfo(Fox.Core.PropertyInfo.PropertyType.{self.get_value_getter_type_string()}, {self.offset}, {self.array_size}, Fox.Core.PropertyInfo.ContainerType.{self.container}, {self.get_readable_string()}, {self.get_writable_string()}, {self.get_entity_ptr_type_string()}, {enum_str}, Fox.Core.PropertyInfo.PropertyStorage.Instance));'
+        return f'classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("{self.name}"), Fox.Core.PropertyInfo.PropertyType.{self.get_value_getter_type_string()}, {self.offset}, {self.array_size}, Fox.Core.PropertyInfo.ContainerType.{self.container}, {self.get_readable_string()}, {self.get_writable_string()}, {self.get_entity_ptr_type_string()}, {enum_str}, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.{"Accessor" if self.is_accessor_property() else "Field"}));'
 
     def is_collection_property(self):
         """Gets whether or not the property is a collection property.
@@ -262,3 +286,12 @@ class PropertyInfo:
 
         """
         return self.container != "StringMap" and (self.container != "StaticArray" or self.array_size > 1)
+
+    def is_accessor_property(self):
+        """Gets whether or not the property is an accessor (no storage, just getters and setter functions) property.
+        
+        Returns:
+                True if the property is an acessor.
+
+        """
+        return (self.definitions[self.entity_name].parent is not None) and (self.offset == 0)

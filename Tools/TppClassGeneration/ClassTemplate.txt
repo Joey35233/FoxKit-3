@@ -12,64 +12,79 @@ using Fox;
 
 namespace {{ info.get_root_namespace() }}.{{ info.get_namespace_without_prefix() }}
 {
+    [UnityEditor.InitializeOnLoad]
     public partial class {{ info.name }} {% if info.parent %}: {{ info.get_parent_string() }} {% endif %}
     {
         {% if not info.properties|length == 0 %}// Properties{% endif %}{% for property_name in info.properties %}
-        public {{ info.properties[property_name].get_property_full_type_string() }} {{ info.properties[property_name].get_safe_name() }}{% if info.properties[property_name].has_default_value() %} = {{info.properties[property_name].get_default_value()}}{% endif %};
+        {% if info.properties[property_name].is_accessor_property() -%}
+        {% if info.properties[property_name].has_public_get() %}public{% else %}protected{% endif %} {{ info.properties[property_name].get_property_full_type_string() }} {{ info.properties[property_name].get_safe_name() }} { get => Get_{{ property_name }}();{% if info.properties[property_name].has_public_set() %} set { Set_{{ property_name }}(value); }{%- endif %} }
+        protected partial {{ info.properties[property_name].get_property_full_type_string() }} Get_{{ property_name }}();
+        {%- if info.properties[property_name].has_public_set() %}
+        protected partial void Set_{{ property_name }}({{ info.properties[property_name].get_property_full_type_string() }} value);
+        {%- endif -%}
+        {%- else -%}
+        [field: UnityEngine.SerializeField]
+        {% if info.properties[property_name].has_public_get() %}public{% else %}protected{% endif %} {{ info.properties[property_name].get_property_full_type_string() }} {{ info.properties[property_name].get_safe_name() }} { get; {% if not info.properties[property_name].has_public_set() and info.properties[property_name].has_public_get() %}protected {% endif %}set; }{% if info.properties[property_name].has_default_value() %} = {{info.properties[property_name].get_default_value()}};{% endif %}
+        {%- endif %}
         {% endfor %}
         // PropertyInfo
-        private static Fox.EntityInfo classInfo;
-        public static new Fox.EntityInfo ClassInfo
+        private static Fox.Core.EntityInfo classInfo;
+        public static {% if not info.is_root() %}new{% endif %} Fox.Core.EntityInfo ClassInfo
         {
             get
             {
                 return classInfo;
             }
         }
-        public {% if info.is_root() %}virtual{% else %} override{% endif %} Fox.EntityInfo GetClassEntityInfo()
+        public {% if info.is_root() %}virtual{% else %}override{% endif %} Fox.Core.EntityInfo GetClassEntityInfo()
         {
             return classInfo;
         }
         static {{ info.name }}()
         {
-            classInfo = new Fox.EntityInfo("{{ info.name }}", {{ info.get_parent_entity_info_string() }}, {{ info.id }}, {{ info.get_category_string() }}, {{ info.version }});
-			{% for property_name in info.properties %}
+            classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("{{ info.name }}"), typeof({{ info.name }}), {{ info.get_parent_entity_info_string() }}, {{ info.id }}, {{ info.get_category_string() }}, {{ info.version }});
+			{%- for property_name in info.properties %}
 			{{ info.properties[property_name].get_property_info_instantiation_string() }}
 			{%- endfor %}
         }
 
-        // Constructor
-		{% if info.is_entity() %}public {{ info.name }}(ulong address, ushort idA, ushort idB){% if info.parent %} : base(address, idA, idB) { }{% else %}
+        // Constructors
+		{% if info.is_entity() %}public {{ info.name }}(ulong id){% if info.parent %} : base(id) { }{% else %}
         {
-            this.Address = address;
-            this.IdA = idA;
-            this.IdB = idB;
+            this.Id = id;
         }{% endif %}{% endif %}
-        
-        public {% if info.is_root() %}virtual{% else %}override{% endif %} void SetProperty(string propertyName, Fox.Value value)
+		public {{ info.name }}(){% if info.parent %} : base() { }{% else %}
         {
-            switch(propertyName)
+            {% if info.is_entity() %}
+            this.Id = 0;{% endif %}
+        }{% endif %}
+        
+        public {% if info.is_root() %}virtual{% else %}override{% endif %} void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
+        {
+            switch(propertyName.CString)
             {
                 {% for property_name in info.get_non_collection_properties() -%}
+                {%- if info.properties[property_name].has_public_set() or not info.properties[property_name].is_accessor_property() -%}
                 case "{{ info.properties[property_name].get_safe_name() }}":
                     this.{{ info.properties[property_name].get_safe_name() }} = {{ info.properties[property_name].get_value_extraction_string() }};
                     return;
-                {% endfor %}default:
-				    {% if info.name == "Entity" -%}
+                {% endif %}
+                {%- endfor %}default:
+				    {%- if info.name == "Entity" %}
 					if (this.DynamicProperties.TryGetValue(propertyName, out DynamicProperty property))
 					{
 						property.SetValue(value);
 						return;
 					}
 					{%- endif %}
-                    {% if info.is_root() %}throw new CsSystem.MissingMemberException("Unrecognized property", propertyName);{% else %}base.SetProperty(propertyName, value);{% endif %}
-                    return;
+                    {% if info.is_root() %}throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());{% else %}base.SetProperty(propertyName, value);
+                    return;{%- endif %}
             }
         }
         
-        public {% if info.is_root() %}virtual{% else %}override{% endif %} void SetPropertyElement(string propertyName, ushort index, Fox.Value value)
+        public {% if info.is_root() %}virtual{% else %}override{% endif %} void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
         {
-            switch(propertyName)
+            switch(propertyName.CString)
             {
                 {% for property_name in info.get_array_properties() -%}
                 case "{{ info.properties[property_name].get_safe_name() }}":
@@ -77,36 +92,36 @@ namespace {{ info.get_root_namespace() }}.{{ info.get_namespace_without_prefix()
                     this.{{ info.properties[property_name].get_safe_name() }}[index] = {{ info.properties[property_name].get_value_extraction_string() }};
                     return;
                 {% endfor %}default:
-					{% if info.name == "Entity" -%}
+					{%- if info.name == "Entity" %}
 					if (this.DynamicProperties.TryGetValue(propertyName, out DynamicProperty property))
 					{
 						property.SetElement(index, value);
 						return;
 					}
 					{%- endif %}
-                    {% if info.is_root() %}throw new CsSystem.MissingMemberException("Unrecognized property", propertyName);{% else %}base.SetPropertyElement(propertyName, index, value);{% endif %}
-                    return;
+                    {% if info.is_root() %}throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());{% else %}base.SetPropertyElement(propertyName, index, value);
+                    return;{%- endif %}
             }
         }
         
-        public {% if info.is_root() %}virtual{% else %}override{% endif %} void SetPropertyElement(string propertyName, string key, Fox.Value value)
+        public {% if info.is_root() %}virtual{% else %}override{% endif %} void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
         {
-            switch(propertyName)
+            switch(propertyName.CString)
             {
                 {% for property_name in info.get_string_map_properties() -%}
                 case "{{ info.properties[property_name].get_safe_name() }}":
                     this.{{ info.properties[property_name].get_safe_name() }}.Insert(key, {{ info.properties[property_name].get_value_extraction_string() }});
                     return;
                 {% endfor %}default:
-					{% if info.name == "Entity" -%}
+					{%- if info.name == "Entity" %}
 					if (this.DynamicProperties.TryGetValue(propertyName, out DynamicProperty property))
 					{
 						property.SetElement(key, value);
 						return;
 					}
 					{%- endif %}
-                    {% if info.is_root() %}throw new CsSystem.MissingMemberException("Unrecognized property", propertyName);{% else %}base.SetPropertyElement(propertyName, key, value);{% endif %}
-                    return;
+                    {% if info.is_root() %}throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());{% else %}base.SetPropertyElement(propertyName, key, value);
+                    return;{%- endif %}
             }
         }
     }
