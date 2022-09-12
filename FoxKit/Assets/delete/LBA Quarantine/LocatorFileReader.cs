@@ -1,16 +1,14 @@
-
+using System;
+using System.Collections.Generic;
+using System.IO;
+using UnityEngine;
+using UnityEditor;
+using Fox.Kernel;
+using Fox.Fio;
+using String = Fox.Kernel.String;
 
 namespace Fox
 {
-    using System;
-    using System.Collections.Generic;
-    using System.IO;
-    using UnityEngine;
-    using UnityEditor;
-    using FoxKit;
-    using String = Fox.Kernel.String;
-
-
     /// <summary>
     /// Type of the locators stored in an LBA file. Each LBA file can only contain locators of a single type.
     /// </summary>
@@ -27,15 +25,7 @@ namespace Fox
     /// </summary>
     public sealed class LocatorFileReader
     {
-        /// <summary>
-        /// The binary file contents.
-        /// </summary>
-        private readonly byte[] buffer;
-
-        /// <summary>
-        /// Current offset in the buffer.
-        /// </summary>
-        private int position = 0;
+        private readonly BinaryReader reader;
 
         /// <summary>
         /// Size of an LBA file's header.
@@ -61,84 +51,60 @@ namespace Fox
                 return;
             }
 
-            var fileContent = System.IO.File.ReadAllBytes(assetPath);
-            var loader = new LocatorFileReader(fileContent);
-            var type = loader.ReadType();
-
-            switch (type)
+            using (var reader = new BinaryReader(new FileStream(assetPath, FileMode.Open)))
             {
-                case LocatorBinaryType.PowerCutArea:
-                    {
-                        var locators = loader.ReadPowerCutAreaLocators();
-                        var asset = ScriptableObject.CreateInstance<PowerCutAreaLocatorBinaryArrayAsset>() as PowerCutAreaLocatorBinaryArrayAsset;
+                LocatorBinaryType type = (LocatorBinaryType)reader.ReadUInt32();
 
-                        AssetDatabase.CreateAsset(asset, "Assets/" + System.IO.Path.GetFileNameWithoutExtension(assetPath) + ".asset");
-                        AssetDatabase.SaveAssets();
+                LocatorFileReader locatorReader = new LocatorFileReader(reader);
 
-                        asset.locators = locators;
-                    }
+                switch (type)
+                {
+                    case LocatorBinaryType.PowerCutArea:
+                        {
+                            var locators = locatorReader.ReadPowerCutAreaLocators();
+                            var asset = ScriptableObject.CreateInstance<PowerCutAreaLocatorBinaryArrayAsset>() as PowerCutAreaLocatorBinaryArrayAsset;
 
-                    break;
-                case LocatorBinaryType.Named:
-                    {
-                        var locators = loader.ReadNamedLocators();
-                        var asset = ScriptableObject.CreateInstance<NamedLocatorBinaryArrayAsset>() as NamedLocatorBinaryArrayAsset;
+                            AssetDatabase.CreateAsset(asset, "Assets/" + System.IO.Path.GetFileNameWithoutExtension(assetPath) + ".asset");
+                            AssetDatabase.SaveAssets();
 
-                        AssetDatabase.CreateAsset(asset, "Assets/" + System.IO.Path.GetFileNameWithoutExtension(assetPath) + ".asset");
-                        AssetDatabase.SaveAssets();
+                            asset.locators = locators;
+                        }
 
-                        asset.locators = locators;
-                    }
-                    break;
-                case LocatorBinaryType.Scaled:
-                    {
-                        var locators = loader.ReadScaledLocators();
-                        var asset = ScriptableObject.CreateInstance<ScaledLocatorBinaryArrayAsset>() as ScaledLocatorBinaryArrayAsset;
+                        break;
+                    case LocatorBinaryType.Named:
+                        {
+                            var locators = locatorReader.ReadNamedLocators();
+                            var asset = ScriptableObject.CreateInstance<NamedLocatorBinaryArrayAsset>() as NamedLocatorBinaryArrayAsset;
 
-                        AssetDatabase.CreateAsset(asset, "Assets/" + System.IO.Path.GetFileNameWithoutExtension(assetPath) + ".asset");
-                        AssetDatabase.SaveAssets();
+                            AssetDatabase.CreateAsset(asset, "Assets/" + System.IO.Path.GetFileNameWithoutExtension(assetPath) + ".asset");
+                            AssetDatabase.SaveAssets();
 
-                        asset.locators = locators;
-                    }
-                    break;
-                default:
-                    return;
+                            asset.locators = locators;
+                        }
+                        break;
+                    case LocatorBinaryType.Scaled:
+                        {
+                            var locators = locatorReader.ReadScaledLocators();
+                            var asset = ScriptableObject.CreateInstance<ScaledLocatorBinaryArrayAsset>() as ScaledLocatorBinaryArrayAsset;
+
+                            AssetDatabase.CreateAsset(asset, "Assets/" + System.IO.Path.GetFileNameWithoutExtension(assetPath) + ".asset");
+                            AssetDatabase.SaveAssets();
+
+                            asset.locators = locators;
+                        }
+                        break;
+                    default:
+                        return;
+                }
             }
         }
 
         /// <summary>
-        /// Initializes a new instance of the LocatorFileReader class based on the specified LBA buffer.
+        /// Initializes a new instance of the LocatorFileReader class based on the specified BinaryReader.
         /// </summary>
-        /// <param name="buffer">Binary contents of the LBA file to read.</param>
-        public LocatorFileReader(byte[] buffer)
+        public LocatorFileReader(BinaryReader reader)
         {
-            Debug.Assert(buffer != null);
-
-            if (buffer.Length < HeaderSize)
-            {
-                Debug.LogError("LBA file buffer too short. Invalid or unrecognized format.");
-                return;
-            }
-
-            this.buffer = buffer;
-        }
-
-        /// <summary>
-        /// Reads the type of locators stored in the file.
-        /// </summary>
-        /// <returns>
-        /// The type of locators stored in the file.
-        /// </returns>
-        public LocatorBinaryType ReadType()
-        {
-            var type = BitConverter.ToInt32(this.buffer, 4);
-            if (IsTypeValid(type))
-            {
-                return (LocatorBinaryType)type;
-            }
-
-            Debug.LogError("LBA format unrecognized.");
-            return LocatorBinaryType.Invalid; 
+            this.reader = reader;
         }
 
         /// <summary>
@@ -152,7 +118,7 @@ namespace Fox
         /// </remarks>
         public List<PowerCutAreaLocatorBinary> ReadPowerCutAreaLocators()
         {
-            var count = BitConverter.ToInt32(this.buffer, 0);
+            var count = reader.ReadInt32();
 
             var result = new List<PowerCutAreaLocatorBinary>(count);
             for(var i = 0; i < count; i++)
@@ -175,11 +141,11 @@ namespace Fox
         /// </remarks>
         public List<NamedLocatorBinary> ReadNamedLocators()
         {
-            var count = BitConverter.ToInt32(this.buffer, 0);
+            var count = reader.ReadInt32();
 
-            this.position = HeaderSize + (UnscaledLocatorSize * count);
+            reader.BaseStream.Seek(HeaderSize + (UnscaledLocatorSize * count));
             var hashes = this.ReadHashes(count);
-            this.position = HeaderSize;
+            reader.BaseStream.Seek(HeaderSize);
 
             var result = new List<NamedLocatorBinary>(count);
             for(var i = 0; i < count; i++)
@@ -208,11 +174,11 @@ namespace Fox
         /// </remarks>
         public List<ScaledLocatorBinary> ReadScaledLocators()
         {
-            var count = BitConverter.ToInt32(this.buffer, 0);
+            var count = reader.ReadInt32();
 
-            this.position = HeaderSize + (ScaledLocatorSize * count);
+            reader.BaseStream.Seek(HeaderSize + (ScaledLocatorSize * count));
             var hashes = this.ReadHashes(count);
-            this.position = HeaderSize;
+            reader.BaseStream.Seek(HeaderSize);
 
             var result = new List<ScaledLocatorBinary>(count);
             for(var i = 0; i < count; i++)
@@ -230,13 +196,13 @@ namespace Fox
             return result;
         }
 
-        private static String UnhashLocatorName(uint hash)
+        private static String UnhashLocatorName(StrCode32 hash)
         {
             // TODO
             return new String(hash.ToString());
         }
 
-        private static String UnhashDataSetName(uint hash)
+        private static String UnhashDataSetName(StrCode32 hash)
         {
             // TODO
             return new String(hash.ToString());
@@ -244,107 +210,37 @@ namespace Fox
 
         private PowerCutAreaLocatorBinary ReadPowerCutAreaLocator()
         {
-            var translation = this.ReadVector4();
-            var rotation = this.ReadQuaternion();
+            var translation = reader.ReadWidePositionF();
+            var rotation = reader.ReadRotationF();
             return new PowerCutAreaLocatorBinary(translation, rotation);
         }
 
         private NamedLocatorBinary ReadNamedLocator(String locatorName, String dataSetName)
         {
-            var translation = this.ReadVector4();
-            var rotation = this.ReadQuaternion();
+            var translation = reader.ReadWidePositionF();
+            var rotation = reader.ReadRotationF();
             return new NamedLocatorBinary(translation, rotation, locatorName, dataSetName);
         }
 
         private ScaledLocatorBinary ReadScaledLocator(String locatorName, String dataSetName)
         {
-            var translation = this.ReadVector4();
-            var rotation = this.ReadQuaternion();
-            var scale = this.ReadVector3();
-            var a = this.ReadInt16();
-            var b = this.ReadInt16();
+            var translation = reader.ReadWidePositionF();
+            var rotation = reader.ReadRotationF();
+            var scale = reader.ReadVector3();
+            var a = reader.ReadInt16();
+            var b = reader.ReadInt16();
             return new ScaledLocatorBinary(translation, rotation, scale, a, b, locatorName, dataSetName);
         }
 
-        private uint[] ReadHashes(int locatorCount)
+        private StrCode32[] ReadHashes(int locatorCount)
         {
-            var result = new uint[locatorCount * 2];
+            var result = new StrCode32[locatorCount * 2];
             for(var i = 0; i < locatorCount * 2; i++)
             {
-                result[i] = this.ReadUInt32();
+                result[i] = reader.ReadStrCode32();
             }
 
             return result;
-        }
-
-        private Vector4 ReadVector4()
-        {
-            var x = this.ReadFloat();
-            var y = this.ReadFloat();
-            var z = this.ReadFloat();
-            var w = this.ReadFloat();
-
-            return FoxUtils.UnityVectorFromFoxCoordinates(x, y, z, w);
-        }
-
-        private Quaternion ReadQuaternion()
-        {
-            var x = this.ReadFloat();
-            var y = this.ReadFloat();
-            var z = this.ReadFloat();
-            var w = this.ReadFloat();
-
-            return FoxUtils.UnityQuaternionFromFoxCoordinates(x, y, z, w);
-        }
-
-        private Vector3 ReadVector3()
-        {
-            var x = this.ReadFloat();
-            var y = this.ReadFloat();
-            var z = this.ReadFloat();
-
-            return new Vector3(x, y, z);
-        }
-
-        private short ReadInt16()
-        {
-            var result = BitConverter.ToInt16(this.buffer, this.position);
-            this.position += 2;
-            return result;
-        }
-
-        private float ReadFloat()
-        {
-            var result = BitConverter.ToSingle(this.buffer, this.position);
-            this.position += 4;
-            return result;
-        }
-
-        private uint ReadUInt32()
-        {
-            var result = BitConverter.ToUInt32(this.buffer, this.position);
-            this.position += 4;
-            return result;
-        }
-
-        private static bool IsTypeValid(int type)
-        {
-            if (type < 0)
-            {
-                return false;
-            }
-
-            if (type == 1)
-            {
-                return false;
-            }
-
-            if (type > 3)
-            {
-                return false;
-            }
-
-            return true;
         }
     }
 }

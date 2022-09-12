@@ -672,7 +672,7 @@
 			{ "name": "DEFAULT", "value": 0 },
 			{ "name": "TRIALGULAR_PRISM", "value": 1 },
 			{ "name": "SEMI_CYLINDRICAL", "value": 2 },
-			{ "name": "HALF_SQUARE", "value": 2 }
+			{ "name": "HALF_SQUARE", "value": 3 }
 		]
 	},
 	{

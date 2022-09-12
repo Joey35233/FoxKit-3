@@ -20,6 +20,8 @@ namespace Fox.Kernel
             _hash = hash;
         }
 
+        internal uint Backing => _hash;
+
         // Kernel.StrCode32
         public static bool operator ==(StrCode32 a, StrCode32 b)
         {
