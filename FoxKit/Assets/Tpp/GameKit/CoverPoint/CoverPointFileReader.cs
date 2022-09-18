@@ -43,7 +43,7 @@ namespace Tpp.GameKit
 
                 Vector3 direction = new Vector3((float)reader.ReadInt16() / short.MaxValue, (float)reader.ReadInt16() / short.MaxValue, (float)reader.ReadInt16() / short.MaxValue);
                 Quaternion rotation = Quaternion.identity;
-                rotation.SetLookRotation(direction);
+                rotation.SetLookRotation(Fox.Kernel.Math.FoxToUnityVector3(direction));
                 coverPointObject.transform.rotation = rotation;
 
                 ushort flags = reader.ReadUInt16();

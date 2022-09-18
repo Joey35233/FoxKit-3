@@ -1,9 +1,8 @@
 using UnityEditor;
 using UnityEngine.UIElements;
 using UnityEditor.UIElements;
-using FoxKit.Gr.Terrain;
 
-namespace Fox.Gr.Terrain.Editor
+namespace Fox.Gr.Editor
 {
     [CustomEditor(typeof(TerrainFileAsset))]
     public class TerrainFileAssetEditor : UnityEditor.Editor

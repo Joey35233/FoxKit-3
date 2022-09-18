@@ -9,7 +9,7 @@ namespace Fox.Kernel
         }
         public static Vector3 FoxToUnityVector3(Vector3 v)
         {
-            return new Vector3(-v.x, v.y, v.z);
+            return FoxToUnityVector3(v.x, v.y, v.z);
         }
         public static Vector4 FoxToUnityVector4(float x, float y, float z, float w)
         {
@@ -17,7 +17,7 @@ namespace Fox.Kernel
         }
         public static Vector4 FoxToUnityVector4(Vector4 v)
         {
-            return new Vector4(-v.x, v.y, v.z, v.w);
+            return FoxToUnityVector4(v.x, v.y, v.z, v.w);
         }
         public static Quaternion FoxToUnityQuaternion(float x, float y, float z, float w)
         {

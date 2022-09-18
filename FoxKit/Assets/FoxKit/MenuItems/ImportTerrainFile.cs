@@ -1,6 +1,5 @@
 using System.IO;
 using UnityEditor;
-using FoxKit.Gr.Terrain;
 
 namespace FoxKit.MenuItems
 {
@@ -16,7 +15,7 @@ namespace FoxKit.MenuItems
             }
 
             using var reader = new BinaryReader(System.IO.File.OpenRead(assetPath));
-            var tre2Reader = new TerrainFileReader(reader);
+            var tre2Reader = new Fox.Gr.TerrainFileReader(reader);
             var asset = tre2Reader.Read();
 
             AssetDatabase.CreateAsset(asset, $"Assets/{Path.GetFileNameWithoutExtension(assetPath)}.asset");

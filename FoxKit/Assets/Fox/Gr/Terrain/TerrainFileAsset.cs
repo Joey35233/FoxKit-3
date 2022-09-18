@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace FoxKit.Gr.Terrain
+namespace Fox.Gr
 {
     [CreateAssetMenu(menuName = "FoxKit/Terrain File")]
     public class TerrainFileAsset : ScriptableObject

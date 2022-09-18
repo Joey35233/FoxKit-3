@@ -1,5 +1,4 @@
 using Fox.Gr;
-using FoxKit.Gr.Terrain;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
@@ -36,25 +35,25 @@ namespace Fox.GameKit
 
             TerrainData terrainData = new()
             {
-                size = new Vector3(asset.Width / 8, asset.HeightRangeMax - asset.HeightRangeMin, asset.Height / 8),
-                heightmapResolution = heightmapRes
+                size = new Vector3(asset.Width / 4, asset.HeightRangeMax - asset.HeightRangeMin, asset.Height / 4),
+                heightmapResolution = heightmapRes,
             };
 
             var terrain = UnityEngine.Terrain.CreateTerrainGameObject(terrainData);
             terrain.transform.SetParent(gameObject.transform);
-            terrain.transform.position = new Vector3(-asset.Width / 2, 0, -asset.Width / 2);
+            terrain.transform.position = new Vector3(-asset.Width, asset.MinHeightWorldSpace, -asset.Width);
 
             float[,] heightmap2 = terrainData.GetHeights(0, 0, heightmapRes, heightmapRes);
 
-            for (int y = 0; y < heightmapRes; y++)
+            for (int z = 0; z < heightmapRes; z++)
             {
                 for (int x = 0; x < heightmapRes; x++)
                 {
                     var x1 = 1.0f / heightmapRes * x * heightmapRes;
-                    var y1 = 1.0f / heightmapRes * y * heightmapRes;
+                    var z1 = 1.0f / heightmapRes * (heightmapRes - 1 - z) * heightmapRes;
 
-                    var pixel = asset.Heightmap.GetPixel((int)x1, (int)y1);
-                    heightmap2[x, y] = pixel.r;
+                    var pixel = asset.Heightmap.GetPixel((int)z1, (int)x1);
+                    heightmap2[x, z] = pixel.r;
                 }
             }
 
