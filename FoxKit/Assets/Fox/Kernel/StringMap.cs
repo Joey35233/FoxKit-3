@@ -22,8 +22,8 @@ namespace Fox.Kernel
     [Serializable]
     public class StringMap<T> : IStringMap, IList, IEnumerable<KeyValuePair<String, T>>
     {
-        private const uint InitialSize = 256;
-        private const uint LoadFactor = 90;
+        private const int InitialSize = 256;
+        private const int LoadFactor = 90;
 
         [Serializable]
         public struct Cell
@@ -49,15 +49,16 @@ namespace Fox.Kernel
         }
 
         [SerializeField]
-        private uint Threshold;
+        private int Threshold;
         [SerializeField]
         private uint HashMask; // Since this map has a 2^n size, (hash & HashMask) or (hash & Capacity - 1)
                                // serves the same remapping purpose as (hash % Capacity)
 
         [SerializeField]
-        private uint CellCount;
+        private int CellCount;
         [SerializeField]
-        private Cell[] Cells; // Open addressing style
+        private List<Cell> Cells; // Open addressing style,
+                                  // Unfortunately, we have to use a List<T> instead of an array because SerializedProperty.boxedObject won't work any other way which is weird
 
         public StringMap()
         {
@@ -66,7 +67,7 @@ namespace Fox.Kernel
             Allocate(InitialSize);
         }
 
-        private uint RoundUpToPowerOfTwo(uint x)
+        private int RoundUpToPowerOfTwo(int x)
         {
             x--;
             x |= x >> 1;
@@ -79,40 +80,45 @@ namespace Fox.Kernel
             return x;
         }
 
-        public StringMap(uint capacity)
+        public StringMap(int capacity)
         {
             CellCount = 0;
 
             Allocate(capacity <= InitialSize ? InitialSize : RoundUpToPowerOfTwo(capacity));
         }
 
-        private void Allocate(uint capacity)
+        private void Allocate(int capacity)
         {
-            Cells = new Cell[capacity];
+            if (capacity < 0)
+                throw new ArgumentException();
+
+            Cells = new List<Cell>(capacity);
+            for (int i = 0; i < capacity; i++)
+                Cells.Add(new Cell());
 
             Threshold = capacity * LoadFactor / 100;
 
-            HashMask = capacity - 1;
+            HashMask = unchecked((uint)(capacity - 1));
         }
 
-        private bool IsCellEmpty(ref Cell cell)
+        private bool IsCellEmpty(Cell cell)
         {
             return cell.Key is null || cell.Key.IsPseudoNull();
         }
 
         private void Resize()
         {
-            Cell[] oldCells = Cells;
+            List<Cell> oldCells = Cells;
 
-            uint newCapacity = (uint)Cells.Length * 2;
+            int newCapacity = Cells.Count * 2;
 
             Allocate(newCapacity);
 
-            for (uint i = 0; i < oldCells.Length; i++)
+            for (int i = 0; i < oldCells.Count; i++)
             {
-                ref Cell oldCell = ref oldCells[i];
+                Cell oldCell = oldCells[i];
 
-                if (!IsCellEmpty(ref oldCell))
+                if (!IsCellEmpty(oldCell))
                 {
                     InsertNoResize(oldCell.Key, oldCell.Value);
                 }
@@ -126,12 +132,12 @@ namespace Fox.Kernel
             uint probeDistance = 0;
             while (true)
             {
-                Cell cell = Cells[index];
+                Cell cell = Cells[(int)index];
 
                 // If cell is uninitialized
-                if (IsCellEmpty(ref cell))
+                if (IsCellEmpty(cell))
                 {
-                    Cells[index] = new Cell(probeDistance, key, value);
+                    Cells[(int)index] = new Cell(probeDistance, key, value);
                     return;
                 }
 
@@ -143,7 +149,7 @@ namespace Fox.Kernel
                 if (existingProbeDistance < probeDistance)
                 {
                     // Swap cells
-                    Cells[index] = new Cell(probeDistance, key, value);
+                    Cells[(int)index] = new Cell(probeDistance, key, value);
                     key = cell.Key;
                     value = cell.Value;
                     probeDistance = existingProbeDistance;
@@ -183,10 +189,10 @@ namespace Fox.Kernel
             uint probeDistance = 0;
             while (true)
             {
-                ref Cell cell = ref Cells[index];
+                Cell cell = Cells[(int)index];
 
                 // If cell is uninitialized
-                if (IsCellEmpty(ref cell))
+                if (IsCellEmpty(cell))
                 {
                     return false;
                 }
@@ -209,22 +215,30 @@ namespace Fox.Kernel
             {
                 nextIndex = (nextIndex + 1) & HashMask; // Loop index back to 0 if it will exceed Capacity.
 
-                ref Cell cell = ref Cells[nextIndex];
+                Cell nextCell = Cells[(int)nextIndex];
 
-                if (IsCellEmpty(ref cell))
+                if (IsCellEmpty(nextCell))
                 {
-                    Cells[index].Key = null;
+                    Cell cell = Cells[(int)index];
+                    cell.Key = null;
+                    Cells[(int)index] = cell;
+
                     break;
                 }
-                else if (cell.Distance == 0)
+                else if (nextCell.Distance == 0)
                 {
-                    Cells[index].Key = null;
+                    Cell cell = Cells[(int)index];
+                    cell.Key = null;
+                    Cells[(int)index] = cell;
+
                     break;
                 }
                 else
                 {
-                    Cells[lastIndex] = Cells[nextIndex];
-                    Cells[lastIndex].Distance--;
+                    Cells[(int)lastIndex] = Cells[(int)nextIndex];
+                    Cell cell = Cells[(int)lastIndex];
+                    cell.Distance--;
+                    Cells[(int)lastIndex] = cell;
                 }
 
 
@@ -245,10 +259,10 @@ namespace Fox.Kernel
             uint probeDistance = 0;
             while (true)
             {
-                ref Cell cell = ref Cells[index];
+                Cell cell = Cells[(int)index];
 
                 // If cell is uninitialized
-                if (IsCellEmpty(ref cell))
+                if (IsCellEmpty(cell))
                 {
                     value = default;
                     return false;
@@ -260,7 +274,7 @@ namespace Fox.Kernel
                 }
                 else if (key == cell.Key)
                 {
-                    value = Cells[index].Value;
+                    value = Cells[(int)index].Value;
                     return true;
                 }
 
@@ -297,11 +311,11 @@ namespace Fox.Kernel
         {
             float total = 0;
 
-            for (uint i = 0; i < Cells.Length; i++)
+            for (int i = 0; i < Cells.Count; i++)
             {
-                ref Cell cell = ref Cells[i];
+                Cell cell = Cells[i];
 
-                if (!IsCellEmpty(ref cell))
+                if (!IsCellEmpty(cell))
                 {
                     total += cell.Distance;
                 }
@@ -327,7 +341,7 @@ namespace Fox.Kernel
             int i = 0;
             for (int j = -1; j < index; i++)
             {
-                if (!IsCellEmpty(ref Cells[i]))
+                if (!IsCellEmpty(Cells[i]))
                     j++;
             }
 
@@ -366,33 +380,40 @@ namespace Fox.Kernel
 
         public void RemoveAt(int index)
         {
-            if ((uint)index >= Cells.Length)
+            if (index >= Cells.Count || index < 0)
                 return;
 
-            uint lastIndex = (uint)index;
-            uint nextIndex = (uint)index;
+            int lastIndex = index;
+            int nextIndex = index;
             while (true)
             {
-                nextIndex = (nextIndex + 1) & HashMask; // Loop index back to 0 if it will exceed Capacity.
+                nextIndex = (int)((nextIndex + 1) & HashMask); // Loop index back to 0 if it will exceed Capacity.
 
-                ref Cell cell = ref Cells[nextIndex];
+                Cell nextCell = Cells[nextIndex];
 
-                if (IsCellEmpty(ref cell))
+                if (IsCellEmpty(nextCell))
                 {
-                    Cells[index].Key = null;
+                    Cell cell = Cells[index];
+                    cell.Key = null;
+                    Cells[index] = cell;
+
                     break;
                 }
-                else if (cell.Distance == 0)
+                else if (nextCell.Distance == 0)
                 {
-                    Cells[index].Key = null;
+                    Cell cell = Cells[index];
+                    cell.Key = null;
+                    Cells[index] = cell;
+
                     break;
                 }
                 else
                 {
                     Cells[lastIndex] = Cells[nextIndex];
-                    Cells[lastIndex].Distance--;
+                    Cell cell = Cells[lastIndex];
+                    cell.Distance--;
+                    Cells[lastIndex] = cell;
                 }
-
 
                 lastIndex = nextIndex; // Loop index back to 0 if it will exceed Capacity.
             }
