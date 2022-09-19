@@ -76,3 +76,4 @@ crashlytics-build.properties
 *.fox2.unity
 *.fox2.unity.meta
 /[Aa]ssets/Lib/*[Ff]mdl*/
+/[Aa]ssets/[Gg]ame/*

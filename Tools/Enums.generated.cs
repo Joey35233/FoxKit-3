@@ -840,7 +840,7 @@ namespace Fox
 		[Description("SEMI_CYLINDRICAL")]
         SEMI_CYLINDRICAL = 2,
 		[Description("HALF_SQUARE")]
-        HALF_SQUARE = 2,
+        HALF_SQUARE = 3,
     }
 	
 	

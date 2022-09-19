@@ -10,7 +10,7 @@
 using CsSystem = System;
 using Fox;
 
-namespace Fox.Graphx
+namespace Fox.Geox
 {
     [UnityEditor.InitializeOnLoad]
     public partial class GeoxPath : Fox.Graphx.GraphxPathData 

@@ -18814,7 +18814,7 @@
     "functions": [ ],
     "id": 304,
     "name": "GeoxPath",
-    "namespace": "Graphx",
+    "namespace": "Geox",
     "parent": "GraphxPathData",
     "properties": [
       {
