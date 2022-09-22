@@ -1,9 +1,9 @@
-﻿namespace Fox
-{
-    using System.Collections.Generic;
-    using UnityEngine;
-    using UnityEditor;
+﻿using System.Collections.Generic;
+using UnityEngine;
+using UnityEditor;
 
+namespace Tpp.GameKit
+{
     public class ScaledLocatorBinaryArrayAsset : ScriptableObject
     {
         [SerializeReference]

@@ -1,12 +1,10 @@
-﻿using Fox.FoxCore.Serialization;
-using Fox.Kernel;
+﻿using Fox.Kernel;
+using Fox.Fio;
+using Fox.Core.Serialization;
 using String = Fox.Kernel.String;
-using Path = Fox.Kernel.Path;
 using System;
 using System.Diagnostics;
-using System.IO;
-using System.Runtime.Remoting.Messaging;
-using static Fox.FoxCore.Serialization.DataSetFile2PropertyReader;
+using static Fox.Core.Serialization.DataSetFile2PropertyReader;
 
 namespace Fox.Core
 {
@@ -27,7 +25,7 @@ namespace Fox.Core
             this.requestSetEntityHandle = requestSetEntityHandle ?? throw new ArgumentNullException(nameof(requestSetEntityHandle));
         }
 
-        public AddressedEntity Read(BinaryReader reader, Func<StrCode, String> unhashString)
+        public AddressedEntity Read(FileStreamReader reader, Func<StrCode, String> unhashString)
         {
             var headerSize = reader.ReadUInt16(); Debug.Assert(headerSize == 0x40);
             reader.BaseStream.Position -= 2;

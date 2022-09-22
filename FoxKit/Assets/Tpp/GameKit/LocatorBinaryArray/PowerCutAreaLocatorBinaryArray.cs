@@ -1,9 +1,9 @@
-﻿namespace Fox
-{
-    using System;
-    using System.Collections.Generic;
-    using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
+using UnityEngine;
 
+namespace Tpp.GameKit
+{
     [Serializable]
     public class PowerCutAreaLocatorBinaryArray
     {

@@ -3,7 +3,7 @@ using Fox.Kernel;
 using String = Fox.Kernel.String;
 using UnityEngine;
 
-namespace Fox
+namespace Tpp.GameKit
 {
     [Serializable]
     public sealed class ScaledLocatorBinary
@@ -26,11 +26,10 @@ namespace Fox
         [SerializeField]
         private String locatorName;
 
-        // FIXME: This should be a Path
         [SerializeField]
-        private String dataSetName;
+        private Path dataSetName;
 
-        public ScaledLocatorBinary(UnityEngine.Vector4 translation, UnityEngine.Quaternion rotation, UnityEngine.Vector3 scale, short a, short b, String locatorName, String dataSetName)
+        public ScaledLocatorBinary(UnityEngine.Vector4 translation, UnityEngine.Quaternion rotation, UnityEngine.Vector3 scale, short a, short b, String locatorName, Path dataSetName)
         {
             this.translation = translation;
             this.rotation = rotation;

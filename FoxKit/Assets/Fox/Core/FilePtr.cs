@@ -28,11 +28,6 @@ namespace Fox.Core
             this.path = path;
         }
 
-        public FilePtr(string path)
-        {
-            this.path = new Path(path);
-        }
-
         public static FilePtr Empty()
         {
             return new FilePtr();

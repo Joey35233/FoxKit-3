@@ -1,7 +1,7 @@
 ﻿using Fox.Kernel;
+using Fox.Fio;
 using Fox.Core;
 using System;
-using System.IO;
 using UnityEngine;
 using String = Fox.Kernel.String;
 using Path = Fox.Kernel.Path;
@@ -9,9 +9,8 @@ using Debug = UnityEngine.Debug;
 using Quaternion = UnityEngine.Quaternion;
 using Vector3 = UnityEngine.Vector3;
 using Vector4 = UnityEngine.Vector4;
-using Fox.Fio;
 
-namespace Fox.FoxCore.Serialization
+namespace Fox.Core.Serialization
 {
     public class DataSetFile2PropertyReader
     {
@@ -69,7 +68,7 @@ namespace Fox.FoxCore.Serialization
         }
 
         public void Read(
-            BinaryReader reader,
+            FileStreamReader reader,
             OnPropertyNameUnhashedCallback onPropertyNameUnhashed,
             GetPtrType getPtrType,
             SetProperty setProperty,
@@ -106,10 +105,10 @@ namespace Fox.FoxCore.Serialization
                 ReadArray(reader, setPropertyElementByIndex, name, dataType, ptrType, arraySize);
             }
 
-            reader.BaseStream.Align(16);
+            reader.Align(16);
         }
 
-        private void ReadArray(BinaryReader reader, SetPropertyElementByIndex setPropertyElementByIndex, String name, PropertyInfo.PropertyType dataType, Type ptrType, ushort arraySize)
+        private void ReadArray(FileStreamReader reader, SetPropertyElementByIndex setPropertyElementByIndex, String name, PropertyInfo.PropertyType dataType, Type ptrType, ushort arraySize)
         {
             for (ushort i = 0; i < arraySize; i++)
             {
@@ -137,7 +136,7 @@ namespace Fox.FoxCore.Serialization
             }
         }
 
-        private void ReadStringMap(BinaryReader reader, SetPropertyElementByKey setPropertyElementByKey, String name, PropertyInfo.PropertyType dataType, Type ptrType, ushort arraySize)
+        private void ReadStringMap(FileStreamReader reader, SetPropertyElementByKey setPropertyElementByKey, String name, PropertyInfo.PropertyType dataType, Type ptrType, ushort arraySize)
         {
             for (var i = 0; i < arraySize; i++)
             {
@@ -165,11 +164,11 @@ namespace Fox.FoxCore.Serialization
                     setPropertyElementByKey(name, key, value);
                 }
 
-                reader.BaseStream.Align(16);
+                reader.Align(16);
             }
         }
 
-        private void ReadProperty(BinaryReader reader, SetProperty setProperty, String name, PropertyInfo.PropertyType dataType, Type ptrType)
+        private void ReadProperty(FileStreamReader reader, SetProperty setProperty, String name, PropertyInfo.PropertyType dataType, Type ptrType)
         {
             // Entity references can't be resolved until the referenced Entity is loaded.
             // Register a callback to assign the property value once the Entity has been loaded.
@@ -192,7 +191,7 @@ namespace Fox.FoxCore.Serialization
             }
         }
 
-        private void ReadEntityLink(BinaryReader reader, SetProperty setProperty, String name)
+        private void ReadEntityLink(FileStreamReader reader, SetProperty setProperty, String name)
         {
             var bytes = reader.ReadBytes(32);
             var packagePathHash = HashingBitConverter.ToStrCode(bytes, 0);
@@ -203,19 +202,19 @@ namespace Fox.FoxCore.Serialization
             requestSetEntityHandle(address, (Entity ptr) => setProperty(name, new Value(new EntityLink(EntityHandle.Get(ptr), new Path(unhashString(packagePathHash).CString), new Path(unhashString(archivePathHash).CString), unhashString(nameInArchiveHash)))));
         }
 
-        private void ReadEntityHandle(BinaryReader reader, SetProperty setProperty, String name)
+        private void ReadEntityHandle(FileStreamReader reader, SetProperty setProperty, String name)
         {
             var address = reader.ReadUInt64();
             requestSetEntityHandle(address, (Entity ptr) => setProperty(name, new Value(EntityHandle.Get(ptr))));
         }
 
-        private void ReadEntityPtr(BinaryReader reader, SetProperty setProperty, Type ptrType, String name)
+        private void ReadEntityPtr(FileStreamReader reader, SetProperty setProperty, Type ptrType, String name)
         {
             var address = reader.ReadUInt64();
             requestSetEntityPtr(address, (Entity ptr) => { var entityPtr = Activator.CreateInstance(typeof(EntityPtr<>).MakeGenericType(ptrType)) as IEntityPtr; entityPtr.Reset(ptr); setProperty(name, new Value(entityPtr)); });
         }
 
-        private Value ReadPropertyValue(BinaryReader reader, PropertyInfo.PropertyType type)
+        private Value ReadPropertyValue(FileStreamReader reader, PropertyInfo.PropertyType type)
         {
             switch (type)
             {
@@ -246,17 +245,17 @@ namespace Fox.FoxCore.Serialization
                 case PropertyInfo.PropertyType.Path:
                     return new Value(new Path(unhashString(reader.ReadStrCode()).CString));
                 case PropertyInfo.PropertyType.FilePtr:
-                    return new Value(new FilePtr(unhashString(reader.ReadStrCode()).CString));
+                    return new Value(new FilePtr(new Path(unhashString(reader.ReadStrCode()).CString)));
                 case PropertyInfo.PropertyType.Vector3:
-                    return new Value(ReadVector3(reader));
+                    return new Value(reader.ReadVector3());
                 case PropertyInfo.PropertyType.Vector4:
-                    return new Value(ReadVector4(reader));
+                    return new Value(reader.ReadVector4());
                 case PropertyInfo.PropertyType.Quat:
-                    return new Value(ReadQuaternion(reader));
+                    return new Value(reader.ReadQuaternion());
                 case PropertyInfo.PropertyType.Matrix4:
-                    return new Value(ReadMatrix4(reader));
+                    return new Value(reader.ReadMatrix4());
                 case PropertyInfo.PropertyType.Color:
-                    return new Value(ReadColor(reader));
+                    return new Value(reader.ReadColor());
                 case PropertyInfo.PropertyType.Matrix3:
                 case PropertyInfo.PropertyType.PropertyInfo:
                 case PropertyInfo.PropertyType.WideVector3:
@@ -265,83 +264,6 @@ namespace Fox.FoxCore.Serialization
                     Debug.LogError($"Unexpected property type: {type}");
                     throw new InvalidOperationException();
             }
-        }
-
-        private static Vector3 ReadVector3(BinaryReader reader)
-        {
-            var bytes = reader.ReadBytes(4 * 4);
-            var x = BitConverter.ToSingle(bytes, 0);
-            var y = BitConverter.ToSingle(bytes, 4);
-            var z = BitConverter.ToSingle(bytes, 8);
-
-            return new Vector3(x, y, z);
-        }
-
-        private static Vector4 ReadVector4(BinaryReader reader)
-        {
-            var bytes = reader.ReadBytes(4 * 4);
-            var x = BitConverter.ToSingle(bytes, 0);
-            var y = BitConverter.ToSingle(bytes, 4);
-            var z = BitConverter.ToSingle(bytes, 8);
-            var w = BitConverter.ToSingle(bytes, 12);
-
-            return new Vector4(x, y, z, w);
-        }
-
-        private static Quaternion ReadQuaternion(BinaryReader reader)
-        {
-            var bytes = reader.ReadBytes(4 * 4);
-            var x = BitConverter.ToSingle(bytes, 0);
-            var y = BitConverter.ToSingle(bytes, 4);
-            var z = BitConverter.ToSingle(bytes, 8);
-            var w = BitConverter.ToSingle(bytes, 12);
-
-            return new Quaternion(x, y, z, w);
-        }
-
-        private static Color ReadColor(BinaryReader reader)
-        {
-            var bytes = reader.ReadBytes(4 * 4);
-            var r = BitConverter.ToSingle(bytes, 0);
-            var g = BitConverter.ToSingle(bytes, 4);
-            var b = BitConverter.ToSingle(bytes, 8);
-            var a = BitConverter.ToSingle(bytes, 12);
-
-            return new UnityEngine.Color(r, g, b, a);
-        }
-
-        private static UnityEngine.Matrix4x4 ReadMatrix4(BinaryReader reader)
-        {
-            var bytes = reader.ReadBytes(4 * 4 * 4);
-
-            var m11 = BitConverter.ToSingle(bytes, 0);
-            var m12 = BitConverter.ToSingle(bytes, 4);
-            var m13 = BitConverter.ToSingle(bytes, 8);
-            var m14 = BitConverter.ToSingle(bytes, 12);
-
-            var m21 = BitConverter.ToSingle(bytes, 16);
-            var m22 = BitConverter.ToSingle(bytes, 20);
-            var m23 = BitConverter.ToSingle(bytes, 24);
-            var m24 = BitConverter.ToSingle(bytes, 28);
-
-            var m31 = BitConverter.ToSingle(bytes, 32);
-            var m32 = BitConverter.ToSingle(bytes, 36);
-            var m33 = BitConverter.ToSingle(bytes, 40);
-            var m34 = BitConverter.ToSingle(bytes, 44);
-
-            var m41 = BitConverter.ToSingle(bytes, 48);
-            var m42 = BitConverter.ToSingle(bytes, 52);
-            var m43 = BitConverter.ToSingle(bytes, 56);
-            var m44 = BitConverter.ToSingle(bytes, 60);
-
-            var column0 = new Vector4(m11, m12, m13, m14);
-            var column1 = new Vector4(m21, m22, m23, m24);
-            var column2 = new Vector4(m31, m32, m33, m34);
-            var column3 = new Vector4(m41, m42, m43, m44);
-
-            var matrix = new Matrix4x4(column0, column1, column2, column3);
-
-            return matrix;
         }
     }
 }

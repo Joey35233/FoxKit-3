@@ -1,13 +1,8 @@
-using Fox.Geo;
 using System.IO;
 using UnityEditor;
-using CsSystem = System;
 using UnityEngine.SceneManagement;
 using UnityEditor.SceneManagement;
-using Fox.GameCore;
-using System.Collections.Generic;
-using System;
-using System.Linq;
+using Fox.Fio;
 
 namespace FoxKit.MenuItems
 {
@@ -22,10 +17,10 @@ namespace FoxKit.MenuItems
                 return;
             }
 
-            using var reader = new BinaryReader(System.IO.File.OpenRead(assetPath));
+            using var reader = new FileStreamReader(File.OpenRead(assetPath));
             var coverPointReader = new Tpp.GameKit.CoverPointFileReader();
 
-            UnityEngine.SceneManagement.Scene scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene);
+            Scene scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene);
             scene.name = $"{Path.GetFileNameWithoutExtension(assetPath)}_fox2_tcvp";
 
             coverPointReader.Read(reader);

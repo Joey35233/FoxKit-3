@@ -8,6 +8,7 @@ using Fox.GameCore;
 using System.Collections.Generic;
 using System;
 using System.Linq;
+using Fox.Fio;
 
 namespace FoxKit.MenuItems
 {
@@ -25,7 +26,7 @@ namespace FoxKit.MenuItems
             UnityEngine.SceneManagement.Scene scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene);
             scene.name = Path.GetFileNameWithoutExtension(assetPath);
 
-            using var reader = new BinaryReader(System.IO.File.OpenRead(assetPath));
+            using var reader = new FileStreamReader(System.IO.File.OpenRead(assetPath));
             var fox2Reader = new DataSetFile2Reader();
             var readResult = fox2Reader.Read(reader);
 

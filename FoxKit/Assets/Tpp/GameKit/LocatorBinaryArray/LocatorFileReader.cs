@@ -1,13 +1,12 @@
 using System;
 using System.Collections.Generic;
-using System.IO;
 using UnityEngine;
 using UnityEditor;
 using Fox.Kernel;
 using Fox.Fio;
 using String = Fox.Kernel.String;
 
-namespace Fox
+namespace Tpp.GameKit
 {
     /// <summary>
     /// Type of the locators stored in an LBA file. Each LBA file can only contain locators of a single type.
@@ -25,7 +24,7 @@ namespace Fox
     /// </summary>
     public sealed class LocatorFileReader
     {
-        private readonly BinaryReader reader;
+        private readonly FileStreamReader reader;
 
         /// <summary>
         /// Size of an LBA file's header.
@@ -51,7 +50,7 @@ namespace Fox
                 return;
             }
 
-            using (var reader = new BinaryReader(new FileStream(assetPath, FileMode.Open)))
+            using (var reader = new FileStreamReader(new global::System.IO.FileStream(assetPath, global::System.IO.FileMode.Open)))
             {
                 LocatorBinaryType type = (LocatorBinaryType)reader.ReadUInt32();
 
@@ -64,7 +63,7 @@ namespace Fox
                             var locators = locatorReader.ReadPowerCutAreaLocators();
                             var asset = ScriptableObject.CreateInstance<PowerCutAreaLocatorBinaryArrayAsset>() as PowerCutAreaLocatorBinaryArrayAsset;
 
-                            AssetDatabase.CreateAsset(asset, "Assets/" + System.IO.Path.GetFileNameWithoutExtension(assetPath) + ".asset");
+                            AssetDatabase.CreateAsset(asset, "Assets/" + global::System.IO.Path.GetFileNameWithoutExtension(assetPath) + ".asset");
                             AssetDatabase.SaveAssets();
 
                             asset.locators = locators;
@@ -76,7 +75,7 @@ namespace Fox
                             var locators = locatorReader.ReadNamedLocators();
                             var asset = ScriptableObject.CreateInstance<NamedLocatorBinaryArrayAsset>() as NamedLocatorBinaryArrayAsset;
 
-                            AssetDatabase.CreateAsset(asset, "Assets/" + System.IO.Path.GetFileNameWithoutExtension(assetPath) + ".asset");
+                            AssetDatabase.CreateAsset(asset, "Assets/" + global::System.IO.Path.GetFileNameWithoutExtension(assetPath) + ".asset");
                             AssetDatabase.SaveAssets();
 
                             asset.locators = locators;
@@ -87,7 +86,7 @@ namespace Fox
                             var locators = locatorReader.ReadScaledLocators();
                             var asset = ScriptableObject.CreateInstance<ScaledLocatorBinaryArrayAsset>() as ScaledLocatorBinaryArrayAsset;
 
-                            AssetDatabase.CreateAsset(asset, "Assets/" + System.IO.Path.GetFileNameWithoutExtension(assetPath) + ".asset");
+                            AssetDatabase.CreateAsset(asset, "Assets/" + global::System.IO.Path.GetFileNameWithoutExtension(assetPath) + ".asset");
                             AssetDatabase.SaveAssets();
 
                             asset.locators = locators;
@@ -102,7 +101,7 @@ namespace Fox
         /// <summary>
         /// Initializes a new instance of the LocatorFileReader class based on the specified BinaryReader.
         /// </summary>
-        public LocatorFileReader(BinaryReader reader)
+        public LocatorFileReader(FileStreamReader reader)
         {
             this.reader = reader;
         }
@@ -143,9 +142,9 @@ namespace Fox
         {
             var count = reader.ReadInt32();
 
-            reader.BaseStream.Seek(HeaderSize + (UnscaledLocatorSize * count));
+            reader.Seek(HeaderSize + (UnscaledLocatorSize * count));
             var hashes = this.ReadHashes(count);
-            reader.BaseStream.Seek(HeaderSize);
+            reader.Seek(HeaderSize);
 
             var result = new List<NamedLocatorBinary>(count);
             for(var i = 0; i < count; i++)
@@ -176,9 +175,9 @@ namespace Fox
         {
             var count = reader.ReadInt32();
 
-            reader.BaseStream.Seek(HeaderSize + (ScaledLocatorSize * count));
+            reader.Seek(HeaderSize + (ScaledLocatorSize * count));
             var hashes = this.ReadHashes(count);
-            reader.BaseStream.Seek(HeaderSize);
+            reader.Seek(HeaderSize);
 
             var result = new List<ScaledLocatorBinary>(count);
             for(var i = 0; i < count; i++)
@@ -202,10 +201,10 @@ namespace Fox
             return new String(hash.ToString());
         }
 
-        private static String UnhashDataSetName(StrCode32 hash)
+        private static Path UnhashDataSetName(StrCode32 hash)
         {
             // TODO
-            return new String(hash.ToString());
+            return new Path(hash.ToString());
         }
 
         private PowerCutAreaLocatorBinary ReadPowerCutAreaLocator()
@@ -215,14 +214,14 @@ namespace Fox
             return new PowerCutAreaLocatorBinary(translation, rotation);
         }
 
-        private NamedLocatorBinary ReadNamedLocator(String locatorName, String dataSetName)
+        private NamedLocatorBinary ReadNamedLocator(String locatorName, Path dataSetName)
         {
             var translation = reader.ReadWidePositionF();
             var rotation = reader.ReadRotationF();
             return new NamedLocatorBinary(translation, rotation, locatorName, dataSetName);
         }
 
-        private ScaledLocatorBinary ReadScaledLocator(String locatorName, String dataSetName)
+        private ScaledLocatorBinary ReadScaledLocator(String locatorName, Path dataSetName)
         {
             var translation = reader.ReadWidePositionF();
             var rotation = reader.ReadRotationF();

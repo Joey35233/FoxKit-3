@@ -17,7 +17,7 @@ namespace Tpp.GameKit
             TPP = 1,
         }
 
-        public GameObject[] Read(BinaryReader reader)
+        public GameObject[] Read(FileStreamReader reader)
         {
             Debug.Assert(reader.ReadUInt32() == TCVP_SIGNATURE, "Invalid TCVP file.");
 
@@ -25,7 +25,7 @@ namespace Tpp.GameKit
 
             ushort entryCount = reader.ReadUInt16();
 
-            reader.BaseStream.Seek(reader.ReadUInt32());
+            reader.Seek(reader.ReadUInt32());
 
             GameObject[] coverPointObjects = new GameObject[entryCount];
 

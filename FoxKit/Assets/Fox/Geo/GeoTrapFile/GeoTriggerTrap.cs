@@ -25,9 +25,8 @@ namespace Fox.Geo
         [Description("NearCamera4")]
         NearCamera4 = 0x80,
 
-
-        [Description("0x9978c8d36f7")]
-        _9978c8d36f7 = 0x100,
+        [Description("NoCliff")]
+        NoCliff = 0x100,
         [Description("NoRainEffect")]
         NoRainEffect = 0x200,
         [Description("0x60e79a58dcc3")]
@@ -55,15 +54,17 @@ namespace Fox.Geo
 
         [Description("0xe689072c4df8")]
         _e689072c4df8 = 0x100000,
-        [Description("0x6d14396ebbe5")]
+        [Description("0x6d14396ebbe5")] // from 2020 caplag: "mgo/cuba underground, and also watchtower south of helipad" + "Doors? Something with doors? 2 x 2 x 25"
         _6d14396ebbe5 = 0x200000,
-        [Description("0xd1ee7dc34fff")]
-        _d1ee7dc34fff = 0x400000,
-        [Description("0xb07e254afcae")]
-        _b07e254afcae = 0x800000,
+        [Description("NoStepOn")]
+        NoStepOn = 0x400000,
+        [Description("HalationEffect")]
+        HalationEffect = 0x800000,
 
-        [Description("Unnamed0")]
-        Unnamed0 = 0x2000000,
+        [Description("Unnamed1")]
+        Unnamed1 = 0x1000000,
+        [Description("Unnamed2")]
+        Unnamed2 = 0x2000000,
 
         [Description("0xd6ee65d20b7a")]
         _d6ee65d20b7a = 0x10000000,
@@ -71,10 +72,8 @@ namespace Fox.Geo
         _f287ba9cb7e3 = 0x20000000,
         [Description("NoFulton")]
         NoFulton = 0x40000000,
-        [Description("Unnamed1")]
-        Unnamed1 = 0x80000000,
-        [Description("0x24330b0e33cb")]
-        _24330b0e33cb = 0xffffffff80000000,
+        [Description("Waterfall")]
+        Waterfall = 0x80000000, // 0x80000000 for convenience in 010 but the tag is actually 0xffffffff80000000, signalling that there are no higher-value tags
     };
 
     public enum GeoTriggerTrap_ShapeType : byte

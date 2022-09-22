@@ -4,7 +4,6 @@ using String = Fox.Kernel.String;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
 using System.Linq;
 using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using System.Security.Policy;
@@ -25,16 +24,16 @@ namespace Fox.Core
             public GameObject DataSetGameObject;
         }
 
-        public ReadResult Read(BinaryReader reader)
+        public ReadResult Read(FileStreamReader reader)
         {
             var headerBytes = reader.ReadBytes(32);
             var entityCount = BitConverter.ToInt32(headerBytes, 8);
             var stringTableOffset = BitConverter.ToInt32(headerBytes, 12);
             var entityTableOffset = reader.BaseStream.Position;
 
-            reader.BaseStream.Seek(stringTableOffset, SeekOrigin.Begin);
+            reader.Seek(stringTableOffset);
             this.stringTable = ReadStringTable(reader);
-            reader.BaseStream.Seek(entityTableOffset, SeekOrigin.Begin);
+            reader.Seek(entityTableOffset);
 
             var result = new ReadResult();
             var entities = new Dictionary<ulong, Entity>();
@@ -70,7 +69,7 @@ namespace Fox.Core
             return result;
         }
 
-        private static IDictionary<StrCode, String> ReadStringTable(BinaryReader reader)
+        private static IDictionary<StrCode, String> ReadStringTable(FileStreamReader reader)
         {
             var dictionary = new Dictionary<StrCode, String>
             {
