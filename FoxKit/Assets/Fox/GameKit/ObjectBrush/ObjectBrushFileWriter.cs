@@ -12,8 +12,8 @@ namespace Fox.GameKit
 {
     public class ObjectBrushFileWriter
     {
-        public const ushort NUM_BLOCKS_X = 32;
-        public const ushort NUM_BLOCKS_Z = 32;
+        public const ushort NUM_BLOCKS_X = 64;
+        public const ushort NUM_BLOCKS_Z = 64;
         public const ushort METERS_PER_BLOCK = 128 / 1;
 
         public static ushort PositionFWSToBlockIndex(Vector3 positionFWS)
@@ -89,12 +89,12 @@ namespace Fox.GameKit
 
         private static (short xEWS, float yFWS, short zEWS, ushort blockIndex) GetPositionEWSFromPositionFWS(Vector3 positionFWS)
         {
-            // block indices [0,32) x [0,32)
-            ushort blockX = (ushort)Mathf.FloorToInt((METERS_PER_BLOCK * NUM_BLOCKS_X / 2 + positionFWS.x) / METERS_PER_BLOCK);
-            ushort blockZ = (ushort)Mathf.FloorToInt((METERS_PER_BLOCK * NUM_BLOCKS_Z / 2 + positionFWS.z) / METERS_PER_BLOCK);
+            // block indices [0,64) x [0,64)
+            ushort blockX = (ushort)Mathf.FloorToInt(NUM_BLOCKS_X / 2 + positionFWS.x / METERS_PER_BLOCK);
+            ushort blockZ = (ushort)Mathf.FloorToInt(NUM_BLOCKS_Z / 2 + positionFWS.x / METERS_PER_BLOCK);
 
-            // one-value block index [0, 32*32)
-            ushort blockIndex = (ushort)(blockZ * NUM_BLOCKS_Z + blockX);
+            // one-value block index [0, 64*64)
+            ushort blockIndex = (ushort)(blockX * NUM_BLOCKS_X + blockZ);
 
             // block center position
             float blockCenterXFWS = METERS_PER_BLOCK * (blockX + 0.5f - 0.5f * NUM_BLOCKS_X);
