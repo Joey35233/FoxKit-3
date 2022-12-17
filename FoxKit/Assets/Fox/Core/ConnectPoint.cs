@@ -10,7 +10,7 @@ namespace Fox.Core
     public class ConnectPoint : MonoBehaviour
     {
         private readonly static Color LocatorColor = new(0.0f, 0.2f, 1.0f);
-        private readonly static float LocatorScale = 0.25f;
+        private readonly static float LocatorScale = 0.1f;
         void OnDrawGizmos()
         {
             Gizmos.color = LocatorColor;

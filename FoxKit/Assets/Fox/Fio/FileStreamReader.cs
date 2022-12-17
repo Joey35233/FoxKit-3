@@ -1,4 +1,5 @@
 using Fox.Kernel;
+using System.Collections.Generic;
 //using System.IO;
 using UnityEngine;
 
@@ -39,11 +40,14 @@ namespace Fox.Fio
 
         public string ReadNullTerminatedString()
         {
-            int charCount = 0;
-            while (ReadChar() != 0x00)
-                charCount++;
-
-            return new string(ReadChars(charCount));
+            var chars = new List<char>();
+            var @char = ReadChar();
+            while (@char != '\0')
+            {
+                chars.Add(@char);
+                @char = ReadChar();
+            }
+            return new string(chars.ToArray());
         }
 
         public Vector3 ReadVector3()
