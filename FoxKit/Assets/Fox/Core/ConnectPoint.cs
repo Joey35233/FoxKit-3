@@ -1,18 +1,16 @@
+﻿using Fox;
 using System;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 
 namespace Fox.Core
 {
-    /// <summary>
-    /// Draws a locator gizmo in the scene.
-    /// </summary>
+    [System.Serializable]
     [DisallowMultipleComponent, ExecuteInEditMode, SelectionBase]
-    public class LocatorGizmo : MonoBehaviour
+    public class ConnectPoint : MonoBehaviour
     {
-        private readonly static Color LocatorColor = new(67.0f / 255.0f, 1.0f, 163.0f / 255.0f);
-        private readonly static float LocatorScale = 1.0f;
-
+        private readonly static Color LocatorColor = new(0.0f, 0.2f, 1.0f);
+        private readonly static float LocatorScale = 0.25f;
         void OnDrawGizmos()
         {
             Gizmos.color = LocatorColor;
@@ -32,7 +30,6 @@ namespace Fox.Core
             var lineFw = new Tuple<Vector3, Vector3>(position - forward, position + forward);
             Gizmos.DrawLine(lineFw.Item1, lineFw.Item2);
         }
-
         void OnDrawGizmosSelected()
         {
             OnDrawGizmos();
