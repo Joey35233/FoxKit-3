@@ -8,5 +8,11 @@ namespace Fox.Core
     [RequireComponent(typeof(PointGizmo))]
     public class ConnectPoint : MonoBehaviour
     {
+        private void Reset()
+        {
+            var pointGizmo = this.gameObject.GetComponent<PointGizmo>();
+            if (pointGizmo is not null)
+                pointGizmo.ScaleMode = PointGizmo.GizmoScaleMode.InheritLocal;
+        }
     }
 }
