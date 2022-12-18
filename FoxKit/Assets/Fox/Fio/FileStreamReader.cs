@@ -38,16 +38,23 @@ namespace Fox.Fio
             return HashingBitConverter.ToStrCode32(ReadUInt32());
         }
 
-        public string ReadNullTerminatedString()
+        public String ReadNullTerminatedString()
         {
-            var chars = new List<char>();
-            var @char = ReadChar();
-            while (@char != '\0')
+            return new String(ReadNullTerminatedCString());
+        }
+
+        public string ReadNullTerminatedCString()
+        {
+            long position = BaseStream.Position;
+
+            int count = 0;
+            while (ReadChar() != '\0') 
             {
-                chars.Add(@char);
-                @char = ReadChar();
+                count++;
+                BaseStream.Position++;
             }
-            return new string(chars.ToArray());
+            BaseStream.Position = position;
+            return new string(ReadChars(count));
         }
 
         public Vector3 ReadVector3()
@@ -98,11 +105,9 @@ namespace Fox.Fio
             BaseStream.Seek(count, System.IO.SeekOrigin.Begin);
         }
 
-        public void Align(int alignment)
+        public void Align(uint alignment)
         {
-            long alignmentRequired = BaseStream.Position % alignment;
-            if (alignmentRequired > 0)
-                BaseStream.Position += alignment - alignmentRequired;
+            BaseStream.Position = (BaseStream.Position + (alignment - 1)) & (-alignment);
         }
     }
 }

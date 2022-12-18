@@ -39,7 +39,7 @@ namespace Fox.Ui
                 {
                     int valuePosition = (int)inputStream.Position - valuesOffset;
                     short colorId = reader.ReadInt16();
-                    string value = reader.ReadNullTerminatedString();
+                    string value = reader.ReadNullTerminatedCString();
                     offsetEntryDictionary.Add(valuePosition, new LangFileEntry
                     {
                         Color = colorId,

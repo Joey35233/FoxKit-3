@@ -9,7 +9,7 @@ namespace Fox.Core
         public override void InitializeGameObject(GameObject gameObject)
         {
             base.InitializeGameObject(gameObject);
-            gameObject.AddComponent<LocatorGizmo>();
+            gameObject.AddComponent<PointGizmo>();
         }
     }
 }

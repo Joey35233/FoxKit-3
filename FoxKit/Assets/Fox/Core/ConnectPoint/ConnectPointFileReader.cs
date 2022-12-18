@@ -20,7 +20,7 @@ namespace Fox.Core
                 StrCode32 Hash = reader.ReadStrCode32();
                 int OffsetToString = reader.ReadInt32();
                 reader.Seek(pos + OffsetToString);
-                string str = reader.ReadNullTerminatedString();
+                string str = reader.ReadNullTerminatedCString();
                 reader.Seek(pos + 0x8);
                 return str;
             };
