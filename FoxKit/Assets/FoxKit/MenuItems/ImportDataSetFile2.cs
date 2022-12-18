@@ -80,7 +80,7 @@ namespace FoxKit.MenuItems
 
                 var parentGameObject = transformGameObjects[parent.Entity];
                 var gameObject = transformGameObjects[entity];
-                gameObject.transform.SetParent(parentGameObject.transform);
+                gameObject.transform.SetParent(parentGameObject.transform,false);
             }
 
             EditorSceneManager.SaveScene(scene, "Assets/Scenes/" + CsSystem.IO.Path.GetFileName(assetPath) + ".unity");

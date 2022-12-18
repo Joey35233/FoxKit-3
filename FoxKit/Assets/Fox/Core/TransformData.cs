@@ -25,7 +25,6 @@ namespace Fox.Core
                 Debug.LogWarning($"{this.name}: transform is null");
                 return;
             }
-
             gameObject.transform.position = transformEntity.translation;
             gameObject.transform.rotation = transformEntity.rotQuat;
             gameObject.transform.localScale = transformEntity.scale;
