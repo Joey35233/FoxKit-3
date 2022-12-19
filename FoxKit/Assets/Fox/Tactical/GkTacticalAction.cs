@@ -8,6 +8,7 @@ namespace Fox.Tactical
         public override void InitializeGameObject(GameObject gameObject)
         {
             base.InitializeGameObject(gameObject);
+            gameObject.AddComponent<GkTacticalActionGizmo>();
         }
     }
 }
