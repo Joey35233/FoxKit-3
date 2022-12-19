@@ -14,5 +14,10 @@ namespace Fox.Core
             var transformEntity = this.transform.Get();
             transformEntity.scale = value;
         }
+        public override void InitializeGameObject(GameObject gameObject)
+        {
+            base.InitializeGameObject(gameObject);
+            gameObject.AddComponent<BoxGizmo>();
+        }
     }
 }

@@ -15,20 +15,20 @@ namespace Fox.Core
 
         protected partial UnityEngine.Quaternion Get_rotQuat()
         {
-            return transform_rotation_quat;
+            return Kernel.Math.FoxToUnityQuaternion(transform_rotation_quat);
         }
         protected partial void Set_rotQuat(UnityEngine.Quaternion value)
         {
-            transform_rotation_quat = value;
+            transform_rotation_quat = Kernel.Math.UnityToFoxQuaternion(value);
         }
 
         protected partial UnityEngine.Vector3 Get_translation()
         {
-            return transform_translation;
+            return Kernel.Math.FoxToUnityVector3(transform_translation);
         }
         protected partial void Set_translation(UnityEngine.Vector3 value)
         {
-            transform_translation = value;
+            transform_translation = Kernel.Math.FoxToUnityVector3(value);
         }
     }
 }
