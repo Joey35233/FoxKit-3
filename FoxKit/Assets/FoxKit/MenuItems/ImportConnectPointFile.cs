@@ -19,7 +19,7 @@ namespace FoxKit.MenuItems
 
             using var reader = new FileStreamReader(System.IO.File.OpenRead(assetPath));
             {
-                if (Selection.transforms.Length < 0)
+                if (Selection.transforms.Length < 1)
                 {
                     return;
                 }
