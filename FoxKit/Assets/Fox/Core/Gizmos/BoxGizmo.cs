@@ -1,6 +1,4 @@
-﻿using System;
-using System.Runtime.CompilerServices;
-using UnityEditor;
+﻿using UnityEditor;
 using UnityEngine;
 
 namespace Fox.Core
@@ -11,25 +9,34 @@ namespace Fox.Core
     [DisallowMultipleComponent, ExecuteInEditMode, SelectionBase]
     public class BoxGizmo : MonoBehaviour
     {
-        public Color LocatorColor = Color.red;
+        public Color Color = Color.red;
+        public bool DrawLabel = false;
+
+        [HideInInspector]
+        public Vector3 Scale = Vector3.one;
         void DrawGizmos(bool isSelected)
         {
             Gizmos.matrix = transform.localToWorldMatrix;
-            Color sideColor = LocatorColor;
+
+            Color faceColor = Color;
             if (isSelected)
-                sideColor.a = 0.5f;
+                faceColor.a = 0.5f;
             else
-                sideColor.a = 0.25f;
-            Gizmos.color = sideColor;
-            Gizmos.DrawCube(Vector3.zero, Vector3.one);
-            Color lineColor = LocatorColor;
+                faceColor.a = 0.25f;
+            Gizmos.color = faceColor;
+            Gizmos.DrawCube(Vector3.zero, Scale);
+
+            Color edgeColor = Color;
             if (isSelected)
-                lineColor = Color.white;
+                edgeColor = Color.white;
             else
-                lineColor.a = 1.0f;
-            Gizmos.color = lineColor;
-            Gizmos.DrawWireCube(Vector3.zero, Vector3.one);
-            Handles.Label(transform.position, gameObject.name);
+                edgeColor *= 0.25f;
+            edgeColor.a = 1.0f;
+            Gizmos.color = edgeColor;
+            Gizmos.DrawWireCube(Vector3.zero, Scale);
+
+            if (DrawLabel)
+                Handles.Label(this.transform.position, gameObject.name);
         }
         void OnDrawGizmos()
         {

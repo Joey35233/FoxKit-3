@@ -2,6 +2,7 @@
 using System.Runtime.CompilerServices;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace Fox.Core
 {
@@ -11,25 +12,31 @@ namespace Fox.Core
     [DisallowMultipleComponent, ExecuteInEditMode, SelectionBase]
     public class SphereGizmo : MonoBehaviour
     {
-        public Color LocatorColor = Color.red;
+        public Color Color = Color.red;
+        public bool DrawLabel = false;
         void DrawGizmos(bool isSelected)
         {
             Gizmos.matrix = transform.localToWorldMatrix;
-            Color sideColor = LocatorColor;
+
+            Color faceColor = Color;
             if (isSelected)
-                sideColor.a = 0.5f;
+                faceColor.a = 0.5f;
             else
-                sideColor.a = 0.25f;
-            Gizmos.color = sideColor;
+                faceColor.a = 0.25f;
+            Gizmos.color = faceColor;
             Gizmos.DrawSphere(Vector3.zero, 1.0f);
-            Color lineColor = LocatorColor;
+
+            Color edgeColor = Color;
             if (isSelected)
-                lineColor = Color.white;
+                edgeColor = Color.white;
             else
-                lineColor.a = 1.0f;
-            Gizmos.color = lineColor;
+                edgeColor *= 0.25f;
+            edgeColor.a = 1.0f;
+            Gizmos.color = edgeColor;
             Gizmos.DrawWireSphere(Vector3.zero, 1.0f);
-            Handles.Label(transform.position, gameObject.name);
+
+            if (DrawLabel)
+                Handles.Label(this.transform.position, gameObject.name);
         }
         void OnDrawGizmos()
         {

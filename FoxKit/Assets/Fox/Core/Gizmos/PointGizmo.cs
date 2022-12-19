@@ -1,4 +1,5 @@
 using System;
+using UnityEditor;
 using UnityEngine;
 
 namespace Fox.Core
@@ -16,8 +17,8 @@ namespace Fox.Core
             InheritWorld,
         }
 
-        [HideInInspector]
         public Color Color = new(67.0f / 255.0f, 1.0f, 163.0f / 255.0f);
+        public bool DrawLabel = false;
 
         [HideInInspector]
         public GizmoScaleMode ScaleMode = GizmoScaleMode.Explicit;
@@ -25,9 +26,12 @@ namespace Fox.Core
         [HideInInspector]
         public Vector3 Scale = Vector3.one;
 
-        public void OnDrawGizmos()
+        public void DrawGizmos(bool isSelected)
         {
-            Gizmos.color = Color;
+            if (isSelected)
+                Gizmos.color = Color.white;
+            else
+                Gizmos.color = Color;
 
             Debug.Assert(Enum.IsDefined(typeof(GizmoScaleMode), ScaleMode));
             Vector3 inheritedScale = ScaleMode switch
@@ -48,6 +52,17 @@ namespace Fox.Core
 
             var forward = this.transform.forward * inheritedScale.z * Scale.z;
             Gizmos.DrawLine(position - forward, position + forward);
+
+            if (DrawLabel)
+                Handles.Label(position, gameObject.name);
+        }
+        public void OnDrawGizmos()
+        {
+            DrawGizmos(false);
+        }
+        public void OnDrawGizmosSelected()
+        {
+            DrawGizmos(true);
         }
     }
 }
