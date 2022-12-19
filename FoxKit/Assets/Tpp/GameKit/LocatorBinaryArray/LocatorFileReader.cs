@@ -209,21 +209,21 @@ namespace Tpp.GameKit
 
         private PowerCutAreaLocatorBinary ReadPowerCutAreaLocator()
         {
-            var translation = reader.ReadWidePositionF();
+            var translation = reader.ReadPositionHF();
             var rotation = reader.ReadRotationF();
             return new PowerCutAreaLocatorBinary(translation, rotation);
         }
 
         private NamedLocatorBinary ReadNamedLocator(String locatorName, Path dataSetName)
         {
-            var translation = reader.ReadWidePositionF();
+            var translation = reader.ReadPositionHF();
             var rotation = reader.ReadRotationF();
             return new NamedLocatorBinary(translation, rotation, locatorName, dataSetName);
         }
 
         private ScaledLocatorBinary ReadScaledLocator(String locatorName, Path dataSetName)
         {
-            var translation = reader.ReadWidePositionF();
+            var translation = reader.ReadPositionHF();
             var rotation = reader.ReadRotationF();
             var scale = reader.ReadVector3();
             var a = reader.ReadInt16();

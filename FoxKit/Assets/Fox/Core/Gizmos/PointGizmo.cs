@@ -29,7 +29,7 @@ namespace Fox.Core
         {
             Gizmos.color = Color;
 
-            Debug.Assert((int)ScaleMode > -1 && (int)ScaleMode < 3);
+            Debug.Assert(Enum.IsDefined(typeof(GizmoScaleMode), ScaleMode));
             Vector3 inheritedScale = ScaleMode switch
             {
                 GizmoScaleMode.Explicit => Vector3.one,

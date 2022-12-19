@@ -1,6 +1,4 @@
 using Fox.Kernel;
-using System.Collections.Generic;
-//using System.IO;
 using UnityEngine;
 
 namespace Fox.Fio
@@ -62,16 +60,28 @@ namespace Fox.Fio
             return new Vector3(ReadSingle(), ReadSingle(), ReadSingle());
         }
         public Vector3 ReadPositionF() => Math.FoxToUnityVector3(ReadVector3());
+        public Vector3 ReadPositionHF()
+        {
+            Vector4 positionHF = ReadVector4();
+            Debug.Assert(positionHF.w == 1, "W component of position in homogenous coordinates is not 1.");
+            return Math.FoxToUnityVector3((Vector3)positionHF);
+        }
+        public Vector3 ReadScaleHF()
+        {
+            Vector4 scaleHF = ReadVector4();
+            Debug.Assert(scaleHF.w == 1, "W component of scale in homogenous coordinates is not 1.");
+            return scaleHF;
+        }
 
         public Vector3 ReadWideVector3()
         {
             Vector3 result = new Vector3(ReadSingle(), ReadSingle(), ReadSingle());
 
-            Debug.Assert(ReadUInt32() == 0, "Invalid WideVector3.");
+            Debug.Assert(ReadUInt32() == 0, "W component of WideVector3 is not 0.");
 
             return result;
         }
-        public Vector3 ReadWidePositionF() => Math.FoxToUnityVector3(ReadWideVector3());
+        //public Vector3 ReadWidePositionF() => Math.FoxToUnityVector3(ReadWideVector3());
 
         public Vector4 ReadVector4()
         {
