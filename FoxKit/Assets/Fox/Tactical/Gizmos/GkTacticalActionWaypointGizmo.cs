@@ -16,22 +16,17 @@ namespace Fox.Tactical
 
         public void OnDrawGizmos()
         {
-            Vector3[] Waypoints = new Vector3[2]; //TODO
-
             Gizmos.color = Color;
-            for (int i = 0; i < Waypoints.Length; i++)
-            {
-                var worldPosition = transform.position + Waypoints[i];
+            var worldPosition = transform.position;//TODO
 
-                var right = Vector3.right * Scale.x;
-                Gizmos.DrawLine(worldPosition - right, worldPosition + right);
+            var right = Vector3.right * Scale.x;
+            Gizmos.DrawLine(worldPosition - right, worldPosition + right);
 
-                var up = Vector3.up * Scale.y;
-                Gizmos.DrawLine(worldPosition - up, worldPosition + up);
+            var up = Vector3.up * Scale.y;
+            Gizmos.DrawLine(worldPosition - up, worldPosition + up);
 
-                var forward = Vector3.forward * Scale.z;
-                Gizmos.DrawLine(worldPosition - forward, worldPosition + forward);
-            }
+            var forward = Vector3.forward * Scale.z;
+            Gizmos.DrawLine(worldPosition - forward, worldPosition + forward);
         }
     }
 }
