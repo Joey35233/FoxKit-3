@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-
+using System.Linq;
 using UnityEngine;
 
 namespace Fox.Kernel
@@ -71,7 +71,6 @@ namespace Fox.Kernel
         {
             ulong mask = 0x0000000000000000;
 
-            // Test if string starts with "/Assets/"
             if (path.StartsWith("/Assets/"))
             {
                 path = path.Substring(8);

@@ -29,6 +29,8 @@ namespace Fox.Kernel
             get => _hash;
         }
 
+        public String Extension => Hash.Extension;
+
         //public PathFileNameAndExtCode Hash32 => (StrCode32)Hash;
 
         /// <summary>

@@ -98,6 +98,7 @@ namespace Fox.Core
             }
         }
 
-        public bool Equals(String comparand) => GetHash() == comparand.Hash32;
+        public bool TestEquality(String comparand) => GetString() == comparand;
+        public bool TestEquality(StrCode32 comparand) => GetHash() == comparand;
     }
 }

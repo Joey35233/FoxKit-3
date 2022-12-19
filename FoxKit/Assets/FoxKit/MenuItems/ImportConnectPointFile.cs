@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEditor;
 using Fox.Kernel;
 using Fox.Fio;
@@ -42,7 +43,7 @@ namespace FoxKit.MenuItems
                     FoxDataParameterContext? parentParam = realNode.FindParameter(new String("Parent")); Debug.Assert(parentParam.HasValue);
                     String parentName = parentParam.Value.GetString(); Debug.Assert(parentName != (String)null);
 
-                    UnityEngine.Transform parent = target.Find(parentName.CString);
+                    UnityEngine.Transform parent = Fox.Core.TransformUtils.FindTransformRecursive(target, parentName);
                     if (parent == null)
                     {
                         Debug.LogError($"Could not find parent, {parentName.CString}, of CNP, {name.CString}, in selected object.");
@@ -61,7 +62,7 @@ namespace FoxKit.MenuItems
                     cnpTransform.rotation = reader.ReadRotationF();
                     cnpTransform.localScale = reader.ReadScaleHF();
 
-                    cnpTransform.SetParent(parent, worldPositionStays: true);
+                    cnpTransform.SetParent(parent, worldPositionStays: false);
                 }
             }
         }

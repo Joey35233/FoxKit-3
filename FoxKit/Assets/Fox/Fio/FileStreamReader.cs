@@ -46,7 +46,7 @@ namespace Fox.Fio
             long position = BaseStream.Position;
 
             int count = 0;
-            while (ReadChar() != '\0') 
+            while (PeekChar() != '\0') 
             {
                 count++;
                 BaseStream.Position++;

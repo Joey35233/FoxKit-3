@@ -96,7 +96,14 @@ namespace Fox.Core
         {
             Debug.Assert(IsValid());
 
-            return new FoxDataStringContext(Reader, Position + Offset_Name, StringFormat, StringOffsetMode).Equals(comparand);
+            return new FoxDataStringContext(Reader, Position + Offset_Name, StringFormat, StringOffsetMode).TestEquality(comparand);
+        }
+
+        public bool NameEquals(StrCode32 comparand)
+        {
+            Debug.Assert(IsValid());
+
+            return new FoxDataStringContext(Reader, Position + Offset_Name, StringFormat, StringOffsetMode).TestEquality(comparand);
         }
 
         public FoxDataParameterContext? FindParameter(String name)

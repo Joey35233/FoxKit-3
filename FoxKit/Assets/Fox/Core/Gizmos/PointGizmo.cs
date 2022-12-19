@@ -56,10 +56,12 @@ namespace Fox.Core
             if (DrawLabel)
                 Handles.Label(position, gameObject.name);
         }
+
         public void OnDrawGizmos()
         {
             DrawGizmos(false);
         }
+
         public void OnDrawGizmosSelected()
         {
             DrawGizmos(true);

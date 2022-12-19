@@ -12,7 +12,10 @@ namespace Fox.Core
         {
             var pointGizmo = this.gameObject.GetComponent<PointGizmo>();
             if (pointGizmo is not null)
+            {
                 pointGizmo.ScaleMode = PointGizmo.GizmoScaleMode.InheritLocal;
+                pointGizmo.Scale = new Vector3(0.01f, 0.01f, 0.01f);
+            }
         }
     }
 }
