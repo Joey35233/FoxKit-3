@@ -9,6 +9,7 @@ using Fox.GameCore;
 using System.Collections.Generic;
 using System;
 using System.Linq;
+using Fox.Fio;
 
 namespace FoxKit.MenuItems
 {
@@ -23,7 +24,7 @@ namespace FoxKit.MenuItems
                 return;
             }
 
-            using var reader = new BinaryReader(System.IO.File.OpenRead(assetPath));
+            using var reader = new FileStreamReader(System.IO.File.OpenRead(assetPath));
             var trapReader = new GeoTrapFileReader();
             var scene = trapReader.Read(reader);
             scene.name = CsSystem.IO.Path.GetFileNameWithoutExtension(assetPath);
