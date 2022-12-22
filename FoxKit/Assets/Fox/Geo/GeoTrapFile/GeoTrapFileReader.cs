@@ -44,7 +44,10 @@ namespace Fox.Geo
                     gameObject.name = $"GeoTriggerTrap{i.ToString("D4")}";
                     var foxEntityComponent = gameObject.AddComponent<FoxEntity>();
                     GeoTriggerTrap geoTriggerTrapEntity = (GeoTriggerTrap)(foxEntityComponent.Entity = new GeoTriggerTrap());
-                    geoTriggerTrapEntity.transform = new EntityPtr<TransformEntity>(new TransformEntity());
+
+                    TransformEntity geoTriggerTrapTransform = new TransformEntity();
+                    geoTriggerTrapTransform.owner = EntityHandle.Get(geoTriggerTrapEntity);
+                    geoTriggerTrapEntity.transform = new EntityPtr<TransformEntity>(geoTriggerTrapTransform);
                     //initialzing the go breaks the translation of the children here???
 
                     uint flags = reader.ReadUInt32();
@@ -74,7 +77,10 @@ namespace Fox.Geo
                             var shapeFoxEntityComponent = shapeGameObject.AddComponent<FoxEntity>();
                             shapeFoxEntityComponent.Entity = EntityInfo.ConstructEntity(new String("BoxShape"));
                             BoxShape shapeFoxEntity = shapeFoxEntityComponent.Entity as BoxShape;
-                            shapeFoxEntity.transform = new EntityPtr<TransformEntity>(new TransformEntity());
+
+                            TransformEntity shapeFoxTransform = new TransformEntity();
+                            shapeFoxTransform.owner = EntityHandle.Get(shapeFoxEntity);
+                            shapeFoxEntity.transform = new EntityPtr<TransformEntity>(shapeFoxTransform);
 
                             shapeFoxEntity.InitializeGameObject(shapeGameObject);
 
@@ -107,8 +113,12 @@ namespace Fox.Geo
                             var shapeFoxEntityComponent = shapeGameObject.AddComponent<FoxEntity>();
                             shapeFoxEntityComponent.Entity = EntityInfo.ConstructEntity(new String("GeoxTrapAreaPath"));
                             var shapeFoxEntity = shapeFoxEntityComponent.Entity;
-                            //Can't get the class here with Entity as GeoxTrapAreaPath???
-                            //TODO height and add transform
+                            var shapeFoxPtr = EntityHandle.Get(shapeFoxEntity);
+
+                            shapeFoxEntity.SetProperty(new String("height"),new Value(yMax-yMin));
+                            TransformEntity shapeTransformEntity = new TransformEntity();
+                            shapeTransformEntity.owner = shapeFoxPtr;
+                            shapeFoxEntity.SetProperty(new String("transform"), new Value(new EntityPtr<TransformEntity>(shapeTransformEntity)));
 
                             shapeFoxEntity.InitializeGameObject(shapeGameObject);
 
@@ -120,12 +130,11 @@ namespace Fox.Geo
                             shapeGameObject.transform.position = new Vector3(0, yMin, 0);
 
                             //TODO add nodes and edges when the class gets out
+                            var nodes = new DataElement[pointCount];
                             for (uint h = 0; h < pointCount; h++)
                             {
-                                var nodeGameObject = new GameObject();
                                 var nodePos = reader.ReadVector3(); reader.ReadUInt32();
-                                nodeGameObject.transform.position = nodePos;
-                                nodeGameObject.transform.SetParent(shapeGameObject.transform, true);
+                                Debug.Log($"{h}={nodePos}");
                             }
 
                             shapeGameObject.transform.SetParent(gameObject.transform);
