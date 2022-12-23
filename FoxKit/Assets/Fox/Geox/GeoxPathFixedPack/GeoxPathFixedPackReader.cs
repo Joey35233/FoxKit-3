@@ -8,6 +8,8 @@ using static UnityEngine.Debug;
 using String = Fox.Kernel.String;
 using Fox.Fio;
 using static Unity.IO.LowLevel.Unsafe.AsyncReadManagerMetrics;
+using Fox.Geo;
+using Fox.Graphx;
 
 namespace Fox.Geox
 {
@@ -20,11 +22,9 @@ namespace Fox.Geox
             FoxDataHeaderContext header = new FoxDataHeaderContext(reader, reader.BaseStream.Position);
             header.Validate(version: 201209110, flags: 0);
 
-            uint pathIndex = 0;
-
-            for (FoxDataNodeContext? node = header.GetFirstNode(); node.HasValue; node = node.Value.GetNextNode())
+            for (FoxDataNodeContext? foxDataNode = header.GetFirstNode(); foxDataNode.HasValue; foxDataNode = foxDataNode.Value.GetNextNode())
             {
-                FoxDataNodeContext realNode = node.Value;
+                FoxDataNodeContext realNode = foxDataNode.Value;
                 uint payloadOffset = (uint)(realNode.Position + realNode.GetDataOffset());
 
                 //Payload
@@ -34,54 +34,95 @@ namespace Fox.Geox
 
                 reader.Seek(payloadOffset + dataOffset);
                 uint pathCount = reader.ReadUInt32();
-                for (uint i = 0; i < pathCount; i++)
+                for (uint pathIndex = 0; pathIndex < pathCount; pathIndex++)
                 {
-                    reader.Seek(payloadOffset + dataOffset + 8 + 4 * i);
+                    reader.Seek(payloadOffset + dataOffset + 8 + 4 * pathIndex);
                     uint offsetToPath = reader.ReadUInt32();
                     reader.Seek(payloadOffset + offsetToPath);
 
                     uint geoPathGeomHeader = reader.ReadUInt32();
-                    uint geoPrimType = geoPathGeomHeader & 0xF;
-                    uint geoShapeFlags = (geoPathGeomHeader & 0xFFFFF0) >> 4;
-                    uint primCount = geoPathGeomHeader >> 24;
+                    uint edgeCount = geoPathGeomHeader >> 24;
                     reader.Skip(12);
 
-                    ulong geoPathTags = reader.ReadUInt64();
+                    GeoxPath2_PATH_TAG geoPathTags = (GeoxPath2_PATH_TAG)reader.ReadUInt64();
                     uint name = reader.ReadUInt32();//strcode32
                     uint vertexBufferOffset = reader.ReadUInt32();
 
-                    var pathGo = new GameObject();
-                    pathGo.name = $"GeoxPath2{pathIndex.ToString("D4")}";
+                    var pathGameObject = new GameObject();
+                    pathGameObject.name = name.ToString();
+                    var pathFoxEntityComponent = pathGameObject.AddComponent<FoxEntity>();
+                    GeoxPath2 pathEntity = (GeoxPath2)(pathFoxEntityComponent.Entity = new GeoxPath2());
+                    pathEntity.InitializeGameObject(pathGameObject);
+
+                    TransformEntity pathTransformEntity = new TransformEntity();
+                    pathTransformEntity.owner = EntityHandle.Get(pathEntity);
+                    pathEntity.transform = new EntityPtr<TransformEntity>(pathTransformEntity);
+
+                    foreach (GeoxPath2_PATH_TAG tag in Enum.GetValues(geoPathTags.GetType()))
+                        if (geoPathTags.HasFlag(tag))
+                            pathEntity.tags.Add(new String(tag.ToString()));
 
                     //Edges and nodes
                     uint nodeCount = 0;
-                    for (uint k = 0; k < primCount; k++)
+                    ushort[] prevNodeIndices = new ushort[edgeCount];
+                    ushort[] nextNodeIndices = new ushort[edgeCount];
+                    for (uint edgeIndex = 0; edgeIndex < edgeCount; edgeIndex++)
                     {
-                        uint geoEdgeTags = reader.ReadUInt32();
-                        ushort inIndex = reader.ReadUInt16();
-                        ushort outIndex = reader.ReadUInt16();
+                        GeoxPathEdge edge = new GeoxPathEdge();
+                        edge.owner = EntityHandle.Get(pathEntity);
 
-                        if (inIndex > nodeCount)
-                            nodeCount = inIndex;
-                        if (outIndex > nodeCount)
-                            nodeCount = outIndex;
+                        GeoxPath2_EDGE_TAG geoEdgeTags = (GeoxPath2_EDGE_TAG)reader.ReadUInt32();
+                        prevNodeIndices[edgeIndex] = reader.ReadUInt16();
+                        nextNodeIndices[edgeIndex] = reader.ReadUInt16();
+
+                        if (prevNodeIndices[edgeIndex] > nodeCount)
+                            nodeCount = prevNodeIndices[edgeIndex];
+                        if (nextNodeIndices[edgeIndex] > nodeCount)
+                            nodeCount = nextNodeIndices[edgeIndex];
+
+                        foreach (GeoxPath2_EDGE_TAG tag in Enum.GetValues(geoEdgeTags.GetType()))
+                            if (geoEdgeTags.HasFlag(tag))
+                                edge.edgeTags.Add(new String(tag.ToString()));
+
+                        pathEntity.edges.Add(new EntityPtr<GraphxSpatialGraphDataEdge>(edge));
                     }
 
                     reader.Seek(payloadOffset + offsetToPath + vertexBufferOffset);
 
-                    for (uint k = 0; k < nodeCount + 1; k++)
+                    for (uint nodeIndex = 0; nodeIndex < nodeCount + 1; nodeIndex++)
                     {
+                        GeoxPathNode node = new GeoxPathNode();
+                        node.owner = EntityHandle.Get(pathEntity);
+
                         Vector3 nodePosition = reader.ReadPositionF();
-                        uint geoNodeTags = reader.ReadUInt32();
-                        var nodeGo = new GameObject();
+                        if (nodeIndex==0)
+                            pathGameObject.transform.position = nodePosition;
+                        else
+                            node.position = pathGameObject.transform.InverseTransformPoint(nodePosition);
 
-                        nodeGo.name = $"{pathGo.name}_GeoxPathNode{k.ToString("D4")}";
-                        nodeGo.transform.position = nodePosition;
-                        nodeGo.transform.SetParent(pathGo.transform);
-                        GameObject.CreatePrimitive(PrimitiveType.Sphere).transform.SetParent(nodeGo.transform, false);
+                        GeoxPath2_NODE_TAG geoNodeTags = (GeoxPath2_NODE_TAG)reader.ReadUInt32();
+                        foreach (GeoxPath2_NODE_TAG tag in Enum.GetValues(geoNodeTags.GetType()))
+                            if (geoNodeTags.HasFlag(tag))
+                                node.nodeTags.Add(new String(tag.ToString()));
+
+                        pathEntity.nodes.Add(new EntityPtr<GraphxSpatialGraphDataNode>(node));
+
+                        for (int edgeIndex = 0; edgeIndex < edgeCount; edgeIndex++)
+                        {
+                            if (nodeIndex == prevNodeIndices[edgeIndex])
+                            {
+                                GeoxPathEdge edge = pathEntity.edges[edgeIndex].Get() as GeoxPathEdge;
+                                edge.prevNode = EntityHandle.Get(node);
+                                node.outlinks.Add(EntityHandle.Get(edge));
+                            }
+                            if (nodeIndex == nextNodeIndices[edgeIndex])
+                            {
+                                GeoxPathEdge edge = pathEntity.edges[edgeIndex].Get() as GeoxPathEdge;
+                                edge.nextNode = EntityHandle.Get(node);
+                                node.outlinks.Add(EntityHandle.Get(edge));
+                            }
+                        }
                     }
-
-                    pathIndex++;
                 }
             }
 

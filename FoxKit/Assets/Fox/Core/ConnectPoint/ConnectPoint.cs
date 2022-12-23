@@ -14,7 +14,8 @@ namespace Fox.Core
             if (pointGizmo is not null)
             {
                 pointGizmo.ScaleMode = PointGizmo.GizmoScaleMode.InheritLocal;
-                pointGizmo.Scale = new Vector3(0.01f, 0.01f, 0.01f);
+                pointGizmo.Scale = new Vector3(0.05f, 0.05f, 0.05f);
+                pointGizmo.DrawLabel = true;
             }
         }
     }
