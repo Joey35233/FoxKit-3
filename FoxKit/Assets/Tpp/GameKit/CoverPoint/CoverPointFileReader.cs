@@ -36,8 +36,7 @@ namespace Tpp.GameKit
                 FoxEntity component = coverPointObject.AddComponent<FoxEntity>();
                 TppCoverPoint coverPoint = new TppCoverPoint();
                 component.Entity = coverPoint;
-
-                coverPointObject.AddComponent<TppCoverPointGizmo>();
+                coverPoint.InitializeGameObject(coverPointObject);
 
                 coverPointObject.transform.position = reader.ReadPositionF();
 
