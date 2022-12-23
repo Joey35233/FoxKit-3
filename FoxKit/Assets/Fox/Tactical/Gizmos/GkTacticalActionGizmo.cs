@@ -10,8 +10,6 @@ namespace Fox.Tactical
     public class GkTacticalActionGizmo : MonoBehaviour
     {
         [HideInInspector]
-        public Vector3[] Waypoints;
-        [HideInInspector]
         public Color Color = Color.white;
         [HideInInspector]
         public Color ColorEdge = Color.yellow;
@@ -40,30 +38,30 @@ namespace Fox.Tactical
 
             Gizmos.DrawWireCube(rootPos, Vector3.one * 0.25f);
 
-            Waypoints = new Vector3[entity.waypoints.Count];
+            Vector3[] globalWaypointPositions = new Vector3[entity.waypoints.Count];
 
             //Draw waypoints and edges
             for (int i = 0; i < entity.waypoints.Count; i++)
             {
                 var waypoint = entity.waypoints[i].Get();
 
-                Waypoints[i] = transform.TransformPoint(new Vector3(-waypoint.position.x, waypoint.position.y, waypoint.position.z));
+                globalWaypointPositions[i] = transform.TransformPoint(new Vector3(-waypoint.position.x, waypoint.position.y, waypoint.position.z));
 
                 Gizmos.color = ColorWaypoint;
 
                 var right = Vector3.right * Scale.x;
-                Gizmos.DrawLine(Waypoints[i] - right, Waypoints[i] + right);
+                Gizmos.DrawLine(globalWaypointPositions[i] - right, globalWaypointPositions[i] + right);
 
                 var up = Vector3.up * Scale.y;
-                Gizmos.DrawLine(Waypoints[i] - up, Waypoints[i] + up);
+                Gizmos.DrawLine(globalWaypointPositions[i] - up, globalWaypointPositions[i] + up);
 
                 var forward = Vector3.forward * Scale.z;
-                Gizmos.DrawLine(Waypoints[i] - forward, Waypoints[i] + forward);
+                Gizmos.DrawLine(globalWaypointPositions[i] - forward, globalWaypointPositions[i] + forward);
 
                 if (i > 0)
                 {
                     Gizmos.color = ColorEdge;
-                    Gizmos.DrawLine(Waypoints[i - 1], Waypoints[i]);
+                    Gizmos.DrawLine(globalWaypointPositions[i - 1], globalWaypointPositions[i]);
                 }
             }
         }
@@ -74,24 +72,6 @@ namespace Fox.Tactical
         public void OnDrawGizmosSelected()
         {
             DrawGizmos(true);
-        }
-        public void Update()
-        {
-            //Get the entity
-            var entityComponent = gameObject.GetComponent<Fox.Core.FoxEntity>();
-            if (entityComponent == null)
-                return;
-
-            GkTacticalAction entity = entityComponent.Entity as GkTacticalAction;
-            if (entity == null)
-                return;
-
-            for (int i = 0; i < entity.waypoints.Count; i++)
-            {
-                var newLocalPosition = transform.InverseTransformPoint(Waypoints[i]);
-
-                entity.waypoints[i].Get().position = new Vector3(-newLocalPosition.x, newLocalPosition.y, newLocalPosition.z);
-            }
         }
     }
 }

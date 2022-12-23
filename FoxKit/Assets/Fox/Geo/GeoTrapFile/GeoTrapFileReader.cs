@@ -7,6 +7,8 @@ using UnityEngine;
 using static UnityEngine.Debug;
 using String = Fox.Kernel.String;
 using Fox.Fio;
+using Codice.Client.BaseCommands.Merge;
+using Fox.Graphx;
 
 namespace Fox.Geo
 {
@@ -25,23 +27,22 @@ namespace Fox.Geo
             {
                 FoxDataNodeContext realNode = node.Value;
 
-                var entryCount = realNode.GetParametersOffset();
+                var trapCount = realNode.GetParametersOffset();
 
                 reader.BaseStream.Position = realNode.Position+realNode.GetDataOffset();
 
-                uint[] offsets = new uint[entryCount];
-                for (uint i = 0; i < entryCount; i++)
+                uint[] offsets = new uint[trapCount];
+                for (uint i = 0; i < trapCount; i++)
                     offsets[i] = reader.ReadUInt32();
 
                 uint boxShapeCount = 0;
                 uint pathShapeCount = 0;
 
-                for (uint i = 0; i < entryCount; i++)
+                for (uint trapIndex = 0; trapIndex < trapCount; trapIndex++)
                 {
-                    reader.BaseStream.Position = realNode.Position + realNode.GetDataOffset() + offsets[i];
+                    reader.BaseStream.Position = realNode.Position + realNode.GetDataOffset() + offsets[trapIndex];
 
                     var gameObject = new GameObject();
-                    gameObject.name = $"GeoTriggerTrap{i.ToString("D4")}";
                     var foxEntityComponent = gameObject.AddComponent<FoxEntity>();
                     GeoTriggerTrap geoTriggerTrapEntity = (GeoTriggerTrap)(foxEntityComponent.Entity = new GeoTriggerTrap());
 
@@ -65,12 +66,13 @@ namespace Fox.Geo
                             geoTriggerTrapEntity.groupTags.Add(new String(tag.ToString()));
 
                     uint hash = reader.ReadUInt32();
+                    gameObject.name = hash.ToString();
 
                     reader.BaseStream.Position += 4;
 
                     if (shapeType == GeoTriggerTrap_ShapeType.Box)
                     {
-                        for (byte j = 0; j < shapeCount; j++)
+                        for (byte shapeIndex = 0; shapeIndex < shapeCount; shapeIndex++)
                         {
                             var shapeGameObject = new GameObject();
                             shapeGameObject.name = $"BoxShape{boxShapeCount.ToString("D4")}";
@@ -78,11 +80,13 @@ namespace Fox.Geo
                             shapeFoxEntityComponent.Entity = EntityInfo.ConstructEntity(new String("BoxShape"));
                             BoxShape shapeFoxEntity = shapeFoxEntityComponent.Entity as BoxShape;
 
+                            shapeFoxEntity.InitializeGameObject(shapeGameObject);
+
+                            shapeFoxEntity.parent = EntityHandle.Get(geoTriggerTrapEntity);
+
                             TransformEntity shapeFoxTransform = new TransformEntity();
                             shapeFoxTransform.owner = EntityHandle.Get(shapeFoxEntity);
                             shapeFoxEntity.transform = new EntityPtr<TransformEntity>(shapeFoxTransform);
-
-                            shapeFoxEntity.InitializeGameObject(shapeGameObject);
 
                             Vector4 scale = reader.ReadWideVector3();
 
@@ -91,8 +95,8 @@ namespace Fox.Geo
                             Matrix4x4 transform = reader.ReadMatrix4F();
 
                             shapeGameObject.transform.localScale = scale;
-                            shapeGameObject.transform.position = Kernel.Math.FoxToUnityVector3(transform.GetPosition());
-                            shapeGameObject.transform.rotation = Kernel.Math.FoxToUnityQuaternion(transform.rotation);
+                            shapeGameObject.transform.position = transform.GetPosition();
+                            shapeGameObject.transform.rotation = transform.rotation;
                             shapeGameObject.transform.SetParent(gameObject.transform);
 
                             boxShapeCount++;
@@ -100,7 +104,7 @@ namespace Fox.Geo
                     }
                     else if (shapeType == GeoTriggerTrap_ShapeType.Path)
                     {
-                        for (byte j = 0; j < shapeCount; j++)
+                        for (byte shapeIndex = 0; shapeIndex < shapeCount; shapeIndex++)
                         {
                             long selfPosition = reader.BaseStream.Position;
 
@@ -127,17 +131,52 @@ namespace Fox.Geo
 
                             reader.BaseStream.Position = selfPosition + pointsOffset;
 
-                            shapeGameObject.transform.position = new Vector3(0, yMin, 0);
+                            shapeGameObject.transform.localScale = Vector3.one;
 
                             //TODO add nodes and edges when the class gets out
-                            var nodes = new DataElement[pointCount];
-                            for (uint h = 0; h < pointCount; h++)
+                            EntityHandle prevNodeHandle;
+                            for (int pointIndex = 0; pointIndex < pointCount; pointIndex++)
                             {
-                                var nodePos = reader.ReadVector3(); reader.ReadUInt32();
-                                Debug.Log($"{h}={nodePos}");
+                                var nodePos = reader.ReadVector3();
+                                reader.Skip(4);
+
+                                var nodeFoxEntity = new GraphxSpatialGraphDataNode();
+                                var nodeFoxHandle = EntityHandle.Get(nodeFoxEntity);
+                                var nodeFoxPtr = new EntityPtr<GraphxSpatialGraphDataNode>(nodeFoxEntity);
+                                nodeFoxEntity.owner=shapeFoxPtr;
+
+                                if (pointIndex == 0)
+                                {
+                                    shapeGameObject.transform.position = Kernel.Math.FoxToUnityVector3(nodePos);
+                                    nodeFoxEntity.position = new Vector3(0, nodePos.y - shapeGameObject.transform.position.y, 0);
+                                }
+                                else
+                                    nodeFoxEntity.position = nodePos - Kernel.Math.UnityToFoxVector3(shapeGameObject.transform.position);
+
+                                //How does one SetProperty on a DynamicArray container type?
+                                shapeFoxEntity.SetPropertyElement(new String("nodes"), (ushort)pointIndex, new Value(nodeFoxPtr));
+
+                                var edgeFoxEntity = new GraphxSpatialGraphDataEdge();
+                                edgeFoxEntity.owner = shapeFoxPtr;
+                                var edgeFoxPtr = new EntityPtr<GraphxSpatialGraphDataEdge>(edgeFoxEntity);
+
+                                if (pointIndex > 0)
+                                {
+                                    edgeFoxEntity.prevNode = prevNodeHandle;
+                                }
+
+                                if (pointIndex < pointCount - 1)
+                                {
+                                    edgeFoxEntity.nextNode = nodeFoxHandle;
+                                    prevNodeHandle = nodeFoxHandle;
+                                }
+
+                                shapeFoxEntity.SetPropertyElement(new String("edges"), (ushort)pointIndex, new Value(edgeFoxPtr));
                             }
 
                             shapeGameObject.transform.SetParent(gameObject.transform);
+
+                            shapeFoxEntity.SetProperty(new String("parent"), new Value(EntityHandle.Get(geoTriggerTrapEntity)));
 
                             pathShapeCount++;
                         }
