@@ -10,7 +10,7 @@ namespace FoxKit.MenuItems
         [MenuItem("FoxKit/Import/GrxLightArray")]
         private static void OnImportAsset()
         {
-            var assetPath = EditorUtility.OpenFilePanel("Import GeoxPathFixedPack", "", "gpfp");
+            var assetPath = EditorUtility.OpenFilePanel("Import GrxLightArray", "", "grxla");
             if (string.IsNullOrEmpty(assetPath))
                 return;
             using var reader = new FileStreamReader(System.IO.File.OpenRead(assetPath));

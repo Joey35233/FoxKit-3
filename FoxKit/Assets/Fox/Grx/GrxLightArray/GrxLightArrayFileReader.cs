@@ -16,7 +16,10 @@ namespace Fox.Grx
             // Read header
             uint signature = reader.ReadUInt32(); //FGxL or FGxO
             if (signature != 1282950982 && signature != 1333282630)
-                throw new ArgumentOutOfRangeException("Wrong signature!!! Not a FGx file?");
+            {
+                UnityEngine.Debug.LogError("Wrong GrxLA signature, not a GrxLA file?");
+                return EditorSceneManager.GetActiveScene();
+            }
             reader.Skip(12);
 
             for (int lightIndex = 0; reader.BaseStream.Position<reader.BaseStream.Length; lightIndex++)
@@ -51,7 +54,8 @@ namespace Fox.Grx
                         ReadOccluder(reader);
                         break;
                     default:
-                        throw new ArgumentOutOfRangeException("Unknown LightArrayEntry.lightType!!!!");
+                        UnityEngine.Debug.LogError("Unknown GrxLA light type");
+                        return scene;
                 }
                 reader.Seek(startOfLightPos + lightSizeInBytes);
             }
