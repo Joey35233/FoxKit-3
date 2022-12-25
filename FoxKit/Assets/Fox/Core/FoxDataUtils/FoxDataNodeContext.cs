@@ -37,19 +37,13 @@ namespace Fox.Core
             this.StringOffsetMode = stringOffsetMode;
         }
 
-        public bool IsValid() => Position > -1 && Reader != null && Reader.BaseStream.Position > -1;
-
         public String GetName()
         {
-            Debug.Assert(IsValid());
-
             return new FoxDataStringContext(Reader, Position + Offset_Name, StringFormat, StringOffsetMode).GetString();
         }
 
         public uint GetFlags()
         {
-            Debug.Assert(IsValid());
-
             Reader.Seek(Position + Offset_Flags);
 
             return Reader.ReadUInt32();
@@ -57,8 +51,6 @@ namespace Fox.Core
 
         public int GetDataOffset()
         {
-            Debug.Assert(IsValid());
-
             Reader.Seek(Position + Offset_DataOffset);
 
             return Reader.ReadInt32();
@@ -71,8 +63,6 @@ namespace Fox.Core
 
         public uint GetDataSize()
         {
-            Debug.Assert(IsValid());
-
             Reader.Seek(Position + Offset_DataSize);
 
             return Reader.ReadUInt32();
@@ -80,8 +70,6 @@ namespace Fox.Core
 
         public int GetParentNodeOffset()
         {
-            Debug.Assert(IsValid());
-
             Reader.Seek(Position + Offset_ParentNodeOffset);
 
             return Reader.ReadInt32();
@@ -95,8 +83,6 @@ namespace Fox.Core
 
         public int GetChildNodeOffset()
         {
-            Debug.Assert(IsValid());
-
             Reader.Seek(Position + Offset_ChildNodeOffset);
 
             return Reader.ReadInt32();
@@ -110,8 +96,6 @@ namespace Fox.Core
 
         public int GetPreviousNodeOffset()
         {
-            Debug.Assert(IsValid());
-
             Reader.Seek(Position + Offset_PreviousNodeOffset);
 
             return Reader.ReadInt32();
@@ -125,8 +109,6 @@ namespace Fox.Core
 
         public int GetNextNodeOffset()
         {
-            Debug.Assert(IsValid());
-
             Reader.Seek(Position + Offset_NextNodeOffset);
 
             return Reader.ReadInt32();
@@ -140,8 +122,6 @@ namespace Fox.Core
 
         public int GetParametersOffset()
         {
-            Debug.Assert(IsValid());
-
             Reader.Seek(Position + Offset_ParametersOffset);
 
             return Reader.ReadInt32();
@@ -155,8 +135,6 @@ namespace Fox.Core
 
         public FoxDataParameterContext? FindParameter(String name)
         {
-            Debug.Assert(IsValid());
-
             for (FoxDataParameterContext? param = GetFirstParameter(); param.HasValue; param = param.Value.GetNextParameter())
             {
                 if (param.Value.NameEquals(name))
@@ -168,15 +146,11 @@ namespace Fox.Core
 
         public bool NameEquals(String comparand)
         {
-            Debug.Assert(IsValid());
-
             return new FoxDataStringContext(Reader, Position + Offset_Name, StringFormat, StringOffsetMode).Equals(comparand);
         }
 
         public FoxDataNodeContext? FindNode(String name)
         {
-            Debug.Assert(IsValid());
-
             for (FoxDataNodeContext? node = this; node.HasValue; node = GetNextNode())
             {
                 if (node.Value.NameEquals(name))

@@ -24,6 +24,9 @@ namespace Fox.Core
 
             this.Position = position;
 
+            Debug.Assert(Position > -1);
+            Debug.Assert(Reader != null);
+            Debug.Assert(Reader.BaseStream.Position > -1);
             Debug.Assert(System.Enum.IsDefined(typeof(FoxDataStringContext.HashFormat), stringFormat));
             Debug.Assert(System.Enum.IsDefined(typeof(FoxDataStringContext.DataOffsetMode), stringOffsetMode));
 
@@ -31,12 +34,8 @@ namespace Fox.Core
             this.StringOffsetMode = stringOffsetMode;
         }
 
-        public bool IsValid() => Position > -1 && Reader != null && Reader.BaseStream.Position > -1;
-
         public uint GetVersion()
         {
-            Debug.Assert(IsValid());
-
             Reader.Seek(Position + Offset_Version);
 
             return Reader.ReadUInt32();
@@ -44,8 +43,6 @@ namespace Fox.Core
 
         public int GetNodesOffset()
         {
-            Debug.Assert(IsValid());
-
             Reader.Seek(Position + Offset_NodesOffset);
 
             return Reader.ReadInt32();
@@ -59,8 +56,6 @@ namespace Fox.Core
 
         public uint GetFileSize()
         {
-            Debug.Assert(IsValid());
-
             Reader.Seek(Position + Offset_FileSize);
 
             return Reader.ReadUInt32();
@@ -68,15 +63,11 @@ namespace Fox.Core
 
         public String GetName()
         {
-            Debug.Assert(IsValid());
-
             return new FoxDataStringContext(Reader, Position + Offset_Name, StringFormat, StringOffsetMode).GetString();
         }
 
         public uint GetFlags()
         {
-            Debug.Assert(IsValid());
-
             Reader.Seek(Position + Offset_Flags);
 
             return Reader.ReadUInt32();
@@ -85,8 +76,6 @@ namespace Fox.Core
 
         public FoxDataNodeContext? FindNode(String name)
         {
-            Debug.Assert(IsValid());
-
             if (GetNodesPosition() is long nodesPosition)
             {
                 for (FoxDataNodeContext? node = GetFirstNode(); node.HasValue; node = node.Value.GetNextNode())
@@ -108,8 +97,6 @@ namespace Fox.Core
         [Conditional("DEBUG")]
         public void Validate(uint version, uint flags)
         {
-            Debug.Assert(IsValid());
-
             Debug.Assert(GetVersion() == version);
             Debug.Assert(GetFlags() == flags);
         }
@@ -117,14 +104,11 @@ namespace Fox.Core
         [Conditional("DEBUG")]
         public void Validate(uint version, String name, uint flags, uint fileSize)
         {
-            Debug.Assert(IsValid());
-
-            Debug.Assert(GetVersion() == version);
+            Validate(version, flags);
 
             FoxDataStringContext nameContext = new FoxDataStringContext(Reader, Position, StringFormat, StringOffsetMode);
             Debug.Assert(name == (String)null ? nameContext.GetHash() == 0 : nameContext.Equals(name));
 
-            Debug.Assert(GetFlags() == flags);
             Debug.Assert(GetFileSize() == fileSize);
         }
     }

@@ -36,6 +36,11 @@ namespace Fox.Core
             this._ptr = (T)newPtr;
         }
 
+        public bool IsNull()
+        {
+            return this._ptr == null;
+        }
+
         Entity IEntityPtr.Get()
         {
             return this._ptr;
