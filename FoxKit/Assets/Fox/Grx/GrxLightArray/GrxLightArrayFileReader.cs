@@ -1,4 +1,5 @@
-﻿using Fox.Fio;
+﻿using Fox.Core;
+using Fox.Fio;
 using System;
 using System.Diagnostics;
 using System.IO;
@@ -18,43 +19,41 @@ namespace Fox.Grx
             if (signature != 1282950982 && signature != 1333282630)
             {
                 UnityEngine.Debug.LogError("Wrong GrxLA signature, not a GrxLA file?");
-                return EditorSceneManager.GetActiveScene();
+                return UnityEngine.SceneManagement.SceneManager.GetActiveScene();
             }
             reader.Skip(12);
 
-            for (int lightIndex = 0; reader.BaseStream.Position<reader.BaseStream.Length; lightIndex++)
+            for (int lightIndex = 0; reader.BaseStream.Position < reader.BaseStream.Length - 8; lightIndex++)
             {
                 long startOfLightPos = reader.BaseStream.Position;
-                string lightType = reader.ReadChars(4).ToString();
+                string lightType = new string(reader.ReadChars(4));
                 int lightSizeInBytes = reader.ReadInt32();
                 switch(lightType)
                 {
                     case "CM00": //rlc Header entry type; at the start of every file
-                        break;
-                    case "": // rlc Terminator Entry; this will be at the end of every file
                         break;
                     case "DL00": // rlc Directional Light - does it even exist?
                         break;
                     case "PL01": // rlc PointLight GZ TPP
                     case "PL02":
                     case "PL03":
-                        ReadPointLight(reader);
+                        ReadPointLight(reader, lightIndex);
                         break;
                     case "SL01": // rlc SpotLight GZ TPP
                     case "SL02":
                     case "SL03":
-                        ReadSpotLight(reader);
+                        ReadSpotLight(reader, lightIndex);
                         break;
                     case "LP00": // rlc Light Probe - unlike LightProbe???
                         break;
                     case "EP00": // rlc LightProbe
-                        ReadLightProbe(reader);
+                        ReadLightProbe(reader, lightIndex);
                         break;
                     case "OC00": // Occluder entry (.grxoc)
-                        ReadOccluder(reader);
+                        ReadOccluder(reader, lightIndex);
                         break;
                     default:
-                        UnityEngine.Debug.LogError("Unknown GrxLA light type");
+                        UnityEngine.Debug.LogError($"@{reader.BaseStream.Position} Unknown GrxLA light type");
                         return scene;
                 }
                 reader.Seek(startOfLightPos + lightSizeInBytes);
@@ -62,18 +61,29 @@ namespace Fox.Grx
 
             return scene;
         }
-        public void ReadPointLight(FileStreamReader reader)
+        public void ReadPointLight(FileStreamReader reader, int lightIndex)
         {
-            long seekPos = reader.BaseStream.Position;
+            var lightGameObject = new GameObject();
+            lightGameObject.name = $"PointLight{lightIndex:D4}"; ;
+
+            PointLight lightEntity = (PointLight)(lightGameObject.AddComponent<FoxEntity>().Entity = new PointLight());
+            lightEntity.InitializeGameObject(lightGameObject);
+
+            TransformEntity lightTransform = new TransformEntity();
+            lightTransform.owner = EntityHandle.Get(lightEntity);
+            lightEntity.transform = new EntityPtr<TransformEntity>(lightTransform);
+
             reader.Skip(8);
+            long seekPos = reader.BaseStream.Position;
             int offsetToNameString = reader.ReadInt32();
             if (offsetToNameString > 0)
             {
                 reader.Seek(seekPos + offsetToNameString);
-                string lightName = reader.ReadNullTerminatedCString();
-                reader.Seek(seekPos + 12);
+                lightGameObject.name = reader.ReadNullTerminatedCString();
+                reader.Seek(seekPos + 4);
             }
 
+            //TODO flags
             uint flags = reader.ReadUInt32();
             uint lightFlags = reader.ReadUInt32();
             uint flags2 = reader.ReadUInt32();
@@ -82,52 +92,99 @@ namespace Fox.Grx
             int offsetToLightArea = reader.ReadInt32();
             if (offsetToLightArea > 0)
             {
+                var lightAreaGameObject = new GameObject();
+                lightAreaGameObject.name = lightGameObject.name + "_LA";
+                Locator lightAreaEntity = (Locator)(lightAreaGameObject.AddComponent<FoxEntity>().Entity = new Locator());
+                lightAreaEntity.size = 1;
+                lightAreaEntity.InitializeGameObject(lightAreaGameObject);
+
+                TransformEntity lightAreaTransform = new TransformEntity();
+                lightAreaTransform.owner = EntityHandle.Get(lightAreaEntity);
+                lightAreaEntity.transform = new EntityPtr<TransformEntity>(lightAreaTransform);
+
                 reader.Seek(seekPos + offsetToLightArea);
-                Vector3 lightAreaScale = reader.ReadVector3();
-                Quaternion lightAreaQuat = reader.ReadQuaternion();
-                Vector3 lightAreaPosition = reader.ReadPositionF();
+
+                lightAreaGameObject.transform.localScale = reader.ReadVector3();
+                lightAreaGameObject.transform.rotation = reader.ReadRotationF();
+                lightAreaGameObject.transform.position = reader.ReadPositionF();
+
+                lightEntity.lightArea = new EntityLink(
+                    EntityHandle.Get(lightAreaEntity),
+                    new Kernel.Path(""), 
+                    new Kernel.Path(""), 
+                    new Kernel.String(lightAreaGameObject.name)
+                );
+
                 reader.Seek(seekPos + 4);
             }
 
-            Vector3 translation = reader.ReadPositionF();
-            Vector3 reachPoint = new Vector3(reader.ReadHalf(), reader.ReadHalf(), reader.ReadHalf());
-            Color color = new Color(reader.ReadHalf(), reader.ReadHalf(), reader.ReadHalf(), reader.ReadHalf());
-            float temperature = reader.ReadHalf();
-            float colorDeflection = reader.ReadSingle();
-            float lumen = reader.ReadSingle();
-            float lightSize = reader.ReadHalf();
-            float dimmer = reader.ReadHalf();
-            float shadowBias = reader.ReadHalf();
-            float lodFarSize = reader.ReadHalf();
-            float lodNearSize = reader.ReadHalf();
-            float lodShadowDrawRate = reader.ReadHalf();
-            int lodRadiusLevel = reader.ReadInt32();
-            int lodFadeType = reader.ReadInt32();
+            lightGameObject.transform.position = reader.ReadPositionF();
+            lightEntity.reachPoint = new Vector3(reader.ReadHalf(), reader.ReadHalf(), reader.ReadHalf());
+            lightEntity.color = new Color(reader.ReadHalf(), reader.ReadHalf(), reader.ReadHalf(), reader.ReadHalf());
+            lightEntity.temperature = reader.ReadHalf();
+            lightEntity.colorDeflection = reader.ReadSingle();
+            lightEntity.lumen = reader.ReadSingle();
+            lightEntity.lightSize = reader.ReadHalf();
+            lightEntity.dimmer = reader.ReadHalf();
+            lightEntity.shadowBias = reader.ReadHalf();
+            lightEntity.LodFarSize = reader.ReadHalf();
+            lightEntity.LodNearSize = reader.ReadHalf();
+            lightEntity.LodShadowDrawRate = reader.ReadHalf();
+            lightEntity.lodRadiusLevel = (PointLight_LodRadiusLevel)reader.ReadInt32();
+            lightEntity.lodFadeType = (byte)reader.ReadInt32(); //byte int innit??
 
             seekPos = reader.BaseStream.Position;
             int offsetToIrraditationTransform = reader.ReadInt32();
             if (offsetToIrraditationTransform > 0)
             {
-                reader.Seek(seekPos + offsetToIrraditationTransform);
-                Vector3 lightAreaScale = reader.ReadVector3();
-                Quaternion lightAreaQuat = reader.ReadQuaternion();
-                Vector3 lightAreaPosition = reader.ReadPositionF();
-            }
+                var irradiationPointGameObject = new GameObject();
+                irradiationPointGameObject.name = lightGameObject.name + "_IP";
+                Locator irradiationPointEntity = (Locator)(irradiationPointGameObject.AddComponent<FoxEntity>().Entity = new Locator());
+                irradiationPointEntity.size = 1;
+                irradiationPointEntity.InitializeGameObject(irradiationPointGameObject);
 
-            //do
+                TransformEntity irradiationPointTransform = new TransformEntity();
+                irradiationPointTransform.owner = EntityHandle.Get(irradiationPointEntity);
+                irradiationPointEntity.transform = new EntityPtr<TransformEntity>(irradiationPointTransform);
+
+                reader.Seek(seekPos + offsetToIrraditationTransform);
+
+                irradiationPointGameObject.transform.localScale = reader.ReadVector3();
+                irradiationPointGameObject.transform.rotation = reader.ReadRotationF();
+                irradiationPointGameObject.transform.position = reader.ReadPositionF();
+
+                lightEntity.irradiationPoint = new EntityLink(
+                    EntityHandle.Get(irradiationPointEntity),
+                    new Kernel.Path(""),
+                    new Kernel.Path(""),
+                    new Kernel.String(irradiationPointGameObject.name)
+                );
+            }
         }
-        public void ReadSpotLight(FileStreamReader reader)
+        public void ReadSpotLight(FileStreamReader reader, int lightIndex)
         {
-            long seekPos = reader.BaseStream.Position;
+            var lightGameObject = new GameObject();
+            lightGameObject.name = $"SpotLight{lightIndex.ToString("D4")}"; ;
+
+            var lightComponent = lightGameObject.AddComponent<FoxEntity>();
+            SpotLight lightEntity = (SpotLight)(lightComponent.Entity = new SpotLight());
+            lightEntity.InitializeGameObject(lightGameObject);
+
+            TransformEntity lightTransform = new TransformEntity();
+            lightTransform.owner = EntityHandle.Get(lightEntity);
+            lightEntity.transform = new EntityPtr<TransformEntity>(lightTransform);
+
             reader.Skip(8);
+            long seekPos = reader.BaseStream.Position;
             int offsetToNameString = reader.ReadInt32();
             if (offsetToNameString > 0)
             {
                 reader.Seek(seekPos + offsetToNameString);
-                string lightName = reader.ReadNullTerminatedCString();
-                reader.Seek(seekPos + 12);
+                lightGameObject.name = reader.ReadNullTerminatedCString();
+                reader.Seek(seekPos + 4);
             }
 
+            //TODO flags
             uint flags = reader.ReadUInt32();
             uint lightFlags = reader.ReadUInt32();
             uint flags2 = reader.ReadUInt32();
@@ -136,68 +193,106 @@ namespace Fox.Grx
             int offsetToLightArea = reader.ReadInt32();
             if (offsetToLightArea > 0)
             {
+                var lightAreaGameObject = new GameObject();
+                lightAreaGameObject.name = lightGameObject.name + "_LA";
+                Locator lightAreaEntity = (Locator)(lightAreaGameObject.AddComponent<FoxEntity>().Entity = new Locator());
+                lightAreaEntity.size = 1;
+                lightAreaEntity.InitializeGameObject(lightAreaGameObject);
+
+                TransformEntity lightAreaTransform = new TransformEntity();
+                lightAreaTransform.owner = EntityHandle.Get(lightAreaEntity);
+                lightAreaEntity.transform = new EntityPtr<TransformEntity>(lightAreaTransform);
+
                 reader.Seek(seekPos + offsetToLightArea);
-                Vector3 lightAreaScale = reader.ReadVector3();
-                Quaternion lightAreaQuat = reader.ReadQuaternion();
-                Vector3 lightAreaPosition = reader.ReadPositionF();
+
+                lightAreaGameObject.transform.localScale = reader.ReadVector3();
+                lightAreaGameObject.transform.rotation = reader.ReadRotationF();
+                lightAreaGameObject.transform.position = reader.ReadPositionF();
+
+                lightEntity.lightArea = new EntityLink(
+                    EntityHandle.Get(lightAreaEntity),
+                    new Kernel.Path(""),
+                    new Kernel.Path(""),
+                    new Kernel.String(lightAreaGameObject.name)
+                );
+
                 reader.Seek(seekPos + 4);
             }
+            lightGameObject.transform.position = reader.ReadPositionF();
+            lightEntity.reachPoint = reader.ReadVector3();
+            lightGameObject.transform.rotation = reader.ReadRotationF();
 
-            Vector3 translation = reader.ReadPositionF();
-            Vector3 reachPoint = new Vector3(reader.ReadHalf(), reader.ReadHalf(), reader.ReadHalf());
-            Quaternion rotation = reader.ReadQuaternion();
+            lightEntity.outerRange = reader.ReadHalf();
+            lightEntity.innerRange = reader.ReadHalf();
+            lightEntity.umbraAngle = reader.ReadHalf();
+            lightEntity.penumbraAngle = reader.ReadHalf();
+            lightEntity.attenuationExponent = reader.ReadHalf();
 
-            float outerRange = reader.ReadHalf();
-            float innerRange = reader.ReadHalf();
-            float umbraAngle = reader.ReadHalf();
-            float penumbraAngle = reader.ReadHalf();
-            float attenuationExponent = reader.ReadHalf();
+            lightEntity.dimmer = reader.ReadHalf();
+            lightEntity.color = new Color(reader.ReadHalf(), reader.ReadHalf(), reader.ReadHalf(), reader.ReadHalf());
+            lightEntity.temperature = reader.ReadHalf();
+            lightEntity.colorDeflection = reader.ReadHalf();
+            lightEntity.lumen = reader.ReadSingle();
 
-            float dimmer = reader.ReadHalf();
-            Color color = new Color(reader.ReadHalf(), reader.ReadHalf(), reader.ReadHalf(), reader.ReadHalf());
-            float temperature = reader.ReadHalf();
-            float colorDeflection = reader.ReadSingle();
-            float lightSize = reader.ReadHalf();
+            lightEntity.lightSize = reader.ReadHalf();
 
-            float unk0 = reader.ReadHalf();
+            lightEntity.shadowUmbraAngle = reader.ReadHalf();
+            lightEntity.shadowPenumbraAngle = reader.ReadHalf();
+            lightEntity.shadowAttenuationExponent = reader.ReadHalf();
 
-            float shadowUmbraAngle = reader.ReadHalf();
-            float shadowPenumbraAngle = reader.ReadHalf();
-            float shadowAttenuationExponent = reader.ReadHalf();
+            lightEntity.shadowBias = reader.ReadHalf();
 
-            float shadowBias = reader.ReadHalf();
+            lightEntity.viewBias = reader.ReadHalf();
+            lightEntity.powerScale = reader.ReadHalf();
 
-            float viewBias = reader.ReadHalf();
-            float powerScale = reader.ReadHalf();
-
-            float lodFarSize = reader.ReadHalf();
-            float lodNearSize = reader.ReadHalf();
-            float lodShadowDrawRate = reader.ReadHalf();
-            int lodRadiusLevel = reader.ReadInt32();
-            int lodFadeType = reader.ReadInt32();
+            lightEntity.LodFarSize = reader.ReadHalf();
+            lightEntity.LodNearSize = reader.ReadHalf();
+            lightEntity.LodShadowDrawRate = reader.ReadHalf();
+            lightEntity.lodRadiusLevel = (SpotLight_LodRadiusLevel)reader.ReadInt32();
+            lightEntity.lodFadeType = (byte)reader.ReadInt32();
 
             seekPos = reader.BaseStream.Position;
             int offsetToIrraditationTransform = reader.ReadInt32();
             if (offsetToIrraditationTransform > 0)
             {
-                reader.Seek(seekPos + offsetToIrraditationTransform);
-                Vector3 lightAreaScale = reader.ReadVector3();
-                Quaternion lightAreaQuat = reader.ReadQuaternion();
-                Vector3 lightAreaPosition = reader.ReadPositionF();
-            }
+                var irradiationPointGameObject = new GameObject();
+                irradiationPointGameObject.name = lightGameObject.name + "_IP";
+                Locator irradiationPointEntity = (Locator)(irradiationPointGameObject.AddComponent<FoxEntity>().Entity = new Locator());
+                irradiationPointEntity.size = 1;
+                irradiationPointEntity.InitializeGameObject(irradiationPointGameObject);
 
-            //do
+                TransformEntity irradiationPointTransform = new TransformEntity();
+                irradiationPointTransform.owner = EntityHandle.Get(irradiationPointEntity);
+                irradiationPointEntity.transform = new EntityPtr<TransformEntity>(irradiationPointTransform);
+
+                reader.Seek(seekPos + offsetToIrraditationTransform);
+
+                irradiationPointGameObject.transform.localScale = reader.ReadVector3();
+                irradiationPointGameObject.transform.rotation = reader.ReadRotationF();
+                irradiationPointGameObject.transform.position = reader.ReadPositionF();
+
+                lightEntity.irradiationPoint = new EntityLink(
+                    EntityHandle.Get(irradiationPointEntity),
+                    new Kernel.Path(""),
+                    new Kernel.Path(""),
+                    new Kernel.String(irradiationPointGameObject.name)
+                );
+            }
         }
-        public void ReadLightProbe(FileStreamReader reader)
+        public void ReadLightProbe(FileStreamReader reader, int lightIndex)
         {
-            long seekPos = reader.BaseStream.Position;
+            //TppLightProbe is Tpp.Effect :sob:
+            var lightGameObject = new GameObject();
+            lightGameObject.name = $"TppLightProbe{lightIndex:D4}";
+
             reader.Skip(8);
+            long seekPos = reader.BaseStream.Position;
             int offsetToNameString = reader.ReadInt32();
             if (offsetToNameString > 0)
             {
                 reader.Seek(seekPos + offsetToNameString);
-                string lightName = reader.ReadNullTerminatedCString();
-                reader.Seek(seekPos + 12);
+                lightGameObject.name = reader.ReadNullTerminatedCString();
+                reader.Seek(seekPos + 4);
             }
 
             uint flags = reader.ReadUInt32();
@@ -227,8 +322,13 @@ namespace Fox.Grx
 
             //do
         }
-        public void ReadOccluder(FileStreamReader reader)
+        public void ReadOccluder(FileStreamReader reader, int lightIndex)
         {
+            var lightGameObject = new GameObject();
+            lightGameObject.name = $"OccluderEx{lightIndex.ToString("D4")}"; ;
+
+            OccluderEx occluderEntity = lightGameObject.AddComponent<FoxEntity>().Entity as OccluderEx;
+
             int unknown = reader.ReadInt32();
             int offsetToFaces = reader.ReadInt32();
             uint faceCount = reader.ReadUInt32();
