@@ -4,6 +4,11 @@ namespace Fox.Core
 {
     public partial class TransformEntity : Fox.Core.DataElement
     {
+        public static TransformEntity GetDefault()
+        {
+            return new TransformEntity { translation = Vector3.zero, rotQuat = Quaternion.identity, scale = Vector3.one };
+        }
+
         protected partial UnityEngine.Vector3 Get_scale()
         {
             return transform_scale;

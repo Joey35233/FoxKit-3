@@ -13,8 +13,8 @@ namespace Fox.Editor
 {
     public interface IFoxField : IBindable
     {
-        private static StyleSheet FoxFieldLightStyleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/Fox/Editor/FoxFieldLight.uss");
-        private static StyleSheet FoxFieldDarkStyleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/Fox/Editor/FoxFieldDark.uss");
+        private static StyleSheet FoxFieldLightStyleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/Fox/Core/Editor/FoxFieldLight.uss");
+        private static StyleSheet FoxFieldDarkStyleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/Fox/Core/Editor/FoxFieldDark.uss");
 
         public static StyleSheet FoxFieldStyleSheet { get { return EditorGUIUtility.isProSkin ? FoxFieldDarkStyleSheet : FoxFieldLightStyleSheet; } }
     }

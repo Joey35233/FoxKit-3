@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Fox.Kernel;
+using UnityEngine;
 
 namespace Fox.Core
 {
@@ -17,6 +18,23 @@ namespace Fox.Core
 
         protected partial UnityEngine.Matrix4x4 Get_worldTransform() => throw new System.NotImplementedException();
 
+        public void AddChild(TransformData transformData)
+        {
+            children.Add(EntityHandle.Get(transformData));
+            transformData.parent = EntityHandle.Get(this);
+        }
+
+        public DynamicArray<EntityHandle> GetChildren()
+        {
+            return children;
+        }
+
+        public void SetTransform(TransformEntity transform)
+        {
+            this.transform = new EntityPtr<TransformEntity>(transform);
+            transform.SetOwner(this);
+        }
+
         public override void InitializeGameObject(GameObject gameObject)
         {
             TransformEntity transformEntity = this.transform.Get();
@@ -25,9 +43,19 @@ namespace Fox.Core
                 Debug.LogWarning($"{this.name}: transform is null");
                 return;
             }
-            gameObject.transform.position = transformEntity.translation;
-            gameObject.transform.rotation = transformEntity.rotQuat;
-            gameObject.transform.localScale = transformEntity.scale;
+            if (this.inheritTransform)
+            {
+                gameObject.transform.localPosition = transformEntity.translation;
+                gameObject.transform.localRotation = transformEntity.rotQuat;
+                gameObject.transform.localScale = transformEntity.scale;
+            }
+            else
+            {
+                gameObject.transform.position = transformEntity.translation;
+                gameObject.transform.rotation = transformEntity.rotQuat;
+                gameObject.transform.localScale = transformEntity.scale;
+            }
+            base.InitializeGameObject(gameObject);
         }
     }
 }

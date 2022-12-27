@@ -13,6 +13,8 @@ namespace Fox.Kernel
         [SerializeField]
         private List<T> _list;
 
+        public int Capacity => _list.Capacity;
+
         public int Count => _list.Count;
 
         public bool IsReadOnly => false;
@@ -129,8 +131,6 @@ namespace Fox.Kernel
         public DynamicArray(int capacity)
         {
             _list = new List<T>(capacity);
-            for (int i = 0; i < capacity; i++)
-                _list.Add(default);
         }
     }
 }

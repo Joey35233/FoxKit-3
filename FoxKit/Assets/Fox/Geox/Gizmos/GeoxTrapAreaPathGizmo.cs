@@ -1,6 +1,6 @@
-﻿using Fox.Graphx;
+﻿using Fox.Core;
+using Fox.Graphx;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 namespace Fox.Geox
 {
@@ -9,64 +9,38 @@ namespace Fox.Geox
     {
         [HideInInspector]
         public Color Color = Color.red;
+
         public void DrawGizmos(bool isSelected)
         {
-            var entityComponent = gameObject.GetComponent<Fox.Core.FoxEntity>();
-            if (entityComponent == null)
+            if (gameObject.GetComponent<FoxEntity>()?.Entity is not GeoxTrapAreaPath trapPath)
                 return;
 
-            GeoxTrapAreaPath entity = entityComponent.Entity as GeoxTrapAreaPath;
-            if (entity == null)
-                return;
             if (isSelected)
                 Gizmos.color = Color.white;
             else
                 Gizmos.color = Color;
 
-            Gizmos.DrawWireCube(transform.position, Vector3.one * 0.25f);
-
-            for (int side = 0; side <= 1; side++)
+            foreach (var edgePtr in trapPath.edges)
             {
-                for (int nodeIndex = 0; nodeIndex < entity.nodes.Count; nodeIndex++)
-                {
-                    GraphxSpatialGraphDataNode prevNode;
-                    if (nodeIndex == 0)
-                        prevNode = entity.nodes[entity.nodes.Count - 1].Get();
-                    else
-                        prevNode = entity.nodes[nodeIndex - 1].Get();
-                    var nextNode = entity.nodes[nodeIndex].Get();
+                GraphxSpatialGraphDataEdge edge = edgePtr.Get();
+                GraphxSpatialGraphDataNode prevNode = edge.prevNode.Entity as GraphxSpatialGraphDataNode;
+                GraphxSpatialGraphDataNode nextNode = edge.nextNode.Entity as GraphxSpatialGraphDataNode;
 
+                float yMin = transform.position.y;
+                float yMax = yMin + trapPath.height;
 
-                    var prevNodePosition = Kernel.Math.FoxToUnityVector3(prevNode.position);
-                    var nextNodePosition = Kernel.Math.FoxToUnityVector3(nextNode.position);
-                    var globalPrevNodePosition = transform.position + prevNodePosition;
-                    var globalNextNodePosition = transform.position + nextNodePosition;
+                Gizmos.DrawLine(new Vector3(prevNode.position.x, yMin, prevNode.position.z), new Vector3(nextNode.position.x, yMin, nextNode.position.z));
+                Gizmos.DrawLine(new Vector3(prevNode.position.x, yMax, prevNode.position.z), new Vector3(nextNode.position.x, yMax, nextNode.position.z));
 
-                    var globalPrevNodePositionCenter = globalPrevNodePosition;
-                    var globalNextNodePositionCenter = globalNextNodePosition;
-
-                    globalPrevNodePositionCenter.y = transform.position.y;
-                    globalNextNodePositionCenter.y = transform.position.y;
-
-                    var globalPrevNodePositionTop = globalPrevNodePosition;
-                    var globalNextNodePositionTop = globalNextNodePosition;
-                    globalPrevNodePositionTop.y += entity.height;
-                    globalNextNodePositionTop.y += entity.height;
-
-                    if (side > 0)
-                    {
-                        Gizmos.DrawLine(globalNextNodePosition, globalNextNodePositionTop);
-                    }
-
-                    Gizmos.DrawLine(globalPrevNodePosition, globalNextNodePosition);
-                    Gizmos.DrawLine(globalPrevNodePositionTop, globalNextNodePositionTop);
-                };
+                Gizmos.DrawLine(new Vector3(nextNode.position.x, yMin, nextNode.position.z), new Vector3(nextNode.position.x, yMax, nextNode.position.z));
             }
         }
+
         public void OnDrawGizmos()
         {
             DrawGizmos(false);
         }
+
         public void OnDrawGizmosSelected()
         {
             DrawGizmos(true);

@@ -69,7 +69,7 @@ namespace Fox.Fio
         public Vector3 ReadScaleHF()
         {
             Vector4 scaleHF = ReadVector4();
-            Debug.Assert(scaleHF.w == 1, "W component of scale in homogenous coordinates is not 1.");
+            Debug.Assert(scaleHF.w == 0, "W component of scale in homogenous coordinates is not 0.");
             return scaleHF;
         }
 
