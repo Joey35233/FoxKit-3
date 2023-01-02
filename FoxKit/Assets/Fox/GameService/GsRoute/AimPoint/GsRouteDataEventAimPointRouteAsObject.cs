@@ -1,18 +1,8 @@
-﻿using Fox.Core;
-using PlasticPipe.PlasticProtocol.Messages;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Fox.GameService
+﻿namespace Fox.GameService
 {
-    public class GsRouteDataNode : Fox.Graphx.GraphxSpatialGraphDataNode
+    public partial class GsRouteDataEventAimPointRouteAsObject : GsRouteDataEventAimPoint
     {
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.DynamicArray<EntityPtr<GsRouteDataNodeEvent>> nodeEvents { get; set; } = new Fox.Kernel.DynamicArray<EntityPtr<GsRouteDataNodeEvent>>();
+        public Fox.Kernel.StaticArray<Fox.Kernel.String> routeNames { get; set; } = new Fox.Kernel.StaticArray<Fox.Kernel.String>(4);
         // PropertyInfo
         private static Fox.Core.EntityInfo classInfo;
         public static new Fox.Core.EntityInfo ClassInfo
@@ -26,21 +16,21 @@ namespace Fox.GameService
         {
             return classInfo;
         }
-        static GsRouteDataNode()
+        static GsRouteDataEventAimPointRouteAsObject()
         {
             classInfo = new Fox.Core.EntityInfo(
-                new Fox.Kernel.String("GsRouteDataNode"), 
-                typeof(GsRouteDataNode), 
-                new Fox.Graphx.GraphxSpatialGraphDataNode().GetClassEntityInfo(), 
-                96,
-                "Gs", 
+                new Fox.Kernel.String("GsRouteDataEventAimPointRouteAsObject"),
+                typeof(GsRouteDataEventAimPointRouteAsObject),
+                new Fox.Graphx.GraphxSpatialGraphDataEdge().GetClassEntityInfo(),
+                56,
+                "Gs",
                 0
             );
             classInfo.AddStaticProperty(
                 new Fox.Core.PropertyInfo(
-                    new Fox.Kernel.String("nodeEvents"),
-                    Fox.Core.PropertyInfo.PropertyType.EntityPtr,
-                    80,
+                    new Fox.Kernel.String("routeNames"),
+                    Fox.Core.PropertyInfo.PropertyType.String,
+                    64,
                     1,
                     Fox.Core.PropertyInfo.ContainerType.DynamicArray,
                     Fox.Core.PropertyInfo.PropertyExport.EditorAndGame,
@@ -54,8 +44,8 @@ namespace Fox.GameService
         }
 
         // Constructors
-        public GsRouteDataNode(ulong id) : base(id) { }
-        public GsRouteDataNode() : base() { }
+        public GsRouteDataEventAimPointRouteAsObject(ulong id) : base(id) { }
+        public GsRouteDataEventAimPointRouteAsObject() : base() { }
 
         public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
         {
@@ -71,9 +61,9 @@ namespace Fox.GameService
         {
             switch (propertyName.CString)
             {
-                case "nodeEvents":
-                    while (this.nodeEvents.Count <= index) { this.nodeEvents.Add(default(EntityPtr<GsRouteDataNodeEvent>)); }
-                    this.nodeEvents[index] = value.GetValueAsEntityPtr<GsRouteDataNodeEvent>();
+                case "routeNames":
+                    while (this.routeNames.Count <= index) { this.routeNames.Add(default(Fox.Kernel.String)); }
+                    this.routeNames[index] = value.GetValueAsString();
                     return;
                 default:
                     base.SetPropertyElement(propertyName, index, value);
