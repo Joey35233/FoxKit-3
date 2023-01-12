@@ -31,6 +31,22 @@ namespace Fox.Core
         }
 
         /// <summary>
+        /// True if this entity should be serialized in a fox2 file on export.
+        /// </summary>
+        /// <returns></returns>
+        public virtual bool ShouldWriteToFox2()
+        {
+            return true;
+        }
+
+        /// <summary>
+        /// Perform any property updates needed before exporting.
+        /// </summary>
+        public virtual void PrepareForExport()
+        {
+        }
+
+        /// <summary>
         /// Checks if the given Entity has a static or dynamic property with a given name.
         /// </summary>
         /// <param name="entity">The Entity.</param>
