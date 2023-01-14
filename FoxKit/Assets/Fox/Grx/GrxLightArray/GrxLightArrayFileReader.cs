@@ -18,7 +18,7 @@ namespace Fox.Grx
             if (signature != 1282950982 && signature != 1333282630)
             {
                 Debug.LogError("Wrong GrxLA signature, not a GrxLA file?");
-                return UnityEngine.SceneManagement.SceneManager.GetActiveScene();
+                return null;
             }
 
             uint padding = reader.ReadUInt32(); Debug.Assert(padding == 0);
@@ -56,12 +56,6 @@ namespace Fox.Grx
                     case "SL03":
                         ReadSpotLight(reader);
                         break;
-                    case "LP00": // rlc Light Probe - unlike LightProbe???
-                        Debug.Assert(false);
-                        break;
-                    case "EP00": // rlc LightProbe
-                        ReadLightProbe(reader);
-                        break;
                     case "OC00": // Occluder entry (.grxoc)
                         ReadOccluder(reader);
                         break;
@@ -83,6 +77,8 @@ namespace Fox.Grx
             string result = stringOffset == 0 ? hash.ToString() : reader.ReadNullTerminatedCString();
 
             reader.Seek(offsetPos + 4);
+
+            uint padding = reader.ReadUInt32(); Debug.Assert(padding == 0);
 
             return result;
         }
@@ -131,10 +127,12 @@ namespace Fox.Grx
             PointLight lightEntity = (PointLight)(lightGameObject.AddComponent<FoxEntity>().Entity = new PointLight());
             lightEntity.name = new String(ReadName(reader));
 
-            //TODO flags
-            uint flags = reader.ReadUInt32();
             uint lightFlags = reader.ReadUInt32();
-            uint flags2 = reader.ReadUInt32();
+            lightEntity.enable = FlagUtils.GetFlag(lightFlags, 0);
+            lightEntity.castShadow = FlagUtils.GetFlag(lightFlags, 1);
+            lightEntity.hasSpecular = FlagUtils.GetFlag(lightFlags, 3);
+
+            uint UnknownFlags = reader.ReadUInt32();
 
             if (ReadLocator(reader) is GameObject lightArea)
             {
@@ -154,19 +152,28 @@ namespace Fox.Grx
             lightEntity.SetTransform(transform);
             lightEntity.InitializeGameObject(lightGameObject);
 
-            lightEntity.reachPoint = new Vector3(reader.ReadHalf(), reader.ReadHalf(), reader.ReadHalf());
+            lightEntity.outerRange = reader.ReadHalf();
+            lightEntity.innerRange = reader.ReadHalf();
+            lightEntity.dimmer = reader.ReadHalf();
             lightEntity.color = new Color(reader.ReadHalf(), reader.ReadHalf(), reader.ReadHalf(), reader.ReadHalf());
             lightEntity.temperature = reader.ReadHalf();
-            lightEntity.colorDeflection = reader.ReadSingle();
+            lightEntity.colorDeflection = reader.ReadHalf();
+
+            reader.Align(4);
+
             lightEntity.lumen = reader.ReadSingle();
             lightEntity.lightSize = reader.ReadHalf();
-            lightEntity.dimmer = reader.ReadHalf();
             lightEntity.shadowBias = reader.ReadHalf();
+            lightEntity.LodShadowDrawRate = reader.ReadHalf();
             lightEntity.LodFarSize = reader.ReadHalf();
             lightEntity.LodNearSize = reader.ReadHalf();
-            lightEntity.LodShadowDrawRate = reader.ReadHalf();
+
+            reader.Align(4);
+
             lightEntity.lodRadiusLevel = (PointLight_LodRadiusLevel)reader.ReadInt32();
-            lightEntity.lodFadeType = (byte)reader.ReadInt32(); //byte int innit??
+            lightEntity.lodFadeType = (byte)reader.ReadInt32();
+
+            lightEntity.reachPoint = new Vector3(0, -lightEntity.outerRange, 0);
 
             if (ReadLocator(reader) is GameObject irradiationPoint)
             {
@@ -180,6 +187,7 @@ namespace Fox.Grx
                     locator.name
                 );
                 irradiationPoint.name = locator.name.CString;
+                Object.DestroyImmediate(irradiationPoint.GetComponent<Core.BoxGizmo>());
             }
         }
 
@@ -190,10 +198,12 @@ namespace Fox.Grx
             SpotLight lightEntity = (SpotLight)(lightGameObject.AddComponent<FoxEntity>().Entity = new SpotLight());
             lightEntity.name = new String(ReadName(reader));
 
-            //TODO flags
-            uint flags = reader.ReadUInt32();
             uint lightFlags = reader.ReadUInt32();
-            uint flags2 = reader.ReadUInt32();
+            lightEntity.enable = FlagUtils.GetFlag(lightFlags, 0);
+            lightEntity.castShadow = FlagUtils.GetFlag(lightFlags, 1);
+            lightEntity.hasSpecular = FlagUtils.GetFlag(lightFlags, 3);
+
+            uint UnknownFlags = reader.ReadUInt32();
 
             if (ReadLocator(reader) is GameObject lightArea)
             {
@@ -234,13 +244,17 @@ namespace Fox.Grx
             lightEntity.shadowAttenuationExponent = reader.ReadHalf();
 
             lightEntity.shadowBias = reader.ReadHalf();
-
             lightEntity.viewBias = reader.ReadHalf();
-            lightEntity.powerScale = reader.ReadHalf();
+
+            lightEntity.LodShadowDrawRate = reader.ReadHalf();
 
             lightEntity.LodFarSize = reader.ReadHalf();
             lightEntity.LodNearSize = reader.ReadHalf();
-            lightEntity.LodShadowDrawRate = reader.ReadHalf();
+
+            reader.Align(4);
+
+            lightEntity.powerScale = 1;
+
             lightEntity.lodRadiusLevel = (SpotLight_LodRadiusLevel)reader.ReadInt32();
             lightEntity.lodFadeType = (byte)reader.ReadInt32();
 
@@ -248,7 +262,7 @@ namespace Fox.Grx
             {
                 Locator locator = irradiationPoint.GetComponent<FoxEntity>().Entity as Locator;
                 locator.name = new String(lightEntity.name + "_IP");
-                lightEntity.lightArea = new EntityLink
+                lightEntity.irradiationPoint = new EntityLink
                 (
                     EntityHandle.Get(locator),
                     new Kernel.Path(""),
@@ -256,51 +270,8 @@ namespace Fox.Grx
                     locator.name
                 );
                 irradiationPoint.name = locator.name.CString;
+                Object.DestroyImmediate(irradiationPoint.GetComponent<Core.BoxGizmo>());
             }
-        }
-
-        public void ReadLightProbe(FileStreamReader reader)
-        {
-            //TppLightProbe is Tpp.Effect :sob:
-            var lightGameObject = new GameObject();
-            lightGameObject.name = ReadName(reader);
-
-            reader.Skip(8);
-            long seekPos = reader.BaseStream.Position;
-            int offsetToNameString = reader.ReadInt32();
-            if (offsetToNameString > 0)
-            {
-                reader.Seek(seekPos + offsetToNameString);
-                lightGameObject.name = reader.ReadNullTerminatedCString();
-                reader.Seek(seekPos + 4);
-            }
-
-            uint flags = reader.ReadUInt32();
-            uint lightFlags = reader.ReadUInt32();
-            uint flags2 = reader.ReadUInt32();
-
-            float innerScaleXPositive = reader.ReadHalf();
-            float innerScaleYPositive = reader.ReadHalf();
-            float innerScaleZPositive = reader.ReadHalf();
-            float innerScaleXNegative = reader.ReadHalf();
-            float innerScaleYNegative = reader.ReadHalf();
-            float innerScaleZNegative = reader.ReadHalf();
-
-            Vector3 scale = reader.ReadVector3();
-            Quaternion quat = reader.ReadQuaternion();
-            Vector3 translation = reader.ReadPositionF();
-
-            float unknown0 = reader.ReadSingle(); //translation's w?
-
-            short priority = reader.ReadInt16();
-            ushort shapeType = reader.ReadUInt16();
-            ushort relatedLightIndex = reader.ReadUInt16(); // some other kind of index? sometimes it increases with entries, sometimes skips
-            ushort shDataIndex = reader.ReadUInt16();
-
-            float lightSize = reader.ReadSingle();
-            float unknown1 = reader.ReadSingle();
-
-            //do
         }
 
         public void ReadOccluder(FileStreamReader reader)

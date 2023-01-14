@@ -16,25 +16,25 @@ namespace Fox.Core
         /// The referenced Entity.
         /// </summary>
         [SerializeField]
-        private EntityHandle handle;
+        public EntityHandle handle;
 
         /// <summary>
         /// Path to the referenced Entity's containing package.
         /// </summary>
         [SerializeField]
-        private Path packagePath;
+        public Path packagePath;
 
         /// <summary>
         /// Path to the referenced Entity's containing DataSetFile2.
         /// </summary>
         [SerializeField]
-        private Path archivePath;
+        public Path archivePath;
 
         /// <summary>
         /// The referenced Entity's name.
         /// </summary>
         [SerializeField]
-        private String nameInArchive;
+        public String nameInArchive;
 
         public EntityLink(EntityHandle handle, Path packagePath, Path archivePath, String nameInArchive)
         {

@@ -1,6 +1,7 @@
 ﻿using Fox;
 using Fox.Core;
 using Fox.Kernel;
+using UnityEngine;
 using CsSystem = System;
 
 namespace Tpp.Effect
@@ -33,5 +34,11 @@ namespace Tpp.Effect
 
         protected partial Path Get_importFilePath() => throw new CsSystem.NotImplementedException();
         protected partial void Set_importFilePath(Path value) { throw new CsSystem.NotImplementedException(); }
+
+        public override void InitializeGameObject(GameObject gameObject)
+        {
+            gameObject.AddComponent<TppPointLightGizmo>();
+            base.InitializeGameObject(gameObject);
+        }
     }
 }

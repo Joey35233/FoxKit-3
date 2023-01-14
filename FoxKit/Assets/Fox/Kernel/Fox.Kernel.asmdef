@@ -1,3 +1,4 @@
 {
+	"allowUnsafeCode": true,
 	"name": "Fox.Kernel"
 }

@@ -1,0 +1,2225 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!29 &1
+OcclusionCullingSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_OcclusionBakeSettings:
+    smallestOccluder: 5
+    smallestHole: 0.25
+    backfaceThreshold: 100
+  m_SceneGUID: 00000000000000000000000000000000
+  m_OcclusionCullingData: {fileID: 0}
+--- !u!104 &2
+RenderSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 9
+  m_Fog: 0
+  m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  m_FogMode: 3
+  m_FogDensity: 0.01
+  m_LinearFogStart: 0
+  m_LinearFogEnd: 300
+  m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
+  m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
+  m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
+  m_AmbientIntensity: 1
+  m_AmbientMode: 0
+  m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
+  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_HaloStrength: 0.5
+  m_FlareStrength: 1
+  m_FlareFadeSpeed: 3
+  m_HaloTexture: {fileID: 0}
+  m_SpotCookie: {fileID: 10001, guid: 0000000000000000e000000000000000, type: 0}
+  m_DefaultReflectionMode: 0
+  m_DefaultReflectionResolution: 128
+  m_ReflectionBounces: 1
+  m_ReflectionIntensity: 1
+  m_CustomReflection: {fileID: 0}
+  m_Sun: {fileID: 0}
+  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
+  m_UseRadianceAmbientProbe: 0
+--- !u!157 &3
+LightmapSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 12
+  m_GIWorkflowMode: 1
+  m_GISettings:
+    serializedVersion: 2
+    m_BounceScale: 1
+    m_IndirectOutputScale: 1
+    m_AlbedoBoost: 1
+    m_EnvironmentLightingMode: 0
+    m_EnableBakedLightmaps: 1
+    m_EnableRealtimeLightmaps: 0
+  m_LightmapEditorSettings:
+    serializedVersion: 12
+    m_Resolution: 2
+    m_BakeResolution: 40
+    m_AtlasSize: 1024
+    m_AO: 0
+    m_AOMaxDistance: 1
+    m_CompAOExponent: 1
+    m_CompAOExponentDirect: 0
+    m_ExtractAmbientOcclusion: 0
+    m_Padding: 2
+    m_LightmapParameters: {fileID: 0}
+    m_LightmapsBakeMode: 1
+    m_TextureCompression: 1
+    m_FinalGather: 0
+    m_FinalGatherFiltering: 1
+    m_FinalGatherRayCount: 256
+    m_ReflectionCompression: 2
+    m_MixedBakeMode: 2
+    m_BakeBackend: 1
+    m_PVRSampling: 1
+    m_PVRDirectSampleCount: 32
+    m_PVRSampleCount: 512
+    m_PVRBounces: 2
+    m_PVREnvironmentSampleCount: 256
+    m_PVREnvironmentReferencePointCount: 2048
+    m_PVRFilteringMode: 1
+    m_PVRDenoiserTypeDirect: 1
+    m_PVRDenoiserTypeIndirect: 1
+    m_PVRDenoiserTypeAO: 1
+    m_PVRFilterTypeDirect: 0
+    m_PVRFilterTypeIndirect: 0
+    m_PVRFilterTypeAO: 0
+    m_PVREnvironmentMIS: 1
+    m_PVRCulling: 1
+    m_PVRFilteringGaussRadiusDirect: 1
+    m_PVRFilteringGaussRadiusIndirect: 5
+    m_PVRFilteringGaussRadiusAO: 2
+    m_PVRFilteringAtrousPositionSigmaDirect: 0.5
+    m_PVRFilteringAtrousPositionSigmaIndirect: 2
+    m_PVRFilteringAtrousPositionSigmaAO: 1
+    m_ExportTrainingData: 0
+    m_TrainingDataDestination: TrainingData
+    m_LightProbeSampleCountMultiplier: 4
+  m_LightingDataAsset: {fileID: 0}
+  m_LightingSettings: {fileID: 0}
+--- !u!196 &4
+NavMeshSettings:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_BuildSettings:
+    serializedVersion: 3
+    agentTypeID: 0
+    agentRadius: 0.5
+    agentHeight: 2
+    agentSlope: 45
+    agentClimb: 0.4
+    ledgeDropHeight: 0
+    maxJumpAcrossDistance: 0
+    minRegionArea: 2
+    manualCellSize: 0
+    cellSize: 0.16666667
+    manualTileSize: 0
+    tileSize: 256
+    buildHeightMesh: 0
+    maxJobWorkers: 0
+    preserveTilesOutsideBounds: 0
+    debug:
+      m_Flags: 0
+  m_NavMeshData: {fileID: 0}
+--- !u!1 &328360004
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 328360007}
+  - component: {fileID: 328360006}
+  - component: {fileID: 328360005}
+  m_Layer: 0
+  m_Name: LP_occlusion_0010
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &328360005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 328360004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bc8469408eadcf4885ed916949a8823, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OriginScale: {x: 0.5, y: 0.5, z: 0.5}
+--- !u!114 &328360006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 328360004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3bf4910fc8b951418ccb61bc672cbe4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Entity:
+    rid: 3808096986810024632
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 3808096986810024632
+      type: {class: TppLightProbe, ns: Tpp.Effect, asm: Tpp.Effect}
+      data:
+        <name>k__BackingField:
+          _cString: LP_occlusion_0010
+          _length: 17
+          _hash:
+            _hash: 39061759370937
+        <dataSet>k__BackingField:
+          _entity:
+            rid: -2
+        <parent>k__BackingField:
+          _entity:
+            rid: -2
+        <transform>k__BackingField:
+          _ptr:
+            rid: 3808096986810024633
+        <shearTransform>k__BackingField:
+          _ptr:
+            rid: -2
+        <pivotTransform>k__BackingField:
+          _ptr:
+            rid: -2
+        <children>k__BackingField:
+          _list: []
+        <flags>k__BackingField: 0
+        <enable>k__BackingField: 1
+        <lightArea>k__BackingField:
+          handle:
+            _entity:
+              rid: -2
+          packagePath:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+          archivePath:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+          nameInArchive:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+        <innerArea>k__BackingField:
+          handle:
+            _entity:
+              rid: -2
+          packagePath:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+          archivePath:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+          nameInArchive:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+        <shCoefficientsData>k__BackingField:
+          handle:
+            _entity:
+              rid: -2
+          packagePath:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+          archivePath:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+          nameInArchive:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+        <onLights>k__BackingField:
+          _list: []
+        <offLights>k__BackingField:
+          _list: []
+        <innerScaleXPositive>k__BackingField: 0.5
+        <innerScaleXNegative>k__BackingField: 0.5
+        <innerScaleYPositive>k__BackingField: 0
+        <innerScaleYNegative>k__BackingField: 0.89990234
+        <innerScaleZPositive>k__BackingField: 0.89990234
+        <innerScaleZNegative>k__BackingField: 0.89990234
+        <priority>k__BackingField: 400
+        <debugMode>k__BackingField: 0
+        <drawRejectionLevel>k__BackingField: 0
+        <shapeType>k__BackingField: 0
+        <exposure>k__BackingField: 0
+        <localFlags>k__BackingField: 8
+        <occlusionModeOpenRate>k__BackingField: 0.2
+    - rid: 3808096986810024633
+      type: {class: TransformEntity, ns: Fox.Core, asm: Fox.Core}
+      data:
+        <owner>k__BackingField:
+          _entity:
+            rid: 3808096986810024632
+        <transform_scale>k__BackingField: {x: 1.574991, y: 1.432484, z: 2.579281}
+        <transform_rotation_quat>k__BackingField: {x: 0, y: -0, z: -0, w: 1}
+        <transform_translation>k__BackingField: {x: 0.01700306, y: 1197.4202, z: 1.938974}
+--- !u!4 &328360007
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 328360004}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.01700306, y: 1197.4202, z: 1.938974}
+  m_LocalScale: {x: 1.574991, y: 1.432484, z: 2.579281}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &717087436
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 717087439}
+  - component: {fileID: 717087438}
+  - component: {fileID: 717087437}
+  m_Layer: 0
+  m_Name: LP_occlusion_0000
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &717087437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 717087436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bc8469408eadcf4885ed916949a8823, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OriginScale: {x: 0.5, y: 0.5, z: 0.5}
+--- !u!114 &717087438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 717087436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3bf4910fc8b951418ccb61bc672cbe4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Entity:
+    rid: 3808096986810024652
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 3808096986810024652
+      type: {class: TppLightProbe, ns: Tpp.Effect, asm: Tpp.Effect}
+      data:
+        <name>k__BackingField:
+          _cString: LP_occlusion_0000
+          _length: 17
+          _hash:
+            _hash: 173878165778508
+        <dataSet>k__BackingField:
+          _entity:
+            rid: -2
+        <parent>k__BackingField:
+          _entity:
+            rid: -2
+        <transform>k__BackingField:
+          _ptr:
+            rid: 3808096986810024653
+        <shearTransform>k__BackingField:
+          _ptr:
+            rid: -2
+        <pivotTransform>k__BackingField:
+          _ptr:
+            rid: -2
+        <children>k__BackingField:
+          _list: []
+        <flags>k__BackingField: 0
+        <enable>k__BackingField: 1
+        <lightArea>k__BackingField:
+          handle:
+            _entity:
+              rid: -2
+          packagePath:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+          archivePath:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+          nameInArchive:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+        <innerArea>k__BackingField:
+          handle:
+            _entity:
+              rid: -2
+          packagePath:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+          archivePath:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+          nameInArchive:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+        <shCoefficientsData>k__BackingField:
+          handle:
+            _entity:
+              rid: -2
+          packagePath:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+          archivePath:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+          nameInArchive:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+        <onLights>k__BackingField:
+          _list: []
+        <offLights>k__BackingField:
+          _list: []
+        <innerScaleXPositive>k__BackingField: 0.7597656
+        <innerScaleXNegative>k__BackingField: 0.7998047
+        <innerScaleYPositive>k__BackingField: 0.4099121
+        <innerScaleYNegative>k__BackingField: 0.7998047
+        <innerScaleZPositive>k__BackingField: 0.72998047
+        <innerScaleZNegative>k__BackingField: 0.64990234
+        <priority>k__BackingField: 400
+        <debugMode>k__BackingField: 0
+        <drawRejectionLevel>k__BackingField: 0
+        <shapeType>k__BackingField: 0
+        <exposure>k__BackingField: 0
+        <localFlags>k__BackingField: 8
+        <occlusionModeOpenRate>k__BackingField: 0.23
+    - rid: 3808096986810024653
+      type: {class: TransformEntity, ns: Fox.Core, asm: Fox.Core}
+      data:
+        <owner>k__BackingField:
+          _entity:
+            rid: 3808096986810024652
+        <transform_scale>k__BackingField: {x: 0.351587, y: 1.130211, z: 1.453102}
+        <transform_rotation_quat>k__BackingField: {x: 0, y: -0, z: -0, w: 1}
+        <transform_translation>k__BackingField: {x: 1.047875, y: 1198.0332, z: 1.563168}
+--- !u!4 &717087439
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 717087436}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.047875, y: 1198.0332, z: 1.563168}
+  m_LocalScale: {x: 0.351587, y: 1.130211, z: 1.453102}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &981905485
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 981905488}
+  - component: {fileID: 981905487}
+  - component: {fileID: 981905486}
+  m_Layer: 0
+  m_Name: LP_occlusion_0006
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &981905486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 981905485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bc8469408eadcf4885ed916949a8823, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OriginScale: {x: 0.5, y: 0.5, z: 0.5}
+--- !u!114 &981905487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 981905485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3bf4910fc8b951418ccb61bc672cbe4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Entity:
+    rid: 3808096986810024640
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 3808096986810024640
+      type: {class: TppLightProbe, ns: Tpp.Effect, asm: Tpp.Effect}
+      data:
+        <name>k__BackingField:
+          _cString: LP_occlusion_0006
+          _length: 17
+          _hash:
+            _hash: 75138047955357
+        <dataSet>k__BackingField:
+          _entity:
+            rid: -2
+        <parent>k__BackingField:
+          _entity:
+            rid: -2
+        <transform>k__BackingField:
+          _ptr:
+            rid: 3808096986810024641
+        <shearTransform>k__BackingField:
+          _ptr:
+            rid: -2
+        <pivotTransform>k__BackingField:
+          _ptr:
+            rid: -2
+        <children>k__BackingField:
+          _list: []
+        <flags>k__BackingField: 0
+        <enable>k__BackingField: 1
+        <lightArea>k__BackingField:
+          handle:
+            _entity:
+              rid: -2
+          packagePath:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+          archivePath:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+          nameInArchive:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+        <innerArea>k__BackingField:
+          handle:
+            _entity:
+              rid: -2
+          packagePath:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+          archivePath:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+          nameInArchive:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+        <shCoefficientsData>k__BackingField:
+          handle:
+            _entity:
+              rid: -2
+          packagePath:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+          archivePath:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+          nameInArchive:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+        <onLights>k__BackingField:
+          _list: []
+        <offLights>k__BackingField:
+          _list: []
+        <innerScaleXPositive>k__BackingField: 0.35986328
+        <innerScaleXNegative>k__BackingField: 0.75
+        <innerScaleYPositive>k__BackingField: 0
+        <innerScaleYNegative>k__BackingField: 1
+        <innerScaleZPositive>k__BackingField: 0.52978516
+        <innerScaleZNegative>k__BackingField: 0.4099121
+        <priority>k__BackingField: 400
+        <debugMode>k__BackingField: 0
+        <drawRejectionLevel>k__BackingField: 0
+        <shapeType>k__BackingField: 0
+        <exposure>k__BackingField: 0
+        <localFlags>k__BackingField: 8
+        <occlusionModeOpenRate>k__BackingField: 0.2
+    - rid: 3808096986810024641
+      type: {class: TransformEntity, ns: Fox.Core, asm: Fox.Core}
+      data:
+        <owner>k__BackingField:
+          _entity:
+            rid: 3808096986810024640
+        <transform_scale>k__BackingField: {x: 0.322207, y: 0.648385, z: 0.901631}
+        <transform_rotation_quat>k__BackingField: {x: 0, y: -0, z: -0, w: 1}
+        <transform_translation>k__BackingField: {x: -0.947809, y: 1197.7452, z: 2.762868}
+--- !u!4 &981905488
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 981905485}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.947809, y: 1197.7452, z: 2.762868}
+  m_LocalScale: {x: 0.322207, y: 0.648385, z: 0.901631}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &982939419
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 982939422}
+  - component: {fileID: 982939421}
+  - component: {fileID: 982939420}
+  m_Layer: 0
+  m_Name: LP_occlusion_0007
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &982939420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 982939419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bc8469408eadcf4885ed916949a8823, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OriginScale: {x: 0.5, y: 0.5, z: 0.5}
+--- !u!114 &982939421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 982939419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3bf4910fc8b951418ccb61bc672cbe4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Entity:
+    rid: 3808096986810024638
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 3808096986810024638
+      type: {class: TppLightProbe, ns: Tpp.Effect, asm: Tpp.Effect}
+      data:
+        <name>k__BackingField:
+          _cString: LP_occlusion_0007
+          _length: 17
+          _hash:
+            _hash: 6203236738529
+        <dataSet>k__BackingField:
+          _entity:
+            rid: -2
+        <parent>k__BackingField:
+          _entity:
+            rid: -2
+        <transform>k__BackingField:
+          _ptr:
+            rid: 3808096986810024639
+        <shearTransform>k__BackingField:
+          _ptr:
+            rid: -2
+        <pivotTransform>k__BackingField:
+          _ptr:
+            rid: -2
+        <children>k__BackingField:
+          _list: []
+        <flags>k__BackingField: 0
+        <enable>k__BackingField: 1
+        <lightArea>k__BackingField:
+          handle:
+            _entity:
+              rid: -2
+          packagePath:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+          archivePath:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+          nameInArchive:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+        <innerArea>k__BackingField:
+          handle:
+            _entity:
+              rid: -2
+          packagePath:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+          archivePath:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+          nameInArchive:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+        <shCoefficientsData>k__BackingField:
+          handle:
+            _entity:
+              rid: -2
+          packagePath:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+          archivePath:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+          nameInArchive:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+        <onLights>k__BackingField:
+          _list: []
+        <offLights>k__BackingField:
+          _list: []
+        <innerScaleXPositive>k__BackingField: 0.4699707
+        <innerScaleXNegative>k__BackingField: 1
+        <innerScaleYPositive>k__BackingField: 0.52978516
+        <innerScaleYNegative>k__BackingField: 1
+        <innerScaleZPositive>k__BackingField: 0.41992188
+        <innerScaleZNegative>k__BackingField: 1
+        <priority>k__BackingField: 400
+        <debugMode>k__BackingField: 0
+        <drawRejectionLevel>k__BackingField: 0
+        <shapeType>k__BackingField: 0
+        <exposure>k__BackingField: 0
+        <localFlags>k__BackingField: 8
+        <occlusionModeOpenRate>k__BackingField: 0.2
+    - rid: 3808096986810024639
+      type: {class: TransformEntity, ns: Fox.Core, asm: Fox.Core}
+      data:
+        <owner>k__BackingField:
+          _entity:
+            rid: 3808096986810024638
+        <transform_scale>k__BackingField: {x: 1.414188, y: 0.436121, z: 0.970841}
+        <transform_rotation_quat>k__BackingField: {x: 0, y: -0, z: -0, w: 1}
+        <transform_translation>k__BackingField: {x: 0.345128, y: 1197.5135, z: -1.231175}
+--- !u!4 &982939422
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 982939419}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.345128, y: 1197.5135, z: -1.231175}
+  m_LocalScale: {x: 1.414188, y: 0.436121, z: 0.970841}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1207532964
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1207532967}
+  - component: {fileID: 1207532966}
+  - component: {fileID: 1207532965}
+  m_Layer: 0
+  m_Name: LP_occlusion_0008
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1207532965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1207532964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bc8469408eadcf4885ed916949a8823, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OriginScale: {x: 0.5, y: 0.5, z: 0.5}
+--- !u!114 &1207532966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1207532964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3bf4910fc8b951418ccb61bc672cbe4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Entity:
+    rid: 3808096986810024636
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 3808096986810024636
+      type: {class: TppLightProbe, ns: Tpp.Effect, asm: Tpp.Effect}
+      data:
+        <name>k__BackingField:
+          _cString: LP_occlusion_0008
+          _length: 17
+          _hash:
+            _hash: 92849500105768
+        <dataSet>k__BackingField:
+          _entity:
+            rid: -2
+        <parent>k__BackingField:
+          _entity:
+            rid: -2
+        <transform>k__BackingField:
+          _ptr:
+            rid: 3808096986810024637
+        <shearTransform>k__BackingField:
+          _ptr:
+            rid: -2
+        <pivotTransform>k__BackingField:
+          _ptr:
+            rid: -2
+        <children>k__BackingField:
+          _list: []
+        <flags>k__BackingField: 0
+        <enable>k__BackingField: 1
+        <lightArea>k__BackingField:
+          handle:
+            _entity:
+              rid: -2
+          packagePath:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+          archivePath:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+          nameInArchive:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+        <innerArea>k__BackingField:
+          handle:
+            _entity:
+              rid: -2
+          packagePath:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+          archivePath:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+          nameInArchive:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+        <shCoefficientsData>k__BackingField:
+          handle:
+            _entity:
+              rid: -2
+          packagePath:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+          archivePath:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+          nameInArchive:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+        <onLights>k__BackingField:
+          _list: []
+        <offLights>k__BackingField:
+          _list: []
+        <innerScaleXPositive>k__BackingField: 0.44995117
+        <innerScaleXNegative>k__BackingField: 0.15991211
+        <innerScaleYPositive>k__BackingField: 1
+        <innerScaleYNegative>k__BackingField: 1
+        <innerScaleZPositive>k__BackingField: 0
+        <innerScaleZNegative>k__BackingField: 1
+        <priority>k__BackingField: 400
+        <debugMode>k__BackingField: 0
+        <drawRejectionLevel>k__BackingField: 0
+        <shapeType>k__BackingField: 0
+        <exposure>k__BackingField: 0
+        <localFlags>k__BackingField: 8
+        <occlusionModeOpenRate>k__BackingField: 0.4
+    - rid: 3808096986810024637
+      type: {class: TransformEntity, ns: Fox.Core, asm: Fox.Core}
+      data:
+        <owner>k__BackingField:
+          _entity:
+            rid: 3808096986810024636
+        <transform_scale>k__BackingField: {x: 0.73395, y: 1.505912, z: 0.95652}
+        <transform_rotation_quat>k__BackingField: {x: 0, y: -0, z: -0, w: 1}
+        <transform_translation>k__BackingField: {x: -0.754969, y: 1198.0483, z: -1.209646}
+--- !u!4 &1207532967
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1207532964}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.754969, y: 1198.0483, z: -1.209646}
+  m_LocalScale: {x: 0.73395, y: 1.505912, z: 0.95652}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1284704231
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1284704234}
+  - component: {fileID: 1284704233}
+  - component: {fileID: 1284704232}
+  m_Layer: 0
+  m_Name: LP_occlusion_0009
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1284704232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1284704231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bc8469408eadcf4885ed916949a8823, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OriginScale: {x: 0.5, y: 0.5, z: 0.5}
+--- !u!114 &1284704233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1284704231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3bf4910fc8b951418ccb61bc672cbe4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Entity:
+    rid: 3808096986810024634
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 3808096986810024634
+      type: {class: TppLightProbe, ns: Tpp.Effect, asm: Tpp.Effect}
+      data:
+        <name>k__BackingField:
+          _cString: LP_occlusion_0009
+          _length: 17
+          _hash:
+            _hash: 200769797891788
+        <dataSet>k__BackingField:
+          _entity:
+            rid: -2
+        <parent>k__BackingField:
+          _entity:
+            rid: -2
+        <transform>k__BackingField:
+          _ptr:
+            rid: 3808096986810024635
+        <shearTransform>k__BackingField:
+          _ptr:
+            rid: -2
+        <pivotTransform>k__BackingField:
+          _ptr:
+            rid: -2
+        <children>k__BackingField:
+          _list: []
+        <flags>k__BackingField: 0
+        <enable>k__BackingField: 1
+        <lightArea>k__BackingField:
+          handle:
+            _entity:
+              rid: -2
+          packagePath:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+          archivePath:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+          nameInArchive:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+        <innerArea>k__BackingField:
+          handle:
+            _entity:
+              rid: -2
+          packagePath:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+          archivePath:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+          nameInArchive:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+        <shCoefficientsData>k__BackingField:
+          handle:
+            _entity:
+              rid: -2
+          packagePath:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+          archivePath:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+          nameInArchive:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+        <onLights>k__BackingField:
+          _list: []
+        <offLights>k__BackingField:
+          _list: []
+        <innerScaleXPositive>k__BackingField: 0.44995117
+        <innerScaleXNegative>k__BackingField: 0.15991211
+        <innerScaleYPositive>k__BackingField: 1
+        <innerScaleYNegative>k__BackingField: 1
+        <innerScaleZPositive>k__BackingField: 0
+        <innerScaleZNegative>k__BackingField: 1
+        <priority>k__BackingField: 400
+        <debugMode>k__BackingField: 0
+        <drawRejectionLevel>k__BackingField: 0
+        <shapeType>k__BackingField: 0
+        <exposure>k__BackingField: 0
+        <localFlags>k__BackingField: 8
+        <occlusionModeOpenRate>k__BackingField: 0.4
+    - rid: 3808096986810024635
+      type: {class: TransformEntity, ns: Fox.Core, asm: Fox.Core}
+      data:
+        <owner>k__BackingField:
+          _entity:
+            rid: 3808096986810024634
+        <transform_scale>k__BackingField: {x: 0.73395, y: 1.505912, z: 0.95652}
+        <transform_rotation_quat>k__BackingField: {x: 0, y: -0, z: -0, w: 1}
+        <transform_translation>k__BackingField: {x: 0.93302804, y: 1198.0483, z: -1.209646}
+--- !u!4 &1284704234
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1284704231}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.93302804, y: 1198.0483, z: -1.209646}
+  m_LocalScale: {x: 0.73395, y: 1.505912, z: 0.95652}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1324378917
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1324378920}
+  - component: {fileID: 1324378919}
+  - component: {fileID: 1324378918}
+  m_Layer: 0
+  m_Name: LP_0000
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1324378918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1324378917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bc8469408eadcf4885ed916949a8823, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OriginScale: {x: 0.5, y: 0.5, z: 0.5}
+--- !u!114 &1324378919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1324378917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3bf4910fc8b951418ccb61bc672cbe4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Entity:
+    rid: 3808096986810024630
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 3808096986810024630
+      type: {class: TppLightProbe, ns: Tpp.Effect, asm: Tpp.Effect}
+      data:
+        <name>k__BackingField:
+          _cString: LP_0000
+          _length: 7
+          _hash:
+            _hash: 239702132271801
+        <dataSet>k__BackingField:
+          _entity:
+            rid: -2
+        <parent>k__BackingField:
+          _entity:
+            rid: -2
+        <transform>k__BackingField:
+          _ptr:
+            rid: 3808096986810024631
+        <shearTransform>k__BackingField:
+          _ptr:
+            rid: -2
+        <pivotTransform>k__BackingField:
+          _ptr:
+            rid: -2
+        <children>k__BackingField:
+          _list: []
+        <flags>k__BackingField: 0
+        <enable>k__BackingField: 1
+        <lightArea>k__BackingField:
+          handle:
+            _entity:
+              rid: -2
+          packagePath:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+          archivePath:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+          nameInArchive:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+        <innerArea>k__BackingField:
+          handle:
+            _entity:
+              rid: -2
+          packagePath:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+          archivePath:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+          nameInArchive:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+        <shCoefficientsData>k__BackingField:
+          handle:
+            _entity:
+              rid: -2
+          packagePath:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+          archivePath:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+          nameInArchive:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+        <onLights>k__BackingField:
+          _list: []
+        <offLights>k__BackingField:
+          _list: []
+        <innerScaleXPositive>k__BackingField: 0.7998047
+        <innerScaleXNegative>k__BackingField: 0.7998047
+        <innerScaleYPositive>k__BackingField: 0.7998047
+        <innerScaleYNegative>k__BackingField: 0.7998047
+        <innerScaleZPositive>k__BackingField: 0.7998047
+        <innerScaleZNegative>k__BackingField: 0.7998047
+        <priority>k__BackingField: 500
+        <debugMode>k__BackingField: 0
+        <drawRejectionLevel>k__BackingField: 0
+        <shapeType>k__BackingField: 0
+        <exposure>k__BackingField: 0
+        <localFlags>k__BackingField: 3
+        <occlusionModeOpenRate>k__BackingField: 0.5
+    - rid: 3808096986810024631
+      type: {class: TransformEntity, ns: Fox.Core, asm: Fox.Core}
+      data:
+        <owner>k__BackingField:
+          _entity:
+            rid: 3808096986810024630
+        <transform_scale>k__BackingField: {x: 3.508285, y: 2.298199, z: 7.724446}
+        <transform_rotation_quat>k__BackingField: {x: 0, y: -0, z: -0, w: 1}
+        <transform_translation>k__BackingField: {x: -0.050675005, y: 1198.1417, z: 1.173915}
+--- !u!4 &1324378920
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1324378917}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.050675005, y: 1198.1417, z: 1.173915}
+  m_LocalScale: {x: 3.508285, y: 2.298199, z: 7.724446}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1650876659
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1650876662}
+  - component: {fileID: 1650876661}
+  - component: {fileID: 1650876660}
+  m_Layer: 0
+  m_Name: LP_occlusion_0004
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1650876660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1650876659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bc8469408eadcf4885ed916949a8823, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OriginScale: {x: 0.5, y: 0.5, z: 0.5}
+--- !u!114 &1650876661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1650876659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3bf4910fc8b951418ccb61bc672cbe4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Entity:
+    rid: 3808096986810024644
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 3808096986810024644
+      type: {class: TppLightProbe, ns: Tpp.Effect, asm: Tpp.Effect}
+      data:
+        <name>k__BackingField:
+          _cString: LP_occlusion_0004
+          _length: 17
+          _hash:
+            _hash: 38030219387334
+        <dataSet>k__BackingField:
+          _entity:
+            rid: -2
+        <parent>k__BackingField:
+          _entity:
+            rid: -2
+        <transform>k__BackingField:
+          _ptr:
+            rid: 3808096986810024645
+        <shearTransform>k__BackingField:
+          _ptr:
+            rid: -2
+        <pivotTransform>k__BackingField:
+          _ptr:
+            rid: -2
+        <children>k__BackingField:
+          _list: []
+        <flags>k__BackingField: 0
+        <enable>k__BackingField: 1
+        <lightArea>k__BackingField:
+          handle:
+            _entity:
+              rid: -2
+          packagePath:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+          archivePath:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+          nameInArchive:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+        <innerArea>k__BackingField:
+          handle:
+            _entity:
+              rid: -2
+          packagePath:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+          archivePath:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+          nameInArchive:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+        <shCoefficientsData>k__BackingField:
+          handle:
+            _entity:
+              rid: -2
+          packagePath:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+          archivePath:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+          nameInArchive:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+        <onLights>k__BackingField:
+          _list: []
+        <offLights>k__BackingField:
+          _list: []
+        <innerScaleXPositive>k__BackingField: 0.41992188
+        <innerScaleXNegative>k__BackingField: 0.65966797
+        <innerScaleYPositive>k__BackingField: 0.65966797
+        <innerScaleYNegative>k__BackingField: 0.7998047
+        <innerScaleZPositive>k__BackingField: 0.89990234
+        <innerScaleZNegative>k__BackingField: 0.88964844
+        <priority>k__BackingField: 400
+        <debugMode>k__BackingField: 0
+        <drawRejectionLevel>k__BackingField: 0
+        <shapeType>k__BackingField: 0
+        <exposure>k__BackingField: 0
+        <localFlags>k__BackingField: 8
+        <occlusionModeOpenRate>k__BackingField: 0.23
+    - rid: 3808096986810024645
+      type: {class: TransformEntity, ns: Fox.Core, asm: Fox.Core}
+      data:
+        <owner>k__BackingField:
+          _entity:
+            rid: 3808096986810024644
+        <transform_scale>k__BackingField: {x: 0.061731, y: 0.555615, z: 0.617685}
+        <transform_rotation_quat>k__BackingField: {x: 0, y: -0, z: -0, w: 1}
+        <transform_translation>k__BackingField: {x: -0.99176013, y: 1197.896, z: -1.084481}
+--- !u!4 &1650876662
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1650876659}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.99176013, y: 1197.896, z: -1.084481}
+  m_LocalScale: {x: 0.061731, y: 0.555615, z: 0.617685}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1682586870
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1682586873}
+  - component: {fileID: 1682586872}
+  - component: {fileID: 1682586871}
+  m_Layer: 0
+  m_Name: LP_occlusion_0002
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1682586871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1682586870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bc8469408eadcf4885ed916949a8823, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OriginScale: {x: 0.5, y: 0.5, z: 0.5}
+--- !u!114 &1682586872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1682586870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3bf4910fc8b951418ccb61bc672cbe4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Entity:
+    rid: 3808096986810024648
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 3808096986810024648
+      type: {class: TppLightProbe, ns: Tpp.Effect, asm: Tpp.Effect}
+      data:
+        <name>k__BackingField:
+          _cString: LP_occlusion_0002
+          _length: 17
+          _hash:
+            _hash: 204121917089087
+        <dataSet>k__BackingField:
+          _entity:
+            rid: -2
+        <parent>k__BackingField:
+          _entity:
+            rid: -2
+        <transform>k__BackingField:
+          _ptr:
+            rid: 3808096986810024649
+        <shearTransform>k__BackingField:
+          _ptr:
+            rid: -2
+        <pivotTransform>k__BackingField:
+          _ptr:
+            rid: -2
+        <children>k__BackingField:
+          _list: []
+        <flags>k__BackingField: 0
+        <enable>k__BackingField: 1
+        <lightArea>k__BackingField:
+          handle:
+            _entity:
+              rid: -2
+          packagePath:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+          archivePath:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+          nameInArchive:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+        <innerArea>k__BackingField:
+          handle:
+            _entity:
+              rid: -2
+          packagePath:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+          archivePath:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+          nameInArchive:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+        <shCoefficientsData>k__BackingField:
+          handle:
+            _entity:
+              rid: -2
+          packagePath:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+          archivePath:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+          nameInArchive:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+        <onLights>k__BackingField:
+          _list: []
+        <offLights>k__BackingField:
+          _list: []
+        <innerScaleXPositive>k__BackingField: 0.89990234
+        <innerScaleXNegative>k__BackingField: 0.89990234
+        <innerScaleYPositive>k__BackingField: 0.6899414
+        <innerScaleYNegative>k__BackingField: 0.89990234
+        <innerScaleZPositive>k__BackingField: 0.89990234
+        <innerScaleZNegative>k__BackingField: 0.89990234
+        <priority>k__BackingField: 400
+        <debugMode>k__BackingField: 0
+        <drawRejectionLevel>k__BackingField: 0
+        <shapeType>k__BackingField: 0
+        <exposure>k__BackingField: 0
+        <localFlags>k__BackingField: 8
+        <occlusionModeOpenRate>k__BackingField: 0.23
+    - rid: 3808096986810024649
+      type: {class: TransformEntity, ns: Fox.Core, asm: Fox.Core}
+      data:
+        <owner>k__BackingField:
+          _entity:
+            rid: 3808096986810024648
+        <transform_scale>k__BackingField: {x: 0.451333, y: 0.108901, z: 1.294487}
+        <transform_rotation_quat>k__BackingField: {x: 0, y: -0, z: -0, w: 1}
+        <transform_translation>k__BackingField: {x: 0.683568, y: 1197.6188, z: 1.5325941}
+--- !u!4 &1682586873
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1682586870}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.683568, y: 1197.6188, z: 1.5325941}
+  m_LocalScale: {x: 0.451333, y: 0.108901, z: 1.294487}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1799482635
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1799482638}
+  - component: {fileID: 1799482637}
+  - component: {fileID: 1799482636}
+  m_Layer: 0
+  m_Name: LP_occlusion_0003
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1799482636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1799482635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bc8469408eadcf4885ed916949a8823, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OriginScale: {x: 0.5, y: 0.5, z: 0.5}
+--- !u!114 &1799482637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1799482635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3bf4910fc8b951418ccb61bc672cbe4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Entity:
+    rid: 3808096986810024646
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 3808096986810024646
+      type: {class: TppLightProbe, ns: Tpp.Effect, asm: Tpp.Effect}
+      data:
+        <name>k__BackingField:
+          _cString: LP_occlusion_0003
+          _length: 17
+          _hash:
+            _hash: 251160275478129
+        <dataSet>k__BackingField:
+          _entity:
+            rid: -2
+        <parent>k__BackingField:
+          _entity:
+            rid: -2
+        <transform>k__BackingField:
+          _ptr:
+            rid: 3808096986810024647
+        <shearTransform>k__BackingField:
+          _ptr:
+            rid: -2
+        <pivotTransform>k__BackingField:
+          _ptr:
+            rid: -2
+        <children>k__BackingField:
+          _list: []
+        <flags>k__BackingField: 0
+        <enable>k__BackingField: 1
+        <lightArea>k__BackingField:
+          handle:
+            _entity:
+              rid: -2
+          packagePath:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+          archivePath:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+          nameInArchive:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+        <innerArea>k__BackingField:
+          handle:
+            _entity:
+              rid: -2
+          packagePath:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+          archivePath:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+          nameInArchive:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+        <shCoefficientsData>k__BackingField:
+          handle:
+            _entity:
+              rid: -2
+          packagePath:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+          archivePath:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+          nameInArchive:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+        <onLights>k__BackingField:
+          _list: []
+        <offLights>k__BackingField:
+          _list: []
+        <innerScaleXPositive>k__BackingField: 0.89990234
+        <innerScaleXNegative>k__BackingField: 0.89990234
+        <innerScaleYPositive>k__BackingField: 0.6899414
+        <innerScaleYNegative>k__BackingField: 0.89990234
+        <innerScaleZPositive>k__BackingField: 0.89990234
+        <innerScaleZNegative>k__BackingField: 0.89990234
+        <priority>k__BackingField: 400
+        <debugMode>k__BackingField: 0
+        <drawRejectionLevel>k__BackingField: 0
+        <shapeType>k__BackingField: 0
+        <exposure>k__BackingField: 0
+        <localFlags>k__BackingField: 8
+        <occlusionModeOpenRate>k__BackingField: 0.23
+    - rid: 3808096986810024647
+      type: {class: TransformEntity, ns: Fox.Core, asm: Fox.Core}
+      data:
+        <owner>k__BackingField:
+          _entity:
+            rid: 3808096986810024646
+        <transform_scale>k__BackingField: {x: 0.451333, y: 0.108901, z: 1.294487}
+        <transform_rotation_quat>k__BackingField: {x: 0, y: -0, z: -0, w: 1}
+        <transform_translation>k__BackingField: {x: -0.67373896, y: 1197.6188, z: 1.5325941}
+--- !u!4 &1799482638
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1799482635}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.67373896, y: 1197.6188, z: 1.5325941}
+  m_LocalScale: {x: 0.451333, y: 0.108901, z: 1.294487}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1853760709
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1853760712}
+  - component: {fileID: 1853760711}
+  - component: {fileID: 1853760710}
+  m_Layer: 0
+  m_Name: LP_occlusion_0005
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1853760710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1853760709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bc8469408eadcf4885ed916949a8823, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OriginScale: {x: 0.5, y: 0.5, z: 0.5}
+--- !u!114 &1853760711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1853760709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3bf4910fc8b951418ccb61bc672cbe4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Entity:
+    rid: 3808096986810024642
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 3808096986810024642
+      type: {class: TppLightProbe, ns: Tpp.Effect, asm: Tpp.Effect}
+      data:
+        <name>k__BackingField:
+          _cString: LP_occlusion_0005
+          _length: 17
+          _hash:
+            _hash: 147641979634442
+        <dataSet>k__BackingField:
+          _entity:
+            rid: -2
+        <parent>k__BackingField:
+          _entity:
+            rid: -2
+        <transform>k__BackingField:
+          _ptr:
+            rid: 3808096986810024643
+        <shearTransform>k__BackingField:
+          _ptr:
+            rid: -2
+        <pivotTransform>k__BackingField:
+          _ptr:
+            rid: -2
+        <children>k__BackingField:
+          _list: []
+        <flags>k__BackingField: 0
+        <enable>k__BackingField: 1
+        <lightArea>k__BackingField:
+          handle:
+            _entity:
+              rid: -2
+          packagePath:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+          archivePath:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+          nameInArchive:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+        <innerArea>k__BackingField:
+          handle:
+            _entity:
+              rid: -2
+          packagePath:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+          archivePath:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+          nameInArchive:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+        <shCoefficientsData>k__BackingField:
+          handle:
+            _entity:
+              rid: -2
+          packagePath:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+          archivePath:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+          nameInArchive:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+        <onLights>k__BackingField:
+          _list: []
+        <offLights>k__BackingField:
+          _list: []
+        <innerScaleXPositive>k__BackingField: 0.35986328
+        <innerScaleXNegative>k__BackingField: 0.75
+        <innerScaleYPositive>k__BackingField: 0
+        <innerScaleYNegative>k__BackingField: 1
+        <innerScaleZPositive>k__BackingField: 0.52978516
+        <innerScaleZNegative>k__BackingField: 0.4099121
+        <priority>k__BackingField: 400
+        <debugMode>k__BackingField: 0
+        <drawRejectionLevel>k__BackingField: 0
+        <shapeType>k__BackingField: 0
+        <exposure>k__BackingField: 0
+        <localFlags>k__BackingField: 8
+        <occlusionModeOpenRate>k__BackingField: 0.2
+    - rid: 3808096986810024643
+      type: {class: TransformEntity, ns: Fox.Core, asm: Fox.Core}
+      data:
+        <owner>k__BackingField:
+          _entity:
+            rid: 3808096986810024642
+        <transform_scale>k__BackingField: {x: 0.322207, y: 0.648385, z: 0.901631}
+        <transform_rotation_quat>k__BackingField: {x: 0, y: -0, z: -0, w: 1}
+        <transform_translation>k__BackingField: {x: 0.94567597, y: 1197.7452, z: 2.762868}
+--- !u!4 &1853760712
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1853760709}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.94567597, y: 1197.7452, z: 2.762868}
+  m_LocalScale: {x: 0.322207, y: 0.648385, z: 0.901631}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2072863926
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2072863929}
+  - component: {fileID: 2072863928}
+  - component: {fileID: 2072863927}
+  m_Layer: 0
+  m_Name: LP_occlusion_0001
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2072863927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2072863926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bc8469408eadcf4885ed916949a8823, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OriginScale: {x: 0.5, y: 0.5, z: 0.5}
+--- !u!114 &2072863928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2072863926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3bf4910fc8b951418ccb61bc672cbe4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Entity:
+    rid: 3808096986810024650
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 3808096986810024650
+      type: {class: TppLightProbe, ns: Tpp.Effect, asm: Tpp.Effect}
+      data:
+        <name>k__BackingField:
+          _cString: LP_occlusion_0001
+          _length: 17
+          _hash:
+            _hash: 195673344028745
+        <dataSet>k__BackingField:
+          _entity:
+            rid: -2
+        <parent>k__BackingField:
+          _entity:
+            rid: -2
+        <transform>k__BackingField:
+          _ptr:
+            rid: 3808096986810024651
+        <shearTransform>k__BackingField:
+          _ptr:
+            rid: -2
+        <pivotTransform>k__BackingField:
+          _ptr:
+            rid: -2
+        <children>k__BackingField:
+          _list: []
+        <flags>k__BackingField: 0
+        <enable>k__BackingField: 1
+        <lightArea>k__BackingField:
+          handle:
+            _entity:
+              rid: -2
+          packagePath:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+          archivePath:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+          nameInArchive:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+        <innerArea>k__BackingField:
+          handle:
+            _entity:
+              rid: -2
+          packagePath:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+          archivePath:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+          nameInArchive:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+        <shCoefficientsData>k__BackingField:
+          handle:
+            _entity:
+              rid: -2
+          packagePath:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+          archivePath:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+          nameInArchive:
+            _cString: 
+            _length: 0
+            _hash:
+              _hash: 0
+        <onLights>k__BackingField:
+          _list: []
+        <offLights>k__BackingField:
+          _list: []
+        <innerScaleXPositive>k__BackingField: 0.7998047
+        <innerScaleXNegative>k__BackingField: 0.7597656
+        <innerScaleYPositive>k__BackingField: 0.4099121
+        <innerScaleYNegative>k__BackingField: 0.7998047
+        <innerScaleZPositive>k__BackingField: 0.72998047
+        <innerScaleZNegative>k__BackingField: 0.64990234
+        <priority>k__BackingField: 400
+        <debugMode>k__BackingField: 0
+        <drawRejectionLevel>k__BackingField: 0
+        <shapeType>k__BackingField: 0
+        <exposure>k__BackingField: 0
+        <localFlags>k__BackingField: 8
+        <occlusionModeOpenRate>k__BackingField: 0.23
+    - rid: 3808096986810024651
+      type: {class: TransformEntity, ns: Fox.Core, asm: Fox.Core}
+      data:
+        <owner>k__BackingField:
+          _entity:
+            rid: 3808096986810024650
+        <transform_scale>k__BackingField: {x: 0.36715, y: 1.130211, z: 1.453102}
+        <transform_rotation_quat>k__BackingField: {x: 0, y: -0, z: -0, w: 1}
+        <transform_translation>k__BackingField: {x: -1.048515, y: 1198.0332, z: 1.563168}
+--- !u!4 &2072863929
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2072863926}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.048515, y: 1198.0332, z: 1.563168}
+  m_LocalScale: {x: 0.36715, y: 1.130211, z: 1.453102}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

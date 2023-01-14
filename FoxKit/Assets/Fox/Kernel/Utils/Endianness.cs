@@ -45,10 +45,10 @@ namespace Fox.Kernel
             return ((ulong)a << 56) | ((ulong)b << 48) | ((ulong)c << 40) | ((ulong)d << 32) | ((ulong)e << 24) | ((ulong)f << 16) | ((ulong)g << 8) | ((ulong)h << 0);
         }
 
-        public static Half FlipEndianness(Half value)
-        {
-            return Half.ToHalf(FlipEndianness((ushort)(value.GetHashCode() & 0xFFFF)));
-        }
+        //public static Half FlipEndianness(Half value)
+        //{
+        //    return Half.ToHalf(FlipEndianness((ushort)(value.GetHashCode() & 0xFFFF)));
+        //}
 
         public static float FlipEndianness(float value)
         {

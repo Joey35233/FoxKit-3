@@ -1,5 +1,5 @@
 ﻿using Fox.Fio;
-using Fox.Grx;
+using Tpp.Effect;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -7,20 +7,20 @@ using CsSystem = System;
 
 namespace FoxKit.MenuItems
 {
-    public class ImportGrxLightArrayFile
+    public class ImportTppGrxLightArrayFile
     {
-        [MenuItem("FoxKit/Import/GrxLightArrayFile")]
+        [MenuItem("FoxKit/Import/TppGrxLightArrayFile")]
         private static void OnImportAsset()
         {
-            var assetPath = EditorUtility.OpenFilePanel("Import GrxLightArrayFile", "", "grxla");
+            var assetPath = EditorUtility.OpenFilePanel("Import TppGrxLightArrayFile", "", "grxla");
             if (string.IsNullOrEmpty(assetPath))
                 return;
             using var reader = new FileStreamReader(System.IO.File.OpenRead(assetPath));
-            var grxlaReader = new GrxLightArrayFileReader();
+            var grxlaReader = new TppGrxLightArrayFileReader();
             if (grxlaReader.Read(reader) is Scene scene)
                 scene.name = CsSystem.IO.Path.GetFileNameWithoutExtension(assetPath);
             else
-                Debug.LogError("GRXLA import failed.");
+                Debug.LogError("TGRXLA import failed.");
         }
     }
 }

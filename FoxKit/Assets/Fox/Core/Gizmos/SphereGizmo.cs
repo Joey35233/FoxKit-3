@@ -7,13 +7,15 @@ using UnityEngine.UIElements;
 namespace Fox.Core
 {
     /// <summary>
-    /// Draws a locator gizmo in the scene.
+    /// Draws a sphere gizmo in the scene.
     /// </summary>
     [DisallowMultipleComponent, ExecuteInEditMode, SelectionBase]
     public class SphereGizmo : MonoBehaviour
     {
         public Color Color = Color.red;
+
         public bool DrawLabel = false;
+
         void DrawGizmos(bool isSelected)
         {
             Gizmos.matrix = transform.localToWorldMatrix;
@@ -38,6 +40,7 @@ namespace Fox.Core
             if (DrawLabel)
                 Handles.Label(this.transform.position, gameObject.name);
         }
+
         void OnDrawGizmos()
         {
             DrawGizmos(false);

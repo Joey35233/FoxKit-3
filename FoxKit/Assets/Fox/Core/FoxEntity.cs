@@ -1,13 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using Fox.Kernel;
 
 namespace Fox.Core
 {
+    [ExecuteInEditMode]
     public class FoxEntity : MonoBehaviour
     {
         [SerializeReference]
         public Entity Entity;
+
+        private void Awake()
+        {
+            Entity.Awake(this.gameObject);
+        }
+
+        private void Start()
+        {
+            Entity.Start(this.gameObject);
+        }
     }
 }

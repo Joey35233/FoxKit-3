@@ -22,7 +22,8 @@ namespace Fox.Fio
         public override long ReadInt64() => StreamEndianness == Endianness.LittleEndian ? base.ReadInt64() : EndiannessBitConverter.FlipEndianness(base.ReadInt64());
         public override ulong ReadUInt64() => StreamEndianness == Endianness.LittleEndian ? base.ReadUInt64() : EndiannessBitConverter.FlipEndianness(base.ReadUInt64());
 
-        public System.Half ReadHalf() => StreamEndianness == Endianness.LittleEndian ? System.Half.ToHalf(base.ReadUInt16()) : System.Half.ToHalf(EndiannessBitConverter.FlipEndianness(base.ReadUInt16()));
+        public Half ReadHalf() => Half.ToHalf(ReadUInt16());
+
         public override float ReadSingle() => StreamEndianness == Endianness.LittleEndian ? base.ReadSingle() : EndiannessBitConverter.FlipEndianness(base.ReadSingle());
         public override double ReadDouble() => StreamEndianness == Endianness.LittleEndian ? base.ReadDouble() : EndiannessBitConverter.FlipEndianness(base.ReadDouble());
 
@@ -108,6 +109,18 @@ namespace Fox.Fio
         public void Skip(long count)
         {
             BaseStream.Seek(count, System.IO.SeekOrigin.Current);
+        }
+
+        public void SkipPadding(long count)
+        {
+#if DEBUG
+            for (long i = 0; i < count; i++)
+            {
+                Debug.Assert(ReadByte() == 0);
+            }
+#else
+            Skip(count);
+#endif
         }
 
         public void Seek(long count)
