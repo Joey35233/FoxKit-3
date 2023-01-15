@@ -371,7 +371,6 @@ namespace Fox.Gr
             }
 
             GameObject main = new GameObject(name);
-            main.transform.localScale = new Vector3(main.transform.localScale.x * 100f, main.transform.localScale.y, main.transform.localScale.z);
 
             FmdlDef def = FmdlDef.Read(reader, 0, logWarning, logError);
             //{
@@ -424,8 +423,8 @@ namespace Fox.Gr
                         Debug.Assert(box != InvalidBoundingBox);
 
                         BoxCollider boxComponent = bone.AddComponent<BoxCollider>();
-                        boxComponent.center = main.transform.worldToLocalMatrix * new Vector4(box.center.x, box.center.y, box.center.z, 1.0f);
-                        boxComponent.extents = main.transform.worldToLocalMatrix * box.extents;
+                        boxComponent.center = bone.transform.worldToLocalMatrix * new Vector4(box.center.x, box.center.y, box.center.z, 1.0f);
+                        boxComponent.size = bone.transform.worldToLocalMatrix * box.size;
                     }
                     else
                     {
@@ -644,7 +643,7 @@ namespace Fox.Gr
                     mesh.subMeshCount = meshCount;
 
                     NativeArray<byte>[] outputBuffers = uploadHelper.CreateVertexBuffers(totalVertexCount);
-                    BoneWeight[] weightBuffer = new BoneWeight[totalVertexCount];
+                    BoneWeight[] weightBuffer = bones == null ? null : new BoneWeight[totalVertexCount];
 
                     uint vertexStart = 0;
                     uint indexStart = 0;
@@ -691,8 +690,9 @@ namespace Fox.Gr
                         }
 
                         // TODO - Even more of a hack!
-                        uploadHelper.CopyBoneWeights(weightBuffer, vertexBuffers[1], layoutDescs[j], layoutDescs[j].BufferDescs[1].Offset, layoutDescs[j].BufferDescs[1].Stride, vertexStart, vertexCount, boneGroup.Slice(0, boneCount));
-
+                        if (bones != null)
+                            uploadHelper.CopyBoneWeights(weightBuffer, vertexBuffers[1], layoutDescs[j], layoutDescs[j].BufferDescs[1].Offset, layoutDescs[j].BufferDescs[1].Stride, vertexStart, vertexCount, boneGroup.Slice(0, boneCount));
+                        
                         mesh.SetIndexBufferData(indexBuffer, (int)highLodIBufferSliceStartIndex * 2, (int)indexStart * 2, (int)highLodIBufferSliceCount * 2, UpdateFlags | MeshUpdateFlags.DontNotifyMeshUsers);
 
                         mesh.SetSubMesh((int)j, new SubMeshDescriptor { topology = MeshTopology.Triangles, indexStart = (int)indexStart, indexCount = (int)highLodIBufferSliceCount, firstVertex = (int)vertexStart, vertexCount = vertexCount, baseVertex = (int)vertexStart }, UpdateFlags);
@@ -701,19 +701,9 @@ namespace Fox.Gr
                         indexStart += highLodIBufferSliceCount;
                     }
 
-                    for (uint j = 0; j < weightBuffer.Length; j++)
-                    {
-                        if (weightBuffer[j].weight0 == 0 && weightBuffer[j].weight1 == 0)
-                            System.Diagnostics.Debugger.Break();
-                    }    
-                    mesh.boneWeights = weightBuffer;
-
                     mesh.bounds = box;
-
                     box.center = main.transform.worldToLocalMatrix * new Vector4(box.center.x, box.center.y, box.center.z, 1.0f);
-                    box.extents = main.transform.worldToLocalMatrix * box.extents;
-
-                    context.AddObjectToAsset(mesh.name, mesh);
+                    box.size = main.transform.worldToLocalMatrix * box.size;
 
                     if (bones == null)
                     {
@@ -731,6 +721,7 @@ namespace Fox.Gr
                     }
                     else
                     {
+                        mesh.boneWeights = weightBuffer;
                         mesh.bindposes = bindPoses;
 
                         SkinnedMeshRenderer skinnedMeshRenderer = meshGroup.AddComponent<SkinnedMeshRenderer>();
@@ -745,6 +736,8 @@ namespace Fox.Gr
 
                         skinnedMeshRenderer.sharedMaterials = sharedMaterials;
                     }
+
+                    context.AddObjectToAsset(mesh.name, mesh);
 
                     continue;
                 }
