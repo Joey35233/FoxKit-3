@@ -3,8 +3,11 @@ using UnityEditor.AssetImporters;
 using Fox.Fio;
 using System;
 using Fox.Kernel;
+using Unity.Collections;
 using UnityEngine.Rendering;
-using System.Collections.Generic;
+using Codice.CM.Client.Differences.Graphic;
+using System.Security.Policy;
+using UnityEditor;
 
 namespace Fox.Gr
 {
@@ -82,7 +85,6 @@ namespace Fox.Gr
             0x8,  // 21 - Path
             0x8,  // 22 - Name
         };
-
 
         private struct FmdlDef
         {
@@ -269,7 +271,7 @@ namespace Fox.Gr
         private enum MeshBufferFormatElementType : byte
         {
             R32G32B32_Float = 1,
-            R16_UInt = 4,
+
             R16G16B16A16_Float = 6,
             R16G16_Float = 7,
             R8G8B8A8_UNorm = 8,
@@ -278,6 +280,7 @@ namespace Fox.Gr
 
         struct MeshBufferDesc
         {
+            public byte Stride;
             public uint Offset;
             public byte FileBufferIndex;
             public byte Slot;
@@ -295,6 +298,14 @@ namespace Fox.Gr
         {
             public MeshBufferDesc[] BufferDescs;
         }
+
+        private enum FileMeshBufferType : uint
+        {
+            VBuffer = 0,
+            IndexBuffer = 1,
+        }
+
+        private const MeshUpdateFlags UpdateFlags = MeshUpdateFlags.DontRecalculateBounds | MeshUpdateFlags.DontValidateIndices | MeshUpdateFlags.DontResetBoneBounds;
 
         private static Bounds InvalidBoundingBox = new Bounds { max = new Vector3(-1e10f, -1e10f, -1e10f), min = new Vector3(1e10f, 1e10f, 1e10f) };
 
@@ -360,22 +371,25 @@ namespace Fox.Gr
             }
 
             GameObject main = new GameObject(name);
+            main.transform.localScale = new Vector3(main.transform.localScale.x * 100f, main.transform.localScale.y, main.transform.localScale.z);
 
             FmdlDef def = FmdlDef.Read(reader, 0, logWarning, logError);
-            {
-                BoxCollider boxComponent = main.AddComponent<BoxCollider>();
-                Bounds box = ReadAABBForIndex(ref def, reader, 0);
-                boxComponent.center = box.center;
-                boxComponent.size = box.size;
-            }
+            //{
+            //    BoxCollider boxComponent = main.AddComponent<BoxCollider>();
+            //    Bounds box = ReadAABBForIndex(ref def, reader, 0);
+            //    boxComponent.center = box.center;
+            //    boxComponent.size = box.size;
+            //}
 
             // Bones
-            Transform[] boneLookup = null;
+            Transform[] bones = null;
+            Matrix4x4[] bindPoses = null;
             if (def.HasFeature(FeatureType.BoneDefs))
             {
                 uint boneCount = def.GetFeatureCount(FeatureType.BoneDefs);
 
-                boneLookup = new Transform[boneCount];
+                bones = new Transform[boneCount];
+                bindPoses = new Matrix4x4[boneCount];
 
                 for (uint i = 0; i < boneCount; i++)
                 {
@@ -385,7 +399,7 @@ namespace Fox.Gr
                     StrCode nameHash = ReadNameForIndex(ref def, reader, nameIndex);
 
                     GameObject bone = new GameObject(nameHash.ToString());
-                    boneLookup[i] = bone.transform;
+                    bones[i] = bone.transform;
 
                     short parentIndex = reader.ReadInt16(); if (parentIndex > -1 && !def.ValidateFeatureIndex(FeatureType.BoneDefs, FeatureType.BoneDefs, (uint)parentIndex)) return;
 
@@ -403,20 +417,22 @@ namespace Fox.Gr
                     if (parentIndex == -1)
                         bone.transform.SetParent(main.transform, false);
                     else
-                        bone.transform.SetParent(boneLookup[parentIndex], false);
+                        bone.transform.SetParent(bones[parentIndex], false);
 
                     if (flags.HasFlag(BoneFlags.HasBoundingBox))
                     {
                         Debug.Assert(box != InvalidBoundingBox);
 
                         BoxCollider boxComponent = bone.AddComponent<BoxCollider>();
-                        boxComponent.center = bone.transform.InverseTransformPoint(box.center);
-                        boxComponent.size = box.size;
+                        boxComponent.center = main.transform.worldToLocalMatrix * new Vector4(box.center.x, box.center.y, box.center.z, 1.0f);
+                        boxComponent.extents = main.transform.worldToLocalMatrix * box.extents;
                     }
                     else
                     {
                         Debug.Assert(box == InvalidBoundingBox);
                     }
+
+                    bindPoses[i] = bone.transform.worldToLocalMatrix;
                 }
             }
 
@@ -454,11 +470,44 @@ namespace Fox.Gr
                 }
             }
 
+            // FileMeshBufferHeaders - TODO - Validate!
+            byte[] indexBuffer = null;
+            byte[][] vertexBuffers = new byte[def.GetFeatureCount(FeatureType.FileMeshBufferHeaders) - 1][];
+            for (uint i = 0, vBufferIndex = 0; i < def.GetFeatureCount(FeatureType.FileMeshBufferHeaders); i++)
+            {
+                reader.Seek(def.GetFeaturePositionForIndex(FeatureType.FileMeshBufferHeaders, i));
+
+                FileMeshBufferType type = (FileMeshBufferType)reader.ReadUInt32(); Debug.Assert(type == FileMeshBufferType.VBuffer || type == FileMeshBufferType.IndexBuffer);
+
+                uint size = reader.ReadUInt32(); Debug.Assert(size <= int.MaxValue);
+
+                reader.Seek(def.GetBufferPosition(BufferType.Vertices).Value + reader.ReadUInt32());
+
+                if (type == FileMeshBufferType.IndexBuffer)
+                {
+                    indexBuffer = reader.ReadBytes((int)size);
+                }
+                else
+                {
+                    vertexBuffers[vBufferIndex] = reader.ReadBytes((int)size);
+                    vBufferIndex++;
+                }
+            }
+            // Not a good validation method - what if there really is no index buffer?
+            if (indexBuffer == null)
+            {
+                logError("No index buffer!");
+                return;
+            }
+
+            Material defaultMaterial = AssetDatabase.GetBuiltinExtraResource<Material>("Default-Material.mat");
+            context.AddObjectToAsset("Material", defaultMaterial);
+
             // MeshGroupDefs
             if (def.HasFeature(FeatureType.MeshGroupDefs))
             {
                 uint meshGroupDefCount = def.GetFeatureCount(FeatureType.MeshGroupDefs);
-                
+
                 for (uint i = 0; i < meshGroupDefCount; i++)
                 {
                     reader.Seek(def.GetFeaturePositionForIndex(FeatureType.MeshGroupDefs, i));
@@ -473,9 +522,6 @@ namespace Fox.Gr
 
                     ushort aabbIndex = reader.ReadUInt16(); if (!def.ValidateFeatureIndex(FeatureType.MeshGroupDefs, FeatureType.AABBs, headerIndex)) return;
                     Bounds box = ReadAABBForIndex(ref def, reader, aabbIndex);
-                    BoxCollider boxComponent = meshGroup.AddComponent<BoxCollider>();
-                    boxComponent.center = box.center;
-                    boxComponent.size = box.size;
 
                     reader.SkipPadding(4);
 
@@ -483,9 +529,11 @@ namespace Fox.Gr
 
                     reader.SkipPadding(14);
 
-                    MeshDataLayoutDesc[] layoutDescs = new MeshDataLayoutDesc[meshCount];
-
                     // MeshDefs
+                    MeshDataLayoutDesc[] layoutDescs = new MeshDataLayoutDesc[meshCount];
+                    uint totalVertexCount = 0;
+                    uint totalIndexCount = 0;
+                    uint maxBufferCount = 0;
                     for (uint j = 0; j < meshCount; j++)
                     {
                         reader.Seek(def.GetFeaturePositionForIndex(FeatureType.MeshDefs, meshesStartIndex + j));
@@ -502,6 +550,19 @@ namespace Fox.Gr
                         ushort vertexCount = reader.ReadUInt16();
                         ushort verticesStartIndex = reader.ReadUInt16(); // Unconfirmed
 
+                        // Bone Group - TODO - Validate
+                        {
+                            long rewindPos = reader.BaseStream.Position;
+
+                            reader.Seek(def.GetFeaturePositionForIndex(FeatureType.BoneGroups, boneGroupIndex));
+
+                            ushort useWeightCount = reader.ReadUInt16();
+
+                            reader.Seek(rewindPos);
+                        }
+
+                        totalVertexCount += vertexCount;
+
                         reader.SkipPadding(2);
 
                         // TODO - Inc. validation
@@ -510,11 +571,9 @@ namespace Fox.Gr
 
                         uint iBufferSlicesStartIndex = iBufferSlicesGroupStartIndex + reader.ReadUInt32();
 
-                        reader.SkipPadding(20);
+                        totalIndexCount += highLodIBufferSliceCount;
 
-                        // Actually create mesh from FMDL buffers
-                        GameObject meshGameObject = new GameObject($"Mesh{meshesStartIndex + j:D4}");
-                        meshGameObject.transform.SetParent(meshGroup.transform);
+                        reader.SkipPadding(20);
 
                         reader.Seek(def.GetFeaturePositionForIndex(FeatureType.MeshDataLayoutDescs, dataLayoutDescIndex));
 
@@ -531,8 +590,7 @@ namespace Fox.Gr
 
                         ushort formatElementsStartIndex = reader.ReadUInt16(); if (formatElementCount > 0 && !def.ValidateFeatureIndex(FeatureType.MeshDataLayoutDescs, FeatureType.MeshBufferFormatElements, (uint)(formatElementsStartIndex + formatElementCount - 1))) return;
 
-                        ref MeshDataLayoutDesc layoutDesc = ref layoutDescs[j];
-                        layoutDesc = new MeshDataLayoutDesc { BufferDescs = new MeshBufferDesc[bufferCount] };
+                        MeshDataLayoutDesc layoutDesc = layoutDescs[j] = new MeshDataLayoutDesc { BufferDescs = new MeshBufferDesc[bufferCount] };
 
                         // MeshBufferHeader
                         uint internalFormatElementsIndex = 0;
@@ -541,6 +599,8 @@ namespace Fox.Gr
                             reader.Seek(def.GetFeaturePositionForIndex(FeatureType.MeshBufferHeaders, bufferHeadersStartIndex + k));
 
                             byte fileMeshBufferHeaderIndex = reader.ReadByte();
+                            if (fileMeshBufferHeaderIndex + 1 > maxBufferCount)
+                                maxBufferCount = fileMeshBufferHeaderIndex + 1u;
 
                             byte formatElementCountRelative = reader.ReadByte();
 
@@ -550,7 +610,7 @@ namespace Fox.Gr
 
                             uint offset = reader.ReadUInt32();
 
-                            layoutDesc.BufferDescs[k] = new MeshBufferDesc { Offset = offset, FileBufferIndex = fileMeshBufferHeaderIndex, Elements = new MeshBufferFormatElement[formatElementCountRelative] };
+                            layoutDesc.BufferDescs[k] = new MeshBufferDesc { Stride = stride, Offset = offset, FileBufferIndex = fileMeshBufferHeaderIndex, Elements = new MeshBufferFormatElement[formatElementCountRelative] };
 
                             // MeshBufferFormatElement
                             for (uint l = 0; l < formatElementCountRelative; l++)
@@ -565,11 +625,128 @@ namespace Fox.Gr
 
                                 ushort offsetRelative = reader.ReadUInt16();
 
-                                layoutDesc.BufferDescs[k].Elements[i] = new MeshBufferFormatElement { Usage = usage, Type = type, Offset = offsetRelative };
+                                layoutDesc.BufferDescs[k].Elements[l] = new MeshBufferFormatElement { Usage = usage, Type = type, Offset = offsetRelative };
                             }
                             internalFormatElementsIndex += formatElementCountRelative;
                         }
                     }
+
+                    BufferUploadHelper uploadHelper = new BufferUploadHelper(maxBufferCount, (uint)layoutDescs.LongLength);
+                    uploadHelper.Register(layoutDescs);
+
+                    // Unity Mesh
+                    Mesh mesh = new Mesh();
+                    mesh.name = meshGroup.name;
+                    Debug.Assert(totalVertexCount <= int.MaxValue);
+                    Debug.Assert(totalIndexCount <= int.MaxValue);
+                    mesh.SetVertexBufferParams((int)totalVertexCount, uploadHelper.GetDescriptorArray());
+                    mesh.SetIndexBufferParams((int)totalIndexCount, IndexFormat.UInt16);
+                    mesh.subMeshCount = meshCount;
+
+                    NativeArray<byte>[] outputBuffers = uploadHelper.CreateVertexBuffers(totalVertexCount);
+                    BoneWeight[] weightBuffer = new BoneWeight[totalVertexCount];
+
+                    uint vertexStart = 0;
+                    uint indexStart = 0;
+                    for (uint j = 0; j < meshCount; j++)
+                    {
+                        reader.Seek(def.GetFeaturePositionForIndex(FeatureType.MeshDefs, meshesStartIndex + j));
+
+                        uint flags = reader.ReadUInt32();
+
+                        ushort materialInstanceIndex = reader.ReadUInt16();
+
+                        ushort boneGroupIndex = reader.ReadUInt16();
+
+                        ushort dataLayoutDescIndex = reader.ReadUInt16();
+
+                        ushort vertexCount = reader.ReadUInt16();
+                        ushort verticesStartIndex = reader.ReadUInt16(); // TODO - Unconfirmed
+
+                        reader.SkipPadding(2);
+
+                        uint highLodIBufferSliceStartIndex = reader.ReadUInt32(); Debug.Assert(highLodIBufferSliceStartIndex <= int.MaxValue);
+                        uint highLodIBufferSliceCount = reader.ReadUInt32(); Debug.Assert(highLodIBufferSliceCount <= int.MaxValue);
+
+                        uint iBufferSlicesStartIndex = iBufferSlicesGroupStartIndex + reader.ReadUInt32();
+
+                        // Bone Group
+                        reader.Seek(def.GetFeaturePositionForIndex(FeatureType.BoneGroups, boneGroupIndex));
+
+                        ushort useWeightCount = reader.ReadUInt16();
+
+                        ushort boneCount = reader.ReadUInt16();
+
+                        Span<ushort> boneGroup = stackalloc ushort[32];
+                        for (int k = 0; k < boneCount; k++)
+                        {
+                            boneGroup[k] = reader.ReadUInt16();
+                        }
+                        
+                        // TODO - hack!
+                        for (uint k = 0; k < vertexBuffers.LongLength; k++)
+                        {
+                            uploadHelper.CopyVertexData(outputBuffers[k], k, j, vertexBuffers[k], layoutDescs[j].BufferDescs[k].Offset, layoutDescs[j].BufferDescs[k].Stride, vertexStart, vertexCount);
+                            mesh.SetVertexBufferData(outputBuffers[k], (int)vertexStart * (int)uploadHelper.GetOutputBufferStride(k), (int)vertexStart * (int)uploadHelper.GetOutputBufferStride(k), vertexCount * (int)uploadHelper.GetOutputBufferStride(k), (int)k, UpdateFlags | MeshUpdateFlags.DontNotifyMeshUsers);
+                        }
+
+                        // TODO - Even more of a hack!
+                        uploadHelper.CopyBoneWeights(weightBuffer, vertexBuffers[1], layoutDescs[j], layoutDescs[j].BufferDescs[1].Offset, layoutDescs[j].BufferDescs[1].Stride, vertexStart, vertexCount, boneGroup.Slice(0, boneCount));
+
+                        mesh.SetIndexBufferData(indexBuffer, (int)highLodIBufferSliceStartIndex * 2, (int)indexStart * 2, (int)highLodIBufferSliceCount * 2, UpdateFlags | MeshUpdateFlags.DontNotifyMeshUsers);
+
+                        mesh.SetSubMesh((int)j, new SubMeshDescriptor { topology = MeshTopology.Triangles, indexStart = (int)indexStart, indexCount = (int)highLodIBufferSliceCount, firstVertex = (int)vertexStart, vertexCount = vertexCount, baseVertex = (int)vertexStart }, UpdateFlags);
+
+                        vertexStart += vertexCount;
+                        indexStart += highLodIBufferSliceCount;
+                    }
+
+                    for (uint j = 0; j < weightBuffer.Length; j++)
+                    {
+                        if (weightBuffer[j].weight0 == 0 && weightBuffer[j].weight1 == 0)
+                            System.Diagnostics.Debugger.Break();
+                    }    
+                    mesh.boneWeights = weightBuffer;
+
+                    mesh.bounds = box;
+
+                    box.center = main.transform.worldToLocalMatrix * new Vector4(box.center.x, box.center.y, box.center.z, 1.0f);
+                    box.extents = main.transform.worldToLocalMatrix * box.extents;
+
+                    context.AddObjectToAsset(mesh.name, mesh);
+
+                    if (bones == null)
+                    {
+                        MeshFilter meshFilter = meshGroup.AddComponent<MeshFilter>();
+
+                        meshFilter.sharedMesh = mesh;
+
+                        MeshRenderer meshRenderer = meshGroup.AddComponent<MeshRenderer>();
+
+                        Material[] sharedMaterials = new Material[mesh.subMeshCount];
+                        for (uint j = 0; j < sharedMaterials.Length; j++)
+                            sharedMaterials[j] = defaultMaterial;
+
+                        meshRenderer.sharedMaterials = sharedMaterials;
+                    }
+                    else
+                    {
+                        mesh.bindposes = bindPoses;
+
+                        SkinnedMeshRenderer skinnedMeshRenderer = meshGroup.AddComponent<SkinnedMeshRenderer>();
+                        skinnedMeshRenderer.localBounds = box;
+                        skinnedMeshRenderer.bones = bones;
+                        skinnedMeshRenderer.sharedMesh = mesh;
+                        skinnedMeshRenderer.rootBone = bones[0];
+
+                        Material[] sharedMaterials = new Material[mesh.subMeshCount];
+                        for (uint j = 0; j < sharedMaterials.Length; j++)
+                            sharedMaterials[j] = defaultMaterial;
+
+                        skinnedMeshRenderer.sharedMaterials = sharedMaterials;
+                    }
+
+                    continue;
                 }
             }
 

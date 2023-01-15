@@ -7,15 +7,5 @@ namespace Fox.Core
     {
         [SerializeReference]
         public Entity Entity;
-
-        private void Awake()
-        {
-            Entity.Awake(this.gameObject);
-        }
-
-        private void Start()
-        {
-            Entity.Start(this.gameObject);
-        }
     }
 }
