@@ -30,7 +30,7 @@
                 new Fox.Core.PropertyInfo(
                     new Fox.Kernel.String("characterName"),
                     Fox.Core.PropertyInfo.PropertyType.String,
-                    64,
+                    72,
                     1,
                     Fox.Core.PropertyInfo.ContainerType.StaticArray,
                     Fox.Core.PropertyInfo.PropertyExport.EditorAndGame,

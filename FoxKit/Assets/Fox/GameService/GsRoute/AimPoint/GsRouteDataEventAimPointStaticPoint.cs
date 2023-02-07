@@ -30,7 +30,7 @@
                 new Fox.Core.PropertyInfo(
                     new Fox.Kernel.String("position"),
                     Fox.Core.PropertyInfo.PropertyType.Vector3,
-                    64,
+                    72,
                     1,
                     Fox.Core.PropertyInfo.ContainerType.StaticArray,
                     Fox.Core.PropertyInfo.PropertyExport.EditorAndGame,

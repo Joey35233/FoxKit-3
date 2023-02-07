@@ -188,7 +188,10 @@ namespace Fox.Editor
     {
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
         {
-            BindableElement genericField = (BindableElement)Activator.CreateInstance(typeof(EntityPtrField<>).MakeGenericType(new Type[] { fieldInfo.FieldType.GenericTypeArguments[0] }), new object[] { property.name });
+            var t = fieldInfo.FieldType;
+            var ta0 = t.GenericTypeArguments[0];
+            var ta1 = ta0.GenericTypeArguments[0];
+            BindableElement genericField = (BindableElement)Activator.CreateInstance(typeof(EntityPtrField<>).MakeGenericType(new Type[] { ta1 }), new object[] { property.name });
             genericField.BindProperty(property);
 
             genericField.Q(className: BaseField<float>.labelUssClassName).AddToClassList(PropertyField.labelUssClassName);

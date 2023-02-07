@@ -24,6 +24,7 @@ namespace Fox.GameService
     {
         private const float USHORT_QUANTA_PER_DEGREE = (ushort.MaxValue + 1) / 360f;
         private const float DEGREE_PER_USHORT_QUANTA = 360f / (ushort.MaxValue + 1);
+
         public UnityEngine.SceneManagement.Scene? Read(FileStreamReader reader)
         {
             var scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
@@ -217,6 +218,10 @@ namespace Fox.GameService
                             nodeEventEntity.dir = dir;
                         }
                     }
+
+                    if (nodeIndex > 0)
+                        edgeEntity.prevNode = EntityHandle.Get(routeEntity.nodes[nodeIndex - 1].Get());
+                    edgeEntity.prevNode = EntityHandle.Get(routeEntity.nodes[nodeIndex].Get());
                 }
             }
 
