@@ -2,7 +2,10 @@
 {
     public partial class GsRouteDataEventAimPointCharacter : GsRouteDataEventAimPoint
     {
+        // Properties
+        [field: UnityEngine.SerializeField]
         public Fox.Kernel.String characterName { get; set; }
+
         // PropertyInfo
         private static Fox.Core.EntityInfo classInfo;
         public static new Fox.Core.EntityInfo ClassInfo

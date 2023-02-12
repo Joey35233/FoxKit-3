@@ -10,10 +10,13 @@ namespace Fox.GameService
         // Properties
         [field: UnityEngine.SerializeField]
         public Fox.Kernel.String id { get; set; }
+
         [field: UnityEngine.SerializeField]
         public Fox.Core.EntityPtr<GsRouteDataEventAimPoint> aimPoint { get; set; }
+
         [field: UnityEngine.SerializeField]
         public Fox.Kernel.StaticArray<uint> extensions { get; set; } = new Fox.Kernel.StaticArray<uint>(4);
+
         // PropertyInfo
         private static Fox.Core.EntityInfo classInfo;
         public static new Fox.Core.EntityInfo ClassInfo
@@ -41,7 +44,7 @@ namespace Fox.GameService
                 new Fox.Core.PropertyInfo(
                     new Fox.Kernel.String("id"), 
                     Fox.Core.PropertyInfo.PropertyType.String, 
-                    64, 
+                    64,
                     1,
                     Fox.Core.PropertyInfo.ContainerType.StaticArray, 
                     Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, 
@@ -56,12 +59,12 @@ namespace Fox.GameService
                 new Fox.Core.PropertyInfo(
                     new Fox.Kernel.String("aimPoint"), 
                     Fox.Core.PropertyInfo.PropertyType.EntityPtr, 
-                    80, 
+                    72, 
                     1, 
                     Fox.Core.PropertyInfo.ContainerType.StaticArray, 
                     Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, 
-                    Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, 
-                    null, 
+                    Fox.Core.PropertyInfo.PropertyExport.EditorAndGame,
+                    typeof(GsRouteDataEventAimPoint), 
                     null, 
                     Fox.Core.PropertyInfo.PropertyStorage.Instance, 
                     Fox.Core.PropertyInfo.BackingType.Field
@@ -71,7 +74,7 @@ namespace Fox.GameService
                 new Fox.Core.PropertyInfo(
                     new Fox.Kernel.String("extensions"),
                     Fox.Core.PropertyInfo.PropertyType.UInt32,
-                    64,
+                    80,
                     4, //count?
                     Fox.Core.PropertyInfo.ContainerType.StaticArray,
                     Fox.Core.PropertyInfo.PropertyExport.EditorAndGame,

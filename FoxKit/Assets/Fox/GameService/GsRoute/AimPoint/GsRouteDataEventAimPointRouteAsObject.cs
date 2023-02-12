@@ -2,7 +2,10 @@
 {
     public partial class GsRouteDataEventAimPointRouteAsObject : GsRouteDataEventAimPoint
     {
+        // Properties
+        [field: UnityEngine.SerializeField]
         public Fox.Kernel.StaticArray<Fox.Kernel.String> routeNames { get; set; } = new Fox.Kernel.StaticArray<Fox.Kernel.String>(4);
+
         // PropertyInfo
         private static Fox.Core.EntityInfo classInfo;
         public static new Fox.Core.EntityInfo ClassInfo
@@ -31,7 +34,7 @@
                     new Fox.Kernel.String("routeNames"),
                     Fox.Core.PropertyInfo.PropertyType.String,
                     64,
-                    1,
+                    4,
                     Fox.Core.PropertyInfo.ContainerType.DynamicArray,
                     Fox.Core.PropertyInfo.PropertyExport.EditorAndGame,
                     Fox.Core.PropertyInfo.PropertyExport.EditorAndGame,

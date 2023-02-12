@@ -5,12 +5,13 @@
         // Properties
         [field: UnityEngine.SerializeField]
         public bool isLoop { get; set; }
-        // Properties
+
         [field: UnityEngine.SerializeField]
         public float time { get; set; }
-        // Properties
+
         [field: UnityEngine.SerializeField]
         public float dir { get; set; }
+
         // PropertyInfo
         private static Fox.Core.EntityInfo classInfo;
         public static new Fox.Core.EntityInfo ClassInfo
@@ -38,7 +39,7 @@
                 new Fox.Core.PropertyInfo(
                     new Fox.Kernel.String("isLoop"),
                     Fox.Core.PropertyInfo.PropertyType.Bool,
-                    64,
+                    84,
                     1,
                     Fox.Core.PropertyInfo.ContainerType.StaticArray,
                     Fox.Core.PropertyInfo.PropertyExport.EditorAndGame,
@@ -53,7 +54,7 @@
                 new Fox.Core.PropertyInfo(
                     new Fox.Kernel.String("time"),
                     Fox.Core.PropertyInfo.PropertyType.Float,
-                    64,
+                    88,
                     1,
                     Fox.Core.PropertyInfo.ContainerType.StaticArray,
                     Fox.Core.PropertyInfo.PropertyExport.EditorAndGame,
@@ -68,7 +69,7 @@
                 new Fox.Core.PropertyInfo(
                     new Fox.Kernel.String("dir"),
                     Fox.Core.PropertyInfo.PropertyType.Float,
-                    64,
+                    92,
                     1,
                     Fox.Core.PropertyInfo.ContainerType.StaticArray,
                     Fox.Core.PropertyInfo.PropertyExport.EditorAndGame,

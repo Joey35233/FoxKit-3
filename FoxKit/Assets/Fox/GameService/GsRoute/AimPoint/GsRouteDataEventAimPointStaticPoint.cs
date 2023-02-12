@@ -2,7 +2,10 @@
 {
     public partial class GsRouteDataEventAimPointStaticPoint : GsRouteDataEventAimPoint
     {
+        // Properties
+        [field: UnityEngine.SerializeField]
         public UnityEngine.Vector3 position { get; set; }
+
         // PropertyInfo
         private static Fox.Core.EntityInfo classInfo;
         public static new Fox.Core.EntityInfo ClassInfo

@@ -8,6 +8,7 @@
         ROUTE_AIM_ROUTE_AS_SIGHT_MOVE_PATH = 3,
         ROUTE_AIM_ROUTE_AS_OBJECT = 4,
     }
+
     public partial class GsRouteDataEventAimPoint : Fox.Core.DataElement
     {
         // PropertyInfo
