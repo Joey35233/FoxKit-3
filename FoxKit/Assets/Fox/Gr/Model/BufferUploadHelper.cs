@@ -116,7 +116,7 @@ namespace Fox.Gr
 
                             // Later, the fox bone weights, which rely on 32-bone groups, will be unpacked to an "absolute" index.
                             ushort outputSize = size;
-                            if (element.Usage == MeshBufferFormatElementUsage.BoneIndex0 || element.Usage == MeshBufferFormatElementUsage.BoneWeight0)
+                            if (element.Usage == MeshBufferFormatElementUsage.BoneIndex0 || element.Usage == MeshBufferFormatElementUsage.BoneWeight0 || element.Usage == MeshBufferFormatElementUsage.BoneIndex1 || element.Usage == MeshBufferFormatElementUsage.BoneWeight1)
                                 continue;
                             //if (element.Usage == MeshBufferFormatElementUsage.BoneIndex0)
                             //{
