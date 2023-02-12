@@ -1,11 +1,18 @@
 ﻿using Fox.Core;
+using PlasticPipe.PlasticProtocol.Messages;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Numerics;
+using System.Text;
+using System.Threading.Tasks;
+
 namespace Fox.GameService
 {
     public class GsRouteDataNode : Fox.Graphx.GraphxSpatialGraphDataNode
     {
         [field: UnityEngine.SerializeField]
         public Fox.Kernel.DynamicArray<EntityPtr<GsRouteDataNodeEvent>> nodeEvents { get; set; } = new Fox.Kernel.DynamicArray<EntityPtr<GsRouteDataNodeEvent>>();
-        
         // PropertyInfo
         private static Fox.Core.EntityInfo classInfo;
         public static new Fox.Core.EntityInfo ClassInfo
@@ -33,12 +40,12 @@ namespace Fox.GameService
                 new Fox.Core.PropertyInfo(
                     new Fox.Kernel.String("nodeEvents"),
                     Fox.Core.PropertyInfo.PropertyType.EntityPtr,
-                    112,
+                    80,
                     1,
                     Fox.Core.PropertyInfo.ContainerType.DynamicArray,
                     Fox.Core.PropertyInfo.PropertyExport.EditorAndGame,
                     Fox.Core.PropertyInfo.PropertyExport.EditorAndGame,
-                    typeof(GsRouteDataNodeEvent),
+                    null,
                     null,
                     Fox.Core.PropertyInfo.PropertyStorage.Instance,
                     Fox.Core.PropertyInfo.BackingType.Field

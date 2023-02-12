@@ -40,12 +40,12 @@ namespace Fox.GameService
                 new Fox.Core.PropertyInfo(
                     new Fox.Kernel.String("edgeEvent"),
                     Fox.Core.PropertyInfo.PropertyType.EntityPtr,
-                    72,
+                    80,
                     1,
                     Fox.Core.PropertyInfo.ContainerType.StaticArray,
                     Fox.Core.PropertyInfo.PropertyExport.EditorAndGame,
                     Fox.Core.PropertyInfo.PropertyExport.EditorAndGame,
-                    typeof(GsRouteDataEdgeEvent),
+                    null,
                     null,
                     Fox.Core.PropertyInfo.PropertyStorage.Instance,
                     Fox.Core.PropertyInfo.BackingType.Field

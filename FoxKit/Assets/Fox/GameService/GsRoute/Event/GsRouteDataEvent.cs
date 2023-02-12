@@ -61,7 +61,7 @@ namespace Fox.GameService
                     Fox.Core.PropertyInfo.ContainerType.StaticArray, 
                     Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, 
                     Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, 
-                    typeof(GsRouteDataEventAimPoint), 
+                    null, 
                     null, 
                     Fox.Core.PropertyInfo.PropertyStorage.Instance, 
                     Fox.Core.PropertyInfo.BackingType.Field
