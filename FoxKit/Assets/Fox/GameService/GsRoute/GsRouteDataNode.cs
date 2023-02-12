@@ -11,6 +11,7 @@ namespace Fox.GameService
 {
     public class GsRouteDataNode : Fox.Graphx.GraphxSpatialGraphDataNode
     {
+        // Properties
         [field: UnityEngine.SerializeField]
         public Fox.Kernel.DynamicArray<EntityPtr<GsRouteDataNodeEvent>> nodeEvents { get; set; } = new Fox.Kernel.DynamicArray<EntityPtr<GsRouteDataNodeEvent>>();
 

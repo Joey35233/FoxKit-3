@@ -14,7 +14,6 @@ namespace Fox.GameService
 {
     public class GsRouteData : Fox.Graphx.GraphxSpatialGraphData
     {
-        // Properties
         // PropertyInfo
         private static Fox.Core.EntityInfo classInfo;
         public static new Fox.Core.EntityInfo ClassInfo
@@ -33,7 +32,7 @@ namespace Fox.GameService
             classInfo = new Fox.Core.EntityInfo(
                 new Fox.Kernel.String("GsRouteData"), 
                 typeof(GsRouteData), 
-                new Fox.Graphx.GraphxPathData().GetClassEntityInfo(), 
+                new Fox.Graphx.GraphxSpatialGraphData().GetClassEntityInfo(), 
                 320, 
                 "Gs", 
                 1

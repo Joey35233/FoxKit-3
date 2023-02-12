@@ -30,7 +30,7 @@
             classInfo = new Fox.Core.EntityInfo(
                 new Fox.Kernel.String("GsRouteDataNodeEvent"),
                 typeof(GsRouteDataNodeEvent),
-                new Fox.Graphx.GraphxSpatialGraphDataEdge().GetClassEntityInfo(),
+                new Fox.GameService.GsRouteDataEvent().GetClassEntityInfo(),
                 56,
                 "Gs",
                 0

@@ -20,7 +20,7 @@
             classInfo = new Fox.Core.EntityInfo(
                 new Fox.Kernel.String("GsRouteDataEventAimPointNoTarget"),
                 typeof(GsRouteDataEventAimPointNoTarget),
-                new Fox.Graphx.GraphxSpatialGraphDataEdge().GetClassEntityInfo(),
+                new Fox.GameService.GsRouteDataEventAimPoint().GetClassEntityInfo(),
                 56,
                 "Gs",
                 0

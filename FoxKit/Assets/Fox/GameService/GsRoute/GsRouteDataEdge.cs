@@ -11,6 +11,7 @@ namespace Fox.GameService
 {
     public class GsRouteDataEdge : Fox.Graphx.GraphxSpatialGraphDataEdge
     {
+        // Properties
         [field: UnityEngine.SerializeField]
         public EntityPtr<GsRouteDataEdgeEvent> edgeEvent { get; set; }
 
