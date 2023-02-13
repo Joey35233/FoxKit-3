@@ -75,7 +75,7 @@ namespace Fox.GameService
                     new Fox.Kernel.String("extensions"),
                     Fox.Core.PropertyInfo.PropertyType.UInt32,
                     80,
-                    4, //count?
+                    4,
                     Fox.Core.PropertyInfo.ContainerType.StaticArray,
                     Fox.Core.PropertyInfo.PropertyExport.EditorAndGame,
                     Fox.Core.PropertyInfo.PropertyExport.EditorAndGame,

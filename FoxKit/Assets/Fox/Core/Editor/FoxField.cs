@@ -99,7 +99,7 @@ namespace Fox.Editor
                     return () => new EntityHandleField();
 
                 case Type type when type.IsGenericType && type.GetGenericTypeDefinition() == typeof(EntityPtr<>):
-                    return () => Activator.CreateInstance(typeof(EntityPtrField<>).MakeGenericType(new Type[] { type.GenericTypeArguments[0] })) as IFoxField;
+                    return () => Activator.CreateInstance(typeof(EntityPtrField<>).MakeGenericType(type.GenericTypeArguments)) as IFoxField;
 
                 case Type type when type == typeof(Matrix4x4):
                     return () => new Matrix4Field();
@@ -174,7 +174,7 @@ namespace Fox.Editor
                     return () => new EntityHandleField("p");
 
                 case Type type when type.IsGenericType && type.GetGenericTypeDefinition() == typeof(EntityPtr<>):
-                    return () => Activator.CreateInstance(typeof(EntityPtrField<>).MakeGenericType(new Type[] { type.GenericTypeArguments[0] }), new object[] { "p" }) as IFoxField;
+                    return () => Activator.CreateInstance(typeof(EntityPtrField<>).MakeGenericType(type.GenericTypeArguments[0]), new object[] { "p" }) as IFoxField;
 
                 case Type type when type == typeof(Matrix4x4):
                     return () => new Matrix4Field("p");
@@ -186,7 +186,7 @@ namespace Fox.Editor
                     return type.IsDefined(typeof(FlagsAttribute), inherit: false) ? () => new EnumFlagsField("p") : () => new EnumField("p");
 
                 case Type type when type.IsGenericType && type.GetGenericTypeDefinition() == typeof(StaticArray<>):
-                    return () => Activator.CreateInstance(typeof(StaticArrayField<>).MakeGenericType(new Type[] { type.GenericTypeArguments[0] }), new object[] { "p" }) as IFoxField;
+                    return () => Activator.CreateInstance(typeof(StaticArrayField<>).MakeGenericType(type.GenericTypeArguments), new object[] { "p" }) as IFoxField;
 
                 default:
                     throw new ArgumentException($"Invalid Fox type: {propertyType}.");

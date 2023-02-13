@@ -99,7 +99,7 @@ namespace Fox.Editor
     {
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
         {
-            VisualElement genericField = (VisualElement)Activator.CreateInstance(typeof(StaticArrayField<>).MakeGenericType(new Type[] { fieldInfo.FieldType.GenericTypeArguments[0] }), new object[] { property.name });
+            VisualElement genericField = (VisualElement)Activator.CreateInstance(typeof(StaticArrayField<>).MakeGenericType(fieldInfo.FieldType.GenericTypeArguments), new object[] { property.name });
             (genericField as IFoxField).BindProperty(property);
 
             genericField.Q(className: BaseField<float>.labelUssClassName).AddToClassList(PropertyField.labelUssClassName);
