@@ -1,14 +1,6 @@
 ﻿using Fox.Core;
 using Fox.Fio;
 using Fox.Graphx;
-using Fox.Kernel;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Runtime.Remoting.Messaging;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
@@ -20,10 +12,12 @@ namespace Fox.GameService
         GZ = 2,
         TPP = 3,
     }
+
     public class GsRouteSetReader
     {
         private const float USHORT_QUANTA_PER_DEGREE = (ushort.MaxValue + 1) / 360f;
         private const float DEGREE_PER_USHORT_QUANTA = 360f / (ushort.MaxValue + 1);
+
         public UnityEngine.SceneManagement.Scene? Read(FileStreamReader reader)
         {
             var scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
