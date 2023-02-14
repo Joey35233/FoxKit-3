@@ -2,22 +2,15 @@
 {
     public partial class GsRouteDataEventAimPointNoTarget : GsRouteDataEventAimPoint
     {
-        // PropertyInfo
-        private static Fox.Core.EntityInfo classInfo;
         public static new Fox.Core.EntityInfo ClassInfo
         {
-            get
-            {
-                return classInfo;
-            }
+            get;
+            private set;
         }
-        public override Fox.Core.EntityInfo GetClassEntityInfo()
-        {
-            return classInfo;
-        }
+        public override Fox.Core.EntityInfo GetClassEntityInfo() => ClassInfo;
         static GsRouteDataEventAimPointNoTarget()
         {
-            classInfo = new Fox.Core.EntityInfo(
+            ClassInfo = new Fox.Core.EntityInfo(
                 new Fox.Kernel.String("GsRouteDataEventAimPointNoTarget"),
                 typeof(GsRouteDataEventAimPointNoTarget),
                 new Fox.GameService.GsRouteDataEventAimPoint().GetClassEntityInfo(),

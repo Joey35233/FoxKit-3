@@ -1,27 +1,23 @@
-﻿namespace Fox.GameService
+namespace Fox.GameService
 {
     public partial class GsRouteDataEventAimPointCharacter : GsRouteDataEventAimPoint
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Kernel.String characterName { get; set; }
+        public Fox.Kernel.String characterName
+        {
+            get; set;
+        }
 
-        // PropertyInfo
-        private static Fox.Core.EntityInfo classInfo;
         public static new Fox.Core.EntityInfo ClassInfo
         {
-            get
-            {
-                return classInfo;
-            }
+            get;
+            private set;
         }
-        public override Fox.Core.EntityInfo GetClassEntityInfo()
-        {
-            return classInfo;
-        }
+        public override Fox.Core.EntityInfo GetClassEntityInfo() => ClassInfo;
         static GsRouteDataEventAimPointCharacter()
         {
-            classInfo = new Fox.Core.EntityInfo(
+            ClassInfo = new Fox.Core.EntityInfo(
                 new Fox.Kernel.String("GsRouteDataEventAimPointCharacter"),
                 typeof(GsRouteDataEventAimPointCharacter),
                 new Fox.GameService.GsRouteDataEventAimPoint().GetClassEntityInfo(),
@@ -29,7 +25,7 @@
                 "Gs",
                 0
             );
-            classInfo.AddStaticProperty(
+            ClassInfo.AddStaticProperty(
                 new Fox.Core.PropertyInfo(
                     new Fox.Kernel.String("characterName"),
                     Fox.Core.PropertyInfo.PropertyType.String,
@@ -55,7 +51,7 @@
             switch (propertyName.CString)
             {
                 case "characterName":
-                    this.characterName = value.GetValueAsString();
+                    characterName = value.GetValueAsString();
                     return;
                 default:
                     base.SetProperty(propertyName, value);

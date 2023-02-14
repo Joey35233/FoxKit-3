@@ -1,33 +1,35 @@
-﻿namespace Fox.GameService
+namespace Fox.GameService
 {
     public partial class GsRouteDataNodeEvent : GsRouteDataEvent
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public bool isLoop { get; set; }
+        public bool isLoop
+        {
+            get; set;
+        }
 
         [field: UnityEngine.SerializeField]
-        public float time { get; set; }
+        public float time
+        {
+            get; set;
+        }
 
         [field: UnityEngine.SerializeField]
-        public float dir { get; set; }
+        public float dir
+        {
+            get; set;
+        }
 
-        // PropertyInfo
-        private static Fox.Core.EntityInfo classInfo;
         public static new Fox.Core.EntityInfo ClassInfo
         {
-            get
-            {
-                return classInfo;
-            }
+            get;
+            private set;
         }
-        public override Fox.Core.EntityInfo GetClassEntityInfo()
-        {
-            return classInfo;
-        }
+        public override Fox.Core.EntityInfo GetClassEntityInfo() => ClassInfo;
         static GsRouteDataNodeEvent()
         {
-            classInfo = new Fox.Core.EntityInfo(
+            ClassInfo = new Fox.Core.EntityInfo(
                 new Fox.Kernel.String("GsRouteDataNodeEvent"),
                 typeof(GsRouteDataNodeEvent),
                 new Fox.GameService.GsRouteDataEvent().GetClassEntityInfo(),
@@ -35,7 +37,7 @@
                 "Gs",
                 0
             );
-            classInfo.AddStaticProperty(
+            ClassInfo.AddStaticProperty(
                 new Fox.Core.PropertyInfo(
                     new Fox.Kernel.String("isLoop"),
                     Fox.Core.PropertyInfo.PropertyType.Bool,
@@ -50,7 +52,7 @@
                     Fox.Core.PropertyInfo.BackingType.Field
                 )
             );
-            classInfo.AddStaticProperty(
+            ClassInfo.AddStaticProperty(
                 new Fox.Core.PropertyInfo(
                     new Fox.Kernel.String("time"),
                     Fox.Core.PropertyInfo.PropertyType.Float,
@@ -65,7 +67,7 @@
                     Fox.Core.PropertyInfo.BackingType.Field
                 )
             );
-            classInfo.AddStaticProperty(
+            ClassInfo.AddStaticProperty(
                 new Fox.Core.PropertyInfo(
                     new Fox.Kernel.String("dir"),
                     Fox.Core.PropertyInfo.PropertyType.Float,
@@ -91,13 +93,13 @@
             switch (propertyName.CString)
             {
                 case "isLoop":
-                    this.isLoop = value.GetValueAsBool();
+                    isLoop = value.GetValueAsBool();
                     return;
                 case "time":
-                    this.time = value.GetValueAsFloat();
+                    time = value.GetValueAsFloat();
                     return;
                 case "dir":
-                    this.dir = value.GetValueAsFloat();
+                    dir = value.GetValueAsFloat();
                     return;
                 default:
                     base.SetProperty(propertyName, value);

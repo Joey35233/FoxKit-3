@@ -11,22 +11,15 @@
 
     public partial class GsRouteDataEventAimPoint : Fox.Core.DataElement
     {
-        // PropertyInfo
-        private static Fox.Core.EntityInfo classInfo;
         public static new Fox.Core.EntityInfo ClassInfo
         {
-            get
-            {
-                return classInfo;
-            }
+            get;
+            private set;
         }
-        public override Fox.Core.EntityInfo GetClassEntityInfo()
-        {
-            return classInfo;
-        }
+        public override Fox.Core.EntityInfo GetClassEntityInfo() => ClassInfo;
         static GsRouteDataEventAimPoint()
         {
-            classInfo = new Fox.Core.EntityInfo(
+            ClassInfo = new Fox.Core.EntityInfo(
                 new Fox.Kernel.String("GsRouteDataEventAimPoint"),
                 typeof(GsRouteDataEventAimPoint),
                 new Fox.Core.DataElement().GetClassEntityInfo(),

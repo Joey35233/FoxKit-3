@@ -1,11 +1,4 @@
-﻿using Fox.Core;
-using PlasticPipe.PlasticProtocol.Messages;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
+using Fox.Core;
 
 namespace Fox.GameService
 {
@@ -15,30 +8,23 @@ namespace Fox.GameService
         [field: UnityEngine.SerializeField]
         public Fox.Kernel.DynamicArray<EntityPtr<GsRouteDataNodeEvent>> nodeEvents { get; set; } = new Fox.Kernel.DynamicArray<EntityPtr<GsRouteDataNodeEvent>>();
 
-        // PropertyInfo
-        private static Fox.Core.EntityInfo classInfo;
         public static new Fox.Core.EntityInfo ClassInfo
         {
-            get
-            {
-                return classInfo;
-            }
+            get;
+            private set;
         }
-        public override Fox.Core.EntityInfo GetClassEntityInfo()
-        {
-            return classInfo;
-        }
+        public override Fox.Core.EntityInfo GetClassEntityInfo() => ClassInfo;
         static GsRouteDataNode()
         {
-            classInfo = new Fox.Core.EntityInfo(
-                new Fox.Kernel.String("GsRouteDataNode"), 
-                typeof(GsRouteDataNode), 
-                new Fox.Graphx.GraphxSpatialGraphDataNode().GetClassEntityInfo(), 
+            ClassInfo = new Fox.Core.EntityInfo(
+                new Fox.Kernel.String("GsRouteDataNode"),
+                typeof(GsRouteDataNode),
+                new Fox.Graphx.GraphxSpatialGraphDataNode().GetClassEntityInfo(),
                 96,
-                "Gs", 
+                "Gs",
                 0
             );
-            classInfo.AddStaticProperty(
+            ClassInfo.AddStaticProperty(
                 new Fox.Core.PropertyInfo(
                     new Fox.Kernel.String("nodeEvents"),
                     Fox.Core.PropertyInfo.PropertyType.EntityPtr,
@@ -74,8 +60,11 @@ namespace Fox.GameService
             switch (propertyName.CString)
             {
                 case "nodeEvents":
-                    while (this.nodeEvents.Count <= index) { this.nodeEvents.Add(default(EntityPtr<GsRouteDataNodeEvent>)); }
-                    this.nodeEvents[index] = value.GetValueAsEntityPtr<GsRouteDataNodeEvent>();
+                    while (nodeEvents.Count <= index)
+                    {
+                        nodeEvents.Add(default);
+                    }
+                    nodeEvents[index] = value.GetValueAsEntityPtr<GsRouteDataNodeEvent>();
                     return;
                 default:
                     base.SetPropertyElement(propertyName, index, value);

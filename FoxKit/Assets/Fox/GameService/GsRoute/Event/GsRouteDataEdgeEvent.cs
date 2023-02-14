@@ -1,23 +1,16 @@
-﻿namespace Fox.GameService
+namespace Fox.GameService
 {
     public partial class GsRouteDataEdgeEvent : GsRouteDataEvent
     {
-        // PropertyInfo
-        private static Fox.Core.EntityInfo classInfo;
         public static new Fox.Core.EntityInfo ClassInfo
         {
-            get
-            {
-                return classInfo;
-            }
+            get;
+            private set;
         }
-        public override Fox.Core.EntityInfo GetClassEntityInfo()
-        {
-            return classInfo;
-        }
+        public override Fox.Core.EntityInfo GetClassEntityInfo() => ClassInfo;
         static GsRouteDataEdgeEvent()
         {
-            classInfo = new Fox.Core.EntityInfo(
+            ClassInfo = new Fox.Core.EntityInfo(
                 new Fox.Kernel.String("GsRouteDataEdgeEvent"),
                 typeof(GsRouteDataEdgeEvent),
                 new Fox.GameService.GsRouteDataEvent().GetClassEntityInfo(),

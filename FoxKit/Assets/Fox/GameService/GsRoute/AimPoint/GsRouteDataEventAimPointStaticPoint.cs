@@ -1,27 +1,23 @@
-﻿namespace Fox.GameService
+namespace Fox.GameService
 {
     public partial class GsRouteDataEventAimPointStaticPoint : GsRouteDataEventAimPoint
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public UnityEngine.Vector3 position { get; set; }
+        public UnityEngine.Vector3 position
+        {
+            get; set;
+        }
 
-        // PropertyInfo
-        private static Fox.Core.EntityInfo classInfo;
         public static new Fox.Core.EntityInfo ClassInfo
         {
-            get
-            {
-                return classInfo;
-            }
+            get;
+            private set;
         }
-        public override Fox.Core.EntityInfo GetClassEntityInfo()
-        {
-            return classInfo;
-        }
+        public override Fox.Core.EntityInfo GetClassEntityInfo() => ClassInfo;
         static GsRouteDataEventAimPointStaticPoint()
         {
-            classInfo = new Fox.Core.EntityInfo(
+            ClassInfo = new Fox.Core.EntityInfo(
                 new Fox.Kernel.String("GsRouteDataEventAimPointStaticPoint"),
                 typeof(GsRouteDataEventAimPointStaticPoint),
                 new Fox.GameService.GsRouteDataEventAimPoint().GetClassEntityInfo(),
@@ -29,7 +25,7 @@
                 "Gs",
                 0
             );
-            classInfo.AddStaticProperty(
+            ClassInfo.AddStaticProperty(
                 new Fox.Core.PropertyInfo(
                     new Fox.Kernel.String("position"),
                     Fox.Core.PropertyInfo.PropertyType.Vector3,
@@ -55,7 +51,7 @@
             switch (propertyName.CString)
             {
                 case "position":
-                    this.position = value.GetValueAsVector3();
+                    position = value.GetValueAsVector3();
                     return;
                 default:
                     base.SetProperty(propertyName, value);

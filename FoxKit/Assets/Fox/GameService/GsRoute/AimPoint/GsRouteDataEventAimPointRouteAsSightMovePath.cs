@@ -1,4 +1,4 @@
-﻿namespace Fox.GameService
+namespace Fox.GameService
 {
     public partial class GsRouteDataEventAimPointRouteAsSightMovePath : GsRouteDataEventAimPoint
     {
@@ -6,22 +6,15 @@
         [field: UnityEngine.SerializeField]
         public Fox.Kernel.StaticArray<Fox.Kernel.String> routeNames { get; set; } = new Fox.Kernel.StaticArray<Fox.Kernel.String>(4);
 
-        // PropertyInfo
-        private static Fox.Core.EntityInfo classInfo;
         public static new Fox.Core.EntityInfo ClassInfo
         {
-            get
-            {
-                return classInfo;
-            }
+            get;
+            private set;
         }
-        public override Fox.Core.EntityInfo GetClassEntityInfo()
-        {
-            return classInfo;
-        }
+        public override Fox.Core.EntityInfo GetClassEntityInfo() => ClassInfo;
         static GsRouteDataEventAimPointRouteAsSightMovePath()
         {
-            classInfo = new Fox.Core.EntityInfo(
+            ClassInfo = new Fox.Core.EntityInfo(
                 new Fox.Kernel.String("GsRouteDataEventAimPointRouteAsSightMovePath"),
                 typeof(GsRouteDataEventAimPointRouteAsSightMovePath),
                 new Fox.GameService.GsRouteDataEventAimPoint().GetClassEntityInfo(),
@@ -29,7 +22,7 @@
                 "Gs",
                 0
             );
-            classInfo.AddStaticProperty(
+            ClassInfo.AddStaticProperty(
                 new Fox.Core.PropertyInfo(
                     new Fox.Kernel.String("routeNames"),
                     Fox.Core.PropertyInfo.PropertyType.String,
@@ -65,8 +58,11 @@
             switch (propertyName.CString)
             {
                 case "routeNames":
-                    while (this.routeNames.Count <= index) { this.routeNames.Add(default(Fox.Kernel.String)); }
-                    this.routeNames[index] = value.GetValueAsString();
+                    while (routeNames.Count <= index)
+                    {
+                        routeNames.Add(default);
+                    }
+                    routeNames[index] = value.GetValueAsString();
                     return;
                 default:
                     base.SetPropertyElement(propertyName, index, value);
