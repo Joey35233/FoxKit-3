@@ -95,57 +95,90 @@ namespace Fox.Core
         /// <summary>
         /// Name of the property.
         /// </summary>
-        public String Name { get; }
+        public String Name
+        {
+            get;
+        }
 
         /// <summary>
         /// Type of data stored in the property.
         /// </summary>
-        public PropertyType Type { get; }
+        public PropertyType Type
+        {
+            get;
+        }
 
         /// <summary>
         /// Offset at which the property's value is stored in C++.
         /// </summary>
-        public uint Offset { get; }
+        public uint Offset
+        {
+            get;
+        }
 
         /// <summary>
         /// Whether the property has an actual data backing or is merely an accessor getter and/or setter function.
         /// </summary>
-        public BackingType Backing { get; }
+        public BackingType Backing
+        {
+            get;
+        }
 
         /// <summary>
         /// Only used for StaticArrays to indicate the number of elements in the array.
         /// </summary>
-        public uint ArraySize { get; }
+        public uint ArraySize
+        {
+            get;
+        }
 
         /// <summary>
         /// Type of container storing the property's values.
         /// </summary>
-        public ContainerType Container { get; }
+        public ContainerType Container
+        {
+            get;
+        }
 
         /// <summary>
         /// Unknown.
         /// </summary>
-        public PropertyStorage Storage { get; }
+        public PropertyStorage Storage
+        {
+            get;
+        }
 
         /// <summary>
         /// Type of Entity pointed to for EntityPtr properties.
         /// </summary>
-        public Type PtrType { get; }
+        public Type PtrType
+        {
+            get;
+        }
 
         /// <summary>
         /// Type of enum pointed to for uint32 or int32 properties.
         /// </summary>
-        public Type Enum { get; }
+        public Type Enum
+        {
+            get;
+        }
 
         /// <summary>
         /// Whether or not the property is visible.
         /// </summary>
-        public PropertyExport Readable { get; }
+        public PropertyExport Readable
+        {
+            get;
+        }
 
         /// <summary>
         /// Whether or not the property can be written to.
         /// </summary>
-        public PropertyExport Writable { get; }
+        public PropertyExport Writable
+        {
+            get;
+        }
 
         public PropertyInfo
         (
@@ -162,100 +195,51 @@ namespace Fox.Core
             BackingType backing = BackingType.Field
         )
         {
-            this.Name = name;
-            this.Type = type;
-            this.Offset = offset;
-            this.Backing = backing;
-            this.ArraySize = arraySize;
-            this.Container = container;
-            this.Storage = storage;
-            this.PtrType = ptrType;
-            this.Enum = enumType;
-            this.Readable = readable;
-            this.Writable = writable;
+            Name = name;
+            Type = type;
+            Offset = offset;
+            Backing = backing;
+            ArraySize = arraySize;
+            Container = container;
+            Storage = storage;
+            PtrType = ptrType;
+            Enum = enumType;
+            Readable = readable;
+            Writable = writable;
         }
 
         public static Type GetTypeFromPropertyInfo(PropertyInfo propertyInfo)
         {
             PropertyType propertyType = propertyInfo.Type;
 
-            if (propertyInfo.Enum != null)
-                return propertyInfo.Enum;
-
-            switch (propertyType)
+            return propertyInfo.Enum ?? propertyType switch
             {
-                case PropertyType.Int8:
-                    return typeof(System.SByte);
-
-                case PropertyType.UInt8:
-                    return typeof(System.Byte);
-
-                case PropertyType.Int16:
-                    return typeof(System.Int16);
-
-                case PropertyType.UInt16:
-                    return typeof(System.UInt16);
-
-                case PropertyType.Int32:
-                    return typeof(System.Int32);
-
-                case PropertyType.UInt32:
-                    return typeof(System.UInt32);
-
-                case PropertyType.Int64:
-                    return typeof(System.Int64);
-
-                case PropertyType.UInt64:
-                    return typeof(System.UInt64);
-
-                case PropertyType.Float:
-                    return typeof(System.Single);
-
-                case PropertyType.Double:
-                    return typeof(System.Double);
-
-                case PropertyType.Bool:
-                    return typeof(bool);
-
-                case PropertyType.String:
-                    return typeof(Fox.Kernel.String);
-
-                case PropertyType.Path:
-                    return typeof(Fox.Kernel.Path);
-
-                case PropertyType.EntityPtr:
-                    return typeof(EntityPtr<>).MakeGenericType(new Type[] { propertyInfo.PtrType });
-
-                case PropertyType.Vector3:
-                    return typeof(UnityEngine.Vector3);
-
-                case PropertyType.Vector4:
-                    return typeof(UnityEngine.Vector4);
-
-                case PropertyType.Quat:
-                    return typeof(UnityEngine.Quaternion);
-
+                PropertyType.Int8 => typeof(sbyte),
+                PropertyType.UInt8 => typeof(byte),
+                PropertyType.Int16 => typeof(short),
+                PropertyType.UInt16 => typeof(ushort),
+                PropertyType.Int32 => typeof(int),
+                PropertyType.UInt32 => typeof(uint),
+                PropertyType.Int64 => typeof(long),
+                PropertyType.UInt64 => typeof(ulong),
+                PropertyType.Float => typeof(float),
+                PropertyType.Double => typeof(double),
+                PropertyType.Bool => typeof(bool),
+                PropertyType.String => typeof(Fox.Kernel.String),
+                PropertyType.Path => typeof(Fox.Kernel.Path),
+                PropertyType.EntityPtr => typeof(EntityPtr<>).MakeGenericType(new Type[] { propertyInfo.PtrType }),
+                PropertyType.Vector3 => typeof(UnityEngine.Vector3),
+                PropertyType.Vector4 => typeof(UnityEngine.Vector4),
+                PropertyType.Quat => typeof(UnityEngine.Quaternion),
                 //case PropertyType.Matrix3:
                 //    return typeof(UnityEngine.Matrix3x3);
-
-                case PropertyType.Matrix4:
-                    return typeof(UnityEngine.Matrix4x4);
-
-                case PropertyType.Color:
-                    return typeof(UnityEngine.Color);
-
-                case PropertyType.FilePtr:
-                    return typeof(FilePtr);
-
-                case PropertyType.EntityHandle:
-                    return typeof(EntityHandle);
-
-                case PropertyType.EntityLink:
-                    return typeof(EntityLink);
-
-                default:
-                    throw new ArgumentException($"Invalid Fox type: {propertyType}.");
-            }
+                PropertyType.Matrix4 => typeof(UnityEngine.Matrix4x4),
+                PropertyType.Color => typeof(UnityEngine.Color),
+                PropertyType.FilePtr => typeof(FilePtr),
+                PropertyType.EntityHandle => typeof(EntityHandle),
+                PropertyType.EntityLink => typeof(EntityLink),
+                _ => throw new ArgumentException($"Invalid Fox type: {propertyType}."),
+            };
         }
     }
 }

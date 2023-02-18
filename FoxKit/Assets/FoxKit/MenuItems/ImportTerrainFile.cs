@@ -8,15 +8,15 @@ namespace FoxKit.MenuItems
         [MenuItem("FoxKit/Import/Terrain")]
         private static void OnImportAsset()
         {
-            var assetPath = EditorUtility.OpenFilePanel("Import Terrain", "", "tre2");
-            if (string.IsNullOrEmpty(assetPath))
+            string assetPath = EditorUtility.OpenFilePanel("Import Terrain", "", "tre2");
+            if (System.String.IsNullOrEmpty(assetPath))
             {
                 return;
             }
 
             using var reader = new BinaryReader(System.IO.File.OpenRead(assetPath));
             var tre2Reader = new Fox.Gr.TerrainFileReader(reader);
-            var asset = tre2Reader.Read();
+            Fox.Gr.TerrainFileAsset asset = tre2Reader.Read();
 
             AssetDatabase.CreateAsset(asset, $"Assets/{Path.GetFileNameWithoutExtension(assetPath)}.asset");
 

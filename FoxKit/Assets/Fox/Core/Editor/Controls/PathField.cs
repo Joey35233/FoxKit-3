@@ -1,5 +1,4 @@
 ﻿using Fox.Kernel;
-using System;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine.UIElements;
@@ -8,11 +7,14 @@ namespace Fox.Editor
 {
     public class PathField : TextField, IFoxField, ICustomBindable
     {
-        public new static readonly string ussClassName = "fox-path-field";
-        public new static readonly string labelUssClassName = ussClassName + "__label";
-        public new static readonly string inputUssClassName = ussClassName + "__input";
+        public static new readonly string ussClassName = "fox-path-field";
+        public static new readonly string labelUssClassName = ussClassName + "__label";
+        public static new readonly string inputUssClassName = ussClassName + "__input";
 
-        public VisualElement visualInput { get; }
+        public VisualElement visualInput
+        {
+            get;
+        }
 
         public PathField()
             : this(null) { }
@@ -33,7 +35,7 @@ namespace Fox.Editor
             labelElement.RemoveFromClassList(TextField.labelUssClassName);
             labelElement.AddToClassList(labelUssClassName);
 
-            this.styleSheets.Add(IFoxField.FoxFieldStyleSheet);
+            styleSheets.Add(IFoxField.FoxFieldStyleSheet);
         }
 
         protected override void ExecuteDefaultActionAtTarget(EventBase evt)
@@ -41,9 +43,9 @@ namespace Fox.Editor
             base.ExecuteDefaultActionAtTarget(evt);
 
             // UNITYENHANCEMENT: https://github.com/Joey35233/FoxKit-3/issues/12
-            if (evt.eventTypeId == FoxFieldUtils.SerializedPropertyBindEventTypeId && !string.IsNullOrWhiteSpace(bindingPath))
+            if (evt.eventTypeId == FoxFieldUtils.SerializedPropertyBindEventTypeId && !System.String.IsNullOrWhiteSpace(bindingPath))
             {
-                SerializedProperty property = FoxFieldUtils.SerializedPropertyBindEventBindProperty.GetValue(evt) as SerializedProperty;
+                var property = FoxFieldUtils.SerializedPropertyBindEventBindProperty.GetValue(evt) as SerializedProperty;
 
                 if (property.propertyType != SerializedPropertyType.String)
                 {
@@ -54,10 +56,7 @@ namespace Fox.Editor
             }
         }
 
-        public void BindProperty(SerializedProperty property)
-        {
-            BindProperty(property, null);
-        }
+        public void BindProperty(SerializedProperty property) => BindProperty(property, null);
         public void BindProperty(SerializedProperty property, string label)
         {
             if (label is not null)

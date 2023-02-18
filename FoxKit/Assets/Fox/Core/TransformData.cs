@@ -6,13 +6,31 @@ namespace Fox.Core
     public partial class TransformData : Data
     {
         protected partial bool Get_inheritTransform() => flags.HasFlag(TransformData_Flags.ENABLE_INHERIT_TRANSFORM);
-        protected partial void Set_inheritTransform(bool value) { if (value) flags |= TransformData_Flags.ENABLE_INHERIT_TRANSFORM; else flags &= ~TransformData_Flags.ENABLE_INHERIT_TRANSFORM; }
+        protected partial void Set_inheritTransform(bool value)
+        {
+            if (value)
+                flags |= TransformData_Flags.ENABLE_INHERIT_TRANSFORM;
+            else
+                flags &= ~TransformData_Flags.ENABLE_INHERIT_TRANSFORM;
+        }
 
         protected partial bool Get_visibility() => flags.HasFlag(TransformData_Flags.ENABLE_VISIBILITY);
-        protected partial void Set_visibility(bool value) { if (value) flags |= TransformData_Flags.ENABLE_VISIBILITY; else flags &= ~TransformData_Flags.ENABLE_VISIBILITY; }
+        protected partial void Set_visibility(bool value)
+        {
+            if (value)
+                flags |= TransformData_Flags.ENABLE_VISIBILITY;
+            else
+                flags &= ~TransformData_Flags.ENABLE_VISIBILITY;
+        }
 
         protected partial bool Get_selection() => flags.HasFlag(TransformData_Flags.ENABLE_SELECTION);
-        protected partial void Set_selection(bool value) { if (value) flags |= TransformData_Flags.ENABLE_SELECTION; else flags &= ~TransformData_Flags.ENABLE_SELECTION; }
+        protected partial void Set_selection(bool value)
+        {
+            if (value)
+                flags |= TransformData_Flags.ENABLE_SELECTION;
+            else
+                flags &= ~TransformData_Flags.ENABLE_SELECTION;
+        }
 
         protected partial UnityEngine.Matrix4x4 Get_worldMatrix() => throw new System.NotImplementedException();
 
@@ -24,10 +42,7 @@ namespace Fox.Core
             transformData.parent = EntityHandle.Get(this);
         }
 
-        public DynamicArray<EntityHandle> GetChildren()
-        {
-            return children;
-        }
+        public DynamicArray<EntityHandle> GetChildren() => children;
 
         public void SetTransform(TransformEntity transform)
         {
@@ -37,13 +52,13 @@ namespace Fox.Core
 
         public override void InitializeGameObject(GameObject gameObject)
         {
-            TransformEntity transformEntity = this.transform.Get();
+            TransformEntity transformEntity = transform.Get();
             if (transformEntity == null)
             {
-                Debug.LogWarning($"{this.name}: transform is null");
+                Debug.LogWarning($"{name}: transform is null");
                 return;
             }
-            if (this.inheritTransform)
+            if (inheritTransform)
             {
                 gameObject.transform.localPosition = transformEntity.translation;
                 gameObject.transform.localRotation = transformEntity.rotQuat;

@@ -1,24 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.IO;
-
-using UnityEngine;
-
-using GraphProcessor;
+﻿using System.IO;
 
 namespace FoxKit.Fx
 {
-    class FxVfxFileImporterTemp
+    internal class FxVfxFileImporterTemp
     {
-        static object LoadFxVfxFileImporter(BinaryReader reader)
-        {
+        private static object LoadFxVfxFileImporter(BinaryReader reader) =>
             //FxModuleGraphEditor result;
             //result.
 
-            return null;
-        }
+            null;
     }
 }

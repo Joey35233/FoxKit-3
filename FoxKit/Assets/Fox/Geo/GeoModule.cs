@@ -1,10 +1,8 @@
-﻿using Fox.Kernel;
-using Fox.Core;
+﻿using Fox.Core;
 using System;
 using System.Collections.Generic;
-using UnityEngine;
-using Fox.Fio;
 using UnityEditor;
+using UnityEngine;
 
 namespace Fox.Geo
 {

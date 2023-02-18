@@ -1,6 +1,6 @@
-using UnityEngine;
-using Fox.Kernel;
 using Fox.Fio;
+using Fox.Kernel;
+using UnityEngine;
 
 namespace Fox.Core
 {
@@ -18,25 +18,28 @@ namespace Fox.Core
             NoHash,
         }
 
-        public long Position { get; }
-        private FileStreamReader Reader;
-        private HashFormat Format;
-        private DataOffsetMode OffsetMode;
+        public long Position
+        {
+            get;
+        }
+        private readonly FileStreamReader Reader;
+        private readonly HashFormat Format;
+        private readonly DataOffsetMode OffsetMode;
 
         public const uint Offset_Hash = 0;
         public const uint Offset_StringOffset = 4;
 
         public FoxDataStringContext(FileStreamReader reader, long position, HashFormat format, DataOffsetMode offsetMode)
         {
-            this.Reader = reader;
+            Reader = reader;
 
-            this.Position = position;
+            Position = position;
 
             Debug.Assert(System.Enum.IsDefined(typeof(DataOffsetMode), offsetMode));
             Debug.Assert(System.Enum.IsDefined(typeof(HashFormat), format));
 
-            this.Format = format;
-            this.OffsetMode = offsetMode;
+            Format = format;
+            OffsetMode = offsetMode;
         }
 
         public bool IsValid() => Position > -1 && Reader != null && Reader.BaseStream.Position > -1;
@@ -65,28 +68,20 @@ namespace Fox.Core
 
             int offset = GetStringOffset();
 
-            if (offset == 0)
-            {
-                return null;
-            }
-            else
-            {
-                switch (OffsetMode) 
+            return offset == 0
+                ? null
+                : OffsetMode switch
                 {
-                    case DataOffsetMode.Relative:
-                        return Position + offset;
-                    case DataOffsetMode.Absolute:
-                        return offset;
-                    default:
-                        return null;
-                }
-            }
+                    DataOffsetMode.Relative => Position + offset,
+                    DataOffsetMode.Absolute => offset,
+                    _ => null,
+                };
         }
 
         public String GetString()
         {
             long? stringPosition = GetStringPosition();
-            
+
             if (stringPosition is long realPosition)
             {
                 Reader.Seek(realPosition);

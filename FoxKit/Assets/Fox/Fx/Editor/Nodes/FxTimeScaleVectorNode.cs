@@ -1,40 +1,35 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-
+﻿using GraphProcessor;
 using UnityEngine;
-
-using GraphProcessor;
 
 namespace FoxKit.Fx.Editor.Nodes
 {
-	[System.Serializable, NodeMenuItem("Vector/TimeScale")]
-	public class FxTimeScaleVectorNode : BaseNode
-	{
-		[Input(name = "Input0")]
-		public float Input0;
+    [System.Serializable, NodeMenuItem("Vector/TimeScale")]
+    public class FxTimeScaleVectorNode : BaseNode
+    {
+        [Input(name = "Input0")]
+        public float Input0;
 
-		[Output(name = "Output0")]
-		public float Output0;
+        [Output(name = "Output0")]
+        public float Output0;
 
-		[SerializeField]
-		public float EndScale;
+        [SerializeField]
+        public float EndScale;
 
-		[SerializeField]
-		public bool MaskW;
+        [SerializeField]
+        public bool MaskW;
 
-		[SerializeField]
-		public bool MaskX;
+        [SerializeField]
+        public bool MaskX;
 
-		[SerializeField]
-		public bool MaskY;
+        [SerializeField]
+        public bool MaskY;
 
-		[SerializeField]
-		public bool MaskZ;
+        [SerializeField]
+        public bool MaskZ;
 
-		[SerializeField]
-		public float StartScale;
+        [SerializeField]
+        public float StartScale;
 
-		public override string name => "TimeScale";
-	}
+        public override string name => "TimeScale";
+    }
 }

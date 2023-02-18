@@ -1,4 +1,3 @@
-using System;
 using UnityEditor;
 using UnityEngine;
 
@@ -6,9 +5,9 @@ namespace Fox.Editor
 {
     public static class StringMapKeyPicker
     {
-        public static String ShowPopup()
+        public static string ShowPopup()
         {
-            var window = EditorWindow.GetWindow<StringMapKeyPickerWindow>(true, "Create StringMap Cell");
+            StringMapKeyPickerWindow window = EditorWindow.GetWindow<StringMapKeyPickerWindow>(true, "Create StringMap Cell");
             window.maxSize = new Vector2(250, 70);
             window.minSize = window.maxSize;
             window.ShowModal();
@@ -19,11 +18,11 @@ namespace Fox.Editor
         private class StringMapKeyPickerWindow : EditorWindow
         {
             private string _returnValue;
-            public String returnValue;
+            public string returnValue;
 
             private bool hasPrefocused = false;
 
-            void OnGUI()
+            private void OnGUI()
             {
                 GUI.SetNextControlName("KeyTextField");
                 _returnValue = EditorGUILayout.TextField(_returnValue);
@@ -33,18 +32,18 @@ namespace Fox.Editor
                     hasPrefocused = true;
                 }
 
-                EditorGUILayout.BeginHorizontal();
+                _ = EditorGUILayout.BeginHorizontal();
 
                 if (Event.current.keyCode == KeyCode.Return || GUILayout.Button("Ok"))
                 {
-                    returnValue = new String(_returnValue);
-                    this.Close();
+                    returnValue = new string(_returnValue);
+                    Close();
                 }
-                
+
                 if (GUILayout.Button("Cancel"))
                 {
                     returnValue = null;
-                    this.Close();
+                    Close();
                 }
 
                 EditorGUILayout.EndHorizontal();

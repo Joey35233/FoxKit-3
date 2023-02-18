@@ -1,5 +1,4 @@
-﻿using Fox.Core;
-using Fox.Kernel;
+﻿using Fox.Kernel;
 
 namespace Fox.Phx
 {

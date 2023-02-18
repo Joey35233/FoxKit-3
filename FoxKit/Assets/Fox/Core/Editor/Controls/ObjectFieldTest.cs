@@ -1,7 +1,6 @@
 ﻿using Fox.Core;
 using System;
 using System.Collections.Generic;
-using System.Reflection;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -13,7 +12,7 @@ namespace Fox.Editor
     {
         public override void SetValueWithoutNotify(FoxEntity newValue)
         {
-            var valueChanged = !EqualityComparer<Object>.Default.Equals(this.value, newValue);
+            bool valueChanged = !EqualityComparer<Object>.Default.Equals(value, newValue);
 
             base.SetValueWithoutNotify(newValue);
 
@@ -27,10 +26,9 @@ namespace Fox.Editor
         {
             private readonly EntityHandleFieldTest m_ObjectField;
             private readonly Label m_ObjectLabel;
-
-            static readonly string ussClassName = "unity-object-field-display";
-            static readonly string labelUssClassName = ussClassName + "__label";
-            static readonly string acceptDropVariantUssClassName = ussClassName + "--accept-drop";
+            private static readonly string ussClassName = "unity-object-field-display";
+            private static readonly string labelUssClassName = ussClassName + "__label";
+            private static readonly string acceptDropVariantUssClassName = ussClassName + "--accept-drop";
 
             public ObjectFieldDisplay(EntityHandleFieldTest objectField)
             {
@@ -62,29 +60,37 @@ namespace Fox.Editor
                 }
 
                 if ((evt as MouseDownEvent)?.button == (int)MouseButton.LeftMouse)
+                {
                     OnMouseDown(evt as MouseDownEvent);
+                }
                 else if (evt.eventTypeId == KeyDownEvent.TypeId())
                 {
                     var kdEvt = evt as KeyDownEvent;
 
-                    if (((evt as KeyDownEvent)?.keyCode == KeyCode.Space) ||
-                        ((evt as KeyDownEvent)?.keyCode == KeyCode.KeypadEnter) ||
-                        ((evt as KeyDownEvent)?.keyCode == KeyCode.Return))
+                    if ((evt as KeyDownEvent)?.keyCode is KeyCode.Space or
+                        KeyCode.KeypadEnter or
+                        KeyCode.Return)
                     {
                         OnKeyboardEnter();
                     }
-                    else if (kdEvt.keyCode == KeyCode.Delete ||
-                             kdEvt.keyCode == KeyCode.Backspace)
+                    else if (kdEvt.keyCode is KeyCode.Delete or
+                             KeyCode.Backspace)
                     {
                         OnKeyboardDelete();
                     }
                 }
                 else if (evt.eventTypeId == DragUpdatedEvent.TypeId())
+                {
                     OnDragUpdated(evt);
+                }
                 else if (evt.eventTypeId == DragPerformEvent.TypeId())
+                {
                     OnDragPerform(evt);
+                }
                 else if (evt.eventTypeId == DragLeaveEvent.TypeId())
+                {
                     OnDragLeave();
+                }
             }
 
             //[EventInterest(typeof(MouseDownEvent))]
@@ -96,11 +102,9 @@ namespace Fox.Editor
             //        OnMouseDown(evt as MouseDownEvent);
             //}
 
-            private void OnDragLeave()
-            {
+            private void OnDragLeave() =>
                 // Make sure we've cleared the accept drop look, whether we we in a drop operation or not.
                 RemoveFromClassList(acceptDropVariantUssClassName);
-            }
 
             private void OnMouseDown(MouseDownEvent evt)
             {
@@ -125,29 +129,22 @@ namespace Fox.Editor
                 {
                     if (targetGameObject)
                     {
-                        AssetDatabase.OpenAsset(targetGameObject);
+                        _ = AssetDatabase.OpenAsset(targetGameObject);
                         GUIUtility.ExitGUI();
                     }
                     evt.StopPropagation();
                 }
             }
 
-            private void OnKeyboardEnter()
-            {
-                m_ObjectField.ShowObjectSelector();
-            }
+            private void OnKeyboardEnter() => m_ObjectField.ShowObjectSelector();
 
-            private void OnKeyboardDelete()
-            {
-                m_ObjectField.value = null;
-            }
+            private void OnKeyboardDelete() => m_ObjectField.value = null;
 
             private FoxEntity GetDragAndDropObject()
             {
                 Object[] references = DragAndDrop.objectReferences;
 
-                FoxEntity validatedObject = null;
-                if (references[0] != null && references[0] is GameObject && (references[0] as GameObject).TryGetComponent<FoxEntity>(out validatedObject))
+                if (references[0] != null && references[0] is GameObject && (references[0] as GameObject).TryGetComponent<FoxEntity>(out FoxEntity validatedObject))
                 {
                     if (!EditorUtility.IsPersistent(validatedObject))
                         return validatedObject;
@@ -208,14 +205,17 @@ namespace Fox.Editor
         private readonly Action m_AsyncOnProjectOrHierarchyChangedCallback;
         private readonly Action m_OnProjectOrHierarchyChangedCallback;
 
-        public new static readonly string ussClassName = "unity-object-field";
-        public new static readonly string labelUssClassName = ussClassName + "__label";
-        public new static readonly string inputUssClassName = ussClassName + "__input";
+        public static new readonly string ussClassName = "unity-object-field";
+        public static new readonly string labelUssClassName = ussClassName + "__label";
+        public static new readonly string inputUssClassName = ussClassName + "__input";
 
         public static readonly string objectUssClassName = ussClassName + "__object";
         public static readonly string selectorUssClassName = ussClassName + "__selector";
 
-        public VisualElement visualInput { get; }
+        public VisualElement visualInput
+        {
+            get;
+        }
 
         public EntityHandleFieldTest()
             : this(null) { }
@@ -265,9 +265,6 @@ namespace Fox.Editor
             return gameObject?.GetComponent<FoxEntity>();
         }
 
-        internal void ShowObjectSelector()
-        {
-            ObjectSelector.Show(obj: value, requiredType: typeof(FoxEntity), objectBeingEdited: null, allowSceneObjects: true, null, null, (Object obj) => value = TryReadFoxEntityFromGameObject(obj));
-        }
+        internal void ShowObjectSelector() => ObjectSelector.Show(obj: value, requiredType: typeof(FoxEntity), objectBeingEdited: null, allowSceneObjects: true, null, null, (Object obj) => value = TryReadFoxEntityFromGameObject(obj));
     }
 }

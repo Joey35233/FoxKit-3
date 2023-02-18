@@ -1,8 +1,7 @@
 ﻿using Fox.Kernel;
-using String = Fox.Kernel.String;
 using System;
 using System.Collections.Generic;
-using System.Reflection;
+using String = Fox.Kernel.String;
 
 namespace Fox.Core
 {
@@ -11,35 +10,17 @@ namespace Fox.Core
     /// </summary>
     public sealed class EntityInfo
     {
-        private static readonly Dictionary<Type, EntityInfo> EntityInfoMap = new Dictionary<Type, EntityInfo>();
-        
-        private static readonly StringMap<EntityInfo> EntityInfoNameMap = new StringMap<EntityInfo>();
+        private static readonly Dictionary<Type, EntityInfo> EntityInfoMap = new();
 
-        public static EntityInfo GetEntityInfo<T>()
-        {
-            return GetEntityInfo(typeof(T));
-        }
-        public static EntityInfo GetEntityInfo(Type type)
-        {
-            return EntityInfoMap.TryGetValue(type, out var entityInfo) ? entityInfo : null;
-        }
-        public static EntityInfo GetEntityInfo(String name)
-        {
-            return EntityInfoNameMap.TryGetValue(name, out var entityInfo) ? entityInfo : null;
-        }
+        private static readonly StringMap<EntityInfo> EntityInfoNameMap = new();
 
-        public static Entity ConstructEntity(Type type)
-        {
-            return ConstructEntity(GetEntityInfo(type));
-        }
-        public static Entity ConstructEntity(String name)
-        {
-            return ConstructEntity(GetEntityInfo(name));
-        }
-        public static Entity ConstructEntity(EntityInfo entityInfo)
-        {
-            return Activator.CreateInstance(entityInfo.Type) as Entity;
-        }
+        public static EntityInfo GetEntityInfo<T>() => GetEntityInfo(typeof(T));
+        public static EntityInfo GetEntityInfo(Type type) => EntityInfoMap.TryGetValue(type, out EntityInfo entityInfo) ? entityInfo : null;
+        public static EntityInfo GetEntityInfo(String name) => EntityInfoNameMap.TryGetValue(name, out EntityInfo entityInfo) ? entityInfo : null;
+
+        public static Entity ConstructEntity(Type type) => ConstructEntity(GetEntityInfo(type));
+        public static Entity ConstructEntity(String name) => ConstructEntity(GetEntityInfo(name));
+        public static Entity ConstructEntity(EntityInfo entityInfo) => Activator.CreateInstance(entityInfo.Type) as Entity;
 
         public EntityInfo(String name, Type type, EntityInfo super, short id, string category, ushort version)
         {
@@ -69,42 +50,66 @@ namespace Fox.Core
         /// <summary>
         /// Name of the class.
         /// </summary>
-        public String Name { get; }
+        public String Name
+        {
+            get;
+        }
 
         /// <summary>
         /// Type of the class.
         /// </summary>
-        public Type Type { get; }
+        public Type Type
+        {
+            get;
+        }
 
         /// <summary>
         /// EntityInfo of the parent class, or null if there is no parent.
         /// </summary>
-        public EntityInfo Super { get; }
+        public EntityInfo Super
+        {
+            get;
+        }
 
         /// <summary>
         /// EntityInfos of the immediate children.
         /// </summary>
-        public List<EntityInfo> Children { get; private set; }
+        public List<EntityInfo> Children
+        {
+            get; private set;
+        }
 
         /// <summary>
         /// EntityInfos of all descendants.
         /// </summary>
-        public List<EntityInfo> AllChildren { get; private set; }
+        public List<EntityInfo> AllChildren
+        {
+            get; private set;
+        }
 
         /// <summary>
         /// ID of the class.
         /// </summary>
-        public short Id { get; }
+        public short Id
+        {
+            get;
+        }
 
         /// <summary>
         /// Category the class belongs to, or null if there is no category.
         /// </summary>
-        public string Category { get; }
+        public string Category
+        {
+            get;
+        }
 
         /// <summary>
         /// Version of the class.
         /// </summary>
-        public ushort Version { get; }
+        public ushort Version
+        {
+            get;
+        }
 
         /// <summary>
         /// Metadata for all static properties in their original order.
@@ -119,7 +124,10 @@ namespace Fox.Core
         /// <summary>
         /// PropertyInfo of the property with the longest name.
         /// </summary>
-        public Fox.Core.PropertyInfo LongestNamedVisibleFieldProperty { get; private set; }
+        public Fox.Core.PropertyInfo LongestNamedVisibleFieldProperty
+        {
+            get; private set;
+        }
 
         /// <summary>
         /// Checks if an EntityInfo instance or any of its superclasses contains a property with the given name.
@@ -160,9 +168,6 @@ namespace Fox.Core
             }
         }
 
-        public override string ToString()
-        {
-            return this.Name.ToString();
-        }
+        public override string ToString() => Name.ToString();
     }
 }

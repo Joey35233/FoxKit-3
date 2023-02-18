@@ -1,9 +1,8 @@
 ﻿using Fox.Core;
-using UnityEditor.SceneManagement;
-using UnityEngine;
 using Fox.Fio;
 using Fox.Kernel;
-using UnityEngine.Rendering;
+using UnityEditor.SceneManagement;
+using UnityEngine;
 
 namespace Fox.Geo
 {
@@ -11,9 +10,9 @@ namespace Fox.Geo
     {
         public UnityEngine.SceneManagement.Scene? Read(FileStreamReader reader)
         {
-            var scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
+            UnityEngine.SceneManagement.Scene scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
 
-            FoxDataHeaderContext foxDataHeader = new FoxDataHeaderContext(reader, reader.BaseStream.Position);
+            var foxDataHeader = new FoxDataHeaderContext(reader, reader.BaseStream.Position);
             foxDataHeader.Validate(version: 201406020, flags: 0);
 
             if (foxDataHeader.GetFirstNode() is not FoxDataNodeContext dataNode)
@@ -28,24 +27,24 @@ namespace Fox.Geo
 
             for (uint i = 0; i < dataNode.GetParametersOffset(); i++)
             {
-                reader.Seek(dataPosition + 4 * i);
+                reader.Seek(dataPosition + (4 * i));
                 uint shapeOffset = reader.ReadUInt32();
 
-                GeomHeaderContext header = new GeomHeaderContext(reader, dataPosition + shapeOffset, GeomHeaderContext.OffsetSize.Bytes);
+                var header = new GeomHeaderContext(reader, dataPosition + shapeOffset, GeomHeaderContext.OffsetSize.Bytes);
                 Debug.Assert(header.Name != 0);
                 Debug.Assert(header.NextHeaderOffset == 0);
                 Debug.Assert(header.PreviousHeaderOffset == 0);
                 Debug.Assert(header.ChildHeaderOffset == 0);
                 Debug.Assert(header.VertexBufferOffset == 0);
-                if (header.Type == GeoPrimType.Box || header.Type == GeoPrimType.AreaPath)
+                if (header.Type is GeoPrimType.Box or GeoPrimType.AreaPath)
                 {
 
                     if (header.Type == GeoPrimType.Box)
                     {
-                        GameObject triggerTrapGameObject = new GameObject(header.Name.ToString());
-                        GeoTriggerTrap triggerTrap = new GeoTriggerTrap();
+                        var triggerTrapGameObject = new GameObject(header.Name.ToString());
+                        var triggerTrap = new GeoTriggerTrap();
                         triggerTrapGameObject.AddComponent<FoxEntity>().Entity = triggerTrap;
-                        TransformEntity triggerTrapTransformEntity = TransformEntity.GetDefault();
+                        var triggerTrapTransformEntity = TransformEntity.GetDefault();
                         triggerTrap.inheritTransform = false;
                         triggerTrap.SetTransform(triggerTrapTransformEntity);
                         triggerTrap.InitializeGameObject(triggerTrapGameObject);
@@ -56,20 +55,25 @@ namespace Fox.Geo
 
                         for (int j = 0; j < header.PrimCount; j++)
                         {
-                            reader.Seek(header.GetDataPosition() + 96 * j);
+                            reader.Seek(header.GetDataPosition() + (96 * j));
 
                             Vector3 size = reader.ReadScaleHF();
-                            Vector4 padding = reader.ReadVector4(); Debug.Assert(padding == Vector4.zero);
+                            Vector4 padding = reader.ReadVector4();
+                            Debug.Assert(padding == Vector4.zero);
                             Matrix4x4 matrix = reader.ReadMatrix4F();
 
-                            GameObject shapeGameObject = new GameObject($"BoxShape{j:D4}");
-                            BoxShape shapeEntity = new BoxShape();
-                            shapeEntity.inheritTransform = true;
-                            shapeEntity.visibility = true;
+                            var shapeGameObject = new GameObject($"BoxShape{j:D4}");
+                            var shapeEntity = new BoxShape
+                            {
+                                inheritTransform = true,
+                                visibility = true
+                            };
 
-                            TransformEntity transform = new TransformEntity();
-                            transform.rotQuat = matrix.rotation;
-                            transform.translation = matrix.GetPosition();
+                            var transform = new TransformEntity
+                            {
+                                rotQuat = matrix.rotation,
+                                translation = matrix.GetPosition()
+                            };
 
                             shapeEntity.SetTransform(transform);
                             shapeEntity.size = size;
@@ -84,7 +88,7 @@ namespace Fox.Geo
                     }
                     else if (header.Type == GeoPrimType.AreaPath && GeomHeaderContext.Deserialize(header) is TransformData trap)
                     {
-                        GameObject gameObject = new GameObject(header.Name.ToString());
+                        var gameObject = new GameObject(header.Name.ToString());
                         gameObject.AddComponent<FoxEntity>().Entity = trap;
                         trap.InitializeGameObject(gameObject);
 
@@ -92,7 +96,7 @@ namespace Fox.Geo
                         {
                             Entity childEntity = trap.GetChildren()[j].Entity;
 
-                            GameObject child = new GameObject($"GeoxTrapAreaPath{j:D4}");
+                            var child = new GameObject($"GeoxTrapAreaPath{j:D4}");
                             child.AddComponent<FoxEntity>().Entity = childEntity;
                             childEntity.InitializeGameObject(child);
                             child.transform.SetParent(gameObject.transform);

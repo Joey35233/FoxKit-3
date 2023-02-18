@@ -1,7 +1,4 @@
-﻿using System;
-using UnityEngine;
-
-namespace Fox.Core
+﻿namespace Fox.Core
 {
     public partial class DataSetFile2 : Fox.Core.EntityFile
     {

@@ -1,45 +1,44 @@
-﻿using UnityEditor;
-using UnityEngine.UIElements;
+﻿using System.Globalization;
+using UnityEditor;
 using UnityEditor.UIElements;
-using System.Globalization;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace Fox.Editor
 {
     public class DoubleField : TextValueField<double>, IFoxField, ICustomBindable
     {
-        DoubleInput doubleInput => (DoubleInput)textInputBase;
+        private DoubleInput doubleInput => (DoubleInput)textInputBase;
 
-        protected override string ValueToString(double v)
-        {
-            return v.ToString(formatString, CultureInfo.InvariantCulture.NumberFormat);
-        }
+        protected override string ValueToString(double v) => v.ToString(formatString, CultureInfo.InvariantCulture.NumberFormat);
 
         protected override double StringToValue(string str)
         {
-            double v;
-            NumericPropertyFields.StringToDouble(str, out v);
+            _ = NumericPropertyFields.StringToDouble(str, out double v);
             return v;
         }
 
-        public new static readonly string ussClassName = "fox-double-field";
-        public new static readonly string labelUssClassName = ussClassName + "__label";
-        public new static readonly string inputUssClassName = ussClassName + "__input";
+        public static new readonly string ussClassName = "fox-double-field";
+        public static new readonly string labelUssClassName = ussClassName + "__label";
+        public static new readonly string inputUssClassName = ussClassName + "__input";
 
-        public VisualElement visualInput { get; }
+        public VisualElement visualInput
+        {
+            get;
+        }
 
-        public DoubleField() : this((string)null) 
-        { 
+        public DoubleField() : this(null)
+        {
         }
 
         public DoubleField(int maxLength)
-            : this(null, true, maxLength) 
-        { 
+            : this(null, true, maxLength)
+        {
         }
 
         public DoubleField(bool hasDragger)
-            : this(null, hasDragger) 
-        { 
+            : this(null, hasDragger)
+        {
         }
 
         public DoubleField(string label, bool hasDragger = true, int maxLength = -1)
@@ -55,22 +54,16 @@ namespace Fox.Editor
             AddToClassList(ussClassName);
             labelElement.AddToClassList(labelUssClassName);
             visualInput.AddToClassList(inputUssClassName);
-            this.styleSheets.Add(IFoxField.FoxFieldStyleSheet);
+            styleSheets.Add(IFoxField.FoxFieldStyleSheet);
             if (hasDragger)
                 AddLabelDragger<double>();
         }
 
         //internal override bool CanTryParse(string textString) => double.TryParse(textString, out _);
 
-        public override void ApplyInputDeviceDelta(Vector3 delta, DeltaSpeed speed, double startValue)
-        {
-            doubleInput.ApplyInputDeviceDelta(delta, speed, startValue);
-        }
+        public override void ApplyInputDeviceDelta(Vector3 delta, DeltaSpeed speed, double startValue) => doubleInput.ApplyInputDeviceDelta(delta, speed, startValue);
 
-        public void BindProperty(SerializedProperty property)
-        {
-            BindProperty(property, null);
-        }
+        public void BindProperty(SerializedProperty property) => BindProperty(property, null);
         public void BindProperty(SerializedProperty property, string label)
         {
             if (label is not null)
@@ -78,9 +71,9 @@ namespace Fox.Editor
             BindingExtensions.BindProperty(this, property);
         }
 
-        class DoubleInput : TextValueInput
+        private class DoubleInput : TextValueInput
         {
-            DoubleField parentDoubleField => (DoubleField)parent;
+            private DoubleField parentDoubleField => (DoubleField)parent;
 
             internal DoubleInput()
             {
@@ -106,21 +99,17 @@ namespace Fox.Editor
                 }
             }
 
-            protected override string ValueToString(double v)
-            {
-                return v.ToString(formatString);
-            }
+            protected override string ValueToString(double v) => v.ToString(formatString);
 
             protected override double StringToValue(string str)
             {
-                double v;
-                NumericPropertyFields.StringToDouble(str, out v);
+                _ = NumericPropertyFields.StringToDouble(str, out double v);
                 return v;
             }
         }
     }
 
-    [CustomPropertyDrawer(typeof(System.Double))]
+    [CustomPropertyDrawer(typeof(double))]
     public class DoubleDrawer : PropertyDrawer
     {
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
@@ -130,7 +119,7 @@ namespace Fox.Editor
 
             field.labelElement.AddToClassList(PropertyField.labelUssClassName);
             field.visualInput.AddToClassList(PropertyField.inputUssClassName);
-            field.AddToClassList(BaseField<System.Double>.alignedFieldUssClassName);
+            field.AddToClassList(BaseField<double>.alignedFieldUssClassName);
 
             return field;
         }

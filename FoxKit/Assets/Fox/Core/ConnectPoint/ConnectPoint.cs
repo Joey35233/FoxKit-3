@@ -1,6 +1,4 @@
-﻿using Fox;
-using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Fox.Core
 {
@@ -10,7 +8,7 @@ namespace Fox.Core
     {
         private void Reset()
         {
-            var pointGizmo = this.gameObject.GetComponent<PointGizmo>();
+            PointGizmo pointGizmo = gameObject.GetComponent<PointGizmo>();
             if (pointGizmo is not null)
             {
                 pointGizmo.ScaleMode = PointGizmo.GizmoScaleMode.InheritLocal;

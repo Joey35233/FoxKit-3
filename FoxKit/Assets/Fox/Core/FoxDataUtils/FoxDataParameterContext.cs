@@ -1,22 +1,25 @@
-using UnityEngine;
-using Fox.Kernel;
 using Fox.Fio;
+using Fox.Kernel;
+using UnityEngine;
 
 namespace Fox.Core
 {
     public struct FoxDataParameterContext
     {
         public enum DataType
-        { 
+        {
             UInt = 0,
             String = 1,
             Float = 2,
         }
 
-        public long Position { get; }
-        private FileStreamReader Reader;
-        private FoxDataStringContext.HashFormat StringFormat;
-        private FoxDataStringContext.DataOffsetMode StringOffsetMode;
+        public long Position
+        {
+            get;
+        }
+        private readonly FileStreamReader Reader;
+        private readonly FoxDataStringContext.HashFormat StringFormat;
+        private readonly FoxDataStringContext.DataOffsetMode StringOffsetMode;
 
         public const uint Offset_Type = 0;
         public const uint Offset_NextParameterOffset = 2;
@@ -25,15 +28,15 @@ namespace Fox.Core
 
         public FoxDataParameterContext(FileStreamReader reader, long position, FoxDataStringContext.HashFormat stringFormat = FoxDataStringContext.HashFormat.Default, FoxDataStringContext.DataOffsetMode stringOffsetMode = FoxDataStringContext.DataOffsetMode.Relative)
         {
-            this.Reader = reader;
+            Reader = reader;
 
-            this.Position = position;
+            Position = position;
 
             Debug.Assert(System.Enum.IsDefined(typeof(FoxDataStringContext.HashFormat), stringFormat));
             Debug.Assert(System.Enum.IsDefined(typeof(FoxDataStringContext.DataOffsetMode), stringOffsetMode));
 
-            this.StringFormat = stringFormat;
-            this.StringOffsetMode = stringOffsetMode;
+            StringFormat = stringFormat;
+            StringOffsetMode = stringOffsetMode;
         }
 
         public bool IsValid() => Position > -1 && Reader != null && Reader.BaseStream.Position > -1;
@@ -44,7 +47,8 @@ namespace Fox.Core
 
             Reader.Seek(Position + Offset_Type);
 
-            DataType type = (DataType)Reader.ReadUInt16(); Debug.Assert(System.Enum.IsDefined(typeof(DataType), type));
+            var type = (DataType)Reader.ReadUInt16();
+            Debug.Assert(System.Enum.IsDefined(typeof(DataType), type));
 
             return type;
         }
@@ -85,7 +89,7 @@ namespace Fox.Core
             return new FoxDataStringContext(Reader, Position + Offset_Value, StringFormat, StringOffsetMode).GetString();
         }
 
-        public float GetFloat() 
+        public float GetFloat()
         {
             Debug.Assert(GetDataType() == DataType.Float);
 

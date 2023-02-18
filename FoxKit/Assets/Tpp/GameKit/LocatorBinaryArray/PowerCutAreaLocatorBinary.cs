@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System;
+﻿using System;
+using UnityEngine;
 
 namespace Tpp.GameKit
 {
@@ -19,7 +19,7 @@ namespace Tpp.GameKit
         }
 
         public PowerCutAreaLocatorBinary()
-        {   
+        {
         }
     }
 }

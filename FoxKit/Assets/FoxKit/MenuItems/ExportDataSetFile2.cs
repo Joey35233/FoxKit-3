@@ -15,10 +15,10 @@ namespace FoxKit.MenuItems
                 return;
             }
 
-            var scene = ((GameObject)command.context).scene;
-            var dataSetName = scene.name;
-            var outputPath = EditorUtility.SaveFilePanel("Export DataSetFile2", "", $"{dataSetName}", "fox2");
-            if (string.IsNullOrEmpty(outputPath))
+            UnityEngine.SceneManagement.Scene scene = ((GameObject)command.context).scene;
+            string dataSetName = scene.name;
+            string outputPath = EditorUtility.SaveFilePanel("Export DataSetFile2", "", $"{dataSetName}", "fox2");
+            if (System.String.IsNullOrEmpty(outputPath))
             {
                 return;
             }

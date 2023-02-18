@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Fox.Kernel
@@ -35,13 +35,7 @@ namespace Fox.Kernel
                 Value = value;
             }
 
-            override public string ToString()
-            {
-                if (Key is null)
-                    return "Empty";
-                else
-                    return $"{{{Key}, {Value}}}";
-            }
+            public override string ToString() => Key is null ? "Empty" : $"{{{Key}, {Value}}}";
 
             public uint Distance;
             public String Key;
@@ -101,10 +95,7 @@ namespace Fox.Kernel
             HashMask = unchecked((uint)(capacity - 1));
         }
 
-        private bool IsCellEmpty(Cell cell)
-        {
-            return cell.Key is null || cell.Key.IsPseudoNull();
-        }
+        private bool IsCellEmpty(Cell cell) => cell.Key is null || cell.Key.IsPseudoNull();
 
         private void Resize()
         {
@@ -170,14 +161,8 @@ namespace Fox.Kernel
 
             InsertNoResize(key, value);
         }
-        void IStringMap.Insert(String key, object value)
-        {
-            Insert(key, value is T ? (T)value : throw new InvalidCastException());
-        }
-        void IStringMap.Insert(String key)
-        {
-            Insert(key, default(T));
-        }
+        void IStringMap.Insert(String key, object value) => Insert(key, value is T ? (T)value : throw new InvalidCastException());
+        void IStringMap.Insert(String key) => Insert(key, default);
 
         public bool Remove(String key)
         {
@@ -283,29 +268,10 @@ namespace Fox.Kernel
             }
         }
 
-        public T this[String key]
-        {
-            get
-            {
-                T value;
-                if (TryGetValue(key, out value))
-                    return value;
-                else
-                    throw new KeyNotFoundException();
-            }
-        }
-        object IStringMap.this[String key]
-        {
-            get
-            {
-                return this[key];
-            }
-        }
+        public T this[String key] => TryGetValue(key, out T value) ? value : throw new KeyNotFoundException();
+        object IStringMap.this[String key] => this[key];
 
-        public bool ContainsKey(String key)
-        {
-            return TryGetValue(key, out _);
-        }
+        public bool ContainsKey(String key) => TryGetValue(key, out _);
 
         private float GetAverageProbeCount()
         {
@@ -321,14 +287,14 @@ namespace Fox.Kernel
                 }
             }
 
-            return total / CellCount + 1;
+            return (total / CellCount) + 1;
         }
 
         public bool IsFixedSize => false;
 
         public bool IsReadOnly => false;
 
-        public int Count => (int)CellCount;
+        public int Count => CellCount;
 
         public bool IsSynchronized => throw new NotImplementedException();
 
@@ -348,35 +314,17 @@ namespace Fox.Kernel
             return i - 1;
         }
 
-        public int Add(object value)
-        {
-            throw new NotImplementedException();
-        }
+        public int Add(object value) => throw new NotImplementedException();
 
-        public void Clear()
-        {
-            throw new NotImplementedException();
-        }
+        public void Clear() => throw new NotImplementedException();
 
-        public bool Contains(object value)
-        {
-            throw new NotImplementedException();
-        }
+        public bool Contains(object value) => throw new NotImplementedException();
 
-        public int IndexOf(object value)
-        {
-            throw new NotImplementedException();
-        }
+        public int IndexOf(object value) => throw new NotImplementedException();
 
-        public void Insert(int index, object value)
-        {
-            throw new NotImplementedException();
-        }
+        public void Insert(int index, object value) => throw new NotImplementedException();
 
-        public void Remove(object value)
-        {
-            throw new NotImplementedException();
-        }
+        public void Remove(object value) => throw new NotImplementedException();
 
         public void RemoveAt(int index)
         {
@@ -421,24 +369,15 @@ namespace Fox.Kernel
             CellCount--;
         }
 
-        public void CopyTo(Array array, int index)
-        {
-            throw new NotImplementedException();
-        }
+        public void CopyTo(Array array, int index) => throw new NotImplementedException();
 
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            throw new NotImplementedException();
-        }
+        IEnumerator IEnumerable.GetEnumerator() => throw new NotImplementedException();
 
-        public IEnumerator<KeyValuePair<String, T>> GetEnumerator()
-        {
-            return new Enumerator(this);
-        }
+        public IEnumerator<KeyValuePair<String, T>> GetEnumerator() => new Enumerator(this);
 
         public struct Enumerator : IEnumerator<KeyValuePair<String, T>>, IDictionaryEnumerator
         {
-            private StringMap<T> stringMap;
+            private readonly StringMap<T> stringMap;
             private int absoluteCellsIndex;
             private int index;
             private KeyValuePair<String, T> current;
@@ -455,7 +394,7 @@ namespace Fox.Kernel
             {
                 while ((uint)index < (uint)stringMap.Count)
                 {
-                    var cell = stringMap.Cells[absoluteCellsIndex];
+                    Cell cell = stringMap.Cells[absoluteCellsIndex];
                     if (cell.Key is not null && !cell.Key.IsPseudoNull())
                     {
                         current = new KeyValuePair<String, T>(stringMap.Cells[absoluteCellsIndex].Key, stringMap.Cells[absoluteCellsIndex].Value);

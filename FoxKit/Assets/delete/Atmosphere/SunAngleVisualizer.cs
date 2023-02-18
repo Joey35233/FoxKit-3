@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace FoxKit.Gr.Atmosphere
@@ -12,15 +10,14 @@ namespace FoxKit.Gr.Atmosphere
 
         public Light Sun;
         public Light Moon;
-
-        static readonly Vector3 fixedLightDirSunRise = -Fox.Kernel.Math.FoxToUnityVector3(new Vector3(-0.853044f, -0.48479f, 0.193119f));
-        static readonly Vector3 fixedLightDirSunSet = -Fox.Kernel.Math.FoxToUnityVector3(new Vector3(0.195711f, -0.484843f, -0.852422f));
-        static readonly Vector3 fixedLightDirMoonRise = -Fox.Kernel.Math.FoxToUnityVector3(new Vector3(0.423196f, -0.484807f, -0.765419f));
-        static readonly Vector3 fixedLightDirMoonSet = -Fox.Kernel.Math.FoxToUnityVector3(new Vector3(-0.768373f, -0.48485f, 0.41776f));
-        static readonly Vector3 fixedRisingSunDir = -Fox.Kernel.Math.FoxToUnityVector3(new Vector3(-0.708764f, 0.137421f, 0.691931f));
-        static readonly Vector3 fixedFallingSunDir = -Fox.Kernel.Math.FoxToUnityVector3(new Vector3(0.695227f, 0.137408f, -0.705534f));
-        static readonly Vector3 fixedRisingMoonDir = -Fox.Kernel.Math.FoxToUnityVector3(new Vector3(0.834518f, 0.137422f, -0.533568f));
-        static readonly Vector3 fixedFallingMoonDir = -Fox.Kernel.Math.FoxToUnityVector3(new Vector3(-0.536711f, 0.137452f, 0.832496f));
+        private static readonly Vector3 fixedLightDirSunRise = -Fox.Kernel.Math.FoxToUnityVector3(new Vector3(-0.853044f, -0.48479f, 0.193119f));
+        private static readonly Vector3 fixedLightDirSunSet = -Fox.Kernel.Math.FoxToUnityVector3(new Vector3(0.195711f, -0.484843f, -0.852422f));
+        private static readonly Vector3 fixedLightDirMoonRise = -Fox.Kernel.Math.FoxToUnityVector3(new Vector3(0.423196f, -0.484807f, -0.765419f));
+        private static readonly Vector3 fixedLightDirMoonSet = -Fox.Kernel.Math.FoxToUnityVector3(new Vector3(-0.768373f, -0.48485f, 0.41776f));
+        private static readonly Vector3 fixedRisingSunDir = -Fox.Kernel.Math.FoxToUnityVector3(new Vector3(-0.708764f, 0.137421f, 0.691931f));
+        private static readonly Vector3 fixedFallingSunDir = -Fox.Kernel.Math.FoxToUnityVector3(new Vector3(0.695227f, 0.137408f, -0.705534f));
+        private static readonly Vector3 fixedRisingMoonDir = -Fox.Kernel.Math.FoxToUnityVector3(new Vector3(0.834518f, 0.137422f, -0.533568f));
+        private static readonly Vector3 fixedFallingMoonDir = -Fox.Kernel.Math.FoxToUnityVector3(new Vector3(-0.536711f, 0.137452f, 0.832496f));
 
         private void Update()
         {
@@ -35,9 +32,9 @@ namespace FoxKit.Gr.Atmosphere
             timeModDay *= TPPTimeScale;
             timeModDay *= CustomTimeScale;
 
-            timeModDay = timeModDay % SecondsInDay;
+            timeModDay %= SecondsInDay;
 
-            if (timeModDay <= NIGHT_START_CLOCK && timeModDay > NIGHT_END_CLOCK)
+            if (timeModDay is <= NIGHT_START_CLOCK and > NIGHT_END_CLOCK)
             {
                 Sun.intensity = 1;
                 Moon.intensity = 0;

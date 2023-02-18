@@ -19,25 +19,14 @@ namespace Fox.Kernel
             hash = Hashing.PathFileNameCode(str);
         }
 
-        public static bool TryParse(string str, out PathFileNameCode outValue)
-        {
+        public static bool TryParse(string str, out PathFileNameCode outValue) =>
             //outValue = null;
-            return ulong.TryParse(str, out outValue.hash);
-        }
+            UInt64.TryParse(str, out outValue.hash);
 
-        public static bool operator==(PathFileNameCode a, PathFileNameCode b)
-        {
-            return a.hash == b.hash;
-        }
+        public static bool operator ==(PathFileNameCode a, PathFileNameCode b) => a.hash == b.hash;
 
-        public static bool operator!=(PathFileNameCode a, PathFileNameCode b)
-        {
-            return !(a == b);
-        }
+        public static bool operator !=(PathFileNameCode a, PathFileNameCode b) => !(a == b);
 
-        public override string ToString()
-        {
-            return hash.ToString("x");
-        }
+        public override string ToString() => hash.ToString("x");
     }
 }

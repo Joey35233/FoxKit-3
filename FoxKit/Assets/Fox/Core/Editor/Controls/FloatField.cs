@@ -1,34 +1,33 @@
-﻿using UnityEditor;
-using UnityEngine.UIElements;
+﻿using System.Globalization;
+using UnityEditor;
 using UnityEditor.UIElements;
-using System.Globalization;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace Fox.Editor
 {
     public class FloatField : TextValueField<float>, IFoxField, ICustomBindable
     {
-        FloatInput floatInput => (FloatInput)textInputBase;
+        private FloatInput floatInput => (FloatInput)textInputBase;
 
-        protected override string ValueToString(float v)
-        {
-            return v.ToString(formatString, CultureInfo.InvariantCulture.NumberFormat);
-        }
+        protected override string ValueToString(float v) => v.ToString(formatString, CultureInfo.InvariantCulture.NumberFormat);
 
         protected override float StringToValue(string str)
         {
-            double v;
-            NumericPropertyFields.StringToDouble(str, out v);
+            _ = NumericPropertyFields.StringToDouble(str, out double v);
             return NumericPropertyFields.ClampToFloat(v);
         }
 
-        public new static readonly string ussClassName = "fox-float-field";
-        public new static readonly string labelUssClassName = ussClassName + "__label";
-        public new static readonly string inputUssClassName = ussClassName + "__input";
+        public static new readonly string ussClassName = "fox-float-field";
+        public static new readonly string labelUssClassName = ussClassName + "__label";
+        public static new readonly string inputUssClassName = ussClassName + "__input";
 
-        public VisualElement visualInput { get; }
+        public VisualElement visualInput
+        {
+            get;
+        }
 
-        public FloatField() : this((string)null) { }
+        public FloatField() : this(null) { }
 
         public FloatField(int maxLength)
             : this(null, true, maxLength) { }
@@ -49,22 +48,16 @@ namespace Fox.Editor
             AddToClassList(ussClassName);
             labelElement.AddToClassList(labelUssClassName);
             visualInput.AddToClassList(inputUssClassName);
-            this.styleSheets.Add(IFoxField.FoxFieldStyleSheet);
+            styleSheets.Add(IFoxField.FoxFieldStyleSheet);
             if (hasDragger)
                 AddLabelDragger<float>();
         }
 
         //internal override bool CanTryParse(string textString) => float.TryParse(textString, out _);
 
-        public override void ApplyInputDeviceDelta(Vector3 delta, DeltaSpeed speed, float startValue)
-        {
-            floatInput.ApplyInputDeviceDelta(delta, speed, startValue);
-        }
+        public override void ApplyInputDeviceDelta(Vector3 delta, DeltaSpeed speed, float startValue) => floatInput.ApplyInputDeviceDelta(delta, speed, startValue);
 
-        public void BindProperty(SerializedProperty property)
-        {
-            BindProperty(property, null);
-        }
+        public void BindProperty(SerializedProperty property) => BindProperty(property, null);
         public void BindProperty(SerializedProperty property, string label)
         {
             if (label is not null)
@@ -72,9 +65,9 @@ namespace Fox.Editor
             BindingExtensions.BindProperty(this, property);
         }
 
-        class FloatInput : TextValueInput
+        private class FloatInput : TextValueInput
         {
-            FloatField parentFloatField => (FloatField)parent;
+            private FloatField parentFloatField => (FloatField)parent;
 
             internal FloatInput()
             {
@@ -100,21 +93,17 @@ namespace Fox.Editor
                 }
             }
 
-            protected override string ValueToString(float v)
-            {
-                return v.ToString(formatString);
-            }
+            protected override string ValueToString(float v) => v.ToString(formatString);
 
             protected override float StringToValue(string str)
             {
-                double v;
-                NumericPropertyFields.StringToDouble(str, out v);
+                _ = NumericPropertyFields.StringToDouble(str, out double v);
                 return NumericPropertyFields.ClampToFloat(v);
             }
         }
     }
 
-    [CustomPropertyDrawer(typeof(System.Single))]
+    [CustomPropertyDrawer(typeof(float))]
     public class FloatDrawer : PropertyDrawer
     {
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
@@ -124,7 +113,7 @@ namespace Fox.Editor
 
             field.labelElement.AddToClassList(PropertyField.labelUssClassName);
             field.visualInput.AddToClassList(PropertyField.inputUssClassName);
-            field.AddToClassList(BaseField<System.Single>.alignedFieldUssClassName);
+            field.AddToClassList(BaseField<float>.alignedFieldUssClassName);
 
             return field;
         }

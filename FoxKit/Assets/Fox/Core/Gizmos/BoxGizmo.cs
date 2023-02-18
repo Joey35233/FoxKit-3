@@ -14,15 +14,13 @@ namespace Fox.Core
 
         [HideInInspector]
         public Vector3 Scale = Vector3.one;
-        void DrawGizmos(bool isSelected)
+
+        private void DrawGizmos(bool isSelected)
         {
             Gizmos.matrix = transform.localToWorldMatrix;
 
             Color faceColor = Color;
-            if (isSelected)
-                faceColor.a = 0.5f;
-            else
-                faceColor.a = 0.25f;
+            faceColor.a = isSelected ? 0.5f : 0.25f;
             Gizmos.color = faceColor;
             Gizmos.DrawCube(Vector3.zero, Scale);
 
@@ -36,16 +34,11 @@ namespace Fox.Core
             Gizmos.DrawWireCube(Vector3.zero, Scale);
 
             if (DrawLabel)
-                Handles.Label(this.transform.position, gameObject.name);
-        }
-        void OnDrawGizmos()
-        {
-            DrawGizmos(false);
+                Handles.Label(transform.position, gameObject.name);
         }
 
-        void OnDrawGizmosSelected()
-        {
-            DrawGizmos(true);
-        }
+        private void OnDrawGizmos() => DrawGizmos(false);
+
+        private void OnDrawGizmosSelected() => DrawGizmos(true);
     }
 }

@@ -1,7 +1,7 @@
-﻿using UnityEditor;
-using UnityEngine;
-using Fox.Core;
+﻿using Fox.Core;
 using System;
+using UnityEditor;
+using UnityEngine;
 
 namespace Tpp.Effect
 {
@@ -9,10 +9,10 @@ namespace Tpp.Effect
     public class TppSpotLightGizmo : MonoBehaviour
     {
         [NonSerialized]
-        public Color UmbraColor = new Color(0.22f, 0.765f, 0.961f);
+        public Color UmbraColor = new(0.22f, 0.765f, 0.961f);
 
         [NonSerialized]
-        public Color PenumbraColor = new Color(0.961f, 0.271f, 0.22f);
+        public Color PenumbraColor = new(0.961f, 0.271f, 0.22f);
 
         [NonSerialized]
         public float ShadowColorScale = 0.6f;
@@ -26,7 +26,7 @@ namespace Tpp.Effect
         [NonSerialized]
         public bool DrawLabel = false;
 
-        void DrawGizmos(bool isSelected)
+        private void DrawGizmos(bool isSelected)
         {
             if (gameObject.GetComponent<FoxEntity>()?.Entity is not TppSpotLight spotLight)
                 return;
@@ -50,11 +50,11 @@ namespace Tpp.Effect
             DrawCone(axis, spotLight.outerRange, spotLight.shadowPenumbraAngle);
         }
 
-        void DrawCone(Vector3 axis, float range, float angle)
+        private void DrawCone(Vector3 axis, float range, float angle)
         {
             float halfAngle = angle * Mathf.Deg2Rad / 2;
 
-            halfAngle = Mathf.Clamp(halfAngle, 1e-10f, Mathf.PI/2);
+            halfAngle = Mathf.Clamp(halfAngle, 1e-10f, Mathf.PI / 2);
 
             float r = range / Mathf.Cos(halfAngle / 2);
 
@@ -74,14 +74,8 @@ namespace Tpp.Effect
             Handles.DrawWireDisc(unnormalizedAxis, axis, coneBaseRadius);
         }
 
-        void OnDrawGizmos()
-        {
-            DrawGizmos(false);
-        }
+        private void OnDrawGizmos() => DrawGizmos(false);
 
-        void OnDrawGizmosSelected()
-        {
-            DrawGizmos(true);
-        }
+        private void OnDrawGizmosSelected() => DrawGizmos(true);
     }
 }

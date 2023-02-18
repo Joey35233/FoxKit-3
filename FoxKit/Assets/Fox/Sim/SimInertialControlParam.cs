@@ -1,6 +1,4 @@
-﻿using Fox.Core;
-
-namespace Fox.Sim
+﻿namespace Fox.Sim
 {
     public partial class SimInertialControlParam : Fox.Sim.SimControlParam
     {

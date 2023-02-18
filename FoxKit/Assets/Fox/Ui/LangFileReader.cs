@@ -1,11 +1,9 @@
+using Fox.Fio;
+using Fox.Kernel;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using UnityEngine;
-
-using Fox.Fio;
-using Fox.Kernel;
 
 namespace Fox.Ui
 {
@@ -16,7 +14,7 @@ namespace Fox.Ui
 
         public List<LangFileEntry> Read(Stream inputStream, Dictionary<uint, string> langIdDictionary)
         {
-            using (FileStreamReader reader = new FileStreamReader(inputStream, Encoding.UTF8, false))
+            using (var reader = new FileStreamReader(inputStream, Encoding.UTF8, false))
             {
                 int magicNumber = reader.ReadInt32();
                 int version = reader.ReadInt32(); // GZ 2, TPP 3
@@ -34,7 +32,7 @@ namespace Fox.Ui
                 int keysOffset = reader.ReadInt32();
 
                 inputStream.Position = valuesOffset;
-                Dictionary<int, LangFileEntry> offsetEntryDictionary = new Dictionary<int, LangFileEntry>();
+                var offsetEntryDictionary = new Dictionary<int, LangFileEntry>();
                 for (int i = 0; i < entryCount; i++)
                 {
                     int valuePosition = (int)inputStream.Position - valuesOffset;

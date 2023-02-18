@@ -6,18 +6,18 @@ namespace Fox.Core
     {
         protected partial float Get_radius()
         {
-            var transformEntity = this.transform.Get();
+            TransformEntity transformEntity = transform.Get();
             return Mathf.Min(transformEntity.scale.x, transformEntity.scale.y, transformEntity.scale.z);
         }
         protected partial void Set_radius(float value)
         {
-            var transformEntity = this.transform.Get();
+            TransformEntity transformEntity = transform.Get();
             transformEntity.scale = new Vector3(value, value, value);
         }
         public override void InitializeGameObject(GameObject gameObject)
         {
             base.InitializeGameObject(gameObject);
-            gameObject.AddComponent<SphereGizmo>();
+            _ = gameObject.AddComponent<SphereGizmo>();
         }
     }
 }

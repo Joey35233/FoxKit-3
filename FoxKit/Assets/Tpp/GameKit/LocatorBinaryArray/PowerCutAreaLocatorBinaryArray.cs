@@ -8,16 +8,16 @@ namespace Tpp.GameKit
     public class PowerCutAreaLocatorBinaryArray
     {
         [SerializeReference]
-        public List<PowerCutAreaLocatorBinary> locators = new List<PowerCutAreaLocatorBinary>();
+        public List<PowerCutAreaLocatorBinary> locators = new();
 
         public PowerCutAreaLocatorBinaryArray(int capacity)
         {
-            this.locators = new List<PowerCutAreaLocatorBinary>(capacity);
+            locators = new List<PowerCutAreaLocatorBinary>(capacity);
         }
 
         public PowerCutAreaLocatorBinaryArray()
         {
-            this.locators = new List<PowerCutAreaLocatorBinary>();
+            locators = new List<PowerCutAreaLocatorBinary>();
         }
     }
 }

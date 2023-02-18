@@ -1,6 +1,6 @@
 using UnityEditor;
-using UnityEngine.UIElements;
 using UnityEditor.UIElements;
+using UnityEngine.UIElements;
 
 namespace Fox.Gr.Editor
 {

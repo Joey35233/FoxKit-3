@@ -7,30 +7,29 @@ using UnityEngine.UIElements;
 
 namespace Fox.Editor
 {
-    public class Int64Field : TextValueField<System.Int64>, IFoxField, ICustomBindable
+    public class Int64Field : TextValueField<long>, IFoxField, ICustomBindable
     {
-        Int64Input integerInput => (Int64Input)textInputBase;
+        private Int64Input integerInput => (Int64Input)textInputBase;
 
-        protected override string ValueToString(System.Int64 v)
-        {
-            return v.ToString(formatString, CultureInfo.InvariantCulture.NumberFormat);
-        }
+        protected override string ValueToString(long v) => v.ToString(formatString, CultureInfo.InvariantCulture.NumberFormat);
 
-        protected override System.Int64 StringToValue(string str)
+        protected override long StringToValue(string str)
         {
-            System.Numerics.BigInteger v;
-            ExpressionEvaluator.Evaluate(str, out v);
+            _ = ExpressionEvaluator.Evaluate(str, out System.Numerics.BigInteger v);
             return NumericPropertyFields.ClampToInt64(v);
         }
 
-        public new static readonly string ussClassName = "fox-int64-field";
-        public new static readonly string labelUssClassName = ussClassName + "__label";
-        public new static readonly string inputUssClassName = ussClassName + "__input";
+        public static new readonly string ussClassName = "fox-int64-field";
+        public static new readonly string labelUssClassName = ussClassName + "__label";
+        public static new readonly string inputUssClassName = ussClassName + "__input";
 
-        public VisualElement visualInput { get; }
+        public VisualElement visualInput
+        {
+            get;
+        }
 
         public Int64Field()
-            : this((string)null) { }
+            : this(null) { }
 
         public Int64Field(int maxLength)
             : this(null, true, maxLength) { }
@@ -51,20 +50,14 @@ namespace Fox.Editor
             AddToClassList(ussClassName);
             labelElement.AddToClassList(labelUssClassName);
             visualInput.AddToClassList(inputUssClassName);
-            this.styleSheets.Add(IFoxField.FoxFieldStyleSheet);
+            styleSheets.Add(IFoxField.FoxFieldStyleSheet);
             if (hasDragger)
-                AddLabelDragger<System.Int64>();
+                AddLabelDragger<long>();
         }
 
-        public override void ApplyInputDeviceDelta(Vector3 delta, DeltaSpeed speed, System.Int64 startValue)
-        {
-            integerInput.ApplyInputDeviceDelta(delta, speed, startValue);
-        }
+        public override void ApplyInputDeviceDelta(Vector3 delta, DeltaSpeed speed, long startValue) => integerInput.ApplyInputDeviceDelta(delta, speed, startValue);
 
-        public void BindProperty(SerializedProperty property)
-        {
-            BindProperty(property, null);
-        }
+        public void BindProperty(SerializedProperty property) => BindProperty(property, null);
         public void BindProperty(SerializedProperty property, string label)
         {
             if (label is not null)
@@ -72,9 +65,9 @@ namespace Fox.Editor
             BindingExtensions.BindProperty(this, property);
         }
 
-        class Int64Input : TextValueInput
+        private class Int64Input : TextValueInput
         {
-            Int64Field parentIntegerField => (Int64Field)parent;
+            private Int64Field parentIntegerField => (Int64Field)parent;
 
             internal Int64Input()
             {
@@ -83,7 +76,7 @@ namespace Fox.Editor
 
             protected override string allowedCharacters => NumericPropertyFields.IntegerExpressionCharacterWhitelist;
 
-            public override void ApplyInputDeviceDelta(Vector3 delta, DeltaSpeed speed, System.Int64 startValue)
+            public override void ApplyInputDeviceDelta(Vector3 delta, DeltaSpeed speed, long startValue)
             {
                 double sensitivity = NumericFieldDraggerUtility.CalculateIntDragSensitivity(startValue);
                 float acceleration = NumericFieldDraggerUtility.Acceleration(speed == DeltaSpeed.Fast, speed == DeltaSpeed.Slow);
@@ -99,21 +92,17 @@ namespace Fox.Editor
                 }
             }
 
-            protected override string ValueToString(System.Int64 v)
-            {
-                return v.ToString(formatString);
-            }
+            protected override string ValueToString(long v) => v.ToString(formatString);
 
-            protected override System.Int64 StringToValue(string str)
+            protected override long StringToValue(string str)
             {
-                System.Numerics.BigInteger v;
-                ExpressionEvaluator.Evaluate(str, out v);
+                _ = ExpressionEvaluator.Evaluate(str, out System.Numerics.BigInteger v);
                 return NumericPropertyFields.ClampToInt64(v);
             }
         }
     }
 
-    [CustomPropertyDrawer(typeof(System.Int64))]
+    [CustomPropertyDrawer(typeof(long))]
     public class Int64Drawer : PropertyDrawer
     {
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
@@ -123,7 +112,7 @@ namespace Fox.Editor
 
             field.labelElement.AddToClassList(PropertyField.labelUssClassName);
             field.visualInput.AddToClassList(PropertyField.inputUssClassName);
-            field.AddToClassList(BaseField<System.UInt64>.alignedFieldUssClassName);
+            field.AddToClassList(BaseField<ulong>.alignedFieldUssClassName);
 
             return field;
         }

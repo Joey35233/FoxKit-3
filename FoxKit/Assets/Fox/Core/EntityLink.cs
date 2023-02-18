@@ -1,6 +1,6 @@
+using Fox.Kernel;
 using System;
 using UnityEngine;
-using Fox.Kernel;
 using String = Fox.Kernel.String;
 
 namespace Fox.Core
@@ -44,17 +44,9 @@ namespace Fox.Core
             this.nameInArchive = nameInArchive;
         }
 
-        public override bool Equals(object obj)
-        {
-            if (obj is null)
-            {
-                return false;
-            }
+        public override bool Equals(object obj) => obj is not null && Equals((EntityLink)obj);
 
-            return this.Equals((EntityLink)obj);
-        }
-
-        public bool Equals(EntityLink other) => this.handle == other.handle;
+        public bool Equals(EntityLink other) => handle == other.handle;
 
         public override int GetHashCode() => handle.GetHashCode();
 
@@ -62,14 +54,8 @@ namespace Fox.Core
 
         public static bool operator !=(EntityLink lhs, EntityLink rhs) => !lhs.Equals(rhs);
 
-        public override string ToString()
-        {
-            return this.handle.ToString();
-        }
+        public override string ToString() => handle.ToString();
 
-        internal static EntityLink Empty()
-        {
-            return new EntityLink(new EntityHandle(), null, null, null);
-        }
+        internal static EntityLink Empty() => new(new EntityHandle(), null, null, null);
     }
 }

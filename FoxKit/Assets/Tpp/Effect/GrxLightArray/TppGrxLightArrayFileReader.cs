@@ -10,7 +10,7 @@ namespace Tpp.Effect
     {
         public UnityEngine.SceneManagement.Scene? Read(FileStreamReader reader)
         {
-            var scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
+            UnityEngine.SceneManagement.Scene scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
 
             // Read header
             uint signature = reader.ReadUInt32(); //FGxL or FGxO
@@ -20,18 +20,20 @@ namespace Tpp.Effect
                 return null;
             }
 
-            uint padding = reader.ReadUInt32(); Debug.Assert(padding == 0);
+            uint padding = reader.ReadUInt32();
+            Debug.Assert(padding == 0);
 
             long nextLightOffset = reader.ReadUInt32();
             long lightPosition = nextLightOffset;
 
-            uint version = reader.ReadUInt32(); Debug.Assert(version == 1);
+            uint version = reader.ReadUInt32();
+            Debug.Assert(version == 1);
 
             while (true)
             {
                 reader.Seek(lightPosition);
 
-                string lightType = new string(reader.ReadChars(4));
+                string lightType = new(reader.ReadChars(4));
 
                 nextLightOffset = reader.ReadInt32();
                 lightPosition += nextLightOffset;
@@ -67,7 +69,8 @@ namespace Tpp.Effect
 
             reader.Seek(offsetPos + 4);
 
-            uint padding = reader.ReadUInt32(); Debug.Assert(padding == 0);
+            uint padding = reader.ReadUInt32();
+            Debug.Assert(padding == 0);
 
             return result;
         }
@@ -96,7 +99,7 @@ namespace Tpp.Effect
             if (ReadTransform(reader) is TransformEntity transform)
             {
                 var gameObject = new GameObject();
-                Locator locator = (Locator)(gameObject.AddComponent<FoxEntity>().Entity = new Locator());
+                var locator = (Locator)(gameObject.AddComponent<FoxEntity>().Entity = new Locator());
                 locator.size = 1;
 
                 locator.SetTransform(transform);
@@ -113,7 +116,7 @@ namespace Tpp.Effect
         {
             var lightGameObject = new GameObject();
 
-            TppLightProbe lightEntity = (TppLightProbe)(lightGameObject.AddComponent<FoxEntity>().Entity = new TppLightProbe());
+            var lightEntity = (TppLightProbe)(lightGameObject.AddComponent<FoxEntity>().Entity = new TppLightProbe());
             lightEntity.name = new String(ReadName(reader));
 
             uint localFlags = reader.ReadUInt32();
@@ -135,18 +138,18 @@ namespace Tpp.Effect
             lightEntity.innerScaleYNegative = reader.ReadHalf();
             lightEntity.innerScaleZNegative = reader.ReadHalf();
 
-            TransformEntity transform = new TransformEntity { scale = reader.ReadVector3(), rotQuat = reader.ReadRotationF(), translation = reader.ReadPositionF() };
+            var transform = new TransformEntity { scale = reader.ReadVector3(), rotQuat = reader.ReadRotationF(), translation = reader.ReadPositionF() };
             lightEntity.SetTransform(transform);
             lightEntity.InitializeGameObject(lightGameObject);
 
             uint innerAreaOffset = reader.ReadUInt32();
             if (innerAreaOffset != 0)
             {
-                Fox.Core.Transform iaTransform = new Fox.Core.Transform { scale = reader.ReadVector3(), rotation_quat = reader.ReadRotationF(), translation = reader.ReadPositionF() };
+                var iaTransform = new Fox.Core.Transform { scale = reader.ReadVector3(), rotation_quat = reader.ReadRotationF(), translation = reader.ReadPositionF() };
 
                 Vector3 localIaPos = iaTransform.translation - transform.translation;
-                Vector3 absIaScale = new Vector3(Mathf.Abs(iaTransform.scale.x), Mathf.Abs(iaTransform.scale.y), Mathf.Abs(iaTransform.scale.z));
-                Vector3 posProbeScale = new Vector3(Mathf.Abs(transform.scale.x), Mathf.Abs(transform.scale.y), Mathf.Abs(transform.scale.z));
+                var absIaScale = new Vector3(Mathf.Abs(iaTransform.scale.x), Mathf.Abs(iaTransform.scale.y), Mathf.Abs(iaTransform.scale.z));
+                var posProbeScale = new Vector3(Mathf.Abs(transform.scale.x), Mathf.Abs(transform.scale.y), Mathf.Abs(transform.scale.z));
                 Vector3 negProbeScale = -posProbeScale;
 
                 Vector3 iaUpper = localIaPos + absIaScale;
@@ -154,9 +157,9 @@ namespace Tpp.Effect
 
                 Vector3 iaMid = iaLower + iaUpper;
 
-                Vector3 numP = Vector3.Max(localIaPos + absIaScale - iaMid, posProbeScale);
+                var numP = Vector3.Max(localIaPos + absIaScale - iaMid, posProbeScale);
 
-                Vector3 numN = Vector3.Min(localIaPos - absIaScale - iaMid, negProbeScale);
+                var numN = Vector3.Min(localIaPos - absIaScale - iaMid, negProbeScale);
 
                 lightEntity.innerScaleXPositive = numP.x / posProbeScale.x;
                 lightEntity.innerScaleXNegative = numN.x / negProbeScale.x;
@@ -169,9 +172,12 @@ namespace Tpp.Effect
             }
 
             lightEntity.priority = reader.ReadInt16();
-            ushort relatedLightCount = reader.ReadUInt16();
-            ushort relatedLightsStartIndex = reader.ReadUInt16();
-            ushort drawRejectionLevelsAndShDataIndex = reader.ReadUInt16();
+
+            _ = reader.ReadUInt16();
+
+            _ = reader.ReadUInt16();
+
+            _ = reader.ReadUInt16();
 
             if (lightEntity.enableOcclusionMode)
                 lightEntity.occlusionModeOpenRate = reader.ReadSingle();

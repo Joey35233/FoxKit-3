@@ -1,7 +1,4 @@
-﻿using Fox;
-using Fox.Core;
-using Fox.Grx;
-using Fox.Kernel;
+﻿using Fox.Kernel;
 using System.ComponentModel;
 using UnityEngine;
 using CsSystem = System;
@@ -76,23 +73,23 @@ namespace Tpp.Effect
         }
 
         protected partial bool Get_enable24hSH() => FlagUtils.GetFlag(localFlags, 0);
-        protected partial void Set_enable24hSH(bool value) { localFlags = FlagUtils.SetFlag(localFlags, 0, value); }
+        protected partial void Set_enable24hSH(bool value) => localFlags = FlagUtils.SetFlag(localFlags, 0, value);
 
         protected partial bool Get_enableWeatherSH() => FlagUtils.GetFlag(localFlags, 1);
-        protected partial void Set_enableWeatherSH(bool value) { localFlags = FlagUtils.SetFlag(localFlags, 1, value); }
+        protected partial void Set_enableWeatherSH(bool value) => localFlags = FlagUtils.SetFlag(localFlags, 1, value);
 
         protected partial bool Get_enableRelatedLightSH() => FlagUtils.GetFlag(localFlags, 2);
-        protected partial void Set_enableRelatedLightSH(bool value) { localFlags = FlagUtils.SetFlag(localFlags, 2, value); }
+        protected partial void Set_enableRelatedLightSH(bool value) => localFlags = FlagUtils.SetFlag(localFlags, 2, value);
 
         protected partial bool Get_enableOcclusionMode() => FlagUtils.GetFlag(localFlags, 3);
-        protected partial void Set_enableOcclusionMode(bool value) { localFlags = FlagUtils.SetFlag(localFlags, 3, value); }
+        protected partial void Set_enableOcclusionMode(bool value) => localFlags = FlagUtils.SetFlag(localFlags, 3, value);
 
         protected partial TppLightProbe_PackingGeneration Get_packingGeneration() => throw new CsSystem.NotImplementedException();
-        protected partial void Set_packingGeneration(TppLightProbe_PackingGeneration value) { throw new CsSystem.NotImplementedException(); }
+        protected partial void Set_packingGeneration(TppLightProbe_PackingGeneration value) => throw new CsSystem.NotImplementedException();
 
         public override void InitializeGameObject(GameObject gameObject)
         {
-            gameObject.AddComponent<TppLightProbeGizmo>();
+            _ = gameObject.AddComponent<TppLightProbeGizmo>();
             base.InitializeGameObject(gameObject);
         }
     }

@@ -1,5 +1,5 @@
-using Fox.Kernel;
 using Fox.Fio;
+using Fox.Kernel;
 using UnityEngine;
 
 namespace Fox.Fs
@@ -27,12 +27,9 @@ namespace Fox.Fs
             return fullPath;
         }
 
-        internal static FileStreamReader CreateFromPath(Path path, System.Text.Encoding encoding)
-        {
-            return new FileStreamReader(new System.IO.FileStream(ResolvePathname(path), System.IO.FileMode.Open), encoding);
-        }
+        internal static FileStreamReader CreateFromPath(Path path, System.Text.Encoding encoding) => new(new System.IO.FileStream(ResolvePathname(path), System.IO.FileMode.Open), encoding);
 
-        void RegisterImportFileExtension(String extension, System.Func<String, String> nameResolver)
+        private void RegisterImportFileExtension(String extension, System.Func<String, String> nameResolver)
         {
 
         }

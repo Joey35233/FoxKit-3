@@ -1,13 +1,11 @@
-using UnityEngine;
-using UnityEditor.AssetImporters;
 using Fox.Fio;
-using System;
 using Fox.Kernel;
+using System;
 using Unity.Collections;
-using UnityEngine.Rendering;
-using Codice.CM.Client.Differences.Graphic;
-using System.Security.Policy;
 using UnityEditor;
+using UnityEditor.AssetImporters;
+using UnityEngine;
+using UnityEngine.Rendering;
 
 namespace Fox.Gr
 {
@@ -94,23 +92,24 @@ namespace Fox.Gr
                 public uint DataOffset;
             }
 
-            uint FeatureTypes;
-            uint FeaturesDataOffset;
-            FeatureDef[] Features;
-
-            uint BufferTypes;
-            uint BuffersDataOffset;
-            uint[] BufferOffsets;
-
-            Action<string> LogError;
+            private uint FeatureTypes;
+            private uint FeaturesDataOffset;
+            private FeatureDef[] Features;
+            private uint BufferTypes;
+            private uint BuffersDataOffset;
+            private uint[] BufferOffsets;
+            private Action<string> LogError;
 
             public static FmdlDef Read(FileStreamReader reader, long position, Action<string> logWarning, Action<string> logError)
             {
-                uint fileDescOffset = reader.ReadUInt32(); reader.SkipPadding(4);
+                uint fileDescOffset = reader.ReadUInt32();
+                reader.SkipPadding(4);
 
-                uint featureTypes = reader.ReadUInt32(); reader.SkipPadding(4);
+                uint featureTypes = reader.ReadUInt32();
+                reader.SkipPadding(4);
 
-                uint bufferTypes = reader.ReadUInt32(); reader.SkipPadding(4);
+                uint bufferTypes = reader.ReadUInt32();
+                reader.SkipPadding(4);
 
                 uint featureCount = reader.ReadUInt32();
 
@@ -132,7 +131,7 @@ namespace Fox.Gr
 
                 reader.SkipPadding(8);
 
-                FmdlDef def = new FmdlDef
+                var def = new FmdlDef
                 {
                     FeatureTypes = featureTypes,
                     FeaturesDataOffset = featuresDataOffset,
@@ -150,20 +149,22 @@ namespace Fox.Gr
 
                     for (int i = 0; i < featureCount; i++)
                     {
-                        FeatureType type = (FeatureType)reader.ReadByte(); Debug.Assert(type < FeatureType.COUNT);
+                        var type = (FeatureType)reader.ReadByte();
+                        Debug.Assert(type < FeatureType.COUNT);
 
                         Debug.Assert(featureTypes != 0);
                         Debug.Assert((featureTypes & (1 << (int)type)) != 0);
                         featureTypes &= (uint)~(featureTypes & (1 << (int)type));
 
-                        def.Features[(int)type].Count = (uint)reader.ReadByte() * (ushort.MaxValue + 1) + reader.ReadUInt16(); // Not technically accurate for all features; some don't use the overflow feature.
+                        def.Features[(int)type].Count = ((uint)reader.ReadByte() * (UInt16.MaxValue + 1)) + reader.ReadUInt16(); // Not technically accurate for all features; some don't use the overflow feature.
                         def.Features[(int)type].DataOffset = reader.ReadUInt32();
                     }
                     Debug.Assert(featureTypes == 0);
 
                     for (int i = 0; i < bufferCount; i++)
                     {
-                        BufferType type = (BufferType)reader.ReadUInt32(); Debug.Assert(type < BufferType.COUNT);
+                        var type = (BufferType)reader.ReadUInt32();
+                        Debug.Assert(type < BufferType.COUNT);
                         if ((int)type == 1)
                             logWarning("Buffer type 1 found, is this a mistake?");
 
@@ -173,7 +174,8 @@ namespace Fox.Gr
 
                         def.BufferOffsets[(int)type] = reader.ReadUInt32();
 
-                        uint size = reader.ReadUInt32(); Debug.Assert(size != 0); // I am not sure if size == 0 is a valid state or not.
+                        uint size = reader.ReadUInt32();
+                        Debug.Assert(size != 0); // I am not sure if size == 0 is a valid state or not.
                     }
                     Debug.Assert(bufferTypes == 0);
                 }
@@ -185,37 +187,16 @@ namespace Fox.Gr
                 return def;
             }
 
-            public uint GetFeatureCount(FeatureType type)
-            {
-                if ((FeatureTypes & (1 << (int)type)) == 0)
-                    return 0;
+            public uint GetFeatureCount(FeatureType type) => (FeatureTypes & (1 << (int)type)) == 0 ? 0 : Features[(int)type].Count;
 
-                return Features[(int)type].Count;
-            }
-
-            public bool HasFeature(FeatureType type)
-            {
-                return (FeatureTypes & (1 << (int)type)) != 0;
-            }
+            public bool HasFeature(FeatureType type) => (FeatureTypes & (1 << (int)type)) != 0;
 
             // No validation.
-            public long GetFeaturePositionForIndex(FeatureType type, uint index) => FeaturesDataOffset + Features[(int)type].DataOffset + FeatureUnitSizes[(int)type] * index;
+            public long GetFeaturePositionForIndex(FeatureType type, uint index) => FeaturesDataOffset + Features[(int)type].DataOffset + (FeatureUnitSizes[(int)type] * index);
 
-            public uint GetBufferCount(BufferType type)
-            {
-                if ((BufferTypes & (1 << (int)type)) == 0)
-                    return 0;
+            public uint GetBufferCount(BufferType type) => (BufferTypes & (1 << (int)type)) == 0 ? 0 : Features[(int)type].Count;
 
-                return Features[(int)type].Count;
-            }
-
-            public long? GetBufferPosition(BufferType type)
-            {
-                if ((BufferTypes & (1 << (int)type)) == 0)
-                    return null;
-
-                return BuffersDataOffset + BufferOffsets[(int)type];
-            }
+            public long? GetBufferPosition(BufferType type) => (BufferTypes & (1 << (int)type)) == 0 ? null : BuffersDataOffset + BufferOffsets[(int)type];
 
             public bool ValidateFeatureIndex(FeatureType owner, FeatureType indexed, uint index)
             {
@@ -278,7 +259,7 @@ namespace Fox.Gr
             R8G8B8A8_UInt = 9,
         }
 
-        struct MeshBufferDesc
+        private struct MeshBufferDesc
         {
             public byte Stride;
             public uint Offset;
@@ -287,14 +268,14 @@ namespace Fox.Gr
             public MeshBufferFormatElement[] Elements;
         }
 
-        struct MeshBufferFormatElement
+        private struct MeshBufferFormatElement
         {
             public MeshBufferFormatElementUsage Usage;
             public MeshBufferFormatElementType Type;
             public ushort Offset;
         }
 
-        struct MeshDataLayoutDesc
+        private struct MeshDataLayoutDesc
         {
             public MeshBufferDesc[] BufferDescs;
         }
@@ -307,7 +288,7 @@ namespace Fox.Gr
 
         private const MeshUpdateFlags UpdateFlags = MeshUpdateFlags.DontRecalculateBounds | MeshUpdateFlags.DontValidateIndices | MeshUpdateFlags.DontResetBoneBounds;
 
-        private static Bounds InvalidBoundingBox = new Bounds { max = new Vector3(-1e10f, -1e10f, -1e10f), min = new Vector3(1e10f, 1e10f, 1e10f) };
+        private static Bounds InvalidBoundingBox = new() { max = new Vector3(-1e10f, -1e10f, -1e10f), min = new Vector3(1e10f, 1e10f, 1e10f) };
 
         private StrCode ReadNameForIndex(ref FmdlDef def, FileStreamReader reader, ushort index)
         {
@@ -328,13 +309,11 @@ namespace Fox.Gr
 
             reader.Seek(def.GetFeaturePositionForIndex(FeatureType.AABBs, index));
 
-            Bounds box = new Bounds();
+            var box = new Bounds();
             Vector3 max = reader.ReadPositionHF();
             Vector3 min = reader.ReadPositionHF();
 
-            float flippedMinX = max.x;
-            max.x = min.x;
-            min.x = flippedMinX;
+            (min.x, max.x) = (max.x, min.x);
 
             box.max = max;
             box.min = min;
@@ -346,8 +325,8 @@ namespace Fox.Gr
 
         public override void OnImportAsset(AssetImportContext context)
         {
-            using FileStreamReader reader = new FileStreamReader(System.IO.File.OpenRead(assetPath));
-            
+            using var reader = new FileStreamReader(System.IO.File.OpenRead(assetPath));
+
             string name = System.IO.Path.GetFileName(context.assetPath);
 
             void logWarning(string message)
@@ -370,9 +349,9 @@ namespace Fox.Gr
                 logError("Unsupported FMDL version.");
             }
 
-            GameObject main = new GameObject(name);
+            var main = new GameObject(name);
 
-            FmdlDef def = FmdlDef.Read(reader, 0, logWarning, logError);
+            var def = FmdlDef.Read(reader, 0, logWarning, logError);
             //{
             //    BoxCollider boxComponent = main.AddComponent<BoxCollider>();
             //    Bounds box = ReadAABBForIndex(ref def, reader, 0);
@@ -394,18 +373,24 @@ namespace Fox.Gr
                 {
                     reader.Seek(def.GetFeaturePositionForIndex(FeatureType.BoneDefs, i));
 
-                    ushort nameIndex = reader.ReadUInt16(); if (!def.ValidateFeatureIndex(FeatureType.BoneDefs, FeatureType.NameHashes, nameIndex)) return;
+                    ushort nameIndex = reader.ReadUInt16();
+                    if (!def.ValidateFeatureIndex(FeatureType.BoneDefs, FeatureType.NameHashes, nameIndex))
+                        return;
                     StrCode nameHash = ReadNameForIndex(ref def, reader, nameIndex);
 
-                    GameObject bone = new GameObject(nameHash.ToString());
+                    var bone = new GameObject(nameHash.ToString());
                     bones[i] = bone.transform;
 
-                    short parentIndex = reader.ReadInt16(); if (parentIndex > -1 && !def.ValidateFeatureIndex(FeatureType.BoneDefs, FeatureType.BoneDefs, (uint)parentIndex)) return;
+                    short parentIndex = reader.ReadInt16();
+                    if (parentIndex > -1 && !def.ValidateFeatureIndex(FeatureType.BoneDefs, FeatureType.BoneDefs, (uint)parentIndex))
+                        return;
 
-                    ushort aabbIndex = reader.ReadUInt16(); if (!def.ValidateFeatureIndex(FeatureType.BoneDefs, FeatureType.AABBs, aabbIndex)) return;
+                    ushort aabbIndex = reader.ReadUInt16();
+                    if (!def.ValidateFeatureIndex(FeatureType.BoneDefs, FeatureType.AABBs, aabbIndex))
+                        return;
                     Bounds box = ReadAABBForIndex(ref def, reader, aabbIndex);
 
-                    BoneFlags flags = (BoneFlags)reader.ReadUInt16();
+                    var flags = (BoneFlags)reader.ReadUInt16();
                     if (((uint)flags & ~1) != 0)
                         logWarning("Unknown BoneFlags.");
 
@@ -445,27 +430,32 @@ namespace Fox.Gr
 
                 for (uint i = 0; i < meshGroupHeaderCount; i++)
                 {
-                    reader.Seek(def.GetFeaturePositionForIndex(FeatureType.MeshGroupHeaders,i));
+                    reader.Seek(def.GetFeaturePositionForIndex(FeatureType.MeshGroupHeaders, i));
 
-                    ushort nameIndex = reader.ReadUInt16(); if (!def.ValidateFeatureIndex(FeatureType.MeshGroupHeaders, FeatureType.NameHashes, nameIndex)) return;
+                    ushort nameIndex = reader.ReadUInt16();
+                    if (!def.ValidateFeatureIndex(FeatureType.MeshGroupHeaders, FeatureType.NameHashes, nameIndex))
+                        return;
                     StrCode nameHash = ReadNameForIndex(ref def, reader, nameIndex);
 
-                    MeshGroupHeaderFlags flags = (MeshGroupHeaderFlags)reader.ReadUInt16();
+                    var flags = (MeshGroupHeaderFlags)reader.ReadUInt16();
 
-                    GameObject meshGroup = new GameObject(nameHash.ToString());
+                    var meshGroup = new GameObject(nameHash.ToString());
                     meshGroups[i] = meshGroup;
 
                     if (flags.HasFlag(MeshGroupHeaderFlags.Invisible))
                         meshGroup.SetActive(false);
 
-                    short parentIndex = reader.ReadInt16(); if (parentIndex > -1 && !def.ValidateFeatureIndex(FeatureType.MeshGroupHeaders, FeatureType.MeshGroupHeaders, (uint)parentIndex)) return;
+                    short parentIndex = reader.ReadInt16();
+                    if (parentIndex > -1 && !def.ValidateFeatureIndex(FeatureType.MeshGroupHeaders, FeatureType.MeshGroupHeaders, (uint)parentIndex))
+                        return;
 
                     if (parentIndex == -1)
                         meshGroup.transform.SetParent(main.transform);
                     else
                         meshGroup.transform.SetParent(meshGroups[parentIndex].transform);
 
-                    short unknown = reader.ReadInt16(); Debug.Assert(unknown == -1);
+                    short unknown = reader.ReadInt16();
+                    Debug.Assert(unknown == -1);
                 }
             }
 
@@ -476,9 +466,11 @@ namespace Fox.Gr
             {
                 reader.Seek(def.GetFeaturePositionForIndex(FeatureType.FileMeshBufferHeaders, i));
 
-                FileMeshBufferType type = (FileMeshBufferType)reader.ReadUInt32(); Debug.Assert(type == FileMeshBufferType.VBuffer || type == FileMeshBufferType.IndexBuffer);
+                var type = (FileMeshBufferType)reader.ReadUInt32();
+                Debug.Assert(type is FileMeshBufferType.VBuffer or FileMeshBufferType.IndexBuffer);
 
-                uint size = reader.ReadUInt32(); Debug.Assert(size <= int.MaxValue);
+                uint size = reader.ReadUInt32();
+                Debug.Assert(size <= Int32.MaxValue);
 
                 reader.Seek(def.GetBufferPosition(BufferType.Vertices).Value + reader.ReadUInt32());
 
@@ -510,26 +502,35 @@ namespace Fox.Gr
                 for (uint i = 0; i < meshGroupDefCount; i++)
                 {
                     reader.Seek(def.GetFeaturePositionForIndex(FeatureType.MeshGroupDefs, i));
-                    uint unknown = reader.ReadUInt32(); Debug.Assert(unknown == 0);
+                    uint unknown = reader.ReadUInt32();
+                    Debug.Assert(unknown == 0);
 
-                    ushort headerIndex = reader.ReadUInt16(); if (!def.ValidateFeatureIndex(FeatureType.MeshGroupDefs, FeatureType.MeshGroupHeaders, headerIndex)) return;
+                    ushort headerIndex = reader.ReadUInt16();
+                    if (!def.ValidateFeatureIndex(FeatureType.MeshGroupDefs, FeatureType.MeshGroupHeaders, headerIndex))
+                        return;
                     GameObject meshGroup = meshGroups[headerIndex];
 
                     ushort meshCount = reader.ReadUInt16();
 
-                    ushort meshesStartIndex = reader.ReadUInt16(); if (meshCount > 0 && !def.ValidateFeatureIndex(FeatureType.MeshGroupDefs, FeatureType.MeshDefs, (uint)(meshesStartIndex + meshCount - 1))) return;
+                    ushort meshesStartIndex = reader.ReadUInt16();
+                    if (meshCount > 0 && !def.ValidateFeatureIndex(FeatureType.MeshGroupDefs, FeatureType.MeshDefs, (uint)(meshesStartIndex + meshCount - 1)))
+                        return;
 
-                    ushort aabbIndex = reader.ReadUInt16(); if (!def.ValidateFeatureIndex(FeatureType.MeshGroupDefs, FeatureType.AABBs, headerIndex)) return;
+                    ushort aabbIndex = reader.ReadUInt16();
+                    if (!def.ValidateFeatureIndex(FeatureType.MeshGroupDefs, FeatureType.AABBs, headerIndex))
+                        return;
                     Bounds box = ReadAABBForIndex(ref def, reader, aabbIndex);
 
                     reader.SkipPadding(4);
 
-                    ushort iBufferSlicesGroupStartIndex = reader.ReadUInt16(); if (!def.ValidateFeatureIndex(FeatureType.MeshGroupDefs, FeatureType.IBufferSlices, headerIndex)) return;
+                    ushort iBufferSlicesGroupStartIndex = reader.ReadUInt16();
+                    if (!def.ValidateFeatureIndex(FeatureType.MeshGroupDefs, FeatureType.IBufferSlices, headerIndex))
+                        return;
 
                     reader.SkipPadding(14);
 
                     // MeshDefs
-                    MeshDataLayoutDesc[] layoutDescs = new MeshDataLayoutDesc[meshCount];
+                    var layoutDescs = new MeshDataLayoutDesc[meshCount];
                     uint totalVertexCount = 0;
                     uint totalIndexCount = 0;
                     uint maxBufferCount = 0;
@@ -539,11 +540,17 @@ namespace Fox.Gr
 
                         uint flags = reader.ReadUInt32();
 
-                        ushort materialInstanceIndex = reader.ReadUInt16(); if (!def.ValidateFeatureIndex(FeatureType.MeshDefs, FeatureType.MaterialInstanceHeaders, materialInstanceIndex)) return;
+                        ushort materialInstanceIndex = reader.ReadUInt16();
+                        if (!def.ValidateFeatureIndex(FeatureType.MeshDefs, FeatureType.MaterialInstanceHeaders, materialInstanceIndex))
+                            return;
 
-                        ushort boneGroupIndex = reader.ReadUInt16(); if (!def.ValidateFeatureIndex(FeatureType.MeshDefs, FeatureType.BoneGroups, boneGroupIndex)) return;
+                        ushort boneGroupIndex = reader.ReadUInt16();
+                        if (!def.ValidateFeatureIndex(FeatureType.MeshDefs, FeatureType.BoneGroups, boneGroupIndex))
+                            return;
 
-                        ushort dataLayoutDescIndex = reader.ReadUInt16(); if (!def.ValidateFeatureIndex(FeatureType.MeshDefs, FeatureType.MeshDataLayoutDescs, dataLayoutDescIndex)) return;
+                        ushort dataLayoutDescIndex = reader.ReadUInt16();
+                        if (!def.ValidateFeatureIndex(FeatureType.MeshDefs, FeatureType.MeshDataLayoutDescs, dataLayoutDescIndex))
+                            return;
 
                         // TODO - Inc. validation
                         ushort vertexCount = reader.ReadUInt16();
@@ -585,9 +592,13 @@ namespace Fox.Gr
 
                         byte uvCount = reader.ReadByte();
 
-                        ushort bufferHeadersStartIndex = reader.ReadUInt16(); if (bufferCount > 0 && !def.ValidateFeatureIndex(FeatureType.MeshDataLayoutDescs, FeatureType.MeshBufferHeaders, (uint)(bufferHeadersStartIndex + bufferCount - 1))) return;
+                        ushort bufferHeadersStartIndex = reader.ReadUInt16();
+                        if (bufferCount > 0 && !def.ValidateFeatureIndex(FeatureType.MeshDataLayoutDescs, FeatureType.MeshBufferHeaders, (uint)(bufferHeadersStartIndex + bufferCount - 1)))
+                            return;
 
-                        ushort formatElementsStartIndex = reader.ReadUInt16(); if (formatElementCount > 0 && !def.ValidateFeatureIndex(FeatureType.MeshDataLayoutDescs, FeatureType.MeshBufferFormatElements, (uint)(formatElementsStartIndex + formatElementCount - 1))) return;
+                        ushort formatElementsStartIndex = reader.ReadUInt16();
+                        if (formatElementCount > 0 && !def.ValidateFeatureIndex(FeatureType.MeshDataLayoutDescs, FeatureType.MeshBufferFormatElements, (uint)(formatElementsStartIndex + formatElementCount - 1)))
+                            return;
 
                         MeshDataLayoutDesc layoutDesc = layoutDescs[j] = new MeshDataLayoutDesc { BufferDescs = new MeshBufferDesc[bufferCount] };
 
@@ -605,7 +616,8 @@ namespace Fox.Gr
 
                             byte stride = reader.ReadByte();
 
-                            byte bindSlot = reader.ReadByte(); Debug.Assert(bindSlot < 4);
+                            byte bindSlot = reader.ReadByte();
+                            Debug.Assert(bindSlot < 4);
 
                             uint offset = reader.ReadUInt32();
 
@@ -618,9 +630,9 @@ namespace Fox.Gr
 
                                 reader.Seek(def.GetFeaturePositionForIndex(FeatureType.MeshBufferFormatElements, formatElementsStartIndex + index));
 
-                                MeshBufferFormatElementUsage usage = (MeshBufferFormatElementUsage)reader.ReadByte(); // TODO - validate type
+                                var usage = (MeshBufferFormatElementUsage)reader.ReadByte(); // TODO - validate type
 
-                                MeshBufferFormatElementType type = (MeshBufferFormatElementType)reader.ReadByte(); // TODO - validate type
+                                var type = (MeshBufferFormatElementType)reader.ReadByte(); // TODO - validate type
 
                                 ushort offsetRelative = reader.ReadUInt16();
 
@@ -630,14 +642,16 @@ namespace Fox.Gr
                         }
                     }
 
-                    BufferUploadHelper uploadHelper = new BufferUploadHelper(maxBufferCount, (uint)layoutDescs.LongLength);
+                    var uploadHelper = new BufferUploadHelper(maxBufferCount, (uint)layoutDescs.LongLength);
                     uploadHelper.Register(layoutDescs);
 
                     // Unity Mesh
-                    Mesh mesh = new Mesh();
-                    mesh.name = meshGroup.name;
-                    Debug.Assert(totalVertexCount <= int.MaxValue);
-                    Debug.Assert(totalIndexCount <= int.MaxValue);
+                    var mesh = new Mesh
+                    {
+                        name = meshGroup.name
+                    };
+                    Debug.Assert(totalVertexCount <= Int32.MaxValue);
+                    Debug.Assert(totalIndexCount <= Int32.MaxValue);
                     mesh.SetVertexBufferParams((int)totalVertexCount, uploadHelper.GetDescriptorArray());
                     mesh.SetIndexBufferParams((int)totalIndexCount, IndexFormat.UInt16);
                     mesh.subMeshCount = meshCount;
@@ -664,8 +678,10 @@ namespace Fox.Gr
 
                         reader.SkipPadding(2);
 
-                        uint highLodIBufferSliceStartIndex = reader.ReadUInt32(); Debug.Assert(highLodIBufferSliceStartIndex <= int.MaxValue);
-                        uint highLodIBufferSliceCount = reader.ReadUInt32(); Debug.Assert(highLodIBufferSliceCount <= int.MaxValue);
+                        uint highLodIBufferSliceStartIndex = reader.ReadUInt32();
+                        Debug.Assert(highLodIBufferSliceStartIndex <= Int32.MaxValue);
+                        uint highLodIBufferSliceCount = reader.ReadUInt32();
+                        Debug.Assert(highLodIBufferSliceCount <= Int32.MaxValue);
 
                         uint iBufferSlicesStartIndex = iBufferSlicesGroupStartIndex + reader.ReadUInt32();
 
@@ -681,7 +697,7 @@ namespace Fox.Gr
                         {
                             boneGroup[k] = reader.ReadUInt16();
                         }
-                        
+
                         // TODO - hack!
                         for (uint k = 0; k < vertexBuffers.LongLength; k++)
                         {
@@ -691,8 +707,8 @@ namespace Fox.Gr
 
                         // TODO - Even more of a hack!
                         if (bones != null)
-                            uploadHelper.CopyBoneWeights(weightBuffer, vertexBuffers[1], layoutDescs[j], layoutDescs[j].BufferDescs[1].Offset, layoutDescs[j].BufferDescs[1].Stride, vertexStart, vertexCount, boneGroup.Slice(0, boneCount));
-                        
+                            uploadHelper.CopyBoneWeights(weightBuffer, vertexBuffers[1], layoutDescs[j], layoutDescs[j].BufferDescs[1].Offset, layoutDescs[j].BufferDescs[1].Stride, vertexStart, vertexCount, boneGroup[..boneCount]);
+
                         mesh.SetIndexBufferData(indexBuffer, (int)highLodIBufferSliceStartIndex * 2, (int)indexStart * 2, (int)highLodIBufferSliceCount * 2, UpdateFlags | MeshUpdateFlags.DontNotifyMeshUsers);
 
                         mesh.SetSubMesh((int)j, new SubMeshDescriptor { topology = MeshTopology.Triangles, indexStart = (int)indexStart, indexCount = (int)highLodIBufferSliceCount, firstVertex = (int)vertexStart, vertexCount = vertexCount, baseVertex = (int)vertexStart }, UpdateFlags);
@@ -713,7 +729,7 @@ namespace Fox.Gr
 
                         MeshRenderer meshRenderer = meshGroup.AddComponent<MeshRenderer>();
 
-                        Material[] sharedMaterials = new Material[mesh.subMeshCount];
+                        var sharedMaterials = new Material[mesh.subMeshCount];
                         for (uint j = 0; j < sharedMaterials.Length; j++)
                             sharedMaterials[j] = defaultMaterial;
 
@@ -730,7 +746,7 @@ namespace Fox.Gr
                         skinnedMeshRenderer.sharedMesh = mesh;
                         skinnedMeshRenderer.rootBone = bones[0];
 
-                        Material[] sharedMaterials = new Material[mesh.subMeshCount];
+                        var sharedMaterials = new Material[mesh.subMeshCount];
                         for (uint j = 0; j < sharedMaterials.Length; j++)
                             sharedMaterials[j] = defaultMaterial;
 

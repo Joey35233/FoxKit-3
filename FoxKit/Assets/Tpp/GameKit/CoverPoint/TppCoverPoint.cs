@@ -7,7 +7,7 @@ namespace Tpp.GameKit
         public override void InitializeGameObject(GameObject gameObject)
         {
             base.InitializeGameObject(gameObject);
-            gameObject.AddComponent<TppCoverPointGizmo>();
+            _ = gameObject.AddComponent<TppCoverPointGizmo>();
         }
     }
 }

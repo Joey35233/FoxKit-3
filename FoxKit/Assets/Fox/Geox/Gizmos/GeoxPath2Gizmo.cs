@@ -21,7 +21,7 @@ namespace Fox.Geox
 
             for (int nodeIndex = 0; nodeIndex < path.nodes.Count; nodeIndex++)
             {
-                var node = path.nodes[nodeIndex].Get();
+                Graphx.GraphxSpatialGraphDataNode node = path.nodes[nodeIndex].Get();
 
                 Gizmos.DrawWireCube(node.position, ScaleNode);
 

@@ -1,27 +1,30 @@
-﻿using UnityEditor;
-using UnityEngine.UIElements;
+﻿using System.Reflection;
+using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine;
-using System.Reflection;
+using UnityEngine.UIElements;
 
 namespace Fox.Editor
 {
     public class ColorField : BaseField<UnityEngine.Color>, IFoxField, ICustomBindable
     {
-        private IMGUIContainer InternalColorField;
+        private readonly IMGUIContainer InternalColorField;
 
-        public new static readonly string ussClassName = "fox-color-field";
-        public new static readonly string labelUssClassName = ussClassName + "__label";
-        public new static readonly string inputUssClassName = ussClassName + "__input";
+        public static new readonly string ussClassName = "fox-color-field";
+        public static new readonly string labelUssClassName = ussClassName + "__label";
+        public static new readonly string inputUssClassName = ussClassName + "__input";
 
-        private static FieldInfo focusOnlyIfHasFocusableControlsFieldInfo = typeof(IMGUIContainer).GetField("<focusOnlyIfHasFocusableControls>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance);
-        private static MethodInfo set_visualInputMethodInfo = typeof(BaseField<UnityEngine.Color>).GetMethod("set_visualInput", BindingFlags.NonPublic | BindingFlags.Instance);
+        private static readonly FieldInfo focusOnlyIfHasFocusableControlsFieldInfo = typeof(IMGUIContainer).GetField("<focusOnlyIfHasFocusableControls>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance);
+        private static readonly MethodInfo set_visualInputMethodInfo = typeof(BaseField<UnityEngine.Color>).GetMethod("set_visualInput", BindingFlags.NonPublic | BindingFlags.Instance);
 
-        public VisualElement visualInput { get; }
+        public VisualElement visualInput
+        {
+            get;
+        }
 
         public ColorField()
-            : this(null) 
-        { 
+            : this(null)
+        {
         }
 
         public ColorField(string label)
@@ -30,11 +33,13 @@ namespace Fox.Editor
             AddToClassList(ussClassName);
             labelElement.AddToClassList(labelUssClassName);
 
-            InternalColorField = new IMGUIContainer(OnGUIHandler);
-            InternalColorField.name = "unity-internal-color-field";
+            InternalColorField = new IMGUIContainer(OnGUIHandler)
+            {
+                name = "unity-internal-color-field"
+            };
             focusOnlyIfHasFocusableControlsFieldInfo.SetValue(InternalColorField, false);
-            
-            set_visualInputMethodInfo.Invoke(this, new object[] { InternalColorField });
+
+            _ = set_visualInputMethodInfo.Invoke(this, new object[] { InternalColorField });
             visualInput = InternalColorField;
             visualInput.AddToClassList(inputUssClassName);
 
@@ -43,7 +48,7 @@ namespace Fox.Editor
 
         private void OnGUIHandler()
         {
-            var editorGUIShowMixedValue = EditorGUI.showMixedValue;
+            bool editorGUIShowMixedValue = EditorGUI.showMixedValue;
             EditorGUI.showMixedValue = showMixedValue;
 
             Color newColor = EditorGUILayout.ColorField(GUIContent.none, value, false, true, true);
@@ -57,10 +62,7 @@ namespace Fox.Editor
         {
         }
 
-        public void BindProperty(SerializedProperty property)
-        {
-            BindProperty(property, null);
-        }
+        public void BindProperty(SerializedProperty property) => BindProperty(property, null);
         public void BindProperty(SerializedProperty property, string label)
         {
             if (label is not null)

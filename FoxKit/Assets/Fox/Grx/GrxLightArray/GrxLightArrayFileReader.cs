@@ -1,7 +1,6 @@
 ﻿using Fox.Core;
 using Fox.Fio;
 using Fox.Kernel;
-using System.IO;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 
@@ -11,28 +10,30 @@ namespace Fox.Grx
     {
         public UnityEngine.SceneManagement.Scene? Read(FileStreamReader reader)
         {
-            var scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
+            UnityEngine.SceneManagement.Scene scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
 
             // Read header
             uint signature = reader.ReadUInt32(); //FGxL or FGxO
-            if (signature != 1282950982 && signature != 1333282630)
+            if (signature is not 1282950982 and not 1333282630)
             {
                 Debug.LogError("Wrong GrxLA signature, not a GrxLA file?");
                 return null;
             }
 
-            uint padding = reader.ReadUInt32(); Debug.Assert(padding == 0);
+            uint padding = reader.ReadUInt32();
+            Debug.Assert(padding == 0);
 
             long nextLightOffset = reader.ReadUInt32();
             long lightPosition = nextLightOffset;
 
-            uint version = reader.ReadUInt32(); Debug.Assert(version == 1);
+            uint version = reader.ReadUInt32();
+            Debug.Assert(version == 1);
 
             while (true)
             {
                 reader.Seek(lightPosition);
 
-                string lightType = new string(reader.ReadChars(4));
+                string lightType = new(reader.ReadChars(4));
 
                 nextLightOffset = reader.ReadInt32();
                 lightPosition += nextLightOffset;
@@ -78,7 +79,8 @@ namespace Fox.Grx
 
             reader.Seek(offsetPos + 4);
 
-            uint padding = reader.ReadUInt32(); Debug.Assert(padding == 0);
+            uint padding = reader.ReadUInt32();
+            Debug.Assert(padding == 0);
 
             return result;
         }
@@ -107,7 +109,7 @@ namespace Fox.Grx
             if (ReadTransform(reader) is TransformEntity transform)
             {
                 var gameObject = new GameObject();
-                Locator locator = (Locator)(gameObject.AddComponent<FoxEntity>().Entity = new Locator());
+                var locator = (Locator)(gameObject.AddComponent<FoxEntity>().Entity = new Locator());
                 locator.size = 1;
 
                 locator.SetTransform(transform);
@@ -124,7 +126,7 @@ namespace Fox.Grx
         {
             var lightGameObject = new GameObject();
 
-            PointLight lightEntity = (PointLight)(lightGameObject.AddComponent<FoxEntity>().Entity = new PointLight());
+            var lightEntity = (PointLight)(lightGameObject.AddComponent<FoxEntity>().Entity = new PointLight());
             lightEntity.name = new String(ReadName(reader));
 
             uint lightFlags = reader.ReadUInt32();
@@ -132,11 +134,11 @@ namespace Fox.Grx
             lightEntity.castShadow = FlagUtils.GetFlag(lightFlags, 1);
             lightEntity.hasSpecular = FlagUtils.GetFlag(lightFlags, 3);
 
-            uint UnknownFlags = reader.ReadUInt32();
+            _ = reader.ReadUInt32();
 
             if (ReadLocator(reader) is GameObject lightArea)
             {
-                Locator locator = lightArea.GetComponent<FoxEntity>().Entity as Locator;
+                var locator = lightArea.GetComponent<FoxEntity>().Entity as Locator;
                 locator.name = new String(lightEntity.name + "_LA");
                 lightEntity.lightArea = new EntityLink
                 (
@@ -148,7 +150,7 @@ namespace Fox.Grx
                 lightArea.name = locator.name.CString;
             }
 
-            TransformEntity transform = new TransformEntity { translation = reader.ReadPositionF(), rotQuat = Quaternion.identity, scale = Vector3.one };
+            var transform = new TransformEntity { translation = reader.ReadPositionF(), rotQuat = Quaternion.identity, scale = Vector3.one };
             lightEntity.SetTransform(transform);
             lightEntity.InitializeGameObject(lightGameObject);
 
@@ -177,7 +179,7 @@ namespace Fox.Grx
 
             if (ReadLocator(reader) is GameObject irradiationPoint)
             {
-                Locator locator = irradiationPoint.GetComponent<FoxEntity>().Entity as Locator;
+                var locator = irradiationPoint.GetComponent<FoxEntity>().Entity as Locator;
                 locator.name = new String(lightEntity.name + "_IP");
                 lightEntity.lightArea = new EntityLink
                 (
@@ -195,7 +197,7 @@ namespace Fox.Grx
         {
             var lightGameObject = new GameObject();
 
-            SpotLight lightEntity = (SpotLight)(lightGameObject.AddComponent<FoxEntity>().Entity = new SpotLight());
+            var lightEntity = (SpotLight)(lightGameObject.AddComponent<FoxEntity>().Entity = new SpotLight());
             lightEntity.name = new String(ReadName(reader));
 
             uint lightFlags = reader.ReadUInt32();
@@ -203,11 +205,11 @@ namespace Fox.Grx
             lightEntity.castShadow = FlagUtils.GetFlag(lightFlags, 1);
             lightEntity.hasSpecular = FlagUtils.GetFlag(lightFlags, 3);
 
-            uint UnknownFlags = reader.ReadUInt32();
+            _ = reader.ReadUInt32();
 
             if (ReadLocator(reader) is GameObject lightArea)
             {
-                Locator locator = lightArea.GetComponent<FoxEntity>().Entity as Locator;
+                var locator = lightArea.GetComponent<FoxEntity>().Entity as Locator;
                 locator.name = new String(lightEntity.name + "_LA");
                 lightEntity.lightArea = new EntityLink
                 (
@@ -221,7 +223,7 @@ namespace Fox.Grx
 
             Vector3 position = reader.ReadPositionF();
             lightEntity.reachPoint = reader.ReadPositionF();
-            TransformEntity transform = new TransformEntity { translation = position, rotQuat = reader.ReadRotationF(), scale = Vector3.one };
+            var transform = new TransformEntity { translation = position, rotQuat = reader.ReadRotationF(), scale = Vector3.one };
             lightEntity.SetTransform(transform);
             lightEntity.InitializeGameObject(lightGameObject);
 
@@ -260,7 +262,7 @@ namespace Fox.Grx
 
             if (ReadLocator(reader) is GameObject irradiationPoint)
             {
-                Locator locator = irradiationPoint.GetComponent<FoxEntity>().Entity as Locator;
+                var locator = irradiationPoint.GetComponent<FoxEntity>().Entity as Locator;
                 locator.name = new String(lightEntity.name + "_IP");
                 lightEntity.irradiationPoint = new EntityLink
                 (
@@ -276,27 +278,34 @@ namespace Fox.Grx
 
         public void ReadOccluder(FileStreamReader reader)
         {
-            var lightGameObject = new GameObject();
-            lightGameObject.name = ReadName(reader);
+            var lightGameObject = new GameObject
+            {
+                name = ReadName(reader)
+            };
 
-            OccluderEx occluderEntity = (OccluderEx)(lightGameObject.AddComponent<FoxEntity>().Entity = new OccluderEx());
+            _ = (OccluderEx)(lightGameObject.AddComponent<FoxEntity>().Entity = new OccluderEx());
 
-            int unknown = reader.ReadInt32();
-            int offsetToFaces = reader.ReadInt32();
+            _ = reader.ReadInt32();
+
+            _ = reader.ReadInt32();
             uint faceCount = reader.ReadUInt32();
-            int offsetToNodes = reader.ReadInt32();
+
+            _ = reader.ReadInt32();
             uint nodeCount = reader.ReadUInt32();
 
-            Vector3[] nodes = new Vector3[nodeCount];
+            var nodes = new Vector3[nodeCount];
             for (int nodeIndex = 0; nodeIndex < nodeCount; nodeIndex++)
                 nodes[nodeIndex] = reader.ReadPositionHF();
 
             for (int faceIndex = 0; faceIndex < faceCount; faceIndex++)
             {
-                short unk0 = reader.ReadInt16();
-                short unk1 = reader.ReadInt16();
-                short vertexIndex = reader.ReadInt16();
-                short size = reader.ReadInt16();
+                _ = reader.ReadInt16();
+
+                _ = reader.ReadInt16();
+
+                _ = reader.ReadInt16();
+
+                _ = reader.ReadInt16();
             }
 
             //do

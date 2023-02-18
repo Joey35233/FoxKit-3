@@ -1,10 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-
+﻿using GraphProcessor;
 using UnityEngine;
-
-using GraphProcessor;
 
 namespace FoxKit.Fx.Editor.Nodes
 {
@@ -15,58 +10,58 @@ namespace FoxKit.Fx.Editor.Nodes
         public float Output0;
 
         [SerializeField]
-        float AmbientRate;
+        private float AmbientRate;
 
         [SerializeField]
-        float CameraFadeInFar;
+        private float CameraFadeInFar;
 
         [SerializeField]
-        float CameraFadeInNear;
+        private float CameraFadeInNear;
 
         [SerializeField]
-        float CameraZOffset;
+        private float CameraZOffset;
 
         [SerializeField]
-        float DirectionalLightRate;
+        private float DirectionalLightRate;
 
         [SerializeField]
-        bool Opaque;
+        private bool Opaque;
 
         [SerializeField]
-        float PointLightRate;
+        private float PointLightRate;
 
         [SerializeField]
-        bool ReceiveShadowMap;
+        private bool ReceiveShadowMap;
 
         [SerializeField]
-        int ShaderType;
+        private int ShaderType;
 
         [SerializeField]
-        bool SoftBlend;
+        private bool SoftBlend;
 
         [SerializeField]
-        float SoftBlendFactor;
+        private float SoftBlendFactor;
 
         [SerializeField]
-        bool TextureAnimeBlend;
+        private bool TextureAnimeBlend;
 
         [SerializeField]
-        float TextureAnimeBlendFrame;
+        private float TextureAnimeBlendFrame;
 
         [SerializeField]
-        uint TextureAnimeBlendHeight;
+        private uint TextureAnimeBlendHeight;
 
         [SerializeField]
-        uint TextureAnimeBlendWidth;
+        private uint TextureAnimeBlendWidth;
 
         [SerializeField]
-        bool TextureAnimeClamp;
+        private bool TextureAnimeClamp;
 
         [SerializeField]
-        bool TextureAnimeRandomStart;
+        private bool TextureAnimeRandomStart;
 
         [SerializeField]
-        string TextureFile;
+        private string TextureFile;
 
         public override string name => "LightInfluence";
     }

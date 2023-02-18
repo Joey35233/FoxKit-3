@@ -1,14 +1,11 @@
 using Fox.Core;
+using Fox.Fio;
+using System;
+using System.Collections.Generic;
 using System.IO;
 using UnityEditor;
-using CsSystem = System;
-using UnityEngine.SceneManagement;
 using UnityEditor.SceneManagement;
-using Fox.GameCore;
-using System.Collections.Generic;
-using System;
-using System.Linq;
-using Fox.Fio;
+using CsSystem = System;
 
 namespace FoxKit.MenuItems
 {
@@ -17,8 +14,8 @@ namespace FoxKit.MenuItems
         [MenuItem("FoxKit/Import/DataSetFile2")]
         private static void OnImportAsset()
         {
-            var assetPath = EditorUtility.OpenFilePanel("Import DataSetFile2", "", "fox2,bnd,clo,des,evf,fsd,lad,parts,ph,phsd,sdf,sim,tgt,vdp,veh,vfxlf");
-            if (string.IsNullOrEmpty(assetPath))
+            string assetPath = EditorUtility.OpenFilePanel("Import DataSetFile2", "", "fox2,bnd,clo,des,evf,fsd,lad,parts,ph,phsd,sdf,sim,tgt,vdp,veh,vfxlf");
+            if (String.IsNullOrEmpty(assetPath))
             {
                 return;
             }
@@ -28,14 +25,14 @@ namespace FoxKit.MenuItems
 
             using var reader = new FileStreamReader(System.IO.File.OpenRead(assetPath));
             var fox2Reader = new DataSetFile2Reader();
-            var readResult = fox2Reader.Read(reader);
+            DataSetFile2Reader.ReadResult readResult = fox2Reader.Read(reader);
 
             var typeCount = new Dictionary<Type, int>();
             var transformGameObjects = new Dictionary<Entity, UnityEngine.GameObject>();
 
-            foreach(var gameObject in readResult.GameObjects)
+            foreach (UnityEngine.GameObject gameObject in readResult.GameObjects)
             {
-                var entity = gameObject.GetComponent<FoxEntity>().Entity;
+                Entity entity = gameObject.GetComponent<FoxEntity>().Entity;
 
                 // Name the GameObject
                 if (entity is Data)
@@ -54,7 +51,6 @@ namespace FoxKit.MenuItems
                         gameObject.name = entity.GetType().Name + "0000";
                         typeCount.Add(entity.GetType(), 0);
                     }
-
                 }
 
                 // Parenting
@@ -70,20 +66,20 @@ namespace FoxKit.MenuItems
                 entity.InitializeGameObject(gameObject);
             }
 
-            foreach(var entity in transformGameObjects.Keys)
+            foreach (Entity entity in transformGameObjects.Keys)
             {
                 var transformData = entity as TransformData;
 
-                var parent = transformData.parent;
+                EntityHandle parent = transformData.parent;
                 if (parent.Entity == null)
                     continue;
 
-                var parentGameObject = transformGameObjects[parent.Entity];
-                var gameObject = transformGameObjects[entity];
-                gameObject.transform.SetParent(parentGameObject.transform,false);
+                UnityEngine.GameObject parentGameObject = transformGameObjects[parent.Entity];
+                UnityEngine.GameObject gameObject = transformGameObjects[entity];
+                gameObject.transform.SetParent(parentGameObject.transform, false);
             }
 
-            EditorSceneManager.SaveScene(scene, "Assets/Scenes/" + CsSystem.IO.Path.GetFileName(assetPath) + ".unity");
+            _ = EditorSceneManager.SaveScene(scene, "Assets/Scenes/" + CsSystem.IO.Path.GetFileName(assetPath) + ".unity");
         }
     }
 }

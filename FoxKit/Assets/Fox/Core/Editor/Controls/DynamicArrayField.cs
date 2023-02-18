@@ -1,8 +1,5 @@
 ﻿using Fox.Kernel;
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
 using UnityEditor;
 using UnityEditor.UIElements;
@@ -12,21 +9,24 @@ namespace Fox.Editor
 {
     public class DynamicArrayField<T> : BaseField<DynamicArray<T>>, IFoxField, ICustomBindable
     {
-        private ListView ListViewInput;
+        private readonly ListView ListViewInput;
 
-        private static Func<IFoxField> FieldConstructor = FoxFieldUtils.GetTypeFieldConstructor(typeof(T));
-        
-        private static Type SerializedObjectListType = Type.GetType("UnityEditor.UIElements.Bindings.SerializedObjectList, UnityEditor.UIElementsModule");
-        private static TypeInfo SerializedObjectListTypeInfo = SerializedObjectListType.GetTypeInfo();
-        private static MethodInfo GetSerializedObjectListArraySizeMethodInfo = SerializedObjectListTypeInfo.GetMethod("get_ArraySize");
+        private static readonly Func<IFoxField> FieldConstructor = FoxFieldUtils.GetTypeFieldConstructor(typeof(T));
 
-        public new static readonly string ussClassName = "fox-dynamicarray-field";
-        public new static readonly string labelUssClassName = ussClassName + "__label";
-        public new static readonly string inputUssClassName = ussClassName + "__input";
+        private static readonly Type SerializedObjectListType = Type.GetType("UnityEditor.UIElements.Bindings.SerializedObjectList, UnityEditor.UIElementsModule");
+        private static readonly TypeInfo SerializedObjectListTypeInfo = SerializedObjectListType.GetTypeInfo();
+        private static readonly MethodInfo GetSerializedObjectListArraySizeMethodInfo = SerializedObjectListTypeInfo.GetMethod("get_ArraySize");
+
+        public static new readonly string ussClassName = "fox-dynamicarray-field";
+        public static new readonly string labelUssClassName = ussClassName + "__label";
+        public static new readonly string inputUssClassName = ussClassName + "__input";
         public static readonly string addButtonUssClassName = ussClassName + "__add-button";
         public static readonly string removeButtonUssClassName = ussClassName + "__remove-button";
 
-        public VisualElement visualInput { get; }
+        public VisualElement visualInput
+        {
+            get;
+        }
 
         public DynamicArrayField() : this(default)
         {
@@ -55,11 +55,11 @@ namespace Fox.Editor
             ListViewInput.virtualizationMethod = CollectionVirtualizationMethod.DynamicHeight;
             ListViewInput.showAddRemoveFooter = true;
 
-            var addButton = ListViewInput.Q<Button>(name: "unity-list-view__add-button");
+            Button addButton = ListViewInput.Q<Button>(name: "unity-list-view__add-button");
             addButton.text = "＋";
             addButton.AddToClassList(addButtonUssClassName);
 
-            var removeButton = ListViewInput.Q<Button>(name: "unity-list-view__remove-button");
+            Button removeButton = ListViewInput.Q<Button>(name: "unity-list-view__remove-button");
             removeButton.AddToClassList(removeButtonUssClassName);
             removeButton.text = "－";
 
@@ -70,7 +70,7 @@ namespace Fox.Editor
             AddToClassList(ussClassName);
             labelElement.AddToClassList(labelUssClassName);
             visualInput.AddToClassList(inputUssClassName);
-            this.styleSheets.Add(IFoxField.FoxFieldStyleSheet);
+            styleSheets.Add(IFoxField.FoxFieldStyleSheet);
         }
 
         protected override void ExecuteDefaultActionAtTarget(EventBase evt)
@@ -78,9 +78,9 @@ namespace Fox.Editor
             base.ExecuteDefaultActionAtTarget(evt);
 
             // UNITYENHANCEMENT: https://github.com/Joey35233/FoxKit-3/issues/12
-            if (evt.eventTypeId == FoxFieldUtils.SerializedPropertyBindEventTypeId && !string.IsNullOrWhiteSpace(bindingPath))
+            if (evt.eventTypeId == FoxFieldUtils.SerializedPropertyBindEventTypeId && !System.String.IsNullOrWhiteSpace(bindingPath))
             {
-                SerializedProperty property = FoxFieldUtils.SerializedPropertyBindEventBindProperty.GetValue(evt) as SerializedProperty;
+                var property = FoxFieldUtils.SerializedPropertyBindEventBindProperty.GetValue(evt) as SerializedProperty;
 
                 if (!property.isArray)
                 {
@@ -91,24 +91,18 @@ namespace Fox.Editor
             }
         }
 
-        private VisualElement MakeItem()
-        {
-            return FieldConstructor() as VisualElement;
-        }
+        private VisualElement MakeItem() => FieldConstructor() as VisualElement;
 
         private void BindItem(VisualElement element, int index)
         {
-            SerializedProperty itemProperty = ListViewInput.itemsSource[index] as SerializedProperty;
+            var itemProperty = ListViewInput.itemsSource[index] as SerializedProperty;
             (element as ICustomBindable).BindProperty(itemProperty, $"[{index}]");
 
             element.AddToClassList(BaseCompositeField<UnityEngine.Vector4, FloatField, float>.fieldUssClassName);
             element.AddToClassList(BaseCompositeField<UnityEngine.Vector4, FloatField, float>.firstFieldVariantUssClassName);
         }
 
-        public void BindProperty(SerializedProperty property)
-        {
-            BindProperty(property, null);
-        }
+        public void BindProperty(SerializedProperty property) => BindProperty(property, null);
         public void BindProperty(SerializedProperty property, string label)
         {
             if (label is not null)
@@ -122,7 +116,7 @@ namespace Fox.Editor
     {
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
         {
-            VisualElement genericField = (VisualElement)Activator.CreateInstance(typeof(DynamicArrayField<>).MakeGenericType(fieldInfo.FieldType.GenericTypeArguments), new object[] { property.name });
+            var genericField = (VisualElement)Activator.CreateInstance(typeof(DynamicArrayField<>).MakeGenericType(fieldInfo.FieldType.GenericTypeArguments), new object[] { property.name });
             (genericField as IFoxField).BindProperty(property);
 
             genericField.Q(className: BaseField<float>.labelUssClassName).AddToClassList(PropertyField.labelUssClassName);

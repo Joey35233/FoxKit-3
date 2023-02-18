@@ -1,7 +1,5 @@
-﻿using Fox.Kernel;
-using System.IO;
+﻿using System.IO;
 using System.Linq;
-using UnityEngine;
 
 namespace Fox.Core
 {

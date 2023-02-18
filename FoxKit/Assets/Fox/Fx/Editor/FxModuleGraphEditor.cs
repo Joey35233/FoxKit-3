@@ -1,42 +1,37 @@
-using System.Collections;
-using System.Collections.Generic;
-
-using UnityEngine;
-using UnityEditor;
-
 using GraphProcessor;
-	
+using UnityEditor;
+using UnityEngine;
+
 namespace FoxKit.Fx.Editor
 {
-	public class FxModuleGraphEditor : BaseGraphWindow
-	{
-		BaseGraph tmpGraph;
+    public class FxModuleGraphEditor : BaseGraphWindow
+    {
+        private BaseGraph tmpGraph;
 
-		[MenuItem("FoxKit/Debug/FxModuleGraph")]
-		public static BaseGraphWindow ShowEditor()
-		{
-			var graphWindow = CreateWindow<FxModuleGraphEditor>();
+        [MenuItem("FoxKit/Debug/FxModuleGraph")]
+        public static BaseGraphWindow ShowEditor()
+        {
+            FxModuleGraphEditor graphWindow = CreateWindow<FxModuleGraphEditor>();
 
-			// When the graph is opened from the window, we don't save the graph to disk
-			graphWindow.tmpGraph = ScriptableObject.CreateInstance<BaseGraph>();
-			graphWindow.tmpGraph.hideFlags = HideFlags.HideAndDontSave;
-			graphWindow.InitializeGraph(graphWindow.tmpGraph);
+            // When the graph is opened from the window, we don't save the graph to disk
+            graphWindow.tmpGraph = ScriptableObject.CreateInstance<BaseGraph>();
+            graphWindow.tmpGraph.hideFlags = HideFlags.HideAndDontSave;
+            graphWindow.InitializeGraph(graphWindow.tmpGraph);
 
-			graphWindow.Show();
+            graphWindow.Show();
 
-			return graphWindow;
-		}
+            return graphWindow;
+        }
 
-		protected override void OnDestroy() => DestroyImmediate(tmpGraph);
+        protected override void OnDestroy() => DestroyImmediate(tmpGraph);
 
-		protected override void InitializeWindow(BaseGraph graph)
-		{
-			titleContent = new GUIContent("Default Graph");
+        protected override void InitializeWindow(BaseGraph graph)
+        {
+            titleContent = new GUIContent("Default Graph");
 
-			if (graphView == null)
-				graphView = new BaseGraphView(this);
+            graphView ??= new BaseGraphView(this);
 
-			rootView.Add(graphView);
-		}
-	}
+            rootView.Add(graphView);
+        }
+    }
 }

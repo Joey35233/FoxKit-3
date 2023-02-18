@@ -1,8 +1,7 @@
-﻿namespace Fox.Core
-{
-    using System;
-    using UnityEngine;
+﻿using System;
 
+namespace Fox.Core
+{
     [Serializable]
     public partial class File : Entity
     {

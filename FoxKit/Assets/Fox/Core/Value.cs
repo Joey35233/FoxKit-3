@@ -1,235 +1,162 @@
-﻿using Fox.Core;
+﻿using Fox.Kernel;
 using System;
-using Fox.Kernel;
-using String = Fox.Kernel.String;
 using UnityEngine;
+using String = Fox.Kernel.String;
 
 namespace Fox.Core
 {
     public class Value
     {
-        private object value;
+        private readonly object value;
 
         public Value(bool v1)
         {
-            this.value = v1;
+            value = v1;
         }
 
         public Value(sbyte v)
         {
-            this.value = v;
+            value = v;
         }
         public Value(byte v2)
         {
-            this.value = v2;
+            value = v2;
         }
 
         public Value(short v)
         {
-            this.value = v;
+            value = v;
         }
         public Value(ushort v2)
         {
-            this.value = v2;
+            value = v2;
         }
 
         public Value(int v2)
         {
-            this.value = v2;
+            value = v2;
         }
         public Value(uint v2)
         {
-            this.value = v2;
+            value = v2;
         }
 
         public Value(long v2)
         {
-            this.value = v2;
+            value = v2;
         }
         public Value(ulong v2)
         {
-            this.value = v2;
+            value = v2;
         }
 
         public Value(float v2)
         {
-            this.value = v2;
+            value = v2;
         }
 
         public Value(double v2)
         {
-            this.value = v2;
+            value = v2;
         }
 
         public Value(IEntityPtr entity)
         {
-            this.value = entity;
+            value = entity;
         }
 
         public Value(EntityLink entityLink)
         {
-            this.value = entityLink;
+            value = entityLink;
         }
 
         public Value(EntityHandle entityHandle)
         {
-            this.value = entityHandle;
+            value = entityHandle;
         }
 
         public Value(FilePtr filePtr)
         {
-            this.value = filePtr;
+            value = filePtr;
         }
 
         public Value(Color color)
         {
-            this.value = color;
+            value = color;
         }
 
         public Value(Vector3 vector3)
         {
-            this.value = vector3;
+            value = vector3;
         }
         public Value(Vector4 vector3)
         {
-            this.value = vector3;
+            value = vector3;
         }
 
         public Value(Quaternion quaternion)
         {
-            this.value = quaternion;
+            value = quaternion;
         }
 
         public Value(Matrix4x4 matrix4x4)
         {
-            this.value = matrix4x4;
+            value = matrix4x4;
         }
 
         public Value(String @string)
         {
-            this.value = @string;
+            value = @string;
         }
 
         public Value(Path path)
         {
-            this.value = path;
+            value = path;
         }
 
-        public bool GetValueAsBool()
-        {
-            return (bool)this.value;
-        }
+        public bool GetValueAsBool() => (bool)value;
 
-        public sbyte GetValueAsInt8()
-        {
-            return (sbyte)this.value;
-        }
-        public byte GetValueAsUInt8()
-        {
-            return (byte)this.value;
-        }
+        public sbyte GetValueAsInt8() => (sbyte)value;
+        public byte GetValueAsUInt8() => (byte)value;
 
-        public short GetValueAsInt16()
-        {
-            return (short)this.value;
-        }
-        public ushort GetValueAsUInt16()
-        {
-            return (ushort)this.value;
-        }
+        public short GetValueAsInt16() => (short)value;
+        public ushort GetValueAsUInt16() => (ushort)value;
 
-        public int GetValueAsInt32()
-        {
-            return (int)this.value;
-        }
-        public uint GetValueAsUInt32()
-        {
-            return (uint)this.value;
-        }
+        public int GetValueAsInt32() => (int)value;
+        public uint GetValueAsUInt32() => (uint)value;
 
-        public long GetValueAsInt64()
-        {
-            return (long)this.value;
-        }
-        public ulong GetValueAsUInt64()
-        {
-            return (ulong)this.value;
-        }
+        public long GetValueAsInt64() => (long)value;
+        public ulong GetValueAsUInt64() => (ulong)value;
 
-        public float GetValueAsFloat()
-        {
-            return (float)this.value;
-        }
+        public float GetValueAsFloat() => (float)value;
 
-        public double GetValueAsDouble()
-        {
-            return (double)this.value;
-        }
+        public double GetValueAsDouble() => (double)value;
 
-        public EntityPtr<T> GetValueAsEntityPtr<T>() where T : Entity
-        {
-            return (EntityPtr<T>)this.value;
-        }
+        public EntityPtr<T> GetValueAsEntityPtr<T>() where T : Entity => (EntityPtr<T>)value;
 
-        public EntityLink GetValueAsEntityLink()
-        {
-            return (EntityLink)this.value;
-        }
+        public EntityLink GetValueAsEntityLink() => (EntityLink)value;
 
-        public EntityHandle GetValueAsEntityHandle()
-        {
-            return (EntityHandle)this.value;
-        }
+        public EntityHandle GetValueAsEntityHandle() => (EntityHandle)value;
 
-        public FilePtr GetValueAsFilePtr()
-        {
-            return (FilePtr)this.value;
-        }
+        public FilePtr GetValueAsFilePtr() => (FilePtr)value;
 
-        public Color GetValueAsColor()
-        {
-            return (Color)this.value;
-        }
+        public Color GetValueAsColor() => (Color)value;
 
-        public Vector3 GetValueAsVector3()
-        {
-            return (Vector3)this.value;
-        }
+        public Vector3 GetValueAsVector3() => (Vector3)value;
 
-        public object GetValueAsWideVector3()
-        {
-            throw new NotImplementedException();
-        }
+        public object GetValueAsWideVector3() => throw new NotImplementedException();
 
-        public Vector4 GetValueAsVector4()
-        {
-            return (Vector4)this.value;
-        }
+        public Vector4 GetValueAsVector4() => (Vector4)value;
 
-        public Quaternion GetValueAsQuat()
-        {
-            return (Quaternion)this.value;
-        }
+        public Quaternion GetValueAsQuat() => (Quaternion)value;
 
-        public object GetValueAsMatrix3()
-        {
-            throw new NotImplementedException();
-        }
+        public object GetValueAsMatrix3() => throw new NotImplementedException();
 
-        public Matrix4x4 GetValueAsMatrix4()
-        {
-            return (Matrix4x4)this.value;
-        }
+        public Matrix4x4 GetValueAsMatrix4() => (Matrix4x4)value;
 
-        public String GetValueAsString()
-        {
-            return (String)this.value;
-        }
+        public String GetValueAsString() => (String)value;
 
-        public Path GetValueAsPath()
-        {
-            return (Path)this.value;
-        }
+        public Path GetValueAsPath() => (Path)value;
     }
 
     /*public class Value<T> : Value

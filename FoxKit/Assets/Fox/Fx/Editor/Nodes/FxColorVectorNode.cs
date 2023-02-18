@@ -1,22 +1,17 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-
+﻿using GraphProcessor;
 using UnityEngine;
-
-using GraphProcessor;
 
 namespace FoxKit.Fx.Editor.Nodes
 {
-	[System.Serializable, NodeMenuItem("Color/Color")]
-	public class FxColorVectorNode : BaseNode
-	{
-		[Output(name = "Output0")]
-		public Color Output0;
+    [System.Serializable, NodeMenuItem("Color/Color")]
+    public class FxColorVectorNode : BaseNode
+    {
+        [Output(name = "Output0")]
+        public Color Output0;
 
-		[SerializeField]
-		public Color Color;
+        [SerializeField]
+        public Color Color;
 
-		public override string name => "Color";
-	}
+        public override string name => "Color";
+    }
 }

@@ -1,7 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using UnityEngine;
 
 namespace Fox.Kernel
 {
@@ -62,10 +59,7 @@ namespace Fox.Kernel
             return CityHash.CityHash.CityHash64WithSeeds(name + '\0', seed0, seed1) & 0xFFFFFFFFFFFF;
         }
 
-        public static uint StrCode32(string name)
-        {
-            return (uint)StrCode(name);
-        }
+        public static uint StrCode32(string name) => (uint)StrCode(name);
 
         public static ulong PathFileNameCode(string path)
         {
@@ -73,7 +67,7 @@ namespace Fox.Kernel
 
             if (path.StartsWith("/Assets/"))
             {
-                path = path.Substring(8);
+                path = path[8..];
 
                 if (path.StartsWith("tpptest"))
                     mask = 0x0004000000000000;
@@ -92,24 +86,18 @@ namespace Fox.Kernel
                 seed1 |= (ulong)path[i] << (j * 8);
             }
 
-            var hash = CityHash.CityHash.CityHash64WithSeeds(path, seed0, seed1) & 0x3FFFFFFFFFFFF;
+            ulong hash = CityHash.CityHash.CityHash64WithSeeds(path, seed0, seed1) & 0x3FFFFFFFFFFFF;
             return hash | mask;
         }
 
-        public static uint PathFileNameCode32(string path)
-        {
-            return (uint)PathFileNameCode(path);
-        }
+        public static uint PathFileNameCode32(string path) => (uint)PathFileNameCode(path);
 
         public static ulong PathFileNameAndExtCode(string path)
         {
-            var periodIndex = path.IndexOf('.');
-            return periodIndex > -1 ? ((PathFileNameCode(path.Substring(periodIndex + 1)) & 0x1FFF) << 51) | PathFileNameCode(path.Substring(0, periodIndex)) : StrCode(path);
+            int periodIndex = path.IndexOf('.');
+            return periodIndex > -1 ? ((PathFileNameCode(path[(periodIndex + 1)..]) & 0x1FFF) << 51) | PathFileNameCode(path[..periodIndex]) : StrCode(path);
         }
 
-        public static ulong PathFileNameAndExtCode(string path, string extension)
-        {
-            return ((PathFileNameCode(extension) & 0x1FFF) << 51) | PathFileNameCode(path);
-        }
+        public static ulong PathFileNameAndExtCode(string path, string extension) => ((PathFileNameCode(extension) & 0x1FFF) << 51) | PathFileNameCode(path);
     }
 }

@@ -1,16 +1,18 @@
-using Fox.Kernel;
 using Fox.Fio;
+using Fox.Kernel;
 using System.Diagnostics;
-using Microsoft.SqlServer.Server;
 
 namespace Fox.Core
 {
     public struct FoxDataNodeContext
     {
-        public long Position { get; }
-        private FileStreamReader Reader;
-        private FoxDataStringContext.HashFormat StringFormat;
-        private FoxDataStringContext.DataOffsetMode StringOffsetMode;
+        public long Position
+        {
+            get;
+        }
+        private readonly FileStreamReader Reader;
+        private readonly FoxDataStringContext.HashFormat StringFormat;
+        private readonly FoxDataStringContext.DataOffsetMode StringOffsetMode;
 
         public const uint Offset_Name = 0;
         public const uint Offset_Flags = 8;
@@ -26,21 +28,18 @@ namespace Fox.Core
 
         public FoxDataNodeContext(FileStreamReader reader, long position, FoxDataStringContext.HashFormat stringFormat = FoxDataStringContext.HashFormat.Default, FoxDataStringContext.DataOffsetMode stringOffsetMode = FoxDataStringContext.DataOffsetMode.Relative)
         {
-            this.Reader = reader;
+            Reader = reader;
 
-            this.Position = position;
+            Position = position;
 
             Debug.Assert(System.Enum.IsDefined(typeof(FoxDataStringContext.HashFormat), stringFormat));
             Debug.Assert(System.Enum.IsDefined(typeof(FoxDataStringContext.DataOffsetMode), stringOffsetMode));
 
-            this.StringFormat = stringFormat;
-            this.StringOffsetMode = stringOffsetMode;
+            StringFormat = stringFormat;
+            StringOffsetMode = stringOffsetMode;
         }
 
-        public String GetName()
-        {
-            return new FoxDataStringContext(Reader, Position + Offset_Name, StringFormat, StringOffsetMode).GetString();
-        }
+        public String GetName() => new FoxDataStringContext(Reader, Position + Offset_Name, StringFormat, StringOffsetMode).GetString();
 
         public uint GetFlags()
         {
@@ -144,10 +143,7 @@ namespace Fox.Core
             return null;
         }
 
-        public bool NameEquals(String comparand)
-        {
-            return new FoxDataStringContext(Reader, Position + Offset_Name, StringFormat, StringOffsetMode).Equals(comparand);
-        }
+        public bool NameEquals(String comparand) => new FoxDataStringContext(Reader, Position + Offset_Name, StringFormat, StringOffsetMode).Equals(comparand);
 
         public FoxDataNodeContext? FindNode(String name)
         {
@@ -155,10 +151,10 @@ namespace Fox.Core
             {
                 if (node.Value.NameEquals(name))
                     return node;
-                
+
                 if (node.Value.GetChildNodePosition() is long childNodePos)
                 {
-                    FoxDataNodeContext child = new FoxDataNodeContext(Reader, childNodePos, StringFormat, StringOffsetMode);
+                    var child = new FoxDataNodeContext(Reader, childNodePos, StringFormat, StringOffsetMode);
                     return child.FindNode(name);
                 }
             }

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 
 using UnityEngine;
 
@@ -32,55 +31,25 @@ namespace Fox.Kernel
         object IList.this[int index] { get => this[index]; set => _list[index] = (T)value; }
         public T this[int index] { get => _list[index]; set => _list[index] = value; }
 
-        public int IndexOf(T item)
-        {
-            return _list.IndexOf(item);
-        }
+        public int IndexOf(T item) => _list.IndexOf(item);
 
-        public void Insert(int index, T item)
-        {
-            _list.Insert(index, item);
-        }
+        public void Insert(int index, T item) => _list.Insert(index, item);
 
-        public void RemoveAt(int index)
-        {
-            _list.RemoveAt(index);
-        }
+        public void RemoveAt(int index) => _list.RemoveAt(index);
 
-        public void Add(T item)
-        {
-            _list.Add(item);
-        }
+        public void Add(T item) => _list.Add(item);
 
-        public void Clear()
-        {
-            _list.Clear();
-        }
+        public void Clear() => _list.Clear();
 
-        public bool Contains(T item)
-        {
-            return _list.Contains(item);
-        }
+        public bool Contains(T item) => _list.Contains(item);
 
-        public void CopyTo(T[] array, int arrayIndex)
-        {
-            _list.CopyTo(array, arrayIndex);
-        }
+        public void CopyTo(T[] array, int arrayIndex) => _list.CopyTo(array, arrayIndex);
 
-        public bool Remove(T item)
-        {
-            return _list.Remove(item);
-        }
+        public bool Remove(T item) => _list.Remove(item);
 
-        public IEnumerator<T> GetEnumerator()
-        {
-            return _list.GetEnumerator();
-        }
+        public IEnumerator<T> GetEnumerator() => _list.GetEnumerator();
 
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return _list.GetEnumerator();
-        }
+        IEnumerator IEnumerable.GetEnumerator() => _list.GetEnumerator();
 
         int IList.Add(object value)
         {
@@ -88,40 +57,19 @@ namespace Fox.Kernel
             return Count - 1;
         }
 
-        void IList.Clear()
-        {
-            Clear();
-        }
+        void IList.Clear() => Clear();
 
-        bool IList.Contains(object value)
-        {
-            return Contains((T)value);
-        }
+        bool IList.Contains(object value) => Contains((T)value);
 
-        int IList.IndexOf(object value)
-        {
-            return IndexOf((T)value);
-        }
+        int IList.IndexOf(object value) => IndexOf((T)value);
 
-        void IList.Insert(int index, object value)
-        {
-            Insert(index, (T)value);
-        }
+        void IList.Insert(int index, object value) => Insert(index, (T)value);
 
-        void IList.Remove(object value)
-        {
-            Remove((T)value);
-        }
+        void IList.Remove(object value) => Remove((T)value);
 
-        void IList.RemoveAt(int index)
-        {
-            RemoveAt(index);
-        }
+        void IList.RemoveAt(int index) => RemoveAt(index);
 
-        void ICollection.CopyTo(Array array, int index)
-        {
-            CopyTo((T[])array, index);
-        }
+        void ICollection.CopyTo(Array array, int index) => CopyTo((T[])array, index);
 
         public DynamicArray()
         {

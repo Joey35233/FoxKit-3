@@ -1,16 +1,19 @@
 ﻿using UnityEditor;
-using UnityEngine.UIElements;
 using UnityEditor.UIElements;
+using UnityEngine.UIElements;
 
 namespace Fox.Editor
 {
     public class EnumField : UnityEngine.UIElements.EnumField, IFoxField, ICustomBindable
     {
-        public new static readonly string ussClassName = "fox-enum-field";
-        public new static readonly string labelUssClassName = ussClassName + "__label";
-        public new static readonly string inputUssClassName = ussClassName + "__input";
+        public static new readonly string ussClassName = "fox-enum-field";
+        public static new readonly string labelUssClassName = ussClassName + "__label";
+        public static new readonly string inputUssClassName = ussClassName + "__input";
 
-        public VisualElement visualInput { get; }
+        public VisualElement visualInput
+        {
+            get;
+        }
 
         public EnumField()
             : this(null) { }
@@ -28,13 +31,10 @@ namespace Fox.Editor
             labelElement.RemoveFromClassList(UnityEngine.UIElements.EnumField.labelUssClassName);
             labelElement.AddToClassList(labelUssClassName);
 
-            this.styleSheets.Add(IFoxField.FoxFieldStyleSheet);
+            styleSheets.Add(IFoxField.FoxFieldStyleSheet);
         }
 
-        public void BindProperty(SerializedProperty property)
-        {
-            BindProperty(property, null);
-        }
+        public void BindProperty(SerializedProperty property) => BindProperty(property, null);
         public void BindProperty(SerializedProperty property, string label)
         {
             if (label is not null)
@@ -45,11 +45,14 @@ namespace Fox.Editor
 
     public class EnumFlagsField : UnityEditor.UIElements.EnumFlagsField, IFoxField, ICustomBindable
     {
-        public new static readonly string ussClassName = "fox-enumflags-field";
-        public new static readonly string labelUssClassName = ussClassName + "__label";
-        public new static readonly string inputUssClassName = ussClassName + "__input";
+        public static new readonly string ussClassName = "fox-enumflags-field";
+        public static new readonly string labelUssClassName = ussClassName + "__label";
+        public static new readonly string inputUssClassName = ussClassName + "__input";
 
-        public VisualElement visualInput { get; }
+        public VisualElement visualInput
+        {
+            get;
+        }
 
         public EnumFlagsField()
             : this(null) { }
@@ -67,13 +70,10 @@ namespace Fox.Editor
             labelElement.RemoveFromClassList(UnityEditor.UIElements.EnumFlagsField.labelUssClassName);
             labelElement.AddToClassList(labelUssClassName);
 
-            this.styleSheets.Add(IFoxField.FoxFieldStyleSheet);
+            styleSheets.Add(IFoxField.FoxFieldStyleSheet);
         }
 
-        public void BindProperty(SerializedProperty property)
-        {
-            BindProperty(property, null);
-        }
+        public void BindProperty(SerializedProperty property) => BindProperty(property, null);
         public void BindProperty(SerializedProperty property, string label)
         {
             if (label is not null)
@@ -87,13 +87,13 @@ namespace Fox.Editor
     {
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
         {
-            var valueType = fieldInfo.FieldType;
+            System.Type valueType = fieldInfo.FieldType;
             bool valueTypeHasFlagsAttribute = valueType.IsDefined(typeof(System.FlagsAttribute), false);
 
-            IFoxField foxField = null;
+            IFoxField foxField;
             if (valueTypeHasFlagsAttribute)
             {
-                EnumFlagsField field = new EnumFlagsField(property.name);
+                var field = new EnumFlagsField(property.name);
                 field.labelElement.AddToClassList(PropertyField.labelUssClassName);
                 field.visualInput.AddToClassList(PropertyField.inputUssClassName);
                 field.AddToClassList(BaseField<System.Enum>.alignedFieldUssClassName);
@@ -102,7 +102,7 @@ namespace Fox.Editor
             }
             else
             {
-                EnumField field = new EnumField(property.name);
+                var field = new EnumField(property.name);
                 field.labelElement.AddToClassList(PropertyField.labelUssClassName);
                 field.visualInput.AddToClassList(PropertyField.inputUssClassName);
                 field.AddToClassList(BaseField<System.Enum>.alignedFieldUssClassName);

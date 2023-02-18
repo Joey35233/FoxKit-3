@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using Fox.Kernel;
 using String = Fox.Kernel.String;
 
 namespace Fox.Core

@@ -1,17 +1,18 @@
 ﻿using UnityEditor;
-using UnityEngine.UIElements;
 using UnityEditor.UIElements;
-using System.Reflection;
+using UnityEngine.UIElements;
 
 namespace Fox.Editor
 {
     public class BoolField : BaseBoolField, IFoxField, ICustomBindable
     {
-        public new class UxmlFactory : UxmlFactory<Toggle, UxmlTraits> { }
+        public new class UxmlFactory : UxmlFactory<Toggle, UxmlTraits>
+        {
+        }
 
         public new class UxmlTraits : BaseFieldTraits<bool, UxmlBoolAttributeDescription>
         {
-            UxmlStringAttributeDescription Text = new UxmlStringAttributeDescription { name = "text" };
+            private readonly UxmlStringAttributeDescription Text = new() { name = "text" };
 
             public override void Init(VisualElement ve, IUxmlAttributes bag, CreationContext cc)
             {
@@ -24,12 +25,15 @@ namespace Fox.Editor
         public static readonly string toggleLabelUssClassName = toggleUssClassName + "__label";
         public static readonly string toggleInputUssClassName = toggleUssClassName + "__input";
         public static readonly string toggleCheckmarkUssClassName = toggleUssClassName + "__checkmark";
-        public new static readonly string ussClassName = "fox-bool-field";
-        public new static readonly string labelUssClassName = ussClassName + "__label";
-        public new static readonly string inputUssClassName = ussClassName + "__input";
+        public static new readonly string ussClassName = "fox-bool-field";
+        public static new readonly string labelUssClassName = ussClassName + "__label";
+        public static new readonly string inputUssClassName = ussClassName + "__input";
         public static readonly string checkmarkUssClassName = ussClassName + "__checkmark";
 
-        public VisualElement visualInput { get; }
+        public VisualElement visualInput
+        {
+            get;
+        }
 
         public BoolField()
             : this(null)
@@ -42,7 +46,7 @@ namespace Fox.Editor
             AddToClassList(toggleUssClassName);
             AddToClassList(ussClassName);
 
-            visualInput = this.Q(className: BaseField<System.Boolean>.inputUssClassName);
+            visualInput = this.Q(className: BaseField<bool>.inputUssClassName);
             visualInput.AddToClassList(toggleInputUssClassName);
             visualInput.AddToClassList(inputUssClassName);
             labelElement.AddToClassList(toggleLabelUssClassName);
@@ -55,10 +59,7 @@ namespace Fox.Editor
         // Lots of internal PseudoState-managing code
         //protected override void UpdateMixedValueContent() {}
 
-        public void BindProperty(SerializedProperty property)
-        {
-            BindProperty(property, null);
-        }
+        public void BindProperty(SerializedProperty property) => BindProperty(property, null);
         public void BindProperty(SerializedProperty property, string label)
         {
             if (label is not null)
@@ -67,7 +68,7 @@ namespace Fox.Editor
         }
     }
 
-    [CustomPropertyDrawer(typeof(System.Boolean))]
+    [CustomPropertyDrawer(typeof(bool))]
     public class BoolDrawer : PropertyDrawer
     {
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
@@ -77,7 +78,7 @@ namespace Fox.Editor
 
             field.labelElement.AddToClassList(PropertyField.labelUssClassName);
             field.visualInput.AddToClassList(PropertyField.inputUssClassName);
-            field.AddToClassList(BaseField<System.Boolean>.alignedFieldUssClassName);
+            field.AddToClassList(BaseField<bool>.alignedFieldUssClassName);
 
             return field;
         }

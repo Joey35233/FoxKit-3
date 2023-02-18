@@ -1,5 +1,4 @@
 ﻿using Fox.Kernel;
-using Fox.Core;
 
 namespace Fox.Sim
 {

@@ -1,13 +1,9 @@
-﻿using UnityEditor;
-using UnityEngine.UIElements;
-using UnityEditor.UIElements;
-using Fox.Core;
-using System.Collections.Generic;
-using System.Linq;
-using UnityEngine;
-using System.Text;
+﻿using Fox.Core;
 using System;
-using System.Reflection;
+using UnityEditor;
+using UnityEditor.UIElements;
+using UnityEngine;
+using UnityEngine.UIElements;
 using Object = UnityEngine.Object;
 
 namespace Fox.Editor
@@ -25,7 +21,7 @@ namespace Fox.Editor
                 {
                     if (panel != null)
                     {
-                        var previousValue = this.value;
+                        EntityHandle previousValue = this.value;
                         SetValueWithoutNotify(newValue);
 
                         Update();
@@ -34,10 +30,10 @@ namespace Fox.Editor
                         if (newValue.Entity != EntityProperty.managedReferenceValue)
                         {
                             EntityProperty.managedReferenceValue = newValue.Entity;
-                            EntityProperty.serializedObject.ApplyModifiedProperties();
+                            _ = EntityProperty.serializedObject.ApplyModifiedProperties();
                         }
 
-                        using (ChangeEvent<EntityHandle> evt = ChangeEvent<EntityHandle>.GetPooled(previousValue, newValue))
+                        using (var evt = ChangeEvent<EntityHandle>.GetPooled(previousValue, newValue))
                         {
                             evt.target = this;
                             SendEvent(evt);
@@ -53,25 +49,28 @@ namespace Fox.Editor
                         if (newValue.Entity != EntityProperty.managedReferenceValue)
                         {
                             EntityProperty.managedReferenceValue = newValue.Entity;
-                            EntityProperty.serializedObject.ApplyModifiedProperties();
+                            _ = EntityProperty.serializedObject.ApplyModifiedProperties();
                         }
                     }
                 }
             }
         }
 
-        private Button PasteButton;
-        private Label EntityLabel;
-        private Button DeleteButton;
+        private readonly Button PasteButton;
+        private readonly Label EntityLabel;
+        private readonly Button DeleteButton;
 
-        public new static readonly string ussClassName = "fox-entityhandle-field";
-        public new static readonly string labelUssClassName = ussClassName + "__label";
-        public new static readonly string inputUssClassName = ussClassName + "__input";
+        public static new readonly string ussClassName = "fox-entityhandle-field";
+        public static new readonly string labelUssClassName = ussClassName + "__label";
+        public static new readonly string inputUssClassName = ussClassName + "__input";
         public static readonly string inputLivePtrUssClassName = inputUssClassName + "--live-ptr";
         public static readonly string pasteButtonUssClassName = ussClassName + "__paste-button";
         public static readonly string deleteButtonUssClassName = ussClassName + "__delete-button";
 
-        public VisualElement visualInput { get; }
+        public VisualElement visualInput
+        {
+            get;
+        }
 
         public EntityHandleField()
             : this(null) { }
@@ -84,16 +83,20 @@ namespace Fox.Editor
         {
             visualInput = visInput;
 
-            DeleteButton = new Button(DeleteButton_clicked);
-            DeleteButton.text = "－";
+            DeleteButton = new Button(DeleteButton_clicked)
+            {
+                text = "－"
+            };
             DeleteButton.AddToClassList(deleteButtonUssClassName);
             visualInput.Add(DeleteButton);
 
             EntityLabel = new Label();
             visualInput.Add(EntityLabel);
 
-            PasteButton = new Button(PasteButton_clicked);
-            PasteButton.text = "Paste";
+            PasteButton = new Button(PasteButton_clicked)
+            {
+                text = "Paste"
+            };
             PasteButton.AddToClassList(pasteButtonUssClassName);
             visualInput.Add(PasteButton);
 
@@ -106,13 +109,12 @@ namespace Fox.Editor
 
         private void PasteButton_clicked()
         {
-            long address = 0;
-            if (long.TryParse(EditorGUIUtility.systemCopyBuffer, out address))
+            if (Int64.TryParse(EditorGUIUtility.systemCopyBuffer, out long address))
             {
                 if (address != UnityEngine.Serialization.ManagedReferenceUtility.RefIdNull)
                 {
                     EntityProperty.managedReferenceId = address;
-                    EntityProperty.serializedObject.ApplyModifiedProperties();
+                    _ = EntityProperty.serializedObject.ApplyModifiedProperties();
                 }
             }
         }
@@ -120,7 +122,7 @@ namespace Fox.Editor
         private void DeleteButton_clicked()
         {
             EntityProperty.managedReferenceId = UnityEngine.Serialization.ManagedReferenceUtility.RefIdNull;
-            EntityProperty.serializedObject.ApplyModifiedProperties();
+            _ = EntityProperty.serializedObject.ApplyModifiedProperties();
         }
 
         private void Update()
@@ -139,15 +141,9 @@ namespace Fox.Editor
             }
         }
 
-        private void OnPropertyChanged(SerializedProperty property)
-        {
-            value = EntityHandle.Get(EntityProperty.managedReferenceValue as Entity);
-        }
+        private void OnPropertyChanged(SerializedProperty property) => value = EntityHandle.Get(EntityProperty.managedReferenceValue as Entity);
 
-        public void BindProperty(SerializedProperty property)
-        {
-            BindProperty(property, null);
-        }
+        public void BindProperty(SerializedProperty property) => BindProperty(property, null);
         public void BindProperty(SerializedProperty property, string label)
         {
             if (label is not null)
@@ -170,9 +166,9 @@ namespace Fox.Editor
                 return;
             }
 
-            if (evt.eventTypeId == FoxFieldUtils.SerializedPropertyBindEventTypeId && !string.IsNullOrWhiteSpace(bindingPath))
+            if (evt.eventTypeId == FoxFieldUtils.SerializedPropertyBindEventTypeId && !String.IsNullOrWhiteSpace(bindingPath))
             {
-                SerializedProperty property = FoxFieldUtils.SerializedPropertyBindEventBindProperty.GetValue(evt) as SerializedProperty;
+                var property = FoxFieldUtils.SerializedPropertyBindEventBindProperty.GetValue(evt) as SerializedProperty;
 
                 EntityProperty = property.FindPropertyRelative("_entity");
 
@@ -185,29 +181,37 @@ namespace Fox.Editor
             }
 
             if ((evt as MouseDownEvent)?.button == (int)MouseButton.LeftMouse)
+            {
                 OnMouseDown(evt as MouseDownEvent);
+            }
             else if (evt.eventTypeId == KeyDownEvent.TypeId())
             {
                 var kdEvt = evt as KeyDownEvent;
 
-                if (((evt as KeyDownEvent)?.keyCode == KeyCode.Space) ||
-                    ((evt as KeyDownEvent)?.keyCode == KeyCode.KeypadEnter) ||
-                    ((evt as KeyDownEvent)?.keyCode == KeyCode.Return))
+                if ((evt as KeyDownEvent)?.keyCode is KeyCode.Space or
+                    KeyCode.KeypadEnter or
+                    KeyCode.Return)
                 {
                     OnKeyboardEnter();
                 }
-                else if (kdEvt.keyCode == KeyCode.Delete ||
-                         kdEvt.keyCode == KeyCode.Backspace)
+                else if (kdEvt.keyCode is KeyCode.Delete or
+                         KeyCode.Backspace)
                 {
                     OnKeyboardDelete();
                 }
             }
             else if (evt.eventTypeId == DragUpdatedEvent.TypeId())
+            {
                 OnDragUpdated(evt);
+            }
             else if (evt.eventTypeId == DragPerformEvent.TypeId())
+            {
                 OnDragPerform(evt);
+            }
             else if (evt.eventTypeId == DragLeaveEvent.TypeId())
+            {
                 OnDragLeave();
+            }
         }
 
         //[EventInterest(typeof(MouseDownEvent))]
@@ -219,11 +223,9 @@ namespace Fox.Editor
         //        OnMouseDown(evt as MouseDownEvent);
         //}
 
-        private void OnDragLeave()
-        {
+        private void OnDragLeave() =>
             // Make sure we've cleared the accept drop look, whether we we in a drop operation or not.
             RemoveFromClassList("unity-object-field-display--accept-drop");
-        }
 
         private void OnMouseDown(MouseDownEvent evt)
         {
@@ -260,17 +262,13 @@ namespace Fox.Editor
             //m_ObjectField.ShowObjectSelector();
         }
 
-        private void OnKeyboardDelete()
-        {
-            value = new EntityHandle();
-        }
+        private void OnKeyboardDelete() => value = new EntityHandle();
 
         private FoxEntity GetDragAndDropObject()
         {
             Object[] references = DragAndDrop.objectReferences;
 
-            FoxEntity validatedObject = null;
-            if (references[0] != null && references[0] is GameObject && (references[0] as GameObject).TryGetComponent<FoxEntity>(out validatedObject))
+            if (references[0] != null && references[0] is GameObject && (references[0] as GameObject).TryGetComponent<FoxEntity>(out FoxEntity validatedObject))
             {
                 if (!EditorUtility.IsPersistent(validatedObject))
                     return validatedObject;

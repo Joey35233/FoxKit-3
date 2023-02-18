@@ -1,28 +1,31 @@
 ﻿using Fox.Kernel;
-using String = Fox.Kernel.String;
 using System;
 using System.Collections;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine.UIElements;
+using String = Fox.Kernel.String;
 
 namespace Fox.Editor
 {
     public class StringMapField<T> : BaseField<StringMap<T>>, IFoxField, ICustomBindable
     {
-        private ListView ListViewInput;
+        private readonly ListView ListViewInput;
 
-        private static Func<IFoxField> FieldConstructor = FoxFieldUtils.GetTypeFieldConstructor(typeof(T));
+        private static readonly Func<IFoxField> FieldConstructor = FoxFieldUtils.GetTypeFieldConstructor(typeof(T));
 
         private SerializedProperty StringMapProperty;
 
-        public new static readonly string ussClassName = "fox-stringmap-field";
-        public new static readonly string labelUssClassName = ussClassName + "__label";
-        public new static readonly string inputUssClassName = ussClassName + "__input";
+        public static new readonly string ussClassName = "fox-stringmap-field";
+        public static new readonly string labelUssClassName = ussClassName + "__label";
+        public static new readonly string inputUssClassName = ussClassName + "__input";
         public static readonly string addButtonUssClassName = ussClassName + "__add-button";
         public static readonly string removeButtonUssClassName = ussClassName + "__remove-button";
 
-        public VisualElement visualInput { get; }
+        public VisualElement visualInput
+        {
+            get;
+        }
 
         public StringMapField() : this(default)
         {
@@ -51,18 +54,24 @@ namespace Fox.Editor
             ListViewInput.showAddRemoveFooter = false;
 
             // Technically, the header is the footer, just at the top.
-            var header = new VisualElement();
-            header.name = ListView.footerUssClassName;
+            var header = new VisualElement
+            {
+                name = ListView.footerUssClassName
+            };
             header.AddToClassList(ListView.footerUssClassName);
 
-            var addButton = new Button(AddButton_clicked);
-            addButton.name = ListView.ussClassName + "__add-button";
-            addButton.text = "＋";
+            var addButton = new Button(AddButton_clicked)
+            {
+                name = ListView.ussClassName + "__add-button",
+                text = "＋"
+            };
             addButton.AddToClassList(addButtonUssClassName);
 
-            var removeButton = new Button(RemoveButton_clicked);
-            removeButton.name = ListView.ussClassName + "__remove-button";
-            removeButton.text = "－";
+            var removeButton = new Button(RemoveButton_clicked)
+            {
+                name = ListView.ussClassName + "__remove-button",
+                text = "－"
+            };
             removeButton.AddToClassList(removeButtonUssClassName);
 
             header.Add(removeButton);
@@ -75,7 +84,7 @@ namespace Fox.Editor
             AddToClassList(ussClassName);
             labelElement.AddToClassList(labelUssClassName);
             visualInput.AddToClassList(inputUssClassName);
-            this.styleSheets.Add(IFoxField.FoxFieldStyleSheet);
+            styleSheets.Add(IFoxField.FoxFieldStyleSheet);
         }
 
         protected override void ExecuteDefaultActionAtTarget(EventBase evt)
@@ -83,9 +92,9 @@ namespace Fox.Editor
             base.ExecuteDefaultActionAtTarget(evt);
 
             // UNITYENHANCEMENT: https://github.com/Joey35233/FoxKit-3/issues/12
-            if (evt.eventTypeId == FoxFieldUtils.SerializedPropertyBindEventTypeId && !string.IsNullOrWhiteSpace(bindingPath))
+            if (evt.eventTypeId == FoxFieldUtils.SerializedPropertyBindEventTypeId && !System.String.IsNullOrWhiteSpace(bindingPath))
             {
-                SerializedProperty property = FoxFieldUtils.SerializedPropertyBindEventBindProperty.GetValue(evt) as SerializedProperty;
+                var property = FoxFieldUtils.SerializedPropertyBindEventBindProperty.GetValue(evt) as SerializedProperty;
 
                 if (property.type.StartsWith("Fox.Core.StringMap"))
                 {
@@ -119,7 +128,7 @@ namespace Fox.Editor
                 stringMap.Insert(new String(key), default);
 
                 // Apply without Undo so that the registered Undo event above works correctly.
-                StringMapProperty.serializedObject.ApplyModifiedPropertiesWithoutUndo();
+                _ = StringMapProperty.serializedObject.ApplyModifiedPropertiesWithoutUndo();
             }
         }
 
@@ -131,30 +140,27 @@ namespace Fox.Editor
 
                 Undo.RecordObject(StringMapProperty.serializedObject.targetObject, $"Remove cell");
 
-                foreach (var selectedIndex in ListViewInput.selectedIndices)
+                foreach (int selectedIndex in ListViewInput.selectedIndices)
                 {
                     int absoluteIndex = (ListViewInput.itemsSource as IStringMap).OccupiedIndexToAbsoluteIndex(selectedIndex);
                     ListViewInput.itemsSource.RemoveAt(absoluteIndex);
                 }
 
                 // Apply without Undo so that the registered Undo event above works correctly.
-                StringMapProperty.serializedObject.ApplyModifiedPropertiesWithoutUndo();
+                _ = StringMapProperty.serializedObject.ApplyModifiedPropertiesWithoutUndo();
             }
         }
 
-        private VisualElement MakeItem()
-        {
-            return new CellField(FieldConstructor() as BindableElement);
-        }
+        private VisualElement MakeItem() => new CellField(FieldConstructor() as BindableElement);
 
         private void BindItem(VisualElement element, int index)
         {
-            StringMap<T> stringMap = ListViewInput.itemsSource as StringMap<T>;
-            var i = (stringMap as IStringMap).OccupiedIndexToAbsoluteIndex(index);
+            var stringMap = ListViewInput.itemsSource as StringMap<T>;
+            int i = (stringMap as IStringMap).OccupiedIndexToAbsoluteIndex(index);
 
-            var cellProperty = StringMapProperty.FindPropertyRelative("Cells").GetArrayElementAtIndex(i);
+            SerializedProperty cellProperty = StringMapProperty.FindPropertyRelative("Cells").GetArrayElementAtIndex(i);
 
-            CellField field = element as CellField;
+            var field = element as CellField;
             field.KeyField.BindProperty(cellProperty.FindPropertyRelative("Key"));
             field.DataField.BindProperty(cellProperty.FindPropertyRelative("Value"));
 
@@ -167,10 +173,7 @@ namespace Fox.Editor
             return;
         }
 
-        public void BindProperty(SerializedProperty property)
-        {
-            BindProperty(property, null);
-        }
+        public void BindProperty(SerializedProperty property) => BindProperty(property, null);
         public void BindProperty(SerializedProperty property, string label)
         {
             if (label is not null)
@@ -192,15 +195,18 @@ namespace Fox.Editor
             public static readonly string inputUssClassName = ussClassName + "__input";
 
             public Label labelElement;
-            public VisualElement visualInput { get; }
+            public VisualElement visualInput
+            {
+                get;
+            }
 
             public CellField(BindableElement dataField)
             {
                 labelElement = new Label();
-                this.Add(labelElement);
+                Add(labelElement);
 
                 visualInput = new VisualElement();
-                this.Add(visualInput);
+                Add(visualInput);
 
                 KeyField = new StringField();
                 KeyField.SetEnabled(false);
@@ -233,7 +239,7 @@ namespace Fox.Editor
     {
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
         {
-            VisualElement genericField = (VisualElement)Activator.CreateInstance(typeof(StringMapField<>).MakeGenericType(fieldInfo.FieldType.GenericTypeArguments), new object[] { property.name });
+            var genericField = (VisualElement)Activator.CreateInstance(typeof(StringMapField<>).MakeGenericType(fieldInfo.FieldType.GenericTypeArguments), new object[] { property.name });
             (genericField as IFoxField).BindProperty(property);
 
             genericField.Q(className: BaseField<float>.labelUssClassName).AddToClassList(PropertyField.labelUssClassName);

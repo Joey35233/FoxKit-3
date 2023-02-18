@@ -1,12 +1,12 @@
-﻿using Fox.Kernel;
-using String = Fox.Kernel.String;
-using Fox.Core;
+﻿using Fox.Core;
 using Fox.Fio;
 using Fox.Geo;
 using Fox.Graphx;
+using Fox.Kernel;
 using System;
 using System.ComponentModel;
 using UnityEngine;
+using String = Fox.Kernel.String;
 
 namespace Fox.Geox
 {
@@ -45,7 +45,7 @@ namespace Fox.Geox
         public override void InitializeGameObject(GameObject gameObject)
         {
             base.InitializeGameObject(gameObject);
-            gameObject.AddComponent<GeoxPath2Gizmo>();
+            _ = gameObject.AddComponent<GeoxPath2Gizmo>();
         }
 
         public static GeoxPath2 Deserialize(GeomHeaderContext header)
@@ -54,11 +54,15 @@ namespace Fox.Geox
 
             Debug.Assert(header.Type == GeoPrimType.Path);
 
-            GeoxPath2 path = new GeoxPath2();
-            path.enable = true;
+            var path = new GeoxPath2
+            {
+                enable = true
+            };
 
-            TransformEntity transformEntity = new TransformEntity();
-            transformEntity.owner = EntityHandle.Get(path);
+            var transformEntity = new TransformEntity
+            {
+                owner = EntityHandle.Get(path)
+            };
             path.transform = new EntityPtr<TransformEntity>(transformEntity);
 
             path.tags = TagUtils.GetEnumTags<Tags>((ulong)header.GetTags<Tags>());
@@ -73,26 +77,31 @@ namespace Fox.Geox
 
             for (int i = 0; i < header.PrimCount; i++)
             {
-                reader.Seek(header.GetDataPosition() + 8 * i);
+                reader.Seek(header.GetDataPosition() + (8 * i));
 
-                GeoxPathEdge edge = new GeoxPathEdge();
-                edge.owner = EntityHandle.Get(path);
+                var edge = new GeoxPathEdge
+                {
+                    owner = EntityHandle.Get(path)
+                };
 
-                GeoxPathEdge.Tags geoEdgeTags = (GeoxPathEdge.Tags)reader.ReadUInt32();
+                var geoEdgeTags = (GeoxPathEdge.Tags)reader.ReadUInt32();
                 foreach (GeoxPathEdge.Tags tag in Enum.GetValues(geoEdgeTags.GetType()))
+                {
                     if (geoEdgeTags.HasFlag(tag))
                         edge.edgeTags.Add(new String(tag.ToString()));
+                }
 
                 ushort inNodeIndex = reader.ReadUInt16();
-                GraphxSpatialGraphDataNode inNode = null;
                 ushort outNodeIndex = reader.ReadUInt16();
-                GraphxSpatialGraphDataNode outNode = null;
+                GraphxSpatialGraphDataNode inNode;
                 if (path.nodes[inNodeIndex].IsNull())
                 {
-                    GeoxPathNode node = new GeoxPathNode();
-                    node.owner = EntityHandle.Get(path);
+                    var node = new GeoxPathNode
+                    {
+                        owner = EntityHandle.Get(path)
+                    };
 
-                    reader.Seek(header.Position + header.VertexBufferOffset + 16 * inNodeIndex);
+                    reader.Seek(header.Position + header.VertexBufferOffset + (16 * inNodeIndex));
                     node.position = reader.ReadPositionF();
 
                     node.nodeTags = TagUtils.GetEnumTags<GeoxPathNode.Tags>(reader.ReadUInt32());
@@ -107,12 +116,15 @@ namespace Fox.Geox
                 edge.prevNode = EntityHandle.Get(inNode);
                 inNode.outlinks.Add(EntityHandle.Get(edge));
 
+                GraphxSpatialGraphDataNode outNode;
                 if (path.nodes[outNodeIndex].IsNull())
                 {
-                    GeoxPathNode node = new GeoxPathNode();
-                    node.owner = EntityHandle.Get(path);
+                    var node = new GeoxPathNode
+                    {
+                        owner = EntityHandle.Get(path)
+                    };
 
-                    reader.Seek(header.Position + header.VertexBufferOffset + 16 * outNodeIndex);
+                    reader.Seek(header.Position + header.VertexBufferOffset + (16 * outNodeIndex));
                     node.position = reader.ReadPositionF();
 
                     node.nodeTags = TagUtils.GetEnumTags<GeoxPathNode.Tags>(reader.ReadUInt32());

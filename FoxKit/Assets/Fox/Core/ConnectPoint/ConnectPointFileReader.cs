@@ -1,8 +1,7 @@
-﻿using UnityEngine;
-using UnityEditor;
+﻿using Fox.Fio;
 using Fox.Kernel;
-using Fox.Fio;
-using Fox.Core;
+using UnityEditor;
+using UnityEngine;
 
 namespace Fox.Core
 {
@@ -21,17 +20,20 @@ namespace Fox.Core
 
             UnityEngine.Transform target = Selection.transforms[0];
 
-            FoxDataHeaderContext header = new FoxDataHeaderContext(reader, reader.BaseStream.Position);
+            var header = new FoxDataHeaderContext(reader, reader.BaseStream.Position);
             header.Validate(version: 0, flags: 0);
 
             for (FoxDataNodeContext? node = header.GetFirstNode(); node.HasValue; node = node.Value.GetNextNode())
             {
                 FoxDataNodeContext realNode = node.Value;
 
-                String name = realNode.GetName(); Debug.Assert(name != (String)null);
+                String name = realNode.GetName();
+                Debug.Assert(name != (String)null);
 
-                FoxDataParameterContext? parentParam = realNode.FindParameter(new String("Parent")); Debug.Assert(parentParam.HasValue);
-                String parentName = parentParam.Value.GetString(); Debug.Assert(parentName != (String)null);
+                FoxDataParameterContext? parentParam = realNode.FindParameter(new String("Parent"));
+                Debug.Assert(parentParam.HasValue);
+                String parentName = parentParam.Value.GetString();
+                Debug.Assert(parentName != (String)null);
 
                 UnityEngine.Transform parent = Fox.Core.TransformUtils.FindTransformRecursive(target, parentName);
                 if (parent == null)
@@ -40,11 +42,12 @@ namespace Fox.Core
                     continue;
                 }
 
-                GameObject cnp = new GameObject(name.CString);
-                cnp.AddComponent<ConnectPoint>();
+                var cnp = new GameObject(name.CString);
+                _ = cnp.AddComponent<ConnectPoint>();
 
                 // Payload
-                long? dataPosition = realNode.GetDataPosition(); Debug.Assert(dataPosition.HasValue);
+                long? dataPosition = realNode.GetDataPosition();
+                Debug.Assert(dataPosition.HasValue);
                 reader.Seek(dataPosition.Value);
 
                 UnityEngine.Transform cnpTransform = cnp.transform;

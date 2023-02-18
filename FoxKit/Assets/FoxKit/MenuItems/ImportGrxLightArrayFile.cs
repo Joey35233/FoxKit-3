@@ -12,8 +12,8 @@ namespace FoxKit.MenuItems
         [MenuItem("FoxKit/Import/GrxLightArrayFile")]
         private static void OnImportAsset()
         {
-            var assetPath = EditorUtility.OpenFilePanel("Import GrxLightArrayFile", "", "grxla");
-            if (string.IsNullOrEmpty(assetPath))
+            string assetPath = EditorUtility.OpenFilePanel("Import GrxLightArrayFile", "", "grxla");
+            if (CsSystem.String.IsNullOrEmpty(assetPath))
                 return;
             using var reader = new FileStreamReader(System.IO.File.OpenRead(assetPath));
             var grxlaReader = new GrxLightArrayFileReader();

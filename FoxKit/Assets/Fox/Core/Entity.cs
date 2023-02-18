@@ -1,7 +1,7 @@
 ﻿using Fox.Kernel;
-using String = Fox.Kernel.String;
 using System;
 using UnityEngine;
+using String = Fox.Kernel.String;
 
 namespace Fox.Core
 {
@@ -11,7 +11,10 @@ namespace Fox.Core
         /// <summary>
         /// Unknown.
         /// </summary>
-        private ulong Id { get; }
+        private ulong Id
+        {
+            get;
+        }
 
         /// <summary>
         /// The Entity's dynamically-added properties.
@@ -26,7 +29,7 @@ namespace Fox.Core
             }
 
             var propertyInfo = new PropertyInfo(name, type, 0, arraySize, container);
-            this.DynamicProperties.Insert(name, new DynamicProperty(propertyInfo));
+            DynamicProperties.Insert(name, new DynamicProperty(propertyInfo));
             return true;
         }
 
@@ -34,10 +37,7 @@ namespace Fox.Core
         /// True if this entity should be serialized in a fox2 file on export.
         /// </summary>
         /// <returns></returns>
-        public virtual bool ShouldWriteToFox2()
-        {
-            return true;
-        }
+        public virtual bool ShouldWriteToFox2() => true;
 
         /// <summary>
         /// Perform any property updates needed before exporting.
@@ -54,13 +54,8 @@ namespace Fox.Core
         /// <returns>True if a static or dynamic property was found, else false.</returns>
         private static bool HasPropertyWithName(Entity entity, String name)
         {
-            var hasStaticProperty = EntityInfo.HasPropertyWithName(entity.GetClassEntityInfo(), name);
-            if (hasStaticProperty)
-            {
-                return true;
-            }
-
-            return entity.DynamicProperties.ContainsKey(name);
+            bool hasStaticProperty = EntityInfo.HasPropertyWithName(entity.GetClassEntityInfo(), name);
+            return hasStaticProperty || entity.DynamicProperties.ContainsKey(name);
         }
 
         /// <summary>
@@ -72,9 +67,6 @@ namespace Fox.Core
 
         }
 
-        public override string ToString()
-        {
-            return $"{this.GetType().Name}";
-        }
+        public override string ToString() => $"{GetType().Name}";
     }
 }

@@ -20,10 +20,10 @@ namespace Fox.Core
 
         public void Write(BinaryWriter writer, UnityEngine.SceneManagement.Scene sceneToExport)
         {
-            var entities = GetEntitiesToExport(sceneToExport);
+            List<Entity> entities = GetEntitiesToExport(sceneToExport);
 
             // Perform any last minute property updates
-            foreach (var entity in entities)
+            foreach (Entity entity in entities)
             {
                 AssignAddress(entity);
                 AssignId(entity);
@@ -31,36 +31,36 @@ namespace Fox.Core
             }
 
             // Skip header for now
-            var headerPosition = writer.BaseStream.Position;
+            long headerPosition = writer.BaseStream.Position;
             writer.BaseStream.Position += HeaderSize;
 
             WriteEntities(writer, entities);
             int stringTableOffset = WriteStringTable(writer);
 
-            var endPosition = WriteHeader(writer, entities, headerPosition, stringTableOffset);
+            long endPosition = WriteHeader(writer, entities, headerPosition, stringTableOffset);
             writer.BaseStream.Position = endPosition;
         }
 
         private void AssignAddress(Entity entity)
         {
-            var address = lastAddress + 0x70;
+            ulong address = lastAddress + 0x70;
             addresses.Add(entity, address);
             lastAddress = address;
         }
 
         private void AssignId(Entity entity)
         {
-            var id = lastId + 1;
+            ulong id = lastId + 1;
             ids.Add(entity, id);
             lastId = id;
         }
 
         private int WriteStringTable(BinaryWriter writer)
         {
-            var stringTableOffset = (int)writer.BaseStream.Position;
-            foreach (var foxString in strings)
+            int stringTableOffset = (int)writer.BaseStream.Position;
+            foreach (Kernel.String foxString in strings)
             {
-                if (!string.IsNullOrEmpty(foxString.CString))
+                if (!System.String.IsNullOrEmpty(foxString.CString))
                 {
                     WriteStringTableEntry(writer, foxString);
                 }
@@ -75,7 +75,7 @@ namespace Fox.Core
 
         private void WriteEntities(BinaryWriter writer, List<Entity> entities)
         {
-            foreach (var entity in entities)
+            foreach (Entity entity in entities)
             {
                 WriteEntity(writer, (uint)addresses[entity], ids[entity], entity);
             }
@@ -86,7 +86,7 @@ namespace Fox.Core
             long endPosition = writer.BaseStream.Position;
             writer.BaseStream.Position = headerPosition;
 
-            var entityCount = entities.Count;
+            int entityCount = entities.Count;
             writer.Write(MagicNumber1);
             writer.Write(MagicNumber2);
             writer.Write(entityCount);
@@ -109,7 +109,7 @@ namespace Fox.Core
         private static void CreateDataSet(List<Entity> entities)
         {
             var dataSet = new DataSet();
-            foreach (var entity in entities)
+            foreach (Entity entity in entities)
             {
                 if (entity is Data)
                 {

@@ -1,9 +1,7 @@
-﻿using UnityEngine;
-using UnityEditor;
+﻿using UnityEditor;
 using UnityEditor.UIElements;
+using UnityEngine;
 using UnityEngine.UIElements;
-
-using Fox.Core;
 
 namespace Fox.Editor
 {
@@ -15,28 +13,29 @@ namespace Fox.Editor
     public class BindingTestWindow : EditorWindow
     {
         [MenuItem("FoxKit/Debug/BindingTestWindow")]
-        static void Init()
+        private static void Init()
         {
-            var window = EditorWindow.GetWindow<BindingTestWindow>(true, "BindingTestWindow");
+            BindingTestWindow window = EditorWindow.GetWindow<BindingTestWindow>(true, "BindingTestWindow");
             window.Draw();
             window.Show();
         }
 
-        SerializedObject serializedObject;
-
-        Int16Field field;
+        private SerializedObject serializedObject;
+        private Int16Field field;
 
         public void Draw()
         {
-            VisualElement visualInput = new VisualElement();
+            var visualInput = new VisualElement();
 
-            var testClass = ScriptableObject.CreateInstance<BindingTestClass>();
+            BindingTestClass testClass = ScriptableObject.CreateInstance<BindingTestClass>();
             serializedObject = new SerializedObject(testClass);
 
-            field = new Int16Field();
-            field.bindingPath = "val";
-            field.RegisterValueChangedCallback<short>((ChangeEvent<short> evt) => Debug.Log($"v: changed"));
-            field.RegisterValueChangedCallback<int>((ChangeEvent<int> evt) => Debug.Log($"sp: changed"));
+            field = new Int16Field
+            {
+                bindingPath = "val"
+            };
+            _ = field.RegisterValueChangedCallback<short>((ChangeEvent<short> evt) => Debug.Log($"v: changed"));
+            _ = field.RegisterValueChangedCallback<int>((ChangeEvent<int> evt) => Debug.Log($"sp: changed"));
             visualInput.Add(field);
 
             var mbutton1 = new Button { text = "murder1" };
@@ -58,8 +57,8 @@ namespace Fox.Editor
 
         private void murder1()
         {
-            serializedObject.FindProperty("val").intValue = unchecked((int)-100);
-            serializedObject.ApplyModifiedProperties();
+            serializedObject.FindProperty("val").intValue = unchecked(-100);
+            _ = serializedObject.ApplyModifiedProperties();
 
             return;
         }

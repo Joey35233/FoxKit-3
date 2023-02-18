@@ -12,7 +12,7 @@ namespace Fox.Editor
     // Evaluates simple expressions, supports int & float and operators: + - * / % ^ ( )
     public class ExpressionEvaluator
     {
-        private readonly static Operator[] s_Operators =
+        private static readonly Operator[] s_Operators =
         {
             new Operator('-', 2, 2, Associativity.Left),
             new Operator('+', 2, 2, Associativity.Left),
@@ -23,7 +23,10 @@ namespace Fox.Editor
             new Operator('u', 4, 1, Associativity.Left) // unary minus trick. For example we convert 2/-7+(-9*8)*2^-9-5 to 2/u7+(u9*8)*2^u9-5 before evaluation
         };
 
-        private enum Associativity { Left, Right }
+        private enum Associativity
+        {
+            Left, Right
+        }
 
         private struct Operator
         {
@@ -56,30 +59,31 @@ namespace Fox.Editor
         // Evaluate RPN tokens (http://en.wikipedia.org/wiki/Reverse_Polish_notation)
         private static bool Evaluate<T>(string[] tokens, out T value)
         {
-            Stack<string> stack = new Stack<string>();
+            var stack = new Stack<string>();
 
             foreach (string token in tokens)
             {
                 if (IsOperator(token))
                 {
                     Operator oper = CharToOperator(token[0]);
-                    List<T> values = new List<T>();
+                    var values = new List<T>();
                     bool parsed = true;
 
                     while (stack.Count > 0 && !IsCommand(stack.Peek()) && values.Count < oper.inputs)
                     {
-                        T newValue;
-                        parsed &= TryParse<T>(stack.Pop(), out newValue);
+                        parsed &= TryParse<T>(stack.Pop(), out T newValue);
                         values.Add(newValue);
                     }
 
                     values.Reverse();
 
                     if (parsed && values.Count == oper.inputs)
+                    {
                         stack.Push(Evaluate<T>(values.ToArray(), token[0]).ToString());
+                    }
                     else // Can't parse values or too few values for the operator -> exit
                     {
-                        value = default(T);
+                        value = default;
                         return false;
                     }
                 }
@@ -95,15 +99,15 @@ namespace Fox.Editor
                     return true;
             }
 
-            value = default(T);
+            value = default;
             return false;
         }
 
         // Translate tokens from infix into RPN (http://en.wikipedia.org/wiki/Shunting-yard_algorithm)
         private static string[] InfixToRPN(string[] tokens)
         {
-            Stack<char> operatorStack = new Stack<char>();
-            Queue<string> outputQueue = new Queue<string>();
+            var operatorStack = new Stack<char>();
+            var outputQueue = new Queue<string>();
 
             foreach (string token in tokens)
             {
@@ -121,7 +125,7 @@ namespace Fox.Editor
                             outputQueue.Enqueue(operatorStack.Pop().ToString());
 
                         if (operatorStack.Count > 0)
-                            operatorStack.Pop();
+                            _ = operatorStack.Pop();
                     }
                     else // All the other operators
                     {
@@ -155,8 +159,8 @@ namespace Fox.Editor
 
                 if (IsOperator(topOfStack.character))
                 {
-                    if (newOperator.associativity == Associativity.Left && newOperator.presedence <= topOfStack.presedence ||
-                        newOperator.associativity == Associativity.Right && newOperator.presedence < topOfStack.presedence)
+                    if ((newOperator.associativity == Associativity.Left && newOperator.presedence <= topOfStack.presedence) ||
+                        (newOperator.associativity == Associativity.Right && newOperator.presedence < topOfStack.presedence))
                     {
                         return true;
                     }
@@ -168,7 +172,7 @@ namespace Fox.Editor
         // Splits expression to meaningful tokens
         private static string[] ExpressionToTokens(string expression)
         {
-            List<string> result = new List<string>();
+            var result = new List<string>();
             string currentString = "";
 
             for (int c = 0; c < expression.Length; c++)
@@ -195,35 +199,19 @@ namespace Fox.Editor
             return result.ToArray();
         }
 
-        private static bool IsCommand(string token)
-        {
-            if (token.Length != 1)
-                return false;
+        private static bool IsCommand(string token) => token.Length == 1 && IsCommand(token[0]);
 
-            return IsCommand(token[0]);
-        }
+        private static bool IsCommand(char character) => character == '(' || character == ')' || IsOperator(character);
 
-        private static bool IsCommand(char character)
-        {
-            if (character == '(' || character == ')')
-                return true;
-
-            return IsOperator(character);
-        }
-
-        private static bool IsOperator(string token)
-        {
-            if (token.Length != 1)
-                return false;
-
-            return IsOperator(token[0]);
-        }
+        private static bool IsOperator(string token) => token.Length == 1 && IsOperator(token[0]);
 
         private static bool IsOperator(char character)
         {
             foreach (Operator o in s_Operators)
+            {
                 if (o.character == character)
                     return true;
+            }
 
             return false;
         }
@@ -231,8 +219,10 @@ namespace Fox.Editor
         private static Operator CharToOperator(char character)
         {
             foreach (Operator o in s_Operators)
+            {
                 if (o.character == character)
                     return o;
+            }
 
             return new Operator();
         }
@@ -246,7 +236,7 @@ namespace Fox.Editor
             if (result.Length == 0)
                 return result;
 
-            char lastChar = result[result.Length - 1];
+            char lastChar = result[^1];
 
             // remove trailing operator for niceness (user is middle of typing, and we don't want to evaluate to zero)
             if (IsOperator(lastChar))
@@ -395,7 +385,7 @@ namespace Fox.Editor
                     }
                 }
             }
-            return default(T);
+            return default;
         }
 
         private static bool TryParse<T>(string expression, out T result)
@@ -404,35 +394,30 @@ namespace Fox.Editor
             expression = expression.TrimEnd('f');
 
             bool success = false;
-            result = default(T);
+            result = default;
             if (typeof(T) == typeof(float))
             {
-                float temp = 0.0f;
-                success = float.TryParse(expression, NumberStyles.Float, CultureInfo.InvariantCulture.NumberFormat, out temp);
+                success = Single.TryParse(expression, NumberStyles.Float, CultureInfo.InvariantCulture.NumberFormat, out float temp);
                 result = (T)(object)temp;
             }
             else if (typeof(T) == typeof(int))
             {
-                int temp = 0;
-                success = int.TryParse(expression, NumberStyles.Integer, CultureInfo.InvariantCulture.NumberFormat, out temp);
+                success = Int32.TryParse(expression, NumberStyles.Integer, CultureInfo.InvariantCulture.NumberFormat, out int temp);
                 result = (T)(object)temp;
             }
             else if (typeof(T) == typeof(double))
             {
-                double temp = 0;
-                success = double.TryParse(expression, NumberStyles.Float, CultureInfo.InvariantCulture.NumberFormat, out temp);
+                success = Double.TryParse(expression, NumberStyles.Float, CultureInfo.InvariantCulture.NumberFormat, out double temp);
                 result = (T)(object)temp;
             }
             else if (typeof(T) == typeof(long))
             {
-                long temp = 0;
-                success = long.TryParse(expression, NumberStyles.Integer, CultureInfo.InvariantCulture.NumberFormat, out temp);
+                success = Int64.TryParse(expression, NumberStyles.Integer, CultureInfo.InvariantCulture.NumberFormat, out long temp);
                 result = (T)(object)temp;
             }
             else if (typeof(T) == typeof(BigInteger))
             {
-                BigInteger temp = 0;
-                success = BigInteger.TryParse(expression, NumberStyles.Integer, CultureInfo.InvariantCulture.NumberFormat, out temp);
+                success = BigInteger.TryParse(expression, NumberStyles.Integer, CultureInfo.InvariantCulture.NumberFormat, out BigInteger temp);
                 result = (T)(object)temp;
             }
             return success;

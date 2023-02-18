@@ -1,6 +1,4 @@
-﻿using Fox.Core;
-
-namespace Fox.Phx
+﻿namespace Fox.Phx
 {
     public partial class PhAssociationParam : Fox.Core.Entity
     {

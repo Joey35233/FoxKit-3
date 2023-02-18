@@ -1,8 +1,6 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
-using UnityEditor;
+﻿using Fox.Core;
 using Fox.Fio;
-using Fox.Core;
+using UnityEditor;
 
 namespace FoxKit.MenuItems
 {
@@ -11,8 +9,8 @@ namespace FoxKit.MenuItems
         [MenuItem("FoxKit/Import/ConnectPointFile")]
         private static void OnImportAsset()
         {
-            var assetPath = EditorUtility.OpenFilePanel("Import ConnectPointFile", "", "fcnp");
-            if (string.IsNullOrEmpty(assetPath))
+            string assetPath = EditorUtility.OpenFilePanel("Import ConnectPointFile", "", "fcnp");
+            if (System.String.IsNullOrEmpty(assetPath))
             {
                 return;
             }

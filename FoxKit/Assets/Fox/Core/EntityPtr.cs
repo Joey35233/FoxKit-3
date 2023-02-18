@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Fox.Core
 {
@@ -16,39 +15,21 @@ namespace Fox.Core
         [SerializeReference]
         private T _ptr;
 
-        public T Get()
-        {
-            return this._ptr;
-        }
+        public T Get() => _ptr;
 
-        public void Reset(T newPtr)
-        {
-            this._ptr = newPtr;
-        }
+        public void Reset(T newPtr) => _ptr = newPtr;
 
-        public void Reset()
-        {
-            this._ptr = null;
-        }
+        public void Reset() => _ptr = null;
 
-        public void Reset(Entity newPtr)
-        {
-            this._ptr = (T)newPtr;
-        }
+        public void Reset(Entity newPtr) => _ptr = (T)newPtr;
 
-        public bool IsNull()
-        {
-            return this._ptr == null;
-        }
+        public bool IsNull() => _ptr == null;
 
-        Entity IEntityPtr.Get()
-        {
-            return this._ptr;
-        }
+        Entity IEntityPtr.Get() => _ptr;
 
         public EntityPtr(T entity)
         {
-            this._ptr = entity;
+            _ptr = entity;
         }
     }
 }

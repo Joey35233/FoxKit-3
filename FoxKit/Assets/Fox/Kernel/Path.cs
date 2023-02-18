@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using UnityEngine;
 
@@ -10,24 +9,15 @@ namespace Fox.Kernel
     {
         [SerializeField, FieldOffset(0)]
         private string _cString;
-        public string CString
-        {
-            get => _cString;
-        }
+        public string CString => _cString;
 
         [SerializeField, FieldOffset(8)]
         private int _length;
-        public int Length
-        {
-            get => _length;
-        }
+        public int Length => _length;
 
         [SerializeField, FieldOffset(12)]
         private PathFileNameAndExtCode _hash;
-        public PathFileNameAndExtCode Hash
-        {
-            get => _hash;
-        }
+        public PathFileNameAndExtCode Hash => _hash;
 
         public String Extension => Hash.Extension;
 
@@ -36,15 +26,18 @@ namespace Fox.Kernel
         /// <summary>
         /// The empty string.
         /// </summary>
-        public static Path Empty { get; }
+        public static Path Empty
+        {
+            get;
+        }
 
         static Path()
         {
             Empty = new Path
             {
-                _cString = string.Empty,
+                _cString = System.String.Empty,
                 _length = 0,
-                _hash = new PathFileNameAndExtCode(string.Empty)
+                _hash = new PathFileNameAndExtCode(System.String.Empty)
             };
         }
 
@@ -57,70 +50,46 @@ namespace Fox.Kernel
 
         public Path(string name)
         {
-            if (!string.IsNullOrEmpty(name))
+            if (!System.String.IsNullOrEmpty(name))
             {
-                this._cString = name;
-                this._length = name.Length;
-                this._hash = new PathFileNameAndExtCode(name);
+                _cString = name;
+                _length = name.Length;
+                _hash = new PathFileNameAndExtCode(name);
             }
             else
             {
-                this._cString = Empty.CString;
-                this._length = Empty.Length;
-                this._hash = Empty.Hash;
+                _cString = Empty.CString;
+                _length = Empty.Length;
+                _hash = Empty.Hash;
             }
         }
 
         public Path(PathFileNameAndExtCode hash)
         {
-            this._cString = null;
-            this._length = -1;
-            this._hash = hash;
+            _cString = null;
+            _length = -1;
+            _hash = hash;
         }
 
         public bool IsPseudoNull() => (Length == 0) && (Hash == 0);
 
         public bool IsHashed() => (Length == 0) && (Hash != Empty.Hash);
 
-        public override string ToString()
-        {
-            return IsHashed() ? Hash.ToString() : CString;
-        }
+        public override string ToString() => IsHashed() ? Hash.ToString() : CString;
 
         // Kernel.Path
-        public static bool operator ==(Path a, Path b)
-        {
-            return a?.Hash == b?.Hash;
-        }
-        public static bool operator !=(Path a, Path b)
-        {
-            return !(a == b);
-        }
+        public static bool operator ==(Path a, Path b) => a?.Hash == b?.Hash;
+        public static bool operator !=(Path a, Path b) => !(a == b);
 
         // System.String comparisons
-        public static bool operator ==(Path a, string b)
-        {
-            return a?.Hash == new PathFileNameAndExtCode(b);
-        }
-        public static bool operator !=(Path a, string b)
-        {
-            return !(a == b);
-        }
+        public static bool operator ==(Path a, string b) => a?.Hash == new PathFileNameAndExtCode(b);
+        public static bool operator !=(Path a, string b) => !(a == b);
 
         // Generic overrides
-        public override bool Equals(object obj)
-        {
-            return obj is Path rhs && this == rhs;
-        }
+        public override bool Equals(object obj) => obj is Path rhs && this == rhs;
 
-        public override int GetHashCode()
-        {
-            return unchecked((int)Hash.GetHashCode());
-        }
+        public override int GetHashCode() => unchecked(Hash.GetHashCode());
 
-        public bool Equals(string other)
-        {
-            return Hash == new PathFileNameAndExtCode(other);
-        }
+        public bool Equals(string other) => Hash == new PathFileNameAndExtCode(other);
     }
 }

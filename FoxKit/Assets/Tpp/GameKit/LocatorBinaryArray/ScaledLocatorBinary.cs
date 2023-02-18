@@ -1,7 +1,7 @@
-﻿using System;
-using Fox.Kernel;
-using String = Fox.Kernel.String;
+﻿using Fox.Kernel;
+using System;
 using UnityEngine;
+using String = Fox.Kernel.String;
 
 namespace Tpp.GameKit
 {
@@ -22,7 +22,7 @@ namespace Tpp.GameKit
 
         [SerializeField]
         private short b;
-        
+
         [SerializeField]
         private String locatorName;
 
@@ -42,7 +42,7 @@ namespace Tpp.GameKit
 
         public ScaledLocatorBinary()
         {
-            
+
         }
     }
 }

@@ -1,7 +1,6 @@
-﻿using UnityEditor;
-using UnityEngine;
-using Fox.Core;
+﻿using Fox.Core;
 using System;
+using UnityEngine;
 
 namespace Tpp.Effect
 {
@@ -14,9 +13,9 @@ namespace Tpp.Effect
         [NonSerialized]
         public bool DrawLabel = false;
 
-        void DrawGizmos(bool isSelected)
+        private void DrawGizmos(bool isSelected)
         {
-            if (gameObject.GetComponent<FoxEntity>()?.Entity is not TppLightProbe lightProbe)
+            if (gameObject.GetComponent<FoxEntity>()?.Entity is not TppLightProbe)
                 return;
 
             Gizmos.matrix = transform.localToWorldMatrix;
@@ -24,14 +23,8 @@ namespace Tpp.Effect
             Gizmos.DrawWireCube(Vector3.zero, Vector3.one);
         }
 
-        void OnDrawGizmos()
-        {
-            DrawGizmos(false);
-        }
+        private void OnDrawGizmos() => DrawGizmos(false);
 
-        void OnDrawGizmosSelected()
-        {
-            DrawGizmos(true);
-        }
+        private void OnDrawGizmosSelected() => DrawGizmos(true);
     }
 }

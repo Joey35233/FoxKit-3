@@ -1,18 +1,18 @@
-﻿using Fox.Kernel;
-using Fox.Fio;
-using String = Fox.Kernel.String;
+﻿using Fox.Fio;
+using Fox.Kernel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using String = Fox.Kernel.String;
 
 namespace Fox.Core
 {
     public class DataSetFile2Reader
     {
         private IDictionary<StrCode, String> stringTable;
-        private IDictionary<ulong, Action<Entity>> entityPtrSetRequests = new Dictionary<ulong, Action<Entity>>();
-        private IDictionary<ulong, HashSet<Action<Entity>>> entityHandleSetRequests = new Dictionary<ulong, HashSet<Action<Entity>>>();
+        private readonly IDictionary<ulong, Action<Entity>> entityPtrSetRequests = new Dictionary<ulong, Action<Entity>>();
+        private readonly IDictionary<ulong, HashSet<Action<Entity>>> entityHandleSetRequests = new Dictionary<ulong, HashSet<Action<Entity>>>();
 
         public class ReadResult
         {
@@ -23,13 +23,13 @@ namespace Fox.Core
 
         public ReadResult Read(FileStreamReader reader)
         {
-            var headerBytes = reader.ReadBytes(32);
-            var entityCount = BitConverter.ToInt32(headerBytes, 8);
-            var stringTableOffset = BitConverter.ToInt32(headerBytes, 12);
-            var entityTableOffset = reader.BaseStream.Position;
+            byte[] headerBytes = reader.ReadBytes(32);
+            int entityCount = BitConverter.ToInt32(headerBytes, 8);
+            int stringTableOffset = BitConverter.ToInt32(headerBytes, 12);
+            long entityTableOffset = reader.BaseStream.Position;
 
             reader.Seek(stringTableOffset);
-            this.stringTable = ReadStringTable(reader);
+            stringTable = ReadStringTable(reader);
             reader.Seek(entityTableOffset);
 
             var result = new ReadResult();
@@ -37,7 +37,7 @@ namespace Fox.Core
             var gameObjects = new Dictionary<ulong, GameObject>();
             for (int i = 0; i < entityCount; i++)
             {
-                var addressedEntity = new DataSetFile2AddressedEntityReader(RequestSetEntityPtr, RequestSetEntityHandle).Read(reader, (hash) => this.stringTable[hash]);
+                AddressedEntity addressedEntity = new DataSetFile2AddressedEntityReader(RequestSetEntityPtr, RequestSetEntityHandle).Read(reader, (hash) => stringTable[hash]);
                 entities.Add(addressedEntity.Address, addressedEntity.Entity);
 
                 // Create GameObject
@@ -55,11 +55,11 @@ namespace Fox.Core
                 }
 
                 gameObjects.Add(addressedEntity.Address, gameObject);
-                var entityComponent = gameObject.AddComponent<FoxEntity>();
+                FoxEntity entityComponent = gameObject.AddComponent<FoxEntity>();
                 entityComponent.Entity = addressedEntity.Entity;
             }
 
-            this.ResolveRequests(entities, gameObjects);
+            ResolveRequests(entities, gameObjects);
 
             result.Entities = entities.Values.ToList();
             result.GameObjects = gameObjects.Values.ToList();
@@ -75,21 +75,21 @@ namespace Fox.Core
 
             while (true)
             {
-                var hash = reader.ReadStrCode();
+                StrCode hash = reader.ReadStrCode();
                 if (hash == 0)
                 {
                     return dictionary;
                 }
 
-                var length = reader.ReadInt32();
-                var literal = reader.ReadChars(length);
+                int length = reader.ReadInt32();
+                char[] literal = reader.ReadChars(length);
                 dictionary.Add(hash, new String(new string(literal)));
             }
         }
 
         private void ResolveRequests(IDictionary<ulong, Entity> entities, IDictionary<ulong, GameObject> gameObjects)
         {
-            foreach(var setEntityPtr in this.entityPtrSetRequests)
+            foreach (KeyValuePair<ulong, Action<Entity>> setEntityPtr in entityPtrSetRequests)
             {
                 if (entities.ContainsKey(setEntityPtr.Key))
                 {
@@ -100,20 +100,20 @@ namespace Fox.Core
                 UnityEngine.Debug.LogError("Unable to resolve EntityPtr " + setEntityPtr.Key.ToString("X8"));
             }
 
-            foreach (var setEntityHandle in this.entityHandleSetRequests)
+            foreach (KeyValuePair<ulong, HashSet<Action<Entity>>> setEntityHandle in entityHandleSetRequests)
             {
                 if (entities.ContainsKey(setEntityHandle.Key))
                 {
                     if (!gameObjects.ContainsKey(setEntityHandle.Key))
                     {
-                        foreach (var request in setEntityHandle.Value)
+                        foreach (Action<Entity> request in setEntityHandle.Value)
                         {
                             request(entities[setEntityHandle.Key]);
                         }
                         continue;
                     }
 
-                    foreach (var request in setEntityHandle.Value)
+                    foreach (Action<Entity> request in setEntityHandle.Value)
                     {
                         request(gameObjects[setEntityHandle.Key].GetComponent<FoxEntity>().Entity);
                     }
@@ -134,7 +134,7 @@ namespace Fox.Core
                 return;
             }
 
-            this.entityPtrSetRequests.Add(address, setPtr);
+            entityPtrSetRequests.Add(address, setPtr);
         }
 
         public void RequestSetEntityHandle(ulong address, Action<Entity> setHandle)
@@ -144,12 +144,12 @@ namespace Fox.Core
                 return;
             }
 
-            if (!this.entityHandleSetRequests.ContainsKey(address))
+            if (!entityHandleSetRequests.ContainsKey(address))
             {
-                this.entityHandleSetRequests.Add(address, new HashSet<Action<Entity>>());
+                entityHandleSetRequests.Add(address, new HashSet<Action<Entity>>());
             }
 
-            this.entityHandleSetRequests[address].Add(setHandle);
+            _ = entityHandleSetRequests[address].Add(setHandle);
         }
     }
 }

@@ -1,7 +1,6 @@
-﻿using UnityEditor;
-using UnityEngine;
-using Fox.Core;
+﻿using Fox.Core;
 using System;
+using UnityEngine;
 
 namespace Fox.Grx
 {
@@ -9,10 +8,10 @@ namespace Fox.Grx
     public class PointLightGizmo : MonoBehaviour
     {
         [NonSerialized]
-        public Color BoxColor = new Color(0.22f, 0.765f, 0.961f);
+        public Color BoxColor = new(0.22f, 0.765f, 0.961f);
 
         [NonSerialized]
-        public Color SphereColor = new Color(0.765f, 0.22f, 0.961f);
+        public Color SphereColor = new(0.765f, 0.22f, 0.961f);
 
         [HideInInspector]
         public Vector3 OriginScale = Vector3.one * 0.5f;
@@ -20,7 +19,7 @@ namespace Fox.Grx
         [NonSerialized]
         public bool DrawLabel = false;
 
-        void DrawGizmos(bool isSelected)
+        private void DrawGizmos(bool isSelected)
         {
             if (gameObject.GetComponent<FoxEntity>()?.Entity is not PointLight pointLight)
                 return;
@@ -34,14 +33,8 @@ namespace Fox.Grx
             Gizmos.DrawWireSphere(Vector3.zero, pointLight.outerRange);
         }
 
-        void OnDrawGizmos()
-        {
-            DrawGizmos(false);
-        }
+        private void OnDrawGizmos() => DrawGizmos(false);
 
-        void OnDrawGizmosSelected()
-        {
-            DrawGizmos(true);
-        }
+        private void OnDrawGizmosSelected() => DrawGizmos(true);
     }
 }

@@ -11,7 +11,7 @@ namespace Fox.Gr
         private class BufferUploadHelper
         {
             // Indexed by MeshBufferFormatElementUsage
-            private VertexAttribute[] UnityAttributeUsageLUT =
+            private readonly VertexAttribute[] UnityAttributeUsageLUT =
             {
                 VertexAttribute.Position,
                 VertexAttribute.BlendWeight,
@@ -37,7 +37,7 @@ namespace Fox.Gr
             };
 
             // Indexed by MeshBufferFormatElementType
-            private (VertexAttributeFormat, int, ushort)[] UnityAttributeTypeLUT =
+            private readonly (VertexAttributeFormat, int, ushort)[] UnityAttributeTypeLUT =
             {
                 // Invalid
                 (VertexAttributeFormat.UInt32, -1, 0),
@@ -61,7 +61,7 @@ namespace Fox.Gr
                 (VertexAttributeFormat.UInt8, 4, 4),
             };
 
-            struct RemapDesc
+            private struct RemapDesc
             {
                 public MeshBufferFormatElementUsage Usage;
                 public MeshBufferFormatElementType Type;
@@ -71,27 +71,30 @@ namespace Fox.Gr
                 public ushort OutputSize;
             }
 
-            struct ExpandedVertexAttributeDescriptor
+            private struct ExpandedVertexAttributeDescriptor
             {
                 public VertexAttributeDescriptor Descriptor;
                 public ushort Size;
                 public uint Offset;
             }
 
-            private int[] DescriptorCounts;
-            private int[,] DescriptorIndices;
-            private ExpandedVertexAttributeDescriptor[,] Descriptors;
+            private readonly int[] DescriptorCounts;
+            private readonly int[,] DescriptorIndices;
+            private readonly ExpandedVertexAttributeDescriptor[,] Descriptors;
 
-            private uint[,] RemapDescCounts;
-            private RemapDesc[,,] RemapDescs;
+            private readonly uint[,] RemapDescCounts;
+            private readonly RemapDesc[,,] RemapDescs;
 
             public BufferUploadHelper(uint bufferCount, uint meshCount)
             {
                 DescriptorCounts = new int[bufferCount];
                 DescriptorIndices = new int[DescriptorCounts.LongLength, (uint)MeshBufferFormatElementUsage.COUNT];
                 for (uint i = 0; i < DescriptorIndices.GetLongLength(0); i++)
+                {
                     for (uint j = 0; j < DescriptorIndices.GetLongLength(1); j++)
                         DescriptorIndices[i, j] = -1;
+                }
+
                 Descriptors = new ExpandedVertexAttributeDescriptor[DescriptorIndices.GetLongLength(0), DescriptorIndices.GetLongLength(1)];
 
                 RemapDescCounts = new uint[bufferCount, meshCount];
@@ -116,7 +119,7 @@ namespace Fox.Gr
 
                             // Later, the fox bone weights, which rely on 32-bone groups, will be unpacked to an "absolute" index.
                             ushort outputSize = size;
-                            if (element.Usage == MeshBufferFormatElementUsage.BoneIndex0 || element.Usage == MeshBufferFormatElementUsage.BoneWeight0 || element.Usage == MeshBufferFormatElementUsage.BoneIndex1 || element.Usage == MeshBufferFormatElementUsage.BoneWeight1)
+                            if (element.Usage is MeshBufferFormatElementUsage.BoneIndex0 or MeshBufferFormatElementUsage.BoneWeight0 or MeshBufferFormatElementUsage.BoneIndex1 or MeshBufferFormatElementUsage.BoneWeight1)
                                 continue;
                             //if (element.Usage == MeshBufferFormatElementUsage.BoneIndex0)
                             //{
@@ -133,7 +136,7 @@ namespace Fox.Gr
                                 descriptorIndex = DescriptorCounts[bufferIndex]++;
 
                                 // Add UnityEngine format info
-                                VertexAttributeDescriptor descriptor = new VertexAttributeDescriptor
+                                var descriptor = new VertexAttributeDescriptor
                                 {
                                     attribute = UnityAttributeUsageLUT[(uint)element.Usage],
                                     format = format,
@@ -144,7 +147,7 @@ namespace Fox.Gr
                             }
 
                             // First pass on remap desc. Intentionally don't fill out output offset.
-                            RemapDesc remapDesc = new RemapDesc
+                            var remapDesc = new RemapDesc
                             {
                                 Usage = element.Usage,
                                 Type = element.Type,
@@ -159,22 +162,28 @@ namespace Fox.Gr
                 }
 
                 for (int i = 0; i < DescriptorCounts.Length; i++) // Buffer
+                {
                     for (int j = 1; j < DescriptorCounts[i]; j++) // Element
                         Descriptors[i, j].Offset = Descriptors[i, j - 1].Offset + Descriptors[i, j - 1].Size;
+                }
 
                 for (uint i = 0; i < RemapDescCounts.GetLongLength(0); i++) // Buffer
+                {
                     for (uint j = 0; j < RemapDescCounts.GetLongLength(1); j++) // Mesh
+                    {
                         for (uint k = 1; k < RemapDescCounts[i, j]; k++) // Element
                             RemapDescs[i, j, k].OutputOffset = Descriptors[i, DescriptorIndices[i, (uint)RemapDescs[i, j, k].Usage]].Offset;
+                    }
+                }
             }
 
             public NativeArray<VertexAttributeDescriptor> GetDescriptorArray()
             {
                 int bufferCount = 0;
-                foreach (var count in DescriptorCounts)
+                foreach (int count in DescriptorCounts)
                     bufferCount += count;
 
-                NativeArray<VertexAttributeDescriptor> result = new NativeArray<VertexAttributeDescriptor>(bufferCount, Allocator.Temp);
+                var result = new NativeArray<VertexAttributeDescriptor>(bufferCount, Allocator.Temp);
 
                 int absoluteIndex = 0;
                 for (int i = 0; i < DescriptorCounts.Length; i++)
@@ -197,7 +206,7 @@ namespace Fox.Gr
                 {
                     ExpandedVertexAttributeDescriptor lastDescriptor = Descriptors[i, DescriptorCounts[i] - 1];
                     uint size = vertexCount * (lastDescriptor.Offset + lastDescriptor.Size);
-                    Debug.Assert(size < int.MaxValue);
+                    Debug.Assert(size < Int32.MaxValue);
                     result[i] = new NativeArray<byte>((int)size, Allocator.Temp, NativeArrayOptions.ClearMemory);
                 }
 
@@ -216,7 +225,7 @@ namespace Fox.Gr
 
                 unsafe
                 {
-                    byte* outputDataPtr = (byte*)outputData.GetUnsafePtr() + (ulong)vertexStart * outputDataStride;
+                    byte* outputDataPtr = (byte*)outputData.GetUnsafePtr() + ((ulong)vertexStart * outputDataStride);
 
                     fixed (byte* fixedInputData = inputData)
                     {
@@ -230,11 +239,13 @@ namespace Fox.Gr
 
                                 UnsafeUtility.MemCpy(outputDataPtr + remapDesc.OutputOffset, inputDataPtr + remapDesc.InputOffset, remapDesc.OutputSize);
 
-                                if (remapDesc.Usage == MeshBufferFormatElementUsage.Position || remapDesc.Usage == MeshBufferFormatElementUsage.Normal || remapDesc.Usage == MeshBufferFormatElementUsage.Tangent)
+                                if (remapDesc.Usage is MeshBufferFormatElementUsage.Position or MeshBufferFormatElementUsage.Normal or MeshBufferFormatElementUsage.Tangent)
+                                {
                                     if (remapDesc.Type == MeshBufferFormatElementType.R32G32B32_Float)
                                         *(outputDataPtr + remapDesc.OutputOffset + 3) ^= 0x80;
                                     else if (remapDesc.Type == MeshBufferFormatElementType.R16G16B16A16_Float)
                                         *(outputDataPtr + remapDesc.OutputOffset + 1) ^= 0x80;
+                                }
                             }
 
                             outputDataPtr += outputDataStride;
@@ -248,9 +259,9 @@ namespace Fox.Gr
             {
                 MeshBufferFormatElement? boneWeightsFormatElement = null;
                 MeshBufferFormatElement? boneIndicesFormatElement = null;
-                foreach (var bufferDesc in layoutDesc.BufferDescs)
+                foreach (MeshBufferDesc bufferDesc in layoutDesc.BufferDescs)
                 {
-                    foreach (var element in bufferDesc.Elements)
+                    foreach (MeshBufferFormatElement element in bufferDesc.Elements)
                     {
                         if (element.Usage == MeshBufferFormatElementUsage.BoneWeight0)
                             boneWeightsFormatElement = element;
@@ -268,13 +279,13 @@ namespace Fox.Gr
                 for (uint i = 0; i < vertexCount; i++)
                 {
                     ref BoneWeight weight = ref outputWeights[vertexStart + i];
-                    weight.weight0 = inputData[inputDataIndex + boneWeightsFormatElement.Value.Offset + 0] / (float)byte.MaxValue;
+                    weight.weight0 = inputData[inputDataIndex + boneWeightsFormatElement.Value.Offset + 0] / (float)Byte.MaxValue;
                     weight.boneIndex0 = boneGroup[inputData[inputDataIndex + boneIndicesFormatElement.Value.Offset + 0]];
-                    weight.weight1 = inputData[inputDataIndex + boneWeightsFormatElement.Value.Offset + 1] / (float)byte.MaxValue;
+                    weight.weight1 = inputData[inputDataIndex + boneWeightsFormatElement.Value.Offset + 1] / (float)Byte.MaxValue;
                     weight.boneIndex1 = boneGroup[inputData[inputDataIndex + boneIndicesFormatElement.Value.Offset + 1]];
-                    weight.weight2 = inputData[inputDataIndex + boneWeightsFormatElement.Value.Offset + 2] / (float)byte.MaxValue;
+                    weight.weight2 = inputData[inputDataIndex + boneWeightsFormatElement.Value.Offset + 2] / (float)Byte.MaxValue;
                     weight.boneIndex2 = boneGroup[inputData[inputDataIndex + boneIndicesFormatElement.Value.Offset + 2]];
-                    weight.weight3 = inputData[inputDataIndex + boneWeightsFormatElement.Value.Offset + 3] / (float)byte.MaxValue;
+                    weight.weight3 = inputData[inputDataIndex + boneWeightsFormatElement.Value.Offset + 3] / (float)Byte.MaxValue;
                     weight.boneIndex3 = boneGroup[inputData[inputDataIndex + boneIndicesFormatElement.Value.Offset + 3]];
 
                     inputDataIndex += inputDataStride;

@@ -1,22 +1,17 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-
+﻿using GraphProcessor;
 using UnityEngine;
-
-using GraphProcessor;
 
 namespace FoxKit.Fx.Editor.Nodes
 {
-	[System.Serializable, NodeMenuItem("Vector/UniformVelocity")]
-	public class FxUniformVelocityVectorNode : BaseNode
-	{
-		[Input(name = "Input0")]
-		public float Input0;
+    [System.Serializable, NodeMenuItem("Vector/UniformVelocity")]
+    public class FxUniformVelocityVectorNode : BaseNode
+    {
+        [Input(name = "Input0")]
+        public float Input0;
 
-		[Output(name = "Output0")]
-		public float Output0;
+        [Output(name = "Output0")]
+        public float Output0;
 
-		public override string name => "UniformVelocity";
-	}
+        public override string name => "UniformVelocity";
+    }
 }

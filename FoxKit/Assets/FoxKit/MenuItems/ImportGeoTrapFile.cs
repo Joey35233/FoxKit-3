@@ -1,8 +1,8 @@
-using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEditor;
 using Fox.Fio;
 using Fox.Geo;
+using UnityEditor;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace FoxKit.MenuItems
 {
@@ -11,8 +11,8 @@ namespace FoxKit.MenuItems
         [MenuItem("FoxKit/Import/GeoTrapFile")]
         private static void OnImportAsset()
         {
-            var assetPath = EditorUtility.OpenFilePanel("Import GeoTrapFile", "", "trap");
-            if (string.IsNullOrEmpty(assetPath))
+            string assetPath = EditorUtility.OpenFilePanel("Import GeoTrapFile", "", "trap");
+            if (System.String.IsNullOrEmpty(assetPath))
                 return;
 
             using var reader = new FileStreamReader(System.IO.File.OpenRead(assetPath));

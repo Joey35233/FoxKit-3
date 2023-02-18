@@ -7,25 +7,25 @@ using UnityEngine.UIElements;
 
 namespace Fox.Editor
 {
-    public class Int16Field : TextValueField<System.Int16>, INotifyValueChanged<int>, IFoxField, ICustomBindable
+    public class Int16Field : TextValueField<short>, INotifyValueChanged<int>, IFoxField, ICustomBindable
     {
-        public override System.Int16 value 
-        { 
+        public override short value
+        {
             get => base.value;
             set
             {
-                System.Int16 newValue = value;
-                int packedNewValue = unchecked((int)newValue);
+                short newValue = value;
+                int packedNewValue = unchecked(newValue);
                 if (newValue != this.value)
                 {
                     if (panel != null)
                     {
-                        int packedOldValue = unchecked((int)this.value);
+                        int packedOldValue = unchecked(this.value);
 
                         // Sends ChangeEvent<System.Int16> and uses its SetValueWithoutNotify function
                         base.value = newValue;
 
-                        using (ChangeEvent<int> evt = ChangeEvent<int>.GetPooled(packedOldValue, packedNewValue))
+                        using (var evt = ChangeEvent<int>.GetPooled(packedOldValue, packedNewValue))
                         {
                             evt.target = this;
                             SendEvent(evt);
@@ -40,20 +40,20 @@ namespace Fox.Editor
         }
         int INotifyValueChanged<int>.value
         {
-            get => unchecked((int)this.value);
+            get => unchecked(value);
             set
             {
-                System.Int16 newValue = unchecked((System.Int16)value);
+                short newValue = unchecked((short)value);
                 if (newValue != this.value)
                 {
                     if (panel != null)
                     {
-                        int packedOldValue = unchecked((int)this.value);
+                        int packedOldValue = unchecked(this.value);
 
                         // Sends ChangeEvent<System.Int16> and uses its SetValueWithoutNotify function
                         base.value = newValue;
 
-                        using (ChangeEvent<int> evt = ChangeEvent<int>.GetPooled(packedOldValue, value))
+                        using (var evt = ChangeEvent<int>.GetPooled(packedOldValue, value))
                         {
                             evt.target = this;
                             SendEvent(evt);
@@ -66,30 +66,29 @@ namespace Fox.Editor
                 }
             }
         }
-        void INotifyValueChanged<int>.SetValueWithoutNotify(int newValue) { throw new NotImplementedException(); }
+        void INotifyValueChanged<int>.SetValueWithoutNotify(int newValue) => throw new NotImplementedException();
 
-        Int16Input integerInput => (Int16Input)textInputBase;
+        private Int16Input integerInput => (Int16Input)textInputBase;
 
-        protected override string ValueToString(System.Int16 v)
+        protected override string ValueToString(short v) => v.ToString(formatString, CultureInfo.InvariantCulture.NumberFormat);
+
+        protected override short StringToValue(string str)
         {
-            return v.ToString(formatString, CultureInfo.InvariantCulture.NumberFormat);
-        }
-
-        protected override System.Int16 StringToValue(string str)
-        {
-            int v;
-            ExpressionEvaluator.Evaluate(str, out v);
+            _ = ExpressionEvaluator.Evaluate(str, out int v);
             return NumericPropertyFields.ClampToInt16(v);
         }
 
-        public new static readonly string ussClassName = "fox-int16-field";
-        public new static readonly string labelUssClassName = ussClassName + "__label";
-        public new static readonly string inputUssClassName = ussClassName + "__input";
+        public static new readonly string ussClassName = "fox-int16-field";
+        public static new readonly string labelUssClassName = ussClassName + "__label";
+        public static new readonly string inputUssClassName = ussClassName + "__input";
 
-        public VisualElement visualInput { get; }
+        public VisualElement visualInput
+        {
+            get;
+        }
 
         public Int16Field()
-            : this((string)null) { }
+            : this(null) { }
 
         public Int16Field(int maxLength)
             : this(null, true, maxLength) { }
@@ -110,20 +109,14 @@ namespace Fox.Editor
             AddToClassList(ussClassName);
             labelElement.AddToClassList(labelUssClassName);
             visualInput.AddToClassList(inputUssClassName);
-            this.styleSheets.Add(IFoxField.FoxFieldStyleSheet);
+            styleSheets.Add(IFoxField.FoxFieldStyleSheet);
             if (hasDragger)
-                AddLabelDragger<System.Int16>();
+                AddLabelDragger<short>();
         }
 
-        public override void ApplyInputDeviceDelta(Vector3 delta, DeltaSpeed speed, System.Int16 startValue)
-        {
-            integerInput.ApplyInputDeviceDelta(delta, speed, startValue);
-        }
+        public override void ApplyInputDeviceDelta(Vector3 delta, DeltaSpeed speed, short startValue) => integerInput.ApplyInputDeviceDelta(delta, speed, startValue);
 
-        public void BindProperty(SerializedProperty property)
-        {
-            BindProperty(property, null);
-        }
+        public void BindProperty(SerializedProperty property) => BindProperty(property, null);
         public void BindProperty(SerializedProperty property, string label)
         {
             if (label is not null)
@@ -131,9 +124,9 @@ namespace Fox.Editor
             BindingExtensions.BindProperty(this, property);
         }
 
-        class Int16Input : TextValueInput
+        private class Int16Input : TextValueInput
         {
-            Int16Field parentIntegerField => (Int16Field)parent;
+            private Int16Field parentIntegerField => (Int16Field)parent;
 
             internal Int16Input()
             {
@@ -142,7 +135,7 @@ namespace Fox.Editor
 
             protected override string allowedCharacters => NumericPropertyFields.IntegerExpressionCharacterWhitelist;
 
-            public override void ApplyInputDeviceDelta(Vector3 delta, DeltaSpeed speed, System.Int16 startValue)
+            public override void ApplyInputDeviceDelta(Vector3 delta, DeltaSpeed speed, short startValue)
             {
                 double sensitivity = NumericFieldDraggerUtility.CalculateIntDragSensitivity(startValue);
                 float acceleration = NumericFieldDraggerUtility.Acceleration(speed == DeltaSpeed.Fast, speed == DeltaSpeed.Slow);
@@ -158,21 +151,17 @@ namespace Fox.Editor
                 }
             }
 
-            protected override string ValueToString(System.Int16 v)
-            {
-                return v.ToString(formatString);
-            }
+            protected override string ValueToString(short v) => v.ToString(formatString);
 
-            protected override System.Int16 StringToValue(string str)
+            protected override short StringToValue(string str)
             {
-                int v;
-                ExpressionEvaluator.Evaluate(str, out v);
+                _ = ExpressionEvaluator.Evaluate(str, out int v);
                 return NumericPropertyFields.ClampToInt16(v);
             }
         }
     }
 
-    [CustomPropertyDrawer(typeof(System.Int16))]
+    [CustomPropertyDrawer(typeof(short))]
     public class Int16Drawer : PropertyDrawer
     {
         private SerializedProperty property;
@@ -187,7 +176,7 @@ namespace Fox.Editor
 
             field.labelElement.AddToClassList(PropertyField.labelUssClassName);
             field.visualInput.AddToClassList(PropertyField.inputUssClassName);
-            field.AddToClassList(BaseField<System.UInt64>.alignedFieldUssClassName);
+            field.AddToClassList(BaseField<ulong>.alignedFieldUssClassName);
 
             return field;
         }

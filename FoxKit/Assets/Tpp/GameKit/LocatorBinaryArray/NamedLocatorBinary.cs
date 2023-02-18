@@ -1,7 +1,7 @@
-﻿using System;
-using Fox.Kernel;
-using String = Fox.Kernel.String;
+﻿using Fox.Kernel;
+using System;
 using UnityEngine;
+using String = Fox.Kernel.String;
 
 namespace Tpp.GameKit
 {

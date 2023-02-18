@@ -15,16 +15,13 @@ namespace Fox.Geox
             if (gameObject.GetComponent<FoxEntity>()?.Entity is not GeoxTrapAreaPath trapPath)
                 return;
 
-            if (isSelected)
-                Gizmos.color = Color.white;
-            else
-                Gizmos.color = Color;
+            Gizmos.color = isSelected ? Color.white : Color;
 
-            foreach (var edgePtr in trapPath.edges)
+            foreach (EntityPtr<GraphxSpatialGraphDataEdge> edgePtr in trapPath.edges)
             {
                 GraphxSpatialGraphDataEdge edge = edgePtr.Get();
-                GraphxSpatialGraphDataNode prevNode = edge.prevNode.Entity as GraphxSpatialGraphDataNode;
-                GraphxSpatialGraphDataNode nextNode = edge.nextNode.Entity as GraphxSpatialGraphDataNode;
+                var prevNode = edge.prevNode.Entity as GraphxSpatialGraphDataNode;
+                var nextNode = edge.nextNode.Entity as GraphxSpatialGraphDataNode;
 
                 float yMin = transform.position.y;
                 float yMax = yMin + trapPath.height;
@@ -36,14 +33,8 @@ namespace Fox.Geox
             }
         }
 
-        public void OnDrawGizmos()
-        {
-            DrawGizmos(false);
-        }
+        public void OnDrawGizmos() => DrawGizmos(false);
 
-        public void OnDrawGizmosSelected()
-        {
-            DrawGizmos(true);
-        }
+        public void OnDrawGizmosSelected() => DrawGizmos(true);
     }
 }

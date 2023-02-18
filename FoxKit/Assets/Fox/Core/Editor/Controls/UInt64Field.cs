@@ -7,14 +7,14 @@ using UnityEngine.UIElements;
 
 namespace Fox.Editor
 {
-    public class UInt64Field : TextValueField<System.UInt64>, INotifyValueChanged<long>, IFoxField, ICustomBindable
+    public class UInt64Field : TextValueField<ulong>, INotifyValueChanged<long>, IFoxField, ICustomBindable
     {
-        public override System.UInt64 value
+        public override ulong value
         {
             get => base.value;
             set
             {
-                System.UInt64 newValue = value;
+                ulong newValue = value;
                 long packedNewValue = unchecked((long)newValue);
                 if (newValue != this.value)
                 {
@@ -25,7 +25,7 @@ namespace Fox.Editor
                         // Sends ChangeEvent<System.UInt64> and uses its SetValueWithoutNotify function
                         base.value = newValue;
 
-                        using (ChangeEvent<long> evt = ChangeEvent<long>.GetPooled(packedOldValue, packedNewValue))
+                        using (var evt = ChangeEvent<long>.GetPooled(packedOldValue, packedNewValue))
                         {
                             evt.target = this;
                             SendEvent(evt);
@@ -40,10 +40,10 @@ namespace Fox.Editor
         }
         long INotifyValueChanged<long>.value
         {
-            get => unchecked((long)this.value);
+            get => unchecked((long)value);
             set
             {
-                System.UInt64 newValue = unchecked((System.UInt64)value);
+                ulong newValue = unchecked((ulong)value);
                 if (newValue != this.value)
                 {
                     if (panel != null)
@@ -53,7 +53,7 @@ namespace Fox.Editor
                         // Sends ChangeEvent<System.UInt64> and uses its SetValueWithoutNotify function
                         base.value = newValue;
 
-                        using (ChangeEvent<long> evt = ChangeEvent<long>.GetPooled(packedOldValue, value))
+                        using (var evt = ChangeEvent<long>.GetPooled(packedOldValue, value))
                         {
                             evt.target = this;
                             SendEvent(evt);
@@ -66,30 +66,29 @@ namespace Fox.Editor
                 }
             }
         }
-        void INotifyValueChanged<long>.SetValueWithoutNotify(long newValue) { throw new NotImplementedException(); }
+        void INotifyValueChanged<long>.SetValueWithoutNotify(long newValue) => throw new NotImplementedException();
 
-        UInt64Input integerInput => (UInt64Input)textInputBase;
+        private UInt64Input integerInput => (UInt64Input)textInputBase;
 
-        protected override string ValueToString(System.UInt64 v)
+        protected override string ValueToString(ulong v) => v.ToString(formatString, CultureInfo.InvariantCulture.NumberFormat);
+
+        protected override ulong StringToValue(string str)
         {
-            return v.ToString(formatString, CultureInfo.InvariantCulture.NumberFormat);
-        }
-
-        protected override System.UInt64 StringToValue(string str)
-        {
-            System.Numerics.BigInteger v;
-            ExpressionEvaluator.Evaluate(str, out v);
+            _ = ExpressionEvaluator.Evaluate(str, out System.Numerics.BigInteger v);
             return NumericPropertyFields.ClampToUInt64(v);
         }
 
-        public new static readonly string ussClassName = "fox-uint64-field";
-        public new static readonly string labelUssClassName = ussClassName + "__label";
-        public new static readonly string inputUssClassName = ussClassName + "__input";
+        public static new readonly string ussClassName = "fox-uint64-field";
+        public static new readonly string labelUssClassName = ussClassName + "__label";
+        public static new readonly string inputUssClassName = ussClassName + "__input";
 
-        public VisualElement visualInput { get; }
+        public VisualElement visualInput
+        {
+            get;
+        }
 
         public UInt64Field()
-            : this((string)null) { }
+            : this(null) { }
 
         public UInt64Field(int maxLength)
             : this(null, true, maxLength) { }
@@ -110,20 +109,14 @@ namespace Fox.Editor
             AddToClassList(ussClassName);
             labelElement.AddToClassList(labelUssClassName);
             visualInput.AddToClassList(inputUssClassName);
-            this.styleSheets.Add(IFoxField.FoxFieldStyleSheet);
+            styleSheets.Add(IFoxField.FoxFieldStyleSheet);
             if (hasDragger)
-                AddLabelDragger<System.UInt64>();
+                AddLabelDragger<ulong>();
         }
 
-        public override void ApplyInputDeviceDelta(Vector3 delta, DeltaSpeed speed, System.UInt64 startValue)
-        {
-            integerInput.ApplyInputDeviceDelta(delta, speed, startValue);
-        }
+        public override void ApplyInputDeviceDelta(Vector3 delta, DeltaSpeed speed, ulong startValue) => integerInput.ApplyInputDeviceDelta(delta, speed, startValue);
 
-        public void BindProperty(SerializedProperty property)
-        {
-            BindProperty(property, null);
-        }
+        public void BindProperty(SerializedProperty property) => BindProperty(property, null);
         public void BindProperty(SerializedProperty property, string label)
         {
             if (label is not null)
@@ -131,9 +124,9 @@ namespace Fox.Editor
             BindingExtensions.BindProperty(this, property);
         }
 
-        class UInt64Input : TextValueInput
+        private class UInt64Input : TextValueInput
         {
-            UInt64Field parentIntegerField => (UInt64Field)parent;
+            private UInt64Field parentIntegerField => (UInt64Field)parent;
 
             internal UInt64Input()
             {
@@ -142,7 +135,7 @@ namespace Fox.Editor
 
             protected override string allowedCharacters => NumericPropertyFields.IntegerExpressionCharacterWhitelist;
 
-            public override void ApplyInputDeviceDelta(Vector3 delta, DeltaSpeed speed, System.UInt64 startValue)
+            public override void ApplyInputDeviceDelta(Vector3 delta, DeltaSpeed speed, ulong startValue)
             {
                 double sensitivity = NumericFieldDraggerUtility.CalculateIntDragSensitivity(startValue);
                 float acceleration = NumericFieldDraggerUtility.Acceleration(speed == DeltaSpeed.Fast, speed == DeltaSpeed.Slow);
@@ -158,21 +151,17 @@ namespace Fox.Editor
                 }
             }
 
-            protected override string ValueToString(System.UInt64 v)
-            {
-                return v.ToString(formatString);
-            }
+            protected override string ValueToString(ulong v) => v.ToString(formatString);
 
-            protected override System.UInt64 StringToValue(string str)
+            protected override ulong StringToValue(string str)
             {
-                System.Numerics.BigInteger v;
-                ExpressionEvaluator.Evaluate(str, out v);
+                _ = ExpressionEvaluator.Evaluate(str, out System.Numerics.BigInteger v);
                 return NumericPropertyFields.ClampToUInt64(v);
             }
         }
     }
 
-    [CustomPropertyDrawer(typeof(System.UInt64))]
+    [CustomPropertyDrawer(typeof(ulong))]
     public class UInt64Drawer : PropertyDrawer
     {
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
@@ -182,7 +171,7 @@ namespace Fox.Editor
 
             field.labelElement.AddToClassList(PropertyField.labelUssClassName);
             field.visualInput.AddToClassList(PropertyField.inputUssClassName);
-            field.AddToClassList(BaseField<System.UInt64>.alignedFieldUssClassName);
+            field.AddToClassList(BaseField<ulong>.alignedFieldUssClassName);
 
             return field;
         }

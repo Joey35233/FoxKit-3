@@ -1,8 +1,5 @@
 ﻿using Fox.Core;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine.UIElements;
@@ -14,15 +11,15 @@ namespace Fox.Editor
     {
         private SerializedProperty PtrProperty;
 
-        private VisualElement PropertyContainer;
-        private VisualElement Header;
-        private Button CopyButton;
-        private Button CreateDeleteButton;
-        private Label EntityLabel;
+        private readonly VisualElement PropertyContainer;
+        private readonly VisualElement Header;
+        private readonly Button CopyButton;
+        private readonly Button CreateDeleteButton;
+        private readonly Label EntityLabel;
 
-        public new static readonly string ussClassName = "fox-entityptr-field";
-        public new static readonly string labelUssClassName = ussClassName + "__label";
-        public new static readonly string inputUssClassName = ussClassName + "__input";
+        public static new readonly string ussClassName = "fox-entityptr-field";
+        public static new readonly string labelUssClassName = ussClassName + "__label";
+        public static new readonly string inputUssClassName = ussClassName + "__input";
         public static readonly string headerUssClassName = ussClassName + "__header";
         public static readonly string headerLivePtrUssClassName = headerUssClassName + "--live-ptr";
         public static readonly string copyButtonUssClassName = ussClassName + "__copy-button";
@@ -30,16 +27,25 @@ namespace Fox.Editor
         public static readonly string deleteButtonUssClassName = ussClassName + "__delete-button";
         public static readonly string propertyContainerUssClassName = ussClassName + "__property-container";
 
-        public VisualElement visualInput { get; }
+        public VisualElement visualInput
+        {
+            get;
+        }
 
         public enum CreateDeleteButtonMode
         {
             CreateEntity,
             DeleteEntity
         }
-        public CreateDeleteButtonMode ButtonMode { get; private set; }
+        public CreateDeleteButtonMode ButtonMode
+        {
+            get; private set;
+        }
 
-        public Type SpecificEntityType { get; private set; }
+        public Type SpecificEntityType
+        {
+            get; private set;
+        }
 
         public EntityPtrField() : this(default)
         {
@@ -65,8 +71,10 @@ namespace Fox.Editor
             EntityLabel = new Label();
             Header.Add(EntityLabel);
 
-            CopyButton = new Button(() => EditorGUIUtility.systemCopyBuffer = PtrProperty.managedReferenceId.ToString());
-            CopyButton.text = "Copy";
+            CopyButton = new Button(() => EditorGUIUtility.systemCopyBuffer = PtrProperty.managedReferenceId.ToString())
+            {
+                text = "Copy"
+            };
             CopyButton.AddToClassList(copyButtonUssClassName);
             Header.Add(CopyButton);
 
@@ -87,9 +95,9 @@ namespace Fox.Editor
             base.ExecuteDefaultActionAtTarget(evt);
 
             // UNITYENHANCEMENT: https://github.com/Joey35233/FoxKit-3/issues/12
-            if (evt.eventTypeId == FoxFieldUtils.SerializedPropertyBindEventTypeId && !string.IsNullOrWhiteSpace(bindingPath))
+            if (evt.eventTypeId == FoxFieldUtils.SerializedPropertyBindEventTypeId && !String.IsNullOrWhiteSpace(bindingPath))
             {
-                SerializedProperty property = FoxFieldUtils.SerializedPropertyBindEventBindProperty.GetValue(evt) as SerializedProperty;
+                var property = FoxFieldUtils.SerializedPropertyBindEventBindProperty.GetValue(evt) as SerializedProperty;
 
                 PtrProperty = property.FindPropertyRelative("_ptr");
 
@@ -134,7 +142,7 @@ namespace Fox.Editor
 
                 PropertyContainer.visible = true;
                 PropertyContainer.Clear();
-                ICustomBindable entityField = Activator.CreateInstance(typeof(EntityField<>).MakeGenericType(new Type[] { typeof(T) })) as ICustomBindable;
+                var entityField = Activator.CreateInstance(typeof(EntityField<>).MakeGenericType(new Type[] { typeof(T) })) as ICustomBindable;
                 entityField.BindProperty(PtrProperty);
                 PropertyContainer.Add(entityField as VisualElement);
             }
@@ -146,30 +154,27 @@ namespace Fox.Editor
             {
                 // [＋] clicked
                 case CreateDeleteButtonMode.CreateEntity:
+                {
+                    SpecificEntityType = EntityTypePickerPopup.ShowPopup(typeof(T))?.Type;
+                    if (SpecificEntityType != null)
                     {
-                        SpecificEntityType = EntityTypePickerPopup.ShowPopup(typeof(T))?.Type;
-                        if (SpecificEntityType != null)
-                        {
-                            PtrProperty.managedReferenceValue = Activator.CreateInstance(SpecificEntityType);
-                            PtrProperty.serializedObject.ApplyModifiedProperties();
-                        }
+                        PtrProperty.managedReferenceValue = Activator.CreateInstance(SpecificEntityType);
+                        _ = PtrProperty.serializedObject.ApplyModifiedProperties();
                     }
-                    break;
+                }
+                break;
                 // [－] clicked
                 case CreateDeleteButtonMode.DeleteEntity:
-                    {
-                        PtrProperty.managedReferenceValue = null;
+                {
+                    PtrProperty.managedReferenceValue = null;
 
-                        PtrProperty.serializedObject.ApplyModifiedProperties();
-                    }
-                    break;
+                    _ = PtrProperty.serializedObject.ApplyModifiedProperties();
+                }
+                break;
             }
         }
 
-        public void BindProperty(SerializedProperty property)
-        {
-            BindProperty(property, null);
-        }
+        public void BindProperty(SerializedProperty property) => BindProperty(property, null);
         public void BindProperty(SerializedProperty property, string label)
         {
             if (label is not null)
@@ -188,7 +193,7 @@ namespace Fox.Editor
     {
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
         {
-            BindableElement genericField = (BindableElement)Activator.CreateInstance(typeof(EntityPtrField<>).MakeGenericType(fieldInfo.FieldType.GenericTypeArguments[0].GenericTypeArguments), new object[] { property.name });
+            var genericField = (BindableElement)Activator.CreateInstance(typeof(EntityPtrField<>).MakeGenericType(fieldInfo.FieldType.GenericTypeArguments[0].GenericTypeArguments), new object[] { property.name });
             genericField.BindProperty(property);
 
             genericField.Q(className: BaseField<float>.labelUssClassName).AddToClassList(PropertyField.labelUssClassName);

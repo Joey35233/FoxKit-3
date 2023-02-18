@@ -1,11 +1,8 @@
 using Fox.Core;
+using Fox.Kernel;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
-using UnityEditor.UIElements;
-using System.Collections.Generic;
-using System.Linq;
-using Fox.Kernel;
 
 namespace Fox.Editor
 {
@@ -24,10 +21,13 @@ namespace Fox.Editor
 
     public class EntityField<T> : BaseField<T>, ICustomBindable where T : Entity
     {
-        public new static readonly string ussClassName = "fox-entity-field";
-        public new static readonly string inputUssClassName = ussClassName + "__input";
+        public static new readonly string ussClassName = "fox-entity-field";
+        public static new readonly string inputUssClassName = ussClassName + "__input";
 
-        public VisualElement visualInput { get; }
+        public VisualElement visualInput
+        {
+            get;
+        }
 
         public EntityField() : this(new VisualElement()) { }
 
@@ -38,20 +38,17 @@ namespace Fox.Editor
 
             AddToClassList(ussClassName);
             visualInput.AddToClassList(inputUssClassName);
-            this.styleSheets.Add(IFoxField.FoxFieldStyleSheet);
+            styleSheets.Add(IFoxField.FoxFieldStyleSheet);
         }
 
-        public void BindProperty(SerializedProperty property)
-        {
-            BindProperty(property, null);
-        }
+        public void BindProperty(SerializedProperty property) => BindProperty(property, null);
 
         public void BindProperty(SerializedProperty property, string label)
         {
-            Entity entity = property.boxedValue as Entity;
+            var entity = property.boxedValue as Entity;
             EntityInfo entityInfo = entity.GetClassEntityInfo();
 
-            DynamicArray<EntityInfo> supers = new DynamicArray<EntityInfo>();
+            var supers = new DynamicArray<EntityInfo>();
             EntityInfo entityInfoIterator = entityInfo;
             while (entityInfoIterator != null)
             {
@@ -66,8 +63,10 @@ namespace Fox.Editor
 
                 if (info.Id != Entity.ClassInfo.Id)
                 {
-                    var headerLabel = new Label();
-                    headerLabel.text = $"<b>{info.Name}</b>";
+                    var headerLabel = new Label
+                    {
+                        text = $"<b>{info.Name}</b>"
+                    };
                     headerLabel.style.fontSize = 16;
                     visualInput.Add(headerLabel);
 
@@ -90,8 +89,8 @@ namespace Fox.Editor
 
                     ICustomBindable propertyField = FoxFieldUtils.GetCustomBindableField(propertyInfo);
                     propertyField.BindProperty(property.FindPropertyRelative($"<{propertyInfo.Name}>k__BackingField"), propertyInfo.Name.CString);
-                    VisualElement fieldElement = propertyField as VisualElement;
-                    var labelElement = fieldElement.Query<Label>(className: BaseField<float>.labelUssClassName).First();
+                    var fieldElement = propertyField as VisualElement;
+                    Label labelElement = fieldElement.Query<Label>(className: BaseField<float>.labelUssClassName).First();
                     if (entityInfo.LongestNamedVisibleFieldProperty is not null)
                     {
                         labelElement.style.minWidth = StyleKeyword.Auto;

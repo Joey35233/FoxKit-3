@@ -1,8 +1,8 @@
+using Fox.Fio;
 using System.IO;
 using UnityEditor;
-using UnityEngine.SceneManagement;
 using UnityEditor.SceneManagement;
-using Fox.Fio;
+using UnityEngine.SceneManagement;
 
 namespace FoxKit.MenuItems
 {
@@ -11,8 +11,8 @@ namespace FoxKit.MenuItems
         [MenuItem("FoxKit/Import/CoverPointFile")]
         private static void OnImportAsset()
         {
-            var assetPath = EditorUtility.OpenFilePanel("Import CoverPointFile", "", "tcvp");
-            if (string.IsNullOrEmpty(assetPath))
+            string assetPath = EditorUtility.OpenFilePanel("Import CoverPointFile", "", "tcvp");
+            if (System.String.IsNullOrEmpty(assetPath))
             {
                 return;
             }
@@ -23,9 +23,9 @@ namespace FoxKit.MenuItems
             Scene scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene);
             scene.name = $"{Path.GetFileNameWithoutExtension(assetPath)}_fox2_tcvp";
 
-            coverPointReader.Read(reader);
+            _ = coverPointReader.Read(reader);
 
-            EditorSceneManager.SaveScene(scene, "Assets/Scenes/" + scene.name + ".unity");
+            _ = EditorSceneManager.SaveScene(scene, "Assets/Scenes/" + scene.name + ".unity");
         }
     }
 }

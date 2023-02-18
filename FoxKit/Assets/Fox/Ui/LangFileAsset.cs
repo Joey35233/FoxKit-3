@@ -5,6 +5,6 @@ namespace Fox.Ui
 {
     public class LangFileAsset : ScriptableObject
     {
-        public List<LangFileEntry> Entries = new List<LangFileEntry>();
+        public List<LangFileEntry> Entries = new();
     }
 }

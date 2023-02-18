@@ -1,10 +1,9 @@
 using Fox.Kernel;
+using System;
+using UnityEngine;
 
 namespace Fox.Core
 {
-    using System;
-    using UnityEngine;
-
     /// <summary>
     /// Stores a reference to a file.
     /// </summary>
@@ -28,19 +27,10 @@ namespace Fox.Core
             this.path = path;
         }
 
-        public static FilePtr Empty()
-        {
-            return new FilePtr();
-        }
+        public static FilePtr Empty() => new();
 
-        public static bool operator ==(FilePtr a, FilePtr b)
-        {
-            return a.path == b.path;
-        }
+        public static bool operator ==(FilePtr a, FilePtr b) => a.path == b.path;
 
-        public static bool operator !=(FilePtr a, FilePtr b)
-        {
-            return !(a == b);
-        }
+        public static bool operator !=(FilePtr a, FilePtr b) => !(a == b);
     }
 }

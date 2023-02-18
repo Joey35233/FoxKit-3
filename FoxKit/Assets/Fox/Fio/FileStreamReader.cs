@@ -27,27 +27,18 @@ namespace Fox.Fio
         public override float ReadSingle() => StreamEndianness == Endianness.LittleEndian ? base.ReadSingle() : EndiannessBitConverter.FlipEndianness(base.ReadSingle());
         public override double ReadDouble() => StreamEndianness == Endianness.LittleEndian ? base.ReadDouble() : EndiannessBitConverter.FlipEndianness(base.ReadDouble());
 
-        public StrCode ReadStrCode()
-        {
-            return HashingBitConverter.ToStrCode(ReadUInt64());
-        }
+        public StrCode ReadStrCode() => HashingBitConverter.ToStrCode(ReadUInt64());
 
-        public StrCode32 ReadStrCode32()
-        {
-            return HashingBitConverter.ToStrCode32(ReadUInt32());
-        }
+        public StrCode32 ReadStrCode32() => HashingBitConverter.ToStrCode32(ReadUInt32());
 
-        public String ReadNullTerminatedString()
-        {
-            return new String(ReadNullTerminatedCString());
-        }
+        public String ReadNullTerminatedString() => new(ReadNullTerminatedCString());
 
         public string ReadNullTerminatedCString()
         {
             long position = BaseStream.Position;
 
             int count = 0;
-            while (PeekChar() != '\0') 
+            while (PeekChar() != '\0')
             {
                 count++;
                 BaseStream.Position++;
@@ -56,10 +47,7 @@ namespace Fox.Fio
             return new string(ReadChars(count));
         }
 
-        public Vector3 ReadVector3()
-        {
-            return new Vector3(ReadSingle(), ReadSingle(), ReadSingle());
-        }
+        public Vector3 ReadVector3() => new(ReadSingle(), ReadSingle(), ReadSingle());
         public Vector3 ReadPositionF() => Math.FoxToUnityVector3(ReadVector3());
         public Vector3 ReadPositionHF()
         {
@@ -76,7 +64,7 @@ namespace Fox.Fio
 
         public Vector3 ReadWideVector3()
         {
-            Vector3 result = new Vector3(ReadSingle(), ReadSingle(), ReadSingle());
+            var result = new Vector3(ReadSingle(), ReadSingle(), ReadSingle());
 
             Debug.Assert(ReadUInt32() == 0, "W component of WideVector3 is not 0.");
 
@@ -84,32 +72,17 @@ namespace Fox.Fio
         }
         //public Vector3 ReadWidePositionF() => Math.FoxToUnityVector3(ReadWideVector3());
 
-        public Vector4 ReadVector4()
-        {
-            return new Vector4(ReadSingle(), ReadSingle(), ReadSingle(), ReadSingle());
-        }
+        public Vector4 ReadVector4() => new(ReadSingle(), ReadSingle(), ReadSingle(), ReadSingle());
 
-        public Quaternion ReadQuaternion()
-        {
-            return new Quaternion(ReadSingle(), ReadSingle(), ReadSingle(), ReadSingle());
-        }
+        public Quaternion ReadQuaternion() => new(ReadSingle(), ReadSingle(), ReadSingle(), ReadSingle());
         public Quaternion ReadRotationF() => Math.FoxToUnityQuaternion(ReadQuaternion());
 
-        public Color ReadColor()
-        {
-            return new Color(ReadSingle(), ReadSingle(), ReadSingle(), ReadSingle());
-        }
+        public Color ReadColor() => new(ReadSingle(), ReadSingle(), ReadSingle(), ReadSingle());
 
-        public Matrix4x4 ReadMatrix4()
-        {
-            return new Matrix4x4(ReadVector4(), ReadVector4(), ReadVector4(), ReadVector4());
-        }
+        public Matrix4x4 ReadMatrix4() => new(ReadVector4(), ReadVector4(), ReadVector4(), ReadVector4());
         public Matrix4x4 ReadMatrix4F() => Math.FoxToUnityMatrix(ReadMatrix4());
 
-        public void Skip(long count)
-        {
-            BaseStream.Seek(count, System.IO.SeekOrigin.Current);
-        }
+        public void Skip(long count) => BaseStream.Seek(count, System.IO.SeekOrigin.Current);
 
         public void SkipPadding(long count)
         {
@@ -123,14 +96,8 @@ namespace Fox.Fio
 #endif
         }
 
-        public void Seek(long count)
-        {
-            BaseStream.Seek(count, System.IO.SeekOrigin.Begin);
-        }
+        public void Seek(long count) => BaseStream.Seek(count, System.IO.SeekOrigin.Begin);
 
-        public void Align(uint alignment)
-        {
-            BaseStream.Position = (BaseStream.Position + (alignment - 1)) & (-alignment);
-        }
+        public void Align(uint alignment) => BaseStream.Position = (BaseStream.Position + (alignment - 1)) & (-alignment);
     }
 }

@@ -1,6 +1,4 @@
-﻿using Fox.Core;
-
-namespace Fox.Ph
+﻿namespace Fox.Ph
 {
     public partial class PhShoulderConstraintParam : Fox.Ph.PhConstraintParam
     {

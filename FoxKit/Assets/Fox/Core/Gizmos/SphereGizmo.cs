@@ -1,8 +1,5 @@
-﻿using System;
-using System.Runtime.CompilerServices;
-using UnityEditor;
+﻿using UnityEditor;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 namespace Fox.Core
 {
@@ -16,15 +13,12 @@ namespace Fox.Core
 
         public bool DrawLabel = false;
 
-        void DrawGizmos(bool isSelected)
+        private void DrawGizmos(bool isSelected)
         {
             Gizmos.matrix = transform.localToWorldMatrix;
 
             Color faceColor = Color;
-            if (isSelected)
-                faceColor.a = 0.5f;
-            else
-                faceColor.a = 0.25f;
+            faceColor.a = isSelected ? 0.5f : 0.25f;
             Gizmos.color = faceColor;
             Gizmos.DrawSphere(Vector3.zero, 1.0f);
 
@@ -38,17 +32,11 @@ namespace Fox.Core
             Gizmos.DrawWireSphere(Vector3.zero, 1.0f);
 
             if (DrawLabel)
-                Handles.Label(this.transform.position, gameObject.name);
+                Handles.Label(transform.position, gameObject.name);
         }
 
-        void OnDrawGizmos()
-        {
-            DrawGizmos(false);
-        }
+        private void OnDrawGizmos() => DrawGizmos(false);
 
-        void OnDrawGizmosSelected()
-        {
-            DrawGizmos(true);
-        }
+        private void OnDrawGizmosSelected() => DrawGizmos(true);
     }
 }

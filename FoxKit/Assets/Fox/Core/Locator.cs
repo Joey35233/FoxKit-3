@@ -1,5 +1,4 @@
-﻿using Fox;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Fox.Core
 {

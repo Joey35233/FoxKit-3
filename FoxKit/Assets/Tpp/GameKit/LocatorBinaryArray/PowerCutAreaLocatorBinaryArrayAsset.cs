@@ -1,18 +1,18 @@
 ﻿using System.Collections.Generic;
-using UnityEngine;
 using UnityEditor;
+using UnityEngine;
 
 namespace Tpp.GameKit
 {
     public class PowerCutAreaLocatorBinaryArrayAsset : ScriptableObject
     {
         [SerializeReference]
-        public List<PowerCutAreaLocatorBinary> locators = new List<PowerCutAreaLocatorBinary>();
-    
+        public List<PowerCutAreaLocatorBinary> locators = new();
+
         [MenuItem("FoxKit/Debug/LBA/Create PowerCutArea LBA")]
         public static void CreateMyAsset()
         {
-            var asset = ScriptableObject.CreateInstance<PowerCutAreaLocatorBinaryArrayAsset>() as PowerCutAreaLocatorBinaryArrayAsset;
+            PowerCutAreaLocatorBinaryArrayAsset asset = ScriptableObject.CreateInstance<PowerCutAreaLocatorBinaryArrayAsset>();
 
             AssetDatabase.CreateAsset(asset, "Assets/delete/NewLba.asset");
             AssetDatabase.SaveAssets();

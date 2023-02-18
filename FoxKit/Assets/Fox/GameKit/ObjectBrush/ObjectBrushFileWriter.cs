@@ -1,8 +1,6 @@
-﻿using System;
-using Fox.Core;
-using Fox.Kernel;
+﻿using Fox.Core;
 using Fox.Fio;
-using System.Collections;
+using Fox.Kernel;
 using System.Collections.Generic;
 using System.IO;
 using UnityEditor;
@@ -19,11 +17,11 @@ namespace Fox.GameKit
         public static ushort PositionFWSToBlockIndex(Vector3 positionFWS)
         {
             // block indices [0,32) x [0,32)
-            ushort blockX = (ushort)Mathf.FloorToInt((METERS_PER_BLOCK * NUM_BLOCKS_X / 2 + positionFWS.x) / METERS_PER_BLOCK);
-            ushort blockZ = (ushort)Mathf.FloorToInt((METERS_PER_BLOCK * NUM_BLOCKS_Z / 2 + positionFWS.z) / METERS_PER_BLOCK);
+            ushort blockX = (ushort)Mathf.FloorToInt(((METERS_PER_BLOCK * NUM_BLOCKS_X / 2) + positionFWS.x) / METERS_PER_BLOCK);
+            ushort blockZ = (ushort)Mathf.FloorToInt(((METERS_PER_BLOCK * NUM_BLOCKS_Z / 2) + positionFWS.z) / METERS_PER_BLOCK);
 
             // one-value block index [0, 32*32)
-            return (ushort)(blockZ * NUM_BLOCKS_Z + blockX);
+            return (ushort)((blockZ * NUM_BLOCKS_Z) + blockX);
         }
 
         public static Vector3 GetBlockCenterPositionFWSFromBlockIndex(ushort blockIndex)
@@ -33,19 +31,19 @@ namespace Fox.GameKit
             ushort blockZ = (ushort)Mathf.Floor(blockIndex / NUM_BLOCKS_Z);
 
             // block center position
-            float x = METERS_PER_BLOCK * (blockX + 0.5f - 0.5f * NUM_BLOCKS_X);
-            float z = METERS_PER_BLOCK * (blockZ + 0.5f - 0.5f * NUM_BLOCKS_Z);
+            float x = METERS_PER_BLOCK * (blockX + 0.5f - (0.5f * NUM_BLOCKS_X));
+            float z = METERS_PER_BLOCK * (blockZ + 0.5f - (0.5f * NUM_BLOCKS_Z));
             return new Vector3(x, 0, z);
         }
         public static Vector3 GetBlockCenterPositionFWSFromPositionFWS(Vector3 positionFWS)
         {
             // block indices [0,32) x [0,32)
-            ushort blockX = (ushort)Mathf.FloorToInt((METERS_PER_BLOCK * NUM_BLOCKS_X / 2 + positionFWS.x) / METERS_PER_BLOCK);
-            ushort blockZ = (ushort)Mathf.FloorToInt((METERS_PER_BLOCK * NUM_BLOCKS_Z / 2 + positionFWS.x) / METERS_PER_BLOCK);
+            ushort blockX = (ushort)Mathf.FloorToInt(((METERS_PER_BLOCK * NUM_BLOCKS_X / 2) + positionFWS.x) / METERS_PER_BLOCK);
+            ushort blockZ = (ushort)Mathf.FloorToInt(((METERS_PER_BLOCK * NUM_BLOCKS_Z / 2) + positionFWS.x) / METERS_PER_BLOCK);
 
             // block center position
-            float xFWS = METERS_PER_BLOCK * (blockX + 0.5f - 0.5f * NUM_BLOCKS_X);
-            float zFWS = METERS_PER_BLOCK * (blockZ + 0.5f - 0.5f * NUM_BLOCKS_Z);
+            float xFWS = METERS_PER_BLOCK * (blockX + 0.5f - (0.5f * NUM_BLOCKS_X));
+            float zFWS = METERS_PER_BLOCK * (blockZ + 0.5f - (0.5f * NUM_BLOCKS_Z));
             return new Vector3(xFWS, 0, zFWS);
         }
 
@@ -78,27 +76,27 @@ namespace Fox.GameKit
             ushort blockZ = (ushort)Mathf.Floor(blockIndex / NUM_BLOCKS_Z);
 
             // block center position
-            float blockCenterXFWS = METERS_PER_BLOCK * (blockX + 0.5f - 0.5f * NUM_BLOCKS_X);
-            float blockCenterZFWS = METERS_PER_BLOCK * (blockZ + 0.5f - 0.5f * NUM_BLOCKS_Z);
+            float blockCenterXFWS = METERS_PER_BLOCK * (blockX + 0.5f - (0.5f * NUM_BLOCKS_X));
+            float blockCenterZFWS = METERS_PER_BLOCK * (blockZ + 0.5f - (0.5f * NUM_BLOCKS_Z));
 
             // output position FWS
-            float xFWS = blockCenterXFWS + OBR_POSITION_DECODE * xEOS;
-            float zFWS = blockCenterZFWS + OBR_POSITION_DECODE * zEOS;
+            float xFWS = blockCenterXFWS + (OBR_POSITION_DECODE * xEOS);
+            float zFWS = blockCenterZFWS + (OBR_POSITION_DECODE * zEOS);
             return new Vector3(xFWS, yFWS, zFWS);
         }
 
         private static (short xEWS, float yFWS, short zEWS, ushort blockIndex) GetPositionEWSFromPositionFWS(Vector3 positionFWS)
         {
             // block indices [0,64) x [0,64)
-            ushort blockX = (ushort)Mathf.FloorToInt(NUM_BLOCKS_X / 2 + positionFWS.x / METERS_PER_BLOCK);
-            ushort blockZ = (ushort)Mathf.FloorToInt(NUM_BLOCKS_Z / 2 + positionFWS.x / METERS_PER_BLOCK);
+            ushort blockX = (ushort)Mathf.FloorToInt((NUM_BLOCKS_X / 2) + (positionFWS.x / METERS_PER_BLOCK));
+            ushort blockZ = (ushort)Mathf.FloorToInt((NUM_BLOCKS_Z / 2) + (positionFWS.x / METERS_PER_BLOCK));
 
             // one-value block index [0, 64*64)
-            ushort blockIndex = (ushort)(blockX * NUM_BLOCKS_X + blockZ);
+            ushort blockIndex = (ushort)((blockX * NUM_BLOCKS_X) + blockZ);
 
             // block center position
-            float blockCenterXFWS = METERS_PER_BLOCK * (blockX + 0.5f - 0.5f * NUM_BLOCKS_X);
-            float blockCenterZFWS = METERS_PER_BLOCK * (blockZ + 0.5f - 0.5f * NUM_BLOCKS_Z);
+            float blockCenterXFWS = METERS_PER_BLOCK * (blockX + 0.5f - (0.5f * NUM_BLOCKS_X));
+            float blockCenterZFWS = METERS_PER_BLOCK * (blockZ + 0.5f - (0.5f * NUM_BLOCKS_Z));
 
             // encoded position EOS
             short xEOS = (short)(OBR_POSITION_ENCODE * (positionFWS.x - blockCenterXFWS));
@@ -113,19 +111,17 @@ namespace Fox.GameKit
                 return;
 
             FoxEntity obrGameObject = Selection.activeGameObject.GetComponent<FoxEntity>();
-            ObjectBrush objectBrush = obrGameObject?.Entity as ObjectBrush;
-            if (objectBrush is null)
+
+            if (obrGameObject?.Entity is not ObjectBrush)
                 return;
 
             string filePath = EditorUtility.SaveFilePanel("Export to OBR", "", Selection.activeGameObject.name, "obr");
 
-            if (string.IsNullOrWhiteSpace(filePath))
+            if (System.String.IsNullOrWhiteSpace(filePath))
                 return;
 
-            List<Vector2> minMaxScaleValues = new List<Vector2>();
-            List<OBREntry> entries = new List<OBREntry>();
-            byte brushID = 0;
-            uint globalObjectIndex = 0;
+            var minMaxScaleValues = new List<Vector2>();
+            var entries = new List<OBREntry>();
             //foreach (var gameObject in obrGameObject.GetCompo  GetEntityComponent<Fox.GameKit.ObjectBrushPlugin>().c)
             //{
             //    Vector2 minMaxScaleValue = new Vector2(float.PositiveInfinity, float.NegativeInfinity);
@@ -183,31 +179,57 @@ namespace Fox.GameKit
                 writer.WriteStrCode32(new StrCode32("ObjectBrush"));
                 writer.Write(0x50);
 
-                writer.Seek(20, SeekOrigin.Current);
+                _ = writer.Seek(20, SeekOrigin.Current);
 
                 writer.Write(1);
                 writer.Write(0xE0);
                 writer.Write(dataSize);
 
-                writer.Seek(16, SeekOrigin.Current);
+                _ = writer.Seek(16, SeekOrigin.Current);
 
                 writer.Write(0x40);
 
-                writer.Seek(8, SeekOrigin.Current);
+                _ = writer.Seek(8, SeekOrigin.Current);
 
-                writer.Write("ObjectBrush".ToCharArray()); writer.Seek(0x5, SeekOrigin.Current);
+                writer.Write("ObjectBrush".ToCharArray());
+                _ = writer.Seek(0x5, SeekOrigin.Current);
 
-                writer.Write((ushort)2); writer.Write((ushort)0x10); writer.WriteStrCode32(new StrCode32("blockSizeW")); writer.Write(0x4C); writer.Write((float)METERS_PER_BLOCK);
-                writer.Write((ushort)2); writer.Write((ushort)0x10); writer.WriteStrCode32(new StrCode32("blockSizeH")); writer.Write(0x4C); writer.Write((float)METERS_PER_BLOCK);
-                writer.Write((ushort)0); writer.Write((ushort)0x10); writer.WriteStrCode32(new StrCode32("numBlocksH")); writer.Write(0x4C); writer.Write((uint)NUM_BLOCKS_X);
-                writer.Write((ushort)0); writer.Write((ushort)0x10); writer.WriteStrCode32(new StrCode32("numBlocksW")); writer.Write(0x4C); writer.Write((uint)NUM_BLOCKS_Z);
-                writer.Write((ushort)0); writer.Write((ushort)0x00); writer.WriteStrCode32(new StrCode32("numObjects")); writer.Write(0x4C); writer.Write(entries.Count);
+                writer.Write((ushort)2);
+                writer.Write((ushort)0x10);
+                writer.WriteStrCode32(new StrCode32("blockSizeW"));
+                writer.Write(0x4C);
+                writer.Write((float)METERS_PER_BLOCK);
+                writer.Write((ushort)2);
+                writer.Write((ushort)0x10);
+                writer.WriteStrCode32(new StrCode32("blockSizeH"));
+                writer.Write(0x4C);
+                writer.Write((float)METERS_PER_BLOCK);
+                writer.Write((ushort)0);
+                writer.Write((ushort)0x10);
+                writer.WriteStrCode32(new StrCode32("numBlocksH"));
+                writer.Write(0x4C);
+                writer.Write((uint)NUM_BLOCKS_X);
+                writer.Write((ushort)0);
+                writer.Write((ushort)0x10);
+                writer.WriteStrCode32(new StrCode32("numBlocksW"));
+                writer.Write(0x4C);
+                writer.Write((uint)NUM_BLOCKS_Z);
+                writer.Write((ushort)0);
+                writer.Write((ushort)0x00);
+                writer.WriteStrCode32(new StrCode32("numObjects"));
+                writer.Write(0x4C);
+                writer.Write(entries.Count);
 
-                writer.Write("blockSizeW".ToCharArray()); writer.Seek(0x6, SeekOrigin.Current);
-                writer.Write("blockSizeH".ToCharArray()); writer.Seek(0x6, SeekOrigin.Current);
-                writer.Write("numBlocksH".ToCharArray()); writer.Seek(0x6, SeekOrigin.Current);
-                writer.Write("numBlocksW".ToCharArray()); writer.Seek(0x6, SeekOrigin.Current);
-                writer.Write("numObjects".ToCharArray()); writer.Seek(0x6, SeekOrigin.Current);
+                writer.Write("blockSizeW".ToCharArray());
+                _ = writer.Seek(0x6, SeekOrigin.Current);
+                writer.Write("blockSizeH".ToCharArray());
+                _ = writer.Seek(0x6, SeekOrigin.Current);
+                writer.Write("numBlocksH".ToCharArray());
+                _ = writer.Seek(0x6, SeekOrigin.Current);
+                writer.Write("numBlocksW".ToCharArray());
+                _ = writer.Seek(0x6, SeekOrigin.Current);
+                writer.Write("numObjects".ToCharArray());
+                _ = writer.Seek(0x6, SeekOrigin.Current);
 
                 for (int i = 0; i < entries.Count; i++)
                 {

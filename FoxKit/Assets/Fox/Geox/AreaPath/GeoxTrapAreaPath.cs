@@ -3,7 +3,6 @@ using Fox.Fio;
 using Fox.Geo;
 using Fox.Graphx;
 using Fox.Kernel;
-using System;
 using UnityEngine;
 
 namespace Fox.Geox
@@ -13,7 +12,7 @@ namespace Fox.Geox
         public override void InitializeGameObject(GameObject gameObject)
         {
             base.InitializeGameObject(gameObject);
-            gameObject.AddComponent<GeoxTrapAreaPathGizmo>();
+            _ = gameObject.AddComponent<GeoxTrapAreaPathGizmo>();
         }
 
         public static GeoTriggerTrap Deserialize(GeomHeaderContext header)
@@ -23,9 +22,9 @@ namespace Fox.Geox
             Debug.Assert(header.Type == GeoPrimType.AreaPath);
 
             //GameObject triggerTrapGameObject = new GameObject(header.Name.ToString());
-            GeoTriggerTrap triggerTrap = new GeoTriggerTrap();
+            var triggerTrap = new GeoTriggerTrap();
             //triggerTrapGameObject.AddComponent<FoxEntity>().Entity = triggerTrap;
-            TransformEntity triggerTrapTransformEntity = TransformEntity.GetDefault();
+            var triggerTrapTransformEntity = TransformEntity.GetDefault();
             triggerTrap.inheritTransform = false;
             triggerTrap.SetTransform(triggerTrapTransformEntity);
             //triggerTrap.InitializeGameObject(triggerTrapGameObject);
@@ -36,7 +35,7 @@ namespace Fox.Geox
 
             for (int i = 0; i < header.PrimCount; i++)
             {
-                reader.Seek(header.GetDataPosition() + 16 * i);
+                reader.Seek(header.GetDataPosition() + (16 * i));
                 float yMin = reader.ReadSingle();
                 float yMax = reader.ReadSingle();
                 uint vertexCount = reader.ReadUInt32();
@@ -44,8 +43,8 @@ namespace Fox.Geox
                 Debug.Assert(vertexCount >= 2);
                 if (vertexCount >= 2 && vertexDataOffset != 0)
                 {
-                    GeoxTrapAreaPath trapAreaPath = new GeoxTrapAreaPath();
-                    TransformEntity transformEntity = TransformEntity.GetDefault();
+                    var trapAreaPath = new GeoxTrapAreaPath();
+                    var transformEntity = TransformEntity.GetDefault();
                     transformEntity.translation = new Vector3(0, yMin, 0);
                     trapAreaPath.SetTransform(transformEntity);
                     trapAreaPath.name = new Kernel.String(header.Name.ToString());
@@ -56,18 +55,21 @@ namespace Fox.Geox
 
                     for (int j = 0; j < vertexCount; j++)
                     {
-                        reader.Seek(header.GetDataPosition() + vertexDataOffset + 16 * j);
-                        GraphxSpatialGraphDataNode node = new GraphxSpatialGraphDataNode();
-                        node.position = reader.ReadPositionF();
+                        reader.Seek(header.GetDataPosition() + vertexDataOffset + (16 * j));
+                        var node = new GraphxSpatialGraphDataNode
+                        {
+                            position = reader.ReadPositionF()
+                        };
                         node.SetOwner(trapAreaPath);
 
                         trapAreaPath.nodes.Add(new EntityPtr<GraphxSpatialGraphDataNode>(node));
                     }
 
-                    GraphxSpatialGraphDataNode prevNode = null;
-                    GraphxSpatialGraphDataNode nextNode = null;
+                    GraphxSpatialGraphDataNode prevNode;
+
+                    GraphxSpatialGraphDataNode nextNode;
                     {
-                        GraphxSpatialGraphDataEdge loopEdge = new GraphxSpatialGraphDataEdge();
+                        var loopEdge = new GraphxSpatialGraphDataEdge();
                         prevNode = trapAreaPath.nodes[(int)(vertexCount - 1)].Get();
                         nextNode = trapAreaPath.nodes[0].Get();
                         loopEdge.nextNode = EntityHandle.Get(nextNode);
@@ -83,8 +85,10 @@ namespace Fox.Geox
                         prevNode = trapAreaPath.nodes[j].Get();
                         nextNode = trapAreaPath.nodes[j + 1].Get();
 
-                        GraphxSpatialGraphDataEdge edge = new GraphxSpatialGraphDataEdge();
-                        edge.nextNode = EntityHandle.Get(nextNode);
+                        var edge = new GraphxSpatialGraphDataEdge
+                        {
+                            nextNode = EntityHandle.Get(nextNode)
+                        };
                         nextNode.inlinks.Add(edge.nextNode);
                         edge.prevNode = EntityHandle.Get(prevNode);
                         prevNode.outlinks.Add(edge.prevNode);

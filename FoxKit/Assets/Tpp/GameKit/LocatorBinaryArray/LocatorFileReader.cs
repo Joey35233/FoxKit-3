@@ -1,9 +1,8 @@
-using System;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEditor;
-using Fox.Kernel;
 using Fox.Fio;
+using Fox.Kernel;
+using System.Collections.Generic;
+using UnityEditor;
+using UnityEngine;
 using String = Fox.Kernel.String;
 
 namespace Tpp.GameKit
@@ -44,54 +43,54 @@ namespace Tpp.GameKit
         [UnityEditor.MenuItem("FoxKit/Debug/LBA/Import LBA")]
         public static void Import()
         {
-            var assetPath = UnityEditor.EditorUtility.OpenFilePanel("Import asset", string.Empty, "lba");
-            if (string.IsNullOrEmpty(assetPath))
+            string assetPath = UnityEditor.EditorUtility.OpenFilePanel("Import asset", global::System.String.Empty, "lba");
+            if (global::System.String.IsNullOrEmpty(assetPath))
             {
                 return;
             }
 
             using (var reader = new FileStreamReader(new global::System.IO.FileStream(assetPath, global::System.IO.FileMode.Open)))
             {
-                LocatorBinaryType type = (LocatorBinaryType)reader.ReadUInt32();
+                var type = (LocatorBinaryType)reader.ReadUInt32();
 
-                LocatorFileReader locatorReader = new LocatorFileReader(reader);
+                var locatorReader = new LocatorFileReader(reader);
 
                 switch (type)
                 {
                     case LocatorBinaryType.PowerCutArea:
-                        {
-                            var locators = locatorReader.ReadPowerCutAreaLocators();
-                            var asset = ScriptableObject.CreateInstance<PowerCutAreaLocatorBinaryArrayAsset>() as PowerCutAreaLocatorBinaryArrayAsset;
+                    {
+                        List<PowerCutAreaLocatorBinary> locators = locatorReader.ReadPowerCutAreaLocators();
+                        PowerCutAreaLocatorBinaryArrayAsset asset = ScriptableObject.CreateInstance<PowerCutAreaLocatorBinaryArrayAsset>();
 
-                            AssetDatabase.CreateAsset(asset, "Assets/" + global::System.IO.Path.GetFileNameWithoutExtension(assetPath) + ".asset");
-                            AssetDatabase.SaveAssets();
+                        AssetDatabase.CreateAsset(asset, "Assets/" + global::System.IO.Path.GetFileNameWithoutExtension(assetPath) + ".asset");
+                        AssetDatabase.SaveAssets();
 
-                            asset.locators = locators;
-                        }
+                        asset.locators = locators;
+                    }
 
-                        break;
+                    break;
                     case LocatorBinaryType.Named:
-                        {
-                            var locators = locatorReader.ReadNamedLocators();
-                            var asset = ScriptableObject.CreateInstance<NamedLocatorBinaryArrayAsset>() as NamedLocatorBinaryArrayAsset;
+                    {
+                        List<NamedLocatorBinary> locators = locatorReader.ReadNamedLocators();
+                        NamedLocatorBinaryArrayAsset asset = ScriptableObject.CreateInstance<NamedLocatorBinaryArrayAsset>();
 
-                            AssetDatabase.CreateAsset(asset, "Assets/" + global::System.IO.Path.GetFileNameWithoutExtension(assetPath) + ".asset");
-                            AssetDatabase.SaveAssets();
+                        AssetDatabase.CreateAsset(asset, "Assets/" + global::System.IO.Path.GetFileNameWithoutExtension(assetPath) + ".asset");
+                        AssetDatabase.SaveAssets();
 
-                            asset.locators = locators;
-                        }
-                        break;
+                        asset.locators = locators;
+                    }
+                    break;
                     case LocatorBinaryType.Scaled:
-                        {
-                            var locators = locatorReader.ReadScaledLocators();
-                            var asset = ScriptableObject.CreateInstance<ScaledLocatorBinaryArrayAsset>() as ScaledLocatorBinaryArrayAsset;
+                    {
+                        List<ScaledLocatorBinary> locators = locatorReader.ReadScaledLocators();
+                        ScaledLocatorBinaryArrayAsset asset = ScriptableObject.CreateInstance<ScaledLocatorBinaryArrayAsset>();
 
-                            AssetDatabase.CreateAsset(asset, "Assets/" + global::System.IO.Path.GetFileNameWithoutExtension(assetPath) + ".asset");
-                            AssetDatabase.SaveAssets();
+                        AssetDatabase.CreateAsset(asset, "Assets/" + global::System.IO.Path.GetFileNameWithoutExtension(assetPath) + ".asset");
+                        AssetDatabase.SaveAssets();
 
-                            asset.locators = locators;
-                        }
-                        break;
+                        asset.locators = locators;
+                    }
+                    break;
                     default:
                         return;
                 }
@@ -117,12 +116,12 @@ namespace Tpp.GameKit
         /// </remarks>
         public List<PowerCutAreaLocatorBinary> ReadPowerCutAreaLocators()
         {
-            var count = reader.ReadInt32();
+            int count = reader.ReadInt32();
 
             var result = new List<PowerCutAreaLocatorBinary>(count);
-            for(var i = 0; i < count; i++)
+            for (int i = 0; i < count; i++)
             {
-                var locator = this.ReadPowerCutAreaLocator();
+                PowerCutAreaLocatorBinary locator = ReadPowerCutAreaLocator();
                 result.Add(locator);
             }
 
@@ -140,22 +139,22 @@ namespace Tpp.GameKit
         /// </remarks>
         public List<NamedLocatorBinary> ReadNamedLocators()
         {
-            var count = reader.ReadInt32();
+            int count = reader.ReadInt32();
 
             reader.Seek(HeaderSize + (UnscaledLocatorSize * count));
-            var hashes = this.ReadHashes(count);
+            StrCode32[] hashes = ReadHashes(count);
             reader.Seek(HeaderSize);
 
             var result = new List<NamedLocatorBinary>(count);
-            for(var i = 0; i < count; i++)
+            for (int i = 0; i < count; i++)
             {
-                var locatorNameHash = hashes[2 * i];
-                var dataSetNameHash = hashes[(2 * i) + 1];
+                StrCode32 locatorNameHash = hashes[2 * i];
+                StrCode32 dataSetNameHash = hashes[(2 * i) + 1];
 
-                var locatorName = UnhashLocatorName(locatorNameHash);
-                var dataSetName = UnhashDataSetName(dataSetNameHash);
+                String locatorName = UnhashLocatorName(locatorNameHash);
+                Path dataSetName = UnhashDataSetName(dataSetNameHash);
 
-                var locator = this.ReadNamedLocator(locatorName, dataSetName);
+                NamedLocatorBinary locator = ReadNamedLocator(locatorName, dataSetName);
                 result.Add(locator);
             }
 
@@ -173,68 +172,64 @@ namespace Tpp.GameKit
         /// </remarks>
         public List<ScaledLocatorBinary> ReadScaledLocators()
         {
-            var count = reader.ReadInt32();
+            int count = reader.ReadInt32();
 
             reader.Seek(HeaderSize + (ScaledLocatorSize * count));
-            var hashes = this.ReadHashes(count);
+            StrCode32[] hashes = ReadHashes(count);
             reader.Seek(HeaderSize);
 
             var result = new List<ScaledLocatorBinary>(count);
-            for(var i = 0; i < count; i++)
+            for (int i = 0; i < count; i++)
             {
-                var locatorNameHash = hashes[2 * i];
-                var dataSetNameHash = hashes[(2 * i) + 1];
+                StrCode32 locatorNameHash = hashes[2 * i];
+                StrCode32 dataSetNameHash = hashes[(2 * i) + 1];
 
-                var locatorName = UnhashLocatorName(locatorNameHash);
-                var dataSetName = UnhashDataSetName(dataSetNameHash);
+                String locatorName = UnhashLocatorName(locatorNameHash);
+                Path dataSetName = UnhashDataSetName(dataSetNameHash);
 
-                var locator = this.ReadScaledLocator(locatorName, dataSetName);
+                ScaledLocatorBinary locator = ReadScaledLocator(locatorName, dataSetName);
                 result.Add(locator);
             }
 
             return result;
         }
 
-        private static String UnhashLocatorName(StrCode32 hash)
-        {
+        private static String UnhashLocatorName(StrCode32 hash) =>
             // TODO
-            return new String(hash.ToString());
-        }
+            new(hash.ToString());
 
-        private static Path UnhashDataSetName(StrCode32 hash)
-        {
+        private static Path UnhashDataSetName(StrCode32 hash) =>
             // TODO
-            return new Path(hash.ToString());
-        }
+            new(hash.ToString());
 
         private PowerCutAreaLocatorBinary ReadPowerCutAreaLocator()
         {
-            var translation = reader.ReadPositionHF();
-            var rotation = reader.ReadRotationF();
+            Vector3 translation = reader.ReadPositionHF();
+            Quaternion rotation = reader.ReadRotationF();
             return new PowerCutAreaLocatorBinary(translation, rotation);
         }
 
         private NamedLocatorBinary ReadNamedLocator(String locatorName, Path dataSetName)
         {
-            var translation = reader.ReadPositionHF();
-            var rotation = reader.ReadRotationF();
+            Vector3 translation = reader.ReadPositionHF();
+            Quaternion rotation = reader.ReadRotationF();
             return new NamedLocatorBinary(translation, rotation, locatorName, dataSetName);
         }
 
         private ScaledLocatorBinary ReadScaledLocator(String locatorName, Path dataSetName)
         {
-            var translation = reader.ReadPositionHF();
-            var rotation = reader.ReadRotationF();
-            var scale = reader.ReadVector3();
-            var a = reader.ReadInt16();
-            var b = reader.ReadInt16();
+            Vector3 translation = reader.ReadPositionHF();
+            Quaternion rotation = reader.ReadRotationF();
+            Vector3 scale = reader.ReadVector3();
+            short a = reader.ReadInt16();
+            short b = reader.ReadInt16();
             return new ScaledLocatorBinary(translation, rotation, scale, a, b, locatorName, dataSetName);
         }
 
         private StrCode32[] ReadHashes(int locatorCount)
         {
             var result = new StrCode32[locatorCount * 2];
-            for(var i = 0; i < locatorCount * 2; i++)
+            for (int i = 0; i < locatorCount * 2; i++)
             {
                 result[i] = reader.ReadStrCode32();
             }

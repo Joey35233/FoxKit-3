@@ -12,16 +12,16 @@ namespace Fox.Core
         public void Write(Entity entity, ulong address, ulong id, Stream output)
         {
             var writer = new BinaryWriter(output, Encoding.Default, true);
-            var headerPosition = output.Position;
+            long headerPosition = output.Position;
             output.Position += HeaderSize;
 
-            var info = entity.GetClassEntityInfo();
-            foreach (var staticProperty in info.StaticProperties)
+            EntityInfo info = entity.GetClassEntityInfo();
+            foreach (System.Collections.Generic.KeyValuePair<Kernel.String, PropertyInfo> staticProperty in info.StaticProperties)
             {
                 WriteProperty(entity, staticProperty.Value, writer);
             }
 
-            var staticDataSize = (uint)(output.Position - headerPosition);
+            uint staticDataSize = (uint)(output.Position - headerPosition);
             /**
              * TODO
              * foreach (var dynamicProperty in entity.DynamicProperties)
@@ -29,8 +29,8 @@ namespace Fox.Core
                 dynamicProperty.Write(output);
             }*/
 
-            var endPosition = output.Position;
-            var dataSize = (uint)(endPosition - headerPosition);
+            long endPosition = output.Position;
+            uint dataSize = (uint)(endPosition - headerPosition);
             output.Position = headerPosition;
 
             writer.Write(HeaderSize);
@@ -53,15 +53,15 @@ namespace Fox.Core
 
         public void WriteProperty(Entity entity, PropertyInfo property, BinaryWriter writer)
         {
-            var output = writer.BaseStream;
+            Stream output = writer.BaseStream;
             long headerPosition = output.Position;
             output.Position += 32;
 
             WritePropertyValues(entity, property, writer);
 
             output.AlignWrite(16, 0x00);
-            var endPosition = output.Position;
-            var size = (ushort)(endPosition - headerPosition);
+            long endPosition = output.Position;
+            ushort size = (ushort)(endPosition - headerPosition);
             output.Position = headerPosition;
 
             writer.Write(Kernel.HashingBitConverter.StrCodeToUInt64(property.Name.Hash));
@@ -76,7 +76,7 @@ namespace Fox.Core
 
         public void WritePropertyValues(Entity entity, PropertyInfo property, BinaryWriter writer)
         {
-            for(var i = 0; i < property.ArraySize; i++)
+            for (int i = 0; i < property.ArraySize; i++)
             {
                 // TODO
             }

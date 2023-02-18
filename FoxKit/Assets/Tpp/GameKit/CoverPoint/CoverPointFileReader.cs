@@ -1,6 +1,5 @@
 ﻿using Fox.Core;
 using Fox.Fio;
-using System.IO;
 using UnityEngine;
 
 namespace Tpp.GameKit
@@ -8,11 +7,11 @@ namespace Tpp.GameKit
     public class CoverPointFileReader
     {
         private const uint TCVP_SIGNATURE = 0x50564354;
-        private const float USHORT_QUANTA_PER_DEGREE = (ushort.MaxValue + 1) / 360f;
-        private const float DEGREE_PER_USHORT_QUANTA = 360f / (ushort.MaxValue + 1);
+        private const float USHORT_QUANTA_PER_DEGREE = (global::System.UInt16.MaxValue + 1) / 360f;
+        private const float DEGREE_PER_USHORT_QUANTA = 360f / (global::System.UInt16.MaxValue + 1);
 
-        enum TCVPFileFormat : ushort
-        { 
+        private enum TCVPFileFormat : ushort
+        {
             GZ = 0,
             TPP = 1,
         }
@@ -27,20 +26,22 @@ namespace Tpp.GameKit
 
             reader.Seek(reader.ReadUInt32());
 
-            GameObject[] coverPointObjects = new GameObject[entryCount];
+            var coverPointObjects = new GameObject[entryCount];
 
             for (ushort i = 0; i < entryCount; i++)
             {
-                GameObject coverPointObject = new GameObject();
-                coverPointObject.name = $"TppCoverPoint{i.ToString("0000")}";
+                var coverPointObject = new GameObject
+                {
+                    name = $"TppCoverPoint{i:0000}"
+                };
                 FoxEntity component = coverPointObject.AddComponent<FoxEntity>();
-                TppCoverPoint coverPoint = new TppCoverPoint();
+                var coverPoint = new TppCoverPoint();
                 component.Entity = coverPoint;
                 coverPoint.InitializeGameObject(coverPointObject);
 
                 coverPointObject.transform.position = reader.ReadPositionF();
 
-                Vector3 direction = new Vector3((float)reader.ReadInt16() / short.MaxValue, (float)reader.ReadInt16() / short.MaxValue, (float)reader.ReadInt16() / short.MaxValue);
+                var direction = new Vector3((float)reader.ReadInt16() / global::System.Int16.MaxValue, (float)reader.ReadInt16() / global::System.Int16.MaxValue, (float)reader.ReadInt16() / global::System.Int16.MaxValue);
                 Quaternion rotation = Quaternion.identity;
                 rotation.SetLookRotation(Fox.Kernel.Math.FoxToUnityVector3(direction));
                 coverPointObject.transform.rotation = rotation;

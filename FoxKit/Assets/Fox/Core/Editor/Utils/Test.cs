@@ -1,7 +1,6 @@
-﻿using UnityEngine;
-using UnityEditor;
+﻿using UnityEditor;
+using UnityEngine;
 using UnityEngine.UIElements;
-using UnityEditor.UIElements;
 
 namespace JL
 {
@@ -9,11 +8,11 @@ namespace JL
     [CanEditMultipleObjects]
     public class CustomTransformInspector : Editor
     {
-        Vector3Field positionField;
-        Vector3Field rotationField;
-        Vector3Field scaleField;
+        private Vector3Field positionField;
+        private Vector3Field rotationField;
+        private Vector3Field scaleField;
 
-        struct MixedHelper
+        private struct MixedHelper
         {
             public bool x;
             public bool y;
@@ -22,11 +21,11 @@ namespace JL
 
         public override VisualElement CreateInspectorGUI()
         {
-            VisualElement root = new VisualElement();
+            var root = new VisualElement();
 
             positionField = new Vector3Field("Position");
             root.Add(positionField);
-            positionField.RegisterValueChangedCallback(eventData =>
+            _ = positionField.RegisterValueChangedCallback(eventData =>
             {
                 foreach (GameObject selected in Selection.gameObjects)
                 {
@@ -37,7 +36,7 @@ namespace JL
 
             rotationField = new Vector3Field("Rotation");
             root.Add(rotationField);
-            rotationField.RegisterValueChangedCallback(eventData =>
+            _ = rotationField.RegisterValueChangedCallback(eventData =>
             {
                 foreach (GameObject selected in Selection.gameObjects)
                 {
@@ -48,7 +47,7 @@ namespace JL
 
             scaleField = new Vector3Field("Scale");
             root.Add(scaleField);
-            scaleField.RegisterValueChangedCallback(eventData =>
+            _ = scaleField.RegisterValueChangedCallback(eventData =>
             {
                 foreach (GameObject selected in Selection.gameObjects)
                 {
@@ -59,7 +58,7 @@ namespace JL
 
             OnSceneGUI();
 
-            Label label = new Label("It's working");
+            var label = new Label("It's working");
             root.Add(label);
 
             return root;
@@ -72,34 +71,44 @@ namespace JL
             Vector3 displayRot;
             Vector3 displayScale;
 
-            if (!Selection.activeGameObject || !Selection.activeGameObject.transform) return;
+            if (!Selection.activeGameObject || !Selection.activeGameObject.transform)
+                return;
 
             Transform mainT = Selection.activeGameObject.transform;
             displayPos = mainT.localPosition;
             displayRot = TransformUtils.GetInspectorRotation(mainT);
             displayScale = mainT.localScale;
 
-            MixedHelper posMixed = new MixedHelper();
-            MixedHelper rotMixed = new MixedHelper();
-            MixedHelper scaleMixed = new MixedHelper();
+            var posMixed = new MixedHelper();
+            var rotMixed = new MixedHelper();
+            var scaleMixed = new MixedHelper();
 
             foreach (GameObject selected in Selection.gameObjects)
             {
                 Transform t = selected.transform;
 
-                if (displayPos.x != t.localPosition.x) posMixed.x = true;
-                if (displayPos.y != t.localPosition.y) posMixed.y = true;
-                if (displayPos.z != t.localPosition.z) posMixed.z = true;
+                if (displayPos.x != t.localPosition.x)
+                    posMixed.x = true;
+                if (displayPos.y != t.localPosition.y)
+                    posMixed.y = true;
+                if (displayPos.z != t.localPosition.z)
+                    posMixed.z = true;
 
                 Vector3 rotation = TransformUtils.GetInspectorRotation(t);
 
-                if (displayRot.x != rotation.x) rotMixed.x = true;
-                if (displayRot.y != rotation.y) rotMixed.y = true;
-                if (displayRot.z != rotation.z) rotMixed.z = true;
+                if (displayRot.x != rotation.x)
+                    rotMixed.x = true;
+                if (displayRot.y != rotation.y)
+                    rotMixed.y = true;
+                if (displayRot.z != rotation.z)
+                    rotMixed.z = true;
 
-                if (displayScale.x != t.localScale.x) scaleMixed.x = true;
-                if (displayScale.y != t.localScale.y) scaleMixed.y = true;
-                if (displayScale.z != t.localScale.z) scaleMixed.z = true;
+                if (displayScale.x != t.localScale.x)
+                    scaleMixed.x = true;
+                if (displayScale.y != t.localScale.y)
+                    scaleMixed.y = true;
+                if (displayScale.z != t.localScale.z)
+                    scaleMixed.z = true;
             }
 
             positionField.SetValueWithoutNotify(displayPos);
@@ -111,13 +120,14 @@ namespace JL
             XYZisMixed(scaleField, scaleMixed);
         }
 
-        void XYZisMixed(Vector3Field vector3Field, MixedHelper mixed)
+        private void XYZisMixed(Vector3Field vector3Field, MixedHelper mixed)
         {
             ShowMixed(vector3Field, "x", mixed.x);
             ShowMixed(vector3Field, "y", mixed.y);
             ShowMixed(vector3Field, "z", mixed.z);
         }
-        void ShowMixed(Vector3Field vector3Field, string axis, bool mixed)
+
+        private void ShowMixed(Vector3Field vector3Field, string axis, bool mixed)
         {
             TextInputBaseField<float> inputText = vector3Field.Q<FloatField>($"unity-{axis}-input")
                                 .Q<TextInputBaseField<float>>();

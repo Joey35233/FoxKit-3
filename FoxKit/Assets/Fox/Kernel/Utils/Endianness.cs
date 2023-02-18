@@ -16,7 +16,7 @@ namespace Fox.Kernel
             byte a = (byte)((value >> 0) & 0xFF);
             byte b = (byte)((value >> 8) & 0xFF);
 
-            return (ushort)(((ushort)b << 8) | ((ushort)a << 0));
+            return (ushort)((b << 8) | (a << 0));
         }
 
         public static int FlipEndianness(int value) => unchecked((int)FlipEndianness(unchecked((uint)value)));
@@ -50,14 +50,8 @@ namespace Fox.Kernel
         //    return Half.ToHalf(FlipEndianness((ushort)(value.GetHashCode() & 0xFFFF)));
         //}
 
-        public static float FlipEndianness(float value)
-        {
-            return BitConverter.Int32BitsToSingle(FlipEndianness(BitConverter.SingleToInt32Bits(value)));
-        }
+        public static float FlipEndianness(float value) => BitConverter.Int32BitsToSingle(FlipEndianness(BitConverter.SingleToInt32Bits(value)));
 
-        public static double FlipEndianness(double value)
-        {
-            return BitConverter.Int64BitsToDouble(FlipEndianness(BitConverter.DoubleToInt64Bits(value)));
-        }
+        public static double FlipEndianness(double value) => BitConverter.Int64BitsToDouble(FlipEndianness(BitConverter.DoubleToInt64Bits(value)));
     }
 }

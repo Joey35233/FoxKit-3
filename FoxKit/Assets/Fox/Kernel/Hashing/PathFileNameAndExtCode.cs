@@ -24,59 +24,29 @@ namespace Fox.Kernel
         }
 
         // Kernel.StrCode
-        public static bool operator ==(PathFileNameAndExtCode a, PathFileNameAndExtCode b)
-        {
-            return a._hash == b._hash;
-        }
+        public static bool operator ==(PathFileNameAndExtCode a, PathFileNameAndExtCode b) => a._hash == b._hash;
 
-        public static bool operator !=(PathFileNameAndExtCode a, PathFileNameAndExtCode b)
-        {
-            return !(a == b);
-        }
+        public static bool operator !=(PathFileNameAndExtCode a, PathFileNameAndExtCode b) => !(a == b);
 
         // System.UInt64 comparisons
-        public static bool operator ==(PathFileNameAndExtCode a, ulong b)
-        {
-            return a._hash == b;
-        }
+        public static bool operator ==(PathFileNameAndExtCode a, ulong b) => a._hash == b;
 
-        public static bool operator !=(PathFileNameAndExtCode a, ulong b)
-        {
-            return !(a == b);
-        }
+        public static bool operator !=(PathFileNameAndExtCode a, ulong b) => !(a == b);
 
         // Generic overrides
-        public override bool Equals(object obj)
-        {
-            return obj is PathFileNameAndExtCode rhs && this == rhs;
-        }
+        public override bool Equals(object obj) => obj is PathFileNameAndExtCode rhs && this == rhs;
 
-        public override int GetHashCode()
-        {
-            return unchecked((int)_hash);
-        }
+        public override int GetHashCode() => unchecked((int)_hash);
 
-        public bool Equals(ulong other)
-        {
-            return _hash.Equals(other);
-        }
+        public bool Equals(ulong other) => _hash.Equals(other);
 
         // Bitwise operators
-        public static ulong operator &(PathFileNameAndExtCode a, ulong b)
-        {
-            return a._hash & b;
-        }
-        public static uint operator &(PathFileNameAndExtCode a, uint b)
-        {
-            return (uint)(a._hash & (ulong)b);
-        }
+        public static ulong operator &(PathFileNameAndExtCode a, ulong b) => a._hash & b;
+        public static uint operator &(PathFileNameAndExtCode a, uint b) => (uint)(a._hash & b);
 
-        public override string ToString()
-        {
-            return $"0x{_hash.ToString("x16")}";
-        }
+        public override string ToString() => $"0x{_hash:x16}";
 
-        private static readonly List<String> FileExtensions = new List<String>
+        private static readonly List<String> FileExtensions = new()
         {
             new String("1.ftexs"),
             new String("1.nav2"),
@@ -224,10 +194,9 @@ namespace Fox.Kernel
 
         private String GetExtension()
         {
-            ushort extensionHash = (ushort)((_hash >> 51) & 0x1FFF);
+            _ = (ushort)((_hash >> 51) & 0x1FFF);
 
-            String result = null;
-            ExtensionDictionary.TryGetValue(_hash, out result);
+            _ = ExtensionDictionary.TryGetValue(_hash, out String result);
 
             return result;
         }
