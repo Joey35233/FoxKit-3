@@ -1,6 +1,7 @@
 using Fox.Core;
 using Fox.Fio;
 using Fox.Graphx;
+using Fox.Kernel;
 using System;
 using UnityEditor.SceneManagement;
 using UnityEngine;
@@ -8,224 +9,287 @@ using Debug = UnityEngine.Debug;
 
 namespace Fox.GameService
 {
-    public enum RouteSetVersion : short
-    {
-        GZ = 2,
-        TPP = 3,
-    }
-
     public class GsRouteSetReader
     {
         private const float USHORT_QUANTA_PER_DEGREE = (UInt16.MaxValue + 1) / 360f;
         private const float DEGREE_PER_USHORT_QUANTA = 360f / (UInt16.MaxValue + 1);
 
+        private enum RouteSetVersion : short
+        {
+            GZ = 2,
+            TPP = 3,
+        }
+
+        private enum EventType : byte
+        {
+            Edge = 0,
+            Node = 1,
+        }
+
+        public enum GsRouteDataEventAimPointType : byte
+        {
+            ROUTE_AIM_NO_TARGET = 0,
+            ROUTE_AIM_STATIC_POINT = 1,
+            ROUTE_AIM_CHARACTER = 2,
+            ROUTE_AIM_ROUTE_AS_SIGHT_MOVE_PATH = 3,
+            ROUTE_AIM_ROUTE_AS_OBJECT = 4,
+        }
+
+        private struct EventSpan
+        {
+            public ushort Count;
+            public ushort StartIndex;
+        }
+
+        private struct EventDef
+        {
+            public StrCode32 Id;
+            public EventType Type;
+            public GsRouteDataEventAimPointType AimPointType;
+            public byte Unknown;
+            public bool IsLoop;
+            public float Time;
+            public float Direction;
+
+            public static EventDef Read(FileStreamReader reader)
+            {
+                var result = new EventDef
+                {
+                    Id = reader.ReadStrCode32(),
+                    Type = (EventType)reader.ReadByte(),
+                    AimPointType = (GsRouteDataEventAimPointType)reader.ReadByte(),
+                    Unknown = reader.ReadByte(),
+                    IsLoop = reader.ReadBoolean(),
+                    Time = (float)(reader.ReadUInt16() + 1) / 60, // TODO: ad hoc formula could be wrong
+                    Direction = reader.ReadUInt16() / USHORT_QUANTA_PER_DEGREE,
+                };
+
+                Debug.Assert(Enum.IsDefined(typeof(EventType), result.Type));
+                Debug.Assert(result.Unknown == 0);
+
+                return result;
+            }
+        }
+
         public UnityEngine.SceneManagement.Scene? Read(FileStreamReader reader)
         {
             UnityEngine.SceneManagement.Scene scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
 
-            string ROUT = new(reader.ReadChars(4));
-            if (ROUT != "ROUT")
+            uint signature = reader.ReadUInt32();
+            if (signature != 0x54554F52) // ROUT
             {
-                Debug.LogError($"ROUT signature is wrong: {ROUT}");
-                return null;
-            }
-            var FileVersion = (RouteSetVersion)reader.ReadInt16();
-
-            if (FileVersion != RouteSetVersion.TPP & FileVersion != RouteSetVersion.GZ)
-            {
-                Debug.LogError($"Version {FileVersion} isn't supported");
+                Debug.LogError($"Read failed. Not a ROUT.");
                 return null;
             }
 
-            int lengthOfTranslation = 12;
-            if (FileVersion == RouteSetVersion.GZ)
-                lengthOfTranslation = 8;
-            else if (FileVersion == RouteSetVersion.TPP)
-                lengthOfTranslation = 12;
+            var fileVersion = (RouteSetVersion)reader.ReadInt16();
+
+            if (fileVersion != RouteSetVersion.TPP & fileVersion != RouteSetVersion.GZ)
+            {
+                Debug.LogError($"Version {fileVersion} isn't supported");
+                return null;
+            }
+
+            int nodePositionSizeInBytes = fileVersion switch
+            {
+                RouteSetVersion.GZ => 8,
+                RouteSetVersion.TPP => 12,
+                _ => 0,
+            };
 
             ushort routeCount = reader.ReadUInt16();
 
             Vector3 origin = Vector3.zero;
 
-            if (FileVersion == RouteSetVersion.GZ)
+            if (fileVersion == RouteSetVersion.GZ)
             {
                 reader.Skip(4 * 2); //Irrelevant memory leak bytes
                 origin = reader.ReadPositionF();
                 reader.Skip(4); //Irrelevant memory leak bytes
             }
 
-            uint offsetToRouteNames = reader.ReadUInt32();
-            uint offsetToRouteDefinitions = reader.ReadUInt32();
+            uint routeIdsOffset = reader.ReadUInt32();
+            uint routeDefinitionsOffset = reader.ReadUInt32();
 
-            _ = reader.ReadUInt32();
+            // TODO: usage
+            uint routeNodesOffset = reader.ReadUInt32();
 
-            _ = reader.ReadUInt32();
+            // TODO: usage
+            uint routeEventTablesOffset = reader.ReadUInt32();
 
-            _ = reader.ReadUInt32();
+            // TODO: usage
+            uint routeEventsOffset = reader.ReadUInt32();
 
-            if (FileVersion == RouteSetVersion.GZ)
+            if (fileVersion == RouteSetVersion.GZ)
                 reader.Skip(4 * 2); //Irrelevant memory leak bytes
 
-            for (int routeIndex = 0; routeIndex < routeCount; routeIndex++)
+            for (int i = 0; i < routeCount; i++)
             {
-                //Route name
-                reader.Seek(offsetToRouteNames + (routeIndex * 4));
-                var routeGameObject = new GameObject(reader.ReadStrCode32().ToString());
-                var routeEntity = new GsRouteData();
-                routeGameObject.AddComponent<FoxEntity>().Entity = routeEntity;
-                var routeTransform = TransformEntity.GetDefault();
-                routeEntity.inheritTransform = false;
-                routeEntity.SetTransform(routeTransform);
-                routeEntity.InitializeGameObject(routeGameObject);
+                // Get id
+                reader.Seek(routeIdsOffset + (i * 4));
+                StrCode32 id = reader.ReadStrCode32();
 
-                //Route definition offsets and counts
-                uint routeDefinitonsPosition = (uint)(offsetToRouteDefinitions + (routeIndex * 16));
+                // RouteDef
+                long routeDefPosition = routeDefinitionsOffset + (i * 16);
+                reader.Seek(routeDefPosition);
 
-                reader.Seek(routeDefinitonsPosition);
-
-                uint nodeOffset = reader.ReadUInt32() + routeDefinitonsPosition;
-                uint eventTableOffset = reader.ReadUInt32() + routeDefinitonsPosition;
-                uint eventsOffset = reader.ReadUInt32() + routeDefinitonsPosition;
+                uint positionsOffset = reader.ReadUInt32();
+                uint eventSpanOffset = reader.ReadUInt32();
+                uint eventsOffset = reader.ReadUInt32();
                 ushort nodeCount = reader.ReadUInt16();
+                ushort eventCount = reader.ReadUInt16();
 
-                _ = reader.ReadUInt16();
-
-                for (int nodeIndex = 0; nodeIndex < nodeCount; nodeIndex++)
+                // Create Unity backing
+                var routeGameObject = new GameObject(id.ToString());
+                var routeData = new GsRouteData
                 {
-                    var edgeEntity = new GsRouteDataEdge();
-                    var nodeEntity = new GsRouteDataNode();
+                    nodes = new DynamicArray<EntityPtr<GraphxSpatialGraphDataNode>>(nodeCount),
+                    edges = new DynamicArray<EntityPtr<GraphxSpatialGraphDataEdge>>(nodeCount),
+                };
+                var routeTransform = TransformEntity.GetDefault();
+                routeData.inheritTransform = false;
+                routeData.SetTransform(routeTransform);
+                routeGameObject.AddComponent<FoxEntity>().Entity = routeData;
 
-                    routeEntity.edges.Add(new EntityPtr<GraphxSpatialGraphDataEdge>(edgeEntity));
-                    routeEntity.nodes.Add(new EntityPtr<GraphxSpatialGraphDataNode>(nodeEntity));
+                for (int j = 0; j < nodeCount; j++)
+                {
+                    var edge = new GsRouteDataEdge();
+                    edge.SetOwner(routeData);
+                    routeData.edges.Add(new EntityPtr<GraphxSpatialGraphDataEdge>(edge));
 
-                    reader.Seek(eventTableOffset + (nodeIndex * 4));
-                    ushort eventNodeCount = reader.ReadUInt16();
+                    var node = new GsRouteDataNode();
+                    node.SetOwner(routeData);
+                    routeData.nodes.Add(new EntityPtr<GraphxSpatialGraphDataNode>(node));
 
-                    _ = reader.ReadUInt16();
-
-                    reader.Seek(nodeOffset + (nodeIndex * lengthOfTranslation));
-                    if (FileVersion == RouteSetVersion.GZ)
+                    // Position
+                    reader.Seek(routeDefPosition + positionsOffset + (j * nodePositionSizeInBytes));
+                    if (fileVersion == RouteSetVersion.GZ)
                     {
-                        //Vector3 Bit Unpacking by Joey:
-                        //https://discord.com/channels/364177293133873153/364178190588968970/894215344099573760
-                        //https://cdn.discordapp.com/attachments/364178190588968970/894215342069538907/unknown.png
-                        //Console.WriteLine($"Translation packed #{nodePacked}");
+                        // Vector3 Bit Unpacking by Joey:
+                        // https://discord.com/channels/364177293133873153/364178190588968970/894215344099573760
+                        // https://cdn.discordapp.com/attachments/364178190588968970/894215342069538907/unknown.png
 
-                        long nodePacked = reader.ReadInt64();
+                        long packedPosition = reader.ReadInt64();
 
-                        uint packed_x = (uint)(nodePacked & 0x003FFFFF);
+                        uint packed_x = (uint)(packedPosition & 0x003FFFFF);
                         if ((packed_x & (1 << 21)) != 0)
                             packed_x |= 0xFFC00000;
                         float x = (float)(int)packed_x / 1024;
 
-                        uint packed_y = (uint)((nodePacked >> 22) & 0x000FFFFF);
+                        uint packed_y = (uint)((packedPosition >> 22) & 0x000FFFFF);
                         if ((packed_y & (1 << 19)) != 0)
                             packed_y |= 0xFFF00000;
                         float y = (float)(int)packed_y / 1024;
 
-                        uint packed_z = (uint)((nodePacked >> 42) & 0x003FFFFF);
+                        uint packed_z = (uint)((packedPosition >> 42) & 0x003FFFFF);
                         if ((packed_z & (1 << 21)) != 0)
                             packed_z |= 0xFFC00000;
                         float z = (float)(int)packed_z / 1024;
 
-                        nodeEntity.position = Fox.Kernel.Math.FoxToUnityVector3(new Vector3(x, y, z)) + origin;
+                        node.position = Fox.Kernel.Math.FoxToUnityVector3(new Vector3(x, y, z)) + origin;
                     }
-                    else if (FileVersion == RouteSetVersion.TPP)
+                    else if (fileVersion == RouteSetVersion.TPP)
                     {
-                        nodeEntity.position = reader.ReadPositionF();
+                        node.position = reader.ReadPositionF();
                     }
 
-                    for (int eventIndex = 0; eventIndex < eventNodeCount; eventIndex++)
-                    {
-                        reader.Seek(eventsOffset + (eventIndex * 48)); // event length
+                    // Event span
+                    reader.Seek(routeDefPosition + eventSpanOffset + (j * 4));
+                    var eventSpan = new EventSpan { Count = reader.ReadUInt16(), StartIndex = reader.ReadUInt16() };
 
-                        var eventEntity = new GsRouteDataEvent
+                    for (int k = 0; k < eventSpan.Count; k++)
+                    {
+                        reader.Seek(routeDefPosition + eventsOffset + ((eventSpan.StartIndex + k) * 48));
+
+                        var eventDef = EventDef.Read(reader);
+
+                        var @event = new GsRouteDataEvent
                         {
-                            id = new Kernel.String(reader.ReadStrCode32().ToString())
+                            id = new Kernel.String(eventDef.Id.ToString()),
                         };
-                        reader.Skip(1);//var isNode = reader.ReadBoolean();
-                        var aimPointType = (GsRouteDataEventAimPointType)reader.ReadByte();
-                        reader.Skip(1);//unknown
-                        bool isLoop = reader.ReadBoolean();
-                        float time = (reader.ReadUInt16() + 1) / 60;
-                        float dir = reader.ReadUInt16() / USHORT_QUANTA_PER_DEGREE;
 
-                        if (FileVersion == RouteSetVersion.GZ)
+                        if (fileVersion == RouteSetVersion.GZ)
                             reader.Skip(4); //inverted isnodeevent thing
 
-                        switch (aimPointType)
+                        switch (eventDef.AimPointType)
                         {
                             case GsRouteDataEventAimPointType.ROUTE_AIM_NO_TARGET:
-                                var noTarget = new GsRouteDataEventAimPointNoTarget();
-                                eventEntity.aimPoint = new EntityPtr<GsRouteDataEventAimPoint>(noTarget);
-                                reader.Skip(4 * 4);
+                                var noTarget = new GsRouteDataEvAimPtNoTarget();
+                                @event.aimPoint = new EntityPtr<GsRouteDataEventAimPoint>(noTarget);
+
+                                reader.SkipPadding(4 * 4);
                                 break;
                             case GsRouteDataEventAimPointType.ROUTE_AIM_STATIC_POINT:
-                                var staticPoint = new GsRouteDataEventAimPointStaticPoint();
-                                eventEntity.aimPoint = new EntityPtr<GsRouteDataEventAimPoint>(staticPoint);
+                                var staticPoint = new GsRouteDataEvAimPtStaticPoint();
+                                @event.aimPoint = new EntityPtr<GsRouteDataEventAimPoint>(staticPoint);
+
                                 staticPoint.position = reader.ReadPositionF();
-                                reader.Skip(4);
+                                reader.SkipPadding(4);
                                 break;
                             case GsRouteDataEventAimPointType.ROUTE_AIM_CHARACTER:
-                                var character = new GsRouteDataEventAimPointCharacter();
-                                eventEntity.aimPoint = new EntityPtr<GsRouteDataEventAimPoint>(character);
+                                var character = new GsRouteDataEvAimPtCharacter();
+                                @event.aimPoint = new EntityPtr<GsRouteDataEventAimPoint>(character);
+
                                 character.characterName = new Kernel.String(reader.ReadStrCode32().ToString());
-                                reader.Skip(4 * 3);
+                                reader.SkipPadding(4 * 3);
                                 break;
                             case GsRouteDataEventAimPointType.ROUTE_AIM_ROUTE_AS_SIGHT_MOVE_PATH:
-                                var routeAsSightMovePath = new GsRouteDataEventAimPointRouteAsSightMovePath();
-                                eventEntity.aimPoint = new EntityPtr<GsRouteDataEventAimPoint>(routeAsSightMovePath);
-                                for (int aimPointRouteParamIndex = 0; aimPointRouteParamIndex < 4; aimPointRouteParamIndex++)
+                                var routeAsSightMovePath = new GsRouteDataEvAimPtRouteAsSightMovePath();
+                                @event.aimPoint = new EntityPtr<GsRouteDataEventAimPoint>(routeAsSightMovePath);
+
+                                for (int l = 0; l < 4; l++)
                                 {
-                                    routeAsSightMovePath.routeNames[aimPointRouteParamIndex] = new Kernel.String(reader.ReadStrCode32().ToString());
+                                    routeAsSightMovePath.routeNames[l] = new Kernel.String(reader.ReadStrCode32().ToString());
                                 }
                                 break;
                             case GsRouteDataEventAimPointType.ROUTE_AIM_ROUTE_AS_OBJECT:
-                                var routeAsObject = new GsRouteDataEventAimPointRouteAsObject();
-                                eventEntity.aimPoint = new EntityPtr<GsRouteDataEventAimPoint>(routeAsObject);
-                                for (int aimPointRouteParamIndex = 0; aimPointRouteParamIndex < 4; aimPointRouteParamIndex++)
+                                var routeAsObject = new GsRouteDataEvAimPtRouteAsObject();
+                                @event.aimPoint = new EntityPtr<GsRouteDataEventAimPoint>(routeAsObject);
+
+                                for (int l = 0; l < 4; l++)
                                 {
-                                    routeAsObject.routeNames[aimPointRouteParamIndex] = new Kernel.String(reader.ReadStrCode32().ToString());
+                                    routeAsObject.routeNames[l] = new Kernel.String(reader.ReadStrCode32().ToString());
                                 }
                                 break;
                             default:
                                 break;
                         }
 
-                        for (int extensionIndex = 0; extensionIndex < 4; extensionIndex++)
-                            eventEntity.extensions[extensionIndex] = reader.ReadUInt32();
+                        for (int l = 0; l < 4; l++)
+                            @event.extensions[l] = reader.ReadUInt32();
 
-                        if (FileVersion == RouteSetVersion.TPP)
+                        if (fileVersion == RouteSetVersion.TPP)
                             reader.Skip(4); //snippet
 
-                        if (eventIndex == 0)
+                        if (eventDef.Type == EventType.Edge)
                         {
-                            var edgeEventEntity = new GsRouteDataEdgeEvent
+                            var edgeEvent = new GsRouteDataEdgeEvent
                             {
-                                id = eventEntity.id,
-                                aimPoint = eventEntity.aimPoint,
-                                extensions = eventEntity.extensions
+                                id = new Kernel.String(eventDef.Id.ToString()),
+                                aimPoint = @event.aimPoint,
+                                extensions = @event.extensions
                             };
-                            edgeEntity.edgeEvent = new EntityPtr<GsRouteDataEdgeEvent>(edgeEventEntity);
-                            edgeEventEntity.owner = EntityHandle.Get(edgeEntity);
+                            edge.edgeEvent = new EntityPtr<GsRouteDataEdgeEvent>(edgeEvent);
                         }
-                        else
+                        else if (eventDef.Type == EventType.Node)
                         {
-                            var nodeEventEntity = new GsRouteDataNodeEvent
+                            var nodeEvent = new GsRouteDataNodeEvent
                             {
-                                id = eventEntity.id,
-                                aimPoint = eventEntity.aimPoint,
-                                extensions = eventEntity.extensions,
-                                isLoop = isLoop,
-                                time = time,
-                                dir = dir,
+                                id = new Kernel.String(eventDef.Id.ToString()),
+                                aimPoint = @event.aimPoint,
+                                extensions = @event.extensions,
+                                isLoop = eventDef.IsLoop,
+                                time = eventDef.Time,
+                                dir = eventDef.Direction,
                             };
 
-                            nodeEntity.nodeEvents.Add(new EntityPtr<GsRouteDataNodeEvent>(nodeEventEntity));
-                            nodeEventEntity.SetOwner(routeEntity);
+                            node.nodeEvents.Add(new EntityPtr<GsRouteDataNodeEvent>(nodeEvent));
                         }
                     }
                 }
+
+                // RouteData has been staged. Initialize it.
+                routeData.InitializeGameObject(routeGameObject);
             }
 
             return scene;

@@ -1,0 +1,810 @@
+[
+  {
+    "category": null,
+    "functions": [],
+    "id": 0,
+    "name": "GsRouteDataEventAimPoint",
+    "namespace": "GameService",
+    "parent": "DataElement",
+    "properties": [],
+    "version": 0
+  },
+  {
+    "category": null,
+    "functions": [],
+    "id": 0,
+    "name": "GsRouteDataEvAimPtCharacter",
+    "namespace": "GameService",
+    "parent": "GsRouteDataEventAimPoint",
+    "properties": [
+      {
+        "arraySize": 1,
+        "container": "StaticArray",
+        "enum": null,
+        "exportFlag": "RW",
+        "name": "characterName",
+        "offset": 56,
+        "ptrType": null,
+        "size": 8,
+        "type": "String"
+      }
+    ],
+    "version": 0
+  },
+  {
+    "category": null,
+    "functions": [],
+    "id": 0,
+    "name": "GsRouteDataEvAimPtNoTarget",
+    "namespace": "GameService",
+    "parent": "GsRouteDataEventAimPoint",
+    "properties": [],
+    "version": 0
+  },
+  {
+    "category": null,
+    "functions": [],
+    "id": 0,
+    "name": "GsRouteDataEvAimPtRouteAsObject",
+    "namespace": "GameService",
+    "parent": "GsRouteDataEventAimPoint",
+    "properties": [
+      {
+        "arraySize": 4,
+        "container": "StaticArray",
+        "enum": null,
+        "exportFlag": "RW",
+        "name": "routeNames",
+        "offset": 56,
+        "ptrType": null,
+        "size": 32,
+        "type": "String"
+      }
+    ],
+    "version": 0
+  },
+  {
+    "category": null,
+    "functions": [],
+    "id": 0,
+    "name": "GsRouteDataEvAimPtRouteAsSightMovePath",
+    "namespace": "GameService",
+    "parent": "GsRouteDataEventAimPoint",
+    "properties": [
+      {
+        "arraySize": 4,
+        "container": "StaticArray",
+        "enum": null,
+        "exportFlag": "RW",
+        "name": "routeNames",
+        "offset": 56,
+        "ptrType": null,
+        "size": 32,
+        "type": "String"
+      }
+    ],
+    "version": 0
+  },
+  {
+    "category": null,
+    "functions": [],
+    "id": 0,
+    "name": "GsRouteDataEvAimPtStaticPoint",
+    "namespace": "GameService",
+    "parent": "GsRouteDataEventAimPoint",
+    "properties": [
+      {
+        "arraySize": 1,
+        "container": "StaticArray",
+        "enum": null,
+        "exportFlag": "RW",
+        "name": "position",
+        "offset": 56,
+        "ptrType": null,
+        "size": 16,
+        "type": "Vector3"
+      }
+    ],
+    "version": 0
+  },
+  {
+    "category": null,
+    "functions": [],
+    "id": 0,
+    "name": "GsRouteDataRouteEvent",
+    "namespace": "GameService",
+    "parent": "DataElement",
+    "properties": [],
+    "version": 0
+  },
+  {
+    "category": null,
+    "functions": [],
+    "id": 0,
+    "name": "GsRouteDataRtEvUnknown1245047319",
+    "namespace": "GameService",
+    "parent": "GsRouteDataRouteEvent",
+    "properties": [],
+    "version": 0
+  },
+  {
+    "category": null,
+    "functions": [],
+    "id": 0,
+    "name": "GsRouteDataRtEvUnknown1875147223",
+    "namespace": "GameService",
+    "parent": "GsRouteDataRouteEvent",
+    "properties": [],
+    "version": 0
+  },
+  {
+    "category": null,
+    "functions": [],
+    "id": 0,
+    "name": "GsRouteDataRtEvPermitToGetOff",
+    "namespace": "GameService",
+    "parent": "GsRouteDataRouteEvent",
+    "properties": [],
+    "version": 0
+  },
+  {
+    "category": null,
+    "functions": [],
+    "id": 0,
+    "name": "GsRouteDataRtEvUnknown2358641809",
+    "namespace": "GameService",
+    "parent": "GsRouteDataRouteEvent",
+    "properties": [],
+    "version": 0
+  },
+  {
+    "category": null,
+    "functions": [],
+    "id": 0,
+    "name": "GsRouteDataRtEvUnknownPickUpHoneyBee",
+    "namespace": "GameService",
+    "parent": "GsRouteDataRouteEvent",
+    "properties": [],
+    "version": 0
+  },
+  {
+    "category": null,
+    "functions": [],
+    "id": 0,
+    "name": "GsRouteDataRtEvUnknownVehicleAntiPlayerFire",
+    "namespace": "GameService",
+    "parent": "GsRouteDataRouteEvent",
+    "properties": [],
+    "version": 0
+  },
+  {
+    "category": null,
+    "functions": [],
+    "id": 0,
+    "name": "GsRouteDataRtEvUnknown2795470991",
+    "namespace": "GameService",
+    "parent": "GsRouteDataRouteEvent",
+    "properties": [],
+    "version": 0
+  },
+  {
+    "category": null,
+    "functions": [],
+    "id": 0,
+    "name": "GsRouteDataRtEvUnknownPutHostageInVehicle",
+    "namespace": "GameService",
+    "parent": "GsRouteDataRouteEvent",
+    "properties": [],
+    "version": 0
+  },
+  {
+    "category": null,
+    "functions": [],
+    "id": 0,
+    "name": "GsRouteDataRtEvUnknown3589755714",
+    "namespace": "GameService",
+    "parent": "GsRouteDataRouteEvent",
+    "properties": [],
+    "version": 0
+  },
+  {
+    "category": null,
+    "functions": [],
+    "id": 0,
+    "name": "GsRouteDataRtEvUnknown3696614179",
+    "namespace": "GameService",
+    "parent": "GsRouteDataRouteEvent",
+    "properties": [],
+    "version": 0
+  },
+  {
+    "category": null,
+    "functions": [],
+    "id": 0,
+    "name": "GsRouteDataRtEvUnknown3969758229",
+    "namespace": "GameService",
+    "parent": "GsRouteDataRouteEvent",
+    "properties": [],
+    "version": 0
+  },
+  {
+    "category": null,
+    "functions": [],
+    "id": 0,
+    "name": "GsRouteDataRtEvUnknown4257632892",
+    "namespace": "GameService",
+    "parent": "GsRouteDataRouteEvent",
+    "properties": [],
+    "version": 0
+  },
+  {
+    "category": null,
+    "functions": [],
+    "id": 0,
+    "name": "GsRouteDataRtEvCaution",
+    "namespace": "GameService",
+    "parent": "GsRouteDataRouteEvent",
+    "properties": [],
+    "version": 0
+  },
+  {
+    "category": null,
+    "functions": [],
+    "id": 0,
+    "name": "GsRouteDataRtEvCautionIdleAct",
+    "namespace": "GameService",
+    "parent": "GsRouteDataRouteEvent",
+    "properties": [],
+    "version": 0
+  },
+  {
+    "category": null,
+    "functions": [],
+    "id": 0,
+    "name": "GsRouteDataRtEvCautionSquatFire",
+    "namespace": "GameService",
+    "parent": "GsRouteDataRouteEvent",
+    "properties": [],
+    "version": 0
+  },
+  {
+    "category": null,
+    "functions": [],
+    "id": 0,
+    "name": "GsRouteDataRtEvCautionSquatIdle",
+    "namespace": "GameService",
+    "parent": "GsRouteDataRouteEvent",
+    "properties": [],
+    "version": 0
+  },
+  {
+    "category": null,
+    "functions": [],
+    "id": 0,
+    "name": "GsRouteDataRtEvCautionSquatIdleAim",
+    "namespace": "GameService",
+    "parent": "GsRouteDataRouteEvent",
+    "properties": [],
+    "version": 0
+  },
+  {
+    "category": null,
+    "functions": [],
+    "id": 0,
+    "name": "GsRouteDataRtEvCautionStandFire",
+    "namespace": "GameService",
+    "parent": "GsRouteDataRouteEvent",
+    "properties": [],
+    "version": 0
+  },
+  {
+    "category": null,
+    "functions": [],
+    "id": 0,
+    "name": "GsRouteDataRtEvCautionStandIdle",
+    "namespace": "GameService",
+    "parent": "GsRouteDataRouteEvent",
+    "properties": [],
+    "version": 0
+  },
+  {
+    "category": null,
+    "functions": [],
+    "id": 0,
+    "name": "GsRouteDataRtEvCautionStandIdleAim",
+    "namespace": "GameService",
+    "parent": "GsRouteDataRouteEvent",
+    "properties": [],
+    "version": 0
+  },
+  {
+    "category": null,
+    "functions": [],
+    "id": 0,
+    "name": "GsRouteDataRtEvCautionStandIdleAimCarrying",
+    "namespace": "GameService",
+    "parent": "GsRouteDataRouteEvent",
+    "properties": [],
+    "version": 0
+  },
+  {
+    "category": null,
+    "functions": [],
+    "id": 0,
+    "name": "GsRouteDataRtEvCautionStandIdleReady",
+    "namespace": "GameService",
+    "parent": "GsRouteDataRouteEvent",
+    "properties": [],
+    "version": 0
+  },
+  {
+    "category": null,
+    "functions": [],
+    "id": 0,
+    "name": "GsRouteDataRtEvCautionStandIdleSearch",
+    "namespace": "GameService",
+    "parent": "GsRouteDataRouteEvent",
+    "properties": [],
+    "version": 0
+  },
+  {
+    "category": null,
+    "functions": [],
+    "id": 0,
+    "name": "GsRouteDataRtEvCloseDoor",
+    "namespace": "GameService",
+    "parent": "GsRouteDataRouteEvent",
+    "properties": [],
+    "version": 0
+  },
+  {
+    "category": null,
+    "functions": [],
+    "id": 0,
+    "name": "GsRouteDataRtEvConversationIdle",
+    "namespace": "GameService",
+    "parent": "GsRouteDataRouteEvent",
+    "properties": [],
+    "version": 0
+  },
+  {
+    "category": null,
+    "functions": [],
+    "id": 0,
+    "name": "GsRouteDataRtEvCurtainIn",
+    "namespace": "GameService",
+    "parent": "GsRouteDataRouteEvent",
+    "properties": [],
+    "version": 0
+  },
+  {
+    "category": null,
+    "functions": [],
+    "id": 0,
+    "name": "GsRouteDataRtEvCurtainOut",
+    "namespace": "GameService",
+    "parent": "GsRouteDataRouteEvent",
+    "properties": [],
+    "version": 0
+  },
+  {
+    "category": null,
+    "functions": [],
+    "id": 0,
+    "name": "GsRouteDataRtEvDemo",
+    "namespace": "GameService",
+    "parent": "GsRouteDataRouteEvent",
+    "properties": [],
+    "version": 0
+  },
+  {
+    "category": null,
+    "functions": [],
+    "id": 0,
+    "name": "GsRouteDataRtEvDropPoint",
+    "namespace": "GameService",
+    "parent": "GsRouteDataRouteEvent",
+    "properties": [],
+    "version": 0
+  },
+  {
+    "category": null,
+    "functions": [],
+    "id": 0,
+    "name": "GsRouteDataRtEvFire",
+    "namespace": "GameService",
+    "parent": "GsRouteDataRouteEvent",
+    "properties": [],
+    "version": 0
+  },
+  {
+    "category": null,
+    "functions": [],
+    "id": 0,
+    "name": "GsRouteDataRtEvHeliIdle",
+    "namespace": "GameService",
+    "parent": "GsRouteDataRouteEvent",
+    "properties": [],
+    "version": 0
+  },
+  {
+    "category": null,
+    "functions": [],
+    "id": 0,
+    "name": "GsRouteDataRtEvHovering",
+    "namespace": "GameService",
+    "parent": "GsRouteDataRouteEvent",
+    "properties": [],
+    "version": 0
+  },
+  {
+    "category": null,
+    "functions": [],
+    "id": 0,
+    "name": "GsRouteDataRtEvKill",
+    "namespace": "GameService",
+    "parent": "GsRouteDataRouteEvent",
+    "properties": [],
+    "version": 0
+  },
+  {
+    "category": null,
+    "functions": [],
+    "id": 0,
+    "name": "GsRouteDataRtEvOnBaseRoute",
+    "namespace": "GameService",
+    "parent": "GsRouteDataRouteEvent",
+    "properties": [],
+    "version": 0
+  },
+  {
+    "category": null,
+    "functions": [],
+    "id": 0,
+    "name": "GsRouteDataRtEvOnTheHill",
+    "namespace": "GameService",
+    "parent": "GsRouteDataRouteEvent",
+    "properties": [],
+    "version": 0
+  },
+  {
+    "category": null,
+    "functions": [],
+    "id": 0,
+    "name": "GsRouteDataRtEvOpenDoor",
+    "namespace": "GameService",
+    "parent": "GsRouteDataRouteEvent",
+    "properties": [],
+    "version": 0
+  },
+  {
+    "category": null,
+    "functions": [],
+    "id": 0,
+    "name": "GsRouteDataRtEvPileBunker",
+    "namespace": "GameService",
+    "parent": "GsRouteDataRouteEvent",
+    "properties": [],
+    "version": 0
+  },
+  {
+    "category": null,
+    "functions": [],
+    "id": 0,
+    "name": "GsRouteDataRtEvPickUpHoneyBee",
+    "namespace": "GameService",
+    "parent": "GsRouteDataRouteEvent",
+    "properties": [],
+    "version": 0
+  },
+  {
+    "category": null,
+    "functions": [],
+    "id": 0,
+    "name": "GsRouteDataRtEvPutDownHoneyBee",
+    "namespace": "GameService",
+    "parent": "GsRouteDataRouteEvent",
+    "properties": [],
+    "version": 0
+  },
+  {
+    "category": null,
+    "functions": [],
+    "id": 0,
+    "name": "GsRouteDataRtEvPutHostageInVehicle",
+    "namespace": "GameService",
+    "parent": "GsRouteDataRouteEvent",
+    "properties": [],
+    "version": 0
+  },
+  {
+    "category": null,
+    "functions": [],
+    "id": 0,
+    "name": "GsRouteDataRtEvRecovery",
+    "namespace": "GameService",
+    "parent": "GsRouteDataRouteEvent",
+    "properties": [],
+    "version": 0
+  },
+  {
+    "category": null,
+    "functions": [],
+    "id": 0,
+    "name": "GsRouteDataRtEvRelaxedIdleAct",
+    "namespace": "GameService",
+    "parent": "GsRouteDataRouteEvent",
+    "properties": [],
+    "version": 0
+  },
+  {
+    "category": null,
+    "functions": [],
+    "id": 0,
+    "name": "GsRouteDataRtEvRelaxedStandIdle",
+    "namespace": "GameService",
+    "parent": "GsRouteDataRouteEvent",
+    "properties": [],
+    "version": 0
+  },
+  {
+    "category": null,
+    "functions": [],
+    "id": 0,
+    "name": "GsRouteDataRtEvRideVehicle",
+    "namespace": "GameService",
+    "parent": "GsRouteDataRouteEvent",
+    "properties": [],
+    "version": 0
+  },
+  {
+    "category": null,
+    "functions": [],
+    "id": 0,
+    "name": "GsRouteDataRtEvSalute",
+    "namespace": "GameService",
+    "parent": "GsRouteDataRouteEvent",
+    "properties": [],
+    "version": 0
+  },
+  {
+    "category": null,
+    "functions": [],
+    "id": 0,
+    "name": "GsRouteDataRtEvSaluteGreeting",
+    "namespace": "GameService",
+    "parent": "GsRouteDataRouteEvent",
+    "properties": [],
+    "version": 0
+  },
+  {
+    "category": null,
+    "functions": [],
+    "id": 0,
+    "name": "GsRouteDataRtEvSearchMissile",
+    "namespace": "GameService",
+    "parent": "GsRouteDataRouteEvent",
+    "properties": [],
+    "version": 0
+  },
+  {
+    "category": null,
+    "functions": [],
+    "id": 0,
+    "name": "GsRouteDataRtEvSendMessage",
+    "namespace": "GameService",
+    "parent": "GsRouteDataRouteEvent",
+    "properties": [],
+    "version": 0
+  },
+  {
+    "category": null,
+    "functions": [],
+    "id": 0,
+    "name": "GsRouteDataRtEvSetTargetSpeed",
+    "namespace": "GameService",
+    "parent": "GsRouteDataRouteEvent",
+    "properties": [],
+    "version": 0
+  },
+  {
+    "category": null,
+    "functions": [],
+    "id": 0,
+    "name": "GsRouteDataRtEvSitInChair",
+    "namespace": "GameService",
+    "parent": "GsRouteDataRouteEvent",
+    "properties": [],
+    "version": 0
+  },
+  {
+    "category": null,
+    "functions": [],
+    "id": 0,
+    "name": "GsRouteDataRtEvSnipe",
+    "namespace": "GameService",
+    "parent": "GsRouteDataRouteEvent",
+    "properties": [],
+    "version": 0
+  },
+  {
+    "category": null,
+    "functions": [],
+    "id": 0,
+    "name": "GsRouteDataRtEvStandIdle",
+    "namespace": "GameService",
+    "parent": "GsRouteDataRouteEvent",
+    "properties": [],
+    "version": 0
+  },
+  {
+    "category": null,
+    "functions": [],
+    "id": 0,
+    "name": "GsRouteDataRtEvStandSearch",
+    "namespace": "GameService",
+    "parent": "GsRouteDataRouteEvent",
+    "properties": [],
+    "version": 0
+  },
+  {
+    "category": null,
+    "functions": [],
+    "id": 0,
+    "name": "GsRouteDataRtEvSupineSnipe",
+    "namespace": "GameService",
+    "parent": "GsRouteDataRouteEvent",
+    "properties": [],
+    "version": 0
+  },
+  {
+    "category": null,
+    "functions": [],
+    "id": 0,
+    "name": "GsRouteDataRtEvSwitchRoute",
+    "namespace": "GameService",
+    "parent": "GsRouteDataRouteEvent",
+    "properties": [],
+    "version": 0
+  },
+  {
+    "category": null,
+    "functions": [],
+    "id": 0,
+    "name": "GsRouteDataRtEvSyncRoute",
+    "namespace": "GameService",
+    "parent": "GsRouteDataRouteEvent",
+    "properties": [],
+    "version": 0
+  },
+  {
+    "category": null,
+    "functions": [],
+    "id": 0,
+    "name": "GsRouteDataRtEvTakeHostageOutOfVehicle",
+    "namespace": "GameService",
+    "parent": "GsRouteDataRouteEvent",
+    "properties": [],
+    "version": 0
+  },
+  {
+    "category": null,
+    "functions": [],
+    "id": 0,
+    "name": "GsRouteDataRtEvUseFlashLight",
+    "namespace": "GameService",
+    "parent": "GsRouteDataRouteEvent",
+    "properties": [],
+    "version": 0
+  },
+  {
+    "category": null,
+    "functions": [],
+    "id": 0,
+    "name": "GsRouteDataRtEvUseSearchLight       ",
+    "namespace": "GameService",
+    "parent": "GsRouteDataRouteEvent",
+    "properties": [],
+    "version": 0
+  },
+  {
+    "category": null,
+    "functions": [],
+    "id": 0,
+    "name": "GsRouteDataRtEvVanish",
+    "namespace": "GameService",
+    "parent": "GsRouteDataRouteEvent",
+    "properties": [],
+    "version": 0
+  },
+  {
+    "category": null,
+    "functions": [],
+    "id": 0,
+    "name": "GsRouteDataRtEvVehicleFire",
+    "namespace": "GameService",
+    "parent": "GsRouteDataRouteEvent",
+    "properties": [],
+    "version": 0
+  },
+  {
+    "category": null,
+    "functions": [],
+    "id": 0,
+    "name": "GsRouteDataRtEvVehicleGetIn",
+    "namespace": "GameService",
+    "parent": "GsRouteDataRouteEvent",
+    "properties": [],
+    "version": 0
+  },
+  {
+    "category": null,
+    "functions": [],
+    "id": 0,
+    "name": "GsRouteDataRtEvVehicleGetOff",
+    "namespace": "GameService",
+    "parent": "GsRouteDataRouteEvent",
+    "properties": [],
+    "version": 0
+  },
+  {
+    "category": null,
+    "functions": [],
+    "id": 0,
+    "name": "GsRouteDataRtEvVehicleGetOut",
+    "namespace": "GameService",
+    "parent": "GsRouteDataRouteEvent",
+    "properties": [],
+    "version": 0
+  },
+  {
+    "category": null,
+    "functions": [],
+    "id": 0,
+    "name": "GsRouteDataRtEvVehicleIdle",
+    "namespace": "GameService",
+    "parent": "GsRouteDataRouteEvent",
+    "properties": [],
+    "version": 0
+  },
+  {
+    "category": null,
+    "functions": [],
+    "id": 0,
+    "name": "GsRouteDataRtEvWait",
+    "namespace": "GameService",
+    "parent": "GsRouteDataRouteEvent",
+    "properties": [],
+    "version": 0
+  },
+  {
+    "category": null,
+    "functions": [],
+    "id": 0,
+    "name": "GsRouteDataRtEvWaitIdle",
+    "namespace": "GameService",
+    "parent": "GsRouteDataRouteEvent",
+    "properties": [],
+    "version": 0
+  },
+  {
+    "category": null,
+    "functions": [],
+    "id": 0,
+    "name": "GsRouteDataRtEvWalkerGearCautionIdle",
+    "namespace": "GameService",
+    "parent": "GsRouteDataRouteEvent",
+    "properties": [],
+    "version": 0
+  },
+  {
+    "category": null,
+    "functions": [],
+    "id": 0,
+    "name": "GsRouteDataRtEvWalkerGearRelaxedIdle",
+    "namespace": "GameService",
+    "parent": "GsRouteDataRouteEvent",
+    "properties": [],
+    "version": 0
+  }
+]

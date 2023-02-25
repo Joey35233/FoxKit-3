@@ -9,13 +9,14 @@ exec(open("EnumInfo.py").read())
 # Config
 class_template_path = "ClassTemplate.txt"
 definitions_path = "TppClassDefinitions.json"
+extra_definitions_path = "FoxKitClassDefinitions.json"
 
 enum_template_path = "EnumsTemplate.txt"
 enums_path = "TppEnums.json"
 
 entity_factory_template_path = "EntityFactoryTemplate.txt"
 
-def load_definitions (path):
+def load_definitions (path, extraPath):
     result = {}
     with open(path) as json_file:
         data = json.load(json_file)
@@ -24,6 +25,20 @@ def load_definitions (path):
             for property in entry["properties"]:
                 properties[property["name"]] = PropertyInfo(property["name"], property["type"], property["offset"], property["arraySize"], property["container"], property["ptrType"], property["enum"], property["exportFlag"], entry["name"], result)
             result[entry["name"]] = EntityInfo(entry["name"], entry["namespace"], entry["parent"], entry["category"], entry["version"], entry["id"], properties, result)
+            
+    with open(extraPath) as json_file:
+        data = json.load(json_file)
+        for entry in data:
+            properties = {}
+            for property in entry["properties"]:
+                properties[property["name"]] = PropertyInfo(property["name"], property["type"], property["offset"], property["arraySize"], property["container"], property["ptrType"], property["enum"], property["exportFlag"], entry["name"], result)
+            
+            if entry["name"] in result:
+                raise RuntimeError("Vanilla Entity redeclared as custom")
+                return {}
+
+            else:
+                result[entry["name"]] = EntityInfo(entry["name"], entry["namespace"], entry["parent"], entry["category"], entry["version"], entry["id"], properties, result)
 
     return result
 
@@ -42,7 +57,7 @@ def load_enum_definitions (path):
 def generate_classes ():    
     template_file = open(class_template_path, "r")
     template = Template(template_file.read())
-    definitions = load_definitions(definitions_path)
+    definitions = load_definitions(definitions_path, extra_definitions_path)
 
     for class_name in definitions:
         # Generate class file

@@ -339,14 +339,16 @@ namespace Fox.Gr
                 Debug.LogError($"{name}: {message}");
             }
 
-            if (reader.ReadUInt32() != 0x4C444D46)
+            if (reader.ReadUInt32() != 0x4C444D46) // FMDL
             {
                 logError("Read failed. Not an FMDL.");
+                return;
             }
 
             if (reader.ReadSingle() != 2.04f)
             {
                 logError("Unsupported FMDL version.");
+                return;
             }
 
             var main = new GameObject(name);
