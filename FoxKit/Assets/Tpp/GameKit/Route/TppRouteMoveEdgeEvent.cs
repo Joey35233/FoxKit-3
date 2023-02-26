@@ -9,6 +9,13 @@ namespace Tpp.GameKit
 		public static readonly StrCode32 Id = new StrCode32("Move");
 		public override StrCode32 GetId() => Id;
 
-		public static TppRouteMoveEdgeEvent Deserialize(FileStreamReader reader) => new TppRouteMoveEdgeEvent { binaryData = new StaticArray<uint>(new uint[] { reader.ReadUInt32(), reader.ReadUInt32(), reader.ReadUInt32(), reader.ReadUInt32() }), };
+        public static TppRouteMoveEdgeEvent Deserialize(FileStreamReader reader)
+        {
+            var result = new TppRouteMoveEdgeEvent { speed = reader.ReadInt32(), };
+
+            reader.SkipPadding(12);
+
+            return result;
+        }
 	}
 }
