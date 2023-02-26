@@ -2120,15 +2120,15 @@
     "parent": "GsRouteDataEdgeEvent",
     "properties": [
       {
-        "arraySize": 4,
+        "arraySize": 1,
         "container": "StaticArray",
         "enum": null,
         "exportFlag": "RW",
-        "name": "binaryData",
+        "name": "speed",
         "offset": 76,
         "ptrType": null,
-        "size": 16,
-        "type": "uint32"
+        "size": 4,
+        "type": "int32"
       }
     ],
     "version": 0
