@@ -27,7 +27,8 @@ namespace {{ info.get_root_namespace() }}.{{ info.get_namespace_without_prefix()
         {% if info.properties[property_name].has_public_get() %}public{% else %}protected{% endif %} {{ info.properties[property_name].get_property_full_type_string() }} {{ info.properties[property_name].get_safe_name() }} { get; {% if not info.properties[property_name].has_public_set() and info.properties[property_name].has_public_get() %}protected {% endif %}set; }{% if info.properties[property_name].has_default_value() %} = {{info.properties[property_name].get_default_value()}};{% endif %}
         {%- endif %}
         {% endfor %}
-        // PropertyInfo
+        // ClassInfos
+        public static {% if not info.is_root() %}new{% endif %} bool ClassInfoInitialized = false;
         private static Fox.Core.EntityInfo classInfo;
         public static {% if not info.is_root() %}new{% endif %} Fox.Core.EntityInfo ClassInfo
         {
@@ -42,10 +43,13 @@ namespace {{ info.get_root_namespace() }}.{{ info.get_namespace_without_prefix()
         }
         static {{ info.name }}()
         {
-            classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("{{ info.name }}"), typeof({{ info.name }}), {{ info.get_parent_entity_info_string() }}, {{ info.id }}, {{ info.get_category_string() }}, {{ info.version }});
+            {% if info.parent -%}if ({{ info.get_parent_string() }}.ClassInfoInitialized)
+                {% else -%}{%- endif %}classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("{{ info.name }}"), typeof({{ info.name }}), {{ info.get_parent_entity_info_string() }}, {{ info.id }}, {{ info.get_category_string() }}, {{ info.version }});
 			{%- for property_name in info.properties %}
 			{{ info.properties[property_name].get_property_info_instantiation_string() }}
 			{%- endfor %}
+
+            ClassInfoInitialized = true;
         }
 
         // Constructors

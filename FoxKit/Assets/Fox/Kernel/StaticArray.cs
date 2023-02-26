@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -88,6 +88,11 @@ namespace Fox.Kernel
             _list = new List<T>(capacity);
             for (int i = 0; i < capacity; i++)
                 _list.Add(default);
+        }
+
+        public StaticArray(T[] array)
+        {
+            _list = new List<T>(array);
         }
     }
 }

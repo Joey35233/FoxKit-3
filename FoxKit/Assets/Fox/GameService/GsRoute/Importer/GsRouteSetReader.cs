@@ -11,29 +11,20 @@ namespace Fox.GameService
 {
     public class GsRouteSetReader
     {
-        private const float USHORT_QUANTA_PER_DEGREE = (UInt16.MaxValue + 1) / 360f;
-        private const float DEGREE_PER_USHORT_QUANTA = 360f / (UInt16.MaxValue + 1);
-
         private enum RouteSetVersion : short
         {
             GZ = 2,
             TPP = 3,
         }
 
-        private enum EventType : byte
+        private enum EventAffinity
         {
             Edge = 0,
             Node = 1,
         }
 
-        public enum GsRouteDataEventAimPointType : byte
-        {
-            ROUTE_AIM_NO_TARGET = 0,
-            ROUTE_AIM_STATIC_POINT = 1,
-            ROUTE_AIM_CHARACTER = 2,
-            ROUTE_AIM_ROUTE_AS_SIGHT_MOVE_PATH = 3,
-            ROUTE_AIM_ROUTE_AS_OBJECT = 4,
-        }
+        private const float USHORT_QUANTA_PER_DEGREE = (UInt16.MaxValue + 1) / 360f;
+        private const float DEGREE_PER_USHORT_QUANTA = 360f / (UInt16.MaxValue + 1);
 
         private struct EventSpan
         {
@@ -44,8 +35,8 @@ namespace Fox.GameService
         private struct EventDef
         {
             public StrCode32 Id;
-            public EventType Type;
-            public GsRouteDataEventAimPointType AimPointType;
+            public EventAffinity Affinity;
+            public GsRouteDataRouteEventAimPoint.Type AimPointType;
             public byte Unknown;
             public bool IsLoop;
             public float Time;
@@ -56,15 +47,15 @@ namespace Fox.GameService
                 var result = new EventDef
                 {
                     Id = reader.ReadStrCode32(),
-                    Type = (EventType)reader.ReadByte(),
-                    AimPointType = (GsRouteDataEventAimPointType)reader.ReadByte(),
+                    Affinity = (EventAffinity)reader.ReadByte(),
+                    AimPointType = (GsRouteDataRouteEventAimPoint.Type)reader.ReadByte(),
                     Unknown = reader.ReadByte(),
                     IsLoop = reader.ReadBoolean(),
                     Time = (float)(reader.ReadUInt16() + 1) / 60, // TODO: ad hoc formula could be wrong
                     Direction = reader.ReadUInt16() / USHORT_QUANTA_PER_DEGREE,
                 };
 
-                Debug.Assert(Enum.IsDefined(typeof(EventType), result.Type));
+                Debug.Assert(Enum.IsDefined(typeof(EventAffinity), result.Affinity));
                 Debug.Assert(result.Unknown == 0);
 
                 return result;
@@ -203,89 +194,56 @@ namespace Fox.GameService
 
                         var eventDef = EventDef.Read(reader);
 
-                        var @event = new GsRouteDataEvent
-                        {
-                            id = new Kernel.String(eventDef.Id.ToString()),
-                        };
-
                         if (fileVersion == RouteSetVersion.GZ)
                             reader.Skip(4); //inverted isnodeevent thing
 
-                        switch (eventDef.AimPointType)
+                        long payloadPosition = reader.BaseStream.Position + 16;
+                        GsRouteDataRouteEventAimPoint aimPoint = eventDef.AimPointType switch
                         {
-                            case GsRouteDataEventAimPointType.ROUTE_AIM_NO_TARGET:
-                                var noTarget = new GsRouteDataEvAimPtNoTarget();
-                                @event.aimPoint = new EntityPtr<GsRouteDataEventAimPoint>(noTarget);
+                            GsRouteDataRouteEventAimPoint.Type.NoTarget => new GsRouteDataRtEvAimPointNoTarget { },
+                            GsRouteDataRouteEventAimPoint.Type.StaticPoint => new GsRouteDataRtEvAimPointStaticPoint { position = reader.ReadPositionF() },
+                            GsRouteDataRouteEventAimPoint.Type.Character => new GsRouteDataRtEvAimPointCharacter { characterName = new Kernel.String(reader.ReadStrCode32().ToString()) },
+                            GsRouteDataRouteEventAimPoint.Type.RouteAsSightMovePath => new GsRouteDataRtEvAimPointRouteAsSightMovePath { routeNames = new StaticArray<Kernel.String>(new Kernel.String[] { new Kernel.String(reader.ReadStrCode32().ToString()), new Kernel.String(reader.ReadStrCode32().ToString()), new Kernel.String(reader.ReadStrCode32().ToString()), new Kernel.String(reader.ReadStrCode32().ToString()) }) },
+                            GsRouteDataRouteEventAimPoint.Type.RouteAsObject => new GsRouteDataRtEvAimPointRouteAsObject { routeNames = new StaticArray<Kernel.String>(new Kernel.String[] { new Kernel.String(reader.ReadStrCode32().ToString()), new Kernel.String(reader.ReadStrCode32().ToString()), new Kernel.String(reader.ReadStrCode32().ToString()), new Kernel.String(reader.ReadStrCode32().ToString()) }) },
+                            _ => throw new NotImplementedException(),
+                        };
+                        aimPoint.SetOwner(routeData);
+                        reader.Seek(payloadPosition);
 
-                                reader.SkipPadding(4 * 4);
-                                break;
-                            case GsRouteDataEventAimPointType.ROUTE_AIM_STATIC_POINT:
-                                var staticPoint = new GsRouteDataEvAimPtStaticPoint();
-                                @event.aimPoint = new EntityPtr<GsRouteDataEventAimPoint>(staticPoint);
-
-                                staticPoint.position = reader.ReadPositionF();
-                                reader.SkipPadding(4);
-                                break;
-                            case GsRouteDataEventAimPointType.ROUTE_AIM_CHARACTER:
-                                var character = new GsRouteDataEvAimPtCharacter();
-                                @event.aimPoint = new EntityPtr<GsRouteDataEventAimPoint>(character);
-
-                                character.characterName = new Kernel.String(reader.ReadStrCode32().ToString());
-                                reader.SkipPadding(4 * 3);
-                                break;
-                            case GsRouteDataEventAimPointType.ROUTE_AIM_ROUTE_AS_SIGHT_MOVE_PATH:
-                                var routeAsSightMovePath = new GsRouteDataEvAimPtRouteAsSightMovePath();
-                                @event.aimPoint = new EntityPtr<GsRouteDataEventAimPoint>(routeAsSightMovePath);
-
-                                for (int l = 0; l < 4; l++)
-                                {
-                                    routeAsSightMovePath.routeNames[l] = new Kernel.String(reader.ReadStrCode32().ToString());
-                                }
-                                break;
-                            case GsRouteDataEventAimPointType.ROUTE_AIM_ROUTE_AS_OBJECT:
-                                var routeAsObject = new GsRouteDataEvAimPtRouteAsObject();
-                                @event.aimPoint = new EntityPtr<GsRouteDataEventAimPoint>(routeAsObject);
-
-                                for (int l = 0; l < 4; l++)
-                                {
-                                    routeAsObject.routeNames[l] = new Kernel.String(reader.ReadStrCode32().ToString());
-                                }
-                                break;
-                            default:
-                                break;
-                        }
-
-                        for (int l = 0; l < 4; l++)
-                            @event.extensions[l] = reader.ReadUInt32();
+                        GsRouteDataRouteEvent routeEvent = GameServiceModule.GsRouteDataEventDeserializationMap[eventDef.Id](reader);
+                        routeEvent.SetOwner(routeData);
+                        routeEvent.aimPoint = new EntityPtr<GsRouteDataRouteEventAimPoint>(aimPoint);
 
                         if (fileVersion == RouteSetVersion.TPP)
                             reader.Skip(4); //snippet
 
-                        if (eventDef.Type == EventType.Edge)
+                        if (eventDef.Affinity == EventAffinity.Edge)
                         {
-                            var edgeEvent = new GsRouteDataEdgeEvent
-                            {
-                                id = new Kernel.String(eventDef.Id.ToString()),
-                                aimPoint = @event.aimPoint,
-                                extensions = @event.extensions
-                            };
+                            var edgeEvent = routeEvent as GsRouteDataEdgeEvent;
                             edge.edgeEvent = new EntityPtr<GsRouteDataEdgeEvent>(edgeEvent);
                         }
-                        else if (eventDef.Type == EventType.Node)
+                        else
                         {
-                            var nodeEvent = new GsRouteDataNodeEvent
-                            {
-                                id = new Kernel.String(eventDef.Id.ToString()),
-                                aimPoint = @event.aimPoint,
-                                extensions = @event.extensions,
-                                isLoop = eventDef.IsLoop,
-                                time = eventDef.Time,
-                                dir = eventDef.Direction,
-                            };
-
+                            var nodeEvent = routeEvent as GsRouteDataNodeEvent;
+                            nodeEvent.isLoop = eventDef.IsLoop;
+                            nodeEvent.time = eventDef.Time;
+                            nodeEvent.direction = eventDef.Direction;
                             node.nodeEvents.Add(new EntityPtr<GsRouteDataNodeEvent>(nodeEvent));
                         }
                     }
+                }
+
+                for (int j = 0; j < nodeCount; j++)
+                {
+                    EntityPtr<GraphxSpatialGraphDataNode> node = routeData.nodes[j];
+
+                    EntityPtr<GraphxSpatialGraphDataEdge> prevEdge = routeData.edges[(j - 1 + nodeCount) % nodeCount];
+                    EntityPtr<GraphxSpatialGraphDataEdge> nextEdge = routeData.edges[j];
+
+                    node.Get().inlinks.Add(EntityHandle.Get(prevEdge.Get()));
+                    prevEdge.Get().nextNode = EntityHandle.Get(node.Get());
+                    node.Get().outlinks.Add(EntityHandle.Get(nextEdge.Get()));
+                    nextEdge.Get().prevNode = EntityHandle.Get(node.Get());
                 }
 
                 // RouteData has been staged. Initialize it.

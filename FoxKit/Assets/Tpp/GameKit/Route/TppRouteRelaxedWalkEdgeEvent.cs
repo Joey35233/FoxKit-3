@@ -1,0 +1,14 @@
+using Fox.Fio;
+using Fox.GameService;
+using Fox.Kernel;
+
+namespace Tpp.GameKit
+{
+	public partial class TppRouteRelaxedWalkEdgeEvent : GsRouteDataEdgeEvent
+	{
+		public static readonly StrCode32 Id = new StrCode32("RelaxedWalk");
+		public override StrCode32 GetId() => Id;
+
+		public static TppRouteRelaxedWalkEdgeEvent Deserialize(FileStreamReader reader) => new TppRouteRelaxedWalkEdgeEvent { binaryData = new StaticArray<uint>(new uint[] { reader.ReadUInt32(), reader.ReadUInt32(), reader.ReadUInt32(), reader.ReadUInt32() }), };
+	}
+}
