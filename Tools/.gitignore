@@ -359,5 +359,7 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 
-TppClassGeneration/TppClassDefinitions.json
-TppClassGeneration/TppEnums.json
+# FoxKit classgen
+Fox/
+Tpp/
+*.generated.cs

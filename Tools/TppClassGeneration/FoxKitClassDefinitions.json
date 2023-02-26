@@ -6,19 +6,7 @@
     "name": "GsRouteData",
     "namespace": "GameService",
     "parent": "GraphxSpatialGraphData",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
+    "properties": [],
     "version": 0
   },
   {
@@ -72,19 +60,7 @@
     "name": "GsRouteDataRouteEventAimPoint",
     "namespace": "GameService",
     "parent": "DataElement",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
+    "properties": [],
     "version": 0
   },
   {
@@ -116,19 +92,7 @@
     "name": "GsRouteDataRtEvAimPointNoTarget",
     "namespace": "GameService",
     "parent": "GsRouteDataRouteEventAimPoint",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
+    "properties": [],
     "version": 0
   },
   {
@@ -270,19 +234,7 @@
     "name": "GsRouteDataEdgeEvent",
     "namespace": "GameService",
     "parent": "GsRouteDataRouteEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
+    "properties": [],
     "version": 0
   },
   {
@@ -2120,15 +2072,15 @@
     "parent": "GsRouteDataEdgeEvent",
     "properties": [
       {
-        "arraySize": 1,
+        "arraySize": 4,
         "container": "StaticArray",
         "enum": null,
         "exportFlag": "RW",
-        "name": "speed",
+        "name": "binaryData",
         "offset": 76,
         "ptrType": null,
-        "size": 4,
-        "type": "int32"
+        "size": 16,
+        "type": "uint32"
       }
     ],
     "version": 0
