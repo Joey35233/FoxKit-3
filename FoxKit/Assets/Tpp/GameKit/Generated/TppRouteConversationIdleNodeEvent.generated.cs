@@ -17,8 +17,10 @@ namespace Tpp.GameKit
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Kernel.StaticArray<uint> binaryData { get; set; } = new Fox.Kernel.StaticArray<uint>(4);
-        
+        public uint conversationLabel{get; set;}
+        public uint friendCharacterId{get; set;}
+        public uint range{get; set;}
+
         // ClassInfos
         public static new bool ClassInfoInitialized = false;
         private static Fox.Core.EntityInfo classInfo;
@@ -37,7 +39,9 @@ namespace Tpp.GameKit
         {
             if (Fox.GameService.GsRouteDataNodeEvent.ClassInfoInitialized)
                 classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("TppRouteConversationIdleNodeEvent"), typeof(TppRouteConversationIdleNodeEvent), Fox.GameService.GsRouteDataNodeEvent.ClassInfo, 0, null, 0);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("binaryData"), Fox.Core.PropertyInfo.PropertyType.UInt32, 76, 4, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+            classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("conversationLabel"), Fox.Core.PropertyInfo.PropertyType.Int32, 76, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+            classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("friendCharacterId"), Fox.Core.PropertyInfo.PropertyType.Int32, 76, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+            classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("range"), Fox.Core.PropertyInfo.PropertyType.Int32, 76, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 
             ClassInfoInitialized = true;
         }
@@ -60,9 +64,14 @@ namespace Tpp.GameKit
         {
             switch(propertyName.CString)
             {
-                case "binaryData":
-                    
-                    this.binaryData[index] = value.GetValueAsUInt32();
+                case "conversationLabel":
+                    this.conversationLabel = value.GetValueAsUInt32();
+                    return;
+                case "friendCharacterId":
+                    this.friendCharacterId = value.GetValueAsUInt32();
+                    return;
+                case "range":
+                    this.range = value.GetValueAsUInt32();
                     return;
                 default:
                     base.SetPropertyElement(propertyName, index, value);
