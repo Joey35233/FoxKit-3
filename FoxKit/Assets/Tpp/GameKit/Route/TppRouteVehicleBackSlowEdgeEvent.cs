@@ -9,6 +9,13 @@ namespace Tpp.GameKit
 		public static readonly StrCode32 Id = new StrCode32("VehicleBackSlow");
 		public override StrCode32 GetId() => Id;
 
-		public static TppRouteVehicleBackSlowEdgeEvent Deserialize(FileStreamReader reader) => new TppRouteVehicleBackSlowEdgeEvent { binaryData = new StaticArray<uint>(new uint[] { reader.ReadUInt32(), reader.ReadUInt32(), reader.ReadUInt32(), reader.ReadUInt32() }), };
-	}
+        public static TppRouteVehicleBackSlowEdgeEvent Deserialize(FileStreamReader reader)
+        {
+            var result = new TppRouteVehicleBackSlowEdgeEvent { railId = new String(reader.ReadStrCode32().ToString()), rpm = reader.ReadUInt32() };
+
+            reader.SkipPadding(8);
+
+            return result;
+        }
+    }
 }

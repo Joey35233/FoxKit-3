@@ -488,15 +488,26 @@
     "parent": "GsRouteDataNodeEvent",
     "properties": [
       {
-        "arraySize": 4,
+        "arraySize": 1,
         "container": "StaticArray",
         "enum": null,
         "exportFlag": "RW",
-        "name": "binaryData",
+        "name": "animationName",
         "offset": 76,
         "ptrType": null,
-        "size": 16,
-        "type": "uint32"
+        "size": 8,
+        "type": "String"
+      },
+      {
+        "arraySize": 1,
+        "container": "StaticArray",
+        "enum": null,
+        "exportFlag": "RW",
+        "name": "unknown",
+        "offset": 84,
+        "ptrType": null,
+        "size": 2,
+        "type": "uint16"
       }
     ],
     "version": 0
@@ -730,14 +741,36 @@
     "parent": "GsRouteDataNodeEvent",
     "properties": [
       {
-        "arraySize": 4,
+        "arraySize": 1,
         "container": "StaticArray",
         "enum": null,
         "exportFlag": "RW",
-        "name": "binaryData",
+        "name": "conversationLabel",
         "offset": 76,
         "ptrType": null,
-        "size": 16,
+        "size": 8,
+        "type": "String"
+      },
+      {
+        "arraySize": 1,
+        "container": "StaticArray",
+        "enum": null,
+        "exportFlag": "RW",
+        "name": "friendCharacterId",
+        "offset": 84,
+        "ptrType": null,
+        "size": 8,
+        "type": "String"
+      },
+      {
+        "arraySize": 1,
+        "container": "StaticArray",
+        "enum": null,
+        "exportFlag": "RW",
+        "name": "range",
+        "offset": 92,
+        "ptrType": null,
+        "size": 4,
         "type": "uint32"
       }
     ],
@@ -1060,15 +1093,37 @@
     "parent": "GsRouteDataNodeEvent",
     "properties": [
       {
-        "arraySize": 4,
+        "arraySize": 1,
         "container": "StaticArray",
         "enum": null,
         "exportFlag": "RW",
-        "name": "binaryData",
+        "name": "unknown",
         "offset": 76,
         "ptrType": null,
-        "size": 16,
+        "size": 4,
         "type": "uint32"
+      },
+      {
+        "arraySize": 1,
+        "container": "StaticArray",
+        "enum": null,
+        "exportFlag": "RW",
+        "name": "message",
+        "offset": 80,
+        "ptrType": null,
+        "size": 8,
+        "type": "String"
+      },
+      {
+        "arraySize": 1,
+        "container": "StaticArray",
+        "enum": null,
+        "exportFlag": "RW",
+        "name": "routeName",
+        "offset": 88,
+        "ptrType": null,
+        "size": 8,
+        "type": "String"
       }
     ],
     "version": 0
@@ -1104,15 +1159,26 @@
     "parent": "GsRouteDataNodeEvent",
     "properties": [
       {
-        "arraySize": 4,
+        "arraySize": 1,
         "container": "StaticArray",
         "enum": null,
         "exportFlag": "RW",
-        "name": "binaryData",
+        "name": "animationName",
         "offset": 76,
         "ptrType": null,
-        "size": 16,
-        "type": "uint32"
+        "size": 8,
+        "type": "String"
+      },
+      {
+        "arraySize": 1,
+        "container": "StaticArray",
+        "enum": null,
+        "exportFlag": "RW",
+        "name": "unknown",
+        "offset": 84,
+        "ptrType": null,
+        "size": 2,
+        "type": "uint16"
       }
     ],
     "version": 0
@@ -1236,15 +1302,37 @@
     "parent": "GsRouteDataNodeEvent",
     "properties": [
       {
-        "arraySize": 4,
+        "arraySize": 1,
         "container": "StaticArray",
         "enum": null,
         "exportFlag": "RW",
-        "name": "binaryData",
+        "name": "unknown",
         "offset": 76,
         "ptrType": null,
-        "size": 16,
+        "size": 4,
         "type": "uint32"
+      },
+      {
+        "arraySize": 1,
+        "container": "StaticArray",
+        "enum": null,
+        "exportFlag": "RW",
+        "name": "message",
+        "offset": 80,
+        "ptrType": null,
+        "size": 8,
+        "type": "String"
+      },
+      {
+        "arraySize": 1,
+        "container": "StaticArray",
+        "enum": null,
+        "exportFlag": "RW",
+        "name": "routeName",
+        "offset": 88,
+        "ptrType": null,
+        "size": 8,
+        "type": "String"
       }
     ],
     "version": 0
@@ -1390,15 +1478,37 @@
     "parent": "GsRouteDataNodeEvent",
     "properties": [
       {
-        "arraySize": 4,
+        "arraySize": 1,
         "container": "StaticArray",
         "enum": null,
         "exportFlag": "RW",
-        "name": "binaryData",
+        "name": "routeName",
         "offset": 76,
         "ptrType": null,
-        "size": 16,
-        "type": "uint32"
+        "size": 8,
+        "type": "String"
+      },
+      {
+        "arraySize": 1,
+        "container": "StaticArray",
+        "enum": null,
+        "exportFlag": "RW",
+        "name": "function",
+        "offset": 84,
+        "ptrType": null,
+        "size": 8,
+        "type": "String"
+      },
+      {
+        "arraySize": 1,
+        "container": "StaticArray",
+        "enum": null,
+        "exportFlag": "RW",
+        "name": "argument",
+        "offset": 92,
+        "ptrType": null,
+        "size": 8,
+        "type": "String"
       }
     ],
     "version": 0
@@ -1412,15 +1522,26 @@
     "parent": "GsRouteDataNodeEvent",
     "properties": [
       {
-        "arraySize": 4,
+        "arraySize": 1,
         "container": "StaticArray",
         "enum": null,
         "exportFlag": "RW",
-        "name": "binaryData",
+        "name": "syncTableId",
         "offset": 76,
         "ptrType": null,
-        "size": 16,
-        "type": "uint32"
+        "size": 8,
+        "type": "String"
+      },
+      {
+        "arraySize": 1,
+        "container": "StaticArray",
+        "enum": null,
+        "exportFlag": "RW",
+        "name": "step",
+        "offset": 84,
+        "ptrType": null,
+        "size": 4,
+        "type": "int32"
       }
     ],
     "version": 0
@@ -1434,15 +1555,37 @@
     "parent": "GsRouteDataNodeEvent",
     "properties": [
       {
-        "arraySize": 4,
+        "arraySize": 1,
         "container": "StaticArray",
         "enum": null,
         "exportFlag": "RW",
-        "name": "binaryData",
+        "name": "unknown",
         "offset": 76,
         "ptrType": null,
-        "size": 16,
+        "size": 4,
         "type": "uint32"
+      },
+      {
+        "arraySize": 1,
+        "container": "StaticArray",
+        "enum": null,
+        "exportFlag": "RW",
+        "name": "message",
+        "offset": 80,
+        "ptrType": null,
+        "size": 8,
+        "type": "String"
+      },
+      {
+        "arraySize": 1,
+        "container": "StaticArray",
+        "enum": null,
+        "exportFlag": "RW",
+        "name": "routeName",
+        "offset": 88,
+        "ptrType": null,
+        "size": 8,
+        "type": "String"
       }
     ],
     "version": 0
@@ -2468,14 +2611,25 @@
     "parent": "GsRouteDataEdgeEvent",
     "properties": [
       {
-        "arraySize": 4,
+        "arraySize": 1,
         "container": "StaticArray",
         "enum": null,
         "exportFlag": "RW",
-        "name": "binaryData",
+        "name": "railId",
         "offset": 76,
         "ptrType": null,
-        "size": 16,
+        "size": 8,
+        "type": "String"
+      },
+      {
+        "arraySize": 1,
+        "container": "StaticArray",
+        "enum": null,
+        "exportFlag": "RW",
+        "name": "rpm",
+        "offset": 84,
+        "ptrType": null,
+        "size": 4,
         "type": "uint32"
       }
     ],
@@ -2490,14 +2644,25 @@
     "parent": "GsRouteDataEdgeEvent",
     "properties": [
       {
-        "arraySize": 4,
+        "arraySize": 1,
         "container": "StaticArray",
         "enum": null,
         "exportFlag": "RW",
-        "name": "binaryData",
+        "name": "railId",
         "offset": 76,
         "ptrType": null,
-        "size": 16,
+        "size": 8,
+        "type": "String"
+      },
+      {
+        "arraySize": 1,
+        "container": "StaticArray",
+        "enum": null,
+        "exportFlag": "RW",
+        "name": "rpm",
+        "offset": 84,
+        "ptrType": null,
+        "size": 4,
         "type": "uint32"
       }
     ],
@@ -2512,14 +2677,25 @@
     "parent": "GsRouteDataEdgeEvent",
     "properties": [
       {
-        "arraySize": 4,
+        "arraySize": 1,
         "container": "StaticArray",
         "enum": null,
         "exportFlag": "RW",
-        "name": "binaryData",
+        "name": "railId",
         "offset": 76,
         "ptrType": null,
-        "size": 16,
+        "size": 8,
+        "type": "String"
+      },
+      {
+        "arraySize": 1,
+        "container": "StaticArray",
+        "enum": null,
+        "exportFlag": "RW",
+        "name": "rpm",
+        "offset": 84,
+        "ptrType": null,
+        "size": 4,
         "type": "uint32"
       }
     ],
@@ -2534,14 +2710,25 @@
     "parent": "GsRouteDataEdgeEvent",
     "properties": [
       {
-        "arraySize": 4,
+        "arraySize": 1,
         "container": "StaticArray",
         "enum": null,
         "exportFlag": "RW",
-        "name": "binaryData",
+        "name": "railId",
         "offset": 76,
         "ptrType": null,
-        "size": 16,
+        "size": 8,
+        "type": "String"
+      },
+      {
+        "arraySize": 1,
+        "container": "StaticArray",
+        "enum": null,
+        "exportFlag": "RW",
+        "name": "rpm",
+        "offset": 84,
+        "ptrType": null,
+        "size": 4,
         "type": "uint32"
       }
     ],
@@ -2556,14 +2743,25 @@
     "parent": "GsRouteDataEdgeEvent",
     "properties": [
       {
-        "arraySize": 4,
+        "arraySize": 1,
         "container": "StaticArray",
         "enum": null,
         "exportFlag": "RW",
-        "name": "binaryData",
+        "name": "railId",
         "offset": 76,
         "ptrType": null,
-        "size": 16,
+        "size": 8,
+        "type": "String"
+      },
+      {
+        "arraySize": 1,
+        "container": "StaticArray",
+        "enum": null,
+        "exportFlag": "RW",
+        "name": "rpm",
+        "offset": 84,
+        "ptrType": null,
+        "size": 4,
         "type": "uint32"
       }
     ],
@@ -2578,14 +2776,25 @@
     "parent": "GsRouteDataEdgeEvent",
     "properties": [
       {
-        "arraySize": 4,
+        "arraySize": 1,
         "container": "StaticArray",
         "enum": null,
         "exportFlag": "RW",
-        "name": "binaryData",
+        "name": "railId",
         "offset": 76,
         "ptrType": null,
-        "size": 16,
+        "size": 8,
+        "type": "String"
+      },
+      {
+        "arraySize": 1,
+        "container": "StaticArray",
+        "enum": null,
+        "exportFlag": "RW",
+        "name": "rpm",
+        "offset": 84,
+        "ptrType": null,
+        "size": 4,
         "type": "uint32"
       }
     ],
