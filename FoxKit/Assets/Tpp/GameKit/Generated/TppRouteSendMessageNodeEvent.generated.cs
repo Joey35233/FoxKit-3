@@ -17,9 +17,7 @@ namespace Tpp.GameKit
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public int unknownA { get; set; }
-        public uint messageId { get; set; }
-        public uint routeId { get; set; }
+        public Fox.Kernel.StaticArray<uint> binaryData { get; set; } = new Fox.Kernel.StaticArray<uint>(4);
         
         // ClassInfos
         public static new bool ClassInfoInitialized = false;
@@ -39,9 +37,7 @@ namespace Tpp.GameKit
         {
             if (Fox.GameService.GsRouteDataNodeEvent.ClassInfoInitialized)
                 classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("TppRouteSendMessageNodeEvent"), typeof(TppRouteSendMessageNodeEvent), Fox.GameService.GsRouteDataNodeEvent.ClassInfo, 0, null, 0);
-            classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("unknownA"), Fox.Core.PropertyInfo.PropertyType.Int32, 76, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-            classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("messageId"), Fox.Core.PropertyInfo.PropertyType.UInt32, 76, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-            classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("routeId"), Fox.Core.PropertyInfo.PropertyType.UInt32, 76, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("binaryData"), Fox.Core.PropertyInfo.PropertyType.UInt32, 76, 4, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 
             ClassInfoInitialized = true;
         }
@@ -54,15 +50,6 @@ namespace Tpp.GameKit
         {
             switch(propertyName.CString)
             {
-                case "unknownA":
-                    this.unknownA = value.GetValueAsInt32();
-                    return;
-                case "messageId":
-                    this.messageId = value.GetValueAsUInt32();
-                    return;
-                case "routeId":
-                    this.routeId = value.GetValueAsUInt32();
-                    return;
                 default:
                     base.SetProperty(propertyName, value);
                     return;
@@ -73,6 +60,10 @@ namespace Tpp.GameKit
         {
             switch(propertyName.CString)
             {
+                case "binaryData":
+                    
+                    this.binaryData[index] = value.GetValueAsUInt32();
+                    return;
                 default:
                     base.SetPropertyElement(propertyName, index, value);
                     return;

@@ -17,8 +17,7 @@ namespace Tpp.GameKit
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public uint syncTableId { get; set; }
-        public uint syncRouteStep { get; set; }
+        public Fox.Kernel.StaticArray<uint> binaryData { get; set; } = new Fox.Kernel.StaticArray<uint>(4);
         
         // ClassInfos
         public static new bool ClassInfoInitialized = false;
@@ -38,8 +37,7 @@ namespace Tpp.GameKit
         {
             if (Fox.GameService.GsRouteDataNodeEvent.ClassInfoInitialized)
                 classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("TppRouteSyncRouteNodeEvent"), typeof(TppRouteSyncRouteNodeEvent), Fox.GameService.GsRouteDataNodeEvent.ClassInfo, 0, null, 0);
-            classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("syncTableId"), Fox.Core.PropertyInfo.PropertyType.UInt32, 76, 4, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-            classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("syncRouteStep"), Fox.Core.PropertyInfo.PropertyType.UInt32, 76, 4, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("binaryData"), Fox.Core.PropertyInfo.PropertyType.UInt32, 76, 4, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 
             ClassInfoInitialized = true;
         }
@@ -52,12 +50,6 @@ namespace Tpp.GameKit
         {
             switch(propertyName.CString)
             {
-                case "syncTableId":
-                    this.syncTableId = value.GetValueAsUInt32();
-                    return;
-                case "syncRouteStep":
-                    this.syncRouteStep = value.GetValueAsUInt32();
-                    return;
                 default:
                     base.SetProperty(propertyName, value);
                     return;
@@ -68,6 +60,10 @@ namespace Tpp.GameKit
         {
             switch(propertyName.CString)
             {
+                case "binaryData":
+                    
+                    this.binaryData[index] = value.GetValueAsUInt32();
+                    return;
                 default:
                     base.SetPropertyElement(propertyName, index, value);
                     return;
