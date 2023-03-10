@@ -1863,14 +1863,25 @@
     "parent": "GsRouteDataEdgeEvent",
     "properties": [
       {
-        "arraySize": 4,
+        "arraySize": 1,
         "container": "StaticArray",
         "enum": null,
         "exportFlag": "RW",
-        "name": "binaryData",
+        "name": "railId",
         "offset": 76,
         "ptrType": null,
-        "size": 16,
+        "size": 8,
+        "type": "String"
+      },
+      {
+        "arraySize": 1,
+        "container": "StaticArray",
+        "enum": null,
+        "exportFlag": "RW",
+        "name": "rpm",
+        "offset": 84,
+        "ptrType": null,
+        "size": 4,
         "type": "uint32"
       }
     ],
