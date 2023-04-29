@@ -52,13 +52,14 @@ namespace Fox.Core
             output.Position = endPosition;
         }
 
-        public void WriteProperty(Entity entity, PropertyInfo property, BinaryWriter writer)
+        private void WriteProperty(Entity entity, PropertyInfo property, BinaryWriter writer)
         {
             Stream output = writer.BaseStream;
             long headerPosition = output.Position;
             output.Position += 32;
 
-            WritePropertyValues(entity, property, writer);
+            // TODO Handle arrays, stringmaps
+            WriteProperty(entity, property, writer);
 
             output.AlignWrite(16, 0x00);
             long endPosition = output.Position;
@@ -75,86 +76,109 @@ namespace Fox.Core
             output.Position = endPosition;
         }
 
-        public void WritePropertyValues(Entity entity, PropertyInfo property, BinaryWriter writer)
+        public void WritePropertyValue(Entity entity, PropertyInfo property, BinaryWriter writer)
         {
-            for (int i = 0; i < property.ArraySize; i++)
+            switch (property.Type)
             {
-                // TODO if StringMap, write key
-                switch (property.Type)
-                {
-                    case PropertyInfo.PropertyType.UInt8:
-                        byte uVal = entity.GetProperty<byte>(property);
-                        writer.Write(uVal);
-                        break;
-                    case PropertyInfo.PropertyType.Int16:
-                        short shortVal = entity.GetProperty<short>(property);
-                        writer.Write(shortVal);
-                        break;
-                    case PropertyInfo.PropertyType.UInt16:
-                        ushort uShortVal = entity.GetProperty<ushort>(property);
-                        writer.Write(uShortVal);
-                        break;
-                    case PropertyInfo.PropertyType.Int32:
-                        int intVal = entity.GetProperty<int>(property);
-                        writer.Write(intVal);
-                        break;
-                    case PropertyInfo.PropertyType.UInt32:
-                        uint uIntVal = entity.GetProperty<uint>(property);
-                        writer.Write(uIntVal);
-                        break;
-                    case PropertyInfo.PropertyType.Int64:
-                        long longVal = entity.GetProperty<long>(property);
-                        writer.Write(longVal);
-                        break;
-                    case PropertyInfo.PropertyType.UInt64:
-                        ulong uLongVal = entity.GetProperty<ulong>(property);
-                        writer.Write(uLongVal);
-                        break;
-                    case PropertyInfo.PropertyType.Float:
-                        float floatVal = entity.GetProperty<float>(property);
-                        writer.Write(floatVal);
-                        break;
-                    case PropertyInfo.PropertyType.Double:
-                        double doubleVal = entity.GetProperty<double>(property);
-                        writer.Write(doubleVal);
-                        break;
-                    case PropertyInfo.PropertyType.Bool:
-                        bool boolVal = entity.GetProperty<bool>(property);
-                        writer.Write(boolVal);
-                        break;
-                    case PropertyInfo.PropertyType.String:
-                        Kernel.String strVal = entity.GetProperty<Kernel.String>(property);
-                        writer.WriteStrCode(strVal.Hash);
-                        break;
-                    case PropertyInfo.PropertyType.Path:
-                        Kernel.Path pathVal = entity.GetProperty<Kernel.Path>(property);
-                        writer.WritePathFileNameAndExtCode(pathVal.Hash);
-                        break;
-                    case PropertyInfo.PropertyType.EntityPtr:
-                        break;
-                    case PropertyInfo.PropertyType.Vector3:
-                        break;
-                    case PropertyInfo.PropertyType.Vector4:
-                        break;
-                    case PropertyInfo.PropertyType.Quat:
-                        break;
-                    case PropertyInfo.PropertyType.Matrix3:
-                        break;
-                    case PropertyInfo.PropertyType.Matrix4:
-                        break;
-                    case PropertyInfo.PropertyType.Color:
-                        break;
-                    case PropertyInfo.PropertyType.FilePtr:
-                        break;
-                    case PropertyInfo.PropertyType.EntityHandle:
-                        break;
-                    case PropertyInfo.PropertyType.EntityLink:
-                        break;
-                    case PropertyInfo.PropertyType.PropertyInfo:
-                        break;
-                    case PropertyInfo.PropertyType.WideVector3:
-                        break;
-                }
+                case PropertyInfo.PropertyType.UInt8:
+                    byte uVal = entity.GetProperty<byte>(property);
+                    writer.Write(uVal);
+                    break;
+                case PropertyInfo.PropertyType.Int16:
+                    short shortVal = entity.GetProperty<short>(property);
+                    writer.Write(shortVal);
+                    break;
+                case PropertyInfo.PropertyType.UInt16:
+                    ushort uShortVal = entity.GetProperty<ushort>(property);
+                    writer.Write(uShortVal);
+                    break;
+                case PropertyInfo.PropertyType.Int32:
+                    int intVal = entity.GetProperty<int>(property);
+                    writer.Write(intVal);
+                    break;
+                case PropertyInfo.PropertyType.UInt32:
+                    uint uIntVal = entity.GetProperty<uint>(property);
+                    writer.Write(uIntVal);
+                    break;
+                case PropertyInfo.PropertyType.Int64:
+                    long longVal = entity.GetProperty<long>(property);
+                    writer.Write(longVal);
+                    break;
+                case PropertyInfo.PropertyType.UInt64:
+                    ulong uLongVal = entity.GetProperty<ulong>(property);
+                    writer.Write(uLongVal);
+                    break;
+                case PropertyInfo.PropertyType.Float:
+                    float floatVal = entity.GetProperty<float>(property);
+                    writer.Write(floatVal);
+                    break;
+                case PropertyInfo.PropertyType.Double:
+                    double doubleVal = entity.GetProperty<double>(property);
+                    writer.Write(doubleVal);
+                    break;
+                case PropertyInfo.PropertyType.Bool:
+                    bool boolVal = entity.GetProperty<bool>(property);
+                    writer.Write(boolVal);
+                    break;
+                case PropertyInfo.PropertyType.String:
+                    Kernel.String strVal = entity.GetProperty<Kernel.String>(property);
+                    writer.WriteStrCode(strVal.Hash);
+                    break;
+                case PropertyInfo.PropertyType.Path:
+                    Kernel.Path pathVal = entity.GetProperty<Kernel.Path>(property);
+                    writer.WritePathFileNameAndExtCode(pathVal.Hash);
+                    break;
+                case PropertyInfo.PropertyType.EntityPtr:
+                    // TODO
+                    break;
+                case PropertyInfo.PropertyType.Vector3:
+                    UnityEngine.Vector3 vec3Val = entity.GetProperty<UnityEngine.Vector3>(property);
+                    writer.Write(vec3Val.x);
+                    writer.Write(vec3Val.y);
+                    writer.Write(vec3Val.z);
+                    writer.Write(0.0f);
+                    break;
+                case PropertyInfo.PropertyType.Vector4:
+                    UnityEngine.Vector4 vec4Val = entity.GetProperty<UnityEngine.Vector3>(property);
+                    writer.Write(vec4Val.x);
+                    writer.Write(vec4Val.y);
+                    writer.Write(vec4Val.z);
+                    writer.Write(vec4Val.w);
+                    break;
+                case PropertyInfo.PropertyType.Quat:
+                    UnityEngine.Quaternion quatVal = entity.GetProperty<UnityEngine.Quaternion>(property);
+                    writer.Write(quatVal.x);
+                    writer.Write(quatVal.y);
+                    writer.Write(quatVal.z);
+                    writer.Write(quatVal.w);
+                    break;
+                case PropertyInfo.PropertyType.Matrix3:
+                    // TODO
+                    break;
+                case PropertyInfo.PropertyType.Matrix4:
+                    // TODO
+                    break;
+                case PropertyInfo.PropertyType.Color:
+                    UnityEngine.Color colorVal = entity.GetProperty<UnityEngine.Color>(property);
+                    writer.Write(colorVal.r);
+                    writer.Write(colorVal.g);
+                    writer.Write(colorVal.b);
+                    writer.Write(colorVal.a);
+                    break;
+                case PropertyInfo.PropertyType.FilePtr:
+                    FilePtr filePtrVal = entity.GetProperty<FilePtr>(property);
+                    writer.WritePathFileNameAndExtCode(filePtrVal.path.Hash);
+                    break;
+                case PropertyInfo.PropertyType.EntityHandle:
+                    // TODO
+                    break;
+                case PropertyInfo.PropertyType.EntityLink:
+                    EntityLink entityLinkVal = entity.GetProperty<EntityLink>(property);
+                    writer.WritePathFileNameAndExtCode(entityLinkVal.packagePath.Hash);
+                    writer.WritePathFileNameAndExtCode(entityLinkVal.archivePath.Hash);
+                    writer.WriteStrCode(entityLinkVal.nameInArchive.Hash);
+                    // TODO Write EntityHandle
+                    break;
             }
         }
     }
