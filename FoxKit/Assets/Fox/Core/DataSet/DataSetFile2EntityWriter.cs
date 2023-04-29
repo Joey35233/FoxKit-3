@@ -1,3 +1,4 @@
+using Fox.Fio;
 using System;
 using System.IO;
 using System.Text;
@@ -78,7 +79,82 @@ namespace Fox.Core
         {
             for (int i = 0; i < property.ArraySize; i++)
             {
-                // TODO
+                // TODO if StringMap, write key
+                switch (property.Type)
+                {
+                    case PropertyInfo.PropertyType.UInt8:
+                        byte uVal = entity.GetProperty<byte>(property);
+                        writer.Write(uVal);
+                        break;
+                    case PropertyInfo.PropertyType.Int16:
+                        short shortVal = entity.GetProperty<short>(property);
+                        writer.Write(shortVal);
+                        break;
+                    case PropertyInfo.PropertyType.UInt16:
+                        ushort uShortVal = entity.GetProperty<ushort>(property);
+                        writer.Write(uShortVal);
+                        break;
+                    case PropertyInfo.PropertyType.Int32:
+                        int intVal = entity.GetProperty<int>(property);
+                        writer.Write(intVal);
+                        break;
+                    case PropertyInfo.PropertyType.UInt32:
+                        uint uIntVal = entity.GetProperty<uint>(property);
+                        writer.Write(uIntVal);
+                        break;
+                    case PropertyInfo.PropertyType.Int64:
+                        long longVal = entity.GetProperty<long>(property);
+                        writer.Write(longVal);
+                        break;
+                    case PropertyInfo.PropertyType.UInt64:
+                        ulong uLongVal = entity.GetProperty<ulong>(property);
+                        writer.Write(uLongVal);
+                        break;
+                    case PropertyInfo.PropertyType.Float:
+                        float floatVal = entity.GetProperty<float>(property);
+                        writer.Write(floatVal);
+                        break;
+                    case PropertyInfo.PropertyType.Double:
+                        double doubleVal = entity.GetProperty<double>(property);
+                        writer.Write(doubleVal);
+                        break;
+                    case PropertyInfo.PropertyType.Bool:
+                        bool boolVal = entity.GetProperty<bool>(property);
+                        writer.Write(boolVal);
+                        break;
+                    case PropertyInfo.PropertyType.String:
+                        Kernel.String strVal = entity.GetProperty<Kernel.String>(property);
+                        writer.WriteStrCode(strVal.Hash);
+                        break;
+                    case PropertyInfo.PropertyType.Path:
+                        Kernel.Path pathVal = entity.GetProperty<Kernel.Path>(property);
+                        writer.WritePathFileNameAndExtCode(pathVal.Hash);
+                        break;
+                    case PropertyInfo.PropertyType.EntityPtr:
+                        break;
+                    case PropertyInfo.PropertyType.Vector3:
+                        break;
+                    case PropertyInfo.PropertyType.Vector4:
+                        break;
+                    case PropertyInfo.PropertyType.Quat:
+                        break;
+                    case PropertyInfo.PropertyType.Matrix3:
+                        break;
+                    case PropertyInfo.PropertyType.Matrix4:
+                        break;
+                    case PropertyInfo.PropertyType.Color:
+                        break;
+                    case PropertyInfo.PropertyType.FilePtr:
+                        break;
+                    case PropertyInfo.PropertyType.EntityHandle:
+                        break;
+                    case PropertyInfo.PropertyType.EntityLink:
+                        break;
+                    case PropertyInfo.PropertyType.PropertyInfo:
+                        break;
+                    case PropertyInfo.PropertyType.WideVector3:
+                        break;
+                }
             }
         }
     }

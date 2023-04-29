@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -10,6 +10,8 @@ namespace Fox.Kernel
     {
         [SerializeField]
         private ulong _hash;
+
+        internal ulong Backing => _hash;
 
         public String Extension => GetExtension();
 

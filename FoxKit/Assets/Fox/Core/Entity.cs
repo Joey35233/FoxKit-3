@@ -1,4 +1,4 @@
-﻿using Fox.Kernel;
+using Fox.Kernel;
 using System;
 using UnityEngine;
 using String = Fox.Kernel.String;
@@ -66,6 +66,11 @@ namespace Fox.Core
         {
 
         }
+
+        /// <summary>
+        /// TODO: Do this through classgen
+        /// </summary>
+        public T GetProperty<T>(PropertyInfo property) => (T)this.GetType().GetProperty(property.Name.CString).GetValue(this, null);
 
         public override string ToString() => $"{GetType().Name}";
     }
