@@ -18,7 +18,7 @@ namespace FoxKit.MenuItems
             var tre2Reader = new Fox.Gr.TerrainFileReader(reader);
             Fox.Gr.TerrainFileAsset asset = tre2Reader.Read();
 
-            AssetDatabase.CreateAsset(asset, $"Assets/{Path.GetFileNameWithoutExtension(assetPath)}.asset");
+            AssetDatabase.CreateAsset(asset, $"Assets/Game/Assets/{Path.GetFileNameWithoutExtension(assetPath)}.asset");
 
             // Need to save the embedded textures to the asset
             AssetDatabase.AddObjectToAsset(asset.LodParam, asset);

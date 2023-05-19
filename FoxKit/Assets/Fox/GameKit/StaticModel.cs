@@ -10,7 +10,7 @@ namespace Fox.GameKit
         {
             base.InitializeGameObject(gameObject);
 
-            string path = modelFile.path.CString;
+            string path = "/Assets/Game"+modelFile.path.CString;
             if (System.String.IsNullOrEmpty(path))
             {
                 Debug.LogWarning($"{name}: modelFile is null");
