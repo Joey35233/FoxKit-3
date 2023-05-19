@@ -30,7 +30,7 @@ namespace Fox.GameKit
                 using var reader = new BinaryReader(System.IO.File.OpenRead(Application.dataPath+path));
                 var tre2Reader = new Fox.Gr.TerrainFileReader(reader);
                 asset = tre2Reader.Read();
-                AssetDatabase.CreateAsset(asset, $"Assets{Path.GetDirectoryName(path)+ Path.GetFileNameWithoutExtension(path)}.asset");
+                AssetDatabase.CreateAsset(asset, $"Assets{Path.GetDirectoryName(path)+ "/" + Path.GetFileNameWithoutExtension(path)}.asset");
             }
 
             int heightmapRes = asset.Heightmap.width;
