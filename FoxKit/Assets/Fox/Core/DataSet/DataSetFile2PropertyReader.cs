@@ -1,4 +1,4 @@
-﻿using Fox.Fio;
+using Fox.Fio;
 using Fox.Kernel;
 using System;
 using Debug = UnityEngine.Debug;
@@ -255,7 +255,7 @@ namespace Fox.Core.Serialization
                 case PropertyInfo.PropertyType.FilePtr:
                     return new Value(new FilePtr(new Path(unhashString(reader.ReadStrCode()).CString)));
                 case PropertyInfo.PropertyType.Vector3:
-                    return new Value(reader.ReadVector3());
+                    return new Value(reader.ReadLongVector3());
                 case PropertyInfo.PropertyType.Vector4:
                     return new Value(reader.ReadVector4());
                 case PropertyInfo.PropertyType.Quat:
