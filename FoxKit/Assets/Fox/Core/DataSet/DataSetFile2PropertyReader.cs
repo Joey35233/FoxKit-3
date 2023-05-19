@@ -253,7 +253,13 @@ namespace Fox.Core.Serialization
                 case PropertyInfo.PropertyType.Path:
                     return new Value(new Path(unhashString(reader.ReadStrCode()).CString));
                 case PropertyInfo.PropertyType.FilePtr:
-                    return new Value(new FilePtr(new Path(unhashString(reader.ReadStrCode()).CString)));
+                    StrCode hash = reader.ReadStrCode();
+                    string unhashedString = unhashString(hash).CString;
+                    var path = new Path(unhashedString);
+                    if (path == "/Assets/tpp/environ/object/cyprus/rock/cypr_rock006/scenes/cypr_rock006_vrtn001.geom")
+                        Debug.Log($"rlc:unhashedString={unhashedString},path={path.CString}");
+                    var filePtr = new FilePtr(path);
+                    return new Value(filePtr);
                 case PropertyInfo.PropertyType.Vector3:
                     return new Value(reader.ReadLongVector3());
                 case PropertyInfo.PropertyType.Vector4:

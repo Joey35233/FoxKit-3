@@ -29,9 +29,10 @@ namespace Fox.GameKit
             foreach (Matrix4x4 transform in transforms)
             {
                 var instance = GameObject.Instantiate(asset);
-                instance.transform.position = transform.GetPosition();
-                instance.transform.rotation = transform.rotation;
-                instance.transform.localScale = transform.lossyScale;
+                Matrix4x4 unityTransform = transform;
+                instance.transform.position = Kernel.Math.FoxToUnityVector3(unityTransform.GetPosition());
+                instance.transform.rotation = Kernel.Math.FoxToUnityQuaternion(unityTransform.rotation);
+                instance.transform.localScale = unityTransform.lossyScale;
                 instance.transform.SetParent(gameObject.transform, false);
             }
         }
