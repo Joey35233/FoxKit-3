@@ -14,6 +14,8 @@ namespace Fox.Core
 
         public void Write(Entity entity, IDictionary<Entity, ulong> addreses, ulong address, ulong id, Stream output)
         {
+            this.addresses = addresses;
+
             var writer = new BinaryWriter(output, Encoding.Default, true);
             long headerPosition = output.Position;
             output.Position += HeaderSize;
