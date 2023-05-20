@@ -48,12 +48,6 @@ namespace Fox.Fio
         }
 
         public Vector3 ReadVector3() => new(ReadSingle(), ReadSingle(), ReadSingle());
-        public Vector3 ReadLongVector3()
-        {
-            Vector3 ret = ReadVector3();
-            BaseStream.Position += 4;
-            return ret;
-        }
         public Vector3 ReadPositionF() => Math.FoxToUnityVector3(ReadVector3());
         public Vector3 ReadPositionHF()
         {
