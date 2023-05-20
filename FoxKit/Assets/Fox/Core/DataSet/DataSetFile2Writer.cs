@@ -23,6 +23,7 @@ namespace Fox.Core
             List<Entity> entities = GetEntitiesToExport(sceneToExport);
 
             // Perform any last minute property updates
+            // TODO Collect nested entities
             foreach (Entity entity in entities)
             {
                 AssignAddress(entity);
@@ -128,7 +129,7 @@ namespace Fox.Core
         private void WriteEntity(BinaryWriter writer, uint address, ulong id, Entity entity)
         {
             var entityWriter = new DataSetFile2EntityWriter();
-            entityWriter.Write(entity, address, id, writer.BaseStream);
+            entityWriter.Write(entity, addresses, address, id, writer.BaseStream);
         }
     }
 }

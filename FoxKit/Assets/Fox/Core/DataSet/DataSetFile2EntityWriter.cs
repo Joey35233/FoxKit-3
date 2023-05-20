@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
@@ -9,7 +10,9 @@ namespace Fox.Core
         private const short HeaderSize = 64;
         private const uint MagicNumber = 0x746e65;
 
-        public void Write(Entity entity, ulong address, ulong id, Stream output)
+        private readonly IDictionary<Entity, ulong> addresses;
+
+        public void Write(Entity entity, IDictionary<Entity, ulong> addreses, ulong address, ulong id, Stream output)
         {
             var writer = new BinaryWriter(output, Encoding.Default, true);
             long headerPosition = output.Position;
@@ -116,7 +119,7 @@ namespace Fox.Core
                     writer.WritePathPropertyValue(entity, property);
                     break;
                 case PropertyInfo.PropertyType.EntityPtr:
-                    writer.WriteEntityPtrPropertyValue(entity, property);
+                    writer.WriteEntityPtrPropertyValue(entity, property, addresses);
                     break;
                 case PropertyInfo.PropertyType.Vector3:
                     writer.WriteVector3PropertyValue(entity, property);
@@ -140,10 +143,10 @@ namespace Fox.Core
                     writer.WriteFilePtrPropertyValue(entity, property);
                     break;
                 case PropertyInfo.PropertyType.EntityHandle:
-                    writer.WriteEntityHandlePropertyValue(entity, property);
+                    writer.WriteEntityHandlePropertyValue(entity, property, addresses);
                     break;
                 case PropertyInfo.PropertyType.EntityLink:
-                    writer.WriteEntityLinkPropertyValue(entity, property);
+                    writer.WriteEntityLinkPropertyValue(entity, property, addresses);
                     break;
             }
         }
