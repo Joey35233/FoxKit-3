@@ -7,12 +7,47 @@ namespace Fox.Core
 {
     public static class BinaryWriterExtensions
     {
+        public static void Write(this BinaryWriter writer, UnityEngine.Quaternion vec)
+        {
+            writer.Write(vec.x);
+            writer.Write(vec.y);
+            writer.Write(vec.z);
+            writer.Write(vec.w);
+        }
+
         public static void Write(this BinaryWriter writer, UnityEngine.Vector4 vec)
         {
             writer.Write(vec.x);
             writer.Write(vec.y);
             writer.Write(vec.z);
             writer.Write(vec.w);
+        }
+
+        public static void Write(this BinaryWriter writer, UnityEngine.Vector3 vec)
+        {
+            writer.Write(vec.x);
+            writer.Write(vec.y);
+            writer.Write(vec.z);
+            writer.Write(0);
+        }
+
+        public static void Write(this BinaryWriter writer, UnityEngine.Matrix4x4 val)
+        {
+            writer.Write(val.GetColumn(0));
+            writer.Write(val.GetColumn(1));
+            writer.Write(val.GetColumn(2));
+            writer.Write(val.GetColumn(3));
+        }
+
+        public static void Write(this BinaryWriter writer, FilePtr val)
+        {
+            writer.WritePathFileNameAndExtCode(val.path.Hash);
+        }
+
+        public static void WriteInt8PropertyValue(this BinaryWriter writer, Entity entity, PropertyInfo property)
+        {
+            sbyte uVal = entity.GetProperty<sbyte>(property);
+            writer.Write(uVal);
         }
 
         public static void WriteUInt8PropertyValue(this BinaryWriter writer, Entity entity, PropertyInfo property)
@@ -156,6 +191,17 @@ namespace Fox.Core
             writer.Write(address);
         }
 
+        public static void WriteEntityPtr(this BinaryWriter writer, IEntityPtr ptr, IDictionary<Entity, ulong> addresses)
+        {
+            ulong address = 0;
+            if (ptr.Get() != null)
+            {
+                address = addresses[ptr.Get()];
+            }
+
+            writer.Write(address);
+        }
+
         public static void WriteEntityHandlePropertyValue(this BinaryWriter writer, Entity entity, PropertyInfo property, IDictionary<Entity, ulong> addresses)
         {
             EntityHandle val = entity.GetProperty<EntityHandle>(property);
@@ -168,9 +214,35 @@ namespace Fox.Core
             writer.Write(address);
         }
 
+        public static void WriteEntityHandle(this BinaryWriter writer, EntityHandle val, IDictionary<Entity, ulong> addresses)
+        {
+            ulong address = 0;
+            if (val.Entity != null)
+            {
+                address = addresses[val.Entity];
+            }
+
+            writer.Write(address);
+        }
+
         public static void WriteEntityLinkPropertyValue(this BinaryWriter writer, Entity entity, PropertyInfo property, IDictionary<Entity, ulong> addresses)
         {
             EntityLink entityLinkVal = entity.GetProperty<EntityLink>(property);
+            writer.WritePathFileNameAndExtCode(entityLinkVal.packagePath.Hash);
+            writer.WritePathFileNameAndExtCode(entityLinkVal.archivePath.Hash);
+            writer.WriteStrCode(entityLinkVal.nameInArchive.Hash);
+
+            ulong address = 0;
+            if (entityLinkVal.handle.Entity != null)
+            {
+                address = addresses[entityLinkVal.handle.Entity];
+            }
+
+            writer.Write(address);
+        }
+
+        public static void WriteEntityLink(this BinaryWriter writer, EntityLink entityLinkVal, IDictionary<Entity, ulong> addresses)
+        {
             writer.WritePathFileNameAndExtCode(entityLinkVal.packagePath.Hash);
             writer.WritePathFileNameAndExtCode(entityLinkVal.archivePath.Hash);
             writer.WriteStrCode(entityLinkVal.nameInArchive.Hash);
