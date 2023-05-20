@@ -32,24 +32,12 @@ namespace Tpp.GameKit
         {
         }
 
-        public UnityEngine.Vector4 GetTranslation()
-        {
-            return translation;
-        }
+        public UnityEngine.Vector4 GetTranslation() => translation;
 
-        public UnityEngine.Quaternion GetRotation()
-        {
-            return rotation;
-        }
+        public UnityEngine.Quaternion GetRotation() => rotation;
 
-        public String GetLocatorName()
-        {
-            return locatorName;
-        }
+        public String GetLocatorName() => locatorName;
 
-        public Path GetDataSetName()
-        {
-            return dataSetName;
-        }
+        public Path GetDataSetName() => dataSetName;
     }
 }

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using UnityEngine;
 
 namespace Tpp.GameKit
@@ -21,5 +21,8 @@ namespace Tpp.GameKit
         public PowerCutAreaLocatorBinary()
         {
         }
+        public UnityEngine.Vector4 GetTranslation() => translation;
+
+        public UnityEngine.Quaternion GetRotation() => rotation;
     }
 }
