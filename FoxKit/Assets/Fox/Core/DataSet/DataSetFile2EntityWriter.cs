@@ -10,9 +10,9 @@ namespace Fox.Core
         private const short HeaderSize = 64;
         private const uint MagicNumber = 0x746e65;
 
-        private readonly IDictionary<Entity, ulong> addresses;
+        private IDictionary<Entity, ulong> addresses;
 
-        public void Write(Entity entity, IDictionary<Entity, ulong> addreses, ulong address, ulong id, Stream output)
+        public void Write(Entity entity, IDictionary<Entity, ulong> addresses, ulong address, ulong id, Stream output)
         {
             this.addresses = addresses;
 
