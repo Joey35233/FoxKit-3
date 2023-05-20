@@ -1,4 +1,5 @@
 using Fox.Gr;
+using System.IO;
 using UnityEditor;
 using UnityEngine;
 
@@ -19,15 +20,17 @@ namespace Fox.GameKit
             gameObject.transform.rotation = transformEntity.rotQuat;
             gameObject.transform.localScale = transformEntity.scale;
 
-            string path = filePath.CString;
+            string path = "/Game" + filePath.CString;
 
             // Remove leading / and change extension
             string trimmedPath = path.Remove(0, 1).Replace(".tre2", ".asset");
             TerrainFileAsset asset = AssetDatabase.LoadAssetAtPath<TerrainFileAsset>(trimmedPath);
             if (asset == null)
             {
-                Debug.LogWarning($"{name}: Unable to find asset at path {trimmedPath}");
-                return;
+                using var reader = new BinaryReader(System.IO.File.OpenRead(Application.dataPath+path));
+                var tre2Reader = new Fox.Gr.TerrainFileReader(reader);
+                asset = tre2Reader.Read();
+                AssetDatabase.CreateAsset(asset, $"Assets{Path.GetDirectoryName(path)+ "/" + Path.GetFileNameWithoutExtension(path)}.asset");
             }
 
             int heightmapRes = asset.Heightmap.width;

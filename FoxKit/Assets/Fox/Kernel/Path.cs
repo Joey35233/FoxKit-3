@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Runtime.InteropServices;
 using UnityEngine;
 
@@ -33,6 +33,7 @@ namespace Fox.Kernel
 
         static Path()
         {
+            //PROBLEM
             Empty = new Path
             {
                 _cString = System.String.Empty,

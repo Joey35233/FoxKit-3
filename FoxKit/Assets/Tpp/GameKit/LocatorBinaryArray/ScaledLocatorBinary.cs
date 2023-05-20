@@ -1,4 +1,4 @@
-﻿using Fox.Kernel;
+using Fox.Kernel;
 using System;
 using UnityEngine;
 using String = Fox.Kernel.String;
@@ -44,5 +44,15 @@ namespace Tpp.GameKit
         {
 
         }
+
+        public UnityEngine.Vector4 GetTranslation() => translation;
+
+        public UnityEngine.Quaternion GetRotation() => rotation;
+
+        public UnityEngine.Vector3 GetScale() => scale;
+
+        public String GetLocatorName() => locatorName;
+
+        public Path GetDataSetName() => dataSetName;
     }
 }

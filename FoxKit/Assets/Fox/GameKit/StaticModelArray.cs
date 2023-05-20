@@ -1,4 +1,4 @@
-﻿using Fox.Core;
+using Fox.Core;
 using UnityEditor;
 using UnityEngine;
 
@@ -10,7 +10,7 @@ namespace Fox.GameKit
         {
             base.InitializeGameObject(gameObject);
 
-            string path = modelFile.path.CString;
+            string path = "/Assets/Game" + modelFile.path.CString;
             if (System.String.IsNullOrEmpty(path))
             {
                 Debug.LogWarning($"{name}: modelFile is null");
@@ -29,8 +29,11 @@ namespace Fox.GameKit
             foreach (Matrix4x4 transform in transforms)
             {
                 var instance = GameObject.Instantiate(asset);
-                instance.transform.position = transform.GetPosition();
-                instance.transform.rotation = transform.rotation;
+                Matrix4x4 unityTransform = Kernel.Math.FoxToUnityMatrix(transform);
+                instance.transform.position = unityTransform.GetPosition();
+                //instance.transform.rotation = unityTransform.rotation;
+                //instance.transform.position = Kernel.Math.FoxToUnityVector3(transform.GetPosition());
+                instance.transform.rotation = Kernel.Math.FoxToUnityQuaternion(transform.rotation);
                 instance.transform.localScale = transform.lossyScale;
                 instance.transform.SetParent(gameObject.transform, false);
             }

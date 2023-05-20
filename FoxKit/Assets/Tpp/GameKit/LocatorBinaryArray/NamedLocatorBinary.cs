@@ -1,4 +1,4 @@
-﻿using Fox.Kernel;
+using Fox.Kernel;
 using System;
 using UnityEngine;
 using String = Fox.Kernel.String;
@@ -31,5 +31,13 @@ namespace Tpp.GameKit
         public NamedLocatorBinary()
         {
         }
+
+        public UnityEngine.Vector4 GetTranslation() => translation;
+
+        public UnityEngine.Quaternion GetRotation() => rotation;
+
+        public String GetLocatorName() => locatorName;
+
+        public Path GetDataSetName() => dataSetName;
     }
 }
