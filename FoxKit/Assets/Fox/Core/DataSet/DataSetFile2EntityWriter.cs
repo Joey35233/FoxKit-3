@@ -1,4 +1,5 @@
 using Fox.Fio;
+using Fox.Kernel;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -77,8 +78,7 @@ namespace Fox.Core
             }
             else if (property.Container == PropertyInfo.ContainerType.StringMap)
             {
-                // TODO
-                // Cannot figure out how to enumerate StringMap
+                arraySize = WriteStringMapProperty(entity, property, writer);
             }
             else
             {
@@ -90,7 +90,7 @@ namespace Fox.Core
             ushort size = (ushort)(endPosition - headerPosition);
             output.Position = headerPosition;
 
-            writer.Write(Kernel.HashingBitConverter.StrCodeToUInt64(property.Name.Hash));
+            writer.Write(HashingBitConverter.StrCodeToUInt64(property.Name.Hash));
             writer.Write((byte)property.Type);
             writer.Write((byte)property.Container);
             writer.Write(arraySize);
@@ -98,6 +98,19 @@ namespace Fox.Core
             writer.Write(size);
             writer.WriteZeros(16);
             output.Position = endPosition;
+        }
+
+        private ushort WriteStringMapProperty(Entity entity, PropertyInfo property, BinaryWriter writer)
+        {
+            var list = entity.GetProperty<IStringMap>(property).ToList();
+            foreach (KeyValuePair<Kernel.String, object> item in list)
+            {
+                writer.Write(HashingBitConverter.StrCodeToUInt64(item.Key.Hash));
+                WritePropertyItem(item.Value, property.Type, writer);
+                writer.BaseStream.AlignWrite(16, 0x00);
+            }
+
+            return (ushort)list.Count;
         }
 
         private ushort WriteListProperty(Entity entity, PropertyInfo property, BinaryWriter writer)

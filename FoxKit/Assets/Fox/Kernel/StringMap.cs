@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,6 +17,7 @@ namespace Fox.Kernel
         public bool ContainsKey(String key);
 
         public int OccupiedIndexToAbsoluteIndex(int index);
+        public List<KeyValuePair<String, object>> ToList();
     }
 
     [Serializable]
@@ -371,9 +372,24 @@ namespace Fox.Kernel
 
         public void CopyTo(Array array, int index) => throw new NotImplementedException();
 
-        IEnumerator IEnumerable.GetEnumerator() => throw new NotImplementedException();
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
         public IEnumerator<KeyValuePair<String, T>> GetEnumerator() => new Enumerator(this);
+        public List<KeyValuePair<String, object>> ToList()
+        {
+            var res = new List<KeyValuePair<String, object>>();
+            foreach (Cell cell in this.Cells)
+            {
+                if (this.IsCellEmpty(cell))
+                {
+                    continue;
+                }
+
+                res.Add(new KeyValuePair<String, object>(cell.Key, cell.Value));
+            }
+
+            return res;
+        }
 
         public struct Enumerator : IEnumerator<KeyValuePair<String, T>>, IDictionaryEnumerator
         {

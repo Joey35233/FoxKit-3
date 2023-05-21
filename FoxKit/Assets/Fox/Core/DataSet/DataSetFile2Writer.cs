@@ -116,7 +116,8 @@ namespace Fox.Core
             {
                 if (entity is Data)
                 {
-                    // TODO add to dataList
+                    var data = entity as Data;
+                    dataSet.AddData(data.name, new EntityPtr<Data>(data));
                 }
             }
 
