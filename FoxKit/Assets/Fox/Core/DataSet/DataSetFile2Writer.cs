@@ -24,7 +24,6 @@ namespace Fox.Core
             List<Entity> entities = GetEntitiesToExport(sceneToExport);
 
             // Perform any last minute property updates
-            // TODO Collect nested entities
             foreach (Entity entity in entities)
             {
                 AssignAddress(entity);
@@ -99,14 +98,26 @@ namespace Fox.Core
             return endPosition;
         }
 
-        private static List<Entity> GetEntitiesToExport(UnityEngine.SceneManagement.Scene sceneToExport)
+        private List<Entity> GetEntitiesToExport(UnityEngine.SceneManagement.Scene sceneToExport)
         {
             var entities = (from FoxEntity entityComponent in GameObject.FindObjectsOfType<FoxEntity>()
                             where entityComponent.Entity != null && entityComponent.Entity.ShouldWriteToFox2() && entityComponent.gameObject.scene == sceneToExport
                             select entityComponent.Entity).ToList();
 
             CreateDataSet(entities);
-            return entities;
+
+            var allEntities = new HashSet<Entity>();
+            foreach (Entity entity in entities)
+            {
+                if (!allEntities.Contains(entity))
+                {
+                    _ = allEntities.Add(entity);
+                }
+
+                entity.CollectReferencedEntities(allEntities);
+            }
+                        
+            return allEntities.ToList();
         }
 
         private static void CreateDataSet(List<Entity> entities)
