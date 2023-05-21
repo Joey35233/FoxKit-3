@@ -112,12 +112,14 @@ namespace Fox.Core
         private static void CreateDataSet(List<Entity> entities)
         {
             var dataSet = new DataSet();
+            dataSet.name = Kernel.String.Empty;
             foreach (Entity entity in entities)
             {
                 if (entity is Data)
                 {
                     var data = entity as Data;
                     dataSet.AddData(data.name, new EntityPtr<Data>(data));
+                    data.SetDataSet(EntityHandle.Get(dataSet));
                 }
             }
 

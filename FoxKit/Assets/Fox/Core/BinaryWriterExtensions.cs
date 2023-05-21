@@ -113,6 +113,7 @@ namespace Fox.Core
         public static Kernel.String WriteStringPropertyValue(this BinaryWriter writer, Entity entity, PropertyInfo property)
         {
             Kernel.String strVal = entity.GetProperty<Kernel.String>(property);
+           
             writer.WriteStrCode(strVal.Hash);
             return strVal;
         }

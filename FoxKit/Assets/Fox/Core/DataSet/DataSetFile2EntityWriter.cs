@@ -44,18 +44,18 @@ namespace Fox.Core
             }
 
             superClasses.Reverse();
+            uint staticPropertyCount = 0;
 
             foreach (EntityInfo @class in superClasses)
             {
                 foreach (System.Collections.Generic.KeyValuePair<Kernel.String, PropertyInfo> staticProperty in @class.StaticProperties)
                 {
-                    UnityEngine.Debug.Log(staticProperty.Key.CString);
                     if (staticProperty.Value.Offset == 0)
                     {
-                        UnityEngine.Debug.Log("Skipping " + staticProperty.Key.CString);
                         continue;
                     }
 
+                    staticPropertyCount++;
                     WriteProperty(entity, staticProperty.Value, writer);
                 }
             }            
@@ -81,7 +81,7 @@ namespace Fox.Core
             writer.Write(info.Version);
 
             writer.Write(Kernel.HashingBitConverter.StrCodeToUInt64(info.Name.Hash));
-            writer.Write(Convert.ToUInt16(info.StaticProperties.Count));
+            writer.Write(Convert.ToUInt16(staticPropertyCount));
             writer.Write(Convert.ToUInt16(0)); // TODO DynamicProperties count
             writer.Write((int)HeaderSize);
             writer.Write(staticDataSize);
