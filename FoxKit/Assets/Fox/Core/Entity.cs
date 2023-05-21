@@ -1,5 +1,6 @@
 using Fox.Kernel;
 using System;
+using System.Reflection;
 using UnityEngine;
 using String = Fox.Kernel.String;
 
@@ -70,7 +71,11 @@ namespace Fox.Core
         /// <summary>
         /// TODO: Do this through classgen
         /// </summary>
-        public T GetProperty<T>(PropertyInfo property) => (T)this.GetType().GetProperty(property.Name.CString).GetValue(this, null);
+        public T GetProperty<T>(PropertyInfo property)
+        {
+            System.Reflection.PropertyInfo propInfo = this.GetType().GetProperty(property.Name.CString, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+            return (T)propInfo.GetValue(this, null);
+        }
 
         public override string ToString() => $"{GetType().Name}";
     }

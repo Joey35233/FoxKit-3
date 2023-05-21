@@ -28,10 +28,37 @@ namespace Fox.Core
 
             EntityInfo info = entity.GetClassEntityInfo();
             strings.Add(info.Name);
-            foreach (System.Collections.Generic.KeyValuePair<Kernel.String, PropertyInfo> staticProperty in info.StaticProperties)
+
+            EntityInfo current = info;
+            var superClasses = new List<EntityInfo>();
+            superClasses.Add(info);
+            while (true)
             {
-                WriteProperty(entity, staticProperty.Value, writer);
+                if (current.Super == null)
+                {
+                    break;
+                }
+
+                superClasses.Add(current.Super);
+                current = current.Super;
             }
+
+            superClasses.Reverse();
+
+            foreach (EntityInfo @class in superClasses)
+            {
+                foreach (System.Collections.Generic.KeyValuePair<Kernel.String, PropertyInfo> staticProperty in @class.StaticProperties)
+                {
+                    UnityEngine.Debug.Log(staticProperty.Key.CString);
+                    if (staticProperty.Value.Offset == 0)
+                    {
+                        UnityEngine.Debug.Log("Skipping " + staticProperty.Key.CString);
+                        continue;
+                    }
+
+                    WriteProperty(entity, staticProperty.Value, writer);
+                }
+            }            
 
             uint staticDataSize = (uint)(output.Position - headerPosition);
             /**
