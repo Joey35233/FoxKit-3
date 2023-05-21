@@ -31,7 +31,6 @@ namespace Fox.Core
                 entity.PrepareForExport();
             }
 
-            // Skip header for now
             long headerPosition = writer.BaseStream.Position;
             writer.BaseStream.Position += HeaderSize;
 
@@ -129,7 +128,7 @@ namespace Fox.Core
         private void WriteEntity(BinaryWriter writer, uint address, ulong id, Entity entity)
         {
             var entityWriter = new DataSetFile2EntityWriter();
-            entityWriter.Write(entity, addresses, address, id, writer.BaseStream);
+            entityWriter.Write(entity, addresses, strings, address, id, writer.BaseStream);
         }
     }
 }

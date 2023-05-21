@@ -110,16 +110,18 @@ namespace Fox.Core
             writer.Write(boolVal);
         }
 
-        public static void WriteStringPropertyValue(this BinaryWriter writer, Entity entity, PropertyInfo property)
+        public static Kernel.String WriteStringPropertyValue(this BinaryWriter writer, Entity entity, PropertyInfo property)
         {
             Kernel.String strVal = entity.GetProperty<Kernel.String>(property);
             writer.WriteStrCode(strVal.Hash);
+            return strVal;
         }
 
-        public static void WritePathPropertyValue(this BinaryWriter writer, Entity entity, PropertyInfo property)
+        public static Kernel.String WritePathPropertyValue(this BinaryWriter writer, Entity entity, PropertyInfo property)
         {
             Kernel.Path pathVal = entity.GetProperty<Kernel.Path>(property);
             writer.WritePathFileNameAndExtCode(pathVal.Hash);
+            return new Kernel.String(pathVal.CString);
         }
 
         public static void WriteVector3PropertyValue(this BinaryWriter writer, Entity entity, PropertyInfo property)
@@ -173,10 +175,11 @@ namespace Fox.Core
             writer.Write(val.GetColumn(3));
         }
 
-        public static void WriteFilePtrPropertyValue(this BinaryWriter writer, Entity entity, PropertyInfo property)
+        public static Kernel.String WriteFilePtrPropertyValue(this BinaryWriter writer, Entity entity, PropertyInfo property)
         {
             FilePtr filePtrVal = entity.GetProperty<FilePtr>(property);
             writer.WritePathFileNameAndExtCode(filePtrVal.path.Hash);
+            return new Kernel.String(filePtrVal.path.CString);
         }
 
         public static void WriteEntityPtrPropertyValue(this BinaryWriter writer, Entity entity, PropertyInfo property, IDictionary<Entity, ulong> addresses)
@@ -225,7 +228,7 @@ namespace Fox.Core
             writer.Write(address);
         }
 
-        public static void WriteEntityLinkPropertyValue(this BinaryWriter writer, Entity entity, PropertyInfo property, IDictionary<Entity, ulong> addresses)
+        public static List<Kernel.String> WriteEntityLinkPropertyValue(this BinaryWriter writer, Entity entity, PropertyInfo property, IDictionary<Entity, ulong> addresses)
         {
             EntityLink entityLinkVal = entity.GetProperty<EntityLink>(property);
             writer.WritePathFileNameAndExtCode(entityLinkVal.packagePath.Hash);
@@ -239,6 +242,12 @@ namespace Fox.Core
             }
 
             writer.Write(address);
+
+            var strings = new List<Kernel.String>();
+            strings.Add(new Kernel.String(entityLinkVal.packagePath.CString));
+            strings.Add(new Kernel.String(entityLinkVal.archivePath.CString));
+            strings.Add(new Kernel.String(entityLinkVal.nameInArchive.CString));
+            return strings;
         }
 
         public static void WriteEntityLink(this BinaryWriter writer, EntityLink entityLinkVal, IDictionary<Entity, ulong> addresses)

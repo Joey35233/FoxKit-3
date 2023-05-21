@@ -13,16 +13,20 @@ namespace Fox.Core
         private const uint MagicNumber = 0x746e65;
 
         private IDictionary<Entity, ulong> addresses;
+        private List<Kernel.String> strings;
 
-        public void Write(Entity entity, IDictionary<Entity, ulong> addresses, ulong address, ulong id, Stream output)
+
+        public void Write(Entity entity, IDictionary<Entity, ulong> addresses, List<Kernel.String> strings, ulong address, ulong id, Stream output)
         {
             this.addresses = addresses;
+            this.strings = strings;
 
             var writer = new BinaryWriter(output, Encoding.Default, true);
             long headerPosition = output.Position;
             output.Position += HeaderSize;
 
             EntityInfo info = entity.GetClassEntityInfo();
+            strings.Add(info.Name);
             foreach (System.Collections.Generic.KeyValuePair<Kernel.String, PropertyInfo> staticProperty in info.StaticProperties)
             {
                 WriteProperty(entity, staticProperty.Value, writer);
@@ -60,6 +64,8 @@ namespace Fox.Core
 
         private void WriteProperty(Entity entity, PropertyInfo property, BinaryWriter writer)
         {
+            strings.Add(property.Name);
+
             Stream output = writer.BaseStream;
             long headerPosition = output.Position;
             output.Position += 32;
@@ -67,11 +73,12 @@ namespace Fox.Core
             ushort arraySize = (ushort)property.ArraySize;
             if (property.Container == PropertyInfo.ContainerType.StaticArray && property.ArraySize == 1)
             {
-                WriteProperty(entity, property, writer);
+                WritePropertyValue(entity, property, writer);
             }
             else if (property.Container == PropertyInfo.ContainerType.StringMap)
             {
                 // TODO
+                // Cannot figure out how to enumerate StringMap
             }
             else
             {
@@ -142,9 +149,11 @@ namespace Fox.Core
                     writer.Write((bool)item);
                     break;
                 case PropertyInfo.PropertyType.String:
+                    strings.Add(item as Kernel.String);
                     writer.WriteStrCode((item as Kernel.String).Hash);
                     break;
                 case PropertyInfo.PropertyType.Path:
+                    strings.Add(new Kernel.String((item as Kernel.Path).CString));
                     writer.WritePathFileNameAndExtCode((item as Kernel.Path).Hash);
                     break;
                 case PropertyInfo.PropertyType.EntityPtr:
@@ -168,13 +177,18 @@ namespace Fox.Core
                     writer.Write((UnityEngine.Color)item);
                     break;
                 case PropertyInfo.PropertyType.FilePtr:
+                    strings.Add(new Kernel.String((item as FilePtr).path.CString));
                     writer.Write(item as FilePtr);
                     break;
                 case PropertyInfo.PropertyType.EntityHandle:
                     writer.WriteEntityHandle((EntityHandle)item, addresses);
                     break;
                 case PropertyInfo.PropertyType.EntityLink:
-                    writer.WriteEntityLink((EntityLink)item, addresses);
+                    var entityLink = (EntityLink)item;
+                    strings.Add(new Kernel.String(entityLink.packagePath.CString));
+                    strings.Add(new Kernel.String(entityLink.archivePath.CString));
+                    strings.Add(new Kernel.String(entityLink.nameInArchive.CString));
+                    writer.WriteEntityLink(entityLink, addresses);
                     break;
             }
         }
@@ -217,10 +231,10 @@ namespace Fox.Core
                     writer.WriteBoolPropertyValue(entity, property);
                     break;
                 case PropertyInfo.PropertyType.String:
-                    writer.WriteStringPropertyValue(entity, property);
+                    strings.Add(writer.WriteStringPropertyValue(entity, property));
                     break;
                 case PropertyInfo.PropertyType.Path:
-                    writer.WritePathPropertyValue(entity, property);
+                    strings.Add(writer.WritePathPropertyValue(entity, property));
                     break;
                 case PropertyInfo.PropertyType.EntityPtr:
                     writer.WriteEntityPtrPropertyValue(entity, property, addresses);
@@ -244,13 +258,13 @@ namespace Fox.Core
                     writer.WriteColorPropertyValue(entity, property);
                     break;
                 case PropertyInfo.PropertyType.FilePtr:
-                    writer.WriteFilePtrPropertyValue(entity, property);
+                    strings.Add(writer.WriteFilePtrPropertyValue(entity, property));
                     break;
                 case PropertyInfo.PropertyType.EntityHandle:
                     writer.WriteEntityHandlePropertyValue(entity, property, addresses);
                     break;
                 case PropertyInfo.PropertyType.EntityLink:
-                    writer.WriteEntityLinkPropertyValue(entity, property, addresses);
+                    strings.AddRange(writer.WriteEntityLinkPropertyValue(entity, property, addresses));
                     break;
             }
         }
