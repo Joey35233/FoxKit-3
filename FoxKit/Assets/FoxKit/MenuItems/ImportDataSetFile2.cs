@@ -20,7 +20,7 @@ namespace FoxKit.MenuItems
                 return;
             }
 
-            UnityEngine.SceneManagement.Scene scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene);
+            UnityEngine.SceneManagement.Scene scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene,NewSceneMode.Single);
             scene.name = Path.GetFileNameWithoutExtension(assetPath);
 
             using var reader = new FileStreamReader(System.IO.File.OpenRead(assetPath));

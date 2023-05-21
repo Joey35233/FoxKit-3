@@ -1,4 +1,4 @@
-﻿using Fox.Core;
+using Fox.Core;
 using Fox.Fio;
 using UnityEditor.SceneManagement;
 using UnityEngine;

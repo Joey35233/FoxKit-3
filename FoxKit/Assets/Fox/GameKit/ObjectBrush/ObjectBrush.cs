@@ -36,10 +36,11 @@ namespace Fox.GameKit
             foreach (ObjectBrushObjectBinary obj in asset.objects)
             {
                 var locatorGameObject = new GameObject();
-                PointGizmo gizmo = locatorGameObject.AddComponent<PointGizmo>();
-                gizmo.Color = Color.blue;
-                gizmo.Scale = Vector3.one;
-                gizmo.ScaleMode = PointGizmo.GizmoScaleMode.Explicit;
+                locatorGameObject.name = gameObject.name + "Brush" + obj.GetPluginBrushIndex().ToString("d4") + "Object" + asset.objects.IndexOf(obj).ToString("d4");
+
+                var pluginEntity = pluginHandle[obj.GetPluginBrushIndex()].Entity as ObjectBrushPlugin;
+                if (pluginEntity!=null)
+                    locatorGameObject.name = pluginEntity.name + asset.objects.IndexOf(obj).ToString("d4");
 
                 Vector3 foxPosition = GetPositionFWSFromPositionEWS(
                     obj.GetXPosition(),obj.GetYPosition(),obj.GetZPosition(),obj.GetBlockIndex(),
@@ -69,23 +70,38 @@ namespace Fox.GameKit
                     }
                 }
 
+                if (pluginCloneEntity==null)
+                {
+                    PointGizmo gizmo = locatorGameObject.AddComponent<PointGizmo>();
+                    gizmo.Color = Color.green;
+                    gizmo.Scale = Vector3.one;
+                    gizmo.ScaleMode = PointGizmo.GizmoScaleMode.Explicit;
+                }
+
                 locatorGameObject.transform.SetParent(gameObject.transform);
             }
         }
         private const ushort OBR_MAGIC = 32640;
-        private static Vector3 GetPositionFWSFromPositionEWS(short xEOS, float yFWS, short zEOS, ushort blockIndex, uint numBlocksX, uint numBlocksZ, float blockSizeX, float blockSizeZ)
+        private static Vector3 GetPositionFWSFromPositionEWS(short xEOS, float yFWS, short zEOS, ushort blockIndex, uint numBlocksW, uint numBlocksH, float blockSizeW, float blockSizeH)
         {
+            ushort METERS_PER_BLOCK_X = (ushort)(blockSizeH / 1);
+            ushort METERS_PER_BLOCK_Z = (ushort)(blockSizeW / 1);
             // block indices [0,32) x [0,32)
-            ushort blockX = (ushort)(blockIndex % numBlocksX);
-            ushort blockZ = (ushort)Mathf.Floor(blockIndex / numBlocksZ);
+            ushort blockX = (ushort)(blockIndex % numBlocksH);
+            ushort blockZ = (ushort)Mathf.Floor(blockIndex / numBlocksW);
 
             // block center position
-            float blockCenterXFWS = (blockSizeX / 1) * (blockX + 0.5f - (0.5f * numBlocksX));
-            float blockCenterZFWS = (blockSizeZ / 1) * (blockZ + 0.5f - (0.5f * numBlocksZ));
+            float blockCenterXFWS = METERS_PER_BLOCK_X * (blockX + 0.5f - (0.5f * numBlocksH));
+            float blockCenterZFWS = METERS_PER_BLOCK_Z * (blockZ + 0.5f - (0.5f * numBlocksW));
 
             // output position FWS
-            float xFWS = blockCenterXFWS + (((blockSizeX / 1) / OBR_MAGIC) * xEOS);
-            float zFWS = blockCenterZFWS + (((blockSizeZ / 1) / OBR_MAGIC) * zEOS);
+            float OBR_POSITION_DECODE_X = METERS_PER_BLOCK_X / (float)OBR_MAGIC;
+            float OBR_POSITION_DECODE_Z = METERS_PER_BLOCK_Z / (float)OBR_MAGIC;
+            float xFWS = blockCenterXFWS + (OBR_POSITION_DECODE_X * xEOS);
+            float zFWS = blockCenterZFWS + (OBR_POSITION_DECODE_Z * zEOS);
+
+            Debug.Log($"rlc;block:{blockX},{blockZ};blockCenter:{blockCenterXFWS},{blockCenterZFWS};fws:{xFWS},{zFWS}");
+
             return new Vector3(xFWS, yFWS, zFWS);
         }
     }
