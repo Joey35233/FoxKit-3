@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using UnityEngine;
 
 namespace Fox.Core
@@ -58,7 +59,9 @@ namespace Fox.Core
         private int WriteStringTable(BinaryWriter writer)
         {
             int stringTableOffset = (int)writer.BaseStream.Position;
-            foreach (Kernel.String foxString in strings)
+
+            // Remove dupes and write string table
+            foreach (Kernel.String foxString in strings.Distinct())
             {
                 if (!System.String.IsNullOrEmpty(foxString.CString))
                 {
@@ -122,7 +125,10 @@ namespace Fox.Core
 
         private void WriteStringTableEntry(BinaryWriter writer, Kernel.String foxString)
         {
-            // TODO
+            byte[] nameBytes = foxString.CString == null ? new byte[0] : Encoding.UTF8.GetBytes(foxString.CString);
+            writer.Write(Kernel.HashingBitConverter.StrCodeToUInt64(foxString.Hash));
+            writer.Write((uint)nameBytes.Length);
+            writer.Write(nameBytes);
         }
 
         private void WriteEntity(BinaryWriter writer, uint address, ulong id, Entity entity)
