@@ -79,6 +79,8 @@ namespace Fox.Core
         {
             Debug.Assert(GetDataType() == DataType.UInt);
 
+            Reader.Seek(Position + Offset_Value);
+
             return Reader.ReadUInt32();
         }
 
@@ -92,6 +94,8 @@ namespace Fox.Core
         public float GetFloat()
         {
             Debug.Assert(GetDataType() == DataType.Float);
+
+            Reader.Seek(Position + Offset_Value);
 
             return Reader.ReadSingle();
         }

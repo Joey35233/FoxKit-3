@@ -10,17 +10,14 @@ namespace Fox.GameKit
         public static ObjectBrushAsset Read(FileStreamReader reader)
         {
             var foxDataHeader = new FoxDataHeaderContext(reader, reader.BaseStream.Position);
-            foxDataHeader.Validate(version: 201209110, flags: 0);
+            foxDataHeader.Validate(version: 3, flags: 0);
 
             if (foxDataHeader.GetFirstNode() is not FoxDataNodeContext dataNode)
                 return null;
 
-            Debug.Assert(dataNode.GetFlags() == 0);
+            Debug.Assert(dataNode.GetFlags() == 1);
             Debug.Assert(dataNode.GetNextNode() == null);
             Debug.Assert(dataNode.GetChildNode() == null);
-
-            if (dataNode.GetDataPosition() is not long dataPosition)
-                return null;
 
             ObjectBrushAsset asset = ScriptableObject.CreateInstance<ObjectBrushAsset>();
 
@@ -50,10 +47,13 @@ namespace Fox.GameKit
             float numObjects = numObjectsParam.Value.GetUInt();
             Debug.Assert(numObjects > 0, $"numBlocksH isn't more than 0: {numObjects}");
 
+            if (dataNode.GetDataPosition() is not long dataPosition)
+                return null;
+
             //Payload
             reader.Seek(dataPosition);
 
-            for (int i = 0; i > numObjects; i++)
+            for (int i = 0; i < numObjects; i++)
             {
                 ObjectBrushObjectBinary obj = ObjectBrushObjectReader.Read(reader);
                 if (obj != null)
