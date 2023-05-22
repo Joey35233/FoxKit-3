@@ -1,5 +1,8 @@
 using Fox.Kernel;
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 using String = Fox.Kernel.String;
 
@@ -70,7 +73,121 @@ namespace Fox.Core
         /// <summary>
         /// TODO: Do this through classgen
         /// </summary>
-        public T GetProperty<T>(PropertyInfo property) => (T)this.GetType().GetProperty(property.Name.CString).GetValue(this, null);
+        public T GetProperty<T>(PropertyInfo property)
+        {
+            System.Reflection.PropertyInfo propInfo = this.GetType().GetProperty(property.Name.CString, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+            return (T)propInfo.GetValue(this, null);
+        }
+
+        public void CollectReferencedEntities(HashSet<Entity> alreadyCollectedEntities)
+        {
+            EntityInfo current = this.GetClassEntityInfo();
+            var superClasses = new List<EntityInfo>();
+            superClasses.Add(this.GetClassEntityInfo());
+            while (true)
+            {
+                if (current.Super == null)
+                {
+                    break;
+                }
+
+                superClasses.Add(current.Super);
+                current = current.Super;
+            }
+
+            foreach (EntityInfo @class in superClasses)
+            {
+                foreach (KeyValuePair<String, PropertyInfo> staticProperty in @class.StaticProperties)
+                {
+                    if (staticProperty.Value.Offset == 0)
+                    {
+                        continue;
+                    }
+
+                    if (staticProperty.Value.Type == PropertyInfo.PropertyType.EntityPtr
+                        || staticProperty.Value.Type == PropertyInfo.PropertyType.EntityHandle
+                        || staticProperty.Value.Type == PropertyInfo.PropertyType.EntityLink)
+                    {
+                        CollectReferencedEntities(staticProperty.Value, alreadyCollectedEntities);
+                    }
+                }
+            }
+        }
+
+        private void CollectReferencedEntities(PropertyInfo property, HashSet<Entity> alreadyCollectedEntities)
+        {
+            if (property.Container == PropertyInfo.ContainerType.StaticArray && property.ArraySize == 1)
+            {
+                switch (property.Type)
+                {
+                    case PropertyInfo.PropertyType.EntityPtr:
+                        CollectReferencedEntity(GetProperty<IEntityPtr>(property).Get(), alreadyCollectedEntities);
+                        break;
+                    case PropertyInfo.PropertyType.EntityHandle:
+                        CollectReferencedEntity(GetProperty<EntityHandle>(property).Entity, alreadyCollectedEntities);
+                        break;
+                    case PropertyInfo.PropertyType.EntityLink:
+                        CollectReferencedEntity(GetProperty<EntityLink>(property).handle.Entity, alreadyCollectedEntities);
+                        break;
+                }
+
+                return;
+            }
+            else if (property.Container == PropertyInfo.ContainerType.StringMap)
+            {
+                var list = GetProperty<IStringMap>(property).ToList();
+                foreach (KeyValuePair<Kernel.String, object> item in list)
+                {
+                    switch (property.Type)
+                    {
+                        case PropertyInfo.PropertyType.EntityPtr:
+                            CollectReferencedEntity(((IEntityPtr)item.Value).Get(), alreadyCollectedEntities);
+                            break;
+                        case PropertyInfo.PropertyType.EntityHandle:
+                            CollectReferencedEntity(((EntityHandle)item.Value).Entity, alreadyCollectedEntities);
+                            break;
+                        case PropertyInfo.PropertyType.EntityLink:
+                            CollectReferencedEntity(((EntityLink)item.Value).handle.Entity, alreadyCollectedEntities);
+                            break;
+                    }
+                }
+            }
+            else
+            {
+                IList list = GetProperty<IList>(property);
+                foreach (object item in list)
+                {
+                    switch (property.Type)
+                    {
+                        case PropertyInfo.PropertyType.EntityPtr:
+                            CollectReferencedEntity(((IEntityPtr)item).Get(), alreadyCollectedEntities);
+                            break;
+                        case PropertyInfo.PropertyType.EntityHandle:
+                            CollectReferencedEntity(((EntityHandle)item).Entity, alreadyCollectedEntities);
+                            break;
+                        case PropertyInfo.PropertyType.EntityLink:
+                            CollectReferencedEntity(((EntityLink)item).handle.Entity, alreadyCollectedEntities);
+                            break;
+                    }
+                }
+            }
+        }
+
+        private void CollectReferencedEntity(Entity entity, HashSet<Entity> alreadyCollectedEntities)
+        {
+            if (entity == null)
+            {
+                return;
+            }
+
+            if (alreadyCollectedEntities.Contains(entity))
+            {
+                return;
+            }
+
+            alreadyCollectedEntities.Add(entity);
+            entity.CollectReferencedEntities(alreadyCollectedEntities);
+        }
 
         public override string ToString() => $"{GetType().Name}";
     }

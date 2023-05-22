@@ -1,4 +1,4 @@
-﻿using Fox.Kernel;
+using Fox.Kernel;
 using System.ComponentModel;
 using UnityEngine;
 using CsSystem = System;

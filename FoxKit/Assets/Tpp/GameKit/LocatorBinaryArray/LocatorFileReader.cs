@@ -58,7 +58,12 @@ namespace Tpp.GameKit
 
         public static void ReadLba(FileStreamReader reader, string assetPath)
         {
+
+            reader.Seek(4);
+
             var type = (LocatorBinaryType)reader.ReadUInt32();
+
+            reader.Seek(0);
 
             var locatorReader = new LocatorFileReader(reader);
 

@@ -20,7 +20,7 @@ namespace FoxKit.MenuItems
             using var reader = new FileStreamReader(File.OpenRead(assetPath));
             var coverPointReader = new Tpp.GameKit.CoverPointFileReader();
 
-            Scene scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene);
+            Scene scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene,NewSceneMode.Single);
             scene.name = $"{Path.GetFileNameWithoutExtension(assetPath)}_fox2_tcvp";
 
             _ = coverPointReader.Read(reader);

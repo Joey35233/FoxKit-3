@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using UnityEngine;
 
 namespace Fox.Core
@@ -30,7 +31,6 @@ namespace Fox.Core
                 entity.PrepareForExport();
             }
 
-            // Skip header for now
             long headerPosition = writer.BaseStream.Position;
             writer.BaseStream.Position += HeaderSize;
 
@@ -58,7 +58,9 @@ namespace Fox.Core
         private int WriteStringTable(BinaryWriter writer)
         {
             int stringTableOffset = (int)writer.BaseStream.Position;
-            foreach (Kernel.String foxString in strings)
+
+            // Remove dupes and write string table
+            foreach (Kernel.String foxString in strings.Distinct())
             {
                 if (!System.String.IsNullOrEmpty(foxString.CString))
                 {
@@ -96,24 +98,39 @@ namespace Fox.Core
             return endPosition;
         }
 
-        private static List<Entity> GetEntitiesToExport(UnityEngine.SceneManagement.Scene sceneToExport)
+        private List<Entity> GetEntitiesToExport(UnityEngine.SceneManagement.Scene sceneToExport)
         {
             var entities = (from FoxEntity entityComponent in GameObject.FindObjectsOfType<FoxEntity>()
                             where entityComponent.Entity != null && entityComponent.Entity.ShouldWriteToFox2() && entityComponent.gameObject.scene == sceneToExport
                             select entityComponent.Entity).ToList();
 
             CreateDataSet(entities);
-            return entities;
+
+            var allEntities = new HashSet<Entity>();
+            foreach (Entity entity in entities)
+            {
+                if (!allEntities.Contains(entity))
+                {
+                    _ = allEntities.Add(entity);
+                }
+
+                entity.CollectReferencedEntities(allEntities);
+            }
+                        
+            return allEntities.ToList();
         }
 
         private static void CreateDataSet(List<Entity> entities)
         {
             var dataSet = new DataSet();
+            dataSet.name = Kernel.String.Empty;
             foreach (Entity entity in entities)
             {
                 if (entity is Data)
                 {
-                    // TODO add to dataList
+                    var data = entity as Data;
+                    dataSet.AddData(data.name, new EntityPtr<Data>(data));
+                    data.SetDataSet(EntityHandle.Get(dataSet));
                 }
             }
 
@@ -122,13 +139,16 @@ namespace Fox.Core
 
         private void WriteStringTableEntry(BinaryWriter writer, Kernel.String foxString)
         {
-            // TODO
+            byte[] nameBytes = foxString.CString == null ? new byte[0] : Encoding.UTF8.GetBytes(foxString.CString);
+            writer.Write(Kernel.HashingBitConverter.StrCodeToUInt64(foxString.Hash));
+            writer.Write((uint)nameBytes.Length);
+            writer.Write(nameBytes);
         }
 
         private void WriteEntity(BinaryWriter writer, uint address, ulong id, Entity entity)
         {
             var entityWriter = new DataSetFile2EntityWriter();
-            entityWriter.Write(entity, address, id, writer.BaseStream);
+            entityWriter.Write(entity, addresses, strings, address, id, writer.BaseStream);
         }
     }
 }

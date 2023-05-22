@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using String = Fox.Kernel.String;
 
 namespace Fox.Core
@@ -12,6 +12,11 @@ namespace Fox.Core
             if (name != (String)null)
                 gameObject.name = name.CString;
             base.InitializeGameObject(gameObject);
+        }
+
+        public void SetDataSet(EntityHandle dataSet)
+        {
+            this.dataSet = dataSet;
         }
     }
 }
