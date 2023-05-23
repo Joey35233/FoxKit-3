@@ -81,6 +81,7 @@ namespace Fox.GameKit
                 locatorGameObject.transform.SetParent(gameObject.transform);
             }
         }
+        //joey func, but perhaps pointlessly dynamic!
         private const ushort OBR_MAGIC = 32640;
         private static Vector3 GetPositionFWSFromPositionEWS(short xEOS, float yFWS, short zEOS, ushort blockIndex, uint numBlocksW, uint numBlocksH, float blockSizeW, float blockSizeH)
         {
@@ -99,8 +100,6 @@ namespace Fox.GameKit
             float OBR_POSITION_DECODE_Z = METERS_PER_BLOCK_Z / (float)OBR_MAGIC;
             float xFWS = blockCenterXFWS + (OBR_POSITION_DECODE_X * xEOS);
             float zFWS = blockCenterZFWS + (OBR_POSITION_DECODE_Z * zEOS);
-
-            Debug.Log($"rlc;block:{blockX},{blockZ};blockCenter:{blockCenterXFWS},{blockCenterZFWS};fws:{xFWS},{zFWS}");
 
             return new Vector3(xFWS, yFWS, zFWS);
         }

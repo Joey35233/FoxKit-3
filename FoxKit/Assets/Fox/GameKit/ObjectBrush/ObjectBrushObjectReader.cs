@@ -6,10 +6,9 @@ namespace Fox.GameKit
     {
         public static ObjectBrushObjectBinary Read(FileStreamReader reader)
         {
-            float yPos = reader.ReadSingle();
-            var foxRotation = new UnityEngine.Quaternion(reader.ReadHalf(), reader.ReadHalf(), reader.ReadHalf(), reader.ReadHalf());
-            UnityEngine.Quaternion rotation = Fox.Kernel.Math.FoxToUnityQuaternion(foxRotation);
-            var obj = new ObjectBrushObjectBinary(yPos, reader.ReadInt16(), reader.ReadInt16(), rotation,
+            var obj = new ObjectBrushObjectBinary(reader.ReadSingle(), reader.ReadInt16(), reader.ReadInt16(),
+                Fox.Kernel.Math.FoxToUnityQuaternion(
+                    new UnityEngine.Quaternion(reader.ReadHalf(), reader.ReadHalf(), reader.ReadHalf(), reader.ReadHalf())),
                 reader.ReadUInt16(),reader.ReadByte(),reader.ReadByte(), reader.ReadUInt32());
 
             return obj;
