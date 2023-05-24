@@ -1,4 +1,6 @@
-using System.IO;
+using Fox.Core;
+using Fox.Fio;
+using Fox.Kernel;
 using System.Linq;
 using UnityEngine;
 
@@ -6,67 +8,99 @@ namespace Fox.Gr
 {
     public class TerrainFileReader
     {
-        public TerrainFileReader(BinaryReader reader)
+        public TerrainFileReader(FileStreamReader reader)
         {
             Reader = reader;
         }
 
         public TerrainFileAsset Read()
         {
+            var header = new FoxDataHeaderContext(Reader, Reader.BaseStream.Position);
+            header.Validate(version: 4, flags: 0, name: new String("tre2"));
+
             TerrainFileAsset ret = ScriptableObject.CreateInstance<TerrainFileAsset>();
 
-            _ = Reader.BaseStream.Seek(80, SeekOrigin.Begin);
-            ret.Width = ReadUintParam();
-            ret.Height = ReadUintParam();
-            ret.HighPerLow = ReadUintParam();
-            ret.MaxLodLevel = ReadUintParam();
-            ret.GridDistance = ReadFloatParam();
+            for (FoxDataNodeContext? node = header.GetFirstNode(); node.HasValue; node = node.Value.GetNextNode())
+            {
+                FoxDataNodeContext dataNode = node.Value;
 
-            _ = Reader.BaseStream.Seek(208, SeekOrigin.Begin);
-            ret.HeightFormat = ReadUintParam();
-            ret.HeightRangeMax = ReadFloatParam();
-            ret.HeightRangeMin = ReadFloatParam();
+                switch (dataNode.GetName().CString)
+                {
+                    case "param":
+                        ret.Width = dataNode.FindParameter(new String("width")).Value.GetUInt();
+                        ret.Height = dataNode.FindParameter(new String("height")).Value.GetUInt();
+                        ret.HighPerLow = dataNode.FindParameter(new String("highPerLow")).Value.GetUInt();
+                        ret.MaxLodLevel = dataNode.FindParameter(new String("maxLodLevel")).Value.GetUInt();
+                        ret.GridDistance = dataNode.FindParameter(new String("gridDistance")).Value.GetFloat();
+                        break;
+                    case "heightMap":
+                        ret.HeightFormat = dataNode.FindParameter(new String("heightFormat")).Value.GetUInt();
+                        ret.HeightRangeMax = dataNode.FindParameter(new String("heightRangeMax")).Value.GetFloat();
+                        ret.HeightRangeMin = dataNode.FindParameter(new String("heightRangeMin")).Value.GetFloat();
+                        break;
+                    case "comboTexture":
+                        ret.ComboFormat = dataNode.FindParameter(new String("comboFormat")).Value.GetUInt();
+                        break;
+                    case "configrationIds":
+                        FoxDataParameterContext? comboFormatConfig = dataNode.FindParameter(new String("comboFormat")); //??? re comboTexture
+                        if (comboFormatConfig.HasValue)
+                        {
+                            ret.ComboFormat = comboFormatConfig.Value.GetUInt();
+                        }
+                        break;
+                }
 
-            _ = Reader.BaseStream.Seek(304, SeekOrigin.Begin);
-            ret.ComboFormat = ReadUintParam();
+                //Payload
+                if (dataNode.GetDataPosition() is not long dataPosition)
+                    continue;
 
-            _ = Reader.BaseStream.Seek(576, SeekOrigin.Begin);
-            ret.WidthWorldSpace = Reader.ReadUInt32();
-            ret.HeightWorldSpace = Reader.ReadUInt32();
-
-            _ = Reader.BaseStream.Seek(4, SeekOrigin.Current);
-            ret.MaxHeightWorldSpace = Reader.ReadSingle();
-            ret.MinHeightWorldSpace = Reader.ReadSingle();
-
-            _ = Reader.BaseStream.Seek(596, SeekOrigin.Begin);
-            ret.LayoutDescriptionGridDistance = Reader.ReadSingle();
-            ret.LayoutDescriptionUnknown2 = Reader.ReadUInt16();
-            ret.LayoutDescriptionUnknown3 = Reader.ReadUInt16();
-            ret.LayoutDescriptionUnknown4 = Reader.ReadUInt32();
-
-            _ = Reader.BaseStream.Seek(704, SeekOrigin.Begin);
-            ret.LodParam = ReadR32G32B32A32Texture("lodParam", 128, 128, 0, 10);
-            ret.MaxHeight = ReadR32Texture("maxHeight", 128, 128, ret.HeightRangeMin, ret.HeightRangeMax);
-            ret.MinHeight = ReadR32Texture("minHeight", 128, 128, ret.HeightRangeMin, ret.HeightRangeMax);
-            ret.Heightmap = ReadR32TileTexture("heightmap", 256, 256, ret.HeightRangeMin, ret.HeightRangeMax);
-            ret.ComboTexture = ReadR8G8B8A8TileTexture("comboTexture", 256, 256);
-
-            _ = Reader.BaseStream.Seek(918208, SeekOrigin.Begin);
-            ret.MaterialIds = ReadR8G8B8A8Texture("materialIds", 128, 128);
-            ret.ConfigrationIds = ReadR8G8B8A8Texture("configrationIds", 128, 128);
+                switch (dataNode.GetName().CString)
+                {
+                    case "param":
+                        Reader.Seek(dataPosition);
+                        ret.LodParam = ReadR32G32B32A32Texture("lodParam", 128, 128, 0, 10);
+                        break;
+                    case "maxHeight":
+                        Reader.Seek(dataPosition);
+                        ret.MaxHeight = ReadR32Texture("maxHeight", 128, 128, ret.HeightRangeMin, ret.HeightRangeMax);
+                        break;
+                    case "minHeight":
+                        Reader.Seek(dataPosition);
+                        ret.MinHeight = ReadR32Texture("minHeight", 128, 128, ret.HeightRangeMin, ret.HeightRangeMax);
+                        break;
+                    case "heightMap":
+                        Reader.Seek(dataPosition);
+                        ret.Heightmap = ReadR32TileTexture("heightmap", 256, 256, ret.HeightRangeMin, ret.HeightRangeMax);
+                        break;
+                    case "comboTexture":
+                        Reader.Seek(dataPosition);
+                        ret.ComboTexture = ReadR8G8B8A8TileTexture("comboTexture", 256, 256);
+                        break;
+                    case "materialIds":
+                        Reader.Seek(dataPosition);
+                        ret.MaterialIds = ReadR8G8B8A8Texture("materialIds", 128, 128);
+                        break;
+                    case "configrationIds":
+                        Reader.Seek(dataPosition);
+                        ret.ConfigrationIds = ReadR8G8B8A8Texture("configrationIds", 128, 128);
+                        break;
+                    case "layoutDescription":
+                        Reader.Seek(dataPosition);
+                        Reader.Skip(0x10);
+                        ret.WidthWorldSpace = Reader.ReadUInt32();
+                        ret.HeightWorldSpace = Reader.ReadUInt32();
+                        Reader.Skip(4);
+                        ret.MaxHeightWorldSpace = Reader.ReadSingle();
+                        ret.MinHeightWorldSpace = Reader.ReadSingle();
+                        ret.LayoutDescriptionGridDistance = Reader.ReadSingle();
+                        ret.LayoutDescriptionUnknown2 = Reader.ReadUInt16();
+                        ret.LayoutDescriptionUnknown3 = Reader.ReadUInt16();
+                        ret.LayoutDescriptionUnknown4 = Reader.ReadUInt32();
+                        break;
+                }
+            }
 
             return ret;
-        }
-
-        private uint ReadUintParam()
-        {
-            _ = Reader.BaseStream.Seek(12, SeekOrigin.Current);
-            return Reader.ReadUInt32();
-        }
-        private float ReadFloatParam()
-        {
-            _ = Reader.BaseStream.Seek(12, SeekOrigin.Current);
-            return Reader.ReadSingle();
         }
 
         private Texture2D ReadR32G32B32A32Texture(string name, int width, int height, float minHeight, float maxHeight)
@@ -140,6 +174,7 @@ namespace Fox.Gr
 
         private Texture2D ReadR32TileTexture(string name, int width, int height, float minHeight, float maxHeight)
         {
+            Debug.Log($"@{Reader.BaseStream.Position} ReadR32TileTexture");
             var ret = new Texture2D(width, height, TextureFormat.RFloat, true)
             {
                 name = name
@@ -149,6 +184,7 @@ namespace Fox.Gr
             float[] data = new float[height * width];
             for (int i = 0; i < height * width; i++)
             {
+                Debug.Log($"@{Reader.BaseStream.Position} {i} ReadSingle");
                 data[i] = Reader.ReadSingle();
             }
 
@@ -237,7 +273,7 @@ namespace Fox.Gr
             return ret;
         }
 
-        public BinaryReader Reader
+        public FileStreamReader Reader
         {
             get;
         }

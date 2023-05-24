@@ -102,6 +102,15 @@ namespace Fox.Core
         }
 
         [Conditional("DEBUG")]
+        public void Validate(uint version, String name, uint flags)
+        {
+            Validate(version, flags);
+
+            var nameContext = new FoxDataStringContext(Reader, Position, StringFormat, StringOffsetMode);
+            Debug.Assert(name == (String)null ? nameContext.GetHash() == 0 : nameContext.Equals(name));
+        }
+
+        [Conditional("DEBUG")]
         public void Validate(uint version, String name, uint flags, uint fileSize)
         {
             Validate(version, flags);

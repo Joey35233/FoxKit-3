@@ -1,5 +1,6 @@
 using Fox.Core;
 using Fox.Fio;
+using System;
 using System.IO;
 using UnityEditor;
 using UnityEngine;
@@ -50,107 +51,95 @@ namespace Tpp.GameKit
                 havesModel = false;
             }
 
-            var namedAsset = AssetDatabase.LoadAssetAtPath<ScriptableObject>(trimmedLocatorPath) as NamedLocatorBinaryArrayAsset;
-
-            if (namedAsset != null)
+            switch (AssetDatabase.LoadAssetAtPath<ScriptableObject>(trimmedLocatorPath))
             {
-                foreach (NamedLocatorBinary locator in namedAsset.locators)
-                {
-                    var locatorGameObject = new GameObject() { name = locator.GetLocatorName().CString };
-                    locatorGameObject.transform.position = locator.GetTranslation();
-                    locatorGameObject.transform.rotation = locator.GetRotation();
-                    if (assetModelFile != null)
+                case NamedLocatorBinaryArrayAsset namedAsset:
+                    foreach (NamedLocatorBinary locator in namedAsset.locators)
                     {
-                        var instance = GameObject.Instantiate(assetModelFile);
-                        instance.transform.SetParent(locatorGameObject.transform, false);
+                        var locatorGameObject = new GameObject() { name = locator.GetLocatorName().CString };
+                        locatorGameObject.transform.position = locator.GetTranslation();
+                        locatorGameObject.transform.rotation = locator.GetRotation();
+                        if (assetModelFile != null)
+                        {
+                            var instance = GameObject.Instantiate(assetModelFile);
+                            instance.transform.SetParent(locatorGameObject.transform, false);
+                        }
+                        if (assetBreakedModelFile != null)
+                        {
+                            var instance = GameObject.Instantiate(assetBreakedModelFile);
+                            instance.transform.SetParent(locatorGameObject.transform, false);
+                        }
+                        if (havesModel == false)
+                        {
+                            PointGizmo gizmo = locatorGameObject.AddComponent<PointGizmo>();
+                            gizmo.Color = Color.cyan;
+                            gizmo.DrawLabel = true;
+                            gizmo.Scale = Vector3.one;
+                            gizmo.ScaleMode = PointGizmo.GizmoScaleMode.Explicit;
+                        }
+                        locatorGameObject.transform.SetParent(gameObject.transform);
                     }
-                    if (assetBreakedModelFile != null)
+                    break;
+                case ScaledLocatorBinaryArrayAsset scaledAsset:
+                    foreach (ScaledLocatorBinary locator in scaledAsset.locators)
                     {
-                        var instance = GameObject.Instantiate(assetBreakedModelFile);
-                        instance.transform.SetParent(locatorGameObject.transform, false);
+                        var locatorGameObject = new GameObject() { name = locator.GetLocatorName().CString };
+                        locatorGameObject.transform.position = locator.GetTranslation();
+                        locatorGameObject.transform.rotation = locator.GetRotation();
+                        locatorGameObject.transform.localScale = locator.GetScale();
+                        if (assetModelFile != null)
+                        {
+                            var instance = GameObject.Instantiate(assetModelFile);
+                            instance.transform.SetParent(locatorGameObject.transform, false);
+                        }
+                        if (assetBreakedModelFile != null)
+                        {
+                            var instance = GameObject.Instantiate(assetBreakedModelFile);
+                            instance.transform.SetParent(locatorGameObject.transform, false);
+                        }
+                        if (havesModel == false)
+                        {
+                            PointGizmo gizmo = locatorGameObject.AddComponent<PointGizmo>();
+                            gizmo.Color = Color.cyan;
+                            gizmo.DrawLabel = true;
+                            gizmo.Scale = Vector3.one;
+                            gizmo.ScaleMode = PointGizmo.GizmoScaleMode.Explicit;
+                        }
+                        locatorGameObject.transform.SetParent(gameObject.transform);
                     }
-                    if (havesModel == false)
+                    break;
+                case PowerCutAreaLocatorBinaryArrayAsset powerCutAreaAsset:
+                    foreach (PowerCutAreaLocatorBinary locator in powerCutAreaAsset.locators)
                     {
-                        PointGizmo gizmo = locatorGameObject.AddComponent<PointGizmo>();
-                        gizmo.Color = Color.cyan;
-                        gizmo.DrawLabel = true;
-                        gizmo.Scale = Vector3.one;
-                        gizmo.ScaleMode = PointGizmo.GizmoScaleMode.Explicit;
+                        var locatorGameObject = new GameObject() { name = name.CString };
+                        locatorGameObject.transform.position = locator.GetTranslation();
+                        locatorGameObject.transform.rotation = locator.GetRotation();
+                        if (assetModelFile != null)
+                        {
+                            var instance = GameObject.Instantiate(assetModelFile);
+                            instance.transform.SetParent(locatorGameObject.transform, false);
+                        }
+                        if (assetBreakedModelFile != null)
+                        {
+                            var instance = GameObject.Instantiate(assetBreakedModelFile);
+                            instance.transform.SetParent(locatorGameObject.transform, false);
+                        }
+                        if (havesModel == false)
+                        {
+                            PointGizmo gizmo = locatorGameObject.AddComponent<PointGizmo>();
+                            gizmo.Color = Color.cyan;
+                            gizmo.DrawLabel = true;
+                            gizmo.Scale = Vector3.one;
+                            gizmo.ScaleMode = PointGizmo.GizmoScaleMode.Explicit;
+                        }
+                        locatorGameObject.transform.SetParent(gameObject.transform);
                     }
-                    locatorGameObject.transform.SetParent(gameObject.transform);
-                }
-                return;
-            }
-
-            var scaledAsset = AssetDatabase.LoadAssetAtPath<ScriptableObject>(trimmedLocatorPath) as ScaledLocatorBinaryArrayAsset;
-
-            if (scaledAsset != null)
-            {
-                foreach (ScaledLocatorBinary locator in scaledAsset.locators)
-                {
-                    var locatorGameObject = new GameObject() { name = locator.GetLocatorName().CString };
-                    locatorGameObject.transform.position = locator.GetTranslation();
-                    locatorGameObject.transform.rotation = locator.GetRotation();
-                    locatorGameObject.transform.localScale = locator.GetScale();
-                    if (assetModelFile != null)
-                    {
-                        var instance = GameObject.Instantiate(assetModelFile);
-                        instance.transform.SetParent(locatorGameObject.transform, false);
-                    }
-                    if (assetBreakedModelFile != null)
-                    {
-                        var instance = GameObject.Instantiate(assetBreakedModelFile);
-                        instance.transform.SetParent(locatorGameObject.transform, false);
-                    }
-                    if (havesModel == false)
-                    {
-                        PointGizmo gizmo = locatorGameObject.AddComponent<PointGizmo>();
-                        gizmo.Color = Color.cyan;
-                        gizmo.DrawLabel = true;
-                        gizmo.Scale = Vector3.one;
-                        gizmo.ScaleMode = PointGizmo.GizmoScaleMode.Explicit;
-                    }
-                    locatorGameObject.transform.SetParent(gameObject.transform);
-                }
-                return;
-            }
-
-            var powerCutAreaAsset = AssetDatabase.LoadAssetAtPath<ScriptableObject>(trimmedLocatorPath) as PowerCutAreaLocatorBinaryArrayAsset;
-
-            if (powerCutAreaAsset != null)
-            {
-                foreach (PowerCutAreaLocatorBinary locator in powerCutAreaAsset.locators)
-                {
-                    var locatorGameObject = new GameObject() { name = name.CString };
-                    locatorGameObject.transform.position = locator.GetTranslation();
-                    locatorGameObject.transform.rotation = locator.GetRotation();
-                    if (assetModelFile != null)
-                    {
-                        var instance = GameObject.Instantiate(assetModelFile);
-                        instance.transform.SetParent(locatorGameObject.transform, false);
-                    }
-                    if (assetBreakedModelFile != null)
-                    {
-                        var instance = GameObject.Instantiate(assetBreakedModelFile);
-                        instance.transform.SetParent(locatorGameObject.transform, false);
-                    }
-                    if (havesModel == false)
-                    {
-                        PointGizmo gizmo = locatorGameObject.AddComponent<PointGizmo>();
-                        gizmo.Color = Color.cyan;
-                        gizmo.DrawLabel = true;
-                        gizmo.Scale = Vector3.one;
-                        gizmo.ScaleMode = PointGizmo.GizmoScaleMode.Explicit;
-                    }
-                    locatorGameObject.transform.SetParent(gameObject.transform);
-                }
-                return;
-            }
-
-            if (namedAsset == null && scaledAsset == null && powerCutAreaAsset == null)
-            {
-                Debug.LogWarning($"{name}: Unable to find asset at path {trimmedLocatorPath}");
-                return;
+                    break;
+                case null:
+                    Debug.LogWarning($"{name}: Unable to find asset at path {trimmedLocatorPath}");
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
         }
     }

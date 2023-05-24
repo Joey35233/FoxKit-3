@@ -256,8 +256,7 @@ namespace Fox.Core.Serialization
                     StrCode hash = reader.ReadStrCode();
                     string unhashedString = unhashString(hash).CString;
                     var path = new Path(unhashedString);
-                    if (path == "/Assets/tpp/environ/object/cyprus/rock/cypr_rock006/scenes/cypr_rock006_vrtn001.geom")
-                        Debug.Log($"rlc:unhashedString={unhashedString},path={path.CString}");
+                    //UH OH!!! EMPTY PATH NOT EMPTY
                     var filePtr = new FilePtr(path);
                     return new Value(filePtr);
                 case PropertyInfo.PropertyType.Vector3:

@@ -1,5 +1,6 @@
 using Fox.Core;
 using Fox.Fio;
+using System;
 using System.IO;
 using UnityEditor;
 using UnityEngine;
@@ -35,58 +36,67 @@ namespace Fox.GameKit
 
             foreach (ObjectBrushObjectBinary obj in asset.objects)
             {
-                var locatorGameObject = new GameObject();
-                locatorGameObject.name = gameObject.name + "Brush" + obj.GetPluginBrushIndex().ToString("d4") + "Object" + asset.objects.IndexOf(obj).ToString("d4");
+                GameObject instanceGameObject;
+                bool instantiated = false;
 
-                var pluginEntity = pluginHandle[obj.GetPluginBrushIndex()].Entity as ObjectBrushPlugin;
-                if (pluginEntity!=null)
-                    locatorGameObject.name = pluginEntity.name + asset.objects.IndexOf(obj).ToString("d4");
+                var transform = new Fox.Core.Transform();
 
-                Vector3 foxPosition = GetPositionFWSFromPositionEWS(
-                    obj.GetXPosition(),obj.GetYPosition(),obj.GetZPosition(),obj.GetBlockIndex(),
-                    asset.numBlocksW, asset.numBlocksH, asset.blockSizeW,asset.blockSizeH);
-                locatorGameObject.transform.position = Kernel.Math.FoxToUnityVector3(foxPosition);
-                locatorGameObject.transform.rotation = Kernel.Math.FoxToUnityQuaternion(obj.GetRotation());
+                Vector3 foxPosition = GetPositionFWSFromPositionEWS(obj,asset);
 
-                var pluginCloneEntity = pluginHandle[obj.GetPluginBrushIndex()].Entity as ObjectBrushPluginClone;
+                transform.translation = Kernel.Math.FoxToUnityVector3(foxPosition);
+                transform.rotation_quat = Kernel.Math.FoxToUnityQuaternion(obj.GetRotation());
 
-                if (pluginCloneEntity!=null)
-                    locatorGameObject.transform.localScale = Vector3.one * Mathf.Lerp(pluginCloneEntity.minSize, pluginCloneEntity.maxSize, (float)obj.GetNormalizedScale() / System.Byte.MaxValue);
+                float normalizedScale = (float)obj.GetNormalizedScale() / System.Byte.MaxValue;
 
-                if (pluginCloneEntity != null)
+                if (pluginHandle[obj.GetPluginBrushIndex()].Entity is ObjectBrushPlugin plugin)
                 {
-                    string modelFilePath = "/Assets/Game" + pluginCloneEntity.modelFile.path.CString;
-
-                    string trimmedModelFilePath = modelFilePath.Remove(0, 1);
-                    GameObject modelFileAsset = AssetDatabase.LoadAssetAtPath<GameObject>(trimmedModelFilePath);
-                    if (modelFileAsset == null)
+                    switch (pluginHandle[obj.GetPluginBrushIndex()].Entity)
                     {
-                        Debug.LogWarning($"{name}: Unable to find asset at path {trimmedModelFilePath}");
-                    }
-                    else
-                    {
-                        var modelFileInstance = GameObject.Instantiate(modelFileAsset);
-                        modelFileInstance.transform.SetParent(locatorGameObject.transform, false);
+                        case ObjectBrushPluginClone pluginClone:
+                            transform.scale = Vector3.one * Mathf.Lerp(pluginClone.minSize, pluginClone.maxSize, normalizedScale);
+                            instanceGameObject = MakeStaticModelGameObject(transform, "/Assets/Game" + pluginClone.modelFile.path.CString, gameObject);
+                            break;
+                        case ObjectBrushPluginStaticModel pluginStaticModel:
+                            transform.scale = Vector3.one * Mathf.Lerp(pluginStaticModel.minSize, pluginStaticModel.maxSize, normalizedScale);
+                            instanceGameObject = MakeStaticModelGameObject(transform, "/Assets/Game" + pluginStaticModel.modelFile.path.CString, gameObject);
+                            break;
+                        case null:
+                            throw new ArgumentNullException();
+                        default:
+                            //TODO Tpp.GameKit.ObjectBrushPluginStaticModel, TppObjectBrushPluginSkeletonModel
+                            Debug.LogWarning($"{name}: pluginHandle #{obj.GetPluginBrushIndex()} is not a supported");
+                            break;
                     }
                 }
-
-                if (pluginCloneEntity==null)
+                else
                 {
-                    PointGizmo gizmo = locatorGameObject.AddComponent<PointGizmo>();
+                    Debug.LogWarning($"{name}: pluginHandle #{obj.GetPluginBrushIndex()} is not ObjectBrushPlugin");
+                }
+
+                if (!instantiated)
+                {
+                    instanceGameObject = new GameObject();
+                    instanceGameObject.transform.position = transform.translation;
+                    instanceGameObject.transform.rotation = transform.rotation_quat;
+                    instanceGameObject.transform.localScale = transform.scale;
+                    instanceGameObject.transform.SetParent(gameObject.transform, false);
+                    PointGizmo gizmo = instanceGameObject.AddComponent<PointGizmo>();
                     gizmo.Color = Color.green;
                     gizmo.Scale = Vector3.one;
-                    gizmo.ScaleMode = PointGizmo.GizmoScaleMode.Explicit;
                 }
-
-                locatorGameObject.transform.SetParent(gameObject.transform);
             }
         }
         //joey func, but perhaps pointlessly dynamic!
         private const ushort OBR_MAGIC = 32640;
-        private static Vector3 GetPositionFWSFromPositionEWS(short xEOS, float yFWS, short zEOS, ushort blockIndex, uint numBlocksW, uint numBlocksH, float blockSizeW, float blockSizeH)
+        private static Vector3 GetPositionFWSFromPositionEWS(ObjectBrushObjectBinary obj, ObjectBrushAsset asset)
         {
-            ushort METERS_PER_BLOCK_X = (ushort)(blockSizeH / 1);
-            ushort METERS_PER_BLOCK_Z = (ushort)(blockSizeW / 1);
+            ushort blockIndex = obj.GetBlockIndex();
+
+            uint numBlocksW = asset.numBlocksW;
+            uint numBlocksH = asset.numBlocksH;
+
+            ushort METERS_PER_BLOCK_X = (ushort)(asset.blockSizeH / 1);
+            ushort METERS_PER_BLOCK_Z = (ushort)(asset.blockSizeW / 1);
             // block indices [0,32) x [0,32)
             ushort blockX = (ushort)(blockIndex % numBlocksH);
             ushort blockZ = (ushort)Mathf.Floor(blockIndex / numBlocksW);
@@ -98,10 +108,28 @@ namespace Fox.GameKit
             // output position FWS
             float OBR_POSITION_DECODE_X = METERS_PER_BLOCK_X / (float)OBR_MAGIC;
             float OBR_POSITION_DECODE_Z = METERS_PER_BLOCK_Z / (float)OBR_MAGIC;
-            float xFWS = blockCenterXFWS + (OBR_POSITION_DECODE_X * xEOS);
-            float zFWS = blockCenterZFWS + (OBR_POSITION_DECODE_Z * zEOS);
+            float xFWS = blockCenterXFWS + (OBR_POSITION_DECODE_X * obj.GetXPosition());
+            float zFWS = blockCenterZFWS + (OBR_POSITION_DECODE_Z * obj.GetZPosition());
 
-            return new Vector3(xFWS, yFWS, zFWS);
+            return new Vector3(xFWS, obj.GetYPosition(), zFWS);
+        }
+        private static GameObject MakeStaticModelGameObject(Fox.Core.Transform transform, string modelFilePath, GameObject gameObject)
+        {
+            string trimmedModelFilePath = modelFilePath.Remove(0, 1);
+            if (AssetDatabase.LoadAssetAtPath<GameObject>(trimmedModelFilePath) is GameObject modelFileAsset)
+            {
+                var modelFileInstance = GameObject.Instantiate(modelFileAsset);
+                modelFileInstance.transform.position = transform.translation;
+                modelFileInstance.transform.rotation = transform.rotation_quat;
+                modelFileInstance.transform.localScale = transform.scale;
+                modelFileInstance.transform.SetParent(gameObject.transform, false);
+                return modelFileInstance;
+            }
+            else
+            {
+                Debug.LogWarning($"Unable to find asset at path {trimmedModelFilePath}");
+            }
+            return null;
         }
     }
 }

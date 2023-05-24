@@ -1,3 +1,4 @@
+using Fox.Fio;
 using System.IO;
 using UnityEditor;
 
@@ -14,7 +15,7 @@ namespace FoxKit.MenuItems
                 return;
             }
 
-            using var reader = new BinaryReader(System.IO.File.OpenRead(assetPath));
+            using var reader = new FileStreamReader(System.IO.File.OpenRead(assetPath));
             var tre2Reader = new Fox.Gr.TerrainFileReader(reader);
             Fox.Gr.TerrainFileAsset asset = tre2Reader.Read();
 
