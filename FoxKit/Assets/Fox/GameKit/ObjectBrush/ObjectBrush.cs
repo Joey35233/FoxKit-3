@@ -1,5 +1,6 @@
 using Fox.Core;
 using Fox.Fio;
+using Fox.Kernel;
 using System;
 using System.IO;
 using UnityEditor;
@@ -20,7 +21,15 @@ namespace Fox.GameKit
                 return;
             }
 
-            ObjectBrushAsset asset = ObjectBrushReader.Read(new FileStreamReader(new FileStream("Assets" + obrPath, FileMode.Open)));
+            string readPath = "Assets" + obrPath;
+
+            if (!System.IO.File.Exists(readPath))
+            {
+                Debug.LogError($"{readPath} does not exist");
+                return;
+            }
+
+            ObjectBrushAsset asset = ObjectBrushReader.Read(new FileStreamReader(new FileStream(readPath, FileMode.Open)));
 
             if (asset == null)
             {
@@ -64,6 +73,7 @@ namespace Fox.GameKit
                             throw new ArgumentNullException();
                         default:
                             //TODO Tpp.GameKit.ObjectBrushPluginStaticModel, TppObjectBrushPluginSkeletonModel
+                            var pluginClassName = new StrCode32(pluginHandle[obj.GetPluginBrushIndex()].Entity.GetClassEntityInfo().Name.CString);
                             Debug.LogWarning($"{name}: pluginHandle #{obj.GetPluginBrushIndex()} is not a supported");
                             break;
                     }

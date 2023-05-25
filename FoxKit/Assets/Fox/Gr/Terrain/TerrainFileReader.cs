@@ -24,7 +24,9 @@ namespace Fox.Gr
             {
                 FoxDataNodeContext dataNode = node.Value;
 
-                switch (dataNode.GetName().CString)
+                string nodeName = dataNode.GetName().CString;
+
+                switch (nodeName)
                 {
                     case "param":
                         ret.Width = dataNode.FindParameter(new String("width")).Value.GetUInt();
@@ -53,39 +55,32 @@ namespace Fox.Gr
                 //Payload
                 if (dataNode.GetDataPosition() is not long dataPosition)
                     continue;
+                Reader.Seek(dataPosition);
 
-                switch (dataNode.GetName().CString)
+                switch (nodeName)
                 {
                     case "param":
-                        Reader.Seek(dataPosition);
-                        ret.LodParam = ReadR32G32B32A32Texture("lodParam", 128, 128, 0, 10);
+                        ret.LodParam = ReadR32G32B32A32Texture("lodParam", 128, 128, ret.HeightRangeMin, ret.HeightRangeMax);
                         break;
                     case "maxHeight":
-                        Reader.Seek(dataPosition);
                         ret.MaxHeight = ReadR32Texture("maxHeight", 128, 128, ret.HeightRangeMin, ret.HeightRangeMax);
                         break;
                     case "minHeight":
-                        Reader.Seek(dataPosition);
                         ret.MinHeight = ReadR32Texture("minHeight", 128, 128, ret.HeightRangeMin, ret.HeightRangeMax);
                         break;
                     case "heightMap":
-                        Reader.Seek(dataPosition);
                         ret.Heightmap = ReadR32TileTexture("heightmap", 256, 256, ret.HeightRangeMin, ret.HeightRangeMax);
                         break;
                     case "comboTexture":
-                        Reader.Seek(dataPosition);
                         ret.ComboTexture = ReadR8G8B8A8TileTexture("comboTexture", 256, 256);
                         break;
                     case "materialIds":
-                        Reader.Seek(dataPosition);
                         ret.MaterialIds = ReadR8G8B8A8Texture("materialIds", 128, 128);
                         break;
                     case "configrationIds":
-                        Reader.Seek(dataPosition);
                         ret.ConfigrationIds = ReadR8G8B8A8Texture("configrationIds", 128, 128);
                         break;
                     case "layoutDescription":
-                        Reader.Seek(dataPosition);
                         Reader.Skip(0x10);
                         ret.WidthWorldSpace = Reader.ReadUInt32();
                         ret.HeightWorldSpace = Reader.ReadUInt32();
