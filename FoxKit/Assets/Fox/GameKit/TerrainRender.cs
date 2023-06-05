@@ -1,3 +1,4 @@
+using Fox.Fio;
 using Fox.Gr;
 using System.IO;
 using UnityEditor;
@@ -27,7 +28,7 @@ namespace Fox.GameKit
             TerrainFileAsset asset = AssetDatabase.LoadAssetAtPath<TerrainFileAsset>(trimmedPath);
             if (asset == null)
             {
-                using var reader = new BinaryReader(System.IO.File.OpenRead(Application.dataPath+path));
+                using var reader = new FileStreamReader(System.IO.File.OpenRead(Application.dataPath+path));
                 var tre2Reader = new Fox.Gr.TerrainFileReader(reader);
                 asset = tre2Reader.Read();
                 AssetDatabase.CreateAsset(asset, $"Assets{Path.GetDirectoryName(path)+ "/" + Path.GetFileNameWithoutExtension(path)}.asset");

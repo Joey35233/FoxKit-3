@@ -1,3 +1,4 @@
+using Fox.Fio;
 using System;
 using UnityEngine;
 
@@ -49,5 +50,18 @@ namespace Fox.GameKit
         public byte GetPluginBrushIndex() => pluginBrushIndex;
         public byte GetNormalizedScale() => normalizedScale;
         public uint GetGlobalObjectIndex() => globalObjectIndex;
+
+        public ObjectBrushObjectBinary(FileStreamReader reader)
+        {
+            yPosition = reader.ReadSingle();
+            xPosition = reader.ReadInt16();
+            zPosition = reader.ReadInt16();
+            rotation = new UnityEngine.Quaternion(
+                reader.ReadHalf(), reader.ReadHalf(), reader.ReadHalf(), reader.ReadHalf());
+            blockIndex = reader.ReadUInt16();
+            pluginBrushIndex = reader.ReadByte();
+            normalizedScale = reader.ReadByte();
+            globalObjectIndex = reader.ReadUInt32();
+        }
     }
 }

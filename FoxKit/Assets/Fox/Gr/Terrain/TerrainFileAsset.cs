@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 namespace Fox.Gr
 {
@@ -19,9 +19,7 @@ namespace Fox.Gr
         public float MaxHeightWorldSpace;
         public float MinHeightWorldSpace;
         public float LayoutDescriptionGridDistance;
-        public ushort LayoutDescriptionUnknown2;
-        public ushort LayoutDescriptionUnknown3;
-        public uint LayoutDescriptionUnknown4;
+        public ushort LayoutDescriptionLodCount;
 
         public Texture2D LodParam;
         public Texture2D MaxHeight;
