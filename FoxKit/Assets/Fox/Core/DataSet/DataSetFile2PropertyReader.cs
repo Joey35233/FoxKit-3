@@ -253,12 +253,7 @@ namespace Fox.Core.Serialization
                 case PropertyInfo.PropertyType.Path:
                     return new Value(new Path(unhashString(reader.ReadStrCode()).CString));
                 case PropertyInfo.PropertyType.FilePtr:
-                    StrCode hash = reader.ReadStrCode();
-                    string unhashedString = unhashString(hash).CString;
-                    var path = new Path(unhashedString);
-                    //UH OH!!! EMPTY PATH NOT EMPTY
-                    var filePtr = new FilePtr(path);
-                    return new Value(filePtr);
+                    return new Value(new FilePtr(new Path(unhashString(reader.ReadStrCode()).CString)));
                 case PropertyInfo.PropertyType.Vector3:
                     // A "WideVector3" actually exists with two ushort properties packed into w but they are seemingly unused so I have called a padded vector3 a WideVector.
                     return new Value(reader.ReadWideVector3());

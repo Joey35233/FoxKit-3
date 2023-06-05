@@ -33,7 +33,6 @@ namespace Fox.Kernel
 
         static Path()
         {
-            //PROBLEM
             Empty = new Path
             {
                 _cString = System.String.Empty,
