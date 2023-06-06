@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Runtime.InteropServices;
 using UnityEngine;
 
@@ -24,20 +24,12 @@ namespace Fox.Kernel
         /// <summary>
         /// The empty string.
         /// </summary>
-        public static String Empty
+        public static String Empty => new String
         {
-            get;
-        }
-
-        static String()
-        {
-            Empty = new String
-            {
-                _cString = System.String.Empty,
-                _length = 0,
-                _hash = new StrCode(System.String.Empty)
-            };
-        }
+            _cString = System.String.Empty,
+            _length = 0,
+            _hash = new StrCode(System.String.Empty)
+        };
 
         private String()
         {
