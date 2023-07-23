@@ -36,16 +36,16 @@ namespace Fox.Gr.Editor
 
         private void OnExport()
         {
-            var terrain = this.target as TerrainFileAsset;
-            string outputPath = EditorUtility.SaveFilePanel("Export TerrainFile", "", $"{terrain.name}", "tre2");
-            if (System.String.IsNullOrEmpty(outputPath))
-            {
-                return;
-            }
+            //var terrain = this.target as TerrainFileAsset;
+            //string outputPath = EditorUtility.SaveFilePanel("Export TerrainFile", "", $"{terrain.name}", "tre2");
+            //if (System.String.IsNullOrEmpty(outputPath))
+            //{
+            //    return;
+            //}
 
-            using var binWriter = new BinaryWriter(System.IO.File.Open(outputPath, FileMode.Create), System.Text.Encoding.Default);
-            var writer = new TerrainFileWriter();
-            writer.Write(binWriter, terrain);
+            //using var binWriter = new BinaryWriter(System.IO.File.Open(outputPath, FileMode.Create), System.Text.Encoding.Default);
+            //var writer = new TerrainFileWriter();
+            //writer.Write(binWriter, terrain);
         }
     }
 }
