@@ -4,7 +4,7 @@ using UnityEngine.UIElements;
 
 namespace Fox.Gr.Editor
 {
-    [CustomEditor(typeof(TerrainFileAsset))]
+    [CustomEditor(typeof(TerrainMapAsset))]
     public class TerrainFileAssetEditor : UnityEditor.Editor
     {
         public override VisualElement CreateInspectorGUI()

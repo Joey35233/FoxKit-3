@@ -17,18 +17,18 @@ namespace FoxKit.MenuItems
 
             using var reader = new FileStreamReader(System.IO.File.OpenRead(assetPath));
             var tre2Reader = new Fox.Gr.TerrainFileReader(reader);
-            Fox.Gr.TerrainFileAsset asset = tre2Reader.Read();
+            Fox.Gr.TerrainMapAsset asset = tre2Reader.Read();
 
             AssetDatabase.CreateAsset(asset, $"Assets/Game/Assets/{Path.GetFileNameWithoutExtension(assetPath)}.asset");
 
             // Need to save the embedded textures to the asset
-            AssetDatabase.AddObjectToAsset(asset.LodParam, asset);
-            AssetDatabase.AddObjectToAsset(asset.MaxHeight, asset);
-            AssetDatabase.AddObjectToAsset(asset.MinHeight, asset);
-            AssetDatabase.AddObjectToAsset(asset.Heightmap, asset);
-            AssetDatabase.AddObjectToAsset(asset.ComboTexture, asset);
-            AssetDatabase.AddObjectToAsset(asset.MaterialIds, asset);
-            AssetDatabase.AddObjectToAsset(asset.ConfigrationIds, asset);
+            //AssetDatabase.AddObjectToAsset(asset.LodParam, asset);
+            //AssetDatabase.AddObjectToAsset(asset.MaxHeight, asset);
+            //AssetDatabase.AddObjectToAsset(asset.MinHeight, asset);
+            //AssetDatabase.AddObjectToAsset(asset.Heightmap, asset);
+            //AssetDatabase.AddObjectToAsset(asset.ComboTexture, asset);
+            //AssetDatabase.AddObjectToAsset(asset.MaterialIds, asset);
+            //AssetDatabase.AddObjectToAsset(asset.ConfigrationIds, asset);
 
             AssetDatabase.SaveAssets();
         }
