@@ -221,7 +221,7 @@ namespace Fox.Gr
 
         private Texture2D ReadR32TileTexture(string name, int width, int height, float minHeight, float maxHeight)
         {
-            Debug.Log($"@{Reader.BaseStream.Position} ReadR32TileTexture");
+            //Debug.Log($"@{Reader.BaseStream.Position} ReadR32TileTexture");
             var ret = new Texture2D(width, height, TextureFormat.RFloat, true)
             {
                 name = name
@@ -231,7 +231,7 @@ namespace Fox.Gr
             float[] data = new float[height * width];
             for (int i = 0; i < height * width; i++)
             {
-                Debug.Log($"@{Reader.BaseStream.Position} {i} ReadSingle");
+                //Debug.Log($"@{Reader.BaseStream.Position} {i} ReadSingle");
                 data[i] = Reader.ReadSingle();
             }
 
