@@ -1,11 +1,11 @@
-using System;
+//using System;
 using System.Runtime.InteropServices;
 using UnityEngine;
 
 namespace Fox.Kernel
 {
-    [Serializable, StructLayout(LayoutKind.Explicit, Size = 16, CharSet = CharSet.Ansi)]
-    public class String : IEquatable<string>
+    [System.Serializable, StructLayout(LayoutKind.Explicit, Size = 16, CharSet = CharSet.Ansi)]
+    public class String : System.IEquatable<string>
     {
         [SerializeField, FieldOffset(0)]
         private string _cString;
@@ -24,19 +24,16 @@ namespace Fox.Kernel
         /// <summary>
         /// The empty string.
         /// </summary>
-        public static String Empty => new String
-        {
-            _cString = System.String.Empty,
-            _length = 0,
-            _hash = new StrCode(System.String.Empty)
-        };
+        public static String Empty => new String();
 
         private String()
         {
-
+            _cString = System.String.Empty;
+            _length = 0;
+            _hash = new StrCode(System.String.Empty);
         }
 
-        public String(ReadOnlySpan<char> value) : this(new string(value)) { }
+        public String(System.ReadOnlySpan<char> value) : this(new string(value)) { }
 
         public String(string name)
         {

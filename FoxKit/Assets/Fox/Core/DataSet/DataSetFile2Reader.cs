@@ -30,18 +30,16 @@ namespace Fox.Core
 
             reader.Seek(stringTableOffset);
             stringTable = ReadStringTable(reader);
+
 			// v rlc with sai's direction, from Atvaark's FoxTool code
             string path = "Assets/Fox/Core/DataSet/fox_dictionary.txt";
             foreach (string line in System.IO.File.ReadAllLines(path))
             {
-                var stringString = new String(line);
-                var hash = HashingBitConverter.ToStrCode(Hashing.StrCode(line));
-                if (stringTable.ContainsKey(hash) == false)
-                {
-                    stringTable.Add(hash, stringString);
-                }
+                var lineFoxString = new String(line);
+                _ = stringTable.TryAdd(lineFoxString.Hash, lineFoxString);
             }
 			// ^
+
             reader.Seek(entityTableOffset);
 
             var result = new ReadResult();

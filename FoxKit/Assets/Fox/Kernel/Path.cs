@@ -26,16 +26,13 @@ namespace Fox.Kernel
         /// <summary>
         /// The empty string.
         /// </summary>
-        public static Path Empty => new Path
-        {
-            _cString = System.String.Empty,
-            _length = 0,
-            _hash = new PathFileNameAndExtCode(System.String.Empty)
-        };
+        public static Path Empty => new Path();
 
         private Path()
         {
-
+            _cString = System.String.Empty;
+            _length = 0;
+            _hash = new PathFileNameAndExtCode(System.String.Empty);
         }
 
         public Path(ReadOnlySpan<char> value) : this(new string(value)) { }
