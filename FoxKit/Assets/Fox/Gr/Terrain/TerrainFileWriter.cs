@@ -13,24 +13,24 @@ enum FOX_DATA_NODE_ENTRY_PARAM_TYPE
 public class TerrainFileWriter
 {
     private BinaryWriter writer;
-    private TerrainFileAsset terrain;
+    //private TerrainFileAsset terrain;
 
     /// <summary>
     /// Offsets at which to write string table offsets
     /// </summary>
     private readonly Dictionary<Fox.Kernel.String, long> stringLiterals = new Dictionary<Fox.Kernel.String, long>();
 
-    internal void Write(BinaryWriter binWriter, TerrainFileAsset terrain)
-    {
-        this.writer = binWriter;
-        this.terrain = terrain;
+    //internal void Write(BinaryWriter binWriter, TerrainFileAsset terrain)
+    //{
+    //    this.writer = binWriter;
+    //    this.terrain = terrain;
 
-        WriteHeader();
-        _ = writer.Seek(32, SeekOrigin.Begin);
-        WriteNodes();
+    //    WriteHeader();
+    //    _ = writer.Seek(32, SeekOrigin.Begin);
+    //    WriteNodes();
 
-        // TODO Write strings
-    }
+    //    // TODO Write strings
+    //}
 
     private void WriteHeader()
     {
