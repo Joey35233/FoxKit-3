@@ -1,0 +1,314 @@
+#include "GBuffersBase.shdr"
+
+
+
+
+// #line 6 "..\Gr\Dg\shader\fox3ddf_blin.shdr"
+
+
+// J - include
+#include "GammaTransformation.h"
+
+
+// #line 7 "..\Gr\Dg\shader\fox3ddf_blin.shdr"
+
+
+// J - include
+#include "NormalBlend.h"
+
+// #line 8 "..\Gr\Dg\shader\fox3ddf_blin.shdr"
+
+
+// J - include
+#include "Common.h"
+
+
+// #line 9 "..\Gr\Dg\shader\fox3ddf_blin.shdr"
+
+
+
+// #line 15 "..\Gr\Dg\shader\fox3ddf_blin.shdr"
+
+
+// #line 21 "..\Gr\Dg\shader\fox3ddf_blin.shdr"
+
+
+// #line 25 "..\Gr\Dg\shader\fox3ddf_blin.shdr"
+
+
+
+
+
+
+
+
+
+
+
+
+// #line 53 "..\Gr\Dg\shader\fox3ddf_blin.shdr"
+
+
+// #line 125 "..\Gr\Dg\shader\fox3ddf_blin.shdr"
+
+
+
+
+
+
+
+// #line 138 "..\Gr\Dg\shader\fox3ddf_blin.shdr"
+
+
+// #line 160 "..\Gr\Dg\shader\fox3ddf_blin.shdr"
+
+
+
+// #line 164 "..\Gr\Dg\shader\fox3ddf_blin.shdr"
+
+
+// #line 173 "..\Gr\Dg\shader\fox3ddf_blin.shdr"
+
+
+// #line 177 "..\Gr\Dg\shader\fox3ddf_blin.shdr"
+
+
+// #line 187 "..\Gr\Dg\shader\fox3ddf_blin.shdr"
+
+
+
+// #line 191 "..\Gr\Dg\shader\fox3ddf_blin.shdr"
+
+
+// #line 201 "..\Gr\Dg\shader\fox3ddf_blin.shdr"
+
+
+
+// #line 205 "..\Gr\Dg\shader\fox3ddf_blin.shdr"
+
+
+// #line 214 "..\Gr\Dg\shader\fox3ddf_blin.shdr"
+
+
+
+// #line 221 "..\Gr\Dg\shader\fox3ddf_blin.shdr"
+
+
+// #line 235 "..\Gr\Dg\shader\fox3ddf_blin.shdr"
+
+
+
+
+
+
+
+// #line 242 "..\Gr\Dg\shader\fox3ddf_blin.shdr"
+
+
+
+// #line 506 "..\Gr\Dg\shader\fox3ddf_blin.shdr"
+
+
+
+
+
+Texture2D g_tex_srm			: TEXUNIT2;
+Texture2D g_tex_materialmap	: TEXUNIT3;
+SamplerState g_sampler_srm			: SAMPLERUNIT2 ;
+SamplerState g_sampler_materialmap	: SAMPLERUNIT3 ;
+
+Texture2D g_MaterialTexture	: TEXUNIT10 ;		
+TextureCube g_ReflectionTexture : TEXUNIT11 ;		
+
+
+// #line 521 "..\Gr\Dg\shader\fox3ddf_blin.shdr"
+
+
+// #line 534 "..\Gr\Dg\shader\fox3ddf_blin.shdr"
+
+
+
+
+// #line 543 "..\Gr\Dg\shader\fox3ddf_blin.shdr"
+
+
+// #line 558 "..\Gr\Dg\shader\fox3ddf_blin.shdr"
+
+
+
+// #line 562 "..\Gr\Dg\shader\fox3ddf_blin.shdr"
+
+
+// #line 579 "..\Gr\Dg\shader\fox3ddf_blin.shdr"
+
+
+// #line 582 "..\Gr\Dg\shader\fox3ddf_blin.shdr"
+
+
+// #line 591 "..\Gr\Dg\shader\fox3ddf_blin.shdr"
+
+
+
+// #line 595 "..\Gr\Dg\shader\fox3ddf_blin.shdr"
+
+
+// #line 607 "..\Gr\Dg\shader\fox3ddf_blin.shdr"
+
+
+// #line 610 "..\Gr\Dg\shader\fox3ddf_blin.shdr"
+
+
+// #line 621 "..\Gr\Dg\shader\fox3ddf_blin.shdr"
+
+
+
+// #line 627 "..\Gr\Dg\shader\fox3ddf_blin.shdr"
+
+
+// #line 639 "..\Gr\Dg\shader\fox3ddf_blin.shdr"
+
+
+
+
+// #line 644 "..\Gr\Dg\shader\fox3ddf_blin.shdr"
+
+
+// #line 664 "..\Gr\Dg\shader\fox3ddf_blin.shdr"
+
+
+
+
+
+// #line 677 "..\Gr\Dg\shader\fox3ddf_blin.shdr"
+
+
+// #line 737 "..\Gr\Dg\shader\fox3ddf_blin.shdr"
+
+
+
+
+// #line 744 "..\Gr\Dg\shader\fox3ddf_blin.shdr"
+
+
+
+// #line 756 "..\Gr\Dg\shader\fox3ddf_blin.shdr"
+
+
+
+
+// #line 764 "..\Gr\Dg\shader\fox3ddf_blin.shdr"
+
+
+
+// #line 786 "..\Gr\Dg\shader\fox3ddf_blin.shdr"
+
+
+
+
+// #line 793 "..\Gr\Dg\shader\fox3ddf_blin.shdr"
+
+
+// #line 806 "..\Gr\Dg\shader\fox3ddf_blin.shdr"
+
+
+
+// #line 814 "..\Gr\Dg\shader\fox3ddf_blin.shdr"
+
+
+// #line 828 "..\Gr\Dg\shader\fox3ddf_blin.shdr"
+
+
+
+// #line 830 "..\Gr\Dg\shader\fox3ddf_blin.shdr"
+
+
+// #line 866 "..\Gr\Dg\shader\fox3ddf_blin.shdr"
+
+
+
+// #line 868 "..\Gr\Dg\shader\fox3ddf_blin.shdr"
+
+
+// #line 880 "..\Gr\Dg\shader\fox3ddf_blin.shdr"
+
+
+
+
+
+// #line 887 "..\Gr\Dg\shader\fox3ddf_blin.shdr"
+
+
+// #line 900 "..\Gr\Dg\shader\fox3ddf_blin.shdr"
+
+
+
+// #line 922 "..\Gr\Dg\shader\fox3ddf_blin.shdr"
+
+
+// #line 930 "..\Gr\Dg\shader\fox3ddf_blin.shdr"
+
+
+// #line 941 "..\Gr\Dg\shader\fox3ddf_blin.shdr"
+
+
+
+
+// #line 950 "..\Gr\Dg\shader\fox3ddf_blin.shdr"
+
+
+// #line 962 "..\Gr\Dg\shader\fox3ddf_blin.shdr"
+
+
+
+
+
+// #line 972 "..\Gr\Dg\shader\fox3ddf_blin.shdr"
+
+
+
+// #line 988 "..\Gr\Dg\shader\fox3ddf_blin.shdr"
+
+
+
+
+
+// #line 996 "..\Gr\Dg\shader\fox3ddf_blin.shdr"
+
+
+// #line 1015 "..\Gr\Dg\shader\fox3ddf_blin.shdr"
+
+
+
+
+// #line 1071 "..\Gr\Dg\shader\fox3ddf_blin.shdr"
+
+
+
+// #line 1075 "..\Gr\Dg\shader\fox3ddf_blin.shdr"
+
+
+// #line 1085 "..\Gr\Dg\shader\fox3ddf_blin.shdr"
+
+
+
+
+// #line 1090 "..\Gr\Dg\shader\fox3ddf_blin.shdr"
+
+
+// #line 1100 "..\Gr\Dg\shader\fox3ddf_blin.shdr"
+
+
+
+// #line 1104 "..\Gr\Dg\shader\fox3ddf_blin.shdr"
+
+
+// #line 1115 "..\Gr\Dg\shader\fox3ddf_blin.shdr"
+
+
+
+// #line 1118 "..\Gr\Dg\shader\fox3ddf_blin.shdr"
+
+
+
+
+// #line 1555 "..\Gr\Dg\shader\fox3ddf_blin.shdr"

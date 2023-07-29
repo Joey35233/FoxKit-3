@@ -1,0 +1,158 @@
+#include "shader.h"
+#include "Common.h"
+#include "CoordinateCalculation.h"
+
+// #line 4 "..\Gr\Dg\shader\Common.shdr"
+
+
+
+
+
+// #line 8 "..\Gr\Dg\shader\Common.shdr"
+
+
+// #line 18 "..\Gr\Dg\shader\Common.shdr"
+
+
+
+
+// #line 23 "..\Gr\Dg\shader\Common.shdr"
+
+
+// #line 34 "..\Gr\Dg\shader\Common.shdr"
+
+
+
+
+// #line 39 "..\Gr\Dg\shader\Common.shdr"
+
+
+// #line 62 "..\Gr\Dg\shader\Common.shdr"
+
+
+
+// #line 64 "..\Gr\Dg\shader\Common.shdr"
+
+
+// #line 74 "..\Gr\Dg\shader\Common.shdr"
+
+
+
+
+// #line 79 "..\Gr\Dg\shader\Common.shdr"
+
+
+// #line 88 "..\Gr\Dg\shader\Common.shdr"
+
+
+
+// #line 97 "..\Gr\Dg\shader\Common.shdr"
+
+
+
+// #line 103 "..\Gr\Dg\shader\Common.shdr"
+
+
+// #line 114 "..\Gr\Dg\shader\Common.shdr"
+
+
+
+
+// #line 120 "..\Gr\Dg\shader\Common.shdr"
+
+
+// #line 130 "..\Gr\Dg\shader\Common.shdr"
+
+
+
+
+// #line 136 "..\Gr\Dg\shader\Common.shdr"
+
+
+// #line 146 "..\Gr\Dg\shader\Common.shdr"
+
+
+
+
+// #line 152 "..\Gr\Dg\shader\Common.shdr"
+
+
+// #line 163 "..\Gr\Dg\shader\Common.shdr"
+
+
+
+
+// #line 169 "..\Gr\Dg\shader\Common.shdr"
+
+
+// #line 180 "..\Gr\Dg\shader\Common.shdr"
+
+
+
+
+// #line 184 "..\Gr\Dg\shader\Common.shdr"
+
+
+// #line 197 "..\Gr\Dg\shader\Common.shdr"
+
+
+
+// #line 200 "..\Gr\Dg\shader\Common.shdr"
+
+
+// #line 213 "..\Gr\Dg\shader\Common.shdr"
+
+
+
+// #line 216 "..\Gr\Dg\shader\Common.shdr"
+
+
+
+
+// #line 223 "..\Gr\Dg\shader\Common.shdr"
+
+
+// #line 233 "..\Gr\Dg\shader\Common.shdr"
+
+
+
+
+// #line 239 "..\Gr\Dg\shader\Common.shdr"
+
+
+// #line 249 "..\Gr\Dg\shader\Common.shdr"
+
+
+
+
+// #line 255 "..\Gr\Dg\shader\Common.shdr"
+
+
+// #line 265 "..\Gr\Dg\shader\Common.shdr"
+
+
+
+
+// #line 271 "..\Gr\Dg\shader\Common.shdr"
+
+
+// #line 284 "..\Gr\Dg\shader\Common.shdr"
+
+
+
+
+// #line 290 "..\Gr\Dg\shader\Common.shdr"
+
+
+// #line 300 "..\Gr\Dg\shader\Common.shdr"
+
+
+
+
+
+// #line 307 "..\Gr\Dg\shader\Common.shdr"
+
+
+// #line 320 "..\Gr\Dg\shader\Common.shdr"
+
+

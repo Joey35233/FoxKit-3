@@ -17,6 +17,8 @@ namespace FoxKit.TEST
 
         public FoxRP()
         {
+            DgUtils.Init();
+
             renderer = new FoxRenderer();
         }
     }

@@ -1,0 +1,133 @@
+// #line 1 "..\Gr\Dg\shader\HDRBuffer_Common.shdr"
+#ifndef HDRBUFFER_COMMON_SHDR_
+#define HDRBUFFER_COMMON_SHDR_
+
+// J - include
+#include "shader.h"
+
+
+// #line 5 "..\Gr\Dg\shader\HDRBuffer_Common.shdr"
+
+
+
+// J - include
+#include "AliasHDRColor.h"
+
+
+// #line 7 "..\Gr\Dg\shader\HDRBuffer_Common.shdr"
+
+
+
+// #line 9 "..\Gr\Dg\shader\HDRBuffer_Common.shdr"
+#define HDRBUF_ENCODE_DIFFUSE	EncodeAliasHDRColor
+#define HDRBUF_DECODE_DIFFUSE	DecodeAliasHDRColor
+#define HDRBUF_ENCODE_SPECULAR	EncodeAliasHDRColor
+#define HDRBUF_DECODE_SPECULAR	DecodeAliasHDRColor
+
+// #line 21 "..\Gr\Dg\shader\HDRBuffer_Common.shdr"
+
+
+// #line 35 "..\Gr\Dg\shader\HDRBuffer_Common.shdr"
+
+
+// #line 49 "..\Gr\Dg\shader\HDRBuffer_Common.shdr"
+
+
+// #line 63 "..\Gr\Dg\shader\HDRBuffer_Common.shdr"
+
+
+// #line 77 "..\Gr\Dg\shader\HDRBuffer_Common.shdr"
+
+#define SamplerGBuffer SamplerPoint
+
+
+
+// #line 85 "..\Gr\Dg\shader\HDRBuffer_Common.shdr"
+
+
+// #line 99 "..\Gr\Dg\shader\HDRBuffer_Common.shdr"
+
+
+
+
+// #line 105 "..\Gr\Dg\shader\HDRBuffer_Common.shdr"
+
+
+// #line 152 "..\Gr\Dg\shader\HDRBuffer_Common.shdr"
+
+
+
+
+// #line 159 "..\Gr\Dg\shader\HDRBuffer_Common.shdr"
+
+
+// #line 216 "..\Gr\Dg\shader\HDRBuffer_Common.shdr"
+
+
+
+
+
+
+// #line 278 "..\Gr\Dg\shader\HDRBuffer_Common.shdr"
+
+
+
+
+// #line 285 "..\Gr\Dg\shader\HDRBuffer_Common.shdr"
+
+
+// #line 311 "..\Gr\Dg\shader\HDRBuffer_Common.shdr"
+
+
+
+
+// #line 317 "..\Gr\Dg\shader\HDRBuffer_Common.shdr"
+
+
+// #line 331 "..\Gr\Dg\shader\HDRBuffer_Common.shdr"
+
+
+
+
+// #line 337 "..\Gr\Dg\shader\HDRBuffer_Common.shdr"
+
+
+// #line 351 "..\Gr\Dg\shader\HDRBuffer_Common.shdr"
+
+
+
+
+// #line 358 "..\Gr\Dg\shader\HDRBuffer_Common.shdr"
+
+
+// #line 386 "..\Gr\Dg\shader\HDRBuffer_Common.shdr"
+
+
+
+// #line 413 "..\Gr\Dg\shader\HDRBuffer_Common.shdr"
+
+
+
+
+// #line 420 "..\Gr\Dg\shader\HDRBuffer_Common.shdr"
+
+
+// #line 447 "..\Gr\Dg\shader\HDRBuffer_Common.shdr"
+
+
+
+
+// #line 453 "..\Gr\Dg\shader\HDRBuffer_Common.shdr"
+
+
+// #line 466 "..\Gr\Dg\shader\HDRBuffer_Common.shdr"
+
+
+
+
+// #line 473 "..\Gr\Dg\shader\HDRBuffer_Common.shdr"
+
+
+// #line 487 "..\Gr\Dg\shader\HDRBuffer_Common.shdr"
+
+#endif	// ifndef HDRBUFFER_COMMON_SHDR_
