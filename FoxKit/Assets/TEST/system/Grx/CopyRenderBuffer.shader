@@ -21,7 +21,7 @@ Shader "Fox/CopyRenderBuffer"
 
             #include "../UnityPatch/PreHLSL.hlsl"
 
-//////////////////////////////////////////
+///////////////////////////////////////////
             #pragma vertex vs_main
 #if defined(SHADER_STAGE_VERTEX)
             #include "CopyRenderBuffer_vs.hlsl"

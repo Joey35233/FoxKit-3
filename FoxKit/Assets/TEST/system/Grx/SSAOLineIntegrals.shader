@@ -20,7 +20,7 @@ Shader "Fox/SSAOLineIntegrals"
 
             #include "../UnityPatch/PreHLSL.hlsl"
 
-//////////////////////////////////
+///////////////////////////////////
             #pragma vertex vs_main
 #if defined(SHADER_STAGE_VERTEX)
             #include "SSAOLineIntegrals_vs.hlsl"

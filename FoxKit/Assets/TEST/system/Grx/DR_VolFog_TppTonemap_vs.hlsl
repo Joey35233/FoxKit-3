@@ -1,8 +1,12 @@
 
-#line 6 "shader\VolFog_TppVolFog.shdr"
+#line 6 "shader\DR_VolFog_TppTonemap.shdr"
 
 
-#line 4 "..\..\..\..\fox\source\system\Gr\Dg\shader\VolFog.shdr"
+#line 4 "..\..\..\..\fox\source\system\Gr\Dg\shader\DeferredRendering_VolFog.shdr"
+
+
+#line 1 "..\..\..\..\fox\source\system\Gr\Dg\shader\DeferredRendering_Common.shdr"
+
 
 
 
@@ -48,15 +52,15 @@
 #define REGISTER_S(_var)	register(s##_var)
 
 
-typedef float4x4			Matrix4x4 ;
-typedef float4x4			TMatrix4x4 ;
-typedef float4x3			TMatrix4x3 ;
+typedef float4x4			Matrix4x4;
+typedef float4x4			TMatrix4x4;
+typedef float4x3			TMatrix4x3;
 
 
-typedef float3			TANGENT2VIEW[3] ;
-typedef half3			HTANGENT2VIEW[3] ;
-typedef float3			TANGENT2WORLD[3] ;
-typedef half3			HTANGENT2WORLD[3] ;
+typedef float3			TANGENT2VIEW[3];
+typedef half3			HTANGENT2VIEW[3];
+typedef float3			TANGENT2WORLD[3];
+typedef half3			HTANGENT2WORLD[3];
 
 
 
@@ -99,7 +103,7 @@ typedef half3			HTANGENT2WORLD[3] ;
 
 
 #line 372 "..\..\..\..\fox\source\system\Gr\Dg\shader\../DgShaderDefine.h"
-	
+
 
 #define OUT_COLOR		SV_Target0
 #define OUT_COLOR0		SV_Target0
@@ -114,7 +118,7 @@ typedef half3			HTANGENT2WORLD[3] ;
 #define VINDEXID		SV_VertexID
 #define VINSTANCEID		SV_InstanceID
 #define VPRIMITIVEID	SV_PrimitiveID
-	
+
 typedef bool			vface;
 
 bool isFrontFace(vface face)
@@ -123,96 +127,96 @@ bool isFrontFace(vface face)
 }
 float getFaceSign(vface face)
 {
-	return face?1:-1;
+	return face ? 1 : -1;
 }
-	
-	
-	
 
-inline float4 ApplyMatrix( Matrix4x4 mat, float4 vec )
+
+
+
+inline float4 ApplyMatrix(Matrix4x4 mat, float4 vec)
 {
-	return mul( mat, vec );
+	return mul(mat, vec);
 }
-inline float4 ApplyMatrixT( TMatrix4x4 mat, float4 vec )
+inline float4 ApplyMatrixT(TMatrix4x4 mat, float4 vec)
 {
-	return mul( vec, mat );
+	return mul(vec, mat);
 }
-inline float3 ApplyMatrixT( TMatrix4x4 mat, float3 vec )
+inline float3 ApplyMatrixT(TMatrix4x4 mat, float3 vec)
 {
-	return mul( float4(vec, 0), mat ).xyz;
+	return mul(float4(vec, 0), mat).xyz;
 }
-inline float3 ApplyMatrixT( TMatrix4x3 mat, float4 vec )
+inline float3 ApplyMatrixT(TMatrix4x3 mat, float4 vec)
 {
-	return mul( vec, mat );
+	return mul(vec, mat);
 }
-inline float3 ApplyMatrixT( TMatrix4x3 mat, float3 vec )
+inline float3 ApplyMatrixT(TMatrix4x3 mat, float3 vec)
 {
-	return mul( float4(vec, 0), mat );
+	return mul(float4(vec, 0), mat);
 }
-inline float3 ApplyMatrixT( TANGENT2WORLD mat, float3 vec )
+inline float3 ApplyMatrixT(TANGENT2WORLD mat, float3 vec)
 {
-	return mul( vec, float3x3(mat[0], mat[1], mat[2]) );
+	return mul(vec, float3x3(mat[0], mat[1], mat[2]));
 }
-inline void SetTranslate( inout Matrix4x4 mat, float4 translate )
+inline void SetTranslate(inout Matrix4x4 mat, float4 translate)
 {
-	mat[0].w = translate.x ;
-	mat[1].w = translate.y ;
-	mat[2].w = translate.z ;
-	mat[3].w = translate.w ;
+	mat[0].w = translate.x;
+	mat[1].w = translate.y;
+	mat[2].w = translate.z;
+	mat[3].w = translate.w;
 }
-inline void SetTranslateT( inout TMatrix4x4 mat, float4 translate )
+inline void SetTranslateT(inout TMatrix4x4 mat, float4 translate)
 {
-	mat[3].xyzw = translate.xyzw ;
+	mat[3].xyzw = translate.xyzw;
 }
-inline void SetTranslateT( inout TMatrix4x3 mat, float3 translate )
+inline void SetTranslateT(inout TMatrix4x3 mat, float3 translate)
 {
-	mat[3].xyz = translate.xyz ;
+	mat[3].xyz = translate.xyz;
 }
-inline float4 GetTranslate( Matrix4x4 mat )
+inline float4 GetTranslate(Matrix4x4 mat)
 {
-	return float4( mat[0].w, mat[1].w, mat[2].w, mat[3].w );
+	return float4(mat[0].w, mat[1].w, mat[2].w, mat[3].w);
 }
-inline float4 GetTranslateT( TMatrix4x4 mat )
+inline float4 GetTranslateT(TMatrix4x4 mat)
 {
-	return mat[3].xyzw ;
+	return mat[3].xyzw;
 }
-inline float3 GetTranslateT( TMatrix4x3 mat )
+inline float3 GetTranslateT(TMatrix4x3 mat)
 {
-	return mat[3].xyz ;
+	return mat[3].xyz;
 }
-inline TMatrix4x4 GetTranspose( TMatrix4x4 mat )
+inline TMatrix4x4 GetTranspose(TMatrix4x4 mat)
 {
-	return transpose ( mat );
+	return transpose(mat);
 }
-inline float4 GetRow( TMatrix4x4 mat, half _row )
+inline float4 GetRow(TMatrix4x4 mat, half _row)
 {
-	return float4( mat[0][(int)_row], mat[1][(int)_row], mat[2][(int)_row], mat[3][(int)_row]);
+	return float4(mat[0][(int)_row], mat[1][(int)_row], mat[2][(int)_row], mat[3][(int)_row]);
 }
-inline float4 GetRowT( TMatrix4x4 mat, half _row )
+inline float4 GetRowT(TMatrix4x4 mat, half _row)
 {
 	return mat[(int)_row].xyzw;
 }
-inline float3 GetRow( TMatrix4x3 mat, half _row )
+inline float3 GetRow(TMatrix4x3 mat, half _row)
 {
-	return float3( mat[0][(int)_row], mat[1][(int)_row], mat[2][(int)_row] );
+	return float3(mat[0][(int)_row], mat[1][(int)_row], mat[2][(int)_row]);
 }
-inline float3 GetRowT( TMatrix4x3 mat, half _row )
+inline float3 GetRowT(TMatrix4x3 mat, half _row)
 {
 	return mat[(int)_row].xyz;
 }
-inline float GetElement( TMatrix4x4 mat, half _row, half _column )
+inline float GetElement(TMatrix4x4 mat, half _row, half _column)
 {
 	return mat[(int)_row][(int)_column];
 }
 
-inline float3 GetViewspaceWorldXDir ( TMatrix4x4 invViewMat ){
-	return float3 ( invViewMat[0][0], invViewMat[0][1], invViewMat[0][2] );
+inline float3 GetViewspaceWorldXDir(TMatrix4x4 invViewMat) {
+	return float3 (invViewMat[0][0], invViewMat[0][1], invViewMat[0][2]);
 }
-inline float3 GetViewspaceWorldYDir ( TMatrix4x4 invViewMat ){
-	return float3 ( invViewMat[1][0], invViewMat[1][1], invViewMat[1][2] );
+inline float3 GetViewspaceWorldYDir(TMatrix4x4 invViewMat) {
+	return float3 (invViewMat[1][0], invViewMat[1][1], invViewMat[1][2]);
 }
-inline float3 GetViewspaceWorldZDir ( TMatrix4x4 invViewMat ){
-	return float3 ( invViewMat[2][0], invViewMat[2][1], invViewMat[2][2] );
+inline float3 GetViewspaceWorldZDir(TMatrix4x4 invViewMat) {
+	return float3 (invViewMat[2][0], invViewMat[2][1], invViewMat[2][2]);
 }
 
 
@@ -249,10 +253,10 @@ inline float3 GetViewspaceWorldZDir ( TMatrix4x4 invViewMat ){
 
 struct SSystem
 {
-	float4		m_param;					
-	float4		m_renderInfo;				
-	float4		m_renderBuffer ;			
-	float4		m_dominantLightDir;			
+	float4		m_param;
+	float4		m_renderInfo;
+	float4		m_renderBuffer;
+	float4		m_dominantLightDir;
 };
 typedef SSystem VSSystem;
 typedef SSystem PSSystem;
@@ -268,19 +272,19 @@ typedef SSystem PSSystem;
 
 struct SScene
 {
-	TMatrix4x4		m_projectionView;		
-	TMatrix4x4		m_projection;			
-	TMatrix4x4		m_view;					
-	TMatrix4x4		m_shadowProjection;		
-	TMatrix4x4		m_shadowProjection2;	
-	float4			m_eyepos;				
-	float4			m_projectionParam;		
-	float4			m_viewportSize;			
-	float4			m_exposure;				
-	float4			m_fogParam[3];			
-	float4			m_fogColor;				
-	float4			m_cameraCenterOffset;	
-	float4			m_shadowMapResolutions;	
+	TMatrix4x4		m_projectionView;
+	TMatrix4x4		m_projection;
+	TMatrix4x4		m_view;
+	TMatrix4x4		m_shadowProjection;
+	TMatrix4x4		m_shadowProjection2;
+	float4			m_eyepos;
+	float4			m_projectionParam;
+	float4			m_viewportSize;
+	float4			m_exposure;
+	float4			m_fogParam[3];
+	float4			m_fogColor;
+	float4			m_cameraCenterOffset;
+	float4			m_shadowMapResolutions;
 };
 typedef SScene VSScene;
 typedef SScene PSScene;
@@ -307,7 +311,7 @@ typedef SScene PSScene;
 
 struct SRenderBuffer
 {
-	float4		m_size;						
+	float4		m_size;
 };
 typedef SRenderBuffer PSRenderBuffer;
 
@@ -353,7 +357,7 @@ typedef SLights PSLight;
 
 struct SMaterial
 {
-	float4		m_materials[SHADER_CONSTAMTBUFFER_MATERIAL_SIZE] ;
+	float4		m_materials[SHADER_CONSTAMTBUFFER_MATERIAL_SIZE];
 };
 typedef SMaterial VSMaterial;
 typedef SMaterial PSMaterial;
@@ -363,19 +367,19 @@ typedef SMaterial PSMaterial;
 
 struct SObjectBase
 {
-	TMatrix4x4		m_viewWorld ;			
-	TMatrix4x4		m_world ;				
-	float4			m_useWeightCount ;		
+	TMatrix4x4		m_viewWorld;
+	TMatrix4x4		m_world;
+	float4			m_useWeightCount;
 };
 
 
 
 struct SObject
 {
-	TMatrix4x4		m_viewWorld ;			
-	TMatrix4x4		m_world ;				
-	float4			m_useWeightCount ;		
-	float4			m_localParam[4] ;		
+	TMatrix4x4		m_viewWorld;
+	TMatrix4x4		m_world;
+	float4			m_useWeightCount;
+	float4			m_localParam[4];
 };
 typedef SObject VSObject;
 typedef SObject PSObject;
@@ -394,8 +398,8 @@ typedef SObject PSObject;
 
 struct SBone
 {
-	TMatrix4x3		m_boneMatrices[32];		
-	
+	TMatrix4x3		m_boneMatrices[32];
+
 };
 typedef SBone VSBone;
 
@@ -409,8 +413,8 @@ typedef SBone VSBone;
 
 struct SWork
 {
-	TMatrix4x4		m_viewInverse;		
-	TMatrix4x4		m_matrix[8];		
+	TMatrix4x4		m_viewInverse;
+	TMatrix4x4		m_matrix[8];
 };
 
 
@@ -439,7 +443,7 @@ typedef SWork VSWork;
 #line 501 "..\..\..\..\fox\source\system\Gr\Dg\shader\../DgShaderDefine.h"
 
 #define USE_CONSTANTBUFFER
-	
+
 
 #line 507 "..\..\..\..\fox\source\system\Gr\Dg\shader\../DgShaderDefine.h"
 
@@ -507,7 +511,7 @@ typedef SWork VSWork;
 #line 608 "..\..\..\..\fox\source\system\Gr\Dg\shader\../DgShaderDefine.h"
 
 #define DG_HIGH_PRECISION_LACC
-	
+
 
 #line 616 "..\..\..\..\fox\source\system\Gr\Dg\shader\../DgShaderDefine.h"
 
@@ -730,20 +734,20 @@ SamplerComparisonState g_samplerComparisonLess_Linear_Clmap : SAMPLERUNIT15;
 #define SamplerComparisonLess	g_samplerComparisonLess_Point_Clmap
 #define SamplerComparisonLessLinear	g_samplerComparisonLess_Linear_Clmap
 
-float2 CalcProjectCoords(float4 uv){
-	return (uv/uv.w).xy;
+float2 CalcProjectCoords(float4 uv) {
+	return (uv / uv.w).xy;
 }
 
 #define TFetch(_texture, _sampler, _uv) 		_texture.Sample(_sampler, float2((_uv).x, 1 - (_uv).y))
 #define TFetchOffset(_texture, _sampler, _uv, _offset) _texture.Sample(_sampler, float2((_uv).x, 1 - (_uv).y), _offset)
-														 
+
 #define TFetch1D(_texture, _sampler, _uv) 		_texture.Sample(_sampler, (_uv))
 #define TFetch1DOffset(_texture, _sampler, _uv, _offset) _texture.Sample(_sampler, (_uv), _offset)
 #define TFetch2D 								TFetch
 #define TFetch2DOffset							TFetchOffset
 #define TFetch2DGrad							TFetchGrad
 #define TFetch2DProj(_texture, _sampler, _uv) 	TFetch(_texture, _sampler, CalcProjectCoords(_uv))
-												
+
 #define TFetch3D(_texture, _sampler, _uv)		_texture.Sample(_sampler, float3((_uv).x, 1 - (_uv).y, (_uv).z))
 #define TFetchCube(_texture, _sampler, _uv)		_texture.Sample(_sampler, float3((_uv).x, 1 - (_uv).y, (_uv).z))
 #define TFetchCubeBias(_texture, _sampler, _uv)	_texture.SampleBias(_sampler, float3((_uv).x, 1 - (_uv).y, (_uv).z), (_uv).w)
@@ -758,8 +762,8 @@ float2 CalcProjectCoords(float4 uv){
 
 float TFetch2DProjCmp(Texture2D _texture, SamplerComparisonState _sampler, float4 _uv)
 {
-    float3 prjectionUV = (_uv.xyz / _uv.w);
-    return _texture.SampleCmp(_sampler, float2(prjectionUV.x, 1 - prjectionUV.y), prjectionUV.z);
+	float3 prjectionUV = (_uv.xyz / _uv.w);
+	return _texture.SampleCmp(_sampler, float2(prjectionUV.x, 1 - prjectionUV.y), prjectionUV.z);
 }
 
 #define TFetchH(_texture, _sampler, _uv) ((half4)TFetch(_texture, _sampler, _uv))
@@ -780,17 +784,17 @@ float TFetch2DProjCmp(Texture2D _texture, SamplerComparisonState _sampler, float
 
 half4 packFP16(float2 v)
 {
-	
-    float4 _packed;
-    
-    
-    
-	
-	
-	_packed.xz = frac(256.0*v.xy);
-	_packed.yw = _packed.xz * ( -1.0 / 256.0 ) + v.xy ;
-    
-    return half4(_packed);
+
+	float4 _packed;
+
+
+
+
+
+	_packed.xz = frac(256.0 * v.xy);
+	_packed.yw = _packed.xz * (-1.0 / 256.0) + v.xy;
+
+	return half4(_packed);
 }
 
 
@@ -799,8 +803,8 @@ half4 packFP16(float2 v)
 
 half4 packFP32(float v)
 {
-    
-	float4 p = v * float4(1.0, 256.0, (256.0*256.0), (256.0*256.0*256.0));
+
+	float4 p = v * float4(1.0, 256.0, (256.0 * 256.0), (256.0 * 256.0 * 256.0));
 	return half4(floor(frac(p) * 256.0) * (1.0 / 255.0));
 }
 
@@ -811,11 +815,11 @@ half4 packFP32(float v)
 
 float2 unpackFP16(float4 _packed)
 {
-	const float2 bitSh = float2(1.0/256.0, 1.0);
+	const float2 bitSh = float2(1.0 / 256.0, 1.0);
 	float2 _unpacked;
 	_unpacked.x = dot(_packed.xy, bitSh);
-	_unpacked.y = dot(_packed.zw, bitSh);    
-    return _unpacked;
+	_unpacked.y = dot(_packed.zw, bitSh);
+	return _unpacked;
 }
 
 
@@ -824,63 +828,64 @@ float2 unpackFP16(float4 _packed)
 float unpackFP32(float4 _packed)
 {
 	return dot(_packed, float4(
-        (255.0/256.0),
-        (255.0/(256.0*256.0)),
-        (255.0/(256.0*256.0*256.0)),
-        (255.0/(256.0*256.0*256.0*256.0))
-        ) );
+		(255.0 / 256.0),
+		(255.0 / (256.0 * 256.0)),
+		(255.0 / (256.0 * 256.0 * 256.0)),
+		(255.0 / (256.0 * 256.0 * 256.0 * 256.0))
+		));
 }
 
 
 
 #line 448 "..\..\..\..\fox\source\system\Gr\Dg\shader\shader.h"
 
-inline half4 WriteSpecularAndVelocity( half2 inSpecular, half2 inVelocity )
+inline half4 WriteSpecularAndVelocity(half2 inSpecular, half2 inVelocity)
 {
-    half4 outColor ;
-    outColor.xy = inSpecular;
-    outColor.zw = inVelocity;
-    return outColor ;
+	half4 outColor;
+	outColor.xy = inSpecular;
+	outColor.zw = inVelocity;
+	return outColor;
 }
 
 
 
 #line 459 "..\..\..\..\fox\source\system\Gr\Dg\shader\shader.h"
 
-inline half2 ReadSpecular( half4 inColor )
+inline half2 ReadSpecular(half4 inColor)
 {
-    return inColor.xy ;
+	return inColor.xy;
 }
 
 
 
 #line 467 "..\..\..\..\fox\source\system\Gr\Dg\shader\shader.h"
 
-inline half2 ReadVelocity( half4 inColor )
+inline half2 ReadVelocity(half4 inColor)
 {
-    return inColor.zw ;
+	return inColor.zw;
 }
 
 
 
 #line 475 "..\..\..\..\fox\source\system\Gr\Dg\shader\shader.h"
 
-inline half PyramidalDoFMatting( float z, float4 zThresholds )
+inline half PyramidalDoFMatting(float z, float4 zThresholds)
 {
-    float z_2 = zThresholds.x ;
-    float z_1 = zThresholds.y ;
-    float z0  = zThresholds.z ;
-    float z1  = zThresholds.w ;
-    
-    half matting = 1;
-    if ( z < z_1 ) {
-        matting = (z_1 <= z_2) ? 0 : 
-            half( saturate( ( z - z_2 ) / ( z_1 - z_2 ) ) ); 
-    } else if ( z > z0 ) {
-        matting = half( saturate( ( z1 - z ) / ( z1 - z0 ) ) );
-    }
-    
-    return matting ;
+	float z_2 = zThresholds.x;
+	float z_1 = zThresholds.y;
+	float z0 = zThresholds.z;
+	float z1 = zThresholds.w;
+
+	half matting = 1;
+	if (z < z_1) {
+		matting = (z_1 <= z_2) ? 0 :
+			half(saturate((z - z_2) / (z_1 - z_2)));
+	}
+	else if (z > z0) {
+		matting = half(saturate((z1 - z) / (z1 - z0)));
+	}
+
+	return matting;
 }
 
 
@@ -889,32 +894,32 @@ inline half PyramidalDoFMatting( float z, float4 zThresholds )
 
 float CalcGlobalVolumetricFogDensity(float3 cameraToWorldPos, float globalDensity, float heightFallOff, float volumetricFogHeightDensityAtViewer)
 {
-	
+
 	float fogInt = length(cameraToWorldPos) * volumetricFogHeightDensityAtViewer;
-	
-	
-	
-	float t = max( heightFallOff * cameraToWorldPos.y, 0.00001 );
 
 
 
-		fogInt *= (1.0f - exp(-t)) / t;
+	float t = max(heightFallOff * cameraToWorldPos.y, 0.00001);
 
-	
+
+
+	fogInt *= (1.0f - exp(-t)) / t;
+
+
 	return exp(-globalDensity * fogInt);
 }
-		
+
 
 
 #line 525 "..\..\..\..\fox\source\system\Gr\Dg\shader\shader.h"
 
 
 #line 529 "..\..\..\..\fox\source\system\Gr\Dg\shader\shader.h"
-half GetFresnelSpecularFactor ( half3 halfDir, half3 lightDir, half f0 )
+half GetFresnelSpecularFactor(half3 halfDir, half3 lightDir, half f0)
 {
-	
-	half cosValue = half( saturate( dot ( halfDir, lightDir ) ) );
-	return f0 + ( 1.0H - f0 ) * (half)exp2 ( ( -5.55473h * cosValue - 6.98316h ) * cosValue );
+
+	half cosValue = half(saturate(dot(halfDir, lightDir)));
+	return f0 + (1.0H - f0) * (half)exp2((-5.55473h * cosValue - 6.98316h) * cosValue);
 
 #line 538 "..\..\..\..\fox\source\system\Gr\Dg\shader\shader.h"
 }
@@ -925,17 +930,17 @@ half GetFresnelSpecularFactor ( half3 halfDir, half3 lightDir, half f0 )
 
 #line 547 "..\..\..\..\fox\source\system\Gr\Dg\shader\shader.h"
 
-half AdjustLightSizeFromDistance( half size, float dist )
+half AdjustLightSizeFromDistance(half size, float dist)
 {
-	
-	
 
-	
-	
-	
-	
-	
-	return (half)saturate ( size * 1.0H /  dist * 0.9 ) ;
+
+
+
+
+
+
+
+	return (half)saturate(size * 1.0H / dist * 0.9);
 }
 
 
@@ -944,15 +949,15 @@ half AdjustLightSizeFromDistance( half size, float dist )
 
 #line 572 "..\..\..\..\fox\source\system\Gr\Dg\shader\shader.h"
 
-half3 GetReflectionWithRoughness( out half3 refVec, TextureCube refTex, half3 viewVec, half3 normalVec, half raghnessRate, TMatrix4x4 mat  )
+half3 GetReflectionWithRoughness(out half3 refVec, TextureCube refTex, half3 viewVec, half3 normalVec, half raghnessRate, TMatrix4x4 mat)
 {
-	refVec = (half3) reflect ( viewVec.xyz, normalVec.xyz ) ;
+	refVec = (half3) reflect(viewVec.xyz, normalVec.xyz);
 	half4 ref_vec2;
-	ref_vec2.xyz = (half3) ApplyMatrixT( mat, refVec.xyz );
-	ref_vec2 = half4 ( ref_vec2.xyz, lerp (0, CUBEMAP_BIAS_MAX, 1-raghnessRate) );	
+	ref_vec2.xyz = (half3) ApplyMatrixT(mat, refVec.xyz);
+	ref_vec2 = half4 (ref_vec2.xyz, lerp(0, CUBEMAP_BIAS_MAX, 1 - raghnessRate));
 
-	
-	return (half3)TFetchCubeLod( refTex, SamplerLinear, ref_vec2 ).xyz;
+
+	return (half3)TFetchCubeLod(refTex, SamplerLinear, ref_vec2).xyz;
 
 #line 586 "..\..\..\..\fox\source\system\Gr\Dg\shader\shader.h"
 }
@@ -961,26 +966,26 @@ half3 GetReflectionWithRoughness( out half3 refVec, TextureCube refTex, half3 vi
 
 #line 597 "..\..\..\..\fox\source\system\Gr\Dg\shader\shader.h"
 
-half3 GetReflection( out half3 refVec, TextureCube refTex, half3 viewVec, half3 normalVec, TMatrix4x4 mat  )
+half3 GetReflection(out half3 refVec, TextureCube refTex, half3 viewVec, half3 normalVec, TMatrix4x4 mat)
 {
-	refVec = (half3) reflect ( viewVec.xyz, normalVec.xyz ) ;
-	refVec.xyz = (half3) ApplyMatrixT( mat, refVec.xyz );
+	refVec = (half3) reflect(viewVec.xyz, normalVec.xyz);
+	refVec.xyz = (half3) ApplyMatrixT(mat, refVec.xyz);
 
 
-	return (half3)TFetchCube( refTex, SamplerLinear, refVec ).xyz;
+	return (half3)TFetchCube(refTex, SamplerLinear, refVec).xyz;
 }
 
 
 
 #line 615 "..\..\..\..\fox\source\system\Gr\Dg\shader\shader.h"
 
-half3 GetReflectionWithRoughness_World( out half3 refVec, TextureCube refTex, half3 viewVec, half3 normalVec, half raghnessRate )
+half3 GetReflectionWithRoughness_World(out half3 refVec, TextureCube refTex, half3 viewVec, half3 normalVec, half raghnessRate)
 {
-	refVec = (half3) reflect ( viewVec.xyz, normalVec.xyz ) ;
-	half4 ref_vec2 = half4 ( refVec.xyz, lerp (0, CUBEMAP_BIAS_MAX, 1-raghnessRate) );	
+	refVec = (half3) reflect(viewVec.xyz, normalVec.xyz);
+	half4 ref_vec2 = half4 (refVec.xyz, lerp(0, CUBEMAP_BIAS_MAX, 1 - raghnessRate));
 
-	
-	return (half3)TFetchCubeLod( refTex, SamplerLinear, ref_vec2 ).xyz;
+
+	return (half3)TFetchCubeLod(refTex, SamplerLinear, ref_vec2).xyz;
 
 #line 627 "..\..\..\..\fox\source\system\Gr\Dg\shader\shader.h"
 }
@@ -989,116 +994,116 @@ half3 GetReflectionWithRoughness_World( out half3 refVec, TextureCube refTex, ha
 
 #line 637 "..\..\..\..\fox\source\system\Gr\Dg\shader\shader.h"
 
-half3 GetReflection_World( out half3 refVec, TextureCube refTex, half3 viewVec, half3 normalVec )
+half3 GetReflection_World(out half3 refVec, TextureCube refTex, half3 viewVec, half3 normalVec)
 {
-	refVec = (half3) reflect ( viewVec.xyz, normalVec.xyz ) ;
+	refVec = (half3) reflect(viewVec.xyz, normalVec.xyz);
 
-	
-	return (half3)TFetchCube( refTex, SamplerLinear, refVec ).xyz;
+
+	return (half3)TFetchCube(refTex, SamplerLinear, refVec).xyz;
 }
 
 
 
 #line 654 "..\..\..\..\fox\source\system\Gr\Dg\shader\shader.h"
 
-half4 select ( half4 a, half4 b, half4 c )
+half4 select(half4 a, half4 b, half4 c)
 {
-	half4 sel = (half4)step ( half4 ( 0,0,0,0 ), a ) ;
-	return sel * c + (half4 ( 1,1,1,1 ) - sel) * b;
+	half4 sel = (half4)step(half4 (0, 0, 0, 0), a);
+	return sel * c + (half4 (1, 1, 1, 1) - sel) * b;
 }
-half3 select ( half3 a, half3 b, half3 c )
+half3 select(half3 a, half3 b, half3 c)
 {
-	half3 sel = (half3)step ( half3 ( 0,0,0 ), a ) ;
-	return sel * c + (half3 ( 1,1,1 ) - sel) * b;
+	half3 sel = (half3)step(half3 (0, 0, 0), a);
+	return sel * c + (half3 (1, 1, 1) - sel) * b;
 }
-half2 select ( half2 a, half2 b, half2 c )
+half2 select(half2 a, half2 b, half2 c)
 {
-	half2 sel = (half2)step ( half2 ( 0,0 ), a ) ;
-	return sel * c + (half2 ( 1,1 ) - sel) * b;
+	half2 sel = (half2)step(half2 (0, 0), a);
+	return sel * c + (half2 (1, 1) - sel) * b;
 }
-half select ( half a, half b, half c )
+half select(half a, half b, half c)
 {
-	half sel = (half)step ( 0, a ) ;
-	return sel * c + ( 1.0H - sel) * b;
+	half sel = (half)step(0, a);
+	return sel * c + (1.0H - sel) * b;
 }
 
 
 
 #line 683 "..\..\..\..\fox\source\system\Gr\Dg\shader\shader.h"
 
-half3 GetBlendColor_Overlay ( half3 baseColor, half3 layerColor, half blendRate )
+half3 GetBlendColor_Overlay(half3 baseColor, half3 layerColor, half blendRate)
 {
-	half3 color0 = baseColor.xyz * layerColor.xyz * 2;	
-	half3 color1 = 1.0H - ( 1.0H - baseColor.xyz) * ( 1.0H - layerColor.xyz ) * 2;	
-	half3 outColor = select ( baseColor - 0.5H, color0, color1 );
-	
-	return (half3) lerp ( baseColor.xyz, outColor, blendRate );
+	half3 color0 = baseColor.xyz * layerColor.xyz * 2;
+	half3 color1 = 1.0H - (1.0H - baseColor.xyz) * (1.0H - layerColor.xyz) * 2;
+	half3 outColor = select(baseColor - 0.5H, color0, color1);
+
+	return (half3) lerp(baseColor.xyz, outColor, blendRate);
 }
 
 
 
 #line 698 "..\..\..\..\fox\source\system\Gr\Dg\shader\shader.h"
 
-half GetCheckerPattern ( half2 uv, half repeat )
+half GetCheckerPattern(half2 uv, half repeat)
 {
-	half2 checker = (half2)step ( 0.5h, (half2)frac ( uv.xy * repeat ) ) ;
-	return ( 1.0h- abs( checker.x - checker.y ) );
+	half2 checker = (half2)step(0.5h, (half2)frac(uv.xy * repeat));
+	return (1.0h - abs(checker.x - checker.y));
 }
 
 #define DIRTY_BLEND_AFTER_REFLECTION
 
-half3 BlendDirtyColorSub ( out half outRoughness, half4 dirtyColor, half3 inColor, half roughness, half3 mask )
+half3 BlendDirtyColorSub(out half outRoughness, half4 dirtyColor, half3 inColor, half roughness, half3 mask)
 {
 	half3 outColor;
-	
-	
-	
-	half3 blend = mask.xyz * dirtyColor.xyz ;
-	
-	
-	half waterScaleBase			 = min ( 0.93H, max (0.73H, (roughness * 255.0H - 205.0H) / 25.0H * (-0.20H) + 0.93H ));
-	half waterScaleRoughness	 = min ( 0.66H, (half)saturate ( (roughness * 255.0H - 170.0H) / 60.0H * 0.66H ) );
-	
-	
 
-	outColor = (half3)lerp ( inColor, inColor * waterScaleBase.xxx, blend.zzz );								
-	outColor = (half3)lerp ( outColor, half3 (0.2H, 0.196078431H, 0.192156863H), blend.yyy );					
 
-	outColor = (half3)lerp ( outColor, half3 (0.2588H, 0.04705H, 0.043137H), blend.xxx );						
-	
 
-	outRoughness = (half)lerp ( roughness,	roughness * waterScaleRoughness.x,	blend.z );			
-	outRoughness = (half)lerp ( outRoughness,	0.98H,	blend.y );		
-	outRoughness = (half)lerp ( outRoughness,	0.2H,	blend.x );		
-	
+	half3 blend = mask.xyz * dirtyColor.xyz;
+
+
+	half waterScaleBase = min(0.93H, max(0.73H, (roughness * 255.0H - 205.0H) / 25.0H * (-0.20H) + 0.93H));
+	half waterScaleRoughness = min(0.66H, (half)saturate((roughness * 255.0H - 170.0H) / 60.0H * 0.66H));
+
+
+
+	outColor = (half3)lerp(inColor, inColor * waterScaleBase.xxx, blend.zzz);
+	outColor = (half3)lerp(outColor, half3 (0.2H, 0.196078431H, 0.192156863H), blend.yyy);
+
+	outColor = (half3)lerp(outColor, half3 (0.2588H, 0.04705H, 0.043137H), blend.xxx);
+
+
+	outRoughness = (half)lerp(roughness, roughness * waterScaleRoughness.x, blend.z);
+	outRoughness = (half)lerp(outRoughness, 0.98H, blend.y);
+	outRoughness = (half)lerp(outRoughness, 0.2H, blend.x);
+
 	return outColor;
 
 }
-half3 BlendDirtyColorRoughnessMaskSub ( out half outRoughness, half4 dirtyColor, half3 inColor, half roughness, half3 mask, half3 roughnessMask )
+half3 BlendDirtyColorRoughnessMaskSub(out half outRoughness, half4 dirtyColor, half3 inColor, half roughness, half3 mask, half3 roughnessMask)
 {
 	half3 outColor;
-	
-	
-	
-	half3 blend = mask.xyz * dirtyColor.xyz ;
-	half3 blendR = roughnessMask.xyz * dirtyColor.xyz ;
-	
-	
-	half waterScaleBase			 = min ( 0.93H, max (0.73H, (roughness * 255.0H - 205.0H) / 25.0H * (-0.20H) + 0.93H ));
-	half waterScaleRoughness	 = min ( 0.66H, (half)saturate ( (roughness * 255.0H - 170.0H) / 60.0H * 0.66H ) );
-	
-	
 
-	outColor = (half3)lerp ( inColor, inColor * waterScaleBase.xxx, blend.zzz );								
-	outColor = (half3)lerp ( outColor, half3 (0.2H, 0.196078431H, 0.192156863H), blend.yyy );					
 
-	outColor = (half3)lerp ( outColor, half3 (0.2588H, 0.04705H, 0.043137H), blend.xxx );						
-	
 
-	outRoughness = (half)lerp ( roughness,	roughness * waterScaleRoughness.x,	blendR.z );			
-	outRoughness = (half)lerp ( outRoughness,	0.98H,	blendR.y );		
-	outRoughness = (half)lerp ( outRoughness,	0.2H,	blendR.x );		
-	
+	half3 blend = mask.xyz * dirtyColor.xyz;
+	half3 blendR = roughnessMask.xyz * dirtyColor.xyz;
+
+
+	half waterScaleBase = min(0.93H, max(0.73H, (roughness * 255.0H - 205.0H) / 25.0H * (-0.20H) + 0.93H));
+	half waterScaleRoughness = min(0.66H, (half)saturate((roughness * 255.0H - 170.0H) / 60.0H * 0.66H));
+
+
+
+	outColor = (half3)lerp(inColor, inColor * waterScaleBase.xxx, blend.zzz);
+	outColor = (half3)lerp(outColor, half3 (0.2H, 0.196078431H, 0.192156863H), blend.yyy);
+
+	outColor = (half3)lerp(outColor, half3 (0.2588H, 0.04705H, 0.043137H), blend.xxx);
+
+
+	outRoughness = (half)lerp(roughness, roughness * waterScaleRoughness.x, blendR.z);
+	outRoughness = (half)lerp(outRoughness, 0.98H, blendR.y);
+	outRoughness = (half)lerp(outRoughness, 0.2H, blendR.x);
+
 	return outColor;
 
 }
@@ -1107,50 +1112,50 @@ half3 BlendDirtyColorRoughnessMaskSub ( out half outRoughness, half4 dirtyColor,
 
 #line 776 "..\..\..\..\fox\source\system\Gr\Dg\shader\shader.h"
 
-half3 BlendDirtyColor ( out half outRoughness, Texture2D dirtyTexture, float2 texcoord, half3 inColor, half roughness, half3 mask )
+half3 BlendDirtyColor(out half outRoughness, Texture2D dirtyTexture, float2 texcoord, half3 inColor, half roughness, half3 mask)
 {
-	half4 dirtyTex = TFetch2DH( dirtyTexture, SamplerLinear, texcoord );
+	half4 dirtyTex = TFetch2DH(dirtyTexture, SamplerLinear, texcoord);
 	return BlendDirtyColorSub(outRoughness, dirtyTex, inColor, roughness, mask);
 }
-half3 BlendDirtyColorRoughnessMask ( out half outRoughness, Texture2D dirtyTexture, float2 texcoord, half3 inColor, half roughness, half3 mask, half3 roughnessMask )
+half3 BlendDirtyColorRoughnessMask(out half outRoughness, Texture2D dirtyTexture, float2 texcoord, half3 inColor, half roughness, half3 mask, half3 roughnessMask)
 {
-	half4 dirtyTex = TFetch2DH( dirtyTexture, SamplerLinear, texcoord );
+	half4 dirtyTex = TFetch2DH(dirtyTexture, SamplerLinear, texcoord);
 	return BlendDirtyColorRoughnessMaskSub(outRoughness, dirtyTex, inColor, roughness, mask, roughnessMask);
 }
 
-half3 BlendDirtyColorWithSampler ( out half outRoughness, Texture2D dirtyTexture, SamplerState dirtySampler, float2 texcoord, half3 inColor, half roughness, half3 mask )
+half3 BlendDirtyColorWithSampler(out half outRoughness, Texture2D dirtyTexture, SamplerState dirtySampler, float2 texcoord, half3 inColor, half roughness, half3 mask)
 {
-	
-	
-	half4 dirtyTex = TFetch2DH( dirtyTexture, dirtySampler, texcoord );
+
+
+	half4 dirtyTex = TFetch2DH(dirtyTexture, dirtySampler, texcoord);
 	return BlendDirtyColorSub(outRoughness, dirtyTex, inColor, roughness, mask);
 }
-half3 BlendDirtyColorWithSamplerRoughnessMask ( out half outRoughness, Texture2D dirtyTexture, SamplerState dirtySampler, float2 texcoord, half3 inColor, half roughness, half3 mask, half3 roughnessMask )
+half3 BlendDirtyColorWithSamplerRoughnessMask(out half outRoughness, Texture2D dirtyTexture, SamplerState dirtySampler, float2 texcoord, half3 inColor, half roughness, half3 mask, half3 roughnessMask)
 {
-	
-	
-	half4 dirtyTex = TFetch2DH( dirtyTexture, dirtySampler, texcoord );
+
+
+	half4 dirtyTex = TFetch2DH(dirtyTexture, dirtySampler, texcoord);
 	return BlendDirtyColorRoughnessMaskSub(outRoughness, dirtyTex, inColor, roughness, mask, roughnessMask);
 }
 
 
-half3 BlendDirtyColorRSub ( out half outRoughness, half4 dirtyColor, half3 inColor, half roughness, half3 mask )
+half3 BlendDirtyColorRSub(out half outRoughness, half4 dirtyColor, half3 inColor, half roughness, half3 mask)
 {
 	half3 outColor;
-	
-	
-	
-	half3 blend = mask.xyz * dirtyColor.xyz ;
-	
-	
 
 
-	
-	
 
-	outColor = (half3)lerp ( inColor, half3 (0.2588H, 0.04705H, 0.043137H), blend.xxx );						
-	outRoughness = (half)lerp ( roughness,	0.2H,	blend.x );		
-	
+	half3 blend = mask.xyz * dirtyColor.xyz;
+
+
+
+
+
+
+
+	outColor = (half3)lerp(inColor, half3 (0.2588H, 0.04705H, 0.043137H), blend.xxx);
+	outRoughness = (half)lerp(roughness, 0.2H, blend.x);
+
 	return outColor;
 
 }
@@ -1159,15 +1164,15 @@ half3 BlendDirtyColorRSub ( out half outRoughness, half4 dirtyColor, half3 inCol
 
 #line 834 "..\..\..\..\fox\source\system\Gr\Dg\shader\shader.h"
 
-half3 BlendDirtyColorR ( out half outRoughness, Texture2D dirtyTexture, float2 texcoord, half3 inColor, half roughness, half3 mask )
+half3 BlendDirtyColorR(out half outRoughness, Texture2D dirtyTexture, float2 texcoord, half3 inColor, half roughness, half3 mask)
 {
-	half4 dirtyTex = (half4)TFetch2D ( dirtyTexture, SamplerLinear, texcoord );
+	half4 dirtyTex = (half4)TFetch2D(dirtyTexture, SamplerLinear, texcoord);
 	return BlendDirtyColorRSub(outRoughness, dirtyTex, inColor, roughness, mask);
 }
 
-half3 BlendDirtyColorRWithSampler ( out half outRoughness, Texture2D dirtyTexture, SamplerState dirtySampler, float2 texcoord, half3 inColor, half roughness, half3 mask )
+half3 BlendDirtyColorRWithSampler(out half outRoughness, Texture2D dirtyTexture, SamplerState dirtySampler, float2 texcoord, half3 inColor, half roughness, half3 mask)
 {
-	half4 dirtyTex = (half4)TFetch2D ( dirtyTexture, dirtySampler, texcoord );
+	half4 dirtyTex = (half4)TFetch2D(dirtyTexture, dirtySampler, texcoord);
 	return BlendDirtyColorRSub(outRoughness, dirtyTex, inColor, roughness, mask);
 }
 
@@ -1184,26 +1189,26 @@ half3 BlendDirtyColorRWithSampler ( out half outRoughness, Texture2D dirtyTextur
 
 
 
-	REGISTERMAP(VSScene,		g_vsScene, 			VS_REGISTER( SCENE ));
-	REGISTERMAP(VSObject,		g_vsObject,			VS_REGISTER( OBJECT ));
-	REGISTERMAP(VSLight,		g_vsLight, 			VS_REGISTER( LIGHT ));
-	REGISTERMAP(VSMaterial,		g_vsMaterial, 		VS_REGISTER( MATERIAL ));
+REGISTERMAP(VSScene, g_vsScene, VS_REGISTER(SCENE));
+REGISTERMAP(VSObject, g_vsObject, VS_REGISTER(OBJECT));
+REGISTERMAP(VSLight, g_vsLight, VS_REGISTER(LIGHT));
+REGISTERMAP(VSMaterial, g_vsMaterial, VS_REGISTER(MATERIAL));
 # ifndef DISABLE_BONE_REGISTERS
 #  ifdef USE_CONSTANTBUFFER
-cbuffer VSBones						: VS_REGISTER( BONES )
+cbuffer VSBones						: VS_REGISTER(BONES)
 {
 	VSBone g_vsBone;
-	VSBone g_vsPrevBone;		
+	VSBone g_vsPrevBone;
 }
 #  else
-	REGISTERMAP(VSBone,			g_vsBone, 			VS_REGISTER( BONES ));
+REGISTERMAP(VSBone, g_vsBone, VS_REGISTER(BONES));
 
 #line 28 "..\..\..\..\fox\source\system\Gr\Dg\shader\Common.h"
 #  endif
 # endif 
-	REGISTERMAP(VSWork,			g_vsWork, 			VS_REGISTER( WORK ));
+REGISTERMAP(VSWork, g_vsWork, VS_REGISTER(WORK));
 
-	REGISTERMAP(VSSystem,		g_vsSystem, 		VS_REGISTER( SYSTEM ));
+REGISTERMAP(VSSystem, g_vsSystem, VS_REGISTER(SYSTEM));
 
 
 #line 36 "..\..\..\..\fox\source\system\Gr\Dg\shader\Common.h"
@@ -1302,21 +1307,21 @@ float3 GetEyePosition() {
 
 #line 25 "..\..\..\..\fox\source\system\Gr\Dg\shader\CoordinateCalculation.h"
 
-half4 EncodeViewSpaceNormal( half3 normal )
+half4 EncodeViewSpaceNormal(half3 normal)
 {
 	half4	encodeNormal = 0.0;
 
 #line 30 "..\..\..\..\fox\source\system\Gr\Dg\shader\CoordinateCalculation.h"
 
 	encodeNormal.xyz = normal.xyz * 0.5h + 0.5h;
-	encodeNormal.z = half(sqrt( half(normal.z) * 0.5h + 0.5h ));
+	encodeNormal.z = half(sqrt(half(normal.z) * 0.5h + 0.5h));
 
 #line 45 "..\..\..\..\fox\source\system\Gr\Dg\shader\CoordinateCalculation.h"
-	
+
 
 #line 51 "..\..\..\..\fox\source\system\Gr\Dg\shader\CoordinateCalculation.h"
 
-	return encodeNormal ;
+	return encodeNormal;
 }
 
 
@@ -1333,26 +1338,26 @@ half3 DecodeViewSpaceNormal(half4 encodeNormal)
 {
 
 #line 107 "..\..\..\..\fox\source\system\Gr\Dg\shader\CoordinateCalculation.h"
-	
+
 
 #line 116 "..\..\..\..\fox\source\system\Gr\Dg\shader\CoordinateCalculation.h"
-	
+
 
 #line 127 "..\..\..\..\fox\source\system\Gr\Dg\shader\CoordinateCalculation.h"
-		float bias = 1.0e-007f;
+	float bias = 1.0e-007f;
 
 #line 131 "..\..\..\..\fox\source\system\Gr\Dg\shader\CoordinateCalculation.h"
-		half3	viewSpaceNormal;
-		viewSpaceNormal.xy = encodeNormal.xy * 2.0h - 1.0h ;
-		viewSpaceNormal.z = ( encodeNormal.z * encodeNormal.z ) * 2.0h - 1.0h ;
-		half	oneMinusZz = 1.0h - viewSpaceNormal.z * viewSpaceNormal.z ;
-		viewSpaceNormal.xy = ( viewSpaceNormal.xy * oneMinusZz ) * (half)rsqrt( oneMinusZz * (half)dot( viewSpaceNormal.xy, viewSpaceNormal.xy ) + bias );
+	half3	viewSpaceNormal;
+	viewSpaceNormal.xy = encodeNormal.xy * 2.0h - 1.0h;
+	viewSpaceNormal.z = (encodeNormal.z * encodeNormal.z) * 2.0h - 1.0h;
+	half	oneMinusZz = 1.0h - viewSpaceNormal.z * viewSpaceNormal.z;
+	viewSpaceNormal.xy = (viewSpaceNormal.xy * oneMinusZz) * (half)rsqrt(oneMinusZz * (half)dot(viewSpaceNormal.xy, viewSpaceNormal.xy) + bias);
 
 #line 139 "..\..\..\..\fox\source\system\Gr\Dg\shader\CoordinateCalculation.h"
 
 
 #line 145 "..\..\..\..\fox\source\system\Gr\Dg\shader\CoordinateCalculation.h"
-	return half3( viewSpaceNormal );
+	return half3(viewSpaceNormal);
 }
 
 
@@ -1361,13 +1366,13 @@ half3 DecodeViewSpaceNormal(half4 encodeNormal)
 
 half3 ReconstructViewSpaceNormal(Texture2D normals, float2 uv)
 {
-	
+
 	return DecodeViewSpaceNormal(TFetch2DLodH(normals, SamplerPointClamp, float4(uv, 0, 0)));
 }
 
 half3 ReconstructViewSpaceNormalWithSampler(Texture2D normals, SamplerState samplerstate, float2 uv)
 {
-	
+
 	return DecodeViewSpaceNormal(TFetch2DH(normals, samplerstate, uv));
 }
 
@@ -1378,45 +1383,45 @@ half3 ReconstructViewSpaceNormalWithSampler(Texture2D normals, SamplerState samp
 
 inline half3 DecodeNormalTexture(half4 color)
 {
-	half3	normal ;
-	
+	half3	normal;
+
 
 #line 196 "..\..\..\..\fox\source\system\Gr\Dg\shader\CoordinateCalculation.h"
-    
-	
+
+
 
 #line 201 "..\..\..\..\fox\source\system\Gr\Dg\shader\CoordinateCalculation.h"
-	normal.xyz = half3( color.agb ) * 2.0h - 1.0h ;
-	
-	
-	
-	
-	
-	half tmp = half( saturate( 1.0h - normal.x * normal.x - normal.y * normal.y ) + 0.0001h );
+	normal.xyz = half3(color.agb) * 2.0h - 1.0h;
+
+
+
+
+
+	half tmp = half(saturate(1.0h - normal.x * normal.x - normal.y * normal.y) + 0.0001h);
 
 #line 213 "..\..\..\..\fox\source\system\Gr\Dg\shader\CoordinateCalculation.h"
-	normal.z = half( tmp * rsqrt( tmp ) );
-	
-	
-	return normal ;
+	normal.z = half(tmp * rsqrt(tmp));
+
+
+	return normal;
 }
 
 
 
 #line 227 "..\..\..\..\fox\source\system\Gr\Dg\shader\CoordinateCalculation.h"
 
-inline half3 GetNormalFromTextureWithSampler( Texture2D tex, SamplerState samplerstate, float2 uv )
+inline half3 GetNormalFromTextureWithSampler(Texture2D tex, SamplerState samplerstate, float2 uv)
 {
-	return DecodeNormalTexture( TFetch2DH( tex, samplerstate, uv ) );
+	return DecodeNormalTexture(TFetch2DH(tex, samplerstate, uv));
 }
 
 
 
 #line 238 "..\..\..\..\fox\source\system\Gr\Dg\shader\CoordinateCalculation.h"
 
-inline half3 GetNormalFromTexture( Texture2D tex, float2 uv )
+inline half3 GetNormalFromTexture(Texture2D tex, float2 uv)
 {
-	return DecodeNormalTexture( TFetch2DH( tex, SamplerLinear, uv ) );
+	return DecodeNormalTexture(TFetch2DH(tex, SamplerLinear, uv));
 }
 
 
@@ -1425,9 +1430,9 @@ inline half3 GetNormalFromTexture( Texture2D tex, float2 uv )
 
 #line 251 "..\..\..\..\fox\source\system\Gr\Dg\shader\CoordinateCalculation.h"
 
-inline half3 GetNormalFromArrayTexture( Texture3D tex, float3 texcoord )
+inline half3 GetNormalFromArrayTexture(Texture3D tex, float3 texcoord)
 {
-	return DecodeNormalTexture( TFetch3DH( tex, SamplerLinear, texcoord ) ) ;
+	return DecodeNormalTexture(TFetch3DH(tex, SamplerLinear, texcoord));
 }
 
 
@@ -1442,31 +1447,31 @@ inline half3 GetNormalFromArrayTexture( Texture3D tex, float3 texcoord )
 
 float4 ReconstructViewPos(float4 clipSpacePos, float4 proj)
 {
-    float3 viewPos;
-    
+	float3 viewPos;
+
 
 #line 288 "..\..\..\..\fox\source\system\Gr\Dg\shader\CoordinateCalculation.h"
-	viewPos.z = proj.z / ( clipSpacePos.z - proj.w ) ;
-	viewPos.xy = ( clipSpacePos.xy * proj.xy ) * viewPos.z ;
+	viewPos.z = proj.z / (clipSpacePos.z - proj.w);
+	viewPos.xy = (clipSpacePos.xy * proj.xy) * viewPos.z;
 
 #line 292 "..\..\..\..\fox\source\system\Gr\Dg\shader\CoordinateCalculation.h"
 
-    return float4(viewPos, 1);
+	return float4(viewPos, 1);
 }
 
 
 
 #line 303 "..\..\..\..\fox\source\system\Gr\Dg\shader\CoordinateCalculation.h"
 
-float4 ReconstructViewPosFromTexture(Texture2D inDepth, half2 inTexCoord, float2 clipSpacePosXY,  float4 inProjectionParam)
+float4 ReconstructViewPosFromTexture(Texture2D inDepth, half2 inTexCoord, float2 clipSpacePosXY, float4 inProjectionParam)
 {
 
 #line 329 "..\..\..\..\fox\source\system\Gr\Dg\shader\CoordinateCalculation.h"
 	float zOverW = TFetch2DLod(inDepth, SamplerPointClamp, half4(inTexCoord, 0, 0)).x;
 
 #line 335 "..\..\..\..\fox\source\system\Gr\Dg\shader\CoordinateCalculation.h"
-	
-	return ReconstructViewPos( float4(clipSpacePosXY, zOverW, 1),  inProjectionParam );
+
+	return ReconstructViewPos(float4(clipSpacePosXY, zOverW, 1), inProjectionParam);
 }
 
 
@@ -1480,13 +1485,13 @@ float4 ReconstructViewPos2(float2 inScreenSpacePos, float inDepth, float4 inProj
 
 
 #line 366 "..\..\..\..\fox\source\system\Gr\Dg\shader\CoordinateCalculation.h"
-	float3	viewPos ;
-	viewPos.xy = inScreenSpacePos.xy * inProjectionParam.xy ;
-	viewPos.z = inProjectionParam.z / ( inDepth - inProjectionParam.w );
+	float3	viewPos;
+	viewPos.xy = inScreenSpacePos.xy * inProjectionParam.xy;
+	viewPos.z = inProjectionParam.z / (inDepth - inProjectionParam.w);
 
 #line 374 "..\..\..\..\fox\source\system\Gr\Dg\shader\CoordinateCalculation.h"
-	viewPos.xy = viewPos.xy * viewPos.z ;
-	return float4( viewPos.xyz, 1 ) ;
+	viewPos.xy = viewPos.xy * viewPos.z;
+	return float4(viewPos.xyz, 1);
 }
 
 
@@ -1494,7 +1499,7 @@ float4 ReconstructViewPos2(float2 inScreenSpacePos, float inDepth, float4 inProj
 #line 385 "..\..\..\..\fox\source\system\Gr\Dg\shader\CoordinateCalculation.h"
 
 float ReconstructViewZ(float zOverW, float4 proj)
-{    
+{
 
 #line 394 "..\..\..\..\fox\source\system\Gr\Dg\shader\CoordinateCalculation.h"
 
@@ -1507,14 +1512,14 @@ float ReconstructViewZ(float zOverW, float4 proj)
 
 #line 408 "..\..\..\..\fox\source\system\Gr\Dg\shader\CoordinateCalculation.h"
 
-float ReconstructViewZFromTexture( Texture2D inDepth, float2 inTexCoord, float4 projectionParameter )
+float ReconstructViewZFromTexture(Texture2D inDepth, float2 inTexCoord, float4 projectionParameter)
 {
 
 #line 425 "..\..\..\..\fox\source\system\Gr\Dg\shader\CoordinateCalculation.h"
 	float zOverW = TFetch2DLod(inDepth, SamplerPointClamp, float4(inTexCoord, 0, 0)).x;
 
 #line 431 "..\..\..\..\fox\source\system\Gr\Dg\shader\CoordinateCalculation.h"
-	return ReconstructViewZ( zOverW,  projectionParameter );
+	return ReconstructViewZ(zOverW, projectionParameter);
 }
 
 
@@ -1531,19 +1536,19 @@ struct PrimitiveDepthFactor
 };
 
 
-void ReconstructViewZFromPrimitiveDepthTexture( Texture2D inDepth, float2 inTexCoord, float4 projectionParameter, out PrimitiveDepthFactor depth )
+void ReconstructViewZFromPrimitiveDepthTexture(Texture2D inDepth, float2 inTexCoord, float4 projectionParameter, out PrimitiveDepthFactor depth)
 {
 
 #line 467 "..\..\..\..\fox\source\system\Gr\Dg\shader\CoordinateCalculation.h"
 	float4 fetchDepth = TFetch2D(inDepth, SamplerPointClamp, inTexCoord);
 
 #line 472 "..\..\..\..\fox\source\system\Gr\Dg\shader\CoordinateCalculation.h"
-	depth.viewZ = ReconstructViewZ( fetchDepth.x,  projectionParameter );
+	depth.viewZ = ReconstructViewZ(fetchDepth.x, projectionParameter);
 
 	{
 
 #line 480 "..\..\..\..\fox\source\system\Gr\Dg\shader\CoordinateCalculation.h"
-	depth.viewZSub = ReconstructViewZ( fetchDepth.y,  projectionParameter );
+		depth.viewZSub = ReconstructViewZ(fetchDepth.y, projectionParameter);
 	}
 
 #line 484 "..\..\..\..\fox\source\system\Gr\Dg\shader\CoordinateCalculation.h"
@@ -1703,10 +1708,127 @@ void ReconstructViewZFromPrimitiveDepthTexture( Texture2D inDepth, float2 inTexC
 #line 320 "..\..\..\..\fox\source\system\Gr\Dg\shader\Common.shdr"
 
 
-#line 6 "..\..\..\..\fox\source\system\Gr\Dg\shader\VolFog.shdr"
+#line 4 "..\..\..\..\fox\source\system\Gr\Dg\shader\DeferredRendering_Common.shdr"
 
 
-#line 2 "..\..\..\..\fox\source\system\Gr\Dg\shader\FogVolume.shdr"
+#line 1 "..\..\..\..\fox\source\system\Gr\Dg\shader\HdrColor.h"
+#define HDR_COLOR_H
+
+
+#line 6 "..\..\..\..\fox\source\system\Gr\Dg\shader\HdrColor.h"
+
+
+
+
+#line 12 "..\..\..\..\fox\source\system\Gr\Dg\shader\HdrColor.h"
+
+half4 EncodeHDRColor(half3 color)
+{
+	half4	encodeColor;
+
+
+	encodeColor.xyz = color.xyz;
+
+
+	encodeColor.w = dot(color.xyz, LUMINANCE_VECTOR * (1.0h / HDR_LUM_SCALE));
+
+	return encodeColor;
+}
+
+
+
+#line 30 "..\..\..\..\fox\source\system\Gr\Dg\shader\HdrColor.h"
+
+half3 DecodeHDRColor(half4 encodeColor)
+{
+	half	scale;
+	half3	color;
+
+
+	scale = max(1.0h, encodeColor.w * HDR_LUM_SCALE);
+	color.xyz = encodeColor.xyz * scale;
+
+	return color;
+}
+
+
+#line 5 "..\..\..\..\fox\source\system\Gr\Dg\shader\DeferredRendering_Common.shdr"
+
+
+#line 4 "..\..\..\..\fox\source\system\Gr\Dg\shader\Tonemap.h"
+
+
+
+#line 9 "..\..\..\..\fox\source\system\Gr\Dg\shader\Tonemap.h"
+
+half3 GetTonemapedColor_Filmic(half3 color)
+{
+	half3 x = max(0, (color - 0.004h));
+	return (x * ((6.2h * x) + 0.5h)) / ((x * ((6.2h * x) + 1.7h)) + 0.06h);
+}
+
+
+
+#line 20 "..\..\..\..\fox\source\system\Gr\Dg\shader\Tonemap.h"
+
+half3 getTonemapedColor_UnchartedFilmic(half3 color, half a, half b, half c, half d, half e, half f)
+{
+	return ((color * ((a * color) + (c * b)) + (d * e)) / (color * ((a * color) + b) + (d * f))) - (e / f);
+}
+
+
+
+#line 30 "..\..\..\..\fox\source\system\Gr\Dg\shader\Tonemap.h"
+
+half3 GetTonemapedColor_UnchartedFilmic(half3 color, half w, half a, half b, half c, half d, half e, half f)
+{
+	half3 invTonemapedWhite = (1.0 / getTonemapedColor_UnchartedFilmic(w, a, b, c, d, e, f));
+	return getTonemapedColor_UnchartedFilmic(color, a, b, c, d, e, f) * invTonemapedWhite;
+}
+
+#line 6 "..\..\..\..\fox\source\system\Gr\Dg\shader\DeferredRendering_Common.shdr"
+
+
+#line 4 "..\..\..\..\fox\source\system\Gr\Dg\shader\GammaTransformation.h"
+
+#define _GAMMA_TRANSFORMATION_H_
+
+
+#line 11 "..\..\..\..\fox\source\system\Gr\Dg\shader\GammaTransformation.h"
+
+half3 GammaCorrection(float3 linearRGB)
+{
+
+#line 24 "..\..\..\..\fox\source\system\Gr\Dg\shader\GammaTransformation.h"
+	float3 mask = step(linearRGB, 0.0031308);
+	return (half3)((mask * (linearRGB * 12.92)) + ((1 - mask) * (1.055 * pow(max(linearRGB, 0.00001), (1.0 / 2.4)) - 0.055)));
+}
+
+
+
+#line 35 "..\..\..\..\fox\source\system\Gr\Dg\shader\GammaTransformation.h"
+
+float3 GammaDecode(float3 inSRGB)
+{
+
+#line 48 "..\..\..\..\fox\source\system\Gr\Dg\shader\GammaTransformation.h"
+	float3 mask = step(inSRGB, 0.03928);
+	return (half3)(mask * (inSRGB / 12.92)) + ((1 - mask) * (pow(max((inSRGB + 0.055) / 1.055, 0.00001), 2.4)));
+}
+
+
+
+#line 59 "..\..\..\..\fox\source\system\Gr\Dg\shader\GammaTransformation.h"
+
+float GammaDecodeF(float f)
+{
+	float linear_f;
+	linear_f = ((f <= 0.03928) ? f / 12.92 : pow(abs((f + 0.055) / 1.055), 2.4));
+	return linear_f;
+}
+
+
+#line 7 "..\..\..\..\fox\source\system\Gr\Dg\shader\DeferredRendering_Common.shdr"
 
 
 #line 3 "..\..\..\..\fox\source\system\Gr\Dg\shader\FogVolume.h"
@@ -1732,454 +1854,608 @@ void ReconstructViewZFromPrimitiveDepthTexture( Texture2D inDepth, float2 inTexC
 
 
 
-half EncodeFogCameraZ( float inViewZ )
+half EncodeFogCameraZ(float inViewZ)
 {
 
 #line 28 "..\..\..\..\fox\source\system\Gr\Dg\shader\FogVolume.h"
-	half invLogFarDistance	= (half)g_vsScene.m_fogParam[1].x;
+	half invLogFarDistance = (half)g_vsScene.m_fogParam[1].x;
 	return invLogFarDistance * (half)log2(inViewZ);
 }
 
 
 
-float DecodeFogCameraZ( float inEncodedZ )
+float DecodeFogCameraZ(float inEncodedZ)
 {
 
 #line 40 "..\..\..\..\fox\source\system\Gr\Dg\shader\FogVolume.h"
-	float logFarDistance	= 1.0 / g_vsScene.m_fogParam[1].x;
-	return exp2( inEncodedZ * logFarDistance );
+	float logFarDistance = 1.0 / g_vsScene.m_fogParam[1].x;
+	return exp2(inEncodedZ * logFarDistance);
 }
 
 
-#line 3 "..\..\..\..\fox\source\system\Gr\Dg\shader\FogVolume.shdr"
+#line 8 "..\..\..\..\fox\source\system\Gr\Dg\shader\DeferredRendering_Common.shdr"
 
 
+#line 1 "..\..\..\..\fox\source\system\Gr\Dg\shader\HDRBuffer_Common.shdr"
 
+#define HDRBUFFER_COMMON_SHDR_
 
-#line 9 "..\..\..\..\fox\source\system\Gr\Dg\shader\FogVolume.shdr"
 
+#line 2 "..\..\..\..\fox\source\system\Gr\Dg\shader\shader.h"
 
-#line 19 "..\..\..\..\fox\source\system\Gr\Dg\shader\FogVolume.shdr"
 
 
 
 
-#line 25 "..\..\..\..\fox\source\system\Gr\Dg\shader\FogVolume.shdr"
 
 
-#line 37 "..\..\..\..\fox\source\system\Gr\Dg\shader\FogVolume.shdr"
 
 
 
 
-#line 42 "..\..\..\..\fox\source\system\Gr\Dg\shader\FogVolume.shdr"
 
 
-#line 51 "..\..\..\..\fox\source\system\Gr\Dg\shader\FogVolume.shdr"
+#line 4 "..\..\..\..\fox\source\system\Gr\Dg\shader\../DgShaderDefine.h"
 
 
 
 
-#line 57 "..\..\..\..\fox\source\system\Gr\Dg\shader\FogVolume.shdr"
+#line 14 "..\..\..\..\fox\source\system\Gr\Dg\shader\shader.h"
 
 
-#line 68 "..\..\..\..\fox\source\system\Gr\Dg\shader\FogVolume.shdr"
 
+#line 848 "..\..\..\..\fox\source\system\Gr\Dg\shader\shader.h"
 
 
+#line 5 "..\..\..\..\fox\source\system\Gr\Dg\shader\HDRBuffer_Common.shdr"
 
-#line 73 "..\..\..\..\fox\source\system\Gr\Dg\shader\FogVolume.shdr"
 
 
-#line 102 "..\..\..\..\fox\source\system\Gr\Dg\shader\FogVolume.shdr"
+#line 4 "..\..\..\..\fox\source\system\Gr\Dg\shader\AliasHDRColor.h"
 
+#define ALIAS_HDR_COLOR_H_
 
 
-#line 7 "..\..\..\..\fox\source\system\Gr\Dg\shader\VolFog.shdr"
+#line 2 "..\..\..\..\fox\source\system\Gr\Dg\shader\shader.h"
 
 
 
 
 
 
-#line 12 "..\..\..\..\fox\source\system\Gr\Dg\shader\VolFog.shdr"
 
 
-#line 33 "..\..\..\..\fox\source\system\Gr\Dg\shader\VolFog.shdr"
 
 
 
 
 
-#line 39 "..\..\..\..\fox\source\system\Gr\Dg\shader\VolFog.shdr"
+#line 4 "..\..\..\..\fox\source\system\Gr\Dg\shader\../DgShaderDefine.h"
 
 
-#line 58 "..\..\..\..\fox\source\system\Gr\Dg\shader\VolFog.shdr"
 
 
+#line 14 "..\..\..\..\fox\source\system\Gr\Dg\shader\shader.h"
 
 
-#line 63 "..\..\..\..\fox\source\system\Gr\Dg\shader\VolFog.shdr"
 
+#line 848 "..\..\..\..\fox\source\system\Gr\Dg\shader\shader.h"
 
-#line 72 "..\..\..\..\fox\source\system\Gr\Dg\shader\VolFog.shdr"
 
+#line 8 "..\..\..\..\fox\source\system\Gr\Dg\shader\AliasHDRColor.h"
 
 
+#line 4 "..\..\..\..\fox\source\system\Gr\Dg\shader\GammaTransformation.h"
 
-#line 75 "..\..\..\..\fox\source\system\Gr\Dg\shader\VolFog.shdr"
 
+#line 9 "..\..\..\..\fox\source\system\Gr\Dg\shader\AliasHDRColor.h"
 
-#line 101 "..\..\..\..\fox\source\system\Gr\Dg\shader\VolFog.shdr"
 
 
+#line 95 "..\..\..\..\fox\source\system\Gr\Dg\shader\AliasHDRColor.h"
 
-
-#line 104 "..\..\..\..\fox\source\system\Gr\Dg\shader\VolFog.shdr"
-
-
-#line 113 "..\..\..\..\fox\source\system\Gr\Dg\shader\VolFog.shdr"
-
-
-
-
-#line 116 "..\..\..\..\fox\source\system\Gr\Dg\shader\VolFog.shdr"
-
-
-#line 126 "..\..\..\..\fox\source\system\Gr\Dg\shader\VolFog.shdr"
-
-
-
-
-#line 129 "..\..\..\..\fox\source\system\Gr\Dg\shader\VolFog.shdr"
-
-
-#line 144 "..\..\..\..\fox\source\system\Gr\Dg\shader\VolFog.shdr"
-
-
-
-
-#line 147 "..\..\..\..\fox\source\system\Gr\Dg\shader\VolFog.shdr"
-
-
-#line 167 "..\..\..\..\fox\source\system\Gr\Dg\shader\VolFog.shdr"
-
-
-
-
-#line 170 "..\..\..\..\fox\source\system\Gr\Dg\shader\VolFog.shdr"
-
-
-#line 189 "..\..\..\..\fox\source\system\Gr\Dg\shader\VolFog.shdr"
-
-
-#line 7 "shader\VolFog_TppVolFog.shdr"
-
-
-#line 4 "shader\TppRainFilterCommon.h"
-
-
-
-
-
-#define CAPTURE_DEPTH_DISTANCE 		( 1.0f / 50.0f )	// この値を変更した場合は、TppRainFilterInterruptMng.cppの同じ変数も変更する事
-#define RAIN_FILTER_DEPTH_SAMPLER 	SamplerLinearClamp
-
-#define CAPTURE_DEPTH_TEXTURE_WIDTH
-
-
-
-#line 19 "shader\TppRainFilterCommon.h"
-
-float3 WorldPosToTopViewScreenSpacePos( float3 worldPos, float4 projParam )
+float3	BlendLuv(float3 src, float3 dest)
 {
-	TMatrix4x4 projectionView = 0;
-	projectionView[0][0]= -1.0f; 
-	projectionView[1][2]= 0.000013f;
-	projectionView[1][3]= -1.0f;
-	projectionView[2][1]= 1.0f; 
-	projectionView[3]	= projParam; 
-
-#line 30 "shader\TppRainFilterCommon.h"
-	float4 ssPos = (float4)ApplyMatrixT( projectionView, float4( worldPos.xyz, 1.0f ) );
-	ssPos.xy *= 0.03f;
-	ssPos.xy = ssPos.xy * float2(0.5f, -0.5f) + 0.5f; 
-	const float c_captureDepthDistance = CAPTURE_DEPTH_DISTANCE;
-	ssPos.z = 1.0 - saturate( ssPos.w * c_captureDepthDistance );
-	return ssPos.xyz;
+	return float3(
+		lerp(dest.rg, src.rg, saturate((src.b / dest.b) * 0.5f)),
+		dest.b + src.b
+		);
 }
 
+const static float3x3 M = float3x3(
+	0.2209, 0.3390, 0.4184,
+	0.1138, 0.6780, 0.7319,
+	0.0102, 0.1130, 0.2969);
+const static float3x3 InverseM = float3x3(
+	6.0014, -2.7008, -1.7996,
+	-1.3320, 3.1029, -5.7721,
+	0.3008, -1.0882, 5.6268);
 
-#line 8 "shader\VolFog_TppVolFog.shdr"
+float4 logLuvEncode(in float3 vRGB) {
+	float4 vResult;
+	float3 Xp_Y_XYZp = mul(vRGB, M);
+	Xp_Y_XYZp = max(Xp_Y_XYZp, float3(1e-6, 1e-6, 1e-6));
+	vResult.xy = Xp_Y_XYZp.xy / Xp_Y_XYZp.z;
+	float Le = 2 * log2(Xp_Y_XYZp.y) + 127;
+	vResult.w = frac(Le);
+	vResult.z = (Le - (floor(vResult.w * 255.0f)) / 255.0f) / 255.0f;
+	return vResult;
+}
 
+float3 logLuvDecode(in float4 vLogLuv) {
+	float Le = vLogLuv.z * 255 + vLogLuv.w;
+	float3 Xp_Y_XYZp;
+	Xp_Y_XYZp.y = exp2((Le - 127) / 2);
+	Xp_Y_XYZp.z = Xp_Y_XYZp.y / vLogLuv.y;
+	Xp_Y_XYZp.x = vLogLuv.x * Xp_Y_XYZp.z;
+	float3 vRGB = mul(Xp_Y_XYZp, InverseM);
+	return max(vRGB, 0);
+}
 
-#define PI			(3.14159265)
-#define FOG_SCALE	(1.0)
-
-
-
-#line 15 "shader\VolFog_TppVolFog.shdr"
-
-float MiePhase( float costheta, float k, float ratio )
+float4 rgbeEncode(in float3 vRGB)
 {
-	float p = 1.0 / ( 4.0 * PI ) * ( 1 - k * k ) / ( ( 1 - k * costheta ) * ( 1 - k * costheta ) );
-	return ratio + ( 1 - ratio ) * p;
+	float fMax = max(max(vRGB.r, vRGB.g), vRGB.b);
+	float fExp = floor(log(fMax) / log(1.04));
+	float alpha = clamp(fExp / 255.0, 0.0, 1.0);
+	vRGB /= pow(1.04, alpha * 255.0);
+	return float4(vRGB, alpha);
 }
 
-
-#line 24 "shader\VolFog_TppVolFog.shdr"
-
-float RayleighPhase( float costheta )
+float3 rgbeDecode(in float4 vRGBE)
 {
-	return 3.0 / ( 16.0 * PI ) * ( 1.0 + costheta * costheta );
+	float e = pow(1.04f, vRGBE.a * 255.0f);
+	vRGBE.rgb *= e;
+	return vRGBE.rgb;
 }
 
-
-
-#line 37 "shader\VolFog_TppVolFog.shdr"
-
-float4 IntersectRayAABB( float3 origin, float3 dir, float3 aabbMin, float3 aabbMax )
+half4 RGBMEncode(half3 color)
 {
-	float	tmin = 0.0;
-	float	tmax = 10000.0; 
+	half4 rgbm;
 
-	float	aMin[3]	= { aabbMin.x, aabbMin.y, aabbMin.z };
-	float	aMax[3]	= { aabbMax.x, aabbMax.y, aabbMax.z };
-	float	o[3]	= { origin.x, origin.y, origin.z };
-	float	d[3]	= { dir.x, dir.y, dir.z };
-
-	
-	bool	flag = true;
-	const float	epsilon = 0.000001;
-	for ( int i = 0; i < 3; i++ )
-	{
-		if ( abs( d[i] ) < epsilon )
-		{
-			flag = !( ( o[i] < aMin[i] ) || ( o[i] > aMax[i] ) );
-		}
-	}
-	if ( flag == false )
-	{
-		return float4( -1, 0, 0, 0 );
-	}
+	color = (half3)saturate(color * (1.0h / 32.0h));
 
 
-#line 64 "shader\VolFog_TppVolFog.shdr"
 
-	
-	for ( int j = 0; j < 3; j++ )
-	{
-		float ood	= 1.0 / d[j];
-		float t1	= ( aMin[j] - o[j] ) * ood;
-		float t2	= ( aMax[j] - o[j] ) * ood;
 
-		
-		if ( t1 > t2 )
-		{
-			float tmp = t1;
-			t1 = t2;
-			t2 = tmp;
-		}
 
-		tmin = max( tmin, t1 );
-		tmax = min( tmax, t2 );
-		
-		if ( tmin > tmax )
-		{
-			return float4( -1, 0, 0, 0 );
-		}
-	}
-	
-	return float4( 1, tmin, tmax, 0 );
-	
 
-#line 106 "shader\VolFog_TppVolFog.shdr"
+
+
+
+
+
+
+
+
+	rgbm.a = (half)dot(color.rgb, half(255.0h / 3.0h).xxx);
+	rgbm.a = (half)saturate((half)floor(rgbm.a) * (1.0h / 255.0h) + (1.0h / 255.0h));
+	rgbm.rgb = color.rgb * (1.0h / 3.0h) / rgbm.a;
+
+
+
+
+
+	return rgbm;
 }
 
-
-#line 111 "shader\VolFog_TppVolFog.shdr"
-
-
-#line 121 "shader\VolFog_TppVolFog.shdr"
-
-
-
-#line 124 "shader\VolFog_TppVolFog.shdr"
-
-
-#line 147 "shader\VolFog_TppVolFog.shdr"
-
-
-
-
-#line 151 "shader\VolFog_TppVolFog.shdr"
-
-
-#line 160 "shader\VolFog_TppVolFog.shdr"
-
-
-
-
-#line 163 "shader\VolFog_TppVolFog.shdr"
-
-
-#line 188 "shader\VolFog_TppVolFog.shdr"
-
-
-
-
-#line 191 "shader\VolFog_TppVolFog.shdr"
-
-
-#line 218 "shader\VolFog_TppVolFog.shdr"
-
-
-
-
-#line 221 "shader\VolFog_TppVolFog.shdr"
-
-
-#line 291 "shader\VolFog_TppVolFog.shdr"
-
-
-
-#line 294 "shader\VolFog_TppVolFog.shdr"
-
-
-#line 305 "shader\VolFog_TppVolFog.shdr"
-
-
-
-
-#line 310 "shader\VolFog_TppVolFog.shdr"
-
-
-#line 347 "shader\VolFog_TppVolFog.shdr"
-
-
-
-
-#line 76 "..\..\..\..\fox\source\system\Gr\Dg\shader\FogVolume.shdr"
-inline void NGetVoxelCoordinate( float3 inPosition, float inYScale, out float4 outDrawCoord,  out float3 outClipCoord)
+half3 RGBMDecode(half4 rgbm)
 {
-#line 83 "..\..\..\..\fox\source\system\Gr\Dg\shader\FogVolume.shdr"
-
-    
-    
-    outDrawCoord.xy = inPosition.xy * float2( 2.0, inYScale ) + float2( -1.0, 1.0 ) ;
-    outDrawCoord.zw = 1.0 ;
-
-    
-	float zSlice	= GVFOG_LAYERS_PER_COL * inPosition.z;
-    float vOffset	= 1.0/GVFOG_LAYERS_PER_COL * floor( zSlice ) ;
-    float uOffset	= frac(zSlice);
-    outClipCoord.x	= GVFOG_LAYERS_PER_ROW * (inPosition.x - uOffset ); 
-    outClipCoord.y	= GVFOG_LAYERS_PER_COL * (inPosition.y - vOffset ); 
-    outClipCoord.z	= DecodeFogCameraZ( inPosition.z );
-#ifndef DG_ENABLE_HALFPIXELOFFSET
-	outClipCoord.xy += float2( 0.5/GVFOG_VOLUME_W, 0.5/GVFOG_VOLUME_H );
-#endif
-	outClipCoord.xy = 2.0 * outClipCoord.xy - 1.0;
-	outClipCoord.xy *= float2( GVFOG_VOLUME_W/(GVFOG_VOLUME_W-1.0), GVFOG_VOLUME_H/(GVFOG_VOLUME_H-1.0) );
-	
+	return 32.0h * 3.0h * rgbm.rgb * rgbm.a;
 }
 
-
-
-#line 41 "..\..\..\..\fox\source\system\Gr\Dg\shader\VolFog.shdr"
-inline void NGetViewPos( float3 inClipPos, out float3 outViewPos)
+half3 SRGBDecode(half4 srgb)
 {
-#line 46 "..\..\..\..\fox\source\system\Gr\Dg\shader\VolFog.shdr"
-
-#ifndef NEW_VIEWPOS_RECONSTRUCT_CALC
-    float w = inClipPos.z ;
-    float aspectInv = g_vsScene.m_projectionParam.z ;
-    float screenInv = 1.0 / g_vsScene.m_projectionParam.w ;
-	outViewPos.xy = float2(-inClipPos.x, inClipPos.y * aspectInv );
-	outViewPos.xy = outViewPos.xy * w * screenInv ;
-	outViewPos.z = inClipPos.z ;
-#else
-	outViewPos.z = inClipPos.z ;
-	outViewPos.xy = ( inClipPos.xy * g_vsScene.m_projectionParam.xy ) * inClipPos.z ;
-#endif
+	return (half3)pow(2.2, srgb.xyz);
 }
 
-
-
-#line 65 "..\..\..\..\fox\source\system\Gr\Dg\shader\VolFog.shdr"
-inline void NGetWorldPos( float3 inViewPos, out float3 outWorldPos)
+half4 SRGBEncode(half3 color)
 {
-#line 70 "..\..\..\..\fox\source\system\Gr\Dg\shader\VolFog.shdr"
-
-    outWorldPos = ApplyMatrixT(g_vsScene.m_view, float4(inViewPos, 1.0)).xyz;
+	return half4(pow(0.4545454545454545, color.xyz), 1);
 }
 
 
+#line 214 "..\..\..\..\fox\source\system\Gr\Dg\shader\AliasHDRColor.h"
 
-#line 113 "shader\VolFog_TppVolFog.shdr"
-inline void NScreenSpaceCameraPosOnRainViewport(  out float3 outPosition)
+
+#line 259 "..\..\..\..\fox\source\system\Gr\Dg\shader\AliasHDRColor.h"
+
+
+
+
+#line 265 "..\..\..\..\fox\source\system\Gr\Dg\shader\AliasHDRColor.h"
+
+half4 EncodeAliasHDRColor(half3 color)
 {
-#line 117 "shader\VolFog_TppVolFog.shdr"
 
-	const float3 cameraPos = g_vsObject.m_localParam[0].xyz; // J - World space camera position
-	float3 ssPos = WorldPosToTopViewScreenSpacePos( cameraPos, g_vsMaterial.m_materials[4] ); // In my sample, (cameraPos.x, -cameraPos.z, stuff, stuff). Just whatever proj * view is, really.
-	outPosition = ssPos.xyz;
+#line 269 "..\..\..\..\fox\source\system\Gr\Dg\shader\AliasHDRColor.h"
+	return half4(color.xyz, 1.0h);
+
+#line 278 "..\..\..\..\fox\source\system\Gr\Dg\shader\AliasHDRColor.h"
+
+
+#line 289 "..\..\..\..\fox\source\system\Gr\Dg\shader\AliasHDRColor.h"
+
+
+#line 300 "..\..\..\..\fox\source\system\Gr\Dg\shader\AliasHDRColor.h"
+
+
+#line 304 "..\..\..\..\fox\source\system\Gr\Dg\shader\AliasHDRColor.h"
+
+
+#line 334 "..\..\..\..\fox\source\system\Gr\Dg\shader\AliasHDRColor.h"
 }
 
 
 
+#line 341 "..\..\..\..\fox\source\system\Gr\Dg\shader\AliasHDRColor.h"
+
+half3 DecodeAliasHDRColor(half4 encodedColor)
+{
+
+#line 345 "..\..\..\..\fox\source\system\Gr\Dg\shader\AliasHDRColor.h"
+
+
+	return encodedColor.xyz;
+
+#line 354 "..\..\..\..\fox\source\system\Gr\Dg\shader\AliasHDRColor.h"
+
+
+#line 356 "..\..\..\..\fox\source\system\Gr\Dg\shader\AliasHDRColor.h"
+
+
+#line 369 "..\..\..\..\fox\source\system\Gr\Dg\shader\AliasHDRColor.h"
+
+
+#line 381 "..\..\..\..\fox\source\system\Gr\Dg\shader\AliasHDRColor.h"
+
+
+#line 387 "..\..\..\..\fox\source\system\Gr\Dg\shader\AliasHDRColor.h"
+
+
+#line 419 "..\..\..\..\fox\source\system\Gr\Dg\shader\AliasHDRColor.h"
+}
+
+half4 EncodeRGBEColor(half3 color)
+{
+	half4	encodedColor;
+	float3 vRGB = (float3)color;
+	encodedColor = (half4)rgbeEncode(vRGB);
+	return encodedColor;
+}
+
+half3 DecodeRGBEColor(half4 encodedColor)
+{
+	float4 vRGBE = (float4)encodedColor;
+	half3 color = (half3)rgbeDecode(vRGBE);
+	return color;
+}
+
+
+
+#line 7 "..\..\..\..\fox\source\system\Gr\Dg\shader\HDRBuffer_Common.shdr"
+
+
+
+#line 9 "..\..\..\..\fox\source\system\Gr\Dg\shader\HDRBuffer_Common.shdr"
+#define HDRBUF_ENCODE_DIFFUSE	EncodeAliasHDRColor
+#define HDRBUF_DECODE_DIFFUSE	DecodeAliasHDRColor
+#define HDRBUF_ENCODE_SPECULAR	EncodeAliasHDRColor
+#define HDRBUF_DECODE_SPECULAR	DecodeAliasHDRColor
+
+#line 21 "..\..\..\..\fox\source\system\Gr\Dg\shader\HDRBuffer_Common.shdr"
+
+
+#line 35 "..\..\..\..\fox\source\system\Gr\Dg\shader\HDRBuffer_Common.shdr"
+
+
+#line 49 "..\..\..\..\fox\source\system\Gr\Dg\shader\HDRBuffer_Common.shdr"
+
+
+#line 63 "..\..\..\..\fox\source\system\Gr\Dg\shader\HDRBuffer_Common.shdr"
+
+
+#line 77 "..\..\..\..\fox\source\system\Gr\Dg\shader\HDRBuffer_Common.shdr"
+
+#define SamplerGBuffer SamplerPoint
+
+
+
+#line 85 "..\..\..\..\fox\source\system\Gr\Dg\shader\HDRBuffer_Common.shdr"
+
+
+#line 99 "..\..\..\..\fox\source\system\Gr\Dg\shader\HDRBuffer_Common.shdr"
 
 
 
 
-#line 126 "shader\VolFog_TppVolFog.shdr"
+#line 105 "..\..\..\..\fox\source\system\Gr\Dg\shader\HDRBuffer_Common.shdr"
+
+
+#line 152 "..\..\..\..\fox\source\system\Gr\Dg\shader\HDRBuffer_Common.shdr"
+
+
+
+
+#line 159 "..\..\..\..\fox\source\system\Gr\Dg\shader\HDRBuffer_Common.shdr"
+
+
+#line 216 "..\..\..\..\fox\source\system\Gr\Dg\shader\HDRBuffer_Common.shdr"
+
+
+
+
+
+
+#line 278 "..\..\..\..\fox\source\system\Gr\Dg\shader\HDRBuffer_Common.shdr"
+
+
+
+
+#line 285 "..\..\..\..\fox\source\system\Gr\Dg\shader\HDRBuffer_Common.shdr"
+
+
+#line 311 "..\..\..\..\fox\source\system\Gr\Dg\shader\HDRBuffer_Common.shdr"
+
+
+
+
+#line 317 "..\..\..\..\fox\source\system\Gr\Dg\shader\HDRBuffer_Common.shdr"
+
+
+#line 331 "..\..\..\..\fox\source\system\Gr\Dg\shader\HDRBuffer_Common.shdr"
+
+
+
+
+#line 337 "..\..\..\..\fox\source\system\Gr\Dg\shader\HDRBuffer_Common.shdr"
+
+
+#line 351 "..\..\..\..\fox\source\system\Gr\Dg\shader\HDRBuffer_Common.shdr"
+
+
+
+
+#line 358 "..\..\..\..\fox\source\system\Gr\Dg\shader\HDRBuffer_Common.shdr"
+
+
+#line 386 "..\..\..\..\fox\source\system\Gr\Dg\shader\HDRBuffer_Common.shdr"
+
+
+
+#line 413 "..\..\..\..\fox\source\system\Gr\Dg\shader\HDRBuffer_Common.shdr"
+
+
+
+
+#line 420 "..\..\..\..\fox\source\system\Gr\Dg\shader\HDRBuffer_Common.shdr"
+
+
+#line 447 "..\..\..\..\fox\source\system\Gr\Dg\shader\HDRBuffer_Common.shdr"
+
+
+
+
+#line 453 "..\..\..\..\fox\source\system\Gr\Dg\shader\HDRBuffer_Common.shdr"
+
+
+#line 466 "..\..\..\..\fox\source\system\Gr\Dg\shader\HDRBuffer_Common.shdr"
+
+
+
+
+#line 473 "..\..\..\..\fox\source\system\Gr\Dg\shader\HDRBuffer_Common.shdr"
+
+
+#line 487 "..\..\..\..\fox\source\system\Gr\Dg\shader\HDRBuffer_Common.shdr"
+
+
+
+#line 9 "..\..\..\..\fox\source\system\Gr\Dg\shader\DeferredRendering_Common.shdr"
+
+
+
+
+
+#line 32 "..\..\..\..\fox\source\system\Gr\Dg\shader\DeferredRendering_Common.shdr"
+
+
+
+#line 40 "..\..\..\..\fox\source\system\Gr\Dg\shader\DeferredRendering_Common.shdr"
+
+float CalcInscatter(float3 cameraToWorldPos, float globalDensity, float heightFallOff, float volumetricFogHeightDensityAtViewer)
+{
+	float H = volumetricFogHeightDensityAtViewer;
+	float B = globalDensity;
+	float s = length(cameraToWorldPos);
+	float a = heightFallOff;
+	float y = max(cameraToWorldPos.y, 0);
+
+#line 52 "..\..\..\..\fox\source\system\Gr\Dg\shader\DeferredRendering_Common.shdr"
+	float	tmp = a * y + s * B * H;
+	float inscatter = exp(-tmp - H) * s / (tmp);
+	inscatter = 1 - inscatter;
+
+	return inscatter;
+}
+
+
+
+#line 69 "..\..\..\..\fox\source\system\Gr\Dg\shader\DeferredRendering_Common.shdr"
+
+
+#line 92 "..\..\..\..\fox\source\system\Gr\Dg\shader\DeferredRendering_Common.shdr"
+
+
+
+
+#line 98 "..\..\..\..\fox\source\system\Gr\Dg\shader\DeferredRendering_Common.shdr"
+
+
+#line 124 "..\..\..\..\fox\source\system\Gr\Dg\shader\DeferredRendering_Common.shdr"
+
+
+
+
+
+#line 132 "..\..\..\..\fox\source\system\Gr\Dg\shader\DeferredRendering_Common.shdr"
+
+
+#line 144 "..\..\..\..\fox\source\system\Gr\Dg\shader\DeferredRendering_Common.shdr"
+
+
+
+
+#line 148 "..\..\..\..\fox\source\system\Gr\Dg\shader\DeferredRendering_Common.shdr"
+
+
+#line 179 "..\..\..\..\fox\source\system\Gr\Dg\shader\DeferredRendering_Common.shdr"
+
+
+
+#line 210 "..\..\..\..\fox\source\system\Gr\Dg\shader\DeferredRendering_Common.shdr"
+
+
+
+
+#line 216 "..\..\..\..\fox\source\system\Gr\Dg\shader\DeferredRendering_Common.shdr"
+
+
+#line 228 "..\..\..\..\fox\source\system\Gr\Dg\shader\DeferredRendering_Common.shdr"
+
+
+#line 5 "..\..\..\..\fox\source\system\Gr\Dg\shader\DeferredRendering_VolFog.shdr"
+
+
+#line 4 "..\..\..\..\fox\source\system\Gr\Dg\shader\NearFarCommon.shdr"
+
+
+
+#line 25 "..\..\..\..\fox\source\system\Gr\Dg\shader\NearFarCommon.shdr"
+
+
+
+
+
+#line 43 "..\..\..\..\fox\source\system\Gr\Dg\shader\NearFarCommon.shdr"
+
+
+
+#line 64 "..\..\..\..\fox\source\system\Gr\Dg\shader\NearFarCommon.shdr"
+
+
+
+#line 75 "..\..\..\..\fox\source\system\Gr\Dg\shader\NearFarCommon.shdr"
+
+
+#line 6 "..\..\..\..\fox\source\system\Gr\Dg\shader\DeferredRendering_VolFog.shdr"
+
+
+
+
+
+
+#line 11 "..\..\..\..\fox\source\system\Gr\Dg\shader\DeferredRendering_VolFog.shdr"
+
+
+#line 25 "..\..\..\..\fox\source\system\Gr\Dg\shader\DeferredRendering_VolFog.shdr"
+
+
+
+
+
+#line 33 "..\..\..\..\fox\source\system\Gr\Dg\shader\DeferredRendering_VolFog.shdr"
+
+
+#line 46 "..\..\..\..\fox\source\system\Gr\Dg\shader\DeferredRendering_VolFog.shdr"
+
+
+
+
+#line 53 "..\..\..\..\fox\source\system\Gr\Dg\shader\DeferredRendering_VolFog.shdr"
+
+
+#line 82 "..\..\..\..\fox\source\system\Gr\Dg\shader\DeferredRendering_VolFog.shdr"
+
+
+
+
+
+
+#line 87 "..\..\..\..\fox\source\system\Gr\Dg\shader\DeferredRendering_VolFog.shdr"
+
+
+#line 143 "..\..\..\..\fox\source\system\Gr\Dg\shader\DeferredRendering_VolFog.shdr"
+
+
+#line 7 "shader\DR_VolFog_TppTonemap.shdr"
+
+
+#line 3 "shader\TppTonemap.h"
+
+
+
+#line 8 "shader\TppTonemap.h"
+
+half3 TppTonemap(half3 params, half3 x)
+{
+	half3 mask = (half3)step(x, params.y);
+	return (mask * x) + ((1.0h - mask) * (-1.0h / (params.x * (x + params.z - params.y)) + params.z + params.y));
+}
+
+#line 8 "shader\DR_VolFog_TppTonemap.shdr"
+
+
+
+
+#line 14 "shader\DR_VolFog_TppTonemap.shdr"
+
+
+#line 44 "shader\DR_VolFog_TppTonemap.shdr"
+
+
+
+
+#line 47 "shader\DR_VolFog_TppTonemap.shdr"
+
+
+#line 105 "shader\DR_VolFog_TppTonemap.shdr"
+
+
+
+#line 25 "..\..\..\..\fox\source\system\Gr\Dg\shader\Common.shdr"
+inline void NScreenCoordinateToDrawCoordinate(float2 inPosition, out float4 outPosition)
+{
+#line 30 "..\..\..\..\fox\source\system\Gr\Dg\shader\Common.shdr"
+
+
+	outPosition.xy = inPosition.xy * float2(2.0, -2.0) + float2(-1.0, 1.0);
+	outPosition.zw = 1.0;
+}
+
+
+
+#line 13 "..\..\..\..\fox\source\system\Gr\Dg\shader\DeferredRendering_VolFog.shdr"
 void vs_main(
 
-	 in	float3	inPosition	: POSITION,
-	 out	float3	outWorldPos	: TEXCOORD0,
-	 out	float3	outRainSsPos	: TEXCOORD1,
-	 out	float4	outPosition	: OUT_POSITION
+	in	float2	inPosition	: POSITION,
+	out	float4	outPosition : OUT_POSITION,
+	out	float2	outTexcoord : TEXCOORD0
 )
 {
 	#include "../UnityPatch/PreEntryPoint.hlsl"
-		
-	float3 NScreenSpaceCameraPosOnRainViewport_getRainSsPos_outPosition ;
-	NScreenSpaceCameraPosOnRainViewport( NScreenSpaceCameraPosOnRainViewport_getRainSsPos_outPosition ) ;
+
+	float2	NScreenCoordinateToDrawCoordinate_drawCoordinate_inPosition;
+	float4 NScreenCoordinateToDrawCoordinate_drawCoordinate_outPosition;
+#line 22 "..\..\..\..\fox\source\system\Gr\Dg\shader\DeferredRendering_VolFog.shdr"
+	NScreenCoordinateToDrawCoordinate_drawCoordinate_inPosition = inPosition;
+	NScreenCoordinateToDrawCoordinate(NScreenCoordinateToDrawCoordinate_drawCoordinate_inPosition, NScreenCoordinateToDrawCoordinate_drawCoordinate_outPosition);
 
 
-	float3	NGetVoxelCoordinate_voxelCoordinate_inPosition ;
-	float	NGetVoxelCoordinate_voxelCoordinate_inYScale ;
-	float4 NGetVoxelCoordinate_voxelCoordinate_outDrawCoord ;
-	float3 NGetVoxelCoordinate_voxelCoordinate_outClipCoord ;
-#line 139 "shader\VolFog_TppVolFog.shdr"
-	NGetVoxelCoordinate_voxelCoordinate_inPosition = inPosition ;
-#line 140 "shader\VolFog_TppVolFog.shdr"
-	NGetVoxelCoordinate_voxelCoordinate_inYScale = -2.0 ;
-	NGetVoxelCoordinate( NGetVoxelCoordinate_voxelCoordinate_inPosition, NGetVoxelCoordinate_voxelCoordinate_inYScale, NGetVoxelCoordinate_voxelCoordinate_outDrawCoord, NGetVoxelCoordinate_voxelCoordinate_outClipCoord ) ;
+#line 23 "..\..\..\..\fox\source\system\Gr\Dg\shader\DeferredRendering_VolFog.shdr"
+	outPosition = NScreenCoordinateToDrawCoordinate_drawCoordinate_outPosition;
 
-
-	float3	NGetViewPos_getViewPos_inClipPos ;
-	float3 NGetViewPos_getViewPos_outViewPos ;
-#line 141 "shader\VolFog_TppVolFog.shdr"
-	NGetViewPos_getViewPos_inClipPos = NGetVoxelCoordinate_voxelCoordinate_outClipCoord ;
-	NGetViewPos( NGetViewPos_getViewPos_inClipPos, NGetViewPos_getViewPos_outViewPos ) ;
-
-
-	float3	NGetWorldPos_getWorldPos_inViewPos ;
-	float3 NGetWorldPos_getWorldPos_outWorldPos ;
-#line 142 "shader\VolFog_TppVolFog.shdr"
-	NGetWorldPos_getWorldPos_inViewPos = NGetViewPos_getViewPos_outViewPos ;
-	NGetWorldPos( NGetWorldPos_getWorldPos_inViewPos, NGetWorldPos_getWorldPos_outWorldPos ) ;
-
-
-#line 144 "shader\VolFog_TppVolFog.shdr"
-	outPosition = NGetVoxelCoordinate_voxelCoordinate_outDrawCoord ;
-
-#line 145 "shader\VolFog_TppVolFog.shdr"
-	outWorldPos = NGetWorldPos_getWorldPos_outWorldPos;
-
-#line 146 "shader\VolFog_TppVolFog.shdr"
-	outRainSsPos = NScreenSpaceCameraPosOnRainViewport_getRainSsPos_outPosition ;
+#line 24 "..\..\..\..\fox\source\system\Gr\Dg\shader\DeferredRendering_VolFog.shdr"
+	outTexcoord.xy = NScreenCoordinateToDrawCoordinate_drawCoordinate_outPosition.xy;
 
 
 

@@ -697,8 +697,8 @@ typedef SWork VSWork;
 
 #line 272 "..\..\..\..\fox\source\system\Gr\Dg\shader\shader.h"
 
-#define ToVPos(vpos) (vpos + PIXELCENTEROFFSET)
-#define ToVPos4 ToVPos
+#define ToVPos(wpos) (float2(wpos.x, g_psSystem.m_renderBuffer.y - wpos.y) + PIXELCENTEROFFSET)
+#define ToVPos4(wpos) float4(ToVPos(wpos), 0, 0 )
 #define ToWPos(vpos) (vpos + 0.5f + PIXELCENTEROFFSET)
 #define ToWPos4(vpos) ToWPos(vpos)
 

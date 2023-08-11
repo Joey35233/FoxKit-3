@@ -1,7 +1,8 @@
-Shader "Fox/blur_Gaussian1D_Bilateral_X"
+Shader "Fox/DR_VolFog_TppTonemap"
 {
     Properties
     {
+        inLightSpecular("inLightSpecular", 2D) = "black" {}
     }
 
     SubShader
@@ -20,15 +21,15 @@ Shader "Fox/blur_Gaussian1D_Bilateral_X"
 
             #include "../UnityPatch/PreHLSL.hlsl"
 
-//////////////////////////////////////
+////////////////////
             #pragma vertex vs_main
 #if defined(SHADER_STAGE_VERTEX)
-            #include "blur_Gaussian1D_Bilateral_X_vs.hlsl"
+            #include "DR_VolFog_TppTonemap_vs.hlsl"
 #endif
 
             #pragma fragment ps_main
 #if defined(SHADER_STAGE_FRAGMENT)
-            #include "blur_Gaussian1D_Bilateral_X_ps.hlsl"
+            #include "DR_VolFog_TppTonemap_ps.hlsl"
 #endif
 
             ENDHLSL

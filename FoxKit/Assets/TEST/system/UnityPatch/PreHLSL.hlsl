@@ -206,3 +206,22 @@ cbuffer UnityPatch_PSWork
 {
     float4 UnityPatch_g_sWork_m_vectors[36];
 };
+
+cbuffer UnityPatch_PSParamSH_Sky
+{
+    float4x4 UnityPatch_g_psParamSH_m_matrix_0;
+    float4x4 UnityPatch_g_psParamSH_m_matrix_1;
+    float4x4 UnityPatch_g_psParamSH_m_matrix_2;
+    float4x4 UnityPatch_g_psParamSH_m_matrix_3;
+
+    float4x4 UnityPatch_g_psParamSHSky_m_matrix_0;
+    float4x4 UnityPatch_g_psParamSHSky_m_matrix_1;
+    float4x4 UnityPatch_g_psParamSHSky_m_matrix_2;
+};
+
+cbuffer UnityPatch_PSLightSH
+{
+    float4 UnityPatch_g_psLightSH_m_projectionPlanes_0;
+    float4 UnityPatch_g_psLightSH_m_projectionPlanes_1;
+    float4 UnityPatch_g_psLightSH_m_projectionPlanes_2;
+};

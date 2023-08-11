@@ -23,6 +23,9 @@ namespace FoxKit.TEST
 
             // blur_Gaussian1D_Bilateral_X/Y
             public static int inImage = Shader.PropertyToID("inImage");
+
+            // SSAOAlphaToRGB
+            public static int inSourceBuffer = Shader.PropertyToID("inSourceBuffer");
         }
 
         private static class RtIds
@@ -31,7 +34,7 @@ namespace FoxKit.TEST
             public static int TempBlurTextureA = Shader.PropertyToID("TempBlurTextureA");
             public static int TempBlurTextureB = Shader.PropertyToID("TempBlurTextureB");
 
-            public static int LISSAOTexture = Shader.PropertyToID("LISSAOTexture");
+            public static int LISSAOTexture = Shader.PropertyToID("AOTexture");
         }
 
         private static class ShaderIds
@@ -52,7 +55,7 @@ namespace FoxKit.TEST
         private Material MainMaterial;
         private Material BlurXMaterial;
         private Material BlurYMaterial;
-        private Material ResultAlphaToRGBMaterial;
+        private Material AlphaToRGBMaterial;
 
         private Texture2D RotationsTexture;
 
@@ -64,33 +67,42 @@ namespace FoxKit.TEST
             MainMaterial = new Material(Shader.Find("Fox/SSAOLineIntegrals"));
             BlurXMaterial = new Material(Shader.Find("Fox/blur_Gaussian1D_Bilateral_X"));
             BlurYMaterial = new Material(Shader.Find("Fox/blur_Gaussian1D_Bilateral_Y"));
-            //ResultAlphaToRGBMaterial = new Material(Shader.Find("Fox/SSAOAlphaToRGB"));
+            AlphaToRGBMaterial = new Material(Shader.Find("Fox/SSAOAlphaToRGB"));
 
             RotationsTexture = new Texture2D(4, 4, TextureFormat.RGHalf, false);
             RotationsTexture.SetPixels
             (
                 new Color[]
                 {
-                    new Color(- 0.21704f, 0.97607f, 0, 0),  new Color(0.81494f, 0.5791f, 0, 0),  new Color(0.36792f, 0.92969f, 0, 0),  new Color(0.9043f, 0.42676f, 0, 0),
+                    new Color(-0.21704f, 0.97607f, 0, 0),  new Color(0.81494f, 0.5791f, 0, 0),  new Color(0.36792f, 0.92969f, 0, 0),  new Color(0.9043f, 0.42676f, 0, 0),
                     new Color(0.98877f, 0.14832f, 0, 0), new Color(- 0.93359f, 0.35693f, 0, 0),  new Color(0.7168f, 0.69678f, 0, 0), new Color(- 0.38281f, 0.92334f, 0, 0),
-                    new Color(- 0.70166f, 0.71191f, 0, 0),  new Color(0.16284f, 0.98633f, 0, 0), new Color(- 0.02782f, 0.99951f, 0, 0),  new Color(0.53467f, 0.84473f, 0, 0),
-                    new Color(- 0.83203f, 0.55371f, 0, 0), new Color(- 0.98193f, 0.1875f, 0, 0), new Color(- 0.55615f, 0.83057f, 0, 0),  new Color(0.99854f, -0.04904f, 0, 0),
+                    new Color(-0.70166f, 0.71191f, 0, 0),  new Color(0.16284f, 0.98633f, 0, 0), new Color(-0.02782f, 0.99951f, 0, 0),  new Color(0.53467f, 0.84473f, 0, 0),
+                    new Color(-0.83203f, 0.55371f, 0, 0), new Color(- 0.98193f, 0.1875f, 0, 0), new Color(-0.55615f, 0.83057f, 0, 0),  new Color(0.99854f, -0.04904f, 0, 0),
                 }
             );
             RotationsTexture.Apply();
         }
 
-        protected override void Render()
+        public override void Render(ScriptableRenderContext context, Camera camera)
         {
+            var descriptor = new RenderTextureDescriptor(camera.pixelWidth, camera.pixelHeight)
+            {
+                depthBufferBits = 0,
+                mipCount = 1,
+                graphicsFormat = UnityEngine.Experimental.Rendering.GraphicsFormat.B8G8R8A8_UNorm,
+                msaaSamples = 1,
+                dimension = TextureDimension.Tex2D,
+            };
+
+            // Final output
+            Buffer.GetTemporaryRT(RtIds.LISSAOTexture, descriptor, FilterMode.Point);
+            LISSAOTexture = new RenderTargetIdentifier(RtIds.LISSAOTexture);
+
+            // Half res buffers
             // For now, embrace implicit int floor()
-            var halfResBufferSize = new Vector2(Math.Max(Camera.pixelWidth / 2, 1), Math.Max(Camera.pixelHeight / 2, 1));
-
-            var descriptor = new RenderTextureDescriptor((int)halfResBufferSize.x, (int)halfResBufferSize.y);
-            descriptor.depthBufferBits = 0;
-            descriptor.graphicsFormat = UnityEngine.Experimental.Rendering.GraphicsFormat.B8G8R8A8_UNorm;
-            descriptor.msaaSamples = 1;
-            descriptor.dimension = TextureDimension.Tex2D;
-
+            var halfResBufferSize = new Vector2(Math.Max(camera.pixelWidth / 2, 1), Math.Max(camera.pixelHeight / 2, 1));
+            descriptor.width = (int)halfResBufferSize.x;
+            descriptor.height = (int)halfResBufferSize.y;
             Buffer.GetTemporaryRT(RtIds.TempBlurTextureA, descriptor, FilterMode.Point);
             TempBlurTextureA = new RenderTargetIdentifier(RtIds.TempBlurTextureA);
             Buffer.GetTemporaryRT(RtIds.TempBlurTextureB, descriptor, FilterMode.Point);
@@ -108,8 +120,8 @@ namespace FoxKit.TEST
 
             // Downsample depth buffer
             Buffer.SetRenderTarget(TempDepthBuffer);
-            DgShaderDefine.SetVector(DownSampleDepthMaterial, DgShaderDefine.ConstantId.V_LOCALPARAM0, new Vector4(0.5f / Camera.pixelWidth, 0.5f / Camera.pixelHeight, 0, 0));
-            Buffer.SetGlobalTexture(TextureIds.inTexture, ((from plugin in FoxRenderer.Plugins where plugin.Name == "DeferredGeometry" select plugin).First() as GrPluginDeferredGeometry).DepthBufferId);
+            DgShaderDefine.SetVector(DownSampleDepthMaterial, DgShaderDefine.ConstantId.V_LOCALPARAM0, new Vector4(0.5f / camera.pixelWidth, 0.5f / camera.pixelHeight, 0, 0));
+            Buffer.SetGlobalTexture(TextureIds.inTexture, ((from plugin in FoxRenderer.Plugins where plugin.Name == "DeferredGeometry" select plugin).First() as GrPluginDeferredGeometry).DepthBuffer);
             Buffer.DrawMesh(DgUtils.FullscreenMeshWithUVs, Matrix4x4.identity, DownSampleDepthMaterial);
 
             // Draw initial pass (skip depth downsampling for now)
@@ -150,18 +162,20 @@ namespace FoxKit.TEST
             Buffer.SetGlobalTexture(TextureIds.inImage, TempBlurTextureB);
             Buffer.DrawMesh(DgUtils.FullscreenMesh, Matrix4x4.identity, BlurYMaterial);
 
+            // Reset for full-res pass
+            DgShaderDefine.SetGlobalVector(Buffer, DgShaderDefine.ConstantId.V_RENDERINFO, new Vector4(camera.pixelWidth, camera.pixelHeight, 0, 0));
+            DgShaderDefine.SetGlobalVector(Buffer, DgShaderDefine.ConstantId.V_RENDERBUFFER_SIZE, new Vector4(camera.pixelWidth, camera.pixelHeight, 1f / camera.pixelWidth, 1f / camera.pixelHeight));
+
             // Copy alpha to full-res output buffer
+            DgShaderDefine.SetVector(AlphaToRGBMaterial, DgShaderDefine.ConstantId.V_LOCALPARAM1, new Vector4(0f, 1f, 0f, 1f));
+            Buffer.SetRenderTarget(LISSAOTexture);
+            Buffer.SetGlobalTexture(TextureIds.inSourceBuffer, TempBlurTextureB);
+            Buffer.DrawMesh(DgUtils.FullscreenMesh, Matrix4x4.identity, AlphaToRGBMaterial);
 
-
-            // Reset and submit
-            // ----------------------------------------
-            DgShaderDefine.SetGlobalVector(Buffer, DgShaderDefine.ConstantId.V_RENDERINFO, new Vector4(Camera.pixelWidth, Camera.pixelHeight, 0, 0));
-            DgShaderDefine.SetGlobalVector(Buffer, DgShaderDefine.ConstantId.V_RENDERBUFFER_SIZE, new Vector4(Camera.pixelWidth, Camera.pixelHeight, 1f / Camera.pixelWidth, 1f / Camera.pixelHeight));
-
-            Context.ExecuteCommandBuffer(Buffer);
+            context.ExecuteCommandBuffer(Buffer);
             Buffer.Clear();
 
-            Context.Submit();
+            context.Submit();
         }
     }
 }

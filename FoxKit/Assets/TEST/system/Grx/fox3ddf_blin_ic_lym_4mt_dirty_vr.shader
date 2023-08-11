@@ -47,7 +47,7 @@ Shader"Fox/fox3DDF_Blin_Incidence_LayerMul_4MT_Dirty_LNM_VR"
 
             #include "../Gr/Dg/shader/fox3ddf_blin_ic_lym_4mt_dirty_vr.shdr"
 
-            ////////////////////////////////////
+            /////////////////////////////////////
             #pragma vertex vs_main
 #if defined(SHADER_STAGE_VERTEX)
             #include "fox3ddf_blin_ic_lym_4mt_dirty_vr_vs.hlsl"

@@ -24,6 +24,8 @@ namespace FoxKit.TEST
             Plugins.Add(new GrPluginGlobalVolumetricFog());
             Plugins.Add(new GrPluginDeferredGeometry());
             Plugins.Add(new GrPluginLineIntegralSSAO());
+            Plugins.Add(new GrPluginSphericalHarmonics());
+            Plugins.Add(new GrPluginTonemap());
 
             CopyDepthBuffer_Material = new Material(Shader.Find("Fox/CopyDepthBuffer"));
 
@@ -90,22 +92,24 @@ namespace FoxKit.TEST
             DgShaderDefine.SetGlobalVector(Buffer, DgShaderDefine.ConstantId.V_RENDERINFO, new Vector4(camera.pixelWidth, camera.pixelHeight, 0, 0));
             DgShaderDefine.SetGlobalVector(Buffer, DgShaderDefine.ConstantId.V_RENDERBUFFER_SIZE, new Vector4(camera.pixelWidth, camera.pixelHeight, 1f / camera.pixelWidth, 1f / camera.pixelHeight));
 
+            DgShaderDefine.SetGlobalVector(Buffer, DgShaderDefine.ConstantId.V_EXPOSURE, new Vector4(0, 0, 0.00008f, 0));
+
             foreach (GrRenderPlugin plugin in Plugins)
                 plugin.Render(Context, camera);
 
             Buffer.SetRenderTarget(BuiltinRenderTextureType.CameraTarget);
 
-            Buffer.SetGlobalTexture(CopyDepthBuffer_inTexture, (Plugins[1] as GrPluginDeferredGeometry).DepthBufferId);
+            Buffer.SetGlobalTexture(CopyDepthBuffer_inTexture, (Plugins[1] as GrPluginDeferredGeometry).DepthBuffer);
             Buffer.DrawMesh(DgUtils.FullscreenMesh, Matrix4x4.identity, CopyDepthBuffer_Material);
 
             DgShaderDefine.SetVector(CopyRenderBuffer_Material, DgShaderDefine.ConstantId.V_LOCALPARAM3, new Vector4(0, 0, 1, 1));
-            Buffer.SetGlobalTexture(CopyRenderBuffer_inImage, (Plugins[1] as GrPluginDeferredGeometry).RenderTargetIds[0]);
+            Buffer.SetGlobalTexture(CopyRenderBuffer_inImage, (Plugins[4] as GrPluginTonemap).Output);
             Buffer.DrawMesh(DgUtils.FullscreenMesh, Matrix4x4.identity, CopyRenderBuffer_Material);
 
             Context.ExecuteCommandBuffer(Buffer);
             Buffer.Clear();
 
-            Context.DrawSkybox(camera);
+            //Context.DrawSkybox(camera);
 
             Context.DrawWireOverlay(camera);
 

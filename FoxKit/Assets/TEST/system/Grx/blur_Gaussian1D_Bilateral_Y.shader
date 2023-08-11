@@ -20,7 +20,7 @@ Shader "Fox/blur_Gaussian1D_Bilateral_Y"
 
             #include "../UnityPatch/PreHLSL.hlsl"
 
-////////////////////////////////////
+//////////////////////////////////////
             #pragma vertex vs_main
 #if defined(SHADER_STAGE_VERTEX)
             #include "blur_Gaussian1D_Bilateral_Y_vs.hlsl"

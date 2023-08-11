@@ -1,4 +1,4 @@
-Shader "Fox/blur_Gaussian1D_Bilateral_X"
+Shader "Fox/SSLighting2_SH_SkyLight_Encode"
 {
     Properties
     {
@@ -18,17 +18,19 @@ Shader "Fox/blur_Gaussian1D_Bilateral_X"
             #pragma enable_d3d11_debug_symbols
             // -------------------------------------
 
+#define UNITYPATCH_WORK_TYPE_SHLIGHT
+
             #include "../UnityPatch/PreHLSL.hlsl"
 
-//////////////////////////////////////
+///////////////////////////////////////////////
             #pragma vertex vs_main
 #if defined(SHADER_STAGE_VERTEX)
-            #include "blur_Gaussian1D_Bilateral_X_vs.hlsl"
+            #include "SSLighting2_SH_SkyLight_Encode_vs.hlsl"
 #endif
 
             #pragma fragment ps_main
 #if defined(SHADER_STAGE_FRAGMENT)
-            #include "blur_Gaussian1D_Bilateral_X_ps.hlsl"
+            #include "SSLighting2_SH_SkyLight_Encode_ps.hlsl"
 #endif
 
             ENDHLSL

@@ -1,4 +1,4 @@
-Shader "Fox/blur_Gaussian1D_Bilateral_X"
+Shader "Fox/SSAOAlphaToRGB"
 {
     Properties
     {
@@ -20,15 +20,15 @@ Shader "Fox/blur_Gaussian1D_Bilateral_X"
 
             #include "../UnityPatch/PreHLSL.hlsl"
 
-//////////////////////////////////////
+/////////////////////////////////////
             #pragma vertex vs_main
 #if defined(SHADER_STAGE_VERTEX)
-            #include "blur_Gaussian1D_Bilateral_X_vs.hlsl"
+            #include "SSAOAlphaToRGB_vs.hlsl"
 #endif
 
             #pragma fragment ps_main
 #if defined(SHADER_STAGE_FRAGMENT)
-            #include "blur_Gaussian1D_Bilateral_X_ps.hlsl"
+            #include "SSAOAlphaToRGB_ps.hlsl"
 #endif
 
             ENDHLSL

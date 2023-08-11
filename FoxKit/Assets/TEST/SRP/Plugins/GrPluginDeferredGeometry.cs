@@ -28,11 +28,11 @@ namespace FoxKit.TEST
 
         private static class RtIds
         {
-            public static int inAlbedoTexture = Shader.PropertyToID("inAlbedoTexture");
-            public static int g_NormalTexture = Shader.PropertyToID("g_NormalTexture");
-            public static int g_SpecularTexture = Shader.PropertyToID("g_SpecularTexture");
+            public static int AlbedoBuffer = Shader.PropertyToID("AlbedoBuffer");
+            public static int NormalBuffer = Shader.PropertyToID("NormalBuffer");
+            public static int SpecularBuffer = Shader.PropertyToID("SpecularBuffer");
 
-            public static int g_DepthTexture = Shader.PropertyToID("g_DepthTexture");
+            public static int DepthBuffer = Shader.PropertyToID("DepthBuffer");
         }
 
         private static class ShaderIds
@@ -40,8 +40,11 @@ namespace FoxKit.TEST
             public static ShaderTagId MAIN = new ShaderTagId("MAIN");
         }
 
-        public RenderTargetIdentifier[] RenderTargetIds = new RenderTargetIdentifier[3];
-        public RenderTargetIdentifier DepthBufferId;
+        public RenderTargetIdentifier AlbedoBuffer;
+        public RenderTargetIdentifier NormalBuffer;
+        public RenderTargetIdentifier SpecularBuffer;
+        private RenderTargetIdentifier[] GBuffers = new RenderTargetIdentifier[3];
+        public RenderTargetIdentifier DepthBuffer;
 
         public GrPluginDeferredGeometry()
         {
@@ -51,65 +54,49 @@ namespace FoxKit.TEST
             Shader.SetGlobalTexture(TextureIds.g_MaterialTexture, AssetDatabase.LoadAssetAtPath<Texture2D>("Assets/TEST/ASSETS/materials_alp_rgba32_nomip_nrt.exr"));
         }
 
-        protected override void Render()
+        public override void Render(ScriptableRenderContext context, Camera camera)
         {
-            //var descriptor = new RenderTextureDescriptor();
-            var descriptor = new RenderTextureDescriptor(Camera.pixelWidth, Camera.pixelHeight);
-            descriptor.depthBufferBits = 0;
-            descriptor.colorFormat = RenderTextureFormat.BGRA32;
-            descriptor.msaaSamples = 1;
-            descriptor.dimension = TextureDimension.Tex2D;
+            var gbufferDesc = new RenderTextureDescriptor(camera.pixelWidth, camera.pixelHeight, UnityEngine.Experimental.Rendering.GraphicsFormat.B8G8R8A8_UNorm, 0, 1);
 
-            Buffer.GetTemporaryRT(RtIds.inAlbedoTexture, descriptor, FilterMode.Point);
-            RenderTargetIds[0] = new RenderTargetIdentifier(RtIds.inAlbedoTexture);
+            Buffer.GetTemporaryRT(RtIds.AlbedoBuffer, gbufferDesc, FilterMode.Point);
+            AlbedoBuffer = new RenderTargetIdentifier(RtIds.AlbedoBuffer);
+            GBuffers[0] = AlbedoBuffer;
 
-            Buffer.GetTemporaryRT(RtIds.g_NormalTexture, descriptor, FilterMode.Point);
-            RenderTargetIds[1] = new RenderTargetIdentifier(RtIds.g_NormalTexture);
+            Buffer.GetTemporaryRT(RtIds.NormalBuffer, gbufferDesc, FilterMode.Point);
+            NormalBuffer = new RenderTargetIdentifier(RtIds.NormalBuffer);
+            GBuffers[1] = NormalBuffer;
 
-            Buffer.GetTemporaryRT(RtIds.g_SpecularTexture, descriptor, FilterMode.Point);
-            RenderTargetIds[2] = new RenderTargetIdentifier(RtIds.g_SpecularTexture);
+            Buffer.GetTemporaryRT(RtIds.SpecularBuffer, gbufferDesc, FilterMode.Point);
+            SpecularBuffer = new RenderTargetIdentifier(RtIds.SpecularBuffer);
+            GBuffers[2] = SpecularBuffer;
 
-            descriptor.colorFormat = RenderTextureFormat.Depth;
-            descriptor.depthBufferBits = 32;
-            Buffer.GetTemporaryRT(RtIds.g_DepthTexture, descriptor, FilterMode.Point);
-            DepthBufferId = new RenderTargetIdentifier(RtIds.g_DepthTexture);
+            gbufferDesc.colorFormat = RenderTextureFormat.Depth;
+            gbufferDesc.depthBufferBits = 32;
+            Buffer.GetTemporaryRT(RtIds.DepthBuffer, gbufferDesc, FilterMode.Point);
+            DepthBuffer = new RenderTargetIdentifier(RtIds.DepthBuffer);
 
-            Buffer.SetRenderTarget(RenderTargetIds, DepthBufferId);
+            Buffer.SetRenderTarget(GBuffers, DepthBuffer);
             Buffer.ClearRenderTarget(true, true, Color.clear);
 
-            //Buffer.SetInvertCulling(true);
-
-            Context.ExecuteCommandBuffer(Buffer);
+            context.ExecuteCommandBuffer(Buffer);
             Buffer.Clear();
 
-            var sortingSettings = new SortingSettings(Camera);
+            var sortingSettings = new SortingSettings(camera);
             var drawingSettings = new DrawingSettings(ShaderIds.MAIN, sortingSettings);
             var filteringSettings = new FilteringSettings(RenderQueueRange.opaque);
 
-            if (!Cull())
-                goto cleanup;
-
-            Context.DrawRenderers(CullingResults, ref drawingSettings, ref filteringSettings);
-
-        cleanup:
-
-            //Buffer.SetInvertCulling(false);
-            Context.ExecuteCommandBuffer(Buffer);
-            Buffer.Clear();
-            Context.Submit();
-        }
-
-        bool Cull()
-        {
             ScriptableCullingParameters param;
-
-            if (Camera.TryGetCullingParameters(out param))
+            if (camera.TryGetCullingParameters(out param))
             {
-                CullingResults = Context.Cull(ref param);
-                return true;
+                CullingResults = context.Cull(ref param);
+
+                context.DrawRenderers(CullingResults, ref drawingSettings, ref filteringSettings);
             }
 
-            return false;
+            //Buffer.SetInvertCulling(false);
+            context.ExecuteCommandBuffer(Buffer);
+            Buffer.Clear();
+            context.Submit();
         }
     }
 }

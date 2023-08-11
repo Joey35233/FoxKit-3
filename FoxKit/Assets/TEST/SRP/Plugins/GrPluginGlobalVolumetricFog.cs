@@ -27,8 +27,8 @@ namespace FoxKit.TEST
 			public static ShaderTagId MAIN = new ShaderTagId("MAIN");
 		}
 
-		public RenderTargetIdentifier InterruptTextureId;
-		public RenderTargetIdentifier FogTextureId;
+		public RenderTargetIdentifier InterruptTexture;
+		public RenderTargetIdentifier FogTexture;
 
 		private Mesh FogMesh;
 		private Material FogMaterial;
@@ -41,18 +41,18 @@ namespace FoxKit.TEST
 			FogMaterial = new Material(Shader.Find("Fox/VolFog_TppVolFog"));
 		}
 
-		protected override void Render()
-		{
+        public override void Render(ScriptableRenderContext context, Camera camera)
+        {
 			Buffer.GetTemporaryRT(RtIds.g_tex_fog, 512, 256, 0, FilterMode.Point, UnityEngine.Experimental.Rendering.GraphicsFormat.R16G16B16A16_UNorm);
-			FogTextureId = new RenderTargetIdentifier(RtIds.g_tex_fog);
+			FogTexture = new RenderTargetIdentifier(RtIds.g_tex_fog);
 
 			Buffer.GetTemporaryRT(RtIds.inInterruptTexture, 512, 512, 0, FilterMode.Point, UnityEngine.Experimental.Rendering.GraphicsFormat.B8G8R8A8_UNorm);
-			InterruptTextureId = new RenderTargetIdentifier(RtIds.inInterruptTexture);
+			InterruptTexture = new RenderTargetIdentifier(RtIds.inInterruptTexture);
 
 			// Draw rain interrupt texture
-			Buffer.Blit(Texture2D.whiteTexture, InterruptTextureId);
+			Buffer.Blit(Texture2D.whiteTexture, InterruptTexture);
 
-			Buffer.SetRenderTarget(FogTextureId);
+			Buffer.SetRenderTarget(FogTexture);
 
             // Draw fog LUT
             // ----------------------------------------
@@ -81,9 +81,8 @@ namespace FoxKit.TEST
             float farDistance = (density <= 1e06f | power <= 1e-05f) ? 1000000f : Mathf.Clamp(near + Mathf.Pow(-(float)System.Math.Log(0.0003906488) / density, 1.0f / power), 0, Single.MaxValue);
 
             // Shader inputs
-            Vector3 cameraPos = Camera.transform.position;
-            Vector3 sunDir = RenderSettings.sun.transform.forward;
-            //sunDir.x *= -1;
+            Vector3 cameraPos = camera.transform.position;
+            Vector3 sunDir = RenderSettings.sun is not null ? -RenderSettings.sun.transform.forward : -Vector3.up;
             float representativeDensity = density;
             float mieRatio = 0.3f;
             float sunIntensity = sunColor.magnitude * fogDirLightGain * realExposure;
@@ -154,12 +153,12 @@ namespace FoxKit.TEST
             DgShaderDefine.SetVector(FogMaterial, DgShaderDefine.ConstantId.V_MATERIAL7, new Vector4(selfLum.x, selfLum.y, selfLum.z, 0));
 
 
-            DgShaderDefine.SetVector(FogMaterial, DgShaderDefine.ConstantId.V_FOGPARAM1, new Vector4(invLogFarDistance, normalizeFactor, 0, 0));
+            DgShaderDefine.SetGlobalVector(Buffer, DgShaderDefine.ConstantId.V_FOGPARAM1, new Vector4(invLogFarDistance, normalizeFactor, 0, 0));
 			DgShaderDefine.SetVector(FogMaterial, DgShaderDefine.ConstantId.V_LOCALPARAM0, new Vector4(cameraPos.x, cameraPos.y, cameraPos.z, 1));
 			DgShaderDefine.SetVector(FogMaterial, DgShaderDefine.ConstantId.V_LOCALPARAM1, new Vector4(sunDir.x, sunDir.y, sunDir.z, 0));
-			Buffer.SetViewMatrix(Camera.cameraToWorldMatrix); // Uses m_view to transform viewPos to worldPos so set the view matrix as the inverse view matrix
+			Buffer.SetViewMatrix(camera.cameraToWorldMatrix); // Uses m_view to transform viewPos to worldPos so set the view matrix as the inverse view matrix
 
-            Buffer.SetGlobalTexture(RtIds.inInterruptTexture, InterruptTextureId);
+            Buffer.SetGlobalTexture(RtIds.inInterruptTexture, InterruptTexture);
 
             Buffer.DrawMesh(FogMesh, Matrix4x4.identity, FogMaterial);
 
@@ -167,12 +166,12 @@ namespace FoxKit.TEST
             // ----------------------------------------
 
             // Reset view to normal
-            Buffer.SetViewMatrix(Camera.worldToCameraMatrix);
+            Buffer.SetViewMatrix(camera.worldToCameraMatrix);
 
-			Context.ExecuteCommandBuffer(Buffer);
+			context.ExecuteCommandBuffer(Buffer);
 			Buffer.Clear();
 
-			Context.Submit();
+			context.Submit();
 		}
 	}
 }

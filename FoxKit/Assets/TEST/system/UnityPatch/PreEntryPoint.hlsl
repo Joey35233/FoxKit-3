@@ -60,8 +60,14 @@
 	// BONE 6
 
 	// WORK 7
+#if defined(UNITYPATCH_WORK_TYPE_SPHEREMAP)
+#elif defined(UNITYPATCH_WORK_TYPE_SHLIGHT)
+#elif defined(UNITYPATCH_WORK_TYPE_VECTORS)
+#else
 	g_vsWork.m_viewInverse = m_viewInverse;
 	g_vsWork.m_matrix = UnityPatch_g_sWork_m_matrix;
+#endif
+
 #endif
 		
 #if defined(SHADER_STAGE_FRAGMENT)
@@ -125,6 +131,22 @@
 	// BONE 6
 
 	// WORK 7
+#if defined(UNITYPATCH_WORK_TYPE_SPHEREMAP)
+	g_psParamSH.m_matrix[0] = UnityPatch_g_psParamSH_m_matrix_0;
+	g_psParamSH.m_matrix[1] = UnityPatch_g_psParamSH_m_matrix_1;
+	g_psParamSH.m_matrix[2] = UnityPatch_g_psParamSH_m_matrix_2;
+	g_psParamSH.m_matrix[3] = UnityPatch_g_psParamSH_m_matrix_3;
+	g_psParamSHSky.m_matrix[0] = UnityPatch_g_psParamSHSky_m_matrix_0;
+	g_psParamSHSky.m_matrix[1] = UnityPatch_g_psParamSHSky_m_matrix_1;
+	g_psParamSHSky.m_matrix[2] = UnityPatch_g_psParamSHSky_m_matrix_2;
+#elif defined(UNITYPATCH_WORK_TYPE_SHLIGHT)
+	g_psLightSH.m_projectionPlanes[0] = UnityPatch_g_psLightSH_m_projectionPlanes_0;
+	g_psLightSH.m_projectionPlanes[1] = UnityPatch_g_psLightSH_m_projectionPlanes_1;
+	g_psLightSH.m_projectionPlanes[2] = UnityPatch_g_psLightSH_m_projectionPlanes_2;
+#elif defined(UNITYPATCH_WORK_TYPE_VECTORS)
 	g_psWork.m_vectors = UnityPatch_g_sWork_m_vectors;
+#else
+#endif
+
 #endif
 }
