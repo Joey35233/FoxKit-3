@@ -2080,7 +2080,7 @@ inline void NGetVoxelCoordinate(float3 inPosition, float inYScale, out float4 ou
 	outClipCoord.xy += float2( 0.5/GVFOG_VOLUME_W, 0.5/GVFOG_VOLUME_H );
 #endif
     outClipCoord.xy = 2.0 * outClipCoord.xy - 1.0;
-    outClipCoord.xy *= float2(GVFOG_VOLUME_W / (GVFOG_VOLUME_W - 1.0), GVFOG_VOLUME_H / (GVFOG_VOLUME_H - 1.0));
+	outClipCoord.xy *= float2(GVFOG_VOLUME_W / (GVFOG_VOLUME_W - 1.0), GVFOG_VOLUME_H / (GVFOG_VOLUME_H - 1.0));
 	
 }
 
@@ -2100,7 +2100,7 @@ inline void NGetViewPos(float3 inClipPos, out float3 outViewPos)
 	outViewPos.z = inClipPos.z ;
 #else
     outViewPos.z = inClipPos.z;
-    outViewPos.xy = (inClipPos.xy * g_vsScene.m_projectionParam.xy) * inClipPos.z;
+	outViewPos.xy = (inClipPos.xy * g_vsScene.m_projectionParam.xy) * inClipPos.z;
 #endif
 }
 
@@ -2152,7 +2152,7 @@ void vs_main(
     float4 NGetVoxelCoordinate_voxelCoordinate_outDrawCoord;
     float3 NGetVoxelCoordinate_voxelCoordinate_outClipCoord;
 #line 139 "shader\VolFog_TppVolFog.shdr"
-    NGetVoxelCoordinate_voxelCoordinate_inPosition = inPosition;
+	NGetVoxelCoordinate_voxelCoordinate_inPosition = inPosition;
 #line 140 "shader\VolFog_TppVolFog.shdr"
     NGetVoxelCoordinate_voxelCoordinate_inYScale = -2.0;
     NGetVoxelCoordinate(NGetVoxelCoordinate_voxelCoordinate_inPosition, NGetVoxelCoordinate_voxelCoordinate_inYScale, NGetVoxelCoordinate_voxelCoordinate_outDrawCoord, NGetVoxelCoordinate_voxelCoordinate_outClipCoord);
@@ -2183,6 +2183,6 @@ void vs_main(
 
 
 
-	//#include "../UnityPatch/PostEntryPoint.hlsl"
+	#include "../UnityPatch/PostEntryPoint.hlsl"
 }
 

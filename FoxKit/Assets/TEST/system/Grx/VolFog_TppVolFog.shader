@@ -21,7 +21,7 @@ Shader "Fox/VolFog_TppVolFog"
 
             #include "../UnityPatch/PreHLSL.hlsl"
 
-///////////////
+////
             #pragma vertex vs_main
 #if defined(SHADER_STAGE_VERTEX)
             #include "VolFog_TppVolFog_vs.hlsl"

@@ -157,7 +157,11 @@ namespace FoxKit.TEST
 			DgShaderDefine.SetVector(FogMaterial, DgShaderDefine.ConstantId.V_LOCALPARAM0, new Vector4(cameraPos.x, cameraPos.y, cameraPos.z, 1));
 			DgShaderDefine.SetVector(FogMaterial, DgShaderDefine.ConstantId.V_LOCALPARAM1, new Vector4(sunDir.x, sunDir.y, sunDir.z, 0));
 
-            DgShaderDefine.SetGlobalMatrix(Buffer, DgShaderDefine.ConstantId.M_VIEW, camera.cameraToWorldMatrix); // Uses m_view to transform viewPos to worldPos so set the view matrix as the inverse view matrix
+            {
+                Matrix4x4 invViewMatrix = camera.cameraToWorldMatrix;
+                invViewMatrix.SetColumn(2, camera.cameraToWorldMatrix.GetColumn(2) * -1f);
+                DgShaderDefine.SetGlobalMatrix(Buffer, DgShaderDefine.ConstantId.M_VIEW, invViewMatrix); // Uses m_view to transform viewPos to worldPos so set the view matrix as the inverse view matrix
+            }
 
             Buffer.SetGlobalTexture(RtIds.inInterruptTexture, InterruptTexture);
 
@@ -167,7 +171,11 @@ namespace FoxKit.TEST
             // ----------------------------------------
 
             // Reset view to normal
-            DgShaderDefine.SetGlobalMatrix(Buffer, DgShaderDefine.ConstantId.M_VIEW, camera.worldToCameraMatrix);
+            {
+                Matrix4x4 viewMatrix = camera.worldToCameraMatrix;
+                viewMatrix.SetRow(2, camera.worldToCameraMatrix.GetRow(2) * -1f);
+                DgShaderDefine.SetGlobalMatrix(Buffer, DgShaderDefine.ConstantId.M_VIEW, viewMatrix);
+            }
 
             context.ExecuteCommandBuffer(Buffer);
 			Buffer.Clear();

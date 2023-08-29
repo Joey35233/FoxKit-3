@@ -50,37 +50,46 @@ namespace FoxKit.TEST
                 camera.focalLength = focalLength;
                 camera.sensorSize = new Vector2(sensorHeight, sensorWidth);
 
-                Matrix4x4 projectionMatrixDXDepth = Matrix4x4.zero;
-                projectionMatrixDXDepth[0, 0] = focalLength / (sensorHeight / 2);
-                projectionMatrixDXDepth[1, 1] = projectionMatrixDXDepth[0, 0] * camera.pixelWidth / camera.pixelHeight;
-                projectionMatrixDXDepth[2, 2] = near / (far - near);
-                projectionMatrixDXDepth[2, 3] = (near * far) / (far - near);
-                projectionMatrixDXDepth[3, 2] = -1;
+                // Real projection matrix
+                Matrix4x4 projectionMatrix = Matrix4x4.zero;
+                projectionMatrix[0, 0] = focalLength / (sensorHeight / 2);
+                projectionMatrix[1, 1] = projectionMatrix[0, 0] * camera.pixelWidth / camera.pixelHeight;
+                projectionMatrix[2, 2] = near / (near - far);
+                projectionMatrix[2, 3] = (far * near) / (far - near);
+                projectionMatrix[3, 2] = 1;
 
-                Matrix4x4 projectionMatrixGLDepth = Matrix4x4.zero;
-                projectionMatrixGLDepth[0, 0] = focalLength / (sensorHeight / 2);
-                projectionMatrixGLDepth[1, 1] = projectionMatrixGLDepth[0, 0] * camera.pixelWidth / camera.pixelHeight;
-                projectionMatrixGLDepth[2, 2] = -(far + near) / (far - near);
-                projectionMatrixGLDepth[2, 3] = -2 * (near * far) / (far - near);
-                projectionMatrixGLDepth[3, 2] = -1;
+                // Useless one
+                {
+                    Matrix4x4 projectionMatrixGLDepth = Matrix4x4.zero;
+                    projectionMatrixGLDepth[0, 0] = focalLength / (sensorHeight / 2);
+                    projectionMatrixGLDepth[1, 1] = projectionMatrixGLDepth[0, 0] * camera.pixelWidth / camera.pixelHeight;
+                    projectionMatrixGLDepth[2, 2] = -(far + near) / (far - near);
+                    projectionMatrixGLDepth[2, 3] = -2 * (near * far) / (far - near);
+                    projectionMatrixGLDepth[3, 2] = -1;
 
-                // Set existing camera to 
-                camera.projectionMatrix = projectionMatrixGLDepth;
+                    // Set existing camera to 
+                    camera.projectionMatrix = projectionMatrixGLDepth;
+                }
+
+                Matrix4x4 viewMatrix = camera.worldToCameraMatrix;
+                viewMatrix.SetRow(2, camera.worldToCameraMatrix.GetRow(2) * -1f);
 
                 // Scene selection outline uses custom matrices defined in C++ (credit: HDRP) so we modify the FoV to emulate the perfect correct matrix.
-                camera.fieldOfView = 2 * Mathf.Atan(1f / projectionMatrixDXDepth[1, 1]) * Mathf.Rad2Deg;
+                camera.fieldOfView = 2 * Mathf.Atan(1f / projectionMatrix[1, 1]) * Mathf.Rad2Deg;
 #if UNITY_EDITOR
                 // The scene picker does not care about even the FoV settings - it relies directly on the scene camera settings FoV value. Set that, too.
                 if (UnityEditor.SceneView.currentDrawingSceneView != null)
                     UnityEditor.SceneView.currentDrawingSceneView.cameraSettings.fieldOfView = camera.fieldOfView;
 #endif
 
-                DgShaderDefine.SetGlobalMatrix(Buffer, DgShaderDefine.ConstantId.M_VIEW, camera.worldToCameraMatrix);
-                DgShaderDefine.SetGlobalMatrix(Buffer, DgShaderDefine.ConstantId.M_PROJECTION, projectionMatrixDXDepth);
-                DgShaderDefine.SetGlobalMatrix(Buffer, DgShaderDefine.ConstantId.M_PROJECTIONVIEW, projectionMatrixDXDepth * camera.worldToCameraMatrix);
+
+
+                DgShaderDefine.SetGlobalMatrix(Buffer, DgShaderDefine.ConstantId.M_VIEW, viewMatrix);
+                DgShaderDefine.SetGlobalMatrix(Buffer, DgShaderDefine.ConstantId.M_PROJECTION, projectionMatrix);
+                DgShaderDefine.SetGlobalMatrix(Buffer, DgShaderDefine.ConstantId.M_PROJECTIONVIEW, projectionMatrix * viewMatrix);
                 DgShaderDefine.SetGlobalVector(Buffer, DgShaderDefine.ConstantId.V_EYEPOS, camera.transform.position);
                 DgShaderDefine.SetGlobalVector(Buffer, DgShaderDefine.ConstantId.V_VIEWPORTSIZE, new Vector4(camera.pixelWidth, camera.pixelHeight, camera.nearClipPlane, camera.farClipPlane));
-                DgShaderDefine.SetGlobalVector(Buffer, DgShaderDefine.ConstantId.V_PROJECTIONPARAM, new Vector4(1f / projectionMatrixDXDepth[0, 0], 1f / projectionMatrixDXDepth[1, 1], projectionMatrixDXDepth[2, 3], -projectionMatrixDXDepth[2, 2]));
+                DgShaderDefine.SetGlobalVector(Buffer, DgShaderDefine.ConstantId.V_PROJECTIONPARAM, new Vector4(1f / projectionMatrix[0, 0], 1f / projectionMatrix[1, 1], projectionMatrix[2, 3], projectionMatrix[2, 2]));
             }
 
             Context.ExecuteCommandBuffer(Buffer);
@@ -114,9 +123,11 @@ namespace FoxKit.TEST
             Context.DrawWireOverlay(camera);
 
             Context.DrawUIOverlay(camera);
-            //Context.DrawGizmos(camera, GizmoSubset.PreImageEffects);
-            //Context.DrawGizmos(camera, GizmoSubset.PostImageEffects);
+            Context.DrawGizmos(camera, GizmoSubset.PreImageEffects);
+            Context.DrawGizmos(camera, GizmoSubset.PostImageEffects);
 
+
+            camera.ResetWorldToCameraMatrix();
             camera.ResetProjectionMatrix();
             Context.SetupCameraProperties(camera);
 
