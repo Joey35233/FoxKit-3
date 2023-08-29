@@ -1718,119 +1718,119 @@ void ReconstructViewZFromPrimitiveDepthTexture( Texture2D inDepth, float2 inTexC
 
 
 
-half EncodeFogCameraZ( float inViewZ )
+half EncodeFogCameraZ(float inViewZ)
 {
-	half invLogFarDistance	= (half)g_psScene.m_fogParam[1].x; // farDistance = TppGlobalVolumetricFog.nearDistance + powf((-ln(0.0003906488)) / TppGlobalVolumetricFog.density, 1.0 / TppGlobalVolumetricFog.power); 1 / log2(farDistance)
+    half invLogFarDistance = (half) g_psScene.m_fogParam[1].x; // farDistance = TppGlobalVolumetricFog.nearDistance + powf((-ln(0.0003906488)) / TppGlobalVolumetricFog.density, 1.0 / TppGlobalVolumetricFog.power); 1 / log2(farDistance)
 
 #line 30 "..\..\..\..\fox\source\system\Gr\Dg\shader\FogVolume.h"
-	return invLogFarDistance * (half)log2(inViewZ);
+    return invLogFarDistance * (half) log2(inViewZ);
 }
 
 
 
-float DecodeFogCameraZ( float inEncodedZ )
+float DecodeFogCameraZ(float inEncodedZ)
 {
-	float logFarDistance	= 1.0 / g_psScene.m_fogParam[1].x;
+    float logFarDistance = 1.0 / g_psScene.m_fogParam[1].x;
 
 #line 42 "..\..\..\..\fox\source\system\Gr\Dg\shader\FogVolume.h"
-	return exp2( inEncodedZ * logFarDistance );
+    return exp2(inEncodedZ * logFarDistance);
 }
 
 
 #line 47 "..\..\..\..\fox\source\system\Gr\Dg\shader\FogVolume.h"
 
-half4 GetVolumetricFog2D( half2 inClipPos, float inViewZ, Texture2D inFogVolume )
+half4 GetVolumetricFog2D(half2 inClipPos, float inViewZ, Texture2D inFogVolume)
 {
-	half	zEncoded	= EncodeFogCameraZ( inViewZ ) ;
-    zEncoded = (half)saturate( zEncoded );
-	zEncoded *= ( GVFOG_VOLUME_D - 1.0h );
-	half2	layerPacking= half2(1.0/GVFOG_LAYERS_PER_ROW, 1.0/GVFOG_LAYERS_PER_COL);
-	half2	uvScale		= half2( GVFOG_USCALE, GVFOG_VSCALE );
-	half2	uvOffset	= half2( GVFOG_UOFFSET, GVFOG_VOFFSET );
-	half2	uv = uvScale * (half2)inClipPos + uvOffset ;
-	half2	zInt = (half2)floor( float2(zEncoded, clamp( zEncoded + 1, 0, GVFOG_VOLUME_D - 1.0 )) );
-	half4 layerOffset;
-	layerOffset.xz = (half2) frac( zInt.xy / GVFOG_LAYERS_PER_ROW ) * GVFOG_LAYERS_PER_ROW ;
-	layerOffset.yw = (half2) floor( zInt.xy / GVFOG_LAYERS_PER_ROW ) ;
-	half4 uv_lerp = uv.xyxy + layerPacking.xyxy * layerOffset.xyzw ;
-	half4 zBlend = (half4)frac( zEncoded );
-	half4 c0 = TFetch2DH( inFogVolume, SamplerLinearClamp, uv_lerp.xy );
-	half4 c1 = TFetch2DH( inFogVolume, SamplerLinearClamp, uv_lerp.zw );
-	half4 fogColor = ( 1.0h - zBlend ) * c0 + zBlend * c1 ;
+    half zEncoded = EncodeFogCameraZ(inViewZ);
+    zEncoded = (half) saturate(zEncoded);
+    zEncoded *= (GVFOG_VOLUME_D - 1.0h);
+    half2 layerPacking = half2(1.0 / GVFOG_LAYERS_PER_ROW, 1.0 / GVFOG_LAYERS_PER_COL);
+    half2 uvScale = half2(GVFOG_USCALE, GVFOG_VSCALE);
+    half2 uvOffset = half2(GVFOG_UOFFSET, GVFOG_VOFFSET);
+    half2 uv = uvScale * (half2) inClipPos + uvOffset;
+    half2 zInt = (half2) floor(float2(zEncoded, clamp(zEncoded + 1, 0, GVFOG_VOLUME_D - 1.0)));
+    half4 layerOffset;
+    layerOffset.xz = (half2) frac(zInt.xy / GVFOG_LAYERS_PER_ROW) * GVFOG_LAYERS_PER_ROW;
+    layerOffset.yw = (half2) floor(zInt.xy / GVFOG_LAYERS_PER_ROW);
+    half4 uv_lerp = uv.xyxy + layerPacking.xyxy * layerOffset.xyzw;
+    half4 zBlend = (half4) frac(zEncoded);
+    half4 c0 = TFetch2DH(inFogVolume, SamplerLinearClamp, uv_lerp.xy);
+    half4 c1 = TFetch2DH(inFogVolume, SamplerLinearClamp, uv_lerp.zw);
+    half4 fogColor = (1.0h - zBlend) * c0 + zBlend * c1;
 
 #line 69 "..\..\..\..\fox\source\system\Gr\Dg\shader\FogVolume.h"
-	half normalizeFactor = (half)g_psScene.m_fogParam[1].y; // J - clamp(val, 0.01, 10)
-	fogColor.xyz *= normalizeFactor;
-	return fogColor;
+    half normalizeFactor = (half) g_psScene.m_fogParam[1].y; // J - clamp(val, 0.01, 10)
+    fogColor.xyz *= normalizeFactor;
+    return fogColor;
 }
 
-half4 GetFurthestVolumetricFog2D( half2 inClipPos, Texture2D inFogVolume )
+half4 GetFurthestVolumetricFog2D(half2 inClipPos, Texture2D inFogVolume)
 {
-	half2	layerPacking= half2(1.0/GVFOG_LAYERS_PER_ROW, 1.0/GVFOG_LAYERS_PER_COL);
-	half2	uvScale		= half2( GVFOG_USCALE, GVFOG_VSCALE );
-	half2	uvOffset	= half2( GVFOG_UOFFSET, GVFOG_VOFFSET );
-	half2	uv = uvScale * (half2)inClipPos + uvOffset ;
-	half2	zInt = half2( 127, 127 ); 
-	half4 layerOffset;
-	layerOffset.xz = (half2) frac( zInt.xy / GVFOG_LAYERS_PER_ROW ) * GVFOG_LAYERS_PER_ROW ;
-	layerOffset.yw = (half2) floor( zInt.xy / GVFOG_LAYERS_PER_ROW ) ;
-	half2 uv_lerp = uv.xy + layerPacking.xy * layerOffset.xy ;
-	half4 fogColor = TFetch2DH( inFogVolume, SamplerLinearClamp, uv_lerp.xy );
+    half2 layerPacking = half2(1.0 / GVFOG_LAYERS_PER_ROW, 1.0 / GVFOG_LAYERS_PER_COL);
+    half2 uvScale = half2(GVFOG_USCALE, GVFOG_VSCALE);
+    half2 uvOffset = half2(GVFOG_UOFFSET, GVFOG_VOFFSET);
+    half2 uv = uvScale * (half2) inClipPos + uvOffset;
+    half2 zInt = half2(127, 127);
+    half4 layerOffset;
+    layerOffset.xz = (half2) frac(zInt.xy / GVFOG_LAYERS_PER_ROW) * GVFOG_LAYERS_PER_ROW;
+    layerOffset.yw = (half2) floor(zInt.xy / GVFOG_LAYERS_PER_ROW);
+    half2 uv_lerp = uv.xy + layerPacking.xy * layerOffset.xy;
+    half4 fogColor = TFetch2DH(inFogVolume, SamplerLinearClamp, uv_lerp.xy);
 
 #line 90 "..\..\..\..\fox\source\system\Gr\Dg\shader\FogVolume.h"
-	half normalizeFactor = (half)g_psScene.m_fogParam[1].y;
-	fogColor.xyz *= normalizeFactor;
-	return fogColor;
+    half normalizeFactor = (half) g_psScene.m_fogParam[1].y;
+    fogColor.xyz *= normalizeFactor;
+    return fogColor;
 }
 
-half4 GetVolumetricFog3D( half2 inClipPos, float inViewZ, Texture3D inFogVolume )
+half4 GetVolumetricFog3D(half2 inClipPos, float inViewZ, Texture3D inFogVolume)
 {
-	half	zEncoded	= EncodeFogCameraZ( inViewZ ) ;
-	half3 volCoord = 0;
-	volCoord.xy = inClipPos * half2(-0.5,0.5) + half2(0.5,0.5);
-	volCoord.z = zEncoded;
-	half4 fogColor = (half4)TFetch3D( inFogVolume, SamplerLinearClamp, volCoord.yxz );
+    half zEncoded = EncodeFogCameraZ(inViewZ);
+    half3 volCoord = 0;
+    volCoord.xy = inClipPos * half2(-0.5, 0.5) + half2(0.5, 0.5);
+    volCoord.z = zEncoded;
+    half4 fogColor = (half4) TFetch3D(inFogVolume, SamplerLinearClamp, volCoord.yxz);
 
 #line 106 "..\..\..\..\fox\source\system\Gr\Dg\shader\FogVolume.h"
-	half normalizeFactor = (half)g_psScene.m_fogParam[1].y;
-	fogColor.xyz *= normalizeFactor;
-	return fogColor;
+    half normalizeFactor = (half) g_psScene.m_fogParam[1].y;
+    fogColor.xyz *= normalizeFactor;
+    return fogColor;
 }
 
-half4 GetFurthestVolumetricFog3D( half2 inClipPos, Texture3D inFogVolume )
+half4 GetFurthestVolumetricFog3D(half2 inClipPos, Texture3D inFogVolume)
 {
-	float3 volCoord = 1.0; 
-	volCoord.xy = inClipPos * float2(-0.5,0.5) + float2(0.5,0.5);
-	half4 fogColor = (half4)TFetch3D( inFogVolume, SamplerLinearClamp, volCoord.yxz );
+    float3 volCoord = 1.0;
+    volCoord.xy = inClipPos * float2(-0.5, 0.5) + float2(0.5, 0.5);
+    half4 fogColor = (half4) TFetch3D(inFogVolume, SamplerLinearClamp, volCoord.yxz);
 
 #line 120 "..\..\..\..\fox\source\system\Gr\Dg\shader\FogVolume.h"
-	half normalizeFactor = (half)g_psScene.m_fogParam[1].y;
-	fogColor.xyz *= normalizeFactor;
-	return fogColor;
+    half normalizeFactor = (half) g_psScene.m_fogParam[1].y;
+    fogColor.xyz *= normalizeFactor;
+    return fogColor;
 }
 
-Texture2D g_tex_fog	: TEXUNIT_VOLUMEFOG;
+Texture2D g_tex_fog : TEXUNIT_VOLUMEFOG;
 
 #line 131 "..\..\..\..\fox\source\system\Gr\Dg\shader\FogVolume.h"
 
 
 #line 137 "..\..\..\..\fox\source\system\Gr\Dg\shader\FogVolume.h"
 
-half4 GetVolumetricFog( half2 inClipPos, float inViewZ )
+half4 GetVolumetricFog(half2 inClipPos, float inViewZ)
 {
 
 #line 142 "..\..\..\..\fox\source\system\Gr\Dg\shader\FogVolume.h"
-	return GetVolumetricFog2D( inClipPos, inViewZ, g_tex_fog );
+    return GetVolumetricFog2D(inClipPos, inViewZ, g_tex_fog);
 }
 
 
 #line 151 "..\..\..\..\fox\source\system\Gr\Dg\shader\FogVolume.h"
 
-half4 GetFurthestVolumetricFog( half2 inClipPos )
+half4 GetFurthestVolumetricFog(half2 inClipPos)
 {
 
 #line 156 "..\..\..\..\fox\source\system\Gr\Dg\shader\FogVolume.h"
-	return GetFurthestVolumetricFog2D( inClipPos, g_tex_fog );
+    return GetFurthestVolumetricFog2D(inClipPos, g_tex_fog);
 }
 
 
@@ -1974,22 +1974,22 @@ half4 GetFurthestVolumetricFog( half2 inClipPos )
 
 #line 19 "shader\TppRainFilterCommon.h"
 
-float3 WorldPosToTopViewScreenSpacePos( float3 worldPos, float4 projParam )
+float3 WorldPosToTopViewScreenSpacePos(float3 worldPos, float4 projParam)
 {
-	TMatrix4x4 projectionView = 0;
-	projectionView[0][0]= -1.0f; 
-	projectionView[1][2]= 0.000013f;
-	projectionView[1][3]= -1.0f;
-	projectionView[2][1]= 1.0f; 
-	projectionView[3]	= projParam; 
+    TMatrix4x4 projectionView = 0;
+    projectionView[0][0] = -1.0f;
+    projectionView[1][2] = 0.000013f;
+    projectionView[1][3] = -1.0f;
+    projectionView[2][1] = 1.0f;
+    projectionView[3] = projParam;
 
 #line 30 "shader\TppRainFilterCommon.h"
-	float4 ssPos = (float4)ApplyMatrixT( projectionView, float4( worldPos.xyz, 1.0f ) );
-	ssPos.xy *= 0.03f;
-	ssPos.xy = ssPos.xy * float2(0.5f, -0.5f) + 0.5f; 
-	const float c_captureDepthDistance = CAPTURE_DEPTH_DISTANCE;
-	ssPos.z = 1.0 - saturate( ssPos.w * c_captureDepthDistance );
-	return ssPos.xyz;
+    float4 ssPos = (float4) ApplyMatrixT(projectionView, float4(worldPos.xyz, 1.0f));
+    ssPos.xy *= 0.03f;
+    ssPos.xy = ssPos.xy * float2(0.5f, -0.5f) + 0.5f;
+    const float c_captureDepthDistance = CAPTURE_DEPTH_DISTANCE;
+    ssPos.z = 1.0 - saturate(ssPos.w * c_captureDepthDistance);
+    return ssPos.xyz;
 }
 
 
@@ -2001,7 +2001,7 @@ float3 WorldPosToTopViewScreenSpacePos( float3 worldPos, float4 projParam )
 float2 GetRainFilterDepthCapturePixelOffset()
 {
 	
-	return -float2(0.5f,0.5f) * g_psSystem.m_renderBuffer.zw;
+    return -float2(0.5f, 0.5f) * g_psSystem.m_renderBuffer.zw;
 
 #line 52 "shader\TppRainFilterCommon.h"
 }
@@ -2012,39 +2012,39 @@ float2 GetRainFilterDepthCapturePixelOffset()
 
 struct RainFilterDepthCaptureInfo
 {
-	float m_depthA;
-	float m_alphaA;
-	float m_depthB;
-	float m_alphaB;	
+    float m_depthA;
+    float m_alphaA;
+    float m_depthB;
+    float m_alphaB;
 };
 
 
 
 #line 71 "shader\TppRainFilterCommon.h"
 
-RainFilterDepthCaptureInfo GetRainFilterDepthCaptureTexture( Texture2D tex, float2 ssPosXY )
+RainFilterDepthCaptureInfo GetRainFilterDepthCaptureTexture(Texture2D tex, float2 ssPosXY)
 {
-	float4 captureMask = TFetch2D( tex, RAIN_FILTER_DEPTH_SAMPLER, ssPosXY + GetRainFilterDepthCapturePixelOffset() );
-	RainFilterDepthCaptureInfo mask;
-	mask.m_depthA = captureMask.x;
-	mask.m_alphaA = captureMask.y;
-	mask.m_depthB = captureMask.z;
-	mask.m_alphaB = captureMask.w;
-	return mask;
+    float4 captureMask = TFetch2D(tex, RAIN_FILTER_DEPTH_SAMPLER, ssPosXY + GetRainFilterDepthCapturePixelOffset());
+    RainFilterDepthCaptureInfo mask;
+    mask.m_depthA = captureMask.x;
+    mask.m_alphaA = captureMask.y;
+    mask.m_depthB = captureMask.z;
+    mask.m_alphaB = captureMask.w;
+    return mask;
 }
 
 
 
 #line 89 "shader\TppRainFilterCommon.h"
 
-half CalcAlphaFromScreeningTexture( Texture2D tex, float3 ssPos, half margin )
+half CalcAlphaFromScreeningTexture(Texture2D tex, float3 ssPos, half margin)
 {
-	half4	texColor= TFetch2DH( tex, RAIN_FILTER_DEPTH_SAMPLER, ssPos.xy + GetRainFilterDepthCapturePixelOffset() );
-	half2	depth	= texColor.xz;
-	half2	alpha	= texColor.yw;
-	half2	t = (half2)saturate( ( depth + margin - ssPos.zz ) / margin );
-	half2	a = t * alpha + ( 1.0h - t );
-	return	a.x * a.y;
+    half4 texColor = TFetch2DH(tex, RAIN_FILTER_DEPTH_SAMPLER, ssPos.xy + GetRainFilterDepthCapturePixelOffset());
+    half2 depth = texColor.xz;
+    half2 alpha = texColor.yw;
+    half2 t = (half2) saturate((depth + margin - ssPos.zz) / margin);
+    half2 a = t * alpha + (1.0h - t);
+    return a.x * a.y;
 }
 
 
@@ -2058,77 +2058,77 @@ half CalcAlphaFromScreeningTexture( Texture2D tex, float3 ssPos, half margin )
 
 #line 15 "shader\VolFog_TppVolFog.shdr"
 
-float MiePhase( float costheta, float k, float ratio )
+float MiePhase(float costheta, float k, float ratio)
 {
-	float p = 1.0 / ( 4.0 * PI ) * ( 1 - k * k ) / ( ( 1 - k * costheta ) * ( 1 - k * costheta ) );
-	return ratio + ( 1 - ratio ) * p;
+    float p = 1.0 / (4.0 * PI) * (1 - k * k) / ((1 - k * costheta) * (1 - k * costheta));
+    return ratio + (1 - ratio) * p;
 }
 
 
 #line 24 "shader\VolFog_TppVolFog.shdr"
 
-float RayleighPhase( float costheta )
+float RayleighPhase(float costheta)
 {
-	return 3.0 / ( 16.0 * PI ) * ( 1.0 + costheta * costheta );
+    return 3.0 / (16.0 * PI) * (1.0 + costheta * costheta);
 }
 
 
 
 #line 37 "shader\VolFog_TppVolFog.shdr"
 
-float4 IntersectRayAABB( float3 origin, float3 dir, float3 aabbMin, float3 aabbMax )
+float4 IntersectRayAABB(float3 origin, float3 dir, float3 aabbMin, float3 aabbMax)
 {
-	float	tmin = 0.0;
-	float	tmax = 10000.0; 
+    float tmin = 0.0;
+    float tmax = 10000.0;
 
-	float	aMin[3]	= { aabbMin.x, aabbMin.y, aabbMin.z };
-	float	aMax[3]	= { aabbMax.x, aabbMax.y, aabbMax.z };
-	float	o[3]	= { origin.x, origin.y, origin.z };
-	float	d[3]	= { dir.x, dir.y, dir.z };
+    float aMin[3] = { aabbMin.x, aabbMin.y, aabbMin.z };
+    float aMax[3] = { aabbMax.x, aabbMax.y, aabbMax.z };
+    float o[3] = { origin.x, origin.y, origin.z };
+    float d[3] = { dir.x, dir.y, dir.z };
 
 	
-	bool	flag = true;
-	const float	epsilon = 0.000001;
-	for ( int i = 0; i < 3; i++ )
-	{
-		if ( abs( d[i] ) < epsilon )
-		{
-			flag = !( ( o[i] < aMin[i] ) || ( o[i] > aMax[i] ) );
-		}
-	}
-	if ( flag == false )
-	{
-		return float4( -1, 0, 0, 0 );
-	}
+    bool flag = true;
+    const float epsilon = 0.000001;
+    for (int i = 0; i < 3; i++)
+    {
+        if (abs(d[i]) < epsilon)
+        {
+            flag = !((o[i] < aMin[i]) || (o[i] > aMax[i]));
+        }
+    }
+    if (flag == false)
+    {
+        return float4(-1, 0, 0, 0);
+    }
 
 
 #line 64 "shader\VolFog_TppVolFog.shdr"
 
 	
-	for ( int j = 0; j < 3; j++ )
-	{
-		float ood	= 1.0 / d[j];
-		float t1	= ( aMin[j] - o[j] ) * ood;
-		float t2	= ( aMax[j] - o[j] ) * ood;
+    for (int j = 0; j < 3; j++)
+    {
+        float ood = 1.0 / d[j];
+        float t1 = (aMin[j] - o[j]) * ood;
+        float t2 = (aMax[j] - o[j]) * ood;
 
 		
-		if ( t1 > t2 )
-		{
-			float tmp = t1;
-			t1 = t2;
-			t2 = tmp;
-		}
+        if (t1 > t2)
+        {
+            float tmp = t1;
+            t1 = t2;
+            t2 = tmp;
+        }
 
-		tmin = max( tmin, t1 );
-		tmax = min( tmax, t2 );
+        tmin = max(tmin, t1);
+        tmax = min(tmax, t2);
 		
-		if ( tmin > tmax )
-		{
-			return float4( -1, 0, 0, 0 );
-		}
-	}
+        if (tmin > tmax)
+        {
+            return float4(-1, 0, 0, 0);
+        }
+    }
 	
-	return float4( 1, tmin, tmax, 0 );
+    return float4(1, tmin, tmax, 0);
 	
 
 #line 106 "shader\VolFog_TppVolFog.shdr"
@@ -2198,13 +2198,13 @@ float4 IntersectRayAABB( float3 origin, float3 dir, float3 aabbMin, float3 aabbM
 
 
 #line 131 "..\..\..\..\fox\source\system\Gr\Dg\shader\VolFog.shdr"
-inline void NComputeOutputColor( half4 inColor, out half4 outColor)
+inline void NComputeOutputColor(half4 inColor, out half4 outColor)
 {
 #line 136 "..\..\..\..\fox\source\system\Gr\Dg\shader\VolFog.shdr"
 
-	float n = g_psScene.m_fogParam[1].y;
-	outColor = half4( inColor.xyz / n, inColor.w );
-	outColor = (half4)saturate( outColor );
+    float n = g_psScene.m_fogParam[1].y;
+    outColor = half4(inColor.xyz / n, inColor.w);
+    outColor = (half4) saturate(outColor);
 #ifdef F_TARGET_XBOX360
 	// linear -> x^2 space
 	outColor.xyz = (half3)sqrt( outColor.xyz );
@@ -2214,74 +2214,74 @@ inline void NComputeOutputColor( half4 inColor, out half4 outColor)
 
 
 #line 153 "shader\VolFog_TppVolFog.shdr"
-inline void NAdjustOutColor( half4 inFogColor, out half4 outColor)
+inline void NAdjustOutColor(half4 inFogColor, out half4 outColor)
 {
 #line 158 "shader\VolFog_TppVolFog.shdr"
 
-	outColor = inFogColor;
+    outColor = inFogColor;
 }
 
 
 
 #line 165 "shader\VolFog_TppVolFog.shdr"
-inline void NGlobalOpticalDepth( float3 inWorldPos, out float2 outResult)
+inline void NGlobalOpticalDepth(float3 inWorldPos, out float2 outResult)
 {
 #line 170 "shader\VolFog_TppVolFog.shdr"
 
-	const float		near	= g_psMaterial.m_materials[0].z / FOG_SCALE; // J - TppGlobalVolumetricFog.nearDistance
-	const float		power	= g_psMaterial.m_materials[1].w; // J - TppGlobalVolumetricFog.power
-	const float3	cameraPos	= g_psObject.m_localParam[0].xyz;
-	const half3		sunDir		= (half3)g_psObject.m_localParam[1].xyz;
-	float3	r = ( inWorldPos - cameraPos ) / FOG_SCALE;
-	float	viewLength = length(r);
-	half3	viewDir = (half3)( r / max( viewLength, 1e-4 ) );
+    const float near = g_psMaterial.m_materials[0].z / FOG_SCALE; // J - TppGlobalVolumetricFog.nearDistance
+    const float power = g_psMaterial.m_materials[1].w; // J - TppGlobalVolumetricFog.power
+    const float3 cameraPos = g_psObject.m_localParam[0].xyz;
+    const half3 sunDir = (half3) g_psObject.m_localParam[1].xyz;
+    float3 r = (inWorldPos - cameraPos) / FOG_SCALE;
+    float viewLength = length(r);
+    half3 viewDir = (half3) (r / max(viewLength, 1e-4));
 	
-	viewLength = max( 0, viewLength - near );
+    viewLength = max(0, viewLength - near);
 #ifdef FOG_FALLOFF
 	float c = falloff * r.y;
 	c = c > 1e-6 ? ( 1.0 - exp( -c ) ) / c : 1.0;
 #else
-	float c = 1.0;
+    float c = 1.0;
 #endif
-	float opticalDepth = pow( viewLength, power ) * c;
-	outResult = float2( opticalDepth, dot( sunDir, viewDir ) );
+    float opticalDepth = pow(viewLength, power) * c;
+    outResult = float2(opticalDepth, dot(sunDir, viewDir));
 }
 
 
 
 #line 193 "shader\VolFog_TppVolFog.shdr"
-inline void NGlobalFogColor( float inOpticalDepth, float inViewSunAngle, half inRainAlpha, out half4 outColor)
+inline void NGlobalFogColor(float inOpticalDepth, float inViewSunAngle, half inRainAlpha, out half4 outColor)
 {
 #line 200 "shader\VolFog_TppVolFog.shdr"
 
-	const float		representativeDensity = g_psMaterial.m_materials[0].x; // J - TppGlobalVolumetricFog.density
-	const float		mieRatio	= g_psMaterial.m_materials[0].y; // J - lerp(0.1, 0.3, unknown) // Always 0.3 - possibly unknown == TppGlobalVolumetricFogEntity.mieAnisotropy?
-	const float3	sunIntensity= g_psMaterial.m_materials[0].w; // J - length(ATSH[9]/Pi) * TppGlobalVolumetricFog.fogDirLightGain * fogExposure*pow(2, TppGlobalVolumetricFog.exposureOffset)
-	const float3	skyLum		= g_psMaterial.m_materials[1].xyz; // J -  // (0.28209478*ATSH.c00 + 0.48860252*ATSH.c11 + 0.31539157*2*ATSH.c22)/Pi like tpp3dfw_generativeClouds_ps.hlsl) * TppGlobalVolumetricFog.skyAlbedo.rgb * (skyAlbedo.w = 1.0) * (TppGlobalVolumetricFogEntity.skyDirLightGain = 1.0) * fogExposure*pow(2, TppGlobalVolumetricFog.exposureOffset), FOR ambientColor - mgsvtpp.exe!140228ed2, https://cseweb.ucsd.edu/~ravir/papers/envmap/envmap.pdf, not sure why c22 is *2
-	const float3	selfLum		= g_psMaterial.m_materials[7].xyz; // J - TppGlobalVolumetricFog.color * (color.w = 1.0) * TppGlobalVolumetricFog.luminance * fogExposure*pow(2, TppGlobalVolumetricFog.exposureOffset)
-	const float3	betaU		= g_psMaterial.m_materials[3].www; // J - DONE
-	const float3	betaM		= g_psMaterial.m_materials[2].xyz; // J - DONE
-	const float3	betaR		= g_psMaterial.m_materials[3].xyz; // J - DONE
-	const float		mu			= inViewSunAngle;
-	float mieK		= g_psMaterial.m_materials[2].w; // J - Shlick approximation; k = 1.55*TppGlobalVolumetricFog.mieAnisotropy - 0.55*pow(TppGlobalVolumetricFog.mieAnisotropy, 3)
-	mieK = mieK * inRainAlpha;
+    const float representativeDensity = g_psMaterial.m_materials[0].x; // J - TppGlobalVolumetricFog.density
+    const float mieRatio = g_psMaterial.m_materials[0].y; // J - lerp(0.1, 0.3, unknown) // Always 0.3 - possibly unknown == TppGlobalVolumetricFogEntity.mieAnisotropy?
+    const float3 sunIntensity = g_psMaterial.m_materials[0].w; // J - length(ATSH[9]/Pi) * TppGlobalVolumetricFog.fogDirLightGain * fogExposure*pow(2, TppGlobalVolumetricFog.exposureOffset)
+    const float3 skyLum = g_psMaterial.m_materials[1].xyz; // J -  // (0.28209478*ATSH.c00 + 0.48860252*ATSH.c11 + 0.31539157*2*ATSH.c22)/Pi like tpp3dfw_generativeClouds_ps.hlsl) * TppGlobalVolumetricFog.skyAlbedo.rgb * (skyAlbedo.w = 1.0) * (unknown = 1.0) * (TppGlobalVolumetricFogEntity.skyLightGain = 1.0) * fogExposure*pow(2, TppGlobalVolumetricFog.exposureOffset), FOR ambientColor - mgsvtpp.exe!140228ed2, https://cseweb.ucsd.edu/~ravir/papers/envmap/envmap.pdf, not sure why c22 is *2
+    const float3 selfLum = g_psMaterial.m_materials[7].xyz; // J - TppGlobalVolumetricFog.color * (color.w = 1.0) * TppGlobalVolumetricFog.luminance * fogExposure*pow(2, TppGlobalVolumetricFog.exposureOffset)
+    const float3 betaU = g_psMaterial.m_materials[3].www; // J - DONE
+    const float3 betaM = g_psMaterial.m_materials[2].xyz; // J - DONE
+    const float3 betaR = g_psMaterial.m_materials[3].xyz; // J - DONE
+    const float mu = inViewSunAngle;
+    float mieK = g_psMaterial.m_materials[2].w; // J - Shlick approximation; k = 1.55*TppGlobalVolumetricFog.mieAnisotropy - 0.55*pow(TppGlobalVolumetricFog.mieAnisotropy, 3)
+    mieK = mieK * inRainAlpha;
 
-	float3	phase	= betaM * MiePhase( mu, mieK, mieRatio ) + betaR * RayleighPhase( mu );
-	float3	color	= ( skyLum*betaU + sunIntensity * phase ) / max( 1e-6, betaM+betaR+betaU ) * (1.0 - exp(-(betaM+betaR+betaU) * inOpticalDepth));
-	float	alpha	= exp( - inOpticalDepth * representativeDensity );
-	color += selfLum * ( 1.0 - alpha );
-	outColor = half4( color, alpha );
+    float3 phase = betaM * MiePhase(mu, mieK, mieRatio) + betaR * RayleighPhase(mu);
+    float3 color = (skyLum * betaU + sunIntensity * phase) / max(1e-6, betaM + betaR + betaU) * (1.0 - exp(-(betaM + betaR + betaU) * inOpticalDepth));
+    float alpha = exp(-inOpticalDepth * representativeDensity);
+    color += selfLum * (1.0 - alpha);
+    outColor = half4(color, alpha);
 }
 
 
 
 #line 296 "shader\VolFog_TppVolFog.shdr"
-inline void NCalcRainAlpha( float3 inScreenSpacePos, Texture2D inTexture, out half outAlpha)
+inline void NCalcRainAlpha(float3 inScreenSpacePos, Texture2D inTexture, out half outAlpha)
 {
 #line 302 "shader\VolFog_TppVolFog.shdr"
 
-	const half margin = 0.001h;
-	outAlpha = CalcAlphaFromScreeningTexture( inTexture, inScreenSpacePos.xyz, margin );
+    const half margin = 0.001h;
+    outAlpha = CalcAlphaFromScreeningTexture(inTexture, inScreenSpacePos.xyz, margin);
 }
 
 
@@ -2302,49 +2302,49 @@ void ps_main(
 {
 	#include "../UnityPatch/PreEntryPoint.hlsl"
 	
-	float3	NCalcRainAlpha_calcRainAlpha_inScreenSpacePos ;
-		half NCalcRainAlpha_calcRainAlpha_outAlpha ;
+    float3 NCalcRainAlpha_calcRainAlpha_inScreenSpacePos;
+    half NCalcRainAlpha_calcRainAlpha_outAlpha;
 #line 329 "shader\VolFog_TppVolFog.shdr"
-	NCalcRainAlpha_calcRainAlpha_inScreenSpacePos = inRainSsPos ;
-	NCalcRainAlpha( NCalcRainAlpha_calcRainAlpha_inScreenSpacePos, inInterruptTexture, NCalcRainAlpha_calcRainAlpha_outAlpha ) ;
+    NCalcRainAlpha_calcRainAlpha_inScreenSpacePos = inRainSsPos;
+    NCalcRainAlpha(NCalcRainAlpha_calcRainAlpha_inScreenSpacePos, inInterruptTexture, NCalcRainAlpha_calcRainAlpha_outAlpha);
 
 
-	float3	NGlobalOpticalDepth_globalOpticalDepth_inWorldPos ;
-	float2 NGlobalOpticalDepth_globalOpticalDepth_outResult ;
+    float3 NGlobalOpticalDepth_globalOpticalDepth_inWorldPos;
+    float2 NGlobalOpticalDepth_globalOpticalDepth_outResult;
 #line 332 "shader\VolFog_TppVolFog.shdr"
-	NGlobalOpticalDepth_globalOpticalDepth_inWorldPos = inWorldPos ;
-	NGlobalOpticalDepth( NGlobalOpticalDepth_globalOpticalDepth_inWorldPos, NGlobalOpticalDepth_globalOpticalDepth_outResult ) ;
+    NGlobalOpticalDepth_globalOpticalDepth_inWorldPos = inWorldPos;
+    NGlobalOpticalDepth(NGlobalOpticalDepth_globalOpticalDepth_inWorldPos, NGlobalOpticalDepth_globalOpticalDepth_outResult);
 
 
-	float	NGlobalFogColor_globalFogColor_inOpticalDepth ;
-	float	NGlobalFogColor_globalFogColor_inViewSunAngle ;
-	half	NGlobalFogColor_globalFogColor_inRainAlpha ;
-	half4 NGlobalFogColor_globalFogColor_outColor ;
+    float NGlobalFogColor_globalFogColor_inOpticalDepth;
+    float NGlobalFogColor_globalFogColor_inViewSunAngle;
+    half NGlobalFogColor_globalFogColor_inRainAlpha;
+    half4 NGlobalFogColor_globalFogColor_outColor;
 #line 333 "shader\VolFog_TppVolFog.shdr"
-	NGlobalFogColor_globalFogColor_inOpticalDepth = NGlobalOpticalDepth_globalOpticalDepth_outResult.x ;
+    NGlobalFogColor_globalFogColor_inOpticalDepth = NGlobalOpticalDepth_globalOpticalDepth_outResult.x;
 #line 334 "shader\VolFog_TppVolFog.shdr"
-	NGlobalFogColor_globalFogColor_inViewSunAngle = NGlobalOpticalDepth_globalOpticalDepth_outResult.y ;
+    NGlobalFogColor_globalFogColor_inViewSunAngle = NGlobalOpticalDepth_globalOpticalDepth_outResult.y;
 #line 335 "shader\VolFog_TppVolFog.shdr"
-	NGlobalFogColor_globalFogColor_inRainAlpha = NCalcRainAlpha_calcRainAlpha_outAlpha ;
-	NGlobalFogColor( NGlobalFogColor_globalFogColor_inOpticalDepth, NGlobalFogColor_globalFogColor_inViewSunAngle, NGlobalFogColor_globalFogColor_inRainAlpha, NGlobalFogColor_globalFogColor_outColor ) ;
+    NGlobalFogColor_globalFogColor_inRainAlpha = NCalcRainAlpha_calcRainAlpha_outAlpha;
+    NGlobalFogColor(NGlobalFogColor_globalFogColor_inOpticalDepth, NGlobalFogColor_globalFogColor_inViewSunAngle, NGlobalFogColor_globalFogColor_inRainAlpha, NGlobalFogColor_globalFogColor_outColor);
 
 
-	half4	NAdjustOutColor_adjustColor_inFogColor ;
-	half4 NAdjustOutColor_adjustColor_outColor ;
+    half4 NAdjustOutColor_adjustColor_inFogColor;
+    half4 NAdjustOutColor_adjustColor_outColor;
 #line 342 "shader\VolFog_TppVolFog.shdr"
-	NAdjustOutColor_adjustColor_inFogColor = NGlobalFogColor_globalFogColor_outColor ;
-	NAdjustOutColor( NAdjustOutColor_adjustColor_inFogColor, NAdjustOutColor_adjustColor_outColor ) ;
+    NAdjustOutColor_adjustColor_inFogColor = NGlobalFogColor_globalFogColor_outColor;
+    NAdjustOutColor(NAdjustOutColor_adjustColor_inFogColor, NAdjustOutColor_adjustColor_outColor);
 
 
-	half4	NComputeOutputColor_computeOutputColor_inColor ;
-	half4 NComputeOutputColor_computeOutputColor_outColor ;
+    half4 NComputeOutputColor_computeOutputColor_inColor;
+    half4 NComputeOutputColor_computeOutputColor_outColor;
 #line 345 "shader\VolFog_TppVolFog.shdr"
-	NComputeOutputColor_computeOutputColor_inColor = NAdjustOutColor_adjustColor_outColor ;
-	NComputeOutputColor( NComputeOutputColor_computeOutputColor_inColor, NComputeOutputColor_computeOutputColor_outColor ) ;
+    NComputeOutputColor_computeOutputColor_inColor = NAdjustOutColor_adjustColor_outColor;
+    NComputeOutputColor(NComputeOutputColor_computeOutputColor_inColor, NComputeOutputColor_computeOutputColor_outColor);
 
 
 #line 346 "shader\VolFog_TppVolFog.shdr"
-	outColor = NComputeOutputColor_computeOutputColor_outColor ;
+    outColor = NComputeOutputColor_computeOutputColor_outColor;
 
 
 

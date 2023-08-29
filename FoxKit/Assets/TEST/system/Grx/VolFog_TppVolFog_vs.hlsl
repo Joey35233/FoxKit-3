@@ -2060,34 +2060,34 @@ float4 IntersectRayAABB( float3 origin, float3 dir, float3 aabbMin, float3 aabbM
 
 
 #line 76 "..\..\..\..\fox\source\system\Gr\Dg\shader\FogVolume.shdr"
-inline void NGetVoxelCoordinate( float3 inPosition, float inYScale, out float4 outDrawCoord,  out float3 outClipCoord)
+inline void NGetVoxelCoordinate(float3 inPosition, float inYScale, out float4 outDrawCoord, out float3 outClipCoord)
 {
 #line 83 "..\..\..\..\fox\source\system\Gr\Dg\shader\FogVolume.shdr"
 
     
     
-    outDrawCoord.xy = inPosition.xy * float2( 2.0, inYScale ) + float2( -1.0, 1.0 ) ;
-    outDrawCoord.zw = 1.0 ;
+    outDrawCoord.xy = inPosition.xy * float2(2.0, inYScale) + float2(-1.0, 1.0);
+    outDrawCoord.zw = 1.0;
 
     
-	float zSlice	= GVFOG_LAYERS_PER_COL * inPosition.z;
-    float vOffset	= 1.0/GVFOG_LAYERS_PER_COL * floor( zSlice ) ;
-    float uOffset	= frac(zSlice);
-    outClipCoord.x	= GVFOG_LAYERS_PER_ROW * (inPosition.x - uOffset ); 
-    outClipCoord.y	= GVFOG_LAYERS_PER_COL * (inPosition.y - vOffset ); 
-    outClipCoord.z	= DecodeFogCameraZ( inPosition.z );
+    float zSlice = GVFOG_LAYERS_PER_COL * inPosition.z;
+    float vOffset = 1.0 / GVFOG_LAYERS_PER_COL * floor(zSlice);
+    float uOffset = frac(zSlice);
+    outClipCoord.x = GVFOG_LAYERS_PER_ROW * (inPosition.x - uOffset);
+    outClipCoord.y = GVFOG_LAYERS_PER_COL * (inPosition.y - vOffset);
+    outClipCoord.z = DecodeFogCameraZ(inPosition.z);
 #ifndef DG_ENABLE_HALFPIXELOFFSET
 	outClipCoord.xy += float2( 0.5/GVFOG_VOLUME_W, 0.5/GVFOG_VOLUME_H );
 #endif
-	outClipCoord.xy = 2.0 * outClipCoord.xy - 1.0;
-	outClipCoord.xy *= float2( GVFOG_VOLUME_W/(GVFOG_VOLUME_W-1.0), GVFOG_VOLUME_H/(GVFOG_VOLUME_H-1.0) );
+    outClipCoord.xy = 2.0 * outClipCoord.xy - 1.0;
+    outClipCoord.xy *= float2(GVFOG_VOLUME_W / (GVFOG_VOLUME_W - 1.0), GVFOG_VOLUME_H / (GVFOG_VOLUME_H - 1.0));
 	
 }
 
 
 
 #line 41 "..\..\..\..\fox\source\system\Gr\Dg\shader\VolFog.shdr"
-inline void NGetViewPos( float3 inClipPos, out float3 outViewPos)
+inline void NGetViewPos(float3 inClipPos, out float3 outViewPos)
 {
 #line 46 "..\..\..\..\fox\source\system\Gr\Dg\shader\VolFog.shdr"
 
@@ -2099,15 +2099,15 @@ inline void NGetViewPos( float3 inClipPos, out float3 outViewPos)
 	outViewPos.xy = outViewPos.xy * w * screenInv ;
 	outViewPos.z = inClipPos.z ;
 #else
-	outViewPos.z = inClipPos.z ;
-	outViewPos.xy = ( inClipPos.xy * g_vsScene.m_projectionParam.xy ) * inClipPos.z ;
+    outViewPos.z = inClipPos.z;
+    outViewPos.xy = (inClipPos.xy * g_vsScene.m_projectionParam.xy) * inClipPos.z;
 #endif
 }
 
 
 
 #line 65 "..\..\..\..\fox\source\system\Gr\Dg\shader\VolFog.shdr"
-inline void NGetWorldPos( float3 inViewPos, out float3 outWorldPos)
+inline void NGetWorldPos(float3 inViewPos, out float3 outWorldPos)
 {
 #line 70 "..\..\..\..\fox\source\system\Gr\Dg\shader\VolFog.shdr"
 
@@ -2117,13 +2117,13 @@ inline void NGetWorldPos( float3 inViewPos, out float3 outWorldPos)
 
 
 #line 113 "shader\VolFog_TppVolFog.shdr"
-inline void NScreenSpaceCameraPosOnRainViewport(  out float3 outPosition)
+inline void NScreenSpaceCameraPosOnRainViewport(out float3 outPosition)
 {
 #line 117 "shader\VolFog_TppVolFog.shdr"
 
-	const float3 cameraPos = g_vsObject.m_localParam[0].xyz; // J - World space camera position
-	float3 ssPos = WorldPosToTopViewScreenSpacePos( cameraPos, g_vsMaterial.m_materials[4] ); // In my sample, (cameraPos.x, -cameraPos.z, stuff, stuff). Just whatever proj * view is, really.
-	outPosition = ssPos.xyz;
+    const float3 cameraPos = g_vsObject.m_localParam[0].xyz; // J - World space camera position
+    float3 ssPos = WorldPosToTopViewScreenSpacePos(cameraPos, g_vsMaterial.m_materials[4]); // In my sample, (cameraPos.x, -cameraPos.z, stuff, stuff). Just whatever proj * view is, really.
+    outPosition = ssPos.xyz;
 }
 
 
@@ -2143,46 +2143,46 @@ void vs_main(
 {
 	#include "../UnityPatch/PreEntryPoint.hlsl"
 		
-	float3 NScreenSpaceCameraPosOnRainViewport_getRainSsPos_outPosition ;
-	NScreenSpaceCameraPosOnRainViewport( NScreenSpaceCameraPosOnRainViewport_getRainSsPos_outPosition ) ;
+    float3 NScreenSpaceCameraPosOnRainViewport_getRainSsPos_outPosition;
+    NScreenSpaceCameraPosOnRainViewport(NScreenSpaceCameraPosOnRainViewport_getRainSsPos_outPosition);
 
 
-	float3	NGetVoxelCoordinate_voxelCoordinate_inPosition ;
-	float	NGetVoxelCoordinate_voxelCoordinate_inYScale ;
-	float4 NGetVoxelCoordinate_voxelCoordinate_outDrawCoord ;
-	float3 NGetVoxelCoordinate_voxelCoordinate_outClipCoord ;
+    float3 NGetVoxelCoordinate_voxelCoordinate_inPosition;
+    float NGetVoxelCoordinate_voxelCoordinate_inYScale;
+    float4 NGetVoxelCoordinate_voxelCoordinate_outDrawCoord;
+    float3 NGetVoxelCoordinate_voxelCoordinate_outClipCoord;
 #line 139 "shader\VolFog_TppVolFog.shdr"
-	NGetVoxelCoordinate_voxelCoordinate_inPosition = inPosition ;
+    NGetVoxelCoordinate_voxelCoordinate_inPosition = inPosition;
 #line 140 "shader\VolFog_TppVolFog.shdr"
-	NGetVoxelCoordinate_voxelCoordinate_inYScale = -2.0 ;
-	NGetVoxelCoordinate( NGetVoxelCoordinate_voxelCoordinate_inPosition, NGetVoxelCoordinate_voxelCoordinate_inYScale, NGetVoxelCoordinate_voxelCoordinate_outDrawCoord, NGetVoxelCoordinate_voxelCoordinate_outClipCoord ) ;
+    NGetVoxelCoordinate_voxelCoordinate_inYScale = -2.0;
+    NGetVoxelCoordinate(NGetVoxelCoordinate_voxelCoordinate_inPosition, NGetVoxelCoordinate_voxelCoordinate_inYScale, NGetVoxelCoordinate_voxelCoordinate_outDrawCoord, NGetVoxelCoordinate_voxelCoordinate_outClipCoord);
 
 
-	float3	NGetViewPos_getViewPos_inClipPos ;
-	float3 NGetViewPos_getViewPos_outViewPos ;
+    float3 NGetViewPos_getViewPos_inClipPos;
+    float3 NGetViewPos_getViewPos_outViewPos;
 #line 141 "shader\VolFog_TppVolFog.shdr"
-	NGetViewPos_getViewPos_inClipPos = NGetVoxelCoordinate_voxelCoordinate_outClipCoord ;
-	NGetViewPos( NGetViewPos_getViewPos_inClipPos, NGetViewPos_getViewPos_outViewPos ) ;
+    NGetViewPos_getViewPos_inClipPos = NGetVoxelCoordinate_voxelCoordinate_outClipCoord;
+    NGetViewPos(NGetViewPos_getViewPos_inClipPos, NGetViewPos_getViewPos_outViewPos);
 
 
-	float3	NGetWorldPos_getWorldPos_inViewPos ;
-	float3 NGetWorldPos_getWorldPos_outWorldPos ;
+    float3 NGetWorldPos_getWorldPos_inViewPos;
+    float3 NGetWorldPos_getWorldPos_outWorldPos;
 #line 142 "shader\VolFog_TppVolFog.shdr"
-	NGetWorldPos_getWorldPos_inViewPos = NGetViewPos_getViewPos_outViewPos ;
-	NGetWorldPos( NGetWorldPos_getWorldPos_inViewPos, NGetWorldPos_getWorldPos_outWorldPos ) ;
+    NGetWorldPos_getWorldPos_inViewPos = NGetViewPos_getViewPos_outViewPos;
+    NGetWorldPos(NGetWorldPos_getWorldPos_inViewPos, NGetWorldPos_getWorldPos_outWorldPos);
 
 
 #line 144 "shader\VolFog_TppVolFog.shdr"
-	outPosition = NGetVoxelCoordinate_voxelCoordinate_outDrawCoord ;
+    outPosition = NGetVoxelCoordinate_voxelCoordinate_outDrawCoord;
 
 #line 145 "shader\VolFog_TppVolFog.shdr"
-	outWorldPos = NGetWorldPos_getWorldPos_outWorldPos;
+    outWorldPos = NGetWorldPos_getWorldPos_outWorldPos;
 
 #line 146 "shader\VolFog_TppVolFog.shdr"
-	outRainSsPos = NScreenSpaceCameraPosOnRainViewport_getRainSsPos_outPosition ;
+    outRainSsPos = NScreenSpaceCameraPosOnRainViewport_getRainSsPos_outPosition;
 
 
 
-	#include "../UnityPatch/PostEntryPoint.hlsl"
+	//#include "../UnityPatch/PostEntryPoint.hlsl"
 }
 

@@ -58,7 +58,7 @@ namespace FoxKit.TEST
             // ----------------------------------------
 
             // Base variables
-            float density = 0.003f;
+            float density = 0.00257f;
             float near = 0;
             float power = 0.9f;
             var color = new Vector4(0.3f, 0.6f, 1, 1);
@@ -78,7 +78,7 @@ namespace FoxKit.TEST
 
             // Intermediates
             float realExposure = fogExposure * Mathf.Pow(2, exposureOffset);
-            float farDistance = (density <= 1e06f | power <= 1e-05f) ? 1000000f : Mathf.Clamp(near + Mathf.Pow(-(float)System.Math.Log(0.0003906488) / density, 1.0f / power), 0, Single.MaxValue);
+            float farDistance = (density <= 1e-06f || power <= 1e-05f) ? 1000000f : Mathf.Clamp(near + Mathf.Pow(-(float)System.Math.Log(0.0003906488) / density, 1.0f / power), 0, Single.MaxValue);
 
             // Shader inputs
             Vector3 cameraPos = camera.transform.position;
@@ -156,7 +156,8 @@ namespace FoxKit.TEST
             DgShaderDefine.SetGlobalVector(Buffer, DgShaderDefine.ConstantId.V_FOGPARAM1, new Vector4(invLogFarDistance, normalizeFactor, 0, 0));
 			DgShaderDefine.SetVector(FogMaterial, DgShaderDefine.ConstantId.V_LOCALPARAM0, new Vector4(cameraPos.x, cameraPos.y, cameraPos.z, 1));
 			DgShaderDefine.SetVector(FogMaterial, DgShaderDefine.ConstantId.V_LOCALPARAM1, new Vector4(sunDir.x, sunDir.y, sunDir.z, 0));
-			Buffer.SetViewMatrix(camera.cameraToWorldMatrix); // Uses m_view to transform viewPos to worldPos so set the view matrix as the inverse view matrix
+
+            DgShaderDefine.SetGlobalMatrix(Buffer, DgShaderDefine.ConstantId.M_VIEW, camera.cameraToWorldMatrix); // Uses m_view to transform viewPos to worldPos so set the view matrix as the inverse view matrix
 
             Buffer.SetGlobalTexture(RtIds.inInterruptTexture, InterruptTexture);
 
@@ -166,9 +167,9 @@ namespace FoxKit.TEST
             // ----------------------------------------
 
             // Reset view to normal
-            Buffer.SetViewMatrix(camera.worldToCameraMatrix);
+            DgShaderDefine.SetGlobalMatrix(Buffer, DgShaderDefine.ConstantId.M_VIEW, camera.worldToCameraMatrix);
 
-			context.ExecuteCommandBuffer(Buffer);
+            context.ExecuteCommandBuffer(Buffer);
 			Buffer.Clear();
 
 			context.Submit();

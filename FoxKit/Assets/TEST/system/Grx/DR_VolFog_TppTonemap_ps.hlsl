@@ -2729,7 +2729,7 @@ void ps_main(
 #line 94 "shader\DR_VolFog_TppTonemap.shdr"
 	NApplyVolFog_applyFog_inColor = NCalculateColor_calculateColor_outColor.xyz;
 #line 95 "shader\DR_VolFog_TppTonemap.shdr"
-	NApplyVolFog_applyFog_inClipPos = (half2)inTexcoord; NApplyVolFog_applyFog_inClipPos.y *= -1;
+	NApplyVolFog_applyFog_inClipPos = (half2)inTexcoord;
 #line 96 "shader\DR_VolFog_TppTonemap.shdr"
 	NApplyVolFog_applyFog_inViewPos = NFetchViewZ_fetchViewPos_outViewPos.zzz;
 	NApplyVolFog(NApplyVolFog_applyFog_inColor, NApplyVolFog_applyFog_inClipPos, NApplyVolFog_applyFog_inViewPos, NApplyVolFog_applyFog_outColor);
@@ -2746,7 +2746,7 @@ void ps_main(
 
 
 #line 104 "shader\DR_VolFog_TppTonemap.shdr"
-	outColor = NCalcurateOutputColor2_calculateOutputColor_outColor;
+    outColor = NCalcurateOutputColor2_calculateOutputColor_outColor;
 
 
 

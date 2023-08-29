@@ -114,8 +114,8 @@ namespace FoxKit.TEST
             Context.DrawWireOverlay(camera);
 
             Context.DrawUIOverlay(camera);
-            Context.DrawGizmos(camera, GizmoSubset.PreImageEffects);
-            Context.DrawGizmos(camera, GizmoSubset.PostImageEffects);
+            //Context.DrawGizmos(camera, GizmoSubset.PreImageEffects);
+            //Context.DrawGizmos(camera, GizmoSubset.PostImageEffects);
 
             camera.ResetProjectionMatrix();
             Context.SetupCameraProperties(camera);

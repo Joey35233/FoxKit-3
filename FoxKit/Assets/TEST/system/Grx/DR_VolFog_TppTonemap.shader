@@ -21,7 +21,7 @@ Shader "Fox/DR_VolFog_TppTonemap"
 
             #include "../UnityPatch/PreHLSL.hlsl"
 
-////////////////////
+//
             #pragma vertex vs_main
 #if defined(SHADER_STAGE_VERTEX)
             #include "DR_VolFog_TppTonemap_vs.hlsl"
