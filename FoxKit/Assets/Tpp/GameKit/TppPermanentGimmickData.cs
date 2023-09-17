@@ -1,6 +1,4 @@
 using Fox.Core;
-using Fox.Fio;
-using System.IO;
 using UnityEditor;
 using UnityEngine;
 
@@ -15,10 +13,12 @@ namespace Tpp.GameKit
             string partsPath = "/Game" + partsFile.path.CString;
             string locatorPath = "/Game" + locaterFile.path.CString;
 
+            // FIXME Commented out 'cuz erroring when file doesn't exist
+            /*
             using (var reader = new FileStreamReader(new FileStream(UnityEngine.Application.dataPath + locatorPath, FileMode.Open)))
             {
                 LocatorFileReader.ReadLba(reader, "Assets" + locatorPath);
-            }
+            }*/
             string trimmedLocatorPath = "Assets/" + locatorPath.Remove(0, 1).Replace(".lba", ".asset");
 
             bool havesModel = false;

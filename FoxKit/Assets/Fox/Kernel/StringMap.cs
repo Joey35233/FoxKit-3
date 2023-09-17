@@ -134,7 +134,7 @@ namespace Fox.Kernel
                 }
 
                 if (cell.Key == key)
-                    throw new ArgumentException();
+                    throw new ArgumentException(key.CString);
 
                 // If another cell already exists
                 uint existingProbeDistance = cell.Distance;

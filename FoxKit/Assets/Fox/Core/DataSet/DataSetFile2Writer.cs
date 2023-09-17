@@ -100,9 +100,9 @@ namespace Fox.Core
 
         private List<Entity> GetEntitiesToExport(UnityEngine.SceneManagement.Scene sceneToExport)
         {
-            var entities = (from FoxEntity entityComponent in GameObject.FindObjectsOfType<FoxEntity>()
-                            where entityComponent.Entity != null && entityComponent.Entity.ShouldWriteToFox2() && entityComponent.gameObject.scene == sceneToExport
-                            select entityComponent.Entity).ToList();
+            var entities = (from Entity entityComponent in GameObject.FindObjectsOfType<Entity>()
+                            where entityComponent.ShouldWriteToFox2() && entityComponent.gameObject.scene == sceneToExport
+                            select entityComponent).ToList();
 
             CreateDataSet(entities);
 
@@ -122,10 +122,15 @@ namespace Fox.Core
 
         private static void CreateDataSet(List<Entity> entities)
         {
-            var dataSet = new DataSet();
+            var dataSet = entities.First(ent => ent is DataSet) as DataSet; //new DataSet();
             dataSet.name = Kernel.String.Empty;
+            dataSet.ClearData();
             foreach (Entity entity in entities)
             {
+                if (entity is DataSet)
+                {
+                    continue;
+                }
                 if (entity is Data)
                 {
                     var data = entity as Data;

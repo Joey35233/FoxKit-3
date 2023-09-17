@@ -1,4 +1,4 @@
-﻿using Fox.Core.Serialization;
+using Fox.Core.Serialization;
 using Fox.Fio;
 using Fox.Kernel;
 using System;
@@ -25,7 +25,7 @@ namespace Fox.Core
             this.requestSetEntityHandle = requestSetEntityHandle ?? throw new ArgumentNullException(nameof(requestSetEntityHandle));
         }
 
-        public AddressedEntity Read(FileStreamReader reader, Func<StrCode, String> unhashString)
+        public AddressedEntity Read(FileStreamReader reader, UnityEngine.GameObject gameObject, Func<StrCode, String> unhashString)
         {
             ushort headerSize = reader.ReadUInt16();
             Debug.Assert(headerSize == 0x40);
@@ -42,7 +42,9 @@ namespace Fox.Core
             ushort staticPropertyCount = BitConverter.ToUInt16(headerBytes, 36);
             ushort dynamicPropertyCount = BitConverter.ToUInt16(headerBytes, 38);
 
-            Entity entity = EntityInfo.ConstructEntity(new String(classNameHash));
+            var entityInfo = EntityInfo.GetEntityInfo(new String(classNameHash));
+            var entity = gameObject.AddComponent(entityInfo.Type) as Entity; // EntityInfo.ConstructEntity(new String(classNameHash));
+
             bool isReadingDynamicProperty = false;
 
             SetProperty setProperty = entity.SetProperty;

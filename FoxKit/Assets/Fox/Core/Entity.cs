@@ -9,7 +9,7 @@ using String = Fox.Kernel.String;
 namespace Fox.Core
 {
     [Serializable]
-    public partial class Entity
+    public partial class Entity : UnityEngine.MonoBehaviour
     {
         /// <summary>
         /// Unknown.
@@ -75,6 +75,21 @@ namespace Fox.Core
         /// </summary>
         public T GetProperty<T>(PropertyInfo property)
         {
+            // TODO Sorry this is ugly but there are two "name" properties due to inheriting from MonoBehaviour
+            if (property.Name == "name")
+            {
+                if (!(this is Data))
+                {
+                    return (T)(object)new String($"NO NAME {UnityEngine.Random.Range(Int32.MinValue, Int32.MaxValue)}");
+                }
+                return (T)(object)(this as Data).name;
+            }
+            // Same here
+            else if (property.Name == "transform")
+            {
+                return (T)(object)(this as TransformData).transform;
+            }
+
             System.Reflection.PropertyInfo propInfo = this.GetType().GetProperty(property.Name.CString, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
             return (T)propInfo.GetValue(this, null);
         }

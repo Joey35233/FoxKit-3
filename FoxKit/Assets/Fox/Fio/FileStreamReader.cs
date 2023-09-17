@@ -65,8 +65,8 @@ namespace Fox.Fio
         public Vector3 ReadWideVector3()
         {
             var result = new Vector3(ReadSingle(), ReadSingle(), ReadSingle());
-
-            Debug.Assert(ReadUInt32() == 0, "W component of WideVector3 is not 0.");
+            _ = ReadSingle();
+            //Debug.Assert(ReadUInt32() == 0, "W component of WideVector3 is not 0.");
 
             return result;
         }

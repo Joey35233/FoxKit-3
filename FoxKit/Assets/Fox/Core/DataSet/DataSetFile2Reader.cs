@@ -47,7 +47,10 @@ namespace Fox.Core
             var gameObjects = new Dictionary<ulong, GameObject>();
             for (int i = 0; i < entityCount; i++)
             {
-                AddressedEntity addressedEntity = new DataSetFile2AddressedEntityReader(RequestSetEntityPtr, RequestSetEntityHandle).Read(reader, (hash) => stringTable[hash]);
+                var gameObject = new GameObject();
+
+                AddressedEntity addressedEntity = new DataSetFile2AddressedEntityReader(RequestSetEntityPtr, RequestSetEntityHandle)
+                    .Read(reader, gameObject, (hash) => stringTable[hash]);
                 entities.Add(addressedEntity.Address, addressedEntity.Entity);
 
                 // Create GameObject
@@ -56,7 +59,6 @@ namespace Fox.Core
                     continue;
                 }
 
-                var gameObject = new GameObject();
                 if (addressedEntity.Entity is DataSet)
                 {
                     gameObject.name = "DataSet";
@@ -65,8 +67,6 @@ namespace Fox.Core
                 }
 
                 gameObjects.Add(addressedEntity.Address, gameObject);
-                FoxEntity entityComponent = gameObject.AddComponent<FoxEntity>();
-                entityComponent.Entity = addressedEntity.Entity;
             }
 
             ResolveRequests(entities, gameObjects);
@@ -125,7 +125,7 @@ namespace Fox.Core
 
                     foreach (Action<Entity> request in setEntityHandle.Value)
                     {
-                        request(gameObjects[setEntityHandle.Key].GetComponent<FoxEntity>().Entity);
+                        request(gameObjects[setEntityHandle.Key].GetComponent<Entity>());
                     }
                 }
                 else

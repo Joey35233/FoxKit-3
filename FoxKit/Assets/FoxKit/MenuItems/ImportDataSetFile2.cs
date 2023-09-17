@@ -32,7 +32,7 @@ namespace FoxKit.MenuItems
 
             foreach (UnityEngine.GameObject gameObject in readResult.GameObjects)
             {
-                Entity entity = gameObject.GetComponent<FoxEntity>().Entity;
+                Entity entity = gameObject.GetComponent<Entity>();
 
                 // Name the GameObject
                 if (entity is Data)

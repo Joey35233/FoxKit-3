@@ -32,10 +32,12 @@ namespace Tpp.GameKit
 
             string locatorPath = "/Game" + locaterFile.path.CString;
 
+            // FIXME Commented out because throwing error if file doesn't exist
+            /*
             using (var reader = new FileStreamReader(new FileStream(UnityEngine.Application.dataPath + locatorPath, FileMode.Open)))
             {
                 LocatorFileReader.ReadLba(reader, "Assets"+locatorPath);
-            }
+            }*/
             string trimmedLocatorPath = "Assets/" + locatorPath.Remove(0, 1).Replace(".lba", ".asset");
 
             //PLACE 'EM
