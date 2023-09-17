@@ -143,11 +143,11 @@ namespace Fox.Core
             return null;
         }
 
-        public bool NameEquals(String comparand) => new FoxDataStringContext(Reader, Position + Offset_Name, StringFormat, StringOffsetMode).Equals(comparand);
+        public bool NameEquals(String comparand) => new FoxDataStringContext(Reader, Position + Offset_Name, StringFormat, StringOffsetMode).TestEquality(comparand);
 
         public FoxDataNodeContext? FindNode(String name)
         {
-            for (FoxDataNodeContext? node = this; node.HasValue; node = GetNextNode())
+            for (FoxDataNodeContext? node = this; node.HasValue; node = node.Value.GetNextNode())
             {
                 if (node.Value.NameEquals(name))
                     return node;

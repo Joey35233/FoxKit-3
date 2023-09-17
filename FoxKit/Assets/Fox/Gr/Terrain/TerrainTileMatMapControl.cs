@@ -2,12 +2,12 @@ using UnityEngine;
 
 namespace Fox.Gr
 {
-    public class TerrainTileMatMapControl
+    public struct TerrainTileMatMapControl
     {
-        Texture2D LodParams;
-        Texture2D ConfigurationIds;
-        Texture2D ComboTextureOrMaterialIds;
-        Texture2D MinHeight;
-        Texture2D MaxHeight;
+        public Texture2D Params;
+        public Texture2D ConfigurationIds;
+        public Texture2D ComboTextureOrMaterialIds;
+        public Texture2D MinHeight;
+        public Texture2D MaxHeight;
     }
 }
