@@ -41,7 +41,7 @@ namespace Fox.Core
 
         public static void Write(this BinaryWriter writer, FilePtr val)
         {
-            writer.WritePathFileNameAndExtCode(val.path.Hash);
+            writer.WriteStrCode(new Kernel.String(val.path.CString).Hash);
         }
 
         public static void WriteInt8PropertyValue(this BinaryWriter writer, Entity entity, PropertyInfo property)
@@ -121,7 +121,7 @@ namespace Fox.Core
         public static Kernel.String WritePathPropertyValue(this BinaryWriter writer, Entity entity, PropertyInfo property)
         {
             Kernel.Path pathVal = entity.GetProperty<Kernel.Path>(property);
-            writer.WritePathFileNameAndExtCode(pathVal.Hash);
+            writer.WriteStrCode(new Kernel.String(pathVal.CString).Hash);
             return new Kernel.String(pathVal.CString);
         }
 
@@ -179,7 +179,7 @@ namespace Fox.Core
         public static Kernel.String WriteFilePtrPropertyValue(this BinaryWriter writer, Entity entity, PropertyInfo property)
         {
             FilePtr filePtrVal = entity.GetProperty<FilePtr>(property);
-            writer.WritePathFileNameAndExtCode(filePtrVal.path.Hash);
+            writer.WriteStrCode(new Kernel.String(filePtrVal.path.CString).Hash);
             return new Kernel.String(filePtrVal.path.CString);
         }
 
@@ -232,8 +232,8 @@ namespace Fox.Core
         public static List<Kernel.String> WriteEntityLinkPropertyValue(this BinaryWriter writer, Entity entity, PropertyInfo property, IDictionary<Entity, ulong> addresses)
         {
             EntityLink entityLinkVal = entity.GetProperty<EntityLink>(property);
-            writer.WritePathFileNameAndExtCode(entityLinkVal.packagePath.Hash);
-            writer.WritePathFileNameAndExtCode(entityLinkVal.archivePath.Hash);
+            writer.WriteStrCode(new Kernel.String(entityLinkVal.packagePath.CString).Hash);
+            writer.WriteStrCode(new Kernel.String(entityLinkVal.archivePath.CString).Hash);
             writer.WriteStrCode(entityLinkVal.nameInArchive.Hash);
 
             ulong address = 0;
@@ -253,8 +253,8 @@ namespace Fox.Core
 
         public static void WriteEntityLink(this BinaryWriter writer, EntityLink entityLinkVal, IDictionary<Entity, ulong> addresses)
         {
-            writer.WritePathFileNameAndExtCode(entityLinkVal.packagePath.Hash);
-            writer.WritePathFileNameAndExtCode(entityLinkVal.archivePath.Hash);
+            writer.WriteStrCode(new Kernel.String(entityLinkVal.packagePath.CString).Hash);
+            writer.WriteStrCode(new Kernel.String(entityLinkVal.archivePath.CString).Hash);
             writer.WriteStrCode(entityLinkVal.nameInArchive.Hash);
 
             ulong address = 0;

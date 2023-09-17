@@ -1,4 +1,4 @@
-﻿using Fox.Core;
+using Fox.Core;
 using System;
 using UnityEditor;
 using UnityEditor.UIElements;
@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 namespace Fox.Editor
 {
     public class EntityPtrField<T> : BaseField<Fox.Core.EntityPtr<T>>, IFoxField, ICustomBindable
-        where T : Entity, new()
+        where T : Entity
     {
         private SerializedProperty PtrProperty;
 
@@ -113,7 +113,7 @@ namespace Fox.Editor
         private void OnPropertyChanged(SerializedProperty property)
         {
             // [－] clicked
-            if (PtrProperty.managedReferenceValue is null)
+            if (PtrProperty.objectReferenceValue is null)
             {
                 Header.RemoveFromClassList(headerLivePtrUssClassName);
 
@@ -137,7 +137,7 @@ namespace Fox.Editor
                 CreateDeleteButton.RemoveFromClassList(createButtonUssClassName);
                 CreateDeleteButton.AddToClassList(deleteButtonUssClassName);
 
-                EntityLabel.text = $"<b>{PtrProperty.managedReferenceValue.GetType().Name}</b> ({typeof(T).Name})";
+                EntityLabel.text = $"<b>{PtrProperty.objectReferenceValue.GetType().Name}</b> ({typeof(T).Name})";
                 EntityLabel.enableRichText = true;
 
                 PropertyContainer.visible = true;
@@ -158,7 +158,7 @@ namespace Fox.Editor
                     SpecificEntityType = EntityTypePickerPopup.ShowPopup(typeof(T))?.Type;
                     if (SpecificEntityType != null)
                     {
-                        PtrProperty.managedReferenceValue = Activator.CreateInstance(SpecificEntityType);
+                        PtrProperty.objectReferenceValue = Activator.CreateInstance(SpecificEntityType) as UnityEngine.Object;
                         _ = PtrProperty.serializedObject.ApplyModifiedProperties();
                     }
                 }
@@ -166,7 +166,7 @@ namespace Fox.Editor
                 // [－] clicked
                 case CreateDeleteButtonMode.DeleteEntity:
                 {
-                    PtrProperty.managedReferenceValue = null;
+                    PtrProperty.objectReferenceValue = null;
 
                     _ = PtrProperty.serializedObject.ApplyModifiedProperties();
                 }
@@ -193,7 +193,14 @@ namespace Fox.Editor
     {
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
         {
-            var genericField = (BindableElement)Activator.CreateInstance(typeof(EntityPtrField<>).MakeGenericType(fieldInfo.FieldType.GenericTypeArguments[0].GenericTypeArguments), new object[] { property.name });
+            // Get the generic type argument
+            Type genericArgument = fieldInfo.FieldType.GenericTypeArguments[0];
+
+            // Create a generic type with the correct number of type arguments
+            Type genericType = typeof(EntityPtrField<>).MakeGenericType(genericArgument);
+
+            // Create an instance of the generic type
+            var genericField = (BindableElement)Activator.CreateInstance(genericType, new object[] { property.name });
             genericField.BindProperty(property);
 
             genericField.Q(className: BaseField<float>.labelUssClassName).AddToClassList(PropertyField.labelUssClassName);
