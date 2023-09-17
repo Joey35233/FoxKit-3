@@ -2,22 +2,23 @@ using UnityEngine;
 
 namespace Fox.Gr
 {
-    public class TerrainTileDataControl
+    public struct TerrainTileDataControl
     {
-        float MinHeightWS;
-        float MaxHeightWS;
+        public float MinHeightWS;
+        public float MaxHeightWS;
 
-        Texture2D HeightMap;
+        public Texture2D HeightMap;
 
-        uint ComboFormat;
-        Texture2D ComboTexture;
+        public uint ComboFormat;
+        public Texture2D ComboTexture;
 
-        TerrainTileMatMapControl MatMapControl;
+        public TerrainTileMatMapControl MatMapControl;
 
-        uint MapChunkHeightWS;
-        uint MapChunkWidthWS;
+        public uint MapChunkHeightWS;
+        public uint MapChunkWidthWS;
 
-        ushort MaxLodLevel;
-        ushort MaxLodCount;
+        public ushort ExtraHighSizeWS;
+        public ushort MaxLodLevel;
+        public ushort LodCount;
     }
 }
