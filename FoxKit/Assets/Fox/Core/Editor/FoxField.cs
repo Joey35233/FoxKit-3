@@ -1,4 +1,4 @@
-﻿using Fox.Core;
+using Fox.Core;
 using Fox.Kernel;
 using System;
 using System.Reflection;
@@ -21,6 +21,10 @@ namespace Fox.Editor
 
     public interface ICustomBindable : IBindable
     {
+        void Bind(SerializedObject serializedObject)
+        {
+        }
+
         void BindProperty(SerializedProperty property);
 
         void BindProperty(SerializedProperty property, string label);
