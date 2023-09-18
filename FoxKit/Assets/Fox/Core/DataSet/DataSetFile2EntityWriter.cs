@@ -50,6 +50,12 @@ namespace Fox.Core
             {
                 foreach (System.Collections.Generic.KeyValuePair<Kernel.String, PropertyInfo> staticProperty in @class.StaticProperties)
                 {
+                    //if (staticProperty.Key.CString == "links" || staticProperty.Key.CString == "textures" || staticProperty.Key.CString == "forceLargeTextures")
+                    //if (staticProperty.Key.CString == "textures" || staticProperty.Key.CString == "forceLargeTextures")
+                    {
+                        //continue;
+                    }
+
                     if (staticProperty.Value.Offset == 0)
                     {
                         continue;
@@ -130,14 +136,27 @@ namespace Fox.Core
         private ushort WriteStringMapProperty(Entity entity, PropertyInfo property, BinaryWriter writer)
         {
             var list = entity.GetProperty<IStringMap>(property).ToList();
+            if (property.Name.CString == "links")
+            {
+                UnityEngine.Debug.Log($"links: {list.Count}");
+            }
+
+            int skippedKeyCount = 0;
             foreach (KeyValuePair<Kernel.String, object> item in list)
             {
+                // TODO Are empty keys allowed?
+                if (System.String.IsNullOrEmpty(item.Key.CString))
+                {
+                    skippedKeyCount++;
+                    continue;
+                }
+
                 writer.Write(HashingBitConverter.StrCodeToUInt64(item.Key.Hash));
                 WritePropertyItem(item.Value, property.Type, writer);
                 writer.BaseStream.AlignWrite(16, 0x00);
             }
 
-            return (ushort)list.Count;
+            return (ushort)(list.Count - skippedKeyCount);
         }
 
         private ushort WriteListProperty(Entity entity, PropertyInfo property, BinaryWriter writer)

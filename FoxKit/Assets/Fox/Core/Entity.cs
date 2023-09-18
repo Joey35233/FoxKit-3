@@ -80,7 +80,7 @@ namespace Fox.Core
             {
                 if (!(this is Data))
                 {
-                    return (T)(object)new String($"NO NAME {UnityEngine.Random.Range(Int32.MinValue, Int32.MaxValue)}");
+                    return (T)(object)new String($"NO NAME FOXKIT ERROR {UnityEngine.Random.Range(Int32.MinValue, Int32.MaxValue)}");
                 }
                 return (T)(object)(this as Data).name;
             }

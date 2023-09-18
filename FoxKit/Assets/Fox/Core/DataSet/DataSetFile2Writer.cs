@@ -104,6 +104,9 @@ namespace Fox.Core
                             where entityComponent.ShouldWriteToFox2() && entityComponent.gameObject.scene == sceneToExport
                             select entityComponent).ToList();
 
+            //_ = entities.RemoveAll(ent => ent.GetClassEntityInfo().Name.CString == "TppTextureLoader");
+            //_ = entities.RemoveAll(ent => ent.GetClassEntityInfo().Name.CString == "DataIdentifier");
+
             CreateDataSet(entities);
 
             var allEntities = new HashSet<Entity>();
@@ -122,7 +125,7 @@ namespace Fox.Core
 
         private static void CreateDataSet(List<Entity> entities)
         {
-            var dataSet = entities.First(ent => ent is DataSet) as DataSet; //new DataSet();
+            var dataSet = entities.First(ent => ent is DataSet) as DataSet;
             dataSet.name = Kernel.String.Empty;
             dataSet.ClearData();
             foreach (Entity entity in entities)
