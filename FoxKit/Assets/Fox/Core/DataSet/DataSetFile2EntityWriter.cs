@@ -50,12 +50,6 @@ namespace Fox.Core
             {
                 foreach (System.Collections.Generic.KeyValuePair<Kernel.String, PropertyInfo> staticProperty in @class.StaticProperties)
                 {
-                    //if (staticProperty.Key.CString == "links" || staticProperty.Key.CString == "textures" || staticProperty.Key.CString == "forceLargeTextures")
-                    //if (staticProperty.Key.CString == "textures" || staticProperty.Key.CString == "forceLargeTextures")
-                    {
-                        //continue;
-                    }
-
                     if (staticProperty.Value.Offset == 0)
                     {
                         continue;
@@ -136,10 +130,6 @@ namespace Fox.Core
         private ushort WriteStringMapProperty(Entity entity, PropertyInfo property, BinaryWriter writer)
         {
             var list = entity.GetProperty<IStringMap>(property).ToList();
-            if (property.Name.CString == "links")
-            {
-                UnityEngine.Debug.Log($"links: {list.Count}");
-            }
 
             int skippedKeyCount = 0;
             foreach (KeyValuePair<Kernel.String, object> item in list)
@@ -151,6 +141,7 @@ namespace Fox.Core
                     continue;
                 }
 
+                strings.Add(item.Key);
                 writer.Write(HashingBitConverter.StrCodeToUInt64(item.Key.Hash));
                 WritePropertyItem(item.Value, property.Type, writer);
                 writer.BaseStream.AlignWrite(16, 0x00);
@@ -212,8 +203,12 @@ namespace Fox.Core
                     writer.WriteStrCode((item as Kernel.String).Hash);
                     break;
                 case PropertyInfo.PropertyType.Path:
-                    strings.Add(new Kernel.String((item as Kernel.Path).CString));
-                    writer.WritePathFileNameAndExtCode((item as Kernel.Path).Hash);
+                {
+                    var str = new Kernel.String((item as Kernel.Path).CString);
+                    strings.Add(str);
+                    writer.WriteStrCode(str.Hash);
+                }
+                    //writer.WritePathFileNameAndExtCode((item as Kernel.Path).Hash);
                     break;
                 case PropertyInfo.PropertyType.EntityPtr:
                     writer.WriteEntityPtr((item as IEntityPtr), addresses);
