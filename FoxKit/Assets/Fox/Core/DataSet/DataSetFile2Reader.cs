@@ -56,7 +56,7 @@ namespace Fox.Core
                 // Create GameObject
                 if (addressedEntity.Entity is DataElement)
                 {
-                    continue;
+                    gameObject.name = $"{addressedEntity.Entity.GetClassEntityInfo().Name}<0x{addressedEntity.Address:X8}>";
                 }
 
                 if (addressedEntity.Entity is DataSet)

@@ -58,6 +58,17 @@ namespace FoxKit.MenuItems
                 {
                     transformGameObjects.Add(entity, gameObject);
                 }
+                else if (entity is DataElement)
+                {
+                    EntityHandle parent = (entity as DataElement).owner;
+
+                    // I love orphaned DataElements
+                    if (parent.Entity != null)
+                    {
+                        gameObject.transform.SetParent(parent.Entity.transform);
+                        gameObject.transform.SetLocalPositionAndRotation(UnityEngine.Vector3.zero, UnityEngine.Quaternion.identity);
+                    }
+                }
                 else
                 {
                     gameObject.transform.SetParent(readResult.DataSetGameObject.transform);
