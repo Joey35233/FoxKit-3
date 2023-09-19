@@ -11,7 +11,7 @@ namespace Fox.Core
     public class DataSetFile2Reader
     {
         private IDictionary<StrCode, String> stringTable;
-        private readonly IDictionary<ulong, Action<Entity>> entityPtrSetRequests = new Dictionary<ulong, Action<Entity>>();
+        private readonly IDictionary<ulong, HashSet<Action<Entity>>> entityPtrSetRequests = new Dictionary<ulong, HashSet<Action<Entity>>>();
         private readonly IDictionary<ulong, HashSet<Action<Entity>>> entityHandleSetRequests = new Dictionary<ulong, HashSet<Action<Entity>>>();
 
         public class ReadResult
@@ -99,15 +99,18 @@ namespace Fox.Core
 
         private void ResolveRequests(IDictionary<ulong, Entity> entities, IDictionary<ulong, GameObject> gameObjects)
         {
-            foreach (KeyValuePair<ulong, Action<Entity>> setEntityPtr in entityPtrSetRequests)
+            foreach (KeyValuePair<ulong, HashSet<Action<Entity>>> setEntityPtr in entityPtrSetRequests)
             {
                 if (entities.ContainsKey(setEntityPtr.Key))
                 {
-                    setEntityPtr.Value(entities[setEntityPtr.Key]);
+                    foreach (Action<Entity> request in setEntityPtr.Value)
+                    {
+                        request(entities[setEntityPtr.Key]);
+                    }
                     continue;
                 }
 
-                UnityEngine.Debug.LogError("Unable to resolve EntityPtr " + setEntityPtr.Key.ToString("X8"));
+                UnityEngine.Debug.LogError("Unable to resolve EntityPtr 0x" + setEntityPtr.Key.ToString("X8"));
             }
 
             foreach (KeyValuePair<ulong, HashSet<Action<Entity>>> setEntityHandle in entityHandleSetRequests)
@@ -144,7 +147,12 @@ namespace Fox.Core
                 return;
             }
 
-            entityPtrSetRequests.Add(address, setPtr);
+            if (!entityPtrSetRequests.ContainsKey(address))
+            {
+                entityPtrSetRequests.Add(address, new HashSet<Action<Entity>>());
+            }
+
+            _ = entityPtrSetRequests[address].Add(setPtr);
         }
 
         public void RequestSetEntityHandle(ulong address, Action<Entity> setHandle)
