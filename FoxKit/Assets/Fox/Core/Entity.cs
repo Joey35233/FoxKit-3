@@ -43,13 +43,6 @@ namespace Fox.Core
         public virtual bool ShouldWriteToFox2() => true;
 
         /// <summary>
-        /// Perform any property updates needed before exporting.
-        /// </summary>
-        public virtual void PrepareForExport()
-        {
-        }
-
-        /// <summary>
         /// Checks if the given Entity has a static or dynamic property with a given name.
         /// </summary>
         /// <param name="entity">The Entity.</param>

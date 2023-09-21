@@ -18,7 +18,22 @@ namespace Fox.Core
         public override void OverridePropertiesForExport(EntityExportContext context)
         {
             base.OverridePropertiesForExport(context);
-            context.OverrideProperty(nameof(transform_translation), Kernel.Math.UnityToFoxVector3(this.transform_translation));
+
+            var parent = this.owner.Entity as TransformData;
+            if (parent == null)
+            {
+                // TODO What do we do about orphaned transforms?
+                return;
+            }
+
+            UnityEngine.Transform gameObjectTransform = gameObject.GetComponent<UnityEngine.Transform>();
+
+            Vector3 exportPosition = parent.inheritTransform ? gameObjectTransform.position : gameObjectTransform.localPosition;
+            Quaternion exportRotation = parent.inheritTransform ? gameObjectTransform.rotation : gameObjectTransform.localRotation;
+
+            context.OverrideProperty(nameof(transform_translation), Kernel.Math.UnityToFoxVector3(exportPosition));
+            context.OverrideProperty(nameof(transform_rotation_quat), Kernel.Math.UnityToFoxQuaternion(exportRotation));
+            context.OverrideProperty(nameof(transform_scale), gameObjectTransform.localScale);
         }
     }
 }

@@ -47,6 +47,9 @@ namespace Fox.Core
         {
             OverrideProperty(propertyName, stringMapToExport);
         }
+
+        internal bool OverridesProperty(string propertyName) => propertyOverrides.ContainsKey(propertyName);
+        internal object GetOverriddenProperty(string propertyName) => propertyOverrides[propertyName];
     }
 
     public class DataSetFile2EntityWriter
@@ -57,7 +60,7 @@ namespace Fox.Core
         private IDictionary<Entity, ulong> addresses;
         private List<Kernel.String> strings;
 
-        public void Write(Entity entity, IDictionary<Entity, ulong> addresses, List<Kernel.String> strings, ulong address, ulong id, Stream output)
+        public void Write(Entity entity, EntityExportContext exportContext, IDictionary<Entity, ulong> addresses, List<Kernel.String> strings, ulong address, ulong id, Stream output)
         {
             this.addresses = addresses;
             this.strings = strings;
@@ -96,7 +99,7 @@ namespace Fox.Core
                     }
 
                     staticPropertyCount++;
-                    WriteProperty(entity, staticProperty.Value, writer);
+                    WriteProperty(entity, exportContext, staticProperty.Value, writer);
                 }
             }            
 
@@ -130,7 +133,7 @@ namespace Fox.Core
             output.Position = endPosition;
         }
 
-        private void WriteProperty(Entity entity, PropertyInfo property, BinaryWriter writer)
+        private void WriteProperty(Entity entity, EntityExportContext exportContext, PropertyInfo property, BinaryWriter writer)
         {
             strings.Add(property.Name);
 
@@ -141,15 +144,15 @@ namespace Fox.Core
             ushort arraySize = (ushort)property.ArraySize;
             if (property.Container == PropertyInfo.ContainerType.StaticArray && property.ArraySize == 1)
             {
-                WriteSingleValue(writer, entity, property);
+                WriteSingleValue(writer, entity, exportContext, property);
             }
             else if (property.Container == PropertyInfo.ContainerType.StringMap)
             {
-                arraySize = WriteStringMapProperty(entity, property, writer);
+                arraySize = WriteStringMapProperty(entity, exportContext, property, writer);
             }
             else
             {
-                arraySize = WriteListProperty(entity, property, writer);
+                arraySize = WriteListProperty(entity, exportContext, property, writer);
             }
 
             output.AlignWrite(16, 0x00);
@@ -167,9 +170,11 @@ namespace Fox.Core
             output.Position = endPosition;
         }
 
-        private ushort WriteStringMapProperty(Entity entity, PropertyInfo property, BinaryWriter writer)
+        private ushort WriteStringMapProperty(Entity entity, EntityExportContext exportContext, PropertyInfo property, BinaryWriter writer)
         {
-            var list = entity.GetProperty<IStringMap>(property).ToList();
+            List<KeyValuePair<Kernel.String, object>> list = exportContext.OverridesProperty(property.Name.CString)
+                   ? ((IStringMap)exportContext.GetOverriddenProperty(property.Name.CString)).ToList()
+                   : entity.GetProperty<IStringMap>(property).ToList();
 
             int skippedKeyCount = 0;
             foreach (KeyValuePair<Kernel.String, object> item in list)
@@ -183,16 +188,19 @@ namespace Fox.Core
 
                 strings.Add(item.Key);
                 writer.Write(HashingBitConverter.StrCodeToUInt64(item.Key.Hash));
-                WriteCollectionItem(writer, item, property.Type);
+                WriteCollectionItem(writer, item.Value, property.Type);
                 writer.BaseStream.AlignWrite(16, 0x00);
             }
 
             return (ushort)(list.Count - skippedKeyCount);
         }
 
-        private ushort WriteListProperty(Entity entity, PropertyInfo property, BinaryWriter writer)
+        private ushort WriteListProperty(Entity entity, EntityExportContext exportContext, PropertyInfo property, BinaryWriter writer)
         {
-            IList list = entity.GetProperty<IList>(property);
+            IList list = exportContext.OverridesProperty(property.Name.CString)
+                   ? ((IList)exportContext.GetOverriddenProperty(property.Name.CString))
+                   : entity.GetProperty<IList>(property);
+
             foreach (object item in list)
             {
                 WriteCollectionItem(writer, item, property.Type);
@@ -249,8 +257,8 @@ namespace Fox.Core
                     writer.WriteStrCode(str.Hash);
                 }
                     break;
-                case PropertyInfo.PropertyType.EntityPtr:
-                    writer.WriteEntityPtr((item as IEntityPtr), addresses);
+                case PropertyInfo.PropertyType.EntityPtr:                    
+                    writer.WriteEntityPtr((IEntityPtr)item, addresses);
                     break;
                 case PropertyInfo.PropertyType.Vector3:
                     writer.Write((UnityEngine.Vector3)item);
@@ -286,9 +294,12 @@ namespace Fox.Core
             }
         }
 
-        private void WriteSingleValue(BinaryWriter writer, Entity entity, PropertyInfo property)
+        private void WriteSingleValue(BinaryWriter writer, Entity entity, EntityExportContext exportContext, PropertyInfo property)
         {
-            object value = entity.GetProperty<object>(property);
+            object value = exportContext.OverridesProperty(property.Name.CString)
+                ? exportContext.GetOverriddenProperty(property.Name.CString)
+                : entity.GetProperty<object>(property);
+
             WritePropertyItem(value, property.Type, writer);
         }
 

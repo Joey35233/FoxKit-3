@@ -1,4 +1,4 @@
-﻿using Fox.Kernel;
+using Fox.Kernel;
 using UnityEngine;
 
 namespace Fox.Core
@@ -70,6 +70,7 @@ namespace Fox.Core
                 gameObject.transform.rotation = transformEntity.rotQuat;
                 gameObject.transform.localScale = transformEntity.scale;
             }
+
             base.InitializeGameObject(gameObject);
         }
     }

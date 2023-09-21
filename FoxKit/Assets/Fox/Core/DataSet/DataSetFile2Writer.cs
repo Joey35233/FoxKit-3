@@ -22,19 +22,23 @@ namespace Fox.Core
         public void Write(BinaryWriter writer, UnityEngine.SceneManagement.Scene sceneToExport)
         {
             List<Entity> entities = GetEntitiesToExport(sceneToExport);
+            IDictionary<Entity, EntityExportContext> exportContexts = new Dictionary<Entity, EntityExportContext>();
 
             // Perform any last minute property updates
             foreach (Entity entity in entities)
             {
                 AssignAddress(entity);
                 AssignId(entity);
-                entity.PrepareForExport();
+
+                var context = new EntityExportContext();
+                exportContexts.Add(entity, context);
+                entity.OverridePropertiesForExport(context);
             }
 
             long headerPosition = writer.BaseStream.Position;
             writer.BaseStream.Position += HeaderSize;
 
-            WriteEntities(writer, entities);
+            WriteEntities(writer, entities, exportContexts);
             int stringTableOffset = WriteStringTable(writer);
 
             long endPosition = WriteHeader(writer, entities, headerPosition, stringTableOffset);
@@ -75,11 +79,11 @@ namespace Fox.Core
             return stringTableOffset;
         }
 
-        private void WriteEntities(BinaryWriter writer, List<Entity> entities)
+        private void WriteEntities(BinaryWriter writer, List<Entity> entities, IDictionary<Entity, EntityExportContext> exportContexts)
         {
             foreach (Entity entity in entities)
             {
-                WriteEntity(writer, (uint)addresses[entity], ids[entity], entity);
+                WriteEntity(writer, (uint)addresses[entity], ids[entity], entity, exportContexts[entity]);
             }
         }
 
@@ -153,10 +157,10 @@ namespace Fox.Core
             writer.Write(nameBytes);
         }
 
-        private void WriteEntity(BinaryWriter writer, uint address, ulong id, Entity entity)
+        private void WriteEntity(BinaryWriter writer, uint address, ulong id, Entity entity, EntityExportContext entityExportContext)
         {
             var entityWriter = new DataSetFile2EntityWriter();
-            entityWriter.Write(entity, addresses, strings, address, id, writer.BaseStream);
+            entityWriter.Write(entity, entityExportContext, addresses, strings, address, id, writer.BaseStream);
         }
     }
 }
