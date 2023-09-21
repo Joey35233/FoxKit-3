@@ -200,7 +200,7 @@ namespace Fox.Core
                 return;
             }
 
-            alreadyCollectedEntities.Add(entity);
+            _ = alreadyCollectedEntities.Add(entity);
             entity.CollectReferencedEntities(alreadyCollectedEntities);
         }
 
