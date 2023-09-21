@@ -8,6 +8,47 @@ using System.Text;
 
 namespace Fox.Core
 {
+    public class EntityExportContext
+    {
+        private readonly IDictionary<string, object> propertyOverrides = new Dictionary<string, object>();
+
+        /// <summary>
+        /// Export a different value instead of the current value of a property.
+        /// </summary>
+        /// <remarks>
+        /// Use this for non-array, non-StringMap properties. For type safety reasons,
+        /// use OverrideListProperty and OverrideStringMapProperty in other cases.
+        /// </remarks>
+        /// <param name="propertyName">Name of the property to override.</param>
+        /// <param name="valueToExport">Value to export.</param>
+        public void OverrideProperty(string propertyName, object valueToExport)
+        {
+            propertyOverrides[propertyName] = valueToExport;
+        }
+
+        /// <summary>
+        /// Export a different value instead of the current value of a property.
+        /// Use this for StaticArray, DynamicArray, and List properties.
+        /// </summary>
+        /// <param name="propertyName">Name of the property to override.</param>
+        /// <param name="listToExport">List of values to export.</param>
+        public void OverrideListProperty(string propertyName, IList listToExport)
+        {
+            OverrideProperty(propertyName, listToExport);
+        }
+
+        /// <summary>
+        /// Export a different value instead of the current value of a property.
+        /// Use this for StringMap properties.
+        /// </summary>
+        /// <param name="propertyName">Name of the property to override.</param>
+        /// <param name="stringMapToExport">StringMap of valuse to export.</param>
+        public void OverrideStringMapProperty(string propertyName, IStringMap stringMapToExport)
+        {
+            OverrideProperty(propertyName, stringMapToExport);
+        }
+    }
+
     public class DataSetFile2EntityWriter
     {
         private const short HeaderSize = 64;
@@ -15,7 +56,6 @@ namespace Fox.Core
 
         private IDictionary<Entity, ulong> addresses;
         private List<Kernel.String> strings;
-
 
         public void Write(Entity entity, IDictionary<Entity, ulong> addresses, List<Kernel.String> strings, ulong address, ulong id, Stream output)
         {
@@ -101,7 +141,7 @@ namespace Fox.Core
             ushort arraySize = (ushort)property.ArraySize;
             if (property.Container == PropertyInfo.ContainerType.StaticArray && property.ArraySize == 1)
             {
-                WritePropertyValue(entity, property, writer);
+                WriteSingleValue(writer, entity, property);
             }
             else if (property.Container == PropertyInfo.ContainerType.StringMap)
             {
@@ -143,7 +183,7 @@ namespace Fox.Core
 
                 strings.Add(item.Key);
                 writer.Write(HashingBitConverter.StrCodeToUInt64(item.Key.Hash));
-                WritePropertyItem(item.Value, property.Type, writer);
+                WriteCollectionItem(writer, item, property.Type);
                 writer.BaseStream.AlignWrite(16, 0x00);
             }
 
@@ -155,7 +195,7 @@ namespace Fox.Core
             IList list = entity.GetProperty<IList>(property);
             foreach (object item in list)
             {
-                WritePropertyItem(item, property.Type, writer);
+                WriteCollectionItem(writer, item, property.Type);
             }
 
             return (ushort)list.Count;
@@ -208,7 +248,6 @@ namespace Fox.Core
                     strings.Add(str);
                     writer.WriteStrCode(str.Hash);
                 }
-                    //writer.WritePathFileNameAndExtCode((item as Kernel.Path).Hash);
                     break;
                 case PropertyInfo.PropertyType.EntityPtr:
                     writer.WriteEntityPtr((item as IEntityPtr), addresses);
@@ -247,80 +286,15 @@ namespace Fox.Core
             }
         }
 
-        public void WritePropertyValue(Entity entity, PropertyInfo property, BinaryWriter writer)
+        private void WriteSingleValue(BinaryWriter writer, Entity entity, PropertyInfo property)
         {
-            switch (property.Type)
-            {
-                case PropertyInfo.PropertyType.Int8:
-                    writer.WriteInt8PropertyValue(entity, property);
-                    break;
-                case PropertyInfo.PropertyType.UInt8:
-                    writer.WriteUInt8PropertyValue(entity, property);
-                    break;
-                case PropertyInfo.PropertyType.Int16:
-                    writer.WriteInt16PropertyValue(entity, property);
-                    break;
-                case PropertyInfo.PropertyType.UInt16:
-                    writer.WriteUInt16PropertyValue(entity, property);
-                    break;
-                case PropertyInfo.PropertyType.Int32:
-                    writer.WriteInt32PropertyValue(entity, property);
-                    break;
-                case PropertyInfo.PropertyType.UInt32:
-                    writer.WriteUInt32PropertyValue(entity, property);
-                    break;
-                case PropertyInfo.PropertyType.Int64:
-                    writer.WriteInt64PropertyValue(entity, property);
-                    break;
-                case PropertyInfo.PropertyType.UInt64:
-                    writer.WriteUInt64PropertyValue(entity, property);
-                    break;
-                case PropertyInfo.PropertyType.Float:
-                    writer.WriteFloatPropertyValue(entity, property);
-                    break;
-                case PropertyInfo.PropertyType.Double:
-                    writer.WriteDoublePropertyValue(entity, property);
-                    break;
-                case PropertyInfo.PropertyType.Bool:
-                    writer.WriteBoolPropertyValue(entity, property);
-                    break;
-                case PropertyInfo.PropertyType.String:
-                    strings.Add(writer.WriteStringPropertyValue(entity, property));
-                    break;
-                case PropertyInfo.PropertyType.Path:
-                    strings.Add(writer.WritePathPropertyValue(entity, property));
-                    break;
-                case PropertyInfo.PropertyType.EntityPtr:
-                    writer.WriteEntityPtrPropertyValue(entity, property, addresses);
-                    break;
-                case PropertyInfo.PropertyType.Vector3:
-                    writer.WriteVector3PropertyValue(entity, property);
-                    break;
-                case PropertyInfo.PropertyType.Vector4:
-                    writer.WriteVector4PropertyValue(entity, property);
-                    break;
-                case PropertyInfo.PropertyType.Quat:
-                    writer.WriteQuatPropertyValue(entity, property);
-                    break;
-                case PropertyInfo.PropertyType.Matrix3:
-                    writer.WriteMatrix3PropertyValue(entity, property);
-                    break;
-                case PropertyInfo.PropertyType.Matrix4:
-                    writer.WriteMatrix4PropertyValue(entity, property);
-                    break;
-                case PropertyInfo.PropertyType.Color:
-                    writer.WriteColorPropertyValue(entity, property);
-                    break;
-                case PropertyInfo.PropertyType.FilePtr:
-                    strings.Add(writer.WriteFilePtrPropertyValue(entity, property));
-                    break;
-                case PropertyInfo.PropertyType.EntityHandle:
-                    writer.WriteEntityHandlePropertyValue(entity, property, addresses);
-                    break;
-                case PropertyInfo.PropertyType.EntityLink:
-                    strings.AddRange(writer.WriteEntityLinkPropertyValue(entity, property, addresses));
-                    break;
-            }
+            object value = entity.GetProperty<object>(property);
+            WritePropertyItem(value, property.Type, writer);
+        }
+
+        public void WriteCollectionItem(BinaryWriter writer, object item, PropertyInfo.PropertyType type)
+        {
+            WritePropertyItem(item, type, writer);
         }
     }
 }

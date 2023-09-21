@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 namespace Fox.Core
 {
@@ -14,5 +14,11 @@ namespace Fox.Core
 
         protected partial UnityEngine.Vector3 Get_translation() => Kernel.Math.FoxToUnityVector3(transform_translation);
         protected partial void Set_translation(UnityEngine.Vector3 value) => transform_translation = Kernel.Math.FoxToUnityVector3(value);
+
+        public override void OverridePropertiesForExport(EntityExportContext context)
+        {
+            base.OverridePropertiesForExport(context);
+            context.OverrideProperty(nameof(transform_translation), Kernel.Math.UnityToFoxVector3(this.transform_translation));
+        }
     }
 }
