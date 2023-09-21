@@ -27,9 +27,9 @@ namespace Fox.Editor
                         Update();
 
                         // "Custom binding"
-                        if (newValue.Entity != EntityProperty.managedReferenceValue)
+                        if (newValue.Entity != EntityProperty.objectReferenceValue)
                         {
-                            EntityProperty.managedReferenceValue = newValue.Entity;
+                            EntityProperty.objectReferenceValue = newValue.Entity;
                             _ = EntityProperty.serializedObject.ApplyModifiedProperties();
                         }
 
@@ -308,7 +308,7 @@ namespace Fox.Editor
     [CustomPropertyDrawer(typeof(EntityHandle))]
     public class EntityHandleDrawer : PropertyDrawer
     {
-        /*public override VisualElement CreatePropertyGUI(SerializedProperty property)
+        public override VisualElement CreatePropertyGUI(SerializedProperty property)
         {
             var field = new EntityHandleField(property.name);
             field.BindProperty(property);
@@ -318,6 +318,6 @@ namespace Fox.Editor
             field.AddToClassList(BaseField<Fox.Core.EntityHandle>.alignedFieldUssClassName);
 
             return field;
-        }*/
+        }
     }
 }

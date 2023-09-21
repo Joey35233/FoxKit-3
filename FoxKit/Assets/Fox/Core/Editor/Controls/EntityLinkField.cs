@@ -99,10 +99,10 @@ namespace Fox.Editor
 
                 if (property.type == "EntityLink")
                 {
-                    InternalHandleField.BindProperty(property.FindPropertyRelative("<handle>k__BackingField"));
-                    InternalPackagePathField.BindProperty(property.FindPropertyRelative("<packagePath>k__BackingField"));
-                    InternalArchivePathField.BindProperty(property.FindPropertyRelative("<archivePath>k__BackingField"));
-                    InternalNameField.BindProperty(property.FindPropertyRelative("<nameInArchive>k__BackingField"));
+                    InternalHandleField.BindProperty(property.FindPropertyRelative("handle"));
+                    InternalPackagePathField.BindProperty(property.FindPropertyRelative("packagePath"));
+                    InternalArchivePathField.BindProperty(property.FindPropertyRelative("archivePath"));
+                    InternalNameField.BindProperty(property.FindPropertyRelative("nameInArchive"));
 
                     evt.StopPropagation();
                 }
@@ -114,10 +114,10 @@ namespace Fox.Editor
         {
             if (label is not null)
                 this.label = label;
-            InternalHandleField.BindProperty(property.FindPropertyRelative("<handle>k__BackingField"));
-            InternalPackagePathField.BindProperty(property.FindPropertyRelative("<packagePath>k__BackingField"));
-            InternalArchivePathField.BindProperty(property.FindPropertyRelative("<archivePath>k__BackingField"));
-            InternalNameField.BindProperty(property.FindPropertyRelative("<nameInArchive>k__BackingField"));
+            InternalHandleField.BindProperty(property.FindPropertyRelative("handle"));
+            InternalPackagePathField.BindProperty(property.FindPropertyRelative("packagePath"));
+            InternalArchivePathField.BindProperty(property.FindPropertyRelative("archivePath"));
+            InternalNameField.BindProperty(property.FindPropertyRelative("nameInArchive"));
         }
     }
 
