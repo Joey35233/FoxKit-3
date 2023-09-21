@@ -148,7 +148,7 @@ namespace Fox.Editor
         {
             if (label is not null)
                 this.label = label;
-            EntityProperty = property.FindPropertyRelative("<_entity>k__BackingField");
+            EntityProperty = property.FindPropertyRelative("_entity");
 
             BindingExtensions.TrackPropertyValue(this, EntityProperty, OnPropertyChanged);
 
