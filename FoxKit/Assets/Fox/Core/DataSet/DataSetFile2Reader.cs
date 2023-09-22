@@ -97,6 +97,11 @@ namespace Fox.Core
 
                 int length = reader.ReadInt32();
                 char[] literal = reader.ReadChars(length);
+                if (dictionary.ContainsKey(hash))
+                {
+                    continue;
+                }
+
                 dictionary.Add(hash, new String(new string(literal)));
             }
         }
