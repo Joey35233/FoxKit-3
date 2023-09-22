@@ -8,7 +8,7 @@ using String = Fox.Kernel.String;
 
 namespace Fox.Core
 {
-    [Serializable]
+    [Serializable, DisallowMultipleComponent]
     public partial class Entity : UnityEngine.MonoBehaviour
     {
         /// <summary>

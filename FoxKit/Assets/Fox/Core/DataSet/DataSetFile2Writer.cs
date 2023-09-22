@@ -24,7 +24,6 @@ namespace Fox.Core
             List<Entity> entities = GetEntitiesToExport(sceneToExport);
             IDictionary<Entity, EntityExportContext> exportContexts = new Dictionary<Entity, EntityExportContext>();
 
-            // Perform any last minute property updates
             foreach (Entity entity in entities)
             {
                 AssignAddress(entity);
@@ -108,34 +107,29 @@ namespace Fox.Core
                             where entityComponent.ShouldWriteToFox2() && entityComponent.gameObject.scene == sceneToExport
                             select entityComponent).ToList();
 
-            //_ = entities.RemoveAll(ent => ent.GetClassEntityInfo().Name.CString == "TppTextureLoader");
-            //_ = entities.RemoveAll(ent => ent.GetClassEntityInfo().Name.CString == "DataIdentifier");
-
             CreateDataSet(entities);
-
-            var allEntities = new HashSet<Entity>();
-            foreach (Entity entity in entities)
-            {
-                if (!allEntities.Contains(entity))
-                {
-                    _ = allEntities.Add(entity);
-                }
-
-                entity.CollectReferencedEntities(allEntities);
-            }
-                        
-            return allEntities.ToList();
+            return entities;
         }
 
         private static void CreateDataSet(List<Entity> entities)
         {
-            var dataSet = entities.First(ent => ent is DataSet) as DataSet;
+            var dataSet = entities.FirstOrDefault(ent => ent is DataSet) as DataSet;
+            if (dataSet == null)
+            {
+                dataSet = new GameObject("DataSet").AddComponent<DataSet>();
+                entities.Insert(0, dataSet);
+            }
+
             dataSet.name = Kernel.String.Empty;
             dataSet.ClearData();
-            foreach (Entity entity in entities)
+
+            int dataSetIndex = -1;
+            for (int i = 0; i < entities.Count; i++)
             {
+                Entity entity = entities[i];
                 if (entity is DataSet)
                 {
+                    dataSetIndex = i;
                     continue;
                 }
                 if (entity is Data)
@@ -146,7 +140,21 @@ namespace Fox.Core
                 }
             }
 
-            entities.Insert(0, dataSet);
+            MoveItemAtIndexToFront(entities, dataSetIndex);
+        }
+
+        /// <summary>
+        /// TODO Move into extension method
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="list"></param>
+        /// <param name="index"></param>
+        private static void MoveItemAtIndexToFront<T>(List<T> list, int index)
+        {
+            T item = list[index];
+            for (int i = index; i > 0; i--)
+                list[i] = list[i - 1];
+            list[0] = item;
         }
 
         private void WriteStringTableEntry(BinaryWriter writer, Kernel.String foxString)
