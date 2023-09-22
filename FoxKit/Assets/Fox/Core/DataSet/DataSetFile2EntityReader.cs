@@ -2,6 +2,7 @@ using Fox.Core.Serialization;
 using Fox.Fio;
 using Fox.Kernel;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using static Fox.Core.Serialization.DataSetFile2PropertyReader;
 using String = Fox.Kernel.String;
@@ -18,11 +19,15 @@ namespace Fox.Core
     {
         private readonly RequestSetEntityPtr requestSetEntityPtr;
         private readonly RequestSetEntityHandle requestSetEntityHandle;
+        private IList<string> errors;
+        private IList<string> warnings;
 
-        public DataSetFile2AddressedEntityReader(RequestSetEntityPtr requestSetEntityPtr, RequestSetEntityHandle requestSetEntityHandle)
+        public DataSetFile2AddressedEntityReader(RequestSetEntityPtr requestSetEntityPtr, RequestSetEntityHandle requestSetEntityHandle, IList<string> errors, IList<string> warnings)
         {
             this.requestSetEntityPtr = requestSetEntityPtr ?? throw new ArgumentNullException(nameof(requestSetEntityPtr));
             this.requestSetEntityHandle = requestSetEntityHandle ?? throw new ArgumentNullException(nameof(requestSetEntityHandle));
+            this.errors = errors;
+            this.warnings = warnings;
         }
 
         public AddressedEntity Read(FileStreamReader reader, UnityEngine.GameObject gameObject, Func<StrCode, String> unhashString)
@@ -51,7 +56,7 @@ namespace Fox.Core
             SetPropertyElementByIndex setPropertyElementByIndex = entity.SetPropertyElement;
             SetPropertyElementByKey setPropertyElementByKey = entity.SetPropertyElement;
 
-            var propertyReader = new DataSetFile2PropertyReader(unhashString, requestSetEntityPtr, requestSetEntityHandle);
+            var propertyReader = new DataSetFile2PropertyReader(unhashString, requestSetEntityPtr, requestSetEntityHandle, errors, warnings);
             for (int i = 0; i < staticPropertyCount; i++)
             {
                 propertyReader.Read(reader,
@@ -97,7 +102,7 @@ namespace Fox.Core
                 classInfo = classInfo.Super;
             }
 
-            UnityEngine.Debug.LogError("Unable to find property " + propertyName);
+            errors.Add($"Unable to find property '{propertyName}' in Entity of type '{entity.GetClassEntityInfo().Name.CString}'.");
             return null;
         }
     }
