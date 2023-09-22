@@ -11,19 +11,16 @@ namespace Fox.GameKit
         {
             base.InitializeGameObject(gameObject, logger);
 
-            string path = "/Assets/Game" + modelFile.path.CString;
-            if (System.String.IsNullOrEmpty(path))
+            if (modelFile == FilePtr.Empty())
             {
-                logger.AddWarningNullProperty(nameof(modelFile));
+                logger.AddWarningEmptyPath(nameof(modelFile));
                 return;
             }
 
-            // Remove leading /
-            string trimmedPath = path.Remove(0, 1);
-            GameObject asset = AssetDatabase.LoadAssetAtPath<GameObject>(trimmedPath);
+            GameObject asset = AssetManager.LoadAsset<GameObject>(modelFile, out string unityPath);
             if (asset == null)
             {
-                logger.AddWarningMissingAsset(trimmedPath);
+                logger.AddWarningMissingAsset(unityPath);
                 return;
             }
 
