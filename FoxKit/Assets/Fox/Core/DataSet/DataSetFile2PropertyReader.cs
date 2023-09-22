@@ -1,7 +1,7 @@
+using Fox.Core.Utils;
 using Fox.Fio;
 using Fox.Kernel;
 using System;
-using System.Collections.Generic;
 using Debug = UnityEngine.Debug;
 using Path = Fox.Kernel.Path;
 using String = Fox.Kernel.String;
@@ -13,8 +13,7 @@ namespace Fox.Core.Serialization
         private readonly Func<StrCode, String> unhashString;
         private readonly RequestSetEntityPtr requestSetEntityPtr;
         private readonly RequestSetEntityHandle requestSetEntityHandle;
-        private readonly IList<string> errors;
-        private readonly IList<string> warnings;
+        private readonly TaskLogger logger;
 
         /// <summary>
         /// Sets the value of a property.
@@ -59,14 +58,12 @@ namespace Fox.Core.Serialization
             Func<StrCode, String> unhashString,
             RequestSetEntityPtr requestEntityPtr,
             RequestSetEntityHandle requestEntityHandle,
-            IList<string> errors,
-            IList<string> warnings)
+            TaskLogger logger)
         {
             this.unhashString = unhashString;
             requestSetEntityPtr = requestEntityPtr;
             requestSetEntityHandle = requestEntityHandle;
-            this.errors = errors;
-            this.warnings = warnings;
+            this.logger = logger;
         }
 
         public void Read(
@@ -277,7 +274,7 @@ namespace Fox.Core.Serialization
                 case PropertyInfo.PropertyType.WideVector3:
                     throw new NotImplementedException();
                 default:
-                    errors.Add($"Unexpected property type: {type}.");
+                    logger.AddError($"Unexpected property type: {type}.");
                     throw new InvalidOperationException();
             }
         }

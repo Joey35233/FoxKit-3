@@ -1,4 +1,5 @@
 using Fox.Core;
+using Fox.Core.Utils;
 using Fox.Fio;
 using System;
 using System.Collections.Generic;
@@ -23,9 +24,10 @@ namespace FoxKit.MenuItems
             UnityEngine.SceneManagement.Scene scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene,NewSceneMode.Single);
             scene.name = Path.GetFileNameWithoutExtension(assetPath);
 
+            var logger = new TaskLogger("ImportFOX2");
             using var reader = new FileStreamReader(System.IO.File.OpenRead(assetPath));
             var fox2Reader = new DataSetFile2Reader();
-            DataSetFile2Reader.ReadResult readResult = fox2Reader.Read(reader);
+            DataSetFile2Reader.ReadResult readResult = fox2Reader.Read(reader, logger);
 
             var typeCount = new Dictionary<Type, int>();
             var transformGameObjects = new Dictionary<Entity, UnityEngine.GameObject>();
@@ -74,7 +76,7 @@ namespace FoxKit.MenuItems
                     gameObject.transform.SetParent(readResult.DataSetGameObject.transform);
                 }
 
-                entity.InitializeGameObject(gameObject);
+                entity.InitializeGameObject(gameObject, logger);
             }
 
             foreach (Entity entity in transformGameObjects.Keys)

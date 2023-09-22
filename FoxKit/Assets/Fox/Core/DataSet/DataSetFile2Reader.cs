@@ -1,9 +1,9 @@
+using Fox.Core.Utils;
 using Fox.Fio;
 using Fox.Kernel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using UnityEngine;
 using String = Fox.Kernel.String;
 
@@ -14,9 +14,7 @@ namespace Fox.Core
         private IDictionary<StrCode, String> stringTable;
         private readonly IDictionary<ulong, Action<Entity>> entityPtrSetRequests = new Dictionary<ulong, Action<Entity>>();
         private readonly IDictionary<ulong, HashSet<Action<Entity>>> entityHandleSetRequests = new Dictionary<ulong, HashSet<Action<Entity>>>();
-
-        private readonly IList<string> warnings = new List<string>();
-        private readonly IList<string> errors = new List<string>();
+        private TaskLogger logger;
 
         public class ReadResult
         {
@@ -25,8 +23,10 @@ namespace Fox.Core
             public GameObject DataSetGameObject;
         }
 
-        public ReadResult Read(FileStreamReader reader)
+        public ReadResult Read(FileStreamReader reader, TaskLogger logger)
         {
+            this.logger = logger;
+
             byte[] headerBytes = reader.ReadBytes(32);
             int entityCount = BitConverter.ToInt32(headerBytes, 8);
             int stringTableOffset = BitConverter.ToInt32(headerBytes, 12);
@@ -53,7 +53,7 @@ namespace Fox.Core
             {
                 var gameObject = new GameObject();
 
-                AddressedEntity addressedEntity = new DataSetFile2AddressedEntityReader(RequestSetEntityPtr, RequestSetEntityHandle, errors, warnings)
+                AddressedEntity addressedEntity = new DataSetFile2AddressedEntityReader(RequestSetEntityPtr, RequestSetEntityHandle, logger)
                     .Read(reader, gameObject, (hash) => stringTable[hash]);
                 entities.Add(addressedEntity.Address, addressedEntity.Entity);
 
@@ -75,46 +75,11 @@ namespace Fox.Core
 
             ResolveRequests(entities, gameObjects);
 
-            LogErrors();
-            LogWarnings();
+            this.logger.LogToUnityConsole();
 
             result.Entities = entities.Values.ToList();
             result.GameObjects = gameObjects.Values.ToList();
             return result;
-        }
-
-        private void LogWarnings()
-        {
-            if (warnings.Count == 0)
-            {
-                return;
-            }
-
-            var builder = new StringBuilder();
-            _ = builder.AppendLine("ImportFOX2 Warnings:");
-            foreach (string warning in warnings)
-            {
-                _ = builder.AppendLine(warning);
-            }
-
-            UnityEngine.Debug.LogWarning(builder.ToString());
-        }
-
-        private void LogErrors()
-        {
-            if (errors.Count == 0)
-            {
-                return;
-            }
-
-            var builder = new StringBuilder();
-            _ = builder.AppendLine("ImportFOX2 Errors:");
-            foreach (string error in errors)
-            {
-                _ = builder.AppendLine(error);
-            }
-
-            UnityEngine.Debug.LogError(builder.ToString());
         }
 
         private static IDictionary<StrCode, String> ReadStringTable(FileStreamReader reader)
@@ -148,7 +113,7 @@ namespace Fox.Core
                     continue;
                 }
 
-                errors.Add($"Unable to resolve EntityPtr 0x{setEntityPtr.Key:X8}.");
+                logger.AddError($"Unable to resolve EntityPtr 0x{setEntityPtr.Key:X8}.");
             }
 
             foreach (KeyValuePair<ulong, HashSet<Action<Entity>>> setEntityHandle in entityHandleSetRequests)
@@ -171,7 +136,7 @@ namespace Fox.Core
                 }
                 else
                 {
-                    errors.Add($"Unable to resolve EntityHandle 0x{setEntityHandle.Key:X8}");
+                    logger.AddError($"Unable to resolve EntityHandle 0x{setEntityHandle.Key:X8}");
                 }
             }
 

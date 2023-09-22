@@ -1,4 +1,5 @@
 using Fox.Core;
+using Fox.Core.Utils;
 using Fox.Fio;
 using Fox.Kernel;
 using UnityEditor.SceneManagement;
@@ -8,6 +9,8 @@ namespace Tpp.Effect
 {
     public class TppGrxLightArrayFileReader
     {
+        private readonly TaskLogger logger = new TaskLogger("ImportGRXLA");
+
         public UnityEngine.SceneManagement.Scene? Read(FileStreamReader reader)
         {
             UnityEngine.SceneManagement.Scene scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
@@ -104,7 +107,7 @@ namespace Tpp.Effect
 
                 locator.SetTransform(transform);
 
-                locator.InitializeGameObject(gameObject);
+                locator.InitializeGameObject(gameObject, logger);
 
                 return gameObject;
             }
@@ -140,7 +143,7 @@ namespace Tpp.Effect
 
             var transform = new TransformEntity { scale = reader.ReadVector3(), rotQuat = reader.ReadRotationF(), translation = reader.ReadPositionF() };
             lightEntity.SetTransform(transform);
-            lightEntity.InitializeGameObject(lightGameObject);
+            lightEntity.InitializeGameObject(lightGameObject, logger);
 
             uint innerAreaOffset = reader.ReadUInt32();
             if (innerAreaOffset != 0)

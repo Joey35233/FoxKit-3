@@ -1,4 +1,5 @@
 using Fox.Core;
+using Fox.Core.Utils;
 using Fox.Fio;
 using Fox.Graphx;
 using Fox.Kernel;
@@ -11,6 +12,8 @@ namespace Fox.GameService
 {
     public class GsRouteSetReader
     {
+        private readonly TaskLogger logger = new TaskLogger("ImportFRT");
+
         private enum RouteSetVersion : short
         {
             GZ = 2,
@@ -69,7 +72,7 @@ namespace Fox.GameService
             uint signature = reader.ReadUInt32();
             if (signature != 0x54554F52) // ROUT
             {
-                Debug.LogError($"Read failed. Not a ROUT.");
+                logger.AddError($"Read failed. Not a ROUT.");
                 return null;
             }
 
@@ -77,7 +80,7 @@ namespace Fox.GameService
 
             if (fileVersion != RouteSetVersion.TPP & fileVersion != RouteSetVersion.GZ)
             {
-                Debug.LogError($"Version {fileVersion} isn't supported");
+                logger.AddError($"Version {fileVersion} isn't supported");
                 return null;
             }
 
@@ -247,7 +250,7 @@ namespace Fox.GameService
                 }
 
                 // RouteData has been staged. Initialize it.
-                routeData.InitializeGameObject(routeGameObject);
+                routeData.InitializeGameObject(routeGameObject, logger);
             }
 
             return scene;

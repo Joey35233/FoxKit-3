@@ -1,4 +1,5 @@
-﻿using Fox.Core;
+using Fox.Core;
+using Fox.Core.Utils;
 using Fox.Fio;
 using Fox.Geo;
 using Fox.Graphx;
@@ -9,9 +10,9 @@ namespace Fox.Geox
 {
     public partial class GeoxTrapAreaPath : Fox.Graphx.GraphxPathData
     {
-        public override void InitializeGameObject(GameObject gameObject)
+        public override void InitializeGameObject(GameObject gameObject, TaskLogger logger)
         {
-            base.InitializeGameObject(gameObject);
+            base.InitializeGameObject(gameObject, logger);
             _ = gameObject.AddComponent<GeoxTrapAreaPathGizmo>();
         }
 

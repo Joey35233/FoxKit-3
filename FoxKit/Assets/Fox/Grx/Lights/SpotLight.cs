@@ -1,4 +1,5 @@
-﻿using Fox.Kernel;
+using Fox.Core.Utils;
+using Fox.Kernel;
 using UnityEngine;
 
 namespace Fox.Grx
@@ -42,10 +43,10 @@ namespace Fox.Grx
         protected partial bool Get_hasSpecular() => FlagUtils.GetFlag(lightFlags, 3);
         protected partial void Set_hasSpecular(bool value) => lightFlags = FlagUtils.SetFlag(lightFlags, 3, value);
 
-        public override void InitializeGameObject(GameObject gameObject)
+        public override void InitializeGameObject(GameObject gameObject, TaskLogger logger)
         {
             _ = gameObject.AddComponent<SpotLightGizmo>();
-            base.InitializeGameObject(gameObject);
+            base.InitializeGameObject(gameObject, logger);
         }
     }
 }

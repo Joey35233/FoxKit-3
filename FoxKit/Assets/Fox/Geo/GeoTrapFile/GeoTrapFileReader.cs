@@ -1,4 +1,5 @@
 using Fox.Core;
+using Fox.Core.Utils;
 using Fox.Fio;
 using Fox.Kernel;
 using UnityEditor.SceneManagement;
@@ -8,6 +9,8 @@ namespace Fox.Geo
 {
     public class GeoTrapFileReader
     {
+        private readonly TaskLogger logger = new TaskLogger("ReadTRAP");
+
         public UnityEngine.SceneManagement.Scene? Read(FileStreamReader reader)
         {
             UnityEngine.SceneManagement.Scene scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
@@ -47,7 +50,7 @@ namespace Fox.Geo
                         var triggerTrapTransformEntity = TransformEntity.GetDefault();
                         triggerTrap.inheritTransform = false;
                         triggerTrap.SetTransform(triggerTrapTransformEntity);
-                        triggerTrap.InitializeGameObject(triggerTrapGameObject);
+                        triggerTrap.InitializeGameObject(triggerTrapGameObject, logger);
 
                         triggerTrap.name = new Kernel.String(header.Name.ToString());
                         triggerTrap.enable = true;
@@ -81,7 +84,7 @@ namespace Fox.Geo
                             triggerTrap.AddChild(shapeEntity);
 
                             shapeGameObject.AddComponent<FoxEntity>().Entity = shapeEntity;
-                            shapeEntity.InitializeGameObject(shapeGameObject);
+                            shapeEntity.InitializeGameObject(shapeGameObject, logger);
 
                             shapeGameObject.transform.SetParent(triggerTrapGameObject.transform);
                         }
@@ -90,7 +93,7 @@ namespace Fox.Geo
                     {
                         var gameObject = new GameObject(header.Name.ToString());
                         gameObject.AddComponent<FoxEntity>().Entity = trap;
-                        trap.InitializeGameObject(gameObject);
+                        trap.InitializeGameObject(gameObject, logger);
 
                         for (int j = 0; j < trap.GetChildren().Count; j++)
                         {
@@ -98,7 +101,7 @@ namespace Fox.Geo
 
                             var child = new GameObject($"GeoxTrapAreaPath{j:D4}");
                             child.AddComponent<FoxEntity>().Entity = childEntity;
-                            childEntity.InitializeGameObject(child);
+                            childEntity.InitializeGameObject(child, logger);
                             child.transform.SetParent(gameObject.transform);
                         }
                     }

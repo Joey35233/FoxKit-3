@@ -1,4 +1,5 @@
 using Fox.Core;
+using Fox.Core.Utils;
 using UnityEditor;
 using UnityEngine;
 
@@ -6,9 +7,9 @@ namespace Tpp.GameKit
 {
     public partial class TppPermanentGimmickData : Fox.Core.Data
     {
-        public override void InitializeGameObject(GameObject gameObject)
+        public override void InitializeGameObject(GameObject gameObject, TaskLogger logger)
         {
-            base.InitializeGameObject(gameObject);
+            base.InitializeGameObject(gameObject, logger);
 
             string partsPath = "/Game" + partsFile.path.CString;
             string locatorPath = "/Game" + locaterFile.path.CString;
@@ -92,7 +93,7 @@ namespace Tpp.GameKit
 
             if (namedAsset == null && scaledAsset == null && powerCutAreaAsset == null)
             {
-                Debug.LogWarning($"{name}: Unable to find asset at path {trimmedLocatorPath}");
+                logger.AddWarningMissingAsset(trimmedLocatorPath);
                 return;
             }
         }

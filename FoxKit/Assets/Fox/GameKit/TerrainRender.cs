@@ -1,3 +1,4 @@
+using Fox.Core.Utils;
 using Fox.Fio;
 using Fox.Gr;
 using Fox.Kernel;
@@ -8,7 +9,7 @@ namespace Fox.GameKit
 {
     public partial class TerrainRender : Fox.Core.TransformData
     {
-        public override void InitializeGameObject(GameObject gameObject)
+        public override void InitializeGameObject(GameObject gameObject, TaskLogger logger)
         {
             Core.TransformEntity transformEntity = transform.Get();
             if (transformEntity == null)

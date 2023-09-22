@@ -1,4 +1,5 @@
 using Fox.Core;
+using Fox.Core.Utils;
 using Fox.Fio;
 using UnityEditor.SceneManagement;
 using UnityEngine;
@@ -7,6 +8,8 @@ namespace Fox.Geo
 {
     public class GeoPathFixedPackFileReader
     {
+        private readonly TaskLogger logger = new TaskLogger("ImportGPFP");
+
         public UnityEngine.SceneManagement.Scene? Read(FileStreamReader reader)
         {
             UnityEngine.SceneManagement.Scene scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
@@ -53,7 +56,7 @@ namespace Fox.Geo
                 {
                     var gameObject = new GameObject(header.Name.ToString());
                     gameObject.AddComponent<FoxEntity>().Entity = shape;
-                    shape.InitializeGameObject(gameObject);
+                    shape.InitializeGameObject(gameObject, logger);
                 }
                 else
                 {

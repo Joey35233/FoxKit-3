@@ -1,4 +1,5 @@
 using Fox.Core;
+using Fox.Core.Utils;
 using Fox.Fio;
 using Fox.Kernel;
 using System;
@@ -10,9 +11,9 @@ namespace Fox.GameKit
 {
     public partial class ObjectBrush : Fox.Core.TransformData
     {
-        public override void InitializeGameObject(GameObject gameObject)
+        public override void InitializeGameObject(GameObject gameObject, TaskLogger logger)
         {
-            base.InitializeGameObject(gameObject);
+            base.InitializeGameObject(gameObject, logger);
 
             string obrPath = "/Game" + obrFile.path.CString;
             if (System.String.IsNullOrEmpty(obrPath))

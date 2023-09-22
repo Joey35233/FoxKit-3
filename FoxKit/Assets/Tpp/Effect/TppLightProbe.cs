@@ -1,3 +1,4 @@
+using Fox.Core.Utils;
 using Fox.Kernel;
 using System.ComponentModel;
 using UnityEngine;
@@ -87,10 +88,10 @@ namespace Tpp.Effect
         protected partial TppLightProbe_PackingGeneration Get_packingGeneration() => throw new CsSystem.NotImplementedException();
         protected partial void Set_packingGeneration(TppLightProbe_PackingGeneration value) => throw new CsSystem.NotImplementedException();
 
-        public override void InitializeGameObject(GameObject gameObject)
+        public override void InitializeGameObject(GameObject gameObject, TaskLogger logger)
         {
             _ = gameObject.AddComponent<TppLightProbeGizmo>();
-            base.InitializeGameObject(gameObject);
+            base.InitializeGameObject(gameObject, logger);
         }
     }
 }

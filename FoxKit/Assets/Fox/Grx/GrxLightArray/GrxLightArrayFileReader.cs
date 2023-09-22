@@ -1,4 +1,5 @@
 using Fox.Core;
+using Fox.Core.Utils;
 using Fox.Fio;
 using Fox.Kernel;
 using UnityEditor.SceneManagement;
@@ -8,6 +9,7 @@ namespace Fox.Grx
 {
     public class GrxLightArrayFileReader
     {
+        private readonly TaskLogger logger = new TaskLogger("ImportGRXLA");
         public UnityEngine.SceneManagement.Scene? Read(FileStreamReader reader)
         {
             UnityEngine.SceneManagement.Scene scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
@@ -114,7 +116,7 @@ namespace Fox.Grx
 
                 locator.SetTransform(transform);
 
-                locator.InitializeGameObject(gameObject);
+                locator.InitializeGameObject(gameObject, logger);
 
                 return gameObject;
             }
@@ -152,7 +154,7 @@ namespace Fox.Grx
 
             var transform = new TransformEntity { translation = reader.ReadPositionF(), rotQuat = Quaternion.identity, scale = Vector3.one };
             lightEntity.SetTransform(transform);
-            lightEntity.InitializeGameObject(lightGameObject);
+            lightEntity.InitializeGameObject(lightGameObject, logger);
 
             lightEntity.outerRange = reader.ReadHalf();
             lightEntity.innerRange = reader.ReadHalf();
@@ -225,7 +227,7 @@ namespace Fox.Grx
             lightEntity.reachPoint = reader.ReadPositionF();
             var transform = new TransformEntity { translation = position, rotQuat = reader.ReadRotationF(), scale = Vector3.one };
             lightEntity.SetTransform(transform);
-            lightEntity.InitializeGameObject(lightGameObject);
+            lightEntity.InitializeGameObject(lightGameObject, logger);
 
             lightEntity.outerRange = reader.ReadHalf();
             lightEntity.innerRange = reader.ReadHalf();

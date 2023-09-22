@@ -1,4 +1,5 @@
 using Fox.Core;
+using Fox.Core.Utils;
 using Fox.Fio;
 using System;
 using System.IO;
@@ -9,9 +10,9 @@ namespace Tpp.GameKit
 {
     public partial class TppSharedGimmickData : Fox.Core.Data
     {
-        public override void InitializeGameObject(GameObject gameObject)
+        public override void InitializeGameObject(GameObject gameObject, TaskLogger logger)
         {
-            base.InitializeGameObject(gameObject);
+            base.InitializeGameObject(gameObject, logger);
 
             //FIND MODELS
 
@@ -22,7 +23,8 @@ namespace Tpp.GameKit
             if (global::System.String.IsNullOrEmpty(modelFilePath)
                 &&global::System.String.IsNullOrEmpty(breakedModelFilePath))
             {
-                Debug.LogWarning($"{name}: modelFile and breakedModelFile are null, not using model");
+                logger.AddWarningMissingAsset(nameof(modelFile));
+                logger.AddWarningMissingAsset(nameof(breakedModelFilePath));
                 havesModel = false;
             }
 
@@ -49,7 +51,8 @@ namespace Tpp.GameKit
             if (assetModelFile == null
                 && assetBreakedModelFile == null)
             {
-                Debug.LogWarning($"{name}: Unable to find asset at path {trimmedPathModelFile} or {trimmedPathBreakedModelFile}; not using model");
+                logger.AddWarningMissingAsset(nameof(trimmedPathModelFile));
+                logger.AddWarningMissingAsset(nameof(trimmedPathBreakedModelFile));
                 havesModel = false;
             }
 
@@ -138,7 +141,7 @@ namespace Tpp.GameKit
                     }
                     break;
                 case null:
-                    Debug.LogWarning($"{name}: Unable to find asset at path {trimmedLocatorPath}");
+                    logger.AddWarningMissingAsset(trimmedLocatorPath);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();

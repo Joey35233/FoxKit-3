@@ -1,4 +1,5 @@
-﻿using Fox.Core;
+using Fox.Core;
+using Fox.Core.Utils;
 using Fox.Fio;
 using UnityEngine;
 
@@ -6,6 +7,8 @@ namespace Tpp.GameKit
 {
     public class CoverPointFileReader
     {
+        private readonly TaskLogger logger = new TaskLogger("ImportTCVP");
+
         private const uint TCVP_SIGNATURE = 0x50564354;
         private const float USHORT_QUANTA_PER_DEGREE = (global::System.UInt16.MaxValue + 1) / 360f;
         private const float DEGREE_PER_USHORT_QUANTA = 360f / (global::System.UInt16.MaxValue + 1);
@@ -37,7 +40,7 @@ namespace Tpp.GameKit
                 FoxEntity component = coverPointObject.AddComponent<FoxEntity>();
                 var coverPoint = new TppCoverPoint();
                 component.Entity = coverPoint;
-                coverPoint.InitializeGameObject(coverPointObject);
+                coverPoint.InitializeGameObject(coverPointObject, logger);
 
                 coverPointObject.transform.position = reader.ReadPositionF();
 

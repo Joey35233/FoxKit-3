@@ -1,3 +1,4 @@
+using Fox.Core.Utils;
 using Fox.Kernel;
 using UnityEngine;
 
@@ -50,7 +51,7 @@ namespace Fox.Core
             transform.SetOwner(this);
         }
 
-        public override void InitializeGameObject(GameObject gameObject)
+        public override void InitializeGameObject(GameObject gameObject, TaskLogger logger)
         {
             TransformEntity transformEntity = transform.Get();
             if (transformEntity == null)
@@ -71,7 +72,7 @@ namespace Fox.Core
                 gameObject.transform.localScale = transformEntity.scale;
             }
 
-            base.InitializeGameObject(gameObject);
+            base.InitializeGameObject(gameObject, logger);
         }
 
         public override void OverridePropertiesForExport(EntityExportContext context)

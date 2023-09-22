@@ -1,4 +1,5 @@
 using Fox.Core;
+using Fox.Core.Utils;
 using UnityEditor;
 using UnityEngine;
 
@@ -6,14 +7,14 @@ namespace Fox.GameKit
 {
     public partial class StaticModel : TransformData
     {
-        public override void InitializeGameObject(GameObject gameObject)
+        public override void InitializeGameObject(GameObject gameObject, TaskLogger logger)
         {
-            base.InitializeGameObject(gameObject);
+            base.InitializeGameObject(gameObject, logger);
 
             string path = "/Assets/Game" + modelFile.path.CString;
             if (System.String.IsNullOrEmpty(path))
             {
-                Debug.LogWarning($"{name}: modelFile is null");
+                logger.AddWarningNullProperty(nameof(modelFile));
                 return;
             }
 
@@ -22,7 +23,7 @@ namespace Fox.GameKit
             GameObject asset = AssetDatabase.LoadAssetAtPath<GameObject>(trimmedPath);
             if (asset == null)
             {
-                Debug.LogWarning($"{name}: Unable to find asset at path {trimmedPath}");
+                logger.AddWarningMissingAsset(trimmedPath);
                 return;
             }
 

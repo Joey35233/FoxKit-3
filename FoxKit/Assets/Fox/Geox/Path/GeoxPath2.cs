@@ -1,4 +1,5 @@
-﻿using Fox.Core;
+using Fox.Core;
+using Fox.Core.Utils;
 using Fox.Fio;
 using Fox.Geo;
 using Fox.Graphx;
@@ -42,9 +43,9 @@ namespace Fox.Geox
             DontFallWall = 0x400,
         };
 
-        public override void InitializeGameObject(GameObject gameObject)
+        public override void InitializeGameObject(GameObject gameObject, TaskLogger logger)
         {
-            base.InitializeGameObject(gameObject);
+            base.InitializeGameObject(gameObject, logger);
             _ = gameObject.AddComponent<GeoxPath2Gizmo>();
         }
 
