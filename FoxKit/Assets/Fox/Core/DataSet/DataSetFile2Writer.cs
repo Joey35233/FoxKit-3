@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using UnityEditor;
 using UnityEngine;
 
 namespace Fox.Core
@@ -21,9 +22,12 @@ namespace Fox.Core
 
         public void Write(BinaryWriter writer, UnityEngine.SceneManagement.Scene sceneToExport)
         {
+            EditorUtility.DisplayProgressBar("FoxKit", "Gathering Entities...", 0);
+
             List<Entity> entities = GetEntitiesToExport(sceneToExport);
             IDictionary<Entity, EntityExportContext> exportContexts = new Dictionary<Entity, EntityExportContext>();
 
+            EditorUtility.DisplayProgressBar("FoxKit", "Converting Entities...", 0);
             foreach (Entity entity in entities)
             {
                 AssignAddress(entity);
@@ -38,9 +42,12 @@ namespace Fox.Core
             writer.BaseStream.Position += HeaderSize;
 
             WriteEntities(writer, entities, exportContexts);
-            int stringTableOffset = WriteStringTable(writer);
 
+            EditorUtility.DisplayProgressBar("FoxKit", $"Writing string table...", 0.99f);
+            int stringTableOffset = WriteStringTable(writer);
             long endPosition = WriteHeader(writer, entities, headerPosition, stringTableOffset);
+            EditorUtility.ClearProgressBar();
+
             writer.BaseStream.Position = endPosition;
         }
 
@@ -80,9 +87,16 @@ namespace Fox.Core
 
         private void WriteEntities(BinaryWriter writer, List<Entity> entities, IDictionary<Entity, EntityExportContext> exportContexts)
         {
+            int writtenEntities = 0;
+            int entityCount = entities.Count;
+
             foreach (Entity entity in entities)
             {
+                float progress = (float)writtenEntities / (float)entityCount;
+                EditorUtility.DisplayProgressBar("FoxKit", $"Writing Entities ({writtenEntities + 1}/{entityCount})...", progress);
+
                 WriteEntity(writer, (uint)addresses[entity], ids[entity], entity, exportContexts[entity]);
+                writtenEntities++;
             }
         }
 
