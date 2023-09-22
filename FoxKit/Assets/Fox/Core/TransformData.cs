@@ -1,4 +1,5 @@
 using Fox.Kernel;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Fox.Core
@@ -54,10 +55,10 @@ namespace Fox.Core
         {
             TransformEntity transformEntity = transform.Get();
             if (transformEntity == null)
-            {
-                Debug.LogWarning($"{name}: transform is null");
+            {                
                 return;
             }
+
             if (inheritTransform)
             {
                 gameObject.transform.localPosition = transformEntity.translation;
@@ -72,6 +73,41 @@ namespace Fox.Core
             }
 
             base.InitializeGameObject(gameObject);
+        }
+
+        public override void OverridePropertiesForExport(EntityExportContext context)
+        {
+            base.OverridePropertiesForExport(context);
+
+            // Get GameObject's parent
+            UnityEngine.Transform transform = this.gameObject.GetComponent<UnityEngine.Transform>();
+
+            var exportParent = EntityHandle.Empty();
+            UnityEngine.Transform parentTransform = transform.parent;
+            if (parentTransform != null)
+            {
+                TransformData parentTransformData = parentTransform.GetComponent<TransformData>();
+                if (parentTransformData != null)
+                {
+                    exportParent = EntityHandle.Get(parentTransformData);
+                }
+            }
+
+            context.OverrideProperty(nameof(parent), exportParent);
+
+            // Get child GameObjects
+            var exportChildren = new DynamicArray<EntityHandle>();
+            foreach (UnityEngine.Transform child in transform)
+            {
+                TransformData childTransformData = child.GetComponent<TransformData>();
+                if (childTransformData != null)
+                {
+                    var exportChild = EntityHandle.Get(childTransformData);
+                    exportChildren.Add(exportChild);
+                }
+            }
+
+            context.OverrideProperty(nameof(children), exportChildren);
         }
     }
 }

@@ -43,7 +43,7 @@ namespace Fox.Core
             ushort dynamicPropertyCount = BitConverter.ToUInt16(headerBytes, 38);
 
             var entityInfo = EntityInfo.GetEntityInfo(new String(classNameHash));
-            var entity = gameObject.AddComponent(entityInfo.Type) as Entity; // EntityInfo.ConstructEntity(new String(classNameHash));
+            var entity = gameObject.AddComponent(entityInfo.Type) as Entity;
 
             bool isReadingDynamicProperty = false;
 

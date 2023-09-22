@@ -107,7 +107,7 @@ namespace Fox.Core
                     continue;
                 }
 
-                UnityEngine.Debug.LogError("Unable to resolve EntityPtr " + setEntityPtr.Key.ToString("X8"));
+                UnityEngine.Debug.LogError($"Unable to resolve EntityPtr 0x{setEntityPtr.Key:X8}");
             }
 
             foreach (KeyValuePair<ulong, HashSet<Action<Entity>>> setEntityHandle in entityHandleSetRequests)
