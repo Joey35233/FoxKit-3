@@ -12,7 +12,7 @@ namespace Fox.Core
         private const uint MagicNumber1 = 0x786f62f2;
         private const uint MagicNumber2 = 0x35;
 
-        private readonly List<Kernel.String> strings = new();
+        private readonly HashSet<Kernel.String> strings = new();
         private readonly Dictionary<Entity, ulong> addresses = new();
         private readonly Dictionary<Entity, ulong> ids = new();
 
@@ -63,7 +63,7 @@ namespace Fox.Core
             int stringTableOffset = (int)writer.BaseStream.Position;
 
             // Remove dupes and write string table
-            foreach (Kernel.String foxString in strings.Distinct())
+            foreach (Kernel.String foxString in strings)
             {
                 if (!System.String.IsNullOrEmpty(foxString.CString))
                 {

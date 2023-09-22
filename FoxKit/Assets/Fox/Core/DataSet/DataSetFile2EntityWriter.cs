@@ -58,9 +58,9 @@ namespace Fox.Core
         private const uint MagicNumber = 0x746e65;
 
         private IDictionary<Entity, ulong> addresses;
-        private List<Kernel.String> strings;
+        private HashSet<Kernel.String> strings;
 
-        public void Write(Entity entity, EntityExportContext exportContext, IDictionary<Entity, ulong> addresses, List<Kernel.String> strings, ulong address, ulong id, Stream output)
+        public void Write(Entity entity, EntityExportContext exportContext, IDictionary<Entity, ulong> addresses, HashSet<Kernel.String> strings, ulong address, ulong id, Stream output)
         {
             this.addresses = addresses;
             this.strings = strings;
@@ -70,7 +70,7 @@ namespace Fox.Core
             output.Position += HeaderSize;
 
             EntityInfo info = entity.GetClassEntityInfo();
-            strings.Add(info.Name);
+            _ = strings.Add(info.Name);
 
             EntityInfo current = info;
             var superClasses = new List<EntityInfo>();
@@ -135,7 +135,7 @@ namespace Fox.Core
 
         private void WriteProperty(Entity entity, EntityExportContext exportContext, PropertyInfo property, BinaryWriter writer)
         {
-            strings.Add(property.Name);
+            _ = strings.Add(property.Name);
 
             Stream output = writer.BaseStream;
             long headerPosition = output.Position;
@@ -186,7 +186,7 @@ namespace Fox.Core
                     continue;
                 }
 
-                strings.Add(item.Key);
+                _ = strings.Add(item.Key);
                 writer.Write(HashingBitConverter.StrCodeToUInt64(item.Key.Hash));
                 WriteCollectionItem(writer, item.Value, property.Type);
                 writer.BaseStream.AlignWrite(16, 0x00);
@@ -247,13 +247,13 @@ namespace Fox.Core
                     writer.Write((bool)item);
                     break;
                 case PropertyInfo.PropertyType.String:
-                    strings.Add(item as Kernel.String);
+                    _ = strings.Add(item as Kernel.String);
                     writer.WriteStrCode((item as Kernel.String).Hash);
                     break;
                 case PropertyInfo.PropertyType.Path:
                 {
                     var str = new Kernel.String((item as Kernel.Path).CString);
-                    strings.Add(str);
+                    _ = strings.Add(str);
                     writer.WriteStrCode(str.Hash);
                 }
                     break;
@@ -278,7 +278,7 @@ namespace Fox.Core
                     writer.Write((UnityEngine.Color)item);
                     break;
                 case PropertyInfo.PropertyType.FilePtr:
-                    strings.Add(new Kernel.String((item as FilePtr).path.CString));
+                    _ = strings.Add(new Kernel.String((item as FilePtr).path.CString));
                     writer.Write(item as FilePtr);
                     break;
                 case PropertyInfo.PropertyType.EntityHandle:
@@ -286,9 +286,9 @@ namespace Fox.Core
                     break;
                 case PropertyInfo.PropertyType.EntityLink:
                     var entityLink = (EntityLink)item;
-                    strings.Add(new Kernel.String(entityLink.packagePath.CString));
-                    strings.Add(new Kernel.String(entityLink.archivePath.CString));
-                    strings.Add(new Kernel.String(entityLink.nameInArchive.CString));
+                    _ = strings.Add(new Kernel.String(entityLink.packagePath.CString));
+                    _ = strings.Add(new Kernel.String(entityLink.archivePath.CString));
+                    _ = strings.Add(new Kernel.String(entityLink.nameInArchive.CString));
                     writer.WriteEntityLink(entityLink, addresses);
                     break;
             }
