@@ -29,6 +29,11 @@ namespace Fox.Core.Utils
             AddWarning($"Property '{propertyName}' is null.");
         }
 
+        public void AddWarningEmptyPath(string propertyName)
+        {
+            AddWarning($"Path '{propertyName}' is empty.");
+        }
+
         public void AddError(string error)
         {
             _ = this.errors.Add(error);
