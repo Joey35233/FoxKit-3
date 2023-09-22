@@ -93,6 +93,7 @@ namespace FoxKit.MenuItems
             }
 
             _ = EditorSceneManager.SaveScene(scene, "Assets/Scenes/" + CsSystem.IO.Path.GetFileName(assetPath) + ".unity");
+            logger.LogToUnityConsole();
         }
     }
 }

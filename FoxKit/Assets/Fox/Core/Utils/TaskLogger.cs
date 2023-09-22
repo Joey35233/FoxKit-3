@@ -21,12 +21,12 @@ namespace Fox.Core.Utils
 
         public void AddWarningMissingAsset(string path)
         {
-            _ = this.warnings.Add($"Unable to find asset at path {path}.");
+            AddWarning($"Unable to find asset at path {path}.");
         }
 
         public void AddWarningNullProperty(string propertyName)
         {
-            _ = this.warnings.Add($"Property '{propertyName}' is null.");
+            AddWarning($"Property '{propertyName}' is null.");
         }
 
         public void AddError(string error)

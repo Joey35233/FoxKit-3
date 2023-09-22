@@ -75,8 +75,6 @@ namespace Fox.Core
 
             ResolveRequests(entities, gameObjects);
 
-            this.logger.LogToUnityConsole();
-
             result.Entities = entities.Values.ToList();
             result.GameObjects = gameObjects.Values.ToList();
             return result;
