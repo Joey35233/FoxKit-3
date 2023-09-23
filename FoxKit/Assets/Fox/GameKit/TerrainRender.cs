@@ -1,8 +1,7 @@
+using Fox.Core;
 using Fox.Core.Utils;
-using Fox.Fio;
 using Fox.Gr;
 using Fox.Kernel;
-using UnityEditor;
 using UnityEngine;
 
 namespace Fox.GameKit
@@ -11,29 +10,24 @@ namespace Fox.GameKit
     {
         public override void InitializeGameObject(GameObject gameObject, TaskLogger logger)
         {
-            Core.TransformEntity transformEntity = transform.Get();
-            if (transformEntity == null)
+            base.InitializeGameObject(gameObject, logger);
+
+            if (filePtr == FilePtr.Empty)
             {
-                Debug.LogWarning($"{name}: transform is null");
+                logger.AddWarningEmptyPath(nameof(filePtr));
+
                 return;
             }
 
-            if (filePath == (Path)null || filePath == Path.Empty)
-                return;
-
-            gameObject.transform.position = transformEntity.translation;
-            gameObject.transform.rotation = transformEntity.rotQuat;
-            gameObject.transform.localScale = transformEntity.scale;
-
-            var path = new Path("Assets/Game" + filePath.CString);
-
-            TerrainMapAsset asset = AssetDatabase.LoadAssetAtPath<TerrainMapAsset>(path.CString + ".asset");
+            TerrainMapAsset asset = AssetManager.LoadAssetAtPath<TerrainMapAsset>(new Path(filePtr.path.CString + ".asset"), out string resolvedPath);
             if (asset == null)
             {
-                using var reader = new FileStreamReader(System.IO.File.OpenRead(path.CString));
-                var tre2Reader = new Fox.Gr.TerrainFileReader(reader);
-                asset = tre2Reader.Read();
-                AssetDatabase.CreateAsset(asset, ".asset");
+                logger.AddWarningMissingAsset(resolvedPath);
+
+                // using var reader = new FileStreamReader(System.IO.File.OpenRead(path.CString));
+                // var tre2Reader = new Fox.Gr.TerrainFileReader(reader);
+                // asset = tre2Reader.Read();
+                // AssetDatabase.CreateAsset(asset, ".asset");
             }
 
             //int heightmapRes = asset.Heightmap.width;
