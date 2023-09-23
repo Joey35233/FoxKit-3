@@ -12,7 +12,7 @@ namespace Fox.Geox
 
         public void DrawGizmos(bool isSelected)
         {
-            if (gameObject.GetComponent<FoxEntity>()?.Entity is not GeoxTrapAreaPath trapPath)
+            if (gameObject.GetComponent<GeoxTrapAreaPath>() is not { } trapPath)
                 return;
 
             Gizmos.color = isSelected ? Color.white : Color;

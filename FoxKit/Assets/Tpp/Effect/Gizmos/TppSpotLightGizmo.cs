@@ -28,7 +28,7 @@ namespace Tpp.Effect
 
         private void DrawGizmos(bool isSelected)
         {
-            if (gameObject.GetComponent<FoxEntity>()?.Entity is not TppSpotLight spotLight)
+            if (gameObject.GetComponent<TppSpotLight>() is not { } spotLight)
                 return;
 
             Gizmos.matrix = transform.localToWorldMatrix;

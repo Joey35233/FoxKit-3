@@ -23,8 +23,7 @@ namespace Fox.Tactical
             Vector3 rootPos = transform.position;
 
             //Get the entity
-            FoxEntity entityComponent = gameObject.GetComponent<FoxEntity>();
-            if (entityComponent?.Entity is GkTacticalAction action)
+            if (gameObject.GetComponent<GkTacticalAction>() is GkTacticalAction action)
             {
                 //Root gizmo
                 Gizmos.color = isSelected ? Color : Color * 0.5f;

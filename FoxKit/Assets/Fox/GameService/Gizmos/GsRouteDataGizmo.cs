@@ -17,7 +17,7 @@ namespace Fox.GameService
 
         private void DrawGizmos(bool isSelected)
         {
-            if (gameObject.GetComponent<Fox.Core.FoxEntity>()?.Entity is not GsRouteData route)
+            if (gameObject.GetComponent<GsRouteData>() is not { } route)
                 return;
 
             Gizmos.color = isSelected ? SelectedColor : DefaultColor;

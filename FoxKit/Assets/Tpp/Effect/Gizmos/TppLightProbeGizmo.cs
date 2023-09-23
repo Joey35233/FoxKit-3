@@ -15,7 +15,7 @@ namespace Tpp.Effect
 
         private void DrawGizmos(bool isSelected)
         {
-            if (gameObject.GetComponent<FoxEntity>()?.Entity is not TppLightProbe)
+            if (gameObject.GetComponent<TppLightProbe>() is not { } lightProbe)
                 return;
 
             Gizmos.matrix = transform.localToWorldMatrix;

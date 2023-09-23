@@ -4,16 +4,24 @@ namespace Fox.Core
 {
     public partial class TransformEntity : Fox.Core.DataElement
     {
-        public static TransformEntity GetDefault() => new() { translation = Vector3.zero, rotQuat = Quaternion.identity, scale = Vector3.one };
+        public static TransformEntity GetDefault()
+        {
+            TransformEntity transform = new GameObject().AddComponent<TransformEntity>();
+            transform.translation = Vector3.zero;
+            transform.rotQuat = Quaternion.identity;
+            transform.scale = Vector3.one;
+
+            return transform;
+        }
 
         protected partial UnityEngine.Vector3 Get_scale() => transform_scale;
         protected partial void Set_scale(UnityEngine.Vector3 value) => transform_scale = value;
 
-        protected partial UnityEngine.Quaternion Get_rotQuat() => Kernel.Math.FoxToUnityQuaternion(transform_rotation_quat);
-        protected partial void Set_rotQuat(UnityEngine.Quaternion value) => transform_rotation_quat = Kernel.Math.UnityToFoxQuaternion(value);
+        protected partial UnityEngine.Quaternion Get_rotQuat() => transform_rotation_quat;
+        protected partial void Set_rotQuat(UnityEngine.Quaternion value) => transform_rotation_quat = value;
 
-        protected partial UnityEngine.Vector3 Get_translation() => Kernel.Math.FoxToUnityVector3(transform_translation);
-        protected partial void Set_translation(UnityEngine.Vector3 value) => transform_translation = Kernel.Math.FoxToUnityVector3(value);
+        protected partial UnityEngine.Vector3 Get_translation() => transform_translation;
+        protected partial void Set_translation(UnityEngine.Vector3 value) => transform_translation = value;
 
         public override void OverridePropertiesForExport(EntityExportContext context)
         {

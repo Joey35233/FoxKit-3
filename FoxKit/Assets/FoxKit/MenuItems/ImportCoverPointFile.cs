@@ -23,7 +23,7 @@ namespace FoxKit.MenuItems
             Scene scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene,NewSceneMode.Single);
             scene.name = $"{Path.GetFileNameWithoutExtension(assetPath)}_fox2_tcvp";
 
-            _ = coverPointReader.Read(reader);
+            coverPointReader.Read(reader);
 
             _ = EditorSceneManager.SaveScene(scene, "Assets/Scenes/" + scene.name + ".unity");
         }

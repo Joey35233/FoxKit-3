@@ -1,5 +1,6 @@
 using Fox.Core.Utils;
 using Fox.Kernel;
+using System;
 using UnityEngine;
 
 namespace Fox.Core
@@ -39,24 +40,30 @@ namespace Fox.Core
 
         public void AddChild(TransformData transformData)
         {
-            children.Add(EntityHandle.Get(transformData));
-            transformData.parent = EntityHandle.Get(this);
+            (transformData as UnityEngine.MonoBehaviour).transform.SetParent((this as UnityEngine.MonoBehaviour).transform);
         }
-
-        public DynamicArray<EntityHandle> GetChildren() => children;
 
         public void SetTransform(TransformEntity transform)
         {
             this.transform = new EntityPtr<TransformEntity>(transform);
             transform.SetOwner(this);
+
+            UpdateTransform();
         }
 
         public override void InitializeGameObject(GameObject gameObject, TaskLogger logger)
         {
+            UpdateTransform();
+
+            base.InitializeGameObject(gameObject, logger);
+        }
+
+        private void UpdateTransform()
+        {
             TransformEntity transformEntity = transform.Get();
             if (transformEntity == null)
             {
-                return;
+                transform = new EntityPtr<TransformEntity>(TransformEntity.GetDefault());
             }
 
             if (inheritTransform)
@@ -71,8 +78,6 @@ namespace Fox.Core
                 gameObject.transform.rotation = transformEntity.rotQuat;
                 gameObject.transform.localScale = transformEntity.scale;
             }
-
-            base.InitializeGameObject(gameObject, logger);
         }
 
         public override void OverridePropertiesForExport(EntityExportContext context)
@@ -82,7 +87,7 @@ namespace Fox.Core
             // Get GameObject's parent
             UnityEngine.Transform transform = this.gameObject.GetComponent<UnityEngine.Transform>();
 
-            var exportParent = EntityHandle.Empty;
+            EntityHandle exportParent = EntityHandle.Empty;
             UnityEngine.Transform parentTransform = transform.parent;
             if (parentTransform != null)
             {
@@ -108,6 +113,13 @@ namespace Fox.Core
             }
 
             context.OverrideProperty(nameof(children), exportChildren);
+        }
+
+        protected void Awake()
+        {
+            visibility = true;
+            inheritTransform = true;
+            selection = true;
         }
     }
 }

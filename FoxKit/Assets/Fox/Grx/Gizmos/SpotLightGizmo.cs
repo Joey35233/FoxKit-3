@@ -28,7 +28,7 @@ namespace Fox.Grx
 
         private void DrawGizmos(bool isSelected)
         {
-            if (gameObject.GetComponent<FoxEntity>()?.Entity is not SpotLight spotLight)
+            if (gameObject.GetComponent<SpotLight>() is not { } spotLight)
                 return;
 
             Gizmos.matrix = transform.localToWorldMatrix;

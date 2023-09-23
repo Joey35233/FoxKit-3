@@ -22,7 +22,7 @@ namespace Tpp.Effect
 
         private void DrawGizmos(bool isSelected)
         {
-            if (gameObject.GetComponent<FoxEntity>()?.Entity is not TppPointLight pointLight)
+            if (gameObject.GetComponent<TppPointLight>() is not { } pointLight)
                 return;
 
             Gizmos.matrix = transform.localToWorldMatrix;

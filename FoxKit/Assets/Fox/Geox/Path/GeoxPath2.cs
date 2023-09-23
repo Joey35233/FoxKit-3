@@ -55,16 +55,11 @@ namespace Fox.Geox
 
             Debug.Assert(header.Type == GeoPrimType.Path);
 
-            var path = new GeoxPath2
-            {
-                enable = true
-            };
+            GeoxPath2 path = new GameObject().AddComponent<GeoxPath2>();
+            path.enable = true;
 
-            var transformEntity = new TransformEntity
-            {
-                owner = EntityHandle.Get(path)
-            };
-            path.transform = new EntityPtr<TransformEntity>(transformEntity);
+            TransformEntity transformEntity = new GameObject().AddComponent<TransformEntity>();
+            path.SetTransform(transformEntity);
 
             path.tags = TagUtils.GetEnumTags<Tags>((ulong)header.GetTags<Tags>());
 
@@ -80,10 +75,8 @@ namespace Fox.Geox
             {
                 reader.Seek(header.GetDataPosition() + (8 * i));
 
-                var edge = new GeoxPathEdge
-                {
-                    owner = EntityHandle.Get(path)
-                };
+                GeoxPathEdge edge = new GameObject().AddComponent<GeoxPathEdge>();
+                edge.SetOwner(path);
 
                 var geoEdgeTags = (GeoxPathEdge.Tags)reader.ReadUInt32();
                 foreach (GeoxPathEdge.Tags tag in Enum.GetValues(geoEdgeTags.GetType()))
@@ -97,10 +90,8 @@ namespace Fox.Geox
                 GraphxSpatialGraphDataNode inNode;
                 if (path.nodes[inNodeIndex].IsNull())
                 {
-                    var node = new GeoxPathNode
-                    {
-                        owner = EntityHandle.Get(path)
-                    };
+                    GeoxPathNode node = new GameObject().AddComponent<GeoxPathNode>();
+                    node.SetOwner(path);
 
                     reader.Seek(header.Position + header.VertexBufferOffset + (16 * inNodeIndex));
                     node.position = reader.ReadPositionF();
@@ -120,10 +111,8 @@ namespace Fox.Geox
                 GraphxSpatialGraphDataNode outNode;
                 if (path.nodes[outNodeIndex].IsNull())
                 {
-                    var node = new GeoxPathNode
-                    {
-                        owner = EntityHandle.Get(path)
-                    };
+                    GeoxPathNode node = new GameObject().AddComponent<GeoxPathNode>();
+                    node.SetOwner(path);
 
                     reader.Seek(header.Position + header.VertexBufferOffset + (16 * outNodeIndex));
                     node.position = reader.ReadPositionF();

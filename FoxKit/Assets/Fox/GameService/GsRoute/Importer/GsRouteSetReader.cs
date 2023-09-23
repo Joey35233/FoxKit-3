@@ -78,7 +78,7 @@ namespace Fox.GameService
 
             var fileVersion = (RouteSetVersion)reader.ReadInt16();
 
-            if (fileVersion != RouteSetVersion.TPP & fileVersion != RouteSetVersion.GZ)
+            if (fileVersion != RouteSetVersion.TPP && fileVersion != RouteSetVersion.GZ)
             {
                 logger.AddError($"Version {fileVersion} isn't supported");
                 return null;
@@ -133,25 +133,16 @@ namespace Fox.GameService
                 ushort nodeCount = reader.ReadUInt16();
                 ushort eventCount = reader.ReadUInt16();
 
-                // Create Unity backing
-                var routeGameObject = new GameObject(id.ToString());
-                var routeData = new GsRouteData
-                {
-                    nodes = new DynamicArray<EntityPtr<GraphxSpatialGraphDataNode>>(nodeCount),
-                    edges = new DynamicArray<EntityPtr<GraphxSpatialGraphDataEdge>>(nodeCount),
-                };
-                var routeTransform = TransformEntity.GetDefault();
-                routeData.inheritTransform = false;
-                routeData.SetTransform(routeTransform);
-                routeGameObject.AddComponent<FoxEntity>().Entity = routeData;
+                GsRouteData routeData = new GameObject(id.ToString()).AddComponent<GsRouteData>();
+                routeData.SetTransform(TransformEntity.GetDefault());
 
                 for (int j = 0; j < nodeCount; j++)
                 {
-                    var edge = new GsRouteDataEdge();
+                    GsRouteDataEdge edge = new GameObject().AddComponent<GsRouteDataEdge>();
                     edge.SetOwner(routeData);
                     routeData.edges.Add(new EntityPtr<GraphxSpatialGraphDataEdge>(edge));
 
-                    var node = new GsRouteDataNode();
+                    GsRouteDataNode node = new GameObject().AddComponent<GsRouteDataNode>();
                     node.SetOwner(routeData);
                     routeData.nodes.Add(new EntityPtr<GraphxSpatialGraphDataNode>(node));
 
@@ -201,14 +192,56 @@ namespace Fox.GameService
                             reader.Skip(4); //inverted isnodeevent thing
 
                         long payloadPosition = reader.BaseStream.Position + 16;
-                        GsRouteDataRouteEventAimPoint aimPoint = eventDef.AimPointType switch
+
+                        GsRouteDataRouteEventAimPoint aimPoint = null;
+                        switch(eventDef.AimPointType)
                         {
-                            GsRouteDataRouteEventAimPoint.Type.NoTarget => new GsRouteDataRtEvAimPointNoTarget { },
-                            GsRouteDataRouteEventAimPoint.Type.StaticPoint => new GsRouteDataRtEvAimPointStaticPoint { position = reader.ReadPositionF() },
-                            GsRouteDataRouteEventAimPoint.Type.Character => new GsRouteDataRtEvAimPointCharacter { characterName = new Kernel.String(reader.ReadStrCode32().ToString()) },
-                            GsRouteDataRouteEventAimPoint.Type.RouteAsSightMovePath => new GsRouteDataRtEvAimPointRouteAsSightMovePath { routeNames = new StaticArray<Kernel.String>(new Kernel.String[] { new Kernel.String(reader.ReadStrCode32().ToString()), new Kernel.String(reader.ReadStrCode32().ToString()), new Kernel.String(reader.ReadStrCode32().ToString()), new Kernel.String(reader.ReadStrCode32().ToString()) }) },
-                            GsRouteDataRouteEventAimPoint.Type.RouteAsObject => new GsRouteDataRtEvAimPointRouteAsObject { routeNames = new StaticArray<Kernel.String>(new Kernel.String[] { new Kernel.String(reader.ReadStrCode32().ToString()), new Kernel.String(reader.ReadStrCode32().ToString()), new Kernel.String(reader.ReadStrCode32().ToString()), new Kernel.String(reader.ReadStrCode32().ToString()) }) },
-                            _ => throw new NotImplementedException(),
+                            case GsRouteDataRouteEventAimPoint.Type.NoTarget:
+                                {
+                                    GsRouteDataRtEvAimPointNoTarget result = new GameObject().AddComponent<GsRouteDataRtEvAimPointNoTarget>();
+                                    aimPoint = result;
+                                }
+                                break;
+                            case GsRouteDataRouteEventAimPoint.Type.StaticPoint:
+                                {
+                                    GsRouteDataRtEvAimPointStaticPoint result = new GameObject().AddComponent<GsRouteDataRtEvAimPointStaticPoint>();
+                                    result.position = reader.ReadPositionF();
+                                    aimPoint = result;
+                                }
+                                break;
+                            case GsRouteDataRouteEventAimPoint.Type.Character:
+                                {
+                                    GsRouteDataRtEvAimPointCharacter result = new GameObject().AddComponent<GsRouteDataRtEvAimPointCharacter>();
+                                    result.characterName = new Kernel.String(reader.ReadStrCode32().ToString());
+                                    aimPoint = result;
+                                }
+                                break;
+                            case GsRouteDataRouteEventAimPoint.Type.RouteAsSightMovePath:
+                                {
+                                    GsRouteDataRtEvAimPointRouteAsSightMovePath result = new GameObject().AddComponent<GsRouteDataRtEvAimPointRouteAsSightMovePath>();
+                                    result.routeNames = new StaticArray<Kernel.String>(new Kernel.String[]
+                                    {
+                                        new (reader.ReadStrCode32().ToString()),
+                                        new (reader.ReadStrCode32().ToString()),
+                                        new (reader.ReadStrCode32().ToString()),
+                                        new (reader.ReadStrCode32().ToString())
+                                    });
+                                    aimPoint = result;
+                                }
+                                break;
+                            case GsRouteDataRouteEventAimPoint.Type.RouteAsObject:
+                                {
+                                    GsRouteDataRtEvAimPointRouteAsObject result = new GameObject().AddComponent<GsRouteDataRtEvAimPointRouteAsObject>();
+                                    result.routeNames = new StaticArray<Kernel.String>(new Kernel.String[]
+                                    {
+                                        new (reader.ReadStrCode32().ToString()),
+                                        new (reader.ReadStrCode32().ToString()),
+                                        new (reader.ReadStrCode32().ToString()),
+                                        new (reader.ReadStrCode32().ToString())
+                                    });
+                                    aimPoint = result;
+                                }
+                                break;
                         };
                         aimPoint.SetOwner(routeData);
                         reader.Seek(payloadPosition);
@@ -248,9 +281,6 @@ namespace Fox.GameService
                     node.Get().outlinks.Add(EntityHandle.Get(nextEdge.Get()));
                     nextEdge.Get().prevNode = EntityHandle.Get(node.Get());
                 }
-
-                // RouteData has been staged. Initialize it.
-                routeData.InitializeGameObject(routeGameObject, logger);
             }
 
             return scene;

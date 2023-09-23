@@ -16,7 +16,7 @@ namespace Fox.Geox
 
         public void OnDrawGizmos()
         {
-            if (gameObject.GetComponent<Fox.Core.FoxEntity>()?.Entity is not GeoxPath2 path)
+            if (gameObject.GetComponent<GeoxPath2>() is not { } path)
                 return;
 
             for (int nodeIndex = 0; nodeIndex < path.nodes.Count; nodeIndex++)

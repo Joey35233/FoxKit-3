@@ -109,11 +109,12 @@ namespace Fox.Editor
 
         private void PasteButton_clicked()
         {
-            if (Int64.TryParse(EditorGUIUtility.systemCopyBuffer, out long address))
+            string copyBuffer = EditorGUIUtility.systemCopyBuffer;
+            if (copyBuffer.StartsWith("FoxObj: "))
             {
-                if (address != UnityEngine.Serialization.ManagedReferenceUtility.RefIdNull)
+                if (Int32.TryParse(copyBuffer.Substring(8), out int instanceID))
                 {
-                    EntityProperty.managedReferenceId = address;
+                    EntityProperty.objectReferenceInstanceIDValue = instanceID;
                     _ = EntityProperty.serializedObject.ApplyModifiedProperties();
                 }
             }
@@ -121,7 +122,7 @@ namespace Fox.Editor
 
         private void DeleteButton_clicked()
         {
-            EntityProperty.managedReferenceId = UnityEngine.Serialization.ManagedReferenceUtility.RefIdNull;
+            EntityProperty.objectReferenceInstanceIDValue = 0;
             _ = EntityProperty.serializedObject.ApplyModifiedProperties();
         }
 
@@ -264,22 +265,21 @@ namespace Fox.Editor
 
         private void OnKeyboardDelete() => value = new EntityHandle();
 
-        private FoxEntity GetDragAndDropObject()
+        private Entity GetDragAndDropObject()
         {
             Object[] references = DragAndDrop.objectReferences;
+            if (references.Length < 1 || references[0] is not GameObject reference || reference.GetComponent<Entity>() is not { } entityReference)
+                return null;
 
-            if (references[0] != null && references[0] is GameObject && (references[0] as GameObject).TryGetComponent<FoxEntity>(out FoxEntity validatedObject))
-            {
-                if (!EditorUtility.IsPersistent(validatedObject))
-                    return validatedObject;
-            }
+            if (!EditorUtility.IsPersistent(entityReference))
+                return entityReference;
 
             return null;
         }
 
         private void OnDragUpdated(EventBase evt)
         {
-            FoxEntity validatedObject = GetDragAndDropObject();
+            Entity validatedObject = GetDragAndDropObject();
             if (validatedObject != null)
             {
                 DragAndDrop.visualMode = DragAndDropVisualMode.Generic;
@@ -291,11 +291,11 @@ namespace Fox.Editor
 
         private void OnDragPerform(EventBase evt)
         {
-            FoxEntity validatedObject = GetDragAndDropObject();
+            Entity validatedObject = GetDragAndDropObject();
             if (validatedObject != null)
             {
                 DragAndDrop.visualMode = DragAndDropVisualMode.Generic;
-                value = EntityHandle.Get(validatedObject.Entity);
+                value = EntityHandle.Get(validatedObject);
 
                 DragAndDrop.AcceptDrag();
                 RemoveFromClassList("unity-object-field-display--accept-drop");

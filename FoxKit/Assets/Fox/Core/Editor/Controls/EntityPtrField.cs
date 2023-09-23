@@ -71,7 +71,7 @@ namespace Fox.Editor
             EntityLabel = new Label();
             Header.Add(EntityLabel);
 
-            CopyButton = new Button(() => EditorGUIUtility.systemCopyBuffer = PtrProperty.managedReferenceId.ToString())
+            CopyButton = new Button(() => EditorGUIUtility.systemCopyBuffer = $"FoxObj: {PtrProperty.objectReferenceInstanceIDValue.ToString()}")
             {
                 text = "Copy"
             };

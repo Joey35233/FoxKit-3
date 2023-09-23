@@ -110,12 +110,10 @@ namespace Fox.GameKit
             if (Selection.activeGameObject is null)
                 return;
 
-            FoxEntity obrGameObject = Selection.activeGameObject.GetComponent<FoxEntity>();
-
-            if (obrGameObject?.Entity is not ObjectBrush)
+            if (Selection.activeGameObject.GetComponent<ObjectBrush>() is not { } objectBrush)
                 return;
 
-            string filePath = EditorUtility.SaveFilePanel("Export to OBR", "", Selection.activeGameObject.name, "obr");
+            string filePath = EditorUtility.SaveFilePanel("Export to OBR", "", objectBrush.name.CString, "obr");
 
             if (System.String.IsNullOrWhiteSpace(filePath))
                 return;

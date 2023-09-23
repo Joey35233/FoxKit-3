@@ -94,6 +94,7 @@
 			{ "name": "ENABLE_SELECTION", "value": 2 },
 			{ "name": "ENABLE_INHERIT_TRANSFORM", "value": 4 },
 			{ "name": "UNKNOWN1", "value": 134217728 },
+			{ "name": "UNKNOWN3", "value": 1073741824 },
 			{ "name": "UNKNOWN2", "value": 2147483648 }
 		]
 	},
