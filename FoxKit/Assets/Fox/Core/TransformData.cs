@@ -55,7 +55,7 @@ namespace Fox.Core
         {
             TransformEntity transformEntity = transform.Get();
             if (transformEntity == null)
-            {                
+            {
                 return;
             }
 
@@ -82,7 +82,7 @@ namespace Fox.Core
             // Get GameObject's parent
             UnityEngine.Transform transform = this.gameObject.GetComponent<UnityEngine.Transform>();
 
-            var exportParent = EntityHandle.Empty();
+            var exportParent = EntityHandle.Empty;
             UnityEngine.Transform parentTransform = transform.parent;
             if (parentTransform != null)
             {

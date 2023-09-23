@@ -27,7 +27,7 @@ namespace Fox.Core
             this.path = path;
         }
 
-        public static FilePtr Empty() => new();
+        public static FilePtr Empty => new();
 
         public static bool operator ==(FilePtr a, FilePtr b) => a.path == b.path;
 

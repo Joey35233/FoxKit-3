@@ -27,7 +27,7 @@ namespace Fox.Core
 
         public static bool operator !=(EntityHandle lhs, EntityHandle rhs) => !lhs.Equals(rhs);
 
-        public static EntityHandle Empty() => new(null);
+        public static EntityHandle Empty => new(null);
 
         public static EntityHandle Get(Entity entity) => new(entity);
 

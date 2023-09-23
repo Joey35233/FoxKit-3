@@ -11,7 +11,7 @@ namespace Fox.GameKit
         {
             base.InitializeGameObject(gameObject, logger);
 
-            if (modelFile == FilePtr.Empty())
+            if (modelFile == FilePtr.Empty)
             {
                 logger.AddWarningEmptyPath(nameof(modelFile));
                 return;

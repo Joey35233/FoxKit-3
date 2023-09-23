@@ -206,7 +206,17 @@ namespace Fox.Core.Serialization
             var nameInArchiveHash = HashingBitConverter.ToStrCode(bytes, 16);
             ulong address = BitConverter.ToUInt64(bytes, 24);
 
-            requestSetEntityHandle(address, (Entity ptr) => setProperty(name, new Value(new EntityLink(EntityHandle.Get(ptr), new Path(unhashString(packagePathHash).CString), new Path(unhashString(archivePathHash).CString), unhashString(nameInArchiveHash)))));
+            var entityLink = new EntityLink
+            {
+                packagePath = new Path(unhashString(packagePathHash).CString),
+                archivePath = new Path(unhashString(archivePathHash).CString),
+                nameInArchive = unhashString(nameInArchiveHash),
+                handle = EntityHandle.Empty,
+            };
+
+            setProperty(name, new Value(entityLink));
+
+            requestSetEntityHandle(address, (Entity ptr) => entityLink.handle = EntityHandle.Get(ptr));
         }
 
         private void ReadEntityHandle(FileStreamReader reader, SetProperty setProperty, String name)
