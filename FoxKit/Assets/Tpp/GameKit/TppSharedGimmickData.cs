@@ -1,7 +1,6 @@
 using Fox.Core;
 using Fox.Core.Utils;
 using System;
-using UnityEditor;
 using UnityEngine;
 
 namespace Tpp.GameKit
@@ -14,47 +13,49 @@ namespace Tpp.GameKit
 
             //FIND MODELS
 
-            string modelFilePath = "/Assets/Game" + modelFile.path.CString;
-            string breakedModelFilePath = "/Assets/Game" + breakedModelFile.path.CString;
-
             bool havesModel = true;
-            if (global::System.String.IsNullOrEmpty(modelFilePath)
-                &&global::System.String.IsNullOrEmpty(breakedModelFilePath))
+            if (modelFile == FilePtr.Empty()
+                && breakedModelFile == FilePtr.Empty())
             {
                 logger.AddWarningMissingAsset(nameof(modelFile));
-                logger.AddWarningMissingAsset(nameof(breakedModelFilePath));
+                logger.AddWarningMissingAsset(nameof(breakedModelFile));
                 havesModel = false;
             }
 
-            string partsPath = "/Game" + partsFile.path.CString;
+            if (partsFile == FilePtr.Empty())
+            {
+                logger.AddWarningEmptyPath(nameof(partsFile));
+                return;
+            }
 
             //LOCATORS
 
-            string locatorPath = "/Game" + locaterFile.path.CString;
-
-            // FIXME Commented out because throwing error if file doesn't exist
-            /*
-            using (var reader = new FileStreamReader(new FileStream(UnityEngine.Application.dataPath + locatorPath, FileMode.Open)))
+            if (locaterFile == FilePtr.Empty())
             {
-                LocatorFileReader.ReadLba(reader, "Assets"+locatorPath);
-            }*/
-            string trimmedLocatorPath = "Assets/" + locatorPath.Remove(0, 1).Replace(".lba", ".asset");
+                logger.AddWarningEmptyPath(nameof(locaterFile));
+                return;
+            }
 
             //PLACE 'EM
 
-            string trimmedPathModelFile = modelFilePath.Remove(0, 1);
-            string trimmedPathBreakedModelFile = breakedModelFilePath.Remove(0, 1);
-            GameObject assetModelFile = AssetDatabase.LoadAssetAtPath<GameObject>(trimmedPathModelFile);
-            GameObject assetBreakedModelFile = AssetDatabase.LoadAssetAtPath<GameObject>(trimmedPathBreakedModelFile);
+            GameObject assetModelFile = AssetManager.LoadAsset<GameObject>(modelFile, out string modelFileUnityPath);
+            GameObject assetBreakedModelFile = AssetManager.LoadAsset<GameObject>(breakedModelFile, out string breakedModelFileUnityPath);
             if (assetModelFile == null
                 && assetBreakedModelFile == null)
             {
-                logger.AddWarningMissingAsset(nameof(trimmedPathModelFile));
-                logger.AddWarningMissingAsset(nameof(trimmedPathBreakedModelFile));
+                logger.AddWarningMissingAsset(modelFileUnityPath);
+                logger.AddWarningMissingAsset(breakedModelFileUnityPath);
                 havesModel = false;
             }
 
-            switch (AssetDatabase.LoadAssetAtPath<ScriptableObject>(trimmedLocatorPath))
+            ScriptableObject locaterAsset = AssetManager.LoadAsset<ScriptableObject>(locaterFile, out string locaterUnityPath);
+            if (locaterAsset == null)
+            {
+                logger.AddWarningMissingAsset(locaterUnityPath);
+                return;
+            }
+
+            switch (locaterAsset)
             {
                 case NamedLocatorBinaryArrayAsset namedAsset:
                     foreach (NamedLocatorBinary locator in namedAsset.locators)
@@ -139,7 +140,7 @@ namespace Tpp.GameKit
                     }
                     break;
                 case null:
-                    logger.AddWarningMissingAsset(trimmedLocatorPath);
+                    logger.AddWarningMissingAsset(locaterUnityPath);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();

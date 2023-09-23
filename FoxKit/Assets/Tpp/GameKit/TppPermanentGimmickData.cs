@@ -1,6 +1,5 @@
 using Fox.Core;
 using Fox.Core.Utils;
-using UnityEditor;
 using UnityEngine;
 
 namespace Tpp.GameKit
@@ -11,91 +10,84 @@ namespace Tpp.GameKit
         {
             base.InitializeGameObject(gameObject, logger);
 
-            string partsPath = "/Game" + partsFile.path.CString;
-            string locatorPath = "/Game" + locaterFile.path.CString;
-
-            // FIXME Commented out 'cuz erroring when file doesn't exist
-            /**
-            using (var reader = new FileStreamReader(new FileStream(UnityEngine.Application.dataPath + locatorPath, FileMode.Open)))
+            if (partsFile == FilePtr.Empty())
             {
-                LocatorFileReader.ReadLba(reader, "Assets" + locatorPath);
-            }*/
+                logger.AddWarningEmptyPath(nameof(partsFile));
+                return;
+            }
 
-            string trimmedLocatorPath = "Assets/" + locatorPath.Remove(0, 1).Replace(".lba", ".asset");
+            if (locaterFile == FilePtr.Empty())
+            {
+                logger.AddWarningEmptyPath(nameof(locaterFile));
+                return;
+            }
+
+            ScriptableObject locaterAsset = AssetManager.LoadAsset<ScriptableObject>(locaterFile, out string locaterUnityPath);
+            if (locaterAsset == null)
+            {
+                logger.AddWarningMissingAsset(locaterUnityPath);
+                return;
+            }
 
             bool havesModel = false;
 
-            var namedAsset = AssetDatabase.LoadAssetAtPath<ScriptableObject>(trimmedLocatorPath) as NamedLocatorBinaryArrayAsset;
-
-            if (namedAsset != null)
+            switch (locaterAsset)
             {
-                foreach (NamedLocatorBinary locator in namedAsset.locators)
-                {
-                    var locatorGameObject = new GameObject() { name = locator.GetLocatorName().CString };
-                    locatorGameObject.transform.position = locator.GetTranslation();
-                    locatorGameObject.transform.rotation = locator.GetRotation();
-                    if (havesModel == false)
+                case NamedLocatorBinaryArrayAsset namedLocaterAsset:
+                    foreach (NamedLocatorBinary locator in namedLocaterAsset.locators)
                     {
-                        PointGizmo gizmo = locatorGameObject.AddComponent<PointGizmo>();
-                        gizmo.Color = Color.cyan;
-                        gizmo.DrawLabel = true;
-                        gizmo.Scale = Vector3.one;
-                        gizmo.ScaleMode = PointGizmo.GizmoScaleMode.Explicit;
+                        var locatorGameObject = new GameObject() { name = locator.GetLocatorName().CString };
+                        locatorGameObject.transform.position = locator.GetTranslation();
+                        locatorGameObject.transform.rotation = locator.GetRotation();
+                        if (havesModel == false)
+                        {
+                            PointGizmo gizmo = locatorGameObject.AddComponent<PointGizmo>();
+                            gizmo.Color = Color.cyan;
+                            gizmo.DrawLabel = true;
+                            gizmo.Scale = Vector3.one;
+                            gizmo.ScaleMode = PointGizmo.GizmoScaleMode.Explicit;
+                        }
+                        locatorGameObject.transform.SetParent(gameObject.transform);
                     }
-                    locatorGameObject.transform.SetParent(gameObject.transform);
-                }
-                return;
-            }
-
-            var scaledAsset = AssetDatabase.LoadAssetAtPath<ScriptableObject>(trimmedLocatorPath) as ScaledLocatorBinaryArrayAsset;
-
-            if (scaledAsset != null)
-            {
-                foreach (ScaledLocatorBinary locator in scaledAsset.locators)
-                {
-                    var locatorGameObject = new GameObject() { name = locator.GetLocatorName().CString };
-                    locatorGameObject.transform.position = locator.GetTranslation();
-                    locatorGameObject.transform.rotation = locator.GetRotation();
-                    locatorGameObject.transform.localScale = locator.GetScale();
-                    if (havesModel == false)
+                    break;
+                case ScaledLocatorBinaryArrayAsset scaledLocatorAsset:
+                    foreach (ScaledLocatorBinary locator in scaledLocatorAsset.locators)
                     {
-                        PointGizmo gizmo = locatorGameObject.AddComponent<PointGizmo>();
-                        gizmo.Color = Color.cyan;
-                        gizmo.DrawLabel = true;
-                        gizmo.Scale = Vector3.one;
-                        gizmo.ScaleMode = PointGizmo.GizmoScaleMode.Explicit;
+                        var locatorGameObject = new GameObject() { name = locator.GetLocatorName().CString };
+                        locatorGameObject.transform.position = locator.GetTranslation();
+                        locatorGameObject.transform.rotation = locator.GetRotation();
+                        locatorGameObject.transform.localScale = locator.GetScale();
+                        if (havesModel == false)
+                        {
+                            PointGizmo gizmo = locatorGameObject.AddComponent<PointGizmo>();
+                            gizmo.Color = Color.cyan;
+                            gizmo.DrawLabel = true;
+                            gizmo.Scale = Vector3.one;
+                            gizmo.ScaleMode = PointGizmo.GizmoScaleMode.Explicit;
+                        }
+                        locatorGameObject.transform.SetParent(gameObject.transform);
                     }
-                    locatorGameObject.transform.SetParent(gameObject.transform);
-                }
-                return;
-            }
-
-            var powerCutAreaAsset = AssetDatabase.LoadAssetAtPath<ScriptableObject>(trimmedLocatorPath) as PowerCutAreaLocatorBinaryArrayAsset;
-
-            if (powerCutAreaAsset != null)
-            {
-                foreach (PowerCutAreaLocatorBinary locator in powerCutAreaAsset.locators)
-                {
-                    var locatorGameObject = new GameObject() { name = name.CString };
-                    locatorGameObject.transform.position = locator.GetTranslation();
-                    locatorGameObject.transform.rotation = locator.GetRotation();
-                    if (havesModel == false)
+                    break;
+                case PowerCutAreaLocatorBinaryArrayAsset powerCutAreaLocaterAsset:
+                    foreach (PowerCutAreaLocatorBinary locator in powerCutAreaLocaterAsset.locators)
                     {
-                        PointGizmo gizmo = locatorGameObject.AddComponent<PointGizmo>();
-                        gizmo.Color = Color.cyan;
-                        gizmo.DrawLabel = true;
-                        gizmo.Scale = Vector3.one;
-                        gizmo.ScaleMode = PointGizmo.GizmoScaleMode.Explicit;
+                        var locatorGameObject = new GameObject() { name = name.CString };
+                        locatorGameObject.transform.position = locator.GetTranslation();
+                        locatorGameObject.transform.rotation = locator.GetRotation();
+                        if (havesModel == false)
+                        {
+                            PointGizmo gizmo = locatorGameObject.AddComponent<PointGizmo>();
+                            gizmo.Color = Color.cyan;
+                            gizmo.DrawLabel = true;
+                            gizmo.Scale = Vector3.one;
+                            gizmo.ScaleMode = PointGizmo.GizmoScaleMode.Explicit;
+                        }
+                        locatorGameObject.transform.SetParent(gameObject.transform);
                     }
-                    locatorGameObject.transform.SetParent(gameObject.transform);
-                }
-                return;
-            }
-
-            if (namedAsset == null && scaledAsset == null && powerCutAreaAsset == null)
-            {
-                logger.AddWarningMissingAsset(trimmedLocatorPath);
-                return;
+                    break;
+                default:
+                    logger.AddWarningMissingAsset(locaterUnityPath);
+                    break;
             }
         }
     }

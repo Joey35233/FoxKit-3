@@ -2,12 +2,30 @@ using Fox.Fio;
 using Fox.Kernel;
 using System.Collections.Generic;
 using System.IO;
-using UnityEditor;
+using UnityEditor.AssetImporters;
 using UnityEngine;
 using String = Fox.Kernel.String;
 
 namespace Tpp.GameKit
 {
+    [ScriptedImporter(0, "lba")]
+    public partial class LocatorFileImporter : ScriptedImporter
+    {
+        public override void OnImportAsset(AssetImportContext context)
+        {
+            using var reader = new FileStreamReader(File.OpenRead(assetPath));
+
+            string name = global::System.IO.Path.GetFileName(context.assetPath);
+
+            ScriptableObject asset = LocatorFileReader.ReadLba(reader);
+            if (asset == null)
+            {
+                return;
+            }
+            context.AddObjectToAsset(name, asset);
+            context.SetMainObject(asset);
+        }
+    }
     /// <summary>
     /// Type of the locators stored in an LBA file. Each LBA file can only contain locators of a single type.
     /// </summary>
@@ -41,22 +59,23 @@ namespace Tpp.GameKit
         /// </summary>
         private const int ScaledLocatorSize = UnscaledLocatorSize + (sizeof(float) * 3) + (sizeof(ushort) * 2);
 
-        [UnityEditor.MenuItem("FoxKit/Debug/LBA/Import LBA")]
+        /*[UnityEditor.MenuItem("FoxKit/Debug/LBA/Import LBA")]
         public static void Import()
         {
-            string assetPath = UnityEditor.EditorUtility.OpenFilePanel("Import asset", global::System.String.Empty, "lba");
-            if (global::System.String.IsNullOrEmpty(assetPath))
+            string readPath = UnityEditor.EditorUtility.OpenFilePanel("Import asset", global::System.String.Empty, "lba");
+            if (global::System.String.IsNullOrEmpty(readPath))
             {
                 return;
             }
 
-            using (var reader = new FileStreamReader(new FileStream(assetPath, FileMode.Open)))
-            {
-                ReadLba(reader,assetPath);
-            }
-        }
+            ScriptableObject asset = ReadLba(new FileStreamReader(new FileStream(readPath, FileMode.Open)));
 
-        public static void ReadLba(FileStreamReader reader, string assetPath)
+            AssetDatabase.CreateAsset(asset, "Assets/Game/"+global::System.IO.Path.GetFileName(readPath)+".asset");
+
+            AssetDatabase.SaveAssets();
+        }*/
+
+        public static ScriptableObject ReadLba(FileStreamReader reader)
         {
 
             reader.Seek(4);
@@ -67,8 +86,6 @@ namespace Tpp.GameKit
 
             var locatorReader = new LocatorFileReader(reader);
 
-            string path = global::System.IO.Path.Combine(global::System.IO.Path.GetDirectoryName(assetPath), global::System.IO.Path.GetFileNameWithoutExtension(assetPath));
-
             switch (type)
             {
                 case LocatorBinaryType.PowerCutArea:
@@ -78,12 +95,8 @@ namespace Tpp.GameKit
 
                     asset.locators = locators;
 
-                    AssetDatabase.CreateAsset(asset, $"{path}.asset");
-
-                    AssetDatabase.SaveAssets();
+                    return asset;
                 }
-
-                break;
                 case LocatorBinaryType.Named:
                 {
                     List<NamedLocatorBinary> locators = locatorReader.ReadNamedLocators();
@@ -91,11 +104,8 @@ namespace Tpp.GameKit
 
                     asset.locators = locators;
 
-                    AssetDatabase.CreateAsset(asset, $"{path}.asset");
-
-                    AssetDatabase.SaveAssets();
+                    return asset;
                 }
-                break;
                 case LocatorBinaryType.Scaled:
                 {
                     List<ScaledLocatorBinary> locators = locatorReader.ReadScaledLocators();
@@ -103,13 +113,12 @@ namespace Tpp.GameKit
 
                     asset.locators = locators;
 
-                    AssetDatabase.CreateAsset(asset, $"{path}.asset");
-
-                    AssetDatabase.SaveAssets();
+                    return asset;
                 }
-                break;
                 default:
-                    return;
+                {
+                    return null;
+                }
             }
         }
 
@@ -220,21 +229,24 @@ namespace Tpp.GameKit
 
         private PowerCutAreaLocatorBinary ReadPowerCutAreaLocator()
         {
-            Vector3 translation = reader.ReadPositionHF();
+            Vector3 translation = reader.ReadPositionF();
+            int w = reader.ReadInt32();
             Quaternion rotation = reader.ReadRotationF();
             return new PowerCutAreaLocatorBinary(translation, rotation);
         }
 
         private NamedLocatorBinary ReadNamedLocator(String locatorName, Fox.Kernel.Path dataSetName)
         {
-            Vector3 translation = reader.ReadPositionHF();
+            Vector3 translation = reader.ReadPositionF();
+            int w = reader.ReadInt32();
             Quaternion rotation = reader.ReadRotationF();
             return new NamedLocatorBinary(translation, rotation, locatorName, dataSetName);
         }
 
         private ScaledLocatorBinary ReadScaledLocator(String locatorName, Fox.Kernel.Path dataSetName)
         {
-            Vector3 translation = reader.ReadPositionHF();
+            Vector3 translation = reader.ReadPositionF();
+            int w = reader.ReadInt32();
             Quaternion rotation = reader.ReadRotationF();
             Vector3 scale = reader.ReadVector3();
             short a = reader.ReadInt16();
