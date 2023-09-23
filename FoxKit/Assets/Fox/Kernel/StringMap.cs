@@ -8,7 +8,6 @@ namespace Fox.Kernel
     public interface IStringMap
     {
         public void Insert(String key, object value);
-        public void Insert(String key);
 
         public bool Remove(String key);
 
@@ -31,13 +30,15 @@ namespace Fox.Kernel
         {
             public Cell(uint distance, String key, T value)
             {
+                Occupied = true;
                 Distance = distance;
                 Key = key;
                 Value = value;
             }
 
-            public override string ToString() => Key is null ? "Empty" : $"{{{Key}, {Value}}}";
+            public override string ToString() => !Occupied ? "Empty" : $"{{{Key}, {Value}}}";
 
+            public bool Occupied;
             public uint Distance;
             public String Key;
             public T Value;
@@ -96,8 +97,6 @@ namespace Fox.Kernel
             HashMask = unchecked((uint)(capacity - 1));
         }
 
-        private bool IsCellEmpty(Cell cell) => cell.Key is null || cell.Key.IsPseudoNull();
-
         private void Resize()
         {
             List<Cell> oldCells = Cells;
@@ -106,15 +105,9 @@ namespace Fox.Kernel
 
             Allocate(newCapacity);
 
-            for (int i = 0; i < oldCells.Count; i++)
-            {
-                Cell oldCell = oldCells[i];
-
-                if (!IsCellEmpty(oldCell))
-                {
+            foreach (Cell oldCell in oldCells)
+                if (oldCell.Occupied)
                     InsertNoResize(oldCell.Key, oldCell.Value);
-                }
-            }
         }
 
         private void InsertNoResize(String key, T value)
@@ -127,7 +120,7 @@ namespace Fox.Kernel
                 Cell cell = Cells[(int)index];
 
                 // If cell is uninitialized
-                if (IsCellEmpty(cell))
+                if (!cell.Occupied)
                 {
                     Cells[(int)index] = new Cell(probeDistance, key, value);
                     return;
@@ -163,7 +156,6 @@ namespace Fox.Kernel
             InsertNoResize(key, value);
         }
         void IStringMap.Insert(String key, object value) => Insert(key, value is T ? (T)value : throw new InvalidCastException());
-        void IStringMap.Insert(String key) => Insert(key, default);
 
         public bool Remove(String key)
         {
@@ -178,7 +170,7 @@ namespace Fox.Kernel
                 Cell cell = Cells[(int)index];
 
                 // If cell is uninitialized
-                if (IsCellEmpty(cell))
+                if (!cell.Occupied)
                 {
                     return false;
                 }
@@ -203,10 +195,11 @@ namespace Fox.Kernel
 
                 Cell nextCell = Cells[(int)nextIndex];
 
-                if (IsCellEmpty(nextCell))
+                if (!nextCell.Occupied)
                 {
                     Cell cell = Cells[(int)index];
                     cell.Key = null;
+                    cell.Occupied = false;
                     Cells[(int)index] = cell;
 
                     break;
@@ -215,6 +208,7 @@ namespace Fox.Kernel
                 {
                     Cell cell = Cells[(int)index];
                     cell.Key = null;
+                    cell.Occupied = false;
                     Cells[(int)index] = cell;
 
                     break;
@@ -226,7 +220,6 @@ namespace Fox.Kernel
                     cell.Distance--;
                     Cells[(int)lastIndex] = cell;
                 }
-
 
                 lastIndex = nextIndex; // Loop index back to 0 if it will exceed Capacity.
             }
@@ -248,7 +241,7 @@ namespace Fox.Kernel
                 Cell cell = Cells[(int)index];
 
                 // If cell is uninitialized
-                if (IsCellEmpty(cell))
+                if (!cell.Occupied)
                 {
                     value = default;
                     return false;
@@ -276,19 +269,13 @@ namespace Fox.Kernel
 
         private float GetAverageProbeCount()
         {
-            float total = 0;
+            uint total = 0;
 
-            for (int i = 0; i < Cells.Count; i++)
-            {
-                Cell cell = Cells[i];
-
-                if (!IsCellEmpty(cell))
-                {
+            foreach (Cell cell in Cells)
+                if (cell.Occupied)
                     total += cell.Distance;
-                }
-            }
 
-            return (total / CellCount) + 1;
+            return ((float)total / CellCount) + 1;
         }
 
         public bool IsFixedSize => false;
@@ -308,7 +295,7 @@ namespace Fox.Kernel
             int i = 0;
             for (int j = -1; j < index; i++)
             {
-                if (!IsCellEmpty(Cells[i]))
+                if (Cells[i].Occupied)
                     j++;
             }
 
@@ -340,10 +327,11 @@ namespace Fox.Kernel
 
                 Cell nextCell = Cells[nextIndex];
 
-                if (IsCellEmpty(nextCell))
+                if (!nextCell.Occupied)
                 {
                     Cell cell = Cells[index];
                     cell.Key = null;
+                    cell.Occupied = false;
                     Cells[index] = cell;
 
                     break;
@@ -352,6 +340,7 @@ namespace Fox.Kernel
                 {
                     Cell cell = Cells[index];
                     cell.Key = null;
+                    cell.Occupied = false;
                     Cells[index] = cell;
 
                     break;
@@ -372,24 +361,7 @@ namespace Fox.Kernel
 
         public void CopyTo(Array array, int index) => throw new NotImplementedException();
 
-        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
-
         public IEnumerator<KeyValuePair<String, T>> GetEnumerator() => new Enumerator(this);
-        public List<KeyValuePair<String, object>> ToList()
-        {
-            var res = new List<KeyValuePair<String, object>>();
-            foreach (Cell cell in this.Cells)
-            {
-                if (this.IsCellEmpty(cell))
-                {
-                    continue;
-                }
-
-                res.Add(new KeyValuePair<String, object>(cell.Key, cell.Value));
-            }
-
-            return res;
-        }
 
         public struct Enumerator : IEnumerator<KeyValuePair<String, T>>, IDictionaryEnumerator
         {
@@ -411,7 +383,7 @@ namespace Fox.Kernel
                 while ((uint)index < (uint)stringMap.Count)
                 {
                     Cell cell = stringMap.Cells[absoluteCellsIndex];
-                    if (cell.Key is not null && !cell.Key.IsPseudoNull())
+                    if (cell.Occupied)
                     {
                         current = new KeyValuePair<String, T>(stringMap.Cells[absoluteCellsIndex].Key, stringMap.Cells[absoluteCellsIndex].Value);
                         absoluteCellsIndex++;
@@ -447,5 +419,23 @@ namespace Fox.Kernel
 
             object IDictionaryEnumerator.Value => (index == 0 || (index == stringMap.Count + 1)) ? throw new IndexOutOfRangeException() : current.Value;
         }
+
+        public List<KeyValuePair<String, object>> ToList()
+        {
+            var res = new List<KeyValuePair<String, object>>();
+            foreach (Cell cell in this.Cells)
+            {
+                if (!cell.Occupied)
+                {
+                    continue;
+                }
+
+                res.Add(new KeyValuePair<String, object>(cell.Key, cell.Value));
+            }
+
+            return res;
+        }
+
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }
 }

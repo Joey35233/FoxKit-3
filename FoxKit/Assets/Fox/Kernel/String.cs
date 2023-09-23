@@ -4,18 +4,18 @@ using UnityEngine;
 
 namespace Fox.Kernel
 {
-    [System.Serializable, StructLayout(LayoutKind.Explicit, Size = 16, CharSet = CharSet.Ansi)]
+    [System.Serializable]
     public class String : System.IEquatable<string>
     {
-        [SerializeField, FieldOffset(0)]
+        [SerializeField]
         private string _cString;
         public string CString => _cString;
 
-        [SerializeField, FieldOffset(8)]
+        [SerializeField]
         private int _length;
         public int Length => _length;
 
-        [SerializeField, FieldOffset(12)]
+        [SerializeField]
         private StrCode _hash;
         public StrCode Hash => _hash;
 
@@ -24,30 +24,31 @@ namespace Fox.Kernel
         /// <summary>
         /// The empty string.
         /// </summary>
-        public static String Empty => new String();
+        public static String Empty => new("");
 
+        // Unfortunately, this must exist because Unity's serialization system tracks this down and screws up certain data structures like StringMap.
         private String()
         {
-            _cString = System.String.Empty;
-            _length = 0;
-            _hash = new StrCode(System.String.Empty);
+            _cString = Empty.CString;
+            _length = Empty.Length;
+            _hash = Empty.Hash;
         }
 
         public String(System.ReadOnlySpan<char> value) : this(new string(value)) { }
 
         public String(string name)
         {
-            if (!System.String.IsNullOrEmpty(name))
+            if (name is null)
+            {
+                _cString = null;
+                _length = -1;
+                _hash = HashingBitConverter.ToStrCode(0);
+            }
+            else
             {
                 _cString = name;
                 _length = name.Length;
                 _hash = new StrCode(name);
-            }
-            else
-            {
-                _cString = Empty.CString;
-                _length = Empty.Length;
-                _hash = Empty.Hash;
             }
         }
 
@@ -57,8 +58,6 @@ namespace Fox.Kernel
             _length = -1;
             _hash = hash;
         }
-
-        public bool IsPseudoNull() => (Length == 0) && (Hash == 0);
 
         public bool IsHashed() => (Length == 0) && (Hash != Empty.Hash);
 

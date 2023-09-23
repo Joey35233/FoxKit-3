@@ -4,52 +4,50 @@ using UnityEngine;
 
 namespace Fox.Kernel
 {
-    [Serializable, StructLayout(LayoutKind.Explicit, Size = 16, CharSet = CharSet.Ansi)]
+    [Serializable]
     public class Path : IEquatable<string>
     {
-        [SerializeField, FieldOffset(0)]
+        [SerializeField]
         private string _cString;
         public string CString => _cString;
 
-        [SerializeField, FieldOffset(8)]
+        [SerializeField]
         private int _length;
         public int Length => _length;
 
-        [SerializeField, FieldOffset(12)]
+        [SerializeField]
         private PathFileNameAndExtCode _hash;
         public PathFileNameAndExtCode Hash => _hash;
 
         public String Extension => Hash.Extension;
 
-        //public PathFileNameAndExtCode Hash32 => (StrCode32)Hash;
-
         /// <summary>
         /// The empty string.
         /// </summary>
-        public static Path Empty => new Path();
+        public static Path Empty => new Path("");
 
         private Path()
         {
-            _cString = System.String.Empty;
-            _length = 0;
-            _hash = new PathFileNameAndExtCode(System.String.Empty);
+            _cString = Empty.CString;
+            _length = Empty.Length;
+            _hash = Empty.Hash;
         }
 
         public Path(ReadOnlySpan<char> value) : this(new string(value)) { }
 
         public Path(string name)
         {
-            if (!System.String.IsNullOrEmpty(name))
+            if (name is null)
+            {
+                _cString = null;
+                _length = -1;
+                _hash = HashingBitConverter.ToPathFileNameAndExtCode(0);
+            }
+            else
             {
                 _cString = name;
                 _length = name.Length;
                 _hash = new PathFileNameAndExtCode(name);
-            }
-            else
-            {
-                _cString = Empty.CString;
-                _length = Empty.Length;
-                _hash = Empty.Hash;
             }
         }
 

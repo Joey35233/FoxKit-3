@@ -96,7 +96,7 @@ namespace Fox.Editor
             {
                 var property = FoxFieldUtils.SerializedPropertyBindEventBindProperty.GetValue(evt) as SerializedProperty;
 
-                if (property.type.StartsWith("Fox.Core.StringMap"))
+                if (property.type.StartsWith("Fox.Kernel.StringMap"))
                 {
                     StringMapProperty = property;
 

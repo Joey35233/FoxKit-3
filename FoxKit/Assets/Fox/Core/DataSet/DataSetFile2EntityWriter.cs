@@ -101,7 +101,7 @@ namespace Fox.Core
                     staticPropertyCount++;
                     WriteProperty(entity, exportContext, staticProperty.Value, writer);
                 }
-            }            
+            }
 
             uint staticDataSize = (uint)(output.Position - headerPosition);
             /**
@@ -257,7 +257,7 @@ namespace Fox.Core
                     writer.WriteStrCode(str.Hash);
                 }
                     break;
-                case PropertyInfo.PropertyType.EntityPtr:                    
+                case PropertyInfo.PropertyType.EntityPtr:
                     writer.WriteEntityPtr((IEntityPtr)item, addresses);
                     break;
                 case PropertyInfo.PropertyType.Vector3:
