@@ -10,13 +10,13 @@ namespace Tpp.GameKit
         {
             base.InitializeGameObject(gameObject, logger);
 
-            if (partsFile == FilePtr.Empty())
+            if (partsFile == FilePtr.Empty)
             {
                 logger.AddWarningEmptyPath(nameof(partsFile));
                 return;
             }
 
-            if (locaterFile == FilePtr.Empty())
+            if (locaterFile == FilePtr.Empty)
             {
                 logger.AddWarningEmptyPath(nameof(locaterFile));
                 return;

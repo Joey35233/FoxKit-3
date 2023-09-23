@@ -14,15 +14,14 @@ namespace Tpp.GameKit
             //FIND MODELS
 
             bool havesModel = true;
-            if (modelFile == FilePtr.Empty()
-                && breakedModelFile == FilePtr.Empty())
+            if (modelFile == FilePtr.Empty && breakedModelFile == FilePtr.Empty)
             {
                 logger.AddWarningMissingAsset(nameof(modelFile));
                 logger.AddWarningMissingAsset(nameof(breakedModelFile));
                 havesModel = false;
             }
 
-            if (partsFile == FilePtr.Empty())
+            if (partsFile == FilePtr.Empty)
             {
                 logger.AddWarningEmptyPath(nameof(partsFile));
                 return;
@@ -30,7 +29,7 @@ namespace Tpp.GameKit
 
             //LOCATORS
 
-            if (locaterFile == FilePtr.Empty())
+            if (locaterFile == FilePtr.Empty)
             {
                 logger.AddWarningEmptyPath(nameof(locaterFile));
                 return;
