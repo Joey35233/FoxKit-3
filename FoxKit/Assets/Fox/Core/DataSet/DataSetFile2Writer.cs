@@ -24,7 +24,13 @@ namespace Fox.Core
         {
             EditorUtility.DisplayProgressBar("FoxKit", "Gathering Entities...", 0);
 
-            List<Entity> entities = GetEntitiesToExport(sceneToExport);
+            List<Entity> entities = GetEntitiesToExport(sceneToExport, out CreateDataSetResult result);
+            if (result == CreateDataSetResult.Failure)
+            {
+                EditorUtility.ClearProgressBar();
+                return;
+            }
+
             IDictionary<Entity, EntityExportContext> exportContexts = new Dictionary<Entity, EntityExportContext>();
 
             EditorUtility.DisplayProgressBar("FoxKit", "Converting Entities...", 0);
@@ -115,17 +121,23 @@ namespace Fox.Core
             return endPosition;
         }
 
-        private List<Entity> GetEntitiesToExport(UnityEngine.SceneManagement.Scene sceneToExport)
+        private List<Entity> GetEntitiesToExport(UnityEngine.SceneManagement.Scene sceneToExport, out CreateDataSetResult result)
         {
             var entities = (from Entity entityComponent in GameObject.FindObjectsOfType<Entity>()
                             where entityComponent.ShouldWriteToFox2() && entityComponent.gameObject.scene == sceneToExport
                             select entityComponent).ToList();
 
-            CreateDataSet(entities);
+            result = CreateDataSet(entities);
             return entities;
         }
 
-        private static void CreateDataSet(List<Entity> entities)
+        enum CreateDataSetResult
+        {
+            Success,
+            Failure
+        }
+
+        private static CreateDataSetResult CreateDataSet(List<Entity> entities)
         {
             var dataSet = entities.FirstOrDefault(ent => ent is DataSet) as DataSet;
             if (dataSet == null)
@@ -138,9 +150,15 @@ namespace Fox.Core
             dataSet.ClearData();
 
             int dataSetIndex = -1;
+            var usedNames = new HashSet<string>();
             for (int i = 0; i < entities.Count; i++)
             {
                 Entity entity = entities[i];
+                if (usedNames.Contains(entity.name))
+                {
+                    Debug.LogError($"Two or more Entities share a name ('{entity.name}'). Exported Entities require unique names.");
+                    return CreateDataSetResult.Failure;
+                }
                 if (entity is DataSet)
                 {
                     dataSetIndex = i;
@@ -149,12 +167,15 @@ namespace Fox.Core
                 if (entity is Data)
                 {
                     var data = entity as Data;
-                    dataSet.AddData(data.name, new EntityPtr<Data>(data));
+
                     data.SetDataSet(EntityHandle.Get(dataSet));
                 }
+
+                _ = usedNames.Add(entity.name);
             }
 
             MoveItemAtIndexToFront(entities, dataSetIndex);
+            return CreateDataSetResult.Success;
         }
 
         /// <summary>
