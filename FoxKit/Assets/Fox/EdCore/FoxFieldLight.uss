@@ -232,22 +232,22 @@
     border-bottom-left-radius: 0;
 }
 
-.fox-stringmap 
+.fox-stringmap
 {
     flex-grow: 1;
 }
 
-.fox-stringmap-key-field .unity-label,.fox-stringmap-value-field .unity-label 
+.fox-stringmap-key-field .unity-label,.fox-stringmap-value-field .unity-label
 {
     min-width: 28px;
 }
 
-.fox-stringmap-key-field .unity-base-field,.fox-stringmap-value-field .unity-base-field 
+.fox-stringmap-key-field .unity-base-field,.fox-stringmap-value-field .unity-base-field
 {
     flex-grow: 1;
 }
 
-.fox-stringmap-value-field .unity-base-field__input 
+.fox-stringmap-value-field .unity-base-field__input
 {
     margin-right: 0;
 }
