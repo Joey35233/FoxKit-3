@@ -154,11 +154,6 @@ namespace Fox.Core
             for (int i = 0; i < entities.Count; i++)
             {
                 Entity entity = entities[i];
-                if (usedNames.Contains(entity.name))
-                {
-                    Debug.LogError($"Two or more Entities share a name ('{entity.name}'). Exported Entities require unique names.");
-                    return CreateDataSetResult.Failure;
-                }
                 if (entity is DataSet)
                 {
                     dataSetIndex = i;
@@ -166,6 +161,12 @@ namespace Fox.Core
                 }
                 if (entity is Data)
                 {
+                    if (usedNames.Contains(entity.name))
+                    {
+                        Debug.LogError($"Two or more Datas share a name ('{entity.name}'). Exported Datas require unique names.");
+                        return CreateDataSetResult.Failure;
+                    }
+
                     var data = entity as Data;
 
                     data.SetDataSet(EntityHandle.Get(dataSet));

@@ -16,8 +16,8 @@ namespace Tpp.GameKit
             bool hasModel = true;
             if (modelFile == FilePtr.Empty && breakedModelFile == FilePtr.Empty)
             {
-                logger.AddWarningMissingAsset(nameof(modelFile));
-                logger.AddWarningMissingAsset(nameof(breakedModelFile));
+                logger.AddWarningEmptyPath(nameof(modelFile));
+                logger.AddWarningEmptyPath(nameof(breakedModelFile));
                 hasModel = false;
             }
 
