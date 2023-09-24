@@ -88,10 +88,15 @@ namespace Tpp.Effect
         protected partial TppLightProbe_PackingGeneration Get_packingGeneration() => throw new CsSystem.NotImplementedException();
         protected partial void Set_packingGeneration(TppLightProbe_PackingGeneration value) => throw new CsSystem.NotImplementedException();
 
-        public override void InitializeGameObject(GameObject gameObject, TaskLogger logger)
+        private void DrawGizmos(bool isSelected)
         {
-            _ = gameObject.AddComponent<TppLightProbeGizmo>();
-            base.InitializeGameObject(gameObject, logger);
+            Gizmos.matrix = (this as MonoBehaviour).transform.localToWorldMatrix;
+
+            Gizmos.DrawWireCube(Vector3.zero, Vector3.one);
         }
+
+        private void OnDrawGizmos() => DrawGizmos(false);
+
+        private void OnDrawGizmosSelected() => DrawGizmos(true);
     }
 }

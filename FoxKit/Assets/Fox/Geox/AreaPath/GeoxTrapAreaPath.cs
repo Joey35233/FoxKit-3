@@ -10,21 +10,13 @@ namespace Fox.Geox
 {
     public partial class GeoxTrapAreaPath : Fox.Graphx.GraphxPathData
     {
-        public override void InitializeGameObject(GameObject gameObject, TaskLogger logger)
-        {
-            base.InitializeGameObject(gameObject, logger);
-            _ = gameObject.AddComponent<GeoxTrapAreaPathGizmo>();
-        }
-
         public static GeoTriggerTrap Deserialize(GeomHeaderContext header)
         {
             FileStreamReader reader = header.Reader;
 
             Debug.Assert(header.Type == GeoPrimType.AreaPath);
 
-            //GameObject triggerTrapGameObject = new GameObject(header.Name.ToString());
-            var triggerTrap = new GeoTriggerTrap();
-            //triggerTrapGameObject.AddComponent<FoxEntity>().Entity = triggerTrap;
+            GeoTriggerTrap triggerTrap = new GameObject(header.Name.ToString()).AddComponent<GeoTriggerTrap>();
             var triggerTrapTransformEntity = TransformEntity.GetDefault();
             triggerTrap.inheritTransform = false;
             triggerTrap.SetTransform(triggerTrapTransformEntity);
@@ -101,5 +93,35 @@ namespace Fox.Geox
 
             return triggerTrap;
         }
+
+        private static readonly Color Color = Color.red;
+
+        public void DrawGizmos(bool isSelected)
+        {
+            if (gameObject.GetComponent<GeoxTrapAreaPath>() is not { } trapPath)
+                return;
+
+            Gizmos.matrix = Matrix4x4.identity;
+            Gizmos.color = isSelected ? Color.white : Color;
+
+            foreach (EntityPtr<GraphxSpatialGraphDataEdge> edgePtr in trapPath.edges)
+            {
+                GraphxSpatialGraphDataEdge edge = edgePtr.Get();
+                var prevNode = edge.prevNode.Entity as GraphxSpatialGraphDataNode;
+                var nextNode = edge.nextNode.Entity as GraphxSpatialGraphDataNode;
+
+                float yMin = (this as MonoBehaviour).transform.position.y;
+                float yMax = yMin + trapPath.height;
+
+                Gizmos.DrawLine(new Vector3(prevNode.position.x, yMin, prevNode.position.z), new Vector3(nextNode.position.x, yMin, nextNode.position.z));
+                Gizmos.DrawLine(new Vector3(prevNode.position.x, yMax, prevNode.position.z), new Vector3(nextNode.position.x, yMax, nextNode.position.z));
+
+                Gizmos.DrawLine(new Vector3(nextNode.position.x, yMin, nextNode.position.z), new Vector3(nextNode.position.x, yMax, nextNode.position.z));
+            }
+        }
+
+        public void OnDrawGizmos() => DrawGizmos(false);
+
+        public void OnDrawGizmosSelected() => DrawGizmos(true);
     }
 }

@@ -188,7 +188,6 @@ namespace Fox.Grx
                     new Kernel.Path(""),
                     irradiationPoint.name
                 );
-                Object.DestroyImmediate(irradiationPoint.GetComponent<Core.BoxGizmo>());
             }
         }
 
@@ -269,7 +268,6 @@ namespace Fox.Grx
                     new Kernel.Path(""),
                     irradiationPoint.name
                 );
-                Object.DestroyImmediate(irradiationPoint.GetComponent<Core.BoxGizmo>());
             }
         }
 

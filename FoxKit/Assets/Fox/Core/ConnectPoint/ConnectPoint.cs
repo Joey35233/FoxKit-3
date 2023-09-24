@@ -1,20 +1,24 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Fox.Core
 {
-    [DisallowMultipleComponent]
-    [RequireComponent(typeof(PointGizmo))]
     public class ConnectPoint : MonoBehaviour
     {
-        private void Reset()
+        private readonly PointGizmo Gizmo = new() { ScaleMode = PointGizmo.GizmoScaleMode.InheritLocal, Scale = new Vector3(0.05f, 0.05f, 0.05f) };
+
+        public void OnDrawGizmos()
         {
-            PointGizmo pointGizmo = gameObject.GetComponent<PointGizmo>();
-            if (pointGizmo is not null)
-            {
-                pointGizmo.ScaleMode = PointGizmo.GizmoScaleMode.InheritLocal;
-                pointGizmo.Scale = new Vector3(0.05f, 0.05f, 0.05f);
-                pointGizmo.DrawLabel = true;
-            }
+            Gizmo.Transform = (this as MonoBehaviour).transform;
+            Gizmo.Label = (this as MonoBehaviour).name;
+            Gizmo.OnDrawGizmos();
+        }
+
+        public void OnDrawGizmosSelected()
+        {
+            Gizmo.Transform = (this as MonoBehaviour).transform;
+            Gizmo.Label = null;
+            Gizmo.OnDrawGizmos();
         }
     }
 }

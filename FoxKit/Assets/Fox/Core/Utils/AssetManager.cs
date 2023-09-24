@@ -13,8 +13,7 @@ namespace Fox.Core
 
         public static T LoadAssetAtPathWithExtensionReplacement<T>(Kernel.Path path, string newExtension, out string unityPath) where T : UnityEngine.Object
         {
-            string oldExtension = System.IO.Path.GetExtension(path.CString);
-            unityPath = "Assets/Game" + path.CString.Replace(oldExtension, newExtension);
+            unityPath = "Assets/Game" + path.CString + '.' + newExtension;
             T asset = AssetDatabase.LoadAssetAtPath<T>(unityPath);
             return asset;
         }

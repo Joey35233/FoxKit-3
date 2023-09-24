@@ -7,9 +7,9 @@ namespace Fox.GameKit
 {
     public partial class StaticModelArray : Data
     {
-        public override void InitializeGameObject(GameObject gameObject, TaskLogger logger)
+        public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
         {
-            base.InitializeGameObject(gameObject, logger);
+            base.OnDeserializeEntity(gameObject, logger);
 
             if (modelFile == FilePtr.Empty)
             {
@@ -26,14 +26,13 @@ namespace Fox.GameKit
 
             foreach (Matrix4x4 transform in transforms)
             {
-                var instance = GameObject.Instantiate(asset);
+                GameObject instance = GameObject.Instantiate(asset, gameObject.transform, false);
                 Matrix4x4 unityTransform = Kernel.Math.FoxToUnityMatrix(transform);
                 instance.transform.position = unityTransform.GetPosition();
                 //instance.transform.rotation = unityTransform.rotation;
                 //instance.transform.position = Kernel.Math.FoxToUnityVector3(transform.GetPosition());
                 instance.transform.rotation = Kernel.Math.FoxToUnityQuaternion(transform.rotation);
                 instance.transform.localScale = transform.lossyScale;
-                instance.transform.SetParent(gameObject.transform, false);
             }
         }
     }

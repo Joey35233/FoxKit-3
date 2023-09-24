@@ -6,16 +6,18 @@ namespace Fox.Core
     /// <summary>
     /// Draws a sphere gizmo in the scene.
     /// </summary>
-    [DisallowMultipleComponent, ExecuteInEditMode, SelectionBase]
-    public class SphereGizmo : MonoBehaviour
+    public class SphereGizmo
     {
+        public UnityEngine.Transform Transform = null;
+        public string Label = null;
         public Color Color = Color.red;
-
-        public bool DrawLabel = false;
 
         private void DrawGizmos(bool isSelected)
         {
-            Gizmos.matrix = transform.localToWorldMatrix;
+            if (Transform is null)
+                return;
+
+            Gizmos.matrix = Transform.localToWorldMatrix;
 
             Color faceColor = Color;
             faceColor.a = isSelected ? 0.5f : 0.25f;
@@ -31,12 +33,12 @@ namespace Fox.Core
             Gizmos.color = edgeColor;
             Gizmos.DrawWireSphere(Vector3.zero, 1.0f);
 
-            if (DrawLabel)
-                Handles.Label(transform.position, gameObject.name);
+            if (!isSelected && Label is not null)
+                Handles.Label(Transform.position, Label);
         }
 
-        private void OnDrawGizmos() => DrawGizmos(false);
+        public void OnDrawGizmos() => DrawGizmos(false);
 
-        private void OnDrawGizmosSelected() => DrawGizmos(true);
+        public void OnDrawGizmosSelected() => DrawGizmos(true);
     }
 }

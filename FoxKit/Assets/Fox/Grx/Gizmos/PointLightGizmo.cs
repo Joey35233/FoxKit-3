@@ -1,40 +1,35 @@
 ﻿using Fox.Core;
-using System;
+using UnityEditor;
 using UnityEngine;
 
 namespace Fox.Grx
 {
-    [DisallowMultipleComponent, ExecuteInEditMode, SelectionBase]
-    public class PointLightGizmo : MonoBehaviour
+    public class PointLightGizmo
     {
-        [NonSerialized]
-        public Color BoxColor = new(0.22f, 0.765f, 0.961f);
-
-        [NonSerialized]
-        public Color SphereColor = new(0.765f, 0.22f, 0.961f);
-
-        [HideInInspector]
-        public Vector3 OriginScale = Vector3.one * 0.5f;
-
-        [NonSerialized]
-        public bool DrawLabel = false;
+        public UnityEngine.Transform Transform = null;
+        public string Label = null;
+        public float OuterRange = 1;
+        private Color SphereColor = new(0.765f, 0.22f, 0.961f);
+        private Vector3 OriginScale = Vector3.one * 0.5f;
 
         private void DrawGizmos(bool isSelected)
         {
-            if (gameObject.GetComponent<PointLight>() is not { } pointLight)
+            if (Transform is null)
                 return;
 
-            Gizmos.matrix = transform.localToWorldMatrix;
-
-            Gizmos.color = ColorUtils.AdjustColorForWhitePoint(6500, 0, pointLight.color, 1.5e+07f);
+            Gizmos.color = isSelected ? Color.white : SphereColor;
+            Gizmos.matrix = Transform.localToWorldMatrix;
             Gizmos.DrawWireCube(Vector3.zero, OriginScale);
 
-            Gizmos.color = SphereColor;
-            Gizmos.DrawWireSphere(Vector3.zero, pointLight.outerRange);
+            if (isSelected)
+                Gizmos.DrawWireSphere(Vector3.zero, OuterRange);
+
+            if (!isSelected && Label is not null)
+                Handles.Label(Transform.position, Label);
         }
 
-        private void OnDrawGizmos() => DrawGizmos(false);
+        public void OnDrawGizmos() => DrawGizmos(false);
 
-        private void OnDrawGizmosSelected() => DrawGizmos(true);
+        public void OnDrawGizmosSelected() => DrawGizmos(true);
     }
 }

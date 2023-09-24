@@ -1,5 +1,6 @@
 using Fox.Core.Utils;
 using Fox.Kernel;
+using System;
 using UnityEngine;
 
 namespace Fox.Grx
@@ -44,10 +45,22 @@ namespace Fox.Grx
         protected partial bool Get_hasSpecular() => FlagUtils.GetFlag(lightFlags, 3);
         protected partial void Set_hasSpecular(bool value) => lightFlags = FlagUtils.SetFlag(lightFlags, 3, value);
 
-        public override void InitializeGameObject(GameObject gameObject, TaskLogger logger)
+        private PointLightGizmo Gizmo = new PointLightGizmo();
+
+        private void DrawGizmos(bool isSelected)
         {
-            _ = gameObject.AddComponent<PointLightGizmo>();
-            base.InitializeGameObject(gameObject, logger);
+            Gizmo.Transform = (this as MonoBehaviour).transform;
+            Gizmo.Label = isSelected ? (this as MonoBehaviour).name : null;
+            Gizmo.OuterRange = outerRange;
+
+            if (isSelected)
+                Gizmo.OnDrawGizmosSelected();
+            else
+                Gizmo.OnDrawGizmos();
         }
+
+        private void OnDrawGizmos() => DrawGizmos(false);
+
+        private void OnDrawGizmosSelected() => DrawGizmos(true);
     }
 }

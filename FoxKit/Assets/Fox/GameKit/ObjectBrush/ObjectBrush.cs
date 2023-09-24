@@ -11,9 +11,9 @@ namespace Fox.GameKit
 {
     public partial class ObjectBrush : Fox.Core.TransformData
     {
-        public override void InitializeGameObject(GameObject gameObject, TaskLogger logger)
+        public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
         {
-            base.InitializeGameObject(gameObject, logger);
+            base.OnDeserializeEntity(gameObject, logger);
 
             string obrPath = "/Game" + obrFile.path.CString;
             if (System.String.IsNullOrEmpty(obrPath))
@@ -84,17 +84,17 @@ namespace Fox.GameKit
                     Debug.LogWarning($"{name}: pluginHandle #{obj.GetPluginBrushIndex()} is not ObjectBrushPlugin");
                 }
 
-                if (!instantiated)
-                {
-                    instanceGameObject = new GameObject();
-                    instanceGameObject.transform.position = transform.translation;
-                    instanceGameObject.transform.rotation = transform.rotation_quat;
-                    instanceGameObject.transform.localScale = transform.scale;
-                    instanceGameObject.transform.SetParent(gameObject.transform, false);
-                    PointGizmo gizmo = instanceGameObject.AddComponent<PointGizmo>();
-                    gizmo.Color = Color.green;
-                    gizmo.Scale = Vector3.one;
-                }
+                // if (!instantiated)
+                // {
+                //     instanceGameObject = new GameObject();
+                //     instanceGameObject.transform.position = transform.translation;
+                //     instanceGameObject.transform.rotation = transform.rotation_quat;
+                //     instanceGameObject.transform.localScale = transform.scale;
+                //     instanceGameObject.transform.SetParent(gameObject.transform, false);
+                //     PointGizmo gizmo = instanceGameObject.AddComponent<PointGizmo>();
+                //     gizmo.Color = Color.green;
+                //     gizmo.Scale = Vector3.one;
+                // }
             }
         }
         //joey func, but perhaps pointlessly dynamic!

@@ -1,7 +1,9 @@
 using Fox.Core.Utils;
 using Fox.Kernel;
 using System;
+using UnityEditor;
 using UnityEngine;
+using Math = Fox.Kernel.Math;
 
 namespace Fox.Core
 {
@@ -51,20 +53,22 @@ namespace Fox.Core
             UpdateTransform();
         }
 
-        public override void InitializeGameObject(GameObject gameObject, TaskLogger logger)
+        public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
         {
             UpdateTransform();
 
-            base.InitializeGameObject(gameObject, logger);
+            base.OnDeserializeEntity(gameObject, logger);
         }
 
         private void UpdateTransform()
         {
+            if (transform.IsNull())
+                SetTransform(TransformEntity.GetDefault());
+
             TransformEntity transformEntity = transform.Get();
-            if (transformEntity == null)
-            {
-                transform = new EntityPtr<TransformEntity>(TransformEntity.GetDefault());
-            }
+            transformEntity.translation = Math.FoxToUnityVector3(transformEntity.translation);
+            transformEntity.rotQuat = Math.FoxToUnityQuaternion(transformEntity.rotQuat);
+            transformEntity.scale = transformEntity.scale;
 
             if (inheritTransform)
             {
@@ -115,7 +119,7 @@ namespace Fox.Core
             context.OverrideProperty(nameof(children), exportChildren);
         }
 
-        protected void Awake()
+        public virtual void Awake()
         {
             visibility = true;
             inheritTransform = true;

@@ -6,9 +6,9 @@ namespace Fox.GameKit
 {
     public partial class StaticModel : TransformData
     {
-        public override void InitializeGameObject(GameObject gameObject, TaskLogger logger)
+        public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
         {
-            base.InitializeGameObject(gameObject, logger);
+            base.OnDeserializeEntity(gameObject, logger);
 
             if (modelFile == FilePtr.Empty)
             {
@@ -23,8 +23,7 @@ namespace Fox.GameKit
                 return;
             }
 
-            var instance = GameObject.Instantiate(asset);
-            instance.transform.SetParent(gameObject.transform, false);
+            Instantiate(asset, gameObject.transform, false);
         }
     }
 }

@@ -1,4 +1,6 @@
 using Fox.Core.Utils;
+using System;
+using UnityEditor;
 using UnityEngine;
 
 namespace Fox.Core
@@ -7,18 +9,29 @@ namespace Fox.Core
     {
         protected partial UnityEngine.Vector3 Get_size()
         {
-            TransformEntity transformEntity = transform.Get();
-            return transformEntity.scale / 2;
+            UnityEngine.Transform transform = (this as MonoBehaviour).transform;
+            return transform.localScale / 2;
         }
         protected partial void Set_size(UnityEngine.Vector3 value)
         {
-            TransformEntity transformEntity = transform.Get();
-            transformEntity.scale = 2 * value;
+            UnityEngine.Transform transform = (this as MonoBehaviour).transform;
+            transform.localScale = 2 * value;
         }
-        public override void InitializeGameObject(GameObject gameObject, TaskLogger logger)
+
+        private readonly BoxGizmo Gizmo = new BoxGizmo();
+
+        public void OnDrawGizmos()
         {
-            base.InitializeGameObject(gameObject, logger);
-            _ = gameObject.AddComponent<BoxGizmo>();
+            Gizmo.Transform = (this as MonoBehaviour).transform;
+            Gizmo.Label = (this as MonoBehaviour).name;
+            Gizmo.OnDrawGizmos();
+        }
+
+        public void OnDrawGizmosSelected()
+        {
+            Gizmo.Transform = (this as MonoBehaviour).transform;
+            Gizmo.Label = null;
+            Gizmo.OnDrawGizmos();
         }
     }
 }

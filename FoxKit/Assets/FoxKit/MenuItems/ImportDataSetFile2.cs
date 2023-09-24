@@ -76,7 +76,7 @@ namespace FoxKit.MenuItems
                     gameObject.transform.SetParent(readResult.DataSetGameObject.transform);
                 }
 
-                entity.InitializeGameObject(gameObject, logger);
+                entity.OnDeserializeEntity(gameObject, logger);
             }
 
             foreach (Entity entity in transformGameObjects.Keys)

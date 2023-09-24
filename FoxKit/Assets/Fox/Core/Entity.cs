@@ -59,7 +59,7 @@ namespace Fox.Core
         /// Called after importing a DataSet. Use to initialize scene data.
         /// </summary>
         /// <param name="gameObject">The assigned GameObject.</param>
-        public virtual void InitializeGameObject(GameObject gameObject, TaskLogger logger)
+        public virtual void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
         {
 
         }

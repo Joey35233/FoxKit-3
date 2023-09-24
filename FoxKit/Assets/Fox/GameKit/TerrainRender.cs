@@ -8,9 +8,9 @@ namespace Fox.GameKit
 {
     public partial class TerrainRender : Fox.Core.TransformData
     {
-        public override void InitializeGameObject(GameObject gameObject, TaskLogger logger)
+        public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
         {
-            base.InitializeGameObject(gameObject, logger);
+            base.OnDeserializeEntity(gameObject, logger);
 
             if (filePtr == FilePtr.Empty)
             {
@@ -19,7 +19,7 @@ namespace Fox.GameKit
                 return;
             }
 
-            TerrainMapAsset asset = AssetManager.LoadAssetAtPath<TerrainMapAsset>(new Path(filePtr.path.CString + ".asset"), out string resolvedPath);
+            TerrainMapAsset asset = AssetManager.LoadAssetWithExtensionReplacement<TerrainMapAsset>(filePtr, "asset", out string resolvedPath);
             if (asset == null)
             {
                 logger.AddWarningMissingAsset(resolvedPath);

@@ -1,3 +1,4 @@
+using Fox.Core;
 using Fox.Core.Utils;
 using Fox.Kernel;
 using UnityEngine;
@@ -43,10 +44,27 @@ namespace Fox.Grx
         protected partial bool Get_hasSpecular() => FlagUtils.GetFlag(lightFlags, 3);
         protected partial void Set_hasSpecular(bool value) => lightFlags = FlagUtils.SetFlag(lightFlags, 3, value);
 
-        public override void InitializeGameObject(GameObject gameObject, TaskLogger logger)
+        private SpotLightGizmo Gizmo = new SpotLightGizmo();
+
+        private void DrawGizmos(bool isSelected)
         {
-            _ = gameObject.AddComponent<SpotLightGizmo>();
-            base.InitializeGameObject(gameObject, logger);
+            Gizmo.Transform = (this as MonoBehaviour).transform;
+            Gizmo.Label = isSelected ? (this as MonoBehaviour).name : null;
+            Gizmo.Axis = reachPoint.normalized;
+            Gizmo.UmbraAngle = umbraAngle;
+            Gizmo.PenumbraAngle = penumbraAngle;
+            Gizmo.ShadowUmbraAngle = shadowUmbraAngle;
+            Gizmo.ShadowPenumbraAngle = shadowPenumbraAngle;
+            Gizmo.OuterRange = outerRange;
+
+            if (isSelected)
+                Gizmo.OnDrawGizmosSelected();
+            else
+                Gizmo.OnDrawGizmos();
         }
+
+        private void OnDrawGizmos() => DrawGizmos(false);
+
+        private void OnDrawGizmosSelected() => DrawGizmos(true);
     }
 }

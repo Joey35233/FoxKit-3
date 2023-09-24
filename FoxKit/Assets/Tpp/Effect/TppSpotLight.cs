@@ -1,5 +1,6 @@
 using Fox;
 using Fox.Core.Utils;
+using Fox.Grx;
 using Fox.Kernel;
 using UnityEngine;
 using CsSystem = System;
@@ -38,10 +39,27 @@ namespace Tpp.Effect
         protected partial Path Get_importFilePath() => throw new CsSystem.NotImplementedException();
         protected partial void Set_importFilePath(Path value) => throw new CsSystem.NotImplementedException();
 
-        public override void InitializeGameObject(GameObject gameObject, TaskLogger logger)
+        private SpotLightGizmo Gizmo = new SpotLightGizmo();
+
+        private void DrawGizmos(bool isSelected)
         {
-            _ = gameObject.AddComponent<TppSpotLightGizmo>();
-            base.InitializeGameObject(gameObject, logger);
+            Gizmo.Transform = (this as MonoBehaviour).transform;
+            Gizmo.Label = isSelected ? (this as MonoBehaviour).name : null;
+            Gizmo.Axis = reachPoint.normalized;
+            Gizmo.UmbraAngle = umbraAngle;
+            Gizmo.PenumbraAngle = penumbraAngle;
+            Gizmo.ShadowUmbraAngle = shadowUmbraAngle;
+            Gizmo.ShadowPenumbraAngle = shadowPenumbraAngle;
+            Gizmo.OuterRange = outerRange;
+
+            if (isSelected)
+                Gizmo.OnDrawGizmosSelected();
+            else
+                Gizmo.OnDrawGizmos();
         }
+
+        private void OnDrawGizmos() => DrawGizmos(false);
+
+        private void OnDrawGizmosSelected() => DrawGizmos(true);
     }
 }
