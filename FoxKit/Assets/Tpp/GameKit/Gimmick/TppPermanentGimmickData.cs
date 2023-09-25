@@ -22,7 +22,7 @@ namespace Tpp.GameKit
                 return;
             }
 
-            ScriptableObject locaterAsset = AssetManager.LoadAsset<ScriptableObject>(locaterFile, out string locaterUnityPath);
+            ScriptableObject locaterAsset = LocatorFileReader.Load(locaterFile, out string locaterUnityPath);
             if (locaterAsset == null)
             {
                 logger.AddWarningMissingAsset(locaterUnityPath);

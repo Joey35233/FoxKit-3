@@ -1,31 +1,14 @@
+using Fox.Core;
 using Fox.Fio;
 using Fox.Kernel;
 using System.Collections.Generic;
 using System.IO;
-using UnityEditor.AssetImporters;
+using UnityEditor;
 using UnityEngine;
 using String = Fox.Kernel.String;
 
 namespace Tpp.GameKit
 {
-    [ScriptedImporter(0, "lba")]
-    public partial class LocatorFileImporter : ScriptedImporter
-    {
-        public override void OnImportAsset(AssetImportContext context)
-        {
-            using var reader = new FileStreamReader(File.OpenRead(assetPath));
-
-            string name = global::System.IO.Path.GetFileName(context.assetPath);
-
-            ScriptableObject asset = LocatorFileReader.ReadLba(reader);
-            if (asset == null)
-            {
-                return;
-            }
-            context.AddObjectToAsset(name, asset);
-            context.SetMainObject(asset);
-        }
-    }
     /// <summary>
     /// Type of the locators stored in an LBA file. Each LBA file can only contain locators of a single type.
     /// </summary>
@@ -59,25 +42,43 @@ namespace Tpp.GameKit
         /// </summary>
         private const int ScaledLocatorSize = UnscaledLocatorSize + (sizeof(float) * 3) + (sizeof(ushort) * 2);
 
-        /*[UnityEditor.MenuItem("FoxKit/Debug/LBA/Import LBA")]
-        public static void Import()
+        [UnityEditor.MenuItem("FoxKit/Import/LocatorBinaryArray")]
+        public static void ImportMenuItem()
         {
-            string readPath = UnityEditor.EditorUtility.OpenFilePanel("Import asset", global::System.String.Empty, "lba");
+            string readPath = UnityEditor.EditorUtility.OpenFilePanel("Import binary file", global::System.String.Empty, "lba");
             if (global::System.String.IsNullOrEmpty(readPath))
             {
                 return;
             }
 
-            ScriptableObject asset = ReadLba(new FileStreamReader(new FileStream(readPath, FileMode.Open)));
+            ScriptableObject asset = Read(new FileStreamReader(new FileStream(readPath, FileMode.Open)));
 
-            AssetDatabase.CreateAsset(asset, "Assets/Game/"+global::System.IO.Path.GetFileName(readPath)+".asset");
+            string writePath = UnityEditor.EditorUtility.SaveFilePanelInProject("Save as asset", asset.name, "asset", "Please enter a file name to save the asset to");
+
+            if (global::System.String.IsNullOrEmpty(writePath))
+            {
+                return;
+            }
+
+            AssetDatabase.CreateAsset(asset, writePath);
 
             AssetDatabase.SaveAssets();
-        }*/
-
-        public static ScriptableObject ReadLba(FileStreamReader reader)
+        }
+        public static ScriptableObject Load(FilePtr readPath, out string unityPath)
         {
+            ScriptableObject lbaAsset = AssetManager.LoadAssetWithExtensionReplacement<ScriptableObject>(readPath, "asset", out string locaterUnityPath);
+            if (lbaAsset == null)
+            {
+                string lbaPath = global::System.IO.Path.ChangeExtension(locaterUnityPath, null);
+                lbaAsset = Read(new FileStreamReader(new FileStream(lbaPath, FileMode.Open)));
+                AssetDatabase.CreateAsset(lbaAsset, locaterUnityPath);
+            }
+            unityPath = locaterUnityPath;
+            return lbaAsset;
+        }
 
+        public static ScriptableObject Read(FileStreamReader reader)
+        {
             reader.Seek(4);
 
             var type = (LocatorBinaryType)reader.ReadUInt32();

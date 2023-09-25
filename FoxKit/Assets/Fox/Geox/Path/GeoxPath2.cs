@@ -1,5 +1,4 @@
 using Fox.Core;
-using Fox.Core.Utils;
 using Fox.Fio;
 using Fox.Geo;
 using Fox.Graphx;
@@ -54,6 +53,7 @@ namespace Fox.Geox
 
             TransformEntity transformEntity = new GameObject().AddComponent<TransformEntity>();
             path.SetTransform(transformEntity);
+            //transformEntity.gameObject.name = $"{header.Name.ToString()}|{transformEntity.GetType().Name}";
 
             path.tags = TagUtils.GetEnumTags<Tags>((ulong)header.GetTags<Tags>());
 
@@ -71,6 +71,7 @@ namespace Fox.Geox
 
                 GeoxPathEdge edge = new GameObject().AddComponent<GeoxPathEdge>();
                 edge.SetOwner(path);
+                //edge.gameObject.name = $"{header.Name.ToString()}|{edge.GetType().Name}{i:0000}";
 
                 var geoEdgeTags = (GeoxPathEdge.Tags)reader.ReadUInt32();
                 foreach (GeoxPathEdge.Tags tag in Enum.GetValues(geoEdgeTags.GetType()))
@@ -94,6 +95,8 @@ namespace Fox.Geox
 
                     path.nodes[inNodeIndex] = new EntityPtr<GraphxSpatialGraphDataNode>(node);
                     inNode = node;
+
+                    //node.gameObject.name = $"{header.Name.ToString()}|{node.GetType().Name}";
                 }
                 else
                 {
@@ -115,6 +118,8 @@ namespace Fox.Geox
 
                     path.nodes[outNodeIndex] = new EntityPtr<GraphxSpatialGraphDataNode>(node);
                     outNode = node;
+
+                    //node.gameObject.name = $"{header.Name.ToString()}|{node.GetType().Name}";
                 }
                 else
                 {
