@@ -1,15 +1,16 @@
+using Fox.Core;
 using UnityEngine;
 
-namespace Fox.Core
+namespace Fox.Sdx
 {
-    [System.Serializable]
-    public partial class Locator : TransformData
+    public partial class SoundSource : Fox.Core.TransformData
     {
-        private readonly BoxGizmo Gizmo = new BoxGizmo();
+        private readonly SphereGizmo Gizmo = new SphereGizmo { SelectedColor = EditorColors.AudioSelectedColor, UnselectedColor = EditorColors.AudioUnselectedColor };
 
         public void OnDrawGizmos()
         {
             Gizmo.Transform = (this as MonoBehaviour).transform;
+            Gizmo.Radius = this.playRange;
             Gizmo.Label = (this as MonoBehaviour).name;
             Gizmo.OnDrawGizmos();
         }
@@ -17,8 +18,9 @@ namespace Fox.Core
         public void OnDrawGizmosSelected()
         {
             Gizmo.Transform = (this as MonoBehaviour).transform;
+            Gizmo.Radius = this.playRange;
             Gizmo.Label = null;
-            Gizmo.OnDrawGizmos();
+            Gizmo.OnDrawGizmosSelected();
         }
     }
 }

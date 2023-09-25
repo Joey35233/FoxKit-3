@@ -1,4 +1,5 @@
-﻿using UnityEditor;
+using System;
+using UnityEditor;
 using UnityEngine;
 
 namespace Fox.Core
@@ -10,7 +11,10 @@ namespace Fox.Core
     {
         public UnityEngine.Transform Transform = null;
         public string Label = null;
-        public Color Color = Color.red;
+        public Color UnselectedColor = EditorColors.GenericUnselectedColor;
+        public Color SelectedColor = EditorColors.GenericSelectedColor;
+        public float Radius = 1.0f;
+        public GUIStyle LabelStyle;
 
         private void DrawGizmos(bool isSelected)
         {
@@ -19,22 +23,23 @@ namespace Fox.Core
 
             Gizmos.matrix = Transform.localToWorldMatrix;
 
-            Color faceColor = Color;
-            faceColor.a = isSelected ? 0.5f : 0.25f;
+            Color faceColor = isSelected ? SelectedColor : UnselectedColor;
+
             Gizmos.color = faceColor;
-            Gizmos.DrawSphere(Vector3.zero, 1.0f);
+            Gizmos.DrawWireSphere(Vector3.zero, Radius);
 
-            Color edgeColor = Color;
-            if (isSelected)
-                edgeColor = Color.white;
-            else
-                edgeColor *= 0.25f;
-            edgeColor.a = 1.0f;
-            Gizmos.color = edgeColor;
-            Gizmos.DrawWireSphere(Vector3.zero, 1.0f);
+            // TODO Store the GuiStyle in a global location
+            if (LabelStyle == null)
+            {
+                LabelStyle = new GUIStyle();
+                LabelStyle.alignment = TextAnchor.MiddleCenter;
+                LabelStyle.normal.textColor = EditorColors.LabelIdleColor;
+            }
 
-            if (!isSelected && Label is not null)
-                Handles.Label(Transform.position, Label);
+            if (!String.IsNullOrEmpty(this.Label))
+            {
+                Handles.Label(Transform.position, Label, LabelStyle);
+            }
         }
 
         public void OnDrawGizmos() => DrawGizmos(false);

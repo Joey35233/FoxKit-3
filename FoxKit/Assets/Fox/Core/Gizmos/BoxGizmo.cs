@@ -7,14 +7,12 @@ namespace Fox.Core
     /// <summary>
     /// Draws a box gizmo in the scene.
     /// </summary>
-    [Serializable]
     public class BoxGizmo
     {
         public UnityEngine.Transform Transform = null;
         public string Label = null;
-        public Color Color = Color.red;
-        public Color ColorUnselected = EditorColors.GenericUnselectedColor;
-        public Color ColorSelected = EditorColors.GenericSelectedColor;
+        public Color UnselectedColor = EditorColors.GenericUnselectedColor;
+        public Color SelectedColor = EditorColors.GenericSelectedColor;
         public Vector3 Scale = Vector3.one;
         public GUIStyle LabelStyle;
 
@@ -25,7 +23,7 @@ namespace Fox.Core
 
             Gizmos.matrix = Transform.localToWorldMatrix;
 
-            Color faceColor = isSelected ? ColorSelected : ColorUnselected;
+            Color faceColor = isSelected ? SelectedColor : UnselectedColor;
 
             Gizmos.color = faceColor;
             Gizmos.DrawWireCube(Vector3.zero, Scale);
