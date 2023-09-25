@@ -1,4 +1,5 @@
-﻿using UnityEditor;
+using System;
+using UnityEditor;
 using UnityEngine;
 
 namespace Fox.Core
@@ -6,12 +7,16 @@ namespace Fox.Core
     /// <summary>
     /// Draws a box gizmo in the scene.
     /// </summary>
+    [Serializable]
     public class BoxGizmo
     {
         public UnityEngine.Transform Transform = null;
         public string Label = null;
         public Color Color = Color.red;
+        public Color ColorUnselected = EditorColors.GenericUnselectedColor;
+        public Color ColorSelected = EditorColors.GenericSelectedColor;
         public Vector3 Scale = Vector3.one;
+        public GUIStyle LabelStyle;
 
         private void DrawGizmos(bool isSelected)
         {
@@ -20,19 +25,23 @@ namespace Fox.Core
 
             Gizmos.matrix = Transform.localToWorldMatrix;
 
-            Color faceColor = Color;
-            faceColor.a = isSelected ? 0.5f : 0.25f;
-            Gizmos.color = faceColor;
-            Gizmos.DrawCube(Vector3.zero, Scale);
+            Color faceColor = isSelected ? ColorSelected : ColorUnselected;
 
-            Color edgeColor = isSelected ? Color.white : Color * 0.25f;
-            edgeColor *= 0.25f;
-            edgeColor.a = 1.0f;
-            Gizmos.color = edgeColor;
+            Gizmos.color = faceColor;
             Gizmos.DrawWireCube(Vector3.zero, Scale);
 
-            if (!isSelected && Label is not null)
-                Handles.Label(Transform.position, Label);
+            // TODO Store the GuiStyle in a global location
+            if (LabelStyle == null)
+            {
+                LabelStyle = new GUIStyle();
+                LabelStyle.alignment = TextAnchor.MiddleCenter;
+                LabelStyle.normal.textColor = EditorColors.LabelIdleColor;
+            }
+
+            if (!String.IsNullOrEmpty(this.Label))
+            {
+                Handles.Label(Transform.position, Label, LabelStyle);
+            }
         }
 
         public void OnDrawGizmos() => DrawGizmos(false);

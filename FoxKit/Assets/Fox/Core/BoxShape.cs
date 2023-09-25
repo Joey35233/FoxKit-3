@@ -1,6 +1,3 @@
-using Fox.Core.Utils;
-using System;
-using UnityEditor;
 using UnityEngine;
 
 namespace Fox.Core
@@ -31,7 +28,7 @@ namespace Fox.Core
         {
             Gizmo.Transform = (this as MonoBehaviour).transform;
             Gizmo.Label = null;
-            Gizmo.OnDrawGizmos();
+            Gizmo.OnDrawGizmosSelected();
         }
     }
 }
