@@ -13,18 +13,18 @@ using Fox;
 namespace Fox.Graphx
 {
     [UnityEditor.InitializeOnLoad]
-    public partial class GraphxSpatialGraphDataNode : Fox.Core.DataElement 
+    public partial class GraphxSpatialGraphDataNode : Fox.Core.DataElement
     {
         // Properties
         [field: UnityEngine.SerializeField]
         public UnityEngine.Vector3 position { get; set; }
-        
+
         [field: UnityEngine.SerializeField]
         public Fox.Kernel.DynamicArray<Fox.Core.EntityHandle> inlinks { get; protected set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityHandle>();
-        
+
         [field: UnityEngine.SerializeField]
         public Fox.Kernel.DynamicArray<Fox.Core.EntityHandle> outlinks { get; protected set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityHandle>();
-        
+
         // ClassInfos
         public static new bool ClassInfoInitialized = false;
         private static Fox.Core.EntityInfo classInfo;
@@ -53,7 +53,7 @@ namespace Fox.Graphx
         // Constructors
 		public GraphxSpatialGraphDataNode(ulong id) : base(id) { }
 		public GraphxSpatialGraphDataNode() : base() { }
-        
+
         public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
         {
             switch(propertyName.CString)
@@ -66,7 +66,7 @@ namespace Fox.Graphx
                     return;
             }
         }
-        
+
         public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
         {
             switch(propertyName.CString)
@@ -84,7 +84,7 @@ namespace Fox.Graphx
                     return;
             }
         }
-        
+
         public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
         {
             switch(propertyName.CString)
