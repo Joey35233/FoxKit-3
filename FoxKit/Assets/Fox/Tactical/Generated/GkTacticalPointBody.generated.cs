@@ -13,12 +13,12 @@ using Fox;
 namespace Fox.Tactical
 {
     [UnityEditor.InitializeOnLoad]
-    public partial class GkTacticalPointBody : Fox.Core.TransformDataBody 
+    public partial class GkTacticalPointBody : Fox.Core.TransformDataBody
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        protected Fox.Core.EntityHandle @object { get; set; }
-        
+        protected Fox.Core.Entity @object { get; set; }
+
         // ClassInfos
         public static new bool ClassInfoInitialized = false;
         private static Fox.Core.EntityInfo classInfo;
@@ -45,7 +45,7 @@ namespace Fox.Tactical
         // Constructors
 		public GkTacticalPointBody(ulong id) : base(id) { }
 		public GkTacticalPointBody() : base() { }
-        
+
         public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
         {
             switch(propertyName.CString)
@@ -58,7 +58,7 @@ namespace Fox.Tactical
                     return;
             }
         }
-        
+
         public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
         {
             switch(propertyName.CString)
@@ -68,7 +68,7 @@ namespace Fox.Tactical
                     return;
             }
         }
-        
+
         public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
         {
             switch(propertyName.CString)

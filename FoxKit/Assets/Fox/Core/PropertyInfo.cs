@@ -236,7 +236,7 @@ namespace Fox.Core
                 PropertyType.Matrix4 => typeof(UnityEngine.Matrix4x4),
                 PropertyType.Color => typeof(UnityEngine.Color),
                 PropertyType.FilePtr => typeof(FilePtr),
-                PropertyType.EntityHandle => typeof(EntityHandle),
+                PropertyType.EntityHandle => typeof(Entity),
                 PropertyType.EntityLink => typeof(EntityLink),
                 _ => throw new ArgumentException($"Invalid Fox type: {propertyType}."),
             };

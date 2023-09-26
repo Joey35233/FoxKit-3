@@ -13,18 +13,18 @@ using Fox;
 namespace Fox.Graphx
 {
     [UnityEditor.InitializeOnLoad]
-    public partial class GraphxSpatialGraphDataNode : Fox.Core.DataElement 
+    public partial class GraphxSpatialGraphDataNode : Fox.Core.DataElement
     {
         // Properties
         [field: UnityEngine.SerializeField]
         public UnityEngine.Vector3 position { get; set; }
-        
+
         [field: UnityEngine.SerializeField]
-        public Fox.Kernel.DynamicArray<Fox.Core.EntityHandle> inlinks { get; protected set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityHandle>();
-        
+        public Fox.Kernel.DynamicArray<Fox.Core.Entity> inlinks { get; protected set; } = new Fox.Kernel.DynamicArray<Fox.Core.Entity>();
+
         [field: UnityEngine.SerializeField]
-        public Fox.Kernel.DynamicArray<Fox.Core.EntityHandle> outlinks { get; protected set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityHandle>();
-        
+        public Fox.Kernel.DynamicArray<Fox.Core.Entity> outlinks { get; protected set; } = new Fox.Kernel.DynamicArray<Fox.Core.Entity>();
+
         // ClassInfos
         public static new bool ClassInfoInitialized = false;
         private static Fox.Core.EntityInfo classInfo;
@@ -53,7 +53,7 @@ namespace Fox.Graphx
         // Constructors
 		public GraphxSpatialGraphDataNode(ulong id) : base(id) { }
 		public GraphxSpatialGraphDataNode() : base() { }
-        
+
         public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
         {
             switch(propertyName.CString)
@@ -66,17 +66,17 @@ namespace Fox.Graphx
                     return;
             }
         }
-        
+
         public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
         {
             switch(propertyName.CString)
             {
                 case "inlinks":
-                    while(this.inlinks.Count <= index) { this.inlinks.Add(default(Fox.Core.EntityHandle)); }
+                    while(this.inlinks.Count <= index) { this.inlinks.Add(default(Fox.Core.Entity)); }
                     this.inlinks[index] = value.GetValueAsEntityHandle();
                     return;
                 case "outlinks":
-                    while(this.outlinks.Count <= index) { this.outlinks.Add(default(Fox.Core.EntityHandle)); }
+                    while(this.outlinks.Count <= index) { this.outlinks.Add(default(Fox.Core.Entity)); }
                     this.outlinks[index] = value.GetValueAsEntityHandle();
                     return;
                 default:
@@ -84,7 +84,7 @@ namespace Fox.Graphx
                     return;
             }
         }
-        
+
         public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
         {
             switch(propertyName.CString)

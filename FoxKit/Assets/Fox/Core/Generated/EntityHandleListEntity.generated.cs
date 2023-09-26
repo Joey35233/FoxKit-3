@@ -13,12 +13,12 @@ using Fox;
 namespace Fox.Core
 {
     [UnityEditor.InitializeOnLoad]
-    public partial class EntityHandleListEntity : Fox.Core.Entity 
+    public partial class EntityHandleListEntity : Fox.Core.Entity
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        protected Fox.Kernel.DynamicArray<Fox.Core.EntityHandle> list { get; set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityHandle>();
-        
+        protected Fox.Kernel.DynamicArray<Fox.Core.Entity> list { get; set; } = new Fox.Kernel.DynamicArray<Fox.Core.Entity>();
+
         // ClassInfos
         public static new bool ClassInfoInitialized = false;
         private static Fox.Core.EntityInfo classInfo;
@@ -45,7 +45,7 @@ namespace Fox.Core
         // Constructors
 		public EntityHandleListEntity(ulong id) : base(id) { }
 		public EntityHandleListEntity() : base() { }
-        
+
         public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
         {
             switch(propertyName.CString)
@@ -55,13 +55,13 @@ namespace Fox.Core
                     return;
             }
         }
-        
+
         public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
         {
             switch(propertyName.CString)
             {
                 case "list":
-                    while(this.list.Count <= index) { this.list.Add(default(Fox.Core.EntityHandle)); }
+                    while(this.list.Count <= index) { this.list.Add(default(Fox.Core.Entity)); }
                     this.list[index] = value.GetValueAsEntityHandle();
                     return;
                 default:
@@ -69,7 +69,7 @@ namespace Fox.Core
                     return;
             }
         }
-        
+
         public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
         {
             switch(propertyName.CString)

@@ -23,10 +23,10 @@ namespace Fox.GameService
 
                 for (int edgeIndex = 0; edgeIndex < node.outlinks.Count; edgeIndex++)
                 {
-                    var edge = node.outlinks[edgeIndex].Entity as GsRouteDataEdge;
+                    var edge = node.outlinks[edgeIndex] as GsRouteDataEdge;
 
-                    var prevNode = edge.prevNode.Entity as GsRouteDataNode;
-                    var nextNode = edge.nextNode.Entity as GsRouteDataNode;
+                    var prevNode = edge.prevNode as GsRouteDataNode;
+                    var nextNode = edge.nextNode as GsRouteDataNode;
                     Gizmos.DrawLine(prevNode.position, nextNode.position);
                 }
             }

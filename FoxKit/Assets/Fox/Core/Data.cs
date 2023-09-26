@@ -16,7 +16,7 @@ namespace Fox.Core
             base.OnDeserializeEntity(gameObject, logger);
         }
 
-        public void SetDataSet(EntityHandle dataSet)
+        public void SetDataSet(Entity dataSet)
         {
             this.dataSet = dataSet;
         }

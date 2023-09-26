@@ -58,9 +58,9 @@ namespace Fox.GameKit
 
                 float normalizedScale = (float)obj.GetNormalizedScale() / System.Byte.MaxValue;
 
-                if (pluginHandle[obj.GetPluginBrushIndex()].Entity is ObjectBrushPlugin plugin)
+                if (pluginHandle[obj.GetPluginBrushIndex()] is ObjectBrushPlugin plugin)
                 {
-                    switch (pluginHandle[obj.GetPluginBrushIndex()].Entity)
+                    switch (pluginHandle[obj.GetPluginBrushIndex()])
                     {
                         case ObjectBrushPluginClone pluginClone:
                             transform.scale = Vector3.one * Mathf.Lerp(pluginClone.minSize, pluginClone.maxSize, normalizedScale);
@@ -74,7 +74,7 @@ namespace Fox.GameKit
                             throw new ArgumentNullException();
                         default:
                             //TODO Tpp.GameKit.ObjectBrushPluginStaticModel, TppObjectBrushPluginSkeletonModel
-                            var pluginClassName = new StrCode32(pluginHandle[obj.GetPluginBrushIndex()].Entity.GetClassEntityInfo().Name.CString);
+                            var pluginClassName = new StrCode32(pluginHandle[obj.GetPluginBrushIndex()].GetClassEntityInfo().Name.CString);
                             Debug.LogWarning($"{name}: pluginHandle #{obj.GetPluginBrushIndex()} is not a supported");
                             break;
                     }

@@ -140,7 +140,7 @@ namespace Fox.Grx
                 lightArea.name = new String(pointLight.name + "_LA");
                 pointLight.lightArea = new EntityLink
                 (
-                    EntityHandle.Get(lightArea),
+                    lightArea,
                     new Kernel.Path(""),
                     new Kernel.Path(""),
                     lightArea.name
@@ -183,7 +183,7 @@ namespace Fox.Grx
                 irradiationPoint.name = new String(pointLight.name + "_IP");
                 pointLight.lightArea = new EntityLink
                 (
-                    EntityHandle.Get(irradiationPoint),
+                    irradiationPoint,
                     new Kernel.Path(""),
                     new Kernel.Path(""),
                     irradiationPoint.name
@@ -207,7 +207,7 @@ namespace Fox.Grx
                 lightArea.name = new String(spotLight.name + "_LA");
                 spotLight.lightArea = new EntityLink
                 (
-                    EntityHandle.Get(lightArea),
+                    lightArea,
                     new Kernel.Path(""),
                     new Kernel.Path(""),
                     lightArea.name
@@ -263,7 +263,7 @@ namespace Fox.Grx
                 irradiationPoint.name = new String(spotLight.name + "_IP");
                 spotLight.irradiationPoint = new EntityLink
                 (
-                    EntityHandle.Get(irradiationPoint),
+                    irradiationPoint,
                     new Kernel.Path(""),
                     new Kernel.Path(""),
                     irradiationPoint.name

@@ -13,12 +13,12 @@ using Fox;
 namespace Fox.Geo
 {
     [UnityEditor.InitializeOnLoad]
-    public partial class CollisionObject : Fox.Core.Entity 
+    public partial class CollisionObject : Fox.Core.Entity
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        protected Fox.Core.EntityHandle ownerHandle { get; set; }
-        
+        protected Fox.Core.Entity ownerHandle { get; set; }
+
         // ClassInfos
         public static new bool ClassInfoInitialized = false;
         private static Fox.Core.EntityInfo classInfo;
@@ -45,7 +45,7 @@ namespace Fox.Geo
         // Constructors
 		public CollisionObject(ulong id) : base(id) { }
 		public CollisionObject() : base() { }
-        
+
         public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
         {
             switch(propertyName.CString)
@@ -58,7 +58,7 @@ namespace Fox.Geo
                     return;
             }
         }
-        
+
         public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
         {
             switch(propertyName.CString)
@@ -68,7 +68,7 @@ namespace Fox.Geo
                     return;
             }
         }
-        
+
         public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
         {
             switch(propertyName.CString)

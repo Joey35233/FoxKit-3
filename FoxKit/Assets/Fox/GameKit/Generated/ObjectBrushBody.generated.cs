@@ -13,15 +13,15 @@ using Fox;
 namespace Fox.GameKit
 {
     [UnityEditor.InitializeOnLoad]
-    public partial class ObjectBrushBody : Fox.Core.TransformDataBody 
+    public partial class ObjectBrushBody : Fox.Core.TransformDataBody
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Kernel.DynamicArray<Fox.Core.EntityHandle> pluginBodyHandle { get; set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityHandle>();
-        
+        public Fox.Kernel.DynamicArray<Fox.Core.Entity> pluginBodyHandle { get; set; } = new Fox.Kernel.DynamicArray<Fox.Core.Entity>();
+
         [field: UnityEngine.SerializeField]
         public uint numPlugins { get; set; }
-        
+
         // ClassInfos
         public static new bool ClassInfoInitialized = false;
         private static Fox.Core.EntityInfo classInfo;
@@ -49,7 +49,7 @@ namespace Fox.GameKit
         // Constructors
 		public ObjectBrushBody(ulong id) : base(id) { }
 		public ObjectBrushBody() : base() { }
-        
+
         public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
         {
             switch(propertyName.CString)
@@ -62,13 +62,13 @@ namespace Fox.GameKit
                     return;
             }
         }
-        
+
         public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
         {
             switch(propertyName.CString)
             {
                 case "pluginBodyHandle":
-                    while(this.pluginBodyHandle.Count <= index) { this.pluginBodyHandle.Add(default(Fox.Core.EntityHandle)); }
+                    while(this.pluginBodyHandle.Count <= index) { this.pluginBodyHandle.Add(default(Fox.Core.Entity)); }
                     this.pluginBodyHandle[index] = value.GetValueAsEntityHandle();
                     return;
                 default:
@@ -76,7 +76,7 @@ namespace Fox.GameKit
                     return;
             }
         }
-        
+
         public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
         {
             switch(propertyName.CString)

@@ -13,43 +13,43 @@ using Fox;
 namespace Fox.Core
 {
     [UnityEditor.InitializeOnLoad]
-    public partial class Bucket : Fox.Core.Entity 
+    public partial class Bucket : Fox.Core.Entity
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        protected Fox.Core.EntityHandle collector { get; set; }
-        
+        protected Fox.Core.Entity collector { get; set; }
+
         [field: UnityEngine.SerializeField]
         public Fox.Kernel.String name { get; protected set; }
-        
+
         [field: UnityEngine.SerializeField]
         public Fox.Kernel.String sceneName { get; protected set; }
-        
+
         [field: UnityEngine.SerializeField]
         protected Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Fox.Core.Actor>> actors { get; set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Fox.Core.Actor>>();
-        
+
         [field: UnityEngine.SerializeField]
         protected Fox.Kernel.StringMap<Fox.Core.FilePtr> dataSetFiles { get; set; } = new Fox.Kernel.StringMap<Fox.Core.FilePtr>();
-        
+
         [field: UnityEngine.SerializeField]
         protected Fox.Kernel.StringMap<Fox.Core.EntityPtr<Fox.Core.DataBodySet>> dataBodySets { get; set; } = new Fox.Kernel.StringMap<Fox.Core.EntityPtr<Fox.Core.DataBodySet>>();
-        
+
         [field: UnityEngine.SerializeField]
         protected Fox.Core.EntityPtr<Fox.Core.DataSet> editableDataSet { get; set; } = new Fox.Core.EntityPtr<Fox.Core.DataSet>();
-        
+
         [field: UnityEngine.SerializeField]
         protected Fox.Kernel.Path editableDataSetPath { get; set; }
-        
+
         [field: UnityEngine.SerializeField]
         protected Fox.Core.EntityPtr<Fox.Core.DataBodySet> editableDataBodySet { get; set; } = new Fox.Core.EntityPtr<Fox.Core.DataBodySet>();
-        
+
         [field: UnityEngine.SerializeField]
         protected bool editableDataSetChanged { get; set; }
-        
+
         public bool isEditableLocked { get => Get_isEditableLocked(); set { Set_isEditableLocked(value); } }
         protected partial bool Get_isEditableLocked();
         protected partial void Set_isEditableLocked(bool value);
-        
+
         // ClassInfos
         public static new bool ClassInfoInitialized = false;
         private static Fox.Core.EntityInfo classInfo;
@@ -86,7 +86,7 @@ namespace Fox.Core
         // Constructors
 		public Bucket(ulong id) : base(id) { }
 		public Bucket() : base() { }
-        
+
         public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
         {
             switch(propertyName.CString)
@@ -120,7 +120,7 @@ namespace Fox.Core
                     return;
             }
         }
-        
+
         public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
         {
             switch(propertyName.CString)
@@ -134,7 +134,7 @@ namespace Fox.Core
                     return;
             }
         }
-        
+
         public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
         {
             switch(propertyName.CString)

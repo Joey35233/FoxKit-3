@@ -13,45 +13,45 @@ using Fox;
 namespace Fox.Core
 {
     [UnityEditor.InitializeOnLoad]
-    public partial class TransformData : Fox.Core.Data 
+    public partial class TransformData : Fox.Core.Data
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.EntityHandle parent { get; set; }
-        
+        public Fox.Core.Entity parent { get; set; }
+
         [field: UnityEngine.SerializeField]
         public Fox.Core.EntityPtr<Fox.Core.TransformEntity> transform { get; set; } = new Fox.Core.EntityPtr<Fox.Core.TransformEntity>();
-        
+
         [field: UnityEngine.SerializeField]
         public Fox.Core.EntityPtr<Fox.Core.ShearTransformEntity> shearTransform { get; set; } = new Fox.Core.EntityPtr<Fox.Core.ShearTransformEntity>();
-        
+
         [field: UnityEngine.SerializeField]
         public Fox.Core.EntityPtr<Fox.Core.PivotTransformEntity> pivotTransform { get; set; } = new Fox.Core.EntityPtr<Fox.Core.PivotTransformEntity>();
-        
+
         [field: UnityEngine.SerializeField]
-        protected Fox.Kernel.DynamicArray<Fox.Core.EntityHandle> children { get; set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityHandle>();
-        
+        protected Fox.Kernel.DynamicArray<Fox.Core.Entity> children { get; set; } = new Fox.Kernel.DynamicArray<Fox.Core.Entity>();
+
         [field: UnityEngine.SerializeField]
         protected TransformData_Flags flags { get; set; }
-        
+
         public bool inheritTransform { get => Get_inheritTransform(); set { Set_inheritTransform(value); } }
         protected partial bool Get_inheritTransform();
         protected partial void Set_inheritTransform(bool value);
-        
+
         public bool visibility { get => Get_visibility(); set { Set_visibility(value); } }
         protected partial bool Get_visibility();
         protected partial void Set_visibility(bool value);
-        
+
         public bool selection { get => Get_selection(); set { Set_selection(value); } }
         protected partial bool Get_selection();
         protected partial void Set_selection(bool value);
-        
+
         public UnityEngine.Matrix4x4 worldMatrix { get => Get_worldMatrix(); }
         protected partial UnityEngine.Matrix4x4 Get_worldMatrix();
-        
+
         public UnityEngine.Matrix4x4 worldTransform { get => Get_worldTransform(); }
         protected partial UnityEngine.Matrix4x4 Get_worldTransform();
-        
+
         // ClassInfos
         public static new bool ClassInfoInitialized = false;
         private static Fox.Core.EntityInfo classInfo;
@@ -88,7 +88,7 @@ namespace Fox.Core
         // Constructors
 		public TransformData(ulong id) : base(id) { }
 		public TransformData() : base() { }
-        
+
         public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
         {
             switch(propertyName.CString)
@@ -122,13 +122,13 @@ namespace Fox.Core
                     return;
             }
         }
-        
+
         public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
         {
             switch(propertyName.CString)
             {
                 case "children":
-                    while(this.children.Count <= index) { this.children.Add(default(Fox.Core.EntityHandle)); }
+                    while(this.children.Count <= index) { this.children.Add(default(Fox.Core.Entity)); }
                     this.children[index] = value.GetValueAsEntityHandle();
                     return;
                 default:
@@ -136,7 +136,7 @@ namespace Fox.Core
                     return;
             }
         }
-        
+
         public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
         {
             switch(propertyName.CString)

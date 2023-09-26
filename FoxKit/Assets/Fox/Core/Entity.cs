@@ -141,10 +141,10 @@ namespace Fox.Core
                         CollectReferencedEntity(GetProperty<IEntityPtr>(property).Get(), alreadyCollectedEntities);
                         break;
                     case PropertyInfo.PropertyType.EntityHandle:
-                        CollectReferencedEntity(GetProperty<EntityHandle>(property).Entity, alreadyCollectedEntities);
+                        CollectReferencedEntity(GetProperty<Entity>(property), alreadyCollectedEntities);
                         break;
                     case PropertyInfo.PropertyType.EntityLink:
-                        CollectReferencedEntity(GetProperty<EntityLink>(property).handle.Entity, alreadyCollectedEntities);
+                        CollectReferencedEntity(GetProperty<EntityLink>(property).handle, alreadyCollectedEntities);
                         break;
                 }
 
@@ -161,10 +161,10 @@ namespace Fox.Core
                             CollectReferencedEntity(((IEntityPtr)item.Value).Get(), alreadyCollectedEntities);
                             break;
                         case PropertyInfo.PropertyType.EntityHandle:
-                            CollectReferencedEntity(((EntityHandle)item.Value).Entity, alreadyCollectedEntities);
+                            CollectReferencedEntity((Entity)item.Value, alreadyCollectedEntities);
                             break;
                         case PropertyInfo.PropertyType.EntityLink:
-                            CollectReferencedEntity(((EntityLink)item.Value).handle.Entity, alreadyCollectedEntities);
+                            CollectReferencedEntity(((EntityLink)item.Value).handle, alreadyCollectedEntities);
                             break;
                     }
                 }
@@ -180,10 +180,10 @@ namespace Fox.Core
                             CollectReferencedEntity(((IEntityPtr)item).Get(), alreadyCollectedEntities);
                             break;
                         case PropertyInfo.PropertyType.EntityHandle:
-                            CollectReferencedEntity(((EntityHandle)item).Entity, alreadyCollectedEntities);
+                            CollectReferencedEntity((Entity)item, alreadyCollectedEntities);
                             break;
                         case PropertyInfo.PropertyType.EntityLink:
-                            CollectReferencedEntity(((EntityLink)item).handle.Entity, alreadyCollectedEntities);
+                            CollectReferencedEntity(((EntityLink)item).handle, alreadyCollectedEntities);
                             break;
                     }
                 }

@@ -169,7 +169,7 @@ namespace Fox.Core
 
                     var data = entity as Data;
 
-                    data.SetDataSet(EntityHandle.Get(dataSet));
+                    data.SetDataSet(dataSet);
                 }
 
                 _ = usedNames.Add(entity.name);

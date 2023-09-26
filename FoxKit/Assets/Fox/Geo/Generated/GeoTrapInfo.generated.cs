@@ -13,45 +13,45 @@ using Fox;
 namespace Fox.Geo
 {
     [UnityEditor.InitializeOnLoad]
-    public partial class GeoTrapInfo : Fox.Core.Entity 
+    public partial class GeoTrapInfo : Fox.Core.Entity
     {
         // Properties
         [field: UnityEngine.SerializeField]
         public Fox.Kernel.StringMap<byte> moverTags { get; protected set; } = new Fox.Kernel.StringMap<byte>();
-        
+
         [field: UnityEngine.SerializeField]
-        public Fox.Core.EntityHandle moverHandle { get; protected set; }
-        
+        public Fox.Core.Entity moverHandle { get; protected set; }
+
         [field: UnityEngine.SerializeField]
         public UnityEngine.Vector3 moverPosition { get; protected set; }
-        
+
         [field: UnityEngine.SerializeField]
         public UnityEngine.Vector3 moverRotation { get; protected set; }
-        
+
         [field: UnityEngine.SerializeField]
         public Fox.Kernel.String trapName { get; protected set; }
-        
+
         [field: UnityEngine.SerializeField]
         public UnityEngine.Vector3 trapPosition { get; protected set; }
-        
+
         [field: UnityEngine.SerializeField]
-        public Fox.Core.EntityHandle trapBodyHandle { get; protected set; }
-        
+        public Fox.Core.Entity trapBodyHandle { get; protected set; }
+
         [field: UnityEngine.SerializeField]
-        public Fox.Core.EntityHandle conditionHandle { get; protected set; }
-        
+        public Fox.Core.Entity conditionHandle { get; protected set; }
+
         [field: UnityEngine.SerializeField]
-        public Fox.Core.EntityHandle conditionBodyHandle { get; protected set; }
-        
+        public Fox.Core.Entity conditionBodyHandle { get; protected set; }
+
         [field: UnityEngine.SerializeField]
         public Fox.Kernel.String trapFlagString { get; protected set; }
-        
+
         [field: UnityEngine.SerializeField]
         public uint trapFlag { get; protected set; }
-        
+
         [field: UnityEngine.SerializeField]
         public ushort moverGameObjectId { get; protected set; }
-        
+
         // ClassInfos
         public static new bool ClassInfoInitialized = false;
         private static Fox.Core.EntityInfo classInfo;
@@ -89,7 +89,7 @@ namespace Fox.Geo
         // Constructors
 		public GeoTrapInfo(ulong id) : base(id) { }
 		public GeoTrapInfo() : base() { }
-        
+
         public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
         {
             switch(propertyName.CString)
@@ -132,7 +132,7 @@ namespace Fox.Geo
                     return;
             }
         }
-        
+
         public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
         {
             switch(propertyName.CString)
@@ -142,7 +142,7 @@ namespace Fox.Geo
                     return;
             }
         }
-        
+
         public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
         {
             switch(propertyName.CString)

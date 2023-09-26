@@ -13,12 +13,12 @@ using Fox;
 namespace Fox.GameKit
 {
     [UnityEditor.InitializeOnLoad]
-    public partial class GkTargetData : Fox.Geo.TargetExtensionData 
+    public partial class GkTargetData : Fox.Geo.TargetExtensionData
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.EntityHandle characterObjectHandle { get; protected set; }
-        
+        public Fox.Core.Entity characterObjectHandle { get; protected set; }
+
         // ClassInfos
         public static new bool ClassInfoInitialized = false;
         private static Fox.Core.EntityInfo classInfo;
@@ -45,7 +45,7 @@ namespace Fox.GameKit
         // Constructors
 		public GkTargetData(ulong id) : base(id) { }
 		public GkTargetData() : base() { }
-        
+
         public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
         {
             switch(propertyName.CString)
@@ -58,7 +58,7 @@ namespace Fox.GameKit
                     return;
             }
         }
-        
+
         public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
         {
             switch(propertyName.CString)
@@ -68,7 +68,7 @@ namespace Fox.GameKit
                     return;
             }
         }
-        
+
         public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
         {
             switch(propertyName.CString)

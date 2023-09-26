@@ -211,18 +211,18 @@ namespace Fox.Core.Serialization
                 packagePath = new Path(unhashString(packagePathHash).CString),
                 archivePath = new Path(unhashString(archivePathHash).CString),
                 nameInArchive = unhashString(nameInArchiveHash),
-                handle = EntityHandle.Empty,
+                handle = null,
             };
 
             setProperty(name, new Value(entityLink));
 
-            requestSetEntityHandle(address, (Entity ptr) => entityLink.handle = EntityHandle.Get(ptr));
+            requestSetEntityHandle(address, (Entity ptr) => entityLink.handle = ptr);
         }
 
         private void ReadEntityHandle(FileStreamReader reader, SetProperty setProperty, String name)
         {
             ulong address = reader.ReadUInt64();
-            requestSetEntityHandle(address, (Entity ptr) => setProperty(name, new Value(EntityHandle.Get(ptr))));
+            requestSetEntityHandle(address, (Entity ptr) => setProperty(name, new Value(ptr)));
         }
 
         private void ReadEntityPtr(FileStreamReader reader, SetProperty setProperty, Type ptrType, String name)

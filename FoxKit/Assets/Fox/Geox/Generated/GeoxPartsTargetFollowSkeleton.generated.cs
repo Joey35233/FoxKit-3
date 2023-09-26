@@ -13,18 +13,18 @@ using Fox;
 namespace Fox.Geox
 {
     [UnityEditor.InitializeOnLoad]
-    public partial class GeoxPartsTargetFollowSkeleton : Fox.Core.Data 
+    public partial class GeoxPartsTargetFollowSkeleton : Fox.Core.Data
     {
         // Properties
         [field: UnityEngine.SerializeField]
         public Fox.Kernel.DynamicArray<Fox.Kernel.String> skeletonNames { get; set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
-        
+
         [field: UnityEngine.SerializeField]
         public Fox.Kernel.DynamicArray<Fox.Core.EntityLink> objectLinks { get; set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityLink>();
-        
+
         [field: UnityEngine.SerializeField]
-        public Fox.Core.EntityHandle partsTargetUnitHandle { get; set; }
-        
+        public Fox.Core.Entity partsTargetUnitHandle { get; set; }
+
         // ClassInfos
         public static new bool ClassInfoInitialized = false;
         private static Fox.Core.EntityInfo classInfo;
@@ -53,7 +53,7 @@ namespace Fox.Geox
         // Constructors
 		public GeoxPartsTargetFollowSkeleton(ulong id) : base(id) { }
 		public GeoxPartsTargetFollowSkeleton() : base() { }
-        
+
         public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
         {
             switch(propertyName.CString)
@@ -66,7 +66,7 @@ namespace Fox.Geox
                     return;
             }
         }
-        
+
         public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
         {
             switch(propertyName.CString)
@@ -84,7 +84,7 @@ namespace Fox.Geox
                     return;
             }
         }
-        
+
         public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
         {
             switch(propertyName.CString)

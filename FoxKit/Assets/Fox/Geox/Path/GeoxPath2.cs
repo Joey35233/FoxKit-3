@@ -102,8 +102,8 @@ namespace Fox.Geox
                 {
                     inNode = path.nodes[inNodeIndex].Get();
                 }
-                edge.prevNode = EntityHandle.Get(inNode);
-                inNode.outlinks.Add(EntityHandle.Get(edge));
+                edge.prevNode = inNode;
+                inNode.outlinks.Add(edge);
 
                 GraphxSpatialGraphDataNode outNode;
                 if (path.nodes[outNodeIndex].IsNull())
@@ -125,8 +125,8 @@ namespace Fox.Geox
                 {
                     outNode = path.nodes[outNodeIndex].Get();
                 }
-                edge.nextNode = EntityHandle.Get(outNode);
-                outNode.inlinks.Add(EntityHandle.Get(edge));
+                edge.nextNode = outNode;
+                outNode.inlinks.Add(edge);
 
                 path.edges[i] = new EntityPtr<GraphxSpatialGraphDataEdge>(edge);
             }
@@ -150,10 +150,10 @@ namespace Fox.Geox
 
                 for (int edgeIndex = 0; edgeIndex < node.outlinks.Count; edgeIndex++)
                 {
-                    var edge = node.outlinks[edgeIndex].Entity as GeoxPathEdge;
+                    var edge = node.outlinks[edgeIndex] as GeoxPathEdge;
 
-                    var prevNode = edge.prevNode.Entity as GeoxPathNode;
-                    var nextNode = edge.nextNode.Entity as GeoxPathNode;
+                    var prevNode = edge.prevNode as GeoxPathNode;
+                    var nextNode = edge.nextNode as GeoxPathNode;
                     Gizmos.DrawLine(prevNode.position, nextNode.position);
                 }
             }

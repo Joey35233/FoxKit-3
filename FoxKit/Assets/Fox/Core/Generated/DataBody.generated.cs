@@ -13,15 +13,15 @@ using Fox;
 namespace Fox.Core
 {
     [UnityEditor.InitializeOnLoad]
-    public partial class DataBody : Fox.Core.Entity 
+    public partial class DataBody : Fox.Core.Entity
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        protected Fox.Core.EntityHandle dataBodySet { get; set; }
-        
+        protected Fox.Core.Entity dataBodySet { get; set; }
+
         [field: UnityEngine.SerializeField]
-        public Fox.Core.EntityHandle data { get; protected set; }
-        
+        public Fox.Core.Entity data { get; protected set; }
+
         // ClassInfos
         public static new bool ClassInfoInitialized = false;
         private static Fox.Core.EntityInfo classInfo;
@@ -49,7 +49,7 @@ namespace Fox.Core
         // Constructors
 		public DataBody(ulong id) : base(id) { }
 		public DataBody() : base() { }
-        
+
         public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
         {
             switch(propertyName.CString)
@@ -65,7 +65,7 @@ namespace Fox.Core
                     return;
             }
         }
-        
+
         public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
         {
             switch(propertyName.CString)
@@ -75,7 +75,7 @@ namespace Fox.Core
                     return;
             }
         }
-        
+
         public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
         {
             switch(propertyName.CString)

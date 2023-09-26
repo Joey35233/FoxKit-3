@@ -27,7 +27,7 @@ namespace Fox.Core
         {
             base.OverridePropertiesForExport(context);
 
-            var parent = this.owner.Entity as TransformData;
+            var parent = this.owner as TransformData;
             if (parent == null)
             {
                 // TODO What do we do about orphaned transforms?

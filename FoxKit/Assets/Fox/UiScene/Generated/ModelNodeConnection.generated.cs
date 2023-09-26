@@ -13,15 +13,15 @@ using Fox;
 namespace Fox.UiScene
 {
     [UnityEditor.InitializeOnLoad]
-    public partial class ModelNodeConnection 
+    public partial class ModelNodeConnection
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.EntityHandle connectModelDataHandle { get; set; }
-        
+        public Fox.Core.Entity connectModelDataHandle { get; set; }
+
         [field: UnityEngine.SerializeField]
         public Fox.Kernel.String connectModelNodeName { get; set; }
-        
+
         // ClassInfos
         public static  bool ClassInfoInitialized = false;
         private static Fox.Core.EntityInfo classInfo;
@@ -46,12 +46,12 @@ namespace Fox.UiScene
         }
 
         // Constructors
-		
+
 		public ModelNodeConnection()
         {
-            
+
         }
-        
+
         public virtual void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
         {
             switch(propertyName.CString)
@@ -66,7 +66,7 @@ namespace Fox.UiScene
                     throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
             }
         }
-        
+
         public virtual void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
         {
             switch(propertyName.CString)
@@ -75,7 +75,7 @@ namespace Fox.UiScene
                     throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
             }
         }
-        
+
         public virtual void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
         {
             switch(propertyName.CString)

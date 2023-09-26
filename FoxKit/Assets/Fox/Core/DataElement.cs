@@ -7,7 +7,7 @@ namespace Fox.Core
     {
         public void SetOwner(Data entity)
         {
-            owner = EntityHandle.Get(entity);
+            owner = entity;
 
             this.transform.SetParent(entity.transform);
         }
@@ -16,7 +16,7 @@ namespace Fox.Core
         {
             base.OnDeserializeEntity(gameObject, logger);
 
-            if (this.owner.Entity == null)
+            if (this.owner == null)
             {
                 this.gameObject.SetActive(false);
             }

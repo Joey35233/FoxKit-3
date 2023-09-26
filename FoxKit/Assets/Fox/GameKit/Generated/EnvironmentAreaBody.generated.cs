@@ -13,15 +13,15 @@ using Fox;
 namespace Fox.GameKit
 {
     [UnityEditor.InitializeOnLoad]
-    public partial class EnvironmentAreaBody : Fox.Core.TransformDataBody 
+    public partial class EnvironmentAreaBody : Fox.Core.TransformDataBody
     {
         // Properties
         [field: UnityEngine.SerializeField]
         protected Fox.Kernel.String tag { get; set; }
-        
+
         [field: UnityEngine.SerializeField]
-        protected Fox.Core.EntityHandle manager { get; set; }
-        
+        protected Fox.Core.Entity manager { get; set; }
+
         // ClassInfos
         public static new bool ClassInfoInitialized = false;
         private static Fox.Core.EntityInfo classInfo;
@@ -49,7 +49,7 @@ namespace Fox.GameKit
         // Constructors
 		public EnvironmentAreaBody(ulong id) : base(id) { }
 		public EnvironmentAreaBody() : base() { }
-        
+
         public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
         {
             switch(propertyName.CString)
@@ -65,7 +65,7 @@ namespace Fox.GameKit
                     return;
             }
         }
-        
+
         public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
         {
             switch(propertyName.CString)
@@ -75,7 +75,7 @@ namespace Fox.GameKit
                     return;
             }
         }
-        
+
         public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
         {
             switch(propertyName.CString)

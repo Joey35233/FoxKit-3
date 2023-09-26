@@ -13,15 +13,15 @@ using Fox;
 namespace Fox.Graphx
 {
     [UnityEditor.InitializeOnLoad]
-    public partial class GraphxSpatialGraphDataEdge : Fox.Core.DataElement 
+    public partial class GraphxSpatialGraphDataEdge : Fox.Core.DataElement
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.EntityHandle prevNode { get; set; }
-        
+        public Fox.Core.Entity prevNode { get; set; }
+
         [field: UnityEngine.SerializeField]
-        public Fox.Core.EntityHandle nextNode { get; set; }
-        
+        public Fox.Core.Entity nextNode { get; set; }
+
         // ClassInfos
         public static new bool ClassInfoInitialized = false;
         private static Fox.Core.EntityInfo classInfo;
@@ -49,7 +49,7 @@ namespace Fox.Graphx
         // Constructors
 		public GraphxSpatialGraphDataEdge(ulong id) : base(id) { }
 		public GraphxSpatialGraphDataEdge() : base() { }
-        
+
         public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
         {
             switch(propertyName.CString)
@@ -65,7 +65,7 @@ namespace Fox.Graphx
                     return;
             }
         }
-        
+
         public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
         {
             switch(propertyName.CString)
@@ -75,7 +75,7 @@ namespace Fox.Graphx
                     return;
             }
         }
-        
+
         public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
         {
             switch(propertyName.CString)

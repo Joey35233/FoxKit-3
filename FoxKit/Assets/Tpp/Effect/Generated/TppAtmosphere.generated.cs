@@ -13,259 +13,259 @@ using Fox;
 namespace Tpp.Effect
 {
     [UnityEditor.InitializeOnLoad]
-    public partial class TppAtmosphere : Fox.Core.Data 
+    public partial class TppAtmosphere : Fox.Core.Data
     {
         // Properties
         [field: UnityEngine.SerializeField]
         public Fox.Kernel.Path atshFilePath { get; set; }
-        
+
         [field: UnityEngine.SerializeField]
         public Fox.Kernel.Path pcspFilePath { get; set; }
-        
+
         [field: UnityEngine.SerializeField]
         public Fox.Core.FilePtr atshFilePtr { get; set; }
-        
+
         [field: UnityEngine.SerializeField]
         public Fox.Core.FilePtr pcspFilePtr { get; set; }
-        
+
         public bool useBakedData { get => Get_useBakedData(); set { Set_useBakedData(value); } }
         protected partial bool Get_useBakedData();
         protected partial void Set_useBakedData(bool value);
-        
+
         [field: UnityEngine.SerializeField]
-        public Fox.Core.EntityHandle capturePosition { get; set; }
-        
+        public Fox.Core.Entity capturePosition { get; set; }
+
         [field: UnityEngine.SerializeField]
         public float rayleighHeightScale { get; set; }
-        
+
         [field: UnityEngine.SerializeField]
         public UnityEngine.Vector3 rayleighScatteringCoefficient { get; set; }
-        
+
         [field: UnityEngine.SerializeField]
         public UnityEngine.Vector3 rayleighScatteringCoefficientOfCloudySky { get; set; }
-        
+
         [field: UnityEngine.SerializeField]
         public float mieHeightScale { get; set; }
-        
+
         [field: UnityEngine.SerializeField]
         public float mieAbsorptionRate { get; set; }
-        
+
         [field: UnityEngine.SerializeField]
         public float mieAnisotropy { get; set; }
-        
+
         [field: UnityEngine.SerializeField]
         public UnityEngine.Vector3 mieScatteringCoefficient { get; set; }
-        
+
         [field: UnityEngine.SerializeField]
         public float mieAnisotropyOfCloudySky { get; set; }
-        
+
         [field: UnityEngine.SerializeField]
         public UnityEngine.Vector3 mieScatteringCoefficientOfCloudySky { get; set; }
-        
+
         [field: UnityEngine.SerializeField]
         public uint multiScatteringOrder { get; set; }
-        
+
         [field: UnityEngine.SerializeField]
         public UnityEngine.Color groundColor { get; set; }
-        
+
         [field: UnityEngine.SerializeField]
         public float northAngle { get; set; }
-        
+
         [field: UnityEngine.SerializeField]
         public float latitude { get; set; }
-        
+
         [field: UnityEngine.SerializeField]
         public float longitude { get; set; }
-        
+
         [field: UnityEngine.SerializeField]
         public int gmtTimeDifference { get; set; }
-        
+
         [field: UnityEngine.SerializeField]
         public uint year { get; set; }
-        
+
         [field: UnityEngine.SerializeField]
         public uint month { get; set; }
-        
+
         [field: UnityEngine.SerializeField]
         public uint day { get; set; }
-        
+
         [field: UnityEngine.SerializeField]
         public float shadowRange { get; set; }
-        
+
         [field: UnityEngine.SerializeField]
         public float shadowRangeExtra { get; set; }
-        
+
         [field: UnityEngine.SerializeField]
         public float hiResShadowRange { get; set; }
-        
+
         [field: UnityEngine.SerializeField]
         public float shadowProjectionRange { get; set; }
-        
+
         [field: UnityEngine.SerializeField]
         public float shadowFadeRange { get; set; }
-        
+
         [field: UnityEngine.SerializeField]
         public float selfShadowBias { get; set; }
-        
+
         [field: UnityEngine.SerializeField]
         public float shadowMaskSpecular { get; set; }
-        
+
         [field: UnityEngine.SerializeField]
         public float dirLightFadeStart { get; set; }
-        
+
         [field: UnityEngine.SerializeField]
         public float dirLightFadeLength { get; set; }
-        
+
         [field: UnityEngine.SerializeField]
         public float sunLux { get; set; }
-        
+
         [field: UnityEngine.SerializeField]
         public float moonLux { get; set; }
-        
+
         [field: UnityEngine.SerializeField]
         public float starLight { get; set; }
-        
+
         [field: UnityEngine.SerializeField]
         public float sunMoonSize { get; set; }
-        
+
         [field: UnityEngine.SerializeField]
         public float sunMoonIntensity { get; set; }
-        
+
         [field: UnityEngine.SerializeField]
         public Fox.Kernel.Path sunTexture { get; set; }
-        
+
         [field: UnityEngine.SerializeField]
         public Fox.Kernel.Path moonTexture { get; set; }
-        
+
         [field: UnityEngine.SerializeField]
         public UnityEngine.Color moonColor { get; set; }
-        
+
         [field: UnityEngine.SerializeField]
         public UnityEngine.Color sunColorExtinctionOfClearSky { get; set; }
-        
+
         [field: UnityEngine.SerializeField]
         public UnityEngine.Color sunColorOfCloudySky { get; set; }
-        
+
         [field: UnityEngine.SerializeField]
         public float skyLightSunScale { get; set; }
-        
+
         [field: UnityEngine.SerializeField]
         public float skyColorSunScale { get; set; }
-        
+
         [field: UnityEngine.SerializeField]
         public float daySkyAmbientScale { get; set; }
-        
+
         [field: UnityEngine.SerializeField]
         public float dirLightSunLimitAngle { get; set; }
-        
+
         [field: UnityEngine.SerializeField]
         public float dirLightMoonLimitAngle { get; set; }
-        
+
         [field: UnityEngine.SerializeField]
         public float dirLightAttenuStart { get; set; }
-        
+
         [field: UnityEngine.SerializeField]
         public float dirLightAttenuEnd { get; set; }
-        
+
         [field: UnityEngine.SerializeField]
         protected UnityEngine.Vector3 fixedLightDirSunRise { get; set; }
-        
+
         [field: UnityEngine.SerializeField]
         protected UnityEngine.Vector3 fixedLightDirSunSet { get; set; }
-        
+
         [field: UnityEngine.SerializeField]
         protected UnityEngine.Vector3 fixedLightDirMoonRise { get; set; }
-        
+
         [field: UnityEngine.SerializeField]
         protected UnityEngine.Vector3 fixedLightDirMoonSet { get; set; }
-        
+
         [field: UnityEngine.SerializeField]
         protected UnityEngine.Vector3 fixedRisingSunDir { get; set; }
-        
+
         [field: UnityEngine.SerializeField]
         protected UnityEngine.Vector3 fixedFallingSunDir { get; set; }
-        
+
         [field: UnityEngine.SerializeField]
         protected UnityEngine.Vector3 fixedRisingMoonDir { get; set; }
-        
+
         [field: UnityEngine.SerializeField]
         protected UnityEngine.Vector3 fixedFallingMoonDir { get; set; }
-        
+
         [field: UnityEngine.SerializeField]
         public float skyLightLuminanceScale { get; set; }
-        
+
         [field: UnityEngine.SerializeField]
         public uint numBands { get; set; }
-        
+
         [field: UnityEngine.SerializeField]
         public Fox.Kernel.DynamicArray<UnityEngine.Vector4> coefficients { get; set; } = new Fox.Kernel.DynamicArray<UnityEngine.Vector4>();
-        
+
         [field: UnityEngine.SerializeField]
         public float cloudiness { get; set; }
-        
+
         [field: UnityEngine.SerializeField]
         public float influenceOfFog { get; set; }
-        
+
         [field: UnityEngine.SerializeField]
         protected uint localFlags { get; set; }
-        
+
         [field: UnityEngine.SerializeField]
         public uint priority { get; set; }
-        
+
         [field: UnityEngine.SerializeField]
         public float interpolateTimeInSecondOfDirLightSteppedMove { get; set; }
-        
+
         [field: UnityEngine.SerializeField]
         public uint divisonNumOfDirLightSteppedMove { get; set; }
-        
+
         public bool enable { get => Get_enable(); set { Set_enable(value); } }
         protected partial bool Get_enable();
         protected partial void Set_enable(bool value);
-        
+
         public bool skyEnable { get => Get_skyEnable(); set { Set_skyEnable(value); } }
         protected partial bool Get_skyEnable();
         protected partial void Set_skyEnable(bool value);
-        
+
         public bool sunLightEnable { get => Get_sunLightEnable(); set { Set_sunLightEnable(value); } }
         protected partial bool Get_sunLightEnable();
         protected partial void Set_sunLightEnable(bool value);
-        
+
         public bool isCascadeBlend { get => Get_isCascadeBlend(); set { Set_isCascadeBlend(value); } }
         protected partial bool Get_isCascadeBlend();
         protected partial void Set_isCascadeBlend(bool value);
-        
+
         public bool castShadow { get => Get_castShadow(); set { Set_castShadow(value); } }
         protected partial bool Get_castShadow();
         protected partial void Set_castShadow(bool value);
-        
+
         public bool dirLightFade { get => Get_dirLightFade(); set { Set_dirLightFade(value); } }
         protected partial bool Get_dirLightFade();
         protected partial void Set_dirLightFade(bool value);
-        
+
         public bool disableSkyCapture { get => Get_disableSkyCapture(); set { Set_disableSkyCapture(value); } }
         protected partial bool Get_disableSkyCapture();
         protected partial void Set_disableSkyCapture(bool value);
-        
+
         public bool skyLightEnable { get => Get_skyLightEnable(); set { Set_skyLightEnable(value); } }
         protected partial bool Get_skyLightEnable();
         protected partial void Set_skyLightEnable(bool value);
-        
+
         public bool usePrecomputedAmbient { get => Get_usePrecomputedAmbient(); set { Set_usePrecomputedAmbient(value); } }
         protected partial bool Get_usePrecomputedAmbient();
         protected partial void Set_usePrecomputedAmbient(bool value);
-        
+
         public bool fogEnable { get => Get_fogEnable(); set { Set_fogEnable(value); } }
         protected partial bool Get_fogEnable();
         protected partial void Set_fogEnable(bool value);
-        
+
         public bool expandHorizontalLineColor { get => Get_expandHorizontalLineColor(); set { Set_expandHorizontalLineColor(value); } }
         protected partial bool Get_expandHorizontalLineColor();
         protected partial void Set_expandHorizontalLineColor(bool value);
-        
+
         public bool isSteppedMoveOfDirectionalLight { get => Get_isSteppedMoveOfDirectionalLight(); set { Set_isSteppedMoveOfDirectionalLight(value); } }
         protected partial bool Get_isSteppedMoveOfDirectionalLight();
         protected partial void Set_isSteppedMoveOfDirectionalLight(bool value);
-        
+
         // ClassInfos
         public static new bool ClassInfoInitialized = false;
         private static Fox.Core.EntityInfo classInfo;
@@ -370,7 +370,7 @@ namespace Tpp.Effect
         // Constructors
 		public TppAtmosphere(ulong id) : base(id) { }
 		public TppAtmosphere() : base() { }
-        
+
         public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
         {
             switch(propertyName.CString)
@@ -614,7 +614,7 @@ namespace Tpp.Effect
                     return;
             }
         }
-        
+
         public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
         {
             switch(propertyName.CString)
@@ -628,7 +628,7 @@ namespace Tpp.Effect
                     return;
             }
         }
-        
+
         public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
         {
             switch(propertyName.CString)

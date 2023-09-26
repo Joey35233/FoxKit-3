@@ -113,7 +113,7 @@ namespace Fox.Core
         public static Kernel.String WriteStringPropertyValue(this BinaryWriter writer, Entity entity, PropertyInfo property)
         {
             Kernel.String strVal = entity.GetProperty<Kernel.String>(property);
-           
+
             writer.WriteStrCode(strVal.Hash);
             return strVal;
         }
@@ -208,22 +208,22 @@ namespace Fox.Core
 
         public static void WriteEntityHandlePropertyValue(this BinaryWriter writer, Entity entity, PropertyInfo property, IDictionary<Entity, ulong> addresses)
         {
-            EntityHandle val = entity.GetProperty<EntityHandle>(property);
+            Entity val = entity.GetProperty<Entity>(property);
             ulong address = 0;
-            if (val.Entity != null)
+            if (val != null)
             {
-                address = addresses[val.Entity];
+                address = addresses[val];
             }
 
             writer.Write(address);
         }
 
-        public static void WriteEntityHandle(this BinaryWriter writer, EntityHandle val, IDictionary<Entity, ulong> addresses)
+        public static void WriteEntityHandle(this BinaryWriter writer, Entity val, IDictionary<Entity, ulong> addresses)
         {
             ulong address = 0;
-            if (val.Entity != null)
+            if (val != null)
             {
-                address = addresses[val.Entity];
+                address = addresses[val];
             }
 
             writer.Write(address);
@@ -237,9 +237,9 @@ namespace Fox.Core
             writer.WriteStrCode(entityLinkVal.nameInArchive.Hash);
 
             ulong address = 0;
-            if (entityLinkVal.handle.Entity != null)
+            if (entityLinkVal.handle != null)
             {
-                address = addresses[entityLinkVal.handle.Entity];
+                address = addresses[entityLinkVal.handle];
             }
 
             writer.Write(address);
@@ -258,9 +258,9 @@ namespace Fox.Core
             writer.WriteStrCode(entityLinkVal.nameInArchive.Hash);
 
             ulong address = 0;
-            if (entityLinkVal.handle.Entity != null)
+            if (entityLinkVal.handle != null)
             {
-                address = addresses[entityLinkVal.handle.Entity];
+                address = addresses[entityLinkVal.handle];
             }
 
             writer.Write(address);

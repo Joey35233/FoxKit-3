@@ -282,7 +282,7 @@ namespace Fox.Core
                     writer.Write(item as FilePtr);
                     break;
                 case PropertyInfo.PropertyType.EntityHandle:
-                    writer.WriteEntityHandle((EntityHandle)item, addresses);
+                    writer.WriteEntityHandle((Entity)item, addresses);
                     break;
                 case PropertyInfo.PropertyType.EntityLink:
                     var entityLink = (EntityLink)item;

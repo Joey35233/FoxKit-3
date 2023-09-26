@@ -13,15 +13,15 @@ using Fox;
 namespace Fox.Core
 {
     [UnityEditor.InitializeOnLoad]
-    public partial class EntityHandleStringMapPropertyDifference : Fox.Core.PropertyDifference 
+    public partial class EntityHandleStringMapPropertyDifference : Fox.Core.PropertyDifference
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Kernel.StringMap<Fox.Core.EntityHandle> originalValues { get; set; } = new Fox.Kernel.StringMap<Fox.Core.EntityHandle>();
-        
+        public Fox.Kernel.StringMap<Fox.Core.Entity> originalValues { get; set; } = new Fox.Kernel.StringMap<Fox.Core.Entity>();
+
         [field: UnityEngine.SerializeField]
-        public Fox.Kernel.StringMap<Fox.Core.EntityHandle> values { get; set; } = new Fox.Kernel.StringMap<Fox.Core.EntityHandle>();
-        
+        public Fox.Kernel.StringMap<Fox.Core.Entity> values { get; set; } = new Fox.Kernel.StringMap<Fox.Core.Entity>();
+
         // ClassInfos
         public static new bool ClassInfoInitialized = false;
         private static Fox.Core.EntityInfo classInfo;
@@ -49,7 +49,7 @@ namespace Fox.Core
         // Constructors
 		public EntityHandleStringMapPropertyDifference(ulong id) : base(id) { }
 		public EntityHandleStringMapPropertyDifference() : base() { }
-        
+
         public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
         {
             switch(propertyName.CString)
@@ -59,7 +59,7 @@ namespace Fox.Core
                     return;
             }
         }
-        
+
         public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
         {
             switch(propertyName.CString)
@@ -69,7 +69,7 @@ namespace Fox.Core
                     return;
             }
         }
-        
+
         public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
         {
             switch(propertyName.CString)

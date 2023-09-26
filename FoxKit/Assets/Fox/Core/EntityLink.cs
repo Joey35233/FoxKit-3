@@ -16,7 +16,7 @@ namespace Fox.Core
         /// The referenced Entity.
         /// </summary>
         [SerializeField]
-        public EntityHandle handle;
+        public Entity handle;
 
         /// <summary>
         /// Path to the referenced Entity's containing package.
@@ -36,7 +36,7 @@ namespace Fox.Core
         [SerializeField]
         public String nameInArchive;
 
-        public EntityLink(EntityHandle handle, Path packagePath, Path archivePath, String nameInArchive)
+        public EntityLink(Entity handle, Path packagePath, Path archivePath, String nameInArchive)
         {
             this.handle = handle;
             this.packagePath = packagePath;
@@ -56,6 +56,6 @@ namespace Fox.Core
 
         public override string ToString() => handle.ToString();
 
-        internal static EntityLink Empty() => new(new EntityHandle(), null, null, null);
+        internal static EntityLink Empty() => new(null, null, null, null);
     }
 }

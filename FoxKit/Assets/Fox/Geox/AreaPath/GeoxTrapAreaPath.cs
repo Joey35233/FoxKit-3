@@ -65,9 +65,9 @@ namespace Fox.Geox
 
                         prevNode = trapAreaPath.nodes[(int)(vertexCount - 1)].Get();
                         nextNode = trapAreaPath.nodes[0].Get();
-                        loopEdge.nextNode = EntityHandle.Get(nextNode);
+                        loopEdge.nextNode = nextNode;
                         nextNode.inlinks.Add(loopEdge.nextNode);
-                        loopEdge.prevNode = EntityHandle.Get(prevNode);
+                        loopEdge.prevNode = prevNode;
                         prevNode.outlinks.Add(loopEdge.prevNode);
 
                         trapAreaPath.edges.Add(new EntityPtr<GraphxSpatialGraphDataEdge>(loopEdge));
@@ -81,9 +81,9 @@ namespace Fox.Geox
                         GraphxSpatialGraphDataEdge edge = new GameObject().AddComponent<GraphxSpatialGraphDataEdge>();
                         edge.SetOwner(trapAreaPath);
 
-                        edge.nextNode = EntityHandle.Get(nextNode);
+                        edge.nextNode = nextNode;
                         nextNode.inlinks.Add(edge.nextNode);
-                        edge.prevNode = EntityHandle.Get(prevNode);
+                        edge.prevNode = prevNode;
                         prevNode.outlinks.Add(edge.prevNode);
 
                         trapAreaPath.edges.Add(new EntityPtr<GraphxSpatialGraphDataEdge>(edge));
@@ -107,8 +107,8 @@ namespace Fox.Geox
             foreach (EntityPtr<GraphxSpatialGraphDataEdge> edgePtr in trapPath.edges)
             {
                 GraphxSpatialGraphDataEdge edge = edgePtr.Get();
-                var prevNode = edge.prevNode.Entity as GraphxSpatialGraphDataNode;
-                var nextNode = edge.nextNode.Entity as GraphxSpatialGraphDataNode;
+                var prevNode = edge.prevNode as GraphxSpatialGraphDataNode;
+                var nextNode = edge.nextNode as GraphxSpatialGraphDataNode;
 
                 float yMin = (this as MonoBehaviour).transform.position.y;
                 float yMax = yMin + trapPath.height;

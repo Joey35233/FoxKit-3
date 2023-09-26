@@ -70,7 +70,7 @@ namespace Fox.Core
             value = entityLink;
         }
 
-        public Value(EntityHandle entityHandle)
+        public Value(Entity entityHandle)
         {
             value = entityHandle;
         }
@@ -136,7 +136,7 @@ namespace Fox.Core
 
         public EntityLink GetValueAsEntityLink() => (EntityLink)value;
 
-        public EntityHandle GetValueAsEntityHandle() => (EntityHandle)value;
+        public Entity GetValueAsEntityHandle() => (Entity)value;
 
         public FilePtr GetValueAsFilePtr() => (FilePtr)value;
 

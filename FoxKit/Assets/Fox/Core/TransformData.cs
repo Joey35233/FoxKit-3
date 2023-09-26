@@ -91,27 +91,27 @@ namespace Fox.Core
             // Get GameObject's parent
             UnityEngine.Transform transform = this.gameObject.GetComponent<UnityEngine.Transform>();
 
-            EntityHandle exportParent = EntityHandle.Empty;
+            Entity exportParent = null;
             UnityEngine.Transform parentTransform = transform.parent;
             if (parentTransform != null)
             {
                 TransformData parentTransformData = parentTransform.GetComponent<TransformData>();
                 if (parentTransformData != null)
                 {
-                    exportParent = EntityHandle.Get(parentTransformData);
+                    exportParent = parentTransformData;
                 }
             }
 
             context.OverrideProperty(nameof(parent), exportParent);
 
             // Get child GameObjects
-            var exportChildren = new DynamicArray<EntityHandle>();
+            var exportChildren = new DynamicArray<Entity>();
             foreach (UnityEngine.Transform child in transform)
             {
                 TransformData childTransformData = child.GetComponent<TransformData>();
                 if (childTransformData != null)
                 {
-                    var exportChild = EntityHandle.Get(childTransformData);
+                    Entity exportChild = childTransformData;
                     exportChildren.Add(exportChild);
                 }
             }

@@ -13,24 +13,24 @@ using Fox;
 namespace Fox.GameKit
 {
     [UnityEditor.InitializeOnLoad]
-    public partial class OpticalCamo : Fox.Core.Data 
+    public partial class OpticalCamo : Fox.Core.Data
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Core.EntityHandle target { get; set; }
-        
+        public Fox.Core.Entity target { get; set; }
+
         [field: UnityEngine.SerializeField]
         public bool isOn { get; set; }
-        
+
         [field: UnityEngine.SerializeField]
         public UnityEngine.Color lightBendColor { get; set; }
-        
+
         [field: UnityEngine.SerializeField]
         public uint lightBendUOffset { get; set; }
-        
+
         [field: UnityEngine.SerializeField]
         public uint lightBendVOffset { get; set; }
-        
+
         // ClassInfos
         public static new bool ClassInfoInitialized = false;
         private static Fox.Core.EntityInfo classInfo;
@@ -61,7 +61,7 @@ namespace Fox.GameKit
         // Constructors
 		public OpticalCamo(ulong id) : base(id) { }
 		public OpticalCamo() : base() { }
-        
+
         public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
         {
             switch(propertyName.CString)
@@ -86,7 +86,7 @@ namespace Fox.GameKit
                     return;
             }
         }
-        
+
         public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
         {
             switch(propertyName.CString)
@@ -96,7 +96,7 @@ namespace Fox.GameKit
                     return;
             }
         }
-        
+
         public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
         {
             switch(propertyName.CString)

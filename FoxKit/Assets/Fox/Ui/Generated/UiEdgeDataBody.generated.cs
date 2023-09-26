@@ -13,33 +13,33 @@ using Fox;
 namespace Fox.Ui
 {
     [UnityEditor.InitializeOnLoad]
-    public partial class UiEdgeDataBody : Fox.Core.DataBody 
+    public partial class UiEdgeDataBody : Fox.Core.DataBody
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        protected Fox.Core.EntityHandle sourcePort { get; set; }
-        
+        protected Fox.Core.Entity sourcePort { get; set; }
+
         [field: UnityEngine.SerializeField]
         protected int sourcePortType { get; set; }
-        
+
         [field: UnityEngine.SerializeField]
         protected int sourcePortIndex { get; set; }
-        
+
         [field: UnityEngine.SerializeField]
-        protected Fox.Core.EntityHandle targetPort { get; set; }
-        
+        protected Fox.Core.Entity targetPort { get; set; }
+
         [field: UnityEngine.SerializeField]
         protected int targetPortType { get; set; }
-        
+
         [field: UnityEngine.SerializeField]
         protected int targetPortIndex { get; set; }
-        
+
         [field: UnityEngine.SerializeField]
         protected bool isConnect { get; set; }
-        
+
         [field: UnityEngine.SerializeField]
         protected bool isVirtual { get; set; }
-        
+
         // ClassInfos
         public static new bool ClassInfoInitialized = false;
         private static Fox.Core.EntityInfo classInfo;
@@ -73,7 +73,7 @@ namespace Fox.Ui
         // Constructors
 		public UiEdgeDataBody(ulong id) : base(id) { }
 		public UiEdgeDataBody() : base() { }
-        
+
         public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
         {
             switch(propertyName.CString)
@@ -107,7 +107,7 @@ namespace Fox.Ui
                     return;
             }
         }
-        
+
         public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
         {
             switch(propertyName.CString)
@@ -117,7 +117,7 @@ namespace Fox.Ui
                     return;
             }
         }
-        
+
         public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
         {
             switch(propertyName.CString)

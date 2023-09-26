@@ -13,15 +13,15 @@ using Fox;
 namespace Fox.Core
 {
     [UnityEditor.InitializeOnLoad]
-    public partial class EntityHandleArrayPropertyDifference : Fox.Core.PropertyDifference 
+    public partial class EntityHandleArrayPropertyDifference : Fox.Core.PropertyDifference
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Kernel.DynamicArray<Fox.Core.EntityHandle> originalValues { get; set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityHandle>();
-        
+        public Fox.Kernel.DynamicArray<Fox.Core.Entity> originalValues { get; set; } = new Fox.Kernel.DynamicArray<Fox.Core.Entity>();
+
         [field: UnityEngine.SerializeField]
-        public Fox.Kernel.DynamicArray<Fox.Core.EntityHandle> values { get; set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityHandle>();
-        
+        public Fox.Kernel.DynamicArray<Fox.Core.Entity> values { get; set; } = new Fox.Kernel.DynamicArray<Fox.Core.Entity>();
+
         // ClassInfos
         public static new bool ClassInfoInitialized = false;
         private static Fox.Core.EntityInfo classInfo;
@@ -49,7 +49,7 @@ namespace Fox.Core
         // Constructors
 		public EntityHandleArrayPropertyDifference(ulong id) : base(id) { }
 		public EntityHandleArrayPropertyDifference() : base() { }
-        
+
         public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
         {
             switch(propertyName.CString)
@@ -59,17 +59,17 @@ namespace Fox.Core
                     return;
             }
         }
-        
+
         public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
         {
             switch(propertyName.CString)
             {
                 case "originalValues":
-                    while(this.originalValues.Count <= index) { this.originalValues.Add(default(Fox.Core.EntityHandle)); }
+                    while(this.originalValues.Count <= index) { this.originalValues.Add(default(Fox.Core.Entity)); }
                     this.originalValues[index] = value.GetValueAsEntityHandle();
                     return;
                 case "values":
-                    while(this.values.Count <= index) { this.values.Add(default(Fox.Core.EntityHandle)); }
+                    while(this.values.Count <= index) { this.values.Add(default(Fox.Core.Entity)); }
                     this.values[index] = value.GetValueAsEntityHandle();
                     return;
                 default:
@@ -77,7 +77,7 @@ namespace Fox.Core
                     return;
             }
         }
-        
+
         public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
         {
             switch(propertyName.CString)

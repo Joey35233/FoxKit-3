@@ -276,10 +276,10 @@ namespace Fox.GameService
                     EntityPtr<GraphxSpatialGraphDataEdge> prevEdge = routeData.edges[(j - 1 + nodeCount) % nodeCount];
                     EntityPtr<GraphxSpatialGraphDataEdge> nextEdge = routeData.edges[j];
 
-                    node.Get().inlinks.Add(EntityHandle.Get(prevEdge.Get()));
-                    prevEdge.Get().nextNode = EntityHandle.Get(node.Get());
-                    node.Get().outlinks.Add(EntityHandle.Get(nextEdge.Get()));
-                    nextEdge.Get().prevNode = EntityHandle.Get(node.Get());
+                    node.Get().inlinks.Add(prevEdge.Get());
+                    prevEdge.Get().nextNode = node.Get();
+                    node.Get().outlinks.Add(nextEdge.Get());
+                    nextEdge.Get().prevNode = node.Get();
                 }
             }
 

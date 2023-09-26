@@ -13,27 +13,27 @@ using Fox;
 namespace Fox.GameKit
 {
     [UnityEditor.InitializeOnLoad]
-    public partial class ObjectBrush : Fox.Core.TransformData 
+    public partial class ObjectBrush : Fox.Core.TransformData
     {
         // Properties
         [field: UnityEngine.SerializeField]
-        public Fox.Kernel.DynamicArray<Fox.Core.EntityHandle> pluginHandle { get; set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityHandle>();
-        
+        public Fox.Kernel.DynamicArray<Fox.Core.Entity> pluginHandle { get; set; } = new Fox.Kernel.DynamicArray<Fox.Core.Entity>();
+
         [field: UnityEngine.SerializeField]
         public Fox.Kernel.DynamicArray<Fox.Kernel.String> blockDataName { get; set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
-        
+
         [field: UnityEngine.SerializeField]
         public Fox.Kernel.Path filePath { get; set; }
-        
+
         [field: UnityEngine.SerializeField]
         public Fox.Kernel.Path loadFilePath { get; set; }
-        
+
         [field: UnityEngine.SerializeField]
         public Fox.Core.FilePtr obrFile { get; set; }
-        
+
         [field: UnityEngine.SerializeField]
         public uint numBlocks { get; set; }
-        
+
         // ClassInfos
         public static new bool ClassInfoInitialized = false;
         private static Fox.Core.EntityInfo classInfo;
@@ -65,7 +65,7 @@ namespace Fox.GameKit
         // Constructors
 		public ObjectBrush(ulong id) : base(id) { }
 		public ObjectBrush() : base() { }
-        
+
         public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
         {
             switch(propertyName.CString)
@@ -87,13 +87,13 @@ namespace Fox.GameKit
                     return;
             }
         }
-        
+
         public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
         {
             switch(propertyName.CString)
             {
                 case "pluginHandle":
-                    while(this.pluginHandle.Count <= index) { this.pluginHandle.Add(default(Fox.Core.EntityHandle)); }
+                    while(this.pluginHandle.Count <= index) { this.pluginHandle.Add(default(Fox.Core.Entity)); }
                     this.pluginHandle[index] = value.GetValueAsEntityHandle();
                     return;
                 case "blockDataName":
@@ -105,7 +105,7 @@ namespace Fox.GameKit
                     return;
             }
         }
-        
+
         public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
         {
             switch(propertyName.CString)
