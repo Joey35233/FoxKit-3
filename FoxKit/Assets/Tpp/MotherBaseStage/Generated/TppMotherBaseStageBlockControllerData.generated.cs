@@ -12,88 +12,88 @@ using Fox;
 
 namespace Tpp.MotherBaseStage
 {
-    [UnityEditor.InitializeOnLoad]
-    public partial class TppMotherBaseStageBlockControllerData : Fox.Core.Data 
-    {
-        // Properties
-        [field: UnityEngine.SerializeField]
-        public MbStageBlockCreateMode createMode { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public ushort motherBaseId { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.String stageName { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint layoutBlockSizeInBytes { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint commonBlockSizeInBytes { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint uniqueBlockCount { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint uniqueBlockSizeInBytes { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint divisionBlockCount { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint divisionBlockSizeInBytes { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.StaticArray<byte> cluster00divisionPackageIds { get; set; } = new Fox.Kernel.StaticArray<byte>(12);
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.StaticArray<byte> cluster01divisionPackageIds { get; set; } = new Fox.Kernel.StaticArray<byte>(12);
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.StaticArray<byte> cluster02divisionPackageIds { get; set; } = new Fox.Kernel.StaticArray<byte>(12);
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.StaticArray<byte> cluster03divisionPackageIds { get; set; } = new Fox.Kernel.StaticArray<byte>(12);
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.StaticArray<byte> cluster04divisionPackageIds { get; set; } = new Fox.Kernel.StaticArray<byte>(12);
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.StaticArray<byte> cluster05divisionPackageIds { get; set; } = new Fox.Kernel.StaticArray<byte>(12);
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.StaticArray<byte> cluster06divisionPackageIds { get; set; } = new Fox.Kernel.StaticArray<byte>(12);
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.StaticArray<byte> cluster07divisionPackageIds { get; set; } = new Fox.Kernel.StaticArray<byte>(12);
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.StaticArray<UnityEngine.Vector3> clusterPositions { get; set; } = new Fox.Kernel.StaticArray<UnityEngine.Vector3>(8);
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.StaticArray<uint> clusterRequestRadiuses { get; set; } = new Fox.Kernel.StaticArray<uint>(8);
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.StaticArray<uint> clusterRequireRadiuses { get; set; } = new Fox.Kernel.StaticArray<uint>(8);
-        
-        // ClassInfos
-        public static new bool ClassInfoInitialized = false;
-        private static Fox.Core.EntityInfo classInfo;
-        public static new Fox.Core.EntityInfo ClassInfo
-        {
-            get
-            {
-                return classInfo;
-            }
-        }
-        public override Fox.Core.EntityInfo GetClassEntityInfo()
-        {
-            return classInfo;
-        }
-        static TppMotherBaseStageBlockControllerData()
-        {
-            if (Fox.Core.Data.ClassInfoInitialized)
-                classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("TppMotherBaseStageBlockControllerData"), typeof(TppMotherBaseStageBlockControllerData), Fox.Core.Data.ClassInfo, 400, null, 3);
+	[UnityEditor.InitializeOnLoad]
+	public partial class TppMotherBaseStageBlockControllerData : Fox.Core.Data
+	{
+		// Properties
+		[field: UnityEngine.SerializeField]
+		public MbStageBlockCreateMode createMode { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public ushort motherBaseId { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.String stageName { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint layoutBlockSizeInBytes { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint commonBlockSizeInBytes { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint uniqueBlockCount { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint uniqueBlockSizeInBytes { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint divisionBlockCount { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint divisionBlockSizeInBytes { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.StaticArray<byte> cluster00divisionPackageIds { get; set; } = new Fox.Kernel.StaticArray<byte>(12);
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.StaticArray<byte> cluster01divisionPackageIds { get; set; } = new Fox.Kernel.StaticArray<byte>(12);
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.StaticArray<byte> cluster02divisionPackageIds { get; set; } = new Fox.Kernel.StaticArray<byte>(12);
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.StaticArray<byte> cluster03divisionPackageIds { get; set; } = new Fox.Kernel.StaticArray<byte>(12);
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.StaticArray<byte> cluster04divisionPackageIds { get; set; } = new Fox.Kernel.StaticArray<byte>(12);
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.StaticArray<byte> cluster05divisionPackageIds { get; set; } = new Fox.Kernel.StaticArray<byte>(12);
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.StaticArray<byte> cluster06divisionPackageIds { get; set; } = new Fox.Kernel.StaticArray<byte>(12);
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.StaticArray<byte> cluster07divisionPackageIds { get; set; } = new Fox.Kernel.StaticArray<byte>(12);
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.StaticArray<UnityEngine.Vector3> clusterPositions { get; set; } = new Fox.Kernel.StaticArray<UnityEngine.Vector3>(8);
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.StaticArray<uint> clusterRequestRadiuses { get; set; } = new Fox.Kernel.StaticArray<uint>(8);
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.StaticArray<uint> clusterRequireRadiuses { get; set; } = new Fox.Kernel.StaticArray<uint>(8);
+		
+		// ClassInfos
+		public static new bool ClassInfoInitialized = false;
+		private static Fox.Core.EntityInfo classInfo;
+		public static new Fox.Core.EntityInfo ClassInfo
+		{
+			get
+			{
+				return classInfo;
+			}
+		}
+		public override Fox.Core.EntityInfo GetClassEntityInfo()
+		{
+			return classInfo;
+		}
+		static TppMotherBaseStageBlockControllerData()
+		{
+			if (Fox.Core.Data.ClassInfoInitialized)
+				classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("TppMotherBaseStageBlockControllerData"), typeof(TppMotherBaseStageBlockControllerData), Fox.Core.Data.ClassInfo, 400, null, 3);
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("createMode"), Fox.Core.PropertyInfo.PropertyType.Int32, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, typeof(MbStageBlockCreateMode), Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("motherBaseId"), Fox.Core.PropertyInfo.PropertyType.UInt16, 160, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("stageName"), Fox.Core.PropertyInfo.PropertyType.String, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
@@ -115,112 +115,112 @@ namespace Tpp.MotherBaseStage
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("clusterRequestRadiuses"), Fox.Core.PropertyInfo.PropertyType.UInt32, 400, 8, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("clusterRequireRadiuses"), Fox.Core.PropertyInfo.PropertyType.UInt32, 432, 8, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 
-            ClassInfoInitialized = true;
-        }
+			ClassInfoInitialized = true;
+		}
 
-        // Constructors
+		// Constructors
 		public TppMotherBaseStageBlockControllerData(ulong id) : base(id) { }
 		public TppMotherBaseStageBlockControllerData() : base() { }
-        
-        public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "createMode":
-                    this.createMode = (MbStageBlockCreateMode)value.GetValueAsInt32();
-                    return;
-                case "motherBaseId":
-                    this.motherBaseId = value.GetValueAsUInt16();
-                    return;
-                case "stageName":
-                    this.stageName = value.GetValueAsString();
-                    return;
-                case "layoutBlockSizeInBytes":
-                    this.layoutBlockSizeInBytes = value.GetValueAsUInt32();
-                    return;
-                case "commonBlockSizeInBytes":
-                    this.commonBlockSizeInBytes = value.GetValueAsUInt32();
-                    return;
-                case "uniqueBlockCount":
-                    this.uniqueBlockCount = value.GetValueAsUInt32();
-                    return;
-                case "uniqueBlockSizeInBytes":
-                    this.uniqueBlockSizeInBytes = value.GetValueAsUInt32();
-                    return;
-                case "divisionBlockCount":
-                    this.divisionBlockCount = value.GetValueAsUInt32();
-                    return;
-                case "divisionBlockSizeInBytes":
-                    this.divisionBlockSizeInBytes = value.GetValueAsUInt32();
-                    return;
-                default:
-                    base.SetProperty(propertyName, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "cluster00divisionPackageIds":
-                    
-                    this.cluster00divisionPackageIds[index] = value.GetValueAsUInt8();
-                    return;
-                case "cluster01divisionPackageIds":
-                    
-                    this.cluster01divisionPackageIds[index] = value.GetValueAsUInt8();
-                    return;
-                case "cluster02divisionPackageIds":
-                    
-                    this.cluster02divisionPackageIds[index] = value.GetValueAsUInt8();
-                    return;
-                case "cluster03divisionPackageIds":
-                    
-                    this.cluster03divisionPackageIds[index] = value.GetValueAsUInt8();
-                    return;
-                case "cluster04divisionPackageIds":
-                    
-                    this.cluster04divisionPackageIds[index] = value.GetValueAsUInt8();
-                    return;
-                case "cluster05divisionPackageIds":
-                    
-                    this.cluster05divisionPackageIds[index] = value.GetValueAsUInt8();
-                    return;
-                case "cluster06divisionPackageIds":
-                    
-                    this.cluster06divisionPackageIds[index] = value.GetValueAsUInt8();
-                    return;
-                case "cluster07divisionPackageIds":
-                    
-                    this.cluster07divisionPackageIds[index] = value.GetValueAsUInt8();
-                    return;
-                case "clusterPositions":
-                    
-                    this.clusterPositions[index] = value.GetValueAsVector3();
-                    return;
-                case "clusterRequestRadiuses":
-                    
-                    this.clusterRequestRadiuses[index] = value.GetValueAsUInt32();
-                    return;
-                case "clusterRequireRadiuses":
-                    
-                    this.clusterRequireRadiuses[index] = value.GetValueAsUInt32();
-                    return;
-                default:
-                    base.SetPropertyElement(propertyName, index, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, key, value);
-                    return;
-            }
-        }
-    }
+
+		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
+		{
+			switch(propertyName.CString)
+			{
+				case "createMode":
+					this.createMode = (MbStageBlockCreateMode)value.GetValueAsInt32();
+					return;
+				case "motherBaseId":
+					this.motherBaseId = value.GetValueAsUInt16();
+					return;
+				case "stageName":
+					this.stageName = value.GetValueAsString();
+					return;
+				case "layoutBlockSizeInBytes":
+					this.layoutBlockSizeInBytes = value.GetValueAsUInt32();
+					return;
+				case "commonBlockSizeInBytes":
+					this.commonBlockSizeInBytes = value.GetValueAsUInt32();
+					return;
+				case "uniqueBlockCount":
+					this.uniqueBlockCount = value.GetValueAsUInt32();
+					return;
+				case "uniqueBlockSizeInBytes":
+					this.uniqueBlockSizeInBytes = value.GetValueAsUInt32();
+					return;
+				case "divisionBlockCount":
+					this.divisionBlockCount = value.GetValueAsUInt32();
+					return;
+				case "divisionBlockSizeInBytes":
+					this.divisionBlockSizeInBytes = value.GetValueAsUInt32();
+					return;
+				default:
+					base.SetProperty(propertyName, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
+		{
+			switch(propertyName.CString)
+			{
+				case "cluster00divisionPackageIds":
+					
+					this.cluster00divisionPackageIds[index] = value.GetValueAsUInt8();
+					return;
+				case "cluster01divisionPackageIds":
+					
+					this.cluster01divisionPackageIds[index] = value.GetValueAsUInt8();
+					return;
+				case "cluster02divisionPackageIds":
+					
+					this.cluster02divisionPackageIds[index] = value.GetValueAsUInt8();
+					return;
+				case "cluster03divisionPackageIds":
+					
+					this.cluster03divisionPackageIds[index] = value.GetValueAsUInt8();
+					return;
+				case "cluster04divisionPackageIds":
+					
+					this.cluster04divisionPackageIds[index] = value.GetValueAsUInt8();
+					return;
+				case "cluster05divisionPackageIds":
+					
+					this.cluster05divisionPackageIds[index] = value.GetValueAsUInt8();
+					return;
+				case "cluster06divisionPackageIds":
+					
+					this.cluster06divisionPackageIds[index] = value.GetValueAsUInt8();
+					return;
+				case "cluster07divisionPackageIds":
+					
+					this.cluster07divisionPackageIds[index] = value.GetValueAsUInt8();
+					return;
+				case "clusterPositions":
+					
+					this.clusterPositions[index] = value.GetValueAsVector3();
+					return;
+				case "clusterRequestRadiuses":
+					
+					this.clusterRequestRadiuses[index] = value.GetValueAsUInt32();
+					return;
+				case "clusterRequireRadiuses":
+					
+					this.clusterRequireRadiuses[index] = value.GetValueAsUInt32();
+					return;
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
+		{
+			switch(propertyName.CString)
+			{
+				default:
+					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+	}
 }

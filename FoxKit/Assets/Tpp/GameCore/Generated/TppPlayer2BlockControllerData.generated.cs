@@ -12,61 +12,61 @@ using Fox;
 
 namespace Tpp.GameCore
 {
-    [UnityEditor.InitializeOnLoad]
-    public partial class TppPlayer2BlockControllerData : Fox.Core.Data 
-    {
-        // Properties
-        [field: UnityEngine.SerializeField]
-        public uint configuration_commonMotionBlockSize { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint configuration_commonMotionBlockSizePs3 { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint configuration_additiveMotionBlockCount { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint configuration_additiveMotionBlockSize { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint configuration_partsBlockCount { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint configuration_partsBlockSize { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.String instanceSettings_instancePackagePath { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint instanceSettings_instanceBlockSize { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.String instanceSettings_commonMotionTypeName { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.DynamicArray<Fox.Kernel.String> instanceSettings_partsTypeNames { get; set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.DynamicArray<Fox.Kernel.String> instanceSettings_partsTypeInitial { get; set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
-        
-        // ClassInfos
-        public static new bool ClassInfoInitialized = false;
-        private static Fox.Core.EntityInfo classInfo;
-        public static new Fox.Core.EntityInfo ClassInfo
-        {
-            get
-            {
-                return classInfo;
-            }
-        }
-        public override Fox.Core.EntityInfo GetClassEntityInfo()
-        {
-            return classInfo;
-        }
-        static TppPlayer2BlockControllerData()
-        {
-            if (Fox.Core.Data.ClassInfoInitialized)
-                classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("TppPlayer2BlockControllerData"), typeof(TppPlayer2BlockControllerData), Fox.Core.Data.ClassInfo, 136, null, 3);
+	[UnityEditor.InitializeOnLoad]
+	public partial class TppPlayer2BlockControllerData : Fox.Core.Data
+	{
+		// Properties
+		[field: UnityEngine.SerializeField]
+		public uint configuration_commonMotionBlockSize { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint configuration_commonMotionBlockSizePs3 { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint configuration_additiveMotionBlockCount { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint configuration_additiveMotionBlockSize { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint configuration_partsBlockCount { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint configuration_partsBlockSize { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.String instanceSettings_instancePackagePath { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint instanceSettings_instanceBlockSize { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.String instanceSettings_commonMotionTypeName { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.DynamicArray<Fox.Kernel.String> instanceSettings_partsTypeNames { get; set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.DynamicArray<Fox.Kernel.String> instanceSettings_partsTypeInitial { get; set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
+		
+		// ClassInfos
+		public static new bool ClassInfoInitialized = false;
+		private static Fox.Core.EntityInfo classInfo;
+		public static new Fox.Core.EntityInfo ClassInfo
+		{
+			get
+			{
+				return classInfo;
+			}
+		}
+		public override Fox.Core.EntityInfo GetClassEntityInfo()
+		{
+			return classInfo;
+		}
+		static TppPlayer2BlockControllerData()
+		{
+			if (Fox.Core.Data.ClassInfoInitialized)
+				classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("TppPlayer2BlockControllerData"), typeof(TppPlayer2BlockControllerData), Fox.Core.Data.ClassInfo, 136, null, 3);
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("configuration_commonMotionBlockSize"), Fox.Core.PropertyInfo.PropertyType.UInt32, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("configuration_commonMotionBlockSizePs3"), Fox.Core.PropertyInfo.PropertyType.UInt32, 124, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("configuration_additiveMotionBlockCount"), Fox.Core.PropertyInfo.PropertyType.UInt32, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
@@ -79,76 +79,76 @@ namespace Tpp.GameCore
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("instanceSettings_partsTypeNames"), Fox.Core.PropertyInfo.PropertyType.String, 168, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("instanceSettings_partsTypeInitial"), Fox.Core.PropertyInfo.PropertyType.String, 184, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 
-            ClassInfoInitialized = true;
-        }
+			ClassInfoInitialized = true;
+		}
 
-        // Constructors
+		// Constructors
 		public TppPlayer2BlockControllerData(ulong id) : base(id) { }
 		public TppPlayer2BlockControllerData() : base() { }
-        
-        public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "configuration_commonMotionBlockSize":
-                    this.configuration_commonMotionBlockSize = value.GetValueAsUInt32();
-                    return;
-                case "configuration_commonMotionBlockSizePs3":
-                    this.configuration_commonMotionBlockSizePs3 = value.GetValueAsUInt32();
-                    return;
-                case "configuration_additiveMotionBlockCount":
-                    this.configuration_additiveMotionBlockCount = value.GetValueAsUInt32();
-                    return;
-                case "configuration_additiveMotionBlockSize":
-                    this.configuration_additiveMotionBlockSize = value.GetValueAsUInt32();
-                    return;
-                case "configuration_partsBlockCount":
-                    this.configuration_partsBlockCount = value.GetValueAsUInt32();
-                    return;
-                case "configuration_partsBlockSize":
-                    this.configuration_partsBlockSize = value.GetValueAsUInt32();
-                    return;
-                case "instanceSettings_instancePackagePath":
-                    this.instanceSettings_instancePackagePath = value.GetValueAsString();
-                    return;
-                case "instanceSettings_instanceBlockSize":
-                    this.instanceSettings_instanceBlockSize = value.GetValueAsUInt32();
-                    return;
-                case "instanceSettings_commonMotionTypeName":
-                    this.instanceSettings_commonMotionTypeName = value.GetValueAsString();
-                    return;
-                default:
-                    base.SetProperty(propertyName, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "instanceSettings_partsTypeNames":
-                    while(this.instanceSettings_partsTypeNames.Count <= index) { this.instanceSettings_partsTypeNames.Add(default(Fox.Kernel.String)); }
-                    this.instanceSettings_partsTypeNames[index] = value.GetValueAsString();
-                    return;
-                case "instanceSettings_partsTypeInitial":
-                    while(this.instanceSettings_partsTypeInitial.Count <= index) { this.instanceSettings_partsTypeInitial.Add(default(Fox.Kernel.String)); }
-                    this.instanceSettings_partsTypeInitial[index] = value.GetValueAsString();
-                    return;
-                default:
-                    base.SetPropertyElement(propertyName, index, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, key, value);
-                    return;
-            }
-        }
-    }
+
+		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
+		{
+			switch(propertyName.CString)
+			{
+				case "configuration_commonMotionBlockSize":
+					this.configuration_commonMotionBlockSize = value.GetValueAsUInt32();
+					return;
+				case "configuration_commonMotionBlockSizePs3":
+					this.configuration_commonMotionBlockSizePs3 = value.GetValueAsUInt32();
+					return;
+				case "configuration_additiveMotionBlockCount":
+					this.configuration_additiveMotionBlockCount = value.GetValueAsUInt32();
+					return;
+				case "configuration_additiveMotionBlockSize":
+					this.configuration_additiveMotionBlockSize = value.GetValueAsUInt32();
+					return;
+				case "configuration_partsBlockCount":
+					this.configuration_partsBlockCount = value.GetValueAsUInt32();
+					return;
+				case "configuration_partsBlockSize":
+					this.configuration_partsBlockSize = value.GetValueAsUInt32();
+					return;
+				case "instanceSettings_instancePackagePath":
+					this.instanceSettings_instancePackagePath = value.GetValueAsString();
+					return;
+				case "instanceSettings_instanceBlockSize":
+					this.instanceSettings_instanceBlockSize = value.GetValueAsUInt32();
+					return;
+				case "instanceSettings_commonMotionTypeName":
+					this.instanceSettings_commonMotionTypeName = value.GetValueAsString();
+					return;
+				default:
+					base.SetProperty(propertyName, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
+		{
+			switch(propertyName.CString)
+			{
+				case "instanceSettings_partsTypeNames":
+					while(this.instanceSettings_partsTypeNames.Count <= index) { this.instanceSettings_partsTypeNames.Add(default(Fox.Kernel.String)); }
+					this.instanceSettings_partsTypeNames[index] = value.GetValueAsString();
+					return;
+				case "instanceSettings_partsTypeInitial":
+					while(this.instanceSettings_partsTypeInitial.Count <= index) { this.instanceSettings_partsTypeInitial.Add(default(Fox.Kernel.String)); }
+					this.instanceSettings_partsTypeInitial[index] = value.GetValueAsString();
+					return;
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
+		{
+			switch(propertyName.CString)
+			{
+				default:
+					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+	}
 }

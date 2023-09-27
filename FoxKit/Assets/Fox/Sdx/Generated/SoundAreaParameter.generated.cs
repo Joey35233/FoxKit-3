@@ -12,49 +12,49 @@ using Fox;
 
 namespace Fox.Sdx
 {
-    [UnityEditor.InitializeOnLoad]
-    public partial class SoundAreaParameter : Fox.Core.DataElement 
-    {
-        // Properties
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.String ambientEvent { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.String ambientRtpcName { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float ambientRtpcValue { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.String objectRtpcName { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float objectRtpcValue { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.StringMap<float> auxSends { get; set; } = new Fox.Kernel.StringMap<float>();
-        
-        [field: UnityEngine.SerializeField]
-        public float dryVolume { get; set; }
-        
-        // ClassInfos
-        public static new bool ClassInfoInitialized = false;
-        private static Fox.Core.EntityInfo classInfo;
-        public static new Fox.Core.EntityInfo ClassInfo
-        {
-            get
-            {
-                return classInfo;
-            }
-        }
-        public override Fox.Core.EntityInfo GetClassEntityInfo()
-        {
-            return classInfo;
-        }
-        static SoundAreaParameter()
-        {
-            if (Fox.Core.DataElement.ClassInfoInitialized)
-                classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("SoundAreaParameter"), typeof(SoundAreaParameter), Fox.Core.DataElement.ClassInfo, 104, "Sound", 4);
+	[UnityEditor.InitializeOnLoad]
+	public partial class SoundAreaParameter : Fox.Core.DataElement
+	{
+		// Properties
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.String ambientEvent { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.String ambientRtpcName { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float ambientRtpcValue { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.String objectRtpcName { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float objectRtpcValue { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.StringMap<float> auxSends { get; set; } = new Fox.Kernel.StringMap<float>();
+		
+		[field: UnityEngine.SerializeField]
+		public float dryVolume { get; set; }
+		
+		// ClassInfos
+		public static new bool ClassInfoInitialized = false;
+		private static Fox.Core.EntityInfo classInfo;
+		public static new Fox.Core.EntityInfo ClassInfo
+		{
+			get
+			{
+				return classInfo;
+			}
+		}
+		public override Fox.Core.EntityInfo GetClassEntityInfo()
+		{
+			return classInfo;
+		}
+		static SoundAreaParameter()
+		{
+			if (Fox.Core.DataElement.ClassInfoInitialized)
+				classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("SoundAreaParameter"), typeof(SoundAreaParameter), Fox.Core.DataElement.ClassInfo, 104, "Sound", 4);
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("ambientEvent"), Fox.Core.PropertyInfo.PropertyType.String, 56, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("ambientRtpcName"), Fox.Core.PropertyInfo.PropertyType.String, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("ambientRtpcValue"), Fox.Core.PropertyInfo.PropertyType.Float, 72, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
@@ -63,62 +63,62 @@ namespace Fox.Sdx
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("auxSends"), Fox.Core.PropertyInfo.PropertyType.Float, 96, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("dryVolume"), Fox.Core.PropertyInfo.PropertyType.Float, 144, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 
-            ClassInfoInitialized = true;
-        }
+			ClassInfoInitialized = true;
+		}
 
-        // Constructors
+		// Constructors
 		public SoundAreaParameter(ulong id) : base(id) { }
 		public SoundAreaParameter() : base() { }
-        
-        public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "ambientEvent":
-                    this.ambientEvent = value.GetValueAsString();
-                    return;
-                case "ambientRtpcName":
-                    this.ambientRtpcName = value.GetValueAsString();
-                    return;
-                case "ambientRtpcValue":
-                    this.ambientRtpcValue = value.GetValueAsFloat();
-                    return;
-                case "objectRtpcName":
-                    this.objectRtpcName = value.GetValueAsString();
-                    return;
-                case "objectRtpcValue":
-                    this.objectRtpcValue = value.GetValueAsFloat();
-                    return;
-                case "dryVolume":
-                    this.dryVolume = value.GetValueAsFloat();
-                    return;
-                default:
-                    base.SetProperty(propertyName, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, index, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "auxSends":
-                    this.auxSends.Insert(key, value.GetValueAsFloat());
-                    return;
-                default:
-                    base.SetPropertyElement(propertyName, key, value);
-                    return;
-            }
-        }
-    }
+
+		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
+		{
+			switch(propertyName.CString)
+			{
+				case "ambientEvent":
+					this.ambientEvent = value.GetValueAsString();
+					return;
+				case "ambientRtpcName":
+					this.ambientRtpcName = value.GetValueAsString();
+					return;
+				case "ambientRtpcValue":
+					this.ambientRtpcValue = value.GetValueAsFloat();
+					return;
+				case "objectRtpcName":
+					this.objectRtpcName = value.GetValueAsString();
+					return;
+				case "objectRtpcValue":
+					this.objectRtpcValue = value.GetValueAsFloat();
+					return;
+				case "dryVolume":
+					this.dryVolume = value.GetValueAsFloat();
+					return;
+				default:
+					base.SetProperty(propertyName, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
+		{
+			switch(propertyName.CString)
+			{
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
+		{
+			switch(propertyName.CString)
+			{
+				case "auxSends":
+					this.auxSends.Insert(key, value.GetValueAsFloat());
+					return;
+				default:
+					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+	}
 }

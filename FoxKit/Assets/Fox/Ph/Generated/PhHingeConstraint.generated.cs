@@ -12,96 +12,96 @@ using Fox;
 
 namespace Fox.Ph
 {
-    [UnityEditor.InitializeOnLoad]
-    public partial class PhHingeConstraint : Fox.Ph.PhConstraint 
-    {
-        // Properties
-        public UnityEngine.Quaternion axis { get => Get_axis(); set { Set_axis(value); } }
-        protected partial UnityEngine.Quaternion Get_axis();
-        protected partial void Set_axis(UnityEngine.Quaternion value);
-        
-        public bool limitedFlag { get => Get_limitedFlag(); set { Set_limitedFlag(value); } }
-        protected partial bool Get_limitedFlag();
-        protected partial void Set_limitedFlag(bool value);
-        
-        public float limitHi { get => Get_limitHi(); set { Set_limitHi(value); } }
-        protected partial float Get_limitHi();
-        protected partial void Set_limitHi(float value);
-        
-        public float limitLo { get => Get_limitLo(); set { Set_limitLo(value); } }
-        protected partial float Get_limitLo();
-        protected partial void Set_limitLo(float value);
-        
-        // ClassInfos
-        public static new bool ClassInfoInitialized = false;
-        private static Fox.Core.EntityInfo classInfo;
-        public static new Fox.Core.EntityInfo ClassInfo
-        {
-            get
-            {
-                return classInfo;
-            }
-        }
-        public override Fox.Core.EntityInfo GetClassEntityInfo()
-        {
-            return classInfo;
-        }
-        static PhHingeConstraint()
-        {
-            if (Fox.Ph.PhConstraint.ClassInfoInitialized)
-                classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("PhHingeConstraint"), typeof(PhHingeConstraint), Fox.Ph.PhConstraint.ClassInfo, 0, "Ph", 0);
+	[UnityEditor.InitializeOnLoad]
+	public partial class PhHingeConstraint : Fox.Ph.PhConstraint
+	{
+		// Properties
+		public UnityEngine.Quaternion axis { get => Get_axis(); set { Set_axis(value); } }
+		protected partial UnityEngine.Quaternion Get_axis();
+		protected partial void Set_axis(UnityEngine.Quaternion value);
+		
+		public bool limitedFlag { get => Get_limitedFlag(); set { Set_limitedFlag(value); } }
+		protected partial bool Get_limitedFlag();
+		protected partial void Set_limitedFlag(bool value);
+		
+		public float limitHi { get => Get_limitHi(); set { Set_limitHi(value); } }
+		protected partial float Get_limitHi();
+		protected partial void Set_limitHi(float value);
+		
+		public float limitLo { get => Get_limitLo(); set { Set_limitLo(value); } }
+		protected partial float Get_limitLo();
+		protected partial void Set_limitLo(float value);
+		
+		// ClassInfos
+		public static new bool ClassInfoInitialized = false;
+		private static Fox.Core.EntityInfo classInfo;
+		public static new Fox.Core.EntityInfo ClassInfo
+		{
+			get
+			{
+				return classInfo;
+			}
+		}
+		public override Fox.Core.EntityInfo GetClassEntityInfo()
+		{
+			return classInfo;
+		}
+		static PhHingeConstraint()
+		{
+			if (Fox.Ph.PhConstraint.ClassInfoInitialized)
+				classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("PhHingeConstraint"), typeof(PhHingeConstraint), Fox.Ph.PhConstraint.ClassInfo, 0, "Ph", 0);
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("axis"), Fox.Core.PropertyInfo.PropertyType.Quat, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Accessor));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("limitedFlag"), Fox.Core.PropertyInfo.PropertyType.Bool, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Accessor));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("limitHi"), Fox.Core.PropertyInfo.PropertyType.Float, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Accessor));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("limitLo"), Fox.Core.PropertyInfo.PropertyType.Float, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Accessor));
 
-            ClassInfoInitialized = true;
-        }
+			ClassInfoInitialized = true;
+		}
 
-        // Constructors
+		// Constructors
 		public PhHingeConstraint(ulong id) : base(id) { }
 		public PhHingeConstraint() : base() { }
-        
-        public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "axis":
-                    this.axis = value.GetValueAsQuat();
-                    return;
-                case "limitedFlag":
-                    this.limitedFlag = value.GetValueAsBool();
-                    return;
-                case "limitHi":
-                    this.limitHi = value.GetValueAsFloat();
-                    return;
-                case "limitLo":
-                    this.limitLo = value.GetValueAsFloat();
-                    return;
-                default:
-                    base.SetProperty(propertyName, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, index, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, key, value);
-                    return;
-            }
-        }
-    }
+
+		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
+		{
+			switch(propertyName.CString)
+			{
+				case "axis":
+					this.axis = value.GetValueAsQuat();
+					return;
+				case "limitedFlag":
+					this.limitedFlag = value.GetValueAsBool();
+					return;
+				case "limitHi":
+					this.limitHi = value.GetValueAsFloat();
+					return;
+				case "limitLo":
+					this.limitLo = value.GetValueAsFloat();
+					return;
+				default:
+					base.SetProperty(propertyName, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
+		{
+			switch(propertyName.CString)
+			{
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
+		{
+			switch(propertyName.CString)
+			{
+				default:
+					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+	}
 }

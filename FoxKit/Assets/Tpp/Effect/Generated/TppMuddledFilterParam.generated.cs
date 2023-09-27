@@ -12,54 +12,54 @@ using Fox;
 
 namespace Tpp.Effect
 {
-    [UnityEditor.InitializeOnLoad]
-    public partial class TppMuddledFilterParam 
-    {
-        // Properties
-        [field: UnityEngine.SerializeField]
-        protected float sphereRadiusMin { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        protected float sphereRadiusMax { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        protected float headRadiusMin { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        protected float headRadiusMax { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        protected float sinCurveAmplitude { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        protected float sinCurveLength { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        protected float moveSpeedMin { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        protected float moveSpeedMax { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        protected float power { get; set; }
-        
-        // ClassInfos
-        public static  bool ClassInfoInitialized = false;
-        private static Fox.Core.EntityInfo classInfo;
-        public static  Fox.Core.EntityInfo ClassInfo
-        {
-            get
-            {
-                return classInfo;
-            }
-        }
-        public virtual Fox.Core.EntityInfo GetClassEntityInfo()
-        {
-            return classInfo;
-        }
-        static TppMuddledFilterParam()
-        {
-            classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("TppMuddledFilterParam"), typeof(TppMuddledFilterParam), null, 0, null, 0);
+	[UnityEditor.InitializeOnLoad]
+	public partial class TppMuddledFilterParam 
+	{
+		// Properties
+		[field: UnityEngine.SerializeField]
+		protected float sphereRadiusMin { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		protected float sphereRadiusMax { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		protected float headRadiusMin { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		protected float headRadiusMax { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		protected float sinCurveAmplitude { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		protected float sinCurveLength { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		protected float moveSpeedMin { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		protected float moveSpeedMax { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		protected float power { get; set; }
+		
+		// ClassInfos
+		public static  bool ClassInfoInitialized = false;
+		private static Fox.Core.EntityInfo classInfo;
+		public static  Fox.Core.EntityInfo ClassInfo
+		{
+			get
+			{
+				return classInfo;
+			}
+		}
+		public virtual Fox.Core.EntityInfo GetClassEntityInfo()
+		{
+			return classInfo;
+		}
+		static TppMuddledFilterParam()
+		{
+			classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("TppMuddledFilterParam"), typeof(TppMuddledFilterParam), null, 0, null, 0);
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("sphereRadiusMin"), Fox.Core.PropertyInfo.PropertyType.Float, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("sphereRadiusMax"), Fox.Core.PropertyInfo.PropertyType.Float, 4, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("headRadiusMin"), Fox.Core.PropertyInfo.PropertyType.Float, 8, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
@@ -70,68 +70,68 @@ namespace Tpp.Effect
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("moveSpeedMax"), Fox.Core.PropertyInfo.PropertyType.Float, 28, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("power"), Fox.Core.PropertyInfo.PropertyType.Float, 32, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 
-            ClassInfoInitialized = true;
-        }
+			ClassInfoInitialized = true;
+		}
 
-        // Constructors
+		// Constructors
 		
 		public TppMuddledFilterParam()
-        {
-            
-        }
-        
-        public virtual void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "sphereRadiusMin":
-                    this.sphereRadiusMin = value.GetValueAsFloat();
-                    return;
-                case "sphereRadiusMax":
-                    this.sphereRadiusMax = value.GetValueAsFloat();
-                    return;
-                case "headRadiusMin":
-                    this.headRadiusMin = value.GetValueAsFloat();
-                    return;
-                case "headRadiusMax":
-                    this.headRadiusMax = value.GetValueAsFloat();
-                    return;
-                case "sinCurveAmplitude":
-                    this.sinCurveAmplitude = value.GetValueAsFloat();
-                    return;
-                case "sinCurveLength":
-                    this.sinCurveLength = value.GetValueAsFloat();
-                    return;
-                case "moveSpeedMin":
-                    this.moveSpeedMin = value.GetValueAsFloat();
-                    return;
-                case "moveSpeedMax":
-                    this.moveSpeedMax = value.GetValueAsFloat();
-                    return;
-                case "power":
-                    this.power = value.GetValueAsFloat();
-                    return;
-                default:
-                    throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
-            }
-        }
-        
-        public virtual void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
-            }
-        }
-        
-        public virtual void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
-            }
-        }
-    }
+		{
+			
+		}
+
+		public virtual void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
+		{
+			switch(propertyName.CString)
+			{
+				case "sphereRadiusMin":
+					this.sphereRadiusMin = value.GetValueAsFloat();
+					return;
+				case "sphereRadiusMax":
+					this.sphereRadiusMax = value.GetValueAsFloat();
+					return;
+				case "headRadiusMin":
+					this.headRadiusMin = value.GetValueAsFloat();
+					return;
+				case "headRadiusMax":
+					this.headRadiusMax = value.GetValueAsFloat();
+					return;
+				case "sinCurveAmplitude":
+					this.sinCurveAmplitude = value.GetValueAsFloat();
+					return;
+				case "sinCurveLength":
+					this.sinCurveLength = value.GetValueAsFloat();
+					return;
+				case "moveSpeedMin":
+					this.moveSpeedMin = value.GetValueAsFloat();
+					return;
+				case "moveSpeedMax":
+					this.moveSpeedMax = value.GetValueAsFloat();
+					return;
+				case "power":
+					this.power = value.GetValueAsFloat();
+					return;
+				default:
+					throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
+			}
+		}
+
+		public virtual void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
+		{
+			switch(propertyName.CString)
+			{
+				default:
+					throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
+			}
+		}
+
+		public virtual void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
+		{
+			switch(propertyName.CString)
+			{
+				default:
+					throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
+			}
+		}
+	}
 }

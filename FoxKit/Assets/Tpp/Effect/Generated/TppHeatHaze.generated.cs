@@ -12,100 +12,100 @@ using Fox;
 
 namespace Tpp.Effect
 {
-    [UnityEditor.InitializeOnLoad]
-    public partial class TppHeatHaze : Fox.Core.Data 
-    {
-        // Properties
-        [field: UnityEngine.SerializeField]
-        public float distortionIntensityFullResolution { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float distortionVelocityFullResolution { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float distortionTextureRepetitionFullResolution { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float hazeMirageIntensityFullResolution { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float hazeStartDistanceFullResolution { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float hazeEndDistanceFullResolution { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float hazeRangeAttenuationFullResolution { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float hazeSecondLayerIntensityDifference { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float hazeSecondLayerStartDistance { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float hazeSecondLayerBlurRadius { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float hazeDistortionIntensityAddedOnBinoculars { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float mirageColorSaturation { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float mirageSpreadingPower { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float mirageRayLength { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float mirageHitRange { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float mirageStartDistance { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float mirageRangeAttenuation { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float distortionIntensityHalfResolution { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float distortionVelocityHalfResolution { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float distortionTextureRepetitionHalfResolution { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float hazeIntensityHalfResolution { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float hazeStartDistanceHalfResolution { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float hazeEndDistanceHalfResolution { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float hazeRangeAttenuationHalfResolution { get; set; }
-        
-        // ClassInfos
-        public static new bool ClassInfoInitialized = false;
-        private static Fox.Core.EntityInfo classInfo;
-        public static new Fox.Core.EntityInfo ClassInfo
-        {
-            get
-            {
-                return classInfo;
-            }
-        }
-        public override Fox.Core.EntityInfo GetClassEntityInfo()
-        {
-            return classInfo;
-        }
-        static TppHeatHaze()
-        {
-            if (Fox.Core.Data.ClassInfoInitialized)
-                classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("TppHeatHaze"), typeof(TppHeatHaze), Fox.Core.Data.ClassInfo, 160, null, 1);
+	[UnityEditor.InitializeOnLoad]
+	public partial class TppHeatHaze : Fox.Core.Data
+	{
+		// Properties
+		[field: UnityEngine.SerializeField]
+		public float distortionIntensityFullResolution { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float distortionVelocityFullResolution { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float distortionTextureRepetitionFullResolution { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float hazeMirageIntensityFullResolution { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float hazeStartDistanceFullResolution { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float hazeEndDistanceFullResolution { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float hazeRangeAttenuationFullResolution { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float hazeSecondLayerIntensityDifference { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float hazeSecondLayerStartDistance { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float hazeSecondLayerBlurRadius { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float hazeDistortionIntensityAddedOnBinoculars { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float mirageColorSaturation { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float mirageSpreadingPower { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float mirageRayLength { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float mirageHitRange { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float mirageStartDistance { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float mirageRangeAttenuation { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float distortionIntensityHalfResolution { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float distortionVelocityHalfResolution { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float distortionTextureRepetitionHalfResolution { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float hazeIntensityHalfResolution { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float hazeStartDistanceHalfResolution { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float hazeEndDistanceHalfResolution { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float hazeRangeAttenuationHalfResolution { get; set; }
+		
+		// ClassInfos
+		public static new bool ClassInfoInitialized = false;
+		private static Fox.Core.EntityInfo classInfo;
+		public static new Fox.Core.EntityInfo ClassInfo
+		{
+			get
+			{
+				return classInfo;
+			}
+		}
+		public override Fox.Core.EntityInfo GetClassEntityInfo()
+		{
+			return classInfo;
+		}
+		static TppHeatHaze()
+		{
+			if (Fox.Core.Data.ClassInfoInitialized)
+				classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("TppHeatHaze"), typeof(TppHeatHaze), Fox.Core.Data.ClassInfo, 160, null, 1);
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("distortionIntensityFullResolution"), Fox.Core.PropertyInfo.PropertyType.Float, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("distortionVelocityFullResolution"), Fox.Core.PropertyInfo.PropertyType.Float, 124, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("distortionTextureRepetitionFullResolution"), Fox.Core.PropertyInfo.PropertyType.Float, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
@@ -131,113 +131,113 @@ namespace Tpp.Effect
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("hazeEndDistanceHalfResolution"), Fox.Core.PropertyInfo.PropertyType.Float, 208, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("hazeRangeAttenuationHalfResolution"), Fox.Core.PropertyInfo.PropertyType.Float, 212, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 
-            ClassInfoInitialized = true;
-        }
+			ClassInfoInitialized = true;
+		}
 
-        // Constructors
+		// Constructors
 		public TppHeatHaze(ulong id) : base(id) { }
 		public TppHeatHaze() : base() { }
-        
-        public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "distortionIntensityFullResolution":
-                    this.distortionIntensityFullResolution = value.GetValueAsFloat();
-                    return;
-                case "distortionVelocityFullResolution":
-                    this.distortionVelocityFullResolution = value.GetValueAsFloat();
-                    return;
-                case "distortionTextureRepetitionFullResolution":
-                    this.distortionTextureRepetitionFullResolution = value.GetValueAsFloat();
-                    return;
-                case "hazeMirageIntensityFullResolution":
-                    this.hazeMirageIntensityFullResolution = value.GetValueAsFloat();
-                    return;
-                case "hazeStartDistanceFullResolution":
-                    this.hazeStartDistanceFullResolution = value.GetValueAsFloat();
-                    return;
-                case "hazeEndDistanceFullResolution":
-                    this.hazeEndDistanceFullResolution = value.GetValueAsFloat();
-                    return;
-                case "hazeRangeAttenuationFullResolution":
-                    this.hazeRangeAttenuationFullResolution = value.GetValueAsFloat();
-                    return;
-                case "hazeSecondLayerIntensityDifference":
-                    this.hazeSecondLayerIntensityDifference = value.GetValueAsFloat();
-                    return;
-                case "hazeSecondLayerStartDistance":
-                    this.hazeSecondLayerStartDistance = value.GetValueAsFloat();
-                    return;
-                case "hazeSecondLayerBlurRadius":
-                    this.hazeSecondLayerBlurRadius = value.GetValueAsFloat();
-                    return;
-                case "hazeDistortionIntensityAddedOnBinoculars":
-                    this.hazeDistortionIntensityAddedOnBinoculars = value.GetValueAsFloat();
-                    return;
-                case "mirageColorSaturation":
-                    this.mirageColorSaturation = value.GetValueAsFloat();
-                    return;
-                case "mirageSpreadingPower":
-                    this.mirageSpreadingPower = value.GetValueAsFloat();
-                    return;
-                case "mirageRayLength":
-                    this.mirageRayLength = value.GetValueAsFloat();
-                    return;
-                case "mirageHitRange":
-                    this.mirageHitRange = value.GetValueAsFloat();
-                    return;
-                case "mirageStartDistance":
-                    this.mirageStartDistance = value.GetValueAsFloat();
-                    return;
-                case "mirageRangeAttenuation":
-                    this.mirageRangeAttenuation = value.GetValueAsFloat();
-                    return;
-                case "distortionIntensityHalfResolution":
-                    this.distortionIntensityHalfResolution = value.GetValueAsFloat();
-                    return;
-                case "distortionVelocityHalfResolution":
-                    this.distortionVelocityHalfResolution = value.GetValueAsFloat();
-                    return;
-                case "distortionTextureRepetitionHalfResolution":
-                    this.distortionTextureRepetitionHalfResolution = value.GetValueAsFloat();
-                    return;
-                case "hazeIntensityHalfResolution":
-                    this.hazeIntensityHalfResolution = value.GetValueAsFloat();
-                    return;
-                case "hazeStartDistanceHalfResolution":
-                    this.hazeStartDistanceHalfResolution = value.GetValueAsFloat();
-                    return;
-                case "hazeEndDistanceHalfResolution":
-                    this.hazeEndDistanceHalfResolution = value.GetValueAsFloat();
-                    return;
-                case "hazeRangeAttenuationHalfResolution":
-                    this.hazeRangeAttenuationHalfResolution = value.GetValueAsFloat();
-                    return;
-                default:
-                    base.SetProperty(propertyName, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, index, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, key, value);
-                    return;
-            }
-        }
-    }
+
+		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
+		{
+			switch(propertyName.CString)
+			{
+				case "distortionIntensityFullResolution":
+					this.distortionIntensityFullResolution = value.GetValueAsFloat();
+					return;
+				case "distortionVelocityFullResolution":
+					this.distortionVelocityFullResolution = value.GetValueAsFloat();
+					return;
+				case "distortionTextureRepetitionFullResolution":
+					this.distortionTextureRepetitionFullResolution = value.GetValueAsFloat();
+					return;
+				case "hazeMirageIntensityFullResolution":
+					this.hazeMirageIntensityFullResolution = value.GetValueAsFloat();
+					return;
+				case "hazeStartDistanceFullResolution":
+					this.hazeStartDistanceFullResolution = value.GetValueAsFloat();
+					return;
+				case "hazeEndDistanceFullResolution":
+					this.hazeEndDistanceFullResolution = value.GetValueAsFloat();
+					return;
+				case "hazeRangeAttenuationFullResolution":
+					this.hazeRangeAttenuationFullResolution = value.GetValueAsFloat();
+					return;
+				case "hazeSecondLayerIntensityDifference":
+					this.hazeSecondLayerIntensityDifference = value.GetValueAsFloat();
+					return;
+				case "hazeSecondLayerStartDistance":
+					this.hazeSecondLayerStartDistance = value.GetValueAsFloat();
+					return;
+				case "hazeSecondLayerBlurRadius":
+					this.hazeSecondLayerBlurRadius = value.GetValueAsFloat();
+					return;
+				case "hazeDistortionIntensityAddedOnBinoculars":
+					this.hazeDistortionIntensityAddedOnBinoculars = value.GetValueAsFloat();
+					return;
+				case "mirageColorSaturation":
+					this.mirageColorSaturation = value.GetValueAsFloat();
+					return;
+				case "mirageSpreadingPower":
+					this.mirageSpreadingPower = value.GetValueAsFloat();
+					return;
+				case "mirageRayLength":
+					this.mirageRayLength = value.GetValueAsFloat();
+					return;
+				case "mirageHitRange":
+					this.mirageHitRange = value.GetValueAsFloat();
+					return;
+				case "mirageStartDistance":
+					this.mirageStartDistance = value.GetValueAsFloat();
+					return;
+				case "mirageRangeAttenuation":
+					this.mirageRangeAttenuation = value.GetValueAsFloat();
+					return;
+				case "distortionIntensityHalfResolution":
+					this.distortionIntensityHalfResolution = value.GetValueAsFloat();
+					return;
+				case "distortionVelocityHalfResolution":
+					this.distortionVelocityHalfResolution = value.GetValueAsFloat();
+					return;
+				case "distortionTextureRepetitionHalfResolution":
+					this.distortionTextureRepetitionHalfResolution = value.GetValueAsFloat();
+					return;
+				case "hazeIntensityHalfResolution":
+					this.hazeIntensityHalfResolution = value.GetValueAsFloat();
+					return;
+				case "hazeStartDistanceHalfResolution":
+					this.hazeStartDistanceHalfResolution = value.GetValueAsFloat();
+					return;
+				case "hazeEndDistanceHalfResolution":
+					this.hazeEndDistanceHalfResolution = value.GetValueAsFloat();
+					return;
+				case "hazeRangeAttenuationHalfResolution":
+					this.hazeRangeAttenuationHalfResolution = value.GetValueAsFloat();
+					return;
+				default:
+					base.SetProperty(propertyName, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
+		{
+			switch(propertyName.CString)
+			{
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
+		{
+			switch(propertyName.CString)
+			{
+				default:
+					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+	}
 }

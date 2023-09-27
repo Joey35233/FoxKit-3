@@ -12,80 +12,80 @@ using Fox;
 
 namespace Fox.Demo
 {
-    [UnityEditor.InitializeOnLoad]
-    public partial class DemoFileProxy : Fox.Core.Data 
-    {
-        // Properties
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.DynamicArray<Fox.Core.FilePtr> fmdlFiles { get; set; } = new Fox.Kernel.DynamicArray<Fox.Core.FilePtr>();
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.DynamicArray<Fox.Core.FilePtr> partsFiles { get; set; } = new Fox.Kernel.DynamicArray<Fox.Core.FilePtr>();
-        
-        // ClassInfos
-        public static new bool ClassInfoInitialized = false;
-        private static Fox.Core.EntityInfo classInfo;
-        public static new Fox.Core.EntityInfo ClassInfo
-        {
-            get
-            {
-                return classInfo;
-            }
-        }
-        public override Fox.Core.EntityInfo GetClassEntityInfo()
-        {
-            return classInfo;
-        }
-        static DemoFileProxy()
-        {
-            if (Fox.Core.Data.ClassInfoInitialized)
-                classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("DemoFileProxy"), typeof(DemoFileProxy), Fox.Core.Data.ClassInfo, 0, null, 0);
+	[UnityEditor.InitializeOnLoad]
+	public partial class DemoFileProxy : Fox.Core.Data
+	{
+		// Properties
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.DynamicArray<Fox.Core.FilePtr> fmdlFiles { get; set; } = new Fox.Kernel.DynamicArray<Fox.Core.FilePtr>();
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.DynamicArray<Fox.Core.FilePtr> partsFiles { get; set; } = new Fox.Kernel.DynamicArray<Fox.Core.FilePtr>();
+		
+		// ClassInfos
+		public static new bool ClassInfoInitialized = false;
+		private static Fox.Core.EntityInfo classInfo;
+		public static new Fox.Core.EntityInfo ClassInfo
+		{
+			get
+			{
+				return classInfo;
+			}
+		}
+		public override Fox.Core.EntityInfo GetClassEntityInfo()
+		{
+			return classInfo;
+		}
+		static DemoFileProxy()
+		{
+			if (Fox.Core.Data.ClassInfoInitialized)
+				classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("DemoFileProxy"), typeof(DemoFileProxy), Fox.Core.Data.ClassInfo, 0, null, 0);
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("fmdlFiles"), Fox.Core.PropertyInfo.PropertyType.FilePtr, 120, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("partsFiles"), Fox.Core.PropertyInfo.PropertyType.FilePtr, 136, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 
-            ClassInfoInitialized = true;
-        }
+			ClassInfoInitialized = true;
+		}
 
-        // Constructors
+		// Constructors
 		public DemoFileProxy(ulong id) : base(id) { }
 		public DemoFileProxy() : base() { }
-        
-        public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetProperty(propertyName, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "fmdlFiles":
-                    while(this.fmdlFiles.Count <= index) { this.fmdlFiles.Add(default(Fox.Core.FilePtr)); }
-                    this.fmdlFiles[index] = value.GetValueAsFilePtr();
-                    return;
-                case "partsFiles":
-                    while(this.partsFiles.Count <= index) { this.partsFiles.Add(default(Fox.Core.FilePtr)); }
-                    this.partsFiles[index] = value.GetValueAsFilePtr();
-                    return;
-                default:
-                    base.SetPropertyElement(propertyName, index, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, key, value);
-                    return;
-            }
-        }
-    }
+
+		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
+		{
+			switch(propertyName.CString)
+			{
+				default:
+					base.SetProperty(propertyName, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
+		{
+			switch(propertyName.CString)
+			{
+				case "fmdlFiles":
+					while(this.fmdlFiles.Count <= index) { this.fmdlFiles.Add(default(Fox.Core.FilePtr)); }
+					this.fmdlFiles[index] = value.GetValueAsFilePtr();
+					return;
+				case "partsFiles":
+					while(this.partsFiles.Count <= index) { this.partsFiles.Add(default(Fox.Core.FilePtr)); }
+					this.partsFiles[index] = value.GetValueAsFilePtr();
+					return;
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
+		{
+			switch(propertyName.CString)
+			{
+				default:
+					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+	}
 }

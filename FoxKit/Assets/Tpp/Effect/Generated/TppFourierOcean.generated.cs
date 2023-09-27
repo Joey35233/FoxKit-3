@@ -12,82 +12,82 @@ using Fox;
 
 namespace Tpp.Effect
 {
-    [UnityEditor.InitializeOnLoad]
-    public partial class TppFourierOcean : Fox.Core.Data 
-    {
-        // Properties
-        [field: UnityEngine.SerializeField]
-        public float displacementStrenght { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float velocity { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float windDirectionX { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float windDirectionZ { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float waveAmplitude { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float windSpeed { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float windDependency { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float baseHeight { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float choppyScale { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float projectionScale { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float blendStart { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float blendEnd { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float farProjectionScale { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float farProjectionAmplitude { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float farProjectionNormalStrenght { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float reflectionPower { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float specularIntensity { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float foamAmount { get; set; }
-        
-        // ClassInfos
-        public static new bool ClassInfoInitialized = false;
-        private static Fox.Core.EntityInfo classInfo;
-        public static new Fox.Core.EntityInfo ClassInfo
-        {
-            get
-            {
-                return classInfo;
-            }
-        }
-        public override Fox.Core.EntityInfo GetClassEntityInfo()
-        {
-            return classInfo;
-        }
-        static TppFourierOcean()
-        {
-            if (Fox.Core.Data.ClassInfoInitialized)
-                classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("TppFourierOcean"), typeof(TppFourierOcean), Fox.Core.Data.ClassInfo, 136, null, 0);
+	[UnityEditor.InitializeOnLoad]
+	public partial class TppFourierOcean : Fox.Core.Data
+	{
+		// Properties
+		[field: UnityEngine.SerializeField]
+		public float displacementStrenght { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float velocity { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float windDirectionX { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float windDirectionZ { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float waveAmplitude { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float windSpeed { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float windDependency { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float baseHeight { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float choppyScale { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float projectionScale { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float blendStart { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float blendEnd { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float farProjectionScale { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float farProjectionAmplitude { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float farProjectionNormalStrenght { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float reflectionPower { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float specularIntensity { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float foamAmount { get; set; }
+		
+		// ClassInfos
+		public static new bool ClassInfoInitialized = false;
+		private static Fox.Core.EntityInfo classInfo;
+		public static new Fox.Core.EntityInfo ClassInfo
+		{
+			get
+			{
+				return classInfo;
+			}
+		}
+		public override Fox.Core.EntityInfo GetClassEntityInfo()
+		{
+			return classInfo;
+		}
+		static TppFourierOcean()
+		{
+			if (Fox.Core.Data.ClassInfoInitialized)
+				classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("TppFourierOcean"), typeof(TppFourierOcean), Fox.Core.Data.ClassInfo, 136, null, 0);
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("displacementStrenght"), Fox.Core.PropertyInfo.PropertyType.Float, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("velocity"), Fox.Core.PropertyInfo.PropertyType.Float, 124, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("windDirectionX"), Fox.Core.PropertyInfo.PropertyType.Float, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
@@ -107,95 +107,95 @@ namespace Tpp.Effect
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("specularIntensity"), Fox.Core.PropertyInfo.PropertyType.Float, 184, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("foamAmount"), Fox.Core.PropertyInfo.PropertyType.Float, 188, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 
-            ClassInfoInitialized = true;
-        }
+			ClassInfoInitialized = true;
+		}
 
-        // Constructors
+		// Constructors
 		public TppFourierOcean(ulong id) : base(id) { }
 		public TppFourierOcean() : base() { }
-        
-        public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "displacementStrenght":
-                    this.displacementStrenght = value.GetValueAsFloat();
-                    return;
-                case "velocity":
-                    this.velocity = value.GetValueAsFloat();
-                    return;
-                case "windDirectionX":
-                    this.windDirectionX = value.GetValueAsFloat();
-                    return;
-                case "windDirectionZ":
-                    this.windDirectionZ = value.GetValueAsFloat();
-                    return;
-                case "waveAmplitude":
-                    this.waveAmplitude = value.GetValueAsFloat();
-                    return;
-                case "windSpeed":
-                    this.windSpeed = value.GetValueAsFloat();
-                    return;
-                case "windDependency":
-                    this.windDependency = value.GetValueAsFloat();
-                    return;
-                case "baseHeight":
-                    this.baseHeight = value.GetValueAsFloat();
-                    return;
-                case "choppyScale":
-                    this.choppyScale = value.GetValueAsFloat();
-                    return;
-                case "projectionScale":
-                    this.projectionScale = value.GetValueAsFloat();
-                    return;
-                case "blendStart":
-                    this.blendStart = value.GetValueAsFloat();
-                    return;
-                case "blendEnd":
-                    this.blendEnd = value.GetValueAsFloat();
-                    return;
-                case "farProjectionScale":
-                    this.farProjectionScale = value.GetValueAsFloat();
-                    return;
-                case "farProjectionAmplitude":
-                    this.farProjectionAmplitude = value.GetValueAsFloat();
-                    return;
-                case "farProjectionNormalStrenght":
-                    this.farProjectionNormalStrenght = value.GetValueAsFloat();
-                    return;
-                case "reflectionPower":
-                    this.reflectionPower = value.GetValueAsFloat();
-                    return;
-                case "specularIntensity":
-                    this.specularIntensity = value.GetValueAsFloat();
-                    return;
-                case "foamAmount":
-                    this.foamAmount = value.GetValueAsFloat();
-                    return;
-                default:
-                    base.SetProperty(propertyName, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, index, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, key, value);
-                    return;
-            }
-        }
-    }
+
+		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
+		{
+			switch(propertyName.CString)
+			{
+				case "displacementStrenght":
+					this.displacementStrenght = value.GetValueAsFloat();
+					return;
+				case "velocity":
+					this.velocity = value.GetValueAsFloat();
+					return;
+				case "windDirectionX":
+					this.windDirectionX = value.GetValueAsFloat();
+					return;
+				case "windDirectionZ":
+					this.windDirectionZ = value.GetValueAsFloat();
+					return;
+				case "waveAmplitude":
+					this.waveAmplitude = value.GetValueAsFloat();
+					return;
+				case "windSpeed":
+					this.windSpeed = value.GetValueAsFloat();
+					return;
+				case "windDependency":
+					this.windDependency = value.GetValueAsFloat();
+					return;
+				case "baseHeight":
+					this.baseHeight = value.GetValueAsFloat();
+					return;
+				case "choppyScale":
+					this.choppyScale = value.GetValueAsFloat();
+					return;
+				case "projectionScale":
+					this.projectionScale = value.GetValueAsFloat();
+					return;
+				case "blendStart":
+					this.blendStart = value.GetValueAsFloat();
+					return;
+				case "blendEnd":
+					this.blendEnd = value.GetValueAsFloat();
+					return;
+				case "farProjectionScale":
+					this.farProjectionScale = value.GetValueAsFloat();
+					return;
+				case "farProjectionAmplitude":
+					this.farProjectionAmplitude = value.GetValueAsFloat();
+					return;
+				case "farProjectionNormalStrenght":
+					this.farProjectionNormalStrenght = value.GetValueAsFloat();
+					return;
+				case "reflectionPower":
+					this.reflectionPower = value.GetValueAsFloat();
+					return;
+				case "specularIntensity":
+					this.specularIntensity = value.GetValueAsFloat();
+					return;
+				case "foamAmount":
+					this.foamAmount = value.GetValueAsFloat();
+					return;
+				default:
+					base.SetProperty(propertyName, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
+		{
+			switch(propertyName.CString)
+			{
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
+		{
+			switch(propertyName.CString)
+			{
+				default:
+					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+	}
 }

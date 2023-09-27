@@ -12,58 +12,58 @@ using Fox;
 
 namespace Tpp.Effect
 {
-    [UnityEditor.InitializeOnLoad]
-    public partial class TppStar : Fox.Core.TransformData 
-    {
-        // Properties
-        [field: UnityEngine.SerializeField]
-        public bool enable { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public UnityEngine.Color color { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float intensity { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float direction { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.String bgModelName { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.DynamicArray<Fox.Kernel.String> modelNameArray { get; set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.DynamicArray<Fox.Kernel.String> nameArray { get; set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.DynamicArray<float> latitudeArray { get; set; } = new Fox.Kernel.DynamicArray<float>();
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.DynamicArray<float> longitudeArray { get; set; } = new Fox.Kernel.DynamicArray<float>();
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.DynamicArray<float> scaleArray { get; set; } = new Fox.Kernel.DynamicArray<float>();
-        
-        // ClassInfos
-        public static new bool ClassInfoInitialized = false;
-        private static Fox.Core.EntityInfo classInfo;
-        public static new Fox.Core.EntityInfo ClassInfo
-        {
-            get
-            {
-                return classInfo;
-            }
-        }
-        public override Fox.Core.EntityInfo GetClassEntityInfo()
-        {
-            return classInfo;
-        }
-        static TppStar()
-        {
-            if (Fox.Core.TransformData.ClassInfoInitialized)
-                classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("TppStar"), typeof(TppStar), Fox.Core.TransformData.ClassInfo, 384, "TppEffect", 1);
+	[UnityEditor.InitializeOnLoad]
+	public partial class TppStar : Fox.Core.TransformData
+	{
+		// Properties
+		[field: UnityEngine.SerializeField]
+		public bool enable { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public UnityEngine.Color color { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float intensity { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float direction { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.String bgModelName { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.DynamicArray<Fox.Kernel.String> modelNameArray { get; set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.DynamicArray<Fox.Kernel.String> nameArray { get; set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.DynamicArray<float> latitudeArray { get; set; } = new Fox.Kernel.DynamicArray<float>();
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.DynamicArray<float> longitudeArray { get; set; } = new Fox.Kernel.DynamicArray<float>();
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.DynamicArray<float> scaleArray { get; set; } = new Fox.Kernel.DynamicArray<float>();
+		
+		// ClassInfos
+		public static new bool ClassInfoInitialized = false;
+		private static Fox.Core.EntityInfo classInfo;
+		public static new Fox.Core.EntityInfo ClassInfo
+		{
+			get
+			{
+				return classInfo;
+			}
+		}
+		public override Fox.Core.EntityInfo GetClassEntityInfo()
+		{
+			return classInfo;
+		}
+		static TppStar()
+		{
+			if (Fox.Core.TransformData.ClassInfoInitialized)
+				classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("TppStar"), typeof(TppStar), Fox.Core.TransformData.ClassInfo, 384, "TppEffect", 1);
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("enable"), Fox.Core.PropertyInfo.PropertyType.Bool, 424, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("color"), Fox.Core.PropertyInfo.PropertyType.Color, 400, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("intensity"), Fox.Core.PropertyInfo.PropertyType.Float, 416, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
@@ -75,76 +75,76 @@ namespace Tpp.Effect
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("longitudeArray"), Fox.Core.PropertyInfo.PropertyType.Float, 352, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("scaleArray"), Fox.Core.PropertyInfo.PropertyType.Float, 368, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 
-            ClassInfoInitialized = true;
-        }
+			ClassInfoInitialized = true;
+		}
 
-        // Constructors
+		// Constructors
 		public TppStar(ulong id) : base(id) { }
 		public TppStar() : base() { }
-        
-        public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "enable":
-                    this.enable = value.GetValueAsBool();
-                    return;
-                case "color":
-                    this.color = value.GetValueAsColor();
-                    return;
-                case "intensity":
-                    this.intensity = value.GetValueAsFloat();
-                    return;
-                case "direction":
-                    this.direction = value.GetValueAsFloat();
-                    return;
-                case "bgModelName":
-                    this.bgModelName = value.GetValueAsString();
-                    return;
-                default:
-                    base.SetProperty(propertyName, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "modelNameArray":
-                    while(this.modelNameArray.Count <= index) { this.modelNameArray.Add(default(Fox.Kernel.String)); }
-                    this.modelNameArray[index] = value.GetValueAsString();
-                    return;
-                case "nameArray":
-                    while(this.nameArray.Count <= index) { this.nameArray.Add(default(Fox.Kernel.String)); }
-                    this.nameArray[index] = value.GetValueAsString();
-                    return;
-                case "latitudeArray":
-                    while(this.latitudeArray.Count <= index) { this.latitudeArray.Add(default(float)); }
-                    this.latitudeArray[index] = value.GetValueAsFloat();
-                    return;
-                case "longitudeArray":
-                    while(this.longitudeArray.Count <= index) { this.longitudeArray.Add(default(float)); }
-                    this.longitudeArray[index] = value.GetValueAsFloat();
-                    return;
-                case "scaleArray":
-                    while(this.scaleArray.Count <= index) { this.scaleArray.Add(default(float)); }
-                    this.scaleArray[index] = value.GetValueAsFloat();
-                    return;
-                default:
-                    base.SetPropertyElement(propertyName, index, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, key, value);
-                    return;
-            }
-        }
-    }
+
+		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
+		{
+			switch(propertyName.CString)
+			{
+				case "enable":
+					this.enable = value.GetValueAsBool();
+					return;
+				case "color":
+					this.color = value.GetValueAsColor();
+					return;
+				case "intensity":
+					this.intensity = value.GetValueAsFloat();
+					return;
+				case "direction":
+					this.direction = value.GetValueAsFloat();
+					return;
+				case "bgModelName":
+					this.bgModelName = value.GetValueAsString();
+					return;
+				default:
+					base.SetProperty(propertyName, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
+		{
+			switch(propertyName.CString)
+			{
+				case "modelNameArray":
+					while(this.modelNameArray.Count <= index) { this.modelNameArray.Add(default(Fox.Kernel.String)); }
+					this.modelNameArray[index] = value.GetValueAsString();
+					return;
+				case "nameArray":
+					while(this.nameArray.Count <= index) { this.nameArray.Add(default(Fox.Kernel.String)); }
+					this.nameArray[index] = value.GetValueAsString();
+					return;
+				case "latitudeArray":
+					while(this.latitudeArray.Count <= index) { this.latitudeArray.Add(default(float)); }
+					this.latitudeArray[index] = value.GetValueAsFloat();
+					return;
+				case "longitudeArray":
+					while(this.longitudeArray.Count <= index) { this.longitudeArray.Add(default(float)); }
+					this.longitudeArray[index] = value.GetValueAsFloat();
+					return;
+				case "scaleArray":
+					while(this.scaleArray.Count <= index) { this.scaleArray.Add(default(float)); }
+					this.scaleArray[index] = value.GetValueAsFloat();
+					return;
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
+		{
+			switch(propertyName.CString)
+			{
+				default:
+					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+	}
 }

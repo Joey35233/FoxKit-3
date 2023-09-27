@@ -12,49 +12,49 @@ using Fox;
 
 namespace Fox.GameKit
 {
-    [UnityEditor.InitializeOnLoad]
-    public partial class StageBlockLowModel : Fox.Core.Data 
-    {
-        // Properties
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.String lowModelBasePath { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint minIndexX { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint minIndexZ { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint maxIndexX { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint maxIndexZ { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint groupCountX { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint groupCountZ { get; set; }
-        
-        // ClassInfos
-        public static new bool ClassInfoInitialized = false;
-        private static Fox.Core.EntityInfo classInfo;
-        public static new Fox.Core.EntityInfo ClassInfo
-        {
-            get
-            {
-                return classInfo;
-            }
-        }
-        public override Fox.Core.EntityInfo GetClassEntityInfo()
-        {
-            return classInfo;
-        }
-        static StageBlockLowModel()
-        {
-            if (Fox.Core.Data.ClassInfoInitialized)
-                classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("StageBlockLowModel"), typeof(StageBlockLowModel), Fox.Core.Data.ClassInfo, 0, "Model", 1);
+	[UnityEditor.InitializeOnLoad]
+	public partial class StageBlockLowModel : Fox.Core.Data
+	{
+		// Properties
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.String lowModelBasePath { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint minIndexX { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint minIndexZ { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint maxIndexX { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint maxIndexZ { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint groupCountX { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint groupCountZ { get; set; }
+		
+		// ClassInfos
+		public static new bool ClassInfoInitialized = false;
+		private static Fox.Core.EntityInfo classInfo;
+		public static new Fox.Core.EntityInfo ClassInfo
+		{
+			get
+			{
+				return classInfo;
+			}
+		}
+		public override Fox.Core.EntityInfo GetClassEntityInfo()
+		{
+			return classInfo;
+		}
+		static StageBlockLowModel()
+		{
+			if (Fox.Core.Data.ClassInfoInitialized)
+				classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("StageBlockLowModel"), typeof(StageBlockLowModel), Fox.Core.Data.ClassInfo, 0, "Model", 1);
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("lowModelBasePath"), Fox.Core.PropertyInfo.PropertyType.String, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("minIndexX"), Fox.Core.PropertyInfo.PropertyType.UInt32, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("minIndexZ"), Fox.Core.PropertyInfo.PropertyType.UInt32, 132, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
@@ -63,62 +63,62 @@ namespace Fox.GameKit
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("groupCountX"), Fox.Core.PropertyInfo.PropertyType.UInt32, 144, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("groupCountZ"), Fox.Core.PropertyInfo.PropertyType.UInt32, 148, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 
-            ClassInfoInitialized = true;
-        }
+			ClassInfoInitialized = true;
+		}
 
-        // Constructors
+		// Constructors
 		public StageBlockLowModel(ulong id) : base(id) { }
 		public StageBlockLowModel() : base() { }
-        
-        public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "lowModelBasePath":
-                    this.lowModelBasePath = value.GetValueAsString();
-                    return;
-                case "minIndexX":
-                    this.minIndexX = value.GetValueAsUInt32();
-                    return;
-                case "minIndexZ":
-                    this.minIndexZ = value.GetValueAsUInt32();
-                    return;
-                case "maxIndexX":
-                    this.maxIndexX = value.GetValueAsUInt32();
-                    return;
-                case "maxIndexZ":
-                    this.maxIndexZ = value.GetValueAsUInt32();
-                    return;
-                case "groupCountX":
-                    this.groupCountX = value.GetValueAsUInt32();
-                    return;
-                case "groupCountZ":
-                    this.groupCountZ = value.GetValueAsUInt32();
-                    return;
-                default:
-                    base.SetProperty(propertyName, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, index, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, key, value);
-                    return;
-            }
-        }
-    }
+
+		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
+		{
+			switch(propertyName.CString)
+			{
+				case "lowModelBasePath":
+					this.lowModelBasePath = value.GetValueAsString();
+					return;
+				case "minIndexX":
+					this.minIndexX = value.GetValueAsUInt32();
+					return;
+				case "minIndexZ":
+					this.minIndexZ = value.GetValueAsUInt32();
+					return;
+				case "maxIndexX":
+					this.maxIndexX = value.GetValueAsUInt32();
+					return;
+				case "maxIndexZ":
+					this.maxIndexZ = value.GetValueAsUInt32();
+					return;
+				case "groupCountX":
+					this.groupCountX = value.GetValueAsUInt32();
+					return;
+				case "groupCountZ":
+					this.groupCountZ = value.GetValueAsUInt32();
+					return;
+				default:
+					base.SetProperty(propertyName, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
+		{
+			switch(propertyName.CString)
+			{
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
+		{
+			switch(propertyName.CString)
+			{
+				default:
+					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+	}
 }

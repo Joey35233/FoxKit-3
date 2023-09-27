@@ -12,104 +12,104 @@ using Fox;
 
 namespace Fox.GameKit
 {
-    [UnityEditor.InitializeOnLoad]
-    public partial class Camera : Fox.Core.Entity 
-    {
-        // Properties
-        [field: UnityEngine.SerializeField]
-        protected Fox.Kernel.String priorityName { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        protected bool enable { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        protected UnityEngine.Quaternion transform_rotation_quat { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        protected UnityEngine.Vector3 transform_translation { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        protected float focusDistance { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float focalLength { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        protected bool useEffectiveFocalLength { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        protected float effectiveFocalLengthRatio { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float aperture { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        protected UnityEngine.Quaternion listenerVirtualTrans_rotation_quat { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        protected UnityEngine.Vector3 listenerVirtualTrans_translation { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        protected bool listenerVirtualFlag { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float nearClipDistance { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float farClipDistance { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        protected float shutterSpeed { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        protected bool useDefaultExposureValue { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        protected float minExposure { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        protected float maxExposure { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        protected float exposureCompensation { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        protected bool useDefaultBloom { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        protected float bloomSize { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        protected float bloomWeight { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        protected float bloomBrightnessExtraction { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        protected bool cancelCameraBlur { get; set; }
-        
-        public float keyValue { get => Get_keyValue(); set { Set_keyValue(value); } }
-        protected partial float Get_keyValue();
-        protected partial void Set_keyValue(float value);
-        
-        // ClassInfos
-        public static new bool ClassInfoInitialized = false;
-        private static Fox.Core.EntityInfo classInfo;
-        public static new Fox.Core.EntityInfo ClassInfo
-        {
-            get
-            {
-                return classInfo;
-            }
-        }
-        public override Fox.Core.EntityInfo GetClassEntityInfo()
-        {
-            return classInfo;
-        }
-        static Camera()
-        {
-            if (Fox.Core.Entity.ClassInfoInitialized)
-                classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("Camera"), typeof(Camera), Fox.Core.Entity.ClassInfo, 0, null, 10);
+	[UnityEditor.InitializeOnLoad]
+	public partial class Camera : Fox.Core.Entity
+	{
+		// Properties
+		[field: UnityEngine.SerializeField]
+		protected Fox.Kernel.String priorityName { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		protected bool enable { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		protected UnityEngine.Quaternion transform_rotation_quat { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		protected UnityEngine.Vector3 transform_translation { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		protected float focusDistance { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float focalLength { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		protected bool useEffectiveFocalLength { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		protected float effectiveFocalLengthRatio { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float aperture { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		protected UnityEngine.Quaternion listenerVirtualTrans_rotation_quat { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		protected UnityEngine.Vector3 listenerVirtualTrans_translation { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		protected bool listenerVirtualFlag { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float nearClipDistance { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float farClipDistance { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		protected float shutterSpeed { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		protected bool useDefaultExposureValue { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		protected float minExposure { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		protected float maxExposure { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		protected float exposureCompensation { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		protected bool useDefaultBloom { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		protected float bloomSize { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		protected float bloomWeight { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		protected float bloomBrightnessExtraction { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		protected bool cancelCameraBlur { get; set; }
+		
+		public float keyValue { get => Get_keyValue(); set { Set_keyValue(value); } }
+		protected partial float Get_keyValue();
+		protected partial void Set_keyValue(float value);
+		
+		// ClassInfos
+		public static new bool ClassInfoInitialized = false;
+		private static Fox.Core.EntityInfo classInfo;
+		public static new Fox.Core.EntityInfo ClassInfo
+		{
+			get
+			{
+				return classInfo;
+			}
+		}
+		public override Fox.Core.EntityInfo GetClassEntityInfo()
+		{
+			return classInfo;
+		}
+		static Camera()
+		{
+			if (Fox.Core.Entity.ClassInfoInitialized)
+				classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("Camera"), typeof(Camera), Fox.Core.Entity.ClassInfo, 0, null, 10);
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("priorityName"), Fox.Core.PropertyInfo.PropertyType.String, 264, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("enable"), Fox.Core.PropertyInfo.PropertyType.Bool, 224, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("transform_rotation_quat"), Fox.Core.PropertyInfo.PropertyType.Quat, 288, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
@@ -136,116 +136,116 @@ namespace Fox.GameKit
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("cancelCameraBlur"), Fox.Core.PropertyInfo.PropertyType.Bool, 228, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("keyValue"), Fox.Core.PropertyInfo.PropertyType.Float, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Accessor));
 
-            ClassInfoInitialized = true;
-        }
+			ClassInfoInitialized = true;
+		}
 
-        // Constructors
+		// Constructors
 		public Camera(ulong id) : base(id) { }
 		public Camera() : base() { }
-        
-        public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "priorityName":
-                    this.priorityName = value.GetValueAsString();
-                    return;
-                case "enable":
-                    this.enable = value.GetValueAsBool();
-                    return;
-                case "transform_rotation_quat":
-                    this.transform_rotation_quat = value.GetValueAsQuat();
-                    return;
-                case "transform_translation":
-                    this.transform_translation = value.GetValueAsVector3();
-                    return;
-                case "focusDistance":
-                    this.focusDistance = value.GetValueAsFloat();
-                    return;
-                case "focalLength":
-                    this.focalLength = value.GetValueAsFloat();
-                    return;
-                case "useEffectiveFocalLength":
-                    this.useEffectiveFocalLength = value.GetValueAsBool();
-                    return;
-                case "effectiveFocalLengthRatio":
-                    this.effectiveFocalLengthRatio = value.GetValueAsFloat();
-                    return;
-                case "aperture":
-                    this.aperture = value.GetValueAsFloat();
-                    return;
-                case "listenerVirtualTrans_rotation_quat":
-                    this.listenerVirtualTrans_rotation_quat = value.GetValueAsQuat();
-                    return;
-                case "listenerVirtualTrans_translation":
-                    this.listenerVirtualTrans_translation = value.GetValueAsVector3();
-                    return;
-                case "listenerVirtualFlag":
-                    this.listenerVirtualFlag = value.GetValueAsBool();
-                    return;
-                case "nearClipDistance":
-                    this.nearClipDistance = value.GetValueAsFloat();
-                    return;
-                case "farClipDistance":
-                    this.farClipDistance = value.GetValueAsFloat();
-                    return;
-                case "shutterSpeed":
-                    this.shutterSpeed = value.GetValueAsFloat();
-                    return;
-                case "useDefaultExposureValue":
-                    this.useDefaultExposureValue = value.GetValueAsBool();
-                    return;
-                case "minExposure":
-                    this.minExposure = value.GetValueAsFloat();
-                    return;
-                case "maxExposure":
-                    this.maxExposure = value.GetValueAsFloat();
-                    return;
-                case "exposureCompensation":
-                    this.exposureCompensation = value.GetValueAsFloat();
-                    return;
-                case "useDefaultBloom":
-                    this.useDefaultBloom = value.GetValueAsBool();
-                    return;
-                case "bloomSize":
-                    this.bloomSize = value.GetValueAsFloat();
-                    return;
-                case "bloomWeight":
-                    this.bloomWeight = value.GetValueAsFloat();
-                    return;
-                case "bloomBrightnessExtraction":
-                    this.bloomBrightnessExtraction = value.GetValueAsFloat();
-                    return;
-                case "cancelCameraBlur":
-                    this.cancelCameraBlur = value.GetValueAsBool();
-                    return;
-                case "keyValue":
-                    this.keyValue = value.GetValueAsFloat();
-                    return;
-                default:
-                    base.SetProperty(propertyName, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, index, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, key, value);
-                    return;
-            }
-        }
-    }
+
+		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
+		{
+			switch(propertyName.CString)
+			{
+				case "priorityName":
+					this.priorityName = value.GetValueAsString();
+					return;
+				case "enable":
+					this.enable = value.GetValueAsBool();
+					return;
+				case "transform_rotation_quat":
+					this.transform_rotation_quat = value.GetValueAsQuat();
+					return;
+				case "transform_translation":
+					this.transform_translation = value.GetValueAsVector3();
+					return;
+				case "focusDistance":
+					this.focusDistance = value.GetValueAsFloat();
+					return;
+				case "focalLength":
+					this.focalLength = value.GetValueAsFloat();
+					return;
+				case "useEffectiveFocalLength":
+					this.useEffectiveFocalLength = value.GetValueAsBool();
+					return;
+				case "effectiveFocalLengthRatio":
+					this.effectiveFocalLengthRatio = value.GetValueAsFloat();
+					return;
+				case "aperture":
+					this.aperture = value.GetValueAsFloat();
+					return;
+				case "listenerVirtualTrans_rotation_quat":
+					this.listenerVirtualTrans_rotation_quat = value.GetValueAsQuat();
+					return;
+				case "listenerVirtualTrans_translation":
+					this.listenerVirtualTrans_translation = value.GetValueAsVector3();
+					return;
+				case "listenerVirtualFlag":
+					this.listenerVirtualFlag = value.GetValueAsBool();
+					return;
+				case "nearClipDistance":
+					this.nearClipDistance = value.GetValueAsFloat();
+					return;
+				case "farClipDistance":
+					this.farClipDistance = value.GetValueAsFloat();
+					return;
+				case "shutterSpeed":
+					this.shutterSpeed = value.GetValueAsFloat();
+					return;
+				case "useDefaultExposureValue":
+					this.useDefaultExposureValue = value.GetValueAsBool();
+					return;
+				case "minExposure":
+					this.minExposure = value.GetValueAsFloat();
+					return;
+				case "maxExposure":
+					this.maxExposure = value.GetValueAsFloat();
+					return;
+				case "exposureCompensation":
+					this.exposureCompensation = value.GetValueAsFloat();
+					return;
+				case "useDefaultBloom":
+					this.useDefaultBloom = value.GetValueAsBool();
+					return;
+				case "bloomSize":
+					this.bloomSize = value.GetValueAsFloat();
+					return;
+				case "bloomWeight":
+					this.bloomWeight = value.GetValueAsFloat();
+					return;
+				case "bloomBrightnessExtraction":
+					this.bloomBrightnessExtraction = value.GetValueAsFloat();
+					return;
+				case "cancelCameraBlur":
+					this.cancelCameraBlur = value.GetValueAsBool();
+					return;
+				case "keyValue":
+					this.keyValue = value.GetValueAsFloat();
+					return;
+				default:
+					base.SetProperty(propertyName, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
+		{
+			switch(propertyName.CString)
+			{
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
+		{
+			switch(propertyName.CString)
+			{
+				default:
+					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+	}
 }

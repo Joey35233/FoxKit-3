@@ -12,61 +12,61 @@ using Fox;
 
 namespace Tpp.Effect
 {
-    [UnityEditor.InitializeOnLoad]
-    public partial class TppLensFlareRateGraph : Fox.Core.Data 
-    {
-        // Properties
-        [field: UnityEngine.SerializeField]
-        public float value0_0 { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float value0_1 { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float value0_2 { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float value0_3 { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float value0_4 { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float value0_5 { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float value0_6 { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float value0_7 { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float value0_8 { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float value0_9 { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float value1_0 { get; set; }
-        
-        // ClassInfos
-        public static new bool ClassInfoInitialized = false;
-        private static Fox.Core.EntityInfo classInfo;
-        public static new Fox.Core.EntityInfo ClassInfo
-        {
-            get
-            {
-                return classInfo;
-            }
-        }
-        public override Fox.Core.EntityInfo GetClassEntityInfo()
-        {
-            return classInfo;
-        }
-        static TppLensFlareRateGraph()
-        {
-            if (Fox.Core.Data.ClassInfoInitialized)
-                classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("TppLensFlareRateGraph"), typeof(TppLensFlareRateGraph), Fox.Core.Data.ClassInfo, 108, null, 0);
+	[UnityEditor.InitializeOnLoad]
+	public partial class TppLensFlareRateGraph : Fox.Core.Data
+	{
+		// Properties
+		[field: UnityEngine.SerializeField]
+		public float value0_0 { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float value0_1 { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float value0_2 { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float value0_3 { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float value0_4 { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float value0_5 { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float value0_6 { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float value0_7 { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float value0_8 { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float value0_9 { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float value1_0 { get; set; }
+		
+		// ClassInfos
+		public static new bool ClassInfoInitialized = false;
+		private static Fox.Core.EntityInfo classInfo;
+		public static new Fox.Core.EntityInfo ClassInfo
+		{
+			get
+			{
+				return classInfo;
+			}
+		}
+		public override Fox.Core.EntityInfo GetClassEntityInfo()
+		{
+			return classInfo;
+		}
+		static TppLensFlareRateGraph()
+		{
+			if (Fox.Core.Data.ClassInfoInitialized)
+				classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("TppLensFlareRateGraph"), typeof(TppLensFlareRateGraph), Fox.Core.Data.ClassInfo, 108, null, 0);
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("value0_0"), Fox.Core.PropertyInfo.PropertyType.Float, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("value0_1"), Fox.Core.PropertyInfo.PropertyType.Float, 124, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("value0_2"), Fox.Core.PropertyInfo.PropertyType.Float, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
@@ -79,74 +79,74 @@ namespace Tpp.Effect
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("value0_9"), Fox.Core.PropertyInfo.PropertyType.Float, 156, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("value1_0"), Fox.Core.PropertyInfo.PropertyType.Float, 160, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 
-            ClassInfoInitialized = true;
-        }
+			ClassInfoInitialized = true;
+		}
 
-        // Constructors
+		// Constructors
 		public TppLensFlareRateGraph(ulong id) : base(id) { }
 		public TppLensFlareRateGraph() : base() { }
-        
-        public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "value0_0":
-                    this.value0_0 = value.GetValueAsFloat();
-                    return;
-                case "value0_1":
-                    this.value0_1 = value.GetValueAsFloat();
-                    return;
-                case "value0_2":
-                    this.value0_2 = value.GetValueAsFloat();
-                    return;
-                case "value0_3":
-                    this.value0_3 = value.GetValueAsFloat();
-                    return;
-                case "value0_4":
-                    this.value0_4 = value.GetValueAsFloat();
-                    return;
-                case "value0_5":
-                    this.value0_5 = value.GetValueAsFloat();
-                    return;
-                case "value0_6":
-                    this.value0_6 = value.GetValueAsFloat();
-                    return;
-                case "value0_7":
-                    this.value0_7 = value.GetValueAsFloat();
-                    return;
-                case "value0_8":
-                    this.value0_8 = value.GetValueAsFloat();
-                    return;
-                case "value0_9":
-                    this.value0_9 = value.GetValueAsFloat();
-                    return;
-                case "value1_0":
-                    this.value1_0 = value.GetValueAsFloat();
-                    return;
-                default:
-                    base.SetProperty(propertyName, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, index, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, key, value);
-                    return;
-            }
-        }
-    }
+
+		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
+		{
+			switch(propertyName.CString)
+			{
+				case "value0_0":
+					this.value0_0 = value.GetValueAsFloat();
+					return;
+				case "value0_1":
+					this.value0_1 = value.GetValueAsFloat();
+					return;
+				case "value0_2":
+					this.value0_2 = value.GetValueAsFloat();
+					return;
+				case "value0_3":
+					this.value0_3 = value.GetValueAsFloat();
+					return;
+				case "value0_4":
+					this.value0_4 = value.GetValueAsFloat();
+					return;
+				case "value0_5":
+					this.value0_5 = value.GetValueAsFloat();
+					return;
+				case "value0_6":
+					this.value0_6 = value.GetValueAsFloat();
+					return;
+				case "value0_7":
+					this.value0_7 = value.GetValueAsFloat();
+					return;
+				case "value0_8":
+					this.value0_8 = value.GetValueAsFloat();
+					return;
+				case "value0_9":
+					this.value0_9 = value.GetValueAsFloat();
+					return;
+				case "value1_0":
+					this.value1_0 = value.GetValueAsFloat();
+					return;
+				default:
+					base.SetProperty(propertyName, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
+		{
+			switch(propertyName.CString)
+			{
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
+		{
+			switch(propertyName.CString)
+			{
+				default:
+					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+	}
 }

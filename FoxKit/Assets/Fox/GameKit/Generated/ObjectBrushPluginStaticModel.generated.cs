@@ -12,52 +12,52 @@ using Fox;
 
 namespace Fox.GameKit
 {
-    [UnityEditor.InitializeOnLoad]
-    public partial class ObjectBrushPluginStaticModel : Fox.GameKit.ObjectBrushPlugin 
-    {
-        // Properties
-        [field: UnityEngine.SerializeField]
-        public Fox.Core.FilePtr modelFile { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Core.FilePtr geomFile { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float minSize { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float maxSize { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float lodFarSize { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float lodNearSize { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public DrawRejectionLevel drawRejectionLevel { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public bool isGeomActivity { get; set; }
-        
-        // ClassInfos
-        public static new bool ClassInfoInitialized = false;
-        private static Fox.Core.EntityInfo classInfo;
-        public static new Fox.Core.EntityInfo ClassInfo
-        {
-            get
-            {
-                return classInfo;
-            }
-        }
-        public override Fox.Core.EntityInfo GetClassEntityInfo()
-        {
-            return classInfo;
-        }
-        static ObjectBrushPluginStaticModel()
-        {
-            if (Fox.GameKit.ObjectBrushPlugin.ClassInfoInitialized)
-                classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("ObjectBrushPluginStaticModel"), typeof(ObjectBrushPluginStaticModel), Fox.GameKit.ObjectBrushPlugin.ClassInfo, 152, null, 3);
+	[UnityEditor.InitializeOnLoad]
+	public partial class ObjectBrushPluginStaticModel : Fox.GameKit.ObjectBrushPlugin
+	{
+		// Properties
+		[field: UnityEngine.SerializeField]
+		public Fox.Core.FilePtr modelFile { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Core.FilePtr geomFile { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float minSize { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float maxSize { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float lodFarSize { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float lodNearSize { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public DrawRejectionLevel drawRejectionLevel { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public bool isGeomActivity { get; set; }
+		
+		// ClassInfos
+		public static new bool ClassInfoInitialized = false;
+		private static Fox.Core.EntityInfo classInfo;
+		public static new Fox.Core.EntityInfo ClassInfo
+		{
+			get
+			{
+				return classInfo;
+			}
+		}
+		public override Fox.Core.EntityInfo GetClassEntityInfo()
+		{
+			return classInfo;
+		}
+		static ObjectBrushPluginStaticModel()
+		{
+			if (Fox.GameKit.ObjectBrushPlugin.ClassInfoInitialized)
+				classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("ObjectBrushPluginStaticModel"), typeof(ObjectBrushPluginStaticModel), Fox.GameKit.ObjectBrushPlugin.ClassInfo, 152, null, 3);
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("modelFile"), Fox.Core.PropertyInfo.PropertyType.FilePtr, 144, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("geomFile"), Fox.Core.PropertyInfo.PropertyType.FilePtr, 168, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("minSize"), Fox.Core.PropertyInfo.PropertyType.Float, 192, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
@@ -67,65 +67,65 @@ namespace Fox.GameKit
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("drawRejectionLevel"), Fox.Core.PropertyInfo.PropertyType.Int32, 208, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, typeof(DrawRejectionLevel), Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("isGeomActivity"), Fox.Core.PropertyInfo.PropertyType.Bool, 212, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 
-            ClassInfoInitialized = true;
-        }
+			ClassInfoInitialized = true;
+		}
 
-        // Constructors
+		// Constructors
 		public ObjectBrushPluginStaticModel(ulong id) : base(id) { }
 		public ObjectBrushPluginStaticModel() : base() { }
-        
-        public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "modelFile":
-                    this.modelFile = value.GetValueAsFilePtr();
-                    return;
-                case "geomFile":
-                    this.geomFile = value.GetValueAsFilePtr();
-                    return;
-                case "minSize":
-                    this.minSize = value.GetValueAsFloat();
-                    return;
-                case "maxSize":
-                    this.maxSize = value.GetValueAsFloat();
-                    return;
-                case "lodFarSize":
-                    this.lodFarSize = value.GetValueAsFloat();
-                    return;
-                case "lodNearSize":
-                    this.lodNearSize = value.GetValueAsFloat();
-                    return;
-                case "drawRejectionLevel":
-                    this.drawRejectionLevel = (DrawRejectionLevel)value.GetValueAsInt32();
-                    return;
-                case "isGeomActivity":
-                    this.isGeomActivity = value.GetValueAsBool();
-                    return;
-                default:
-                    base.SetProperty(propertyName, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, index, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, key, value);
-                    return;
-            }
-        }
-    }
+
+		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
+		{
+			switch(propertyName.CString)
+			{
+				case "modelFile":
+					this.modelFile = value.GetValueAsFilePtr();
+					return;
+				case "geomFile":
+					this.geomFile = value.GetValueAsFilePtr();
+					return;
+				case "minSize":
+					this.minSize = value.GetValueAsFloat();
+					return;
+				case "maxSize":
+					this.maxSize = value.GetValueAsFloat();
+					return;
+				case "lodFarSize":
+					this.lodFarSize = value.GetValueAsFloat();
+					return;
+				case "lodNearSize":
+					this.lodNearSize = value.GetValueAsFloat();
+					return;
+				case "drawRejectionLevel":
+					this.drawRejectionLevel = (DrawRejectionLevel)value.GetValueAsInt32();
+					return;
+				case "isGeomActivity":
+					this.isGeomActivity = value.GetValueAsBool();
+					return;
+				default:
+					base.SetProperty(propertyName, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
+		{
+			switch(propertyName.CString)
+			{
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
+		{
+			switch(propertyName.CString)
+			{
+				default:
+					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+	}
 }

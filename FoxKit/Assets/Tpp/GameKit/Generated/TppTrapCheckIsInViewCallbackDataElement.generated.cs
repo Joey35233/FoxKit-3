@@ -12,78 +12,78 @@ using Fox;
 
 namespace Tpp.GameKit
 {
-    [UnityEditor.InitializeOnLoad]
-    public partial class TppTrapCheckIsInViewCallbackDataElement : Fox.Geo.GeoTrapModuleCallbackDataElement 
-    {
-        // Properties
-        [field: UnityEngine.SerializeField]
-        public Fox.Core.EntityLink checkLocator { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float checkAreaSize { get; set; }
-        
-        // ClassInfos
-        public static new bool ClassInfoInitialized = false;
-        private static Fox.Core.EntityInfo classInfo;
-        public static new Fox.Core.EntityInfo ClassInfo
-        {
-            get
-            {
-                return classInfo;
-            }
-        }
-        public override Fox.Core.EntityInfo GetClassEntityInfo()
-        {
-            return classInfo;
-        }
-        static TppTrapCheckIsInViewCallbackDataElement()
-        {
-            if (Fox.Geo.GeoTrapModuleCallbackDataElement.ClassInfoInitialized)
-                classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("TppTrapCheckIsInViewCallbackDataElement"), typeof(TppTrapCheckIsInViewCallbackDataElement), Fox.Geo.GeoTrapModuleCallbackDataElement.ClassInfo, 72, null, 1);
+	[UnityEditor.InitializeOnLoad]
+	public partial class TppTrapCheckIsInViewCallbackDataElement : Fox.Geo.GeoTrapModuleCallbackDataElement
+	{
+		// Properties
+		[field: UnityEngine.SerializeField]
+		public Fox.Core.EntityLink checkLocator { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float checkAreaSize { get; set; }
+		
+		// ClassInfos
+		public static new bool ClassInfoInitialized = false;
+		private static Fox.Core.EntityInfo classInfo;
+		public static new Fox.Core.EntityInfo ClassInfo
+		{
+			get
+			{
+				return classInfo;
+			}
+		}
+		public override Fox.Core.EntityInfo GetClassEntityInfo()
+		{
+			return classInfo;
+		}
+		static TppTrapCheckIsInViewCallbackDataElement()
+		{
+			if (Fox.Geo.GeoTrapModuleCallbackDataElement.ClassInfoInitialized)
+				classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("TppTrapCheckIsInViewCallbackDataElement"), typeof(TppTrapCheckIsInViewCallbackDataElement), Fox.Geo.GeoTrapModuleCallbackDataElement.ClassInfo, 72, null, 1);
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("checkLocator"), Fox.Core.PropertyInfo.PropertyType.EntityLink, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("checkAreaSize"), Fox.Core.PropertyInfo.PropertyType.Float, 104, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 
-            ClassInfoInitialized = true;
-        }
+			ClassInfoInitialized = true;
+		}
 
-        // Constructors
+		// Constructors
 		public TppTrapCheckIsInViewCallbackDataElement(ulong id) : base(id) { }
 		public TppTrapCheckIsInViewCallbackDataElement() : base() { }
-        
-        public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "checkLocator":
-                    this.checkLocator = value.GetValueAsEntityLink();
-                    return;
-                case "checkAreaSize":
-                    this.checkAreaSize = value.GetValueAsFloat();
-                    return;
-                default:
-                    base.SetProperty(propertyName, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, index, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, key, value);
-                    return;
-            }
-        }
-    }
+
+		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
+		{
+			switch(propertyName.CString)
+			{
+				case "checkLocator":
+					this.checkLocator = value.GetValueAsEntityLink();
+					return;
+				case "checkAreaSize":
+					this.checkAreaSize = value.GetValueAsFloat();
+					return;
+				default:
+					base.SetProperty(propertyName, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
+		{
+			switch(propertyName.CString)
+			{
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
+		{
+			switch(propertyName.CString)
+			{
+				default:
+					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+	}
 }

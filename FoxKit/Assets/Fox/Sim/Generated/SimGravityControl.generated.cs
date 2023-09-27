@@ -12,78 +12,78 @@ using Fox;
 
 namespace Fox.Sim
 {
-    [UnityEditor.InitializeOnLoad]
-    public partial class SimGravityControl : Fox.Sim.SimControlElement 
-    {
-        // Properties
-        [field: UnityEngine.SerializeField]
-        protected Fox.Core.EntityPtr<Fox.Sim.SimGravityControlParam> controlParam { get; set; } = new Fox.Core.EntityPtr<Fox.Sim.SimGravityControlParam>();
-        
-        [field: UnityEngine.SerializeField]
-        public float gravityCoefficient { get; set; }
-        
-        // ClassInfos
-        public static new bool ClassInfoInitialized = false;
-        private static Fox.Core.EntityInfo classInfo;
-        public static new Fox.Core.EntityInfo ClassInfo
-        {
-            get
-            {
-                return classInfo;
-            }
-        }
-        public override Fox.Core.EntityInfo GetClassEntityInfo()
-        {
-            return classInfo;
-        }
-        static SimGravityControl()
-        {
-            if (Fox.Sim.SimControlElement.ClassInfoInitialized)
-                classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("SimGravityControl"), typeof(SimGravityControl), Fox.Sim.SimControlElement.ClassInfo, 64, "Sim", 0);
+	[UnityEditor.InitializeOnLoad]
+	public partial class SimGravityControl : Fox.Sim.SimControlElement
+	{
+		// Properties
+		[field: UnityEngine.SerializeField]
+		protected Fox.Core.EntityPtr<Fox.Sim.SimGravityControlParam> controlParam { get; set; } = new Fox.Core.EntityPtr<Fox.Sim.SimGravityControlParam>();
+		
+		[field: UnityEngine.SerializeField]
+		public float gravityCoefficient { get; set; }
+		
+		// ClassInfos
+		public static new bool ClassInfoInitialized = false;
+		private static Fox.Core.EntityInfo classInfo;
+		public static new Fox.Core.EntityInfo ClassInfo
+		{
+			get
+			{
+				return classInfo;
+			}
+		}
+		public override Fox.Core.EntityInfo GetClassEntityInfo()
+		{
+			return classInfo;
+		}
+		static SimGravityControl()
+		{
+			if (Fox.Sim.SimControlElement.ClassInfoInitialized)
+				classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("SimGravityControl"), typeof(SimGravityControl), Fox.Sim.SimControlElement.ClassInfo, 64, "Sim", 0);
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("controlParam"), Fox.Core.PropertyInfo.PropertyType.EntityPtr, 72, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, typeof(Fox.Sim.SimGravityControlParam), null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("gravityCoefficient"), Fox.Core.PropertyInfo.PropertyType.Float, 80, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 
-            ClassInfoInitialized = true;
-        }
+			ClassInfoInitialized = true;
+		}
 
-        // Constructors
+		// Constructors
 		public SimGravityControl(ulong id) : base(id) { }
 		public SimGravityControl() : base() { }
-        
-        public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "controlParam":
-                    this.controlParam = value.GetValueAsEntityPtr<Fox.Sim.SimGravityControlParam>();
-                    return;
-                case "gravityCoefficient":
-                    this.gravityCoefficient = value.GetValueAsFloat();
-                    return;
-                default:
-                    base.SetProperty(propertyName, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, index, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, key, value);
-                    return;
-            }
-        }
-    }
+
+		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
+		{
+			switch(propertyName.CString)
+			{
+				case "controlParam":
+					this.controlParam = value.GetValueAsEntityPtr<Fox.Sim.SimGravityControlParam>();
+					return;
+				case "gravityCoefficient":
+					this.gravityCoefficient = value.GetValueAsFloat();
+					return;
+				default:
+					base.SetProperty(propertyName, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
+		{
+			switch(propertyName.CString)
+			{
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
+		{
+			switch(propertyName.CString)
+			{
+				default:
+					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+	}
 }

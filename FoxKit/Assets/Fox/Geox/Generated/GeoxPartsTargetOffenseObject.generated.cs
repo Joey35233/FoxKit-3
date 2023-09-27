@@ -12,92 +12,92 @@ using Fox;
 
 namespace Fox.Geox
 {
-    [UnityEditor.InitializeOnLoad]
-    public partial class GeoxPartsTargetOffenseObject : Fox.Geox.GeoxPartsTargetObject 
-    {
-        // Properties
-        [field: UnityEngine.SerializeField]
-        public bool isAnyOffenseCallback { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public bool isNoDefenseCallback { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public bool isHandleCheck { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public bool isNameCheck { get; set; }
-        
-        // ClassInfos
-        public static new bool ClassInfoInitialized = false;
-        private static Fox.Core.EntityInfo classInfo;
-        public static new Fox.Core.EntityInfo ClassInfo
-        {
-            get
-            {
-                return classInfo;
-            }
-        }
-        public override Fox.Core.EntityInfo GetClassEntityInfo()
-        {
-            return classInfo;
-        }
-        static GeoxPartsTargetOffenseObject()
-        {
-            if (Fox.Geox.GeoxPartsTargetObject.ClassInfoInitialized)
-                classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("GeoxPartsTargetOffenseObject"), typeof(GeoxPartsTargetOffenseObject), Fox.Geox.GeoxPartsTargetObject.ClassInfo, 0, "Target", 1);
+	[UnityEditor.InitializeOnLoad]
+	public partial class GeoxPartsTargetOffenseObject : Fox.Geox.GeoxPartsTargetObject
+	{
+		// Properties
+		[field: UnityEngine.SerializeField]
+		public bool isAnyOffenseCallback { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public bool isNoDefenseCallback { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public bool isHandleCheck { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public bool isNameCheck { get; set; }
+		
+		// ClassInfos
+		public static new bool ClassInfoInitialized = false;
+		private static Fox.Core.EntityInfo classInfo;
+		public static new Fox.Core.EntityInfo ClassInfo
+		{
+			get
+			{
+				return classInfo;
+			}
+		}
+		public override Fox.Core.EntityInfo GetClassEntityInfo()
+		{
+			return classInfo;
+		}
+		static GeoxPartsTargetOffenseObject()
+		{
+			if (Fox.Geox.GeoxPartsTargetObject.ClassInfoInitialized)
+				classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("GeoxPartsTargetOffenseObject"), typeof(GeoxPartsTargetOffenseObject), Fox.Geox.GeoxPartsTargetObject.ClassInfo, 0, "Target", 1);
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("isAnyOffenseCallback"), Fox.Core.PropertyInfo.PropertyType.Bool, 400, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("isNoDefenseCallback"), Fox.Core.PropertyInfo.PropertyType.Bool, 401, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("isHandleCheck"), Fox.Core.PropertyInfo.PropertyType.Bool, 402, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("isNameCheck"), Fox.Core.PropertyInfo.PropertyType.Bool, 403, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 
-            ClassInfoInitialized = true;
-        }
+			ClassInfoInitialized = true;
+		}
 
-        // Constructors
+		// Constructors
 		public GeoxPartsTargetOffenseObject(ulong id) : base(id) { }
 		public GeoxPartsTargetOffenseObject() : base() { }
-        
-        public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "isAnyOffenseCallback":
-                    this.isAnyOffenseCallback = value.GetValueAsBool();
-                    return;
-                case "isNoDefenseCallback":
-                    this.isNoDefenseCallback = value.GetValueAsBool();
-                    return;
-                case "isHandleCheck":
-                    this.isHandleCheck = value.GetValueAsBool();
-                    return;
-                case "isNameCheck":
-                    this.isNameCheck = value.GetValueAsBool();
-                    return;
-                default:
-                    base.SetProperty(propertyName, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, index, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, key, value);
-                    return;
-            }
-        }
-    }
+
+		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
+		{
+			switch(propertyName.CString)
+			{
+				case "isAnyOffenseCallback":
+					this.isAnyOffenseCallback = value.GetValueAsBool();
+					return;
+				case "isNoDefenseCallback":
+					this.isNoDefenseCallback = value.GetValueAsBool();
+					return;
+				case "isHandleCheck":
+					this.isHandleCheck = value.GetValueAsBool();
+					return;
+				case "isNameCheck":
+					this.isNameCheck = value.GetValueAsBool();
+					return;
+				default:
+					base.SetProperty(propertyName, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
+		{
+			switch(propertyName.CString)
+			{
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
+		{
+			switch(propertyName.CString)
+			{
+				default:
+					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+	}
 }

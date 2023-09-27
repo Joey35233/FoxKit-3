@@ -12,169 +12,169 @@ using Fox;
 
 namespace Fox.Demox
 {
-    [UnityEditor.InitializeOnLoad]
-    public partial class DemoData : Fox.Core.TransformData 
-    {
-        // Properties
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.DynamicArray<Fox.Core.FilePtr> evfFiles { get; set; } = new Fox.Kernel.DynamicArray<Fox.Core.FilePtr>();
-        
-        [field: UnityEngine.SerializeField]
-        public bool onMemory { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public int demoLength { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public int priority { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.Path scriptPath { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.StringMap<Fox.Core.FilePtr> fmdlFiles { get; set; } = new Fox.Kernel.StringMap<Fox.Core.FilePtr>();
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.StringMap<Fox.Core.FilePtr> helpBoneFiles { get; set; } = new Fox.Kernel.StringMap<Fox.Core.FilePtr>();
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.StringMap<Fox.Core.EntityPtr<Fox.Demo.PartsDesc>> partsDesc { get; set; } = new Fox.Kernel.StringMap<Fox.Core.EntityPtr<Fox.Demo.PartsDesc>>();
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Fox.Demo.ClipData>> clipDatas { get; set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Fox.Demo.ClipData>>();
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.DynamicArray<Fox.Kernel.Path> loadFiles { get; set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.Path>();
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.String demoId { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Core.EntityLink playingRoot { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Core.EntityLink streamAnimation { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.Path demoStreamPath { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.Path motionPath { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Core.FilePtr motionFile { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.Path audioPath { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Core.FilePtr subtitleFile { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Core.FilePtr subtitleBinaryFile { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Core.FilePtr nodeDataFile { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.DynamicArray<Fox.Kernel.String> stringParams { get; set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.StringMap<Fox.Core.EntityLink> entityParams { get; set; } = new Fox.Kernel.StringMap<Fox.Core.EntityLink>();
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.StringMap<Fox.Core.FilePtr> fileParams { get; set; } = new Fox.Kernel.StringMap<Fox.Core.FilePtr>();
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.StringMap<Fox.Core.EntityPtr<Fox.Demo.DemoControlCharacterDesc>> controlCharacters { get; set; } = new Fox.Kernel.StringMap<Fox.Core.EntityPtr<Fox.Demo.DemoControlCharacterDesc>>();
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.StringMap<Fox.Core.EntityLink> controlDatas { get; set; } = new Fox.Kernel.StringMap<Fox.Core.EntityLink>();
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.StringMap<Fox.Kernel.String> controlCollectibles { get; set; } = new Fox.Kernel.StringMap<Fox.Kernel.String>();
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.StringMap<Fox.Core.EntityPtr<Fox.Demo.DemoParameter>> parameters { get; set; } = new Fox.Kernel.StringMap<Fox.Core.EntityPtr<Fox.Demo.DemoParameter>>();
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.StringMap<Fox.Kernel.String> setupLights { get; set; } = new Fox.Kernel.StringMap<Fox.Kernel.String>();
-        
-        [field: UnityEngine.SerializeField]
-        public Utility_InterpType cameraInterpType { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public int cameraInterpFrame { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float cameraInterpCurveRate { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float cameraInterpScurveCenter { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public UnityEngine.Vector3 cameraTranslation { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public UnityEngine.Quaternion cameraRotation { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float cameraParam { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float cameraDistanceToLookAt { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public UnityEngine.Vector3 cameraStartTranslation { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public UnityEngine.Quaternion cameraStartRotation { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float cameraStartParam { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float cameraStartDistanceToLookAt { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public int eventCacheNum { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public int eventInterpCacheNum { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public int eventSkipCacheNum { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.DynamicArray<Fox.Kernel.String> highestTextureStreamModel { get; set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.DynamicArray<Fox.Kernel.Path> highestTexture { get; set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.Path>();
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.StringMap<int> objectNum { get; set; } = new Fox.Kernel.StringMap<int>();
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Core.EntityLink blockPositionSetter { get; set; }
-        
-        // ClassInfos
-        public static new bool ClassInfoInitialized = false;
-        private static Fox.Core.EntityInfo classInfo;
-        public static new Fox.Core.EntityInfo ClassInfo
-        {
-            get
-            {
-                return classInfo;
-            }
-        }
-        public override Fox.Core.EntityInfo GetClassEntityInfo()
-        {
-            return classInfo;
-        }
-        static DemoData()
-        {
-            if (Fox.Core.TransformData.ClassInfoInitialized)
-                classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("DemoData"), typeof(DemoData), Fox.Core.TransformData.ClassInfo, 1264, null, 36);
+	[UnityEditor.InitializeOnLoad]
+	public partial class DemoData : Fox.Core.TransformData
+	{
+		// Properties
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.DynamicArray<Fox.Core.FilePtr> evfFiles { get; set; } = new Fox.Kernel.DynamicArray<Fox.Core.FilePtr>();
+		
+		[field: UnityEngine.SerializeField]
+		public bool onMemory { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public int demoLength { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public int priority { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.Path scriptPath { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.StringMap<Fox.Core.FilePtr> fmdlFiles { get; set; } = new Fox.Kernel.StringMap<Fox.Core.FilePtr>();
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.StringMap<Fox.Core.FilePtr> helpBoneFiles { get; set; } = new Fox.Kernel.StringMap<Fox.Core.FilePtr>();
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.StringMap<Fox.Core.EntityPtr<Fox.Demo.PartsDesc>> partsDesc { get; set; } = new Fox.Kernel.StringMap<Fox.Core.EntityPtr<Fox.Demo.PartsDesc>>();
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Fox.Demo.ClipData>> clipDatas { get; set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Fox.Demo.ClipData>>();
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.DynamicArray<Fox.Kernel.Path> loadFiles { get; set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.Path>();
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.String demoId { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Core.EntityLink playingRoot { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Core.EntityLink streamAnimation { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.Path demoStreamPath { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.Path motionPath { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Core.FilePtr motionFile { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.Path audioPath { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Core.FilePtr subtitleFile { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Core.FilePtr subtitleBinaryFile { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Core.FilePtr nodeDataFile { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.DynamicArray<Fox.Kernel.String> stringParams { get; set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.StringMap<Fox.Core.EntityLink> entityParams { get; set; } = new Fox.Kernel.StringMap<Fox.Core.EntityLink>();
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.StringMap<Fox.Core.FilePtr> fileParams { get; set; } = new Fox.Kernel.StringMap<Fox.Core.FilePtr>();
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.StringMap<Fox.Core.EntityPtr<Fox.Demo.DemoControlCharacterDesc>> controlCharacters { get; set; } = new Fox.Kernel.StringMap<Fox.Core.EntityPtr<Fox.Demo.DemoControlCharacterDesc>>();
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.StringMap<Fox.Core.EntityLink> controlDatas { get; set; } = new Fox.Kernel.StringMap<Fox.Core.EntityLink>();
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.StringMap<Fox.Kernel.String> controlCollectibles { get; set; } = new Fox.Kernel.StringMap<Fox.Kernel.String>();
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.StringMap<Fox.Core.EntityPtr<Fox.Demo.DemoParameter>> parameters { get; set; } = new Fox.Kernel.StringMap<Fox.Core.EntityPtr<Fox.Demo.DemoParameter>>();
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.StringMap<Fox.Kernel.String> setupLights { get; set; } = new Fox.Kernel.StringMap<Fox.Kernel.String>();
+		
+		[field: UnityEngine.SerializeField]
+		public Utility_InterpType cameraInterpType { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public int cameraInterpFrame { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float cameraInterpCurveRate { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float cameraInterpScurveCenter { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public UnityEngine.Vector3 cameraTranslation { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public UnityEngine.Quaternion cameraRotation { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float cameraParam { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float cameraDistanceToLookAt { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public UnityEngine.Vector3 cameraStartTranslation { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public UnityEngine.Quaternion cameraStartRotation { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float cameraStartParam { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float cameraStartDistanceToLookAt { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public int eventCacheNum { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public int eventInterpCacheNum { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public int eventSkipCacheNum { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.DynamicArray<Fox.Kernel.String> highestTextureStreamModel { get; set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.DynamicArray<Fox.Kernel.Path> highestTexture { get; set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.Path>();
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.StringMap<int> objectNum { get; set; } = new Fox.Kernel.StringMap<int>();
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Core.EntityLink blockPositionSetter { get; set; }
+		
+		// ClassInfos
+		public static new bool ClassInfoInitialized = false;
+		private static Fox.Core.EntityInfo classInfo;
+		public static new Fox.Core.EntityInfo ClassInfo
+		{
+			get
+			{
+				return classInfo;
+			}
+		}
+		public override Fox.Core.EntityInfo GetClassEntityInfo()
+		{
+			return classInfo;
+		}
+		static DemoData()
+		{
+			if (Fox.Core.TransformData.ClassInfoInitialized)
+				classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("DemoData"), typeof(DemoData), Fox.Core.TransformData.ClassInfo, 1264, null, 36);
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("evfFiles"), Fox.Core.PropertyInfo.PropertyType.FilePtr, 304, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("onMemory"), Fox.Core.PropertyInfo.PropertyType.Bool, 320, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("demoLength"), Fox.Core.PropertyInfo.PropertyType.Int32, 324, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
@@ -223,188 +223,188 @@ namespace Fox.Demox
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("objectNum"), Fox.Core.PropertyInfo.PropertyType.Int32, 1272, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("blockPositionSetter"), Fox.Core.PropertyInfo.PropertyType.EntityLink, 520, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 
-            ClassInfoInitialized = true;
-        }
+			ClassInfoInitialized = true;
+		}
 
-        // Constructors
+		// Constructors
 		public DemoData(ulong id) : base(id) { }
 		public DemoData() : base() { }
-        
-        public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "onMemory":
-                    this.onMemory = value.GetValueAsBool();
-                    return;
-                case "demoLength":
-                    this.demoLength = value.GetValueAsInt32();
-                    return;
-                case "priority":
-                    this.priority = value.GetValueAsInt32();
-                    return;
-                case "scriptPath":
-                    this.scriptPath = value.GetValueAsPath();
-                    return;
-                case "demoId":
-                    this.demoId = value.GetValueAsString();
-                    return;
-                case "playingRoot":
-                    this.playingRoot = value.GetValueAsEntityLink();
-                    return;
-                case "streamAnimation":
-                    this.streamAnimation = value.GetValueAsEntityLink();
-                    return;
-                case "demoStreamPath":
-                    this.demoStreamPath = value.GetValueAsPath();
-                    return;
-                case "motionPath":
-                    this.motionPath = value.GetValueAsPath();
-                    return;
-                case "motionFile":
-                    this.motionFile = value.GetValueAsFilePtr();
-                    return;
-                case "audioPath":
-                    this.audioPath = value.GetValueAsPath();
-                    return;
-                case "subtitleFile":
-                    this.subtitleFile = value.GetValueAsFilePtr();
-                    return;
-                case "subtitleBinaryFile":
-                    this.subtitleBinaryFile = value.GetValueAsFilePtr();
-                    return;
-                case "nodeDataFile":
-                    this.nodeDataFile = value.GetValueAsFilePtr();
-                    return;
-                case "cameraInterpType":
-                    this.cameraInterpType = (Utility_InterpType)value.GetValueAsInt32();
-                    return;
-                case "cameraInterpFrame":
-                    this.cameraInterpFrame = value.GetValueAsInt32();
-                    return;
-                case "cameraInterpCurveRate":
-                    this.cameraInterpCurveRate = value.GetValueAsFloat();
-                    return;
-                case "cameraInterpScurveCenter":
-                    this.cameraInterpScurveCenter = value.GetValueAsFloat();
-                    return;
-                case "cameraTranslation":
-                    this.cameraTranslation = value.GetValueAsVector3();
-                    return;
-                case "cameraRotation":
-                    this.cameraRotation = value.GetValueAsQuat();
-                    return;
-                case "cameraParam":
-                    this.cameraParam = value.GetValueAsFloat();
-                    return;
-                case "cameraDistanceToLookAt":
-                    this.cameraDistanceToLookAt = value.GetValueAsFloat();
-                    return;
-                case "cameraStartTranslation":
-                    this.cameraStartTranslation = value.GetValueAsVector3();
-                    return;
-                case "cameraStartRotation":
-                    this.cameraStartRotation = value.GetValueAsQuat();
-                    return;
-                case "cameraStartParam":
-                    this.cameraStartParam = value.GetValueAsFloat();
-                    return;
-                case "cameraStartDistanceToLookAt":
-                    this.cameraStartDistanceToLookAt = value.GetValueAsFloat();
-                    return;
-                case "eventCacheNum":
-                    this.eventCacheNum = value.GetValueAsInt32();
-                    return;
-                case "eventInterpCacheNum":
-                    this.eventInterpCacheNum = value.GetValueAsInt32();
-                    return;
-                case "eventSkipCacheNum":
-                    this.eventSkipCacheNum = value.GetValueAsInt32();
-                    return;
-                case "blockPositionSetter":
-                    this.blockPositionSetter = value.GetValueAsEntityLink();
-                    return;
-                default:
-                    base.SetProperty(propertyName, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "evfFiles":
-                    while(this.evfFiles.Count <= index) { this.evfFiles.Add(default(Fox.Core.FilePtr)); }
-                    this.evfFiles[index] = value.GetValueAsFilePtr();
-                    return;
-                case "clipDatas":
-                    while(this.clipDatas.Count <= index) { this.clipDatas.Add(default(Fox.Core.EntityPtr<Fox.Demo.ClipData>)); }
-                    this.clipDatas[index] = value.GetValueAsEntityPtr<Fox.Demo.ClipData>();
-                    return;
-                case "loadFiles":
-                    while(this.loadFiles.Count <= index) { this.loadFiles.Add(default(Fox.Kernel.Path)); }
-                    this.loadFiles[index] = value.GetValueAsPath();
-                    return;
-                case "stringParams":
-                    while(this.stringParams.Count <= index) { this.stringParams.Add(default(Fox.Kernel.String)); }
-                    this.stringParams[index] = value.GetValueAsString();
-                    return;
-                case "highestTextureStreamModel":
-                    while(this.highestTextureStreamModel.Count <= index) { this.highestTextureStreamModel.Add(default(Fox.Kernel.String)); }
-                    this.highestTextureStreamModel[index] = value.GetValueAsString();
-                    return;
-                case "highestTexture":
-                    while(this.highestTexture.Count <= index) { this.highestTexture.Add(default(Fox.Kernel.Path)); }
-                    this.highestTexture[index] = value.GetValueAsPath();
-                    return;
-                default:
-                    base.SetPropertyElement(propertyName, index, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "fmdlFiles":
-                    this.fmdlFiles.Insert(key, value.GetValueAsFilePtr());
-                    return;
-                case "helpBoneFiles":
-                    this.helpBoneFiles.Insert(key, value.GetValueAsFilePtr());
-                    return;
-                case "partsDesc":
-                    this.partsDesc.Insert(key, value.GetValueAsEntityPtr<Fox.Demo.PartsDesc>());
-                    return;
-                case "entityParams":
-                    this.entityParams.Insert(key, value.GetValueAsEntityLink());
-                    return;
-                case "fileParams":
-                    this.fileParams.Insert(key, value.GetValueAsFilePtr());
-                    return;
-                case "controlCharacters":
-                    this.controlCharacters.Insert(key, value.GetValueAsEntityPtr<Fox.Demo.DemoControlCharacterDesc>());
-                    return;
-                case "controlDatas":
-                    this.controlDatas.Insert(key, value.GetValueAsEntityLink());
-                    return;
-                case "controlCollectibles":
-                    this.controlCollectibles.Insert(key, value.GetValueAsString());
-                    return;
-                case "parameters":
-                    this.parameters.Insert(key, value.GetValueAsEntityPtr<Fox.Demo.DemoParameter>());
-                    return;
-                case "setupLights":
-                    this.setupLights.Insert(key, value.GetValueAsString());
-                    return;
-                case "objectNum":
-                    this.objectNum.Insert(key, value.GetValueAsInt32());
-                    return;
-                default:
-                    base.SetPropertyElement(propertyName, key, value);
-                    return;
-            }
-        }
-    }
+
+		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
+		{
+			switch(propertyName.CString)
+			{
+				case "onMemory":
+					this.onMemory = value.GetValueAsBool();
+					return;
+				case "demoLength":
+					this.demoLength = value.GetValueAsInt32();
+					return;
+				case "priority":
+					this.priority = value.GetValueAsInt32();
+					return;
+				case "scriptPath":
+					this.scriptPath = value.GetValueAsPath();
+					return;
+				case "demoId":
+					this.demoId = value.GetValueAsString();
+					return;
+				case "playingRoot":
+					this.playingRoot = value.GetValueAsEntityLink();
+					return;
+				case "streamAnimation":
+					this.streamAnimation = value.GetValueAsEntityLink();
+					return;
+				case "demoStreamPath":
+					this.demoStreamPath = value.GetValueAsPath();
+					return;
+				case "motionPath":
+					this.motionPath = value.GetValueAsPath();
+					return;
+				case "motionFile":
+					this.motionFile = value.GetValueAsFilePtr();
+					return;
+				case "audioPath":
+					this.audioPath = value.GetValueAsPath();
+					return;
+				case "subtitleFile":
+					this.subtitleFile = value.GetValueAsFilePtr();
+					return;
+				case "subtitleBinaryFile":
+					this.subtitleBinaryFile = value.GetValueAsFilePtr();
+					return;
+				case "nodeDataFile":
+					this.nodeDataFile = value.GetValueAsFilePtr();
+					return;
+				case "cameraInterpType":
+					this.cameraInterpType = (Utility_InterpType)value.GetValueAsInt32();
+					return;
+				case "cameraInterpFrame":
+					this.cameraInterpFrame = value.GetValueAsInt32();
+					return;
+				case "cameraInterpCurveRate":
+					this.cameraInterpCurveRate = value.GetValueAsFloat();
+					return;
+				case "cameraInterpScurveCenter":
+					this.cameraInterpScurveCenter = value.GetValueAsFloat();
+					return;
+				case "cameraTranslation":
+					this.cameraTranslation = value.GetValueAsVector3();
+					return;
+				case "cameraRotation":
+					this.cameraRotation = value.GetValueAsQuat();
+					return;
+				case "cameraParam":
+					this.cameraParam = value.GetValueAsFloat();
+					return;
+				case "cameraDistanceToLookAt":
+					this.cameraDistanceToLookAt = value.GetValueAsFloat();
+					return;
+				case "cameraStartTranslation":
+					this.cameraStartTranslation = value.GetValueAsVector3();
+					return;
+				case "cameraStartRotation":
+					this.cameraStartRotation = value.GetValueAsQuat();
+					return;
+				case "cameraStartParam":
+					this.cameraStartParam = value.GetValueAsFloat();
+					return;
+				case "cameraStartDistanceToLookAt":
+					this.cameraStartDistanceToLookAt = value.GetValueAsFloat();
+					return;
+				case "eventCacheNum":
+					this.eventCacheNum = value.GetValueAsInt32();
+					return;
+				case "eventInterpCacheNum":
+					this.eventInterpCacheNum = value.GetValueAsInt32();
+					return;
+				case "eventSkipCacheNum":
+					this.eventSkipCacheNum = value.GetValueAsInt32();
+					return;
+				case "blockPositionSetter":
+					this.blockPositionSetter = value.GetValueAsEntityLink();
+					return;
+				default:
+					base.SetProperty(propertyName, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
+		{
+			switch(propertyName.CString)
+			{
+				case "evfFiles":
+					while(this.evfFiles.Count <= index) { this.evfFiles.Add(default(Fox.Core.FilePtr)); }
+					this.evfFiles[index] = value.GetValueAsFilePtr();
+					return;
+				case "clipDatas":
+					while(this.clipDatas.Count <= index) { this.clipDatas.Add(default(Fox.Core.EntityPtr<Fox.Demo.ClipData>)); }
+					this.clipDatas[index] = value.GetValueAsEntityPtr<Fox.Demo.ClipData>();
+					return;
+				case "loadFiles":
+					while(this.loadFiles.Count <= index) { this.loadFiles.Add(default(Fox.Kernel.Path)); }
+					this.loadFiles[index] = value.GetValueAsPath();
+					return;
+				case "stringParams":
+					while(this.stringParams.Count <= index) { this.stringParams.Add(default(Fox.Kernel.String)); }
+					this.stringParams[index] = value.GetValueAsString();
+					return;
+				case "highestTextureStreamModel":
+					while(this.highestTextureStreamModel.Count <= index) { this.highestTextureStreamModel.Add(default(Fox.Kernel.String)); }
+					this.highestTextureStreamModel[index] = value.GetValueAsString();
+					return;
+				case "highestTexture":
+					while(this.highestTexture.Count <= index) { this.highestTexture.Add(default(Fox.Kernel.Path)); }
+					this.highestTexture[index] = value.GetValueAsPath();
+					return;
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
+		{
+			switch(propertyName.CString)
+			{
+				case "fmdlFiles":
+					this.fmdlFiles.Insert(key, value.GetValueAsFilePtr());
+					return;
+				case "helpBoneFiles":
+					this.helpBoneFiles.Insert(key, value.GetValueAsFilePtr());
+					return;
+				case "partsDesc":
+					this.partsDesc.Insert(key, value.GetValueAsEntityPtr<Fox.Demo.PartsDesc>());
+					return;
+				case "entityParams":
+					this.entityParams.Insert(key, value.GetValueAsEntityLink());
+					return;
+				case "fileParams":
+					this.fileParams.Insert(key, value.GetValueAsFilePtr());
+					return;
+				case "controlCharacters":
+					this.controlCharacters.Insert(key, value.GetValueAsEntityPtr<Fox.Demo.DemoControlCharacterDesc>());
+					return;
+				case "controlDatas":
+					this.controlDatas.Insert(key, value.GetValueAsEntityLink());
+					return;
+				case "controlCollectibles":
+					this.controlCollectibles.Insert(key, value.GetValueAsString());
+					return;
+				case "parameters":
+					this.parameters.Insert(key, value.GetValueAsEntityPtr<Fox.Demo.DemoParameter>());
+					return;
+				case "setupLights":
+					this.setupLights.Insert(key, value.GetValueAsString());
+					return;
+				case "objectNum":
+					this.objectNum.Insert(key, value.GetValueAsInt32());
+					return;
+				default:
+					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+	}
 }

@@ -12,67 +12,67 @@ using Fox;
 
 namespace Tpp.GameKit
 {
-    [UnityEditor.InitializeOnLoad]
-    public partial class CyprusBlockControllerData : Fox.Core.Data 
-    {
-        // Properties
-        [field: UnityEngine.SerializeField]
-        public bool enable { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.String stageName { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.Path commonFilePath { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.String basePath { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint commonBlockSizeInByte { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint largeStageBlockSizeInByte { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint smallStageBlockCount { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint smallStageBlockSizeInByte { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint largeMissionBlockSizeInByte { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint smallMissionBlockCount { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint smallMissionBlockSizeInByte { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint demoBlockCount { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint demoBlockSizeInByte { get; set; }
-        
-        // ClassInfos
-        public static new bool ClassInfoInitialized = false;
-        private static Fox.Core.EntityInfo classInfo;
-        public static new Fox.Core.EntityInfo ClassInfo
-        {
-            get
-            {
-                return classInfo;
-            }
-        }
-        public override Fox.Core.EntityInfo GetClassEntityInfo()
-        {
-            return classInfo;
-        }
-        static CyprusBlockControllerData()
-        {
-            if (Fox.Core.Data.ClassInfoInitialized)
-                classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("CyprusBlockControllerData"), typeof(CyprusBlockControllerData), Fox.Core.Data.ClassInfo, 120, null, 5);
+	[UnityEditor.InitializeOnLoad]
+	public partial class CyprusBlockControllerData : Fox.Core.Data
+	{
+		// Properties
+		[field: UnityEngine.SerializeField]
+		public bool enable { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.String stageName { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.Path commonFilePath { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.String basePath { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint commonBlockSizeInByte { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint largeStageBlockSizeInByte { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint smallStageBlockCount { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint smallStageBlockSizeInByte { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint largeMissionBlockSizeInByte { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint smallMissionBlockCount { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint smallMissionBlockSizeInByte { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint demoBlockCount { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint demoBlockSizeInByte { get; set; }
+		
+		// ClassInfos
+		public static new bool ClassInfoInitialized = false;
+		private static Fox.Core.EntityInfo classInfo;
+		public static new Fox.Core.EntityInfo ClassInfo
+		{
+			get
+			{
+				return classInfo;
+			}
+		}
+		public override Fox.Core.EntityInfo GetClassEntityInfo()
+		{
+			return classInfo;
+		}
+		static CyprusBlockControllerData()
+		{
+			if (Fox.Core.Data.ClassInfoInitialized)
+				classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("CyprusBlockControllerData"), typeof(CyprusBlockControllerData), Fox.Core.Data.ClassInfo, 120, null, 5);
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("enable"), Fox.Core.PropertyInfo.PropertyType.Bool, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("stageName"), Fox.Core.PropertyInfo.PropertyType.String, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("commonFilePath"), Fox.Core.PropertyInfo.PropertyType.Path, 136, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
@@ -87,80 +87,80 @@ namespace Tpp.GameKit
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("demoBlockCount"), Fox.Core.PropertyInfo.PropertyType.UInt32, 180, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("demoBlockSizeInByte"), Fox.Core.PropertyInfo.PropertyType.UInt32, 184, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 
-            ClassInfoInitialized = true;
-        }
+			ClassInfoInitialized = true;
+		}
 
-        // Constructors
+		// Constructors
 		public CyprusBlockControllerData(ulong id) : base(id) { }
 		public CyprusBlockControllerData() : base() { }
-        
-        public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "enable":
-                    this.enable = value.GetValueAsBool();
-                    return;
-                case "stageName":
-                    this.stageName = value.GetValueAsString();
-                    return;
-                case "commonFilePath":
-                    this.commonFilePath = value.GetValueAsPath();
-                    return;
-                case "basePath":
-                    this.basePath = value.GetValueAsString();
-                    return;
-                case "commonBlockSizeInByte":
-                    this.commonBlockSizeInByte = value.GetValueAsUInt32();
-                    return;
-                case "largeStageBlockSizeInByte":
-                    this.largeStageBlockSizeInByte = value.GetValueAsUInt32();
-                    return;
-                case "smallStageBlockCount":
-                    this.smallStageBlockCount = value.GetValueAsUInt32();
-                    return;
-                case "smallStageBlockSizeInByte":
-                    this.smallStageBlockSizeInByte = value.GetValueAsUInt32();
-                    return;
-                case "largeMissionBlockSizeInByte":
-                    this.largeMissionBlockSizeInByte = value.GetValueAsUInt32();
-                    return;
-                case "smallMissionBlockCount":
-                    this.smallMissionBlockCount = value.GetValueAsUInt32();
-                    return;
-                case "smallMissionBlockSizeInByte":
-                    this.smallMissionBlockSizeInByte = value.GetValueAsUInt32();
-                    return;
-                case "demoBlockCount":
-                    this.demoBlockCount = value.GetValueAsUInt32();
-                    return;
-                case "demoBlockSizeInByte":
-                    this.demoBlockSizeInByte = value.GetValueAsUInt32();
-                    return;
-                default:
-                    base.SetProperty(propertyName, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, index, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, key, value);
-                    return;
-            }
-        }
-    }
+
+		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
+		{
+			switch(propertyName.CString)
+			{
+				case "enable":
+					this.enable = value.GetValueAsBool();
+					return;
+				case "stageName":
+					this.stageName = value.GetValueAsString();
+					return;
+				case "commonFilePath":
+					this.commonFilePath = value.GetValueAsPath();
+					return;
+				case "basePath":
+					this.basePath = value.GetValueAsString();
+					return;
+				case "commonBlockSizeInByte":
+					this.commonBlockSizeInByte = value.GetValueAsUInt32();
+					return;
+				case "largeStageBlockSizeInByte":
+					this.largeStageBlockSizeInByte = value.GetValueAsUInt32();
+					return;
+				case "smallStageBlockCount":
+					this.smallStageBlockCount = value.GetValueAsUInt32();
+					return;
+				case "smallStageBlockSizeInByte":
+					this.smallStageBlockSizeInByte = value.GetValueAsUInt32();
+					return;
+				case "largeMissionBlockSizeInByte":
+					this.largeMissionBlockSizeInByte = value.GetValueAsUInt32();
+					return;
+				case "smallMissionBlockCount":
+					this.smallMissionBlockCount = value.GetValueAsUInt32();
+					return;
+				case "smallMissionBlockSizeInByte":
+					this.smallMissionBlockSizeInByte = value.GetValueAsUInt32();
+					return;
+				case "demoBlockCount":
+					this.demoBlockCount = value.GetValueAsUInt32();
+					return;
+				case "demoBlockSizeInByte":
+					this.demoBlockSizeInByte = value.GetValueAsUInt32();
+					return;
+				default:
+					base.SetProperty(propertyName, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
+		{
+			switch(propertyName.CString)
+			{
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
+		{
+			switch(propertyName.CString)
+			{
+				default:
+					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+	}
 }

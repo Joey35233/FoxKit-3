@@ -12,72 +12,72 @@ using Fox;
 
 namespace Fox.Geox
 {
-    [UnityEditor.InitializeOnLoad]
-    public partial class GeoxPolygonMarkerBody : Fox.Core.TransformDataBody 
-    {
-        // Properties
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.DynamicArray<UnityEngine.Vector3> vertices { get; set; } = new Fox.Kernel.DynamicArray<UnityEngine.Vector3>();
-        
-        // ClassInfos
-        public static new bool ClassInfoInitialized = false;
-        private static Fox.Core.EntityInfo classInfo;
-        public static new Fox.Core.EntityInfo ClassInfo
-        {
-            get
-            {
-                return classInfo;
-            }
-        }
-        public override Fox.Core.EntityInfo GetClassEntityInfo()
-        {
-            return classInfo;
-        }
-        static GeoxPolygonMarkerBody()
-        {
-            if (Fox.Core.TransformDataBody.ClassInfoInitialized)
-                classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("GeoxPolygonMarkerBody"), typeof(GeoxPolygonMarkerBody), Fox.Core.TransformDataBody.ClassInfo, 0, "Geox", 0);
+	[UnityEditor.InitializeOnLoad]
+	public partial class GeoxPolygonMarkerBody : Fox.Core.TransformDataBody
+	{
+		// Properties
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.DynamicArray<UnityEngine.Vector3> vertices { get; set; } = new Fox.Kernel.DynamicArray<UnityEngine.Vector3>();
+		
+		// ClassInfos
+		public static new bool ClassInfoInitialized = false;
+		private static Fox.Core.EntityInfo classInfo;
+		public static new Fox.Core.EntityInfo ClassInfo
+		{
+			get
+			{
+				return classInfo;
+			}
+		}
+		public override Fox.Core.EntityInfo GetClassEntityInfo()
+		{
+			return classInfo;
+		}
+		static GeoxPolygonMarkerBody()
+		{
+			if (Fox.Core.TransformDataBody.ClassInfoInitialized)
+				classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("GeoxPolygonMarkerBody"), typeof(GeoxPolygonMarkerBody), Fox.Core.TransformDataBody.ClassInfo, 0, "Geox", 0);
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("vertices"), Fox.Core.PropertyInfo.PropertyType.Vector3, 144, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 
-            ClassInfoInitialized = true;
-        }
+			ClassInfoInitialized = true;
+		}
 
-        // Constructors
+		// Constructors
 		public GeoxPolygonMarkerBody(ulong id) : base(id) { }
 		public GeoxPolygonMarkerBody() : base() { }
-        
-        public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetProperty(propertyName, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "vertices":
-                    while(this.vertices.Count <= index) { this.vertices.Add(default(UnityEngine.Vector3)); }
-                    this.vertices[index] = value.GetValueAsVector3();
-                    return;
-                default:
-                    base.SetPropertyElement(propertyName, index, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, key, value);
-                    return;
-            }
-        }
-    }
+
+		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
+		{
+			switch(propertyName.CString)
+			{
+				default:
+					base.SetProperty(propertyName, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
+		{
+			switch(propertyName.CString)
+			{
+				case "vertices":
+					while(this.vertices.Count <= index) { this.vertices.Add(default(UnityEngine.Vector3)); }
+					this.vertices[index] = value.GetValueAsVector3();
+					return;
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
+		{
+			switch(propertyName.CString)
+			{
+				default:
+					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+	}
 }

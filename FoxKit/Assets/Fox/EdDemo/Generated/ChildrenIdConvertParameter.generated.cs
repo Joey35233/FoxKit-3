@@ -12,61 +12,61 @@ using Fox;
 
 namespace Fox.EdDemo
 {
-    [UnityEditor.InitializeOnLoad]
-    public partial class ChildrenIdConvertParameter : Fox.Demo.DemoParameter 
-    {
-        // Properties
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.String injuryId { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.String yellowHoodId { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.String afloId { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.String shortAfloId { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.String blackCoatId { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public byte injuryPriority { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public byte yellowHoodPriority { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public byte afloPriority { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public byte shortAfloPriority { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public byte blackCoatPriority { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public bool enableInjuredChildSpecialization { get; set; }
-        
-        // ClassInfos
-        public static new bool ClassInfoInitialized = false;
-        private static Fox.Core.EntityInfo classInfo;
-        public static new Fox.Core.EntityInfo ClassInfo
-        {
-            get
-            {
-                return classInfo;
-            }
-        }
-        public override Fox.Core.EntityInfo GetClassEntityInfo()
-        {
-            return classInfo;
-        }
-        static ChildrenIdConvertParameter()
-        {
-            if (Fox.Demo.DemoParameter.ClassInfoInitialized)
-                classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("ChildrenIdConvertParameter"), typeof(ChildrenIdConvertParameter), Fox.Demo.DemoParameter.ClassInfo, 60, null, 0);
+	[UnityEditor.InitializeOnLoad]
+	public partial class ChildrenIdConvertParameter : Fox.Demo.DemoParameter
+	{
+		// Properties
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.String injuryId { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.String yellowHoodId { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.String afloId { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.String shortAfloId { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.String blackCoatId { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public byte injuryPriority { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public byte yellowHoodPriority { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public byte afloPriority { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public byte shortAfloPriority { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public byte blackCoatPriority { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public bool enableInjuredChildSpecialization { get; set; }
+		
+		// ClassInfos
+		public static new bool ClassInfoInitialized = false;
+		private static Fox.Core.EntityInfo classInfo;
+		public static new Fox.Core.EntityInfo ClassInfo
+		{
+			get
+			{
+				return classInfo;
+			}
+		}
+		public override Fox.Core.EntityInfo GetClassEntityInfo()
+		{
+			return classInfo;
+		}
+		static ChildrenIdConvertParameter()
+		{
+			if (Fox.Demo.DemoParameter.ClassInfoInitialized)
+				classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("ChildrenIdConvertParameter"), typeof(ChildrenIdConvertParameter), Fox.Demo.DemoParameter.ClassInfo, 60, null, 0);
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("injuryId"), Fox.Core.PropertyInfo.PropertyType.String, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("yellowHoodId"), Fox.Core.PropertyInfo.PropertyType.String, 72, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("afloId"), Fox.Core.PropertyInfo.PropertyType.String, 80, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
@@ -79,74 +79,74 @@ namespace Fox.EdDemo
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("blackCoatPriority"), Fox.Core.PropertyInfo.PropertyType.UInt8, 108, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("enableInjuredChildSpecialization"), Fox.Core.PropertyInfo.PropertyType.Bool, 109, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 
-            ClassInfoInitialized = true;
-        }
+			ClassInfoInitialized = true;
+		}
 
-        // Constructors
+		// Constructors
 		public ChildrenIdConvertParameter(ulong id) : base(id) { }
 		public ChildrenIdConvertParameter() : base() { }
-        
-        public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "injuryId":
-                    this.injuryId = value.GetValueAsString();
-                    return;
-                case "yellowHoodId":
-                    this.yellowHoodId = value.GetValueAsString();
-                    return;
-                case "afloId":
-                    this.afloId = value.GetValueAsString();
-                    return;
-                case "shortAfloId":
-                    this.shortAfloId = value.GetValueAsString();
-                    return;
-                case "blackCoatId":
-                    this.blackCoatId = value.GetValueAsString();
-                    return;
-                case "injuryPriority":
-                    this.injuryPriority = value.GetValueAsUInt8();
-                    return;
-                case "yellowHoodPriority":
-                    this.yellowHoodPriority = value.GetValueAsUInt8();
-                    return;
-                case "afloPriority":
-                    this.afloPriority = value.GetValueAsUInt8();
-                    return;
-                case "shortAfloPriority":
-                    this.shortAfloPriority = value.GetValueAsUInt8();
-                    return;
-                case "blackCoatPriority":
-                    this.blackCoatPriority = value.GetValueAsUInt8();
-                    return;
-                case "enableInjuredChildSpecialization":
-                    this.enableInjuredChildSpecialization = value.GetValueAsBool();
-                    return;
-                default:
-                    base.SetProperty(propertyName, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, index, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, key, value);
-                    return;
-            }
-        }
-    }
+
+		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
+		{
+			switch(propertyName.CString)
+			{
+				case "injuryId":
+					this.injuryId = value.GetValueAsString();
+					return;
+				case "yellowHoodId":
+					this.yellowHoodId = value.GetValueAsString();
+					return;
+				case "afloId":
+					this.afloId = value.GetValueAsString();
+					return;
+				case "shortAfloId":
+					this.shortAfloId = value.GetValueAsString();
+					return;
+				case "blackCoatId":
+					this.blackCoatId = value.GetValueAsString();
+					return;
+				case "injuryPriority":
+					this.injuryPriority = value.GetValueAsUInt8();
+					return;
+				case "yellowHoodPriority":
+					this.yellowHoodPriority = value.GetValueAsUInt8();
+					return;
+				case "afloPriority":
+					this.afloPriority = value.GetValueAsUInt8();
+					return;
+				case "shortAfloPriority":
+					this.shortAfloPriority = value.GetValueAsUInt8();
+					return;
+				case "blackCoatPriority":
+					this.blackCoatPriority = value.GetValueAsUInt8();
+					return;
+				case "enableInjuredChildSpecialization":
+					this.enableInjuredChildSpecialization = value.GetValueAsBool();
+					return;
+				default:
+					base.SetProperty(propertyName, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
+		{
+			switch(propertyName.CString)
+			{
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
+		{
+			switch(propertyName.CString)
+			{
+				default:
+					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+	}
 }

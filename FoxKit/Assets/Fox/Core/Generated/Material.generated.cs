@@ -12,61 +12,61 @@ using Fox;
 
 namespace Fox.Core
 {
-    [UnityEditor.InitializeOnLoad]
-    public partial class Material : Fox.Core.Data 
-    {
-        // Properties
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.String materialName { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.Path shader { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.Path diffuseTexture { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.Path srmTexture { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.Path normalTexture { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.Path materialMapTexture { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public byte materialIndex { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public UnityEngine.Color diffuseColor { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public UnityEngine.Color specularColor { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.Path fmtrPath { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public bool residentFlag { get; set; }
-        
-        // ClassInfos
-        public static new bool ClassInfoInitialized = false;
-        private static Fox.Core.EntityInfo classInfo;
-        public static new Fox.Core.EntityInfo ClassInfo
-        {
-            get
-            {
-                return classInfo;
-            }
-        }
-        public override Fox.Core.EntityInfo GetClassEntityInfo()
-        {
-            return classInfo;
-        }
-        static Material()
-        {
-            if (Fox.Core.Data.ClassInfoInitialized)
-                classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("Material"), typeof(Material), Fox.Core.Data.ClassInfo, 176, "Material", 6);
+	[UnityEditor.InitializeOnLoad]
+	public partial class Material : Fox.Core.Data
+	{
+		// Properties
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.String materialName { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.Path shader { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.Path diffuseTexture { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.Path srmTexture { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.Path normalTexture { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.Path materialMapTexture { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public byte materialIndex { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public UnityEngine.Color diffuseColor { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public UnityEngine.Color specularColor { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.Path fmtrPath { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public bool residentFlag { get; set; }
+		
+		// ClassInfos
+		public static new bool ClassInfoInitialized = false;
+		private static Fox.Core.EntityInfo classInfo;
+		public static new Fox.Core.EntityInfo ClassInfo
+		{
+			get
+			{
+				return classInfo;
+			}
+		}
+		public override Fox.Core.EntityInfo GetClassEntityInfo()
+		{
+			return classInfo;
+		}
+		static Material()
+		{
+			if (Fox.Core.Data.ClassInfoInitialized)
+				classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("Material"), typeof(Material), Fox.Core.Data.ClassInfo, 176, "Material", 6);
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("materialName"), Fox.Core.PropertyInfo.PropertyType.String, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("shader"), Fox.Core.PropertyInfo.PropertyType.Path, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("diffuseTexture"), Fox.Core.PropertyInfo.PropertyType.Path, 136, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
@@ -79,74 +79,74 @@ namespace Fox.Core
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("fmtrPath"), Fox.Core.PropertyInfo.PropertyType.Path, 208, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("residentFlag"), Fox.Core.PropertyInfo.PropertyType.Bool, 216, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 
-            ClassInfoInitialized = true;
-        }
+			ClassInfoInitialized = true;
+		}
 
-        // Constructors
+		// Constructors
 		public Material(ulong id) : base(id) { }
 		public Material() : base() { }
-        
-        public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "materialName":
-                    this.materialName = value.GetValueAsString();
-                    return;
-                case "shader":
-                    this.shader = value.GetValueAsPath();
-                    return;
-                case "diffuseTexture":
-                    this.diffuseTexture = value.GetValueAsPath();
-                    return;
-                case "srmTexture":
-                    this.srmTexture = value.GetValueAsPath();
-                    return;
-                case "normalTexture":
-                    this.normalTexture = value.GetValueAsPath();
-                    return;
-                case "materialMapTexture":
-                    this.materialMapTexture = value.GetValueAsPath();
-                    return;
-                case "materialIndex":
-                    this.materialIndex = value.GetValueAsUInt8();
-                    return;
-                case "diffuseColor":
-                    this.diffuseColor = value.GetValueAsColor();
-                    return;
-                case "specularColor":
-                    this.specularColor = value.GetValueAsColor();
-                    return;
-                case "fmtrPath":
-                    this.fmtrPath = value.GetValueAsPath();
-                    return;
-                case "residentFlag":
-                    this.residentFlag = value.GetValueAsBool();
-                    return;
-                default:
-                    base.SetProperty(propertyName, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, index, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, key, value);
-                    return;
-            }
-        }
-    }
+
+		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
+		{
+			switch(propertyName.CString)
+			{
+				case "materialName":
+					this.materialName = value.GetValueAsString();
+					return;
+				case "shader":
+					this.shader = value.GetValueAsPath();
+					return;
+				case "diffuseTexture":
+					this.diffuseTexture = value.GetValueAsPath();
+					return;
+				case "srmTexture":
+					this.srmTexture = value.GetValueAsPath();
+					return;
+				case "normalTexture":
+					this.normalTexture = value.GetValueAsPath();
+					return;
+				case "materialMapTexture":
+					this.materialMapTexture = value.GetValueAsPath();
+					return;
+				case "materialIndex":
+					this.materialIndex = value.GetValueAsUInt8();
+					return;
+				case "diffuseColor":
+					this.diffuseColor = value.GetValueAsColor();
+					return;
+				case "specularColor":
+					this.specularColor = value.GetValueAsColor();
+					return;
+				case "fmtrPath":
+					this.fmtrPath = value.GetValueAsPath();
+					return;
+				case "residentFlag":
+					this.residentFlag = value.GetValueAsBool();
+					return;
+				default:
+					base.SetProperty(propertyName, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
+		{
+			switch(propertyName.CString)
+			{
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
+		{
+			switch(propertyName.CString)
+			{
+				default:
+					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+	}
 }

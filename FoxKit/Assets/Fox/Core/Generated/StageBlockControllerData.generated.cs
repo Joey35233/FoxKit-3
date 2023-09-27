@@ -12,217 +12,217 @@ using Fox;
 
 namespace Fox.Core
 {
-    [UnityEditor.InitializeOnLoad]
-    public partial class StageBlockControllerData : Fox.Core.Data 
-    {
-        // Properties
-        [field: UnityEngine.SerializeField]
-        public bool enable { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.String stageName { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public bool useBaseDirectoryPathAndName { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.String baseDirectoryPath { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.String baseName { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.String smallBlock1BaseDirectoryPath { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.String smallBlock1BaseName { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint blockSizeX { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint blockSizeZ { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint countX { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint countZ { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint centerIndexX { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint centerIndexZ { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint blockSizeInBytes { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint smallBlock1CountX { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint smallBlock1CountZ { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint smallBlock1BlockSizeInBytes { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint blockMarginX { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint blockMarginZ { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint loadingDistanceX { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint loadingDistanceZ { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint commonBlockSizeInBytes { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint largeBlockCount0 { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint largeBlockSizeInBytes0 { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint largeBlockCount1 { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint largeBlockSizeInBytes1 { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint largeBlockCount2 { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint largeBlockSizeInBytes2 { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint largeBlockCount3 { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint largeBlockSizeInBytes3 { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint largeBlockLoadingMarginX { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint largeBlockLoadingMarginZ { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Core.FilePtr stageBlockFile { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.String lod0BaseDirectoryPath { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.String lod0BaseName { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint lod0blockSizeInBytes { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public byte lod0blockSizeX { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public byte lod0blockSizeZ { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public byte lod0BlockCountX { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public byte lod0BlockCountZ { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint lod0LargeBlock0SizeInBytes { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public byte lod0LargeBlock0Count { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint lod0LargeBlock1SizeInBytes { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public byte lod0LargeBlock1Count { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint lod0LargeBlock2SizeInBytes { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public byte lod0LargeBlock2Count { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint lod0LargeBlock3SizeInBytes { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public byte lod0LargeBlock3Count { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.String lod1BaseDirectoryPath { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.String lod1BaseName { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint lod1blockSizeInBytes { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public byte lod1blockSizeX { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public byte lod1blockSizeZ { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public byte lod1BlockCountX { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public byte lod1BlockCountZ { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint lod1LargeBlock0SizeInBytes { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public byte lod1LargeBlock0Count { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint lod1LargeBlock1SizeInBytes { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public byte lod1LargeBlock1Count { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint lod1LargeBlock2SizeInBytes { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public byte lod1LargeBlock2Count { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint lod1LargeBlock3SizeInBytes { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public byte lod1LargeBlock3Count { get; set; }
-        
-        // ClassInfos
-        public static new bool ClassInfoInitialized = false;
-        private static Fox.Core.EntityInfo classInfo;
-        public static new Fox.Core.EntityInfo ClassInfo
-        {
-            get
-            {
-                return classInfo;
-            }
-        }
-        public override Fox.Core.EntityInfo GetClassEntityInfo()
-        {
-            return classInfo;
-        }
-        static StageBlockControllerData()
-        {
-            if (Fox.Core.Data.ClassInfoInitialized)
-                classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("StageBlockControllerData"), typeof(StageBlockControllerData), Fox.Core.Data.ClassInfo, 288, null, 8);
+	[UnityEditor.InitializeOnLoad]
+	public partial class StageBlockControllerData : Fox.Core.Data
+	{
+		// Properties
+		[field: UnityEngine.SerializeField]
+		public bool enable { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.String stageName { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public bool useBaseDirectoryPathAndName { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.String baseDirectoryPath { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.String baseName { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.String smallBlock1BaseDirectoryPath { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.String smallBlock1BaseName { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint blockSizeX { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint blockSizeZ { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint countX { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint countZ { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint centerIndexX { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint centerIndexZ { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint blockSizeInBytes { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint smallBlock1CountX { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint smallBlock1CountZ { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint smallBlock1BlockSizeInBytes { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint blockMarginX { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint blockMarginZ { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint loadingDistanceX { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint loadingDistanceZ { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint commonBlockSizeInBytes { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint largeBlockCount0 { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint largeBlockSizeInBytes0 { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint largeBlockCount1 { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint largeBlockSizeInBytes1 { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint largeBlockCount2 { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint largeBlockSizeInBytes2 { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint largeBlockCount3 { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint largeBlockSizeInBytes3 { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint largeBlockLoadingMarginX { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint largeBlockLoadingMarginZ { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Core.FilePtr stageBlockFile { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.String lod0BaseDirectoryPath { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.String lod0BaseName { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint lod0blockSizeInBytes { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public byte lod0blockSizeX { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public byte lod0blockSizeZ { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public byte lod0BlockCountX { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public byte lod0BlockCountZ { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint lod0LargeBlock0SizeInBytes { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public byte lod0LargeBlock0Count { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint lod0LargeBlock1SizeInBytes { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public byte lod0LargeBlock1Count { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint lod0LargeBlock2SizeInBytes { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public byte lod0LargeBlock2Count { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint lod0LargeBlock3SizeInBytes { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public byte lod0LargeBlock3Count { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.String lod1BaseDirectoryPath { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.String lod1BaseName { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint lod1blockSizeInBytes { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public byte lod1blockSizeX { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public byte lod1blockSizeZ { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public byte lod1BlockCountX { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public byte lod1BlockCountZ { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint lod1LargeBlock0SizeInBytes { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public byte lod1LargeBlock0Count { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint lod1LargeBlock1SizeInBytes { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public byte lod1LargeBlock1Count { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint lod1LargeBlock2SizeInBytes { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public byte lod1LargeBlock2Count { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint lod1LargeBlock3SizeInBytes { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public byte lod1LargeBlock3Count { get; set; }
+		
+		// ClassInfos
+		public static new bool ClassInfoInitialized = false;
+		private static Fox.Core.EntityInfo classInfo;
+		public static new Fox.Core.EntityInfo ClassInfo
+		{
+			get
+			{
+				return classInfo;
+			}
+		}
+		public override Fox.Core.EntityInfo GetClassEntityInfo()
+		{
+			return classInfo;
+		}
+		static StageBlockControllerData()
+		{
+			if (Fox.Core.Data.ClassInfoInitialized)
+				classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("StageBlockControllerData"), typeof(StageBlockControllerData), Fox.Core.Data.ClassInfo, 288, null, 8);
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("enable"), Fox.Core.PropertyInfo.PropertyType.Bool, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("stageName"), Fox.Core.PropertyInfo.PropertyType.String, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("useBaseDirectoryPathAndName"), Fox.Core.PropertyInfo.PropertyType.Bool, 168, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
@@ -287,230 +287,230 @@ namespace Fox.Core
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("lod1LargeBlock3SizeInBytes"), Fox.Core.PropertyInfo.PropertyType.UInt32, 352, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("lod1LargeBlock3Count"), Fox.Core.PropertyInfo.PropertyType.UInt8, 359, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 
-            ClassInfoInitialized = true;
-        }
+			ClassInfoInitialized = true;
+		}
 
-        // Constructors
+		// Constructors
 		public StageBlockControllerData(ulong id) : base(id) { }
 		public StageBlockControllerData() : base() { }
-        
-        public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "enable":
-                    this.enable = value.GetValueAsBool();
-                    return;
-                case "stageName":
-                    this.stageName = value.GetValueAsString();
-                    return;
-                case "useBaseDirectoryPathAndName":
-                    this.useBaseDirectoryPathAndName = value.GetValueAsBool();
-                    return;
-                case "baseDirectoryPath":
-                    this.baseDirectoryPath = value.GetValueAsString();
-                    return;
-                case "baseName":
-                    this.baseName = value.GetValueAsString();
-                    return;
-                case "smallBlock1BaseDirectoryPath":
-                    this.smallBlock1BaseDirectoryPath = value.GetValueAsString();
-                    return;
-                case "smallBlock1BaseName":
-                    this.smallBlock1BaseName = value.GetValueAsString();
-                    return;
-                case "blockSizeX":
-                    this.blockSizeX = value.GetValueAsUInt32();
-                    return;
-                case "blockSizeZ":
-                    this.blockSizeZ = value.GetValueAsUInt32();
-                    return;
-                case "countX":
-                    this.countX = value.GetValueAsUInt32();
-                    return;
-                case "countZ":
-                    this.countZ = value.GetValueAsUInt32();
-                    return;
-                case "centerIndexX":
-                    this.centerIndexX = value.GetValueAsUInt32();
-                    return;
-                case "centerIndexZ":
-                    this.centerIndexZ = value.GetValueAsUInt32();
-                    return;
-                case "blockSizeInBytes":
-                    this.blockSizeInBytes = value.GetValueAsUInt32();
-                    return;
-                case "smallBlock1CountX":
-                    this.smallBlock1CountX = value.GetValueAsUInt32();
-                    return;
-                case "smallBlock1CountZ":
-                    this.smallBlock1CountZ = value.GetValueAsUInt32();
-                    return;
-                case "smallBlock1BlockSizeInBytes":
-                    this.smallBlock1BlockSizeInBytes = value.GetValueAsUInt32();
-                    return;
-                case "blockMarginX":
-                    this.blockMarginX = value.GetValueAsUInt32();
-                    return;
-                case "blockMarginZ":
-                    this.blockMarginZ = value.GetValueAsUInt32();
-                    return;
-                case "loadingDistanceX":
-                    this.loadingDistanceX = value.GetValueAsUInt32();
-                    return;
-                case "loadingDistanceZ":
-                    this.loadingDistanceZ = value.GetValueAsUInt32();
-                    return;
-                case "commonBlockSizeInBytes":
-                    this.commonBlockSizeInBytes = value.GetValueAsUInt32();
-                    return;
-                case "largeBlockCount0":
-                    this.largeBlockCount0 = value.GetValueAsUInt32();
-                    return;
-                case "largeBlockSizeInBytes0":
-                    this.largeBlockSizeInBytes0 = value.GetValueAsUInt32();
-                    return;
-                case "largeBlockCount1":
-                    this.largeBlockCount1 = value.GetValueAsUInt32();
-                    return;
-                case "largeBlockSizeInBytes1":
-                    this.largeBlockSizeInBytes1 = value.GetValueAsUInt32();
-                    return;
-                case "largeBlockCount2":
-                    this.largeBlockCount2 = value.GetValueAsUInt32();
-                    return;
-                case "largeBlockSizeInBytes2":
-                    this.largeBlockSizeInBytes2 = value.GetValueAsUInt32();
-                    return;
-                case "largeBlockCount3":
-                    this.largeBlockCount3 = value.GetValueAsUInt32();
-                    return;
-                case "largeBlockSizeInBytes3":
-                    this.largeBlockSizeInBytes3 = value.GetValueAsUInt32();
-                    return;
-                case "largeBlockLoadingMarginX":
-                    this.largeBlockLoadingMarginX = value.GetValueAsUInt32();
-                    return;
-                case "largeBlockLoadingMarginZ":
-                    this.largeBlockLoadingMarginZ = value.GetValueAsUInt32();
-                    return;
-                case "stageBlockFile":
-                    this.stageBlockFile = value.GetValueAsFilePtr();
-                    return;
-                case "lod0BaseDirectoryPath":
-                    this.lod0BaseDirectoryPath = value.GetValueAsString();
-                    return;
-                case "lod0BaseName":
-                    this.lod0BaseName = value.GetValueAsString();
-                    return;
-                case "lod0blockSizeInBytes":
-                    this.lod0blockSizeInBytes = value.GetValueAsUInt32();
-                    return;
-                case "lod0blockSizeX":
-                    this.lod0blockSizeX = value.GetValueAsUInt8();
-                    return;
-                case "lod0blockSizeZ":
-                    this.lod0blockSizeZ = value.GetValueAsUInt8();
-                    return;
-                case "lod0BlockCountX":
-                    this.lod0BlockCountX = value.GetValueAsUInt8();
-                    return;
-                case "lod0BlockCountZ":
-                    this.lod0BlockCountZ = value.GetValueAsUInt8();
-                    return;
-                case "lod0LargeBlock0SizeInBytes":
-                    this.lod0LargeBlock0SizeInBytes = value.GetValueAsUInt32();
-                    return;
-                case "lod0LargeBlock0Count":
-                    this.lod0LargeBlock0Count = value.GetValueAsUInt8();
-                    return;
-                case "lod0LargeBlock1SizeInBytes":
-                    this.lod0LargeBlock1SizeInBytes = value.GetValueAsUInt32();
-                    return;
-                case "lod0LargeBlock1Count":
-                    this.lod0LargeBlock1Count = value.GetValueAsUInt8();
-                    return;
-                case "lod0LargeBlock2SizeInBytes":
-                    this.lod0LargeBlock2SizeInBytes = value.GetValueAsUInt32();
-                    return;
-                case "lod0LargeBlock2Count":
-                    this.lod0LargeBlock2Count = value.GetValueAsUInt8();
-                    return;
-                case "lod0LargeBlock3SizeInBytes":
-                    this.lod0LargeBlock3SizeInBytes = value.GetValueAsUInt32();
-                    return;
-                case "lod0LargeBlock3Count":
-                    this.lod0LargeBlock3Count = value.GetValueAsUInt8();
-                    return;
-                case "lod1BaseDirectoryPath":
-                    this.lod1BaseDirectoryPath = value.GetValueAsString();
-                    return;
-                case "lod1BaseName":
-                    this.lod1BaseName = value.GetValueAsString();
-                    return;
-                case "lod1blockSizeInBytes":
-                    this.lod1blockSizeInBytes = value.GetValueAsUInt32();
-                    return;
-                case "lod1blockSizeX":
-                    this.lod1blockSizeX = value.GetValueAsUInt8();
-                    return;
-                case "lod1blockSizeZ":
-                    this.lod1blockSizeZ = value.GetValueAsUInt8();
-                    return;
-                case "lod1BlockCountX":
-                    this.lod1BlockCountX = value.GetValueAsUInt8();
-                    return;
-                case "lod1BlockCountZ":
-                    this.lod1BlockCountZ = value.GetValueAsUInt8();
-                    return;
-                case "lod1LargeBlock0SizeInBytes":
-                    this.lod1LargeBlock0SizeInBytes = value.GetValueAsUInt32();
-                    return;
-                case "lod1LargeBlock0Count":
-                    this.lod1LargeBlock0Count = value.GetValueAsUInt8();
-                    return;
-                case "lod1LargeBlock1SizeInBytes":
-                    this.lod1LargeBlock1SizeInBytes = value.GetValueAsUInt32();
-                    return;
-                case "lod1LargeBlock1Count":
-                    this.lod1LargeBlock1Count = value.GetValueAsUInt8();
-                    return;
-                case "lod1LargeBlock2SizeInBytes":
-                    this.lod1LargeBlock2SizeInBytes = value.GetValueAsUInt32();
-                    return;
-                case "lod1LargeBlock2Count":
-                    this.lod1LargeBlock2Count = value.GetValueAsUInt8();
-                    return;
-                case "lod1LargeBlock3SizeInBytes":
-                    this.lod1LargeBlock3SizeInBytes = value.GetValueAsUInt32();
-                    return;
-                case "lod1LargeBlock3Count":
-                    this.lod1LargeBlock3Count = value.GetValueAsUInt8();
-                    return;
-                default:
-                    base.SetProperty(propertyName, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, index, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, key, value);
-                    return;
-            }
-        }
-    }
+
+		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
+		{
+			switch(propertyName.CString)
+			{
+				case "enable":
+					this.enable = value.GetValueAsBool();
+					return;
+				case "stageName":
+					this.stageName = value.GetValueAsString();
+					return;
+				case "useBaseDirectoryPathAndName":
+					this.useBaseDirectoryPathAndName = value.GetValueAsBool();
+					return;
+				case "baseDirectoryPath":
+					this.baseDirectoryPath = value.GetValueAsString();
+					return;
+				case "baseName":
+					this.baseName = value.GetValueAsString();
+					return;
+				case "smallBlock1BaseDirectoryPath":
+					this.smallBlock1BaseDirectoryPath = value.GetValueAsString();
+					return;
+				case "smallBlock1BaseName":
+					this.smallBlock1BaseName = value.GetValueAsString();
+					return;
+				case "blockSizeX":
+					this.blockSizeX = value.GetValueAsUInt32();
+					return;
+				case "blockSizeZ":
+					this.blockSizeZ = value.GetValueAsUInt32();
+					return;
+				case "countX":
+					this.countX = value.GetValueAsUInt32();
+					return;
+				case "countZ":
+					this.countZ = value.GetValueAsUInt32();
+					return;
+				case "centerIndexX":
+					this.centerIndexX = value.GetValueAsUInt32();
+					return;
+				case "centerIndexZ":
+					this.centerIndexZ = value.GetValueAsUInt32();
+					return;
+				case "blockSizeInBytes":
+					this.blockSizeInBytes = value.GetValueAsUInt32();
+					return;
+				case "smallBlock1CountX":
+					this.smallBlock1CountX = value.GetValueAsUInt32();
+					return;
+				case "smallBlock1CountZ":
+					this.smallBlock1CountZ = value.GetValueAsUInt32();
+					return;
+				case "smallBlock1BlockSizeInBytes":
+					this.smallBlock1BlockSizeInBytes = value.GetValueAsUInt32();
+					return;
+				case "blockMarginX":
+					this.blockMarginX = value.GetValueAsUInt32();
+					return;
+				case "blockMarginZ":
+					this.blockMarginZ = value.GetValueAsUInt32();
+					return;
+				case "loadingDistanceX":
+					this.loadingDistanceX = value.GetValueAsUInt32();
+					return;
+				case "loadingDistanceZ":
+					this.loadingDistanceZ = value.GetValueAsUInt32();
+					return;
+				case "commonBlockSizeInBytes":
+					this.commonBlockSizeInBytes = value.GetValueAsUInt32();
+					return;
+				case "largeBlockCount0":
+					this.largeBlockCount0 = value.GetValueAsUInt32();
+					return;
+				case "largeBlockSizeInBytes0":
+					this.largeBlockSizeInBytes0 = value.GetValueAsUInt32();
+					return;
+				case "largeBlockCount1":
+					this.largeBlockCount1 = value.GetValueAsUInt32();
+					return;
+				case "largeBlockSizeInBytes1":
+					this.largeBlockSizeInBytes1 = value.GetValueAsUInt32();
+					return;
+				case "largeBlockCount2":
+					this.largeBlockCount2 = value.GetValueAsUInt32();
+					return;
+				case "largeBlockSizeInBytes2":
+					this.largeBlockSizeInBytes2 = value.GetValueAsUInt32();
+					return;
+				case "largeBlockCount3":
+					this.largeBlockCount3 = value.GetValueAsUInt32();
+					return;
+				case "largeBlockSizeInBytes3":
+					this.largeBlockSizeInBytes3 = value.GetValueAsUInt32();
+					return;
+				case "largeBlockLoadingMarginX":
+					this.largeBlockLoadingMarginX = value.GetValueAsUInt32();
+					return;
+				case "largeBlockLoadingMarginZ":
+					this.largeBlockLoadingMarginZ = value.GetValueAsUInt32();
+					return;
+				case "stageBlockFile":
+					this.stageBlockFile = value.GetValueAsFilePtr();
+					return;
+				case "lod0BaseDirectoryPath":
+					this.lod0BaseDirectoryPath = value.GetValueAsString();
+					return;
+				case "lod0BaseName":
+					this.lod0BaseName = value.GetValueAsString();
+					return;
+				case "lod0blockSizeInBytes":
+					this.lod0blockSizeInBytes = value.GetValueAsUInt32();
+					return;
+				case "lod0blockSizeX":
+					this.lod0blockSizeX = value.GetValueAsUInt8();
+					return;
+				case "lod0blockSizeZ":
+					this.lod0blockSizeZ = value.GetValueAsUInt8();
+					return;
+				case "lod0BlockCountX":
+					this.lod0BlockCountX = value.GetValueAsUInt8();
+					return;
+				case "lod0BlockCountZ":
+					this.lod0BlockCountZ = value.GetValueAsUInt8();
+					return;
+				case "lod0LargeBlock0SizeInBytes":
+					this.lod0LargeBlock0SizeInBytes = value.GetValueAsUInt32();
+					return;
+				case "lod0LargeBlock0Count":
+					this.lod0LargeBlock0Count = value.GetValueAsUInt8();
+					return;
+				case "lod0LargeBlock1SizeInBytes":
+					this.lod0LargeBlock1SizeInBytes = value.GetValueAsUInt32();
+					return;
+				case "lod0LargeBlock1Count":
+					this.lod0LargeBlock1Count = value.GetValueAsUInt8();
+					return;
+				case "lod0LargeBlock2SizeInBytes":
+					this.lod0LargeBlock2SizeInBytes = value.GetValueAsUInt32();
+					return;
+				case "lod0LargeBlock2Count":
+					this.lod0LargeBlock2Count = value.GetValueAsUInt8();
+					return;
+				case "lod0LargeBlock3SizeInBytes":
+					this.lod0LargeBlock3SizeInBytes = value.GetValueAsUInt32();
+					return;
+				case "lod0LargeBlock3Count":
+					this.lod0LargeBlock3Count = value.GetValueAsUInt8();
+					return;
+				case "lod1BaseDirectoryPath":
+					this.lod1BaseDirectoryPath = value.GetValueAsString();
+					return;
+				case "lod1BaseName":
+					this.lod1BaseName = value.GetValueAsString();
+					return;
+				case "lod1blockSizeInBytes":
+					this.lod1blockSizeInBytes = value.GetValueAsUInt32();
+					return;
+				case "lod1blockSizeX":
+					this.lod1blockSizeX = value.GetValueAsUInt8();
+					return;
+				case "lod1blockSizeZ":
+					this.lod1blockSizeZ = value.GetValueAsUInt8();
+					return;
+				case "lod1BlockCountX":
+					this.lod1BlockCountX = value.GetValueAsUInt8();
+					return;
+				case "lod1BlockCountZ":
+					this.lod1BlockCountZ = value.GetValueAsUInt8();
+					return;
+				case "lod1LargeBlock0SizeInBytes":
+					this.lod1LargeBlock0SizeInBytes = value.GetValueAsUInt32();
+					return;
+				case "lod1LargeBlock0Count":
+					this.lod1LargeBlock0Count = value.GetValueAsUInt8();
+					return;
+				case "lod1LargeBlock1SizeInBytes":
+					this.lod1LargeBlock1SizeInBytes = value.GetValueAsUInt32();
+					return;
+				case "lod1LargeBlock1Count":
+					this.lod1LargeBlock1Count = value.GetValueAsUInt8();
+					return;
+				case "lod1LargeBlock2SizeInBytes":
+					this.lod1LargeBlock2SizeInBytes = value.GetValueAsUInt32();
+					return;
+				case "lod1LargeBlock2Count":
+					this.lod1LargeBlock2Count = value.GetValueAsUInt8();
+					return;
+				case "lod1LargeBlock3SizeInBytes":
+					this.lod1LargeBlock3SizeInBytes = value.GetValueAsUInt32();
+					return;
+				case "lod1LargeBlock3Count":
+					this.lod1LargeBlock3Count = value.GetValueAsUInt8();
+					return;
+				default:
+					base.SetProperty(propertyName, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
+		{
+			switch(propertyName.CString)
+			{
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
+		{
+			switch(propertyName.CString)
+			{
+				default:
+					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+	}
 }

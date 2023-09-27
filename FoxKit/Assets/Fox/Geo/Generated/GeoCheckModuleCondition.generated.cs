@@ -12,87 +12,87 @@ using Fox;
 
 namespace Fox.Geo
 {
-    [UnityEditor.InitializeOnLoad]
-    public partial class GeoCheckModuleCondition : Fox.Geo.GeoTrapCondition 
-    {
-        // Properties
-        [field: UnityEngine.SerializeField]
-        public bool isAndCheck { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.DynamicArray<Fox.Kernel.String> checkFuncNames { get; set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Fox.Geo.GeoTrapModuleCallbackDataElement>> checkCallbackDataElements { get; protected set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Fox.Geo.GeoTrapModuleCallbackDataElement>>();
-        
-        // ClassInfos
-        public static new bool ClassInfoInitialized = false;
-        private static Fox.Core.EntityInfo classInfo;
-        public static new Fox.Core.EntityInfo ClassInfo
-        {
-            get
-            {
-                return classInfo;
-            }
-        }
-        public override Fox.Core.EntityInfo GetClassEntityInfo()
-        {
-            return classInfo;
-        }
-        static GeoCheckModuleCondition()
-        {
-            if (Fox.Geo.GeoTrapCondition.ClassInfoInitialized)
-                classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("GeoCheckModuleCondition"), typeof(GeoCheckModuleCondition), Fox.Geo.GeoTrapCondition.ClassInfo, 0, "Trap", 0);
+	[UnityEditor.InitializeOnLoad]
+	public partial class GeoCheckModuleCondition : Fox.Geo.GeoTrapCondition
+	{
+		// Properties
+		[field: UnityEngine.SerializeField]
+		public bool isAndCheck { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.DynamicArray<Fox.Kernel.String> checkFuncNames { get; set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Fox.Geo.GeoTrapModuleCallbackDataElement>> checkCallbackDataElements { get; protected set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Fox.Geo.GeoTrapModuleCallbackDataElement>>();
+		
+		// ClassInfos
+		public static new bool ClassInfoInitialized = false;
+		private static Fox.Core.EntityInfo classInfo;
+		public static new Fox.Core.EntityInfo ClassInfo
+		{
+			get
+			{
+				return classInfo;
+			}
+		}
+		public override Fox.Core.EntityInfo GetClassEntityInfo()
+		{
+			return classInfo;
+		}
+		static GeoCheckModuleCondition()
+		{
+			if (Fox.Geo.GeoTrapCondition.ClassInfoInitialized)
+				classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("GeoCheckModuleCondition"), typeof(GeoCheckModuleCondition), Fox.Geo.GeoTrapCondition.ClassInfo, 0, "Trap", 0);
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("isAndCheck"), Fox.Core.PropertyInfo.PropertyType.Bool, 320, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("checkFuncNames"), Fox.Core.PropertyInfo.PropertyType.String, 328, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("checkCallbackDataElements"), Fox.Core.PropertyInfo.PropertyType.EntityPtr, 344, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.Never, typeof(Fox.Geo.GeoTrapModuleCallbackDataElement), null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 
-            ClassInfoInitialized = true;
-        }
+			ClassInfoInitialized = true;
+		}
 
-        // Constructors
+		// Constructors
 		public GeoCheckModuleCondition(ulong id) : base(id) { }
 		public GeoCheckModuleCondition() : base() { }
-        
-        public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "isAndCheck":
-                    this.isAndCheck = value.GetValueAsBool();
-                    return;
-                default:
-                    base.SetProperty(propertyName, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "checkFuncNames":
-                    while(this.checkFuncNames.Count <= index) { this.checkFuncNames.Add(default(Fox.Kernel.String)); }
-                    this.checkFuncNames[index] = value.GetValueAsString();
-                    return;
-                case "checkCallbackDataElements":
-                    while(this.checkCallbackDataElements.Count <= index) { this.checkCallbackDataElements.Add(default(Fox.Core.EntityPtr<Fox.Geo.GeoTrapModuleCallbackDataElement>)); }
-                    this.checkCallbackDataElements[index] = value.GetValueAsEntityPtr<Fox.Geo.GeoTrapModuleCallbackDataElement>();
-                    return;
-                default:
-                    base.SetPropertyElement(propertyName, index, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, key, value);
-                    return;
-            }
-        }
-    }
+
+		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
+		{
+			switch(propertyName.CString)
+			{
+				case "isAndCheck":
+					this.isAndCheck = value.GetValueAsBool();
+					return;
+				default:
+					base.SetProperty(propertyName, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
+		{
+			switch(propertyName.CString)
+			{
+				case "checkFuncNames":
+					while(this.checkFuncNames.Count <= index) { this.checkFuncNames.Add(default(Fox.Kernel.String)); }
+					this.checkFuncNames[index] = value.GetValueAsString();
+					return;
+				case "checkCallbackDataElements":
+					while(this.checkCallbackDataElements.Count <= index) { this.checkCallbackDataElements.Add(default(Fox.Core.EntityPtr<Fox.Geo.GeoTrapModuleCallbackDataElement>)); }
+					this.checkCallbackDataElements[index] = value.GetValueAsEntityPtr<Fox.Geo.GeoTrapModuleCallbackDataElement>();
+					return;
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
+		{
+			switch(propertyName.CString)
+			{
+				default:
+					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+	}
 }

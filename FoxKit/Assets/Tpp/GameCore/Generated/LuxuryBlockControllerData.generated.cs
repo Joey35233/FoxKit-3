@@ -12,49 +12,49 @@ using Fox;
 
 namespace Tpp.GameCore
 {
-    [UnityEditor.InitializeOnLoad]
-    public partial class LuxuryBlockControllerData : Fox.Core.Data 
-    {
-        // Properties
-        [field: UnityEngine.SerializeField]
-        public uint blockWidthX { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint blockWidthZ { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint centerIndexX { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint centerIndexZ { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint blockLoadMargin { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint maxBlockIndexMapCount { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint maxPathListCount { get; set; }
-        
-        // ClassInfos
-        public static new bool ClassInfoInitialized = false;
-        private static Fox.Core.EntityInfo classInfo;
-        public static new Fox.Core.EntityInfo ClassInfo
-        {
-            get
-            {
-                return classInfo;
-            }
-        }
-        public override Fox.Core.EntityInfo GetClassEntityInfo()
-        {
-            return classInfo;
-        }
-        static LuxuryBlockControllerData()
-        {
-            if (Fox.Core.Data.ClassInfoInitialized)
-                classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("LuxuryBlockControllerData"), typeof(LuxuryBlockControllerData), Fox.Core.Data.ClassInfo, 92, null, 0);
+	[UnityEditor.InitializeOnLoad]
+	public partial class LuxuryBlockControllerData : Fox.Core.Data
+	{
+		// Properties
+		[field: UnityEngine.SerializeField]
+		public uint blockWidthX { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint blockWidthZ { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint centerIndexX { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint centerIndexZ { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint blockLoadMargin { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint maxBlockIndexMapCount { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint maxPathListCount { get; set; }
+		
+		// ClassInfos
+		public static new bool ClassInfoInitialized = false;
+		private static Fox.Core.EntityInfo classInfo;
+		public static new Fox.Core.EntityInfo ClassInfo
+		{
+			get
+			{
+				return classInfo;
+			}
+		}
+		public override Fox.Core.EntityInfo GetClassEntityInfo()
+		{
+			return classInfo;
+		}
+		static LuxuryBlockControllerData()
+		{
+			if (Fox.Core.Data.ClassInfoInitialized)
+				classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("LuxuryBlockControllerData"), typeof(LuxuryBlockControllerData), Fox.Core.Data.ClassInfo, 92, null, 0);
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("blockWidthX"), Fox.Core.PropertyInfo.PropertyType.UInt32, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("blockWidthZ"), Fox.Core.PropertyInfo.PropertyType.UInt32, 124, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("centerIndexX"), Fox.Core.PropertyInfo.PropertyType.UInt32, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
@@ -63,62 +63,62 @@ namespace Tpp.GameCore
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("maxBlockIndexMapCount"), Fox.Core.PropertyInfo.PropertyType.UInt32, 140, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("maxPathListCount"), Fox.Core.PropertyInfo.PropertyType.UInt32, 144, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 
-            ClassInfoInitialized = true;
-        }
+			ClassInfoInitialized = true;
+		}
 
-        // Constructors
+		// Constructors
 		public LuxuryBlockControllerData(ulong id) : base(id) { }
 		public LuxuryBlockControllerData() : base() { }
-        
-        public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "blockWidthX":
-                    this.blockWidthX = value.GetValueAsUInt32();
-                    return;
-                case "blockWidthZ":
-                    this.blockWidthZ = value.GetValueAsUInt32();
-                    return;
-                case "centerIndexX":
-                    this.centerIndexX = value.GetValueAsUInt32();
-                    return;
-                case "centerIndexZ":
-                    this.centerIndexZ = value.GetValueAsUInt32();
-                    return;
-                case "blockLoadMargin":
-                    this.blockLoadMargin = value.GetValueAsUInt32();
-                    return;
-                case "maxBlockIndexMapCount":
-                    this.maxBlockIndexMapCount = value.GetValueAsUInt32();
-                    return;
-                case "maxPathListCount":
-                    this.maxPathListCount = value.GetValueAsUInt32();
-                    return;
-                default:
-                    base.SetProperty(propertyName, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, index, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, key, value);
-                    return;
-            }
-        }
-    }
+
+		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
+		{
+			switch(propertyName.CString)
+			{
+				case "blockWidthX":
+					this.blockWidthX = value.GetValueAsUInt32();
+					return;
+				case "blockWidthZ":
+					this.blockWidthZ = value.GetValueAsUInt32();
+					return;
+				case "centerIndexX":
+					this.centerIndexX = value.GetValueAsUInt32();
+					return;
+				case "centerIndexZ":
+					this.centerIndexZ = value.GetValueAsUInt32();
+					return;
+				case "blockLoadMargin":
+					this.blockLoadMargin = value.GetValueAsUInt32();
+					return;
+				case "maxBlockIndexMapCount":
+					this.maxBlockIndexMapCount = value.GetValueAsUInt32();
+					return;
+				case "maxPathListCount":
+					this.maxPathListCount = value.GetValueAsUInt32();
+					return;
+				default:
+					base.SetProperty(propertyName, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
+		{
+			switch(propertyName.CString)
+			{
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
+		{
+			switch(propertyName.CString)
+			{
+				default:
+					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+	}
 }

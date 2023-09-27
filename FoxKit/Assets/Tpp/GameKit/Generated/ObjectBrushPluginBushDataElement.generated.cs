@@ -12,97 +12,97 @@ using Fox;
 
 namespace Tpp.GameKit
 {
-    [UnityEditor.InitializeOnLoad]
-    public partial class ObjectBrushPluginBushDataElement : Fox.Core.DataElement 
-    {
-        // Properties
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.DynamicArray<Fox.Kernel.String> lodMeshName { get; set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.DynamicArray<float> lodDistance { get; set; } = new Fox.Kernel.DynamicArray<float>();
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.DynamicArray<float> lodDistanceHighEnd { get; set; } = new Fox.Kernel.DynamicArray<float>();
-        
-        [field: UnityEngine.SerializeField]
-        public float rotationRate { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float elasticRate { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float alphaMinimizeDist { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float alphaMaximizeDist { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float baseDensity { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float camoufDensity { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float camofRadius { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float camofHeight { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float modelRadius { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float stopEyeRadius { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float stopEyeHeight { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.String noiseSeType { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint bushFlags { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float baseCycleSpeedRate { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float windAmplitude { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public bool windDirYAxisFixZero { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float windOffsetFactor { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Core.FilePtr bulletEffect { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Core.FilePtr fairEffect { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Core.FilePtr rainEffect { get; set; }
-        
-        // ClassInfos
-        public static new bool ClassInfoInitialized = false;
-        private static Fox.Core.EntityInfo classInfo;
-        public static new Fox.Core.EntityInfo ClassInfo
-        {
-            get
-            {
-                return classInfo;
-            }
-        }
-        public override Fox.Core.EntityInfo GetClassEntityInfo()
-        {
-            return classInfo;
-        }
-        static ObjectBrushPluginBushDataElement()
-        {
-            if (Fox.Core.DataElement.ClassInfoInitialized)
-                classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("ObjectBrushPluginBushDataElement"), typeof(ObjectBrushPluginBushDataElement), Fox.Core.DataElement.ClassInfo, 224, null, 20);
+	[UnityEditor.InitializeOnLoad]
+	public partial class ObjectBrushPluginBushDataElement : Fox.Core.DataElement
+	{
+		// Properties
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.DynamicArray<Fox.Kernel.String> lodMeshName { get; set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.DynamicArray<float> lodDistance { get; set; } = new Fox.Kernel.DynamicArray<float>();
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.DynamicArray<float> lodDistanceHighEnd { get; set; } = new Fox.Kernel.DynamicArray<float>();
+		
+		[field: UnityEngine.SerializeField]
+		public float rotationRate { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float elasticRate { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float alphaMinimizeDist { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float alphaMaximizeDist { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float baseDensity { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float camoufDensity { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float camofRadius { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float camofHeight { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float modelRadius { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float stopEyeRadius { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float stopEyeHeight { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.String noiseSeType { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint bushFlags { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float baseCycleSpeedRate { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float windAmplitude { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public bool windDirYAxisFixZero { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float windOffsetFactor { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Core.FilePtr bulletEffect { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Core.FilePtr fairEffect { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Core.FilePtr rainEffect { get; set; }
+		
+		// ClassInfos
+		public static new bool ClassInfoInitialized = false;
+		private static Fox.Core.EntityInfo classInfo;
+		public static new Fox.Core.EntityInfo ClassInfo
+		{
+			get
+			{
+				return classInfo;
+			}
+		}
+		public override Fox.Core.EntityInfo GetClassEntityInfo()
+		{
+			return classInfo;
+		}
+		static ObjectBrushPluginBushDataElement()
+		{
+			if (Fox.Core.DataElement.ClassInfoInitialized)
+				classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("ObjectBrushPluginBushDataElement"), typeof(ObjectBrushPluginBushDataElement), Fox.Core.DataElement.ClassInfo, 224, null, 20);
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("lodMeshName"), Fox.Core.PropertyInfo.PropertyType.String, 56, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("lodDistance"), Fox.Core.PropertyInfo.PropertyType.Float, 72, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("lodDistanceHighEnd"), Fox.Core.PropertyInfo.PropertyType.Float, 88, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
@@ -127,113 +127,113 @@ namespace Tpp.GameKit
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("fairEffect"), Fox.Core.PropertyInfo.PropertyType.FilePtr, 208, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("rainEffect"), Fox.Core.PropertyInfo.PropertyType.FilePtr, 232, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 
-            ClassInfoInitialized = true;
-        }
+			ClassInfoInitialized = true;
+		}
 
-        // Constructors
+		// Constructors
 		public ObjectBrushPluginBushDataElement(ulong id) : base(id) { }
 		public ObjectBrushPluginBushDataElement() : base() { }
-        
-        public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "rotationRate":
-                    this.rotationRate = value.GetValueAsFloat();
-                    return;
-                case "elasticRate":
-                    this.elasticRate = value.GetValueAsFloat();
-                    return;
-                case "alphaMinimizeDist":
-                    this.alphaMinimizeDist = value.GetValueAsFloat();
-                    return;
-                case "alphaMaximizeDist":
-                    this.alphaMaximizeDist = value.GetValueAsFloat();
-                    return;
-                case "baseDensity":
-                    this.baseDensity = value.GetValueAsFloat();
-                    return;
-                case "camoufDensity":
-                    this.camoufDensity = value.GetValueAsFloat();
-                    return;
-                case "camofRadius":
-                    this.camofRadius = value.GetValueAsFloat();
-                    return;
-                case "camofHeight":
-                    this.camofHeight = value.GetValueAsFloat();
-                    return;
-                case "modelRadius":
-                    this.modelRadius = value.GetValueAsFloat();
-                    return;
-                case "stopEyeRadius":
-                    this.stopEyeRadius = value.GetValueAsFloat();
-                    return;
-                case "stopEyeHeight":
-                    this.stopEyeHeight = value.GetValueAsFloat();
-                    return;
-                case "noiseSeType":
-                    this.noiseSeType = value.GetValueAsString();
-                    return;
-                case "bushFlags":
-                    this.bushFlags = value.GetValueAsUInt32();
-                    return;
-                case "baseCycleSpeedRate":
-                    this.baseCycleSpeedRate = value.GetValueAsFloat();
-                    return;
-                case "windAmplitude":
-                    this.windAmplitude = value.GetValueAsFloat();
-                    return;
-                case "windDirYAxisFixZero":
-                    this.windDirYAxisFixZero = value.GetValueAsBool();
-                    return;
-                case "windOffsetFactor":
-                    this.windOffsetFactor = value.GetValueAsFloat();
-                    return;
-                case "bulletEffect":
-                    this.bulletEffect = value.GetValueAsFilePtr();
-                    return;
-                case "fairEffect":
-                    this.fairEffect = value.GetValueAsFilePtr();
-                    return;
-                case "rainEffect":
-                    this.rainEffect = value.GetValueAsFilePtr();
-                    return;
-                default:
-                    base.SetProperty(propertyName, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "lodMeshName":
-                    while(this.lodMeshName.Count <= index) { this.lodMeshName.Add(default(Fox.Kernel.String)); }
-                    this.lodMeshName[index] = value.GetValueAsString();
-                    return;
-                case "lodDistance":
-                    while(this.lodDistance.Count <= index) { this.lodDistance.Add(default(float)); }
-                    this.lodDistance[index] = value.GetValueAsFloat();
-                    return;
-                case "lodDistanceHighEnd":
-                    while(this.lodDistanceHighEnd.Count <= index) { this.lodDistanceHighEnd.Add(default(float)); }
-                    this.lodDistanceHighEnd[index] = value.GetValueAsFloat();
-                    return;
-                default:
-                    base.SetPropertyElement(propertyName, index, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, key, value);
-                    return;
-            }
-        }
-    }
+
+		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
+		{
+			switch(propertyName.CString)
+			{
+				case "rotationRate":
+					this.rotationRate = value.GetValueAsFloat();
+					return;
+				case "elasticRate":
+					this.elasticRate = value.GetValueAsFloat();
+					return;
+				case "alphaMinimizeDist":
+					this.alphaMinimizeDist = value.GetValueAsFloat();
+					return;
+				case "alphaMaximizeDist":
+					this.alphaMaximizeDist = value.GetValueAsFloat();
+					return;
+				case "baseDensity":
+					this.baseDensity = value.GetValueAsFloat();
+					return;
+				case "camoufDensity":
+					this.camoufDensity = value.GetValueAsFloat();
+					return;
+				case "camofRadius":
+					this.camofRadius = value.GetValueAsFloat();
+					return;
+				case "camofHeight":
+					this.camofHeight = value.GetValueAsFloat();
+					return;
+				case "modelRadius":
+					this.modelRadius = value.GetValueAsFloat();
+					return;
+				case "stopEyeRadius":
+					this.stopEyeRadius = value.GetValueAsFloat();
+					return;
+				case "stopEyeHeight":
+					this.stopEyeHeight = value.GetValueAsFloat();
+					return;
+				case "noiseSeType":
+					this.noiseSeType = value.GetValueAsString();
+					return;
+				case "bushFlags":
+					this.bushFlags = value.GetValueAsUInt32();
+					return;
+				case "baseCycleSpeedRate":
+					this.baseCycleSpeedRate = value.GetValueAsFloat();
+					return;
+				case "windAmplitude":
+					this.windAmplitude = value.GetValueAsFloat();
+					return;
+				case "windDirYAxisFixZero":
+					this.windDirYAxisFixZero = value.GetValueAsBool();
+					return;
+				case "windOffsetFactor":
+					this.windOffsetFactor = value.GetValueAsFloat();
+					return;
+				case "bulletEffect":
+					this.bulletEffect = value.GetValueAsFilePtr();
+					return;
+				case "fairEffect":
+					this.fairEffect = value.GetValueAsFilePtr();
+					return;
+				case "rainEffect":
+					this.rainEffect = value.GetValueAsFilePtr();
+					return;
+				default:
+					base.SetProperty(propertyName, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
+		{
+			switch(propertyName.CString)
+			{
+				case "lodMeshName":
+					while(this.lodMeshName.Count <= index) { this.lodMeshName.Add(default(Fox.Kernel.String)); }
+					this.lodMeshName[index] = value.GetValueAsString();
+					return;
+				case "lodDistance":
+					while(this.lodDistance.Count <= index) { this.lodDistance.Add(default(float)); }
+					this.lodDistance[index] = value.GetValueAsFloat();
+					return;
+				case "lodDistanceHighEnd":
+					while(this.lodDistanceHighEnd.Count <= index) { this.lodDistanceHighEnd.Add(default(float)); }
+					this.lodDistanceHighEnd[index] = value.GetValueAsFloat();
+					return;
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
+		{
+			switch(propertyName.CString)
+			{
+				default:
+					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+	}
 }

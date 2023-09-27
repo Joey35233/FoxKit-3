@@ -12,72 +12,72 @@ using Fox;
 
 namespace Fox.GameKit
 {
-    [UnityEditor.InitializeOnLoad]
-    public partial class CheckpointTrapScriptModuleCondition : Fox.Geo.GeoTrapScriptModuleCondition 
-    {
-        // Properties
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.DynamicArray<Fox.Kernel.Path> checkpointScriptArray { get; set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.Path>();
-        
-        // ClassInfos
-        public static new bool ClassInfoInitialized = false;
-        private static Fox.Core.EntityInfo classInfo;
-        public static new Fox.Core.EntityInfo ClassInfo
-        {
-            get
-            {
-                return classInfo;
-            }
-        }
-        public override Fox.Core.EntityInfo GetClassEntityInfo()
-        {
-            return classInfo;
-        }
-        static CheckpointTrapScriptModuleCondition()
-        {
-            if (Fox.Geo.GeoTrapScriptModuleCondition.ClassInfoInitialized)
-                classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("CheckpointTrapScriptModuleCondition"), typeof(CheckpointTrapScriptModuleCondition), Fox.Geo.GeoTrapScriptModuleCondition.ClassInfo, 0, "GameKit", 0);
+	[UnityEditor.InitializeOnLoad]
+	public partial class CheckpointTrapScriptModuleCondition : Fox.Geo.GeoTrapScriptModuleCondition
+	{
+		// Properties
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.DynamicArray<Fox.Kernel.Path> checkpointScriptArray { get; set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.Path>();
+		
+		// ClassInfos
+		public static new bool ClassInfoInitialized = false;
+		private static Fox.Core.EntityInfo classInfo;
+		public static new Fox.Core.EntityInfo ClassInfo
+		{
+			get
+			{
+				return classInfo;
+			}
+		}
+		public override Fox.Core.EntityInfo GetClassEntityInfo()
+		{
+			return classInfo;
+		}
+		static CheckpointTrapScriptModuleCondition()
+		{
+			if (Fox.Geo.GeoTrapScriptModuleCondition.ClassInfoInitialized)
+				classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("CheckpointTrapScriptModuleCondition"), typeof(CheckpointTrapScriptModuleCondition), Fox.Geo.GeoTrapScriptModuleCondition.ClassInfo, 0, "GameKit", 0);
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("checkpointScriptArray"), Fox.Core.PropertyInfo.PropertyType.Path, 368, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 
-            ClassInfoInitialized = true;
-        }
+			ClassInfoInitialized = true;
+		}
 
-        // Constructors
+		// Constructors
 		public CheckpointTrapScriptModuleCondition(ulong id) : base(id) { }
 		public CheckpointTrapScriptModuleCondition() : base() { }
-        
-        public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetProperty(propertyName, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "checkpointScriptArray":
-                    while(this.checkpointScriptArray.Count <= index) { this.checkpointScriptArray.Add(default(Fox.Kernel.Path)); }
-                    this.checkpointScriptArray[index] = value.GetValueAsPath();
-                    return;
-                default:
-                    base.SetPropertyElement(propertyName, index, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, key, value);
-                    return;
-            }
-        }
-    }
+
+		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
+		{
+			switch(propertyName.CString)
+			{
+				default:
+					base.SetProperty(propertyName, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
+		{
+			switch(propertyName.CString)
+			{
+				case "checkpointScriptArray":
+					while(this.checkpointScriptArray.Count <= index) { this.checkpointScriptArray.Add(default(Fox.Kernel.Path)); }
+					this.checkpointScriptArray[index] = value.GetValueAsPath();
+					return;
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
+		{
+			switch(propertyName.CString)
+			{
+				default:
+					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+	}
 }

@@ -12,73 +12,73 @@ using Fox;
 
 namespace Fox.Ui
 {
-    [UnityEditor.InitializeOnLoad]
-    public partial class UiNodeData : Fox.Core.Data 
-    {
-        // Properties
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.DynamicArray<Fox.Core.EntityLink> inputEdges { get; set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityLink>();
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.DynamicArray<Fox.Core.EntityLink> outputEdges { get; set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityLink>();
-        
-        [field: UnityEngine.SerializeField]
-        public uint inputPortCount { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.DynamicArray<UiNodeType> inputPortTypes { get; set; } = new Fox.Kernel.DynamicArray<UiNodeType>();
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.DynamicArray<Fox.Kernel.String> inputPropertyNames { get; set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.DynamicArray<UiNodePropType> inputPropertyTypes { get; set; } = new Fox.Kernel.DynamicArray<UiNodePropType>();
-        
-        [field: UnityEngine.SerializeField]
-        public uint outputPortCount { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.DynamicArray<UiNodeType> outputPortTypes { get; set; } = new Fox.Kernel.DynamicArray<UiNodeType>();
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.DynamicArray<Fox.Kernel.String> outputPropertyNames { get; set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.DynamicArray<UiNodePropType> outputPropertyTypes { get; set; } = new Fox.Kernel.DynamicArray<UiNodePropType>();
-        
-        [field: UnityEngine.SerializeField]
-        public float xPosition { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float yPosition { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public int category { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public UiNodeType type { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.String nodeName { get; set; }
-        
-        // ClassInfos
-        public static new bool ClassInfoInitialized = false;
-        private static Fox.Core.EntityInfo classInfo;
-        public static new Fox.Core.EntityInfo ClassInfo
-        {
-            get
-            {
-                return classInfo;
-            }
-        }
-        public override Fox.Core.EntityInfo GetClassEntityInfo()
-        {
-            return classInfo;
-        }
-        static UiNodeData()
-        {
-            if (Fox.Core.Data.ClassInfoInitialized)
-                classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("UiNodeData"), typeof(UiNodeData), Fox.Core.Data.ClassInfo, 0, "UiG", 2);
+	[UnityEditor.InitializeOnLoad]
+	public partial class UiNodeData : Fox.Core.Data
+	{
+		// Properties
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.DynamicArray<Fox.Core.EntityLink> inputEdges { get; set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityLink>();
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.DynamicArray<Fox.Core.EntityLink> outputEdges { get; set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityLink>();
+		
+		[field: UnityEngine.SerializeField]
+		public uint inputPortCount { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.DynamicArray<UiNodeType> inputPortTypes { get; set; } = new Fox.Kernel.DynamicArray<UiNodeType>();
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.DynamicArray<Fox.Kernel.String> inputPropertyNames { get; set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.DynamicArray<UiNodePropType> inputPropertyTypes { get; set; } = new Fox.Kernel.DynamicArray<UiNodePropType>();
+		
+		[field: UnityEngine.SerializeField]
+		public uint outputPortCount { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.DynamicArray<UiNodeType> outputPortTypes { get; set; } = new Fox.Kernel.DynamicArray<UiNodeType>();
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.DynamicArray<Fox.Kernel.String> outputPropertyNames { get; set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.DynamicArray<UiNodePropType> outputPropertyTypes { get; set; } = new Fox.Kernel.DynamicArray<UiNodePropType>();
+		
+		[field: UnityEngine.SerializeField]
+		public float xPosition { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float yPosition { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public int category { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public UiNodeType type { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.String nodeName { get; set; }
+		
+		// ClassInfos
+		public static new bool ClassInfoInitialized = false;
+		private static Fox.Core.EntityInfo classInfo;
+		public static new Fox.Core.EntityInfo ClassInfo
+		{
+			get
+			{
+				return classInfo;
+			}
+		}
+		public override Fox.Core.EntityInfo GetClassEntityInfo()
+		{
+			return classInfo;
+		}
+		static UiNodeData()
+		{
+			if (Fox.Core.Data.ClassInfoInitialized)
+				classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("UiNodeData"), typeof(UiNodeData), Fox.Core.Data.ClassInfo, 0, "UiG", 2);
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("inputEdges"), Fox.Core.PropertyInfo.PropertyType.EntityLink, 120, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("outputEdges"), Fox.Core.PropertyInfo.PropertyType.EntityLink, 136, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("inputPortCount"), Fox.Core.PropertyInfo.PropertyType.UInt32, 152, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
@@ -95,94 +95,94 @@ namespace Fox.Ui
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("type"), Fox.Core.PropertyInfo.PropertyType.Int32, 276, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, typeof(UiNodeType), Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("nodeName"), Fox.Core.PropertyInfo.PropertyType.String, 288, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 
-            ClassInfoInitialized = true;
-        }
+			ClassInfoInitialized = true;
+		}
 
-        // Constructors
+		// Constructors
 		public UiNodeData(ulong id) : base(id) { }
 		public UiNodeData() : base() { }
-        
-        public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "inputPortCount":
-                    this.inputPortCount = value.GetValueAsUInt32();
-                    return;
-                case "outputPortCount":
-                    this.outputPortCount = value.GetValueAsUInt32();
-                    return;
-                case "xPosition":
-                    this.xPosition = value.GetValueAsFloat();
-                    return;
-                case "yPosition":
-                    this.yPosition = value.GetValueAsFloat();
-                    return;
-                case "category":
-                    this.category = value.GetValueAsInt32();
-                    return;
-                case "type":
-                    this.type = (UiNodeType)value.GetValueAsInt32();
-                    return;
-                case "nodeName":
-                    this.nodeName = value.GetValueAsString();
-                    return;
-                default:
-                    base.SetProperty(propertyName, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "inputEdges":
-                    while(this.inputEdges.Count <= index) { this.inputEdges.Add(default(Fox.Core.EntityLink)); }
-                    this.inputEdges[index] = value.GetValueAsEntityLink();
-                    return;
-                case "outputEdges":
-                    while(this.outputEdges.Count <= index) { this.outputEdges.Add(default(Fox.Core.EntityLink)); }
-                    this.outputEdges[index] = value.GetValueAsEntityLink();
-                    return;
-                case "inputPortTypes":
-                    while(this.inputPortTypes.Count <= index) { this.inputPortTypes.Add(default(UiNodeType)); }
-                    this.inputPortTypes[index] = (UiNodeType)value.GetValueAsInt32();
-                    return;
-                case "inputPropertyNames":
-                    while(this.inputPropertyNames.Count <= index) { this.inputPropertyNames.Add(default(Fox.Kernel.String)); }
-                    this.inputPropertyNames[index] = value.GetValueAsString();
-                    return;
-                case "inputPropertyTypes":
-                    while(this.inputPropertyTypes.Count <= index) { this.inputPropertyTypes.Add(default(UiNodePropType)); }
-                    this.inputPropertyTypes[index] = (UiNodePropType)value.GetValueAsInt32();
-                    return;
-                case "outputPortTypes":
-                    while(this.outputPortTypes.Count <= index) { this.outputPortTypes.Add(default(UiNodeType)); }
-                    this.outputPortTypes[index] = (UiNodeType)value.GetValueAsInt32();
-                    return;
-                case "outputPropertyNames":
-                    while(this.outputPropertyNames.Count <= index) { this.outputPropertyNames.Add(default(Fox.Kernel.String)); }
-                    this.outputPropertyNames[index] = value.GetValueAsString();
-                    return;
-                case "outputPropertyTypes":
-                    while(this.outputPropertyTypes.Count <= index) { this.outputPropertyTypes.Add(default(UiNodePropType)); }
-                    this.outputPropertyTypes[index] = (UiNodePropType)value.GetValueAsInt32();
-                    return;
-                default:
-                    base.SetPropertyElement(propertyName, index, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, key, value);
-                    return;
-            }
-        }
-    }
+
+		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
+		{
+			switch(propertyName.CString)
+			{
+				case "inputPortCount":
+					this.inputPortCount = value.GetValueAsUInt32();
+					return;
+				case "outputPortCount":
+					this.outputPortCount = value.GetValueAsUInt32();
+					return;
+				case "xPosition":
+					this.xPosition = value.GetValueAsFloat();
+					return;
+				case "yPosition":
+					this.yPosition = value.GetValueAsFloat();
+					return;
+				case "category":
+					this.category = value.GetValueAsInt32();
+					return;
+				case "type":
+					this.type = (UiNodeType)value.GetValueAsInt32();
+					return;
+				case "nodeName":
+					this.nodeName = value.GetValueAsString();
+					return;
+				default:
+					base.SetProperty(propertyName, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
+		{
+			switch(propertyName.CString)
+			{
+				case "inputEdges":
+					while(this.inputEdges.Count <= index) { this.inputEdges.Add(default(Fox.Core.EntityLink)); }
+					this.inputEdges[index] = value.GetValueAsEntityLink();
+					return;
+				case "outputEdges":
+					while(this.outputEdges.Count <= index) { this.outputEdges.Add(default(Fox.Core.EntityLink)); }
+					this.outputEdges[index] = value.GetValueAsEntityLink();
+					return;
+				case "inputPortTypes":
+					while(this.inputPortTypes.Count <= index) { this.inputPortTypes.Add(default(UiNodeType)); }
+					this.inputPortTypes[index] = (UiNodeType)value.GetValueAsInt32();
+					return;
+				case "inputPropertyNames":
+					while(this.inputPropertyNames.Count <= index) { this.inputPropertyNames.Add(default(Fox.Kernel.String)); }
+					this.inputPropertyNames[index] = value.GetValueAsString();
+					return;
+				case "inputPropertyTypes":
+					while(this.inputPropertyTypes.Count <= index) { this.inputPropertyTypes.Add(default(UiNodePropType)); }
+					this.inputPropertyTypes[index] = (UiNodePropType)value.GetValueAsInt32();
+					return;
+				case "outputPortTypes":
+					while(this.outputPortTypes.Count <= index) { this.outputPortTypes.Add(default(UiNodeType)); }
+					this.outputPortTypes[index] = (UiNodeType)value.GetValueAsInt32();
+					return;
+				case "outputPropertyNames":
+					while(this.outputPropertyNames.Count <= index) { this.outputPropertyNames.Add(default(Fox.Kernel.String)); }
+					this.outputPropertyNames[index] = value.GetValueAsString();
+					return;
+				case "outputPropertyTypes":
+					while(this.outputPropertyTypes.Count <= index) { this.outputPropertyTypes.Add(default(UiNodePropType)); }
+					this.outputPropertyTypes[index] = (UiNodePropType)value.GetValueAsInt32();
+					return;
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
+		{
+			switch(propertyName.CString)
+			{
+				default:
+					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+	}
 }

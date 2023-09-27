@@ -12,79 +12,79 @@ using Fox;
 
 namespace Fox.Geo
 {
-    [UnityEditor.InitializeOnLoad]
-    public partial class CollisionPoly : Fox.Geo.CollisionObject 
-    {
-        // Properties
-        [field: UnityEngine.SerializeField]
-        protected ulong attribute { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        protected Fox.Kernel.DynamicArray<UnityEngine.Vector3> vertices { get; set; } = new Fox.Kernel.DynamicArray<UnityEngine.Vector3>();
-        
-        // ClassInfos
-        public static new bool ClassInfoInitialized = false;
-        private static Fox.Core.EntityInfo classInfo;
-        public static new Fox.Core.EntityInfo ClassInfo
-        {
-            get
-            {
-                return classInfo;
-            }
-        }
-        public override Fox.Core.EntityInfo GetClassEntityInfo()
-        {
-            return classInfo;
-        }
-        static CollisionPoly()
-        {
-            if (Fox.Geo.CollisionObject.ClassInfoInitialized)
-                classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("CollisionPoly"), typeof(CollisionPoly), Fox.Geo.CollisionObject.ClassInfo, 0, "Collision", 0);
+	[UnityEditor.InitializeOnLoad]
+	public partial class CollisionPoly : Fox.Geo.CollisionObject
+	{
+		// Properties
+		[field: UnityEngine.SerializeField]
+		protected ulong attribute { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		protected Fox.Kernel.DynamicArray<UnityEngine.Vector3> vertices { get; set; } = new Fox.Kernel.DynamicArray<UnityEngine.Vector3>();
+		
+		// ClassInfos
+		public static new bool ClassInfoInitialized = false;
+		private static Fox.Core.EntityInfo classInfo;
+		public static new Fox.Core.EntityInfo ClassInfo
+		{
+			get
+			{
+				return classInfo;
+			}
+		}
+		public override Fox.Core.EntityInfo GetClassEntityInfo()
+		{
+			return classInfo;
+		}
+		static CollisionPoly()
+		{
+			if (Fox.Geo.CollisionObject.ClassInfoInitialized)
+				classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("CollisionPoly"), typeof(CollisionPoly), Fox.Geo.CollisionObject.ClassInfo, 0, "Collision", 0);
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("attribute"), Fox.Core.PropertyInfo.PropertyType.UInt64, 80, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("vertices"), Fox.Core.PropertyInfo.PropertyType.Vector3, 88, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 
-            ClassInfoInitialized = true;
-        }
+			ClassInfoInitialized = true;
+		}
 
-        // Constructors
+		// Constructors
 		public CollisionPoly(ulong id) : base(id) { }
 		public CollisionPoly() : base() { }
-        
-        public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "attribute":
-                    this.attribute = value.GetValueAsUInt64();
-                    return;
-                default:
-                    base.SetProperty(propertyName, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "vertices":
-                    while(this.vertices.Count <= index) { this.vertices.Add(default(UnityEngine.Vector3)); }
-                    this.vertices[index] = value.GetValueAsVector3();
-                    return;
-                default:
-                    base.SetPropertyElement(propertyName, index, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, key, value);
-                    return;
-            }
-        }
-    }
+
+		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
+		{
+			switch(propertyName.CString)
+			{
+				case "attribute":
+					this.attribute = value.GetValueAsUInt64();
+					return;
+				default:
+					base.SetProperty(propertyName, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
+		{
+			switch(propertyName.CString)
+			{
+				case "vertices":
+					while(this.vertices.Count <= index) { this.vertices.Add(default(UnityEngine.Vector3)); }
+					this.vertices[index] = value.GetValueAsVector3();
+					return;
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
+		{
+			switch(propertyName.CString)
+			{
+				default:
+					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+	}
 }

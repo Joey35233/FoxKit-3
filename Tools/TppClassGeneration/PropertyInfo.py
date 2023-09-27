@@ -50,7 +50,7 @@ class PropertyInfo:
             "Matrix4" : "UnityEngine.Matrix4x4",
             "Color" : "UnityEngine.Color",
             "FilePtr" : "Fox.Core.FilePtr",
-            "EntityHandle" : "Fox.Core.EntityHandle",
+            "EntityHandle" : "Fox.Core.Entity",
             "EntityLink" : "Fox.Core.EntityLink",
             "WideVector3" : "object",
             "PropertyInfo" : "object"

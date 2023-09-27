@@ -12,52 +12,52 @@ using Fox;
 
 namespace Fox.Phx
 {
-    [UnityEditor.InitializeOnLoad]
-    public partial class PhxVehicleNormalEngine : Fox.Core.Data 
-    {
-        // Properties
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.DynamicArray<Fox.Core.EntityLink> vehicleAxes { get; set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityLink>();
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.DynamicArray<float> torqueDistributions { get; set; } = new Fox.Kernel.DynamicArray<float>();
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.DynamicArray<float> gearRatios { get; set; } = new Fox.Kernel.DynamicArray<float>();
-        
-        [field: UnityEngine.SerializeField]
-        protected Fox.Core.EntityPtr<Fox.Phx.PhVehicleNormalEngineParam> vehicleNormalEngineParam { get; set; } = new Fox.Core.EntityPtr<Fox.Phx.PhVehicleNormalEngineParam>();
-        
-        public Fox.Kernel.DynamicArray<float> specPointAngularVelocity { get => Get_specPointAngularVelocity(); set { Set_specPointAngularVelocity(value); } }
-        protected partial Fox.Kernel.DynamicArray<float> Get_specPointAngularVelocity();
-        protected partial void Set_specPointAngularVelocity(Fox.Kernel.DynamicArray<float> value);
-        
-        public Fox.Kernel.DynamicArray<float> specPointTorque { get => Get_specPointTorque(); set { Set_specPointTorque(value); } }
-        protected partial Fox.Kernel.DynamicArray<float> Get_specPointTorque();
-        protected partial void Set_specPointTorque(Fox.Kernel.DynamicArray<float> value);
-        
-        public Fox.Kernel.DynamicArray<float> specPointBreakTorque { get => Get_specPointBreakTorque(); set { Set_specPointBreakTorque(value); } }
-        protected partial Fox.Kernel.DynamicArray<float> Get_specPointBreakTorque();
-        protected partial void Set_specPointBreakTorque(Fox.Kernel.DynamicArray<float> value);
-        
-        // ClassInfos
-        public static new bool ClassInfoInitialized = false;
-        private static Fox.Core.EntityInfo classInfo;
-        public static new Fox.Core.EntityInfo ClassInfo
-        {
-            get
-            {
-                return classInfo;
-            }
-        }
-        public override Fox.Core.EntityInfo GetClassEntityInfo()
-        {
-            return classInfo;
-        }
-        static PhxVehicleNormalEngine()
-        {
-            if (Fox.Core.Data.ClassInfoInitialized)
-                classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("PhxVehicleNormalEngine"), typeof(PhxVehicleNormalEngine), Fox.Core.Data.ClassInfo, 120, "Phx", 1);
+	[UnityEditor.InitializeOnLoad]
+	public partial class PhxVehicleNormalEngine : Fox.Core.Data
+	{
+		// Properties
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.DynamicArray<Fox.Core.EntityLink> vehicleAxes { get; set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityLink>();
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.DynamicArray<float> torqueDistributions { get; set; } = new Fox.Kernel.DynamicArray<float>();
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.DynamicArray<float> gearRatios { get; set; } = new Fox.Kernel.DynamicArray<float>();
+		
+		[field: UnityEngine.SerializeField]
+		protected Fox.Core.EntityPtr<Fox.Phx.PhVehicleNormalEngineParam> vehicleNormalEngineParam { get; set; } = new Fox.Core.EntityPtr<Fox.Phx.PhVehicleNormalEngineParam>();
+		
+		public Fox.Kernel.DynamicArray<float> specPointAngularVelocity { get => Get_specPointAngularVelocity(); set { Set_specPointAngularVelocity(value); } }
+		protected partial Fox.Kernel.DynamicArray<float> Get_specPointAngularVelocity();
+		protected partial void Set_specPointAngularVelocity(Fox.Kernel.DynamicArray<float> value);
+		
+		public Fox.Kernel.DynamicArray<float> specPointTorque { get => Get_specPointTorque(); set { Set_specPointTorque(value); } }
+		protected partial Fox.Kernel.DynamicArray<float> Get_specPointTorque();
+		protected partial void Set_specPointTorque(Fox.Kernel.DynamicArray<float> value);
+		
+		public Fox.Kernel.DynamicArray<float> specPointBreakTorque { get => Get_specPointBreakTorque(); set { Set_specPointBreakTorque(value); } }
+		protected partial Fox.Kernel.DynamicArray<float> Get_specPointBreakTorque();
+		protected partial void Set_specPointBreakTorque(Fox.Kernel.DynamicArray<float> value);
+		
+		// ClassInfos
+		public static new bool ClassInfoInitialized = false;
+		private static Fox.Core.EntityInfo classInfo;
+		public static new Fox.Core.EntityInfo ClassInfo
+		{
+			get
+			{
+				return classInfo;
+			}
+		}
+		public override Fox.Core.EntityInfo GetClassEntityInfo()
+		{
+			return classInfo;
+		}
+		static PhxVehicleNormalEngine()
+		{
+			if (Fox.Core.Data.ClassInfoInitialized)
+				classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("PhxVehicleNormalEngine"), typeof(PhxVehicleNormalEngine), Fox.Core.Data.ClassInfo, 120, "Phx", 1);
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("vehicleAxes"), Fox.Core.PropertyInfo.PropertyType.EntityLink, 128, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("torqueDistributions"), Fox.Core.PropertyInfo.PropertyType.Float, 144, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("gearRatios"), Fox.Core.PropertyInfo.PropertyType.Float, 160, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
@@ -66,68 +66,68 @@ namespace Fox.Phx
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("specPointTorque"), Fox.Core.PropertyInfo.PropertyType.Float, 0, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Accessor));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("specPointBreakTorque"), Fox.Core.PropertyInfo.PropertyType.Float, 0, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Accessor));
 
-            ClassInfoInitialized = true;
-        }
+			ClassInfoInitialized = true;
+		}
 
-        // Constructors
+		// Constructors
 		public PhxVehicleNormalEngine(ulong id) : base(id) { }
 		public PhxVehicleNormalEngine() : base() { }
-        
-        public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "vehicleNormalEngineParam":
-                    this.vehicleNormalEngineParam = value.GetValueAsEntityPtr<Fox.Phx.PhVehicleNormalEngineParam>();
-                    return;
-                default:
-                    base.SetProperty(propertyName, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "vehicleAxes":
-                    while(this.vehicleAxes.Count <= index) { this.vehicleAxes.Add(default(Fox.Core.EntityLink)); }
-                    this.vehicleAxes[index] = value.GetValueAsEntityLink();
-                    return;
-                case "torqueDistributions":
-                    while(this.torqueDistributions.Count <= index) { this.torqueDistributions.Add(default(float)); }
-                    this.torqueDistributions[index] = value.GetValueAsFloat();
-                    return;
-                case "gearRatios":
-                    while(this.gearRatios.Count <= index) { this.gearRatios.Add(default(float)); }
-                    this.gearRatios[index] = value.GetValueAsFloat();
-                    return;
-                case "specPointAngularVelocity":
-                    while(this.specPointAngularVelocity.Count <= index) { this.specPointAngularVelocity.Add(default(float)); }
-                    this.specPointAngularVelocity[index] = value.GetValueAsFloat();
-                    return;
-                case "specPointTorque":
-                    while(this.specPointTorque.Count <= index) { this.specPointTorque.Add(default(float)); }
-                    this.specPointTorque[index] = value.GetValueAsFloat();
-                    return;
-                case "specPointBreakTorque":
-                    while(this.specPointBreakTorque.Count <= index) { this.specPointBreakTorque.Add(default(float)); }
-                    this.specPointBreakTorque[index] = value.GetValueAsFloat();
-                    return;
-                default:
-                    base.SetPropertyElement(propertyName, index, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, key, value);
-                    return;
-            }
-        }
-    }
+
+		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
+		{
+			switch(propertyName.CString)
+			{
+				case "vehicleNormalEngineParam":
+					this.vehicleNormalEngineParam = value.GetValueAsEntityPtr<Fox.Phx.PhVehicleNormalEngineParam>();
+					return;
+				default:
+					base.SetProperty(propertyName, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
+		{
+			switch(propertyName.CString)
+			{
+				case "vehicleAxes":
+					while(this.vehicleAxes.Count <= index) { this.vehicleAxes.Add(default(Fox.Core.EntityLink)); }
+					this.vehicleAxes[index] = value.GetValueAsEntityLink();
+					return;
+				case "torqueDistributions":
+					while(this.torqueDistributions.Count <= index) { this.torqueDistributions.Add(default(float)); }
+					this.torqueDistributions[index] = value.GetValueAsFloat();
+					return;
+				case "gearRatios":
+					while(this.gearRatios.Count <= index) { this.gearRatios.Add(default(float)); }
+					this.gearRatios[index] = value.GetValueAsFloat();
+					return;
+				case "specPointAngularVelocity":
+					while(this.specPointAngularVelocity.Count <= index) { this.specPointAngularVelocity.Add(default(float)); }
+					this.specPointAngularVelocity[index] = value.GetValueAsFloat();
+					return;
+				case "specPointTorque":
+					while(this.specPointTorque.Count <= index) { this.specPointTorque.Add(default(float)); }
+					this.specPointTorque[index] = value.GetValueAsFloat();
+					return;
+				case "specPointBreakTorque":
+					while(this.specPointBreakTorque.Count <= index) { this.specPointBreakTorque.Add(default(float)); }
+					this.specPointBreakTorque[index] = value.GetValueAsFloat();
+					return;
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
+		{
+			switch(propertyName.CString)
+			{
+				default:
+					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+	}
 }

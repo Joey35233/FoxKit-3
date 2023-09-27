@@ -12,80 +12,80 @@ using Fox;
 
 namespace Fox.Ph
 {
-    [UnityEditor.InitializeOnLoad]
-    public partial class PhPolyhedronShapeParam : Fox.Ph.PhShapeParam 
-    {
-        // Properties
-        [field: UnityEngine.SerializeField]
-        protected Fox.Kernel.DynamicArray<UnityEngine.Vector3> verts { get; set; } = new Fox.Kernel.DynamicArray<UnityEngine.Vector3>();
-        
-        [field: UnityEngine.SerializeField]
-        protected Fox.Kernel.DynamicArray<uint> polys { get; set; } = new Fox.Kernel.DynamicArray<uint>();
-        
-        // ClassInfos
-        public static new bool ClassInfoInitialized = false;
-        private static Fox.Core.EntityInfo classInfo;
-        public static new Fox.Core.EntityInfo ClassInfo
-        {
-            get
-            {
-                return classInfo;
-            }
-        }
-        public override Fox.Core.EntityInfo GetClassEntityInfo()
-        {
-            return classInfo;
-        }
-        static PhPolyhedronShapeParam()
-        {
-            if (Fox.Ph.PhShapeParam.ClassInfoInitialized)
-                classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("PhPolyhedronShapeParam"), typeof(PhPolyhedronShapeParam), Fox.Ph.PhShapeParam.ClassInfo, 0, "Ph", 0);
+	[UnityEditor.InitializeOnLoad]
+	public partial class PhPolyhedronShapeParam : Fox.Ph.PhShapeParam
+	{
+		// Properties
+		[field: UnityEngine.SerializeField]
+		protected Fox.Kernel.DynamicArray<UnityEngine.Vector3> verts { get; set; } = new Fox.Kernel.DynamicArray<UnityEngine.Vector3>();
+		
+		[field: UnityEngine.SerializeField]
+		protected Fox.Kernel.DynamicArray<uint> polys { get; set; } = new Fox.Kernel.DynamicArray<uint>();
+		
+		// ClassInfos
+		public static new bool ClassInfoInitialized = false;
+		private static Fox.Core.EntityInfo classInfo;
+		public static new Fox.Core.EntityInfo ClassInfo
+		{
+			get
+			{
+				return classInfo;
+			}
+		}
+		public override Fox.Core.EntityInfo GetClassEntityInfo()
+		{
+			return classInfo;
+		}
+		static PhPolyhedronShapeParam()
+		{
+			if (Fox.Ph.PhShapeParam.ClassInfoInitialized)
+				classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("PhPolyhedronShapeParam"), typeof(PhPolyhedronShapeParam), Fox.Ph.PhShapeParam.ClassInfo, 0, "Ph", 0);
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("verts"), Fox.Core.PropertyInfo.PropertyType.Vector3, 112, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("polys"), Fox.Core.PropertyInfo.PropertyType.UInt32, 128, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 
-            ClassInfoInitialized = true;
-        }
+			ClassInfoInitialized = true;
+		}
 
-        // Constructors
+		// Constructors
 		public PhPolyhedronShapeParam(ulong id) : base(id) { }
 		public PhPolyhedronShapeParam() : base() { }
-        
-        public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetProperty(propertyName, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "verts":
-                    while(this.verts.Count <= index) { this.verts.Add(default(UnityEngine.Vector3)); }
-                    this.verts[index] = value.GetValueAsVector3();
-                    return;
-                case "polys":
-                    while(this.polys.Count <= index) { this.polys.Add(default(uint)); }
-                    this.polys[index] = value.GetValueAsUInt32();
-                    return;
-                default:
-                    base.SetPropertyElement(propertyName, index, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, key, value);
-                    return;
-            }
-        }
-    }
+
+		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
+		{
+			switch(propertyName.CString)
+			{
+				default:
+					base.SetProperty(propertyName, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
+		{
+			switch(propertyName.CString)
+			{
+				case "verts":
+					while(this.verts.Count <= index) { this.verts.Add(default(UnityEngine.Vector3)); }
+					this.verts[index] = value.GetValueAsVector3();
+					return;
+				case "polys":
+					while(this.polys.Count <= index) { this.polys.Add(default(uint)); }
+					this.polys[index] = value.GetValueAsUInt32();
+					return;
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
+		{
+			switch(propertyName.CString)
+			{
+				default:
+					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+	}
 }
