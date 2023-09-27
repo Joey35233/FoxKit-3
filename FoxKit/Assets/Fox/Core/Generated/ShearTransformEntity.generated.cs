@@ -18,11 +18,11 @@ namespace Fox.Core
 		// Properties
 		[field: UnityEngine.SerializeField]
 		protected UnityEngine.Vector3 shearTransform_shear { get; set; }
-		
+
 		public UnityEngine.Vector3 shear { get => Get_shear(); set { Set_shear(value); } }
-		protected partial UnityEngine.Vector3 Get_shear();
-		protected partial void Set_shear(UnityEngine.Vector3 value);
-		
+		private partial UnityEngine.Vector3 Get_shear();
+		private partial void Set_shear(UnityEngine.Vector3 value);
+
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;

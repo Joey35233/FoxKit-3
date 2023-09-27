@@ -9,14 +9,14 @@ namespace Fox.Core
 
         public void OnDrawGizmos()
         {
-            Gizmo.Transform = (this as MonoBehaviour).transform;
-            Gizmo.Label = (this as MonoBehaviour).name;
+            Gizmo.Transform = this.transform;
+            Gizmo.Label = this.name;
             Gizmo.OnDrawGizmos();
         }
 
         public void OnDrawGizmosSelected()
         {
-            Gizmo.Transform = (this as MonoBehaviour).transform;
+            Gizmo.Transform = this.transform;
             Gizmo.Label = null;
             Gizmo.OnDrawGizmos();
         }

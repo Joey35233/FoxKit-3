@@ -17,7 +17,7 @@ namespace Fox.Core
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.String name { get; set; }
+		private Fox.Kernel.String name { get; set; }
 		
 		[field: UnityEngine.SerializeField]
 		public Fox.Kernel.String actorLevelName { get; protected set; }

@@ -18,87 +18,87 @@ namespace Fox.Ph
 		// Properties
 		[field: UnityEngine.SerializeField]
 		protected Fox.Core.EntityPtr<Fox.Ph.PhRigidBodyParam> param { get; set; } = new Fox.Core.EntityPtr<Fox.Ph.PhRigidBodyParam>();
-		
+
 		public UnityEngine.Vector3 defaultPosition { get => Get_defaultPosition(); set { Set_defaultPosition(value); } }
-		protected partial UnityEngine.Vector3 Get_defaultPosition();
-		protected partial void Set_defaultPosition(UnityEngine.Vector3 value);
-		
+		private partial UnityEngine.Vector3 Get_defaultPosition();
+		private partial void Set_defaultPosition(UnityEngine.Vector3 value);
+
 		public UnityEngine.Quaternion defaultRotation { get => Get_defaultRotation(); set { Set_defaultRotation(value); } }
-		protected partial UnityEngine.Quaternion Get_defaultRotation();
-		protected partial void Set_defaultRotation(UnityEngine.Quaternion value);
-		
+		private partial UnityEngine.Quaternion Get_defaultRotation();
+		private partial void Set_defaultRotation(UnityEngine.Quaternion value);
+
 		public float mass { get => Get_mass(); set { Set_mass(value); } }
-		protected partial float Get_mass();
-		protected partial void Set_mass(float value);
-		
+		private partial float Get_mass();
+		private partial void Set_mass(float value);
+
 		public float friction { get => Get_friction(); set { Set_friction(value); } }
-		protected partial float Get_friction();
-		protected partial void Set_friction(float value);
-		
+		private partial float Get_friction();
+		private partial void Set_friction(float value);
+
 		public float restitution { get => Get_restitution(); set { Set_restitution(value); } }
-		protected partial float Get_restitution();
-		protected partial void Set_restitution(float value);
-		
+		private partial float Get_restitution();
+		private partial void Set_restitution(float value);
+
 		public float maxLinearVelocity { get => Get_maxLinearVelocity(); set { Set_maxLinearVelocity(value); } }
-		protected partial float Get_maxLinearVelocity();
-		protected partial void Set_maxLinearVelocity(float value);
-		
+		private partial float Get_maxLinearVelocity();
+		private partial void Set_maxLinearVelocity(float value);
+
 		public float maxAngularVelocity { get => Get_maxAngularVelocity(); set { Set_maxAngularVelocity(value); } }
-		protected partial float Get_maxAngularVelocity();
-		protected partial void Set_maxAngularVelocity(float value);
-		
+		private partial float Get_maxAngularVelocity();
+		private partial void Set_maxAngularVelocity(float value);
+
 		public float linearVelocityDamp { get => Get_linearVelocityDamp(); set { Set_linearVelocityDamp(value); } }
-		protected partial float Get_linearVelocityDamp();
-		protected partial void Set_linearVelocityDamp(float value);
-		
+		private partial float Get_linearVelocityDamp();
+		private partial void Set_linearVelocityDamp(float value);
+
 		public float angularVelocityDamp { get => Get_angularVelocityDamp(); set { Set_angularVelocityDamp(value); } }
-		protected partial float Get_angularVelocityDamp();
-		protected partial void Set_angularVelocityDamp(float value);
-		
+		private partial float Get_angularVelocityDamp();
+		private partial void Set_angularVelocityDamp(float value);
+
 		public float permittedDepth { get => Get_permittedDepth(); set { Set_permittedDepth(value); } }
-		protected partial float Get_permittedDepth();
-		protected partial void Set_permittedDepth(float value);
-		
+		private partial float Get_permittedDepth();
+		private partial void Set_permittedDepth(float value);
+
 		public bool sleepEnable { get => Get_sleepEnable(); set { Set_sleepEnable(value); } }
-		protected partial bool Get_sleepEnable();
-		protected partial void Set_sleepEnable(bool value);
-		
+		private partial bool Get_sleepEnable();
+		private partial void Set_sleepEnable(bool value);
+
 		public float sleepLinearVelocityTh { get => Get_sleepLinearVelocityTh(); set { Set_sleepLinearVelocityTh(value); } }
-		protected partial float Get_sleepLinearVelocityTh();
-		protected partial void Set_sleepLinearVelocityTh(float value);
-		
+		private partial float Get_sleepLinearVelocityTh();
+		private partial void Set_sleepLinearVelocityTh(float value);
+
 		public float sleepAngularVelocityTh { get => Get_sleepAngularVelocityTh(); set { Set_sleepAngularVelocityTh(value); } }
-		protected partial float Get_sleepAngularVelocityTh();
-		protected partial void Set_sleepAngularVelocityTh(float value);
-		
+		private partial float Get_sleepAngularVelocityTh();
+		private partial void Set_sleepAngularVelocityTh(float value);
+
 		public float sleepTimeTh { get => Get_sleepTimeTh(); set { Set_sleepTimeTh(value); } }
-		protected partial float Get_sleepTimeTh();
-		protected partial void Set_sleepTimeTh(float value);
-		
+		private partial float Get_sleepTimeTh();
+		private partial void Set_sleepTimeTh(float value);
+
 		public ushort collisionGroup { get => Get_collisionGroup(); set { Set_collisionGroup(value); } }
-		protected partial ushort Get_collisionGroup();
-		protected partial void Set_collisionGroup(ushort value);
-		
+		private partial ushort Get_collisionGroup();
+		private partial void Set_collisionGroup(ushort value);
+
 		public ushort collisionType { get => Get_collisionType(); set { Set_collisionType(value); } }
-		protected partial ushort Get_collisionType();
-		protected partial void Set_collisionType(ushort value);
-		
+		private partial ushort Get_collisionType();
+		private partial void Set_collisionType(ushort value);
+
 		public uint collisionId { get => Get_collisionId(); set { Set_collisionId(value); } }
-		protected partial uint Get_collisionId();
-		protected partial void Set_collisionId(uint value);
-		
+		private partial uint Get_collisionId();
+		private partial void Set_collisionId(uint value);
+
 		public UnityEngine.Vector3 centerOfMassOffset { get => Get_centerOfMassOffset(); set { Set_centerOfMassOffset(value); } }
-		protected partial UnityEngine.Vector3 Get_centerOfMassOffset();
-		protected partial void Set_centerOfMassOffset(UnityEngine.Vector3 value);
-		
+		private partial UnityEngine.Vector3 Get_centerOfMassOffset();
+		private partial void Set_centerOfMassOffset(UnityEngine.Vector3 value);
+
 		public PhRigidBodyType motionType { get => Get_motionType(); set { Set_motionType(value); } }
-		protected partial PhRigidBodyType Get_motionType();
-		protected partial void Set_motionType(PhRigidBodyType value);
-		
+		private partial PhRigidBodyType Get_motionType();
+		private partial void Set_motionType(PhRigidBodyType value);
+
 		public Fox.Kernel.String material { get => Get_material(); set { Set_material(value); } }
-		protected partial Fox.Kernel.String Get_material();
-		protected partial void Set_material(Fox.Kernel.String value);
-		
+		private partial Fox.Kernel.String Get_material();
+		private partial void Set_material(Fox.Kernel.String value);
+
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;

@@ -221,6 +221,19 @@ class PropertyInfo:
             return True
         return False
 
+    def is_blacklisted(self):
+        """UnityEngine.MonoBehaviours redefine multiple properties used by Fox including `name`, `transform`, etc."""
+        if self.entity_name == "DataElement" or self.entity_name == "Data":
+            return True
+        
+        if self.entity_name == "TransformData" and (self.name == "children" or self.name == "parent" or self.name == "transform"):
+            return True
+        
+        if self.name == "name":
+            return True
+        
+        return False
+
     def has_public_set(self):
         """Gets whether or not the property should have a public setter.
         

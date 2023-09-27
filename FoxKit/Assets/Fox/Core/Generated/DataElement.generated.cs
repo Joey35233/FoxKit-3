@@ -17,7 +17,7 @@ namespace Fox.Core
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		public Fox.Core.Entity owner { get; set; }
+		private Fox.Core.Entity owner { get; set; }
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;

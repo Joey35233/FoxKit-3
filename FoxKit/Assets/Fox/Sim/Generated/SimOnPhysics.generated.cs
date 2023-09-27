@@ -18,38 +18,38 @@ namespace Fox.Sim
 		// Properties
 		[field: UnityEngine.SerializeField]
 		public Fox.Kernel.StringMap<Fox.Core.EntityPtr<Fox.Sim.SimAssociationUnit>> simRootBones { get; set; } = new Fox.Kernel.StringMap<Fox.Core.EntityPtr<Fox.Sim.SimAssociationUnit>>();
-		
+
 		[field: UnityEngine.SerializeField]
 		public Fox.Kernel.StringMap<Fox.Core.EntityPtr<Fox.Sim.SimAssociationUnit>> simBones { get; set; } = new Fox.Kernel.StringMap<Fox.Core.EntityPtr<Fox.Sim.SimAssociationUnit>>();
-		
+
 		[field: UnityEngine.SerializeField]
 		public Fox.Kernel.StringMap<Fox.Core.EntityPtr<Fox.Sim.SimAssociationUnit>> simTransBones { get; set; } = new Fox.Kernel.StringMap<Fox.Core.EntityPtr<Fox.Sim.SimAssociationUnit>>();
-		
+
 		[field: UnityEngine.SerializeField]
 		public Fox.Kernel.StringMap<Fox.Core.EntityPtr<Fox.Sim.SimAssociationUnit>> simHitBones { get; set; } = new Fox.Kernel.StringMap<Fox.Core.EntityPtr<Fox.Sim.SimAssociationUnit>>();
-		
+
 		[field: UnityEngine.SerializeField]
 		public uint formatVersion { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		public Fox.Core.EntityLink physicsData { get; set; }
-		
+
 		public SimLodLevelName minLodLevel { get => Get_minLodLevel(); set { Set_minLodLevel(value); } }
-		protected partial SimLodLevelName Get_minLodLevel();
-		protected partial void Set_minLodLevel(SimLodLevelName value);
-		
+		private partial SimLodLevelName Get_minLodLevel();
+		private partial void Set_minLodLevel(SimLodLevelName value);
+
 		public SimLodLevelName maxLodLevel { get => Get_maxLodLevel(); set { Set_maxLodLevel(value); } }
-		protected partial SimLodLevelName Get_maxLodLevel();
-		protected partial void Set_maxLodLevel(SimLodLevelName value);
-		
+		private partial SimLodLevelName Get_maxLodLevel();
+		private partial void Set_maxLodLevel(SimLodLevelName value);
+
 		public bool isEnableGeoCheck { get => Get_isEnableGeoCheck(); set { Set_isEnableGeoCheck(value); } }
-		protected partial bool Get_isEnableGeoCheck();
-		protected partial void Set_isEnableGeoCheck(bool value);
-		
+		private partial bool Get_isEnableGeoCheck();
+		private partial void Set_isEnableGeoCheck(bool value);
+
 		public bool convertMoveToWind { get => Get_convertMoveToWind(); set { Set_convertMoveToWind(value); } }
-		protected partial bool Get_convertMoveToWind();
-		protected partial void Set_convertMoveToWind(bool value);
-		
+		private partial bool Get_convertMoveToWind();
+		private partial void Set_convertMoveToWind(bool value);
+
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;

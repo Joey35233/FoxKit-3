@@ -18,13 +18,13 @@ namespace {{ info.get_root_namespace() }}.{{ info.get_namespace_without_prefix()
 		{% if not info.properties|length == 0 %}// Properties{% endif %}{% for property_name in info.properties %}
 		{% if info.properties[property_name].is_accessor_property() -%}
 		{% if info.properties[property_name].has_public_get() %}public{% else %}protected{% endif %} {{ info.properties[property_name].get_property_full_type_string() }} {{ info.properties[property_name].get_safe_name() }} { get => Get_{{ property_name }}();{% if info.properties[property_name].has_public_set() %} set { Set_{{ property_name }}(value); }{%- endif %} }
-		protected partial {{ info.properties[property_name].get_property_full_type_string() }} Get_{{ property_name }}();
+		private partial {{ info.properties[property_name].get_property_full_type_string() }} Get_{{ property_name }}();
 		{%- if info.properties[property_name].has_public_set() %}
-		protected partial void Set_{{ property_name }}({{ info.properties[property_name].get_property_full_type_string() }} value);
+		private partial void Set_{{ property_name }}({{ info.properties[property_name].get_property_full_type_string() }} value);
 		{%- endif -%}
 		{%- else -%}
 		[field: UnityEngine.SerializeField]
-		{% if info.properties[property_name].has_public_get() %}public{% else %}protected{% endif %} {{ info.properties[property_name].get_property_full_type_string() }} {{ info.properties[property_name].get_safe_name() }} { get; {% if not info.properties[property_name].has_public_set() and info.properties[property_name].has_public_get() %}protected {% endif %}set; }{% if info.properties[property_name].has_default_value() %} = {{info.properties[property_name].get_default_value()}};{% endif %}
+		{% if info.properties[property_name].is_blacklisted() %}private{% elif info.properties[property_name].has_public_get() %}public{% else %}protected{% endif %} {{ info.properties[property_name].get_property_full_type_string() }} {{ info.properties[property_name].get_safe_name() }} { get; {%if info.properties[property_name].is_blacklisted() %}private {% else %}{% if not info.properties[property_name].has_public_set() and info.properties[property_name].has_public_get() %}protected {% endif %}{% endif %}set; }{% if info.properties[property_name].has_default_value() %} = {{info.properties[property_name].get_default_value()}};{% endif %}
 		{%- endif %}
 		{% endfor %}
 		// ClassInfos

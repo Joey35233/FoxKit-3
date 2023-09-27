@@ -18,18 +18,18 @@ namespace Fox.Core
 		// Properties
 		[field: UnityEngine.SerializeField]
 		protected UnityEngine.Vector3 pivotTransform_pivot { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		protected UnityEngine.Vector3 pivotTransform_pivotTranslation { get; set; }
-		
+
 		public UnityEngine.Vector3 pivot { get => Get_pivot(); set { Set_pivot(value); } }
-		protected partial UnityEngine.Vector3 Get_pivot();
-		protected partial void Set_pivot(UnityEngine.Vector3 value);
-		
+		private partial UnityEngine.Vector3 Get_pivot();
+		private partial void Set_pivot(UnityEngine.Vector3 value);
+
 		public UnityEngine.Vector3 pivotTranslation { get => Get_pivotTranslation(); set { Set_pivotTranslation(value); } }
-		protected partial UnityEngine.Vector3 Get_pivotTranslation();
-		protected partial void Set_pivotTranslation(UnityEngine.Vector3 value);
-		
+		private partial UnityEngine.Vector3 Get_pivotTranslation();
+		private partial void Set_pivotTranslation(UnityEngine.Vector3 value);
+
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;

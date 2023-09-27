@@ -18,27 +18,27 @@ namespace Tpp.GameKit
 		// Properties
 		[field: UnityEngine.SerializeField]
 		public uint flag { get; set; }
-		
+
 		public bool checkPlayer { get => Get_checkPlayer(); set { Set_checkPlayer(value); } }
-		protected partial bool Get_checkPlayer();
-		protected partial void Set_checkPlayer(bool value);
-		
+		private partial bool Get_checkPlayer();
+		private partial void Set_checkPlayer(bool value);
+
 		public bool checkSoldier { get => Get_checkSoldier(); set { Set_checkSoldier(value); } }
-		protected partial bool Get_checkSoldier();
-		protected partial void Set_checkSoldier(bool value);
-		
+		private partial bool Get_checkSoldier();
+		private partial void Set_checkSoldier(bool value);
+
 		public bool checkUav { get => Get_checkUav(); set { Set_checkUav(value); } }
-		protected partial bool Get_checkUav();
-		protected partial void Set_checkUav(bool value);
-		
+		private partial bool Get_checkUav();
+		private partial void Set_checkUav(bool value);
+
 		public bool checkVolgin { get => Get_checkVolgin(); set { Set_checkVolgin(value); } }
-		protected partial bool Get_checkVolgin();
-		protected partial void Set_checkVolgin(bool value);
-		
+		private partial bool Get_checkVolgin();
+		private partial void Set_checkVolgin(bool value);
+
 		public bool checkLiquid { get => Get_checkLiquid(); set { Set_checkLiquid(value); } }
-		protected partial bool Get_checkLiquid();
-		protected partial void Set_checkLiquid(bool value);
-		
+		private partial bool Get_checkLiquid();
+		private partial void Set_checkLiquid(bool value);
+
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;

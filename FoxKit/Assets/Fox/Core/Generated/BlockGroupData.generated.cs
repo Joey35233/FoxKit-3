@@ -17,27 +17,27 @@ namespace Fox.Core
 	{
 		// Properties
 		public float blockMemorySize { get => Get_blockMemorySize(); set { Set_blockMemorySize(value); } }
-		protected partial float Get_blockMemorySize();
-		protected partial void Set_blockMemorySize(float value);
-		
+		private partial float Get_blockMemorySize();
+		private partial void Set_blockMemorySize(float value);
+
 		[field: UnityEngine.SerializeField]
 		public BlockGroupData_ByteOrder sizeOrder { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		public uint blockSizeInBytes { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		public uint blockCount { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		public Fox.Kernel.DynamicArray<Fox.Kernel.Path> block { get; set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.Path>();
-		
+
 		[field: UnityEngine.SerializeField]
 		public Fox.Kernel.DynamicArray<Fox.Core.EntityLink> relatedBlockGroups { get; set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityLink>();
-		
+
 		[field: UnityEngine.SerializeField]
 		public Fox.Kernel.DynamicArray<Fox.Core.EntityLink> prerequisiteBlockGroups { get; set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityLink>();
-		
+
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;

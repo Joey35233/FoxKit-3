@@ -18,23 +18,23 @@ namespace Fox.Ph
 		// Properties
 		[field: UnityEngine.SerializeField]
 		public PhPrimitiveShapeType type { get; set; }
-		
+
 		public UnityEngine.Vector3 size { get => Get_size(); set { Set_size(value); } }
-		protected partial UnityEngine.Vector3 Get_size();
-		protected partial void Set_size(UnityEngine.Vector3 value);
-		
+		private partial UnityEngine.Vector3 Get_size();
+		private partial void Set_size(UnityEngine.Vector3 value);
+
 		public float radius { get => Get_radius(); set { Set_radius(value); } }
-		protected partial float Get_radius();
-		protected partial void Set_radius(float value);
-		
+		private partial float Get_radius();
+		private partial void Set_radius(float value);
+
 		public float height { get => Get_height(); set { Set_height(value); } }
-		protected partial float Get_height();
-		protected partial void Set_height(float value);
-		
+		private partial float Get_height();
+		private partial void Set_height(float value);
+
 		public float radius2 { get => Get_radius2(); set { Set_radius2(value); } }
-		protected partial float Get_radius2();
-		protected partial void Set_radius2(float value);
-		
+		private partial float Get_radius2();
+		private partial void Set_radius2(float value);
+
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;

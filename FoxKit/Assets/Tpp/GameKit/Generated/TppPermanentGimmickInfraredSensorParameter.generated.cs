@@ -18,15 +18,15 @@ namespace Tpp.GameKit
 		// Properties
 		[field: UnityEngine.SerializeField]
 		public uint flag { get; set; }
-		
+
 		public bool checkHostAndLocalPlayer { get => Get_checkHostAndLocalPlayer(); set { Set_checkHostAndLocalPlayer(value); } }
-		protected partial bool Get_checkHostAndLocalPlayer();
-		protected partial void Set_checkHostAndLocalPlayer(bool value);
-		
+		private partial bool Get_checkHostAndLocalPlayer();
+		private partial void Set_checkHostAndLocalPlayer(bool value);
+
 		public bool checkPlayer { get => Get_checkPlayer(); set { Set_checkPlayer(value); } }
-		protected partial bool Get_checkPlayer();
-		protected partial void Set_checkPlayer(bool value);
-		
+		private partial bool Get_checkPlayer();
+		private partial void Set_checkPlayer(bool value);
+
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;

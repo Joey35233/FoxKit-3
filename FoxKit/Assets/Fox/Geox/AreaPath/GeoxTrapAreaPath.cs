@@ -110,7 +110,7 @@ namespace Fox.Geox
                 var prevNode = edge.prevNode as GraphxSpatialGraphDataNode;
                 var nextNode = edge.nextNode as GraphxSpatialGraphDataNode;
 
-                float yMin = (this as MonoBehaviour).transform.position.y;
+                float yMin = this.transform.position.y;
                 float yMax = yMin + trapPath.height;
 
                 Gizmos.DrawLine(new Vector3(prevNode.position.x, yMin, prevNode.position.z), new Vector3(nextNode.position.x, yMin, nextNode.position.z));

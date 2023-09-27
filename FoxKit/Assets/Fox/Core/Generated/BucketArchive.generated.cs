@@ -17,7 +17,7 @@ namespace Fox.Core
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		protected Fox.Kernel.String name { get; set; }
+		private Fox.Kernel.String name { get; set; }
 		
 		[field: UnityEngine.SerializeField]
 		protected Fox.Kernel.StringMap<Fox.Core.FilePtr> dataSetFiles { get; set; } = new Fox.Kernel.StringMap<Fox.Core.FilePtr>();

@@ -18,18 +18,18 @@ namespace Fox.Sim
 		// Properties
 		[field: UnityEngine.SerializeField]
 		protected Fox.Core.EntityPtr<Fox.Sim.SimClothControlParam> controlParam { get; set; } = new Fox.Core.EntityPtr<Fox.Sim.SimClothControlParam>();
-		
+
 		[field: UnityEngine.SerializeField]
 		public Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Fox.Sim.SimClothControlUnit>> clothControlUnits { get; protected set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Fox.Sim.SimClothControlUnit>>();
-		
+
 		public float windCoefficient { get => Get_windCoefficient(); set { Set_windCoefficient(value); } }
-		protected partial float Get_windCoefficient();
-		protected partial void Set_windCoefficient(float value);
-		
+		private partial float Get_windCoefficient();
+		private partial void Set_windCoefficient(float value);
+
 		public bool isLoop { get => Get_isLoop(); set { Set_isLoop(value); } }
-		protected partial bool Get_isLoop();
-		protected partial void Set_isLoop(bool value);
-		
+		private partial bool Get_isLoop();
+		private partial void Set_isLoop(bool value);
+
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;

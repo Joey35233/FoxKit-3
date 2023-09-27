@@ -9,8 +9,8 @@ namespace Fox.Core
 {
     public partial class TransformData : Data
     {
-        protected partial bool Get_inheritTransform() => flags.HasFlag(TransformData_Flags.ENABLE_INHERIT_TRANSFORM);
-        protected partial void Set_inheritTransform(bool value)
+        private partial bool Get_inheritTransform() => flags.HasFlag(TransformData_Flags.ENABLE_INHERIT_TRANSFORM);
+        private partial void Set_inheritTransform(bool value)
         {
             if (value)
                 flags |= TransformData_Flags.ENABLE_INHERIT_TRANSFORM;
@@ -18,8 +18,8 @@ namespace Fox.Core
                 flags &= ~TransformData_Flags.ENABLE_INHERIT_TRANSFORM;
         }
 
-        protected partial bool Get_visibility() => flags.HasFlag(TransformData_Flags.ENABLE_VISIBILITY);
-        protected partial void Set_visibility(bool value)
+        private partial bool Get_visibility() => flags.HasFlag(TransformData_Flags.ENABLE_VISIBILITY);
+        private partial void Set_visibility(bool value)
         {
             if (value)
                 flags |= TransformData_Flags.ENABLE_VISIBILITY;
@@ -27,8 +27,8 @@ namespace Fox.Core
                 flags &= ~TransformData_Flags.ENABLE_VISIBILITY;
         }
 
-        protected partial bool Get_selection() => flags.HasFlag(TransformData_Flags.ENABLE_SELECTION);
-        protected partial void Set_selection(bool value)
+        private partial bool Get_selection() => flags.HasFlag(TransformData_Flags.ENABLE_SELECTION);
+        private partial void Set_selection(bool value)
         {
             if (value)
                 flags |= TransformData_Flags.ENABLE_SELECTION;
@@ -36,9 +36,9 @@ namespace Fox.Core
                 flags &= ~TransformData_Flags.ENABLE_SELECTION;
         }
 
-        protected partial UnityEngine.Matrix4x4 Get_worldMatrix() => throw new System.NotImplementedException();
+        private partial UnityEngine.Matrix4x4 Get_worldMatrix() => throw new System.NotImplementedException();
 
-        protected partial UnityEngine.Matrix4x4 Get_worldTransform() => throw new System.NotImplementedException();
+        private partial UnityEngine.Matrix4x4 Get_worldTransform() => throw new System.NotImplementedException();
 
         public void AddChild(TransformData transformData)
         {

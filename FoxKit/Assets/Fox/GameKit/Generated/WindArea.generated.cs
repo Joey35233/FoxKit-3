@@ -17,9 +17,9 @@ namespace Fox.GameKit
 	{
 		// Properties
 		public float influenceOfGlobal { get => Get_influenceOfGlobal(); set { Set_influenceOfGlobal(value); } }
-		protected partial float Get_influenceOfGlobal();
-		protected partial void Set_influenceOfGlobal(float value);
-		
+		private partial float Get_influenceOfGlobal();
+		private partial void Set_influenceOfGlobal(float value);
+
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;

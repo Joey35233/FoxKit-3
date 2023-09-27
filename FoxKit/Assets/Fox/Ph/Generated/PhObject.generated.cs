@@ -18,11 +18,11 @@ namespace Fox.Ph
 		// Properties
 		[field: UnityEngine.SerializeField]
 		protected Fox.Core.EntityPtr<Fox.Ph.PhObjectParam> param { get; set; } = new Fox.Core.EntityPtr<Fox.Ph.PhObjectParam>();
-		
+
 		public Fox.Kernel.String worldName { get => Get_worldName(); set { Set_worldName(value); } }
-		protected partial Fox.Kernel.String Get_worldName();
-		protected partial void Set_worldName(Fox.Kernel.String value);
-		
+		private partial Fox.Kernel.String Get_worldName();
+		private partial void Set_worldName(Fox.Kernel.String value);
+
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;

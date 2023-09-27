@@ -17,7 +17,7 @@ namespace Fox.Core
 	{
 		// Properties
 		public Fox.Core.EntityPtr<Fox.Core.DataSet> dataSet { get => Get_dataSet(); }
-		protected partial Fox.Core.EntityPtr<Fox.Core.DataSet> Get_dataSet();
+		private partial Fox.Core.EntityPtr<Fox.Core.DataSet> Get_dataSet();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;

@@ -4,7 +4,7 @@
     {
         private SimInertialControlParam param => controlParam.Get();
 
-        protected partial float Get_inertialCoefficient() => param.GetCoefficient();
-        protected partial void Set_inertialCoefficient(float value) => param.SetCoefficient(value);
+        private partial float Get_inertialCoefficient() => param.GetCoefficient();
+        private partial void Set_inertialCoefficient(float value) => param.SetCoefficient(value);
     }
 }

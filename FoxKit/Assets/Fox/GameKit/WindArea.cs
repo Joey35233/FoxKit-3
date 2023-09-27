@@ -4,7 +4,7 @@ namespace Fox.GameKit
     {
         private WindParameter windParameter => parameter.Get() as WindParameter;
 
-        protected partial float Get_influenceOfGlobal() => windParameter.GetInfluenceOfGlobal();
-        protected partial void Set_influenceOfGlobal(float value) => windParameter.SetInfluenceOfGlobal(value);
+        private partial float Get_influenceOfGlobal() => windParameter.GetInfluenceOfGlobal();
+        private partial void Set_influenceOfGlobal(float value) => windParameter.SetInfluenceOfGlobal(value);
     }
 }

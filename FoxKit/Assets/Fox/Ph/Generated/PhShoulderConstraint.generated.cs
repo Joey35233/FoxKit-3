@@ -17,37 +17,37 @@ namespace Fox.Ph
 	{
 		// Properties
 		public bool limitedFlag { get => Get_limitedFlag(); set { Set_limitedFlag(value); } }
-		protected partial bool Get_limitedFlag();
-		protected partial void Set_limitedFlag(bool value);
-		
+		private partial bool Get_limitedFlag();
+		private partial void Set_limitedFlag(bool value);
+
 		public UnityEngine.Vector3 refA { get => Get_refA(); set { Set_refA(value); } }
-		protected partial UnityEngine.Vector3 Get_refA();
-		protected partial void Set_refA(UnityEngine.Vector3 value);
-		
+		private partial UnityEngine.Vector3 Get_refA();
+		private partial void Set_refA(UnityEngine.Vector3 value);
+
 		public UnityEngine.Vector3 refB { get => Get_refB(); set { Set_refB(value); } }
-		protected partial UnityEngine.Vector3 Get_refB();
-		protected partial void Set_refB(UnityEngine.Vector3 value);
-		
+		private partial UnityEngine.Vector3 Get_refB();
+		private partial void Set_refB(UnityEngine.Vector3 value);
+
 		public float limit { get => Get_limit(); set { Set_limit(value); } }
-		protected partial float Get_limit();
-		protected partial void Set_limit(float value);
-		
+		private partial float Get_limit();
+		private partial void Set_limit(float value);
+
 		public bool limitedFlag1 { get => Get_limitedFlag1(); set { Set_limitedFlag1(value); } }
-		protected partial bool Get_limitedFlag1();
-		protected partial void Set_limitedFlag1(bool value);
-		
+		private partial bool Get_limitedFlag1();
+		private partial void Set_limitedFlag1(bool value);
+
 		public UnityEngine.Vector3 refA1 { get => Get_refA1(); set { Set_refA1(value); } }
-		protected partial UnityEngine.Vector3 Get_refA1();
-		protected partial void Set_refA1(UnityEngine.Vector3 value);
-		
+		private partial UnityEngine.Vector3 Get_refA1();
+		private partial void Set_refA1(UnityEngine.Vector3 value);
+
 		public UnityEngine.Vector3 refB1 { get => Get_refB1(); set { Set_refB1(value); } }
-		protected partial UnityEngine.Vector3 Get_refB1();
-		protected partial void Set_refB1(UnityEngine.Vector3 value);
-		
+		private partial UnityEngine.Vector3 Get_refB1();
+		private partial void Set_refB1(UnityEngine.Vector3 value);
+
 		public float limit1 { get => Get_limit1(); set { Set_limit1(value); } }
-		protected partial float Get_limit1();
-		protected partial void Set_limit1(float value);
-		
+		private partial float Get_limit1();
+		private partial void Set_limit1(float value);
+
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;

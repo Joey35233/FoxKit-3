@@ -10,7 +10,7 @@ namespace Tpp.GameKit
 
         private void OnDrawGizmos()
         {
-            UnityEngine.Transform trans = (this as MonoBehaviour).transform;
+            UnityEngine.Transform trans = this.transform;
 
             Vector3 origin = trans.position;
             Vector3 up = trans.up;

@@ -14,14 +14,14 @@ namespace Fox.Core
             return transform;
         }
 
-        protected partial UnityEngine.Vector3 Get_scale() => transform_scale;
-        protected partial void Set_scale(UnityEngine.Vector3 value) => transform_scale = value;
+        private partial UnityEngine.Vector3 Get_scale() => transform_scale;
+        private partial void Set_scale(UnityEngine.Vector3 value) => transform_scale = value;
 
-        protected partial UnityEngine.Quaternion Get_rotQuat() => transform_rotation_quat;
-        protected partial void Set_rotQuat(UnityEngine.Quaternion value) => transform_rotation_quat = value;
+        private partial UnityEngine.Quaternion Get_rotQuat() => transform_rotation_quat;
+        private partial void Set_rotQuat(UnityEngine.Quaternion value) => transform_rotation_quat = value;
 
-        protected partial UnityEngine.Vector3 Get_translation() => transform_translation;
-        protected partial void Set_translation(UnityEngine.Vector3 value) => transform_translation = value;
+        private partial UnityEngine.Vector3 Get_translation() => transform_translation;
+        private partial void Set_translation(UnityEngine.Vector3 value) => transform_translation = value;
 
         public override void OverridePropertiesForExport(EntityExportContext context)
         {

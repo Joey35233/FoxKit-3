@@ -6,7 +6,7 @@ namespace Fox.Core
 {
     public partial class Data : Fox.Core.Entity
     {
-        protected partial String Get_referencePath() => throw new System.NotImplementedException();
+        private partial String Get_referencePath() => throw new System.NotImplementedException();
 
         public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
         {

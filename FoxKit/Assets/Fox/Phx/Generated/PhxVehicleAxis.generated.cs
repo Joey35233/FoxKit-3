@@ -18,75 +18,75 @@ namespace Fox.Phx
 		// Properties
 		[field: UnityEngine.SerializeField]
 		protected Fox.Core.EntityPtr<Fox.Phx.PhVehicleAxisParam> vehicleAxisParam { get; set; } = new Fox.Core.EntityPtr<Fox.Phx.PhVehicleAxisParam>();
-		
+
 		[field: UnityEngine.SerializeField]
 		protected Fox.Core.EntityPtr<Fox.Phx.PhxWheelConstraintParam> wheelConstraintParam { get; set; } = new Fox.Core.EntityPtr<Fox.Phx.PhxWheelConstraintParam>();
-		
+
 		[field: UnityEngine.SerializeField]
 		protected Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Fox.Phx.PhxWheelAssociationUnitParam>> wheelAssociationUnitParams { get; set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Fox.Phx.PhxWheelAssociationUnitParam>>();
-		
+
 		[field: UnityEngine.SerializeField]
 		public Fox.Kernel.DynamicArray<float> torqueDistributions { get; set; } = new Fox.Kernel.DynamicArray<float>();
-		
+
 		[field: UnityEngine.SerializeField]
 		public Fox.Kernel.DynamicArray<float> gearRatios { get; set; } = new Fox.Kernel.DynamicArray<float>();
-		
+
 		public UnityEngine.Vector3 wheelFront { get => Get_wheelFront(); set { Set_wheelFront(value); } }
-		protected partial UnityEngine.Vector3 Get_wheelFront();
-		protected partial void Set_wheelFront(UnityEngine.Vector3 value);
-		
+		private partial UnityEngine.Vector3 Get_wheelFront();
+		private partial void Set_wheelFront(UnityEngine.Vector3 value);
+
 		public UnityEngine.Vector3 wheelUp { get => Get_wheelUp(); set { Set_wheelUp(value); } }
-		protected partial UnityEngine.Vector3 Get_wheelUp();
-		protected partial void Set_wheelUp(UnityEngine.Vector3 value);
-		
+		private partial UnityEngine.Vector3 Get_wheelUp();
+		private partial void Set_wheelUp(UnityEngine.Vector3 value);
+
 		public UnityEngine.Vector3 wheelPositionOffset { get => Get_wheelPositionOffset(); set { Set_wheelPositionOffset(value); } }
-		protected partial UnityEngine.Vector3 Get_wheelPositionOffset();
-		protected partial void Set_wheelPositionOffset(UnityEngine.Vector3 value);
-		
+		private partial UnityEngine.Vector3 Get_wheelPositionOffset();
+		private partial void Set_wheelPositionOffset(UnityEngine.Vector3 value);
+
 		public float wheelRadius { get => Get_wheelRadius(); set { Set_wheelRadius(value); } }
-		protected partial float Get_wheelRadius();
-		protected partial void Set_wheelRadius(float value);
-		
+		private partial float Get_wheelRadius();
+		private partial void Set_wheelRadius(float value);
+
 		public float wheelFriction { get => Get_wheelFriction(); set { Set_wheelFriction(value); } }
-		protected partial float Get_wheelFriction();
-		protected partial void Set_wheelFriction(float value);
-		
+		private partial float Get_wheelFriction();
+		private partial void Set_wheelFriction(float value);
+
 		public float wheelRestitution { get => Get_wheelRestitution(); set { Set_wheelRestitution(value); } }
-		protected partial float Get_wheelRestitution();
-		protected partial void Set_wheelRestitution(float value);
-		
+		private partial float Get_wheelRestitution();
+		private partial void Set_wheelRestitution(float value);
+
 		public float wheelInertia { get => Get_wheelInertia(); set { Set_wheelInertia(value); } }
-		protected partial float Get_wheelInertia();
-		protected partial void Set_wheelInertia(float value);
-		
+		private partial float Get_wheelInertia();
+		private partial void Set_wheelInertia(float value);
+
 		public float suspentionLength { get => Get_suspentionLength(); set { Set_suspentionLength(value); } }
-		protected partial float Get_suspentionLength();
-		protected partial void Set_suspentionLength(float value);
-		
+		private partial float Get_suspentionLength();
+		private partial void Set_suspentionLength(float value);
+
 		public float maxSuspentionForceCoeff { get => Get_maxSuspentionForceCoeff(); set { Set_maxSuspentionForceCoeff(value); } }
-		protected partial float Get_maxSuspentionForceCoeff();
-		protected partial void Set_maxSuspentionForceCoeff(float value);
-		
+		private partial float Get_maxSuspentionForceCoeff();
+		private partial void Set_maxSuspentionForceCoeff(float value);
+
 		public float dampingCoeffElong { get => Get_dampingCoeffElong(); set { Set_dampingCoeffElong(value); } }
-		protected partial float Get_dampingCoeffElong();
-		protected partial void Set_dampingCoeffElong(float value);
-		
+		private partial float Get_dampingCoeffElong();
+		private partial void Set_dampingCoeffElong(float value);
+
 		public float dampingCoeffCompress { get => Get_dampingCoeffCompress(); set { Set_dampingCoeffCompress(value); } }
-		protected partial float Get_dampingCoeffCompress();
-		protected partial void Set_dampingCoeffCompress(float value);
-		
+		private partial float Get_dampingCoeffCompress();
+		private partial void Set_dampingCoeffCompress(float value);
+
 		public float maxBreakTorqueCoeff { get => Get_maxBreakTorqueCoeff(); set { Set_maxBreakTorqueCoeff(value); } }
-		protected partial float Get_maxBreakTorqueCoeff();
-		protected partial void Set_maxBreakTorqueCoeff(float value);
-		
+		private partial float Get_maxBreakTorqueCoeff();
+		private partial void Set_maxBreakTorqueCoeff(float value);
+
 		public bool useDifferential { get => Get_useDifferential(); set { Set_useDifferential(value); } }
-		protected partial bool Get_useDifferential();
-		protected partial void Set_useDifferential(bool value);
-		
+		private partial bool Get_useDifferential();
+		private partial void Set_useDifferential(bool value);
+
 		public Fox.Kernel.DynamicArray<Fox.Kernel.String> AssignedBoneNames { get => Get_AssignedBoneNames(); set { Set_AssignedBoneNames(value); } }
-		protected partial Fox.Kernel.DynamicArray<Fox.Kernel.String> Get_AssignedBoneNames();
-		protected partial void Set_AssignedBoneNames(Fox.Kernel.DynamicArray<Fox.Kernel.String> value);
-		
+		private partial Fox.Kernel.DynamicArray<Fox.Kernel.String> Get_AssignedBoneNames();
+		private partial void Set_AssignedBoneNames(Fox.Kernel.DynamicArray<Fox.Kernel.String> value);
+
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;

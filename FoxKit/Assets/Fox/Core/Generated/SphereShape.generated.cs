@@ -17,9 +17,9 @@ namespace Fox.Core
 	{
 		// Properties
 		public float radius { get => Get_radius(); set { Set_radius(value); } }
-		protected partial float Get_radius();
-		protected partial void Set_radius(float value);
-		
+		private partial float Get_radius();
+		private partial void Set_radius(float value);
+
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;

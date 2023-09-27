@@ -17,37 +17,37 @@ namespace Fox.Ph
 	{
 		// Properties
 		public UnityEngine.Quaternion refVec0 { get => Get_refVec0(); set { Set_refVec0(value); } }
-		protected partial UnityEngine.Quaternion Get_refVec0();
-		protected partial void Set_refVec0(UnityEngine.Quaternion value);
-		
+		private partial UnityEngine.Quaternion Get_refVec0();
+		private partial void Set_refVec0(UnityEngine.Quaternion value);
+
 		public UnityEngine.Quaternion refVec1 { get => Get_refVec1(); set { Set_refVec1(value); } }
-		protected partial UnityEngine.Quaternion Get_refVec1();
-		protected partial void Set_refVec1(UnityEngine.Quaternion value);
-		
+		private partial UnityEngine.Quaternion Get_refVec1();
+		private partial void Set_refVec1(UnityEngine.Quaternion value);
+
 		public float refLimit0 { get => Get_refLimit0(); set { Set_refLimit0(value); } }
-		protected partial float Get_refLimit0();
-		protected partial void Set_refLimit0(float value);
-		
+		private partial float Get_refLimit0();
+		private partial void Set_refLimit0(float value);
+
 		public float refLimit1 { get => Get_refLimit1(); set { Set_refLimit1(value); } }
-		protected partial float Get_refLimit1();
-		protected partial void Set_refLimit1(float value);
-		
+		private partial float Get_refLimit1();
+		private partial void Set_refLimit1(float value);
+
 		public float velocityMax { get => Get_velocityMax(); set { Set_velocityMax(value); } }
-		protected partial float Get_velocityMax();
-		protected partial void Set_velocityMax(float value);
-		
+		private partial float Get_velocityMax();
+		private partial void Set_velocityMax(float value);
+
 		public float torqueMax { get => Get_torqueMax(); set { Set_torqueMax(value); } }
-		protected partial float Get_torqueMax();
-		protected partial void Set_torqueMax(float value);
-		
+		private partial float Get_torqueMax();
+		private partial void Set_torqueMax(float value);
+
 		public float velocityRate { get => Get_velocityRate(); set { Set_velocityRate(value); } }
-		protected partial float Get_velocityRate();
-		protected partial void Set_velocityRate(float value);
-		
+		private partial float Get_velocityRate();
+		private partial void Set_velocityRate(float value);
+
 		public bool isPoweredFlag { get => Get_isPoweredFlag(); set { Set_isPoweredFlag(value); } }
-		protected partial bool Get_isPoweredFlag();
-		protected partial void Set_isPoweredFlag(bool value);
-		
+		private partial bool Get_isPoweredFlag();
+		private partial void Set_isPoweredFlag(bool value);
+
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;

@@ -18,81 +18,81 @@ namespace Tpp.Effect
 		// Properties
 		[field: UnityEngine.SerializeField]
 		public bool enable { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		public Fox.Core.EntityLink lightArea { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		public Fox.Core.EntityLink innerArea { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		public Fox.Core.EntityLink shCoefficientsData { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		public Fox.Kernel.DynamicArray<Fox.Core.EntityLink> onLights { get; set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityLink>();
-		
+
 		[field: UnityEngine.SerializeField]
 		public Fox.Kernel.DynamicArray<Fox.Core.EntityLink> offLights { get; set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityLink>();
-		
+
 		[field: UnityEngine.SerializeField]
 		public float innerScaleXPositive { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		public float innerScaleXNegative { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		public float innerScaleYPositive { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		public float innerScaleYNegative { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		public float innerScaleZPositive { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		public float innerScaleZNegative { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		public int priority { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		public TppLightProbe_DebugMode debugMode { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		public TppLightProbe_DrawRejectionLevel drawRejectionLevel { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		public TppLightProbe_ShapeType shapeType { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		public float exposure { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		protected uint localFlags { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		public float occlusionModeOpenRate { get; set; }
-		
+
 		public bool enable24hSH { get => Get_enable24hSH(); set { Set_enable24hSH(value); } }
-		protected partial bool Get_enable24hSH();
-		protected partial void Set_enable24hSH(bool value);
-		
+		private partial bool Get_enable24hSH();
+		private partial void Set_enable24hSH(bool value);
+
 		public bool enableWeatherSH { get => Get_enableWeatherSH(); set { Set_enableWeatherSH(value); } }
-		protected partial bool Get_enableWeatherSH();
-		protected partial void Set_enableWeatherSH(bool value);
-		
+		private partial bool Get_enableWeatherSH();
+		private partial void Set_enableWeatherSH(bool value);
+
 		public bool enableRelatedLightSH { get => Get_enableRelatedLightSH(); set { Set_enableRelatedLightSH(value); } }
-		protected partial bool Get_enableRelatedLightSH();
-		protected partial void Set_enableRelatedLightSH(bool value);
-		
+		private partial bool Get_enableRelatedLightSH();
+		private partial void Set_enableRelatedLightSH(bool value);
+
 		public bool enableOcclusionMode { get => Get_enableOcclusionMode(); set { Set_enableOcclusionMode(value); } }
-		protected partial bool Get_enableOcclusionMode();
-		protected partial void Set_enableOcclusionMode(bool value);
-		
+		private partial bool Get_enableOcclusionMode();
+		private partial void Set_enableOcclusionMode(bool value);
+
 		public TppLightProbe_PackingGeneration packingGeneration { get => Get_packingGeneration(); set { Set_packingGeneration(value); } }
-		protected partial TppLightProbe_PackingGeneration Get_packingGeneration();
-		protected partial void Set_packingGeneration(TppLightProbe_PackingGeneration value);
-		
+		private partial TppLightProbe_PackingGeneration Get_packingGeneration();
+		private partial void Set_packingGeneration(TppLightProbe_PackingGeneration value);
+
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;

@@ -17,7 +17,7 @@ namespace Fox.GameKit
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.String name { get; set; }
+		private Fox.Kernel.String name { get; set; }
 		
 		[field: UnityEngine.SerializeField]
 		public Fox.Kernel.String skeletonName { get; set; }

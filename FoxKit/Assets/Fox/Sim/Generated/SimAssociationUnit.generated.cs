@@ -18,15 +18,15 @@ namespace Fox.Sim
 		// Properties
 		[field: UnityEngine.SerializeField]
 		protected Fox.Core.EntityPtr<Fox.Sim.SimAssociationUnitParam> param { get; set; } = new Fox.Core.EntityPtr<Fox.Sim.SimAssociationUnitParam>();
-		
+
 		public Fox.Kernel.String boneName { get => Get_boneName(); set { Set_boneName(value); } }
-		protected partial Fox.Kernel.String Get_boneName();
-		protected partial void Set_boneName(Fox.Kernel.String value);
-		
+		private partial Fox.Kernel.String Get_boneName();
+		private partial void Set_boneName(Fox.Kernel.String value);
+
 		public bool initialized { get => Get_initialized(); set { Set_initialized(value); } }
-		protected partial bool Get_initialized();
-		protected partial void Set_initialized(bool value);
-		
+		private partial bool Get_initialized();
+		private partial void Set_initialized(bool value);
+
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;

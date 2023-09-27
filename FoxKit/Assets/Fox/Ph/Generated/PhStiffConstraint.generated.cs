@@ -17,13 +17,13 @@ namespace Fox.Ph
 	{
 		// Properties
 		public UnityEngine.Vector3 endurancePower { get => Get_endurancePower(); set { Set_endurancePower(value); } }
-		protected partial UnityEngine.Vector3 Get_endurancePower();
-		protected partial void Set_endurancePower(UnityEngine.Vector3 value);
-		
+		private partial UnityEngine.Vector3 Get_endurancePower();
+		private partial void Set_endurancePower(UnityEngine.Vector3 value);
+
 		public UnityEngine.Vector3 enduranceTorque { get => Get_enduranceTorque(); set { Set_enduranceTorque(value); } }
-		protected partial UnityEngine.Vector3 Get_enduranceTorque();
-		protected partial void Set_enduranceTorque(UnityEngine.Vector3 value);
-		
+		private partial UnityEngine.Vector3 Get_enduranceTorque();
+		private partial void Set_enduranceTorque(UnityEngine.Vector3 value);
+
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;

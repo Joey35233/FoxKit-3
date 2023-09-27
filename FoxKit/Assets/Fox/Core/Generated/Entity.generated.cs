@@ -13,7 +13,7 @@ using Fox;
 namespace Fox.Core
 {
 	[UnityEditor.InitializeOnLoad]
-	public partial class Entity : UnityEngine.MonoBehaviour
+	public partial class Entity 
 	{
 		
 		// ClassInfos

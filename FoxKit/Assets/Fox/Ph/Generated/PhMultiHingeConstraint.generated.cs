@@ -17,49 +17,49 @@ namespace Fox.Ph
 	{
 		// Properties
 		public UnityEngine.Quaternion axis { get => Get_axis(); set { Set_axis(value); } }
-		protected partial UnityEngine.Quaternion Get_axis();
-		protected partial void Set_axis(UnityEngine.Quaternion value);
-		
+		private partial UnityEngine.Quaternion Get_axis();
+		private partial void Set_axis(UnityEngine.Quaternion value);
+
 		public bool limitedFlag { get => Get_limitedFlag(); set { Set_limitedFlag(value); } }
-		protected partial bool Get_limitedFlag();
-		protected partial void Set_limitedFlag(bool value);
-		
+		private partial bool Get_limitedFlag();
+		private partial void Set_limitedFlag(bool value);
+
 		public bool isPoweredFlag { get => Get_isPoweredFlag(); set { Set_isPoweredFlag(value); } }
-		protected partial bool Get_isPoweredFlag();
-		protected partial void Set_isPoweredFlag(bool value);
-		
+		private partial bool Get_isPoweredFlag();
+		private partial void Set_isPoweredFlag(bool value);
+
 		public float limitHi { get => Get_limitHi(); set { Set_limitHi(value); } }
-		protected partial float Get_limitHi();
-		protected partial void Set_limitHi(float value);
-		
+		private partial float Get_limitHi();
+		private partial void Set_limitHi(float value);
+
 		public float limitLo { get => Get_limitLo(); set { Set_limitLo(value); } }
-		protected partial float Get_limitLo();
-		protected partial void Set_limitLo(float value);
-		
+		private partial float Get_limitLo();
+		private partial void Set_limitLo(float value);
+
 		public uint powerControlType { get => Get_powerControlType(); set { Set_powerControlType(value); } }
-		protected partial uint Get_powerControlType();
-		protected partial void Set_powerControlType(uint value);
-		
+		private partial uint Get_powerControlType();
+		private partial void Set_powerControlType(uint value);
+
 		public float velocityMax { get => Get_velocityMax(); set { Set_velocityMax(value); } }
-		protected partial float Get_velocityMax();
-		protected partial void Set_velocityMax(float value);
-		
+		private partial float Get_velocityMax();
+		private partial void Set_velocityMax(float value);
+
 		public float torqueMax { get => Get_torqueMax(); set { Set_torqueMax(value); } }
-		protected partial float Get_torqueMax();
-		protected partial void Set_torqueMax(float value);
-		
+		private partial float Get_torqueMax();
+		private partial void Set_torqueMax(float value);
+
 		public float targetTheta { get => Get_targetTheta(); set { Set_targetTheta(value); } }
-		protected partial float Get_targetTheta();
-		protected partial void Set_targetTheta(float value);
-		
+		private partial float Get_targetTheta();
+		private partial void Set_targetTheta(float value);
+
 		public float targetVelocity { get => Get_targetVelocity(); set { Set_targetVelocity(value); } }
-		protected partial float Get_targetVelocity();
-		protected partial void Set_targetVelocity(float value);
-		
+		private partial float Get_targetVelocity();
+		private partial void Set_targetVelocity(float value);
+
 		public float velocityRate { get => Get_velocityRate(); set { Set_velocityRate(value); } }
-		protected partial float Get_velocityRate();
-		protected partial void Set_velocityRate(float value);
-		
+		private partial float Get_velocityRate();
+		private partial void Set_velocityRate(float value);
+
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;

@@ -12,7 +12,7 @@ namespace Fox.GameService
 
         private void DrawGizmos(bool isSelected)
         {
-            Gizmos.matrix = (this as MonoBehaviour).transform.localToWorldMatrix;
+            Gizmos.matrix = this.transform.localToWorldMatrix;
             Gizmos.color = isSelected ? SelectedColor : DefaultColor;
 
             for (int nodeIndex = 0; nodeIndex < nodes.Count; nodeIndex++)

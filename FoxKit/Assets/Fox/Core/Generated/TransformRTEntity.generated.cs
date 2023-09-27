@@ -18,18 +18,18 @@ namespace Fox.Core
 		// Properties
 		[field: UnityEngine.SerializeField]
 		protected UnityEngine.Quaternion transform_rotation_quat { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		protected UnityEngine.Vector3 transform_translation { get; set; }
-		
+
 		public UnityEngine.Quaternion rotQuat { get => Get_rotQuat(); set { Set_rotQuat(value); } }
-		protected partial UnityEngine.Quaternion Get_rotQuat();
-		protected partial void Set_rotQuat(UnityEngine.Quaternion value);
-		
+		private partial UnityEngine.Quaternion Get_rotQuat();
+		private partial void Set_rotQuat(UnityEngine.Quaternion value);
+
 		public UnityEngine.Vector3 translation { get => Get_translation(); set { Set_translation(value); } }
-		protected partial UnityEngine.Vector3 Get_translation();
-		protected partial void Set_translation(UnityEngine.Vector3 value);
-		
+		private partial UnityEngine.Vector3 Get_translation();
+		private partial void Set_translation(UnityEngine.Vector3 value);
+
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;

@@ -18,97 +18,97 @@ namespace Tpp.Effect
 		// Properties
 		[field: UnityEngine.SerializeField]
 		public UnityEngine.Color color { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		public UnityEngine.Vector3 reachPoint { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		protected Fox.Kernel.DynamicArray<uint> BynaryData { get; set; } = new Fox.Kernel.DynamicArray<uint>();
-		
+
 		[field: UnityEngine.SerializeField]
 		public Fox.Core.EntityLink lightArea { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		public Fox.Core.EntityLink irradiationPoint { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		public float outerRange { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		public float innerRange { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		public float temperature { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		public float colorDeflection { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		public float lumen { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		public float lightSize { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		public float dimmer { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		public float shadowBias { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		public float LodFarSize { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		public float LodNearSize { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		public float LodShadowDrawRate { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		protected uint lightFlags { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		public int lodRadiusLevel { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		public byte lodFadeType { get; set; }
-		
+
 		public bool enable { get => Get_enable(); set { Set_enable(value); } }
-		protected partial bool Get_enable();
-		protected partial void Set_enable(bool value);
-		
+		private partial bool Get_enable();
+		private partial void Set_enable(bool value);
+
 		public TppPointLight_PackingGeneration packingGeneration { get => Get_packingGeneration(); set { Set_packingGeneration(value); } }
-		protected partial TppPointLight_PackingGeneration Get_packingGeneration();
-		protected partial void Set_packingGeneration(TppPointLight_PackingGeneration value);
-		
+		private partial TppPointLight_PackingGeneration Get_packingGeneration();
+		private partial void Set_packingGeneration(TppPointLight_PackingGeneration value);
+
 		public bool castShadow { get => Get_castShadow(); set { Set_castShadow(value); } }
-		protected partial bool Get_castShadow();
-		protected partial void Set_castShadow(bool value);
-		
+		private partial bool Get_castShadow();
+		private partial void Set_castShadow(bool value);
+
 		public bool isBounced { get => Get_isBounced(); set { Set_isBounced(value); } }
-		protected partial bool Get_isBounced();
-		protected partial void Set_isBounced(bool value);
-		
+		private partial bool Get_isBounced();
+		private partial void Set_isBounced(bool value);
+
 		public bool showObject { get => Get_showObject(); set { Set_showObject(value); } }
-		protected partial bool Get_showObject();
-		protected partial void Set_showObject(bool value);
-		
+		private partial bool Get_showObject();
+		private partial void Set_showObject(bool value);
+
 		public bool showRange { get => Get_showRange(); set { Set_showRange(value); } }
-		protected partial bool Get_showRange();
-		protected partial void Set_showRange(bool value);
-		
+		private partial bool Get_showRange();
+		private partial void Set_showRange(bool value);
+
 		public bool isDebugLightVolumeBounding { get => Get_isDebugLightVolumeBounding(); set { Set_isDebugLightVolumeBounding(value); } }
-		protected partial bool Get_isDebugLightVolumeBounding();
-		protected partial void Set_isDebugLightVolumeBounding(bool value);
-		
+		private partial bool Get_isDebugLightVolumeBounding();
+		private partial void Set_isDebugLightVolumeBounding(bool value);
+
 		public bool hasSpecular { get => Get_hasSpecular(); set { Set_hasSpecular(value); } }
-		protected partial bool Get_hasSpecular();
-		protected partial void Set_hasSpecular(bool value);
-		
+		private partial bool Get_hasSpecular();
+		private partial void Set_hasSpecular(bool value);
+
 		public Fox.Kernel.Path importFilePath { get => Get_importFilePath(); set { Set_importFilePath(value); } }
-		protected partial Fox.Kernel.Path Get_importFilePath();
-		protected partial void Set_importFilePath(Fox.Kernel.Path value);
-		
+		private partial Fox.Kernel.Path Get_importFilePath();
+		private partial void Set_importFilePath(Fox.Kernel.Path value);
+
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;

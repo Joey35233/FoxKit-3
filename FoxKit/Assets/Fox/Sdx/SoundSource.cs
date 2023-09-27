@@ -9,15 +9,15 @@ namespace Fox.Sdx
 
         public void OnDrawGizmos()
         {
-            Gizmo.Transform = (this as MonoBehaviour).transform;
+            Gizmo.Transform = this.transform;
             Gizmo.Radius = this.playRange;
-            Gizmo.Label = (this as MonoBehaviour).name;
+            Gizmo.Label = this.name;
             Gizmo.OnDrawGizmos();
         }
 
         public void OnDrawGizmosSelected()
         {
-            Gizmo.Transform = (this as MonoBehaviour).transform;
+            Gizmo.Transform = this.transform;
             Gizmo.Radius = this.playRange;
             Gizmo.Label = null;
             Gizmo.OnDrawGizmosSelected();

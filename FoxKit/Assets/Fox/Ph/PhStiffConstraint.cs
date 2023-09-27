@@ -4,10 +4,10 @@
     {
         private PhStiffConstraintParam stiffConstraint => param.Get() as PhStiffConstraintParam;
 
-        protected partial UnityEngine.Vector3 Get_endurancePower() => stiffConstraint.GetEndurancePower();
-        protected partial void Set_endurancePower(UnityEngine.Vector3 value) => stiffConstraint.SetEndurancePower(value);
+        private partial UnityEngine.Vector3 Get_endurancePower() => stiffConstraint.GetEndurancePower();
+        private partial void Set_endurancePower(UnityEngine.Vector3 value) => stiffConstraint.SetEndurancePower(value);
 
-        protected partial UnityEngine.Vector3 Get_enduranceTorque() => stiffConstraint.GetEnduranceTorque();
-        protected partial void Set_enduranceTorque(UnityEngine.Vector3 value) => stiffConstraint.SetEnduranceTorque(value);
+        private partial UnityEngine.Vector3 Get_enduranceTorque() => stiffConstraint.GetEnduranceTorque();
+        private partial void Set_enduranceTorque(UnityEngine.Vector3 value) => stiffConstraint.SetEnduranceTorque(value);
     }
 }

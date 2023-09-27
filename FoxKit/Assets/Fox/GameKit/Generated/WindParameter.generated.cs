@@ -17,31 +17,31 @@ namespace Fox.GameKit
 	{
 		// Properties
 		public float speed { get => Get_speed(); set { Set_speed(value); } }
-		protected partial float Get_speed();
-		protected partial void Set_speed(float value);
-		
+		private partial float Get_speed();
+		private partial void Set_speed(float value);
+
 		public UnityEngine.Quaternion rotation { get => Get_rotation(); set { Set_rotation(value); } }
-		protected partial UnityEngine.Quaternion Get_rotation();
-		protected partial void Set_rotation(UnityEngine.Quaternion value);
-		
+		private partial UnityEngine.Quaternion Get_rotation();
+		private partial void Set_rotation(UnityEngine.Quaternion value);
+
 		[field: UnityEngine.SerializeField]
 		protected UnityEngine.Vector3 velocity { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		public float speedTurbulentRate { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		public float speedTurbulentCycle { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		public float rotTurbulentRate { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		public float rotTurbulentCycle { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		protected float influenceOfGlobal { get; set; }
-		
+
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;

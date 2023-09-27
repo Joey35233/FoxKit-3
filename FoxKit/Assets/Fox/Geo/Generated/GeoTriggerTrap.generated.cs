@@ -17,18 +17,18 @@ namespace Fox.Geo
 	{
 		// Properties
 		public bool enable { get => Get_enable(); set { Set_enable(value); } }
-		protected partial bool Get_enable();
-		protected partial void Set_enable(bool value);
-		
+		private partial bool Get_enable();
+		private partial void Set_enable(bool value);
+
 		[field: UnityEngine.SerializeField]
 		protected uint stateFlag { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		public Fox.Kernel.String uniqueId { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		public Fox.Kernel.DynamicArray<Fox.Kernel.String> groupTags { get; set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
-		
+
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;

@@ -18,91 +18,91 @@ namespace Fox.Grx
 		// Properties
 		[field: UnityEngine.SerializeField]
 		public uint motionBlurConvolutionLevel { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		public float exposureCompensation { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		public float minExposure { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		public float maxExposure { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		public float keyValue { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		public float bloomSize { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		public float bloomBrightnessExtraction { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		public float bloomWeight { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		public float tonemapSpeed { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		public float maxLuminanceValue { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		public byte captureBounceCount { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		public uint minDecalArea { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		protected uint flags { get; set; }
-		
+
 		public bool isTonemap { get => Get_isTonemap(); set { Set_isTonemap(value); } }
-		protected partial bool Get_isTonemap();
-		protected partial void Set_isTonemap(bool value);
-		
+		private partial bool Get_isTonemap();
+		private partial void Set_isTonemap(bool value);
+
 		public bool isBloom { get => Get_isBloom(); set { Set_isBloom(value); } }
-		protected partial bool Get_isBloom();
-		protected partial void Set_isBloom(bool value);
-		
+		private partial bool Get_isBloom();
+		private partial void Set_isBloom(bool value);
+
 		public bool isMotionBlur { get => Get_isMotionBlur(); set { Set_isMotionBlur(value); } }
-		protected partial bool Get_isMotionBlur();
-		protected partial void Set_isMotionBlur(bool value);
-		
+		private partial bool Get_isMotionBlur();
+		private partial void Set_isMotionBlur(bool value);
+
 		public bool isDepthOfField { get => Get_isDepthOfField(); set { Set_isDepthOfField(value); } }
-		protected partial bool Get_isDepthOfField();
-		protected partial void Set_isDepthOfField(bool value);
-		
+		private partial bool Get_isDepthOfField();
+		private partial void Set_isDepthOfField(bool value);
+
 		public bool isDOFVisualizeFocus { get => Get_isDOFVisualizeFocus(); set { Set_isDOFVisualizeFocus(value); } }
-		protected partial bool Get_isDOFVisualizeFocus();
-		protected partial void Set_isDOFVisualizeFocus(bool value);
-		
+		private partial bool Get_isDOFVisualizeFocus();
+		private partial void Set_isDOFVisualizeFocus(bool value);
+
 		public bool isLocalReflections { get => Get_isLocalReflections(); set { Set_isLocalReflections(value); } }
-		protected partial bool Get_isLocalReflections();
-		protected partial void Set_isLocalReflections(bool value);
-		
+		private partial bool Get_isLocalReflections();
+		private partial void Set_isLocalReflections(bool value);
+
 		public bool isTemporalAA { get => Get_isTemporalAA(); set { Set_isTemporalAA(value); } }
-		protected partial bool Get_isTemporalAA();
-		protected partial void Set_isTemporalAA(bool value);
-		
+		private partial bool Get_isTemporalAA();
+		private partial void Set_isTemporalAA(bool value);
+
 		public bool isFixedShutterRatio { get => Get_isFixedShutterRatio(); set { Set_isFixedShutterRatio(value); } }
-		protected partial bool Get_isFixedShutterRatio();
-		protected partial void Set_isFixedShutterRatio(bool value);
-		
+		private partial bool Get_isFixedShutterRatio();
+		private partial void Set_isFixedShutterRatio(bool value);
+
 		public bool isPatchVelocity { get => Get_isPatchVelocity(); set { Set_isPatchVelocity(value); } }
-		protected partial bool Get_isPatchVelocity();
-		protected partial void Set_isPatchVelocity(bool value);
-		
+		private partial bool Get_isPatchVelocity();
+		private partial void Set_isPatchVelocity(bool value);
+
 		public bool isLightAdaptationFromLACC { get => Get_isLightAdaptationFromLACC(); set { Set_isLightAdaptationFromLACC(value); } }
-		protected partial bool Get_isLightAdaptationFromLACC();
-		protected partial void Set_isLightAdaptationFromLACC(bool value);
-		
+		private partial bool Get_isLightAdaptationFromLACC();
+		private partial void Set_isLightAdaptationFromLACC(bool value);
+
 		public bool isShowDecals { get => Get_isShowDecals(); set { Set_isShowDecals(value); } }
-		protected partial bool Get_isShowDecals();
-		protected partial void Set_isShowDecals(bool value);
-		
+		private partial bool Get_isShowDecals();
+		private partial void Set_isShowDecals(bool value);
+
 		public bool isShrinkSHBuffer { get => Get_isShrinkSHBuffer(); set { Set_isShrinkSHBuffer(value); } }
-		protected partial bool Get_isShrinkSHBuffer();
-		protected partial void Set_isShrinkSHBuffer(bool value);
-		
+		private partial bool Get_isShrinkSHBuffer();
+		private partial void Set_isShrinkSHBuffer(bool value);
+
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;
