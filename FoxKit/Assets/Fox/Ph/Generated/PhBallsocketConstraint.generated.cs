@@ -19,43 +19,43 @@ namespace Fox.Ph
 		public bool limitedFlag { get => Get_limitedFlag(); set { Set_limitedFlag(value); } }
 		private partial bool Get_limitedFlag();
 		private partial void Set_limitedFlag(bool value);
-
+		
 		public UnityEngine.Quaternion refA { get => Get_refA(); set { Set_refA(value); } }
 		private partial UnityEngine.Quaternion Get_refA();
 		private partial void Set_refA(UnityEngine.Quaternion value);
-
+		
 		public UnityEngine.Quaternion refB { get => Get_refB(); set { Set_refB(value); } }
 		private partial UnityEngine.Quaternion Get_refB();
 		private partial void Set_refB(UnityEngine.Quaternion value);
-
+		
 		public float limit { get => Get_limit(); set { Set_limit(value); } }
 		private partial float Get_limit();
 		private partial void Set_limit(float value);
-
+		
 		public bool springFlag { get => Get_springFlag(); set { Set_springFlag(value); } }
 		private partial bool Get_springFlag();
 		private partial void Set_springFlag(bool value);
-
+		
 		public bool springRefCustomFlag { get => Get_springRefCustomFlag(); set { Set_springRefCustomFlag(value); } }
 		private partial bool Get_springRefCustomFlag();
 		private partial void Set_springRefCustomFlag(bool value);
-
+		
 		public UnityEngine.Quaternion springRef { get => Get_springRef(); set { Set_springRef(value); } }
 		private partial UnityEngine.Quaternion Get_springRef();
 		private partial void Set_springRef(UnityEngine.Quaternion value);
-
+		
 		public float springConstant { get => Get_springConstant(); set { Set_springConstant(value); } }
 		private partial float Get_springConstant();
 		private partial void Set_springConstant(float value);
-
+		
 		public float flexibility { get => Get_flexibility(); set { Set_flexibility(value); } }
 		private partial float Get_flexibility();
 		private partial void Set_flexibility(float value);
-
+		
 		public bool stopTwist { get => Get_stopTwist(); set { Set_stopTwist(value); } }
 		private partial bool Get_stopTwist();
 		private partial void Set_stopTwist(bool value);
-
+		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;

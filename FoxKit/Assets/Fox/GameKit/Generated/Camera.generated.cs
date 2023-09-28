@@ -18,80 +18,80 @@ namespace Fox.GameKit
 		// Properties
 		[field: UnityEngine.SerializeField]
 		protected Fox.Kernel.String priorityName { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		protected bool enable { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		protected UnityEngine.Quaternion transform_rotation_quat { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		protected UnityEngine.Vector3 transform_translation { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		protected float focusDistance { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public float focalLength { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		protected bool useEffectiveFocalLength { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		protected float effectiveFocalLengthRatio { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public float aperture { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		protected UnityEngine.Quaternion listenerVirtualTrans_rotation_quat { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		protected UnityEngine.Vector3 listenerVirtualTrans_translation { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		protected bool listenerVirtualFlag { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public float nearClipDistance { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public float farClipDistance { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		protected float shutterSpeed { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		protected bool useDefaultExposureValue { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		protected float minExposure { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		protected float maxExposure { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		protected float exposureCompensation { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		protected bool useDefaultBloom { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		protected float bloomSize { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		protected float bloomWeight { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		protected float bloomBrightnessExtraction { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		protected bool cancelCameraBlur { get; set; }
-
+		
 		public float keyValue { get => Get_keyValue(); set { Set_keyValue(value); } }
 		private partial float Get_keyValue();
 		private partial void Set_keyValue(float value);
-
+		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;

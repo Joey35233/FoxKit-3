@@ -22,7 +22,7 @@ namespace Fox.Geox
             triggerTrap.SetTransform(triggerTrapTransformEntity);
             //triggerTrap.InitializeGameObject(triggerTrapGameObject);
 
-            triggerTrap.name = new Kernel.String(header.Name.ToString());
+            triggerTrap.name = header.Name.ToString();
             triggerTrap.enable = true;
             triggerTrap.groupTags = TagUtils.GetEnumTags<GeoTriggerTrap.Tags>((ulong)header.GetTags<GeoTriggerTrap.Tags>());
 

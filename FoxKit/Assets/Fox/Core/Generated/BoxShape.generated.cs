@@ -19,7 +19,7 @@ namespace Fox.Core
 		public UnityEngine.Vector3 size { get => Get_size(); set { Set_size(value); } }
 		private partial UnityEngine.Vector3 Get_size();
 		private partial void Set_size(UnityEngine.Vector3 value);
-
+		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;

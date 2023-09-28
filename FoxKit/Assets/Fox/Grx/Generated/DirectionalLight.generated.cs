@@ -18,82 +18,82 @@ namespace Fox.Grx
 		// Properties
 		[field: UnityEngine.SerializeField]
 		public UnityEngine.Color color { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public UnityEngine.Vector3 direction { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public float shadowRange { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public float shadowRangeExtra { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public float hiResShadowRange { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public float shadowProjectionRange { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public float shadowFadeRange { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public float selfShadowBias { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public float temperature { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public float colorDeflection { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public float lux { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public float lightSize { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public float shadowMaskSpecular { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public float shadowOffsetStartAngle { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public float shadowOffsetEndAngle { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public float diatanceFade_StartDistance { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public float distanceFade_FadeoutRange { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		protected uint lightFlags { get; set; }
-
+		
 		public bool enable { get => Get_enable(); set { Set_enable(value); } }
 		private partial bool Get_enable();
 		private partial void Set_enable(bool value);
-
+		
 		public bool isCascadeBlend { get => Get_isCascadeBlend(); set { Set_isCascadeBlend(value); } }
 		private partial bool Get_isCascadeBlend();
 		private partial void Set_isCascadeBlend(bool value);
-
+		
 		public bool castShadow { get => Get_castShadow(); set { Set_castShadow(value); } }
 		private partial bool Get_castShadow();
 		private partial void Set_castShadow(bool value);
-
+		
 		public bool isBounced { get => Get_isBounced(); set { Set_isBounced(value); } }
 		private partial bool Get_isBounced();
 		private partial void Set_isBounced(bool value);
-
+		
 		public bool showObject { get => Get_showObject(); set { Set_showObject(value); } }
 		private partial bool Get_showObject();
 		private partial void Set_showObject(bool value);
-
+		
 		public bool enableDistanceFade { get => Get_enableDistanceFade(); set { Set_enableDistanceFade(value); } }
 		private partial bool Get_enableDistanceFade();
 		private partial void Set_enableDistanceFade(bool value);
-
+		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;

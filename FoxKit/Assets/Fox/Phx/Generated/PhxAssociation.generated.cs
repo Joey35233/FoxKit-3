@@ -18,17 +18,17 @@ namespace Fox.Phx
 		// Properties
 		[field: UnityEngine.SerializeField]
 		public Fox.Core.EntityLink physicsData { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public Fox.Kernel.StringMap<Fox.Core.EntityPtr<Fox.Phx.PhxAssociationUnitElement>> connections { get; set; } = new Fox.Kernel.StringMap<Fox.Core.EntityPtr<Fox.Phx.PhxAssociationUnitElement>>();
-
+		
 		[field: UnityEngine.SerializeField]
 		protected Fox.Core.EntityPtr<Fox.Phx.PhAssociationParam> param { get; set; } = new Fox.Core.EntityPtr<Fox.Phx.PhAssociationParam>();
-
+		
 		public uint connectType { get => Get_connectType(); set { Set_connectType(value); } }
 		private partial uint Get_connectType();
 		private partial void Set_connectType(uint value);
-
+		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;

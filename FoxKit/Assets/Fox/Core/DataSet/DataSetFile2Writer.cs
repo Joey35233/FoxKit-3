@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -146,7 +147,7 @@ namespace Fox.Core
                 entities.Insert(0, dataSet);
             }
 
-            dataSet.name = Kernel.String.Empty;
+            dataSet.name = System.String.Empty;
             dataSet.ClearData();
 
             int dataSetIndex = -1;
@@ -166,10 +167,6 @@ namespace Fox.Core
                         Debug.LogError($"Two or more Datas share a name ('{entity.name}'). Exported Datas require unique names.");
                         return CreateDataSetResult.Failure;
                     }
-
-                    var data = entity as Data;
-
-                    data.SetDataSet(dataSet);
                 }
 
                 _ = usedNames.Add(entity.name);

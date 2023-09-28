@@ -137,13 +137,13 @@ namespace Fox.Grx
 
             if (ReadLocator(reader) is { } lightArea)
             {
-                lightArea.name = new String(pointLight.name + "_LA");
+                lightArea.name = pointLight.name + "_LA";
                 pointLight.lightArea = new EntityLink
                 (
                     lightArea,
                     new Kernel.Path(""),
                     new Kernel.Path(""),
-                    lightArea.name
+                    new String(lightArea.name)
                 );
             }
 
@@ -180,13 +180,13 @@ namespace Fox.Grx
 
             if (ReadLocator(reader) is { } irradiationPoint)
             {
-                irradiationPoint.name = new String(pointLight.name + "_IP");
+                irradiationPoint.name = pointLight.name + "_IP";
                 pointLight.lightArea = new EntityLink
                 (
                     irradiationPoint,
                     new Kernel.Path(""),
                     new Kernel.Path(""),
-                    irradiationPoint.name
+                    new String(irradiationPoint.name)
                 );
             }
         }
@@ -204,13 +204,13 @@ namespace Fox.Grx
 
             if (ReadLocator(reader) is { } lightArea)
             {
-                lightArea.name = new String(spotLight.name + "_LA");
+                lightArea.name = spotLight.name + "_LA";
                 spotLight.lightArea = new EntityLink
                 (
                     lightArea,
                     new Kernel.Path(""),
                     new Kernel.Path(""),
-                    lightArea.name
+                    new String(lightArea.name)
                 );
             }
 
@@ -260,13 +260,13 @@ namespace Fox.Grx
 
             if (ReadLocator(reader) is { } irradiationPoint)
             {
-                irradiationPoint.name = new String(spotLight.name + "_IP");
+                irradiationPoint.name = spotLight.name + "_IP";
                 spotLight.irradiationPoint = new EntityLink
                 (
                     irradiationPoint,
                     new Kernel.Path(""),
                     new Kernel.Path(""),
-                    irradiationPoint.name
+                    new String(irradiationPoint.name)
                 );
             }
         }

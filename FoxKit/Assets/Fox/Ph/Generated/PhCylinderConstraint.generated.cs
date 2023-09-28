@@ -19,19 +19,19 @@ namespace Fox.Ph
 		public UnityEngine.Quaternion axis { get => Get_axis(); set { Set_axis(value); } }
 		private partial UnityEngine.Quaternion Get_axis();
 		private partial void Set_axis(UnityEngine.Quaternion value);
-
+		
 		public float radius { get => Get_radius(); set { Set_radius(value); } }
 		private partial float Get_radius();
 		private partial void Set_radius(float value);
-
+		
 		public float heightMin { get => Get_heightMin(); set { Set_heightMin(value); } }
 		private partial float Get_heightMin();
 		private partial void Set_heightMin(float value);
-
+		
 		public float heightMax { get => Get_heightMax(); set { Set_heightMax(value); } }
 		private partial float Get_heightMax();
 		private partial void Set_heightMax(float value);
-
+		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;

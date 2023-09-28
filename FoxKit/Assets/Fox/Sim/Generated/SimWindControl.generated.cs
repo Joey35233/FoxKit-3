@@ -18,11 +18,11 @@ namespace Fox.Sim
 		// Properties
 		[field: UnityEngine.SerializeField]
 		protected Fox.Core.EntityPtr<Fox.Sim.SimWindControlParam> controlParam { get; set; } = new Fox.Core.EntityPtr<Fox.Sim.SimWindControlParam>();
-
+		
 		public float windCoefficient { get => Get_windCoefficient(); set { Set_windCoefficient(value); } }
 		private partial float Get_windCoefficient();
 		private partial void Set_windCoefficient(float value);
-
+		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;

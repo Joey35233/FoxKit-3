@@ -19,19 +19,19 @@ namespace Fox.Ph
 		public UnityEngine.Quaternion axis { get => Get_axis(); set { Set_axis(value); } }
 		private partial UnityEngine.Quaternion Get_axis();
 		private partial void Set_axis(UnityEngine.Quaternion value);
-
+		
 		public bool limitedFlag { get => Get_limitedFlag(); set { Set_limitedFlag(value); } }
 		private partial bool Get_limitedFlag();
 		private partial void Set_limitedFlag(bool value);
-
+		
 		public float limitHi { get => Get_limitHi(); set { Set_limitHi(value); } }
 		private partial float Get_limitHi();
 		private partial void Set_limitHi(float value);
-
+		
 		public float limitLo { get => Get_limitLo(); set { Set_limitLo(value); } }
 		private partial float Get_limitLo();
 		private partial void Set_limitLo(float value);
-
+		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;

@@ -18,67 +18,67 @@ namespace Fox.GameKit
 		// Properties
 		[field: UnityEngine.SerializeField]
 		public Fox.Core.EntityLink material { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public Decal_ProjectionMode projectionMode { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public float nearClipScale { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public Decal_ProjectionTarget projectionTarget { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public float repeatU { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public float repeatV { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public float transparency { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public Decal_PolygonDataSource polygonDataSource { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public int renderingPriority { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public Fox.Kernel.DynamicArray<Fox.Core.EntityLink> targets { get; set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityLink>();
-
+		
 		[field: UnityEngine.SerializeField]
 		public Decal_DrawRejectionLevel drawRejectionLevel { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public float drawRejectionDegree { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		protected uint decalFlags { get; set; }
-
+		
 		public bool isDisableAlbedo { get => Get_isDisableAlbedo(); set { Set_isDisableAlbedo(value); } }
 		private partial bool Get_isDisableAlbedo();
 		private partial void Set_isDisableAlbedo(bool value);
-
+		
 		public bool isPreserveAspect { get => Get_isPreserveAspect(); set { Set_isPreserveAspect(value); } }
 		private partial bool Get_isPreserveAspect();
 		private partial void Set_isPreserveAspect(bool value);
-
+		
 		public bool isWrap { get => Get_isWrap(); set { Set_isWrap(value); } }
 		private partial bool Get_isWrap();
 		private partial void Set_isWrap(bool value);
-
+		
 		public bool showObject { get => Get_showObject(); set { Set_showObject(value); } }
 		private partial bool Get_showObject();
 		private partial void Set_showObject(bool value);
-
+		
 		public bool isVisibleGeom { get => Get_isVisibleGeom(); set { Set_isVisibleGeom(value); } }
 		private partial bool Get_isVisibleGeom();
 		private partial void Set_isVisibleGeom(bool value);
-
+		
 		public bool isSSDecal { get => Get_isSSDecal(); set { Set_isSSDecal(value); } }
 		private partial bool Get_isSSDecal();
 		private partial void Set_isSSDecal(bool value);
-
+		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;

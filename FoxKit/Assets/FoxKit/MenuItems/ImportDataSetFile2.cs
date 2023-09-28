@@ -39,7 +39,7 @@ namespace FoxKit.MenuItems
                 // Name the GameObject
                 if (entity is Data)
                 {
-                    gameObject.name = (entity as Data).name.CString;
+                    gameObject.name = (entity as Data).name;
                 }
                 else
                 {
@@ -62,7 +62,7 @@ namespace FoxKit.MenuItems
                 }
                 else if (entity is DataElement)
                 {
-                    Entity parent = (entity as DataElement).owner;
+                    Entity parent = entity.GetComponentInParent<Entity>();
 
                     // I love orphaned DataElements
                     if (parent != null)
@@ -83,7 +83,7 @@ namespace FoxKit.MenuItems
             {
                 var transformData = entity as TransformData;
 
-                Entity parent = transformData.parent;
+                Entity parent = transformData.GetComponentInParent<Entity>();
                 if (parent == null)
                     continue;
 

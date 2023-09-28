@@ -18,27 +18,27 @@ namespace Fox.Sim
 		// Properties
 		[field: UnityEngine.SerializeField]
 		protected Fox.Core.EntityPtr<Fox.Sim.SimClothControlUnitParam> controlUnitParam { get; set; } = new Fox.Core.EntityPtr<Fox.Sim.SimClothControlUnitParam>();
-
+		
 		public float mass { get => Get_mass(); set { Set_mass(value); } }
 		private partial float Get_mass();
 		private partial void Set_mass(float value);
-
+		
 		public float thickness { get => Get_thickness(); set { Set_thickness(value); } }
 		private partial float Get_thickness();
 		private partial void Set_thickness(float value);
-
+		
 		public float limit { get => Get_limit(); set { Set_limit(value); } }
 		private partial float Get_limit();
 		private partial void Set_limit(float value);
-
+		
 		public float expansionRatio { get => Get_expansionRatio(); set { Set_expansionRatio(value); } }
 		private partial float Get_expansionRatio();
 		private partial void Set_expansionRatio(float value);
-
+		
 		public float contractionRatio { get => Get_contractionRatio(); set { Set_contractionRatio(value); } }
 		private partial float Get_contractionRatio();
 		private partial void Set_contractionRatio(float value);
-
+		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;

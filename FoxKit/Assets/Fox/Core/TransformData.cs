@@ -106,6 +106,7 @@ namespace Fox.Core
 
             // Get child GameObjects
             var exportChildren = new DynamicArray<Entity>();
+
             foreach (UnityEngine.Transform child in transform)
             {
                 TransformData childTransformData = child.GetComponent<TransformData>();
@@ -117,13 +118,6 @@ namespace Fox.Core
             }
 
             context.OverrideProperty(nameof(children), exportChildren);
-        }
-
-        public virtual void Awake()
-        {
-            visibility = true;
-            inheritTransform = true;
-            selection = true;
         }
     }
 }

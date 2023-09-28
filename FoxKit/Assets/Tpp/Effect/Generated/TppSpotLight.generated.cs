@@ -18,128 +18,128 @@ namespace Tpp.Effect
 		// Properties
 		[field: UnityEngine.SerializeField]
 		public UnityEngine.Color color { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public UnityEngine.Vector3 reachPoint { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		protected Fox.Kernel.DynamicArray<uint> BynaryData { get; set; } = new Fox.Kernel.DynamicArray<uint>();
-
+		
 		[field: UnityEngine.SerializeField]
 		public Fox.Core.EntityLink lightArea { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public Fox.Core.EntityLink irradiationPoint { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public Fox.Core.EntityLink lookAtPoint { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public float outerRange { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public float innerRange { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public float temperature { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public float colorDeflection { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public float lumen { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public float lightSize { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public float umbraAngle { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public float penumbraAngle { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public float attenuationExponent { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public float shadowUmbraAngle { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public float shadowPenumbraAngle { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public float shadowAttenuationExponent { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public float dimmer { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public float shadowBias { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public float viewBias { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public float powerScale { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public float LodFarSize { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public float LodNearSize { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public float LodShadowDrawRate { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		protected uint lightFlags { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public int lodRadiusLevel { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public byte lodFadeType { get; set; }
-
+		
 		public bool enable { get => Get_enable(); set { Set_enable(value); } }
 		private partial bool Get_enable();
 		private partial void Set_enable(bool value);
-
+		
 		public TppSpotLight_PackingGeneration packingGeneration { get => Get_packingGeneration(); set { Set_packingGeneration(value); } }
 		private partial TppSpotLight_PackingGeneration Get_packingGeneration();
 		private partial void Set_packingGeneration(TppSpotLight_PackingGeneration value);
-
+		
 		public bool castShadow { get => Get_castShadow(); set { Set_castShadow(value); } }
 		private partial bool Get_castShadow();
 		private partial void Set_castShadow(bool value);
-
+		
 		public bool isBounced { get => Get_isBounced(); set { Set_isBounced(value); } }
 		private partial bool Get_isBounced();
 		private partial void Set_isBounced(bool value);
-
+		
 		public bool showObject { get => Get_showObject(); set { Set_showObject(value); } }
 		private partial bool Get_showObject();
 		private partial void Set_showObject(bool value);
-
+		
 		public bool showRange { get => Get_showRange(); set { Set_showRange(value); } }
 		private partial bool Get_showRange();
 		private partial void Set_showRange(bool value);
-
+		
 		public bool isDebugLightVolumeBound { get => Get_isDebugLightVolumeBound(); set { Set_isDebugLightVolumeBound(value); } }
 		private partial bool Get_isDebugLightVolumeBound();
 		private partial void Set_isDebugLightVolumeBound(bool value);
-
+		
 		public bool useAutoDimmer { get => Get_useAutoDimmer(); set { Set_useAutoDimmer(value); } }
 		private partial bool Get_useAutoDimmer();
 		private partial void Set_useAutoDimmer(bool value);
-
+		
 		public bool hasSpecular { get => Get_hasSpecular(); set { Set_hasSpecular(value); } }
 		private partial bool Get_hasSpecular();
 		private partial void Set_hasSpecular(bool value);
-
+		
 		public Fox.Kernel.Path importFilePath { get => Get_importFilePath(); set { Set_importFilePath(value); } }
 		private partial Fox.Kernel.Path Get_importFilePath();
 		private partial void Set_importFilePath(Fox.Kernel.Path value);
-
+		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;

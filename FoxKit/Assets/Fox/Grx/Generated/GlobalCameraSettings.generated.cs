@@ -18,27 +18,27 @@ namespace Fox.Grx
 		// Properties
 		[field: UnityEngine.SerializeField]
 		public float focalDistance { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public float focalLength { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public float aperture { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public float shutterSpeed { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		protected uint flags { get; set; }
-
+		
 		public bool isIgnoreDofCameraSetting { get => Get_isIgnoreDofCameraSetting(); set { Set_isIgnoreDofCameraSetting(value); } }
 		private partial bool Get_isIgnoreDofCameraSetting();
 		private partial void Set_isIgnoreDofCameraSetting(bool value);
-
+		
 		public bool isIgnoreMotionBlurCameraSetting { get => Get_isIgnoreMotionBlurCameraSetting(); set { Set_isIgnoreMotionBlurCameraSetting(value); } }
 		private partial bool Get_isIgnoreMotionBlurCameraSetting();
 		private partial void Set_isIgnoreMotionBlurCameraSetting(bool value);
-
+		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;

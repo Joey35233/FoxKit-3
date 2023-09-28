@@ -72,7 +72,7 @@ namespace Fox.Core
             // TODO Sorry this is ugly but there are two "name" properties due to inheriting from MonoBehaviour
             if (property.Name == "name")
             {
-                if (!(this is Data))
+                if (this is not Data)
                 {
                     return (T)(object)new String($"NO NAME FOXKIT ERROR {UnityEngine.Random.Range(Int32.MinValue, Int32.MaxValue)}");
                 }

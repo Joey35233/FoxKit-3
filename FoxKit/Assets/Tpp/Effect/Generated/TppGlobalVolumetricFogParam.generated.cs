@@ -19,55 +19,55 @@ namespace Tpp.Effect
 		public bool enable { get => Get_enable(); set { Set_enable(value); } }
 		private partial bool Get_enable();
 		private partial void Set_enable(bool value);
-
+		
 		[field: UnityEngine.SerializeField]
 		public float selfLuminance { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public UnityEngine.Color selfColor { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public UnityEngine.Color skyAlbedo { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public UnityEngine.Color rayleighScattering { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public UnityEngine.Color mieScattering { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public float mieAnisotropy { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public float skyLightGain { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public float dirLightGain { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public float lightningGain { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public float density { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public float power { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public float near { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public float falloff { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public Fox.Kernel.StaticArray<float> exposureOffsetValues { get; set; } = new Fox.Kernel.StaticArray<float>(3);
-
+		
 		[field: UnityEngine.SerializeField]
 		public Fox.Kernel.StaticArray<float> exposureOffsetTargets { get; set; } = new Fox.Kernel.StaticArray<float>(3);
-
+		
 		[field: UnityEngine.SerializeField]
 		protected uint flags { get; set; }
-
+		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;
@@ -171,11 +171,11 @@ namespace Tpp.Effect
 			switch(propertyName.CString)
 			{
 				case "exposureOffsetValues":
-
+					
 					this.exposureOffsetValues[index] = value.GetValueAsFloat();
 					return;
 				case "exposureOffsetTargets":
-
+					
 					this.exposureOffsetTargets[index] = value.GetValueAsFloat();
 					return;
 				default:

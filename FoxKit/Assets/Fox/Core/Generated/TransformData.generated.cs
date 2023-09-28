@@ -18,40 +18,40 @@ namespace Fox.Core
 		// Properties
 		[field: UnityEngine.SerializeField]
 		private Fox.Core.Entity parent { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		private Fox.Core.EntityPtr<Fox.Core.TransformEntity> transform { get; set; } = new Fox.Core.EntityPtr<Fox.Core.TransformEntity>();
-
+		
 		[field: UnityEngine.SerializeField]
 		public Fox.Core.EntityPtr<Fox.Core.ShearTransformEntity> shearTransform { get; set; } = new Fox.Core.EntityPtr<Fox.Core.ShearTransformEntity>();
-
+		
 		[field: UnityEngine.SerializeField]
 		public Fox.Core.EntityPtr<Fox.Core.PivotTransformEntity> pivotTransform { get; set; } = new Fox.Core.EntityPtr<Fox.Core.PivotTransformEntity>();
-
+		
 		[field: UnityEngine.SerializeField]
 		private Fox.Kernel.DynamicArray<Fox.Core.Entity> children { get; set; } = new Fox.Kernel.DynamicArray<Fox.Core.Entity>();
-
+		
 		[field: UnityEngine.SerializeField]
 		protected TransformData_Flags flags { get; set; }
-
+		
 		public bool inheritTransform { get => Get_inheritTransform(); set { Set_inheritTransform(value); } }
 		private partial bool Get_inheritTransform();
 		private partial void Set_inheritTransform(bool value);
-
+		
 		public bool visibility { get => Get_visibility(); set { Set_visibility(value); } }
 		private partial bool Get_visibility();
 		private partial void Set_visibility(bool value);
-
+		
 		public bool selection { get => Get_selection(); set { Set_selection(value); } }
 		private partial bool Get_selection();
 		private partial void Set_selection(bool value);
-
+		
 		public UnityEngine.Matrix4x4 worldMatrix { get => Get_worldMatrix(); }
 		private partial UnityEngine.Matrix4x4 Get_worldMatrix();
-
+		
 		public UnityEngine.Matrix4x4 worldTransform { get => Get_worldTransform(); }
 		private partial UnityEngine.Matrix4x4 Get_worldTransform();
-
+		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;
