@@ -20,7 +20,7 @@ namespace Fox.Sdx
 		public Fox.Kernel.String eventName { get; set; }
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<Fox.Core.EntityLink> shapes { get; set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityLink>();
+		public Fox.Kernel.DynamicArray<Fox.Core.EntityLink> shapes { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityLink>();
 		
 		[field: UnityEngine.SerializeField]
 		public float lodRange { get; set; }

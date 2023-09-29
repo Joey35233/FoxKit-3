@@ -35,7 +35,7 @@ namespace Fox.Geox
 		public Fox.Kernel.String categoryTag { get; set; }
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<Fox.Kernel.String> groupTags { get; set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
+		public Fox.Kernel.DynamicArray<Fox.Kernel.String> groupTags { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
 		
 		[field: UnityEngine.SerializeField]
 		public Fox.Core.EntityLink applicationDataLink { get; set; }

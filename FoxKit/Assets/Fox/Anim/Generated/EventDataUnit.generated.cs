@@ -20,16 +20,16 @@ namespace Fox.Anim
 		public Fox.Kernel.String eventName { get; set; }
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Fox.Anim.TimeSection>> sections { get; set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Fox.Anim.TimeSection>>();
+		public Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Fox.Anim.TimeSection>> sections { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Fox.Anim.TimeSection>>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<Fox.Kernel.String> paramString { get; set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
+		public Fox.Kernel.DynamicArray<Fox.Kernel.String> paramString { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<int> paramInt { get; set; } = new Fox.Kernel.DynamicArray<int>();
+		public Fox.Kernel.DynamicArray<int> paramInt { get; private set; } = new Fox.Kernel.DynamicArray<int>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<float> paramFloat { get; set; } = new Fox.Kernel.DynamicArray<float>();
+		public Fox.Kernel.DynamicArray<float> paramFloat { get; private set; } = new Fox.Kernel.DynamicArray<float>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;

@@ -68,7 +68,7 @@ namespace Tpp.Effect
 		public uint randomSeed { get; set; }
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<Fox.Core.EntityLink> collisionDatas { get; set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityLink>();
+		public Fox.Kernel.DynamicArray<Fox.Core.EntityLink> collisionDatas { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityLink>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;

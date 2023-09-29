@@ -32,13 +32,13 @@ namespace Fox.Tactical
 		public Fox.Kernel.String userId { get; set; }
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Fox.Tactical.GkTacticalActionWaypoint>> waypoints { get; set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Fox.Tactical.GkTacticalActionWaypoint>>();
+		public Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Fox.Tactical.GkTacticalActionWaypoint>> waypoints { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Fox.Tactical.GkTacticalActionWaypoint>>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Fox.Tactical.GkTacticalActionEdge>> edges { get; set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Fox.Tactical.GkTacticalActionEdge>>();
+		public Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Fox.Tactical.GkTacticalActionEdge>> edges { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Fox.Tactical.GkTacticalActionEdge>>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<Fox.Kernel.String> attributeNames { get; set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
+		public Fox.Kernel.DynamicArray<Fox.Kernel.String> attributeNames { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
 		
 		[field: UnityEngine.SerializeField]
 		public uint attribute { get; set; }

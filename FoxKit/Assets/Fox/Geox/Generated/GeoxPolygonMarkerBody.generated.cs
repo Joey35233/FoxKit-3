@@ -17,7 +17,7 @@ namespace Fox.Geox
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<UnityEngine.Vector3> vertices { get; set; } = new Fox.Kernel.DynamicArray<UnityEngine.Vector3>();
+		public Fox.Kernel.DynamicArray<UnityEngine.Vector3> vertices { get; private set; } = new Fox.Kernel.DynamicArray<UnityEngine.Vector3>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;

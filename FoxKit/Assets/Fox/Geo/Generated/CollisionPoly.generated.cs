@@ -20,7 +20,7 @@ namespace Fox.Geo
 		protected ulong attribute { get; set; }
 		
 		[field: UnityEngine.SerializeField]
-		protected Fox.Kernel.DynamicArray<UnityEngine.Vector3> vertices { get; set; } = new Fox.Kernel.DynamicArray<UnityEngine.Vector3>();
+		protected Fox.Kernel.DynamicArray<UnityEngine.Vector3> vertices { get; private set; } = new Fox.Kernel.DynamicArray<UnityEngine.Vector3>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;

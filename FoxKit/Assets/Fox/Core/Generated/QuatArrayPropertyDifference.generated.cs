@@ -17,10 +17,10 @@ namespace Fox.Core
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<UnityEngine.Quaternion> originalValues { get; set; } = new Fox.Kernel.DynamicArray<UnityEngine.Quaternion>();
+		public Fox.Kernel.DynamicArray<UnityEngine.Quaternion> originalValues { get; private set; } = new Fox.Kernel.DynamicArray<UnityEngine.Quaternion>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<UnityEngine.Quaternion> values { get; set; } = new Fox.Kernel.DynamicArray<UnityEngine.Quaternion>();
+		public Fox.Kernel.DynamicArray<UnityEngine.Quaternion> values { get; private set; } = new Fox.Kernel.DynamicArray<UnityEngine.Quaternion>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;

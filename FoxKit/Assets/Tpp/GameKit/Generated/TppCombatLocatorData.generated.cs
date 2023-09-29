@@ -35,7 +35,7 @@ namespace Tpp.GameKit
 		public byte memberCountFront { get; set; }
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<Fox.Core.EntityLink> subLocators { get; set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityLink>();
+		public Fox.Kernel.DynamicArray<Fox.Core.EntityLink> subLocators { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityLink>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;

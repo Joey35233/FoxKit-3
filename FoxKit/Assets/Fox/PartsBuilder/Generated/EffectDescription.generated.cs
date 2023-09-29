@@ -17,22 +17,22 @@ namespace Fox.PartsBuilder
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<Fox.Kernel.String> connectDestinationSkelNames { get; set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
+		public Fox.Kernel.DynamicArray<Fox.Kernel.String> connectDestinationSkelNames { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<Fox.Kernel.String> connectDestinationCnpNames { get; set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
+		public Fox.Kernel.DynamicArray<Fox.Kernel.String> connectDestinationCnpNames { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<UnityEngine.Vector3> offsetSkelPositions { get; set; } = new Fox.Kernel.DynamicArray<UnityEngine.Vector3>();
+		public Fox.Kernel.DynamicArray<UnityEngine.Vector3> offsetSkelPositions { get; private set; } = new Fox.Kernel.DynamicArray<UnityEngine.Vector3>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<UnityEngine.Vector3> offsetCnpPositions { get; set; } = new Fox.Kernel.DynamicArray<UnityEngine.Vector3>();
+		public Fox.Kernel.DynamicArray<UnityEngine.Vector3> offsetCnpPositions { get; private set; } = new Fox.Kernel.DynamicArray<UnityEngine.Vector3>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<UnityEngine.Vector4> generalSkelParameters { get; set; } = new Fox.Kernel.DynamicArray<UnityEngine.Vector4>();
+		public Fox.Kernel.DynamicArray<UnityEngine.Vector4> generalSkelParameters { get; private set; } = new Fox.Kernel.DynamicArray<UnityEngine.Vector4>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<UnityEngine.Vector4> generalCnpParameters { get; set; } = new Fox.Kernel.DynamicArray<UnityEngine.Vector4>();
+		public Fox.Kernel.DynamicArray<UnityEngine.Vector4> generalCnpParameters { get; private set; } = new Fox.Kernel.DynamicArray<UnityEngine.Vector4>();
 		
 		[field: UnityEngine.SerializeField]
 		public bool effectConnect { get; set; }

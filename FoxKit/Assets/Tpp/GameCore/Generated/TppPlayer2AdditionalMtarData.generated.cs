@@ -17,7 +17,7 @@ namespace Tpp.GameCore
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<Fox.Core.FilePtr> mtarFiles { get; set; } = new Fox.Kernel.DynamicArray<Fox.Core.FilePtr>();
+		public Fox.Kernel.DynamicArray<Fox.Core.FilePtr> mtarFiles { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Core.FilePtr>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;

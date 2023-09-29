@@ -20,7 +20,7 @@ namespace Fox.Navx
 		public Fox.Kernel.String worldName { get; set; }
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Fox.Navx.NavxAttributeInfo>> attributeInfos { get; set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Fox.Navx.NavxAttributeInfo>>();
+		public Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Fox.Navx.NavxAttributeInfo>> attributeInfos { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Fox.Navx.NavxAttributeInfo>>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;

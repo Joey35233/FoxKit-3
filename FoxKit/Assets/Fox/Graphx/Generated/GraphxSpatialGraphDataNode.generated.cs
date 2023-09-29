@@ -20,10 +20,10 @@ namespace Fox.Graphx
 		public UnityEngine.Vector3 position { get; set; }
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<Fox.Core.Entity> inlinks { get; protected set; } = new Fox.Kernel.DynamicArray<Fox.Core.Entity>();
+		public Fox.Kernel.DynamicArray<Fox.Core.Entity> inlinks { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Core.Entity>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<Fox.Core.Entity> outlinks { get; protected set; } = new Fox.Kernel.DynamicArray<Fox.Core.Entity>();
+		public Fox.Kernel.DynamicArray<Fox.Core.Entity> outlinks { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Core.Entity>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;

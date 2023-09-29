@@ -17,10 +17,10 @@ namespace Tpp.GameKit
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<Fox.Core.EntityLink> ownerGimmickList { get; set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityLink>();
+		public Fox.Kernel.DynamicArray<Fox.Core.EntityLink> ownerGimmickList { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityLink>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<Fox.Kernel.String> gimmickNameList { get; set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
+		public Fox.Kernel.DynamicArray<Fox.Kernel.String> gimmickNameList { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
 		
 		[field: UnityEngine.SerializeField]
 		public new Fox.Core.EntityLink light { get; set; }

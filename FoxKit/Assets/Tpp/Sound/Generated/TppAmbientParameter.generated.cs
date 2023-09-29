@@ -26,7 +26,7 @@ namespace Tpp.Sound
 		public float objectRtpcValue { get; set; }
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.StringMap<float> auxSends { get; set; } = new Fox.Kernel.StringMap<float>();
+		public Fox.Kernel.StringMap<float> auxSends { get; private set; } = new Fox.Kernel.StringMap<float>();
 		
 		[field: UnityEngine.SerializeField]
 		public float dryVolume { get; set; }

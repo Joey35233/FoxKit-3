@@ -17,7 +17,7 @@ namespace Fox.Demo
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.StringMap<Fox.Kernel.String> partNames { get; set; } = new Fox.Kernel.StringMap<Fox.Kernel.String>();
+		public Fox.Kernel.StringMap<Fox.Kernel.String> partNames { get; private set; } = new Fox.Kernel.StringMap<Fox.Kernel.String>();
 		
 		[field: UnityEngine.SerializeField]
 		public Fox.Core.EntityLink target { get; set; }

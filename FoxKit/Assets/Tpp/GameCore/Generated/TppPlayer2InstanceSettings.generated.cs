@@ -26,10 +26,10 @@ namespace Tpp.GameCore
 		public Fox.Kernel.String commonMotionTypeName { get; set; }
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<Fox.Kernel.String> partsTypeNames { get; set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
+		public Fox.Kernel.DynamicArray<Fox.Kernel.String> partsTypeNames { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<Fox.Kernel.String> partsTypeInitial { get; set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
+		public Fox.Kernel.DynamicArray<Fox.Kernel.String> partsTypeInitial { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
 		
 		// ClassInfos
 		public static  bool ClassInfoInitialized = false;

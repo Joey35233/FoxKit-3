@@ -29,10 +29,10 @@ namespace Tpp.Effect
 		public Fox.Core.EntityLink shCoefficientsData { get; set; }
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<Fox.Core.EntityLink> onLights { get; set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityLink>();
+		public Fox.Kernel.DynamicArray<Fox.Core.EntityLink> onLights { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityLink>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<Fox.Core.EntityLink> offLights { get; set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityLink>();
+		public Fox.Kernel.DynamicArray<Fox.Core.EntityLink> offLights { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityLink>();
 		
 		[field: UnityEngine.SerializeField]
 		public float innerScaleXPositive { get; set; }

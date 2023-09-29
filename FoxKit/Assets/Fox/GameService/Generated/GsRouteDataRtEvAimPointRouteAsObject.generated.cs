@@ -17,7 +17,7 @@ namespace Fox.GameService
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.StaticArray<Fox.Kernel.String> routeNames { get; set; } = new Fox.Kernel.StaticArray<Fox.Kernel.String>(4);
+		public Fox.Kernel.StaticArray<Fox.Kernel.String> routeNames { get; private set; } = new Fox.Kernel.StaticArray<Fox.Kernel.String>(4);
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;

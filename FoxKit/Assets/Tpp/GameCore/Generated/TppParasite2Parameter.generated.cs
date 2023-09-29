@@ -26,19 +26,19 @@ namespace Tpp.GameCore
 		public Fox.Core.FilePtr mtarFile { get; set; }
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.StringMap<Fox.Core.FilePtr> partsFiles { get; set; } = new Fox.Kernel.StringMap<Fox.Core.FilePtr>();
+		public Fox.Kernel.StringMap<Fox.Core.FilePtr> partsFiles { get; private set; } = new Fox.Kernel.StringMap<Fox.Core.FilePtr>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.StringMap<Fox.Core.FilePtr> vfxFiles { get; set; } = new Fox.Kernel.StringMap<Fox.Core.FilePtr>();
+		public Fox.Kernel.StringMap<Fox.Core.FilePtr> vfxFiles { get; private set; } = new Fox.Kernel.StringMap<Fox.Core.FilePtr>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.StringMap<Fox.Core.FilePtr> fmdlFiles { get; set; } = new Fox.Kernel.StringMap<Fox.Core.FilePtr>();
+		public Fox.Kernel.StringMap<Fox.Core.FilePtr> fmdlFiles { get; private set; } = new Fox.Kernel.StringMap<Fox.Core.FilePtr>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.StringMap<Fox.Core.FilePtr> geomFiles { get; set; } = new Fox.Kernel.StringMap<Fox.Core.FilePtr>();
+		public Fox.Kernel.StringMap<Fox.Core.FilePtr> geomFiles { get; private set; } = new Fox.Kernel.StringMap<Fox.Core.FilePtr>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.StringMap<Fox.Core.FilePtr> fovaFiles { get; set; } = new Fox.Kernel.StringMap<Fox.Core.FilePtr>();
+		public Fox.Kernel.StringMap<Fox.Core.FilePtr> fovaFiles { get; private set; } = new Fox.Kernel.StringMap<Fox.Core.FilePtr>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;

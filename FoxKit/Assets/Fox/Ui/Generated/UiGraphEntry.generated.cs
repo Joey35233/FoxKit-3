@@ -17,10 +17,10 @@ namespace Fox.Ui
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<Fox.Core.FilePtr> files { get; set; } = new Fox.Kernel.DynamicArray<Fox.Core.FilePtr>();
+		public Fox.Kernel.DynamicArray<Fox.Core.FilePtr> files { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Core.FilePtr>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<Fox.Core.FilePtr> rawFiles { get; set; } = new Fox.Kernel.DynamicArray<Fox.Core.FilePtr>();
+		public Fox.Kernel.DynamicArray<Fox.Core.FilePtr> rawFiles { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Core.FilePtr>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;

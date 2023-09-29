@@ -17,7 +17,7 @@ namespace Fox.GameKit
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.StringMap<byte> targetTags { get; set; } = new Fox.Kernel.StringMap<byte>();
+		public Fox.Kernel.StringMap<byte> targetTags { get; private set; } = new Fox.Kernel.StringMap<byte>();
 		
 		[field: UnityEngine.SerializeField]
 		public Fox.Kernel.String enterSubtitlesFileName { get; set; }

@@ -20,7 +20,7 @@ namespace Tpp.GameKit
 		public uint padNumber { get; set; }
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<Fox.Kernel.String> checkButtons { get; set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
+		public Fox.Kernel.DynamicArray<Fox.Kernel.String> checkButtons { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;

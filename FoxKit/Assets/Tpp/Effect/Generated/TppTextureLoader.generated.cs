@@ -17,10 +17,10 @@ namespace Tpp.Effect
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.StringMap<Fox.Kernel.Path> textures { get; set; } = new Fox.Kernel.StringMap<Fox.Kernel.Path>();
+		public Fox.Kernel.StringMap<Fox.Kernel.Path> textures { get; private set; } = new Fox.Kernel.StringMap<Fox.Kernel.Path>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.StringMap<Fox.Kernel.Path> forceLargeTextures { get; set; } = new Fox.Kernel.StringMap<Fox.Kernel.Path>();
+		public Fox.Kernel.StringMap<Fox.Kernel.Path> forceLargeTextures { get; private set; } = new Fox.Kernel.StringMap<Fox.Kernel.Path>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;

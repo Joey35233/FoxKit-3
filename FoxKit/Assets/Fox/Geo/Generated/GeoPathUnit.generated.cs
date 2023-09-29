@@ -17,7 +17,7 @@ namespace Fox.Geo
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.StringMap<byte> tags { get; set; } = new Fox.Kernel.StringMap<byte>();
+		public Fox.Kernel.StringMap<byte> tags { get; private set; } = new Fox.Kernel.StringMap<byte>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;

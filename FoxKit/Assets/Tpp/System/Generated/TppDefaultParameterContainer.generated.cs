@@ -20,7 +20,7 @@ namespace Tpp.System
 		public Fox.Kernel.String id { get; set; }
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.StringMap<Fox.Core.EntityPtr<Tpp.System.TppDefaultParameterElement>> @params { get; set; } = new Fox.Kernel.StringMap<Fox.Core.EntityPtr<Tpp.System.TppDefaultParameterElement>>();
+		public Fox.Kernel.StringMap<Fox.Core.EntityPtr<Tpp.System.TppDefaultParameterElement>> @params { get; private set; } = new Fox.Kernel.StringMap<Fox.Core.EntityPtr<Tpp.System.TppDefaultParameterElement>>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;

@@ -17,10 +17,10 @@ namespace Fox.Ui
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		protected Fox.Kernel.DynamicArray<Fox.Core.Entity> inputEdges { get; set; } = new Fox.Kernel.DynamicArray<Fox.Core.Entity>();
+		protected Fox.Kernel.DynamicArray<Fox.Core.Entity> inputEdges { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Core.Entity>();
 		
 		[field: UnityEngine.SerializeField]
-		protected Fox.Kernel.DynamicArray<Fox.Core.Entity> outputEdges { get; set; } = new Fox.Kernel.DynamicArray<Fox.Core.Entity>();
+		protected Fox.Kernel.DynamicArray<Fox.Core.Entity> outputEdges { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Core.Entity>();
 		
 		[field: UnityEngine.SerializeField]
 		protected Fox.Kernel.Path uigName { get; set; }

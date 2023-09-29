@@ -17,10 +17,10 @@ namespace Fox.GameKit
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		protected Fox.Kernel.StringMap<Fox.Core.EntityPtr<Fox.GameKit.CheckpointUnit>> checkPointUnits { get; set; } = new Fox.Kernel.StringMap<Fox.Core.EntityPtr<Fox.GameKit.CheckpointUnit>>();
+		protected Fox.Kernel.StringMap<Fox.Core.EntityPtr<Fox.GameKit.CheckpointUnit>> checkPointUnits { get; private set; } = new Fox.Kernel.StringMap<Fox.Core.EntityPtr<Fox.GameKit.CheckpointUnit>>();
 		
 		[field: UnityEngine.SerializeField]
-		protected Fox.Kernel.DynamicArray<Fox.Kernel.String> passedCheckpoints { get; set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
+		protected Fox.Kernel.DynamicArray<Fox.Kernel.String> passedCheckpoints { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
 		
 		[field: UnityEngine.SerializeField]
 		protected Fox.Kernel.String latestCheckpointTag { get; set; }

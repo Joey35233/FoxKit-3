@@ -17,7 +17,7 @@ namespace Fox.GameKit
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<Fox.Core.Entity> pluginBodyHandle { get; set; } = new Fox.Kernel.DynamicArray<Fox.Core.Entity>();
+		public Fox.Kernel.DynamicArray<Fox.Core.Entity> pluginBodyHandle { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Core.Entity>();
 		
 		[field: UnityEngine.SerializeField]
 		public uint numPlugins { get; set; }

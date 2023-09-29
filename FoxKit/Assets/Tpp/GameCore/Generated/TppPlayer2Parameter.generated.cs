@@ -20,7 +20,7 @@ namespace Tpp.GameCore
 		public Fox.Core.FilePtr motionGraphFile { get; set; }
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.StringMap<Fox.Core.FilePtr> vfxFiles { get; set; } = new Fox.Kernel.StringMap<Fox.Core.FilePtr>();
+		public Fox.Kernel.StringMap<Fox.Core.FilePtr> vfxFiles { get; private set; } = new Fox.Kernel.StringMap<Fox.Core.FilePtr>();
 		
 		[field: UnityEngine.SerializeField]
 		public uint lifeMax { get; set; }
@@ -44,7 +44,7 @@ namespace Tpp.GameCore
 		public Fox.Kernel.String partsType { get; set; }
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.StringMap<byte> TODO_trapTags { get; set; } = new Fox.Kernel.StringMap<byte>();
+		public Fox.Kernel.StringMap<byte> TODO_trapTags { get; private set; } = new Fox.Kernel.StringMap<byte>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;

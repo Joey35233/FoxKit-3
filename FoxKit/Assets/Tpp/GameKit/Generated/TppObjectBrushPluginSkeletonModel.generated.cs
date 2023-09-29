@@ -17,16 +17,16 @@ namespace Tpp.GameKit
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<Fox.Core.FilePtr> modelFile { get; set; } = new Fox.Kernel.DynamicArray<Fox.Core.FilePtr>();
+		public Fox.Kernel.DynamicArray<Fox.Core.FilePtr> modelFile { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Core.FilePtr>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<Fox.Core.FilePtr> geomFile { get; set; } = new Fox.Kernel.DynamicArray<Fox.Core.FilePtr>();
+		public Fox.Kernel.DynamicArray<Fox.Core.FilePtr> geomFile { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Core.FilePtr>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<Fox.Kernel.Path> animFile { get; set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.Path>();
+		public Fox.Kernel.DynamicArray<Fox.Kernel.Path> animFile { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.Path>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<Fox.Kernel.Path> animWindyFile { get; set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.Path>();
+		public Fox.Kernel.DynamicArray<Fox.Kernel.Path> animWindyFile { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.Path>();
 		
 		[field: UnityEngine.SerializeField]
 		public Fox.Core.FilePtr mtarFile { get; set; }
@@ -56,10 +56,10 @@ namespace Tpp.GameKit
 		public uint reserveResourcePerBlock { get; set; }
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.StaticArray<float> lodLength { get; set; } = new Fox.Kernel.StaticArray<float>(4);
+		public Fox.Kernel.StaticArray<float> lodLength { get; private set; } = new Fox.Kernel.StaticArray<float>(4);
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.StaticArray<float> lodLengthForHighEnd { get; set; } = new Fox.Kernel.StaticArray<float>(4);
+		public Fox.Kernel.StaticArray<float> lodLengthForHighEnd { get; private set; } = new Fox.Kernel.StaticArray<float>(4);
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;

@@ -17,10 +17,10 @@ namespace Fox.Core
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.StringMap<UnityEngine.Quaternion> originalValues { get; set; } = new Fox.Kernel.StringMap<UnityEngine.Quaternion>();
+		public Fox.Kernel.StringMap<UnityEngine.Quaternion> originalValues { get; private set; } = new Fox.Kernel.StringMap<UnityEngine.Quaternion>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.StringMap<UnityEngine.Quaternion> values { get; set; } = new Fox.Kernel.StringMap<UnityEngine.Quaternion>();
+		public Fox.Kernel.StringMap<UnityEngine.Quaternion> values { get; private set; } = new Fox.Kernel.StringMap<UnityEngine.Quaternion>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;

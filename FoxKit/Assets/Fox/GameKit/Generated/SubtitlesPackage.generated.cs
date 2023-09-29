@@ -17,13 +17,13 @@ namespace Fox.GameKit
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<Fox.Core.FilePtr> subtitlesPackage { get; set; } = new Fox.Kernel.DynamicArray<Fox.Core.FilePtr>();
+		public Fox.Kernel.DynamicArray<Fox.Core.FilePtr> subtitlesPackage { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Core.FilePtr>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<Fox.Core.FilePtr> subtitlesStreamData { get; set; } = new Fox.Kernel.DynamicArray<Fox.Core.FilePtr>();
+		public Fox.Kernel.DynamicArray<Fox.Core.FilePtr> subtitlesStreamData { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Core.FilePtr>();
 		
 		[field: UnityEngine.SerializeField]
-		protected Fox.Kernel.DynamicArray<Fox.Kernel.Path> subtitlesStreamPath { get; set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.Path>();
+		protected Fox.Kernel.DynamicArray<Fox.Kernel.Path> subtitlesStreamPath { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.Path>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;

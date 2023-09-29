@@ -17,13 +17,13 @@ namespace Tpp.Effect
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<TppLightProbeArray_DrawRejectionLevel> drawRejectionLevels { get; set; } = new Fox.Kernel.DynamicArray<TppLightProbeArray_DrawRejectionLevel>();
+		public Fox.Kernel.DynamicArray<TppLightProbeArray_DrawRejectionLevel> drawRejectionLevels { get; private set; } = new Fox.Kernel.DynamicArray<TppLightProbeArray_DrawRejectionLevel>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<Fox.Core.EntityLink> relatedLights { get; set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityLink>();
+		public Fox.Kernel.DynamicArray<Fox.Core.EntityLink> relatedLights { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityLink>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<Fox.Core.EntityLink> shDatas { get; set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityLink>();
+		public Fox.Kernel.DynamicArray<Fox.Core.EntityLink> shDatas { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityLink>();
 		
 		[field: UnityEngine.SerializeField]
 		public Fox.Core.FilePtr lightArrayFile { get; set; }

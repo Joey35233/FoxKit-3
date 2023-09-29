@@ -30,13 +30,13 @@ namespace Fox.Core
 		public uint blockCount { get; set; }
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<Fox.Kernel.Path> block { get; set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.Path>();
+		public Fox.Kernel.DynamicArray<Fox.Kernel.Path> block { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.Path>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<Fox.Core.EntityLink> relatedBlockGroups { get; set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityLink>();
+		public Fox.Kernel.DynamicArray<Fox.Core.EntityLink> relatedBlockGroups { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityLink>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<Fox.Core.EntityLink> prerequisiteBlockGroups { get; set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityLink>();
+		public Fox.Kernel.DynamicArray<Fox.Core.EntityLink> prerequisiteBlockGroups { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityLink>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;

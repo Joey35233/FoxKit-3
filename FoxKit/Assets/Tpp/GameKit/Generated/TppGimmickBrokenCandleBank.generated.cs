@@ -17,7 +17,7 @@ namespace Tpp.GameKit
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<Fox.Kernel.Path> referencePartsPathList { get; set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.Path>();
+		public Fox.Kernel.DynamicArray<Fox.Kernel.Path> referencePartsPathList { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.Path>();
 		
 		[field: UnityEngine.SerializeField]
 		public Fox.Core.FilePtr modelFile { get; set; }

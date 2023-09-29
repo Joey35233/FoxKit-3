@@ -44,13 +44,13 @@ namespace Fox.GameKit
 		public bool isDebugMaterial { get; set; }
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.StaticArray<Fox.Core.EntityLink> materials { get; set; } = new Fox.Kernel.StaticArray<Fox.Core.EntityLink>(16);
+		public Fox.Kernel.StaticArray<Fox.Core.EntityLink> materials { get; private set; } = new Fox.Kernel.StaticArray<Fox.Core.EntityLink>(16);
 		
 		[field: UnityEngine.SerializeField]
 		public float lodParam { get; set; }
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<Fox.Core.EntityLink> materialConfigs { get; set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityLink>();
+		public Fox.Kernel.DynamicArray<Fox.Core.EntityLink> materialConfigs { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityLink>();
 		
 		[field: UnityEngine.SerializeField]
 		public Fox.Kernel.Path baseColorTexture { get; set; }

@@ -17,34 +17,34 @@ namespace Fox.Ui
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<Fox.Core.EntityLink> inputEdges { get; set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityLink>();
+		public Fox.Kernel.DynamicArray<Fox.Core.EntityLink> inputEdges { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityLink>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<Fox.Core.EntityLink> outputEdges { get; set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityLink>();
+		public Fox.Kernel.DynamicArray<Fox.Core.EntityLink> outputEdges { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityLink>();
 		
 		[field: UnityEngine.SerializeField]
 		public uint inputPortCount { get; set; }
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<UiNodeType> inputPortTypes { get; set; } = new Fox.Kernel.DynamicArray<UiNodeType>();
+		public Fox.Kernel.DynamicArray<UiNodeType> inputPortTypes { get; private set; } = new Fox.Kernel.DynamicArray<UiNodeType>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<Fox.Kernel.String> inputPropertyNames { get; set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
+		public Fox.Kernel.DynamicArray<Fox.Kernel.String> inputPropertyNames { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<UiNodePropType> inputPropertyTypes { get; set; } = new Fox.Kernel.DynamicArray<UiNodePropType>();
+		public Fox.Kernel.DynamicArray<UiNodePropType> inputPropertyTypes { get; private set; } = new Fox.Kernel.DynamicArray<UiNodePropType>();
 		
 		[field: UnityEngine.SerializeField]
 		public uint outputPortCount { get; set; }
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<UiNodeType> outputPortTypes { get; set; } = new Fox.Kernel.DynamicArray<UiNodeType>();
+		public Fox.Kernel.DynamicArray<UiNodeType> outputPortTypes { get; private set; } = new Fox.Kernel.DynamicArray<UiNodeType>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<Fox.Kernel.String> outputPropertyNames { get; set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
+		public Fox.Kernel.DynamicArray<Fox.Kernel.String> outputPropertyNames { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<UiNodePropType> outputPropertyTypes { get; set; } = new Fox.Kernel.DynamicArray<UiNodePropType>();
+		public Fox.Kernel.DynamicArray<UiNodePropType> outputPropertyTypes { get; private set; } = new Fox.Kernel.DynamicArray<UiNodePropType>();
 		
 		[field: UnityEngine.SerializeField]
 		public float xPosition { get; set; }

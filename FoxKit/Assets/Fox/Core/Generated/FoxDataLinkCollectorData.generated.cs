@@ -17,7 +17,7 @@ namespace Fox.Core
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.StringMap<Fox.Core.EntityLink> links { get; set; } = new Fox.Kernel.StringMap<Fox.Core.EntityLink>();
+		public Fox.Kernel.StringMap<Fox.Core.EntityLink> links { get; private set; } = new Fox.Kernel.StringMap<Fox.Core.EntityLink>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;

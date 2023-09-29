@@ -29,7 +29,7 @@ namespace Fox.Core
 		public Fox.Core.EntityPtr<Fox.Core.PivotTransformEntity> pivotTransform { get; set; } = new Fox.Core.EntityPtr<Fox.Core.PivotTransformEntity>();
 		
 		[field: UnityEngine.SerializeField]
-		private Fox.Kernel.DynamicArray<Fox.Core.Entity> children { get; set; } = new Fox.Kernel.DynamicArray<Fox.Core.Entity>();
+		private Fox.Kernel.DynamicArray<Fox.Core.Entity> children { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Core.Entity>();
 		
 		[field: UnityEngine.SerializeField]
 		protected TransformData_Flags flags { get; set; }

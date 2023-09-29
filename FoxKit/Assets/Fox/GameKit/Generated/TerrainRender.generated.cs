@@ -44,13 +44,13 @@ namespace Fox.GameKit
 		public bool isDebugMaterial { get; set; }
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.StaticArray<Fox.Core.EntityLink> materials { get; set; } = new Fox.Kernel.StaticArray<Fox.Core.EntityLink>(16);
+		public Fox.Kernel.StaticArray<Fox.Core.EntityLink> materials { get; private set; } = new Fox.Kernel.StaticArray<Fox.Core.EntityLink>(16);
 		
 		[field: UnityEngine.SerializeField]
 		public float lodParam { get; set; }
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<Fox.Core.EntityLink> materialConfigs { get; set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityLink>();
+		public Fox.Kernel.DynamicArray<Fox.Core.EntityLink> materialConfigs { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityLink>();
 		
 		[field: UnityEngine.SerializeField]
 		public Fox.Kernel.Path packedAlbedoTexturePath { get; protected set; }
@@ -92,7 +92,7 @@ namespace Fox.GameKit
 		public uint worldTextureDividedNumZ { get; set; }
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<Fox.Kernel.Path> worldTextureTilePathes { get; set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.Path>();
+		public Fox.Kernel.DynamicArray<Fox.Kernel.Path> worldTextureTilePathes { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.Path>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;

@@ -17,10 +17,10 @@ namespace Fox.Core
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		protected Fox.Kernel.StringMap<Fox.Core.EntityPtr<Fox.Core.Entity>> entityDifferences { get; set; } = new Fox.Kernel.StringMap<Fox.Core.EntityPtr<Fox.Core.Entity>>();
+		protected Fox.Kernel.StringMap<Fox.Core.EntityPtr<Fox.Core.Entity>> entityDifferences { get; private set; } = new Fox.Kernel.StringMap<Fox.Core.EntityPtr<Fox.Core.Entity>>();
 		
 		[field: UnityEngine.SerializeField]
-		protected Fox.Kernel.StringMap<Fox.Core.EntityPtr<Fox.Core.PropertyDifference>> propertyDifferences { get; set; } = new Fox.Kernel.StringMap<Fox.Core.EntityPtr<Fox.Core.PropertyDifference>>();
+		protected Fox.Kernel.StringMap<Fox.Core.EntityPtr<Fox.Core.PropertyDifference>> propertyDifferences { get; private set; } = new Fox.Kernel.StringMap<Fox.Core.EntityPtr<Fox.Core.PropertyDifference>>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;

@@ -17,10 +17,10 @@ namespace Fox.Demox
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.StringMap<Fox.Core.FilePtr> evfFiles { get; set; } = new Fox.Kernel.StringMap<Fox.Core.FilePtr>();
+		public Fox.Kernel.StringMap<Fox.Core.FilePtr> evfFiles { get; private set; } = new Fox.Kernel.StringMap<Fox.Core.FilePtr>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.StringMap<Fox.Core.FilePtr> eventFiles { get; set; } = new Fox.Kernel.StringMap<Fox.Core.FilePtr>();
+		public Fox.Kernel.StringMap<Fox.Core.FilePtr> eventFiles { get; private set; } = new Fox.Kernel.StringMap<Fox.Core.FilePtr>();
 		
 		[field: UnityEngine.SerializeField]
 		public int priority { get; set; }
@@ -29,16 +29,16 @@ namespace Fox.Demox
 		public Fox.Kernel.String demoId { get; set; }
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<Fox.Kernel.String> stringParams { get; set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
+		public Fox.Kernel.DynamicArray<Fox.Kernel.String> stringParams { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.StringMap<Fox.Core.EntityLink> entityParams { get; set; } = new Fox.Kernel.StringMap<Fox.Core.EntityLink>();
+		public Fox.Kernel.StringMap<Fox.Core.EntityLink> entityParams { get; private set; } = new Fox.Kernel.StringMap<Fox.Core.EntityLink>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.StringMap<Fox.Core.FilePtr> fileParams { get; set; } = new Fox.Kernel.StringMap<Fox.Core.FilePtr>();
+		public Fox.Kernel.StringMap<Fox.Core.FilePtr> fileParams { get; private set; } = new Fox.Kernel.StringMap<Fox.Core.FilePtr>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.StringMap<int> objectNum { get; set; } = new Fox.Kernel.StringMap<int>();
+		public Fox.Kernel.StringMap<int> objectNum { get; private set; } = new Fox.Kernel.StringMap<int>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;

@@ -20,61 +20,61 @@ namespace Tpp.MotherBaseStage
 		public bool enable { get; set; }
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.StaticArray<byte> cluster00divisionPackageIds { get; set; } = new Fox.Kernel.StaticArray<byte>(12);
+		public Fox.Kernel.StaticArray<byte> cluster00divisionPackageIds { get; private set; } = new Fox.Kernel.StaticArray<byte>(12);
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.StaticArray<byte> cluster01divisionPackageIds { get; set; } = new Fox.Kernel.StaticArray<byte>(12);
+		public Fox.Kernel.StaticArray<byte> cluster01divisionPackageIds { get; private set; } = new Fox.Kernel.StaticArray<byte>(12);
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.StaticArray<byte> cluster02divisionPackageIds { get; set; } = new Fox.Kernel.StaticArray<byte>(12);
+		public Fox.Kernel.StaticArray<byte> cluster02divisionPackageIds { get; private set; } = new Fox.Kernel.StaticArray<byte>(12);
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.StaticArray<byte> cluster03divisionPackageIds { get; set; } = new Fox.Kernel.StaticArray<byte>(12);
+		public Fox.Kernel.StaticArray<byte> cluster03divisionPackageIds { get; private set; } = new Fox.Kernel.StaticArray<byte>(12);
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.StaticArray<byte> cluster04divisionPackageIds { get; set; } = new Fox.Kernel.StaticArray<byte>(12);
+		public Fox.Kernel.StaticArray<byte> cluster04divisionPackageIds { get; private set; } = new Fox.Kernel.StaticArray<byte>(12);
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.StaticArray<byte> cluster05divisionPackageIds { get; set; } = new Fox.Kernel.StaticArray<byte>(12);
+		public Fox.Kernel.StaticArray<byte> cluster05divisionPackageIds { get; private set; } = new Fox.Kernel.StaticArray<byte>(12);
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.StaticArray<byte> cluster06divisionPackageIds { get; set; } = new Fox.Kernel.StaticArray<byte>(12);
+		public Fox.Kernel.StaticArray<byte> cluster06divisionPackageIds { get; private set; } = new Fox.Kernel.StaticArray<byte>(12);
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.StaticArray<byte> cluster07divisionPackageIds { get; set; } = new Fox.Kernel.StaticArray<byte>(12);
+		public Fox.Kernel.StaticArray<byte> cluster07divisionPackageIds { get; private set; } = new Fox.Kernel.StaticArray<byte>(12);
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.StaticArray<UnityEngine.Vector3> clusterPositions { get; set; } = new Fox.Kernel.StaticArray<UnityEngine.Vector3>(8);
+		public Fox.Kernel.StaticArray<UnityEngine.Vector3> clusterPositions { get; private set; } = new Fox.Kernel.StaticArray<UnityEngine.Vector3>(8);
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.StaticArray<uint> clusterRequestRadiuses { get; set; } = new Fox.Kernel.StaticArray<uint>(8);
+		public Fox.Kernel.StaticArray<uint> clusterRequestRadiuses { get; private set; } = new Fox.Kernel.StaticArray<uint>(8);
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.StaticArray<uint> clusterRequireRadiuses { get; set; } = new Fox.Kernel.StaticArray<uint>(8);
+		public Fox.Kernel.StaticArray<uint> clusterRequireRadiuses { get; private set; } = new Fox.Kernel.StaticArray<uint>(8);
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<short> cluster00loadAreaVertices { get; set; } = new Fox.Kernel.DynamicArray<short>();
+		public Fox.Kernel.DynamicArray<short> cluster00loadAreaVertices { get; private set; } = new Fox.Kernel.DynamicArray<short>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<short> cluster01loadAreaVertices { get; set; } = new Fox.Kernel.DynamicArray<short>();
+		public Fox.Kernel.DynamicArray<short> cluster01loadAreaVertices { get; private set; } = new Fox.Kernel.DynamicArray<short>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<short> cluster02loadAreaVertices { get; set; } = new Fox.Kernel.DynamicArray<short>();
+		public Fox.Kernel.DynamicArray<short> cluster02loadAreaVertices { get; private set; } = new Fox.Kernel.DynamicArray<short>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<short> cluster03loadAreaVertices { get; set; } = new Fox.Kernel.DynamicArray<short>();
+		public Fox.Kernel.DynamicArray<short> cluster03loadAreaVertices { get; private set; } = new Fox.Kernel.DynamicArray<short>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<short> cluster04loadAreaVertices { get; set; } = new Fox.Kernel.DynamicArray<short>();
+		public Fox.Kernel.DynamicArray<short> cluster04loadAreaVertices { get; private set; } = new Fox.Kernel.DynamicArray<short>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<short> cluster05loadAreaVertices { get; set; } = new Fox.Kernel.DynamicArray<short>();
+		public Fox.Kernel.DynamicArray<short> cluster05loadAreaVertices { get; private set; } = new Fox.Kernel.DynamicArray<short>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<short> cluster06loadAreaVertices { get; set; } = new Fox.Kernel.DynamicArray<short>();
+		public Fox.Kernel.DynamicArray<short> cluster06loadAreaVertices { get; private set; } = new Fox.Kernel.DynamicArray<short>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<short> cluster07loadAreaVertices { get; set; } = new Fox.Kernel.DynamicArray<short>();
+		public Fox.Kernel.DynamicArray<short> cluster07loadAreaVertices { get; private set; } = new Fox.Kernel.DynamicArray<short>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;

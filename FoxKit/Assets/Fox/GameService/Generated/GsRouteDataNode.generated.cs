@@ -17,7 +17,7 @@ namespace Fox.GameService
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Fox.GameService.GsRouteDataNodeEvent>> nodeEvents { get; set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Fox.GameService.GsRouteDataNodeEvent>>();
+		public Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Fox.GameService.GsRouteDataNodeEvent>> nodeEvents { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Fox.GameService.GsRouteDataNodeEvent>>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;

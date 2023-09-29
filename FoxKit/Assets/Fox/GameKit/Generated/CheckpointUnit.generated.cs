@@ -20,7 +20,7 @@ namespace Fox.GameKit
 		protected Fox.Core.EntityPtr<Fox.Core.Entity> checkPointParam { get; set; } = new Fox.Core.EntityPtr<Fox.Core.Entity>();
 		
 		[field: UnityEngine.SerializeField]
-		protected Fox.Kernel.StringMap<Fox.Core.EntityPtr<Fox.Core.Entity>> checkPointData { get; set; } = new Fox.Kernel.StringMap<Fox.Core.EntityPtr<Fox.Core.Entity>>();
+		protected Fox.Kernel.StringMap<Fox.Core.EntityPtr<Fox.Core.Entity>> checkPointData { get; private set; } = new Fox.Kernel.StringMap<Fox.Core.EntityPtr<Fox.Core.Entity>>();
 		
 		[field: UnityEngine.SerializeField]
 		protected bool isReplacable { get; set; }

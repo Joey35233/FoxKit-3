@@ -29,7 +29,7 @@ namespace Fox.Grx
 		public int numVertices { get; set; }
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.StaticArray<UnityEngine.Vector3> positions { get; set; } = new Fox.Kernel.StaticArray<UnityEngine.Vector3>(7);
+		public Fox.Kernel.StaticArray<UnityEngine.Vector3> positions { get; private set; } = new Fox.Kernel.StaticArray<UnityEngine.Vector3>(7);
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;

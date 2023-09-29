@@ -17,16 +17,16 @@ namespace Fox.Sim
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.StringMap<Fox.Core.EntityPtr<Fox.Sim.SimAssociationUnit>> simRootBones { get; set; } = new Fox.Kernel.StringMap<Fox.Core.EntityPtr<Fox.Sim.SimAssociationUnit>>();
+		public Fox.Kernel.StringMap<Fox.Core.EntityPtr<Fox.Sim.SimAssociationUnit>> simRootBones { get; private set; } = new Fox.Kernel.StringMap<Fox.Core.EntityPtr<Fox.Sim.SimAssociationUnit>>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.StringMap<Fox.Core.EntityPtr<Fox.Sim.SimAssociationUnit>> simBones { get; set; } = new Fox.Kernel.StringMap<Fox.Core.EntityPtr<Fox.Sim.SimAssociationUnit>>();
+		public Fox.Kernel.StringMap<Fox.Core.EntityPtr<Fox.Sim.SimAssociationUnit>> simBones { get; private set; } = new Fox.Kernel.StringMap<Fox.Core.EntityPtr<Fox.Sim.SimAssociationUnit>>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.StringMap<Fox.Core.EntityPtr<Fox.Sim.SimAssociationUnit>> simTransBones { get; set; } = new Fox.Kernel.StringMap<Fox.Core.EntityPtr<Fox.Sim.SimAssociationUnit>>();
+		public Fox.Kernel.StringMap<Fox.Core.EntityPtr<Fox.Sim.SimAssociationUnit>> simTransBones { get; private set; } = new Fox.Kernel.StringMap<Fox.Core.EntityPtr<Fox.Sim.SimAssociationUnit>>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.StringMap<Fox.Core.EntityPtr<Fox.Sim.SimAssociationUnit>> simHitBones { get; set; } = new Fox.Kernel.StringMap<Fox.Core.EntityPtr<Fox.Sim.SimAssociationUnit>>();
+		public Fox.Kernel.StringMap<Fox.Core.EntityPtr<Fox.Sim.SimAssociationUnit>> simHitBones { get; private set; } = new Fox.Kernel.StringMap<Fox.Core.EntityPtr<Fox.Sim.SimAssociationUnit>>();
 		
 		[field: UnityEngine.SerializeField]
 		public uint formatVersion { get; set; }

@@ -17,7 +17,7 @@ namespace Fox.Core
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		protected Fox.Kernel.StringMap<Fox.Core.EntityPtr<Fox.Core.EntityDifference>> dataList { get; set; } = new Fox.Kernel.StringMap<Fox.Core.EntityPtr<Fox.Core.EntityDifference>>();
+		protected Fox.Kernel.StringMap<Fox.Core.EntityPtr<Fox.Core.EntityDifference>> dataList { get; private set; } = new Fox.Kernel.StringMap<Fox.Core.EntityPtr<Fox.Core.EntityDifference>>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;

@@ -20,7 +20,7 @@ namespace Tpp.Effect
 		public Fox.Core.FilePtr vfxFile { get; set; }
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.StringMap<Fox.Kernel.String> materialSoundList { get; set; } = new Fox.Kernel.StringMap<Fox.Kernel.String>();
+		public Fox.Kernel.StringMap<Fox.Kernel.String> materialSoundList { get; private set; } = new Fox.Kernel.StringMap<Fox.Kernel.String>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;

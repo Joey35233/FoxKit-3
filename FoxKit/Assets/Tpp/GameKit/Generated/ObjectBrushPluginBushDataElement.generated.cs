@@ -17,13 +17,13 @@ namespace Tpp.GameKit
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<Fox.Kernel.String> lodMeshName { get; set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
+		public Fox.Kernel.DynamicArray<Fox.Kernel.String> lodMeshName { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<float> lodDistance { get; set; } = new Fox.Kernel.DynamicArray<float>();
+		public Fox.Kernel.DynamicArray<float> lodDistance { get; private set; } = new Fox.Kernel.DynamicArray<float>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<float> lodDistanceHighEnd { get; set; } = new Fox.Kernel.DynamicArray<float>();
+		public Fox.Kernel.DynamicArray<float> lodDistanceHighEnd { get; private set; } = new Fox.Kernel.DynamicArray<float>();
 		
 		[field: UnityEngine.SerializeField]
 		public float rotationRate { get; set; }

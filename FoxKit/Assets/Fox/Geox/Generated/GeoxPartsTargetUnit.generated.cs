@@ -17,7 +17,7 @@ namespace Fox.Geox
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Fox.Geox.GeoxPartsTargetObject>> objectArray { get; set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Fox.Geox.GeoxPartsTargetObject>>();
+		public Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Fox.Geox.GeoxPartsTargetObject>> objectArray { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Fox.Geox.GeoxPartsTargetObject>>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;

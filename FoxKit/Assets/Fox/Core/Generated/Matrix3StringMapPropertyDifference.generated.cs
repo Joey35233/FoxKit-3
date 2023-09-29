@@ -17,11 +17,11 @@ namespace Fox.Core
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.StringMap<Fox.Kernel.Matrix3x3> originalValues { get; set; } = new Fox.Kernel.StringMap<Fox.Kernel.Matrix3x3>();
-
+		public Fox.Kernel.StringMap<Fox.Kernel.Matrix3x3> originalValues { get; private set; } = new Fox.Kernel.StringMap<Fox.Kernel.Matrix3x3>();
+		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.StringMap<Fox.Kernel.Matrix3x3> values { get; set; } = new Fox.Kernel.StringMap<Fox.Kernel.Matrix3x3>();
-
+		public Fox.Kernel.StringMap<Fox.Kernel.Matrix3x3> values { get; private set; } = new Fox.Kernel.StringMap<Fox.Kernel.Matrix3x3>();
+		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;
@@ -49,7 +49,7 @@ namespace Fox.Core
 		// Constructors
 		public Matrix3StringMapPropertyDifference(ulong id) : base(id) { }
 		public Matrix3StringMapPropertyDifference() : base() { }
-
+		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{
 			switch (propertyName.CString)

@@ -17,43 +17,43 @@ namespace Fox.Geox
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<UnityEngine.Vector3> posArray { get; set; } = new Fox.Kernel.DynamicArray<UnityEngine.Vector3>();
+		public Fox.Kernel.DynamicArray<UnityEngine.Vector3> posArray { get; private set; } = new Fox.Kernel.DynamicArray<UnityEngine.Vector3>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<UnityEngine.Vector3> scaleArray { get; set; } = new Fox.Kernel.DynamicArray<UnityEngine.Vector3>();
+		public Fox.Kernel.DynamicArray<UnityEngine.Vector3> scaleArray { get; private set; } = new Fox.Kernel.DynamicArray<UnityEngine.Vector3>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<UnityEngine.Quaternion> rotArray { get; set; } = new Fox.Kernel.DynamicArray<UnityEngine.Quaternion>();
+		public Fox.Kernel.DynamicArray<UnityEngine.Quaternion> rotArray { get; private set; } = new Fox.Kernel.DynamicArray<UnityEngine.Quaternion>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<uint> primTypeArray { get; set; } = new Fox.Kernel.DynamicArray<uint>();
+		public Fox.Kernel.DynamicArray<uint> primTypeArray { get; private set; } = new Fox.Kernel.DynamicArray<uint>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<ulong> systemAttributeArray { get; set; } = new Fox.Kernel.DynamicArray<ulong>();
+		public Fox.Kernel.DynamicArray<ulong> systemAttributeArray { get; private set; } = new Fox.Kernel.DynamicArray<ulong>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<uint> throughValueArray { get; set; } = new Fox.Kernel.DynamicArray<uint>();
+		public Fox.Kernel.DynamicArray<uint> throughValueArray { get; private set; } = new Fox.Kernel.DynamicArray<uint>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<uint> flagArray { get; set; } = new Fox.Kernel.DynamicArray<uint>();
+		public Fox.Kernel.DynamicArray<uint> flagArray { get; private set; } = new Fox.Kernel.DynamicArray<uint>();
 		
 		[field: UnityEngine.SerializeField]
 		public Fox.Kernel.String categoryTag { get; set; }
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<Fox.Kernel.String> nameArray { get; set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
+		public Fox.Kernel.DynamicArray<Fox.Kernel.String> nameArray { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<Fox.Kernel.String> attachSkeletonArray { get; set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
+		public Fox.Kernel.DynamicArray<Fox.Kernel.String> attachSkeletonArray { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<Fox.Kernel.String> groupArray { get; set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
+		public Fox.Kernel.DynamicArray<Fox.Kernel.String> groupArray { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<uint> objIndexForgroupTagArray { get; set; } = new Fox.Kernel.DynamicArray<uint>();
+		public Fox.Kernel.DynamicArray<uint> objIndexForgroupTagArray { get; private set; } = new Fox.Kernel.DynamicArray<uint>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<Fox.Core.EntityLink> applicationDataLinkArray { get; set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityLink>();
+		public Fox.Kernel.DynamicArray<Fox.Core.EntityLink> applicationDataLinkArray { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityLink>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;

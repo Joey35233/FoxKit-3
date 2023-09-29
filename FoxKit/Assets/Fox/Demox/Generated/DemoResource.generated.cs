@@ -23,7 +23,7 @@ namespace Fox.Demox
 		public Fox.Kernel.String demoIdentifierName { get; set; }
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<Fox.Kernel.String> demoIdentifierKey { get; set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
+		public Fox.Kernel.DynamicArray<Fox.Kernel.String> demoIdentifierKey { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
 		
 		[field: UnityEngine.SerializeField]
 		public uint streamBufferSizeInKbytes { get; set; }

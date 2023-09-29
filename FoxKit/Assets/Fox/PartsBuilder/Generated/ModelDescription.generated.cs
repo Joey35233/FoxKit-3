@@ -35,7 +35,7 @@ namespace Fox.PartsBuilder
 		public Fox.Core.FilePtr facialSettingFile { get; set; }
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<Fox.Kernel.String> invisibleMeshNames { get; set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
+		public Fox.Kernel.DynamicArray<Fox.Kernel.String> invisibleMeshNames { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
 		
 		[field: UnityEngine.SerializeField]
 		public float lodFarPixelSize { get; set; }

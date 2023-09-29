@@ -17,10 +17,10 @@ namespace Fox.Core
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.StringMap<Fox.Core.EntityLink> originalValues { get; set; } = new Fox.Kernel.StringMap<Fox.Core.EntityLink>();
+		public Fox.Kernel.StringMap<Fox.Core.EntityLink> originalValues { get; private set; } = new Fox.Kernel.StringMap<Fox.Core.EntityLink>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.StringMap<Fox.Core.EntityLink> values { get; set; } = new Fox.Kernel.StringMap<Fox.Core.EntityLink>();
+		public Fox.Kernel.StringMap<Fox.Core.EntityLink> values { get; private set; } = new Fox.Kernel.StringMap<Fox.Core.EntityLink>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;

@@ -23,46 +23,46 @@ namespace Fox.Demox
 		public uint demoLength { get; set; }
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.StringMap<DemoStreamAnimation_LocatorType> locatorTypes { get; set; } = new Fox.Kernel.StringMap<DemoStreamAnimation_LocatorType>();
+		public Fox.Kernel.StringMap<DemoStreamAnimation_LocatorType> locatorTypes { get; private set; } = new Fox.Kernel.StringMap<DemoStreamAnimation_LocatorType>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.StringMap<DemoStreamAnimation_CameraType> cameraTypes { get; set; } = new Fox.Kernel.StringMap<DemoStreamAnimation_CameraType>();
+		public Fox.Kernel.StringMap<DemoStreamAnimation_CameraType> cameraTypes { get; private set; } = new Fox.Kernel.StringMap<DemoStreamAnimation_CameraType>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.StringMap<Fox.Core.FilePtr> modelFiles { get; set; } = new Fox.Kernel.StringMap<Fox.Core.FilePtr>();
+		public Fox.Kernel.StringMap<Fox.Core.FilePtr> modelFiles { get; private set; } = new Fox.Kernel.StringMap<Fox.Core.FilePtr>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.StringMap<Fox.Core.FilePtr> helpBoneFiles { get; set; } = new Fox.Kernel.StringMap<Fox.Core.FilePtr>();
+		public Fox.Kernel.StringMap<Fox.Core.FilePtr> helpBoneFiles { get; private set; } = new Fox.Kernel.StringMap<Fox.Core.FilePtr>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.StringMap<Fox.Core.FilePtr> partsFiles { get; set; } = new Fox.Kernel.StringMap<Fox.Core.FilePtr>();
+		public Fox.Kernel.StringMap<Fox.Core.FilePtr> partsFiles { get; private set; } = new Fox.Kernel.StringMap<Fox.Core.FilePtr>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.StringMap<Fox.Core.FilePtr> coverModelFiles { get; set; } = new Fox.Kernel.StringMap<Fox.Core.FilePtr>();
+		public Fox.Kernel.StringMap<Fox.Core.FilePtr> coverModelFiles { get; private set; } = new Fox.Kernel.StringMap<Fox.Core.FilePtr>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.StringMap<Fox.Kernel.String> modelPartsDictionary { get; protected set; } = new Fox.Kernel.StringMap<Fox.Kernel.String>();
+		public Fox.Kernel.StringMap<Fox.Kernel.String> modelPartsDictionary { get; private set; } = new Fox.Kernel.StringMap<Fox.Kernel.String>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.StringMap<Fox.Kernel.String> coverModelDictionary { get; set; } = new Fox.Kernel.StringMap<Fox.Kernel.String>();
+		public Fox.Kernel.StringMap<Fox.Kernel.String> coverModelDictionary { get; private set; } = new Fox.Kernel.StringMap<Fox.Kernel.String>();
 		
 		[field: UnityEngine.SerializeField]
 		public uint updateJobCount { get; set; }
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.StringMap<Fox.Kernel.Path> modelProxyPaths { get; set; } = new Fox.Kernel.StringMap<Fox.Kernel.Path>();
+		public Fox.Kernel.StringMap<Fox.Kernel.Path> modelProxyPaths { get; private set; } = new Fox.Kernel.StringMap<Fox.Kernel.Path>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.StringMap<Fox.Kernel.Path> partsProxyPaths { get; set; } = new Fox.Kernel.StringMap<Fox.Kernel.Path>();
+		public Fox.Kernel.StringMap<Fox.Kernel.Path> partsProxyPaths { get; private set; } = new Fox.Kernel.StringMap<Fox.Kernel.Path>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.StringMap<Fox.Core.EntityPtr<Fox.Demox.DemoDynamicFileChangeModel>> dynamicModel { get; set; } = new Fox.Kernel.StringMap<Fox.Core.EntityPtr<Fox.Demox.DemoDynamicFileChangeModel>>();
+		public Fox.Kernel.StringMap<Fox.Core.EntityPtr<Fox.Demox.DemoDynamicFileChangeModel>> dynamicModel { get; private set; } = new Fox.Kernel.StringMap<Fox.Core.EntityPtr<Fox.Demox.DemoDynamicFileChangeModel>>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.StringMap<Fox.Core.EntityPtr<Fox.Demox.DemoDynamicFileChangeModel>> dynamicParts { get; set; } = new Fox.Kernel.StringMap<Fox.Core.EntityPtr<Fox.Demox.DemoDynamicFileChangeModel>>();
+		public Fox.Kernel.StringMap<Fox.Core.EntityPtr<Fox.Demox.DemoDynamicFileChangeModel>> dynamicParts { get; private set; } = new Fox.Kernel.StringMap<Fox.Core.EntityPtr<Fox.Demox.DemoDynamicFileChangeModel>>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.StringMap<Fox.Core.EntityPtr<Fox.Demox.DemoFv2ResourceMemory>> dynamicFv2 { get; set; } = new Fox.Kernel.StringMap<Fox.Core.EntityPtr<Fox.Demox.DemoFv2ResourceMemory>>();
+		public Fox.Kernel.StringMap<Fox.Core.EntityPtr<Fox.Demox.DemoFv2ResourceMemory>> dynamicFv2 { get; private set; } = new Fox.Kernel.StringMap<Fox.Core.EntityPtr<Fox.Demox.DemoFv2ResourceMemory>>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;

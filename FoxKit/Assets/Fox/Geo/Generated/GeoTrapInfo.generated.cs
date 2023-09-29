@@ -17,7 +17,7 @@ namespace Fox.Geo
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.StringMap<byte> moverTags { get; protected set; } = new Fox.Kernel.StringMap<byte>();
+		public Fox.Kernel.StringMap<byte> moverTags { get; private set; } = new Fox.Kernel.StringMap<byte>();
 		
 		[field: UnityEngine.SerializeField]
 		public Fox.Core.Entity moverHandle { get; protected set; }

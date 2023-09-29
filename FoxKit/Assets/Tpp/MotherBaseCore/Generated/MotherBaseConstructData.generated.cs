@@ -23,13 +23,13 @@ namespace Tpp.MotherBaseCore
 		public ushort index { get; set; }
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.StaticArray<byte> divisionType { get; set; } = new Fox.Kernel.StaticArray<byte>(4);
+		public Fox.Kernel.StaticArray<byte> divisionType { get; private set; } = new Fox.Kernel.StaticArray<byte>(4);
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.StaticArray<ushort> divisionRotate { get; set; } = new Fox.Kernel.StaticArray<ushort>(4);
+		public Fox.Kernel.StaticArray<ushort> divisionRotate { get; private set; } = new Fox.Kernel.StaticArray<ushort>(4);
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.StaticArray<bool> anotherConnector { get; set; } = new Fox.Kernel.StaticArray<bool>(8);
+		public Fox.Kernel.StaticArray<bool> anotherConnector { get; private set; } = new Fox.Kernel.StaticArray<bool>(8);
 		
 		[field: UnityEngine.SerializeField]
 		public byte cluster { get; set; }

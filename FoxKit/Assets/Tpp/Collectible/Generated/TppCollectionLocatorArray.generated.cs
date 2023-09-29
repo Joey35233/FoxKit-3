@@ -17,31 +17,31 @@ namespace Tpp.Collectible
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		protected Fox.Kernel.DynamicArray<UnityEngine.Vector3> positions { get; set; } = new Fox.Kernel.DynamicArray<UnityEngine.Vector3>();
+		protected Fox.Kernel.DynamicArray<UnityEngine.Vector3> positions { get; private set; } = new Fox.Kernel.DynamicArray<UnityEngine.Vector3>();
 		
 		[field: UnityEngine.SerializeField]
-		protected Fox.Kernel.DynamicArray<uint> rotations { get; set; } = new Fox.Kernel.DynamicArray<uint>();
+		protected Fox.Kernel.DynamicArray<uint> rotations { get; private set; } = new Fox.Kernel.DynamicArray<uint>();
 		
 		[field: UnityEngine.SerializeField]
-		protected Fox.Kernel.DynamicArray<uint> infos { get; set; } = new Fox.Kernel.DynamicArray<uint>();
+		protected Fox.Kernel.DynamicArray<uint> infos { get; private set; } = new Fox.Kernel.DynamicArray<uint>();
 		
 		[field: UnityEngine.SerializeField]
-		protected Fox.Kernel.DynamicArray<ushort> segmentIndices { get; set; } = new Fox.Kernel.DynamicArray<ushort>();
+		protected Fox.Kernel.DynamicArray<ushort> segmentIndices { get; private set; } = new Fox.Kernel.DynamicArray<ushort>();
 		
 		[field: UnityEngine.SerializeField]
-		protected Fox.Kernel.DynamicArray<ushort> locatorIndices { get; set; } = new Fox.Kernel.DynamicArray<ushort>();
+		protected Fox.Kernel.DynamicArray<ushort> locatorIndices { get; private set; } = new Fox.Kernel.DynamicArray<ushort>();
 		
 		[field: UnityEngine.SerializeField]
-		protected Fox.Kernel.DynamicArray<ushort> locatorCounts { get; set; } = new Fox.Kernel.DynamicArray<ushort>();
+		protected Fox.Kernel.DynamicArray<ushort> locatorCounts { get; private set; } = new Fox.Kernel.DynamicArray<ushort>();
 		
 		[field: UnityEngine.SerializeField]
-		protected Fox.Kernel.DynamicArray<byte> groupIds { get; set; } = new Fox.Kernel.DynamicArray<byte>();
+		protected Fox.Kernel.DynamicArray<byte> groupIds { get; private set; } = new Fox.Kernel.DynamicArray<byte>();
 		
 		[field: UnityEngine.SerializeField]
-		protected Fox.Kernel.DynamicArray<ushort> segmentInfoIndices { get; set; } = new Fox.Kernel.DynamicArray<ushort>();
+		protected Fox.Kernel.DynamicArray<ushort> segmentInfoIndices { get; private set; } = new Fox.Kernel.DynamicArray<ushort>();
 		
 		[field: UnityEngine.SerializeField]
-		protected Fox.Kernel.DynamicArray<ushort> segmentInfoCounts { get; set; } = new Fox.Kernel.DynamicArray<ushort>();
+		protected Fox.Kernel.DynamicArray<ushort> segmentInfoCounts { get; private set; } = new Fox.Kernel.DynamicArray<ushort>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;

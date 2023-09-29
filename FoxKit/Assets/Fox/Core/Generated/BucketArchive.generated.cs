@@ -20,10 +20,10 @@ namespace Fox.Core
 		private new Fox.Kernel.String name { get; set; }
 		
 		[field: UnityEngine.SerializeField]
-		protected Fox.Kernel.StringMap<Fox.Core.FilePtr> dataSetFiles { get; set; } = new Fox.Kernel.StringMap<Fox.Core.FilePtr>();
+		protected Fox.Kernel.StringMap<Fox.Core.FilePtr> dataSetFiles { get; private set; } = new Fox.Kernel.StringMap<Fox.Core.FilePtr>();
 		
 		[field: UnityEngine.SerializeField]
-		protected Fox.Kernel.StringMap<Fox.Core.EntityPtr<Fox.Core.DataBodySet>> dataBodySets { get; set; } = new Fox.Kernel.StringMap<Fox.Core.EntityPtr<Fox.Core.DataBodySet>>();
+		protected Fox.Kernel.StringMap<Fox.Core.EntityPtr<Fox.Core.DataBodySet>> dataBodySets { get; private set; } = new Fox.Kernel.StringMap<Fox.Core.EntityPtr<Fox.Core.DataBodySet>>();
 		
 		[field: UnityEngine.SerializeField]
 		protected Fox.Core.EntityPtr<Fox.Core.DataBodySet> editableDataBodySet { get; set; } = new Fox.Core.EntityPtr<Fox.Core.DataBodySet>();

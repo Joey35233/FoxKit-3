@@ -32,10 +32,10 @@ namespace Tpp.GameCore
 		protected byte bodyInstanceCount { get; set; }
 		
 		[field: UnityEngine.SerializeField]
-		protected Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Tpp.GameCore.TppVehicle2WeaponParameter>> weaponParams { get; set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Tpp.GameCore.TppVehicle2WeaponParameter>>();
+		protected Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Tpp.GameCore.TppVehicle2WeaponParameter>> weaponParams { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Tpp.GameCore.TppVehicle2WeaponParameter>>();
 		
 		[field: UnityEngine.SerializeField]
-		protected Fox.Kernel.DynamicArray<Fox.Core.FilePtr> fovaFiles { get; set; } = new Fox.Kernel.DynamicArray<Fox.Core.FilePtr>();
+		protected Fox.Kernel.DynamicArray<Fox.Core.FilePtr> fovaFiles { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Core.FilePtr>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;

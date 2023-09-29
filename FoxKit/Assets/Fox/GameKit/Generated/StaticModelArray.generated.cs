@@ -47,10 +47,10 @@ namespace Fox.GameKit
 		public Fox.Core.EntityLink parentLocator { get; set; }
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<UnityEngine.Matrix4x4> transforms { get; set; } = new Fox.Kernel.DynamicArray<UnityEngine.Matrix4x4>();
+		public Fox.Kernel.DynamicArray<UnityEngine.Matrix4x4> transforms { get; private set; } = new Fox.Kernel.DynamicArray<UnityEngine.Matrix4x4>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<uint> colors { get; set; } = new Fox.Kernel.DynamicArray<uint>();
+		public Fox.Kernel.DynamicArray<uint> colors { get; private set; } = new Fox.Kernel.DynamicArray<uint>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;

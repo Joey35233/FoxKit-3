@@ -47,13 +47,13 @@ namespace Tpp.GameKit
 		protected UnityEngine.Vector3 cameraPos { get; set; }
 		
 		[field: UnityEngine.SerializeField]
-		protected Fox.Kernel.DynamicArray<Fox.Kernel.String> existMaterials { get; set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
+		protected Fox.Kernel.DynamicArray<Fox.Kernel.String> existMaterials { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
 		
 		[field: UnityEngine.SerializeField]
-		protected Fox.Kernel.DynamicArray<Fox.Kernel.String> noiseSeType { get; set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
+		protected Fox.Kernel.DynamicArray<Fox.Kernel.String> noiseSeType { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
 		
 		[field: UnityEngine.SerializeField]
-		protected Fox.Kernel.StringMap<Fox.Kernel.String> noiseSeEventNames { get; set; } = new Fox.Kernel.StringMap<Fox.Kernel.String>();
+		protected Fox.Kernel.StringMap<Fox.Kernel.String> noiseSeEventNames { get; private set; } = new Fox.Kernel.StringMap<Fox.Kernel.String>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;

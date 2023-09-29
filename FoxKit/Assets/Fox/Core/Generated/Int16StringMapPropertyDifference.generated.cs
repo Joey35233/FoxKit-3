@@ -17,10 +17,10 @@ namespace Fox.Core
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.StringMap<short> originalValues { get; set; } = new Fox.Kernel.StringMap<short>();
+		public Fox.Kernel.StringMap<short> originalValues { get; private set; } = new Fox.Kernel.StringMap<short>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.StringMap<short> values { get; set; } = new Fox.Kernel.StringMap<short>();
+		public Fox.Kernel.StringMap<short> values { get; private set; } = new Fox.Kernel.StringMap<short>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;

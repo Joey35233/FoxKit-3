@@ -17,10 +17,10 @@ namespace Fox.GameKit
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<Fox.Core.Entity> pluginHandle { get; set; } = new Fox.Kernel.DynamicArray<Fox.Core.Entity>();
+		public Fox.Kernel.DynamicArray<Fox.Core.Entity> pluginHandle { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Core.Entity>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<Fox.Kernel.String> blockDataName { get; set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
+		public Fox.Kernel.DynamicArray<Fox.Kernel.String> blockDataName { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
 		
 		[field: UnityEngine.SerializeField]
 		public Fox.Kernel.Path filePath { get; set; }

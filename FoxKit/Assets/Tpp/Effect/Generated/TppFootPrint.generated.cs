@@ -17,22 +17,22 @@ namespace Tpp.Effect
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<UnityEngine.Matrix4x4> matrices { get; set; } = new Fox.Kernel.DynamicArray<UnityEngine.Matrix4x4>();
+		public Fox.Kernel.DynamicArray<UnityEngine.Matrix4x4> matrices { get; private set; } = new Fox.Kernel.DynamicArray<UnityEngine.Matrix4x4>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<uint> footChara { get; set; } = new Fox.Kernel.DynamicArray<uint>();
+		public Fox.Kernel.DynamicArray<uint> footChara { get; private set; } = new Fox.Kernel.DynamicArray<uint>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<uint> footLR { get; set; } = new Fox.Kernel.DynamicArray<uint>();
+		public Fox.Kernel.DynamicArray<uint> footLR { get; private set; } = new Fox.Kernel.DynamicArray<uint>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<float> alpha { get; set; } = new Fox.Kernel.DynamicArray<float>();
+		public Fox.Kernel.DynamicArray<float> alpha { get; private set; } = new Fox.Kernel.DynamicArray<float>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<bool> blood { get; set; } = new Fox.Kernel.DynamicArray<bool>();
+		public Fox.Kernel.DynamicArray<bool> blood { get; private set; } = new Fox.Kernel.DynamicArray<bool>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<bool> enable { get; set; } = new Fox.Kernel.DynamicArray<bool>();
+		public Fox.Kernel.DynamicArray<bool> enable { get; private set; } = new Fox.Kernel.DynamicArray<bool>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;

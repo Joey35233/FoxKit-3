@@ -23,7 +23,7 @@ namespace Fox.GameKit
 		public Fox.Kernel.Path scriptPath { get; set; }
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.StringMap<Fox.Core.EntityLink> variables { get; set; } = new Fox.Kernel.StringMap<Fox.Core.EntityLink>();
+		public Fox.Kernel.StringMap<Fox.Core.EntityLink> variables { get; private set; } = new Fox.Kernel.StringMap<Fox.Core.EntityLink>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;

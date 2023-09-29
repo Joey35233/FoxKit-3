@@ -17,7 +17,7 @@ namespace Fox.UiScene
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<Fox.Kernel.Path> texturePath { get; set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.Path>();
+		public Fox.Kernel.DynamicArray<Fox.Kernel.Path> texturePath { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.Path>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;

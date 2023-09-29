@@ -20,10 +20,10 @@ namespace Fox.Geox
 		public bool isVisibleGeom { get; set; }
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<UnityEngine.Vector3> vertices { get; set; } = new Fox.Kernel.DynamicArray<UnityEngine.Vector3>();
+		public Fox.Kernel.DynamicArray<UnityEngine.Vector3> vertices { get; private set; } = new Fox.Kernel.DynamicArray<UnityEngine.Vector3>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<Fox.Kernel.String> collisionAttributeTags { get; set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
+		public Fox.Kernel.DynamicArray<Fox.Kernel.String> collisionAttributeTags { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;

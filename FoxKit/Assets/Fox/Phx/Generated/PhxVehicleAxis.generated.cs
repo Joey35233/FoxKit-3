@@ -23,13 +23,13 @@ namespace Fox.Phx
 		protected Fox.Core.EntityPtr<Fox.Phx.PhxWheelConstraintParam> wheelConstraintParam { get; set; } = new Fox.Core.EntityPtr<Fox.Phx.PhxWheelConstraintParam>();
 		
 		[field: UnityEngine.SerializeField]
-		protected Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Fox.Phx.PhxWheelAssociationUnitParam>> wheelAssociationUnitParams { get; set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Fox.Phx.PhxWheelAssociationUnitParam>>();
+		protected Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Fox.Phx.PhxWheelAssociationUnitParam>> wheelAssociationUnitParams { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Fox.Phx.PhxWheelAssociationUnitParam>>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<float> torqueDistributions { get; set; } = new Fox.Kernel.DynamicArray<float>();
+		public Fox.Kernel.DynamicArray<float> torqueDistributions { get; private set; } = new Fox.Kernel.DynamicArray<float>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<float> gearRatios { get; set; } = new Fox.Kernel.DynamicArray<float>();
+		public Fox.Kernel.DynamicArray<float> gearRatios { get; private set; } = new Fox.Kernel.DynamicArray<float>();
 		
 		public UnityEngine.Vector3 wheelFront { get => Get_wheelFront(); set { Set_wheelFront(value); } }
 		private partial UnityEngine.Vector3 Get_wheelFront();

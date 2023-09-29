@@ -62,7 +62,7 @@ namespace Fox.GameKit
 		public bool hasSerializedNodes { get; set; }
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<UnityEngine.Vector3> serializedGraphNodes { get; set; } = new Fox.Kernel.DynamicArray<UnityEngine.Vector3>();
+		public Fox.Kernel.DynamicArray<UnityEngine.Vector3> serializedGraphNodes { get; private set; } = new Fox.Kernel.DynamicArray<UnityEngine.Vector3>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;

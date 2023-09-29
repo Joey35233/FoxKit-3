@@ -23,10 +23,10 @@ namespace Fox.Geox
 		public Fox.Kernel.String collisionMaterial { get; protected set; }
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<Fox.Kernel.String> collisionAttributeNames { get; set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
+		public Fox.Kernel.DynamicArray<Fox.Kernel.String> collisionAttributeNames { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.StaticArray<UnityEngine.Vector3> points { get; set; } = new Fox.Kernel.StaticArray<UnityEngine.Vector3>(5);
+		public Fox.Kernel.StaticArray<UnityEngine.Vector3> points { get; private set; } = new Fox.Kernel.StaticArray<UnityEngine.Vector3>(5);
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;

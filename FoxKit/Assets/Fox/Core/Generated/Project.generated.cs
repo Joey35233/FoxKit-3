@@ -17,7 +17,7 @@ namespace Fox.Core
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		protected Fox.Kernel.StringMap<Fox.Kernel.Path> dataSetPaths { get; set; } = new Fox.Kernel.StringMap<Fox.Kernel.Path>();
+		protected Fox.Kernel.StringMap<Fox.Kernel.Path> dataSetPaths { get; private set; } = new Fox.Kernel.StringMap<Fox.Kernel.Path>();
 		
 		[field: UnityEngine.SerializeField]
 		protected Fox.Kernel.Path currentDataSetPath { get; set; }

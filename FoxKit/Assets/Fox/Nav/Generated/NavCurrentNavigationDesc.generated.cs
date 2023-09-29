@@ -26,7 +26,7 @@ namespace Fox.Nav
 		protected UnityEngine.Vector3 position { get; set; }
 		
 		[field: UnityEngine.SerializeField]
-		protected Fox.Kernel.DynamicArray<UnityEngine.Vector3> startPositions { get; set; } = new Fox.Kernel.DynamicArray<UnityEngine.Vector3>();
+		protected Fox.Kernel.DynamicArray<UnityEngine.Vector3> startPositions { get; private set; } = new Fox.Kernel.DynamicArray<UnityEngine.Vector3>();
 		
 		[field: UnityEngine.SerializeField]
 		protected UnityEngine.Vector3 direction { get; set; }

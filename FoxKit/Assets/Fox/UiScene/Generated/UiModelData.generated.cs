@@ -26,7 +26,7 @@ namespace Fox.UiScene
 		public int priority { get; set; }
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<Fox.Core.EntityLink> animations { get; set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityLink>();
+		public Fox.Kernel.DynamicArray<Fox.Core.EntityLink> animations { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityLink>();
 		
 		[field: UnityEngine.SerializeField]
 		public bool useLayoutCamera { get; set; }
@@ -53,7 +53,7 @@ namespace Fox.UiScene
 		public UiInheritanceSetting inheritanceSetting { get; set; }
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Fox.UiScene.UiModelNodeElement>> modelNodes { get; set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Fox.UiScene.UiModelNodeElement>>();
+		public Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Fox.UiScene.UiModelNodeElement>> modelNodes { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Fox.UiScene.UiModelNodeElement>>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;

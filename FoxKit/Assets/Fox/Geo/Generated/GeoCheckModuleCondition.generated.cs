@@ -20,10 +20,10 @@ namespace Fox.Geo
 		public bool isAndCheck { get; set; }
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<Fox.Kernel.String> checkFuncNames { get; set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
+		public Fox.Kernel.DynamicArray<Fox.Kernel.String> checkFuncNames { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Fox.Geo.GeoTrapModuleCallbackDataElement>> checkCallbackDataElements { get; protected set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Fox.Geo.GeoTrapModuleCallbackDataElement>>();
+		public Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Fox.Geo.GeoTrapModuleCallbackDataElement>> checkCallbackDataElements { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Fox.Geo.GeoTrapModuleCallbackDataElement>>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
