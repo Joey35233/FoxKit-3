@@ -23,7 +23,7 @@ namespace Tpp.GameKit
 		public Fox.Kernel.DynamicArray<Fox.Kernel.String> gimmickNameList { get; set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Core.EntityLink light { get; set; }
+		public new Fox.Core.EntityLink light { get; set; }
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -53,10 +53,47 @@ namespace Tpp.GameKit
 		// Constructors
 		public TppGimmickLightGroupingLinkSetData(ulong id) : base(id) { }
 		public TppGimmickLightGroupingLinkSetData() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "ownerGimmickList":
+					return new Fox.Core.Value(ownerGimmickList);
+				case "gimmickNameList":
+					return new Fox.Core.Value(gimmickNameList);
+				case "light":
+					return new Fox.Core.Value(light);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				case "ownerGimmickList":
+					return new Fox.Core.Value(this.ownerGimmickList[index]);
+				case "gimmickNameList":
+					return new Fox.Core.Value(this.gimmickNameList[index]);
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "light":
 					this.light = value.GetValueAsEntityLink();
@@ -69,7 +106,7 @@ namespace Tpp.GameKit
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "ownerGimmickList":
 					while(this.ownerGimmickList.Count <= index) { this.ownerGimmickList.Add(default(Fox.Core.EntityLink)); }
@@ -87,7 +124,7 @@ namespace Tpp.GameKit
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

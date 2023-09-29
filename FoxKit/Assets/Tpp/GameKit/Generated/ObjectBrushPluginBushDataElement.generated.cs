@@ -133,10 +133,89 @@ namespace Tpp.GameKit
 		// Constructors
 		public ObjectBrushPluginBushDataElement(ulong id) : base(id) { }
 		public ObjectBrushPluginBushDataElement() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "lodMeshName":
+					return new Fox.Core.Value(lodMeshName);
+				case "lodDistance":
+					return new Fox.Core.Value(lodDistance);
+				case "lodDistanceHighEnd":
+					return new Fox.Core.Value(lodDistanceHighEnd);
+				case "rotationRate":
+					return new Fox.Core.Value(rotationRate);
+				case "elasticRate":
+					return new Fox.Core.Value(elasticRate);
+				case "alphaMinimizeDist":
+					return new Fox.Core.Value(alphaMinimizeDist);
+				case "alphaMaximizeDist":
+					return new Fox.Core.Value(alphaMaximizeDist);
+				case "baseDensity":
+					return new Fox.Core.Value(baseDensity);
+				case "camoufDensity":
+					return new Fox.Core.Value(camoufDensity);
+				case "camofRadius":
+					return new Fox.Core.Value(camofRadius);
+				case "camofHeight":
+					return new Fox.Core.Value(camofHeight);
+				case "modelRadius":
+					return new Fox.Core.Value(modelRadius);
+				case "stopEyeRadius":
+					return new Fox.Core.Value(stopEyeRadius);
+				case "stopEyeHeight":
+					return new Fox.Core.Value(stopEyeHeight);
+				case "noiseSeType":
+					return new Fox.Core.Value(noiseSeType);
+				case "bushFlags":
+					return new Fox.Core.Value(bushFlags);
+				case "baseCycleSpeedRate":
+					return new Fox.Core.Value(baseCycleSpeedRate);
+				case "windAmplitude":
+					return new Fox.Core.Value(windAmplitude);
+				case "windDirYAxisFixZero":
+					return new Fox.Core.Value(windDirYAxisFixZero);
+				case "windOffsetFactor":
+					return new Fox.Core.Value(windOffsetFactor);
+				case "bulletEffect":
+					return new Fox.Core.Value(bulletEffect);
+				case "fairEffect":
+					return new Fox.Core.Value(fairEffect);
+				case "rainEffect":
+					return new Fox.Core.Value(rainEffect);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				case "lodMeshName":
+					return new Fox.Core.Value(this.lodMeshName[index]);
+				case "lodDistance":
+					return new Fox.Core.Value(this.lodDistance[index]);
+				case "lodDistanceHighEnd":
+					return new Fox.Core.Value(this.lodDistanceHighEnd[index]);
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "rotationRate":
 					this.rotationRate = value.GetValueAsFloat();
@@ -206,7 +285,7 @@ namespace Tpp.GameKit
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "lodMeshName":
 					while(this.lodMeshName.Count <= index) { this.lodMeshName.Add(default(Fox.Kernel.String)); }
@@ -228,7 +307,7 @@ namespace Tpp.GameKit
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

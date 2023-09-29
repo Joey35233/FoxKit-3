@@ -173,10 +173,103 @@ namespace Tpp.Effect
 		// Constructors
 		public TppPrimRiverModelParamTwoLayer(ulong id) : base(id) { }
 		public TppPrimRiverModelParamTwoLayer() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "primRiverGroupName":
+					return new Fox.Core.Value(primRiverGroupName);
+				case "visibility":
+					return new Fox.Core.Value(visibility);
+				case "baseTextureName":
+					return new Fox.Core.Value(baseTextureName);
+				case "normalTextureName":
+					return new Fox.Core.Value(normalTextureName);
+				case "cubeMapName":
+					return new Fox.Core.Value(cubeMapName);
+				case "secondLayerBaseTextureName":
+					return new Fox.Core.Value(secondLayerBaseTextureName);
+				case "lightCaptureLocator":
+					return new Fox.Core.Value(lightCaptureLocator);
+				case "scrollDirection0":
+					return new Fox.Core.Value(scrollDirection0);
+				case "scrollSpeed0":
+					return new Fox.Core.Value(scrollSpeed0);
+				case "scrollScale0":
+					return new Fox.Core.Value(scrollScale0);
+				case "scrollDirection1":
+					return new Fox.Core.Value(scrollDirection1);
+				case "scrollSpeed1":
+					return new Fox.Core.Value(scrollSpeed1);
+				case "scrollScale1":
+					return new Fox.Core.Value(scrollScale1);
+				case "transparency":
+					return new Fox.Core.Value(transparency);
+				case "transparencyDepthBlend":
+					return new Fox.Core.Value(transparencyDepthBlend);
+				case "reflectionRate":
+					return new Fox.Core.Value(reflectionRate);
+				case "distortionPower":
+					return new Fox.Core.Value(distortionPower);
+				case "surfaceShadowRate":
+					return new Fox.Core.Value(surfaceShadowRate);
+				case "secondScrollDirection0":
+					return new Fox.Core.Value(secondScrollDirection0);
+				case "secondScrollSpeed0":
+					return new Fox.Core.Value(secondScrollSpeed0);
+				case "secondScrollScale0":
+					return new Fox.Core.Value(secondScrollScale0);
+				case "secondScrollDirection1":
+					return new Fox.Core.Value(secondScrollDirection1);
+				case "secondScrollSpeed1":
+					return new Fox.Core.Value(secondScrollSpeed1);
+				case "secondScrollScale1":
+					return new Fox.Core.Value(secondScrollScale1);
+				case "secondLayerTransparency":
+					return new Fox.Core.Value(secondLayerTransparency);
+				case "secondLayerTransparencyDepthBlend":
+					return new Fox.Core.Value(secondLayerTransparencyDepthBlend);
+				case "secondLayerReflectionRate":
+					return new Fox.Core.Value(secondLayerReflectionRate);
+				case "secondLayerDistortionPower":
+					return new Fox.Core.Value(secondLayerDistortionPower);
+				case "secondLayerSurfaceShadowRate":
+					return new Fox.Core.Value(secondLayerSurfaceShadowRate);
+				case "maskDistortionRate":
+					return new Fox.Core.Value(maskDistortionRate);
+				case "oilIntensity":
+					return new Fox.Core.Value(oilIntensity);
+				case "useHnmTexture":
+					return new Fox.Core.Value(useHnmTexture);
+				case "debugReset":
+					return new Fox.Core.Value(debugReset);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "primRiverGroupName":
 					this.primRiverGroupName = value.GetValueAsString();
@@ -285,7 +378,7 @@ namespace Tpp.Effect
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -295,7 +388,7 @@ namespace Tpp.Effect
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

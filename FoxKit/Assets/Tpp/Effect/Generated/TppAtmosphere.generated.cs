@@ -370,10 +370,197 @@ namespace Tpp.Effect
 		// Constructors
 		public TppAtmosphere(ulong id) : base(id) { }
 		public TppAtmosphere() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "atshFilePath":
+					return new Fox.Core.Value(atshFilePath);
+				case "pcspFilePath":
+					return new Fox.Core.Value(pcspFilePath);
+				case "atshFilePtr":
+					return new Fox.Core.Value(atshFilePtr);
+				case "pcspFilePtr":
+					return new Fox.Core.Value(pcspFilePtr);
+				case "useBakedData":
+					return new Fox.Core.Value(useBakedData);
+				case "capturePosition":
+					return new Fox.Core.Value(capturePosition);
+				case "rayleighHeightScale":
+					return new Fox.Core.Value(rayleighHeightScale);
+				case "rayleighScatteringCoefficient":
+					return new Fox.Core.Value(rayleighScatteringCoefficient);
+				case "rayleighScatteringCoefficientOfCloudySky":
+					return new Fox.Core.Value(rayleighScatteringCoefficientOfCloudySky);
+				case "mieHeightScale":
+					return new Fox.Core.Value(mieHeightScale);
+				case "mieAbsorptionRate":
+					return new Fox.Core.Value(mieAbsorptionRate);
+				case "mieAnisotropy":
+					return new Fox.Core.Value(mieAnisotropy);
+				case "mieScatteringCoefficient":
+					return new Fox.Core.Value(mieScatteringCoefficient);
+				case "mieAnisotropyOfCloudySky":
+					return new Fox.Core.Value(mieAnisotropyOfCloudySky);
+				case "mieScatteringCoefficientOfCloudySky":
+					return new Fox.Core.Value(mieScatteringCoefficientOfCloudySky);
+				case "multiScatteringOrder":
+					return new Fox.Core.Value(multiScatteringOrder);
+				case "groundColor":
+					return new Fox.Core.Value(groundColor);
+				case "northAngle":
+					return new Fox.Core.Value(northAngle);
+				case "latitude":
+					return new Fox.Core.Value(latitude);
+				case "longitude":
+					return new Fox.Core.Value(longitude);
+				case "gmtTimeDifference":
+					return new Fox.Core.Value(gmtTimeDifference);
+				case "year":
+					return new Fox.Core.Value(year);
+				case "month":
+					return new Fox.Core.Value(month);
+				case "day":
+					return new Fox.Core.Value(day);
+				case "shadowRange":
+					return new Fox.Core.Value(shadowRange);
+				case "shadowRangeExtra":
+					return new Fox.Core.Value(shadowRangeExtra);
+				case "hiResShadowRange":
+					return new Fox.Core.Value(hiResShadowRange);
+				case "shadowProjectionRange":
+					return new Fox.Core.Value(shadowProjectionRange);
+				case "shadowFadeRange":
+					return new Fox.Core.Value(shadowFadeRange);
+				case "selfShadowBias":
+					return new Fox.Core.Value(selfShadowBias);
+				case "shadowMaskSpecular":
+					return new Fox.Core.Value(shadowMaskSpecular);
+				case "dirLightFadeStart":
+					return new Fox.Core.Value(dirLightFadeStart);
+				case "dirLightFadeLength":
+					return new Fox.Core.Value(dirLightFadeLength);
+				case "sunLux":
+					return new Fox.Core.Value(sunLux);
+				case "moonLux":
+					return new Fox.Core.Value(moonLux);
+				case "starLight":
+					return new Fox.Core.Value(starLight);
+				case "sunMoonSize":
+					return new Fox.Core.Value(sunMoonSize);
+				case "sunMoonIntensity":
+					return new Fox.Core.Value(sunMoonIntensity);
+				case "sunTexture":
+					return new Fox.Core.Value(sunTexture);
+				case "moonTexture":
+					return new Fox.Core.Value(moonTexture);
+				case "moonColor":
+					return new Fox.Core.Value(moonColor);
+				case "sunColorExtinctionOfClearSky":
+					return new Fox.Core.Value(sunColorExtinctionOfClearSky);
+				case "sunColorOfCloudySky":
+					return new Fox.Core.Value(sunColorOfCloudySky);
+				case "skyLightSunScale":
+					return new Fox.Core.Value(skyLightSunScale);
+				case "skyColorSunScale":
+					return new Fox.Core.Value(skyColorSunScale);
+				case "daySkyAmbientScale":
+					return new Fox.Core.Value(daySkyAmbientScale);
+				case "dirLightSunLimitAngle":
+					return new Fox.Core.Value(dirLightSunLimitAngle);
+				case "dirLightMoonLimitAngle":
+					return new Fox.Core.Value(dirLightMoonLimitAngle);
+				case "dirLightAttenuStart":
+					return new Fox.Core.Value(dirLightAttenuStart);
+				case "dirLightAttenuEnd":
+					return new Fox.Core.Value(dirLightAttenuEnd);
+				case "fixedLightDirSunRise":
+					return new Fox.Core.Value(fixedLightDirSunRise);
+				case "fixedLightDirSunSet":
+					return new Fox.Core.Value(fixedLightDirSunSet);
+				case "fixedLightDirMoonRise":
+					return new Fox.Core.Value(fixedLightDirMoonRise);
+				case "fixedLightDirMoonSet":
+					return new Fox.Core.Value(fixedLightDirMoonSet);
+				case "fixedRisingSunDir":
+					return new Fox.Core.Value(fixedRisingSunDir);
+				case "fixedFallingSunDir":
+					return new Fox.Core.Value(fixedFallingSunDir);
+				case "fixedRisingMoonDir":
+					return new Fox.Core.Value(fixedRisingMoonDir);
+				case "fixedFallingMoonDir":
+					return new Fox.Core.Value(fixedFallingMoonDir);
+				case "skyLightLuminanceScale":
+					return new Fox.Core.Value(skyLightLuminanceScale);
+				case "numBands":
+					return new Fox.Core.Value(numBands);
+				case "coefficients":
+					return new Fox.Core.Value(coefficients);
+				case "cloudiness":
+					return new Fox.Core.Value(cloudiness);
+				case "influenceOfFog":
+					return new Fox.Core.Value(influenceOfFog);
+				case "localFlags":
+					return new Fox.Core.Value(localFlags);
+				case "priority":
+					return new Fox.Core.Value(priority);
+				case "interpolateTimeInSecondOfDirLightSteppedMove":
+					return new Fox.Core.Value(interpolateTimeInSecondOfDirLightSteppedMove);
+				case "divisonNumOfDirLightSteppedMove":
+					return new Fox.Core.Value(divisonNumOfDirLightSteppedMove);
+				case "enable":
+					return new Fox.Core.Value(enable);
+				case "skyEnable":
+					return new Fox.Core.Value(skyEnable);
+				case "sunLightEnable":
+					return new Fox.Core.Value(sunLightEnable);
+				case "isCascadeBlend":
+					return new Fox.Core.Value(isCascadeBlend);
+				case "castShadow":
+					return new Fox.Core.Value(castShadow);
+				case "dirLightFade":
+					return new Fox.Core.Value(dirLightFade);
+				case "disableSkyCapture":
+					return new Fox.Core.Value(disableSkyCapture);
+				case "skyLightEnable":
+					return new Fox.Core.Value(skyLightEnable);
+				case "usePrecomputedAmbient":
+					return new Fox.Core.Value(usePrecomputedAmbient);
+				case "fogEnable":
+					return new Fox.Core.Value(fogEnable);
+				case "expandHorizontalLineColor":
+					return new Fox.Core.Value(expandHorizontalLineColor);
+				case "isSteppedMoveOfDirectionalLight":
+					return new Fox.Core.Value(isSteppedMoveOfDirectionalLight);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				case "coefficients":
+					return new Fox.Core.Value(this.coefficients[index]);
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "atshFilePath":
 					this.atshFilePath = value.GetValueAsPath();
@@ -617,7 +804,7 @@ namespace Tpp.Effect
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "coefficients":
 					while(this.coefficients.Count <= index) { this.coefficients.Add(default(UnityEngine.Vector4)); }
@@ -631,7 +818,7 @@ namespace Tpp.Effect
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

@@ -125,10 +125,79 @@ namespace Fox.Ph
 		// Constructors
 		public PhRigidBodyParam(ulong id) : base(id) { }
 		public PhRigidBodyParam() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "defaultPosition":
+					return new Fox.Core.Value(defaultPosition);
+				case "defaultRotation":
+					return new Fox.Core.Value(defaultRotation);
+				case "mass":
+					return new Fox.Core.Value(mass);
+				case "friction":
+					return new Fox.Core.Value(friction);
+				case "restitution":
+					return new Fox.Core.Value(restitution);
+				case "maxLinearVelocity":
+					return new Fox.Core.Value(maxLinearVelocity);
+				case "maxAngularVelocity":
+					return new Fox.Core.Value(maxAngularVelocity);
+				case "linearVelocityDamp":
+					return new Fox.Core.Value(linearVelocityDamp);
+				case "angularVelocityDamp":
+					return new Fox.Core.Value(angularVelocityDamp);
+				case "permittedDepth":
+					return new Fox.Core.Value(permittedDepth);
+				case "sleepEnable":
+					return new Fox.Core.Value(sleepEnable);
+				case "sleepLinearVelocityTh":
+					return new Fox.Core.Value(sleepLinearVelocityTh);
+				case "sleepAngularVelocityTh":
+					return new Fox.Core.Value(sleepAngularVelocityTh);
+				case "sleepTimeTh":
+					return new Fox.Core.Value(sleepTimeTh);
+				case "collisionGroup":
+					return new Fox.Core.Value(collisionGroup);
+				case "collisionType":
+					return new Fox.Core.Value(collisionType);
+				case "collisionId":
+					return new Fox.Core.Value(collisionId);
+				case "centerOfMassOffset":
+					return new Fox.Core.Value(centerOfMassOffset);
+				case "motionType":
+					return new Fox.Core.Value(motionType);
+				case "material":
+					return new Fox.Core.Value(material);
+				case "isNoGravity":
+					return new Fox.Core.Value(isNoGravity);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "defaultPosition":
 					this.defaultPosition = value.GetValueAsVector3();
@@ -201,7 +270,7 @@ namespace Fox.Ph
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -211,7 +280,7 @@ namespace Fox.Ph
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

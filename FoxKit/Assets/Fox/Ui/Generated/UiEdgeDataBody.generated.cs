@@ -73,10 +73,53 @@ namespace Fox.Ui
 		// Constructors
 		public UiEdgeDataBody(ulong id) : base(id) { }
 		public UiEdgeDataBody() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "sourcePort":
+					return new Fox.Core.Value(sourcePort);
+				case "sourcePortType":
+					return new Fox.Core.Value(sourcePortType);
+				case "sourcePortIndex":
+					return new Fox.Core.Value(sourcePortIndex);
+				case "targetPort":
+					return new Fox.Core.Value(targetPort);
+				case "targetPortType":
+					return new Fox.Core.Value(targetPortType);
+				case "targetPortIndex":
+					return new Fox.Core.Value(targetPortIndex);
+				case "isConnect":
+					return new Fox.Core.Value(isConnect);
+				case "isVirtual":
+					return new Fox.Core.Value(isVirtual);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "sourcePort":
 					this.sourcePort = value.GetValueAsEntityHandle();
@@ -110,7 +153,7 @@ namespace Fox.Ui
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -120,7 +163,7 @@ namespace Fox.Ui
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

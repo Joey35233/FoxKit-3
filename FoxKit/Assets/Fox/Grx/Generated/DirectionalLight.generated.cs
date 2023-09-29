@@ -143,10 +143,85 @@ namespace Fox.Grx
 		// Constructors
 		public DirectionalLight(ulong id) : base(id) { }
 		public DirectionalLight() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "color":
+					return new Fox.Core.Value(color);
+				case "direction":
+					return new Fox.Core.Value(direction);
+				case "shadowRange":
+					return new Fox.Core.Value(shadowRange);
+				case "shadowRangeExtra":
+					return new Fox.Core.Value(shadowRangeExtra);
+				case "hiResShadowRange":
+					return new Fox.Core.Value(hiResShadowRange);
+				case "shadowProjectionRange":
+					return new Fox.Core.Value(shadowProjectionRange);
+				case "shadowFadeRange":
+					return new Fox.Core.Value(shadowFadeRange);
+				case "selfShadowBias":
+					return new Fox.Core.Value(selfShadowBias);
+				case "temperature":
+					return new Fox.Core.Value(temperature);
+				case "colorDeflection":
+					return new Fox.Core.Value(colorDeflection);
+				case "lux":
+					return new Fox.Core.Value(lux);
+				case "lightSize":
+					return new Fox.Core.Value(lightSize);
+				case "shadowMaskSpecular":
+					return new Fox.Core.Value(shadowMaskSpecular);
+				case "shadowOffsetStartAngle":
+					return new Fox.Core.Value(shadowOffsetStartAngle);
+				case "shadowOffsetEndAngle":
+					return new Fox.Core.Value(shadowOffsetEndAngle);
+				case "diatanceFade_StartDistance":
+					return new Fox.Core.Value(diatanceFade_StartDistance);
+				case "distanceFade_FadeoutRange":
+					return new Fox.Core.Value(distanceFade_FadeoutRange);
+				case "lightFlags":
+					return new Fox.Core.Value(lightFlags);
+				case "enable":
+					return new Fox.Core.Value(enable);
+				case "isCascadeBlend":
+					return new Fox.Core.Value(isCascadeBlend);
+				case "castShadow":
+					return new Fox.Core.Value(castShadow);
+				case "isBounced":
+					return new Fox.Core.Value(isBounced);
+				case "showObject":
+					return new Fox.Core.Value(showObject);
+				case "enableDistanceFade":
+					return new Fox.Core.Value(enableDistanceFade);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "color":
 					this.color = value.GetValueAsColor();
@@ -228,7 +303,7 @@ namespace Fox.Grx
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -238,7 +313,7 @@ namespace Fox.Grx
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

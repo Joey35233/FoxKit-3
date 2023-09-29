@@ -73,10 +73,53 @@ namespace Tpp.Effect
 		// Constructors
 		public TppLensFlareShapeArray(ulong id) : base(id) { }
 		public TppLensFlareShapeArray() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "spriteCount":
+					return new Fox.Core.Value(spriteCount);
+				case "offsetScaleMin":
+					return new Fox.Core.Value(offsetScaleMin);
+				case "offsetScaleMax":
+					return new Fox.Core.Value(offsetScaleMax);
+				case "sizeScaleMin":
+					return new Fox.Core.Value(sizeScaleMin);
+				case "sizeScaleMax":
+					return new Fox.Core.Value(sizeScaleMax);
+				case "randomColorMin":
+					return new Fox.Core.Value(randomColorMin);
+				case "randomColorMax":
+					return new Fox.Core.Value(randomColorMax);
+				case "randomSeed":
+					return new Fox.Core.Value(randomSeed);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "spriteCount":
 					this.spriteCount = value.GetValueAsUInt32();
@@ -110,7 +153,7 @@ namespace Tpp.Effect
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -120,7 +163,7 @@ namespace Tpp.Effect
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

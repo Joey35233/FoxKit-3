@@ -55,10 +55,43 @@ namespace Tpp.GameKit
 		// Constructors
 		public TppPermanentGimmickInfraredSensorParameter(ulong id) : base(id) { }
 		public TppPermanentGimmickInfraredSensorParameter() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "flag":
+					return new Fox.Core.Value(flag);
+				case "checkHostAndLocalPlayer":
+					return new Fox.Core.Value(checkHostAndLocalPlayer);
+				case "checkPlayer":
+					return new Fox.Core.Value(checkPlayer);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "flag":
 					this.flag = value.GetValueAsUInt32();
@@ -77,7 +110,7 @@ namespace Tpp.GameKit
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -87,7 +120,7 @@ namespace Tpp.GameKit
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

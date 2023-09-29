@@ -69,10 +69,55 @@ namespace Tpp.GameCore
 		// Constructors
 		public TppVehicle2BodyData(ulong id) : base(id) { }
 		public TppVehicle2BodyData() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "vehicleTypeIndex":
+					return new Fox.Core.Value(vehicleTypeIndex);
+				case "proxyVehicleTypeIndex":
+					return new Fox.Core.Value(proxyVehicleTypeIndex);
+				case "bodyImplTypeIndex":
+					return new Fox.Core.Value(bodyImplTypeIndex);
+				case "partsFile":
+					return new Fox.Core.Value(partsFile);
+				case "bodyInstanceCount":
+					return new Fox.Core.Value(bodyInstanceCount);
+				case "weaponParams":
+					return new Fox.Core.Value(weaponParams);
+				case "fovaFiles":
+					return new Fox.Core.Value(fovaFiles);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				case "weaponParams":
+					return new Fox.Core.Value(this.weaponParams[index]);
+				case "fovaFiles":
+					return new Fox.Core.Value(this.fovaFiles[index]);
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "vehicleTypeIndex":
 					this.vehicleTypeIndex = value.GetValueAsUInt8();
@@ -97,7 +142,7 @@ namespace Tpp.GameCore
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "weaponParams":
 					while(this.weaponParams.Count <= index) { this.weaponParams.Add(default(Fox.Core.EntityPtr<Tpp.GameCore.TppVehicle2WeaponParameter>)); }
@@ -115,7 +160,7 @@ namespace Tpp.GameCore
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

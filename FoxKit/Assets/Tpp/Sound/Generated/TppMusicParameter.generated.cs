@@ -17,7 +17,7 @@ namespace Tpp.Sound
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.String tag { get; set; }
+		public new Fox.Kernel.String tag { get; set; }
 		
 		[field: UnityEngine.SerializeField]
 		public Fox.Kernel.String playEvent { get; set; }
@@ -121,10 +121,77 @@ namespace Tpp.Sound
 		// Constructors
 		public TppMusicParameter(ulong id) : base(id) { }
 		public TppMusicParameter() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "tag":
+					return new Fox.Core.Value(tag);
+				case "playEvent":
+					return new Fox.Core.Value(playEvent);
+				case "daySwitchEvent":
+					return new Fox.Core.Value(daySwitchEvent);
+				case "nightSwitchEvent":
+					return new Fox.Core.Value(nightSwitchEvent);
+				case "dangerEasySwitchEvent":
+					return new Fox.Core.Value(dangerEasySwitchEvent);
+				case "dangerOuterSwitchEvent":
+					return new Fox.Core.Value(dangerOuterSwitchEvent);
+				case "dangerHardSwitchEvent":
+					return new Fox.Core.Value(dangerHardSwitchEvent);
+				case "dangerEasyLostSwitchEvent":
+					return new Fox.Core.Value(dangerEasyLostSwitchEvent);
+				case "dangerOuterLostSwitchEvent":
+					return new Fox.Core.Value(dangerOuterLostSwitchEvent);
+				case "dangerHardLostSwitchEvent":
+					return new Fox.Core.Value(dangerHardLostSwitchEvent);
+				case "dangerEvasionSwitchEvent":
+					return new Fox.Core.Value(dangerEvasionSwitchEvent);
+				case "dangerStrongSwitchEvent":
+					return new Fox.Core.Value(dangerStrongSwitchEvent);
+				case "safetyReflexSwitchEvent":
+					return new Fox.Core.Value(safetyReflexSwitchEvent);
+				case "safetyNeutralToSneakSwitchEvent":
+					return new Fox.Core.Value(safetyNeutralToSneakSwitchEvent);
+				case "safetySneakSwitchEvent":
+					return new Fox.Core.Value(safetySneakSwitchEvent);
+				case "safetyCautionSwitchEvent":
+					return new Fox.Core.Value(safetyCautionSwitchEvent);
+				case "safetyNoticeSwitchEvent":
+					return new Fox.Core.Value(safetyNoticeSwitchEvent);
+				case "safetyCautionNoticeSwitchEvent":
+					return new Fox.Core.Value(safetyCautionNoticeSwitchEvent);
+				case "safetyAlertToCautionSwitchEvent":
+					return new Fox.Core.Value(safetyAlertToCautionSwitchEvent);
+				case "neutralSwitchEvent":
+					return new Fox.Core.Value(neutralSwitchEvent);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "tag":
 					this.tag = value.GetValueAsString();
@@ -194,7 +261,7 @@ namespace Tpp.Sound
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -204,7 +271,7 @@ namespace Tpp.Sound
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

@@ -293,10 +293,163 @@ namespace Fox.Core
 		// Constructors
 		public StageBlockControllerData(ulong id) : base(id) { }
 		public StageBlockControllerData() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "enable":
+					return new Fox.Core.Value(enable);
+				case "stageName":
+					return new Fox.Core.Value(stageName);
+				case "useBaseDirectoryPathAndName":
+					return new Fox.Core.Value(useBaseDirectoryPathAndName);
+				case "baseDirectoryPath":
+					return new Fox.Core.Value(baseDirectoryPath);
+				case "baseName":
+					return new Fox.Core.Value(baseName);
+				case "smallBlock1BaseDirectoryPath":
+					return new Fox.Core.Value(smallBlock1BaseDirectoryPath);
+				case "smallBlock1BaseName":
+					return new Fox.Core.Value(smallBlock1BaseName);
+				case "blockSizeX":
+					return new Fox.Core.Value(blockSizeX);
+				case "blockSizeZ":
+					return new Fox.Core.Value(blockSizeZ);
+				case "countX":
+					return new Fox.Core.Value(countX);
+				case "countZ":
+					return new Fox.Core.Value(countZ);
+				case "centerIndexX":
+					return new Fox.Core.Value(centerIndexX);
+				case "centerIndexZ":
+					return new Fox.Core.Value(centerIndexZ);
+				case "blockSizeInBytes":
+					return new Fox.Core.Value(blockSizeInBytes);
+				case "smallBlock1CountX":
+					return new Fox.Core.Value(smallBlock1CountX);
+				case "smallBlock1CountZ":
+					return new Fox.Core.Value(smallBlock1CountZ);
+				case "smallBlock1BlockSizeInBytes":
+					return new Fox.Core.Value(smallBlock1BlockSizeInBytes);
+				case "blockMarginX":
+					return new Fox.Core.Value(blockMarginX);
+				case "blockMarginZ":
+					return new Fox.Core.Value(blockMarginZ);
+				case "loadingDistanceX":
+					return new Fox.Core.Value(loadingDistanceX);
+				case "loadingDistanceZ":
+					return new Fox.Core.Value(loadingDistanceZ);
+				case "commonBlockSizeInBytes":
+					return new Fox.Core.Value(commonBlockSizeInBytes);
+				case "largeBlockCount0":
+					return new Fox.Core.Value(largeBlockCount0);
+				case "largeBlockSizeInBytes0":
+					return new Fox.Core.Value(largeBlockSizeInBytes0);
+				case "largeBlockCount1":
+					return new Fox.Core.Value(largeBlockCount1);
+				case "largeBlockSizeInBytes1":
+					return new Fox.Core.Value(largeBlockSizeInBytes1);
+				case "largeBlockCount2":
+					return new Fox.Core.Value(largeBlockCount2);
+				case "largeBlockSizeInBytes2":
+					return new Fox.Core.Value(largeBlockSizeInBytes2);
+				case "largeBlockCount3":
+					return new Fox.Core.Value(largeBlockCount3);
+				case "largeBlockSizeInBytes3":
+					return new Fox.Core.Value(largeBlockSizeInBytes3);
+				case "largeBlockLoadingMarginX":
+					return new Fox.Core.Value(largeBlockLoadingMarginX);
+				case "largeBlockLoadingMarginZ":
+					return new Fox.Core.Value(largeBlockLoadingMarginZ);
+				case "stageBlockFile":
+					return new Fox.Core.Value(stageBlockFile);
+				case "lod0BaseDirectoryPath":
+					return new Fox.Core.Value(lod0BaseDirectoryPath);
+				case "lod0BaseName":
+					return new Fox.Core.Value(lod0BaseName);
+				case "lod0blockSizeInBytes":
+					return new Fox.Core.Value(lod0blockSizeInBytes);
+				case "lod0blockSizeX":
+					return new Fox.Core.Value(lod0blockSizeX);
+				case "lod0blockSizeZ":
+					return new Fox.Core.Value(lod0blockSizeZ);
+				case "lod0BlockCountX":
+					return new Fox.Core.Value(lod0BlockCountX);
+				case "lod0BlockCountZ":
+					return new Fox.Core.Value(lod0BlockCountZ);
+				case "lod0LargeBlock0SizeInBytes":
+					return new Fox.Core.Value(lod0LargeBlock0SizeInBytes);
+				case "lod0LargeBlock0Count":
+					return new Fox.Core.Value(lod0LargeBlock0Count);
+				case "lod0LargeBlock1SizeInBytes":
+					return new Fox.Core.Value(lod0LargeBlock1SizeInBytes);
+				case "lod0LargeBlock1Count":
+					return new Fox.Core.Value(lod0LargeBlock1Count);
+				case "lod0LargeBlock2SizeInBytes":
+					return new Fox.Core.Value(lod0LargeBlock2SizeInBytes);
+				case "lod0LargeBlock2Count":
+					return new Fox.Core.Value(lod0LargeBlock2Count);
+				case "lod0LargeBlock3SizeInBytes":
+					return new Fox.Core.Value(lod0LargeBlock3SizeInBytes);
+				case "lod0LargeBlock3Count":
+					return new Fox.Core.Value(lod0LargeBlock3Count);
+				case "lod1BaseDirectoryPath":
+					return new Fox.Core.Value(lod1BaseDirectoryPath);
+				case "lod1BaseName":
+					return new Fox.Core.Value(lod1BaseName);
+				case "lod1blockSizeInBytes":
+					return new Fox.Core.Value(lod1blockSizeInBytes);
+				case "lod1blockSizeX":
+					return new Fox.Core.Value(lod1blockSizeX);
+				case "lod1blockSizeZ":
+					return new Fox.Core.Value(lod1blockSizeZ);
+				case "lod1BlockCountX":
+					return new Fox.Core.Value(lod1BlockCountX);
+				case "lod1BlockCountZ":
+					return new Fox.Core.Value(lod1BlockCountZ);
+				case "lod1LargeBlock0SizeInBytes":
+					return new Fox.Core.Value(lod1LargeBlock0SizeInBytes);
+				case "lod1LargeBlock0Count":
+					return new Fox.Core.Value(lod1LargeBlock0Count);
+				case "lod1LargeBlock1SizeInBytes":
+					return new Fox.Core.Value(lod1LargeBlock1SizeInBytes);
+				case "lod1LargeBlock1Count":
+					return new Fox.Core.Value(lod1LargeBlock1Count);
+				case "lod1LargeBlock2SizeInBytes":
+					return new Fox.Core.Value(lod1LargeBlock2SizeInBytes);
+				case "lod1LargeBlock2Count":
+					return new Fox.Core.Value(lod1LargeBlock2Count);
+				case "lod1LargeBlock3SizeInBytes":
+					return new Fox.Core.Value(lod1LargeBlock3SizeInBytes);
+				case "lod1LargeBlock3Count":
+					return new Fox.Core.Value(lod1LargeBlock3Count);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "enable":
 					this.enable = value.GetValueAsBool();
@@ -495,7 +648,7 @@ namespace Fox.Core
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -505,7 +658,7 @@ namespace Fox.Core
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

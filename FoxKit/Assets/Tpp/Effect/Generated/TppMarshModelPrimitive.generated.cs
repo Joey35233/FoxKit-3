@@ -93,10 +93,65 @@ namespace Tpp.Effect
 		// Constructors
 		public TppMarshModelPrimitive(ulong id) : base(id) { }
 		public TppMarshModelPrimitive() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "baseTexturePath":
+					return new Fox.Core.Value(baseTexturePath);
+				case "normalTexturePath":
+					return new Fox.Core.Value(normalTexturePath);
+				case "specularTexturePath":
+					return new Fox.Core.Value(specularTexturePath);
+				case "cubeMapPath":
+					return new Fox.Core.Value(cubeMapPath);
+				case "visibility":
+					return new Fox.Core.Value(visibility);
+				case "depthBlendLength":
+					return new Fox.Core.Value(depthBlendLength);
+				case "scrollSpeed0U":
+					return new Fox.Core.Value(scrollSpeed0U);
+				case "scrollSpeed0V":
+					return new Fox.Core.Value(scrollSpeed0V);
+				case "scrollSpeed1U":
+					return new Fox.Core.Value(scrollSpeed1U);
+				case "scrollSpeed1V":
+					return new Fox.Core.Value(scrollSpeed1V);
+				case "useHnmTexture":
+					return new Fox.Core.Value(useHnmTexture);
+				case "debugReset":
+					return new Fox.Core.Value(debugReset);
+				case "staticModels":
+					return new Fox.Core.Value(staticModels);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				case "staticModels":
+					return new Fox.Core.Value(this.staticModels[index]);
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "baseTexturePath":
 					this.baseTexturePath = value.GetValueAsPath();
@@ -142,7 +197,7 @@ namespace Tpp.Effect
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "staticModels":
 					while(this.staticModels.Count <= index) { this.staticModels.Add(default(Fox.Core.EntityLink)); }
@@ -156,7 +211,7 @@ namespace Tpp.Effect
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

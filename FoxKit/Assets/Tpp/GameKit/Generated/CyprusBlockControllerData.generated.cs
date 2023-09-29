@@ -93,10 +93,63 @@ namespace Tpp.GameKit
 		// Constructors
 		public CyprusBlockControllerData(ulong id) : base(id) { }
 		public CyprusBlockControllerData() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "enable":
+					return new Fox.Core.Value(enable);
+				case "stageName":
+					return new Fox.Core.Value(stageName);
+				case "commonFilePath":
+					return new Fox.Core.Value(commonFilePath);
+				case "basePath":
+					return new Fox.Core.Value(basePath);
+				case "commonBlockSizeInByte":
+					return new Fox.Core.Value(commonBlockSizeInByte);
+				case "largeStageBlockSizeInByte":
+					return new Fox.Core.Value(largeStageBlockSizeInByte);
+				case "smallStageBlockCount":
+					return new Fox.Core.Value(smallStageBlockCount);
+				case "smallStageBlockSizeInByte":
+					return new Fox.Core.Value(smallStageBlockSizeInByte);
+				case "largeMissionBlockSizeInByte":
+					return new Fox.Core.Value(largeMissionBlockSizeInByte);
+				case "smallMissionBlockCount":
+					return new Fox.Core.Value(smallMissionBlockCount);
+				case "smallMissionBlockSizeInByte":
+					return new Fox.Core.Value(smallMissionBlockSizeInByte);
+				case "demoBlockCount":
+					return new Fox.Core.Value(demoBlockCount);
+				case "demoBlockSizeInByte":
+					return new Fox.Core.Value(demoBlockSizeInByte);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "enable":
 					this.enable = value.GetValueAsBool();
@@ -145,7 +198,7 @@ namespace Tpp.GameKit
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -155,7 +208,7 @@ namespace Tpp.GameKit
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

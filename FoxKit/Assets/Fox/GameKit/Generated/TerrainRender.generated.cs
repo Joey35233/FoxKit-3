@@ -145,10 +145,95 @@ namespace Fox.GameKit
 		// Constructors
 		public TerrainRender(ulong id) : base(id) { }
 		public TerrainRender() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "filePath":
+					return new Fox.Core.Value(filePath);
+				case "loadFilePath":
+					return new Fox.Core.Value(loadFilePath);
+				case "dummyFilePath":
+					return new Fox.Core.Value(dummyFilePath);
+				case "filePtr":
+					return new Fox.Core.Value(filePtr);
+				case "meterPerOneRepeat":
+					return new Fox.Core.Value(meterPerOneRepeat);
+				case "meterPerPixel":
+					return new Fox.Core.Value(meterPerPixel);
+				case "isWireFrame":
+					return new Fox.Core.Value(isWireFrame);
+				case "lodFlag":
+					return new Fox.Core.Value(lodFlag);
+				case "isDebugMaterial":
+					return new Fox.Core.Value(isDebugMaterial);
+				case "materials":
+					return new Fox.Core.Value(materials);
+				case "lodParam":
+					return new Fox.Core.Value(lodParam);
+				case "materialConfigs":
+					return new Fox.Core.Value(materialConfigs);
+				case "packedAlbedoTexturePath":
+					return new Fox.Core.Value(packedAlbedoTexturePath);
+				case "packedNormalTexturePath":
+					return new Fox.Core.Value(packedNormalTexturePath);
+				case "packedSrmTexturePath":
+					return new Fox.Core.Value(packedSrmTexturePath);
+				case "packedMaterialIdentify":
+					return new Fox.Core.Value(packedMaterialIdentify);
+				case "isFourceUsePackedMaterialTexture":
+					return new Fox.Core.Value(isFourceUsePackedMaterialTexture);
+				case "baseColorTexture":
+					return new Fox.Core.Value(baseColorTexture);
+				case "materialLodScale":
+					return new Fox.Core.Value(materialLodScale);
+				case "materialLodNearOffset":
+					return new Fox.Core.Value(materialLodNearOffset);
+				case "materialLodFarOffset":
+					return new Fox.Core.Value(materialLodFarOffset);
+				case "materialLodHeightOffset":
+					return new Fox.Core.Value(materialLodHeightOffset);
+				case "worldTextureMode":
+					return new Fox.Core.Value(worldTextureMode);
+				case "worldTextureDividedNumX":
+					return new Fox.Core.Value(worldTextureDividedNumX);
+				case "worldTextureDividedNumZ":
+					return new Fox.Core.Value(worldTextureDividedNumZ);
+				case "worldTextureTilePathes":
+					return new Fox.Core.Value(worldTextureTilePathes);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				case "materials":
+					return new Fox.Core.Value(this.materials[index]);
+				case "materialConfigs":
+					return new Fox.Core.Value(this.materialConfigs[index]);
+				case "worldTextureTilePathes":
+					return new Fox.Core.Value(this.worldTextureTilePathes[index]);
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "filePath":
 					this.filePath = value.GetValueAsPath();
@@ -227,7 +312,7 @@ namespace Fox.GameKit
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "materials":
 					
@@ -249,7 +334,7 @@ namespace Fox.GameKit
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

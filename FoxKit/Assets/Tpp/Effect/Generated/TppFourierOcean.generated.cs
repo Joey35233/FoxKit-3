@@ -113,10 +113,73 @@ namespace Tpp.Effect
 		// Constructors
 		public TppFourierOcean(ulong id) : base(id) { }
 		public TppFourierOcean() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "displacementStrenght":
+					return new Fox.Core.Value(displacementStrenght);
+				case "velocity":
+					return new Fox.Core.Value(velocity);
+				case "windDirectionX":
+					return new Fox.Core.Value(windDirectionX);
+				case "windDirectionZ":
+					return new Fox.Core.Value(windDirectionZ);
+				case "waveAmplitude":
+					return new Fox.Core.Value(waveAmplitude);
+				case "windSpeed":
+					return new Fox.Core.Value(windSpeed);
+				case "windDependency":
+					return new Fox.Core.Value(windDependency);
+				case "baseHeight":
+					return new Fox.Core.Value(baseHeight);
+				case "choppyScale":
+					return new Fox.Core.Value(choppyScale);
+				case "projectionScale":
+					return new Fox.Core.Value(projectionScale);
+				case "blendStart":
+					return new Fox.Core.Value(blendStart);
+				case "blendEnd":
+					return new Fox.Core.Value(blendEnd);
+				case "farProjectionScale":
+					return new Fox.Core.Value(farProjectionScale);
+				case "farProjectionAmplitude":
+					return new Fox.Core.Value(farProjectionAmplitude);
+				case "farProjectionNormalStrenght":
+					return new Fox.Core.Value(farProjectionNormalStrenght);
+				case "reflectionPower":
+					return new Fox.Core.Value(reflectionPower);
+				case "specularIntensity":
+					return new Fox.Core.Value(specularIntensity);
+				case "foamAmount":
+					return new Fox.Core.Value(foamAmount);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "displacementStrenght":
 					this.displacementStrenght = value.GetValueAsFloat();
@@ -180,7 +243,7 @@ namespace Tpp.Effect
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -190,7 +253,7 @@ namespace Tpp.Effect
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

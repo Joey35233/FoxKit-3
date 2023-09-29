@@ -57,10 +57,45 @@ namespace Fox.Sim
 		// Constructors
 		public SimDaemon(ulong id) : base(id) { }
 		public SimDaemon() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "defaultViewPort":
+					return new Fox.Core.Value(defaultViewPort);
+				case "maxActiveClothNum":
+					return new Fox.Core.Value(maxActiveClothNum);
+				case "inertialMax":
+					return new Fox.Core.Value(inertialMax);
+				case "isClothLocked":
+					return new Fox.Core.Value(isClothLocked);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "defaultViewPort":
 					this.defaultViewPort = value.GetValueAsString();
@@ -82,7 +117,7 @@ namespace Fox.Sim
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -92,7 +127,7 @@ namespace Fox.Sim
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

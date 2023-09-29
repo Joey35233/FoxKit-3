@@ -47,7 +47,6 @@ namespace Fox.GameKit
             foreach (ObjectBrushObjectBinary obj in asset.objects)
             {
                 GameObject instanceGameObject;
-                bool instantiated = false;
 
                 var transform = new Fox.Core.Transform();
 

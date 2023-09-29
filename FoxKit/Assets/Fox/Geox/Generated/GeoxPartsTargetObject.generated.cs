@@ -73,10 +73,55 @@ namespace Fox.Geox
 		// Constructors
 		public GeoxPartsTargetObject(ulong id) : base(id) { }
 		public GeoxPartsTargetObject() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "primType":
+					return new Fox.Core.Value(primType);
+				case "axisSortFlag":
+					return new Fox.Core.Value(axisSortFlag);
+				case "systemAttribute":
+					return new Fox.Core.Value(systemAttribute);
+				case "through":
+					return new Fox.Core.Value(through);
+				case "isValid":
+					return new Fox.Core.Value(isValid);
+				case "categoryTag":
+					return new Fox.Core.Value(categoryTag);
+				case "groupTags":
+					return new Fox.Core.Value(groupTags);
+				case "applicationDataLink":
+					return new Fox.Core.Value(applicationDataLink);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				case "groupTags":
+					return new Fox.Core.Value(this.groupTags[index]);
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "primType":
 					this.primType = (PrimType)value.GetValueAsInt32();
@@ -107,7 +152,7 @@ namespace Fox.Geox
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "groupTags":
 					while(this.groupTags.Count <= index) { this.groupTags.Add(default(Fox.Kernel.String)); }
@@ -121,7 +166,7 @@ namespace Fox.Geox
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

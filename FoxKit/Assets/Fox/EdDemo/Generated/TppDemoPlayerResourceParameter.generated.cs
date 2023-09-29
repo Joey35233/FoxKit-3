@@ -65,10 +65,49 @@ namespace Fox.EdDemo
 		// Constructors
 		public TppDemoPlayerResourceParameter(ulong id) : base(id) { }
 		public TppDemoPlayerResourceParameter() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "playerInstanceName":
+					return new Fox.Core.Value(playerInstanceName);
+				case "partsFile":
+					return new Fox.Core.Value(partsFile);
+				case "handFv2File":
+					return new Fox.Core.Value(handFv2File);
+				case "headFv2File":
+					return new Fox.Core.Value(headFv2File);
+				case "camoFv2File":
+					return new Fox.Core.Value(camoFv2File);
+				case "needReload":
+					return new Fox.Core.Value(needReload);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "playerInstanceName":
 					this.playerInstanceName = value.GetValueAsString();
@@ -96,7 +135,7 @@ namespace Fox.EdDemo
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -106,7 +145,7 @@ namespace Fox.EdDemo
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

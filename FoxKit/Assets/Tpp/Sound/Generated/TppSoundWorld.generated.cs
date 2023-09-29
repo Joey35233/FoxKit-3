@@ -133,10 +133,85 @@ namespace Tpp.Sound
 		// Constructors
 		public TppSoundWorld(ulong id) : base(id) { }
 		public TppSoundWorld() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "updateSeconds":
+					return new Fox.Core.Value(updateSeconds);
+				case "startMorning":
+					return new Fox.Core.Value(startMorning);
+				case "midMorning":
+					return new Fox.Core.Value(midMorning);
+				case "endMorning":
+					return new Fox.Core.Value(endMorning);
+				case "startEvening":
+					return new Fox.Core.Value(startEvening);
+				case "midEvening":
+					return new Fox.Core.Value(midEvening);
+				case "endEvening":
+					return new Fox.Core.Value(endEvening);
+				case "situationEvent":
+					return new Fox.Core.Value(situationEvent);
+				case "clockRtpc":
+					return new Fox.Core.Value(clockRtpc);
+				case "windVelocityRtpc":
+					return new Fox.Core.Value(windVelocityRtpc);
+				case "windDirectionRtpc":
+					return new Fox.Core.Value(windDirectionRtpc);
+				case "rainRtpc":
+					return new Fox.Core.Value(rainRtpc);
+				case "heightRtpc":
+					return new Fox.Core.Value(heightRtpc);
+				case "ambientParameter":
+					return new Fox.Core.Value(ambientParameter);
+				case "categoryFpvStateGroup":
+					return new Fox.Core.Value(categoryFpvStateGroup);
+				case "categoryFpvStateValue":
+					return new Fox.Core.Value(categoryFpvStateValue);
+				case "dashStartEventName":
+					return new Fox.Core.Value(dashStartEventName);
+				case "dashFinishEventName":
+					return new Fox.Core.Value(dashFinishEventName);
+				case "blockedObstruction":
+					return new Fox.Core.Value(blockedObstruction);
+				case "blockedOcclusion":
+					return new Fox.Core.Value(blockedOcclusion);
+				case "unlinkedObstruction":
+					return new Fox.Core.Value(unlinkedObstruction);
+				case "unlinkedOcclusion":
+					return new Fox.Core.Value(unlinkedOcclusion);
+				case "interferenceSlope":
+					return new Fox.Core.Value(interferenceSlope);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				case "ambientParameter":
+					return new Fox.Core.Value(this.ambientParameter[index]);
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "updateSeconds":
 					this.updateSeconds = value.GetValueAsUInt32();
@@ -212,7 +287,7 @@ namespace Tpp.Sound
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "ambientParameter":
 					
@@ -226,7 +301,7 @@ namespace Tpp.Sound
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

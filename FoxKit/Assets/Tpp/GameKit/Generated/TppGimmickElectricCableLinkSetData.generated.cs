@@ -61,10 +61,53 @@ namespace Tpp.GameKit
 		// Constructors
 		public TppGimmickElectricCableLinkSetData(ulong id) : base(id) { }
 		public TppGimmickElectricCableLinkSetData() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "electricCableData":
+					return new Fox.Core.Value(electricCableData);
+				case "poleData":
+					return new Fox.Core.Value(poleData);
+				case "electricCable":
+					return new Fox.Core.Value(electricCable);
+				case "pole":
+					return new Fox.Core.Value(pole);
+				case "cnpIndex":
+					return new Fox.Core.Value(cnpIndex);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				case "electricCable":
+					return new Fox.Core.Value(this.electricCable[index]);
+				case "pole":
+					return new Fox.Core.Value(this.pole[index]);
+				case "cnpIndex":
+					return new Fox.Core.Value(this.cnpIndex[index]);
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "electricCableData":
 					this.electricCableData = value.GetValueAsEntityLink();
@@ -80,7 +123,7 @@ namespace Tpp.GameKit
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "electricCable":
 					while(this.electricCable.Count <= index) { this.electricCable.Add(default(Fox.Kernel.String)); }
@@ -102,7 +145,7 @@ namespace Tpp.GameKit
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

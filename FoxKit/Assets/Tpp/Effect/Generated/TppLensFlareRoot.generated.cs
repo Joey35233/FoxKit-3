@@ -61,10 +61,49 @@ namespace Tpp.Effect
 		// Constructors
 		public TppLensFlareRoot(ulong id) : base(id) { }
 		public TppLensFlareRoot() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "useDebugLightPosition":
+					return new Fox.Core.Value(useDebugLightPosition);
+				case "lightPositionX":
+					return new Fox.Core.Value(lightPositionX);
+				case "lightPositionY":
+					return new Fox.Core.Value(lightPositionY);
+				case "shieldCheckLength":
+					return new Fox.Core.Value(shieldCheckLength);
+				case "shapes":
+					return new Fox.Core.Value(shapes);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				case "shapes":
+					return new Fox.Core.Value(this.shapes[index]);
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "useDebugLightPosition":
 					this.useDebugLightPosition = value.GetValueAsBool();
@@ -86,7 +125,7 @@ namespace Tpp.Effect
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "shapes":
 					while(this.shapes.Count <= index) { this.shapes.Add(default(Fox.Core.EntityLink)); }
@@ -100,7 +139,7 @@ namespace Tpp.Effect
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

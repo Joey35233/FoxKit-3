@@ -81,10 +81,59 @@ namespace Fox.Demox
 		// Constructors
 		public DemoResource(ulong id) : base(id) { }
 		public DemoResource() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "enable":
+					return new Fox.Core.Value(enable);
+				case "demoIdentifierName":
+					return new Fox.Core.Value(demoIdentifierName);
+				case "demoIdentifierKey":
+					return new Fox.Core.Value(demoIdentifierKey);
+				case "streamBufferSizeInKbytes":
+					return new Fox.Core.Value(streamBufferSizeInKbytes);
+				case "systemPacketSizeInKbytes":
+					return new Fox.Core.Value(systemPacketSizeInKbytes);
+				case "systemPacketNum":
+					return new Fox.Core.Value(systemPacketNum);
+				case "soundPacketSizeInKbytes":
+					return new Fox.Core.Value(soundPacketSizeInKbytes);
+				case "soundPacketNum":
+					return new Fox.Core.Value(soundPacketNum);
+				case "demoPacketSizeInKbytes":
+					return new Fox.Core.Value(demoPacketSizeInKbytes);
+				case "demoPacketNum":
+					return new Fox.Core.Value(demoPacketNum);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				case "demoIdentifierKey":
+					return new Fox.Core.Value(this.demoIdentifierKey[index]);
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "enable":
 					this.enable = value.GetValueAsBool();
@@ -121,7 +170,7 @@ namespace Fox.Demox
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "demoIdentifierKey":
 					while(this.demoIdentifierKey.Count <= index) { this.demoIdentifierKey.Add(default(Fox.Kernel.String)); }
@@ -135,7 +184,7 @@ namespace Fox.Demox
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

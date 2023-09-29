@@ -73,10 +73,53 @@ namespace Fox.UiScene
 		// Constructors
 		public UiLayoutData(ulong id) : base(id) { }
 		public UiLayoutData() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "layoutPath":
+					return new Fox.Core.Value(layoutPath);
+				case "color":
+					return new Fox.Core.Value(color);
+				case "visible":
+					return new Fox.Core.Value(visible);
+				case "drawPriority":
+					return new Fox.Core.Value(drawPriority);
+				case "connection_connectModelDataHandle":
+					return new Fox.Core.Value(connection_connectModelDataHandle);
+				case "connection_connectModelNodeName":
+					return new Fox.Core.Value(connection_connectModelNodeName);
+				case "useParentCamera":
+					return new Fox.Core.Value(useParentCamera);
+				case "fontTableIndex":
+					return new Fox.Core.Value(fontTableIndex);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "layoutPath":
 					this.layoutPath = value.GetValueAsPath();
@@ -110,7 +153,7 @@ namespace Fox.UiScene
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -120,7 +163,7 @@ namespace Fox.UiScene
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

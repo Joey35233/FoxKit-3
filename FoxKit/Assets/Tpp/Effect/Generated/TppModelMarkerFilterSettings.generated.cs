@@ -69,10 +69,57 @@ namespace Tpp.Effect
 		// Constructors
 		public TppModelMarkerFilterSettings(ulong id) : base(id) { }
 		public TppModelMarkerFilterSettings() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "texRepeatsNear":
+					return new Fox.Core.Value(texRepeatsNear);
+				case "texRepeatsFar":
+					return new Fox.Core.Value(texRepeatsFar);
+				case "texRepeatsMin":
+					return new Fox.Core.Value(texRepeatsMin);
+				case "texRepeatsMax":
+					return new Fox.Core.Value(texRepeatsMax);
+				case "alphas":
+					return new Fox.Core.Value(alphas);
+				case "offsets":
+					return new Fox.Core.Value(offsets);
+				case "incidences":
+					return new Fox.Core.Value(incidences);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				case "alphas":
+					return new Fox.Core.Value(this.alphas[index]);
+				case "offsets":
+					return new Fox.Core.Value(this.offsets[index]);
+				case "incidences":
+					return new Fox.Core.Value(this.incidences[index]);
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "texRepeatsNear":
 					this.texRepeatsNear = value.GetValueAsFloat();
@@ -94,7 +141,7 @@ namespace Tpp.Effect
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "alphas":
 					while(this.alphas.Count <= index) { this.alphas.Add(default(UnityEngine.Vector3)); }
@@ -116,7 +163,7 @@ namespace Tpp.Effect
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

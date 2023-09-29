@@ -53,10 +53,45 @@ namespace Fox.Core
 		// Constructors
 		public Group(ulong id) : base(id) { }
 		public Group() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "parentGroup":
+					return new Fox.Core.Value(parentGroup);
+				case "members":
+					return new Fox.Core.Value(members);
+				case "deleteFromPackage":
+					return new Fox.Core.Value(deleteFromPackage);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				case "members":
+					return new Fox.Core.Value(this.members[index]);
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "parentGroup":
 					this.parentGroup = value.GetValueAsEntityLink();
@@ -72,7 +107,7 @@ namespace Fox.Core
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "members":
 					while(this.members.Count <= index) { this.members.Add(default(Fox.Core.EntityLink)); }
@@ -86,7 +121,7 @@ namespace Fox.Core
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

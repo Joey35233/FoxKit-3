@@ -72,10 +72,63 @@ namespace Fox.Phx
 		// Constructors
 		public PhxVehicleNormalEngine(ulong id) : base(id) { }
 		public PhxVehicleNormalEngine() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "vehicleAxes":
+					return new Fox.Core.Value(vehicleAxes);
+				case "torqueDistributions":
+					return new Fox.Core.Value(torqueDistributions);
+				case "gearRatios":
+					return new Fox.Core.Value(gearRatios);
+				case "vehicleNormalEngineParam":
+					return new Fox.Core.Value(vehicleNormalEngineParam);
+				case "specPointAngularVelocity":
+					return new Fox.Core.Value(specPointAngularVelocity);
+				case "specPointTorque":
+					return new Fox.Core.Value(specPointTorque);
+				case "specPointBreakTorque":
+					return new Fox.Core.Value(specPointBreakTorque);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				case "vehicleAxes":
+					return new Fox.Core.Value(this.vehicleAxes[index]);
+				case "torqueDistributions":
+					return new Fox.Core.Value(this.torqueDistributions[index]);
+				case "gearRatios":
+					return new Fox.Core.Value(this.gearRatios[index]);
+				case "specPointAngularVelocity":
+					return new Fox.Core.Value(this.specPointAngularVelocity[index]);
+				case "specPointTorque":
+					return new Fox.Core.Value(this.specPointTorque[index]);
+				case "specPointBreakTorque":
+					return new Fox.Core.Value(this.specPointBreakTorque[index]);
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "vehicleNormalEngineParam":
 					this.vehicleNormalEngineParam = value.GetValueAsEntityPtr<Fox.Phx.PhVehicleNormalEngineParam>();
@@ -88,7 +141,7 @@ namespace Fox.Phx
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "vehicleAxes":
 					while(this.vehicleAxes.Count <= index) { this.vehicleAxes.Add(default(Fox.Core.EntityLink)); }
@@ -122,7 +175,7 @@ namespace Fox.Phx
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

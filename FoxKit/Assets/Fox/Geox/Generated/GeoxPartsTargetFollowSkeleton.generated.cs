@@ -53,10 +53,47 @@ namespace Fox.Geox
 		// Constructors
 		public GeoxPartsTargetFollowSkeleton(ulong id) : base(id) { }
 		public GeoxPartsTargetFollowSkeleton() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "skeletonNames":
+					return new Fox.Core.Value(skeletonNames);
+				case "objectLinks":
+					return new Fox.Core.Value(objectLinks);
+				case "partsTargetUnitHandle":
+					return new Fox.Core.Value(partsTargetUnitHandle);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				case "skeletonNames":
+					return new Fox.Core.Value(this.skeletonNames[index]);
+				case "objectLinks":
+					return new Fox.Core.Value(this.objectLinks[index]);
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "partsTargetUnitHandle":
 					this.partsTargetUnitHandle = value.GetValueAsEntityHandle();
@@ -69,7 +106,7 @@ namespace Fox.Geox
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "skeletonNames":
 					while(this.skeletonNames.Count <= index) { this.skeletonNames.Add(default(Fox.Kernel.String)); }
@@ -87,7 +124,7 @@ namespace Fox.Geox
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

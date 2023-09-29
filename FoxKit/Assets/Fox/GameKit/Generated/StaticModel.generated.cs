@@ -85,10 +85,59 @@ namespace Fox.GameKit
 		// Constructors
 		public StaticModel(ulong id) : base(id) { }
 		public StaticModel() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "modelFile":
+					return new Fox.Core.Value(modelFile);
+				case "geomFile":
+					return new Fox.Core.Value(geomFile);
+				case "isVisibleGeom":
+					return new Fox.Core.Value(isVisibleGeom);
+				case "isIsolated":
+					return new Fox.Core.Value(isIsolated);
+				case "lodFarSize":
+					return new Fox.Core.Value(lodFarSize);
+				case "lodNearSize":
+					return new Fox.Core.Value(lodNearSize);
+				case "lodPolygonSize":
+					return new Fox.Core.Value(lodPolygonSize);
+				case "color":
+					return new Fox.Core.Value(color);
+				case "drawRejectionLevel":
+					return new Fox.Core.Value(drawRejectionLevel);
+				case "drawMode":
+					return new Fox.Core.Value(drawMode);
+				case "rejectFarRangeShadowCast":
+					return new Fox.Core.Value(rejectFarRangeShadowCast);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "modelFile":
 					this.modelFile = value.GetValueAsFilePtr();
@@ -131,7 +180,7 @@ namespace Fox.GameKit
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -141,7 +190,7 @@ namespace Fox.GameKit
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

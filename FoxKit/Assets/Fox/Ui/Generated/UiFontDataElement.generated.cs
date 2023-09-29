@@ -77,10 +77,55 @@ namespace Fox.Ui
 		// Constructors
 		public UiFontDataElement(ulong id) : base(id) { }
 		public UiFontDataElement() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "language":
+					return new Fox.Core.Value(language);
+				case "fontName":
+					return new Fox.Core.Value(fontName);
+				case "fontFile":
+					return new Fox.Core.Value(fontFile);
+				case "texturePath":
+					return new Fox.Core.Value(texturePath);
+				case "fontWidth":
+					return new Fox.Core.Value(fontWidth);
+				case "fontHeight":
+					return new Fox.Core.Value(fontHeight);
+				case "textSpace":
+					return new Fox.Core.Value(textSpace);
+				case "lineSpace":
+					return new Fox.Core.Value(lineSpace);
+				case "fontEdge":
+					return new Fox.Core.Value(fontEdge);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "language":
 					this.language = value.GetValueAsString();
@@ -117,7 +162,7 @@ namespace Fox.Ui
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -127,7 +172,7 @@ namespace Fox.Ui
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

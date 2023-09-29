@@ -53,10 +53,49 @@ namespace Fox.Sdx
 		// Constructors
 		public SoundDataFileInfo(ulong id) : base(id) { }
 		public SoundDataFileInfo() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "loadBanks":
+					return new Fox.Core.Value(loadBanks);
+				case "prepareBanks":
+					return new Fox.Core.Value(prepareBanks);
+				case "prepareEvents":
+					return new Fox.Core.Value(prepareEvents);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				case "loadBanks":
+					return new Fox.Core.Value(this.loadBanks[index]);
+				case "prepareBanks":
+					return new Fox.Core.Value(this.prepareBanks[index]);
+				case "prepareEvents":
+					return new Fox.Core.Value(this.prepareEvents[index]);
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetProperty(propertyName, value);
@@ -66,7 +105,7 @@ namespace Fox.Sdx
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "loadBanks":
 					while(this.loadBanks.Count <= index) { this.loadBanks.Add(default(Fox.Kernel.String)); }
@@ -88,7 +127,7 @@ namespace Fox.Sdx
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

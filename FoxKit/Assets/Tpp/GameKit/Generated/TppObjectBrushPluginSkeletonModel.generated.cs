@@ -101,10 +101,79 @@ namespace Tpp.GameKit
 		// Constructors
 		public TppObjectBrushPluginSkeletonModel(ulong id) : base(id) { }
 		public TppObjectBrushPluginSkeletonModel() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "modelFile":
+					return new Fox.Core.Value(modelFile);
+				case "geomFile":
+					return new Fox.Core.Value(geomFile);
+				case "animFile":
+					return new Fox.Core.Value(animFile);
+				case "animWindyFile":
+					return new Fox.Core.Value(animWindyFile);
+				case "mtarFile":
+					return new Fox.Core.Value(mtarFile);
+				case "soundSeType":
+					return new Fox.Core.Value(soundSeType);
+				case "minSize":
+					return new Fox.Core.Value(minSize);
+				case "maxSize":
+					return new Fox.Core.Value(maxSize);
+				case "isGeomActivity":
+					return new Fox.Core.Value(isGeomActivity);
+				case "thinkOutRate":
+					return new Fox.Core.Value(thinkOutRate);
+				case "extensionRadius":
+					return new Fox.Core.Value(extensionRadius);
+				case "reserveResourcePlugin":
+					return new Fox.Core.Value(reserveResourcePlugin);
+				case "reserveResourcePerBlock":
+					return new Fox.Core.Value(reserveResourcePerBlock);
+				case "lodLength":
+					return new Fox.Core.Value(lodLength);
+				case "lodLengthForHighEnd":
+					return new Fox.Core.Value(lodLengthForHighEnd);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				case "modelFile":
+					return new Fox.Core.Value(this.modelFile[index]);
+				case "geomFile":
+					return new Fox.Core.Value(this.geomFile[index]);
+				case "animFile":
+					return new Fox.Core.Value(this.animFile[index]);
+				case "animWindyFile":
+					return new Fox.Core.Value(this.animWindyFile[index]);
+				case "lodLength":
+					return new Fox.Core.Value(this.lodLength[index]);
+				case "lodLengthForHighEnd":
+					return new Fox.Core.Value(this.lodLengthForHighEnd[index]);
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "mtarFile":
 					this.mtarFile = value.GetValueAsFilePtr();
@@ -141,7 +210,7 @@ namespace Tpp.GameKit
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "modelFile":
 					while(this.modelFile.Count <= index) { this.modelFile.Add(default(Fox.Core.FilePtr)); }
@@ -175,7 +244,7 @@ namespace Tpp.GameKit
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

@@ -65,10 +65,61 @@ namespace Tpp.Effect
 		// Constructors
 		public TppFootPrint(ulong id) : base(id) { }
 		public TppFootPrint() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "matrices":
+					return new Fox.Core.Value(matrices);
+				case "footChara":
+					return new Fox.Core.Value(footChara);
+				case "footLR":
+					return new Fox.Core.Value(footLR);
+				case "alpha":
+					return new Fox.Core.Value(alpha);
+				case "blood":
+					return new Fox.Core.Value(blood);
+				case "enable":
+					return new Fox.Core.Value(enable);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				case "matrices":
+					return new Fox.Core.Value(this.matrices[index]);
+				case "footChara":
+					return new Fox.Core.Value(this.footChara[index]);
+				case "footLR":
+					return new Fox.Core.Value(this.footLR[index]);
+				case "alpha":
+					return new Fox.Core.Value(this.alpha[index]);
+				case "blood":
+					return new Fox.Core.Value(this.blood[index]);
+				case "enable":
+					return new Fox.Core.Value(this.enable[index]);
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetProperty(propertyName, value);
@@ -78,7 +129,7 @@ namespace Tpp.Effect
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "matrices":
 					while(this.matrices.Count <= index) { this.matrices.Add(default(UnityEngine.Matrix4x4)); }
@@ -112,7 +163,7 @@ namespace Tpp.Effect
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

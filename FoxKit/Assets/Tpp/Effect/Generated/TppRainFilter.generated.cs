@@ -137,10 +137,85 @@ namespace Tpp.Effect
 		// Constructors
 		public TppRainFilter(ulong id) : base(id) { }
 		public TppRainFilter() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "enable":
+					return new Fox.Core.Value(enable);
+				case "startFadeInDistance":
+					return new Fox.Core.Value(startFadeInDistance);
+				case "endFadeInDistance":
+					return new Fox.Core.Value(endFadeInDistance);
+				case "startFadeOutDistance":
+					return new Fox.Core.Value(startFadeOutDistance);
+				case "endFadeOutDistance":
+					return new Fox.Core.Value(endFadeOutDistance);
+				case "albedoExtinctionRatio":
+					return new Fox.Core.Value(albedoExtinctionRatio);
+				case "roughnessExtinctionCoefficient":
+					return new Fox.Core.Value(roughnessExtinctionCoefficient);
+				case "roughnessEffectiveThreshold":
+					return new Fox.Core.Value(roughnessEffectiveThreshold);
+				case "LABDiffuseScale":
+					return new Fox.Core.Value(LABDiffuseScale);
+				case "LABDiffuseAdd":
+					return new Fox.Core.Value(LABDiffuseAdd);
+				case "floorTexScale":
+					return new Fox.Core.Value(floorTexScale);
+				case "wallTexScale0":
+					return new Fox.Core.Value(wallTexScale0);
+				case "wallTexScale1":
+					return new Fox.Core.Value(wallTexScale1);
+				case "wallTexSpeed":
+					return new Fox.Core.Value(wallTexSpeed);
+				case "maskTexScale0":
+					return new Fox.Core.Value(maskTexScale0);
+				case "maskTexScale1":
+					return new Fox.Core.Value(maskTexScale1);
+				case "maskTexSpeed":
+					return new Fox.Core.Value(maskTexSpeed);
+				case "rainColor":
+					return new Fox.Core.Value(rainColor);
+				case "windScale":
+					return new Fox.Core.Value(windScale);
+				case "wallAlphaRate":
+					return new Fox.Core.Value(wallAlphaRate);
+				case "normalWallTexPath":
+					return new Fox.Core.Value(normalWallTexPath);
+				case "normalFloorTexPath":
+					return new Fox.Core.Value(normalFloorTexPath);
+				case "reflectionCubeMapTexPath":
+					return new Fox.Core.Value(reflectionCubeMapTexPath);
+				case "maskTexPath":
+					return new Fox.Core.Value(maskTexPath);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "enable":
 					this.enable = value.GetValueAsBool();
@@ -222,7 +297,7 @@ namespace Tpp.Effect
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -232,7 +307,7 @@ namespace Tpp.Effect
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

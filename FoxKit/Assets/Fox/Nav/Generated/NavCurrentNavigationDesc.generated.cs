@@ -93,10 +93,65 @@ namespace Fox.Nav
 		// Constructors
 		public NavCurrentNavigationDesc(ulong id) : base(id) { }
 		public NavCurrentNavigationDesc() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "destination":
+					return new Fox.Core.Value(destination);
+				case "destinationDirection":
+					return new Fox.Core.Value(destinationDirection);
+				case "position":
+					return new Fox.Core.Value(position);
+				case "startPositions":
+					return new Fox.Core.Value(startPositions);
+				case "direction":
+					return new Fox.Core.Value(direction);
+				case "steeringMargin":
+					return new Fox.Core.Value(steeringMargin);
+				case "minimumTurningRadius":
+					return new Fox.Core.Value(minimumTurningRadius);
+				case "turningRadius":
+					return new Fox.Core.Value(turningRadius);
+				case "radius":
+					return new Fox.Core.Value(radius);
+				case "attribute":
+					return new Fox.Core.Value(attribute);
+				case "pathUpdateDist":
+					return new Fox.Core.Value(pathUpdateDist);
+				case "pathfindOptionEnableFlags":
+					return new Fox.Core.Value(pathfindOptionEnableFlags);
+				case "enableAutoIncrementStep":
+					return new Fox.Core.Value(enableAutoIncrementStep);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				case "startPositions":
+					return new Fox.Core.Value(this.startPositions[index]);
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "destination":
 					this.destination = value.GetValueAsVector3();
@@ -142,7 +197,7 @@ namespace Fox.Nav
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "startPositions":
 					while(this.startPositions.Count <= index) { this.startPositions.Add(default(UnityEngine.Vector3)); }
@@ -156,7 +211,7 @@ namespace Fox.Nav
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

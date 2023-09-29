@@ -69,10 +69,51 @@ namespace Fox.GameKit
 		// Constructors
 		public StageBlockLowModel(ulong id) : base(id) { }
 		public StageBlockLowModel() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "lowModelBasePath":
+					return new Fox.Core.Value(lowModelBasePath);
+				case "minIndexX":
+					return new Fox.Core.Value(minIndexX);
+				case "minIndexZ":
+					return new Fox.Core.Value(minIndexZ);
+				case "maxIndexX":
+					return new Fox.Core.Value(maxIndexX);
+				case "maxIndexZ":
+					return new Fox.Core.Value(maxIndexZ);
+				case "groupCountX":
+					return new Fox.Core.Value(groupCountX);
+				case "groupCountZ":
+					return new Fox.Core.Value(groupCountZ);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "lowModelBasePath":
 					this.lowModelBasePath = value.GetValueAsString();
@@ -103,7 +144,7 @@ namespace Fox.GameKit
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -113,7 +154,7 @@ namespace Fox.GameKit
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

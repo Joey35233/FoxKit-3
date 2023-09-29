@@ -69,10 +69,57 @@ namespace Tpp.MotherBaseCore
 		// Constructors
 		public MotherBaseConstructData(ulong id) : base(id) { }
 		public MotherBaseConstructData() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "type":
+					return new Fox.Core.Value(type);
+				case "index":
+					return new Fox.Core.Value(index);
+				case "divisionType":
+					return new Fox.Core.Value(divisionType);
+				case "divisionRotate":
+					return new Fox.Core.Value(divisionRotate);
+				case "anotherConnector":
+					return new Fox.Core.Value(anotherConnector);
+				case "cluster":
+					return new Fox.Core.Value(cluster);
+				case "plant":
+					return new Fox.Core.Value(plant);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				case "divisionType":
+					return new Fox.Core.Value(this.divisionType[index]);
+				case "divisionRotate":
+					return new Fox.Core.Value(this.divisionRotate[index]);
+				case "anotherConnector":
+					return new Fox.Core.Value(this.anotherConnector[index]);
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "type":
 					this.type = (MbConstructDataType)value.GetValueAsInt32();
@@ -94,7 +141,7 @@ namespace Tpp.MotherBaseCore
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "divisionType":
 					
@@ -116,7 +163,7 @@ namespace Tpp.MotherBaseCore
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

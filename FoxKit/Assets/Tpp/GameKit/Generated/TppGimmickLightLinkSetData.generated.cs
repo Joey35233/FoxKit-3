@@ -53,10 +53,45 @@ namespace Tpp.GameKit
 		// Constructors
 		public TppGimmickLightLinkSetData(ulong id) : base(id) { }
 		public TppGimmickLightLinkSetData() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "numLightGimmick":
+					return new Fox.Core.Value(numLightGimmick);
+				case "ownerGimmick":
+					return new Fox.Core.Value(ownerGimmick);
+				case "lightList":
+					return new Fox.Core.Value(lightList);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				case "lightList":
+					return new Fox.Core.Value(this.lightList[index]);
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "numLightGimmick":
 					this.numLightGimmick = value.GetValueAsUInt32();
@@ -72,7 +107,7 @@ namespace Tpp.GameKit
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "lightList":
 					while(this.lightList.Count <= index) { this.lightList.Add(default(Fox.Core.EntityLink)); }
@@ -86,7 +121,7 @@ namespace Tpp.GameKit
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

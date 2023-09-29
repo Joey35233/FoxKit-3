@@ -69,10 +69,51 @@ namespace Tpp.Effect
 		// Constructors
 		public TppTrapExecChangeGlobalWindCallbackDataElement(ulong id) : base(id) { }
 		public TppTrapExecChangeGlobalWindCallbackDataElement() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "speed":
+					return new Fox.Core.Value(speed);
+				case "rotation":
+					return new Fox.Core.Value(rotation);
+				case "speedTurbulentRate":
+					return new Fox.Core.Value(speedTurbulentRate);
+				case "speedTurbulentCycle":
+					return new Fox.Core.Value(speedTurbulentCycle);
+				case "rotTurbulentRate":
+					return new Fox.Core.Value(rotTurbulentRate);
+				case "rotTurbulentCycle":
+					return new Fox.Core.Value(rotTurbulentCycle);
+				case "interpTime":
+					return new Fox.Core.Value(interpTime);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "speed":
 					this.speed = value.GetValueAsFloat();
@@ -103,7 +144,7 @@ namespace Tpp.Effect
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -113,7 +154,7 @@ namespace Tpp.Effect
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

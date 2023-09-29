@@ -85,10 +85,59 @@ namespace Fox.Ph
 		// Constructors
 		public PhMultiHingeConstraintParam(ulong id) : base(id) { }
 		public PhMultiHingeConstraintParam() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "axis":
+					return new Fox.Core.Value(axis);
+				case "limitedFlag":
+					return new Fox.Core.Value(limitedFlag);
+				case "isPoweredFlag":
+					return new Fox.Core.Value(isPoweredFlag);
+				case "limitHi":
+					return new Fox.Core.Value(limitHi);
+				case "limitLo":
+					return new Fox.Core.Value(limitLo);
+				case "controlType":
+					return new Fox.Core.Value(controlType);
+				case "velocityMax":
+					return new Fox.Core.Value(velocityMax);
+				case "torqueMax":
+					return new Fox.Core.Value(torqueMax);
+				case "targetTheta":
+					return new Fox.Core.Value(targetTheta);
+				case "targetVelocity":
+					return new Fox.Core.Value(targetVelocity);
+				case "velocityRate":
+					return new Fox.Core.Value(velocityRate);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "axis":
 					this.axis = value.GetValueAsVector3();
@@ -131,7 +180,7 @@ namespace Fox.Ph
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -141,7 +190,7 @@ namespace Fox.Ph
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

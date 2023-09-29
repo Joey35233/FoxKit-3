@@ -77,10 +77,73 @@ namespace Tpp.Collectible
 		// Constructors
 		public TppCollectionLocatorArray(ulong id) : base(id) { }
 		public TppCollectionLocatorArray() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "positions":
+					return new Fox.Core.Value(positions);
+				case "rotations":
+					return new Fox.Core.Value(rotations);
+				case "infos":
+					return new Fox.Core.Value(infos);
+				case "segmentIndices":
+					return new Fox.Core.Value(segmentIndices);
+				case "locatorIndices":
+					return new Fox.Core.Value(locatorIndices);
+				case "locatorCounts":
+					return new Fox.Core.Value(locatorCounts);
+				case "groupIds":
+					return new Fox.Core.Value(groupIds);
+				case "segmentInfoIndices":
+					return new Fox.Core.Value(segmentInfoIndices);
+				case "segmentInfoCounts":
+					return new Fox.Core.Value(segmentInfoCounts);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				case "positions":
+					return new Fox.Core.Value(this.positions[index]);
+				case "rotations":
+					return new Fox.Core.Value(this.rotations[index]);
+				case "infos":
+					return new Fox.Core.Value(this.infos[index]);
+				case "segmentIndices":
+					return new Fox.Core.Value(this.segmentIndices[index]);
+				case "locatorIndices":
+					return new Fox.Core.Value(this.locatorIndices[index]);
+				case "locatorCounts":
+					return new Fox.Core.Value(this.locatorCounts[index]);
+				case "groupIds":
+					return new Fox.Core.Value(this.groupIds[index]);
+				case "segmentInfoIndices":
+					return new Fox.Core.Value(this.segmentInfoIndices[index]);
+				case "segmentInfoCounts":
+					return new Fox.Core.Value(this.segmentInfoCounts[index]);
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetProperty(propertyName, value);
@@ -90,7 +153,7 @@ namespace Tpp.Collectible
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "positions":
 					while(this.positions.Count <= index) { this.positions.Add(default(UnityEngine.Vector3)); }
@@ -136,7 +199,7 @@ namespace Tpp.Collectible
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

@@ -15,18 +15,20 @@ namespace {{ info.get_root_namespace() }}.{{ info.get_namespace_without_prefix()
 	[UnityEditor.InitializeOnLoad]
 	public partial class {{ info.name }} {% if info.parent %}: {{ info.get_parent_string() }}{% endif %}
 	{
-		{% if not info.properties|length == 0 %}// Properties{% endif %}{% for property_name in info.properties %}
-		{% if info.properties[property_name].is_accessor_property() -%}
+		{%- if not info.properties|length == 0 %}
+		// Properties
+		{%- for property_name in info.properties %}
+		{%- if info.properties[property_name].is_accessor_property() %}
 		{% if info.properties[property_name].has_public_get() %}public{% else %}protected{% endif %} {{ info.properties[property_name].get_property_full_type_string() }} {{ info.properties[property_name].get_safe_name() }} { get => Get_{{ property_name }}();{% if info.properties[property_name].has_public_set() %} set { Set_{{ property_name }}(value); }{%- endif %} }
 		private partial {{ info.properties[property_name].get_property_full_type_string() }} Get_{{ property_name }}();
-		{%- if info.properties[property_name].has_public_set() %}
-		private partial void Set_{{ property_name }}({{ info.properties[property_name].get_property_full_type_string() }} value);
-		{%- endif -%}
-		{%- else -%}
+		{% if info.properties[property_name].has_public_set() %}private partial void Set_{{ property_name }}({{ info.properties[property_name].get_property_full_type_string() }} value);
+		{% endif -%}
+		{%- else %}
 		[field: UnityEngine.SerializeField]
-		{% if info.properties[property_name].is_blacklisted() %}private{% elif info.properties[property_name].has_public_get() %}public{% else %}protected{% endif %} {{ info.properties[property_name].get_property_full_type_string() }} {{ info.properties[property_name].get_safe_name() }} { get; {% if not info.properties[property_name].has_public_set() and info.properties[property_name].has_public_get() %}{%if not info.properties[property_name].is_blacklisted() %}protected {% endif %}{% endif %}set; }{% if info.properties[property_name].has_default_value() %} = {{info.properties[property_name].get_default_value()}};{% endif %}
+		{% if info.properties[property_name].is_blacklisted() -%}private {% elif info.properties[property_name].has_public_get() -%}public {% else -%}protected {% endif -%}{% if info.properties[property_name].is_hiding_existing() -%}new {% endif %}{{ info.properties[property_name].get_property_full_type_string() }} {{ info.properties[property_name].get_safe_name() }} { get; {% if not info.properties[property_name].has_public_set() and info.properties[property_name].has_public_get() %}{%if not info.properties[property_name].is_blacklisted() %}protected {% endif %}{% endif %}set; }{% if info.properties[property_name].has_default_value() %} = {{info.properties[property_name].get_default_value()}};{%- endif %}
+		{% endif -%}
+		{%- endfor -%}
 		{%- endif %}
-		{% endfor %}
 		// ClassInfos
 		public static {% if not info.is_root() %}new{% endif %} bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;
@@ -63,32 +65,70 @@ namespace {{ info.get_root_namespace() }}.{{ info.get_namespace_without_prefix()
 			this.Id = 0;{% endif %}
 		}{% endif %}
 		
-        public {% if info.is_root() %}virtual{% else %}override{% endif %} Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
-        {
-            switch(propertyName.CString)
-            {
-                {% for property_name in info.get_non_collection_properties() -%}
-                case "{{ info.properties[property_name].get_safe_name() }}":
-                    return {{ info.properties[property_name].get_value_extraction_string() }};
-                {%- endfor %}default:
-                    {%- if info.name == "Entity" %}
-                    if (this.DynamicProperties.TryGetValue(propertyName, out DynamicProperty property))
-                    {
-                        return property.GetValue();
-                    }
-                    {%- endif %}
-                    {% if info.is_root() %}throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());{% else %}return base.GetProperty(propertyName);{%- endif %}
-            }
-        }
+		public {% if info.is_root() %}virtual{% else %}override{% endif %} Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				{% for property_name in info.properties -%}
+				case "{{ info.properties[property_name].get_safe_name() }}":
+					return new Fox.Core.Value({%- if info.properties[property_name].container == "StringMap" -%}(Fox.Kernel.IStringMap){%- endif -%}{{ info.properties[property_name].get_safe_name() }});
+				{% endfor %}default:
+					{%- if info.name == "Entity" %}
+					if (this.DynamicProperties.TryGetValue(propertyName, out DynamicProperty property))
+					{
+						return property.GetValue();
+					}
+					{%- endif %}
+					{% if info.is_root() %}throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());{% else %}return base.GetProperty(propertyName);{%- endif %}
+			}
+		}
+
+		public {% if info.is_root() %}virtual{% else %}override{% endif %} Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				{% for property_name in info.get_array_properties() -%}
+				case "{{ info.properties[property_name].get_safe_name() }}":
+					return new Fox.Core.Value(this.{{ info.properties[property_name].get_safe_name() }}[index]);
+				{% endfor %}default:
+					{%- if info.name == "Entity" %}
+					if (this.DynamicProperties.TryGetValue(propertyName, out DynamicProperty property))
+					{
+						return property.GetElement(index);
+					}
+					{%- endif %}
+					{% if info.is_root() %}throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());{% else %}return base.GetPropertyElement(propertyName, index);{%- endif %}
+			}
+		}
+
+		public {% if info.is_root() %}virtual{% else %}override{% endif %} Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				{% for property_name in info.get_string_map_properties() -%}
+				case "{{ info.properties[property_name].get_safe_name() }}":
+					return new Fox.Core.Value(this.{{ info.properties[property_name].get_safe_name() }}[key]);
+				{% endfor %}default:
+					{%- if info.name == "Entity" %}
+					if (this.DynamicProperties.TryGetValue(propertyName, out DynamicProperty property))
+					{
+						return property.GetElement(key);
+					}
+					{%- endif %}
+					{% if info.is_root() %}throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());{% else %}return base.GetPropertyElement(propertyName, key);{%- endif %}
+			}
+		}
 
 		public {% if info.is_root() %}virtual{% else %}override{% endif %} void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				{% for property_name in info.get_non_collection_properties() -%}
+				{%- if info.properties[property_name].has_public_set() or not info.properties[property_name].is_accessor_property() -%}
 				case "{{ info.properties[property_name].get_safe_name() }}":
 					this.{{ info.properties[property_name].get_safe_name() }} = {{ info.properties[property_name].get_value_extraction_string() }};
 					return;
+				{% endif -%}
 				{%- endfor %}default:
 					{%- if info.name == "Entity" %}
 					if (this.DynamicProperties.TryGetValue(propertyName, out DynamicProperty property))
@@ -104,14 +144,15 @@ namespace {{ info.get_root_namespace() }}.{{ info.get_namespace_without_prefix()
 
 		public {% if info.is_root() %}virtual{% else %}override{% endif %} void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				{% for property_name in info.get_array_properties() -%}
 				case "{{ info.properties[property_name].get_safe_name() }}":
-					{% if info.properties[property_name].container != "StaticArray" %}while(this.{{ info.properties[property_name].get_safe_name() }}.Count <= index) { this.{{ info.properties[property_name].get_safe_name() }}.Add(default({{ info.properties[property_name].get_value_type_string() }})); }{% endif %}
+					{% if info.properties[property_name].container != "StaticArray" %}while(this.{{ info.properties[property_name].get_safe_name() }}.Count <= index) { this.{{ info.properties[property_name].get_safe_name() }}.Add(default({{ info.properties[property_name].get_value_type_string() }})); }{%- endif %}
 					this.{{ info.properties[property_name].get_safe_name() }}[index] = {{ info.properties[property_name].get_value_extraction_string() }};
 					return;
-				{% endfor %}default:
+				{% endfor -%}
+				default:
 					{%- if info.name == "Entity" %}
 					if (this.DynamicProperties.TryGetValue(propertyName, out DynamicProperty property))
 					{
@@ -126,7 +167,7 @@ namespace {{ info.get_root_namespace() }}.{{ info.get_namespace_without_prefix()
 
 		public {% if info.is_root() %}virtual{% else %}override{% endif %} void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				{% for property_name in info.get_string_map_properties() -%}
 				case "{{ info.properties[property_name].get_safe_name() }}":

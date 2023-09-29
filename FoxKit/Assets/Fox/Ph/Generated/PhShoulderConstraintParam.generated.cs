@@ -73,10 +73,53 @@ namespace Fox.Ph
 		// Constructors
 		public PhShoulderConstraintParam(ulong id) : base(id) { }
 		public PhShoulderConstraintParam() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "limitedFlag":
+					return new Fox.Core.Value(limitedFlag);
+				case "refA":
+					return new Fox.Core.Value(refA);
+				case "refB":
+					return new Fox.Core.Value(refB);
+				case "limit":
+					return new Fox.Core.Value(limit);
+				case "limitedFlag1":
+					return new Fox.Core.Value(limitedFlag1);
+				case "refA1":
+					return new Fox.Core.Value(refA1);
+				case "refB1":
+					return new Fox.Core.Value(refB1);
+				case "limit1":
+					return new Fox.Core.Value(limit1);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "limitedFlag":
 					this.limitedFlag = value.GetValueAsBool();
@@ -110,7 +153,7 @@ namespace Fox.Ph
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -120,7 +163,7 @@ namespace Fox.Ph
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

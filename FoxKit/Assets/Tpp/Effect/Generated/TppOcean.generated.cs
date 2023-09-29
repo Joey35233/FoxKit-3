@@ -113,10 +113,75 @@ namespace Tpp.Effect
 		// Constructors
 		public TppOcean(ulong id) : base(id) { }
 		public TppOcean() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "enable":
+					return new Fox.Core.Value(enable);
+				case "guantanamoOcean":
+					return new Fox.Core.Value(guantanamoOcean);
+				case "wireframe":
+					return new Fox.Core.Value(wireframe);
+				case "baseHeight":
+					return new Fox.Core.Value(baseHeight);
+				case "gridNumX":
+					return new Fox.Core.Value(gridNumX);
+				case "gridNumY":
+					return new Fox.Core.Value(gridNumY);
+				case "screenMarginX":
+					return new Fox.Core.Value(screenMarginX);
+				case "screenMarginY":
+					return new Fox.Core.Value(screenMarginY);
+				case "waveLengthMin":
+					return new Fox.Core.Value(waveLengthMin);
+				case "waveLengthMax":
+					return new Fox.Core.Value(waveLengthMax);
+				case "waveDispersion":
+					return new Fox.Core.Value(waveDispersion);
+				case "windSpeed":
+					return new Fox.Core.Value(windSpeed);
+				case "waveParamTexture":
+					return new Fox.Core.Value(waveParamTexture);
+				case "whitecapTexture":
+					return new Fox.Core.Value(whitecapTexture);
+				case "horizonDistance":
+					return new Fox.Core.Value(horizonDistance);
+				case "lightCaptureDistance":
+					return new Fox.Core.Value(lightCaptureDistance);
+				case "randomSeed":
+					return new Fox.Core.Value(randomSeed);
+				case "collisionDatas":
+					return new Fox.Core.Value(collisionDatas);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				case "collisionDatas":
+					return new Fox.Core.Value(this.collisionDatas[index]);
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "enable":
 					this.enable = value.GetValueAsBool();
@@ -177,7 +242,7 @@ namespace Tpp.Effect
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "collisionDatas":
 					while(this.collisionDatas.Count <= index) { this.collisionDatas.Add(default(Fox.Core.EntityLink)); }
@@ -191,7 +256,7 @@ namespace Tpp.Effect
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

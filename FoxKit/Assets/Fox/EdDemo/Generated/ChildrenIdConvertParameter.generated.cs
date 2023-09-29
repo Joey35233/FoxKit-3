@@ -85,10 +85,59 @@ namespace Fox.EdDemo
 		// Constructors
 		public ChildrenIdConvertParameter(ulong id) : base(id) { }
 		public ChildrenIdConvertParameter() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "injuryId":
+					return new Fox.Core.Value(injuryId);
+				case "yellowHoodId":
+					return new Fox.Core.Value(yellowHoodId);
+				case "afloId":
+					return new Fox.Core.Value(afloId);
+				case "shortAfloId":
+					return new Fox.Core.Value(shortAfloId);
+				case "blackCoatId":
+					return new Fox.Core.Value(blackCoatId);
+				case "injuryPriority":
+					return new Fox.Core.Value(injuryPriority);
+				case "yellowHoodPriority":
+					return new Fox.Core.Value(yellowHoodPriority);
+				case "afloPriority":
+					return new Fox.Core.Value(afloPriority);
+				case "shortAfloPriority":
+					return new Fox.Core.Value(shortAfloPriority);
+				case "blackCoatPriority":
+					return new Fox.Core.Value(blackCoatPriority);
+				case "enableInjuredChildSpecialization":
+					return new Fox.Core.Value(enableInjuredChildSpecialization);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "injuryId":
 					this.injuryId = value.GetValueAsString();
@@ -131,7 +180,7 @@ namespace Fox.EdDemo
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -141,7 +190,7 @@ namespace Fox.EdDemo
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

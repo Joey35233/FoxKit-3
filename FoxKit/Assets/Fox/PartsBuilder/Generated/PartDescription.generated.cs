@@ -53,10 +53,45 @@ namespace Fox.PartsBuilder
 		// Constructors
 		public PartDescription(ulong id) : base(id) { }
 		public PartDescription() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "depends":
+					return new Fox.Core.Value(depends);
+				case "partName":
+					return new Fox.Core.Value(partName);
+				case "buildType":
+					return new Fox.Core.Value(buildType);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				case "depends":
+					return new Fox.Core.Value(this.depends[index]);
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "partName":
 					this.partName = value.GetValueAsString();
@@ -72,7 +107,7 @@ namespace Fox.PartsBuilder
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "depends":
 					while(this.depends.Count <= index) { this.depends.Add(default(Fox.Core.EntityLink)); }
@@ -86,7 +121,7 @@ namespace Fox.PartsBuilder
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

@@ -17,11 +17,11 @@ namespace Fox.Core
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<object> originalValues { get; set; } = new Fox.Kernel.DynamicArray<object>();
-		
+		public Fox.Kernel.DynamicArray<Fox.Kernel.Matrix3x3> originalValues { get; set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.Matrix3x3>();
+
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<object> values { get; set; } = new Fox.Kernel.DynamicArray<object>();
-		
+		public Fox.Kernel.DynamicArray<Fox.Kernel.Matrix3x3> values { get; set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.Matrix3x3>();
+
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;
@@ -50,9 +50,44 @@ namespace Fox.Core
 		public Matrix3ArrayPropertyDifference(ulong id) : base(id) { }
 		public Matrix3ArrayPropertyDifference() : base() { }
 
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "originalValues":
+					return new Fox.Core.Value(originalValues);
+				case "values":
+					return new Fox.Core.Value(values);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				case "originalValues":
+					return new Fox.Core.Value(this.originalValues[index]);
+				case "values":
+					return new Fox.Core.Value(this.values[index]);
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
+
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetProperty(propertyName, value);
@@ -62,14 +97,14 @@ namespace Fox.Core
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "originalValues":
-					while(this.originalValues.Count <= index) { this.originalValues.Add(default(object)); }
+					while(this.originalValues.Count <= index) { this.originalValues.Add(default(Fox.Kernel.Matrix3x3)); }
 					this.originalValues[index] = value.GetValueAsMatrix3();
 					return;
 				case "values":
-					while(this.values.Count <= index) { this.values.Add(default(object)); }
+					while(this.values.Count <= index) { this.values.Add(default(Fox.Kernel.Matrix3x3)); }
 					this.values[index] = value.GetValueAsMatrix3();
 					return;
 				default:
@@ -80,7 +115,7 @@ namespace Fox.Core
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

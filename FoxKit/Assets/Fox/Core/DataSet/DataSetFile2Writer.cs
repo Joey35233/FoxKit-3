@@ -1,3 +1,4 @@
+using Fox.Fio;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -86,9 +87,9 @@ namespace Fox.Core
             }
 
             writer.Write((long)0);
-            writer.BaseStream.AlignWrite(16, 0x00);
+            writer.AlignWrite(16, 0x00);
             writer.Write(new byte[] { 0x00, 0x00, 0x65, 0x6E, 0x64 });
-            writer.BaseStream.AlignWrite(16, 0x00);
+            writer.AlignWrite(16, 0x00);
             return stringTableOffset;
         }
 

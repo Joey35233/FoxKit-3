@@ -109,10 +109,71 @@ namespace Tpp.Effect
 		// Constructors
 		public TppTrapExecChangeVolumetricFogCallbackDataElement(ulong id) : base(id) { }
 		public TppTrapExecChangeVolumetricFogCallbackDataElement() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "ignoreYAxis":
+					return new Fox.Core.Value(ignoreYAxis);
+				case "ignoreZAxis":
+					return new Fox.Core.Value(ignoreZAxis);
+				case "interpRange":
+					return new Fox.Core.Value(interpRange);
+				case "restoreFogParameters":
+					return new Fox.Core.Value(restoreFogParameters);
+				case "color":
+					return new Fox.Core.Value(color);
+				case "luminance":
+					return new Fox.Core.Value(luminance);
+				case "albedo":
+					return new Fox.Core.Value(albedo);
+				case "density":
+					return new Fox.Core.Value(density);
+				case "nearDistance":
+					return new Fox.Core.Value(nearDistance);
+				case "falloff":
+					return new Fox.Core.Value(falloff);
+				case "changeColor":
+					return new Fox.Core.Value(changeColor);
+				case "changeAlbedo":
+					return new Fox.Core.Value(changeAlbedo);
+				case "changeLuminance":
+					return new Fox.Core.Value(changeLuminance);
+				case "changeDensity":
+					return new Fox.Core.Value(changeDensity);
+				case "changeNearDistance":
+					return new Fox.Core.Value(changeNearDistance);
+				case "changeFalloff":
+					return new Fox.Core.Value(changeFalloff);
+				case "areaVolumetricFog":
+					return new Fox.Core.Value(areaVolumetricFog);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "ignoreYAxis":
 					this.ignoreYAxis = value.GetValueAsBool();
@@ -173,7 +234,7 @@ namespace Tpp.Effect
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -183,7 +244,7 @@ namespace Tpp.Effect
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

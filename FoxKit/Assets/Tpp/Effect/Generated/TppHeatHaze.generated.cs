@@ -137,10 +137,85 @@ namespace Tpp.Effect
 		// Constructors
 		public TppHeatHaze(ulong id) : base(id) { }
 		public TppHeatHaze() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "distortionIntensityFullResolution":
+					return new Fox.Core.Value(distortionIntensityFullResolution);
+				case "distortionVelocityFullResolution":
+					return new Fox.Core.Value(distortionVelocityFullResolution);
+				case "distortionTextureRepetitionFullResolution":
+					return new Fox.Core.Value(distortionTextureRepetitionFullResolution);
+				case "hazeMirageIntensityFullResolution":
+					return new Fox.Core.Value(hazeMirageIntensityFullResolution);
+				case "hazeStartDistanceFullResolution":
+					return new Fox.Core.Value(hazeStartDistanceFullResolution);
+				case "hazeEndDistanceFullResolution":
+					return new Fox.Core.Value(hazeEndDistanceFullResolution);
+				case "hazeRangeAttenuationFullResolution":
+					return new Fox.Core.Value(hazeRangeAttenuationFullResolution);
+				case "hazeSecondLayerIntensityDifference":
+					return new Fox.Core.Value(hazeSecondLayerIntensityDifference);
+				case "hazeSecondLayerStartDistance":
+					return new Fox.Core.Value(hazeSecondLayerStartDistance);
+				case "hazeSecondLayerBlurRadius":
+					return new Fox.Core.Value(hazeSecondLayerBlurRadius);
+				case "hazeDistortionIntensityAddedOnBinoculars":
+					return new Fox.Core.Value(hazeDistortionIntensityAddedOnBinoculars);
+				case "mirageColorSaturation":
+					return new Fox.Core.Value(mirageColorSaturation);
+				case "mirageSpreadingPower":
+					return new Fox.Core.Value(mirageSpreadingPower);
+				case "mirageRayLength":
+					return new Fox.Core.Value(mirageRayLength);
+				case "mirageHitRange":
+					return new Fox.Core.Value(mirageHitRange);
+				case "mirageStartDistance":
+					return new Fox.Core.Value(mirageStartDistance);
+				case "mirageRangeAttenuation":
+					return new Fox.Core.Value(mirageRangeAttenuation);
+				case "distortionIntensityHalfResolution":
+					return new Fox.Core.Value(distortionIntensityHalfResolution);
+				case "distortionVelocityHalfResolution":
+					return new Fox.Core.Value(distortionVelocityHalfResolution);
+				case "distortionTextureRepetitionHalfResolution":
+					return new Fox.Core.Value(distortionTextureRepetitionHalfResolution);
+				case "hazeIntensityHalfResolution":
+					return new Fox.Core.Value(hazeIntensityHalfResolution);
+				case "hazeStartDistanceHalfResolution":
+					return new Fox.Core.Value(hazeStartDistanceHalfResolution);
+				case "hazeEndDistanceHalfResolution":
+					return new Fox.Core.Value(hazeEndDistanceHalfResolution);
+				case "hazeRangeAttenuationHalfResolution":
+					return new Fox.Core.Value(hazeRangeAttenuationHalfResolution);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "distortionIntensityFullResolution":
 					this.distortionIntensityFullResolution = value.GetValueAsFloat();
@@ -222,7 +297,7 @@ namespace Tpp.Effect
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -232,7 +307,7 @@ namespace Tpp.Effect
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

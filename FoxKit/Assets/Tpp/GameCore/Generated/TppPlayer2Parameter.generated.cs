@@ -81,10 +81,61 @@ namespace Tpp.GameCore
 		// Constructors
 		public TppPlayer2Parameter(ulong id) : base(id) { }
 		public TppPlayer2Parameter() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "motionGraphFile":
+					return new Fox.Core.Value(motionGraphFile);
+				case "vfxFiles":
+					return new Fox.Core.Value((Fox.Kernel.IStringMap)vfxFiles);
+				case "lifeMax":
+					return new Fox.Core.Value(lifeMax);
+				case "lifeRecoveryPerSecond":
+					return new Fox.Core.Value(lifeRecoveryPerSecond);
+				case "respawnTime":
+					return new Fox.Core.Value(respawnTime);
+				case "clipCount":
+					return new Fox.Core.Value(clipCount);
+				case "fireInterval":
+					return new Fox.Core.Value(fireInterval);
+				case "lifeRecoveryCooldownTimer":
+					return new Fox.Core.Value(lifeRecoveryCooldownTimer);
+				case "partsType":
+					return new Fox.Core.Value(partsType);
+				case "TODO_trapTags":
+					return new Fox.Core.Value((Fox.Kernel.IStringMap)TODO_trapTags);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				case "vfxFiles":
+					return new Fox.Core.Value(this.vfxFiles[key]);
+				case "TODO_trapTags":
+					return new Fox.Core.Value(this.TODO_trapTags[key]);
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "motionGraphFile":
 					this.motionGraphFile = value.GetValueAsFilePtr();
@@ -118,7 +169,7 @@ namespace Tpp.GameCore
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -128,7 +179,7 @@ namespace Tpp.GameCore
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "vfxFiles":
 					this.vfxFiles.Insert(key, value.GetValueAsFilePtr());

@@ -20,7 +20,7 @@ namespace Fox.Core
 		protected Fox.Core.Entity collector { get; set; }
 		
 		[field: UnityEngine.SerializeField]
-		private Fox.Kernel.String name { get; set; }
+		private new Fox.Kernel.String name { get; set; }
 		
 		[field: UnityEngine.SerializeField]
 		public Fox.Kernel.String sceneName { get; protected set; }
@@ -86,10 +86,65 @@ namespace Fox.Core
 		// Constructors
 		public Bucket(ulong id) : base(id) { }
 		public Bucket() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "collector":
+					return new Fox.Core.Value(collector);
+				case "name":
+					return new Fox.Core.Value(name);
+				case "sceneName":
+					return new Fox.Core.Value(sceneName);
+				case "actors":
+					return new Fox.Core.Value(actors);
+				case "dataSetFiles":
+					return new Fox.Core.Value((Fox.Kernel.IStringMap)dataSetFiles);
+				case "dataBodySets":
+					return new Fox.Core.Value((Fox.Kernel.IStringMap)dataBodySets);
+				case "editableDataSet":
+					return new Fox.Core.Value(editableDataSet);
+				case "editableDataSetPath":
+					return new Fox.Core.Value(editableDataSetPath);
+				case "editableDataBodySet":
+					return new Fox.Core.Value(editableDataBodySet);
+				case "editableDataSetChanged":
+					return new Fox.Core.Value(editableDataSetChanged);
+				case "isEditableLocked":
+					return new Fox.Core.Value(isEditableLocked);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				case "actors":
+					return new Fox.Core.Value(this.actors[index]);
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				case "dataSetFiles":
+					return new Fox.Core.Value(this.dataSetFiles[key]);
+				case "dataBodySets":
+					return new Fox.Core.Value(this.dataBodySets[key]);
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "collector":
 					this.collector = value.GetValueAsEntityHandle();
@@ -123,7 +178,7 @@ namespace Fox.Core
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "actors":
 					while(this.actors.Count <= index) { this.actors.Add(default(Fox.Core.EntityPtr<Fox.Core.Actor>)); }
@@ -137,7 +192,7 @@ namespace Fox.Core
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "dataSetFiles":
 					this.dataSetFiles.Insert(key, value.GetValueAsFilePtr());

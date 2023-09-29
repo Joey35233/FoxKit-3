@@ -17,7 +17,7 @@ namespace Fox.Core
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		private Fox.Kernel.String name { get; set; }
+		private new Fox.Kernel.String name { get; set; }
 		
 		[field: UnityEngine.SerializeField]
 		protected Fox.Kernel.StringMap<Fox.Core.FilePtr> dataSetFiles { get; set; } = new Fox.Kernel.StringMap<Fox.Core.FilePtr>();
@@ -57,10 +57,49 @@ namespace Fox.Core
 		// Constructors
 		public BucketArchive(ulong id) : base(id) { }
 		public BucketArchive() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "name":
+					return new Fox.Core.Value(name);
+				case "dataSetFiles":
+					return new Fox.Core.Value((Fox.Kernel.IStringMap)dataSetFiles);
+				case "dataBodySets":
+					return new Fox.Core.Value((Fox.Kernel.IStringMap)dataBodySets);
+				case "editableDataBodySet":
+					return new Fox.Core.Value(editableDataBodySet);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				case "dataSetFiles":
+					return new Fox.Core.Value(this.dataSetFiles[key]);
+				case "dataBodySets":
+					return new Fox.Core.Value(this.dataBodySets[key]);
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "name":
 					this.name = value.GetValueAsString();
@@ -76,7 +115,7 @@ namespace Fox.Core
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -86,7 +125,7 @@ namespace Fox.Core
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "dataSetFiles":
 					this.dataSetFiles.Insert(key, value.GetValueAsFilePtr());

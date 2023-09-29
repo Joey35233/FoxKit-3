@@ -153,10 +153,87 @@ namespace Fox.Grx
 		// Constructors
 		public GrPluginSettings(ulong id) : base(id) { }
 		public GrPluginSettings() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "motionBlurConvolutionLevel":
+					return new Fox.Core.Value(motionBlurConvolutionLevel);
+				case "exposureCompensation":
+					return new Fox.Core.Value(exposureCompensation);
+				case "minExposure":
+					return new Fox.Core.Value(minExposure);
+				case "maxExposure":
+					return new Fox.Core.Value(maxExposure);
+				case "keyValue":
+					return new Fox.Core.Value(keyValue);
+				case "bloomSize":
+					return new Fox.Core.Value(bloomSize);
+				case "bloomBrightnessExtraction":
+					return new Fox.Core.Value(bloomBrightnessExtraction);
+				case "bloomWeight":
+					return new Fox.Core.Value(bloomWeight);
+				case "tonemapSpeed":
+					return new Fox.Core.Value(tonemapSpeed);
+				case "maxLuminanceValue":
+					return new Fox.Core.Value(maxLuminanceValue);
+				case "captureBounceCount":
+					return new Fox.Core.Value(captureBounceCount);
+				case "minDecalArea":
+					return new Fox.Core.Value(minDecalArea);
+				case "flags":
+					return new Fox.Core.Value(flags);
+				case "isTonemap":
+					return new Fox.Core.Value(isTonemap);
+				case "isBloom":
+					return new Fox.Core.Value(isBloom);
+				case "isMotionBlur":
+					return new Fox.Core.Value(isMotionBlur);
+				case "isDepthOfField":
+					return new Fox.Core.Value(isDepthOfField);
+				case "isDOFVisualizeFocus":
+					return new Fox.Core.Value(isDOFVisualizeFocus);
+				case "isLocalReflections":
+					return new Fox.Core.Value(isLocalReflections);
+				case "isTemporalAA":
+					return new Fox.Core.Value(isTemporalAA);
+				case "isFixedShutterRatio":
+					return new Fox.Core.Value(isFixedShutterRatio);
+				case "isPatchVelocity":
+					return new Fox.Core.Value(isPatchVelocity);
+				case "isLightAdaptationFromLACC":
+					return new Fox.Core.Value(isLightAdaptationFromLACC);
+				case "isShowDecals":
+					return new Fox.Core.Value(isShowDecals);
+				case "isShrinkSHBuffer":
+					return new Fox.Core.Value(isShrinkSHBuffer);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "motionBlurConvolutionLevel":
 					this.motionBlurConvolutionLevel = value.GetValueAsUInt32();
@@ -241,7 +318,7 @@ namespace Fox.Grx
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -251,7 +328,7 @@ namespace Fox.Grx
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

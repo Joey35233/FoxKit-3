@@ -177,10 +177,105 @@ namespace Tpp.Effect
 		// Constructors
 		public TppSky(ulong id) : base(id) { }
 		public TppSky() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "enable":
+					return new Fox.Core.Value(enable);
+				case "priority":
+					return new Fox.Core.Value(priority);
+				case "model":
+					return new Fox.Core.Value(model);
+				case "cloudTexture":
+					return new Fox.Core.Value(cloudTexture);
+				case "textureRepeats":
+					return new Fox.Core.Value(textureRepeats);
+				case "lightExtinction":
+					return new Fox.Core.Value(lightExtinction);
+				case "diffusion":
+					return new Fox.Core.Value(diffusion);
+				case "dirLightGain":
+					return new Fox.Core.Value(dirLightGain);
+				case "ambLightGain":
+					return new Fox.Core.Value(ambLightGain);
+				case "inCloudScatterGain":
+					return new Fox.Core.Value(inCloudScatterGain);
+				case "density":
+					return new Fox.Core.Value(density);
+				case "cloudWindInfluence":
+					return new Fox.Core.Value(cloudWindInfluence);
+				case "densityLayerPower":
+					return new Fox.Core.Value(densityLayerPower);
+				case "densityLayerWindInfluence":
+					return new Fox.Core.Value(densityLayerWindInfluence);
+				case "dom2TextureRepeats":
+					return new Fox.Core.Value(dom2TextureRepeats);
+				case "dom2CloudDensity":
+					return new Fox.Core.Value(dom2CloudDensity);
+				case "dom2WindInfluence":
+					return new Fox.Core.Value(dom2WindInfluence);
+				case "dom2DensityLayerPower":
+					return new Fox.Core.Value(dom2DensityLayerPower);
+				case "dom2DensityLayerWindInfluence":
+					return new Fox.Core.Value(dom2DensityLayerWindInfluence);
+				case "dom3TextureRepeats":
+					return new Fox.Core.Value(dom3TextureRepeats);
+				case "dom3CloudDensity":
+					return new Fox.Core.Value(dom3CloudDensity);
+				case "dom3WindInfluence":
+					return new Fox.Core.Value(dom3WindInfluence);
+				case "dom3DensityLayerPower":
+					return new Fox.Core.Value(dom3DensityLayerPower);
+				case "dom3DensityLayerWindInfluence":
+					return new Fox.Core.Value(dom3DensityLayerWindInfluence);
+				case "cylCloudTexture":
+					return new Fox.Core.Value(cylCloudTexture);
+				case "cylTextureRepeats":
+					return new Fox.Core.Value(cylTextureRepeats);
+				case "cylCloudDensity":
+					return new Fox.Core.Value(cylCloudDensity);
+				case "cylDiffusion":
+					return new Fox.Core.Value(cylDiffusion);
+				case "cylScatterGain":
+					return new Fox.Core.Value(cylScatterGain);
+				case "cylDirLightGain":
+					return new Fox.Core.Value(cylDirLightGain);
+				case "cylAmbLightGain":
+					return new Fox.Core.Value(cylAmbLightGain);
+				case "cylWindInfluence":
+					return new Fox.Core.Value(cylWindInfluence);
+				case "cylDensityLayerPower":
+					return new Fox.Core.Value(cylDensityLayerPower);
+				case "cylDensityLayerWindInfluence":
+					return new Fox.Core.Value(cylDensityLayerWindInfluence);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "enable":
 					this.enable = value.GetValueAsBool();
@@ -292,7 +387,7 @@ namespace Tpp.Effect
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -302,7 +397,7 @@ namespace Tpp.Effect
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

@@ -69,10 +69,51 @@ namespace Fox.Des
 		// Constructors
 		public DesEffectData(ulong id) : base(id) { }
 		public DesEffectData() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "effectFilePath":
+					return new Fox.Core.Value(effectFilePath);
+				case "effectName":
+					return new Fox.Core.Value(effectName);
+				case "setModelName":
+					return new Fox.Core.Value(setModelName);
+				case "connectPointFilePath":
+					return new Fox.Core.Value(connectPointFilePath);
+				case "connectPointName":
+					return new Fox.Core.Value(connectPointName);
+				case "effectFlag":
+					return new Fox.Core.Value(effectFlag);
+				case "randomSeed":
+					return new Fox.Core.Value(randomSeed);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "effectFilePath":
 					this.effectFilePath = value.GetValueAsPath();
@@ -103,7 +144,7 @@ namespace Fox.Des
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -113,7 +154,7 @@ namespace Fox.Des
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

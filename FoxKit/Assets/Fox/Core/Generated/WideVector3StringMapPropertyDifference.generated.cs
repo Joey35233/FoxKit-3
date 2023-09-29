@@ -17,10 +17,10 @@ namespace Fox.Core
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.StringMap<object> originalValues { get; set; } = new Fox.Kernel.StringMap<object>();
+		public Fox.Kernel.StringMap<Fox.Kernel.WideVector3> originalValues { get; set; } = new Fox.Kernel.StringMap<Fox.Kernel.WideVector3>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.StringMap<object> values { get; set; } = new Fox.Kernel.StringMap<object>();
+		public Fox.Kernel.StringMap<Fox.Kernel.WideVector3> values { get; set; } = new Fox.Kernel.StringMap<Fox.Kernel.WideVector3>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -49,10 +49,45 @@ namespace Fox.Core
 		// Constructors
 		public WideVector3StringMapPropertyDifference(ulong id) : base(id) { }
 		public WideVector3StringMapPropertyDifference() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "originalValues":
+					return new Fox.Core.Value((Fox.Kernel.IStringMap)originalValues);
+				case "values":
+					return new Fox.Core.Value((Fox.Kernel.IStringMap)values);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				case "originalValues":
+					return new Fox.Core.Value(this.originalValues[key]);
+				case "values":
+					return new Fox.Core.Value(this.values[key]);
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetProperty(propertyName, value);
@@ -62,7 +97,7 @@ namespace Fox.Core
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -72,7 +107,7 @@ namespace Fox.Core
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "originalValues":
 					this.originalValues.Insert(key, value.GetValueAsWideVector3());

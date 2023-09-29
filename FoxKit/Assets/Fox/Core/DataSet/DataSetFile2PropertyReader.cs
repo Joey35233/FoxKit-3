@@ -214,9 +214,11 @@ namespace Fox.Core.Serialization
                 handle = null,
             };
 
-            setProperty(name, new Value(entityLink));
-
-            requestSetEntityHandle(address, (Entity ptr) => entityLink.handle = ptr);
+            requestSetEntityHandle(address, (Entity ptr) =>
+            {
+                entityLink.handle = ptr;
+                setProperty(name, new Value(entityLink));
+            });
         }
 
         private void ReadEntityHandle(FileStreamReader reader, SetProperty setProperty, String name)
@@ -269,8 +271,7 @@ namespace Fox.Core.Serialization
                 case PropertyInfo.PropertyType.FilePtr:
                     return new Value(new FilePtr(new Path(unhashString(reader.ReadStrCode()).CString)));
                 case PropertyInfo.PropertyType.Vector3:
-                    // A "WideVector3" actually exists with two ushort properties packed into w but they are seemingly unused so I have called a padded vector3 a WideVector.
-                    return new Value(reader.ReadWideVector3());
+                    return new Value(reader.ReadPaddedVector3());
                 case PropertyInfo.PropertyType.Vector4:
                     return new Value(reader.ReadVector4());
                 case PropertyInfo.PropertyType.Quat:

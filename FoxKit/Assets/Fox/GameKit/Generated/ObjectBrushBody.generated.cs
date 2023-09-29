@@ -49,10 +49,43 @@ namespace Fox.GameKit
 		// Constructors
 		public ObjectBrushBody(ulong id) : base(id) { }
 		public ObjectBrushBody() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "pluginBodyHandle":
+					return new Fox.Core.Value(pluginBodyHandle);
+				case "numPlugins":
+					return new Fox.Core.Value(numPlugins);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				case "pluginBodyHandle":
+					return new Fox.Core.Value(this.pluginBodyHandle[index]);
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "numPlugins":
 					this.numPlugins = value.GetValueAsUInt32();
@@ -65,7 +98,7 @@ namespace Fox.GameKit
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "pluginBodyHandle":
 					while(this.pluginBodyHandle.Count <= index) { this.pluginBodyHandle.Add(default(Fox.Core.Entity)); }
@@ -79,7 +112,7 @@ namespace Fox.GameKit
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

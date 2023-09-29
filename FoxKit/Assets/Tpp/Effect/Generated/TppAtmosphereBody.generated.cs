@@ -77,10 +77,55 @@ namespace Tpp.Effect
 		// Constructors
 		public TppAtmosphereBody(ulong id) : base(id) { }
 		public TppAtmosphereBody() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "hour":
+					return new Fox.Core.Value(hour);
+				case "minute":
+					return new Fox.Core.Value(minute);
+				case "second":
+					return new Fox.Core.Value(second);
+				case "daySkyLightScale":
+					return new Fox.Core.Value(daySkyLightScale);
+				case "nightSkyLightScale":
+					return new Fox.Core.Value(nightSkyLightScale);
+				case "mieHeightScale":
+					return new Fox.Core.Value(mieHeightScale);
+				case "mieAnisotropy":
+					return new Fox.Core.Value(mieAnisotropy);
+				case "mieScatteringCoefficient":
+					return new Fox.Core.Value(mieScatteringCoefficient);
+				case "cloudiness":
+					return new Fox.Core.Value(cloudiness);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "hour":
 					this.hour = value.GetValueAsUInt32();
@@ -117,7 +162,7 @@ namespace Tpp.Effect
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -127,7 +172,7 @@ namespace Tpp.Effect
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

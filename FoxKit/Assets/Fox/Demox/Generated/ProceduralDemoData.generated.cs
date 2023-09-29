@@ -73,10 +73,65 @@ namespace Fox.Demox
 		// Constructors
 		public ProceduralDemoData(ulong id) : base(id) { }
 		public ProceduralDemoData() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "evfFiles":
+					return new Fox.Core.Value((Fox.Kernel.IStringMap)evfFiles);
+				case "eventFiles":
+					return new Fox.Core.Value((Fox.Kernel.IStringMap)eventFiles);
+				case "priority":
+					return new Fox.Core.Value(priority);
+				case "demoId":
+					return new Fox.Core.Value(demoId);
+				case "stringParams":
+					return new Fox.Core.Value(stringParams);
+				case "entityParams":
+					return new Fox.Core.Value((Fox.Kernel.IStringMap)entityParams);
+				case "fileParams":
+					return new Fox.Core.Value((Fox.Kernel.IStringMap)fileParams);
+				case "objectNum":
+					return new Fox.Core.Value((Fox.Kernel.IStringMap)objectNum);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				case "stringParams":
+					return new Fox.Core.Value(this.stringParams[index]);
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				case "evfFiles":
+					return new Fox.Core.Value(this.evfFiles[key]);
+				case "eventFiles":
+					return new Fox.Core.Value(this.eventFiles[key]);
+				case "entityParams":
+					return new Fox.Core.Value(this.entityParams[key]);
+				case "fileParams":
+					return new Fox.Core.Value(this.fileParams[key]);
+				case "objectNum":
+					return new Fox.Core.Value(this.objectNum[key]);
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "priority":
 					this.priority = value.GetValueAsInt32();
@@ -92,7 +147,7 @@ namespace Fox.Demox
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "stringParams":
 					while(this.stringParams.Count <= index) { this.stringParams.Add(default(Fox.Kernel.String)); }
@@ -106,7 +161,7 @@ namespace Fox.Demox
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "evfFiles":
 					this.evfFiles.Insert(key, value.GetValueAsFilePtr());

@@ -73,10 +73,53 @@ namespace Fox.Ph
 		// Constructors
 		public PhMultiShoulderConstraintParam(ulong id) : base(id) { }
 		public PhMultiShoulderConstraintParam() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "refVec0":
+					return new Fox.Core.Value(refVec0);
+				case "refVec1":
+					return new Fox.Core.Value(refVec1);
+				case "refLimit0":
+					return new Fox.Core.Value(refLimit0);
+				case "refLimit1":
+					return new Fox.Core.Value(refLimit1);
+				case "velocityMax":
+					return new Fox.Core.Value(velocityMax);
+				case "torqueMax":
+					return new Fox.Core.Value(torqueMax);
+				case "velocityRate":
+					return new Fox.Core.Value(velocityRate);
+				case "isPoweredFlag":
+					return new Fox.Core.Value(isPoweredFlag);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "refVec0":
 					this.refVec0 = value.GetValueAsVector3();
@@ -110,7 +153,7 @@ namespace Fox.Ph
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -120,7 +163,7 @@ namespace Fox.Ph
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

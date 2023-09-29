@@ -77,10 +77,55 @@ namespace Tpp.Effect
 		// Constructors
 		public TppAreaVolumetricFogParam(ulong id) : base(id) { }
 		public TppAreaVolumetricFogParam() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "enable":
+					return new Fox.Core.Value(enable);
+				case "priority":
+					return new Fox.Core.Value(priority);
+				case "color":
+					return new Fox.Core.Value(color);
+				case "luminance":
+					return new Fox.Core.Value(luminance);
+				case "albedo":
+					return new Fox.Core.Value(albedo);
+				case "density":
+					return new Fox.Core.Value(density);
+				case "nearDistance":
+					return new Fox.Core.Value(nearDistance);
+				case "falloff":
+					return new Fox.Core.Value(falloff);
+				case "inverseFalloff":
+					return new Fox.Core.Value(inverseFalloff);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "enable":
 					this.enable = value.GetValueAsBool();
@@ -117,7 +162,7 @@ namespace Tpp.Effect
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -127,7 +172,7 @@ namespace Tpp.Effect
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

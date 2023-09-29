@@ -105,10 +105,71 @@ namespace Fox.GameKit
 		// Constructors
 		public TerrainDecal(ulong id) : base(id) { }
 		public TerrainDecal() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "material":
+					return new Fox.Core.Value(material);
+				case "gridColor":
+					return new Fox.Core.Value(gridColor);
+				case "color":
+					return new Fox.Core.Value(color);
+				case "stepLength":
+					return new Fox.Core.Value(stepLength);
+				case "width":
+					return new Fox.Core.Value(width);
+				case "transparency":
+					return new Fox.Core.Value(transparency);
+				case "textureRepeatU":
+					return new Fox.Core.Value(textureRepeatU);
+				case "textureRepeatV":
+					return new Fox.Core.Value(textureRepeatV);
+				case "renderingPriority":
+					return new Fox.Core.Value(renderingPriority);
+				case "edgeTransparencyLength":
+					return new Fox.Core.Value(edgeTransparencyLength);
+				case "smoothEdgeLength":
+					return new Fox.Core.Value(smoothEdgeLength);
+				case "isTargetBlockTerrain":
+					return new Fox.Core.Value(isTargetBlockTerrain);
+				case "drawRejectionLevel":
+					return new Fox.Core.Value(drawRejectionLevel);
+				case "isDisableAlbedo":
+					return new Fox.Core.Value(isDisableAlbedo);
+				case "hasSerializedNodes":
+					return new Fox.Core.Value(hasSerializedNodes);
+				case "serializedGraphNodes":
+					return new Fox.Core.Value(serializedGraphNodes);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				case "serializedGraphNodes":
+					return new Fox.Core.Value(this.serializedGraphNodes[index]);
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "material":
 					this.material = value.GetValueAsEntityLink();
@@ -163,7 +224,7 @@ namespace Fox.GameKit
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "serializedGraphNodes":
 					while(this.serializedGraphNodes.Count <= index) { this.serializedGraphNodes.Add(default(UnityEngine.Vector3)); }
@@ -177,7 +238,7 @@ namespace Fox.GameKit
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

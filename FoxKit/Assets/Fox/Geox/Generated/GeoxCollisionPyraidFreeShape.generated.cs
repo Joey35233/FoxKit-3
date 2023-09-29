@@ -57,10 +57,49 @@ namespace Fox.Geox
 		// Constructors
 		public GeoxCollisionPyraidFreeShape(ulong id) : base(id) { }
 		public GeoxCollisionPyraidFreeShape() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "collisionCategory":
+					return new Fox.Core.Value(collisionCategory);
+				case "collisionMaterial":
+					return new Fox.Core.Value(collisionMaterial);
+				case "collisionAttributeNames":
+					return new Fox.Core.Value(collisionAttributeNames);
+				case "points":
+					return new Fox.Core.Value(points);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				case "collisionAttributeNames":
+					return new Fox.Core.Value(this.collisionAttributeNames[index]);
+				case "points":
+					return new Fox.Core.Value(this.points[index]);
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "collisionCategory":
 					this.collisionCategory = (CollisionPyraidFreeShape_Category)value.GetValueAsInt32();
@@ -76,7 +115,7 @@ namespace Fox.Geox
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "collisionAttributeNames":
 					while(this.collisionAttributeNames.Count <= index) { this.collisionAttributeNames.Add(default(Fox.Kernel.String)); }
@@ -94,7 +133,7 @@ namespace Fox.Geox
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

@@ -61,10 +61,47 @@ namespace Tpp.Collectible
 		// Constructors
 		public TppPickableLocatorParameter(ulong id) : base(id) { }
 		public TppPickableLocatorParameter() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "equipIdStrCode32":
+					return new Fox.Core.Value(equipIdStrCode32);
+				case "countRaw":
+					return new Fox.Core.Value(countRaw);
+				case "countSubRaw":
+					return new Fox.Core.Value(countSubRaw);
+				case "flag":
+					return new Fox.Core.Value(flag);
+				case "reserved":
+					return new Fox.Core.Value(reserved);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "equipIdStrCode32":
 					this.equipIdStrCode32 = value.GetValueAsUInt32();
@@ -89,7 +126,7 @@ namespace Tpp.Collectible
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -99,7 +136,7 @@ namespace Tpp.Collectible
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

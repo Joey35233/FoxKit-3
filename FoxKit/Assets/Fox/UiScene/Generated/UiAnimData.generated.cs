@@ -69,10 +69,55 @@ namespace Fox.UiScene
 		// Constructors
 		public UiAnimData(ulong id) : base(id) { }
 		public UiAnimData() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "data":
+					return new Fox.Core.Value(data);
+				case "data_s":
+					return new Fox.Core.Value(data_s);
+				case "model":
+					return new Fox.Core.Value(model);
+				case "speed":
+					return new Fox.Core.Value(speed);
+				case "flag":
+					return new Fox.Core.Value(flag);
+				case "srcNodeNames":
+					return new Fox.Core.Value(srcNodeNames);
+				case "destNodeNames":
+					return new Fox.Core.Value(destNodeNames);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				case "srcNodeNames":
+					return new Fox.Core.Value(this.srcNodeNames[index]);
+				case "destNodeNames":
+					return new Fox.Core.Value(this.destNodeNames[index]);
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "data":
 					this.data = value.GetValueAsFilePtr();
@@ -97,7 +142,7 @@ namespace Fox.UiScene
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "srcNodeNames":
 					while(this.srcNodeNames.Count <= index) { this.srcNodeNames.Add(default(Fox.Kernel.String)); }
@@ -115,7 +160,7 @@ namespace Fox.UiScene
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

@@ -121,10 +121,99 @@ namespace Tpp.MotherBaseStage
 		// Constructors
 		public TppMotherBaseStageBlockControllerData(ulong id) : base(id) { }
 		public TppMotherBaseStageBlockControllerData() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "createMode":
+					return new Fox.Core.Value(createMode);
+				case "motherBaseId":
+					return new Fox.Core.Value(motherBaseId);
+				case "stageName":
+					return new Fox.Core.Value(stageName);
+				case "layoutBlockSizeInBytes":
+					return new Fox.Core.Value(layoutBlockSizeInBytes);
+				case "commonBlockSizeInBytes":
+					return new Fox.Core.Value(commonBlockSizeInBytes);
+				case "uniqueBlockCount":
+					return new Fox.Core.Value(uniqueBlockCount);
+				case "uniqueBlockSizeInBytes":
+					return new Fox.Core.Value(uniqueBlockSizeInBytes);
+				case "divisionBlockCount":
+					return new Fox.Core.Value(divisionBlockCount);
+				case "divisionBlockSizeInBytes":
+					return new Fox.Core.Value(divisionBlockSizeInBytes);
+				case "cluster00divisionPackageIds":
+					return new Fox.Core.Value(cluster00divisionPackageIds);
+				case "cluster01divisionPackageIds":
+					return new Fox.Core.Value(cluster01divisionPackageIds);
+				case "cluster02divisionPackageIds":
+					return new Fox.Core.Value(cluster02divisionPackageIds);
+				case "cluster03divisionPackageIds":
+					return new Fox.Core.Value(cluster03divisionPackageIds);
+				case "cluster04divisionPackageIds":
+					return new Fox.Core.Value(cluster04divisionPackageIds);
+				case "cluster05divisionPackageIds":
+					return new Fox.Core.Value(cluster05divisionPackageIds);
+				case "cluster06divisionPackageIds":
+					return new Fox.Core.Value(cluster06divisionPackageIds);
+				case "cluster07divisionPackageIds":
+					return new Fox.Core.Value(cluster07divisionPackageIds);
+				case "clusterPositions":
+					return new Fox.Core.Value(clusterPositions);
+				case "clusterRequestRadiuses":
+					return new Fox.Core.Value(clusterRequestRadiuses);
+				case "clusterRequireRadiuses":
+					return new Fox.Core.Value(clusterRequireRadiuses);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				case "cluster00divisionPackageIds":
+					return new Fox.Core.Value(this.cluster00divisionPackageIds[index]);
+				case "cluster01divisionPackageIds":
+					return new Fox.Core.Value(this.cluster01divisionPackageIds[index]);
+				case "cluster02divisionPackageIds":
+					return new Fox.Core.Value(this.cluster02divisionPackageIds[index]);
+				case "cluster03divisionPackageIds":
+					return new Fox.Core.Value(this.cluster03divisionPackageIds[index]);
+				case "cluster04divisionPackageIds":
+					return new Fox.Core.Value(this.cluster04divisionPackageIds[index]);
+				case "cluster05divisionPackageIds":
+					return new Fox.Core.Value(this.cluster05divisionPackageIds[index]);
+				case "cluster06divisionPackageIds":
+					return new Fox.Core.Value(this.cluster06divisionPackageIds[index]);
+				case "cluster07divisionPackageIds":
+					return new Fox.Core.Value(this.cluster07divisionPackageIds[index]);
+				case "clusterPositions":
+					return new Fox.Core.Value(this.clusterPositions[index]);
+				case "clusterRequestRadiuses":
+					return new Fox.Core.Value(this.clusterRequestRadiuses[index]);
+				case "clusterRequireRadiuses":
+					return new Fox.Core.Value(this.clusterRequireRadiuses[index]);
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "createMode":
 					this.createMode = (MbStageBlockCreateMode)value.GetValueAsInt32();
@@ -161,7 +250,7 @@ namespace Tpp.MotherBaseStage
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "cluster00divisionPackageIds":
 					
@@ -215,7 +304,7 @@ namespace Tpp.MotherBaseStage
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

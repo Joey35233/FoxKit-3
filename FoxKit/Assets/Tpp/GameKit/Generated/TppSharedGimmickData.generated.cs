@@ -77,10 +77,55 @@ namespace Tpp.GameKit
 		// Constructors
 		public TppSharedGimmickData(ulong id) : base(id) { }
 		public TppSharedGimmickData() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "modelFile":
+					return new Fox.Core.Value(modelFile);
+				case "geomFile":
+					return new Fox.Core.Value(geomFile);
+				case "breakedModelFile":
+					return new Fox.Core.Value(breakedModelFile);
+				case "breakedGeomFile":
+					return new Fox.Core.Value(breakedGeomFile);
+				case "partsFile":
+					return new Fox.Core.Value(partsFile);
+				case "numDynamicGimmick":
+					return new Fox.Core.Value(numDynamicGimmick);
+				case "locaterFile":
+					return new Fox.Core.Value(locaterFile);
+				case "flags1":
+					return new Fox.Core.Value(flags1);
+				case "flags2":
+					return new Fox.Core.Value(flags2);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "modelFile":
 					this.modelFile = value.GetValueAsFilePtr();
@@ -117,7 +162,7 @@ namespace Tpp.GameKit
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -127,7 +172,7 @@ namespace Tpp.GameKit
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

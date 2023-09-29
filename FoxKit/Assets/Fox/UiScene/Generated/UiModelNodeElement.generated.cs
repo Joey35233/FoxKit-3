@@ -105,10 +105,69 @@ namespace Fox.UiScene
 		// Constructors
 		public UiModelNodeElement(ulong id) : base(id) { }
 		public UiModelNodeElement() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "modelNodeName":
+					return new Fox.Core.Value(modelNodeName);
+				case "visible":
+					return new Fox.Core.Value(visible);
+				case "priority":
+					return new Fox.Core.Value(priority);
+				case "scale":
+					return new Fox.Core.Value(scale);
+				case "rotQuat":
+					return new Fox.Core.Value(rotQuat);
+				case "translate":
+					return new Fox.Core.Value(translate);
+				case "color":
+					return new Fox.Core.Value(color);
+				case "blendType":
+					return new Fox.Core.Value(blendType);
+				case "returnInit":
+					return new Fox.Core.Value(returnInit);
+				case "initVisible":
+					return new Fox.Core.Value(initVisible);
+				case "initPriority":
+					return new Fox.Core.Value(initPriority);
+				case "initScale":
+					return new Fox.Core.Value(initScale);
+				case "initRotQuat":
+					return new Fox.Core.Value(initRotQuat);
+				case "initTranslate":
+					return new Fox.Core.Value(initTranslate);
+				case "initColor":
+					return new Fox.Core.Value(initColor);
+				case "initBlendType":
+					return new Fox.Core.Value(initBlendType);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "modelNodeName":
 					this.modelNodeName = value.GetValueAsString();
@@ -166,7 +225,7 @@ namespace Fox.UiScene
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -176,7 +235,7 @@ namespace Fox.UiScene
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

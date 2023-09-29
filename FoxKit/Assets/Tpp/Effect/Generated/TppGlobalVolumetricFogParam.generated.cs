@@ -110,10 +110,75 @@ namespace Tpp.Effect
 		// Constructors
 		public TppGlobalVolumetricFogParam(ulong id) : base(id) { }
 		public TppGlobalVolumetricFogParam() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "enable":
+					return new Fox.Core.Value(enable);
+				case "selfLuminance":
+					return new Fox.Core.Value(selfLuminance);
+				case "selfColor":
+					return new Fox.Core.Value(selfColor);
+				case "skyAlbedo":
+					return new Fox.Core.Value(skyAlbedo);
+				case "rayleighScattering":
+					return new Fox.Core.Value(rayleighScattering);
+				case "mieScattering":
+					return new Fox.Core.Value(mieScattering);
+				case "mieAnisotropy":
+					return new Fox.Core.Value(mieAnisotropy);
+				case "skyLightGain":
+					return new Fox.Core.Value(skyLightGain);
+				case "dirLightGain":
+					return new Fox.Core.Value(dirLightGain);
+				case "lightningGain":
+					return new Fox.Core.Value(lightningGain);
+				case "density":
+					return new Fox.Core.Value(density);
+				case "power":
+					return new Fox.Core.Value(power);
+				case "near":
+					return new Fox.Core.Value(near);
+				case "falloff":
+					return new Fox.Core.Value(falloff);
+				case "exposureOffsetValues":
+					return new Fox.Core.Value(exposureOffsetValues);
+				case "exposureOffsetTargets":
+					return new Fox.Core.Value(exposureOffsetTargets);
+				case "flags":
+					return new Fox.Core.Value(flags);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				case "exposureOffsetValues":
+					return new Fox.Core.Value(this.exposureOffsetValues[index]);
+				case "exposureOffsetTargets":
+					return new Fox.Core.Value(this.exposureOffsetTargets[index]);
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "enable":
 					this.enable = value.GetValueAsBool();
@@ -168,7 +233,7 @@ namespace Tpp.Effect
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "exposureOffsetValues":
 					
@@ -186,7 +251,7 @@ namespace Tpp.Effect
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

@@ -67,10 +67,49 @@ namespace Tpp.Effect
 		{
 			
 		}
+		
+		public virtual Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "widthMin":
+					return new Fox.Core.Value(widthMin);
+				case "widthMax":
+					return new Fox.Core.Value(widthMax);
+				case "lifeMin":
+					return new Fox.Core.Value(lifeMin);
+				case "lifeMax":
+					return new Fox.Core.Value(lifeMax);
+				case "deltaAngleMin":
+					return new Fox.Core.Value(deltaAngleMin);
+				case "deltaAngleMax":
+					return new Fox.Core.Value(deltaAngleMax);
+				default:
+					throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
+			}
+		}
+
+		public virtual Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
+			}
+		}
+
+		public virtual Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
+			}
+		}
 
 		public virtual void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "widthMin":
 					this.widthMin = value.GetValueAsFloat();
@@ -97,7 +136,7 @@ namespace Tpp.Effect
 
 		public virtual void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
@@ -106,7 +145,7 @@ namespace Tpp.Effect
 
 		public virtual void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());

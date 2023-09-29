@@ -46,13 +46,13 @@ class PropertyInfo:
             "Vector3" : "UnityEngine.Vector3",
             "Vector4" : "UnityEngine.Vector4",
             "Quat" : "UnityEngine.Quaternion",
-            "Matrix3" : "object",
+            "Matrix3" : "Fox.Kernel.Matrix3x3",
             "Matrix4" : "UnityEngine.Matrix4x4",
             "Color" : "UnityEngine.Color",
             "FilePtr" : "Fox.Core.FilePtr",
             "EntityHandle" : "Fox.Core.Entity",
             "EntityLink" : "Fox.Core.EntityLink",
-            "WideVector3" : "object",
+            "WideVector3" : "Fox.Kernel.WideVector3",
             "PropertyInfo" : "object"
         }
 
@@ -219,6 +219,14 @@ class PropertyInfo:
         
         if self.export_flag[0] == 'R' or self.export_flag[0] == 'r':
             return True
+        return False
+
+    def is_hiding_existing(self):
+        """UnityEngine.MonoBehaviours redefine multiple properties used by Fox including `name`, `transform`, etc."""
+
+        if self.name == "name" or self.name == "transform" or self.name == "light" or self.name == "tag" or self.name == "enabled":
+            return True
+        
         return False
 
     def is_blacklisted(self):

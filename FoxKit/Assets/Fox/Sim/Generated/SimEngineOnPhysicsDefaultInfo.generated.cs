@@ -61,10 +61,47 @@ namespace Fox.Sim
 		// Constructors
 		public SimEngineOnPhysicsDefaultInfo(ulong id) : base(id) { }
 		public SimEngineOnPhysicsDefaultInfo() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "defaultRadius":
+					return new Fox.Core.Value(defaultRadius);
+				case "defaultLimit":
+					return new Fox.Core.Value(defaultLimit);
+				case "defaultSpring":
+					return new Fox.Core.Value(defaultSpring);
+				case "defaultStopTwistFlag":
+					return new Fox.Core.Value(defaultStopTwistFlag);
+				case "defaultMass":
+					return new Fox.Core.Value(defaultMass);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "defaultRadius":
 					this.defaultRadius = value.GetValueAsFloat();
@@ -89,7 +126,7 @@ namespace Fox.Sim
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -99,7 +136,7 @@ namespace Fox.Sim
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

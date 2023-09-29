@@ -133,10 +133,83 @@ namespace Tpp.Effect
 		// Constructors
 		public TppSkyClouds3Param(ulong id) : base(id) { }
 		public TppSkyClouds3Param() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "enable":
+					return new Fox.Core.Value(enable);
+				case "followCamera":
+					return new Fox.Core.Value(followCamera);
+				case "color":
+					return new Fox.Core.Value(color);
+				case "luminanceScale":
+					return new Fox.Core.Value(luminanceScale);
+				case "bottom":
+					return new Fox.Core.Value(bottom);
+				case "radius":
+					return new Fox.Core.Value(radius);
+				case "height":
+					return new Fox.Core.Value(height);
+				case "domeLength":
+					return new Fox.Core.Value(domeLength);
+				case "domeStreach":
+					return new Fox.Core.Value(domeStreach);
+				case "domeWindInfluence":
+					return new Fox.Core.Value(domeWindInfluence);
+				case "midCylinderPos":
+					return new Fox.Core.Value(midCylinderPos);
+				case "midCylinderWidth":
+					return new Fox.Core.Value(midCylinderWidth);
+				case "midCylinderStreach":
+					return new Fox.Core.Value(midCylinderStreach);
+				case "midCylinderScrSpeed":
+					return new Fox.Core.Value(midCylinderScrSpeed);
+				case "lowCylinderIntrusion":
+					return new Fox.Core.Value(lowCylinderIntrusion);
+				case "lowCylinderStreach":
+					return new Fox.Core.Value(lowCylinderStreach);
+				case "lowCylinderScrSpeed":
+					return new Fox.Core.Value(lowCylinderScrSpeed);
+				case "cylinderTexRepeat":
+					return new Fox.Core.Value(cylinderTexRepeat);
+				case "domeTexture":
+					return new Fox.Core.Value(domeTexture);
+				case "midCylinderTexture":
+					return new Fox.Core.Value(midCylinderTexture);
+				case "lowCylinderTexture":
+					return new Fox.Core.Value(lowCylinderTexture);
+				case "colorSpace":
+					return new Fox.Core.Value(colorSpace);
+				case "textureColorHandling":
+					return new Fox.Core.Value(textureColorHandling);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "enable":
 					this.enable = value.GetValueAsBool();
@@ -215,7 +288,7 @@ namespace Tpp.Effect
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -225,7 +298,7 @@ namespace Tpp.Effect
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

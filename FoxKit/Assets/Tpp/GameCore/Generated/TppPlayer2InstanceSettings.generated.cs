@@ -63,10 +63,51 @@ namespace Tpp.GameCore
 		{
 			
 		}
+		
+		public virtual Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "instancePackagePath":
+					return new Fox.Core.Value(instancePackagePath);
+				case "instanceBlockSize":
+					return new Fox.Core.Value(instanceBlockSize);
+				case "commonMotionTypeName":
+					return new Fox.Core.Value(commonMotionTypeName);
+				case "partsTypeNames":
+					return new Fox.Core.Value(partsTypeNames);
+				case "partsTypeInitial":
+					return new Fox.Core.Value(partsTypeInitial);
+				default:
+					throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
+			}
+		}
+
+		public virtual Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				case "partsTypeNames":
+					return new Fox.Core.Value(this.partsTypeNames[index]);
+				case "partsTypeInitial":
+					return new Fox.Core.Value(this.partsTypeInitial[index]);
+				default:
+					throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
+			}
+		}
+
+		public virtual Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
+			}
+		}
 
 		public virtual void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "instancePackagePath":
 					this.instancePackagePath = value.GetValueAsString();
@@ -84,7 +125,7 @@ namespace Tpp.GameCore
 
 		public virtual void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "partsTypeNames":
 					while(this.partsTypeNames.Count <= index) { this.partsTypeNames.Add(default(Fox.Kernel.String)); }
@@ -101,7 +142,7 @@ namespace Tpp.GameCore
 
 		public virtual void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());

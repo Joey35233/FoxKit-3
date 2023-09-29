@@ -93,10 +93,87 @@ namespace Fox.Geox
 		// Constructors
 		public GeoxTargetDesc(ulong id) : base(id) { }
 		public GeoxTargetDesc() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "posArray":
+					return new Fox.Core.Value(posArray);
+				case "scaleArray":
+					return new Fox.Core.Value(scaleArray);
+				case "rotArray":
+					return new Fox.Core.Value(rotArray);
+				case "primTypeArray":
+					return new Fox.Core.Value(primTypeArray);
+				case "systemAttributeArray":
+					return new Fox.Core.Value(systemAttributeArray);
+				case "throughValueArray":
+					return new Fox.Core.Value(throughValueArray);
+				case "flagArray":
+					return new Fox.Core.Value(flagArray);
+				case "categoryTag":
+					return new Fox.Core.Value(categoryTag);
+				case "nameArray":
+					return new Fox.Core.Value(nameArray);
+				case "attachSkeletonArray":
+					return new Fox.Core.Value(attachSkeletonArray);
+				case "groupArray":
+					return new Fox.Core.Value(groupArray);
+				case "objIndexForgroupTagArray":
+					return new Fox.Core.Value(objIndexForgroupTagArray);
+				case "applicationDataLinkArray":
+					return new Fox.Core.Value(applicationDataLinkArray);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				case "posArray":
+					return new Fox.Core.Value(this.posArray[index]);
+				case "scaleArray":
+					return new Fox.Core.Value(this.scaleArray[index]);
+				case "rotArray":
+					return new Fox.Core.Value(this.rotArray[index]);
+				case "primTypeArray":
+					return new Fox.Core.Value(this.primTypeArray[index]);
+				case "systemAttributeArray":
+					return new Fox.Core.Value(this.systemAttributeArray[index]);
+				case "throughValueArray":
+					return new Fox.Core.Value(this.throughValueArray[index]);
+				case "flagArray":
+					return new Fox.Core.Value(this.flagArray[index]);
+				case "nameArray":
+					return new Fox.Core.Value(this.nameArray[index]);
+				case "attachSkeletonArray":
+					return new Fox.Core.Value(this.attachSkeletonArray[index]);
+				case "groupArray":
+					return new Fox.Core.Value(this.groupArray[index]);
+				case "objIndexForgroupTagArray":
+					return new Fox.Core.Value(this.objIndexForgroupTagArray[index]);
+				case "applicationDataLinkArray":
+					return new Fox.Core.Value(this.applicationDataLinkArray[index]);
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "categoryTag":
 					this.categoryTag = value.GetValueAsString();
@@ -109,7 +186,7 @@ namespace Fox.Geox
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "posArray":
 					while(this.posArray.Count <= index) { this.posArray.Add(default(UnityEngine.Vector3)); }
@@ -167,7 +244,7 @@ namespace Fox.Geox
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

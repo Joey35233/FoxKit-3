@@ -61,10 +61,47 @@ namespace Fox.Ph
 		// Constructors
 		public PhDaemon(ulong id) : base(id) { }
 		public PhDaemon() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "materialManager":
+					return new Fox.Core.Value(materialManager);
+				case "defaultFriction":
+					return new Fox.Core.Value(defaultFriction);
+				case "defaultRestitution":
+					return new Fox.Core.Value(defaultRestitution);
+				case "isParallel":
+					return new Fox.Core.Value(isParallel);
+				case "isUseSmallJob":
+					return new Fox.Core.Value(isUseSmallJob);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "materialManager":
 					this.materialManager = value.GetValueAsEntityPtr<Fox.Ph.PhMaterialManager>();
@@ -89,7 +126,7 @@ namespace Fox.Ph
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -99,7 +136,7 @@ namespace Fox.Ph
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

@@ -61,10 +61,49 @@ namespace Tpp.MotherBaseCore
 		// Constructors
 		public MotherBaseConstructLocator(ulong id) : base(id) { }
 		public MotherBaseConstructLocator() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "type":
+					return new Fox.Core.Value(type);
+				case "index":
+					return new Fox.Core.Value(index);
+				case "clusterId":
+					return new Fox.Core.Value(clusterId);
+				case "isLowModel":
+					return new Fox.Core.Value(isLowModel);
+				case "staticModels":
+					return new Fox.Core.Value(staticModels);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				case "staticModels":
+					return new Fox.Core.Value(this.staticModels[index]);
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "type":
 					this.type = value.GetValueAsInt32();
@@ -86,7 +125,7 @@ namespace Tpp.MotherBaseCore
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "staticModels":
 					while(this.staticModels.Count <= index) { this.staticModels.Add(default(Fox.Core.EntityLink)); }
@@ -100,7 +139,7 @@ namespace Tpp.MotherBaseCore
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

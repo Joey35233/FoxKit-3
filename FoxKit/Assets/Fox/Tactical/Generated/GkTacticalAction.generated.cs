@@ -77,10 +77,61 @@ namespace Fox.Tactical
 		// Constructors
 		public GkTacticalAction(ulong id) : base(id) { }
 		public GkTacticalAction() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "enable":
+					return new Fox.Core.Value(enable);
+				case "enableInGame":
+					return new Fox.Core.Value(enableInGame);
+				case "worldName":
+					return new Fox.Core.Value(worldName);
+				case "userData":
+					return new Fox.Core.Value(userData);
+				case "userId":
+					return new Fox.Core.Value(userId);
+				case "waypoints":
+					return new Fox.Core.Value(waypoints);
+				case "edges":
+					return new Fox.Core.Value(edges);
+				case "attributeNames":
+					return new Fox.Core.Value(attributeNames);
+				case "attribute":
+					return new Fox.Core.Value(attribute);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				case "waypoints":
+					return new Fox.Core.Value(this.waypoints[index]);
+				case "edges":
+					return new Fox.Core.Value(this.edges[index]);
+				case "attributeNames":
+					return new Fox.Core.Value(this.attributeNames[index]);
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "enable":
 					this.enable = value.GetValueAsBool();
@@ -108,7 +159,7 @@ namespace Fox.Tactical
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "waypoints":
 					while(this.waypoints.Count <= index) { this.waypoints.Add(default(Fox.Core.EntityPtr<Fox.Tactical.GkTacticalActionWaypoint>)); }
@@ -130,7 +181,7 @@ namespace Fox.Tactical
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

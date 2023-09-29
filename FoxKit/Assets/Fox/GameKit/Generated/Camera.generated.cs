@@ -142,10 +142,87 @@ namespace Fox.GameKit
 		// Constructors
 		public Camera(ulong id) : base(id) { }
 		public Camera() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "priorityName":
+					return new Fox.Core.Value(priorityName);
+				case "enable":
+					return new Fox.Core.Value(enable);
+				case "transform_rotation_quat":
+					return new Fox.Core.Value(transform_rotation_quat);
+				case "transform_translation":
+					return new Fox.Core.Value(transform_translation);
+				case "focusDistance":
+					return new Fox.Core.Value(focusDistance);
+				case "focalLength":
+					return new Fox.Core.Value(focalLength);
+				case "useEffectiveFocalLength":
+					return new Fox.Core.Value(useEffectiveFocalLength);
+				case "effectiveFocalLengthRatio":
+					return new Fox.Core.Value(effectiveFocalLengthRatio);
+				case "aperture":
+					return new Fox.Core.Value(aperture);
+				case "listenerVirtualTrans_rotation_quat":
+					return new Fox.Core.Value(listenerVirtualTrans_rotation_quat);
+				case "listenerVirtualTrans_translation":
+					return new Fox.Core.Value(listenerVirtualTrans_translation);
+				case "listenerVirtualFlag":
+					return new Fox.Core.Value(listenerVirtualFlag);
+				case "nearClipDistance":
+					return new Fox.Core.Value(nearClipDistance);
+				case "farClipDistance":
+					return new Fox.Core.Value(farClipDistance);
+				case "shutterSpeed":
+					return new Fox.Core.Value(shutterSpeed);
+				case "useDefaultExposureValue":
+					return new Fox.Core.Value(useDefaultExposureValue);
+				case "minExposure":
+					return new Fox.Core.Value(minExposure);
+				case "maxExposure":
+					return new Fox.Core.Value(maxExposure);
+				case "exposureCompensation":
+					return new Fox.Core.Value(exposureCompensation);
+				case "useDefaultBloom":
+					return new Fox.Core.Value(useDefaultBloom);
+				case "bloomSize":
+					return new Fox.Core.Value(bloomSize);
+				case "bloomWeight":
+					return new Fox.Core.Value(bloomWeight);
+				case "bloomBrightnessExtraction":
+					return new Fox.Core.Value(bloomBrightnessExtraction);
+				case "cancelCameraBlur":
+					return new Fox.Core.Value(cancelCameraBlur);
+				case "keyValue":
+					return new Fox.Core.Value(keyValue);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "priorityName":
 					this.priorityName = value.GetValueAsString();
@@ -230,7 +307,7 @@ namespace Fox.GameKit
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -240,7 +317,7 @@ namespace Fox.GameKit
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

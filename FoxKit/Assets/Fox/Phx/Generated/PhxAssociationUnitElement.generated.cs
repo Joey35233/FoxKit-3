@@ -61,10 +61,47 @@ namespace Fox.Phx
 		// Constructors
 		public PhxAssociationUnitElement(ulong id) : base(id) { }
 		public PhxAssociationUnitElement() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "body":
+					return new Fox.Core.Value(body);
+				case "constraint":
+					return new Fox.Core.Value(constraint);
+				case "bodyOffsetPos":
+					return new Fox.Core.Value(bodyOffsetPos);
+				case "constraintOffsetPos":
+					return new Fox.Core.Value(constraintOffsetPos);
+				case "offsetRot":
+					return new Fox.Core.Value(offsetRot);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "body":
 					this.body = value.GetValueAsEntityLink();
@@ -89,7 +126,7 @@ namespace Fox.Phx
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -99,7 +136,7 @@ namespace Fox.Phx
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

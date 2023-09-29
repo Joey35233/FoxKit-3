@@ -153,10 +153,89 @@ namespace Fox.Grx
 		// Constructors
 		public PointLight(ulong id) : base(id) { }
 		public PointLight() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "color":
+					return new Fox.Core.Value(color);
+				case "reachPoint":
+					return new Fox.Core.Value(reachPoint);
+				case "lightArea":
+					return new Fox.Core.Value(lightArea);
+				case "irradiationPoint":
+					return new Fox.Core.Value(irradiationPoint);
+				case "outerRange":
+					return new Fox.Core.Value(outerRange);
+				case "innerRange":
+					return new Fox.Core.Value(innerRange);
+				case "temperature":
+					return new Fox.Core.Value(temperature);
+				case "colorDeflection":
+					return new Fox.Core.Value(colorDeflection);
+				case "lumen":
+					return new Fox.Core.Value(lumen);
+				case "lightSize":
+					return new Fox.Core.Value(lightSize);
+				case "dimmer":
+					return new Fox.Core.Value(dimmer);
+				case "shadowBias":
+					return new Fox.Core.Value(shadowBias);
+				case "LodFarSize":
+					return new Fox.Core.Value(LodFarSize);
+				case "LodNearSize":
+					return new Fox.Core.Value(LodNearSize);
+				case "LodShadowDrawRate":
+					return new Fox.Core.Value(LodShadowDrawRate);
+				case "lightFlags":
+					return new Fox.Core.Value(lightFlags);
+				case "lodRadiusLevel":
+					return new Fox.Core.Value(lodRadiusLevel);
+				case "lodFadeType":
+					return new Fox.Core.Value(lodFadeType);
+				case "enable":
+					return new Fox.Core.Value(enable);
+				case "packingGeneration":
+					return new Fox.Core.Value(packingGeneration);
+				case "castShadow":
+					return new Fox.Core.Value(castShadow);
+				case "isBounced":
+					return new Fox.Core.Value(isBounced);
+				case "showObject":
+					return new Fox.Core.Value(showObject);
+				case "showRange":
+					return new Fox.Core.Value(showRange);
+				case "isDebugLightVolumeBound":
+					return new Fox.Core.Value(isDebugLightVolumeBound);
+				case "hasSpecular":
+					return new Fox.Core.Value(hasSpecular);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "color":
 					this.color = value.GetValueAsColor();
@@ -244,7 +323,7 @@ namespace Fox.Grx
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -254,7 +333,7 @@ namespace Fox.Grx
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

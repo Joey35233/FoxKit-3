@@ -17,7 +17,7 @@ namespace Fox.Core
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		public bool enabled { get; set; }
+		public new bool enabled { get; set; }
 		
 		[field: UnityEngine.SerializeField]
 		public uint sizeInBytes { get; set; }
@@ -53,10 +53,45 @@ namespace Fox.Core
 		// Constructors
 		public ScriptBlockData(ulong id) : base(id) { }
 		public ScriptBlockData() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "enabled":
+					return new Fox.Core.Value(enabled);
+				case "sizeInBytes":
+					return new Fox.Core.Value(sizeInBytes);
+				case "prerequisites":
+					return new Fox.Core.Value(prerequisites);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				case "prerequisites":
+					return new Fox.Core.Value(this.prerequisites[index]);
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "enabled":
 					this.enabled = value.GetValueAsBool();
@@ -72,7 +107,7 @@ namespace Fox.Core
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "prerequisites":
 					while(this.prerequisites.Count <= index) { this.prerequisites.Add(default(Fox.Kernel.String)); }
@@ -86,7 +121,7 @@ namespace Fox.Core
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

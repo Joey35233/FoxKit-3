@@ -85,10 +85,59 @@ namespace Fox.GameKit
 		// Constructors
 		public SubtitlesGenerator(ulong id) : base(id) { }
 		public SubtitlesGenerator() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "key":
+					return new Fox.Core.Value(key);
+				case "color":
+					return new Fox.Core.Value(color);
+				case "offset":
+					return new Fox.Core.Value(offset);
+				case "size":
+					return new Fox.Core.Value(size);
+				case "fontSpace":
+					return new Fox.Core.Value(fontSpace);
+				case "lineSpace":
+					return new Fox.Core.Value(lineSpace);
+				case "hAlign":
+					return new Fox.Core.Value(hAlign);
+				case "vAlign":
+					return new Fox.Core.Value(vAlign);
+				case "bAlign":
+					return new Fox.Core.Value(bAlign);
+				case "fontName":
+					return new Fox.Core.Value(fontName);
+				case "autoLineFeed":
+					return new Fox.Core.Value(autoLineFeed);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "key":
 					this.key = value.GetValueAsString();
@@ -131,7 +180,7 @@ namespace Fox.GameKit
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -141,7 +190,7 @@ namespace Fox.GameKit
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

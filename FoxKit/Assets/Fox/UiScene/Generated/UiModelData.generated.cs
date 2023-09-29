@@ -93,10 +93,67 @@ namespace Fox.UiScene
 		// Constructors
 		public UiModelData(ulong id) : base(id) { }
 		public UiModelData() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "data":
+					return new Fox.Core.Value(data);
+				case "sceneName":
+					return new Fox.Core.Value(sceneName);
+				case "priority":
+					return new Fox.Core.Value(priority);
+				case "animations":
+					return new Fox.Core.Value(animations);
+				case "useLayoutCamera":
+					return new Fox.Core.Value(useLayoutCamera);
+				case "flag":
+					return new Fox.Core.Value(flag);
+				case "billboardMin":
+					return new Fox.Core.Value(billboardMin);
+				case "billboardMax":
+					return new Fox.Core.Value(billboardMax);
+				case "connection_connectModelDataHandle":
+					return new Fox.Core.Value(connection_connectModelDataHandle);
+				case "connection_connectModelNodeName":
+					return new Fox.Core.Value(connection_connectModelNodeName);
+				case "color":
+					return new Fox.Core.Value(color);
+				case "inheritanceSetting":
+					return new Fox.Core.Value(inheritanceSetting);
+				case "modelNodes":
+					return new Fox.Core.Value(modelNodes);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				case "animations":
+					return new Fox.Core.Value(this.animations[index]);
+				case "modelNodes":
+					return new Fox.Core.Value(this.modelNodes[index]);
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "data":
 					this.data = value.GetValueAsFilePtr();
@@ -139,7 +196,7 @@ namespace Fox.UiScene
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "animations":
 					while(this.animations.Count <= index) { this.animations.Add(default(Fox.Core.EntityLink)); }
@@ -157,7 +214,7 @@ namespace Fox.UiScene
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

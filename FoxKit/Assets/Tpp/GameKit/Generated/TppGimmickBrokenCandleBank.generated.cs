@@ -61,10 +61,49 @@ namespace Tpp.GameKit
 		// Constructors
 		public TppGimmickBrokenCandleBank(ulong id) : base(id) { }
 		public TppGimmickBrokenCandleBank() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "referencePartsPathList":
+					return new Fox.Core.Value(referencePartsPathList);
+				case "modelFile":
+					return new Fox.Core.Value(modelFile);
+				case "connectPointFile":
+					return new Fox.Core.Value(connectPointFile);
+				case "soundFile":
+					return new Fox.Core.Value(soundFile);
+				case "instanceCount":
+					return new Fox.Core.Value(instanceCount);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				case "referencePartsPathList":
+					return new Fox.Core.Value(this.referencePartsPathList[index]);
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "modelFile":
 					this.modelFile = value.GetValueAsFilePtr();
@@ -86,7 +125,7 @@ namespace Tpp.GameKit
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "referencePartsPathList":
 					while(this.referencePartsPathList.Count <= index) { this.referencePartsPathList.Add(default(Fox.Kernel.Path)); }
@@ -100,7 +139,7 @@ namespace Tpp.GameKit
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

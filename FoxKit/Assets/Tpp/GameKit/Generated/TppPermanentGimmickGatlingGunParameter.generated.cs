@@ -69,10 +69,51 @@ namespace Tpp.GameKit
 		// Constructors
 		public TppPermanentGimmickGatlingGunParameter(ulong id) : base(id) { }
 		public TppPermanentGimmickGatlingGunParameter() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "life":
+					return new Fox.Core.Value(life);
+				case "maxXAxisAngle":
+					return new Fox.Core.Value(maxXAxisAngle);
+				case "minXAxisAngle":
+					return new Fox.Core.Value(minXAxisAngle);
+				case "maxYAxisAngle":
+					return new Fox.Core.Value(maxYAxisAngle);
+				case "minYAxisAngle":
+					return new Fox.Core.Value(minYAxisAngle);
+				case "animPath":
+					return new Fox.Core.Value(animPath);
+				case "mtarFile":
+					return new Fox.Core.Value(mtarFile);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "life":
 					this.life = value.GetValueAsUInt32();
@@ -103,7 +144,7 @@ namespace Tpp.GameKit
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -113,7 +154,7 @@ namespace Tpp.GameKit
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

@@ -97,10 +97,65 @@ namespace Fox.Grx
 		// Constructors
 		public GrxLineSSAOParameters(ulong id) : base(id) { }
 		public GrxLineSSAOParameters() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "innerRadius":
+					return new Fox.Core.Value(innerRadius);
+				case "outerRadius":
+					return new Fox.Core.Value(outerRadius);
+				case "maxDistanceInner":
+					return new Fox.Core.Value(maxDistanceInner);
+				case "maxDistanceThresholdInner":
+					return new Fox.Core.Value(maxDistanceThresholdInner);
+				case "maxDistanceOuter":
+					return new Fox.Core.Value(maxDistanceOuter);
+				case "maxDistanceThresholdOuter":
+					return new Fox.Core.Value(maxDistanceThresholdOuter);
+				case "contrastLow":
+					return new Fox.Core.Value(contrastLow);
+				case "contrastHigh":
+					return new Fox.Core.Value(contrastHigh);
+				case "blurMode":
+					return new Fox.Core.Value(blurMode);
+				case "blurRadius":
+					return new Fox.Core.Value(blurRadius);
+				case "falloffStart":
+					return new Fox.Core.Value(falloffStart);
+				case "falloffRange":
+					return new Fox.Core.Value(falloffRange);
+				case "gainonStart":
+					return new Fox.Core.Value(gainonStart);
+				case "gainonRange":
+					return new Fox.Core.Value(gainonRange);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "innerRadius":
 					this.innerRadius = value.GetValueAsFloat();
@@ -152,7 +207,7 @@ namespace Fox.Grx
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -162,7 +217,7 @@ namespace Fox.Grx
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

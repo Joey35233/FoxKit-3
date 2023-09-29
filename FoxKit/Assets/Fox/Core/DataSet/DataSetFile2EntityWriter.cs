@@ -125,11 +125,11 @@ namespace Fox.Core
 
             writer.Write(Kernel.HashingBitConverter.StrCodeToUInt64(info.Name.Hash));
             writer.Write(Convert.ToUInt16(staticPropertyCount));
-            writer.Write(Convert.ToUInt16(0)); // TODO DynamicProperties count
+            writer.Write(Convert.ToUInt16(0)); // TODO: DynamicProperties count
             writer.Write((int)HeaderSize);
             writer.Write(staticDataSize);
             writer.Write(dataSize);
-            output.AlignWrite(16, 0x00);
+            writer.AlignWrite(16, 0x00);
             output.Position = endPosition;
         }
 
@@ -155,7 +155,7 @@ namespace Fox.Core
                 arraySize = WriteListProperty(entity, exportContext, property, writer);
             }
 
-            output.AlignWrite(16, 0x00);
+            writer.AlignWrite(16, 0x00);
             long endPosition = output.Position;
             ushort size = (ushort)(endPosition - headerPosition);
             output.Position = headerPosition;
@@ -174,7 +174,7 @@ namespace Fox.Core
         {
             List<KeyValuePair<Kernel.String, object>> list = exportContext.OverridesProperty(property.Name.CString)
                    ? ((IStringMap)exportContext.GetOverriddenProperty(property.Name.CString)).ToList()
-                   : entity.GetProperty<IStringMap>(property).ToList();
+                   : entity.GetProperty(property.Name).GetValueAsIStringMap().ToList();
 
             int skippedKeyCount = 0;
             foreach (KeyValuePair<Kernel.String, object> item in list)
@@ -189,7 +189,7 @@ namespace Fox.Core
                 _ = strings.Add(item.Key);
                 writer.Write(HashingBitConverter.StrCodeToUInt64(item.Key.Hash));
                 WriteCollectionItem(writer, item.Value, property.Type);
-                writer.BaseStream.AlignWrite(16, 0x00);
+                writer.AlignWrite(16, 0x00);
             }
 
             return (ushort)(list.Count - skippedKeyCount);
@@ -198,8 +198,8 @@ namespace Fox.Core
         private ushort WriteListProperty(Entity entity, EntityExportContext exportContext, PropertyInfo property, BinaryWriter writer)
         {
             IList list = exportContext.OverridesProperty(property.Name.CString)
-                   ? ((IList)exportContext.GetOverriddenProperty(property.Name.CString))
-                   : entity.GetProperty<IList>(property);
+                   ? (IList)exportContext.GetOverriddenProperty(property.Name.CString)
+                   : entity.GetProperty(property.Name).GetValueAsIList();
 
             foreach (object item in list)
             {
@@ -247,18 +247,31 @@ namespace Fox.Core
                     writer.Write((bool)item);
                     break;
                 case PropertyInfo.PropertyType.String:
-                    _ = strings.Add(item as Kernel.String);
-                    writer.WriteStrCode((item as Kernel.String).Hash);
+                    {
+                        var str = (Kernel.String)item;
+                        _ = strings.Add(str);
+                        writer.WriteStrCode(str.Hash);
+                    }
                     break;
                 case PropertyInfo.PropertyType.Path:
-                {
-                    var str = new Kernel.String((item as Kernel.Path).CString);
-                    _ = strings.Add(str);
-                    writer.WriteStrCode(str.Hash);
-                }
+                    {
+                        var str = new Kernel.String(((Kernel.Path)item).CString);
+                        _ = strings.Add(str);
+                        writer.WriteStrCode(str.Hash);
+                    }
                     break;
                 case PropertyInfo.PropertyType.EntityPtr:
-                    writer.WriteEntityPtr((IEntityPtr)item, addresses);
+                    {
+                        Entity entity = ((IEntityPtr)item).Get();
+
+                        ulong address = 0;
+                        if (entity != null)
+                        {
+                            address = addresses[entity];
+                        }
+
+                        writer.Write(address);
+                    }
                     break;
                 case PropertyInfo.PropertyType.Vector3:
                     writer.Write((UnityEngine.Vector3)item);
@@ -278,18 +291,43 @@ namespace Fox.Core
                     writer.Write((UnityEngine.Color)item);
                     break;
                 case PropertyInfo.PropertyType.FilePtr:
-                    _ = strings.Add(new Kernel.String((item as FilePtr).path.CString));
-                    writer.Write(item as FilePtr);
+                    {
+                        var ptr = (FilePtr)item;
+                        var str = new Kernel.String(ptr.path.CString);
+                        _ = strings.Add(str);
+                        writer.WriteStrCode(str.Hash);
+                    }
                     break;
                 case PropertyInfo.PropertyType.EntityHandle:
-                    writer.WriteEntityHandle((Entity)item, addresses);
+                    {
+                        ulong address = 0;
+                        if ((Entity)item != null)
+                        {
+                            address = addresses[(Entity)item];
+                        }
+
+                        writer.Write(address);
+                    }
                     break;
                 case PropertyInfo.PropertyType.EntityLink:
-                    var entityLink = (EntityLink)item;
-                    _ = strings.Add(new Kernel.String(entityLink.packagePath.CString));
-                    _ = strings.Add(new Kernel.String(entityLink.archivePath.CString));
-                    _ = strings.Add(new Kernel.String(entityLink.nameInArchive.CString));
-                    writer.WriteEntityLink(entityLink, addresses);
+                    {
+                        var entityLink = (EntityLink)item;
+                        _ = strings.Add(new Kernel.String(entityLink.packagePath.CString));
+                        _ = strings.Add(new Kernel.String(entityLink.archivePath.CString));
+                        _ = strings.Add(new Kernel.String(entityLink.nameInArchive.CString));
+
+                        writer.WriteStrCode(new Kernel.String(entityLink.packagePath.CString).Hash);
+                        writer.WriteStrCode(new Kernel.String(entityLink.archivePath.CString).Hash);
+                        writer.WriteStrCode(entityLink.nameInArchive.Hash);
+
+                        ulong address = 0;
+                        if (entityLink.handle != null)
+                        {
+                            address = addresses[entityLink.handle];
+                        }
+
+                        writer.Write(address);
+                    }
                     break;
             }
         }
@@ -298,7 +336,7 @@ namespace Fox.Core
         {
             object value = exportContext.OverridesProperty(property.Name.CString)
                 ? exportContext.GetOverriddenProperty(property.Name.CString)
-                : entity.GetProperty<object>(property);
+                : entity.GetProperty(property.Name).GetValueAsBoxedObject();
 
             WritePropertyItem(value, property.Type, writer);
         }

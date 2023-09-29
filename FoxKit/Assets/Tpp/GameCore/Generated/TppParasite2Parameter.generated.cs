@@ -73,10 +73,63 @@ namespace Tpp.GameCore
 		// Constructors
 		public TppParasite2Parameter(ulong id) : base(id) { }
 		public TppParasite2Parameter() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "partsFile":
+					return new Fox.Core.Value(partsFile);
+				case "motionGraphFile":
+					return new Fox.Core.Value(motionGraphFile);
+				case "mtarFile":
+					return new Fox.Core.Value(mtarFile);
+				case "partsFiles":
+					return new Fox.Core.Value((Fox.Kernel.IStringMap)partsFiles);
+				case "vfxFiles":
+					return new Fox.Core.Value((Fox.Kernel.IStringMap)vfxFiles);
+				case "fmdlFiles":
+					return new Fox.Core.Value((Fox.Kernel.IStringMap)fmdlFiles);
+				case "geomFiles":
+					return new Fox.Core.Value((Fox.Kernel.IStringMap)geomFiles);
+				case "fovaFiles":
+					return new Fox.Core.Value((Fox.Kernel.IStringMap)fovaFiles);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				case "partsFiles":
+					return new Fox.Core.Value(this.partsFiles[key]);
+				case "vfxFiles":
+					return new Fox.Core.Value(this.vfxFiles[key]);
+				case "fmdlFiles":
+					return new Fox.Core.Value(this.fmdlFiles[key]);
+				case "geomFiles":
+					return new Fox.Core.Value(this.geomFiles[key]);
+				case "fovaFiles":
+					return new Fox.Core.Value(this.fovaFiles[key]);
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "partsFile":
 					this.partsFile = value.GetValueAsFilePtr();
@@ -95,7 +148,7 @@ namespace Tpp.GameCore
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -105,7 +158,7 @@ namespace Tpp.GameCore
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "partsFiles":
 					this.partsFiles.Insert(key, value.GetValueAsFilePtr());

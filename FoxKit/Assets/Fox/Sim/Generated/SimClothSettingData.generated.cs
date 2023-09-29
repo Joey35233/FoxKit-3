@@ -77,10 +77,55 @@ namespace Fox.Sim
 		// Constructors
 		public SimClothSettingData(ulong id) : base(id) { }
 		public SimClothSettingData() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "iteration":
+					return new Fox.Core.Value(iteration);
+				case "mass":
+					return new Fox.Core.Value(mass);
+				case "velocityDamp":
+					return new Fox.Core.Value(velocityDamp);
+				case "airResistance":
+					return new Fox.Core.Value(airResistance);
+				case "gravityRate":
+					return new Fox.Core.Value(gravityRate);
+				case "restoreRate":
+					return new Fox.Core.Value(restoreRate);
+				case "inertialRate":
+					return new Fox.Core.Value(inertialRate);
+				case "inertialMax":
+					return new Fox.Core.Value(inertialMax);
+				case "noHitSkinMesh":
+					return new Fox.Core.Value(noHitSkinMesh);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "iteration":
 					this.iteration = value.GetValueAsUInt32();
@@ -117,7 +162,7 @@ namespace Fox.Sim
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -127,7 +172,7 @@ namespace Fox.Sim
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

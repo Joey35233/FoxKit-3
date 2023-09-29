@@ -89,10 +89,63 @@ namespace Fox.Geo
 		// Constructors
 		public GeoTrapInfo(ulong id) : base(id) { }
 		public GeoTrapInfo() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "moverTags":
+					return new Fox.Core.Value((Fox.Kernel.IStringMap)moverTags);
+				case "moverHandle":
+					return new Fox.Core.Value(moverHandle);
+				case "moverPosition":
+					return new Fox.Core.Value(moverPosition);
+				case "moverRotation":
+					return new Fox.Core.Value(moverRotation);
+				case "trapName":
+					return new Fox.Core.Value(trapName);
+				case "trapPosition":
+					return new Fox.Core.Value(trapPosition);
+				case "trapBodyHandle":
+					return new Fox.Core.Value(trapBodyHandle);
+				case "conditionHandle":
+					return new Fox.Core.Value(conditionHandle);
+				case "conditionBodyHandle":
+					return new Fox.Core.Value(conditionBodyHandle);
+				case "trapFlagString":
+					return new Fox.Core.Value(trapFlagString);
+				case "trapFlag":
+					return new Fox.Core.Value(trapFlag);
+				case "moverGameObjectId":
+					return new Fox.Core.Value(moverGameObjectId);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				case "moverTags":
+					return new Fox.Core.Value(this.moverTags[key]);
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "moverHandle":
 					this.moverHandle = value.GetValueAsEntityHandle();
@@ -135,7 +188,7 @@ namespace Fox.Geo
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -145,7 +198,7 @@ namespace Fox.Geo
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "moverTags":
 					this.moverTags.Insert(key, value.GetValueAsUInt8());

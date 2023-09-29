@@ -113,10 +113,73 @@ namespace Fox.Navx
 		// Constructors
 		public NavxNavBlock(ulong id) : base(id) { }
 		public NavxNavBlock() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "sceneName":
+					return new Fox.Core.Value(sceneName);
+				case "worldName":
+					return new Fox.Core.Value(worldName);
+				case "tileId":
+					return new Fox.Core.Value(tileId);
+				case "filePath":
+					return new Fox.Core.Value(filePath);
+				case "filePtr":
+					return new Fox.Core.Value(filePtr);
+				case "remainingFilePtr":
+					return new Fox.Core.Value(remainingFilePtr);
+				case "isSplit":
+					return new Fox.Core.Value(isSplit);
+				case "maxFileSizeInKb":
+					return new Fox.Core.Value(maxFileSizeInKb);
+				case "useBlockParameter":
+					return new Fox.Core.Value(useBlockParameter);
+				case "verticalThreshold":
+					return new Fox.Core.Value(verticalThreshold);
+				case "simplificationThreshold":
+					return new Fox.Core.Value(simplificationThreshold);
+				case "doesHoleSimplification":
+					return new Fox.Core.Value(doesHoleSimplification);
+				case "holeSimplificationConvexThreshold":
+					return new Fox.Core.Value(holeSimplificationConvexThreshold);
+				case "holeSimplificationObbExpandThreshold":
+					return new Fox.Core.Value(holeSimplificationObbExpandThreshold);
+				case "holeSimplificationObbToAabbThreshold":
+					return new Fox.Core.Value(holeSimplificationObbToAabbThreshold);
+				case "holeSimplificationSmoothingThreshold":
+					return new Fox.Core.Value(holeSimplificationSmoothingThreshold);
+				case "isHoleSimplificationDoesNotClosePassage":
+					return new Fox.Core.Value(isHoleSimplificationDoesNotClosePassage);
+				case "holeSimplificationReduceCount":
+					return new Fox.Core.Value(holeSimplificationReduceCount);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "sceneName":
 					this.sceneName = value.GetValueAsString();
@@ -180,7 +243,7 @@ namespace Fox.Navx
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -190,7 +253,7 @@ namespace Fox.Navx
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

@@ -14,6 +14,11 @@ namespace Fox.Core
             PropertyInfo = propertyInfo;
         }
 
+        public Value GetValue() => Value;
+
+        internal Value GetElement(ushort index) => throw new NotImplementedException();
+        internal Value GetElement(String key) => throw new NotImplementedException();
+
         public void SetValue(Value val) => Value = val;
 
         internal void SetElement(ushort index, Value value) => throw new NotImplementedException();

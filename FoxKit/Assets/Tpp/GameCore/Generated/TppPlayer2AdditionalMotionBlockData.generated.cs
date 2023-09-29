@@ -73,10 +73,53 @@ namespace Tpp.GameCore
 		// Constructors
 		public TppPlayer2AdditionalMotionBlockData(ulong id) : base(id) { }
 		public TppPlayer2AdditionalMotionBlockData() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "blockSize":
+					return new Fox.Core.Value(blockSize);
+				case "vramBlockSize":
+					return new Fox.Core.Value(vramBlockSize);
+				case "residentVramSyncBufferSize":
+					return new Fox.Core.Value(residentVramSyncBufferSize);
+				case "baseVramSyncBufferSize":
+					return new Fox.Core.Value(baseVramSyncBufferSize);
+				case "equipVramSyncBufferSize":
+					return new Fox.Core.Value(equipVramSyncBufferSize);
+				case "weaponVramSyncBufferSize":
+					return new Fox.Core.Value(weaponVramSyncBufferSize);
+				case "fpkPath":
+					return new Fox.Core.Value(fpkPath);
+				case "vramFpkPath":
+					return new Fox.Core.Value(vramFpkPath);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "blockSize":
 					this.blockSize = value.GetValueAsUInt32();
@@ -110,7 +153,7 @@ namespace Tpp.GameCore
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -120,7 +163,7 @@ namespace Tpp.GameCore
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

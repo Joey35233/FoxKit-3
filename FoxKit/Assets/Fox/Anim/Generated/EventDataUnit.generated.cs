@@ -61,10 +61,55 @@ namespace Fox.Anim
 		// Constructors
 		public EventDataUnit(ulong id) : base(id) { }
 		public EventDataUnit() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "eventName":
+					return new Fox.Core.Value(eventName);
+				case "sections":
+					return new Fox.Core.Value(sections);
+				case "paramString":
+					return new Fox.Core.Value(paramString);
+				case "paramInt":
+					return new Fox.Core.Value(paramInt);
+				case "paramFloat":
+					return new Fox.Core.Value(paramFloat);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				case "sections":
+					return new Fox.Core.Value(this.sections[index]);
+				case "paramString":
+					return new Fox.Core.Value(this.paramString[index]);
+				case "paramInt":
+					return new Fox.Core.Value(this.paramInt[index]);
+				case "paramFloat":
+					return new Fox.Core.Value(this.paramFloat[index]);
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "eventName":
 					this.eventName = value.GetValueAsString();
@@ -77,7 +122,7 @@ namespace Fox.Anim
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "sections":
 					while(this.sections.Count <= index) { this.sections.Add(default(Fox.Core.EntityPtr<Fox.Anim.TimeSection>)); }
@@ -103,7 +148,7 @@ namespace Fox.Anim
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

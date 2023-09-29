@@ -61,10 +61,51 @@ namespace Tpp.GameCore
 		// Constructors
 		public TppAnimalParameter(ulong id) : base(id) { }
 		public TppAnimalParameter() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "partsFile":
+					return new Fox.Core.Value(partsFile);
+				case "motionGraphFile":
+					return new Fox.Core.Value(motionGraphFile);
+				case "mtarFile":
+					return new Fox.Core.Value(mtarFile);
+				case "fovaFiles":
+					return new Fox.Core.Value(fovaFiles);
+				case "vfxFiles":
+					return new Fox.Core.Value((Fox.Kernel.IStringMap)vfxFiles);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				case "fovaFiles":
+					return new Fox.Core.Value(this.fovaFiles[index]);
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				case "vfxFiles":
+					return new Fox.Core.Value(this.vfxFiles[key]);
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "partsFile":
 					this.partsFile = value.GetValueAsFilePtr();
@@ -83,7 +124,7 @@ namespace Tpp.GameCore
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "fovaFiles":
 					while(this.fovaFiles.Count <= index) { this.fovaFiles.Add(default(Fox.Core.FilePtr)); }
@@ -97,7 +138,7 @@ namespace Tpp.GameCore
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "vfxFiles":
 					this.vfxFiles.Insert(key, value.GetValueAsFilePtr());

@@ -57,10 +57,53 @@ namespace Tpp.Effect
 		// Constructors
 		public TppRainFilterInterruptTrans(ulong id) : base(id) { }
 		public TppRainFilterInterruptTrans() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "planeMatrices":
+					return new Fox.Core.Value(planeMatrices);
+				case "maskTextures":
+					return new Fox.Core.Value(maskTextures);
+				case "interruptFlags":
+					return new Fox.Core.Value(interruptFlags);
+				case "levels":
+					return new Fox.Core.Value(levels);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				case "planeMatrices":
+					return new Fox.Core.Value(this.planeMatrices[index]);
+				case "maskTextures":
+					return new Fox.Core.Value(this.maskTextures[index]);
+				case "interruptFlags":
+					return new Fox.Core.Value(this.interruptFlags[index]);
+				case "levels":
+					return new Fox.Core.Value(this.levels[index]);
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetProperty(propertyName, value);
@@ -70,7 +113,7 @@ namespace Tpp.Effect
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "planeMatrices":
 					while(this.planeMatrices.Count <= index) { this.planeMatrices.Add(default(UnityEngine.Matrix4x4)); }
@@ -96,7 +139,7 @@ namespace Tpp.Effect
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

@@ -85,10 +85,59 @@ namespace Fox.Grx
 		// Constructors
 		public GrxAreaSSAOParameters(ulong id) : base(id) { }
 		public GrxAreaSSAOParameters() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "resolution":
+					return new Fox.Core.Value(resolution);
+				case "radius":
+					return new Fox.Core.Value(radius);
+				case "angleBias":
+					return new Fox.Core.Value(angleBias);
+				case "numSteps":
+					return new Fox.Core.Value(numSteps);
+				case "numDirections":
+					return new Fox.Core.Value(numDirections);
+				case "attenuation":
+					return new Fox.Core.Value(attenuation);
+				case "contrast":
+					return new Fox.Core.Value(contrast);
+				case "blurMode":
+					return new Fox.Core.Value(blurMode);
+				case "blurRadius":
+					return new Fox.Core.Value(blurRadius);
+				case "blurSharpness":
+					return new Fox.Core.Value(blurSharpness);
+				case "blurSceneScale":
+					return new Fox.Core.Value(blurSceneScale);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "resolution":
 					this.resolution = (GrxAreaSSAOParameters_Resolution)value.GetValueAsInt32();
@@ -131,7 +180,7 @@ namespace Fox.Grx
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -141,7 +190,7 @@ namespace Fox.Grx
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

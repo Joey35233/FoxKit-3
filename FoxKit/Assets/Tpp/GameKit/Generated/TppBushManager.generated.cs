@@ -93,10 +93,69 @@ namespace Tpp.GameKit
 		// Constructors
 		public TppBushManager(ulong id) : base(id) { }
 		public TppBushManager() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "flag":
+					return new Fox.Core.Value(flag);
+				case "totalBlockNum":
+					return new Fox.Core.Value(totalBlockNum);
+				case "totalUnitNum":
+					return new Fox.Core.Value(totalUnitNum);
+				case "maxBlockNum":
+					return new Fox.Core.Value(maxBlockNum);
+				case "maxUnitNum":
+					return new Fox.Core.Value(maxUnitNum);
+				case "maxTotalBlockNum":
+					return new Fox.Core.Value(maxTotalBlockNum);
+				case "maxTotalUnitNum":
+					return new Fox.Core.Value(maxTotalUnitNum);
+				case "realizeRange":
+					return new Fox.Core.Value(realizeRange);
+				case "windShakeRange":
+					return new Fox.Core.Value(windShakeRange);
+				case "cameraPos":
+					return new Fox.Core.Value(cameraPos);
+				case "existMaterials":
+					return new Fox.Core.Value(existMaterials);
+				case "noiseSeType":
+					return new Fox.Core.Value(noiseSeType);
+				case "noiseSeEventNames":
+					return new Fox.Core.Value((Fox.Kernel.IStringMap)noiseSeEventNames);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				case "existMaterials":
+					return new Fox.Core.Value(this.existMaterials[index]);
+				case "noiseSeType":
+					return new Fox.Core.Value(this.noiseSeType[index]);
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				case "noiseSeEventNames":
+					return new Fox.Core.Value(this.noiseSeEventNames[key]);
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "flag":
 					this.flag = value.GetValueAsUInt32();
@@ -136,7 +195,7 @@ namespace Tpp.GameKit
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "existMaterials":
 					while(this.existMaterials.Count <= index) { this.existMaterials.Add(default(Fox.Kernel.String)); }
@@ -154,7 +213,7 @@ namespace Tpp.GameKit
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "noiseSeEventNames":
 					this.noiseSeEventNames.Insert(key, value.GetValueAsString());

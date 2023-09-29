@@ -97,10 +97,65 @@ namespace Tpp.Effect
 		// Constructors
 		public TppWeatherSandStormData(ulong id) : base(id) { }
 		public TppWeatherSandStormData() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "vfxFileSandStormStart":
+					return new Fox.Core.Value(vfxFileSandStormStart);
+				case "vfxFileSandStormFar":
+					return new Fox.Core.Value(vfxFileSandStormFar);
+				case "vfxFileSandStormNear":
+					return new Fox.Core.Value(vfxFileSandStormNear);
+				case "vfxFileSandStormCamera":
+					return new Fox.Core.Value(vfxFileSandStormCamera);
+				case "sandStormFarDistance":
+					return new Fox.Core.Value(sandStormFarDistance);
+				case "sandStormFarHeight":
+					return new Fox.Core.Value(sandStormFarHeight);
+				case "sandStormNearDistance":
+					return new Fox.Core.Value(sandStormNearDistance);
+				case "sandStormNearHeight":
+					return new Fox.Core.Value(sandStormNearHeight);
+				case "noiseScale":
+					return new Fox.Core.Value(noiseScale);
+				case "noiseOffset":
+					return new Fox.Core.Value(noiseOffset);
+				case "noiseCutScale":
+					return new Fox.Core.Value(noiseCutScale);
+				case "noiseCutOffset":
+					return new Fox.Core.Value(noiseCutOffset);
+				case "noiseColor":
+					return new Fox.Core.Value(noiseColor);
+				case "noiseSunLightColorMul":
+					return new Fox.Core.Value(noiseSunLightColorMul);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "vfxFileSandStormStart":
 					this.vfxFileSandStormStart = value.GetValueAsFilePtr();
@@ -152,7 +207,7 @@ namespace Tpp.Effect
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -162,7 +217,7 @@ namespace Tpp.Effect
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

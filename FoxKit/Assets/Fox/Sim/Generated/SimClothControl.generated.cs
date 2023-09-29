@@ -59,10 +59,47 @@ namespace Fox.Sim
 		// Constructors
 		public SimClothControl(ulong id) : base(id) { }
 		public SimClothControl() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "controlParam":
+					return new Fox.Core.Value(controlParam);
+				case "clothControlUnits":
+					return new Fox.Core.Value(clothControlUnits);
+				case "windCoefficient":
+					return new Fox.Core.Value(windCoefficient);
+				case "isLoop":
+					return new Fox.Core.Value(isLoop);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				case "clothControlUnits":
+					return new Fox.Core.Value(this.clothControlUnits[index]);
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "controlParam":
 					this.controlParam = value.GetValueAsEntityPtr<Fox.Sim.SimClothControlParam>();
@@ -81,7 +118,7 @@ namespace Fox.Sim
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "clothControlUnits":
 					while(this.clothControlUnits.Count <= index) { this.clothControlUnits.Add(default(Fox.Core.EntityPtr<Fox.Sim.SimClothControlUnit>)); }
@@ -95,7 +132,7 @@ namespace Fox.Sim
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

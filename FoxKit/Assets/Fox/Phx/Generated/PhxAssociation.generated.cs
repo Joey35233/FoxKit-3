@@ -58,10 +58,47 @@ namespace Fox.Phx
 		// Constructors
 		public PhxAssociation(ulong id) : base(id) { }
 		public PhxAssociation() : base() { }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "physicsData":
+					return new Fox.Core.Value(physicsData);
+				case "connections":
+					return new Fox.Core.Value((Fox.Kernel.IStringMap)connections);
+				case "param":
+					return new Fox.Core.Value(param);
+				case "connectType":
+					return new Fox.Core.Value(connectType);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				case "connections":
+					return new Fox.Core.Value(this.connections[key]);
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
 
 		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "physicsData":
 					this.physicsData = value.GetValueAsEntityLink();
@@ -80,7 +117,7 @@ namespace Fox.Phx
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -90,7 +127,7 @@ namespace Fox.Phx
 
 		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
 		{
-			switch(propertyName.CString)
+			switch (propertyName.CString)
 			{
 				case "connections":
 					this.connections.Insert(key, value.GetValueAsEntityPtr<Fox.Phx.PhxAssociationUnitElement>());

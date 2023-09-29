@@ -62,15 +62,14 @@ namespace Fox.Fio
             return scaleHF;
         }
 
-        public Vector3 ReadWideVector3()
+        public Vector3 ReadPaddedVector3()
         {
             var result = new Vector3(ReadSingle(), ReadSingle(), ReadSingle());
             _ = ReadSingle();
-            //Debug.Assert(ReadUInt32() == 0, "W component of WideVector3 is not 0.");
 
             return result;
         }
-        //public Vector3 ReadWidePositionF() => Math.FoxToUnityVector3(ReadWideVector3());
+        //public Vector3 ReadWidePositionF() => Math.FoxToUnityVector3(ReadPaddedVector3());
 
         public Vector4 ReadVector4() => new(ReadSingle(), ReadSingle(), ReadSingle(), ReadSingle());
 
