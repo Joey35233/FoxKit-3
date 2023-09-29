@@ -1,0 +1,2828 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!29 &1
+OcclusionCullingSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_OcclusionBakeSettings:
+    smallestOccluder: 5
+    smallestHole: 0.25
+    backfaceThreshold: 100
+  m_SceneGUID: 00000000000000000000000000000000
+  m_OcclusionCullingData: {fileID: 0}
+--- !u!104 &2
+RenderSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 9
+  m_Fog: 0
+  m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  m_FogMode: 3
+  m_FogDensity: 0.01
+  m_LinearFogStart: 0
+  m_LinearFogEnd: 300
+  m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
+  m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
+  m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
+  m_AmbientIntensity: 1
+  m_AmbientMode: 0
+  m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
+  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_HaloStrength: 0.5
+  m_FlareStrength: 1
+  m_FlareFadeSpeed: 3
+  m_HaloTexture: {fileID: 0}
+  m_SpotCookie: {fileID: 10001, guid: 0000000000000000e000000000000000, type: 0}
+  m_DefaultReflectionMode: 0
+  m_DefaultReflectionResolution: 128
+  m_ReflectionBounces: 1
+  m_ReflectionIntensity: 1
+  m_CustomReflection: {fileID: 0}
+  m_Sun: {fileID: 0}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_UseRadianceAmbientProbe: 0
+--- !u!157 &3
+LightmapSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 12
+  m_GIWorkflowMode: 1
+  m_GISettings:
+    serializedVersion: 2
+    m_BounceScale: 1
+    m_IndirectOutputScale: 1
+    m_AlbedoBoost: 1
+    m_EnvironmentLightingMode: 0
+    m_EnableBakedLightmaps: 1
+    m_EnableRealtimeLightmaps: 0
+  m_LightmapEditorSettings:
+    serializedVersion: 12
+    m_Resolution: 2
+    m_BakeResolution: 40
+    m_AtlasSize: 1024
+    m_AO: 0
+    m_AOMaxDistance: 1
+    m_CompAOExponent: 1
+    m_CompAOExponentDirect: 0
+    m_ExtractAmbientOcclusion: 0
+    m_Padding: 2
+    m_LightmapParameters: {fileID: 0}
+    m_LightmapsBakeMode: 1
+    m_TextureCompression: 1
+    m_FinalGather: 0
+    m_FinalGatherFiltering: 1
+    m_FinalGatherRayCount: 256
+    m_ReflectionCompression: 2
+    m_MixedBakeMode: 2
+    m_BakeBackend: 1
+    m_PVRSampling: 1
+    m_PVRDirectSampleCount: 32
+    m_PVRSampleCount: 512
+    m_PVRBounces: 2
+    m_PVREnvironmentSampleCount: 256
+    m_PVREnvironmentReferencePointCount: 2048
+    m_PVRFilteringMode: 1
+    m_PVRDenoiserTypeDirect: 1
+    m_PVRDenoiserTypeIndirect: 1
+    m_PVRDenoiserTypeAO: 1
+    m_PVRFilterTypeDirect: 0
+    m_PVRFilterTypeIndirect: 0
+    m_PVRFilterTypeAO: 0
+    m_PVREnvironmentMIS: 1
+    m_PVRCulling: 1
+    m_PVRFilteringGaussRadiusDirect: 1
+    m_PVRFilteringGaussRadiusIndirect: 5
+    m_PVRFilteringGaussRadiusAO: 2
+    m_PVRFilteringAtrousPositionSigmaDirect: 0.5
+    m_PVRFilteringAtrousPositionSigmaIndirect: 2
+    m_PVRFilteringAtrousPositionSigmaAO: 1
+    m_ExportTrainingData: 0
+    m_TrainingDataDestination: TrainingData
+    m_LightProbeSampleCountMultiplier: 4
+  m_LightingDataAsset: {fileID: 0}
+  m_LightingSettings: {fileID: 0}
+--- !u!196 &4
+NavMeshSettings:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_BuildSettings:
+    serializedVersion: 3
+    agentTypeID: 0
+    agentRadius: 0.5
+    agentHeight: 2
+    agentSlope: 45
+    agentClimb: 0.4
+    ledgeDropHeight: 0
+    maxJumpAcrossDistance: 0
+    minRegionArea: 2
+    manualCellSize: 0
+    cellSize: 0.16666667
+    manualTileSize: 0
+    tileSize: 256
+    buildHeightMesh: 0
+    maxJobWorkers: 0
+    preserveTilesOutsideBounds: 0
+    debug:
+      m_Flags: 0
+  m_NavMeshData: {fileID: 0}
+--- !u!1 &922379402
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 922379404}
+  - component: {fileID: 922379403}
+  m_Layer: 0
+  m_Name: DataSet
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &922379403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 922379402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6e974565e10a2048b266ff0b05dfc2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <name>k__BackingField:
+    _cString: 
+    _length: 0
+    _hash:
+      _hash: 203000540209048
+  <dataSet>k__BackingField: {fileID: 0}
+  <dataList>k__BackingField:
+    Threshold: 230
+    HashMask: 255
+    CellCount: 3
+    Cells:
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 1
+      Distance: 0
+      Key:
+        _cString: ModelDescription0000
+        _length: 20
+        _hash:
+          _hash: 254689881428737
+      Value:
+        _ptr: {fileID: 1752071938}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 1
+      Distance: 0
+      Key:
+        _cString: EffectDescription0000
+        _length: 21
+        _hash:
+          _hash: 255768205408635
+      Value:
+        _ptr: {fileID: 1272693528}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 1
+      Distance: 0
+      Key:
+        _cString: EffectDescription0001
+        _length: 21
+        _hash:
+          _hash: 247342189241057
+      Value:
+        _ptr: {fileID: 1479251623}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      Value:
+        _ptr: {fileID: 0}
+--- !u!4 &922379404
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 922379402}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1752071939}
+  - {fileID: 1272693529}
+  - {fileID: 1479251624}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1272693527
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1272693529}
+  - component: {fileID: 1272693528}
+  m_Layer: 0
+  m_Name: EffectDescription0000
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1272693528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1272693527}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39c3866145b001c4892e1ce49e72b0c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <name>k__BackingField:
+    _cString: EffectDescription0000
+    _length: 21
+    _hash:
+      _hash: 255768205408635
+  <dataSet>k__BackingField: {fileID: 922379403}
+  <depends>k__BackingField:
+    _list:
+    - handle: {fileID: 1752071938}
+      packagePath:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      archivePath:
+        _cString: /Assets/tpp/parts/weapon/assemble/snr/sr02_main1_aw0_v00.parts
+        _length: 62
+        _hash:
+          _hash: 16189103298438241884
+      nameInArchive:
+        _cString: ModelDescription0000
+        _length: 20
+        _hash:
+          _hash: 254689881428737
+  <partName>k__BackingField:
+    _cString: MuzzleFlash
+    _length: 11
+    _hash:
+      _hash: 102249969466294
+  <buildType>k__BackingField:
+    _cString: 
+    _length: 0
+    _hash:
+      _hash: 203000540209048
+  <connectDestinationSkelNames>k__BackingField:
+    _list: []
+  <connectDestinationCnpNames>k__BackingField:
+    _list:
+    - _cString: CNP_MUZZLE_FLASH
+      _length: 16
+      _hash:
+        _hash: 201514921881769
+  <offsetSkelPositions>k__BackingField:
+    _list: []
+  <offsetCnpPositions>k__BackingField:
+    _list:
+    - {x: 0, y: 0, z: 0}
+  <generalSkelParameters>k__BackingField:
+    _list: []
+  <generalCnpParameters>k__BackingField:
+    _list:
+    - {x: 0, y: 0, z: 0, w: 0}
+  <effectConnect>k__BackingField: 1
+  <changeEffectConnectSetting>k__BackingField: 0
+  <visibleModelWithEffect>k__BackingField: 1
+  <createStartEffect>k__BackingField: 0
+  <effectRandomSeed>k__BackingField: 0
+  <effectKind>k__BackingField: 0
+  <effectVariationName>k__BackingField:
+    _cString: mzfasr10_M
+    _length: 10
+    _hash:
+      _hash: 58279400954732
+  <effectFileFromVfxFileLoader>k__BackingField:
+    _cString: 
+    _length: 0
+    _hash:
+      _hash: 203000540209048
+  <effectFileFromFilePtr>k__BackingField:
+    path:
+      _cString: /Assets/tpp/effect/vfx_data/muzzle/fx_tpp_mzf00_s0.vfx
+      _length: 54
+      _hash:
+        _hash: 7353056175568745205
+--- !u!4 &1272693529
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1272693527}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 922379404}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1479251622
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1479251624}
+  - component: {fileID: 1479251623}
+  m_Layer: 0
+  m_Name: EffectDescription0001
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1479251623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1479251622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39c3866145b001c4892e1ce49e72b0c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <name>k__BackingField:
+    _cString: EffectDescription0001
+    _length: 21
+    _hash:
+      _hash: 247342189241057
+  <dataSet>k__BackingField: {fileID: 922379403}
+  <depends>k__BackingField:
+    _list:
+    - handle: {fileID: 1752071938}
+      packagePath:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      archivePath:
+        _cString: /Assets/tpp/parts/weapon/assemble/snr/sr02_main1_aw0_v00.parts
+        _length: 62
+        _hash:
+          _hash: 16189103298438241884
+      nameInArchive:
+        _cString: ModelDescription0000
+        _length: 20
+        _hash:
+          _hash: 254689881428737
+  <partName>k__BackingField:
+    _cString: EjectionSmoke
+    _length: 13
+    _hash:
+      _hash: 269820013742355
+  <buildType>k__BackingField:
+    _cString: 
+    _length: 0
+    _hash:
+      _hash: 203000540209048
+  <connectDestinationSkelNames>k__BackingField:
+    _list: []
+  <connectDestinationCnpNames>k__BackingField:
+    _list:
+    - _cString: CNP_EJECT
+      _length: 9
+      _hash:
+        _hash: 189677606463809
+  <offsetSkelPositions>k__BackingField:
+    _list: []
+  <offsetCnpPositions>k__BackingField:
+    _list:
+    - {x: 0, y: 0, z: 0}
+  <generalSkelParameters>k__BackingField:
+    _list: []
+  <generalCnpParameters>k__BackingField:
+    _list:
+    - {x: 0, y: 0, z: 0, w: 0}
+  <effectConnect>k__BackingField: 1
+  <changeEffectConnectSetting>k__BackingField: 0
+  <visibleModelWithEffect>k__BackingField: 1
+  <createStartEffect>k__BackingField: 0
+  <effectRandomSeed>k__BackingField: 0
+  <effectKind>k__BackingField: 0
+  <effectVariationName>k__BackingField:
+    _cString: 
+    _length: 0
+    _hash:
+      _hash: 203000540209048
+  <effectFileFromVfxFileLoader>k__BackingField:
+    _cString: 
+    _length: 0
+    _hash:
+      _hash: 203000540209048
+  <effectFileFromFilePtr>k__BackingField:
+    path:
+      _cString: /Assets/tpp/effect/vfx_data/muzzle/fx_tpp_mzfejp01_s0FG.vfx
+      _length: 59
+      _hash:
+        _hash: 7353150347679523637
+--- !u!4 &1479251624
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1479251622}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 922379404}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1752071937
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1752071939}
+  - component: {fileID: 1752071938}
+  m_Layer: 0
+  m_Name: ModelDescription0000
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1752071938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1752071937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d666e44f26c5e0b49950e20de249f7a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <name>k__BackingField:
+    _cString: ModelDescription0000
+    _length: 20
+    _hash:
+      _hash: 254689881428737
+  <dataSet>k__BackingField: {fileID: 922379403}
+  <depends>k__BackingField:
+    _list: []
+  <partName>k__BackingField:
+    _cString: 
+    _length: 0
+    _hash:
+      _hash: 203000540209048
+  <buildType>k__BackingField:
+    _cString: 
+    _length: 0
+    _hash:
+      _hash: 203000540209048
+  <modelFile>k__BackingField:
+    path:
+      _cString: /Assets/tpp/weapon/asw/Scenes/sr02_main1_aw0.fmdl
+      _length: 49
+      _hash:
+        _hash: 9557104623735056068
+  <connectPointFile>k__BackingField:
+    path:
+      _cString: /Assets/tpp/weapon/asw/Scenes/sr02_main1_aw0.fcnp
+      _length: 49
+      _hash:
+        _hash: 18093677717415831236
+  <gameRigFile>k__BackingField:
+    path:
+      _cString: 
+      _length: 0
+      _hash:
+        _hash: 203000540209048
+  <helpBoneFile>k__BackingField:
+    path:
+      _cString: 
+      _length: 0
+      _hash:
+        _hash: 203000540209048
+  <lipAdjustBinaryFile>k__BackingField:
+    path:
+      _cString: 
+      _length: 0
+      _hash:
+        _hash: 203000540209048
+  <facialSettingFile>k__BackingField:
+    path:
+      _cString: 
+      _length: 0
+      _hash:
+        _hash: 203000540209048
+  <invisibleMeshNames>k__BackingField:
+    _list: []
+  <lodFarPixelSize>k__BackingField: -1
+  <lodNearPixelSize>k__BackingField: -1
+  <lodPolygonSize>k__BackingField: -1
+  <drawRejectionLevel>k__BackingField: 8
+  <rejectFarRangeShadowCast>k__BackingField: 2
+--- !u!4 &1752071939
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1752071937}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 922379404}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
