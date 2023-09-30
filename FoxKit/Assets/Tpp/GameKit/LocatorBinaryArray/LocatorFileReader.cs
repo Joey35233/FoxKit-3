@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEditor;
 using UnityEngine;
+using File = System.IO.File;
 using String = Fox.Kernel.String;
 
 namespace Tpp.GameKit
@@ -66,14 +67,18 @@ namespace Tpp.GameKit
         }
         public static ScriptableObject Load(FilePtr readPath, out string unityPath)
         {
-            ScriptableObject lbaAsset = AssetManager.LoadAssetWithExtensionReplacement<ScriptableObject>(readPath, "asset", out string locaterUnityPath);
+            ScriptableObject lbaAsset = AssetManager.LoadAssetWithExtensionReplacement<ScriptableObject>(readPath, "asset", out unityPath);
             if (lbaAsset == null)
             {
-                string lbaPath = global::System.IO.Path.ChangeExtension(locaterUnityPath, null);
+                string lbaPath = global::System.IO.Path.ChangeExtension(unityPath, null);
+                if (!File.Exists(lbaPath))
+                {
+                    return null;
+                }
+
                 lbaAsset = Read(new FileStreamReader(new FileStream(lbaPath, FileMode.Open)));
-                AssetDatabase.CreateAsset(lbaAsset, locaterUnityPath);
+                AssetDatabase.CreateAsset(lbaAsset, unityPath);
             }
-            unityPath = locaterUnityPath;
             return lbaAsset;
         }
 
