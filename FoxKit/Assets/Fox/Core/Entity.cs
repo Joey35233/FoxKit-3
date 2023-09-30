@@ -65,30 +65,6 @@ namespace Fox.Core
         }
 
         /// <summary>
-        /// TODO: Do this through classgen
-        /// </summary>
-        public T GetProperty<T>(PropertyInfo property)
-        {
-            // TODO Sorry this is ugly but there are two "name" properties due to inheriting from MonoBehaviour
-            if (property.Name == "name")
-            {
-                if (!(this is Data))
-                {
-                    return (T)(object)new String($"NO NAME FOXKIT ERROR {UnityEngine.Random.Range(Int32.MinValue, Int32.MaxValue)}");
-                }
-                return (T)(object)(this as Data).name;
-            }
-            // Same here
-            else if (property.Name == "transform")
-            {
-                return (T)(object)(this as TransformData).transform;
-            }
-
-            System.Reflection.PropertyInfo propInfo = this.GetType().GetProperty(property.Name.CString, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
-            return (T)propInfo.GetValue(this, null);
-        }
-
-        /// <summary>
         /// If a property needs to be converted on export (for instance, Unity to Fox coordinates), add it to the export context.
         /// If a property is not overridden here, its original value will be exported instead.
         /// </summary>
@@ -138,13 +114,13 @@ namespace Fox.Core
                 switch (property.Type)
                 {
                     case PropertyInfo.PropertyType.EntityPtr:
-                        CollectReferencedEntity(GetProperty<IEntityPtr>(property).Get(), alreadyCollectedEntities);
+                        CollectReferencedEntity(GetProperty(property.Name).GetValueAsEntityPtr<Entity>(), alreadyCollectedEntities);
                         break;
                     case PropertyInfo.PropertyType.EntityHandle:
-                        CollectReferencedEntity(GetProperty<EntityHandle>(property).Entity, alreadyCollectedEntities);
+                        CollectReferencedEntity(GetProperty(property.Name).GetValueAsEntityHandle(), alreadyCollectedEntities);
                         break;
                     case PropertyInfo.PropertyType.EntityLink:
-                        CollectReferencedEntity(GetProperty<EntityLink>(property).handle.Entity, alreadyCollectedEntities);
+                        CollectReferencedEntity(GetProperty(property.Name).GetValueAsEntityLink().handle, alreadyCollectedEntities);
                         break;
                 }
 
@@ -152,38 +128,38 @@ namespace Fox.Core
             }
             else if (property.Container == PropertyInfo.ContainerType.StringMap)
             {
-                var list = GetProperty<IStringMap>(property).ToList();
-                foreach (KeyValuePair<Kernel.String, object> item in list)
+                IStringMap list = GetProperty(property.Name).GetValueAsIStringMap();
+                foreach (KeyValuePair<Kernel.String, object> item in list.ToList())
                 {
                     switch (property.Type)
                     {
                         case PropertyInfo.PropertyType.EntityPtr:
-                            CollectReferencedEntity(((IEntityPtr)item.Value).Get(), alreadyCollectedEntities);
+                            CollectReferencedEntity((Entity)item.Value, alreadyCollectedEntities);
                             break;
                         case PropertyInfo.PropertyType.EntityHandle:
-                            CollectReferencedEntity(((EntityHandle)item.Value).Entity, alreadyCollectedEntities);
+                            CollectReferencedEntity((Entity)item.Value, alreadyCollectedEntities);
                             break;
                         case PropertyInfo.PropertyType.EntityLink:
-                            CollectReferencedEntity(((EntityLink)item.Value).handle.Entity, alreadyCollectedEntities);
+                            CollectReferencedEntity(((EntityLink)item.Value).handle, alreadyCollectedEntities);
                             break;
                     }
                 }
             }
             else
             {
-                IList list = GetProperty<IList>(property);
+                var list = GetProperty(property.Name).GetValueAsIList();
                 foreach (object item in list)
                 {
                     switch (property.Type)
                     {
                         case PropertyInfo.PropertyType.EntityPtr:
-                            CollectReferencedEntity(((IEntityPtr)item).Get(), alreadyCollectedEntities);
+                            CollectReferencedEntity((Entity)item, alreadyCollectedEntities);
                             break;
                         case PropertyInfo.PropertyType.EntityHandle:
-                            CollectReferencedEntity(((EntityHandle)item).Entity, alreadyCollectedEntities);
+                            CollectReferencedEntity((Entity)item, alreadyCollectedEntities);
                             break;
                         case PropertyInfo.PropertyType.EntityLink:
-                            CollectReferencedEntity(((EntityLink)item).handle.Entity, alreadyCollectedEntities);
+                            CollectReferencedEntity(((EntityLink)item).handle, alreadyCollectedEntities);
                             break;
                     }
                 }

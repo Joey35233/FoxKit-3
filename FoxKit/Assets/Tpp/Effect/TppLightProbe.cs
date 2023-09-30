@@ -73,24 +73,24 @@ namespace Tpp.Effect
             HALF_SQUARE = 2,
         }
 
-        protected partial bool Get_enable24hSH() => FlagUtils.GetFlag(localFlags, 0);
-        protected partial void Set_enable24hSH(bool value) => localFlags = FlagUtils.SetFlag(localFlags, 0, value);
+        private partial bool Get_enable24hSH() => FlagUtils.GetFlag(localFlags, 0);
+        private partial void Set_enable24hSH(bool value) => localFlags = FlagUtils.SetFlag(localFlags, 0, value);
 
-        protected partial bool Get_enableWeatherSH() => FlagUtils.GetFlag(localFlags, 1);
-        protected partial void Set_enableWeatherSH(bool value) => localFlags = FlagUtils.SetFlag(localFlags, 1, value);
+        private partial bool Get_enableWeatherSH() => FlagUtils.GetFlag(localFlags, 1);
+        private partial void Set_enableWeatherSH(bool value) => localFlags = FlagUtils.SetFlag(localFlags, 1, value);
 
-        protected partial bool Get_enableRelatedLightSH() => FlagUtils.GetFlag(localFlags, 2);
-        protected partial void Set_enableRelatedLightSH(bool value) => localFlags = FlagUtils.SetFlag(localFlags, 2, value);
+        private partial bool Get_enableRelatedLightSH() => FlagUtils.GetFlag(localFlags, 2);
+        private partial void Set_enableRelatedLightSH(bool value) => localFlags = FlagUtils.SetFlag(localFlags, 2, value);
 
-        protected partial bool Get_enableOcclusionMode() => FlagUtils.GetFlag(localFlags, 3);
-        protected partial void Set_enableOcclusionMode(bool value) => localFlags = FlagUtils.SetFlag(localFlags, 3, value);
+        private partial bool Get_enableOcclusionMode() => FlagUtils.GetFlag(localFlags, 3);
+        private partial void Set_enableOcclusionMode(bool value) => localFlags = FlagUtils.SetFlag(localFlags, 3, value);
 
-        protected partial TppLightProbe_PackingGeneration Get_packingGeneration() => throw new CsSystem.NotImplementedException();
-        protected partial void Set_packingGeneration(TppLightProbe_PackingGeneration value) => throw new CsSystem.NotImplementedException();
+        private partial TppLightProbe_PackingGeneration Get_packingGeneration() => throw new CsSystem.NotImplementedException();
+        private partial void Set_packingGeneration(TppLightProbe_PackingGeneration value) => throw new CsSystem.NotImplementedException();
 
         private void DrawGizmos(bool isSelected)
         {
-            Gizmos.matrix = (this as MonoBehaviour).transform.localToWorldMatrix;
+            Gizmos.matrix = this.transform.localToWorldMatrix;
 
             Gizmos.DrawWireCube(Vector3.zero, Vector3.one);
         }

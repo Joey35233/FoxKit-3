@@ -12,105 +12,105 @@ using Fox;
 
 namespace Tpp.Effect
 {
-    [UnityEditor.InitializeOnLoad]
-    public partial class TppLightProbe : Fox.Core.TransformData 
-    {
-        // Properties
-        [field: UnityEngine.SerializeField]
-        public bool enable { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Core.EntityLink lightArea { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Core.EntityLink innerArea { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Core.EntityLink shCoefficientsData { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.DynamicArray<Fox.Core.EntityLink> onLights { get; set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityLink>();
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.DynamicArray<Fox.Core.EntityLink> offLights { get; set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityLink>();
-        
-        [field: UnityEngine.SerializeField]
-        public float innerScaleXPositive { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float innerScaleXNegative { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float innerScaleYPositive { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float innerScaleYNegative { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float innerScaleZPositive { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float innerScaleZNegative { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public int priority { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public TppLightProbe_DebugMode debugMode { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public TppLightProbe_DrawRejectionLevel drawRejectionLevel { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public TppLightProbe_ShapeType shapeType { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float exposure { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        protected uint localFlags { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float occlusionModeOpenRate { get; set; }
-        
-        public bool enable24hSH { get => Get_enable24hSH(); set { Set_enable24hSH(value); } }
-        protected partial bool Get_enable24hSH();
-        protected partial void Set_enable24hSH(bool value);
-        
-        public bool enableWeatherSH { get => Get_enableWeatherSH(); set { Set_enableWeatherSH(value); } }
-        protected partial bool Get_enableWeatherSH();
-        protected partial void Set_enableWeatherSH(bool value);
-        
-        public bool enableRelatedLightSH { get => Get_enableRelatedLightSH(); set { Set_enableRelatedLightSH(value); } }
-        protected partial bool Get_enableRelatedLightSH();
-        protected partial void Set_enableRelatedLightSH(bool value);
-        
-        public bool enableOcclusionMode { get => Get_enableOcclusionMode(); set { Set_enableOcclusionMode(value); } }
-        protected partial bool Get_enableOcclusionMode();
-        protected partial void Set_enableOcclusionMode(bool value);
-        
-        public TppLightProbe_PackingGeneration packingGeneration { get => Get_packingGeneration(); set { Set_packingGeneration(value); } }
-        protected partial TppLightProbe_PackingGeneration Get_packingGeneration();
-        protected partial void Set_packingGeneration(TppLightProbe_PackingGeneration value);
-        
-        // ClassInfos
-        public static new bool ClassInfoInitialized = false;
-        private static Fox.Core.EntityInfo classInfo;
-        public static new Fox.Core.EntityInfo ClassInfo
-        {
-            get
-            {
-                return classInfo;
-            }
-        }
-        public override Fox.Core.EntityInfo GetClassEntityInfo()
-        {
-            return classInfo;
-        }
-        static TppLightProbe()
-        {
-            if (Fox.Core.TransformData.ClassInfoInitialized)
-                classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("TppLightProbe"), typeof(TppLightProbe), Fox.Core.TransformData.ClassInfo, 448, "Light", 4);
+	[UnityEditor.InitializeOnLoad]
+	public partial class TppLightProbe : Fox.Core.TransformData
+	{
+		// Properties
+		[field: UnityEngine.SerializeField]
+		public bool enable { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Core.EntityLink lightArea { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Core.EntityLink innerArea { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Core.EntityLink shCoefficientsData { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.DynamicArray<Fox.Core.EntityLink> onLights { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityLink>();
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.DynamicArray<Fox.Core.EntityLink> offLights { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityLink>();
+		
+		[field: UnityEngine.SerializeField]
+		public float innerScaleXPositive { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float innerScaleXNegative { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float innerScaleYPositive { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float innerScaleYNegative { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float innerScaleZPositive { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float innerScaleZNegative { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public int priority { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public TppLightProbe_DebugMode debugMode { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public TppLightProbe_DrawRejectionLevel drawRejectionLevel { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public TppLightProbe_ShapeType shapeType { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float exposure { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		protected uint localFlags { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float occlusionModeOpenRate { get; set; }
+		
+		public bool enable24hSH { get => Get_enable24hSH(); set { Set_enable24hSH(value); } }
+		private partial bool Get_enable24hSH();
+		private partial void Set_enable24hSH(bool value);
+		
+		public bool enableWeatherSH { get => Get_enableWeatherSH(); set { Set_enableWeatherSH(value); } }
+		private partial bool Get_enableWeatherSH();
+		private partial void Set_enableWeatherSH(bool value);
+		
+		public bool enableRelatedLightSH { get => Get_enableRelatedLightSH(); set { Set_enableRelatedLightSH(value); } }
+		private partial bool Get_enableRelatedLightSH();
+		private partial void Set_enableRelatedLightSH(bool value);
+		
+		public bool enableOcclusionMode { get => Get_enableOcclusionMode(); set { Set_enableOcclusionMode(value); } }
+		private partial bool Get_enableOcclusionMode();
+		private partial void Set_enableOcclusionMode(bool value);
+		
+		public TppLightProbe_PackingGeneration packingGeneration { get => Get_packingGeneration(); set { Set_packingGeneration(value); } }
+		private partial TppLightProbe_PackingGeneration Get_packingGeneration();
+		private partial void Set_packingGeneration(TppLightProbe_PackingGeneration value);
+		
+		// ClassInfos
+		public static new bool ClassInfoInitialized = false;
+		private static Fox.Core.EntityInfo classInfo;
+		public static new Fox.Core.EntityInfo ClassInfo
+		{
+			get
+			{
+				return classInfo;
+			}
+		}
+		public override Fox.Core.EntityInfo GetClassEntityInfo()
+		{
+			return classInfo;
+		}
+		static TppLightProbe()
+		{
+			if (Fox.Core.TransformData.ClassInfoInitialized)
+				classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("TppLightProbe"), typeof(TppLightProbe), Fox.Core.TransformData.ClassInfo, 448, "Light", 4);
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("enable"), Fox.Core.PropertyInfo.PropertyType.Bool, 508, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("lightArea"), Fox.Core.PropertyInfo.PropertyType.EntityLink, 336, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("innerArea"), Fox.Core.PropertyInfo.PropertyType.EntityLink, 376, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
@@ -136,115 +136,194 @@ namespace Tpp.Effect
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("enableOcclusionMode"), Fox.Core.PropertyInfo.PropertyType.Bool, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Accessor));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("packingGeneration"), Fox.Core.PropertyInfo.PropertyType.Int32, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, typeof(TppLightProbe_PackingGeneration), Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Accessor));
 
-            ClassInfoInitialized = true;
-        }
+			ClassInfoInitialized = true;
+		}
 
-        // Constructors
+		// Constructors
 		public TppLightProbe(ulong id) : base(id) { }
 		public TppLightProbe() : base() { }
-        
-        public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "enable":
-                    this.enable = value.GetValueAsBool();
-                    return;
-                case "lightArea":
-                    this.lightArea = value.GetValueAsEntityLink();
-                    return;
-                case "innerArea":
-                    this.innerArea = value.GetValueAsEntityLink();
-                    return;
-                case "shCoefficientsData":
-                    this.shCoefficientsData = value.GetValueAsEntityLink();
-                    return;
-                case "innerScaleXPositive":
-                    this.innerScaleXPositive = value.GetValueAsFloat();
-                    return;
-                case "innerScaleXNegative":
-                    this.innerScaleXNegative = value.GetValueAsFloat();
-                    return;
-                case "innerScaleYPositive":
-                    this.innerScaleYPositive = value.GetValueAsFloat();
-                    return;
-                case "innerScaleYNegative":
-                    this.innerScaleYNegative = value.GetValueAsFloat();
-                    return;
-                case "innerScaleZPositive":
-                    this.innerScaleZPositive = value.GetValueAsFloat();
-                    return;
-                case "innerScaleZNegative":
-                    this.innerScaleZNegative = value.GetValueAsFloat();
-                    return;
-                case "priority":
-                    this.priority = value.GetValueAsInt32();
-                    return;
-                case "debugMode":
-                    this.debugMode = (TppLightProbe_DebugMode)value.GetValueAsInt32();
-                    return;
-                case "drawRejectionLevel":
-                    this.drawRejectionLevel = (TppLightProbe_DrawRejectionLevel)value.GetValueAsInt32();
-                    return;
-                case "shapeType":
-                    this.shapeType = (TppLightProbe_ShapeType)value.GetValueAsInt32();
-                    return;
-                case "exposure":
-                    this.exposure = value.GetValueAsFloat();
-                    return;
-                case "localFlags":
-                    this.localFlags = value.GetValueAsUInt32();
-                    return;
-                case "occlusionModeOpenRate":
-                    this.occlusionModeOpenRate = value.GetValueAsFloat();
-                    return;
-                case "enable24hSH":
-                    this.enable24hSH = value.GetValueAsBool();
-                    return;
-                case "enableWeatherSH":
-                    this.enableWeatherSH = value.GetValueAsBool();
-                    return;
-                case "enableRelatedLightSH":
-                    this.enableRelatedLightSH = value.GetValueAsBool();
-                    return;
-                case "enableOcclusionMode":
-                    this.enableOcclusionMode = value.GetValueAsBool();
-                    return;
-                case "packingGeneration":
-                    this.packingGeneration = (TppLightProbe_PackingGeneration)value.GetValueAsInt32();
-                    return;
-                default:
-                    base.SetProperty(propertyName, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "onLights":
-                    while(this.onLights.Count <= index) { this.onLights.Add(default(Fox.Core.EntityLink)); }
-                    this.onLights[index] = value.GetValueAsEntityLink();
-                    return;
-                case "offLights":
-                    while(this.offLights.Count <= index) { this.offLights.Add(default(Fox.Core.EntityLink)); }
-                    this.offLights[index] = value.GetValueAsEntityLink();
-                    return;
-                default:
-                    base.SetPropertyElement(propertyName, index, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, key, value);
-                    return;
-            }
-        }
-    }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "enable":
+					return new Fox.Core.Value(enable);
+				case "lightArea":
+					return new Fox.Core.Value(lightArea);
+				case "innerArea":
+					return new Fox.Core.Value(innerArea);
+				case "shCoefficientsData":
+					return new Fox.Core.Value(shCoefficientsData);
+				case "onLights":
+					return new Fox.Core.Value(onLights);
+				case "offLights":
+					return new Fox.Core.Value(offLights);
+				case "innerScaleXPositive":
+					return new Fox.Core.Value(innerScaleXPositive);
+				case "innerScaleXNegative":
+					return new Fox.Core.Value(innerScaleXNegative);
+				case "innerScaleYPositive":
+					return new Fox.Core.Value(innerScaleYPositive);
+				case "innerScaleYNegative":
+					return new Fox.Core.Value(innerScaleYNegative);
+				case "innerScaleZPositive":
+					return new Fox.Core.Value(innerScaleZPositive);
+				case "innerScaleZNegative":
+					return new Fox.Core.Value(innerScaleZNegative);
+				case "priority":
+					return new Fox.Core.Value(priority);
+				case "debugMode":
+					return new Fox.Core.Value(debugMode);
+				case "drawRejectionLevel":
+					return new Fox.Core.Value(drawRejectionLevel);
+				case "shapeType":
+					return new Fox.Core.Value(shapeType);
+				case "exposure":
+					return new Fox.Core.Value(exposure);
+				case "localFlags":
+					return new Fox.Core.Value(localFlags);
+				case "occlusionModeOpenRate":
+					return new Fox.Core.Value(occlusionModeOpenRate);
+				case "enable24hSH":
+					return new Fox.Core.Value(enable24hSH);
+				case "enableWeatherSH":
+					return new Fox.Core.Value(enableWeatherSH);
+				case "enableRelatedLightSH":
+					return new Fox.Core.Value(enableRelatedLightSH);
+				case "enableOcclusionMode":
+					return new Fox.Core.Value(enableOcclusionMode);
+				case "packingGeneration":
+					return new Fox.Core.Value(packingGeneration);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				case "onLights":
+					return new Fox.Core.Value(this.onLights[index]);
+				case "offLights":
+					return new Fox.Core.Value(this.offLights[index]);
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
+
+		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
+		{
+			switch (propertyName.CString)
+			{
+				case "enable":
+					this.enable = value.GetValueAsBool();
+					return;
+				case "lightArea":
+					this.lightArea = value.GetValueAsEntityLink();
+					return;
+				case "innerArea":
+					this.innerArea = value.GetValueAsEntityLink();
+					return;
+				case "shCoefficientsData":
+					this.shCoefficientsData = value.GetValueAsEntityLink();
+					return;
+				case "innerScaleXPositive":
+					this.innerScaleXPositive = value.GetValueAsFloat();
+					return;
+				case "innerScaleXNegative":
+					this.innerScaleXNegative = value.GetValueAsFloat();
+					return;
+				case "innerScaleYPositive":
+					this.innerScaleYPositive = value.GetValueAsFloat();
+					return;
+				case "innerScaleYNegative":
+					this.innerScaleYNegative = value.GetValueAsFloat();
+					return;
+				case "innerScaleZPositive":
+					this.innerScaleZPositive = value.GetValueAsFloat();
+					return;
+				case "innerScaleZNegative":
+					this.innerScaleZNegative = value.GetValueAsFloat();
+					return;
+				case "priority":
+					this.priority = value.GetValueAsInt32();
+					return;
+				case "debugMode":
+					this.debugMode = (TppLightProbe_DebugMode)value.GetValueAsInt32();
+					return;
+				case "drawRejectionLevel":
+					this.drawRejectionLevel = (TppLightProbe_DrawRejectionLevel)value.GetValueAsInt32();
+					return;
+				case "shapeType":
+					this.shapeType = (TppLightProbe_ShapeType)value.GetValueAsInt32();
+					return;
+				case "exposure":
+					this.exposure = value.GetValueAsFloat();
+					return;
+				case "localFlags":
+					this.localFlags = value.GetValueAsUInt32();
+					return;
+				case "occlusionModeOpenRate":
+					this.occlusionModeOpenRate = value.GetValueAsFloat();
+					return;
+				case "enable24hSH":
+					this.enable24hSH = value.GetValueAsBool();
+					return;
+				case "enableWeatherSH":
+					this.enableWeatherSH = value.GetValueAsBool();
+					return;
+				case "enableRelatedLightSH":
+					this.enableRelatedLightSH = value.GetValueAsBool();
+					return;
+				case "enableOcclusionMode":
+					this.enableOcclusionMode = value.GetValueAsBool();
+					return;
+				case "packingGeneration":
+					this.packingGeneration = (TppLightProbe_PackingGeneration)value.GetValueAsInt32();
+					return;
+				default:
+					base.SetProperty(propertyName, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
+		{
+			switch (propertyName.CString)
+			{
+				case "onLights":
+					while(this.onLights.Count <= index) { this.onLights.Add(default(Fox.Core.EntityLink)); }
+					this.onLights[index] = value.GetValueAsEntityLink();
+					return;
+				case "offLights":
+					while(this.offLights.Count <= index) { this.offLights.Add(default(Fox.Core.EntityLink)); }
+					this.offLights[index] = value.GetValueAsEntityLink();
+					return;
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+	}
 }

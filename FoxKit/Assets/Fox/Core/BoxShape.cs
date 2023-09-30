@@ -4,14 +4,14 @@ namespace Fox.Core
 {
     public partial class BoxShape : Fox.Core.ShapeData
     {
-        protected partial UnityEngine.Vector3 Get_size()
+        private partial UnityEngine.Vector3 Get_size()
         {
-            UnityEngine.Transform transform = (this as MonoBehaviour).transform;
+            UnityEngine.Transform transform = this.transform;
             return transform.localScale / 2;
         }
-        protected partial void Set_size(UnityEngine.Vector3 value)
+        private partial void Set_size(UnityEngine.Vector3 value)
         {
-            UnityEngine.Transform transform = (this as MonoBehaviour).transform;
+            UnityEngine.Transform transform = this.transform;
             transform.localScale = 2 * value;
         }
 
@@ -19,14 +19,14 @@ namespace Fox.Core
 
         public void OnDrawGizmos()
         {
-            Gizmo.Transform = (this as MonoBehaviour).transform;
-            Gizmo.Label = (this as MonoBehaviour).name;
+            Gizmo.Transform = this.transform;
+            Gizmo.Label = this.name;
             Gizmo.OnDrawGizmos();
         }
 
         public void OnDrawGizmosSelected()
         {
-            Gizmo.Transform = (this as MonoBehaviour).transform;
+            Gizmo.Transform = this.transform;
             Gizmo.Label = null;
             Gizmo.OnDrawGizmosSelected();
         }

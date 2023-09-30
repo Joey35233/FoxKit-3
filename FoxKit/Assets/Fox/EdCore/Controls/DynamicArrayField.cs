@@ -11,11 +11,8 @@ namespace Fox.EdCore
     {
         private readonly ListView ListViewInput;
 
-        private static readonly Func<IFoxField> FieldConstructor = FoxFieldUtils.GetTypeFieldConstructor(typeof(T));
-
-        private static readonly Type SerializedObjectListType = Type.GetType("UnityEditor.UIElements.Bindings.SerializedObjectList, UnityEditor.UIElementsModule");
-        private static readonly TypeInfo SerializedObjectListTypeInfo = SerializedObjectListType.GetTypeInfo();
-        private static readonly MethodInfo GetSerializedObjectListArraySizeMethodInfo = SerializedObjectListTypeInfo.GetMethod("get_ArraySize");
+        private static readonly Func<IFoxField> DefaultFieldConstructor = FoxFieldUtils.GetBindableElementConstructorForType(typeof(T));
+        private Func<IFoxField> FieldConstructor = DefaultFieldConstructor;
 
         public static new readonly string ussClassName = "fox-dynamicarray-field";
         public static new readonly string labelUssClassName = ussClassName + "__label";
@@ -46,6 +43,7 @@ namespace Fox.EdCore
             ListViewInput.itemsSource = value;
             ListViewInput.makeItem = MakeItem;
             ListViewInput.bindItem = BindItem;
+            ListViewInput.unbindItem = (element, i) => {};
             ListViewInput.style.flexGrow = 1.0f;
             ListViewInput.selectionType = SelectionType.Single;
             ListViewInput.showBorder = true;
@@ -103,8 +101,11 @@ namespace Fox.EdCore
         }
 
         public void BindProperty(SerializedProperty property) => BindProperty(property, null);
-        public void BindProperty(SerializedProperty property, string label)
+        public void BindProperty(SerializedProperty property, string label, Core.PropertyInfo propertyInfo = null)
         {
+            if (propertyInfo is not null)
+                FieldConstructor = FoxFieldUtils.GetBindableElementConstructorForPropertyInfo(propertyInfo);
+
             if (label is not null)
                 this.label = label;
             BindingExtensions.BindProperty(ListViewInput, property.FindPropertyRelative("_list"));

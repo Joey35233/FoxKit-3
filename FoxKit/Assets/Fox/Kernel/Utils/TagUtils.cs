@@ -13,7 +13,7 @@ namespace Fox.Kernel
 
         private static int GetSetBitCount(ulong i) => GetSetBitCount((uint)i) + GetSetBitCount((uint)(i >> 32));
 
-        public static DynamicArray<String> GetEnumTags<T>(uint tags)
+        public static void AddEnumTags<T>(DynamicArray<String> array, uint tags)
         {
             int bitCount = GetSetBitCount(tags);
 
@@ -33,10 +33,9 @@ namespace Fox.Kernel
                     i++;
                 }
             }
-            return tagsArray;
         }
 
-        public static DynamicArray<String> GetEnumTags<T>(ulong tags)
+        public static void AddEnumTags<T>(DynamicArray<String> array, ulong tags)
         {
             int bitCount = GetSetBitCount(tags);
 
@@ -56,7 +55,6 @@ namespace Fox.Kernel
                     i++;
                 }
             }
-            return tagsArray;
         }
     }
 }

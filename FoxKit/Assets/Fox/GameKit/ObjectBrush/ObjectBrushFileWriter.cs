@@ -113,7 +113,7 @@ namespace Fox.GameKit
             if (Selection.activeGameObject.GetComponent<ObjectBrush>() is not { } objectBrush)
                 return;
 
-            string filePath = EditorUtility.SaveFilePanel("Export to OBR", "", objectBrush.name.CString, "obr");
+            string filePath = EditorUtility.SaveFilePanel("Export to OBR", "", objectBrush.name, "obr");
 
             if (System.String.IsNullOrWhiteSpace(filePath))
                 return;

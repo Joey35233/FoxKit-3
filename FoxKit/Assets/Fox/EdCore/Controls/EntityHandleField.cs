@@ -8,32 +8,33 @@ using Object = UnityEngine.Object;
 
 namespace Fox.EdCore
 {
-    public class EntityHandleField : BaseField<EntityHandle>, IFoxField, ICustomBindable
+    public class EntityHandleField : BaseField<Entity>, IFoxField, ICustomBindable
     {
         private SerializedProperty EntityProperty;
-        public override EntityHandle value
+
+        public override Entity value
         {
             get => base.value;
             set
             {
-                EntityHandle newValue = value;
+                Entity newValue = value;
                 if (newValue != this.value)
                 {
                     if (panel != null)
                     {
-                        EntityHandle previousValue = this.value;
+                        Entity previousValue = this.value;
                         SetValueWithoutNotify(newValue);
 
                         Update();
 
                         // "Custom binding"
-                        if (newValue.Entity != EntityProperty.objectReferenceValue)
+                        if (newValue != EntityProperty.objectReferenceValue)
                         {
-                            EntityProperty.objectReferenceValue = newValue.Entity;
+                            EntityProperty.objectReferenceValue = newValue;
                             _ = EntityProperty.serializedObject.ApplyModifiedProperties();
                         }
 
-                        using (var evt = ChangeEvent<EntityHandle>.GetPooled(previousValue, newValue))
+                        using (var evt = ChangeEvent<Entity>.GetPooled(previousValue, newValue))
                         {
                             evt.target = this;
                             SendEvent(evt);
@@ -46,9 +47,9 @@ namespace Fox.EdCore
                         Update();
 
                         // "Custom binding"
-                        if (newValue.Entity != EntityProperty.objectReferenceValue)
+                        if (newValue != EntityProperty.objectReferenceValue)
                         {
-                            EntityProperty.objectReferenceValue = newValue.Entity;
+                            EntityProperty.objectReferenceValue = newValue;
                             _ = EntityProperty.serializedObject.ApplyModifiedProperties();
                         }
                     }
@@ -128,7 +129,7 @@ namespace Fox.EdCore
 
         private void Update()
         {
-            if (value.Entity == null)
+            if (value == null)
             {
                 EntityLabel.style.display = DisplayStyle.None;
                 EntityLabel.text = "<b>null</b>";
@@ -137,19 +138,19 @@ namespace Fox.EdCore
             else
             {
                 EntityLabel.style.display = DisplayStyle.Flex;
-                EntityLabel.text = $"<b>{value.Entity.GetClassEntityInfo().Name}</b>";
+                EntityLabel.text = $"<b>{value.GetClassEntityInfo().Name}</b>";
                 visualInput.AddToClassList(inputLivePtrUssClassName);
             }
         }
 
-        private void OnPropertyChanged(SerializedProperty property) => value = EntityHandle.Get(EntityProperty.objectReferenceValue as Entity);
+        private void OnPropertyChanged(SerializedProperty property) => value = EntityProperty.objectReferenceValue as Entity;
 
         public void BindProperty(SerializedProperty property) => BindProperty(property, null);
-        public void BindProperty(SerializedProperty property, string label)
+        public void BindProperty(SerializedProperty property, string label, PropertyInfo propertyInfo = null)
         {
             if (label is not null)
                 this.label = label;
-            EntityProperty = property.FindPropertyRelative("_entity");
+            EntityProperty = property;
 
             BindingExtensions.TrackPropertyValue(this, EntityProperty, OnPropertyChanged);
 
@@ -171,7 +172,7 @@ namespace Fox.EdCore
             {
                 var property = FoxFieldUtils.SerializedPropertyBindEventBindProperty.GetValue(evt) as SerializedProperty;
 
-                EntityProperty = property.FindPropertyRelative("_entity");
+                EntityProperty = property;
 
                 BindingExtensions.TrackPropertyValue(this, EntityProperty, OnPropertyChanged);
 
@@ -263,7 +264,7 @@ namespace Fox.EdCore
             //m_ObjectField.ShowObjectSelector();
         }
 
-        private void OnKeyboardDelete() => value = new EntityHandle();
+        private void OnKeyboardDelete() => value = null;
 
         private Entity GetDragAndDropObject()
         {
@@ -295,7 +296,7 @@ namespace Fox.EdCore
             if (validatedObject != null)
             {
                 DragAndDrop.visualMode = DragAndDropVisualMode.Generic;
-                value = EntityHandle.Get(validatedObject);
+                value = validatedObject;
 
                 DragAndDrop.AcceptDrag();
                 RemoveFromClassList("unity-object-field-display--accept-drop");
@@ -305,19 +306,19 @@ namespace Fox.EdCore
         }
     }
 
-    [CustomPropertyDrawer(typeof(EntityHandle))]
-    public class EntityHandleDrawer : PropertyDrawer
-    {
-        public override VisualElement CreatePropertyGUI(SerializedProperty property)
-        {
-            var field = new EntityHandleField(property.name);
-            field.BindProperty(property);
-
-            field.labelElement.AddToClassList(PropertyField.labelUssClassName);
-            field.visualInput.AddToClassList(PropertyField.inputUssClassName);
-            field.AddToClassList(BaseField<Fox.Core.EntityHandle>.alignedFieldUssClassName);
-
-            return field;
-        }
-    }
+    // [CustomPropertyDrawer(typeof(EntityHandle))]
+    // public class EntityHandleDrawer : PropertyDrawer
+    // {
+    //     public override VisualElement CreatePropertyGUI(SerializedProperty property)
+    //     {
+    //         var field = new EntityHandleField(property.name);
+    //         field.BindProperty(property);
+    //
+    //         field.labelElement.AddToClassList(PropertyField.labelUssClassName);
+    //         field.visualInput.AddToClassList(PropertyField.inputUssClassName);
+    //         field.AddToClassList(BaseField<Fox.Core.Entity>.alignedFieldUssClassName);
+    //
+    //         return field;
+    //     }
+    // }
 }

@@ -100,7 +100,7 @@ namespace Tpp.GameKit
                 case PowerCutAreaLocatorBinaryArrayAsset powerCutAreaAsset:
                     foreach (PowerCutAreaLocatorBinary locator in powerCutAreaAsset.locators)
                     {
-                        LocatorBinaryObject locatorGameObject = new GameObject(name.CString).AddComponent<LocatorBinaryObject>();
+                        LocatorBinaryObject locatorGameObject = new GameObject(name).AddComponent<LocatorBinaryObject>();
                         locatorGameObject.transform.position = locator.GetTranslation();
                         locatorGameObject.transform.rotation = locator.GetRotation();
                         if (assetModelFile != null)

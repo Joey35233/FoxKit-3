@@ -12,64 +12,64 @@ using Fox;
 
 namespace Fox.GameKit
 {
-    [UnityEditor.InitializeOnLoad]
-    public partial class StaticModelArray : Fox.Core.Data 
-    {
-        // Properties
-        [field: UnityEngine.SerializeField]
-        public Fox.Core.FilePtr modelFile { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Core.FilePtr geomFile { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public bool isVisibleGeom { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float lodFarSize { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float lodNearSize { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float lodPolygonSize { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public StaticModelArray_DrawRejectionLevel drawRejectionLevel { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public StaticModelArray_DrawMode drawMode { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public StaticModelArray_RejectFarRangeShadowCast rejectFarRangeShadowCast { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Core.EntityLink parentLocator { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.DynamicArray<UnityEngine.Matrix4x4> transforms { get; set; } = new Fox.Kernel.DynamicArray<UnityEngine.Matrix4x4>();
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.DynamicArray<uint> colors { get; set; } = new Fox.Kernel.DynamicArray<uint>();
-        
-        // ClassInfos
-        public static new bool ClassInfoInitialized = false;
-        private static Fox.Core.EntityInfo classInfo;
-        public static new Fox.Core.EntityInfo ClassInfo
-        {
-            get
-            {
-                return classInfo;
-            }
-        }
-        public override Fox.Core.EntityInfo GetClassEntityInfo()
-        {
-            return classInfo;
-        }
-        static StaticModelArray()
-        {
-            if (Fox.Core.Data.ClassInfoInitialized)
-                classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("StaticModelArray"), typeof(StaticModelArray), Fox.Core.Data.ClassInfo, 208, "Model", 4);
+	[UnityEditor.InitializeOnLoad]
+	public partial class StaticModelArray : Fox.Core.Data
+	{
+		// Properties
+		[field: UnityEngine.SerializeField]
+		public Fox.Core.FilePtr modelFile { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Core.FilePtr geomFile { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public bool isVisibleGeom { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float lodFarSize { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float lodNearSize { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float lodPolygonSize { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public StaticModelArray_DrawRejectionLevel drawRejectionLevel { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public StaticModelArray_DrawMode drawMode { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public StaticModelArray_RejectFarRangeShadowCast rejectFarRangeShadowCast { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Core.EntityLink parentLocator { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.DynamicArray<UnityEngine.Matrix4x4> transforms { get; private set; } = new Fox.Kernel.DynamicArray<UnityEngine.Matrix4x4>();
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.DynamicArray<uint> colors { get; private set; } = new Fox.Kernel.DynamicArray<uint>();
+		
+		// ClassInfos
+		public static new bool ClassInfoInitialized = false;
+		private static Fox.Core.EntityInfo classInfo;
+		public static new Fox.Core.EntityInfo ClassInfo
+		{
+			get
+			{
+				return classInfo;
+			}
+		}
+		public override Fox.Core.EntityInfo GetClassEntityInfo()
+		{
+			return classInfo;
+		}
+		static StaticModelArray()
+		{
+			if (Fox.Core.Data.ClassInfoInitialized)
+				classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("StaticModelArray"), typeof(StaticModelArray), Fox.Core.Data.ClassInfo, 208, "Model", 4);
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("modelFile"), Fox.Core.PropertyInfo.PropertyType.FilePtr, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("geomFile"), Fox.Core.PropertyInfo.PropertyType.FilePtr, 144, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("isVisibleGeom"), Fox.Core.PropertyInfo.PropertyType.Bool, 168, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
@@ -83,79 +83,134 @@ namespace Fox.GameKit
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("transforms"), Fox.Core.PropertyInfo.PropertyType.Matrix4, 200, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("colors"), Fox.Core.PropertyInfo.PropertyType.UInt32, 216, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 
-            ClassInfoInitialized = true;
-        }
+			ClassInfoInitialized = true;
+		}
 
-        // Constructors
+		// Constructors
 		public StaticModelArray(ulong id) : base(id) { }
 		public StaticModelArray() : base() { }
-        
-        public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "modelFile":
-                    this.modelFile = value.GetValueAsFilePtr();
-                    return;
-                case "geomFile":
-                    this.geomFile = value.GetValueAsFilePtr();
-                    return;
-                case "isVisibleGeom":
-                    this.isVisibleGeom = value.GetValueAsBool();
-                    return;
-                case "lodFarSize":
-                    this.lodFarSize = value.GetValueAsFloat();
-                    return;
-                case "lodNearSize":
-                    this.lodNearSize = value.GetValueAsFloat();
-                    return;
-                case "lodPolygonSize":
-                    this.lodPolygonSize = value.GetValueAsFloat();
-                    return;
-                case "drawRejectionLevel":
-                    this.drawRejectionLevel = (StaticModelArray_DrawRejectionLevel)value.GetValueAsInt32();
-                    return;
-                case "drawMode":
-                    this.drawMode = (StaticModelArray_DrawMode)value.GetValueAsInt32();
-                    return;
-                case "rejectFarRangeShadowCast":
-                    this.rejectFarRangeShadowCast = (StaticModelArray_RejectFarRangeShadowCast)value.GetValueAsInt32();
-                    return;
-                case "parentLocator":
-                    this.parentLocator = value.GetValueAsEntityLink();
-                    return;
-                default:
-                    base.SetProperty(propertyName, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "transforms":
-                    while(this.transforms.Count <= index) { this.transforms.Add(default(UnityEngine.Matrix4x4)); }
-                    this.transforms[index] = value.GetValueAsMatrix4();
-                    return;
-                case "colors":
-                    while(this.colors.Count <= index) { this.colors.Add(default(uint)); }
-                    this.colors[index] = value.GetValueAsUInt32();
-                    return;
-                default:
-                    base.SetPropertyElement(propertyName, index, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, key, value);
-                    return;
-            }
-        }
-    }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "modelFile":
+					return new Fox.Core.Value(modelFile);
+				case "geomFile":
+					return new Fox.Core.Value(geomFile);
+				case "isVisibleGeom":
+					return new Fox.Core.Value(isVisibleGeom);
+				case "lodFarSize":
+					return new Fox.Core.Value(lodFarSize);
+				case "lodNearSize":
+					return new Fox.Core.Value(lodNearSize);
+				case "lodPolygonSize":
+					return new Fox.Core.Value(lodPolygonSize);
+				case "drawRejectionLevel":
+					return new Fox.Core.Value(drawRejectionLevel);
+				case "drawMode":
+					return new Fox.Core.Value(drawMode);
+				case "rejectFarRangeShadowCast":
+					return new Fox.Core.Value(rejectFarRangeShadowCast);
+				case "parentLocator":
+					return new Fox.Core.Value(parentLocator);
+				case "transforms":
+					return new Fox.Core.Value(transforms);
+				case "colors":
+					return new Fox.Core.Value(colors);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				case "transforms":
+					return new Fox.Core.Value(this.transforms[index]);
+				case "colors":
+					return new Fox.Core.Value(this.colors[index]);
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
+
+		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
+		{
+			switch (propertyName.CString)
+			{
+				case "modelFile":
+					this.modelFile = value.GetValueAsFilePtr();
+					return;
+				case "geomFile":
+					this.geomFile = value.GetValueAsFilePtr();
+					return;
+				case "isVisibleGeom":
+					this.isVisibleGeom = value.GetValueAsBool();
+					return;
+				case "lodFarSize":
+					this.lodFarSize = value.GetValueAsFloat();
+					return;
+				case "lodNearSize":
+					this.lodNearSize = value.GetValueAsFloat();
+					return;
+				case "lodPolygonSize":
+					this.lodPolygonSize = value.GetValueAsFloat();
+					return;
+				case "drawRejectionLevel":
+					this.drawRejectionLevel = (StaticModelArray_DrawRejectionLevel)value.GetValueAsInt32();
+					return;
+				case "drawMode":
+					this.drawMode = (StaticModelArray_DrawMode)value.GetValueAsInt32();
+					return;
+				case "rejectFarRangeShadowCast":
+					this.rejectFarRangeShadowCast = (StaticModelArray_RejectFarRangeShadowCast)value.GetValueAsInt32();
+					return;
+				case "parentLocator":
+					this.parentLocator = value.GetValueAsEntityLink();
+					return;
+				default:
+					base.SetProperty(propertyName, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
+		{
+			switch (propertyName.CString)
+			{
+				case "transforms":
+					while(this.transforms.Count <= index) { this.transforms.Add(default(UnityEngine.Matrix4x4)); }
+					this.transforms[index] = value.GetValueAsMatrix4();
+					return;
+				case "colors":
+					while(this.colors.Count <= index) { this.colors.Add(default(uint)); }
+					this.colors[index] = value.GetValueAsUInt32();
+					return;
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+	}
 }

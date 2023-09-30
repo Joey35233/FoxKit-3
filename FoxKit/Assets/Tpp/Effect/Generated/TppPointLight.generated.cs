@@ -12,121 +12,121 @@ using Fox;
 
 namespace Tpp.Effect
 {
-    [UnityEditor.InitializeOnLoad]
-    public partial class TppPointLight : Fox.Core.TransformData 
-    {
-        // Properties
-        [field: UnityEngine.SerializeField]
-        public UnityEngine.Color color { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public UnityEngine.Vector3 reachPoint { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        protected Fox.Kernel.DynamicArray<uint> BynaryData { get; set; } = new Fox.Kernel.DynamicArray<uint>();
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Core.EntityLink lightArea { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Core.EntityLink irradiationPoint { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float outerRange { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float innerRange { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float temperature { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float colorDeflection { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float lumen { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float lightSize { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float dimmer { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float shadowBias { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float LodFarSize { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float LodNearSize { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float LodShadowDrawRate { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        protected uint lightFlags { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public int lodRadiusLevel { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public byte lodFadeType { get; set; }
-        
-        public bool enable { get => Get_enable(); set { Set_enable(value); } }
-        protected partial bool Get_enable();
-        protected partial void Set_enable(bool value);
-        
-        public TppPointLight_PackingGeneration packingGeneration { get => Get_packingGeneration(); set { Set_packingGeneration(value); } }
-        protected partial TppPointLight_PackingGeneration Get_packingGeneration();
-        protected partial void Set_packingGeneration(TppPointLight_PackingGeneration value);
-        
-        public bool castShadow { get => Get_castShadow(); set { Set_castShadow(value); } }
-        protected partial bool Get_castShadow();
-        protected partial void Set_castShadow(bool value);
-        
-        public bool isBounced { get => Get_isBounced(); set { Set_isBounced(value); } }
-        protected partial bool Get_isBounced();
-        protected partial void Set_isBounced(bool value);
-        
-        public bool showObject { get => Get_showObject(); set { Set_showObject(value); } }
-        protected partial bool Get_showObject();
-        protected partial void Set_showObject(bool value);
-        
-        public bool showRange { get => Get_showRange(); set { Set_showRange(value); } }
-        protected partial bool Get_showRange();
-        protected partial void Set_showRange(bool value);
-        
-        public bool isDebugLightVolumeBounding { get => Get_isDebugLightVolumeBounding(); set { Set_isDebugLightVolumeBounding(value); } }
-        protected partial bool Get_isDebugLightVolumeBounding();
-        protected partial void Set_isDebugLightVolumeBounding(bool value);
-        
-        public bool hasSpecular { get => Get_hasSpecular(); set { Set_hasSpecular(value); } }
-        protected partial bool Get_hasSpecular();
-        protected partial void Set_hasSpecular(bool value);
-        
-        public Fox.Kernel.Path importFilePath { get => Get_importFilePath(); set { Set_importFilePath(value); } }
-        protected partial Fox.Kernel.Path Get_importFilePath();
-        protected partial void Set_importFilePath(Fox.Kernel.Path value);
-        
-        // ClassInfos
-        public static new bool ClassInfoInitialized = false;
-        private static Fox.Core.EntityInfo classInfo;
-        public static new Fox.Core.EntityInfo ClassInfo
-        {
-            get
-            {
-                return classInfo;
-            }
-        }
-        public override Fox.Core.EntityInfo GetClassEntityInfo()
-        {
-            return classInfo;
-        }
-        static TppPointLight()
-        {
-            if (Fox.Core.TransformData.ClassInfoInitialized)
-                classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("TppPointLight"), typeof(TppPointLight), Fox.Core.TransformData.ClassInfo, 432, "Light", 1);
+	[UnityEditor.InitializeOnLoad]
+	public partial class TppPointLight : Fox.Core.TransformData
+	{
+		// Properties
+		[field: UnityEngine.SerializeField]
+		public UnityEngine.Color color { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public UnityEngine.Vector3 reachPoint { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		protected Fox.Kernel.DynamicArray<uint> BynaryData { get; private set; } = new Fox.Kernel.DynamicArray<uint>();
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Core.EntityLink lightArea { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Core.EntityLink irradiationPoint { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float outerRange { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float innerRange { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float temperature { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float colorDeflection { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float lumen { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float lightSize { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float dimmer { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float shadowBias { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float LodFarSize { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float LodNearSize { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float LodShadowDrawRate { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		protected uint lightFlags { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public int lodRadiusLevel { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public byte lodFadeType { get; set; }
+		
+		public bool enable { get => Get_enable(); set { Set_enable(value); } }
+		private partial bool Get_enable();
+		private partial void Set_enable(bool value);
+		
+		public TppPointLight_PackingGeneration packingGeneration { get => Get_packingGeneration(); set { Set_packingGeneration(value); } }
+		private partial TppPointLight_PackingGeneration Get_packingGeneration();
+		private partial void Set_packingGeneration(TppPointLight_PackingGeneration value);
+		
+		public bool castShadow { get => Get_castShadow(); set { Set_castShadow(value); } }
+		private partial bool Get_castShadow();
+		private partial void Set_castShadow(bool value);
+		
+		public bool isBounced { get => Get_isBounced(); set { Set_isBounced(value); } }
+		private partial bool Get_isBounced();
+		private partial void Set_isBounced(bool value);
+		
+		public bool showObject { get => Get_showObject(); set { Set_showObject(value); } }
+		private partial bool Get_showObject();
+		private partial void Set_showObject(bool value);
+		
+		public bool showRange { get => Get_showRange(); set { Set_showRange(value); } }
+		private partial bool Get_showRange();
+		private partial void Set_showRange(bool value);
+		
+		public bool isDebugLightVolumeBounding { get => Get_isDebugLightVolumeBounding(); set { Set_isDebugLightVolumeBounding(value); } }
+		private partial bool Get_isDebugLightVolumeBounding();
+		private partial void Set_isDebugLightVolumeBounding(bool value);
+		
+		public bool hasSpecular { get => Get_hasSpecular(); set { Set_hasSpecular(value); } }
+		private partial bool Get_hasSpecular();
+		private partial void Set_hasSpecular(bool value);
+		
+		public Fox.Kernel.Path importFilePath { get => Get_importFilePath(); set { Set_importFilePath(value); } }
+		private partial Fox.Kernel.Path Get_importFilePath();
+		private partial void Set_importFilePath(Fox.Kernel.Path value);
+		
+		// ClassInfos
+		public static new bool ClassInfoInitialized = false;
+		private static Fox.Core.EntityInfo classInfo;
+		public static new Fox.Core.EntityInfo ClassInfo
+		{
+			get
+			{
+				return classInfo;
+			}
+		}
+		public override Fox.Core.EntityInfo GetClassEntityInfo()
+		{
+			return classInfo;
+		}
+		static TppPointLight()
+		{
+			if (Fox.Core.TransformData.ClassInfoInitialized)
+				classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("TppPointLight"), typeof(TppPointLight), Fox.Core.TransformData.ClassInfo, 432, "Light", 1);
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("color"), Fox.Core.PropertyInfo.PropertyType.Color, 304, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("reachPoint"), Fox.Core.PropertyInfo.PropertyType.Vector3, 320, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("BynaryData"), Fox.Core.PropertyInfo.PropertyType.UInt32, 336, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
@@ -156,126 +156,211 @@ namespace Tpp.Effect
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("hasSpecular"), Fox.Core.PropertyInfo.PropertyType.Bool, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Accessor));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("importFilePath"), Fox.Core.PropertyInfo.PropertyType.Path, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Accessor));
 
-            ClassInfoInitialized = true;
-        }
+			ClassInfoInitialized = true;
+		}
 
-        // Constructors
+		// Constructors
 		public TppPointLight(ulong id) : base(id) { }
 		public TppPointLight() : base() { }
-        
-        public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "color":
-                    this.color = value.GetValueAsColor();
-                    return;
-                case "reachPoint":
-                    this.reachPoint = value.GetValueAsVector3();
-                    return;
-                case "lightArea":
-                    this.lightArea = value.GetValueAsEntityLink();
-                    return;
-                case "irradiationPoint":
-                    this.irradiationPoint = value.GetValueAsEntityLink();
-                    return;
-                case "outerRange":
-                    this.outerRange = value.GetValueAsFloat();
-                    return;
-                case "innerRange":
-                    this.innerRange = value.GetValueAsFloat();
-                    return;
-                case "temperature":
-                    this.temperature = value.GetValueAsFloat();
-                    return;
-                case "colorDeflection":
-                    this.colorDeflection = value.GetValueAsFloat();
-                    return;
-                case "lumen":
-                    this.lumen = value.GetValueAsFloat();
-                    return;
-                case "lightSize":
-                    this.lightSize = value.GetValueAsFloat();
-                    return;
-                case "dimmer":
-                    this.dimmer = value.GetValueAsFloat();
-                    return;
-                case "shadowBias":
-                    this.shadowBias = value.GetValueAsFloat();
-                    return;
-                case "LodFarSize":
-                    this.LodFarSize = value.GetValueAsFloat();
-                    return;
-                case "LodNearSize":
-                    this.LodNearSize = value.GetValueAsFloat();
-                    return;
-                case "LodShadowDrawRate":
-                    this.LodShadowDrawRate = value.GetValueAsFloat();
-                    return;
-                case "lightFlags":
-                    this.lightFlags = value.GetValueAsUInt32();
-                    return;
-                case "lodRadiusLevel":
-                    this.lodRadiusLevel = value.GetValueAsInt32();
-                    return;
-                case "lodFadeType":
-                    this.lodFadeType = value.GetValueAsUInt8();
-                    return;
-                case "enable":
-                    this.enable = value.GetValueAsBool();
-                    return;
-                case "packingGeneration":
-                    this.packingGeneration = (TppPointLight_PackingGeneration)value.GetValueAsInt32();
-                    return;
-                case "castShadow":
-                    this.castShadow = value.GetValueAsBool();
-                    return;
-                case "isBounced":
-                    this.isBounced = value.GetValueAsBool();
-                    return;
-                case "showObject":
-                    this.showObject = value.GetValueAsBool();
-                    return;
-                case "showRange":
-                    this.showRange = value.GetValueAsBool();
-                    return;
-                case "isDebugLightVolumeBounding":
-                    this.isDebugLightVolumeBounding = value.GetValueAsBool();
-                    return;
-                case "hasSpecular":
-                    this.hasSpecular = value.GetValueAsBool();
-                    return;
-                case "importFilePath":
-                    this.importFilePath = value.GetValueAsPath();
-                    return;
-                default:
-                    base.SetProperty(propertyName, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "BynaryData":
-                    while(this.BynaryData.Count <= index) { this.BynaryData.Add(default(uint)); }
-                    this.BynaryData[index] = value.GetValueAsUInt32();
-                    return;
-                default:
-                    base.SetPropertyElement(propertyName, index, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, key, value);
-                    return;
-            }
-        }
-    }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "color":
+					return new Fox.Core.Value(color);
+				case "reachPoint":
+					return new Fox.Core.Value(reachPoint);
+				case "BynaryData":
+					return new Fox.Core.Value(BynaryData);
+				case "lightArea":
+					return new Fox.Core.Value(lightArea);
+				case "irradiationPoint":
+					return new Fox.Core.Value(irradiationPoint);
+				case "outerRange":
+					return new Fox.Core.Value(outerRange);
+				case "innerRange":
+					return new Fox.Core.Value(innerRange);
+				case "temperature":
+					return new Fox.Core.Value(temperature);
+				case "colorDeflection":
+					return new Fox.Core.Value(colorDeflection);
+				case "lumen":
+					return new Fox.Core.Value(lumen);
+				case "lightSize":
+					return new Fox.Core.Value(lightSize);
+				case "dimmer":
+					return new Fox.Core.Value(dimmer);
+				case "shadowBias":
+					return new Fox.Core.Value(shadowBias);
+				case "LodFarSize":
+					return new Fox.Core.Value(LodFarSize);
+				case "LodNearSize":
+					return new Fox.Core.Value(LodNearSize);
+				case "LodShadowDrawRate":
+					return new Fox.Core.Value(LodShadowDrawRate);
+				case "lightFlags":
+					return new Fox.Core.Value(lightFlags);
+				case "lodRadiusLevel":
+					return new Fox.Core.Value(lodRadiusLevel);
+				case "lodFadeType":
+					return new Fox.Core.Value(lodFadeType);
+				case "enable":
+					return new Fox.Core.Value(enable);
+				case "packingGeneration":
+					return new Fox.Core.Value(packingGeneration);
+				case "castShadow":
+					return new Fox.Core.Value(castShadow);
+				case "isBounced":
+					return new Fox.Core.Value(isBounced);
+				case "showObject":
+					return new Fox.Core.Value(showObject);
+				case "showRange":
+					return new Fox.Core.Value(showRange);
+				case "isDebugLightVolumeBounding":
+					return new Fox.Core.Value(isDebugLightVolumeBounding);
+				case "hasSpecular":
+					return new Fox.Core.Value(hasSpecular);
+				case "importFilePath":
+					return new Fox.Core.Value(importFilePath);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				case "BynaryData":
+					return new Fox.Core.Value(this.BynaryData[index]);
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
+
+		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
+		{
+			switch (propertyName.CString)
+			{
+				case "color":
+					this.color = value.GetValueAsColor();
+					return;
+				case "reachPoint":
+					this.reachPoint = value.GetValueAsVector3();
+					return;
+				case "lightArea":
+					this.lightArea = value.GetValueAsEntityLink();
+					return;
+				case "irradiationPoint":
+					this.irradiationPoint = value.GetValueAsEntityLink();
+					return;
+				case "outerRange":
+					this.outerRange = value.GetValueAsFloat();
+					return;
+				case "innerRange":
+					this.innerRange = value.GetValueAsFloat();
+					return;
+				case "temperature":
+					this.temperature = value.GetValueAsFloat();
+					return;
+				case "colorDeflection":
+					this.colorDeflection = value.GetValueAsFloat();
+					return;
+				case "lumen":
+					this.lumen = value.GetValueAsFloat();
+					return;
+				case "lightSize":
+					this.lightSize = value.GetValueAsFloat();
+					return;
+				case "dimmer":
+					this.dimmer = value.GetValueAsFloat();
+					return;
+				case "shadowBias":
+					this.shadowBias = value.GetValueAsFloat();
+					return;
+				case "LodFarSize":
+					this.LodFarSize = value.GetValueAsFloat();
+					return;
+				case "LodNearSize":
+					this.LodNearSize = value.GetValueAsFloat();
+					return;
+				case "LodShadowDrawRate":
+					this.LodShadowDrawRate = value.GetValueAsFloat();
+					return;
+				case "lightFlags":
+					this.lightFlags = value.GetValueAsUInt32();
+					return;
+				case "lodRadiusLevel":
+					this.lodRadiusLevel = value.GetValueAsInt32();
+					return;
+				case "lodFadeType":
+					this.lodFadeType = value.GetValueAsUInt8();
+					return;
+				case "enable":
+					this.enable = value.GetValueAsBool();
+					return;
+				case "packingGeneration":
+					this.packingGeneration = (TppPointLight_PackingGeneration)value.GetValueAsInt32();
+					return;
+				case "castShadow":
+					this.castShadow = value.GetValueAsBool();
+					return;
+				case "isBounced":
+					this.isBounced = value.GetValueAsBool();
+					return;
+				case "showObject":
+					this.showObject = value.GetValueAsBool();
+					return;
+				case "showRange":
+					this.showRange = value.GetValueAsBool();
+					return;
+				case "isDebugLightVolumeBounding":
+					this.isDebugLightVolumeBounding = value.GetValueAsBool();
+					return;
+				case "hasSpecular":
+					this.hasSpecular = value.GetValueAsBool();
+					return;
+				case "importFilePath":
+					this.importFilePath = value.GetValueAsPath();
+					return;
+				default:
+					base.SetProperty(propertyName, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
+		{
+			switch (propertyName.CString)
+			{
+				case "BynaryData":
+					while(this.BynaryData.Count <= index) { this.BynaryData.Add(default(uint)); }
+					this.BynaryData[index] = value.GetValueAsUInt32();
+					return;
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+	}
 }

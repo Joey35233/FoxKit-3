@@ -12,61 +12,61 @@ using Fox;
 
 namespace Fox.Ph
 {
-    [UnityEditor.InitializeOnLoad]
-    public partial class PhMultiHingeConstraintParam : Fox.Ph.PhConstraintParam 
-    {
-        // Properties
-        [field: UnityEngine.SerializeField]
-        protected UnityEngine.Vector3 axis { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        protected bool limitedFlag { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        protected bool isPoweredFlag { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        protected float limitHi { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        protected float limitLo { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        protected int controlType { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        protected float velocityMax { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        protected float torqueMax { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        protected float targetTheta { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        protected float targetVelocity { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        protected float velocityRate { get; set; }
-        
-        // ClassInfos
-        public static new bool ClassInfoInitialized = false;
-        private static Fox.Core.EntityInfo classInfo;
-        public static new Fox.Core.EntityInfo ClassInfo
-        {
-            get
-            {
-                return classInfo;
-            }
-        }
-        public override Fox.Core.EntityInfo GetClassEntityInfo()
-        {
-            return classInfo;
-        }
-        static PhMultiHingeConstraintParam()
-        {
-            if (Fox.Ph.PhConstraintParam.ClassInfoInitialized)
-                classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("PhMultiHingeConstraintParam"), typeof(PhMultiHingeConstraintParam), Fox.Ph.PhConstraintParam.ClassInfo, 112, "Ph", 0);
+	[UnityEditor.InitializeOnLoad]
+	public partial class PhMultiHingeConstraintParam : Fox.Ph.PhConstraintParam
+	{
+		// Properties
+		[field: UnityEngine.SerializeField]
+		protected UnityEngine.Vector3 axis { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		protected bool limitedFlag { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		protected bool isPoweredFlag { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		protected float limitHi { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		protected float limitLo { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		protected int controlType { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		protected float velocityMax { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		protected float torqueMax { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		protected float targetTheta { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		protected float targetVelocity { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		protected float velocityRate { get; set; }
+		
+		// ClassInfos
+		public static new bool ClassInfoInitialized = false;
+		private static Fox.Core.EntityInfo classInfo;
+		public static new Fox.Core.EntityInfo ClassInfo
+		{
+			get
+			{
+				return classInfo;
+			}
+		}
+		public override Fox.Core.EntityInfo GetClassEntityInfo()
+		{
+			return classInfo;
+		}
+		static PhMultiHingeConstraintParam()
+		{
+			if (Fox.Ph.PhConstraintParam.ClassInfoInitialized)
+				classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("PhMultiHingeConstraintParam"), typeof(PhMultiHingeConstraintParam), Fox.Ph.PhConstraintParam.ClassInfo, 112, "Ph", 0);
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("axis"), Fox.Core.PropertyInfo.PropertyType.Vector3, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("limitedFlag"), Fox.Core.PropertyInfo.PropertyType.Bool, 80, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("isPoweredFlag"), Fox.Core.PropertyInfo.PropertyType.Bool, 81, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
@@ -79,74 +79,123 @@ namespace Fox.Ph
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("targetVelocity"), Fox.Core.PropertyInfo.PropertyType.Float, 108, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("velocityRate"), Fox.Core.PropertyInfo.PropertyType.Float, 112, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 
-            ClassInfoInitialized = true;
-        }
+			ClassInfoInitialized = true;
+		}
 
-        // Constructors
+		// Constructors
 		public PhMultiHingeConstraintParam(ulong id) : base(id) { }
 		public PhMultiHingeConstraintParam() : base() { }
-        
-        public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "axis":
-                    this.axis = value.GetValueAsVector3();
-                    return;
-                case "limitedFlag":
-                    this.limitedFlag = value.GetValueAsBool();
-                    return;
-                case "isPoweredFlag":
-                    this.isPoweredFlag = value.GetValueAsBool();
-                    return;
-                case "limitHi":
-                    this.limitHi = value.GetValueAsFloat();
-                    return;
-                case "limitLo":
-                    this.limitLo = value.GetValueAsFloat();
-                    return;
-                case "controlType":
-                    this.controlType = value.GetValueAsInt32();
-                    return;
-                case "velocityMax":
-                    this.velocityMax = value.GetValueAsFloat();
-                    return;
-                case "torqueMax":
-                    this.torqueMax = value.GetValueAsFloat();
-                    return;
-                case "targetTheta":
-                    this.targetTheta = value.GetValueAsFloat();
-                    return;
-                case "targetVelocity":
-                    this.targetVelocity = value.GetValueAsFloat();
-                    return;
-                case "velocityRate":
-                    this.velocityRate = value.GetValueAsFloat();
-                    return;
-                default:
-                    base.SetProperty(propertyName, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, index, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, key, value);
-                    return;
-            }
-        }
-    }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "axis":
+					return new Fox.Core.Value(axis);
+				case "limitedFlag":
+					return new Fox.Core.Value(limitedFlag);
+				case "isPoweredFlag":
+					return new Fox.Core.Value(isPoweredFlag);
+				case "limitHi":
+					return new Fox.Core.Value(limitHi);
+				case "limitLo":
+					return new Fox.Core.Value(limitLo);
+				case "controlType":
+					return new Fox.Core.Value(controlType);
+				case "velocityMax":
+					return new Fox.Core.Value(velocityMax);
+				case "torqueMax":
+					return new Fox.Core.Value(torqueMax);
+				case "targetTheta":
+					return new Fox.Core.Value(targetTheta);
+				case "targetVelocity":
+					return new Fox.Core.Value(targetVelocity);
+				case "velocityRate":
+					return new Fox.Core.Value(velocityRate);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
+
+		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
+		{
+			switch (propertyName.CString)
+			{
+				case "axis":
+					this.axis = value.GetValueAsVector3();
+					return;
+				case "limitedFlag":
+					this.limitedFlag = value.GetValueAsBool();
+					return;
+				case "isPoweredFlag":
+					this.isPoweredFlag = value.GetValueAsBool();
+					return;
+				case "limitHi":
+					this.limitHi = value.GetValueAsFloat();
+					return;
+				case "limitLo":
+					this.limitLo = value.GetValueAsFloat();
+					return;
+				case "controlType":
+					this.controlType = value.GetValueAsInt32();
+					return;
+				case "velocityMax":
+					this.velocityMax = value.GetValueAsFloat();
+					return;
+				case "torqueMax":
+					this.torqueMax = value.GetValueAsFloat();
+					return;
+				case "targetTheta":
+					this.targetTheta = value.GetValueAsFloat();
+					return;
+				case "targetVelocity":
+					this.targetVelocity = value.GetValueAsFloat();
+					return;
+				case "velocityRate":
+					this.velocityRate = value.GetValueAsFloat();
+					return;
+				default:
+					base.SetProperty(propertyName, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+	}
 }

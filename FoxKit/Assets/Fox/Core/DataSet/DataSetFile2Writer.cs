@@ -1,3 +1,5 @@
+using Fox.Fio;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -85,9 +87,9 @@ namespace Fox.Core
             }
 
             writer.Write((long)0);
-            writer.BaseStream.AlignWrite(16, 0x00);
+            writer.AlignWrite(16, 0x00);
             writer.Write(new byte[] { 0x00, 0x00, 0x65, 0x6E, 0x64 });
-            writer.BaseStream.AlignWrite(16, 0x00);
+            writer.AlignWrite(16, 0x00);
             return stringTableOffset;
         }
 
@@ -146,8 +148,7 @@ namespace Fox.Core
                 entities.Insert(0, dataSet);
             }
 
-            dataSet.name = Kernel.String.Empty;
-            dataSet.ClearData();
+            dataSet.name = System.String.Empty;
 
             int dataSetIndex = -1;
             var usedNames = new HashSet<string>();
@@ -166,10 +167,6 @@ namespace Fox.Core
                         Debug.LogError($"Two or more Datas share a name ('{entity.name}'). Exported Datas require unique names.");
                         return CreateDataSetResult.Failure;
                     }
-
-                    var data = entity as Data;
-
-                    data.SetDataSet(EntityHandle.Get(dataSet));
                 }
 
                 _ = usedNames.Add(entity.name);

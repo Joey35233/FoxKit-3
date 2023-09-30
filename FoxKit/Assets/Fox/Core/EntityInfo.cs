@@ -159,7 +159,8 @@ namespace Fox.Core
             OrderedStaticProperties.Add(propertyInfo);
             StaticProperties.Insert(propertyInfo.Name, propertyInfo);
 
-            if (propertyInfo.Readable != Core.PropertyInfo.PropertyExport.Never && propertyInfo.Backing == Core.PropertyInfo.BackingType.Field)
+            // TODO: Reimplement property hiding based on access modifiers once custom editor support is further along.
+            if (/*propertyInfo.Readable != Core.PropertyInfo.PropertyExport.Never && */propertyInfo.Backing == Core.PropertyInfo.BackingType.Field)
             {
                 if (LongestNamedVisibleFieldProperty == null)
                     LongestNamedVisibleFieldProperty = propertyInfo;

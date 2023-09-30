@@ -12,49 +12,49 @@ using Fox;
 
 namespace Tpp.Effect
 {
-    [UnityEditor.InitializeOnLoad]
-    public partial class TppGrenadeShock : Fox.Core.Data 
-    {
-        // Properties
-        [field: UnityEngine.SerializeField]
-        public float redConeSaturationDuration { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float greenConeSaturationDuration { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float blueConeSaturationDuration { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float distortionVelocity { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float distortionIntensity { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float distortionProjectionScale { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float rotationSpeed { get; set; }
-        
-        // ClassInfos
-        public static new bool ClassInfoInitialized = false;
-        private static Fox.Core.EntityInfo classInfo;
-        public static new Fox.Core.EntityInfo ClassInfo
-        {
-            get
-            {
-                return classInfo;
-            }
-        }
-        public override Fox.Core.EntityInfo GetClassEntityInfo()
-        {
-            return classInfo;
-        }
-        static TppGrenadeShock()
-        {
-            if (Fox.Core.Data.ClassInfoInitialized)
-                classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("TppGrenadeShock"), typeof(TppGrenadeShock), Fox.Core.Data.ClassInfo, 92, null, 1);
+	[UnityEditor.InitializeOnLoad]
+	public partial class TppGrenadeShock : Fox.Core.Data
+	{
+		// Properties
+		[field: UnityEngine.SerializeField]
+		public float redConeSaturationDuration { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float greenConeSaturationDuration { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float blueConeSaturationDuration { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float distortionVelocity { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float distortionIntensity { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float distortionProjectionScale { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float rotationSpeed { get; set; }
+		
+		// ClassInfos
+		public static new bool ClassInfoInitialized = false;
+		private static Fox.Core.EntityInfo classInfo;
+		public static new Fox.Core.EntityInfo ClassInfo
+		{
+			get
+			{
+				return classInfo;
+			}
+		}
+		public override Fox.Core.EntityInfo GetClassEntityInfo()
+		{
+			return classInfo;
+		}
+		static TppGrenadeShock()
+		{
+			if (Fox.Core.Data.ClassInfoInitialized)
+				classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("TppGrenadeShock"), typeof(TppGrenadeShock), Fox.Core.Data.ClassInfo, 92, null, 1);
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("redConeSaturationDuration"), Fox.Core.PropertyInfo.PropertyType.Float, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("greenConeSaturationDuration"), Fox.Core.PropertyInfo.PropertyType.Float, 124, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("blueConeSaturationDuration"), Fox.Core.PropertyInfo.PropertyType.Float, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
@@ -63,62 +63,103 @@ namespace Tpp.Effect
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("distortionProjectionScale"), Fox.Core.PropertyInfo.PropertyType.Float, 140, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("rotationSpeed"), Fox.Core.PropertyInfo.PropertyType.Float, 144, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 
-            ClassInfoInitialized = true;
-        }
+			ClassInfoInitialized = true;
+		}
 
-        // Constructors
+		// Constructors
 		public TppGrenadeShock(ulong id) : base(id) { }
 		public TppGrenadeShock() : base() { }
-        
-        public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "redConeSaturationDuration":
-                    this.redConeSaturationDuration = value.GetValueAsFloat();
-                    return;
-                case "greenConeSaturationDuration":
-                    this.greenConeSaturationDuration = value.GetValueAsFloat();
-                    return;
-                case "blueConeSaturationDuration":
-                    this.blueConeSaturationDuration = value.GetValueAsFloat();
-                    return;
-                case "distortionVelocity":
-                    this.distortionVelocity = value.GetValueAsFloat();
-                    return;
-                case "distortionIntensity":
-                    this.distortionIntensity = value.GetValueAsFloat();
-                    return;
-                case "distortionProjectionScale":
-                    this.distortionProjectionScale = value.GetValueAsFloat();
-                    return;
-                case "rotationSpeed":
-                    this.rotationSpeed = value.GetValueAsFloat();
-                    return;
-                default:
-                    base.SetProperty(propertyName, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, index, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, key, value);
-                    return;
-            }
-        }
-    }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "redConeSaturationDuration":
+					return new Fox.Core.Value(redConeSaturationDuration);
+				case "greenConeSaturationDuration":
+					return new Fox.Core.Value(greenConeSaturationDuration);
+				case "blueConeSaturationDuration":
+					return new Fox.Core.Value(blueConeSaturationDuration);
+				case "distortionVelocity":
+					return new Fox.Core.Value(distortionVelocity);
+				case "distortionIntensity":
+					return new Fox.Core.Value(distortionIntensity);
+				case "distortionProjectionScale":
+					return new Fox.Core.Value(distortionProjectionScale);
+				case "rotationSpeed":
+					return new Fox.Core.Value(rotationSpeed);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
+
+		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
+		{
+			switch (propertyName.CString)
+			{
+				case "redConeSaturationDuration":
+					this.redConeSaturationDuration = value.GetValueAsFloat();
+					return;
+				case "greenConeSaturationDuration":
+					this.greenConeSaturationDuration = value.GetValueAsFloat();
+					return;
+				case "blueConeSaturationDuration":
+					this.blueConeSaturationDuration = value.GetValueAsFloat();
+					return;
+				case "distortionVelocity":
+					this.distortionVelocity = value.GetValueAsFloat();
+					return;
+				case "distortionIntensity":
+					this.distortionIntensity = value.GetValueAsFloat();
+					return;
+				case "distortionProjectionScale":
+					this.distortionProjectionScale = value.GetValueAsFloat();
+					return;
+				case "rotationSpeed":
+					this.rotationSpeed = value.GetValueAsFloat();
+					return;
+				default:
+					base.SetProperty(propertyName, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+	}
 }

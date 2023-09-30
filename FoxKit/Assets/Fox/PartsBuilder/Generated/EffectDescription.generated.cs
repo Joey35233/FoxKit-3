@@ -12,73 +12,73 @@ using Fox;
 
 namespace Fox.PartsBuilder
 {
-    [UnityEditor.InitializeOnLoad]
-    public partial class EffectDescription : Fox.PartsBuilder.PartDescription 
-    {
-        // Properties
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.DynamicArray<Fox.Kernel.String> connectDestinationSkelNames { get; set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.DynamicArray<Fox.Kernel.String> connectDestinationCnpNames { get; set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.DynamicArray<UnityEngine.Vector3> offsetSkelPositions { get; set; } = new Fox.Kernel.DynamicArray<UnityEngine.Vector3>();
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.DynamicArray<UnityEngine.Vector3> offsetCnpPositions { get; set; } = new Fox.Kernel.DynamicArray<UnityEngine.Vector3>();
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.DynamicArray<UnityEngine.Vector4> generalSkelParameters { get; set; } = new Fox.Kernel.DynamicArray<UnityEngine.Vector4>();
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.DynamicArray<UnityEngine.Vector4> generalCnpParameters { get; set; } = new Fox.Kernel.DynamicArray<UnityEngine.Vector4>();
-        
-        [field: UnityEngine.SerializeField]
-        public bool effectConnect { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public bool changeEffectConnectSetting { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public bool visibleModelWithEffect { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public bool createStartEffect { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint effectRandomSeed { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public EffectKind effectKind { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.String effectVariationName { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.String effectFileFromVfxFileLoader { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Core.FilePtr effectFileFromFilePtr { get; set; }
-        
-        // ClassInfos
-        public static new bool ClassInfoInitialized = false;
-        private static Fox.Core.EntityInfo classInfo;
-        public static new Fox.Core.EntityInfo ClassInfo
-        {
-            get
-            {
-                return classInfo;
-            }
-        }
-        public override Fox.Core.EntityInfo GetClassEntityInfo()
-        {
-            return classInfo;
-        }
-        static EffectDescription()
-        {
-            if (Fox.PartsBuilder.PartDescription.ClassInfoInitialized)
-                classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("EffectDescription"), typeof(EffectDescription), Fox.PartsBuilder.PartDescription.ClassInfo, 232, "PartsBuilder", 6);
+	[UnityEditor.InitializeOnLoad]
+	public partial class EffectDescription : Fox.PartsBuilder.PartDescription
+	{
+		// Properties
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.DynamicArray<Fox.Kernel.String> connectDestinationSkelNames { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.DynamicArray<Fox.Kernel.String> connectDestinationCnpNames { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.DynamicArray<UnityEngine.Vector3> offsetSkelPositions { get; private set; } = new Fox.Kernel.DynamicArray<UnityEngine.Vector3>();
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.DynamicArray<UnityEngine.Vector3> offsetCnpPositions { get; private set; } = new Fox.Kernel.DynamicArray<UnityEngine.Vector3>();
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.DynamicArray<UnityEngine.Vector4> generalSkelParameters { get; private set; } = new Fox.Kernel.DynamicArray<UnityEngine.Vector4>();
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.DynamicArray<UnityEngine.Vector4> generalCnpParameters { get; private set; } = new Fox.Kernel.DynamicArray<UnityEngine.Vector4>();
+		
+		[field: UnityEngine.SerializeField]
+		public bool effectConnect { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public bool changeEffectConnectSetting { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public bool visibleModelWithEffect { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public bool createStartEffect { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint effectRandomSeed { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public EffectKind effectKind { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.String effectVariationName { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.String effectFileFromVfxFileLoader { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Core.FilePtr effectFileFromFilePtr { get; set; }
+		
+		// ClassInfos
+		public static new bool ClassInfoInitialized = false;
+		private static Fox.Core.EntityInfo classInfo;
+		public static new Fox.Core.EntityInfo ClassInfo
+		{
+			get
+			{
+				return classInfo;
+			}
+		}
+		public override Fox.Core.EntityInfo GetClassEntityInfo()
+		{
+			return classInfo;
+		}
+		static EffectDescription()
+		{
+			if (Fox.PartsBuilder.PartDescription.ClassInfoInitialized)
+				classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("EffectDescription"), typeof(EffectDescription), Fox.PartsBuilder.PartDescription.ClassInfo, 232, "PartsBuilder", 6);
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("connectDestinationSkelNames"), Fox.Core.PropertyInfo.PropertyType.String, 152, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("connectDestinationCnpNames"), Fox.Core.PropertyInfo.PropertyType.String, 168, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("offsetSkelPositions"), Fox.Core.PropertyInfo.PropertyType.Vector3, 184, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
@@ -95,92 +95,161 @@ namespace Fox.PartsBuilder
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("effectFileFromVfxFileLoader"), Fox.Core.PropertyInfo.PropertyType.String, 272, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("effectFileFromFilePtr"), Fox.Core.PropertyInfo.PropertyType.FilePtr, 280, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 
-            ClassInfoInitialized = true;
-        }
+			ClassInfoInitialized = true;
+		}
 
-        // Constructors
+		// Constructors
 		public EffectDescription(ulong id) : base(id) { }
 		public EffectDescription() : base() { }
-        
-        public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "effectConnect":
-                    this.effectConnect = value.GetValueAsBool();
-                    return;
-                case "changeEffectConnectSetting":
-                    this.changeEffectConnectSetting = value.GetValueAsBool();
-                    return;
-                case "visibleModelWithEffect":
-                    this.visibleModelWithEffect = value.GetValueAsBool();
-                    return;
-                case "createStartEffect":
-                    this.createStartEffect = value.GetValueAsBool();
-                    return;
-                case "effectRandomSeed":
-                    this.effectRandomSeed = value.GetValueAsUInt32();
-                    return;
-                case "effectKind":
-                    this.effectKind = (EffectKind)value.GetValueAsInt32();
-                    return;
-                case "effectVariationName":
-                    this.effectVariationName = value.GetValueAsString();
-                    return;
-                case "effectFileFromVfxFileLoader":
-                    this.effectFileFromVfxFileLoader = value.GetValueAsString();
-                    return;
-                case "effectFileFromFilePtr":
-                    this.effectFileFromFilePtr = value.GetValueAsFilePtr();
-                    return;
-                default:
-                    base.SetProperty(propertyName, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "connectDestinationSkelNames":
-                    while(this.connectDestinationSkelNames.Count <= index) { this.connectDestinationSkelNames.Add(default(Fox.Kernel.String)); }
-                    this.connectDestinationSkelNames[index] = value.GetValueAsString();
-                    return;
-                case "connectDestinationCnpNames":
-                    while(this.connectDestinationCnpNames.Count <= index) { this.connectDestinationCnpNames.Add(default(Fox.Kernel.String)); }
-                    this.connectDestinationCnpNames[index] = value.GetValueAsString();
-                    return;
-                case "offsetSkelPositions":
-                    while(this.offsetSkelPositions.Count <= index) { this.offsetSkelPositions.Add(default(UnityEngine.Vector3)); }
-                    this.offsetSkelPositions[index] = value.GetValueAsVector3();
-                    return;
-                case "offsetCnpPositions":
-                    while(this.offsetCnpPositions.Count <= index) { this.offsetCnpPositions.Add(default(UnityEngine.Vector3)); }
-                    this.offsetCnpPositions[index] = value.GetValueAsVector3();
-                    return;
-                case "generalSkelParameters":
-                    while(this.generalSkelParameters.Count <= index) { this.generalSkelParameters.Add(default(UnityEngine.Vector4)); }
-                    this.generalSkelParameters[index] = value.GetValueAsVector4();
-                    return;
-                case "generalCnpParameters":
-                    while(this.generalCnpParameters.Count <= index) { this.generalCnpParameters.Add(default(UnityEngine.Vector4)); }
-                    this.generalCnpParameters[index] = value.GetValueAsVector4();
-                    return;
-                default:
-                    base.SetPropertyElement(propertyName, index, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, key, value);
-                    return;
-            }
-        }
-    }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "connectDestinationSkelNames":
+					return new Fox.Core.Value(connectDestinationSkelNames);
+				case "connectDestinationCnpNames":
+					return new Fox.Core.Value(connectDestinationCnpNames);
+				case "offsetSkelPositions":
+					return new Fox.Core.Value(offsetSkelPositions);
+				case "offsetCnpPositions":
+					return new Fox.Core.Value(offsetCnpPositions);
+				case "generalSkelParameters":
+					return new Fox.Core.Value(generalSkelParameters);
+				case "generalCnpParameters":
+					return new Fox.Core.Value(generalCnpParameters);
+				case "effectConnect":
+					return new Fox.Core.Value(effectConnect);
+				case "changeEffectConnectSetting":
+					return new Fox.Core.Value(changeEffectConnectSetting);
+				case "visibleModelWithEffect":
+					return new Fox.Core.Value(visibleModelWithEffect);
+				case "createStartEffect":
+					return new Fox.Core.Value(createStartEffect);
+				case "effectRandomSeed":
+					return new Fox.Core.Value(effectRandomSeed);
+				case "effectKind":
+					return new Fox.Core.Value(effectKind);
+				case "effectVariationName":
+					return new Fox.Core.Value(effectVariationName);
+				case "effectFileFromVfxFileLoader":
+					return new Fox.Core.Value(effectFileFromVfxFileLoader);
+				case "effectFileFromFilePtr":
+					return new Fox.Core.Value(effectFileFromFilePtr);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				case "connectDestinationSkelNames":
+					return new Fox.Core.Value(this.connectDestinationSkelNames[index]);
+				case "connectDestinationCnpNames":
+					return new Fox.Core.Value(this.connectDestinationCnpNames[index]);
+				case "offsetSkelPositions":
+					return new Fox.Core.Value(this.offsetSkelPositions[index]);
+				case "offsetCnpPositions":
+					return new Fox.Core.Value(this.offsetCnpPositions[index]);
+				case "generalSkelParameters":
+					return new Fox.Core.Value(this.generalSkelParameters[index]);
+				case "generalCnpParameters":
+					return new Fox.Core.Value(this.generalCnpParameters[index]);
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
+
+		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
+		{
+			switch (propertyName.CString)
+			{
+				case "effectConnect":
+					this.effectConnect = value.GetValueAsBool();
+					return;
+				case "changeEffectConnectSetting":
+					this.changeEffectConnectSetting = value.GetValueAsBool();
+					return;
+				case "visibleModelWithEffect":
+					this.visibleModelWithEffect = value.GetValueAsBool();
+					return;
+				case "createStartEffect":
+					this.createStartEffect = value.GetValueAsBool();
+					return;
+				case "effectRandomSeed":
+					this.effectRandomSeed = value.GetValueAsUInt32();
+					return;
+				case "effectKind":
+					this.effectKind = (EffectKind)value.GetValueAsInt32();
+					return;
+				case "effectVariationName":
+					this.effectVariationName = value.GetValueAsString();
+					return;
+				case "effectFileFromVfxFileLoader":
+					this.effectFileFromVfxFileLoader = value.GetValueAsString();
+					return;
+				case "effectFileFromFilePtr":
+					this.effectFileFromFilePtr = value.GetValueAsFilePtr();
+					return;
+				default:
+					base.SetProperty(propertyName, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
+		{
+			switch (propertyName.CString)
+			{
+				case "connectDestinationSkelNames":
+					while(this.connectDestinationSkelNames.Count <= index) { this.connectDestinationSkelNames.Add(default(Fox.Kernel.String)); }
+					this.connectDestinationSkelNames[index] = value.GetValueAsString();
+					return;
+				case "connectDestinationCnpNames":
+					while(this.connectDestinationCnpNames.Count <= index) { this.connectDestinationCnpNames.Add(default(Fox.Kernel.String)); }
+					this.connectDestinationCnpNames[index] = value.GetValueAsString();
+					return;
+				case "offsetSkelPositions":
+					while(this.offsetSkelPositions.Count <= index) { this.offsetSkelPositions.Add(default(UnityEngine.Vector3)); }
+					this.offsetSkelPositions[index] = value.GetValueAsVector3();
+					return;
+				case "offsetCnpPositions":
+					while(this.offsetCnpPositions.Count <= index) { this.offsetCnpPositions.Add(default(UnityEngine.Vector3)); }
+					this.offsetCnpPositions[index] = value.GetValueAsVector3();
+					return;
+				case "generalSkelParameters":
+					while(this.generalSkelParameters.Count <= index) { this.generalSkelParameters.Add(default(UnityEngine.Vector4)); }
+					this.generalSkelParameters[index] = value.GetValueAsVector4();
+					return;
+				case "generalCnpParameters":
+					while(this.generalCnpParameters.Count <= index) { this.generalCnpParameters.Add(default(UnityEngine.Vector4)); }
+					this.generalCnpParameters[index] = value.GetValueAsVector4();
+					return;
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+	}
 }

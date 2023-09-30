@@ -12,61 +12,61 @@ using Fox;
 
 namespace Fox.Grx
 {
-    [UnityEditor.InitializeOnLoad]
-    public partial class GrxAreaSSAOParameters : Fox.Core.Entity 
-    {
-        // Properties
-        [field: UnityEngine.SerializeField]
-        public GrxAreaSSAOParameters_Resolution resolution { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float radius { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float angleBias { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint numSteps { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint numDirections { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float attenuation { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float contrast { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public GrxAreaSSAOParameters_BlurMode blurMode { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float blurRadius { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float blurSharpness { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float blurSceneScale { get; set; }
-        
-        // ClassInfos
-        public static new bool ClassInfoInitialized = false;
-        private static Fox.Core.EntityInfo classInfo;
-        public static new Fox.Core.EntityInfo ClassInfo
-        {
-            get
-            {
-                return classInfo;
-            }
-        }
-        public override Fox.Core.EntityInfo GetClassEntityInfo()
-        {
-            return classInfo;
-        }
-        static GrxAreaSSAOParameters()
-        {
-            if (Fox.Core.Entity.ClassInfoInitialized)
-                classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("GrxAreaSSAOParameters"), typeof(GrxAreaSSAOParameters), Fox.Core.Entity.ClassInfo, 68, null, 0);
+	[UnityEditor.InitializeOnLoad]
+	public partial class GrxAreaSSAOParameters : Fox.Core.Entity
+	{
+		// Properties
+		[field: UnityEngine.SerializeField]
+		public GrxAreaSSAOParameters_Resolution resolution { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float radius { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float angleBias { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint numSteps { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint numDirections { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float attenuation { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float contrast { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public GrxAreaSSAOParameters_BlurMode blurMode { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float blurRadius { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float blurSharpness { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float blurSceneScale { get; set; }
+		
+		// ClassInfos
+		public static new bool ClassInfoInitialized = false;
+		private static Fox.Core.EntityInfo classInfo;
+		public static new Fox.Core.EntityInfo ClassInfo
+		{
+			get
+			{
+				return classInfo;
+			}
+		}
+		public override Fox.Core.EntityInfo GetClassEntityInfo()
+		{
+			return classInfo;
+		}
+		static GrxAreaSSAOParameters()
+		{
+			if (Fox.Core.Entity.ClassInfoInitialized)
+				classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("GrxAreaSSAOParameters"), typeof(GrxAreaSSAOParameters), Fox.Core.Entity.ClassInfo, 68, null, 0);
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("resolution"), Fox.Core.PropertyInfo.PropertyType.Int32, 48, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, typeof(GrxAreaSSAOParameters_Resolution), Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("radius"), Fox.Core.PropertyInfo.PropertyType.Float, 52, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("angleBias"), Fox.Core.PropertyInfo.PropertyType.Float, 56, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
@@ -79,74 +79,123 @@ namespace Fox.Grx
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("blurSharpness"), Fox.Core.PropertyInfo.PropertyType.Float, 84, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("blurSceneScale"), Fox.Core.PropertyInfo.PropertyType.Float, 88, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 
-            ClassInfoInitialized = true;
-        }
+			ClassInfoInitialized = true;
+		}
 
-        // Constructors
+		// Constructors
 		public GrxAreaSSAOParameters(ulong id) : base(id) { }
 		public GrxAreaSSAOParameters() : base() { }
-        
-        public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "resolution":
-                    this.resolution = (GrxAreaSSAOParameters_Resolution)value.GetValueAsInt32();
-                    return;
-                case "radius":
-                    this.radius = value.GetValueAsFloat();
-                    return;
-                case "angleBias":
-                    this.angleBias = value.GetValueAsFloat();
-                    return;
-                case "numSteps":
-                    this.numSteps = value.GetValueAsUInt32();
-                    return;
-                case "numDirections":
-                    this.numDirections = value.GetValueAsUInt32();
-                    return;
-                case "attenuation":
-                    this.attenuation = value.GetValueAsFloat();
-                    return;
-                case "contrast":
-                    this.contrast = value.GetValueAsFloat();
-                    return;
-                case "blurMode":
-                    this.blurMode = (GrxAreaSSAOParameters_BlurMode)value.GetValueAsInt32();
-                    return;
-                case "blurRadius":
-                    this.blurRadius = value.GetValueAsFloat();
-                    return;
-                case "blurSharpness":
-                    this.blurSharpness = value.GetValueAsFloat();
-                    return;
-                case "blurSceneScale":
-                    this.blurSceneScale = value.GetValueAsFloat();
-                    return;
-                default:
-                    base.SetProperty(propertyName, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, index, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, key, value);
-                    return;
-            }
-        }
-    }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "resolution":
+					return new Fox.Core.Value(resolution);
+				case "radius":
+					return new Fox.Core.Value(radius);
+				case "angleBias":
+					return new Fox.Core.Value(angleBias);
+				case "numSteps":
+					return new Fox.Core.Value(numSteps);
+				case "numDirections":
+					return new Fox.Core.Value(numDirections);
+				case "attenuation":
+					return new Fox.Core.Value(attenuation);
+				case "contrast":
+					return new Fox.Core.Value(contrast);
+				case "blurMode":
+					return new Fox.Core.Value(blurMode);
+				case "blurRadius":
+					return new Fox.Core.Value(blurRadius);
+				case "blurSharpness":
+					return new Fox.Core.Value(blurSharpness);
+				case "blurSceneScale":
+					return new Fox.Core.Value(blurSceneScale);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
+
+		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
+		{
+			switch (propertyName.CString)
+			{
+				case "resolution":
+					this.resolution = (GrxAreaSSAOParameters_Resolution)value.GetValueAsInt32();
+					return;
+				case "radius":
+					this.radius = value.GetValueAsFloat();
+					return;
+				case "angleBias":
+					this.angleBias = value.GetValueAsFloat();
+					return;
+				case "numSteps":
+					this.numSteps = value.GetValueAsUInt32();
+					return;
+				case "numDirections":
+					this.numDirections = value.GetValueAsUInt32();
+					return;
+				case "attenuation":
+					this.attenuation = value.GetValueAsFloat();
+					return;
+				case "contrast":
+					this.contrast = value.GetValueAsFloat();
+					return;
+				case "blurMode":
+					this.blurMode = (GrxAreaSSAOParameters_BlurMode)value.GetValueAsInt32();
+					return;
+				case "blurRadius":
+					this.blurRadius = value.GetValueAsFloat();
+					return;
+				case "blurSharpness":
+					this.blurSharpness = value.GetValueAsFloat();
+					return;
+				case "blurSceneScale":
+					this.blurSceneScale = value.GetValueAsFloat();
+					return;
+				default:
+					base.SetProperty(propertyName, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+	}
 }

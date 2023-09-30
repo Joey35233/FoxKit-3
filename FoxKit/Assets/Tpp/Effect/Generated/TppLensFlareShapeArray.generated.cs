@@ -12,52 +12,52 @@ using Fox;
 
 namespace Tpp.Effect
 {
-    [UnityEditor.InitializeOnLoad]
-    public partial class TppLensFlareShapeArray : Tpp.Effect.TppLensFlareShape 
-    {
-        // Properties
-        [field: UnityEngine.SerializeField]
-        public uint spriteCount { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float offsetScaleMin { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float offsetScaleMax { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float sizeScaleMin { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float sizeScaleMax { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public UnityEngine.Color randomColorMin { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public UnityEngine.Color randomColorMax { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint randomSeed { get; set; }
-        
-        // ClassInfos
-        public static new bool ClassInfoInitialized = false;
-        private static Fox.Core.EntityInfo classInfo;
-        public static new Fox.Core.EntityInfo ClassInfo
-        {
-            get
-            {
-                return classInfo;
-            }
-        }
-        public override Fox.Core.EntityInfo GetClassEntityInfo()
-        {
-            return classInfo;
-        }
-        static TppLensFlareShapeArray()
-        {
-            if (Tpp.Effect.TppLensFlareShape.ClassInfoInitialized)
-                classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("TppLensFlareShapeArray"), typeof(TppLensFlareShapeArray), Tpp.Effect.TppLensFlareShape.ClassInfo, 768, null, 0);
+	[UnityEditor.InitializeOnLoad]
+	public partial class TppLensFlareShapeArray : Tpp.Effect.TppLensFlareShape
+	{
+		// Properties
+		[field: UnityEngine.SerializeField]
+		public uint spriteCount { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float offsetScaleMin { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float offsetScaleMax { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float sizeScaleMin { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float sizeScaleMax { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public UnityEngine.Color randomColorMin { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public UnityEngine.Color randomColorMax { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint randomSeed { get; set; }
+		
+		// ClassInfos
+		public static new bool ClassInfoInitialized = false;
+		private static Fox.Core.EntityInfo classInfo;
+		public static new Fox.Core.EntityInfo ClassInfo
+		{
+			get
+			{
+				return classInfo;
+			}
+		}
+		public override Fox.Core.EntityInfo GetClassEntityInfo()
+		{
+			return classInfo;
+		}
+		static TppLensFlareShapeArray()
+		{
+			if (Tpp.Effect.TppLensFlareShape.ClassInfoInitialized)
+				classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("TppLensFlareShapeArray"), typeof(TppLensFlareShapeArray), Tpp.Effect.TppLensFlareShape.ClassInfo, 768, null, 0);
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("spriteCount"), Fox.Core.PropertyInfo.PropertyType.UInt32, 816, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("offsetScaleMin"), Fox.Core.PropertyInfo.PropertyType.Float, 820, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("offsetScaleMax"), Fox.Core.PropertyInfo.PropertyType.Float, 824, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
@@ -67,65 +67,108 @@ namespace Tpp.Effect
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("randomColorMax"), Fox.Core.PropertyInfo.PropertyType.Color, 864, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("randomSeed"), Fox.Core.PropertyInfo.PropertyType.UInt32, 880, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 
-            ClassInfoInitialized = true;
-        }
+			ClassInfoInitialized = true;
+		}
 
-        // Constructors
+		// Constructors
 		public TppLensFlareShapeArray(ulong id) : base(id) { }
 		public TppLensFlareShapeArray() : base() { }
-        
-        public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "spriteCount":
-                    this.spriteCount = value.GetValueAsUInt32();
-                    return;
-                case "offsetScaleMin":
-                    this.offsetScaleMin = value.GetValueAsFloat();
-                    return;
-                case "offsetScaleMax":
-                    this.offsetScaleMax = value.GetValueAsFloat();
-                    return;
-                case "sizeScaleMin":
-                    this.sizeScaleMin = value.GetValueAsFloat();
-                    return;
-                case "sizeScaleMax":
-                    this.sizeScaleMax = value.GetValueAsFloat();
-                    return;
-                case "randomColorMin":
-                    this.randomColorMin = value.GetValueAsColor();
-                    return;
-                case "randomColorMax":
-                    this.randomColorMax = value.GetValueAsColor();
-                    return;
-                case "randomSeed":
-                    this.randomSeed = value.GetValueAsUInt32();
-                    return;
-                default:
-                    base.SetProperty(propertyName, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, index, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, key, value);
-                    return;
-            }
-        }
-    }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "spriteCount":
+					return new Fox.Core.Value(spriteCount);
+				case "offsetScaleMin":
+					return new Fox.Core.Value(offsetScaleMin);
+				case "offsetScaleMax":
+					return new Fox.Core.Value(offsetScaleMax);
+				case "sizeScaleMin":
+					return new Fox.Core.Value(sizeScaleMin);
+				case "sizeScaleMax":
+					return new Fox.Core.Value(sizeScaleMax);
+				case "randomColorMin":
+					return new Fox.Core.Value(randomColorMin);
+				case "randomColorMax":
+					return new Fox.Core.Value(randomColorMax);
+				case "randomSeed":
+					return new Fox.Core.Value(randomSeed);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
+
+		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
+		{
+			switch (propertyName.CString)
+			{
+				case "spriteCount":
+					this.spriteCount = value.GetValueAsUInt32();
+					return;
+				case "offsetScaleMin":
+					this.offsetScaleMin = value.GetValueAsFloat();
+					return;
+				case "offsetScaleMax":
+					this.offsetScaleMax = value.GetValueAsFloat();
+					return;
+				case "sizeScaleMin":
+					this.sizeScaleMin = value.GetValueAsFloat();
+					return;
+				case "sizeScaleMax":
+					this.sizeScaleMax = value.GetValueAsFloat();
+					return;
+				case "randomColorMin":
+					this.randomColorMin = value.GetValueAsColor();
+					return;
+				case "randomColorMax":
+					this.randomColorMax = value.GetValueAsColor();
+					return;
+				case "randomSeed":
+					this.randomSeed = value.GetValueAsUInt32();
+					return;
+				default:
+					base.SetProperty(propertyName, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+	}
 }

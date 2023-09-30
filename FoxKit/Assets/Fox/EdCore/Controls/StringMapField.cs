@@ -1,8 +1,10 @@
-﻿using Fox.Kernel;
+﻿using Fox.Core;
+using Fox.Kernel;
 using System;
 using System.Collections;
 using UnityEditor;
 using UnityEditor.UIElements;
+using UnityEngine;
 using UnityEngine.UIElements;
 using String = Fox.Kernel.String;
 
@@ -12,9 +14,11 @@ namespace Fox.EdCore
     {
         private readonly ListView ListViewInput;
 
-        private static readonly Func<IFoxField> FieldConstructor = FoxFieldUtils.GetTypeFieldConstructor(typeof(T));
+        private static readonly Func<IFoxField> DefaultFieldConstructor = FoxFieldUtils.GetBindableElementConstructorForType(typeof(T));
+        private Func<IFoxField> FieldConstructor = DefaultFieldConstructor;
 
         private SerializedProperty StringMapProperty;
+        private PropertyInfo PropertyInfo; // Unfortunate hack around the fact that SerializedProperty.boxedValue doesn't work on things that own List<T>s and []s.
 
         public static new readonly string ussClassName = "fox-stringmap-field";
         public static new readonly string labelUssClassName = ussClassName + "__label";
@@ -111,8 +115,16 @@ namespace Fox.EdCore
         }
         private void OnPropertyChanged(SerializedProperty property)
         {
-            ListViewInput.itemsSource = StringMapProperty.GetValue() as IList;
-            ListViewInput.RefreshItems();
+            if (property is not null)
+                StringMapProperty = property.Copy();
+
+            // TODO: Replace with custom virtualization controller here: https://docs.unity3d.com/ScriptReference/UIElements.CollectionViewController.html
+            var target = StringMapProperty.serializedObject.targetObject;
+            var targetEntity = target as Entity;
+            var propertyTest = targetEntity.GetProperty(PropertyInfo.Name);
+            var propertyList = propertyTest.GetValueAsStringMap<T>();
+            ListViewInput.itemsSource = propertyList as IList;
+            ListViewInput.Rebuild();
         }
 
         private void AddButton_clicked()
@@ -169,16 +181,18 @@ namespace Fox.EdCore
 
             Label label = field.labelElement;
             label.text = $"[{index}]";
-
-            return;
         }
 
         public void BindProperty(SerializedProperty property) => BindProperty(property, null);
-        public void BindProperty(SerializedProperty property, string label)
+        public void BindProperty(SerializedProperty property, string label, PropertyInfo propertyInfo = null)
         {
+            PropertyInfo = propertyInfo;
+            if (PropertyInfo is not null)
+                FieldConstructor = FoxFieldUtils.GetBindableElementConstructorForPropertyInfo(PropertyInfo);
+
             if (label is not null)
                 this.label = label;
-            StringMapProperty = property.Copy();
+            StringMapProperty = property;
 
             BindingExtensions.TrackPropertyValue(this, StringMapProperty, OnPropertyChanged);
 

@@ -12,82 +12,82 @@ using Fox;
 
 namespace Fox.Navx
 {
-    [UnityEditor.InitializeOnLoad]
-    public partial class NavxNavBlock : Fox.Core.Data 
-    {
-        // Properties
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.String sceneName { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.String worldName { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint tileId { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.Path filePath { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Core.FilePtr filePtr { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Core.FilePtr remainingFilePtr { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public bool isSplit { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint maxFileSizeInKb { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public bool useBlockParameter { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float verticalThreshold { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float simplificationThreshold { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public bool doesHoleSimplification { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float holeSimplificationConvexThreshold { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float holeSimplificationObbExpandThreshold { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float holeSimplificationObbToAabbThreshold { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float holeSimplificationSmoothingThreshold { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public bool isHoleSimplificationDoesNotClosePassage { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint holeSimplificationReduceCount { get; set; }
-        
-        // ClassInfos
-        public static new bool ClassInfoInitialized = false;
-        private static Fox.Core.EntityInfo classInfo;
-        public static new Fox.Core.EntityInfo ClassInfo
-        {
-            get
-            {
-                return classInfo;
-            }
-        }
-        public override Fox.Core.EntityInfo GetClassEntityInfo()
-        {
-            return classInfo;
-        }
-        static NavxNavBlock()
-        {
-            if (Fox.Core.Data.ClassInfoInitialized)
-                classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("NavxNavBlock"), typeof(NavxNavBlock), Fox.Core.Data.ClassInfo, 248, "Navx", 9);
+	[UnityEditor.InitializeOnLoad]
+	public partial class NavxNavBlock : Fox.Core.Data
+	{
+		// Properties
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.String sceneName { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.String worldName { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint tileId { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.Path filePath { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Core.FilePtr filePtr { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Core.FilePtr remainingFilePtr { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public bool isSplit { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint maxFileSizeInKb { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public bool useBlockParameter { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float verticalThreshold { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float simplificationThreshold { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public bool doesHoleSimplification { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float holeSimplificationConvexThreshold { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float holeSimplificationObbExpandThreshold { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float holeSimplificationObbToAabbThreshold { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float holeSimplificationSmoothingThreshold { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public bool isHoleSimplificationDoesNotClosePassage { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint holeSimplificationReduceCount { get; set; }
+		
+		// ClassInfos
+		public static new bool ClassInfoInitialized = false;
+		private static Fox.Core.EntityInfo classInfo;
+		public static new Fox.Core.EntityInfo ClassInfo
+		{
+			get
+			{
+				return classInfo;
+			}
+		}
+		public override Fox.Core.EntityInfo GetClassEntityInfo()
+		{
+			return classInfo;
+		}
+		static NavxNavBlock()
+		{
+			if (Fox.Core.Data.ClassInfoInitialized)
+				classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("NavxNavBlock"), typeof(NavxNavBlock), Fox.Core.Data.ClassInfo, 248, "Navx", 9);
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("sceneName"), Fox.Core.PropertyInfo.PropertyType.String, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("worldName"), Fox.Core.PropertyInfo.PropertyType.String, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("tileId"), Fox.Core.PropertyInfo.PropertyType.UInt32, 136, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
@@ -107,95 +107,158 @@ namespace Fox.Navx
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("isHoleSimplificationDoesNotClosePassage"), Fox.Core.PropertyInfo.PropertyType.Bool, 248, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("holeSimplificationReduceCount"), Fox.Core.PropertyInfo.PropertyType.UInt32, 252, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 
-            ClassInfoInitialized = true;
-        }
+			ClassInfoInitialized = true;
+		}
 
-        // Constructors
+		// Constructors
 		public NavxNavBlock(ulong id) : base(id) { }
 		public NavxNavBlock() : base() { }
-        
-        public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "sceneName":
-                    this.sceneName = value.GetValueAsString();
-                    return;
-                case "worldName":
-                    this.worldName = value.GetValueAsString();
-                    return;
-                case "tileId":
-                    this.tileId = value.GetValueAsUInt32();
-                    return;
-                case "filePath":
-                    this.filePath = value.GetValueAsPath();
-                    return;
-                case "filePtr":
-                    this.filePtr = value.GetValueAsFilePtr();
-                    return;
-                case "remainingFilePtr":
-                    this.remainingFilePtr = value.GetValueAsFilePtr();
-                    return;
-                case "isSplit":
-                    this.isSplit = value.GetValueAsBool();
-                    return;
-                case "maxFileSizeInKb":
-                    this.maxFileSizeInKb = value.GetValueAsUInt32();
-                    return;
-                case "useBlockParameter":
-                    this.useBlockParameter = value.GetValueAsBool();
-                    return;
-                case "verticalThreshold":
-                    this.verticalThreshold = value.GetValueAsFloat();
-                    return;
-                case "simplificationThreshold":
-                    this.simplificationThreshold = value.GetValueAsFloat();
-                    return;
-                case "doesHoleSimplification":
-                    this.doesHoleSimplification = value.GetValueAsBool();
-                    return;
-                case "holeSimplificationConvexThreshold":
-                    this.holeSimplificationConvexThreshold = value.GetValueAsFloat();
-                    return;
-                case "holeSimplificationObbExpandThreshold":
-                    this.holeSimplificationObbExpandThreshold = value.GetValueAsFloat();
-                    return;
-                case "holeSimplificationObbToAabbThreshold":
-                    this.holeSimplificationObbToAabbThreshold = value.GetValueAsFloat();
-                    return;
-                case "holeSimplificationSmoothingThreshold":
-                    this.holeSimplificationSmoothingThreshold = value.GetValueAsFloat();
-                    return;
-                case "isHoleSimplificationDoesNotClosePassage":
-                    this.isHoleSimplificationDoesNotClosePassage = value.GetValueAsBool();
-                    return;
-                case "holeSimplificationReduceCount":
-                    this.holeSimplificationReduceCount = value.GetValueAsUInt32();
-                    return;
-                default:
-                    base.SetProperty(propertyName, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, index, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, key, value);
-                    return;
-            }
-        }
-    }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "sceneName":
+					return new Fox.Core.Value(sceneName);
+				case "worldName":
+					return new Fox.Core.Value(worldName);
+				case "tileId":
+					return new Fox.Core.Value(tileId);
+				case "filePath":
+					return new Fox.Core.Value(filePath);
+				case "filePtr":
+					return new Fox.Core.Value(filePtr);
+				case "remainingFilePtr":
+					return new Fox.Core.Value(remainingFilePtr);
+				case "isSplit":
+					return new Fox.Core.Value(isSplit);
+				case "maxFileSizeInKb":
+					return new Fox.Core.Value(maxFileSizeInKb);
+				case "useBlockParameter":
+					return new Fox.Core.Value(useBlockParameter);
+				case "verticalThreshold":
+					return new Fox.Core.Value(verticalThreshold);
+				case "simplificationThreshold":
+					return new Fox.Core.Value(simplificationThreshold);
+				case "doesHoleSimplification":
+					return new Fox.Core.Value(doesHoleSimplification);
+				case "holeSimplificationConvexThreshold":
+					return new Fox.Core.Value(holeSimplificationConvexThreshold);
+				case "holeSimplificationObbExpandThreshold":
+					return new Fox.Core.Value(holeSimplificationObbExpandThreshold);
+				case "holeSimplificationObbToAabbThreshold":
+					return new Fox.Core.Value(holeSimplificationObbToAabbThreshold);
+				case "holeSimplificationSmoothingThreshold":
+					return new Fox.Core.Value(holeSimplificationSmoothingThreshold);
+				case "isHoleSimplificationDoesNotClosePassage":
+					return new Fox.Core.Value(isHoleSimplificationDoesNotClosePassage);
+				case "holeSimplificationReduceCount":
+					return new Fox.Core.Value(holeSimplificationReduceCount);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
+
+		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
+		{
+			switch (propertyName.CString)
+			{
+				case "sceneName":
+					this.sceneName = value.GetValueAsString();
+					return;
+				case "worldName":
+					this.worldName = value.GetValueAsString();
+					return;
+				case "tileId":
+					this.tileId = value.GetValueAsUInt32();
+					return;
+				case "filePath":
+					this.filePath = value.GetValueAsPath();
+					return;
+				case "filePtr":
+					this.filePtr = value.GetValueAsFilePtr();
+					return;
+				case "remainingFilePtr":
+					this.remainingFilePtr = value.GetValueAsFilePtr();
+					return;
+				case "isSplit":
+					this.isSplit = value.GetValueAsBool();
+					return;
+				case "maxFileSizeInKb":
+					this.maxFileSizeInKb = value.GetValueAsUInt32();
+					return;
+				case "useBlockParameter":
+					this.useBlockParameter = value.GetValueAsBool();
+					return;
+				case "verticalThreshold":
+					this.verticalThreshold = value.GetValueAsFloat();
+					return;
+				case "simplificationThreshold":
+					this.simplificationThreshold = value.GetValueAsFloat();
+					return;
+				case "doesHoleSimplification":
+					this.doesHoleSimplification = value.GetValueAsBool();
+					return;
+				case "holeSimplificationConvexThreshold":
+					this.holeSimplificationConvexThreshold = value.GetValueAsFloat();
+					return;
+				case "holeSimplificationObbExpandThreshold":
+					this.holeSimplificationObbExpandThreshold = value.GetValueAsFloat();
+					return;
+				case "holeSimplificationObbToAabbThreshold":
+					this.holeSimplificationObbToAabbThreshold = value.GetValueAsFloat();
+					return;
+				case "holeSimplificationSmoothingThreshold":
+					this.holeSimplificationSmoothingThreshold = value.GetValueAsFloat();
+					return;
+				case "isHoleSimplificationDoesNotClosePassage":
+					this.isHoleSimplificationDoesNotClosePassage = value.GetValueAsBool();
+					return;
+				case "holeSimplificationReduceCount":
+					this.holeSimplificationReduceCount = value.GetValueAsUInt32();
+					return;
+				default:
+					base.SetProperty(propertyName, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+	}
 }

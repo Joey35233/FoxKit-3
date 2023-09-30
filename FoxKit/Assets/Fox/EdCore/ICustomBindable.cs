@@ -1,4 +1,5 @@
-﻿using UnityEditor;
+﻿using Fox.Core;
+using UnityEditor;
 using UnityEngine.UIElements;
 
 namespace Fox.EdCore
@@ -11,6 +12,6 @@ namespace Fox.EdCore
 
         void BindProperty(SerializedProperty property);
 
-        void BindProperty(SerializedProperty property, string label);
+        void BindProperty(SerializedProperty property, string label, PropertyInfo propertyInfo = null);
     }
 }

@@ -22,9 +22,9 @@ namespace Fox.Geox
             triggerTrap.SetTransform(triggerTrapTransformEntity);
             //triggerTrap.InitializeGameObject(triggerTrapGameObject);
 
-            triggerTrap.name = new Kernel.String(header.Name.ToString());
+            triggerTrap.name = header.Name.ToString();
             triggerTrap.enable = true;
-            triggerTrap.groupTags = TagUtils.GetEnumTags<GeoTriggerTrap.Tags>((ulong)header.GetTags<GeoTriggerTrap.Tags>());
+            TagUtils.AddEnumTags<GeoTriggerTrap.Tags>(triggerTrap.groupTags, (ulong)header.GetTags<GeoTriggerTrap.Tags>());
 
             for (int i = 0; i < header.PrimCount; i++)
             {
@@ -53,7 +53,7 @@ namespace Fox.Geox
                         node.SetOwner(trapAreaPath);
                         node.position = reader.ReadPositionF();
 
-                        trapAreaPath.nodes.Add(new EntityPtr<GraphxSpatialGraphDataNode>(node));
+                        trapAreaPath.nodes.Add(node);
                     }
 
                     GraphxSpatialGraphDataNode prevNode;
@@ -63,30 +63,30 @@ namespace Fox.Geox
                         GraphxSpatialGraphDataEdge loopEdge = new GameObject().AddComponent<GraphxSpatialGraphDataEdge>();
                         loopEdge.SetOwner(trapAreaPath);
 
-                        prevNode = trapAreaPath.nodes[(int)(vertexCount - 1)].Get();
-                        nextNode = trapAreaPath.nodes[0].Get();
-                        loopEdge.nextNode = EntityHandle.Get(nextNode);
+                        prevNode = trapAreaPath.nodes[(int)(vertexCount - 1)];
+                        nextNode = trapAreaPath.nodes[0];
+                        loopEdge.nextNode = nextNode;
                         nextNode.inlinks.Add(loopEdge.nextNode);
-                        loopEdge.prevNode = EntityHandle.Get(prevNode);
+                        loopEdge.prevNode = prevNode;
                         prevNode.outlinks.Add(loopEdge.prevNode);
 
-                        trapAreaPath.edges.Add(new EntityPtr<GraphxSpatialGraphDataEdge>(loopEdge));
+                        trapAreaPath.edges.Add(loopEdge);
                     }
 
                     for (int j = 0; j < vertexCount - 1; j++)
                     {
-                        prevNode = trapAreaPath.nodes[j].Get();
-                        nextNode = trapAreaPath.nodes[j + 1].Get();
+                        prevNode = trapAreaPath.nodes[j];
+                        nextNode = trapAreaPath.nodes[j + 1];
 
                         GraphxSpatialGraphDataEdge edge = new GameObject().AddComponent<GraphxSpatialGraphDataEdge>();
                         edge.SetOwner(trapAreaPath);
 
-                        edge.nextNode = EntityHandle.Get(nextNode);
+                        edge.nextNode = nextNode;
                         nextNode.inlinks.Add(edge.nextNode);
-                        edge.prevNode = EntityHandle.Get(prevNode);
+                        edge.prevNode = prevNode;
                         prevNode.outlinks.Add(edge.prevNode);
 
-                        trapAreaPath.edges.Add(new EntityPtr<GraphxSpatialGraphDataEdge>(edge));
+                        trapAreaPath.edges.Add(edge);
                     }
                 }
             }
@@ -104,13 +104,13 @@ namespace Fox.Geox
             Gizmos.matrix = Matrix4x4.identity;
             Gizmos.color = isSelected ? Color.white : Color;
 
-            foreach (EntityPtr<GraphxSpatialGraphDataEdge> edgePtr in trapPath.edges)
+            foreach (GraphxSpatialGraphDataEdge edgePtr in trapPath.edges)
             {
-                GraphxSpatialGraphDataEdge edge = edgePtr.Get();
-                var prevNode = edge.prevNode.Entity as GraphxSpatialGraphDataNode;
-                var nextNode = edge.nextNode.Entity as GraphxSpatialGraphDataNode;
+                GraphxSpatialGraphDataEdge edge = edgePtr;
+                var prevNode = edge.prevNode as GraphxSpatialGraphDataNode;
+                var nextNode = edge.nextNode as GraphxSpatialGraphDataNode;
 
-                float yMin = (this as MonoBehaviour).transform.position.y;
+                float yMin = this.transform.position.y;
                 float yMax = yMin + trapPath.height;
 
                 Gizmos.DrawLine(new Vector3(prevNode.position.x, yMin, prevNode.position.z), new Vector3(nextNode.position.x, yMin, nextNode.position.z));

@@ -16,6 +16,7 @@ namespace Fox.Kernel
         public bool ContainsKey(String key);
 
         public int OccupiedIndexToAbsoluteIndex(int index);
+
         public List<KeyValuePair<String, object>> ToList();
     }
 

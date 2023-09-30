@@ -17,9 +17,8 @@ namespace Fox.EdCore
         public static readonly long SerializedPropertyBindEventTypeId = (long)SerializedPropertyBindEventTypeIDMethod.Invoke(null, null);
         public static readonly System.Reflection.PropertyInfo SerializedPropertyBindEventBindProperty = SerializedPropertyBindEventType.GetProperty("bindProperty");
 
-        public static Func<IFoxField> GetTypeFieldConstructor(Type propertyType)
-        {
-            return propertyType switch
+        public static Func<IFoxField> GetBindableElementConstructorForType(Type propertyType) =>
+            propertyType switch
             {
                 Type type when type.IsEnum => type.IsDefined(typeof(FlagsAttribute), inherit: false) ? () => new EnumFlagsField() : () => new EnumField(),
                 Type type when type == typeof(bool) => () => new BoolField(),
@@ -40,45 +39,40 @@ namespace Fox.EdCore
                 Type type when type == typeof(Color) => () => new ColorField(),
                 Type type when type == typeof(Quaternion) => () => new QuaternionField(),
                 Type type when type == typeof(FilePtr) => () => new FilePtrField(),
-                Type type when type == typeof(EntityHandle) => () => new EntityHandleField(),
-                Type type when type.IsGenericType && type.GetGenericTypeDefinition() == typeof(EntityPtr<>) => () => Activator.CreateInstance(typeof(EntityPtrField<>).MakeGenericType(type.GenericTypeArguments)) as IFoxField,
+                Type type when type == typeof(Entity) || type.IsSubclassOf(typeof(Entity)) => () => new EntityHandleField(),
                 Type type when type == typeof(Matrix4x4) => () => new Matrix4Field(),
                 Type type when type == typeof(EntityLink) => () => new EntityLinkField(),
                 _ => throw new ArgumentException($"Invalid Fox type: {propertyType}."),
             };
-        }
 
-        public static Func<IFoxField> GetTypeFieldConstructorWithLabelPlaceholder(Type propertyType)
-        {
-            return propertyType switch
+        public static Func<IFoxField> GetBindableElementConstructorForPropertyInfo(PropertyInfo propertyInfo) =>
+            propertyInfo switch
             {
-                Type type when type == typeof(bool) => () => new BoolField("p"),
-                Type type when type == typeof(sbyte) => () => new Int8Field("p", false),
-                Type type when type == typeof(byte) => () => new UInt8Field("p", false),
-                Type type when type == typeof(short) => () => new Int16Field("p", false),
-                Type type when type == typeof(ushort) => () => new UInt16Field("p", false),
-                Type type when type == typeof(int) => () => new Int32Field("p", false),
-                Type type when type == typeof(uint) => () => new UInt32Field("p", false),
-                Type type when type == typeof(long) => () => new Int64Field("p", false),
-                Type type when type == typeof(ulong) => () => new UInt64Field("p", false),
-                Type type when type == typeof(float) => () => new FloatField("p", false),
-                Type type when type == typeof(double) => () => new DoubleField("p", false),
-                Type type when type == typeof(String) => () => new StringField("p"),
-                Type type when type == typeof(Path) => () => new PathField("p"),
-                Type type when type == typeof(Vector3) => () => new Vector3Field("p"),
-                Type type when type == typeof(Vector4) => () => new Vector4Field("p"),
-                Type type when type == typeof(Color) => () => new ColorField("p"),
-                Type type when type == typeof(Quaternion) => () => new QuaternionField("p"),
-                Type type when type == typeof(FilePtr) => () => new FilePtrField("p"),
-                Type type when type == typeof(EntityHandle) => () => new EntityHandleField("p"),
-                Type type when type.IsGenericType && type.GetGenericTypeDefinition() == typeof(EntityPtr<>) => () => Activator.CreateInstance(typeof(EntityPtrField<>).MakeGenericType(type.GenericTypeArguments[0]), new object[] { "p" }) as IFoxField,
-                Type type when type == typeof(Matrix4x4) => () => new Matrix4Field("p"),
-                Type type when type == typeof(EntityLink) => () => new EntityLinkField("p"),
-                Type type when type.IsEnum => type.IsDefined(typeof(FlagsAttribute), inherit: false) ? () => new EnumFlagsField("p") : () => new EnumField("p"),
-                Type type when type.IsGenericType && type.GetGenericTypeDefinition() == typeof(StaticArray<>) => () => Activator.CreateInstance(typeof(StaticArrayField<>).MakeGenericType(type.GenericTypeArguments), new object[] { "p" }) as IFoxField,
-                _ => throw new ArgumentException($"Invalid Fox type: {propertyType}."),
+                { Enum: not null } => propertyInfo.Enum.IsDefined(typeof(FlagsAttribute), inherit: false) ? () => new EnumFlagsField() : () => new EnumField(),
+                { Type: PropertyType.Bool } => () => new BoolField(),
+                { Type: PropertyType.Int8 } => () => new Int8Field(false),
+                { Type: PropertyType.UInt8 } => () => new UInt8Field(false),
+                { Type: PropertyType.Int16 } => () => new Int16Field(false),
+                { Type: PropertyType.UInt16 } => () => new UInt16Field(false),
+                { Type: PropertyType.Int32 } => () => new Int32Field(false),
+                { Type: PropertyType.UInt32 } => () => new UInt32Field(false),
+                { Type: PropertyType.Int64 } => () => new Int64Field(false),
+                { Type: PropertyType.UInt64 } => () => new UInt64Field(false),
+                { Type: PropertyType.Float } => () => new FloatField(false),
+                { Type: PropertyType.Double } => () => new DoubleField(false),
+                { Type: PropertyType.String } => () => new StringField(),
+                { Type: PropertyType.Path } => () => new PathField(),
+                { Type: PropertyType.Vector3 } => () => new Vector3Field(),
+                { Type: PropertyType.Vector4 } => () => new Vector4Field(),
+                { Type: PropertyType.Color } => () => new ColorField(),
+                { Type: PropertyType.Quat } => () => new QuaternionField(),
+                { Type: PropertyType.FilePtr } => () => new FilePtrField(),
+                { Type: PropertyType.EntityPtr } => () => Activator.CreateInstance(typeof(EntityPtrField<>).MakeGenericType(propertyInfo.PtrType)) as IFoxField,
+                { Type: PropertyType.EntityHandle } => () => new EntityHandleField(),
+                { Type: PropertyType.Matrix4 } => () => new Matrix4Field(),
+                { Type: PropertyType.EntityLink } => () => new EntityLinkField(),
+                _ => throw new ArgumentException($"Invalid Fox type: {propertyInfo.Type}."),
             };
-        }
 
         // For BaseField, field, when you send a ChangeEvent:
         // It stores field.value as lastFieldValue (SerializedObjectBindingToBaseField.FieldValueChanged)
@@ -125,8 +119,6 @@ namespace Fox.EdCore
                 PropertyType.Vector3 => new Vector3Field(),
                 PropertyType.Vector4 => new Vector4Field(),
                 PropertyType.Quat => new QuaternionField(),
-                //case PropertyType.Matrix3:
-                //    return new QuaternionField();
                 PropertyType.Matrix4 => new Matrix4Field(),
                 PropertyType.Color => new ColorField(),
                 PropertyType.FilePtr => new FilePtrField(),

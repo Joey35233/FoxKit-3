@@ -13,7 +13,7 @@ namespace Fox.Tactical
 
         private void DrawGizmos(bool isSelected)
         {
-            Vector3 rootPos = (this as MonoBehaviour).transform.position;
+            Vector3 rootPos = this.transform.position;
 
             //Root gizmo
             Gizmos.color = isSelected ? Color : Color * 0.5f;
@@ -25,9 +25,9 @@ namespace Fox.Tactical
             //Draw waypoints and edges
             for (int i = 0; i < waypoints.Count; i++)
             {
-                GkTacticalActionWaypoint waypoint = waypoints[i].Get();
+                GkTacticalActionWaypoint waypoint = waypoints[i];
 
-                globalWaypointPositions[i] = (this as MonoBehaviour).transform.TransformPoint(new Vector3(-waypoint.position.x, waypoint.position.y, waypoint.position.z));
+                globalWaypointPositions[i] = this.transform.TransformPoint(new Vector3(-waypoint.position.x, waypoint.position.y, waypoint.position.z));
 
                 Gizmos.color = WaypointColor;
 

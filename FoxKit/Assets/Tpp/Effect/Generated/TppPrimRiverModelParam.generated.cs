@@ -12,88 +12,88 @@ using Fox;
 
 namespace Tpp.Effect
 {
-    [UnityEditor.InitializeOnLoad]
-    public partial class TppPrimRiverModelParam : Fox.Core.Data 
-    {
-        // Properties
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.String primRiverGroupName { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public bool visibility { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.String baseTextureName { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.String normalTextureName { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.String cubeMapName { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Core.EntityLink lightCaptureLocator { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float scrollDirection0 { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float scrollSpeed0 { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float scrollScale0 { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float scrollDirection1 { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float scrollSpeed1 { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float scrollScale1 { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float transparency { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float transparencyDepthBlend { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float reflectionRate { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float distortionPower { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float surfaceShadowRate { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float oilIntensity { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public bool useHnmTexture { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public bool debugReset { get; set; }
-        
-        // ClassInfos
-        public static new bool ClassInfoInitialized = false;
-        private static Fox.Core.EntityInfo classInfo;
-        public static new Fox.Core.EntityInfo ClassInfo
-        {
-            get
-            {
-                return classInfo;
-            }
-        }
-        public override Fox.Core.EntityInfo GetClassEntityInfo()
-        {
-            return classInfo;
-        }
-        static TppPrimRiverModelParam()
-        {
-            if (Fox.Core.Data.ClassInfoInitialized)
-                classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("TppPrimRiverModelParam"), typeof(TppPrimRiverModelParam), Fox.Core.Data.ClassInfo, 176, null, 5);
+	[UnityEditor.InitializeOnLoad]
+	public partial class TppPrimRiverModelParam : Fox.Core.Data
+	{
+		// Properties
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.String primRiverGroupName { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public bool visibility { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.String baseTextureName { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.String normalTextureName { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.String cubeMapName { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Core.EntityLink lightCaptureLocator { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float scrollDirection0 { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float scrollSpeed0 { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float scrollScale0 { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float scrollDirection1 { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float scrollSpeed1 { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float scrollScale1 { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float transparency { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float transparencyDepthBlend { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float reflectionRate { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float distortionPower { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float surfaceShadowRate { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float oilIntensity { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public bool useHnmTexture { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public bool debugReset { get; set; }
+		
+		// ClassInfos
+		public static new bool ClassInfoInitialized = false;
+		private static Fox.Core.EntityInfo classInfo;
+		public static new Fox.Core.EntityInfo ClassInfo
+		{
+			get
+			{
+				return classInfo;
+			}
+		}
+		public override Fox.Core.EntityInfo GetClassEntityInfo()
+		{
+			return classInfo;
+		}
+		static TppPrimRiverModelParam()
+		{
+			if (Fox.Core.Data.ClassInfoInitialized)
+				classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("TppPrimRiverModelParam"), typeof(TppPrimRiverModelParam), Fox.Core.Data.ClassInfo, 176, null, 5);
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("primRiverGroupName"), Fox.Core.PropertyInfo.PropertyType.String, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("visibility"), Fox.Core.PropertyInfo.PropertyType.Bool, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("baseTextureName"), Fox.Core.PropertyInfo.PropertyType.String, 136, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
@@ -115,101 +115,168 @@ namespace Tpp.Effect
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("useHnmTexture"), Fox.Core.PropertyInfo.PropertyType.Bool, 248, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("debugReset"), Fox.Core.PropertyInfo.PropertyType.Bool, 249, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 
-            ClassInfoInitialized = true;
-        }
+			ClassInfoInitialized = true;
+		}
 
-        // Constructors
+		// Constructors
 		public TppPrimRiverModelParam(ulong id) : base(id) { }
 		public TppPrimRiverModelParam() : base() { }
-        
-        public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "primRiverGroupName":
-                    this.primRiverGroupName = value.GetValueAsString();
-                    return;
-                case "visibility":
-                    this.visibility = value.GetValueAsBool();
-                    return;
-                case "baseTextureName":
-                    this.baseTextureName = value.GetValueAsString();
-                    return;
-                case "normalTextureName":
-                    this.normalTextureName = value.GetValueAsString();
-                    return;
-                case "cubeMapName":
-                    this.cubeMapName = value.GetValueAsString();
-                    return;
-                case "lightCaptureLocator":
-                    this.lightCaptureLocator = value.GetValueAsEntityLink();
-                    return;
-                case "scrollDirection0":
-                    this.scrollDirection0 = value.GetValueAsFloat();
-                    return;
-                case "scrollSpeed0":
-                    this.scrollSpeed0 = value.GetValueAsFloat();
-                    return;
-                case "scrollScale0":
-                    this.scrollScale0 = value.GetValueAsFloat();
-                    return;
-                case "scrollDirection1":
-                    this.scrollDirection1 = value.GetValueAsFloat();
-                    return;
-                case "scrollSpeed1":
-                    this.scrollSpeed1 = value.GetValueAsFloat();
-                    return;
-                case "scrollScale1":
-                    this.scrollScale1 = value.GetValueAsFloat();
-                    return;
-                case "transparency":
-                    this.transparency = value.GetValueAsFloat();
-                    return;
-                case "transparencyDepthBlend":
-                    this.transparencyDepthBlend = value.GetValueAsFloat();
-                    return;
-                case "reflectionRate":
-                    this.reflectionRate = value.GetValueAsFloat();
-                    return;
-                case "distortionPower":
-                    this.distortionPower = value.GetValueAsFloat();
-                    return;
-                case "surfaceShadowRate":
-                    this.surfaceShadowRate = value.GetValueAsFloat();
-                    return;
-                case "oilIntensity":
-                    this.oilIntensity = value.GetValueAsFloat();
-                    return;
-                case "useHnmTexture":
-                    this.useHnmTexture = value.GetValueAsBool();
-                    return;
-                case "debugReset":
-                    this.debugReset = value.GetValueAsBool();
-                    return;
-                default:
-                    base.SetProperty(propertyName, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, index, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, key, value);
-                    return;
-            }
-        }
-    }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "primRiverGroupName":
+					return new Fox.Core.Value(primRiverGroupName);
+				case "visibility":
+					return new Fox.Core.Value(visibility);
+				case "baseTextureName":
+					return new Fox.Core.Value(baseTextureName);
+				case "normalTextureName":
+					return new Fox.Core.Value(normalTextureName);
+				case "cubeMapName":
+					return new Fox.Core.Value(cubeMapName);
+				case "lightCaptureLocator":
+					return new Fox.Core.Value(lightCaptureLocator);
+				case "scrollDirection0":
+					return new Fox.Core.Value(scrollDirection0);
+				case "scrollSpeed0":
+					return new Fox.Core.Value(scrollSpeed0);
+				case "scrollScale0":
+					return new Fox.Core.Value(scrollScale0);
+				case "scrollDirection1":
+					return new Fox.Core.Value(scrollDirection1);
+				case "scrollSpeed1":
+					return new Fox.Core.Value(scrollSpeed1);
+				case "scrollScale1":
+					return new Fox.Core.Value(scrollScale1);
+				case "transparency":
+					return new Fox.Core.Value(transparency);
+				case "transparencyDepthBlend":
+					return new Fox.Core.Value(transparencyDepthBlend);
+				case "reflectionRate":
+					return new Fox.Core.Value(reflectionRate);
+				case "distortionPower":
+					return new Fox.Core.Value(distortionPower);
+				case "surfaceShadowRate":
+					return new Fox.Core.Value(surfaceShadowRate);
+				case "oilIntensity":
+					return new Fox.Core.Value(oilIntensity);
+				case "useHnmTexture":
+					return new Fox.Core.Value(useHnmTexture);
+				case "debugReset":
+					return new Fox.Core.Value(debugReset);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
+
+		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
+		{
+			switch (propertyName.CString)
+			{
+				case "primRiverGroupName":
+					this.primRiverGroupName = value.GetValueAsString();
+					return;
+				case "visibility":
+					this.visibility = value.GetValueAsBool();
+					return;
+				case "baseTextureName":
+					this.baseTextureName = value.GetValueAsString();
+					return;
+				case "normalTextureName":
+					this.normalTextureName = value.GetValueAsString();
+					return;
+				case "cubeMapName":
+					this.cubeMapName = value.GetValueAsString();
+					return;
+				case "lightCaptureLocator":
+					this.lightCaptureLocator = value.GetValueAsEntityLink();
+					return;
+				case "scrollDirection0":
+					this.scrollDirection0 = value.GetValueAsFloat();
+					return;
+				case "scrollSpeed0":
+					this.scrollSpeed0 = value.GetValueAsFloat();
+					return;
+				case "scrollScale0":
+					this.scrollScale0 = value.GetValueAsFloat();
+					return;
+				case "scrollDirection1":
+					this.scrollDirection1 = value.GetValueAsFloat();
+					return;
+				case "scrollSpeed1":
+					this.scrollSpeed1 = value.GetValueAsFloat();
+					return;
+				case "scrollScale1":
+					this.scrollScale1 = value.GetValueAsFloat();
+					return;
+				case "transparency":
+					this.transparency = value.GetValueAsFloat();
+					return;
+				case "transparencyDepthBlend":
+					this.transparencyDepthBlend = value.GetValueAsFloat();
+					return;
+				case "reflectionRate":
+					this.reflectionRate = value.GetValueAsFloat();
+					return;
+				case "distortionPower":
+					this.distortionPower = value.GetValueAsFloat();
+					return;
+				case "surfaceShadowRate":
+					this.surfaceShadowRate = value.GetValueAsFloat();
+					return;
+				case "oilIntensity":
+					this.oilIntensity = value.GetValueAsFloat();
+					return;
+				case "useHnmTexture":
+					this.useHnmTexture = value.GetValueAsBool();
+					return;
+				case "debugReset":
+					this.debugReset = value.GetValueAsBool();
+					return;
+				default:
+					base.SetProperty(propertyName, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+	}
 }

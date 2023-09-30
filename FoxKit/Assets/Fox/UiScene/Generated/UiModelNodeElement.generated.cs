@@ -12,76 +12,76 @@ using Fox;
 
 namespace Fox.UiScene
 {
-    [UnityEditor.InitializeOnLoad]
-    public partial class UiModelNodeElement : Fox.Core.DataElement 
-    {
-        // Properties
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.String modelNodeName { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public bool visible { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float priority { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public UnityEngine.Vector3 scale { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public UnityEngine.Quaternion rotQuat { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public UnityEngine.Vector3 translate { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public UnityEngine.Color color { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public UiModelNodeElementBlend blendType { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public bool returnInit { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public bool initVisible { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float initPriority { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public UnityEngine.Vector3 initScale { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public UnityEngine.Quaternion initRotQuat { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public UnityEngine.Vector3 initTranslate { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public UnityEngine.Color initColor { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public int initBlendType { get; set; }
-        
-        // ClassInfos
-        public static new bool ClassInfoInitialized = false;
-        private static Fox.Core.EntityInfo classInfo;
-        public static new Fox.Core.EntityInfo ClassInfo
-        {
-            get
-            {
-                return classInfo;
-            }
-        }
-        public override Fox.Core.EntityInfo GetClassEntityInfo()
-        {
-            return classInfo;
-        }
-        static UiModelNodeElement()
-        {
-            if (Fox.Core.DataElement.ClassInfoInitialized)
-                classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("UiModelNodeElement"), typeof(UiModelNodeElement), Fox.Core.DataElement.ClassInfo, 0, null, 0);
+	[UnityEditor.InitializeOnLoad]
+	public partial class UiModelNodeElement : Fox.Core.DataElement
+	{
+		// Properties
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.String modelNodeName { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public bool visible { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float priority { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public UnityEngine.Vector3 scale { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public UnityEngine.Quaternion rotQuat { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public UnityEngine.Vector3 translate { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public UnityEngine.Color color { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public UiModelNodeElementBlend blendType { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public bool returnInit { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public bool initVisible { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float initPriority { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public UnityEngine.Vector3 initScale { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public UnityEngine.Quaternion initRotQuat { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public UnityEngine.Vector3 initTranslate { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public UnityEngine.Color initColor { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public int initBlendType { get; set; }
+		
+		// ClassInfos
+		public static new bool ClassInfoInitialized = false;
+		private static Fox.Core.EntityInfo classInfo;
+		public static new Fox.Core.EntityInfo ClassInfo
+		{
+			get
+			{
+				return classInfo;
+			}
+		}
+		public override Fox.Core.EntityInfo GetClassEntityInfo()
+		{
+			return classInfo;
+		}
+		static UiModelNodeElement()
+		{
+			if (Fox.Core.DataElement.ClassInfoInitialized)
+				classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("UiModelNodeElement"), typeof(UiModelNodeElement), Fox.Core.DataElement.ClassInfo, 0, null, 0);
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("modelNodeName"), Fox.Core.PropertyInfo.PropertyType.String, 56, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("visible"), Fox.Core.PropertyInfo.PropertyType.Bool, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("priority"), Fox.Core.PropertyInfo.PropertyType.Float, 68, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
@@ -99,89 +99,148 @@ namespace Fox.UiScene
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("initColor"), Fox.Core.PropertyInfo.PropertyType.Color, 208, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("initBlendType"), Fox.Core.PropertyInfo.PropertyType.Int32, 224, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 
-            ClassInfoInitialized = true;
-        }
+			ClassInfoInitialized = true;
+		}
 
-        // Constructors
+		// Constructors
 		public UiModelNodeElement(ulong id) : base(id) { }
 		public UiModelNodeElement() : base() { }
-        
-        public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "modelNodeName":
-                    this.modelNodeName = value.GetValueAsString();
-                    return;
-                case "visible":
-                    this.visible = value.GetValueAsBool();
-                    return;
-                case "priority":
-                    this.priority = value.GetValueAsFloat();
-                    return;
-                case "scale":
-                    this.scale = value.GetValueAsVector3();
-                    return;
-                case "rotQuat":
-                    this.rotQuat = value.GetValueAsQuat();
-                    return;
-                case "translate":
-                    this.translate = value.GetValueAsVector3();
-                    return;
-                case "color":
-                    this.color = value.GetValueAsColor();
-                    return;
-                case "blendType":
-                    this.blendType = (UiModelNodeElementBlend)value.GetValueAsInt32();
-                    return;
-                case "returnInit":
-                    this.returnInit = value.GetValueAsBool();
-                    return;
-                case "initVisible":
-                    this.initVisible = value.GetValueAsBool();
-                    return;
-                case "initPriority":
-                    this.initPriority = value.GetValueAsFloat();
-                    return;
-                case "initScale":
-                    this.initScale = value.GetValueAsVector3();
-                    return;
-                case "initRotQuat":
-                    this.initRotQuat = value.GetValueAsQuat();
-                    return;
-                case "initTranslate":
-                    this.initTranslate = value.GetValueAsVector3();
-                    return;
-                case "initColor":
-                    this.initColor = value.GetValueAsColor();
-                    return;
-                case "initBlendType":
-                    this.initBlendType = value.GetValueAsInt32();
-                    return;
-                default:
-                    base.SetProperty(propertyName, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, index, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, key, value);
-                    return;
-            }
-        }
-    }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "modelNodeName":
+					return new Fox.Core.Value(modelNodeName);
+				case "visible":
+					return new Fox.Core.Value(visible);
+				case "priority":
+					return new Fox.Core.Value(priority);
+				case "scale":
+					return new Fox.Core.Value(scale);
+				case "rotQuat":
+					return new Fox.Core.Value(rotQuat);
+				case "translate":
+					return new Fox.Core.Value(translate);
+				case "color":
+					return new Fox.Core.Value(color);
+				case "blendType":
+					return new Fox.Core.Value(blendType);
+				case "returnInit":
+					return new Fox.Core.Value(returnInit);
+				case "initVisible":
+					return new Fox.Core.Value(initVisible);
+				case "initPriority":
+					return new Fox.Core.Value(initPriority);
+				case "initScale":
+					return new Fox.Core.Value(initScale);
+				case "initRotQuat":
+					return new Fox.Core.Value(initRotQuat);
+				case "initTranslate":
+					return new Fox.Core.Value(initTranslate);
+				case "initColor":
+					return new Fox.Core.Value(initColor);
+				case "initBlendType":
+					return new Fox.Core.Value(initBlendType);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
+
+		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
+		{
+			switch (propertyName.CString)
+			{
+				case "modelNodeName":
+					this.modelNodeName = value.GetValueAsString();
+					return;
+				case "visible":
+					this.visible = value.GetValueAsBool();
+					return;
+				case "priority":
+					this.priority = value.GetValueAsFloat();
+					return;
+				case "scale":
+					this.scale = value.GetValueAsVector3();
+					return;
+				case "rotQuat":
+					this.rotQuat = value.GetValueAsQuat();
+					return;
+				case "translate":
+					this.translate = value.GetValueAsVector3();
+					return;
+				case "color":
+					this.color = value.GetValueAsColor();
+					return;
+				case "blendType":
+					this.blendType = (UiModelNodeElementBlend)value.GetValueAsInt32();
+					return;
+				case "returnInit":
+					this.returnInit = value.GetValueAsBool();
+					return;
+				case "initVisible":
+					this.initVisible = value.GetValueAsBool();
+					return;
+				case "initPriority":
+					this.initPriority = value.GetValueAsFloat();
+					return;
+				case "initScale":
+					this.initScale = value.GetValueAsVector3();
+					return;
+				case "initRotQuat":
+					this.initRotQuat = value.GetValueAsQuat();
+					return;
+				case "initTranslate":
+					this.initTranslate = value.GetValueAsVector3();
+					return;
+				case "initColor":
+					this.initColor = value.GetValueAsColor();
+					return;
+				case "initBlendType":
+					this.initBlendType = value.GetValueAsInt32();
+					return;
+				default:
+					base.SetProperty(propertyName, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+	}
 }

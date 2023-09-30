@@ -12,100 +12,100 @@ using Fox;
 
 namespace Tpp.Effect
 {
-    [UnityEditor.InitializeOnLoad]
-    public partial class TppRainFilter : Fox.Core.Data 
-    {
-        // Properties
-        [field: UnityEngine.SerializeField]
-        public bool enable { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float startFadeInDistance { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float endFadeInDistance { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float startFadeOutDistance { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float endFadeOutDistance { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float albedoExtinctionRatio { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float roughnessExtinctionCoefficient { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float roughnessEffectiveThreshold { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float LABDiffuseScale { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float LABDiffuseAdd { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float floorTexScale { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float wallTexScale0 { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float wallTexScale1 { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public UnityEngine.Vector4 wallTexSpeed { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float maskTexScale0 { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float maskTexScale1 { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public UnityEngine.Vector4 maskTexSpeed { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public UnityEngine.Color rainColor { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float windScale { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float wallAlphaRate { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.Path normalWallTexPath { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.Path normalFloorTexPath { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.Path reflectionCubeMapTexPath { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.Path maskTexPath { get; set; }
-        
-        // ClassInfos
-        public static new bool ClassInfoInitialized = false;
-        private static Fox.Core.EntityInfo classInfo;
-        public static new Fox.Core.EntityInfo ClassInfo
-        {
-            get
-            {
-                return classInfo;
-            }
-        }
-        public override Fox.Core.EntityInfo GetClassEntityInfo()
-        {
-            return classInfo;
-        }
-        static TppRainFilter()
-        {
-            if (Fox.Core.Data.ClassInfoInitialized)
-                classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("TppRainFilter"), typeof(TppRainFilter), Fox.Core.Data.ClassInfo, 224, null, 2);
+	[UnityEditor.InitializeOnLoad]
+	public partial class TppRainFilter : Fox.Core.Data
+	{
+		// Properties
+		[field: UnityEngine.SerializeField]
+		public bool enable { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float startFadeInDistance { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float endFadeInDistance { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float startFadeOutDistance { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float endFadeOutDistance { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float albedoExtinctionRatio { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float roughnessExtinctionCoefficient { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float roughnessEffectiveThreshold { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float LABDiffuseScale { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float LABDiffuseAdd { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float floorTexScale { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float wallTexScale0 { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float wallTexScale1 { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public UnityEngine.Vector4 wallTexSpeed { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float maskTexScale0 { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float maskTexScale1 { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public UnityEngine.Vector4 maskTexSpeed { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public UnityEngine.Color rainColor { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float windScale { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float wallAlphaRate { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.Path normalWallTexPath { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.Path normalFloorTexPath { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.Path reflectionCubeMapTexPath { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.Path maskTexPath { get; set; }
+		
+		// ClassInfos
+		public static new bool ClassInfoInitialized = false;
+		private static Fox.Core.EntityInfo classInfo;
+		public static new Fox.Core.EntityInfo ClassInfo
+		{
+			get
+			{
+				return classInfo;
+			}
+		}
+		public override Fox.Core.EntityInfo GetClassEntityInfo()
+		{
+			return classInfo;
+		}
+		static TppRainFilter()
+		{
+			if (Fox.Core.Data.ClassInfoInitialized)
+				classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("TppRainFilter"), typeof(TppRainFilter), Fox.Core.Data.ClassInfo, 224, null, 2);
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("enable"), Fox.Core.PropertyInfo.PropertyType.Bool, 272, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("startFadeInDistance"), Fox.Core.PropertyInfo.PropertyType.Float, 236, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("endFadeInDistance"), Fox.Core.PropertyInfo.PropertyType.Float, 240, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
@@ -131,113 +131,188 @@ namespace Tpp.Effect
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("reflectionCubeMapTexPath"), Fox.Core.PropertyInfo.PropertyType.Path, 192, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("maskTexPath"), Fox.Core.PropertyInfo.PropertyType.Path, 200, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 
-            ClassInfoInitialized = true;
-        }
+			ClassInfoInitialized = true;
+		}
 
-        // Constructors
+		// Constructors
 		public TppRainFilter(ulong id) : base(id) { }
 		public TppRainFilter() : base() { }
-        
-        public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "enable":
-                    this.enable = value.GetValueAsBool();
-                    return;
-                case "startFadeInDistance":
-                    this.startFadeInDistance = value.GetValueAsFloat();
-                    return;
-                case "endFadeInDistance":
-                    this.endFadeInDistance = value.GetValueAsFloat();
-                    return;
-                case "startFadeOutDistance":
-                    this.startFadeOutDistance = value.GetValueAsFloat();
-                    return;
-                case "endFadeOutDistance":
-                    this.endFadeOutDistance = value.GetValueAsFloat();
-                    return;
-                case "albedoExtinctionRatio":
-                    this.albedoExtinctionRatio = value.GetValueAsFloat();
-                    return;
-                case "roughnessExtinctionCoefficient":
-                    this.roughnessExtinctionCoefficient = value.GetValueAsFloat();
-                    return;
-                case "roughnessEffectiveThreshold":
-                    this.roughnessEffectiveThreshold = value.GetValueAsFloat();
-                    return;
-                case "LABDiffuseScale":
-                    this.LABDiffuseScale = value.GetValueAsFloat();
-                    return;
-                case "LABDiffuseAdd":
-                    this.LABDiffuseAdd = value.GetValueAsFloat();
-                    return;
-                case "floorTexScale":
-                    this.floorTexScale = value.GetValueAsFloat();
-                    return;
-                case "wallTexScale0":
-                    this.wallTexScale0 = value.GetValueAsFloat();
-                    return;
-                case "wallTexScale1":
-                    this.wallTexScale1 = value.GetValueAsFloat();
-                    return;
-                case "wallTexSpeed":
-                    this.wallTexSpeed = value.GetValueAsVector4();
-                    return;
-                case "maskTexScale0":
-                    this.maskTexScale0 = value.GetValueAsFloat();
-                    return;
-                case "maskTexScale1":
-                    this.maskTexScale1 = value.GetValueAsFloat();
-                    return;
-                case "maskTexSpeed":
-                    this.maskTexSpeed = value.GetValueAsVector4();
-                    return;
-                case "rainColor":
-                    this.rainColor = value.GetValueAsColor();
-                    return;
-                case "windScale":
-                    this.windScale = value.GetValueAsFloat();
-                    return;
-                case "wallAlphaRate":
-                    this.wallAlphaRate = value.GetValueAsFloat();
-                    return;
-                case "normalWallTexPath":
-                    this.normalWallTexPath = value.GetValueAsPath();
-                    return;
-                case "normalFloorTexPath":
-                    this.normalFloorTexPath = value.GetValueAsPath();
-                    return;
-                case "reflectionCubeMapTexPath":
-                    this.reflectionCubeMapTexPath = value.GetValueAsPath();
-                    return;
-                case "maskTexPath":
-                    this.maskTexPath = value.GetValueAsPath();
-                    return;
-                default:
-                    base.SetProperty(propertyName, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, index, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, key, value);
-                    return;
-            }
-        }
-    }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "enable":
+					return new Fox.Core.Value(enable);
+				case "startFadeInDistance":
+					return new Fox.Core.Value(startFadeInDistance);
+				case "endFadeInDistance":
+					return new Fox.Core.Value(endFadeInDistance);
+				case "startFadeOutDistance":
+					return new Fox.Core.Value(startFadeOutDistance);
+				case "endFadeOutDistance":
+					return new Fox.Core.Value(endFadeOutDistance);
+				case "albedoExtinctionRatio":
+					return new Fox.Core.Value(albedoExtinctionRatio);
+				case "roughnessExtinctionCoefficient":
+					return new Fox.Core.Value(roughnessExtinctionCoefficient);
+				case "roughnessEffectiveThreshold":
+					return new Fox.Core.Value(roughnessEffectiveThreshold);
+				case "LABDiffuseScale":
+					return new Fox.Core.Value(LABDiffuseScale);
+				case "LABDiffuseAdd":
+					return new Fox.Core.Value(LABDiffuseAdd);
+				case "floorTexScale":
+					return new Fox.Core.Value(floorTexScale);
+				case "wallTexScale0":
+					return new Fox.Core.Value(wallTexScale0);
+				case "wallTexScale1":
+					return new Fox.Core.Value(wallTexScale1);
+				case "wallTexSpeed":
+					return new Fox.Core.Value(wallTexSpeed);
+				case "maskTexScale0":
+					return new Fox.Core.Value(maskTexScale0);
+				case "maskTexScale1":
+					return new Fox.Core.Value(maskTexScale1);
+				case "maskTexSpeed":
+					return new Fox.Core.Value(maskTexSpeed);
+				case "rainColor":
+					return new Fox.Core.Value(rainColor);
+				case "windScale":
+					return new Fox.Core.Value(windScale);
+				case "wallAlphaRate":
+					return new Fox.Core.Value(wallAlphaRate);
+				case "normalWallTexPath":
+					return new Fox.Core.Value(normalWallTexPath);
+				case "normalFloorTexPath":
+					return new Fox.Core.Value(normalFloorTexPath);
+				case "reflectionCubeMapTexPath":
+					return new Fox.Core.Value(reflectionCubeMapTexPath);
+				case "maskTexPath":
+					return new Fox.Core.Value(maskTexPath);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
+
+		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
+		{
+			switch (propertyName.CString)
+			{
+				case "enable":
+					this.enable = value.GetValueAsBool();
+					return;
+				case "startFadeInDistance":
+					this.startFadeInDistance = value.GetValueAsFloat();
+					return;
+				case "endFadeInDistance":
+					this.endFadeInDistance = value.GetValueAsFloat();
+					return;
+				case "startFadeOutDistance":
+					this.startFadeOutDistance = value.GetValueAsFloat();
+					return;
+				case "endFadeOutDistance":
+					this.endFadeOutDistance = value.GetValueAsFloat();
+					return;
+				case "albedoExtinctionRatio":
+					this.albedoExtinctionRatio = value.GetValueAsFloat();
+					return;
+				case "roughnessExtinctionCoefficient":
+					this.roughnessExtinctionCoefficient = value.GetValueAsFloat();
+					return;
+				case "roughnessEffectiveThreshold":
+					this.roughnessEffectiveThreshold = value.GetValueAsFloat();
+					return;
+				case "LABDiffuseScale":
+					this.LABDiffuseScale = value.GetValueAsFloat();
+					return;
+				case "LABDiffuseAdd":
+					this.LABDiffuseAdd = value.GetValueAsFloat();
+					return;
+				case "floorTexScale":
+					this.floorTexScale = value.GetValueAsFloat();
+					return;
+				case "wallTexScale0":
+					this.wallTexScale0 = value.GetValueAsFloat();
+					return;
+				case "wallTexScale1":
+					this.wallTexScale1 = value.GetValueAsFloat();
+					return;
+				case "wallTexSpeed":
+					this.wallTexSpeed = value.GetValueAsVector4();
+					return;
+				case "maskTexScale0":
+					this.maskTexScale0 = value.GetValueAsFloat();
+					return;
+				case "maskTexScale1":
+					this.maskTexScale1 = value.GetValueAsFloat();
+					return;
+				case "maskTexSpeed":
+					this.maskTexSpeed = value.GetValueAsVector4();
+					return;
+				case "rainColor":
+					this.rainColor = value.GetValueAsColor();
+					return;
+				case "windScale":
+					this.windScale = value.GetValueAsFloat();
+					return;
+				case "wallAlphaRate":
+					this.wallAlphaRate = value.GetValueAsFloat();
+					return;
+				case "normalWallTexPath":
+					this.normalWallTexPath = value.GetValueAsPath();
+					return;
+				case "normalFloorTexPath":
+					this.normalFloorTexPath = value.GetValueAsPath();
+					return;
+				case "reflectionCubeMapTexPath":
+					this.reflectionCubeMapTexPath = value.GetValueAsPath();
+					return;
+				case "maskTexPath":
+					this.maskTexPath = value.GetValueAsPath();
+					return;
+				default:
+					base.SetProperty(propertyName, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+	}
 }

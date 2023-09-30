@@ -12,94 +12,94 @@ using Fox;
 
 namespace Fox.Navx
 {
-    [UnityEditor.InitializeOnLoad]
-    public partial class NavxWorldGenerateParameter : Fox.Core.TransformData 
-    {
-        // Properties
-        [field: UnityEngine.SerializeField]
-        public float resolution { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float verticalThreshold { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public bool doesDivideIslandWithSector { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public bool doesHoleSimplification { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float holeSimplificationConvexThreshold { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float holeSimplificationObbExpandThreshold { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float holeSimplificationObbToAabbThreshold { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float holeSimplificationSmoothingThreshold { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public bool isHoleSimplificationDoesNotClosePassage { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint holeSimplificationReduceCount { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public bool doesAdjustSearchSpaceToNavmesh { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public bool doesGenerateFillNavVolumeInRadius { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.Path roughGraphFilePath { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Core.FilePtr roughGraphFilePtr { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.String worldName { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint maxFileSizeInKb { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Fox.Navx.NavxNavigableParameter>> parameters { get; set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Fox.Navx.NavxNavigableParameter>>();
-        
-        [field: UnityEngine.SerializeField]
-        public uint sectorSizeHorizontal { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint tileSizeHorizontal { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint searchSpaceBucketSizeHorizontal { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.DynamicArray<Fox.Kernel.String> collisionAttributes { get; set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.Path loadFox2FileListScriptPath { get; set; }
-        
-        // ClassInfos
-        public static new bool ClassInfoInitialized = false;
-        private static Fox.Core.EntityInfo classInfo;
-        public static new Fox.Core.EntityInfo ClassInfo
-        {
-            get
-            {
-                return classInfo;
-            }
-        }
-        public override Fox.Core.EntityInfo GetClassEntityInfo()
-        {
-            return classInfo;
-        }
-        static NavxWorldGenerateParameter()
-        {
-            if (Fox.Core.TransformData.ClassInfoInitialized)
-                classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("NavxWorldGenerateParameter"), typeof(NavxWorldGenerateParameter), Fox.Core.TransformData.ClassInfo, 400, "Navx", 27);
+	[UnityEditor.InitializeOnLoad]
+	public partial class NavxWorldGenerateParameter : Fox.Core.TransformData
+	{
+		// Properties
+		[field: UnityEngine.SerializeField]
+		public float resolution { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float verticalThreshold { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public bool doesDivideIslandWithSector { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public bool doesHoleSimplification { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float holeSimplificationConvexThreshold { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float holeSimplificationObbExpandThreshold { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float holeSimplificationObbToAabbThreshold { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float holeSimplificationSmoothingThreshold { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public bool isHoleSimplificationDoesNotClosePassage { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint holeSimplificationReduceCount { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public bool doesAdjustSearchSpaceToNavmesh { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public bool doesGenerateFillNavVolumeInRadius { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.Path roughGraphFilePath { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Core.FilePtr roughGraphFilePtr { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.String worldName { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint maxFileSizeInKb { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.DynamicArray<Fox.Navx.NavxNavigableParameter> parameters { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Navx.NavxNavigableParameter>();
+		
+		[field: UnityEngine.SerializeField]
+		public uint sectorSizeHorizontal { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint tileSizeHorizontal { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint searchSpaceBucketSizeHorizontal { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.DynamicArray<Fox.Kernel.String> collisionAttributes { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.Path loadFox2FileListScriptPath { get; set; }
+		
+		// ClassInfos
+		public static new bool ClassInfoInitialized = false;
+		private static Fox.Core.EntityInfo classInfo;
+		public static new Fox.Core.EntityInfo ClassInfo
+		{
+			get
+			{
+				return classInfo;
+			}
+		}
+		public override Fox.Core.EntityInfo GetClassEntityInfo()
+		{
+			return classInfo;
+		}
+		static NavxWorldGenerateParameter()
+		{
+			if (Fox.Core.TransformData.ClassInfoInitialized)
+				classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("NavxWorldGenerateParameter"), typeof(NavxWorldGenerateParameter), Fox.Core.TransformData.ClassInfo, 400, "Navx", 27);
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("resolution"), Fox.Core.PropertyInfo.PropertyType.Float, 304, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("verticalThreshold"), Fox.Core.PropertyInfo.PropertyType.Float, 308, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("doesDivideIslandWithSector"), Fox.Core.PropertyInfo.PropertyType.Bool, 312, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
@@ -123,109 +123,184 @@ namespace Fox.Navx
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("collisionAttributes"), Fox.Core.PropertyInfo.PropertyType.String, 424, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("loadFox2FileListScriptPath"), Fox.Core.PropertyInfo.PropertyType.Path, 440, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 
-            ClassInfoInitialized = true;
-        }
+			ClassInfoInitialized = true;
+		}
 
-        // Constructors
+		// Constructors
 		public NavxWorldGenerateParameter(ulong id) : base(id) { }
 		public NavxWorldGenerateParameter() : base() { }
-        
-        public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "resolution":
-                    this.resolution = value.GetValueAsFloat();
-                    return;
-                case "verticalThreshold":
-                    this.verticalThreshold = value.GetValueAsFloat();
-                    return;
-                case "doesDivideIslandWithSector":
-                    this.doesDivideIslandWithSector = value.GetValueAsBool();
-                    return;
-                case "doesHoleSimplification":
-                    this.doesHoleSimplification = value.GetValueAsBool();
-                    return;
-                case "holeSimplificationConvexThreshold":
-                    this.holeSimplificationConvexThreshold = value.GetValueAsFloat();
-                    return;
-                case "holeSimplificationObbExpandThreshold":
-                    this.holeSimplificationObbExpandThreshold = value.GetValueAsFloat();
-                    return;
-                case "holeSimplificationObbToAabbThreshold":
-                    this.holeSimplificationObbToAabbThreshold = value.GetValueAsFloat();
-                    return;
-                case "holeSimplificationSmoothingThreshold":
-                    this.holeSimplificationSmoothingThreshold = value.GetValueAsFloat();
-                    return;
-                case "isHoleSimplificationDoesNotClosePassage":
-                    this.isHoleSimplificationDoesNotClosePassage = value.GetValueAsBool();
-                    return;
-                case "holeSimplificationReduceCount":
-                    this.holeSimplificationReduceCount = value.GetValueAsUInt32();
-                    return;
-                case "doesAdjustSearchSpaceToNavmesh":
-                    this.doesAdjustSearchSpaceToNavmesh = value.GetValueAsBool();
-                    return;
-                case "doesGenerateFillNavVolumeInRadius":
-                    this.doesGenerateFillNavVolumeInRadius = value.GetValueAsBool();
-                    return;
-                case "roughGraphFilePath":
-                    this.roughGraphFilePath = value.GetValueAsPath();
-                    return;
-                case "roughGraphFilePtr":
-                    this.roughGraphFilePtr = value.GetValueAsFilePtr();
-                    return;
-                case "worldName":
-                    this.worldName = value.GetValueAsString();
-                    return;
-                case "maxFileSizeInKb":
-                    this.maxFileSizeInKb = value.GetValueAsUInt32();
-                    return;
-                case "sectorSizeHorizontal":
-                    this.sectorSizeHorizontal = value.GetValueAsUInt32();
-                    return;
-                case "tileSizeHorizontal":
-                    this.tileSizeHorizontal = value.GetValueAsUInt32();
-                    return;
-                case "searchSpaceBucketSizeHorizontal":
-                    this.searchSpaceBucketSizeHorizontal = value.GetValueAsUInt32();
-                    return;
-                case "loadFox2FileListScriptPath":
-                    this.loadFox2FileListScriptPath = value.GetValueAsPath();
-                    return;
-                default:
-                    base.SetProperty(propertyName, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "parameters":
-                    while(this.parameters.Count <= index) { this.parameters.Add(default(Fox.Core.EntityPtr<Fox.Navx.NavxNavigableParameter>)); }
-                    this.parameters[index] = value.GetValueAsEntityPtr<Fox.Navx.NavxNavigableParameter>();
-                    return;
-                case "collisionAttributes":
-                    while(this.collisionAttributes.Count <= index) { this.collisionAttributes.Add(default(Fox.Kernel.String)); }
-                    this.collisionAttributes[index] = value.GetValueAsString();
-                    return;
-                default:
-                    base.SetPropertyElement(propertyName, index, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, key, value);
-                    return;
-            }
-        }
-    }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "resolution":
+					return new Fox.Core.Value(resolution);
+				case "verticalThreshold":
+					return new Fox.Core.Value(verticalThreshold);
+				case "doesDivideIslandWithSector":
+					return new Fox.Core.Value(doesDivideIslandWithSector);
+				case "doesHoleSimplification":
+					return new Fox.Core.Value(doesHoleSimplification);
+				case "holeSimplificationConvexThreshold":
+					return new Fox.Core.Value(holeSimplificationConvexThreshold);
+				case "holeSimplificationObbExpandThreshold":
+					return new Fox.Core.Value(holeSimplificationObbExpandThreshold);
+				case "holeSimplificationObbToAabbThreshold":
+					return new Fox.Core.Value(holeSimplificationObbToAabbThreshold);
+				case "holeSimplificationSmoothingThreshold":
+					return new Fox.Core.Value(holeSimplificationSmoothingThreshold);
+				case "isHoleSimplificationDoesNotClosePassage":
+					return new Fox.Core.Value(isHoleSimplificationDoesNotClosePassage);
+				case "holeSimplificationReduceCount":
+					return new Fox.Core.Value(holeSimplificationReduceCount);
+				case "doesAdjustSearchSpaceToNavmesh":
+					return new Fox.Core.Value(doesAdjustSearchSpaceToNavmesh);
+				case "doesGenerateFillNavVolumeInRadius":
+					return new Fox.Core.Value(doesGenerateFillNavVolumeInRadius);
+				case "roughGraphFilePath":
+					return new Fox.Core.Value(roughGraphFilePath);
+				case "roughGraphFilePtr":
+					return new Fox.Core.Value(roughGraphFilePtr);
+				case "worldName":
+					return new Fox.Core.Value(worldName);
+				case "maxFileSizeInKb":
+					return new Fox.Core.Value(maxFileSizeInKb);
+				case "parameters":
+					return new Fox.Core.Value(parameters);
+				case "sectorSizeHorizontal":
+					return new Fox.Core.Value(sectorSizeHorizontal);
+				case "tileSizeHorizontal":
+					return new Fox.Core.Value(tileSizeHorizontal);
+				case "searchSpaceBucketSizeHorizontal":
+					return new Fox.Core.Value(searchSpaceBucketSizeHorizontal);
+				case "collisionAttributes":
+					return new Fox.Core.Value(collisionAttributes);
+				case "loadFox2FileListScriptPath":
+					return new Fox.Core.Value(loadFox2FileListScriptPath);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				case "parameters":
+					return new Fox.Core.Value(this.parameters[index]);
+				case "collisionAttributes":
+					return new Fox.Core.Value(this.collisionAttributes[index]);
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
+
+		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
+		{
+			switch (propertyName.CString)
+			{
+				case "resolution":
+					this.resolution = value.GetValueAsFloat();
+					return;
+				case "verticalThreshold":
+					this.verticalThreshold = value.GetValueAsFloat();
+					return;
+				case "doesDivideIslandWithSector":
+					this.doesDivideIslandWithSector = value.GetValueAsBool();
+					return;
+				case "doesHoleSimplification":
+					this.doesHoleSimplification = value.GetValueAsBool();
+					return;
+				case "holeSimplificationConvexThreshold":
+					this.holeSimplificationConvexThreshold = value.GetValueAsFloat();
+					return;
+				case "holeSimplificationObbExpandThreshold":
+					this.holeSimplificationObbExpandThreshold = value.GetValueAsFloat();
+					return;
+				case "holeSimplificationObbToAabbThreshold":
+					this.holeSimplificationObbToAabbThreshold = value.GetValueAsFloat();
+					return;
+				case "holeSimplificationSmoothingThreshold":
+					this.holeSimplificationSmoothingThreshold = value.GetValueAsFloat();
+					return;
+				case "isHoleSimplificationDoesNotClosePassage":
+					this.isHoleSimplificationDoesNotClosePassage = value.GetValueAsBool();
+					return;
+				case "holeSimplificationReduceCount":
+					this.holeSimplificationReduceCount = value.GetValueAsUInt32();
+					return;
+				case "doesAdjustSearchSpaceToNavmesh":
+					this.doesAdjustSearchSpaceToNavmesh = value.GetValueAsBool();
+					return;
+				case "doesGenerateFillNavVolumeInRadius":
+					this.doesGenerateFillNavVolumeInRadius = value.GetValueAsBool();
+					return;
+				case "roughGraphFilePath":
+					this.roughGraphFilePath = value.GetValueAsPath();
+					return;
+				case "roughGraphFilePtr":
+					this.roughGraphFilePtr = value.GetValueAsFilePtr();
+					return;
+				case "worldName":
+					this.worldName = value.GetValueAsString();
+					return;
+				case "maxFileSizeInKb":
+					this.maxFileSizeInKb = value.GetValueAsUInt32();
+					return;
+				case "sectorSizeHorizontal":
+					this.sectorSizeHorizontal = value.GetValueAsUInt32();
+					return;
+				case "tileSizeHorizontal":
+					this.tileSizeHorizontal = value.GetValueAsUInt32();
+					return;
+				case "searchSpaceBucketSizeHorizontal":
+					this.searchSpaceBucketSizeHorizontal = value.GetValueAsUInt32();
+					return;
+				case "loadFox2FileListScriptPath":
+					this.loadFox2FileListScriptPath = value.GetValueAsPath();
+					return;
+				default:
+					base.SetProperty(propertyName, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
+		{
+			switch (propertyName.CString)
+			{
+				case "parameters":
+					while(this.parameters.Count <= index) { this.parameters.Add(default(Fox.Navx.NavxNavigableParameter)); }
+					this.parameters[index] = value.GetValueAsEntityPtr<Fox.Navx.NavxNavigableParameter>();
+					return;
+				case "collisionAttributes":
+					while(this.collisionAttributes.Count <= index) { this.collisionAttributes.Add(default(Fox.Kernel.String)); }
+					this.collisionAttributes[index] = value.GetValueAsString();
+					return;
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+	}
 }

@@ -9,8 +9,8 @@ namespace Fox.Core
 {
     public partial class TransformData : Data
     {
-        protected partial bool Get_inheritTransform() => flags.HasFlag(TransformData_Flags.ENABLE_INHERIT_TRANSFORM);
-        protected partial void Set_inheritTransform(bool value)
+        private partial bool Get_inheritTransform() => flags.HasFlag(TransformData_Flags.ENABLE_INHERIT_TRANSFORM);
+        private partial void Set_inheritTransform(bool value)
         {
             if (value)
                 flags |= TransformData_Flags.ENABLE_INHERIT_TRANSFORM;
@@ -18,8 +18,8 @@ namespace Fox.Core
                 flags &= ~TransformData_Flags.ENABLE_INHERIT_TRANSFORM;
         }
 
-        protected partial bool Get_visibility() => flags.HasFlag(TransformData_Flags.ENABLE_VISIBILITY);
-        protected partial void Set_visibility(bool value)
+        private partial bool Get_visibility() => flags.HasFlag(TransformData_Flags.ENABLE_VISIBILITY);
+        private partial void Set_visibility(bool value)
         {
             if (value)
                 flags |= TransformData_Flags.ENABLE_VISIBILITY;
@@ -27,8 +27,8 @@ namespace Fox.Core
                 flags &= ~TransformData_Flags.ENABLE_VISIBILITY;
         }
 
-        protected partial bool Get_selection() => flags.HasFlag(TransformData_Flags.ENABLE_SELECTION);
-        protected partial void Set_selection(bool value)
+        private partial bool Get_selection() => flags.HasFlag(TransformData_Flags.ENABLE_SELECTION);
+        private partial void Set_selection(bool value)
         {
             if (value)
                 flags |= TransformData_Flags.ENABLE_SELECTION;
@@ -36,9 +36,9 @@ namespace Fox.Core
                 flags &= ~TransformData_Flags.ENABLE_SELECTION;
         }
 
-        protected partial UnityEngine.Matrix4x4 Get_worldMatrix() => throw new System.NotImplementedException();
+        private partial UnityEngine.Matrix4x4 Get_worldMatrix() => throw new System.NotImplementedException();
 
-        protected partial UnityEngine.Matrix4x4 Get_worldTransform() => throw new System.NotImplementedException();
+        private partial UnityEngine.Matrix4x4 Get_worldTransform() => throw new System.NotImplementedException();
 
         public void AddChild(TransformData transformData)
         {
@@ -47,41 +47,46 @@ namespace Fox.Core
 
         public void SetTransform(TransformEntity transform)
         {
-            this.transform = new EntityPtr<TransformEntity>(transform);
+            this.transform = transform;
             transform.SetOwner(this);
 
-            UpdateTransform();
+            UpdateTransformEntity();
+        }
+
+        private void UpdateTransformEntity()
+        {
+            if (inheritTransform)
+            {
+                gameObject.transform.localPosition = transform.translation;
+                gameObject.transform.localRotation = transform.rotQuat;
+                gameObject.transform.localScale = transform.scale;
+            }
+            else
+            {
+                gameObject.transform.position = transform.translation;
+                gameObject.transform.rotation = transform.rotQuat;
+                gameObject.transform.localScale = transform.scale;
+            }
         }
 
         public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
         {
-            UpdateTransform();
+            OnDeserializeTransformEntity();
 
             base.OnDeserializeEntity(gameObject, logger);
         }
 
-        private void UpdateTransform()
+        private void OnDeserializeTransformEntity()
         {
-            if (transform.IsNull())
-                SetTransform(TransformEntity.GetDefault());
+            if (transform is null)
+                return;
 
-            TransformEntity transformEntity = transform.Get();
+            TransformEntity transformEntity = transform;
             transformEntity.translation = Math.FoxToUnityVector3(transformEntity.translation);
             transformEntity.rotQuat = Math.FoxToUnityQuaternion(transformEntity.rotQuat);
             transformEntity.scale = transformEntity.scale;
 
-            if (inheritTransform)
-            {
-                gameObject.transform.localPosition = transformEntity.translation;
-                gameObject.transform.localRotation = transformEntity.rotQuat;
-                gameObject.transform.localScale = transformEntity.scale;
-            }
-            else
-            {
-                gameObject.transform.position = transformEntity.translation;
-                gameObject.transform.rotation = transformEntity.rotQuat;
-                gameObject.transform.localScale = transformEntity.scale;
-            }
+            UpdateTransformEntity();
         }
 
         public override void OverridePropertiesForExport(EntityExportContext context)
@@ -91,39 +96,33 @@ namespace Fox.Core
             // Get GameObject's parent
             UnityEngine.Transform transform = this.gameObject.GetComponent<UnityEngine.Transform>();
 
-            EntityHandle exportParent = EntityHandle.Empty;
+            Entity exportParent = null;
             UnityEngine.Transform parentTransform = transform.parent;
             if (parentTransform != null)
             {
                 TransformData parentTransformData = parentTransform.GetComponent<TransformData>();
                 if (parentTransformData != null)
                 {
-                    exportParent = EntityHandle.Get(parentTransformData);
+                    exportParent = parentTransformData;
                 }
             }
 
             context.OverrideProperty(nameof(parent), exportParent);
 
             // Get child GameObjects
-            var exportChildren = new DynamicArray<EntityHandle>();
+            var exportChildren = new DynamicArray<Entity>();
+
             foreach (UnityEngine.Transform child in transform)
             {
                 TransformData childTransformData = child.GetComponent<TransformData>();
                 if (childTransformData != null)
                 {
-                    var exportChild = EntityHandle.Get(childTransformData);
+                    Entity exportChild = childTransformData;
                     exportChildren.Add(exportChild);
                 }
             }
 
             context.OverrideProperty(nameof(children), exportChildren);
-        }
-
-        public virtual void Awake()
-        {
-            visibility = true;
-            inheritTransform = true;
-            selection = true;
         }
     }
 }

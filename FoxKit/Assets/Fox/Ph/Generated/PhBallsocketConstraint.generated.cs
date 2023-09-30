@@ -12,68 +12,68 @@ using Fox;
 
 namespace Fox.Ph
 {
-    [UnityEditor.InitializeOnLoad]
-    public partial class PhBallsocketConstraint : Fox.Ph.PhConstraint 
-    {
-        // Properties
-        public bool limitedFlag { get => Get_limitedFlag(); set { Set_limitedFlag(value); } }
-        protected partial bool Get_limitedFlag();
-        protected partial void Set_limitedFlag(bool value);
-        
-        public UnityEngine.Quaternion refA { get => Get_refA(); set { Set_refA(value); } }
-        protected partial UnityEngine.Quaternion Get_refA();
-        protected partial void Set_refA(UnityEngine.Quaternion value);
-        
-        public UnityEngine.Quaternion refB { get => Get_refB(); set { Set_refB(value); } }
-        protected partial UnityEngine.Quaternion Get_refB();
-        protected partial void Set_refB(UnityEngine.Quaternion value);
-        
-        public float limit { get => Get_limit(); set { Set_limit(value); } }
-        protected partial float Get_limit();
-        protected partial void Set_limit(float value);
-        
-        public bool springFlag { get => Get_springFlag(); set { Set_springFlag(value); } }
-        protected partial bool Get_springFlag();
-        protected partial void Set_springFlag(bool value);
-        
-        public bool springRefCustomFlag { get => Get_springRefCustomFlag(); set { Set_springRefCustomFlag(value); } }
-        protected partial bool Get_springRefCustomFlag();
-        protected partial void Set_springRefCustomFlag(bool value);
-        
-        public UnityEngine.Quaternion springRef { get => Get_springRef(); set { Set_springRef(value); } }
-        protected partial UnityEngine.Quaternion Get_springRef();
-        protected partial void Set_springRef(UnityEngine.Quaternion value);
-        
-        public float springConstant { get => Get_springConstant(); set { Set_springConstant(value); } }
-        protected partial float Get_springConstant();
-        protected partial void Set_springConstant(float value);
-        
-        public float flexibility { get => Get_flexibility(); set { Set_flexibility(value); } }
-        protected partial float Get_flexibility();
-        protected partial void Set_flexibility(float value);
-        
-        public bool stopTwist { get => Get_stopTwist(); set { Set_stopTwist(value); } }
-        protected partial bool Get_stopTwist();
-        protected partial void Set_stopTwist(bool value);
-        
-        // ClassInfos
-        public static new bool ClassInfoInitialized = false;
-        private static Fox.Core.EntityInfo classInfo;
-        public static new Fox.Core.EntityInfo ClassInfo
-        {
-            get
-            {
-                return classInfo;
-            }
-        }
-        public override Fox.Core.EntityInfo GetClassEntityInfo()
-        {
-            return classInfo;
-        }
-        static PhBallsocketConstraint()
-        {
-            if (Fox.Ph.PhConstraint.ClassInfoInitialized)
-                classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("PhBallsocketConstraint"), typeof(PhBallsocketConstraint), Fox.Ph.PhConstraint.ClassInfo, 0, "Ph", 0);
+	[UnityEditor.InitializeOnLoad]
+	public partial class PhBallsocketConstraint : Fox.Ph.PhConstraint
+	{
+		// Properties
+		public bool limitedFlag { get => Get_limitedFlag(); set { Set_limitedFlag(value); } }
+		private partial bool Get_limitedFlag();
+		private partial void Set_limitedFlag(bool value);
+		
+		public UnityEngine.Quaternion refA { get => Get_refA(); set { Set_refA(value); } }
+		private partial UnityEngine.Quaternion Get_refA();
+		private partial void Set_refA(UnityEngine.Quaternion value);
+		
+		public UnityEngine.Quaternion refB { get => Get_refB(); set { Set_refB(value); } }
+		private partial UnityEngine.Quaternion Get_refB();
+		private partial void Set_refB(UnityEngine.Quaternion value);
+		
+		public float limit { get => Get_limit(); set { Set_limit(value); } }
+		private partial float Get_limit();
+		private partial void Set_limit(float value);
+		
+		public bool springFlag { get => Get_springFlag(); set { Set_springFlag(value); } }
+		private partial bool Get_springFlag();
+		private partial void Set_springFlag(bool value);
+		
+		public bool springRefCustomFlag { get => Get_springRefCustomFlag(); set { Set_springRefCustomFlag(value); } }
+		private partial bool Get_springRefCustomFlag();
+		private partial void Set_springRefCustomFlag(bool value);
+		
+		public UnityEngine.Quaternion springRef { get => Get_springRef(); set { Set_springRef(value); } }
+		private partial UnityEngine.Quaternion Get_springRef();
+		private partial void Set_springRef(UnityEngine.Quaternion value);
+		
+		public float springConstant { get => Get_springConstant(); set { Set_springConstant(value); } }
+		private partial float Get_springConstant();
+		private partial void Set_springConstant(float value);
+		
+		public float flexibility { get => Get_flexibility(); set { Set_flexibility(value); } }
+		private partial float Get_flexibility();
+		private partial void Set_flexibility(float value);
+		
+		public bool stopTwist { get => Get_stopTwist(); set { Set_stopTwist(value); } }
+		private partial bool Get_stopTwist();
+		private partial void Set_stopTwist(bool value);
+		
+		// ClassInfos
+		public static new bool ClassInfoInitialized = false;
+		private static Fox.Core.EntityInfo classInfo;
+		public static new Fox.Core.EntityInfo ClassInfo
+		{
+			get
+			{
+				return classInfo;
+			}
+		}
+		public override Fox.Core.EntityInfo GetClassEntityInfo()
+		{
+			return classInfo;
+		}
+		static PhBallsocketConstraint()
+		{
+			if (Fox.Ph.PhConstraint.ClassInfoInitialized)
+				classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("PhBallsocketConstraint"), typeof(PhBallsocketConstraint), Fox.Ph.PhConstraint.ClassInfo, 0, "Ph", 0);
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("limitedFlag"), Fox.Core.PropertyInfo.PropertyType.Bool, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Accessor));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("refA"), Fox.Core.PropertyInfo.PropertyType.Quat, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Accessor));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("refB"), Fox.Core.PropertyInfo.PropertyType.Quat, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Accessor));
@@ -85,71 +85,118 @@ namespace Fox.Ph
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("flexibility"), Fox.Core.PropertyInfo.PropertyType.Float, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Accessor));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("stopTwist"), Fox.Core.PropertyInfo.PropertyType.Bool, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Accessor));
 
-            ClassInfoInitialized = true;
-        }
+			ClassInfoInitialized = true;
+		}
 
-        // Constructors
+		// Constructors
 		public PhBallsocketConstraint(ulong id) : base(id) { }
 		public PhBallsocketConstraint() : base() { }
-        
-        public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "limitedFlag":
-                    this.limitedFlag = value.GetValueAsBool();
-                    return;
-                case "refA":
-                    this.refA = value.GetValueAsQuat();
-                    return;
-                case "refB":
-                    this.refB = value.GetValueAsQuat();
-                    return;
-                case "limit":
-                    this.limit = value.GetValueAsFloat();
-                    return;
-                case "springFlag":
-                    this.springFlag = value.GetValueAsBool();
-                    return;
-                case "springRefCustomFlag":
-                    this.springRefCustomFlag = value.GetValueAsBool();
-                    return;
-                case "springRef":
-                    this.springRef = value.GetValueAsQuat();
-                    return;
-                case "springConstant":
-                    this.springConstant = value.GetValueAsFloat();
-                    return;
-                case "flexibility":
-                    this.flexibility = value.GetValueAsFloat();
-                    return;
-                case "stopTwist":
-                    this.stopTwist = value.GetValueAsBool();
-                    return;
-                default:
-                    base.SetProperty(propertyName, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, index, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, key, value);
-                    return;
-            }
-        }
-    }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "limitedFlag":
+					return new Fox.Core.Value(limitedFlag);
+				case "refA":
+					return new Fox.Core.Value(refA);
+				case "refB":
+					return new Fox.Core.Value(refB);
+				case "limit":
+					return new Fox.Core.Value(limit);
+				case "springFlag":
+					return new Fox.Core.Value(springFlag);
+				case "springRefCustomFlag":
+					return new Fox.Core.Value(springRefCustomFlag);
+				case "springRef":
+					return new Fox.Core.Value(springRef);
+				case "springConstant":
+					return new Fox.Core.Value(springConstant);
+				case "flexibility":
+					return new Fox.Core.Value(flexibility);
+				case "stopTwist":
+					return new Fox.Core.Value(stopTwist);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
+
+		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
+		{
+			switch (propertyName.CString)
+			{
+				case "limitedFlag":
+					this.limitedFlag = value.GetValueAsBool();
+					return;
+				case "refA":
+					this.refA = value.GetValueAsQuat();
+					return;
+				case "refB":
+					this.refB = value.GetValueAsQuat();
+					return;
+				case "limit":
+					this.limit = value.GetValueAsFloat();
+					return;
+				case "springFlag":
+					this.springFlag = value.GetValueAsBool();
+					return;
+				case "springRefCustomFlag":
+					this.springRefCustomFlag = value.GetValueAsBool();
+					return;
+				case "springRef":
+					this.springRef = value.GetValueAsQuat();
+					return;
+				case "springConstant":
+					this.springConstant = value.GetValueAsFloat();
+					return;
+				case "flexibility":
+					this.flexibility = value.GetValueAsFloat();
+					return;
+				case "stopTwist":
+					this.stopTwist = value.GetValueAsBool();
+					return;
+				default:
+					base.SetProperty(propertyName, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+	}
 }

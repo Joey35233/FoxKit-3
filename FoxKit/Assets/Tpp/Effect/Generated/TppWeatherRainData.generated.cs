@@ -12,99 +12,136 @@ using Fox;
 
 namespace Tpp.Effect
 {
-    [UnityEditor.InitializeOnLoad]
-    public partial class TppWeatherRainData : Fox.Core.Data 
-    {
-        // Properties
-        [field: UnityEngine.SerializeField]
-        public Fox.Core.EntityLink rainFilter { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Core.EntityLink floorRainSplash { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Core.FilePtr vfxFileFallRain { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Core.FilePtr vfxFileFallRainSlow { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Core.FilePtr vfxFileCameraFog { get; set; }
-        
-        // ClassInfos
-        public static new bool ClassInfoInitialized = false;
-        private static Fox.Core.EntityInfo classInfo;
-        public static new Fox.Core.EntityInfo ClassInfo
-        {
-            get
-            {
-                return classInfo;
-            }
-        }
-        public override Fox.Core.EntityInfo GetClassEntityInfo()
-        {
-            return classInfo;
-        }
-        static TppWeatherRainData()
-        {
-            if (Fox.Core.Data.ClassInfoInitialized)
-                classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("TppWeatherRainData"), typeof(TppWeatherRainData), Fox.Core.Data.ClassInfo, 200, "TppEffect", 4);
+	[UnityEditor.InitializeOnLoad]
+	public partial class TppWeatherRainData : Fox.Core.Data
+	{
+		// Properties
+		[field: UnityEngine.SerializeField]
+		public Fox.Core.EntityLink rainFilter { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Core.EntityLink floorRainSplash { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Core.FilePtr vfxFileFallRain { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Core.FilePtr vfxFileFallRainSlow { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Core.FilePtr vfxFileCameraFog { get; set; }
+		
+		// ClassInfos
+		public static new bool ClassInfoInitialized = false;
+		private static Fox.Core.EntityInfo classInfo;
+		public static new Fox.Core.EntityInfo ClassInfo
+		{
+			get
+			{
+				return classInfo;
+			}
+		}
+		public override Fox.Core.EntityInfo GetClassEntityInfo()
+		{
+			return classInfo;
+		}
+		static TppWeatherRainData()
+		{
+			if (Fox.Core.Data.ClassInfoInitialized)
+				classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("TppWeatherRainData"), typeof(TppWeatherRainData), Fox.Core.Data.ClassInfo, 200, "TppEffect", 4);
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("rainFilter"), Fox.Core.PropertyInfo.PropertyType.EntityLink, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("floorRainSplash"), Fox.Core.PropertyInfo.PropertyType.EntityLink, 160, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("vfxFileFallRain"), Fox.Core.PropertyInfo.PropertyType.FilePtr, 200, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("vfxFileFallRainSlow"), Fox.Core.PropertyInfo.PropertyType.FilePtr, 224, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("vfxFileCameraFog"), Fox.Core.PropertyInfo.PropertyType.FilePtr, 248, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 
-            ClassInfoInitialized = true;
-        }
+			ClassInfoInitialized = true;
+		}
 
-        // Constructors
+		// Constructors
 		public TppWeatherRainData(ulong id) : base(id) { }
 		public TppWeatherRainData() : base() { }
-        
-        public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "rainFilter":
-                    this.rainFilter = value.GetValueAsEntityLink();
-                    return;
-                case "floorRainSplash":
-                    this.floorRainSplash = value.GetValueAsEntityLink();
-                    return;
-                case "vfxFileFallRain":
-                    this.vfxFileFallRain = value.GetValueAsFilePtr();
-                    return;
-                case "vfxFileFallRainSlow":
-                    this.vfxFileFallRainSlow = value.GetValueAsFilePtr();
-                    return;
-                case "vfxFileCameraFog":
-                    this.vfxFileCameraFog = value.GetValueAsFilePtr();
-                    return;
-                default:
-                    base.SetProperty(propertyName, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, index, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, key, value);
-                    return;
-            }
-        }
-    }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "rainFilter":
+					return new Fox.Core.Value(rainFilter);
+				case "floorRainSplash":
+					return new Fox.Core.Value(floorRainSplash);
+				case "vfxFileFallRain":
+					return new Fox.Core.Value(vfxFileFallRain);
+				case "vfxFileFallRainSlow":
+					return new Fox.Core.Value(vfxFileFallRainSlow);
+				case "vfxFileCameraFog":
+					return new Fox.Core.Value(vfxFileCameraFog);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
+
+		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
+		{
+			switch (propertyName.CString)
+			{
+				case "rainFilter":
+					this.rainFilter = value.GetValueAsEntityLink();
+					return;
+				case "floorRainSplash":
+					this.floorRainSplash = value.GetValueAsEntityLink();
+					return;
+				case "vfxFileFallRain":
+					this.vfxFileFallRain = value.GetValueAsFilePtr();
+					return;
+				case "vfxFileFallRainSlow":
+					this.vfxFileFallRainSlow = value.GetValueAsFilePtr();
+					return;
+				case "vfxFileCameraFog":
+					this.vfxFileCameraFog = value.GetValueAsFilePtr();
+					return;
+				default:
+					base.SetProperty(propertyName, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+	}
 }

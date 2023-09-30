@@ -12,73 +12,73 @@ using Fox;
 
 namespace Tpp.GameKit
 {
-    [UnityEditor.InitializeOnLoad]
-    public partial class TppObjectBrushPluginSkeletonModel : Fox.GameKit.ObjectBrushPlugin 
-    {
-        // Properties
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.DynamicArray<Fox.Core.FilePtr> modelFile { get; set; } = new Fox.Kernel.DynamicArray<Fox.Core.FilePtr>();
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.DynamicArray<Fox.Core.FilePtr> geomFile { get; set; } = new Fox.Kernel.DynamicArray<Fox.Core.FilePtr>();
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.DynamicArray<Fox.Kernel.Path> animFile { get; set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.Path>();
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.DynamicArray<Fox.Kernel.Path> animWindyFile { get; set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.Path>();
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Core.FilePtr mtarFile { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.String soundSeType { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float minSize { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float maxSize { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public bool isGeomActivity { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float thinkOutRate { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float extensionRadius { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint reserveResourcePlugin { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint reserveResourcePerBlock { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.StaticArray<float> lodLength { get; set; } = new Fox.Kernel.StaticArray<float>(4);
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.StaticArray<float> lodLengthForHighEnd { get; set; } = new Fox.Kernel.StaticArray<float>(4);
-        
-        // ClassInfos
-        public static new bool ClassInfoInitialized = false;
-        private static Fox.Core.EntityInfo classInfo;
-        public static new Fox.Core.EntityInfo ClassInfo
-        {
-            get
-            {
-                return classInfo;
-            }
-        }
-        public override Fox.Core.EntityInfo GetClassEntityInfo()
-        {
-            return classInfo;
-        }
-        static TppObjectBrushPluginSkeletonModel()
-        {
-            if (Fox.GameKit.ObjectBrushPlugin.ClassInfoInitialized)
-                classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("TppObjectBrushPluginSkeletonModel"), typeof(TppObjectBrushPluginSkeletonModel), Fox.GameKit.ObjectBrushPlugin.ClassInfo, 248, null, 7);
+	[UnityEditor.InitializeOnLoad]
+	public partial class TppObjectBrushPluginSkeletonModel : Fox.GameKit.ObjectBrushPlugin
+	{
+		// Properties
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.DynamicArray<Fox.Core.FilePtr> modelFile { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Core.FilePtr>();
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.DynamicArray<Fox.Core.FilePtr> geomFile { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Core.FilePtr>();
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.DynamicArray<Fox.Kernel.Path> animFile { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.Path>();
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.DynamicArray<Fox.Kernel.Path> animWindyFile { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.Path>();
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Core.FilePtr mtarFile { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.String soundSeType { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float minSize { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float maxSize { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public bool isGeomActivity { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float thinkOutRate { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float extensionRadius { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint reserveResourcePlugin { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint reserveResourcePerBlock { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.StaticArray<float> lodLength { get; private set; } = new Fox.Kernel.StaticArray<float>(4);
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.StaticArray<float> lodLengthForHighEnd { get; private set; } = new Fox.Kernel.StaticArray<float>(4);
+		
+		// ClassInfos
+		public static new bool ClassInfoInitialized = false;
+		private static Fox.Core.EntityInfo classInfo;
+		public static new Fox.Core.EntityInfo ClassInfo
+		{
+			get
+			{
+				return classInfo;
+			}
+		}
+		public override Fox.Core.EntityInfo GetClassEntityInfo()
+		{
+			return classInfo;
+		}
+		static TppObjectBrushPluginSkeletonModel()
+		{
+			if (Fox.GameKit.ObjectBrushPlugin.ClassInfoInitialized)
+				classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("TppObjectBrushPluginSkeletonModel"), typeof(TppObjectBrushPluginSkeletonModel), Fox.GameKit.ObjectBrushPlugin.ClassInfo, 248, null, 7);
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("modelFile"), Fox.Core.PropertyInfo.PropertyType.FilePtr, 144, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("geomFile"), Fox.Core.PropertyInfo.PropertyType.FilePtr, 160, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("animFile"), Fox.Core.PropertyInfo.PropertyType.Path, 176, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
@@ -95,92 +95,161 @@ namespace Tpp.GameKit
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("lodLength"), Fox.Core.PropertyInfo.PropertyType.Float, 284, 4, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("lodLengthForHighEnd"), Fox.Core.PropertyInfo.PropertyType.Float, 300, 4, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 
-            ClassInfoInitialized = true;
-        }
+			ClassInfoInitialized = true;
+		}
 
-        // Constructors
+		// Constructors
 		public TppObjectBrushPluginSkeletonModel(ulong id) : base(id) { }
 		public TppObjectBrushPluginSkeletonModel() : base() { }
-        
-        public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "mtarFile":
-                    this.mtarFile = value.GetValueAsFilePtr();
-                    return;
-                case "soundSeType":
-                    this.soundSeType = value.GetValueAsString();
-                    return;
-                case "minSize":
-                    this.minSize = value.GetValueAsFloat();
-                    return;
-                case "maxSize":
-                    this.maxSize = value.GetValueAsFloat();
-                    return;
-                case "isGeomActivity":
-                    this.isGeomActivity = value.GetValueAsBool();
-                    return;
-                case "thinkOutRate":
-                    this.thinkOutRate = value.GetValueAsFloat();
-                    return;
-                case "extensionRadius":
-                    this.extensionRadius = value.GetValueAsFloat();
-                    return;
-                case "reserveResourcePlugin":
-                    this.reserveResourcePlugin = value.GetValueAsUInt32();
-                    return;
-                case "reserveResourcePerBlock":
-                    this.reserveResourcePerBlock = value.GetValueAsUInt32();
-                    return;
-                default:
-                    base.SetProperty(propertyName, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "modelFile":
-                    while(this.modelFile.Count <= index) { this.modelFile.Add(default(Fox.Core.FilePtr)); }
-                    this.modelFile[index] = value.GetValueAsFilePtr();
-                    return;
-                case "geomFile":
-                    while(this.geomFile.Count <= index) { this.geomFile.Add(default(Fox.Core.FilePtr)); }
-                    this.geomFile[index] = value.GetValueAsFilePtr();
-                    return;
-                case "animFile":
-                    while(this.animFile.Count <= index) { this.animFile.Add(default(Fox.Kernel.Path)); }
-                    this.animFile[index] = value.GetValueAsPath();
-                    return;
-                case "animWindyFile":
-                    while(this.animWindyFile.Count <= index) { this.animWindyFile.Add(default(Fox.Kernel.Path)); }
-                    this.animWindyFile[index] = value.GetValueAsPath();
-                    return;
-                case "lodLength":
-                    
-                    this.lodLength[index] = value.GetValueAsFloat();
-                    return;
-                case "lodLengthForHighEnd":
-                    
-                    this.lodLengthForHighEnd[index] = value.GetValueAsFloat();
-                    return;
-                default:
-                    base.SetPropertyElement(propertyName, index, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, key, value);
-                    return;
-            }
-        }
-    }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "modelFile":
+					return new Fox.Core.Value(modelFile);
+				case "geomFile":
+					return new Fox.Core.Value(geomFile);
+				case "animFile":
+					return new Fox.Core.Value(animFile);
+				case "animWindyFile":
+					return new Fox.Core.Value(animWindyFile);
+				case "mtarFile":
+					return new Fox.Core.Value(mtarFile);
+				case "soundSeType":
+					return new Fox.Core.Value(soundSeType);
+				case "minSize":
+					return new Fox.Core.Value(minSize);
+				case "maxSize":
+					return new Fox.Core.Value(maxSize);
+				case "isGeomActivity":
+					return new Fox.Core.Value(isGeomActivity);
+				case "thinkOutRate":
+					return new Fox.Core.Value(thinkOutRate);
+				case "extensionRadius":
+					return new Fox.Core.Value(extensionRadius);
+				case "reserveResourcePlugin":
+					return new Fox.Core.Value(reserveResourcePlugin);
+				case "reserveResourcePerBlock":
+					return new Fox.Core.Value(reserveResourcePerBlock);
+				case "lodLength":
+					return new Fox.Core.Value(lodLength);
+				case "lodLengthForHighEnd":
+					return new Fox.Core.Value(lodLengthForHighEnd);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				case "modelFile":
+					return new Fox.Core.Value(this.modelFile[index]);
+				case "geomFile":
+					return new Fox.Core.Value(this.geomFile[index]);
+				case "animFile":
+					return new Fox.Core.Value(this.animFile[index]);
+				case "animWindyFile":
+					return new Fox.Core.Value(this.animWindyFile[index]);
+				case "lodLength":
+					return new Fox.Core.Value(this.lodLength[index]);
+				case "lodLengthForHighEnd":
+					return new Fox.Core.Value(this.lodLengthForHighEnd[index]);
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
+
+		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
+		{
+			switch (propertyName.CString)
+			{
+				case "mtarFile":
+					this.mtarFile = value.GetValueAsFilePtr();
+					return;
+				case "soundSeType":
+					this.soundSeType = value.GetValueAsString();
+					return;
+				case "minSize":
+					this.minSize = value.GetValueAsFloat();
+					return;
+				case "maxSize":
+					this.maxSize = value.GetValueAsFloat();
+					return;
+				case "isGeomActivity":
+					this.isGeomActivity = value.GetValueAsBool();
+					return;
+				case "thinkOutRate":
+					this.thinkOutRate = value.GetValueAsFloat();
+					return;
+				case "extensionRadius":
+					this.extensionRadius = value.GetValueAsFloat();
+					return;
+				case "reserveResourcePlugin":
+					this.reserveResourcePlugin = value.GetValueAsUInt32();
+					return;
+				case "reserveResourcePerBlock":
+					this.reserveResourcePerBlock = value.GetValueAsUInt32();
+					return;
+				default:
+					base.SetProperty(propertyName, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
+		{
+			switch (propertyName.CString)
+			{
+				case "modelFile":
+					while(this.modelFile.Count <= index) { this.modelFile.Add(default(Fox.Core.FilePtr)); }
+					this.modelFile[index] = value.GetValueAsFilePtr();
+					return;
+				case "geomFile":
+					while(this.geomFile.Count <= index) { this.geomFile.Add(default(Fox.Core.FilePtr)); }
+					this.geomFile[index] = value.GetValueAsFilePtr();
+					return;
+				case "animFile":
+					while(this.animFile.Count <= index) { this.animFile.Add(default(Fox.Kernel.Path)); }
+					this.animFile[index] = value.GetValueAsPath();
+					return;
+				case "animWindyFile":
+					while(this.animWindyFile.Count <= index) { this.animWindyFile.Add(default(Fox.Kernel.Path)); }
+					this.animWindyFile[index] = value.GetValueAsPath();
+					return;
+				case "lodLength":
+					
+					this.lodLength[index] = value.GetValueAsFloat();
+					return;
+				case "lodLengthForHighEnd":
+					
+					this.lodLengthForHighEnd[index] = value.GetValueAsFloat();
+					return;
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+	}
 }

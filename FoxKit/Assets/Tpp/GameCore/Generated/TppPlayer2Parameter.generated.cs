@@ -12,58 +12,58 @@ using Fox;
 
 namespace Tpp.GameCore
 {
-    [UnityEditor.InitializeOnLoad]
-    public partial class TppPlayer2Parameter : Fox.Core.DataElement 
-    {
-        // Properties
-        [field: UnityEngine.SerializeField]
-        public Fox.Core.FilePtr motionGraphFile { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.StringMap<Fox.Core.FilePtr> vfxFiles { get; set; } = new Fox.Kernel.StringMap<Fox.Core.FilePtr>();
-        
-        [field: UnityEngine.SerializeField]
-        public uint lifeMax { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float lifeRecoveryPerSecond { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float respawnTime { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint clipCount { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float fireInterval { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float lifeRecoveryCooldownTimer { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.String partsType { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.StringMap<byte> TODO_trapTags { get; set; } = new Fox.Kernel.StringMap<byte>();
-        
-        // ClassInfos
-        public static new bool ClassInfoInitialized = false;
-        private static Fox.Core.EntityInfo classInfo;
-        public static new Fox.Core.EntityInfo ClassInfo
-        {
-            get
-            {
-                return classInfo;
-            }
-        }
-        public override Fox.Core.EntityInfo GetClassEntityInfo()
-        {
-            return classInfo;
-        }
-        static TppPlayer2Parameter()
-        {
-            if (Fox.Core.DataElement.ClassInfoInitialized)
-                classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("TppPlayer2Parameter"), typeof(TppPlayer2Parameter), Fox.Core.DataElement.ClassInfo, 184, null, 5);
+	[UnityEditor.InitializeOnLoad]
+	public partial class TppPlayer2Parameter : Fox.Core.DataElement
+	{
+		// Properties
+		[field: UnityEngine.SerializeField]
+		public Fox.Core.FilePtr motionGraphFile { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.StringMap<Fox.Core.FilePtr> vfxFiles { get; private set; } = new Fox.Kernel.StringMap<Fox.Core.FilePtr>();
+		
+		[field: UnityEngine.SerializeField]
+		public uint lifeMax { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float lifeRecoveryPerSecond { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float respawnTime { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint clipCount { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float fireInterval { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float lifeRecoveryCooldownTimer { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.String partsType { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.StringMap<byte> TODO_trapTags { get; private set; } = new Fox.Kernel.StringMap<byte>();
+		
+		// ClassInfos
+		public static new bool ClassInfoInitialized = false;
+		private static Fox.Core.EntityInfo classInfo;
+		public static new Fox.Core.EntityInfo ClassInfo
+		{
+			get
+			{
+				return classInfo;
+			}
+		}
+		public override Fox.Core.EntityInfo GetClassEntityInfo()
+		{
+			return classInfo;
+		}
+		static TppPlayer2Parameter()
+		{
+			if (Fox.Core.DataElement.ClassInfoInitialized)
+				classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("TppPlayer2Parameter"), typeof(TppPlayer2Parameter), Fox.Core.DataElement.ClassInfo, 184, null, 5);
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("motionGraphFile"), Fox.Core.PropertyInfo.PropertyType.FilePtr, 56, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("vfxFiles"), Fox.Core.PropertyInfo.PropertyType.FilePtr, 80, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("lifeMax"), Fox.Core.PropertyInfo.PropertyType.UInt32, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
@@ -75,71 +75,122 @@ namespace Tpp.GameCore
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("partsType"), Fox.Core.PropertyInfo.PropertyType.String, 152, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("TODO_trapTags"), Fox.Core.PropertyInfo.PropertyType.UInt8, 160, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 
-            ClassInfoInitialized = true;
-        }
+			ClassInfoInitialized = true;
+		}
 
-        // Constructors
+		// Constructors
 		public TppPlayer2Parameter(ulong id) : base(id) { }
 		public TppPlayer2Parameter() : base() { }
-        
-        public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "motionGraphFile":
-                    this.motionGraphFile = value.GetValueAsFilePtr();
-                    return;
-                case "lifeMax":
-                    this.lifeMax = value.GetValueAsUInt32();
-                    return;
-                case "lifeRecoveryPerSecond":
-                    this.lifeRecoveryPerSecond = value.GetValueAsFloat();
-                    return;
-                case "respawnTime":
-                    this.respawnTime = value.GetValueAsFloat();
-                    return;
-                case "clipCount":
-                    this.clipCount = value.GetValueAsUInt32();
-                    return;
-                case "fireInterval":
-                    this.fireInterval = value.GetValueAsFloat();
-                    return;
-                case "lifeRecoveryCooldownTimer":
-                    this.lifeRecoveryCooldownTimer = value.GetValueAsFloat();
-                    return;
-                case "partsType":
-                    this.partsType = value.GetValueAsString();
-                    return;
-                default:
-                    base.SetProperty(propertyName, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, index, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "vfxFiles":
-                    this.vfxFiles.Insert(key, value.GetValueAsFilePtr());
-                    return;
-                case "TODO_trapTags":
-                    this.TODO_trapTags.Insert(key, value.GetValueAsUInt8());
-                    return;
-                default:
-                    base.SetPropertyElement(propertyName, key, value);
-                    return;
-            }
-        }
-    }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "motionGraphFile":
+					return new Fox.Core.Value(motionGraphFile);
+				case "vfxFiles":
+					return new Fox.Core.Value((Fox.Kernel.IStringMap)vfxFiles);
+				case "lifeMax":
+					return new Fox.Core.Value(lifeMax);
+				case "lifeRecoveryPerSecond":
+					return new Fox.Core.Value(lifeRecoveryPerSecond);
+				case "respawnTime":
+					return new Fox.Core.Value(respawnTime);
+				case "clipCount":
+					return new Fox.Core.Value(clipCount);
+				case "fireInterval":
+					return new Fox.Core.Value(fireInterval);
+				case "lifeRecoveryCooldownTimer":
+					return new Fox.Core.Value(lifeRecoveryCooldownTimer);
+				case "partsType":
+					return new Fox.Core.Value(partsType);
+				case "TODO_trapTags":
+					return new Fox.Core.Value((Fox.Kernel.IStringMap)TODO_trapTags);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				case "vfxFiles":
+					return new Fox.Core.Value(this.vfxFiles[key]);
+				case "TODO_trapTags":
+					return new Fox.Core.Value(this.TODO_trapTags[key]);
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
+
+		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
+		{
+			switch (propertyName.CString)
+			{
+				case "motionGraphFile":
+					this.motionGraphFile = value.GetValueAsFilePtr();
+					return;
+				case "lifeMax":
+					this.lifeMax = value.GetValueAsUInt32();
+					return;
+				case "lifeRecoveryPerSecond":
+					this.lifeRecoveryPerSecond = value.GetValueAsFloat();
+					return;
+				case "respawnTime":
+					this.respawnTime = value.GetValueAsFloat();
+					return;
+				case "clipCount":
+					this.clipCount = value.GetValueAsUInt32();
+					return;
+				case "fireInterval":
+					this.fireInterval = value.GetValueAsFloat();
+					return;
+				case "lifeRecoveryCooldownTimer":
+					this.lifeRecoveryCooldownTimer = value.GetValueAsFloat();
+					return;
+				case "partsType":
+					this.partsType = value.GetValueAsString();
+					return;
+				default:
+					base.SetProperty(propertyName, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
+		{
+			switch (propertyName.CString)
+			{
+				case "vfxFiles":
+					this.vfxFiles.Insert(key, value.GetValueAsFilePtr());
+					return;
+				case "TODO_trapTags":
+					this.TODO_trapTags.Insert(key, value.GetValueAsUInt8());
+					return;
+				default:
+					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+	}
 }

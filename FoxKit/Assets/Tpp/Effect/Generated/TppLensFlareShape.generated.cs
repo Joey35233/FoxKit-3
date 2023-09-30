@@ -12,115 +12,115 @@ using Fox;
 
 namespace Tpp.Effect
 {
-    [UnityEditor.InitializeOnLoad]
-    public partial class TppLensFlareShape : Fox.Core.TransformData 
-    {
-        // Properties
-        [field: UnityEngine.SerializeField]
-        public Fox.Core.EntityLink material { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float width { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float height { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public UnityEngine.Color baseColor { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public TppLensFlareShapeOffsetType offsetType { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float offsetScale { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float baseOffsetX { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float baseOffsetY { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public TppLensFlareShapeRotateType rotateType { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float baseRotate { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float screenSpaceRotSpeedX { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float screenSpaceRotSpeedY { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Core.EntityLink screenSpaceRotField { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Core.EntityLink scaleFieldX { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Core.EntityLink scaleFieldY { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public bool scaleFieldPickSunPositionFlag { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Core.EntityLink alphaField { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public bool alphaFieldPickSunPositionFlag { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float shieldFadeOutTime { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float shieldFadeInTime { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Core.EntityLink angleScaleGraphX { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Core.EntityLink angleScaleGraphY { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Core.EntityLink angleAlphaGraph { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public TppLensFlareShapeDistanceScalingMode distanceScaling { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float limitDistance { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public bool notDrawMultiple { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.String seName { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float seCallThreshold { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public bool scaleOnZoom { get; set; }
-        
-        // ClassInfos
-        public static new bool ClassInfoInitialized = false;
-        private static Fox.Core.EntityInfo classInfo;
-        public static new Fox.Core.EntityInfo ClassInfo
-        {
-            get
-            {
-                return classInfo;
-            }
-        }
-        public override Fox.Core.EntityInfo GetClassEntityInfo()
-        {
-            return classInfo;
-        }
-        static TppLensFlareShape()
-        {
-            if (Fox.Core.TransformData.ClassInfoInitialized)
-                classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("TppLensFlareShape"), typeof(TppLensFlareShape), Fox.Core.TransformData.ClassInfo, 672, null, 11);
+	[UnityEditor.InitializeOnLoad]
+	public partial class TppLensFlareShape : Fox.Core.TransformData
+	{
+		// Properties
+		[field: UnityEngine.SerializeField]
+		public Fox.Core.EntityLink material { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float width { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float height { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public UnityEngine.Color baseColor { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public TppLensFlareShapeOffsetType offsetType { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float offsetScale { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float baseOffsetX { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float baseOffsetY { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public TppLensFlareShapeRotateType rotateType { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float baseRotate { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float screenSpaceRotSpeedX { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float screenSpaceRotSpeedY { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Core.EntityLink screenSpaceRotField { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Core.EntityLink scaleFieldX { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Core.EntityLink scaleFieldY { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public bool scaleFieldPickSunPositionFlag { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Core.EntityLink alphaField { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public bool alphaFieldPickSunPositionFlag { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float shieldFadeOutTime { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float shieldFadeInTime { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Core.EntityLink angleScaleGraphX { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Core.EntityLink angleScaleGraphY { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Core.EntityLink angleAlphaGraph { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public TppLensFlareShapeDistanceScalingMode distanceScaling { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float limitDistance { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public bool notDrawMultiple { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.String seName { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float seCallThreshold { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public bool scaleOnZoom { get; set; }
+		
+		// ClassInfos
+		public static new bool ClassInfoInitialized = false;
+		private static Fox.Core.EntityInfo classInfo;
+		public static new Fox.Core.EntityInfo ClassInfo
+		{
+			get
+			{
+				return classInfo;
+			}
+		}
+		public override Fox.Core.EntityInfo GetClassEntityInfo()
+		{
+			return classInfo;
+		}
+		static TppLensFlareShape()
+		{
+			if (Fox.Core.TransformData.ClassInfoInitialized)
+				classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("TppLensFlareShape"), typeof(TppLensFlareShape), Fox.Core.TransformData.ClassInfo, 672, null, 11);
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("material"), Fox.Core.PropertyInfo.PropertyType.EntityLink, 304, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("width"), Fox.Core.PropertyInfo.PropertyType.Float, 344, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("height"), Fox.Core.PropertyInfo.PropertyType.Float, 348, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
@@ -151,128 +151,213 @@ namespace Tpp.Effect
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("seCallThreshold"), Fox.Core.PropertyInfo.PropertyType.Float, 728, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("scaleOnZoom"), Fox.Core.PropertyInfo.PropertyType.Bool, 732, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 
-            ClassInfoInitialized = true;
-        }
+			ClassInfoInitialized = true;
+		}
 
-        // Constructors
+		// Constructors
 		public TppLensFlareShape(ulong id) : base(id) { }
 		public TppLensFlareShape() : base() { }
-        
-        public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "material":
-                    this.material = value.GetValueAsEntityLink();
-                    return;
-                case "width":
-                    this.width = value.GetValueAsFloat();
-                    return;
-                case "height":
-                    this.height = value.GetValueAsFloat();
-                    return;
-                case "baseColor":
-                    this.baseColor = value.GetValueAsColor();
-                    return;
-                case "offsetType":
-                    this.offsetType = (TppLensFlareShapeOffsetType)value.GetValueAsInt32();
-                    return;
-                case "offsetScale":
-                    this.offsetScale = value.GetValueAsFloat();
-                    return;
-                case "baseOffsetX":
-                    this.baseOffsetX = value.GetValueAsFloat();
-                    return;
-                case "baseOffsetY":
-                    this.baseOffsetY = value.GetValueAsFloat();
-                    return;
-                case "rotateType":
-                    this.rotateType = (TppLensFlareShapeRotateType)value.GetValueAsInt32();
-                    return;
-                case "baseRotate":
-                    this.baseRotate = value.GetValueAsFloat();
-                    return;
-                case "screenSpaceRotSpeedX":
-                    this.screenSpaceRotSpeedX = value.GetValueAsFloat();
-                    return;
-                case "screenSpaceRotSpeedY":
-                    this.screenSpaceRotSpeedY = value.GetValueAsFloat();
-                    return;
-                case "screenSpaceRotField":
-                    this.screenSpaceRotField = value.GetValueAsEntityLink();
-                    return;
-                case "scaleFieldX":
-                    this.scaleFieldX = value.GetValueAsEntityLink();
-                    return;
-                case "scaleFieldY":
-                    this.scaleFieldY = value.GetValueAsEntityLink();
-                    return;
-                case "scaleFieldPickSunPositionFlag":
-                    this.scaleFieldPickSunPositionFlag = value.GetValueAsBool();
-                    return;
-                case "alphaField":
-                    this.alphaField = value.GetValueAsEntityLink();
-                    return;
-                case "alphaFieldPickSunPositionFlag":
-                    this.alphaFieldPickSunPositionFlag = value.GetValueAsBool();
-                    return;
-                case "shieldFadeOutTime":
-                    this.shieldFadeOutTime = value.GetValueAsFloat();
-                    return;
-                case "shieldFadeInTime":
-                    this.shieldFadeInTime = value.GetValueAsFloat();
-                    return;
-                case "angleScaleGraphX":
-                    this.angleScaleGraphX = value.GetValueAsEntityLink();
-                    return;
-                case "angleScaleGraphY":
-                    this.angleScaleGraphY = value.GetValueAsEntityLink();
-                    return;
-                case "angleAlphaGraph":
-                    this.angleAlphaGraph = value.GetValueAsEntityLink();
-                    return;
-                case "distanceScaling":
-                    this.distanceScaling = (TppLensFlareShapeDistanceScalingMode)value.GetValueAsInt32();
-                    return;
-                case "limitDistance":
-                    this.limitDistance = value.GetValueAsFloat();
-                    return;
-                case "notDrawMultiple":
-                    this.notDrawMultiple = value.GetValueAsBool();
-                    return;
-                case "seName":
-                    this.seName = value.GetValueAsString();
-                    return;
-                case "seCallThreshold":
-                    this.seCallThreshold = value.GetValueAsFloat();
-                    return;
-                case "scaleOnZoom":
-                    this.scaleOnZoom = value.GetValueAsBool();
-                    return;
-                default:
-                    base.SetProperty(propertyName, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, index, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, key, value);
-                    return;
-            }
-        }
-    }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "material":
+					return new Fox.Core.Value(material);
+				case "width":
+					return new Fox.Core.Value(width);
+				case "height":
+					return new Fox.Core.Value(height);
+				case "baseColor":
+					return new Fox.Core.Value(baseColor);
+				case "offsetType":
+					return new Fox.Core.Value(offsetType);
+				case "offsetScale":
+					return new Fox.Core.Value(offsetScale);
+				case "baseOffsetX":
+					return new Fox.Core.Value(baseOffsetX);
+				case "baseOffsetY":
+					return new Fox.Core.Value(baseOffsetY);
+				case "rotateType":
+					return new Fox.Core.Value(rotateType);
+				case "baseRotate":
+					return new Fox.Core.Value(baseRotate);
+				case "screenSpaceRotSpeedX":
+					return new Fox.Core.Value(screenSpaceRotSpeedX);
+				case "screenSpaceRotSpeedY":
+					return new Fox.Core.Value(screenSpaceRotSpeedY);
+				case "screenSpaceRotField":
+					return new Fox.Core.Value(screenSpaceRotField);
+				case "scaleFieldX":
+					return new Fox.Core.Value(scaleFieldX);
+				case "scaleFieldY":
+					return new Fox.Core.Value(scaleFieldY);
+				case "scaleFieldPickSunPositionFlag":
+					return new Fox.Core.Value(scaleFieldPickSunPositionFlag);
+				case "alphaField":
+					return new Fox.Core.Value(alphaField);
+				case "alphaFieldPickSunPositionFlag":
+					return new Fox.Core.Value(alphaFieldPickSunPositionFlag);
+				case "shieldFadeOutTime":
+					return new Fox.Core.Value(shieldFadeOutTime);
+				case "shieldFadeInTime":
+					return new Fox.Core.Value(shieldFadeInTime);
+				case "angleScaleGraphX":
+					return new Fox.Core.Value(angleScaleGraphX);
+				case "angleScaleGraphY":
+					return new Fox.Core.Value(angleScaleGraphY);
+				case "angleAlphaGraph":
+					return new Fox.Core.Value(angleAlphaGraph);
+				case "distanceScaling":
+					return new Fox.Core.Value(distanceScaling);
+				case "limitDistance":
+					return new Fox.Core.Value(limitDistance);
+				case "notDrawMultiple":
+					return new Fox.Core.Value(notDrawMultiple);
+				case "seName":
+					return new Fox.Core.Value(seName);
+				case "seCallThreshold":
+					return new Fox.Core.Value(seCallThreshold);
+				case "scaleOnZoom":
+					return new Fox.Core.Value(scaleOnZoom);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
+
+		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
+		{
+			switch (propertyName.CString)
+			{
+				case "material":
+					this.material = value.GetValueAsEntityLink();
+					return;
+				case "width":
+					this.width = value.GetValueAsFloat();
+					return;
+				case "height":
+					this.height = value.GetValueAsFloat();
+					return;
+				case "baseColor":
+					this.baseColor = value.GetValueAsColor();
+					return;
+				case "offsetType":
+					this.offsetType = (TppLensFlareShapeOffsetType)value.GetValueAsInt32();
+					return;
+				case "offsetScale":
+					this.offsetScale = value.GetValueAsFloat();
+					return;
+				case "baseOffsetX":
+					this.baseOffsetX = value.GetValueAsFloat();
+					return;
+				case "baseOffsetY":
+					this.baseOffsetY = value.GetValueAsFloat();
+					return;
+				case "rotateType":
+					this.rotateType = (TppLensFlareShapeRotateType)value.GetValueAsInt32();
+					return;
+				case "baseRotate":
+					this.baseRotate = value.GetValueAsFloat();
+					return;
+				case "screenSpaceRotSpeedX":
+					this.screenSpaceRotSpeedX = value.GetValueAsFloat();
+					return;
+				case "screenSpaceRotSpeedY":
+					this.screenSpaceRotSpeedY = value.GetValueAsFloat();
+					return;
+				case "screenSpaceRotField":
+					this.screenSpaceRotField = value.GetValueAsEntityLink();
+					return;
+				case "scaleFieldX":
+					this.scaleFieldX = value.GetValueAsEntityLink();
+					return;
+				case "scaleFieldY":
+					this.scaleFieldY = value.GetValueAsEntityLink();
+					return;
+				case "scaleFieldPickSunPositionFlag":
+					this.scaleFieldPickSunPositionFlag = value.GetValueAsBool();
+					return;
+				case "alphaField":
+					this.alphaField = value.GetValueAsEntityLink();
+					return;
+				case "alphaFieldPickSunPositionFlag":
+					this.alphaFieldPickSunPositionFlag = value.GetValueAsBool();
+					return;
+				case "shieldFadeOutTime":
+					this.shieldFadeOutTime = value.GetValueAsFloat();
+					return;
+				case "shieldFadeInTime":
+					this.shieldFadeInTime = value.GetValueAsFloat();
+					return;
+				case "angleScaleGraphX":
+					this.angleScaleGraphX = value.GetValueAsEntityLink();
+					return;
+				case "angleScaleGraphY":
+					this.angleScaleGraphY = value.GetValueAsEntityLink();
+					return;
+				case "angleAlphaGraph":
+					this.angleAlphaGraph = value.GetValueAsEntityLink();
+					return;
+				case "distanceScaling":
+					this.distanceScaling = (TppLensFlareShapeDistanceScalingMode)value.GetValueAsInt32();
+					return;
+				case "limitDistance":
+					this.limitDistance = value.GetValueAsFloat();
+					return;
+				case "notDrawMultiple":
+					this.notDrawMultiple = value.GetValueAsBool();
+					return;
+				case "seName":
+					this.seName = value.GetValueAsString();
+					return;
+				case "seCallThreshold":
+					this.seCallThreshold = value.GetValueAsFloat();
+					return;
+				case "scaleOnZoom":
+					this.scaleOnZoom = value.GetValueAsBool();
+					return;
+				default:
+					base.SetProperty(propertyName, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+	}
 }

@@ -55,15 +55,11 @@ namespace Fox.Geox
             path.SetTransform(transformEntity);
             //transformEntity.gameObject.name = $"{header.Name.ToString()}|{transformEntity.GetType().Name}";
 
-            path.tags = TagUtils.GetEnumTags<Tags>((ulong)header.GetTags<Tags>());
+            TagUtils.AddEnumTags<Tags>(path.tags, (ulong)header.GetTags<Tags>());
 
             // Working off the assumption that the indices are for the vertices and the edges are implicitly linked
-            path.nodes = new DynamicArray<EntityPtr<GraphxSpatialGraphDataNode>>(header.PrimCount + 1);
-            for (int i = 0; i < path.nodes.Capacity; i++)
-                path.nodes.Add(default);
-            path.edges = new DynamicArray<EntityPtr<GraphxSpatialGraphDataEdge>>(header.PrimCount);
-            for (int i = 0; i < path.edges.Capacity; i++)
-                path.edges.Add(default);
+            path.nodes.Capacity = header.PrimCount + 1;
+            path.edges.Capacity = header.PrimCount;
 
             for (int i = 0; i < header.PrimCount; i++)
             {
@@ -83,7 +79,7 @@ namespace Fox.Geox
                 ushort inNodeIndex = reader.ReadUInt16();
                 ushort outNodeIndex = reader.ReadUInt16();
                 GraphxSpatialGraphDataNode inNode;
-                if (path.nodes[inNodeIndex].IsNull())
+                if (path.nodes[inNodeIndex] is null)
                 {
                     GeoxPathNode node = new GameObject().AddComponent<GeoxPathNode>();
                     node.SetOwner(path);
@@ -91,22 +87,22 @@ namespace Fox.Geox
                     reader.Seek(header.Position + header.VertexBufferOffset + (16 * inNodeIndex));
                     node.position = reader.ReadPositionF();
 
-                    node.nodeTags = TagUtils.GetEnumTags<GeoxPathNode.Tags>(reader.ReadUInt32());
+                    TagUtils.AddEnumTags<GeoxPathNode.Tags>(node.nodeTags, reader.ReadUInt32());
 
-                    path.nodes[inNodeIndex] = new EntityPtr<GraphxSpatialGraphDataNode>(node);
+                    path.nodes[inNodeIndex] = node;
                     inNode = node;
 
                     //node.gameObject.name = $"{header.Name.ToString()}|{node.GetType().Name}";
                 }
                 else
                 {
-                    inNode = path.nodes[inNodeIndex].Get();
+                    inNode = path.nodes[inNodeIndex];
                 }
-                edge.prevNode = EntityHandle.Get(inNode);
-                inNode.outlinks.Add(EntityHandle.Get(edge));
+                edge.prevNode = inNode;
+                inNode.outlinks.Add(edge);
 
                 GraphxSpatialGraphDataNode outNode;
-                if (path.nodes[outNodeIndex].IsNull())
+                if (path.nodes[outNodeIndex] is null)
                 {
                     GeoxPathNode node = new GameObject().AddComponent<GeoxPathNode>();
                     node.SetOwner(path);
@@ -114,24 +110,49 @@ namespace Fox.Geox
                     reader.Seek(header.Position + header.VertexBufferOffset + (16 * outNodeIndex));
                     node.position = reader.ReadPositionF();
 
-                    node.nodeTags = TagUtils.GetEnumTags<GeoxPathNode.Tags>(reader.ReadUInt32());
+                    TagUtils.AddEnumTags<GeoxPathNode.Tags>(node.nodeTags, reader.ReadUInt32());
 
-                    path.nodes[outNodeIndex] = new EntityPtr<GraphxSpatialGraphDataNode>(node);
+                    path.nodes[outNodeIndex] = node;
                     outNode = node;
 
                     //node.gameObject.name = $"{header.Name.ToString()}|{node.GetType().Name}";
                 }
                 else
                 {
-                    outNode = path.nodes[outNodeIndex].Get();
+                    outNode = path.nodes[outNodeIndex];
                 }
-                edge.nextNode = EntityHandle.Get(outNode);
-                outNode.inlinks.Add(EntityHandle.Get(edge));
+                edge.nextNode = outNode;
+                outNode.inlinks.Add(edge);
 
-                path.edges[i] = new EntityPtr<GraphxSpatialGraphDataEdge>(edge);
+                path.edges[i] = edge;
             }
 
             return path;
+        }
+
+        private static readonly Color Color = Color.white;
+        private static readonly Vector3 Scale = Vector3.one * 0.1f;
+        private static readonly Vector3 ScaleNode = Vector3.one * 0.25f;
+
+        public void OnDrawGizmos()
+        {
+            Gizmos.matrix = Matrix4x4.identity;
+
+            for (int nodeIndex = 0; nodeIndex < nodes.Count; nodeIndex++)
+            {
+                Graphx.GraphxSpatialGraphDataNode node = nodes[nodeIndex];
+
+                Gizmos.DrawWireCube(node.position, ScaleNode);
+
+                for (int edgeIndex = 0; edgeIndex < node.outlinks.Count; edgeIndex++)
+                {
+                    var edge = node.outlinks[edgeIndex] as GeoxPathEdge;
+
+                    var prevNode = edge.prevNode as GeoxPathNode;
+                    var nextNode = edge.nextNode as GeoxPathNode;
+                    Gizmos.DrawLine(prevNode.position, nextNode.position);
+                }
+            }
         }
     }
 }

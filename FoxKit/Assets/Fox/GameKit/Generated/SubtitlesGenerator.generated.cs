@@ -12,61 +12,61 @@ using Fox;
 
 namespace Fox.GameKit
 {
-    [UnityEditor.InitializeOnLoad]
-    public partial class SubtitlesGenerator : Fox.Ui.UiGraphEntry 
-    {
-        // Properties
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.String key { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public UnityEngine.Color color { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public UnityEngine.Vector3 offset { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public UnityEngine.Vector3 size { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float fontSpace { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float lineSpace { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public SubtitlesGenerator_TextHorizontalAlign hAlign { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public SubtitlesGenerator_TextVerticalAlign vAlign { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public SubtitlesGenerator_TextBoxAlign bAlign { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.String fontName { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public bool autoLineFeed { get; set; }
-        
-        // ClassInfos
-        public static new bool ClassInfoInitialized = false;
-        private static Fox.Core.EntityInfo classInfo;
-        public static new Fox.Core.EntityInfo ClassInfo
-        {
-            get
-            {
-                return classInfo;
-            }
-        }
-        public override Fox.Core.EntityInfo GetClassEntityInfo()
-        {
-            return classInfo;
-        }
-        static SubtitlesGenerator()
-        {
-            if (Fox.Ui.UiGraphEntry.ClassInfoInitialized)
-                classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("SubtitlesGenerator"), typeof(SubtitlesGenerator), Fox.Ui.UiGraphEntry.ClassInfo, 192, "Subtitles", 5);
+	[UnityEditor.InitializeOnLoad]
+	public partial class SubtitlesGenerator : Fox.Ui.UiGraphEntry
+	{
+		// Properties
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.String key { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public UnityEngine.Color color { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public UnityEngine.Vector3 offset { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public UnityEngine.Vector3 size { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float fontSpace { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float lineSpace { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public SubtitlesGenerator_TextHorizontalAlign hAlign { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public SubtitlesGenerator_TextVerticalAlign vAlign { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public SubtitlesGenerator_TextBoxAlign bAlign { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.String fontName { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public bool autoLineFeed { get; set; }
+		
+		// ClassInfos
+		public static new bool ClassInfoInitialized = false;
+		private static Fox.Core.EntityInfo classInfo;
+		public static new Fox.Core.EntityInfo ClassInfo
+		{
+			get
+			{
+				return classInfo;
+			}
+		}
+		public override Fox.Core.EntityInfo GetClassEntityInfo()
+		{
+			return classInfo;
+		}
+		static SubtitlesGenerator()
+		{
+			if (Fox.Ui.UiGraphEntry.ClassInfoInitialized)
+				classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("SubtitlesGenerator"), typeof(SubtitlesGenerator), Fox.Ui.UiGraphEntry.ClassInfo, 192, "Subtitles", 5);
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("key"), Fox.Core.PropertyInfo.PropertyType.String, 152, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("color"), Fox.Core.PropertyInfo.PropertyType.Color, 176, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("offset"), Fox.Core.PropertyInfo.PropertyType.Vector3, 192, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
@@ -79,74 +79,123 @@ namespace Fox.GameKit
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("fontName"), Fox.Core.PropertyInfo.PropertyType.String, 240, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("autoLineFeed"), Fox.Core.PropertyInfo.PropertyType.Bool, 248, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 
-            ClassInfoInitialized = true;
-        }
+			ClassInfoInitialized = true;
+		}
 
-        // Constructors
+		// Constructors
 		public SubtitlesGenerator(ulong id) : base(id) { }
 		public SubtitlesGenerator() : base() { }
-        
-        public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "key":
-                    this.key = value.GetValueAsString();
-                    return;
-                case "color":
-                    this.color = value.GetValueAsColor();
-                    return;
-                case "offset":
-                    this.offset = value.GetValueAsVector3();
-                    return;
-                case "size":
-                    this.size = value.GetValueAsVector3();
-                    return;
-                case "fontSpace":
-                    this.fontSpace = value.GetValueAsFloat();
-                    return;
-                case "lineSpace":
-                    this.lineSpace = value.GetValueAsFloat();
-                    return;
-                case "hAlign":
-                    this.hAlign = (SubtitlesGenerator_TextHorizontalAlign)value.GetValueAsInt8();
-                    return;
-                case "vAlign":
-                    this.vAlign = (SubtitlesGenerator_TextVerticalAlign)value.GetValueAsInt8();
-                    return;
-                case "bAlign":
-                    this.bAlign = (SubtitlesGenerator_TextBoxAlign)value.GetValueAsInt8();
-                    return;
-                case "fontName":
-                    this.fontName = value.GetValueAsString();
-                    return;
-                case "autoLineFeed":
-                    this.autoLineFeed = value.GetValueAsBool();
-                    return;
-                default:
-                    base.SetProperty(propertyName, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, index, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, key, value);
-                    return;
-            }
-        }
-    }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "key":
+					return new Fox.Core.Value(key);
+				case "color":
+					return new Fox.Core.Value(color);
+				case "offset":
+					return new Fox.Core.Value(offset);
+				case "size":
+					return new Fox.Core.Value(size);
+				case "fontSpace":
+					return new Fox.Core.Value(fontSpace);
+				case "lineSpace":
+					return new Fox.Core.Value(lineSpace);
+				case "hAlign":
+					return new Fox.Core.Value(hAlign);
+				case "vAlign":
+					return new Fox.Core.Value(vAlign);
+				case "bAlign":
+					return new Fox.Core.Value(bAlign);
+				case "fontName":
+					return new Fox.Core.Value(fontName);
+				case "autoLineFeed":
+					return new Fox.Core.Value(autoLineFeed);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
+
+		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
+		{
+			switch (propertyName.CString)
+			{
+				case "key":
+					this.key = value.GetValueAsString();
+					return;
+				case "color":
+					this.color = value.GetValueAsColor();
+					return;
+				case "offset":
+					this.offset = value.GetValueAsVector3();
+					return;
+				case "size":
+					this.size = value.GetValueAsVector3();
+					return;
+				case "fontSpace":
+					this.fontSpace = value.GetValueAsFloat();
+					return;
+				case "lineSpace":
+					this.lineSpace = value.GetValueAsFloat();
+					return;
+				case "hAlign":
+					this.hAlign = (SubtitlesGenerator_TextHorizontalAlign)value.GetValueAsInt8();
+					return;
+				case "vAlign":
+					this.vAlign = (SubtitlesGenerator_TextVerticalAlign)value.GetValueAsInt8();
+					return;
+				case "bAlign":
+					this.bAlign = (SubtitlesGenerator_TextBoxAlign)value.GetValueAsInt8();
+					return;
+				case "fontName":
+					this.fontName = value.GetValueAsString();
+					return;
+				case "autoLineFeed":
+					this.autoLineFeed = value.GetValueAsBool();
+					return;
+				default:
+					base.SetProperty(propertyName, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+	}
 }

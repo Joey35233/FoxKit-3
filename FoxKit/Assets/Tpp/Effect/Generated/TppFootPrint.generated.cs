@@ -12,46 +12,46 @@ using Fox;
 
 namespace Tpp.Effect
 {
-    [UnityEditor.InitializeOnLoad]
-    public partial class TppFootPrint : Fox.Core.TransformData 
-    {
-        // Properties
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.DynamicArray<UnityEngine.Matrix4x4> matrices { get; set; } = new Fox.Kernel.DynamicArray<UnityEngine.Matrix4x4>();
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.DynamicArray<uint> footChara { get; set; } = new Fox.Kernel.DynamicArray<uint>();
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.DynamicArray<uint> footLR { get; set; } = new Fox.Kernel.DynamicArray<uint>();
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.DynamicArray<float> alpha { get; set; } = new Fox.Kernel.DynamicArray<float>();
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.DynamicArray<bool> blood { get; set; } = new Fox.Kernel.DynamicArray<bool>();
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.DynamicArray<bool> enable { get; set; } = new Fox.Kernel.DynamicArray<bool>();
-        
-        // ClassInfos
-        public static new bool ClassInfoInitialized = false;
-        private static Fox.Core.EntityInfo classInfo;
-        public static new Fox.Core.EntityInfo ClassInfo
-        {
-            get
-            {
-                return classInfo;
-            }
-        }
-        public override Fox.Core.EntityInfo GetClassEntityInfo()
-        {
-            return classInfo;
-        }
-        static TppFootPrint()
-        {
-            if (Fox.Core.TransformData.ClassInfoInitialized)
-                classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("TppFootPrint"), typeof(TppFootPrint), Fox.Core.TransformData.ClassInfo, 416, null, 1);
+	[UnityEditor.InitializeOnLoad]
+	public partial class TppFootPrint : Fox.Core.TransformData
+	{
+		// Properties
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.DynamicArray<UnityEngine.Matrix4x4> matrices { get; private set; } = new Fox.Kernel.DynamicArray<UnityEngine.Matrix4x4>();
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.DynamicArray<uint> footChara { get; private set; } = new Fox.Kernel.DynamicArray<uint>();
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.DynamicArray<uint> footLR { get; private set; } = new Fox.Kernel.DynamicArray<uint>();
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.DynamicArray<float> alpha { get; private set; } = new Fox.Kernel.DynamicArray<float>();
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.DynamicArray<bool> blood { get; private set; } = new Fox.Kernel.DynamicArray<bool>();
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.DynamicArray<bool> enable { get; private set; } = new Fox.Kernel.DynamicArray<bool>();
+		
+		// ClassInfos
+		public static new bool ClassInfoInitialized = false;
+		private static Fox.Core.EntityInfo classInfo;
+		public static new Fox.Core.EntityInfo ClassInfo
+		{
+			get
+			{
+				return classInfo;
+			}
+		}
+		public override Fox.Core.EntityInfo GetClassEntityInfo()
+		{
+			return classInfo;
+		}
+		static TppFootPrint()
+		{
+			if (Fox.Core.TransformData.ClassInfoInitialized)
+				classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("TppFootPrint"), typeof(TppFootPrint), Fox.Core.TransformData.ClassInfo, 416, null, 1);
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("matrices"), Fox.Core.PropertyInfo.PropertyType.Matrix4, 368, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("footChara"), Fox.Core.PropertyInfo.PropertyType.UInt32, 384, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("footLR"), Fox.Core.PropertyInfo.PropertyType.UInt32, 400, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
@@ -59,65 +59,116 @@ namespace Tpp.Effect
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("blood"), Fox.Core.PropertyInfo.PropertyType.Bool, 432, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("enable"), Fox.Core.PropertyInfo.PropertyType.Bool, 448, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 
-            ClassInfoInitialized = true;
-        }
+			ClassInfoInitialized = true;
+		}
 
-        // Constructors
+		// Constructors
 		public TppFootPrint(ulong id) : base(id) { }
 		public TppFootPrint() : base() { }
-        
-        public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetProperty(propertyName, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "matrices":
-                    while(this.matrices.Count <= index) { this.matrices.Add(default(UnityEngine.Matrix4x4)); }
-                    this.matrices[index] = value.GetValueAsMatrix4();
-                    return;
-                case "footChara":
-                    while(this.footChara.Count <= index) { this.footChara.Add(default(uint)); }
-                    this.footChara[index] = value.GetValueAsUInt32();
-                    return;
-                case "footLR":
-                    while(this.footLR.Count <= index) { this.footLR.Add(default(uint)); }
-                    this.footLR[index] = value.GetValueAsUInt32();
-                    return;
-                case "alpha":
-                    while(this.alpha.Count <= index) { this.alpha.Add(default(float)); }
-                    this.alpha[index] = value.GetValueAsFloat();
-                    return;
-                case "blood":
-                    while(this.blood.Count <= index) { this.blood.Add(default(bool)); }
-                    this.blood[index] = value.GetValueAsBool();
-                    return;
-                case "enable":
-                    while(this.enable.Count <= index) { this.enable.Add(default(bool)); }
-                    this.enable[index] = value.GetValueAsBool();
-                    return;
-                default:
-                    base.SetPropertyElement(propertyName, index, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, key, value);
-                    return;
-            }
-        }
-    }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "matrices":
+					return new Fox.Core.Value(matrices);
+				case "footChara":
+					return new Fox.Core.Value(footChara);
+				case "footLR":
+					return new Fox.Core.Value(footLR);
+				case "alpha":
+					return new Fox.Core.Value(alpha);
+				case "blood":
+					return new Fox.Core.Value(blood);
+				case "enable":
+					return new Fox.Core.Value(enable);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				case "matrices":
+					return new Fox.Core.Value(this.matrices[index]);
+				case "footChara":
+					return new Fox.Core.Value(this.footChara[index]);
+				case "footLR":
+					return new Fox.Core.Value(this.footLR[index]);
+				case "alpha":
+					return new Fox.Core.Value(this.alpha[index]);
+				case "blood":
+					return new Fox.Core.Value(this.blood[index]);
+				case "enable":
+					return new Fox.Core.Value(this.enable[index]);
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
+
+		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					base.SetProperty(propertyName, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
+		{
+			switch (propertyName.CString)
+			{
+				case "matrices":
+					while(this.matrices.Count <= index) { this.matrices.Add(default(UnityEngine.Matrix4x4)); }
+					this.matrices[index] = value.GetValueAsMatrix4();
+					return;
+				case "footChara":
+					while(this.footChara.Count <= index) { this.footChara.Add(default(uint)); }
+					this.footChara[index] = value.GetValueAsUInt32();
+					return;
+				case "footLR":
+					while(this.footLR.Count <= index) { this.footLR.Add(default(uint)); }
+					this.footLR[index] = value.GetValueAsUInt32();
+					return;
+				case "alpha":
+					while(this.alpha.Count <= index) { this.alpha.Add(default(float)); }
+					this.alpha[index] = value.GetValueAsFloat();
+					return;
+				case "blood":
+					while(this.blood.Count <= index) { this.blood.Add(default(bool)); }
+					this.blood[index] = value.GetValueAsBool();
+					return;
+				case "enable":
+					while(this.enable.Count <= index) { this.enable.Add(default(bool)); }
+					this.enable[index] = value.GetValueAsBool();
+					return;
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+	}
 }

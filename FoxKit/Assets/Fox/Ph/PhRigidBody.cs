@@ -4,66 +4,64 @@ namespace Fox.Ph
 {
     public partial class PhRigidBody : Fox.Ph.PhSubObject
     {
-        private PhRigidBodyParam rigidBodyParam => param.Get();
+        private partial UnityEngine.Vector3 Get_defaultPosition() => param.GetDefaultPosition();
+        private partial void Set_defaultPosition(UnityEngine.Vector3 value) => param.SetDefaultPosition(value);
 
-        protected partial UnityEngine.Vector3 Get_defaultPosition() => rigidBodyParam.GetDefaultPosition();
-        protected partial void Set_defaultPosition(UnityEngine.Vector3 value) => rigidBodyParam.SetDefaultPosition(value);
+        private partial UnityEngine.Quaternion Get_defaultRotation() => param.GetDefaultRotation();
+        private partial void Set_defaultRotation(UnityEngine.Quaternion value) => param.SetDefaultRotation(value);
 
-        protected partial UnityEngine.Quaternion Get_defaultRotation() => rigidBodyParam.GetDefaultRotation();
-        protected partial void Set_defaultRotation(UnityEngine.Quaternion value) => rigidBodyParam.SetDefaultRotation(value);
+        private partial float Get_mass() => param.GetMass();
+        private partial void Set_mass(float value) => param.SetMass(value);
 
-        protected partial float Get_mass() => rigidBodyParam.GetMass();
-        protected partial void Set_mass(float value) => rigidBodyParam.SetMass(value);
+        private partial float Get_friction() => param.GetFriction();
+        private partial void Set_friction(float value) => param.SetFriction(value);
 
-        protected partial float Get_friction() => rigidBodyParam.GetFriction();
-        protected partial void Set_friction(float value) => rigidBodyParam.SetFriction(value);
+        private partial float Get_restitution() => param.GetRestitution();
+        private partial void Set_restitution(float value) => param.SetRestitution(value);
 
-        protected partial float Get_restitution() => rigidBodyParam.GetRestitution();
-        protected partial void Set_restitution(float value) => rigidBodyParam.SetRestitution(value);
+        private partial float Get_maxLinearVelocity() => param.GetMaxLinearVelocity();
+        private partial void Set_maxLinearVelocity(float value) => param.SetMaxLinearVelocity(value);
 
-        protected partial float Get_maxLinearVelocity() => rigidBodyParam.GetMaxLinearVelocity();
-        protected partial void Set_maxLinearVelocity(float value) => rigidBodyParam.SetMaxLinearVelocity(value);
+        private partial float Get_maxAngularVelocity() => param.GetMaxAngularVelocity();
+        private partial void Set_maxAngularVelocity(float value) => param.SetMaxAngularVelocity(value);
 
-        protected partial float Get_maxAngularVelocity() => rigidBodyParam.GetMaxAngularVelocity();
-        protected partial void Set_maxAngularVelocity(float value) => rigidBodyParam.SetMaxAngularVelocity(value);
+        private partial float Get_linearVelocityDamp() => param.GetLinearVelocityDamp();
+        private partial void Set_linearVelocityDamp(float value) => param.SetLinearVelocityDamp(value);
 
-        protected partial float Get_linearVelocityDamp() => rigidBodyParam.GetLinearVelocityDamp();
-        protected partial void Set_linearVelocityDamp(float value) => rigidBodyParam.SetLinearVelocityDamp(value);
+        private partial float Get_angularVelocityDamp() => param.GetAngularVelocityDamp();
+        private partial void Set_angularVelocityDamp(float value) => param.SetAngularVelocityDamp(value);
 
-        protected partial float Get_angularVelocityDamp() => rigidBodyParam.GetAngularVelocityDamp();
-        protected partial void Set_angularVelocityDamp(float value) => rigidBodyParam.SetAngularVelocityDamp(value);
+        private partial float Get_permittedDepth() => param.GetPermittedDepth();
+        private partial void Set_permittedDepth(float value) => param.SetPermittedDepth(value);
 
-        protected partial float Get_permittedDepth() => rigidBodyParam.GetPermittedDepth();
-        protected partial void Set_permittedDepth(float value) => rigidBodyParam.SetPermittedDepth(value);
+        private partial bool Get_sleepEnable() => param.GetSleepEnable();
+        private partial void Set_sleepEnable(bool value) => param.SetSleepEnable(value);
 
-        protected partial bool Get_sleepEnable() => rigidBodyParam.GetSleepEnable();
-        protected partial void Set_sleepEnable(bool value) => rigidBodyParam.SetSleepEnable(value);
+        private partial float Get_sleepLinearVelocityTh() => param.GetSleepLinearVelocityTh();
+        private partial void Set_sleepLinearVelocityTh(float value) => param.SetSleepLinearVelocityTh(value);
 
-        protected partial float Get_sleepLinearVelocityTh() => rigidBodyParam.GetSleepLinearVelocityTh();
-        protected partial void Set_sleepLinearVelocityTh(float value) => rigidBodyParam.SetSleepLinearVelocityTh(value);
+        private partial float Get_sleepAngularVelocityTh() => param.GetSleepAngularVelocityTh();
+        private partial void Set_sleepAngularVelocityTh(float value) => param.SetSleepAngularVelocityTh(value);
 
-        protected partial float Get_sleepAngularVelocityTh() => rigidBodyParam.GetSleepAngularVelocityTh();
-        protected partial void Set_sleepAngularVelocityTh(float value) => rigidBodyParam.SetSleepAngularVelocityTh(value);
+        private partial float Get_sleepTimeTh() => param.GetSleepTimeTh();
+        private partial void Set_sleepTimeTh(float value) => param.SetSleepTimeTh(value);
 
-        protected partial float Get_sleepTimeTh() => rigidBodyParam.GetSleepTimeTh();
-        protected partial void Set_sleepTimeTh(float value) => rigidBodyParam.SetSleepTimeTh(value);
+        private partial ushort Get_collisionGroup() => param.GetCollisionGroup();
+        private partial void Set_collisionGroup(ushort value) => param.SetCollisionGroup(value);
 
-        protected partial ushort Get_collisionGroup() => rigidBodyParam.GetCollisionGroup();
-        protected partial void Set_collisionGroup(ushort value) => rigidBodyParam.SetCollisionGroup(value);
+        private partial ushort Get_collisionType() => param.GetCollisionType();
+        private partial void Set_collisionType(ushort value) => param.SetCollisionType(value);
 
-        protected partial ushort Get_collisionType() => rigidBodyParam.GetCollisionType();
-        protected partial void Set_collisionType(ushort value) => rigidBodyParam.SetCollisionType(value);
+        private partial uint Get_collisionId() => param.GetCollisionId();
+        private partial void Set_collisionId(uint value) => param.SetCollisionId(value);
 
-        protected partial uint Get_collisionId() => rigidBodyParam.GetCollisionId();
-        protected partial void Set_collisionId(uint value) => rigidBodyParam.SetCollisionId(value);
+        private partial UnityEngine.Vector3 Get_centerOfMassOffset() => param.GetCenterOfMassOffset();
+        private partial void Set_centerOfMassOffset(UnityEngine.Vector3 value) => param.SetCenterOfMassOffset(value);
 
-        protected partial UnityEngine.Vector3 Get_centerOfMassOffset() => rigidBodyParam.GetCenterOfMassOffset();
-        protected partial void Set_centerOfMassOffset(UnityEngine.Vector3 value) => rigidBodyParam.SetCenterOfMassOffset(value);
+        private partial PhRigidBodyType Get_motionType() => param.GetMotionType();
+        private partial void Set_motionType(PhRigidBodyType value) => param.SetMotionType(value);
 
-        protected partial PhRigidBodyType Get_motionType() => rigidBodyParam.GetMotionType();
-        protected partial void Set_motionType(PhRigidBodyType value) => rigidBodyParam.SetMotionType(value);
-
-        protected partial String Get_material() => rigidBodyParam.GetMaterial();
-        protected partial void Set_material(String value) => rigidBodyParam.SetMaterial(value);
+        private partial String Get_material() => param.GetMaterial();
+        private partial void Set_material(String value) => param.SetMaterial(value);
     }
 }

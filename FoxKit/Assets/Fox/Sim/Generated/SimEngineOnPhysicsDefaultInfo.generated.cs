@@ -12,99 +12,136 @@ using Fox;
 
 namespace Fox.Sim
 {
-    [UnityEditor.InitializeOnLoad]
-    public partial class SimEngineOnPhysicsDefaultInfo : Fox.Core.DataElement 
-    {
-        // Properties
-        [field: UnityEngine.SerializeField]
-        public float defaultRadius { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float defaultLimit { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float defaultSpring { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public bool defaultStopTwistFlag { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float defaultMass { get; set; }
-        
-        // ClassInfos
-        public static new bool ClassInfoInitialized = false;
-        private static Fox.Core.EntityInfo classInfo;
-        public static new Fox.Core.EntityInfo ClassInfo
-        {
-            get
-            {
-                return classInfo;
-            }
-        }
-        public override Fox.Core.EntityInfo GetClassEntityInfo()
-        {
-            return classInfo;
-        }
-        static SimEngineOnPhysicsDefaultInfo()
-        {
-            if (Fox.Core.DataElement.ClassInfoInitialized)
-                classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("SimEngineOnPhysicsDefaultInfo"), typeof(SimEngineOnPhysicsDefaultInfo), Fox.Core.DataElement.ClassInfo, 0, "Sim", 1);
+	[UnityEditor.InitializeOnLoad]
+	public partial class SimEngineOnPhysicsDefaultInfo : Fox.Core.DataElement
+	{
+		// Properties
+		[field: UnityEngine.SerializeField]
+		public float defaultRadius { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float defaultLimit { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float defaultSpring { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public bool defaultStopTwistFlag { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float defaultMass { get; set; }
+		
+		// ClassInfos
+		public static new bool ClassInfoInitialized = false;
+		private static Fox.Core.EntityInfo classInfo;
+		public static new Fox.Core.EntityInfo ClassInfo
+		{
+			get
+			{
+				return classInfo;
+			}
+		}
+		public override Fox.Core.EntityInfo GetClassEntityInfo()
+		{
+			return classInfo;
+		}
+		static SimEngineOnPhysicsDefaultInfo()
+		{
+			if (Fox.Core.DataElement.ClassInfoInitialized)
+				classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("SimEngineOnPhysicsDefaultInfo"), typeof(SimEngineOnPhysicsDefaultInfo), Fox.Core.DataElement.ClassInfo, 0, "Sim", 1);
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("defaultRadius"), Fox.Core.PropertyInfo.PropertyType.Float, 56, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("defaultLimit"), Fox.Core.PropertyInfo.PropertyType.Float, 60, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("defaultSpring"), Fox.Core.PropertyInfo.PropertyType.Float, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("defaultStopTwistFlag"), Fox.Core.PropertyInfo.PropertyType.Bool, 68, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("defaultMass"), Fox.Core.PropertyInfo.PropertyType.Float, 72, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 
-            ClassInfoInitialized = true;
-        }
+			ClassInfoInitialized = true;
+		}
 
-        // Constructors
+		// Constructors
 		public SimEngineOnPhysicsDefaultInfo(ulong id) : base(id) { }
 		public SimEngineOnPhysicsDefaultInfo() : base() { }
-        
-        public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "defaultRadius":
-                    this.defaultRadius = value.GetValueAsFloat();
-                    return;
-                case "defaultLimit":
-                    this.defaultLimit = value.GetValueAsFloat();
-                    return;
-                case "defaultSpring":
-                    this.defaultSpring = value.GetValueAsFloat();
-                    return;
-                case "defaultStopTwistFlag":
-                    this.defaultStopTwistFlag = value.GetValueAsBool();
-                    return;
-                case "defaultMass":
-                    this.defaultMass = value.GetValueAsFloat();
-                    return;
-                default:
-                    base.SetProperty(propertyName, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, index, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, key, value);
-                    return;
-            }
-        }
-    }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "defaultRadius":
+					return new Fox.Core.Value(defaultRadius);
+				case "defaultLimit":
+					return new Fox.Core.Value(defaultLimit);
+				case "defaultSpring":
+					return new Fox.Core.Value(defaultSpring);
+				case "defaultStopTwistFlag":
+					return new Fox.Core.Value(defaultStopTwistFlag);
+				case "defaultMass":
+					return new Fox.Core.Value(defaultMass);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
+
+		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
+		{
+			switch (propertyName.CString)
+			{
+				case "defaultRadius":
+					this.defaultRadius = value.GetValueAsFloat();
+					return;
+				case "defaultLimit":
+					this.defaultLimit = value.GetValueAsFloat();
+					return;
+				case "defaultSpring":
+					this.defaultSpring = value.GetValueAsFloat();
+					return;
+				case "defaultStopTwistFlag":
+					this.defaultStopTwistFlag = value.GetValueAsBool();
+					return;
+				case "defaultMass":
+					this.defaultMass = value.GetValueAsFloat();
+					return;
+				default:
+					base.SetProperty(propertyName, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+	}
 }

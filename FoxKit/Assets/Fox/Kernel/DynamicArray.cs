@@ -12,7 +12,11 @@ namespace Fox.Kernel
         [SerializeField]
         private List<T> _list;
 
-        public int Capacity => _list.Capacity;
+        public int Capacity
+        {
+            get => _list.Capacity;
+            set => _list.Capacity = value;
+        }
 
         public int Count => _list.Count;
 

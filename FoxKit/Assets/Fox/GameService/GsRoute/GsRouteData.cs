@@ -12,21 +12,21 @@ namespace Fox.GameService
 
         private void DrawGizmos(bool isSelected)
         {
-            Gizmos.matrix = (this as MonoBehaviour).transform.localToWorldMatrix;
+            Gizmos.matrix = this.transform.localToWorldMatrix;
             Gizmos.color = isSelected ? SelectedColor : DefaultColor;
 
             for (int nodeIndex = 0; nodeIndex < nodes.Count; nodeIndex++)
             {
-                var node = (GsRouteDataNode)nodes[nodeIndex].Get();
+                var node = (GsRouteDataNode)nodes[nodeIndex];
 
                 Gizmos.DrawWireCube(node.position, ScaleNode);
 
                 for (int edgeIndex = 0; edgeIndex < node.outlinks.Count; edgeIndex++)
                 {
-                    var edge = node.outlinks[edgeIndex].Entity as GsRouteDataEdge;
+                    var edge = node.outlinks[edgeIndex] as GsRouteDataEdge;
 
-                    var prevNode = edge.prevNode.Entity as GsRouteDataNode;
-                    var nextNode = edge.nextNode.Entity as GsRouteDataNode;
+                    var prevNode = edge.prevNode as GsRouteDataNode;
+                    var nextNode = edge.nextNode as GsRouteDataNode;
                     Gizmos.DrawLine(prevNode.position, nextNode.position);
                 }
             }

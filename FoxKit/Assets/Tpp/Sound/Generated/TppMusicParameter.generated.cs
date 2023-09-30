@@ -12,88 +12,88 @@ using Fox;
 
 namespace Tpp.Sound
 {
-    [UnityEditor.InitializeOnLoad]
-    public partial class TppMusicParameter : Fox.Core.Data 
-    {
-        // Properties
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.String tag { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.String playEvent { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.String daySwitchEvent { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.String nightSwitchEvent { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.String dangerEasySwitchEvent { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.String dangerOuterSwitchEvent { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.String dangerHardSwitchEvent { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.String dangerEasyLostSwitchEvent { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.String dangerOuterLostSwitchEvent { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.String dangerHardLostSwitchEvent { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.String dangerEvasionSwitchEvent { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.String dangerStrongSwitchEvent { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.String safetyReflexSwitchEvent { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.String safetyNeutralToSneakSwitchEvent { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.String safetySneakSwitchEvent { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.String safetyCautionSwitchEvent { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.String safetyNoticeSwitchEvent { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.String safetyCautionNoticeSwitchEvent { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.String safetyAlertToCautionSwitchEvent { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.String neutralSwitchEvent { get; set; }
-        
-        // ClassInfos
-        public static new bool ClassInfoInitialized = false;
-        private static Fox.Core.EntityInfo classInfo;
-        public static new Fox.Core.EntityInfo ClassInfo
-        {
-            get
-            {
-                return classInfo;
-            }
-        }
-        public override Fox.Core.EntityInfo GetClassEntityInfo()
-        {
-            return classInfo;
-        }
-        static TppMusicParameter()
-        {
-            if (Fox.Core.Data.ClassInfoInitialized)
-                classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("TppMusicParameter"), typeof(TppMusicParameter), Fox.Core.Data.ClassInfo, 144, "Sound", 9);
+	[UnityEditor.InitializeOnLoad]
+	public partial class TppMusicParameter : Fox.Core.Data
+	{
+		// Properties
+		[field: UnityEngine.SerializeField]
+		public new Fox.Kernel.String tag { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.String playEvent { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.String daySwitchEvent { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.String nightSwitchEvent { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.String dangerEasySwitchEvent { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.String dangerOuterSwitchEvent { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.String dangerHardSwitchEvent { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.String dangerEasyLostSwitchEvent { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.String dangerOuterLostSwitchEvent { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.String dangerHardLostSwitchEvent { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.String dangerEvasionSwitchEvent { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.String dangerStrongSwitchEvent { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.String safetyReflexSwitchEvent { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.String safetyNeutralToSneakSwitchEvent { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.String safetySneakSwitchEvent { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.String safetyCautionSwitchEvent { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.String safetyNoticeSwitchEvent { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.String safetyCautionNoticeSwitchEvent { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.String safetyAlertToCautionSwitchEvent { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.String neutralSwitchEvent { get; set; }
+		
+		// ClassInfos
+		public static new bool ClassInfoInitialized = false;
+		private static Fox.Core.EntityInfo classInfo;
+		public static new Fox.Core.EntityInfo ClassInfo
+		{
+			get
+			{
+				return classInfo;
+			}
+		}
+		public override Fox.Core.EntityInfo GetClassEntityInfo()
+		{
+			return classInfo;
+		}
+		static TppMusicParameter()
+		{
+			if (Fox.Core.Data.ClassInfoInitialized)
+				classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("TppMusicParameter"), typeof(TppMusicParameter), Fox.Core.Data.ClassInfo, 144, "Sound", 9);
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("tag"), Fox.Core.PropertyInfo.PropertyType.String, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("playEvent"), Fox.Core.PropertyInfo.PropertyType.String, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("daySwitchEvent"), Fox.Core.PropertyInfo.PropertyType.String, 136, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
@@ -115,101 +115,168 @@ namespace Tpp.Sound
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("safetyAlertToCautionSwitchEvent"), Fox.Core.PropertyInfo.PropertyType.String, 272, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("neutralSwitchEvent"), Fox.Core.PropertyInfo.PropertyType.String, 152, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 
-            ClassInfoInitialized = true;
-        }
+			ClassInfoInitialized = true;
+		}
 
-        // Constructors
+		// Constructors
 		public TppMusicParameter(ulong id) : base(id) { }
 		public TppMusicParameter() : base() { }
-        
-        public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "tag":
-                    this.tag = value.GetValueAsString();
-                    return;
-                case "playEvent":
-                    this.playEvent = value.GetValueAsString();
-                    return;
-                case "daySwitchEvent":
-                    this.daySwitchEvent = value.GetValueAsString();
-                    return;
-                case "nightSwitchEvent":
-                    this.nightSwitchEvent = value.GetValueAsString();
-                    return;
-                case "dangerEasySwitchEvent":
-                    this.dangerEasySwitchEvent = value.GetValueAsString();
-                    return;
-                case "dangerOuterSwitchEvent":
-                    this.dangerOuterSwitchEvent = value.GetValueAsString();
-                    return;
-                case "dangerHardSwitchEvent":
-                    this.dangerHardSwitchEvent = value.GetValueAsString();
-                    return;
-                case "dangerEasyLostSwitchEvent":
-                    this.dangerEasyLostSwitchEvent = value.GetValueAsString();
-                    return;
-                case "dangerOuterLostSwitchEvent":
-                    this.dangerOuterLostSwitchEvent = value.GetValueAsString();
-                    return;
-                case "dangerHardLostSwitchEvent":
-                    this.dangerHardLostSwitchEvent = value.GetValueAsString();
-                    return;
-                case "dangerEvasionSwitchEvent":
-                    this.dangerEvasionSwitchEvent = value.GetValueAsString();
-                    return;
-                case "dangerStrongSwitchEvent":
-                    this.dangerStrongSwitchEvent = value.GetValueAsString();
-                    return;
-                case "safetyReflexSwitchEvent":
-                    this.safetyReflexSwitchEvent = value.GetValueAsString();
-                    return;
-                case "safetyNeutralToSneakSwitchEvent":
-                    this.safetyNeutralToSneakSwitchEvent = value.GetValueAsString();
-                    return;
-                case "safetySneakSwitchEvent":
-                    this.safetySneakSwitchEvent = value.GetValueAsString();
-                    return;
-                case "safetyCautionSwitchEvent":
-                    this.safetyCautionSwitchEvent = value.GetValueAsString();
-                    return;
-                case "safetyNoticeSwitchEvent":
-                    this.safetyNoticeSwitchEvent = value.GetValueAsString();
-                    return;
-                case "safetyCautionNoticeSwitchEvent":
-                    this.safetyCautionNoticeSwitchEvent = value.GetValueAsString();
-                    return;
-                case "safetyAlertToCautionSwitchEvent":
-                    this.safetyAlertToCautionSwitchEvent = value.GetValueAsString();
-                    return;
-                case "neutralSwitchEvent":
-                    this.neutralSwitchEvent = value.GetValueAsString();
-                    return;
-                default:
-                    base.SetProperty(propertyName, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, index, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, key, value);
-                    return;
-            }
-        }
-    }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "tag":
+					return new Fox.Core.Value(tag);
+				case "playEvent":
+					return new Fox.Core.Value(playEvent);
+				case "daySwitchEvent":
+					return new Fox.Core.Value(daySwitchEvent);
+				case "nightSwitchEvent":
+					return new Fox.Core.Value(nightSwitchEvent);
+				case "dangerEasySwitchEvent":
+					return new Fox.Core.Value(dangerEasySwitchEvent);
+				case "dangerOuterSwitchEvent":
+					return new Fox.Core.Value(dangerOuterSwitchEvent);
+				case "dangerHardSwitchEvent":
+					return new Fox.Core.Value(dangerHardSwitchEvent);
+				case "dangerEasyLostSwitchEvent":
+					return new Fox.Core.Value(dangerEasyLostSwitchEvent);
+				case "dangerOuterLostSwitchEvent":
+					return new Fox.Core.Value(dangerOuterLostSwitchEvent);
+				case "dangerHardLostSwitchEvent":
+					return new Fox.Core.Value(dangerHardLostSwitchEvent);
+				case "dangerEvasionSwitchEvent":
+					return new Fox.Core.Value(dangerEvasionSwitchEvent);
+				case "dangerStrongSwitchEvent":
+					return new Fox.Core.Value(dangerStrongSwitchEvent);
+				case "safetyReflexSwitchEvent":
+					return new Fox.Core.Value(safetyReflexSwitchEvent);
+				case "safetyNeutralToSneakSwitchEvent":
+					return new Fox.Core.Value(safetyNeutralToSneakSwitchEvent);
+				case "safetySneakSwitchEvent":
+					return new Fox.Core.Value(safetySneakSwitchEvent);
+				case "safetyCautionSwitchEvent":
+					return new Fox.Core.Value(safetyCautionSwitchEvent);
+				case "safetyNoticeSwitchEvent":
+					return new Fox.Core.Value(safetyNoticeSwitchEvent);
+				case "safetyCautionNoticeSwitchEvent":
+					return new Fox.Core.Value(safetyCautionNoticeSwitchEvent);
+				case "safetyAlertToCautionSwitchEvent":
+					return new Fox.Core.Value(safetyAlertToCautionSwitchEvent);
+				case "neutralSwitchEvent":
+					return new Fox.Core.Value(neutralSwitchEvent);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
+
+		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
+		{
+			switch (propertyName.CString)
+			{
+				case "tag":
+					this.tag = value.GetValueAsString();
+					return;
+				case "playEvent":
+					this.playEvent = value.GetValueAsString();
+					return;
+				case "daySwitchEvent":
+					this.daySwitchEvent = value.GetValueAsString();
+					return;
+				case "nightSwitchEvent":
+					this.nightSwitchEvent = value.GetValueAsString();
+					return;
+				case "dangerEasySwitchEvent":
+					this.dangerEasySwitchEvent = value.GetValueAsString();
+					return;
+				case "dangerOuterSwitchEvent":
+					this.dangerOuterSwitchEvent = value.GetValueAsString();
+					return;
+				case "dangerHardSwitchEvent":
+					this.dangerHardSwitchEvent = value.GetValueAsString();
+					return;
+				case "dangerEasyLostSwitchEvent":
+					this.dangerEasyLostSwitchEvent = value.GetValueAsString();
+					return;
+				case "dangerOuterLostSwitchEvent":
+					this.dangerOuterLostSwitchEvent = value.GetValueAsString();
+					return;
+				case "dangerHardLostSwitchEvent":
+					this.dangerHardLostSwitchEvent = value.GetValueAsString();
+					return;
+				case "dangerEvasionSwitchEvent":
+					this.dangerEvasionSwitchEvent = value.GetValueAsString();
+					return;
+				case "dangerStrongSwitchEvent":
+					this.dangerStrongSwitchEvent = value.GetValueAsString();
+					return;
+				case "safetyReflexSwitchEvent":
+					this.safetyReflexSwitchEvent = value.GetValueAsString();
+					return;
+				case "safetyNeutralToSneakSwitchEvent":
+					this.safetyNeutralToSneakSwitchEvent = value.GetValueAsString();
+					return;
+				case "safetySneakSwitchEvent":
+					this.safetySneakSwitchEvent = value.GetValueAsString();
+					return;
+				case "safetyCautionSwitchEvent":
+					this.safetyCautionSwitchEvent = value.GetValueAsString();
+					return;
+				case "safetyNoticeSwitchEvent":
+					this.safetyNoticeSwitchEvent = value.GetValueAsString();
+					return;
+				case "safetyCautionNoticeSwitchEvent":
+					this.safetyCautionNoticeSwitchEvent = value.GetValueAsString();
+					return;
+				case "safetyAlertToCautionSwitchEvent":
+					this.safetyAlertToCautionSwitchEvent = value.GetValueAsString();
+					return;
+				case "neutralSwitchEvent":
+					this.neutralSwitchEvent = value.GetValueAsString();
+					return;
+				default:
+					base.SetProperty(propertyName, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+	}
 }

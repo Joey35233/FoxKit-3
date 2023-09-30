@@ -52,8 +52,6 @@ namespace Fox.Core.Serialization
         /// <param name="container">Container type of the property.</param>
         public delegate void OnPropertyNameUnhashedCallback(PropertyInfo.PropertyType type, String name, ushort arraySize, PropertyInfo.ContainerType container);
 
-        public delegate void RequestEntityLink(ulong address, ulong packagePath, ulong archivePath, ulong nameInArchive, EntityLink entityLink);
-
         public DataSetFile2PropertyReader(
             Func<StrCode, String> unhashString,
             RequestSetEntityPtr requestEntityPtr,
@@ -211,29 +209,28 @@ namespace Fox.Core.Serialization
                 packagePath = new Path(unhashString(packagePathHash).CString),
                 archivePath = new Path(unhashString(archivePathHash).CString),
                 nameInArchive = unhashString(nameInArchiveHash),
-                handle = EntityHandle.Empty,
+                handle = null,
             };
 
             setProperty(name, new Value(entityLink));
 
-            requestSetEntityHandle(address, (Entity ptr) => entityLink.handle = EntityHandle.Get(ptr));
+            requestSetEntityHandle(address, (Entity ptr) =>
+            {
+                entityLink.handle = ptr;
+                setProperty(name, new Value(entityLink));
+            });
         }
 
         private void ReadEntityHandle(FileStreamReader reader, SetProperty setProperty, String name)
         {
             ulong address = reader.ReadUInt64();
-            requestSetEntityHandle(address, (Entity ptr) => setProperty(name, new Value(EntityHandle.Get(ptr))));
+            requestSetEntityHandle(address, (Entity ptr) => setProperty(name, new Value(ptr)));
         }
 
         private void ReadEntityPtr(FileStreamReader reader, SetProperty setProperty, Type ptrType, String name)
         {
             ulong address = reader.ReadUInt64();
-            requestSetEntityPtr(address, (Entity ptr) =>
-            {
-                var entityPtr = Activator.CreateInstance(typeof(EntityPtr<>).MakeGenericType(ptrType)) as IEntityPtr;
-                entityPtr.Reset(ptr);
-                setProperty(name, new Value(entityPtr));
-            });
+            requestSetEntityPtr(address, (Entity ptr) => setProperty(name, new Value(ptr)));
         }
 
         private Value ReadPropertyValue(FileStreamReader reader, PropertyInfo.PropertyType type)
@@ -269,8 +266,7 @@ namespace Fox.Core.Serialization
                 case PropertyInfo.PropertyType.FilePtr:
                     return new Value(new FilePtr(new Path(unhashString(reader.ReadStrCode()).CString)));
                 case PropertyInfo.PropertyType.Vector3:
-                    // A "WideVector3" actually exists with two ushort properties packed into w but they are seemingly unused so I have called a padded vector3 a WideVector.
-                    return new Value(reader.ReadWideVector3());
+                    return new Value(reader.ReadPaddedVector3());
                 case PropertyInfo.PropertyType.Vector4:
                     return new Value(reader.ReadVector4());
                 case PropertyInfo.PropertyType.Quat:

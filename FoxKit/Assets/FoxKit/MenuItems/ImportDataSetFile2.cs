@@ -39,7 +39,7 @@ namespace FoxKit.MenuItems
                 // Name the GameObject
                 if (entity is Data)
                 {
-                    gameObject.name = (entity as Data).name.CString;
+                    gameObject.name = (entity as Data).name;
                 }
                 else
                 {
@@ -62,12 +62,12 @@ namespace FoxKit.MenuItems
                 }
                 else if (entity is DataElement)
                 {
-                    EntityHandle parent = (entity as DataElement).owner;
+                    Entity parent = entity.GetComponentInParent<Entity>();
 
                     // I love orphaned DataElements
-                    if (parent.Entity != null)
+                    if (parent != null)
                     {
-                        gameObject.transform.SetParent(parent.Entity.transform);
+                        gameObject.transform.SetParent(parent.transform);
                         gameObject.transform.SetLocalPositionAndRotation(UnityEngine.Vector3.zero, UnityEngine.Quaternion.identity);
                     }
                 }
@@ -83,11 +83,11 @@ namespace FoxKit.MenuItems
             {
                 var transformData = entity as TransformData;
 
-                EntityHandle parent = transformData.parent;
-                if (parent.Entity == null)
+                Entity parent = transformData.GetComponentInParent<Entity>();
+                if (parent == null)
                     continue;
 
-                UnityEngine.GameObject parentGameObject = transformGameObjects[parent.Entity];
+                UnityEngine.GameObject parentGameObject = transformGameObjects[parent];
                 UnityEngine.GameObject gameObject = transformGameObjects[entity];
                 gameObject.transform.SetParent(parentGameObject.transform, false);
             }

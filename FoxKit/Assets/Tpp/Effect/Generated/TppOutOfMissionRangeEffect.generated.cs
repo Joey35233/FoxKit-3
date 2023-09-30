@@ -12,67 +12,67 @@ using Fox;
 
 namespace Tpp.Effect
 {
-    [UnityEditor.InitializeOnLoad]
-    public partial class TppOutOfMissionRangeEffect : Fox.Core.Data 
-    {
-        // Properties
-        [field: UnityEngine.SerializeField]
-        public bool enable { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.Path lutTexture { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float startSlope { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float endSlope { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float blendRatio { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public UnityEngine.Color colorScale { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float noiseScale { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float noiseOffset { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float noiseCutScale { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float noiseCutOffset { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public UnityEngine.Color noiseColor { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float cinemaScopeSlope { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float cinemaScopeShift { get; set; }
-        
-        // ClassInfos
-        public static new bool ClassInfoInitialized = false;
-        private static Fox.Core.EntityInfo classInfo;
-        public static new Fox.Core.EntityInfo ClassInfo
-        {
-            get
-            {
-                return classInfo;
-            }
-        }
-        public override Fox.Core.EntityInfo GetClassEntityInfo()
-        {
-            return classInfo;
-        }
-        static TppOutOfMissionRangeEffect()
-        {
-            if (Fox.Core.Data.ClassInfoInitialized)
-                classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("TppOutOfMissionRangeEffect"), typeof(TppOutOfMissionRangeEffect), Fox.Core.Data.ClassInfo, 144, "TppEffect", 2);
+	[UnityEditor.InitializeOnLoad]
+	public partial class TppOutOfMissionRangeEffect : Fox.Core.Data
+	{
+		// Properties
+		[field: UnityEngine.SerializeField]
+		public bool enable { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Kernel.Path lutTexture { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float startSlope { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float endSlope { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float blendRatio { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public UnityEngine.Color colorScale { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float noiseScale { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float noiseOffset { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float noiseCutScale { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float noiseCutOffset { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public UnityEngine.Color noiseColor { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float cinemaScopeSlope { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float cinemaScopeShift { get; set; }
+		
+		// ClassInfos
+		public static new bool ClassInfoInitialized = false;
+		private static Fox.Core.EntityInfo classInfo;
+		public static new Fox.Core.EntityInfo ClassInfo
+		{
+			get
+			{
+				return classInfo;
+			}
+		}
+		public override Fox.Core.EntityInfo GetClassEntityInfo()
+		{
+			return classInfo;
+		}
+		static TppOutOfMissionRangeEffect()
+		{
+			if (Fox.Core.Data.ClassInfoInitialized)
+				classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("TppOutOfMissionRangeEffect"), typeof(TppOutOfMissionRangeEffect), Fox.Core.Data.ClassInfo, 144, "TppEffect", 2);
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("enable"), Fox.Core.PropertyInfo.PropertyType.Bool, 204, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("lutTexture"), Fox.Core.PropertyInfo.PropertyType.Path, 160, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("startSlope"), Fox.Core.PropertyInfo.PropertyType.Float, 168, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
@@ -87,80 +87,133 @@ namespace Tpp.Effect
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("cinemaScopeSlope"), Fox.Core.PropertyInfo.PropertyType.Float, 196, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("cinemaScopeShift"), Fox.Core.PropertyInfo.PropertyType.Float, 200, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 
-            ClassInfoInitialized = true;
-        }
+			ClassInfoInitialized = true;
+		}
 
-        // Constructors
+		// Constructors
 		public TppOutOfMissionRangeEffect(ulong id) : base(id) { }
 		public TppOutOfMissionRangeEffect() : base() { }
-        
-        public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "enable":
-                    this.enable = value.GetValueAsBool();
-                    return;
-                case "lutTexture":
-                    this.lutTexture = value.GetValueAsPath();
-                    return;
-                case "startSlope":
-                    this.startSlope = value.GetValueAsFloat();
-                    return;
-                case "endSlope":
-                    this.endSlope = value.GetValueAsFloat();
-                    return;
-                case "blendRatio":
-                    this.blendRatio = value.GetValueAsFloat();
-                    return;
-                case "colorScale":
-                    this.colorScale = value.GetValueAsColor();
-                    return;
-                case "noiseScale":
-                    this.noiseScale = value.GetValueAsFloat();
-                    return;
-                case "noiseOffset":
-                    this.noiseOffset = value.GetValueAsFloat();
-                    return;
-                case "noiseCutScale":
-                    this.noiseCutScale = value.GetValueAsFloat();
-                    return;
-                case "noiseCutOffset":
-                    this.noiseCutOffset = value.GetValueAsFloat();
-                    return;
-                case "noiseColor":
-                    this.noiseColor = value.GetValueAsColor();
-                    return;
-                case "cinemaScopeSlope":
-                    this.cinemaScopeSlope = value.GetValueAsFloat();
-                    return;
-                case "cinemaScopeShift":
-                    this.cinemaScopeShift = value.GetValueAsFloat();
-                    return;
-                default:
-                    base.SetProperty(propertyName, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, index, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, key, value);
-                    return;
-            }
-        }
-    }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "enable":
+					return new Fox.Core.Value(enable);
+				case "lutTexture":
+					return new Fox.Core.Value(lutTexture);
+				case "startSlope":
+					return new Fox.Core.Value(startSlope);
+				case "endSlope":
+					return new Fox.Core.Value(endSlope);
+				case "blendRatio":
+					return new Fox.Core.Value(blendRatio);
+				case "colorScale":
+					return new Fox.Core.Value(colorScale);
+				case "noiseScale":
+					return new Fox.Core.Value(noiseScale);
+				case "noiseOffset":
+					return new Fox.Core.Value(noiseOffset);
+				case "noiseCutScale":
+					return new Fox.Core.Value(noiseCutScale);
+				case "noiseCutOffset":
+					return new Fox.Core.Value(noiseCutOffset);
+				case "noiseColor":
+					return new Fox.Core.Value(noiseColor);
+				case "cinemaScopeSlope":
+					return new Fox.Core.Value(cinemaScopeSlope);
+				case "cinemaScopeShift":
+					return new Fox.Core.Value(cinemaScopeShift);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
+
+		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
+		{
+			switch (propertyName.CString)
+			{
+				case "enable":
+					this.enable = value.GetValueAsBool();
+					return;
+				case "lutTexture":
+					this.lutTexture = value.GetValueAsPath();
+					return;
+				case "startSlope":
+					this.startSlope = value.GetValueAsFloat();
+					return;
+				case "endSlope":
+					this.endSlope = value.GetValueAsFloat();
+					return;
+				case "blendRatio":
+					this.blendRatio = value.GetValueAsFloat();
+					return;
+				case "colorScale":
+					this.colorScale = value.GetValueAsColor();
+					return;
+				case "noiseScale":
+					this.noiseScale = value.GetValueAsFloat();
+					return;
+				case "noiseOffset":
+					this.noiseOffset = value.GetValueAsFloat();
+					return;
+				case "noiseCutScale":
+					this.noiseCutScale = value.GetValueAsFloat();
+					return;
+				case "noiseCutOffset":
+					this.noiseCutOffset = value.GetValueAsFloat();
+					return;
+				case "noiseColor":
+					this.noiseColor = value.GetValueAsColor();
+					return;
+				case "cinemaScopeSlope":
+					this.cinemaScopeSlope = value.GetValueAsFloat();
+					return;
+				case "cinemaScopeShift":
+					this.cinemaScopeShift = value.GetValueAsFloat();
+					return;
+				default:
+					base.SetProperty(propertyName, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+	}
 }

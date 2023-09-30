@@ -12,67 +12,67 @@ using Fox;
 
 namespace Fox.Ui
 {
-    [UnityEditor.InitializeOnLoad]
-    public partial class UiEdgeData : Fox.Core.Data 
-    {
-        // Properties
-        [field: UnityEngine.SerializeField]
-        public Fox.Core.EntityLink sourcePort { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public int sourcePortType { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public int sourcePortIndex { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Core.EntityLink targetPort { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public int targetPortType { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public int targetPortIndex { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public bool isVirtual { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public int virtualSourcePortIndex { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public int virtualTargetPortIndex { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Core.EntityLink virtualSourceNode { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Core.EntityLink virtualTargetNode { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public bool isInvalid { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Core.EntityLink connectRealEdge { get; set; }
-        
-        // ClassInfos
-        public static new bool ClassInfoInitialized = false;
-        private static Fox.Core.EntityInfo classInfo;
-        public static new Fox.Core.EntityInfo ClassInfo
-        {
-            get
-            {
-                return classInfo;
-            }
-        }
-        public override Fox.Core.EntityInfo GetClassEntityInfo()
-        {
-            return classInfo;
-        }
-        static UiEdgeData()
-        {
-            if (Fox.Core.Data.ClassInfoInitialized)
-                classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("UiEdgeData"), typeof(UiEdgeData), Fox.Core.Data.ClassInfo, 0, "UiG", 5);
+	[UnityEditor.InitializeOnLoad]
+	public partial class UiEdgeData : Fox.Core.Data
+	{
+		// Properties
+		[field: UnityEngine.SerializeField]
+		public Fox.Core.EntityLink sourcePort { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public int sourcePortType { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public int sourcePortIndex { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Core.EntityLink targetPort { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public int targetPortType { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public int targetPortIndex { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public bool isVirtual { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public int virtualSourcePortIndex { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public int virtualTargetPortIndex { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Core.EntityLink virtualSourceNode { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Core.EntityLink virtualTargetNode { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public bool isInvalid { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Core.EntityLink connectRealEdge { get; set; }
+		
+		// ClassInfos
+		public static new bool ClassInfoInitialized = false;
+		private static Fox.Core.EntityInfo classInfo;
+		public static new Fox.Core.EntityInfo ClassInfo
+		{
+			get
+			{
+				return classInfo;
+			}
+		}
+		public override Fox.Core.EntityInfo GetClassEntityInfo()
+		{
+			return classInfo;
+		}
+		static UiEdgeData()
+		{
+			if (Fox.Core.Data.ClassInfoInitialized)
+				classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("UiEdgeData"), typeof(UiEdgeData), Fox.Core.Data.ClassInfo, 0, "UiG", 5);
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("sourcePort"), Fox.Core.PropertyInfo.PropertyType.EntityLink, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("sourcePortType"), Fox.Core.PropertyInfo.PropertyType.Int32, 160, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("sourcePortIndex"), Fox.Core.PropertyInfo.PropertyType.Int32, 164, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
@@ -87,80 +87,133 @@ namespace Fox.Ui
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("isInvalid"), Fox.Core.PropertyInfo.PropertyType.Bool, 312, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("connectRealEdge"), Fox.Core.PropertyInfo.PropertyType.EntityLink, 320, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 
-            ClassInfoInitialized = true;
-        }
+			ClassInfoInitialized = true;
+		}
 
-        // Constructors
+		// Constructors
 		public UiEdgeData(ulong id) : base(id) { }
 		public UiEdgeData() : base() { }
-        
-        public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "sourcePort":
-                    this.sourcePort = value.GetValueAsEntityLink();
-                    return;
-                case "sourcePortType":
-                    this.sourcePortType = value.GetValueAsInt32();
-                    return;
-                case "sourcePortIndex":
-                    this.sourcePortIndex = value.GetValueAsInt32();
-                    return;
-                case "targetPort":
-                    this.targetPort = value.GetValueAsEntityLink();
-                    return;
-                case "targetPortType":
-                    this.targetPortType = value.GetValueAsInt32();
-                    return;
-                case "targetPortIndex":
-                    this.targetPortIndex = value.GetValueAsInt32();
-                    return;
-                case "isVirtual":
-                    this.isVirtual = value.GetValueAsBool();
-                    return;
-                case "virtualSourcePortIndex":
-                    this.virtualSourcePortIndex = value.GetValueAsInt32();
-                    return;
-                case "virtualTargetPortIndex":
-                    this.virtualTargetPortIndex = value.GetValueAsInt32();
-                    return;
-                case "virtualSourceNode":
-                    this.virtualSourceNode = value.GetValueAsEntityLink();
-                    return;
-                case "virtualTargetNode":
-                    this.virtualTargetNode = value.GetValueAsEntityLink();
-                    return;
-                case "isInvalid":
-                    this.isInvalid = value.GetValueAsBool();
-                    return;
-                case "connectRealEdge":
-                    this.connectRealEdge = value.GetValueAsEntityLink();
-                    return;
-                default:
-                    base.SetProperty(propertyName, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, index, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, key, value);
-                    return;
-            }
-        }
-    }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "sourcePort":
+					return new Fox.Core.Value(sourcePort);
+				case "sourcePortType":
+					return new Fox.Core.Value(sourcePortType);
+				case "sourcePortIndex":
+					return new Fox.Core.Value(sourcePortIndex);
+				case "targetPort":
+					return new Fox.Core.Value(targetPort);
+				case "targetPortType":
+					return new Fox.Core.Value(targetPortType);
+				case "targetPortIndex":
+					return new Fox.Core.Value(targetPortIndex);
+				case "isVirtual":
+					return new Fox.Core.Value(isVirtual);
+				case "virtualSourcePortIndex":
+					return new Fox.Core.Value(virtualSourcePortIndex);
+				case "virtualTargetPortIndex":
+					return new Fox.Core.Value(virtualTargetPortIndex);
+				case "virtualSourceNode":
+					return new Fox.Core.Value(virtualSourceNode);
+				case "virtualTargetNode":
+					return new Fox.Core.Value(virtualTargetNode);
+				case "isInvalid":
+					return new Fox.Core.Value(isInvalid);
+				case "connectRealEdge":
+					return new Fox.Core.Value(connectRealEdge);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
+
+		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
+		{
+			switch (propertyName.CString)
+			{
+				case "sourcePort":
+					this.sourcePort = value.GetValueAsEntityLink();
+					return;
+				case "sourcePortType":
+					this.sourcePortType = value.GetValueAsInt32();
+					return;
+				case "sourcePortIndex":
+					this.sourcePortIndex = value.GetValueAsInt32();
+					return;
+				case "targetPort":
+					this.targetPort = value.GetValueAsEntityLink();
+					return;
+				case "targetPortType":
+					this.targetPortType = value.GetValueAsInt32();
+					return;
+				case "targetPortIndex":
+					this.targetPortIndex = value.GetValueAsInt32();
+					return;
+				case "isVirtual":
+					this.isVirtual = value.GetValueAsBool();
+					return;
+				case "virtualSourcePortIndex":
+					this.virtualSourcePortIndex = value.GetValueAsInt32();
+					return;
+				case "virtualTargetPortIndex":
+					this.virtualTargetPortIndex = value.GetValueAsInt32();
+					return;
+				case "virtualSourceNode":
+					this.virtualSourceNode = value.GetValueAsEntityLink();
+					return;
+				case "virtualTargetNode":
+					this.virtualTargetNode = value.GetValueAsEntityLink();
+					return;
+				case "isInvalid":
+					this.isInvalid = value.GetValueAsBool();
+					return;
+				case "connectRealEdge":
+					this.connectRealEdge = value.GetValueAsEntityLink();
+					return;
+				default:
+					base.SetProperty(propertyName, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+	}
 }

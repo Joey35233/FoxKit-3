@@ -2,7 +2,7 @@
 {
     public partial class Bucket : Fox.Core.Entity
     {
-        protected partial bool Get_isEditableLocked() => throw new System.NotImplementedException();
-        protected partial void Set_isEditableLocked(bool value) => throw new System.NotImplementedException();
+        private partial bool Get_isEditableLocked() => throw new System.NotImplementedException();
+        private partial void Set_isEditableLocked(bool value) => throw new System.NotImplementedException();
     }
 }

@@ -12,91 +12,91 @@ using Fox;
 
 namespace Fox.Ph
 {
-    [UnityEditor.InitializeOnLoad]
-    public partial class PhRigidBodyParam : Fox.Core.Entity 
-    {
-        // Properties
-        [field: UnityEngine.SerializeField]
-        protected UnityEngine.Vector3 defaultPosition { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        protected UnityEngine.Quaternion defaultRotation { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        protected float mass { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        protected float friction { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        protected float restitution { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        protected float maxLinearVelocity { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        protected float maxAngularVelocity { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        protected float linearVelocityDamp { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        protected float angularVelocityDamp { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        protected float permittedDepth { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        protected bool sleepEnable { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        protected float sleepLinearVelocityTh { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        protected float sleepAngularVelocityTh { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        protected float sleepTimeTh { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        protected ushort collisionGroup { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        protected ushort collisionType { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        protected uint collisionId { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        protected UnityEngine.Vector3 centerOfMassOffset { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        protected PhRigidBodyType motionType { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        protected Fox.Kernel.String material { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        protected bool isNoGravity { get; set; }
-        
-        // ClassInfos
-        public static new bool ClassInfoInitialized = false;
-        private static Fox.Core.EntityInfo classInfo;
-        public static new Fox.Core.EntityInfo ClassInfo
-        {
-            get
-            {
-                return classInfo;
-            }
-        }
-        public override Fox.Core.EntityInfo GetClassEntityInfo()
-        {
-            return classInfo;
-        }
-        static PhRigidBodyParam()
-        {
-            if (Fox.Core.Entity.ClassInfoInitialized)
-                classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("PhRigidBodyParam"), typeof(PhRigidBodyParam), Fox.Core.Entity.ClassInfo, 320, "Ph", 5);
+	[UnityEditor.InitializeOnLoad]
+	public partial class PhRigidBodyParam : Fox.Core.Entity
+	{
+		// Properties
+		[field: UnityEngine.SerializeField]
+		protected UnityEngine.Vector3 defaultPosition { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		protected UnityEngine.Quaternion defaultRotation { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		protected float mass { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		protected float friction { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		protected float restitution { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		protected float maxLinearVelocity { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		protected float maxAngularVelocity { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		protected float linearVelocityDamp { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		protected float angularVelocityDamp { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		protected float permittedDepth { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		protected bool sleepEnable { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		protected float sleepLinearVelocityTh { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		protected float sleepAngularVelocityTh { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		protected float sleepTimeTh { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		protected ushort collisionGroup { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		protected ushort collisionType { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		protected uint collisionId { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		protected UnityEngine.Vector3 centerOfMassOffset { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		protected PhRigidBodyType motionType { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		protected Fox.Kernel.String material { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		protected bool isNoGravity { get; set; }
+		
+		// ClassInfos
+		public static new bool ClassInfoInitialized = false;
+		private static Fox.Core.EntityInfo classInfo;
+		public static new Fox.Core.EntityInfo ClassInfo
+		{
+			get
+			{
+				return classInfo;
+			}
+		}
+		public override Fox.Core.EntityInfo GetClassEntityInfo()
+		{
+			return classInfo;
+		}
+		static PhRigidBodyParam()
+		{
+			if (Fox.Core.Entity.ClassInfoInitialized)
+				classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("PhRigidBodyParam"), typeof(PhRigidBodyParam), Fox.Core.Entity.ClassInfo, 320, "Ph", 5);
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("defaultPosition"), Fox.Core.PropertyInfo.PropertyType.Vector3, 48, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("defaultRotation"), Fox.Core.PropertyInfo.PropertyType.Quat, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("mass"), Fox.Core.PropertyInfo.PropertyType.Float, 104, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
@@ -119,104 +119,173 @@ namespace Fox.Ph
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("material"), Fox.Core.PropertyInfo.PropertyType.String, 96, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("isNoGravity"), Fox.Core.PropertyInfo.PropertyType.Bool, 161, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 
-            ClassInfoInitialized = true;
-        }
+			ClassInfoInitialized = true;
+		}
 
-        // Constructors
+		// Constructors
 		public PhRigidBodyParam(ulong id) : base(id) { }
 		public PhRigidBodyParam() : base() { }
-        
-        public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "defaultPosition":
-                    this.defaultPosition = value.GetValueAsVector3();
-                    return;
-                case "defaultRotation":
-                    this.defaultRotation = value.GetValueAsQuat();
-                    return;
-                case "mass":
-                    this.mass = value.GetValueAsFloat();
-                    return;
-                case "friction":
-                    this.friction = value.GetValueAsFloat();
-                    return;
-                case "restitution":
-                    this.restitution = value.GetValueAsFloat();
-                    return;
-                case "maxLinearVelocity":
-                    this.maxLinearVelocity = value.GetValueAsFloat();
-                    return;
-                case "maxAngularVelocity":
-                    this.maxAngularVelocity = value.GetValueAsFloat();
-                    return;
-                case "linearVelocityDamp":
-                    this.linearVelocityDamp = value.GetValueAsFloat();
-                    return;
-                case "angularVelocityDamp":
-                    this.angularVelocityDamp = value.GetValueAsFloat();
-                    return;
-                case "permittedDepth":
-                    this.permittedDepth = value.GetValueAsFloat();
-                    return;
-                case "sleepEnable":
-                    this.sleepEnable = value.GetValueAsBool();
-                    return;
-                case "sleepLinearVelocityTh":
-                    this.sleepLinearVelocityTh = value.GetValueAsFloat();
-                    return;
-                case "sleepAngularVelocityTh":
-                    this.sleepAngularVelocityTh = value.GetValueAsFloat();
-                    return;
-                case "sleepTimeTh":
-                    this.sleepTimeTh = value.GetValueAsFloat();
-                    return;
-                case "collisionGroup":
-                    this.collisionGroup = value.GetValueAsUInt16();
-                    return;
-                case "collisionType":
-                    this.collisionType = value.GetValueAsUInt16();
-                    return;
-                case "collisionId":
-                    this.collisionId = value.GetValueAsUInt32();
-                    return;
-                case "centerOfMassOffset":
-                    this.centerOfMassOffset = value.GetValueAsVector3();
-                    return;
-                case "motionType":
-                    this.motionType = (PhRigidBodyType)value.GetValueAsInt32();
-                    return;
-                case "material":
-                    this.material = value.GetValueAsString();
-                    return;
-                case "isNoGravity":
-                    this.isNoGravity = value.GetValueAsBool();
-                    return;
-                default:
-                    base.SetProperty(propertyName, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, index, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, key, value);
-                    return;
-            }
-        }
-    }
+		
+		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		{
+			switch (propertyName.CString)
+			{
+				case "defaultPosition":
+					return new Fox.Core.Value(defaultPosition);
+				case "defaultRotation":
+					return new Fox.Core.Value(defaultRotation);
+				case "mass":
+					return new Fox.Core.Value(mass);
+				case "friction":
+					return new Fox.Core.Value(friction);
+				case "restitution":
+					return new Fox.Core.Value(restitution);
+				case "maxLinearVelocity":
+					return new Fox.Core.Value(maxLinearVelocity);
+				case "maxAngularVelocity":
+					return new Fox.Core.Value(maxAngularVelocity);
+				case "linearVelocityDamp":
+					return new Fox.Core.Value(linearVelocityDamp);
+				case "angularVelocityDamp":
+					return new Fox.Core.Value(angularVelocityDamp);
+				case "permittedDepth":
+					return new Fox.Core.Value(permittedDepth);
+				case "sleepEnable":
+					return new Fox.Core.Value(sleepEnable);
+				case "sleepLinearVelocityTh":
+					return new Fox.Core.Value(sleepLinearVelocityTh);
+				case "sleepAngularVelocityTh":
+					return new Fox.Core.Value(sleepAngularVelocityTh);
+				case "sleepTimeTh":
+					return new Fox.Core.Value(sleepTimeTh);
+				case "collisionGroup":
+					return new Fox.Core.Value(collisionGroup);
+				case "collisionType":
+					return new Fox.Core.Value(collisionType);
+				case "collisionId":
+					return new Fox.Core.Value(collisionId);
+				case "centerOfMassOffset":
+					return new Fox.Core.Value(centerOfMassOffset);
+				case "motionType":
+					return new Fox.Core.Value(motionType);
+				case "material":
+					return new Fox.Core.Value(material);
+				case "isNoGravity":
+					return new Fox.Core.Value(isNoGravity);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
+
+		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
+		{
+			switch (propertyName.CString)
+			{
+				case "defaultPosition":
+					this.defaultPosition = value.GetValueAsVector3();
+					return;
+				case "defaultRotation":
+					this.defaultRotation = value.GetValueAsQuat();
+					return;
+				case "mass":
+					this.mass = value.GetValueAsFloat();
+					return;
+				case "friction":
+					this.friction = value.GetValueAsFloat();
+					return;
+				case "restitution":
+					this.restitution = value.GetValueAsFloat();
+					return;
+				case "maxLinearVelocity":
+					this.maxLinearVelocity = value.GetValueAsFloat();
+					return;
+				case "maxAngularVelocity":
+					this.maxAngularVelocity = value.GetValueAsFloat();
+					return;
+				case "linearVelocityDamp":
+					this.linearVelocityDamp = value.GetValueAsFloat();
+					return;
+				case "angularVelocityDamp":
+					this.angularVelocityDamp = value.GetValueAsFloat();
+					return;
+				case "permittedDepth":
+					this.permittedDepth = value.GetValueAsFloat();
+					return;
+				case "sleepEnable":
+					this.sleepEnable = value.GetValueAsBool();
+					return;
+				case "sleepLinearVelocityTh":
+					this.sleepLinearVelocityTh = value.GetValueAsFloat();
+					return;
+				case "sleepAngularVelocityTh":
+					this.sleepAngularVelocityTh = value.GetValueAsFloat();
+					return;
+				case "sleepTimeTh":
+					this.sleepTimeTh = value.GetValueAsFloat();
+					return;
+				case "collisionGroup":
+					this.collisionGroup = value.GetValueAsUInt16();
+					return;
+				case "collisionType":
+					this.collisionType = value.GetValueAsUInt16();
+					return;
+				case "collisionId":
+					this.collisionId = value.GetValueAsUInt32();
+					return;
+				case "centerOfMassOffset":
+					this.centerOfMassOffset = value.GetValueAsVector3();
+					return;
+				case "motionType":
+					this.motionType = (PhRigidBodyType)value.GetValueAsInt32();
+					return;
+				case "material":
+					this.material = value.GetValueAsString();
+					return;
+				case "isNoGravity":
+					this.isNoGravity = value.GetValueAsBool();
+					return;
+				default:
+					base.SetProperty(propertyName, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
+		{
+			switch (propertyName.CString)
+			{
+				default:
+					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+	}
 }
