@@ -17,9 +17,8 @@ namespace Fox.EdCore
         public static readonly long SerializedPropertyBindEventTypeId = (long)SerializedPropertyBindEventTypeIDMethod.Invoke(null, null);
         public static readonly System.Reflection.PropertyInfo SerializedPropertyBindEventBindProperty = SerializedPropertyBindEventType.GetProperty("bindProperty");
 
-        public static Func<IFoxField> GetTypeFieldConstructor(Type propertyType)
-        {
-            return propertyType switch
+        public static Func<IFoxField> GetBindableElementConstructorForType(Type propertyType) =>
+            propertyType switch
             {
                 Type type when type.IsEnum => type.IsDefined(typeof(FlagsAttribute), inherit: false) ? () => new EnumFlagsField() : () => new EnumField(),
                 Type type when type == typeof(bool) => () => new BoolField(),
@@ -40,13 +39,40 @@ namespace Fox.EdCore
                 Type type when type == typeof(Color) => () => new ColorField(),
                 Type type when type == typeof(Quaternion) => () => new QuaternionField(),
                 Type type when type == typeof(FilePtr) => () => new FilePtrField(),
-                Type type when type.IsSubclassOf(typeof(Entity)) && type != typeof(Entity) => () => Activator.CreateInstance(typeof(EntityPtrField<>).MakeGenericType(type)) as IFoxField,
-                Type type when type == typeof(Entity) => () => new EntityHandleField(),
+                Type type when type == typeof(Entity) || type.IsSubclassOf(typeof(Entity)) => () => new EntityHandleField(),
                 Type type when type == typeof(Matrix4x4) => () => new Matrix4Field(),
                 Type type when type == typeof(EntityLink) => () => new EntityLinkField(),
                 _ => throw new ArgumentException($"Invalid Fox type: {propertyType}."),
             };
-        }
+
+        public static Func<IFoxField> GetBindableElementConstructorForPropertyInfo(PropertyInfo propertyInfo) =>
+            propertyInfo switch
+            {
+                { Enum: not null } => propertyInfo.Enum.IsDefined(typeof(FlagsAttribute), inherit: false) ? () => new EnumFlagsField() : () => new EnumField(),
+                { Type: PropertyType.Bool } => () => new BoolField(),
+                { Type: PropertyType.Int8 } => () => new Int8Field(false),
+                { Type: PropertyType.UInt8 } => () => new UInt8Field(false),
+                { Type: PropertyType.Int16 } => () => new Int16Field(false),
+                { Type: PropertyType.UInt16 } => () => new UInt16Field(false),
+                { Type: PropertyType.Int32 } => () => new Int32Field(false),
+                { Type: PropertyType.UInt32 } => () => new UInt32Field(false),
+                { Type: PropertyType.Int64 } => () => new Int64Field(false),
+                { Type: PropertyType.UInt64 } => () => new UInt64Field(false),
+                { Type: PropertyType.Float } => () => new FloatField(false),
+                { Type: PropertyType.Double } => () => new DoubleField(false),
+                { Type: PropertyType.String } => () => new StringField(),
+                { Type: PropertyType.Path } => () => new PathField(),
+                { Type: PropertyType.Vector3 } => () => new Vector3Field(),
+                { Type: PropertyType.Vector4 } => () => new Vector4Field(),
+                { Type: PropertyType.Color } => () => new ColorField(),
+                { Type: PropertyType.Quat } => () => new QuaternionField(),
+                { Type: PropertyType.FilePtr } => () => new FilePtrField(),
+                { Type: PropertyType.EntityPtr } => () => Activator.CreateInstance(typeof(EntityPtrField<>).MakeGenericType(propertyInfo.PtrType)) as IFoxField,
+                { Type: PropertyType.EntityHandle } => () => new EntityHandleField(),
+                { Type: PropertyType.Matrix4 } => () => new Matrix4Field(),
+                { Type: PropertyType.EntityLink } => () => new EntityLinkField(),
+                _ => throw new ArgumentException($"Invalid Fox type: {propertyInfo.Type}."),
+            };
 
         // For BaseField, field, when you send a ChangeEvent:
         // It stores field.value as lastFieldValue (SerializedObjectBindingToBaseField.FieldValueChanged)

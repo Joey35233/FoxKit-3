@@ -50,38 +50,43 @@ namespace Fox.Core
             this.transform = transform;
             transform.SetOwner(this);
 
-            UpdateTransform();
+            UpdateTransformEntity();
+        }
+
+        private void UpdateTransformEntity()
+        {
+            if (inheritTransform)
+            {
+                gameObject.transform.localPosition = transform.translation;
+                gameObject.transform.localRotation = transform.rotQuat;
+                gameObject.transform.localScale = transform.scale;
+            }
+            else
+            {
+                gameObject.transform.position = transform.translation;
+                gameObject.transform.rotation = transform.rotQuat;
+                gameObject.transform.localScale = transform.scale;
+            }
         }
 
         public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
         {
-            UpdateTransform();
+            OnDeserializeTransformEntity();
 
             base.OnDeserializeEntity(gameObject, logger);
         }
 
-        private void UpdateTransform()
+        private void OnDeserializeTransformEntity()
         {
             if (transform is null)
-                SetTransform(TransformEntity.GetDefault());
+                return;
 
             TransformEntity transformEntity = transform;
             transformEntity.translation = Math.FoxToUnityVector3(transformEntity.translation);
             transformEntity.rotQuat = Math.FoxToUnityQuaternion(transformEntity.rotQuat);
             transformEntity.scale = transformEntity.scale;
 
-            if (inheritTransform)
-            {
-                gameObject.transform.localPosition = transformEntity.translation;
-                gameObject.transform.localRotation = transformEntity.rotQuat;
-                gameObject.transform.localScale = transformEntity.scale;
-            }
-            else
-            {
-                gameObject.transform.position = transformEntity.translation;
-                gameObject.transform.rotation = transformEntity.rotQuat;
-                gameObject.transform.localScale = transformEntity.scale;
-            }
+            UpdateTransformEntity();
         }
 
         public override void OverridePropertiesForExport(EntityExportContext context)

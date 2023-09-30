@@ -1,4 +1,5 @@
-﻿using Fox.Kernel;
+﻿using Fox.Core;
+using Fox.Kernel;
 using System;
 using UnityEditor;
 using UnityEditor.UIElements;
@@ -10,7 +11,8 @@ namespace Fox.EdCore
     {
         private readonly ListView ListViewInput;
 
-        private static readonly Func<IFoxField> FieldConstructor = FoxFieldUtils.GetTypeFieldConstructor(typeof(T));
+        private static readonly Func<IFoxField> DefaultFieldConstructor = FoxFieldUtils.GetBindableElementConstructorForType(typeof(T));
+        private Func<IFoxField> FieldConstructor = DefaultFieldConstructor;
 
         public static new readonly string ussClassName = "fox-staticarray-field";
         public static new readonly string labelUssClassName = ussClassName + "__label";
@@ -82,8 +84,11 @@ namespace Fox.EdCore
         }
 
         public void BindProperty(SerializedProperty property) => BindProperty(property, null);
-        public void BindProperty(SerializedProperty property, string label)
+        public void BindProperty(SerializedProperty property, string label, PropertyInfo propertyInfo = null)
         {
+            if (propertyInfo is not null)
+                FieldConstructor = FoxFieldUtils.GetBindableElementConstructorForPropertyInfo(propertyInfo);
+
             if (label is not null)
                 this.label = label;
             BindingExtensions.BindProperty(ListViewInput, property.FindPropertyRelative("_list"));

@@ -1,8 +1,11 @@
 using Fox.Core;
 using System;
+using System.Reflection;
 using UnityEditor;
 using UnityEditor.UIElements;
+using UnityEngine;
 using UnityEngine.UIElements;
+using PropertyInfo = Fox.Core.PropertyInfo;
 
 namespace Fox.EdCore
 {
@@ -142,7 +145,7 @@ namespace Fox.EdCore
 
                 PropertyContainer.visible = true;
                 PropertyContainer.Clear();
-                var entityField = Activator.CreateInstance(typeof(EntityField<>).MakeGenericType(new Type[] { typeof(T) })) as ICustomBindable;
+                var entityField = new EntityField<T>() as ICustomBindable;
                 entityField.BindProperty(PtrProperty);
                 PropertyContainer.Add(entityField as VisualElement);
             }
@@ -158,7 +161,7 @@ namespace Fox.EdCore
                     SpecificEntityType = EntityTypePickerPopup.ShowPopup(typeof(T))?.Type;
                     if (SpecificEntityType != null)
                     {
-                        PtrProperty.objectReferenceValue = Activator.CreateInstance(SpecificEntityType) as UnityEngine.Object;
+                        PtrProperty.objectReferenceValue = new GameObject().AddComponent(SpecificEntityType);
                         _ = PtrProperty.serializedObject.ApplyModifiedProperties();
                     }
                 }
@@ -166,6 +169,12 @@ namespace Fox.EdCore
                 // [－] clicked
                 case CreateDeleteButtonMode.DeleteEntity:
                 {
+                    // UnityEngine.Object obj = PtrProperty.objectReferenceValue;
+                    // if (obj is Entity entity)
+                    //     Undo.DestroyObjectImmediate(entity.gameObject);
+                    // else
+                    //     throw new ArgumentException($"EntityPtrField storing non-Entity");
+
                     PtrProperty.objectReferenceValue = null;
 
                     _ = PtrProperty.serializedObject.ApplyModifiedProperties();
@@ -175,7 +184,7 @@ namespace Fox.EdCore
         }
 
         public void BindProperty(SerializedProperty property) => BindProperty(property, null);
-        public void BindProperty(SerializedProperty property, string label)
+        public void BindProperty(SerializedProperty property, string label, PropertyInfo propertyInfo = null)
         {
             if (label is not null)
                 this.label = label;

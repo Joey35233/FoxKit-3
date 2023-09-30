@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Fox.Core;
+using System;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine.UIElements;
@@ -82,7 +83,7 @@ namespace Fox.EdCore
         }
 
         public void BindProperty(SerializedProperty property) => BindProperty(property, null);
-        public void BindProperty(SerializedProperty property, string label)
+        public void BindProperty(SerializedProperty property, string label, PropertyInfo propertyInfo = null)
         {
             if (label is not null)
                 this.label = label;

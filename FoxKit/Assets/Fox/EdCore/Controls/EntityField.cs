@@ -41,7 +41,7 @@ namespace Fox.EdCore
 
         public void BindProperty(SerializedProperty property) => BindProperty(property, null);
 
-        public void BindProperty(SerializedProperty property, string label)
+        public void BindProperty(SerializedProperty property, string label, PropertyInfo propertyInfo = null)
         {
             Bind(new SerializedObject(property.objectReferenceValue));
         }
@@ -97,7 +97,7 @@ namespace Fox.EdCore
                         continue;
 
                     ICustomBindable propertyField = FoxFieldUtils.GetCustomBindableField(propertyInfo);
-                    propertyField.BindProperty(serializedObject.FindProperty($"<{propertyInfo.Name}>k__BackingField"), propertyInfo.Name.CString);
+                    propertyField.BindProperty(serializedObject.FindProperty($"<{propertyInfo.Name}>k__BackingField"), propertyInfo.Name.CString, propertyInfo);
                     var fieldElement = propertyField as VisualElement;
                     Label labelElement = fieldElement.Query<Label>(className: BaseField<float>.labelUssClassName).First();
                     if (entityInfo.LongestNamedVisibleFieldProperty is not null)

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Fox.Core;
+using System;
 using System.Globalization;
 using UnityEditor;
 using UnityEditor.UIElements;
@@ -117,7 +118,7 @@ namespace Fox.EdCore
         public override void ApplyInputDeviceDelta(Vector3 delta, DeltaSpeed speed, byte startValue) => integerInput.ApplyInputDeviceDelta(delta, speed, startValue);
 
         public void BindProperty(SerializedProperty property) => BindProperty(property, null);
-        public void BindProperty(SerializedProperty property, string label)
+        public void BindProperty(SerializedProperty property, string label, PropertyInfo propertyInfo = null)
         {
             if (label is not null)
                 this.label = label;

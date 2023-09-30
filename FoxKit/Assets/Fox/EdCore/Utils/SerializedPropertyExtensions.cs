@@ -69,11 +69,11 @@ public static class SerializedPropertyExtensions
     //      int i = 0;
     //      NextPropertyPathToken(propertyPath, ref i, out var component);
     //          => component = { propertyName = "quests" };
-    //      NextPropertyPathToken(propertyPath, ref i, out var component) 
+    //      NextPropertyPathToken(propertyPath, ref i, out var component)
     //          => component = { elementIndex = 0 };
-    //      NextPropertyPathToken(propertyPath, ref i, out var component) 
+    //      NextPropertyPathToken(propertyPath, ref i, out var component)
     //          => component = { propertyName = "goal" };
-    //      NextPropertyPathToken(propertyPath, ref i, out var component) 
+    //      NextPropertyPathToken(propertyPath, ref i, out var component)
     //          => returns false
     private static bool NextPathComponent(string propertyPath, ref int index, out PropertyPathComponent component)
     {
@@ -126,6 +126,8 @@ public static class SerializedPropertyExtensions
             return null;
         System.Type type = container.GetType();
         MemberInfo[] members = type.GetMember(name, BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance);
+        if (members.Length == 0 && name.EndsWith(">k__BackingField"))
+            members = type.GetMember(name.Substring(1, name.Length - 17));
         for (int i = 0; i < members.Length; ++i)
         {
             if (members[i] is FieldInfo field)

@@ -1,4 +1,5 @@
-﻿using Fox.Kernel;
+﻿using Fox.Core;
+using Fox.Kernel;
 using System;
 using System.Collections;
 using UnityEditor;
@@ -12,7 +13,8 @@ namespace Fox.EdCore
     {
         private readonly ListView ListViewInput;
 
-        private static readonly Func<IFoxField> FieldConstructor = FoxFieldUtils.GetTypeFieldConstructor(typeof(T));
+        private static readonly Func<IFoxField> DefaultFieldConstructor = FoxFieldUtils.GetBindableElementConstructorForType(typeof(T));
+        private Func<IFoxField> FieldConstructor = DefaultFieldConstructor;
 
         private SerializedProperty StringMapProperty;
 
@@ -169,13 +171,14 @@ namespace Fox.EdCore
 
             Label label = field.labelElement;
             label.text = $"[{index}]";
-
-            return;
         }
 
         public void BindProperty(SerializedProperty property) => BindProperty(property, null);
-        public void BindProperty(SerializedProperty property, string label)
+        public void BindProperty(SerializedProperty property, string label, PropertyInfo propertyInfo = null)
         {
+            if (propertyInfo is not null)
+                FieldConstructor = FoxFieldUtils.GetBindableElementConstructorForPropertyInfo(propertyInfo);
+
             if (label is not null)
                 this.label = label;
             StringMapProperty = property.Copy();
