@@ -50,11 +50,6 @@ namespace Fox.Core
             this.transform = transform;
             transform.SetOwner(this);
 
-            UpdateTransformEntity();
-        }
-
-        private void UpdateTransformEntity()
-        {
             if (inheritTransform)
             {
                 gameObject.transform.localPosition = transform.translation;
@@ -86,7 +81,7 @@ namespace Fox.Core
             transformEntity.rotQuat = Math.FoxToUnityQuaternion(transformEntity.rotQuat);
             transformEntity.scale = transformEntity.scale;
 
-            UpdateTransformEntity();
+            SetTransform(transform);
         }
 
         public override void OverridePropertiesForExport(EntityExportContext context)
