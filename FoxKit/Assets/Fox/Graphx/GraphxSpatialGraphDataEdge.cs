@@ -6,7 +6,7 @@ namespace Fox.Graphx
     {
         public void OnDrawGizmos()
         {
-            Gizmos.DrawLine((prevNode.Entity as GraphxSpatialGraphDataNode).position, (nextNode.Entity as GraphxSpatialGraphDataNode).position);
+            Gizmos.DrawLine((prevNode as GraphxSpatialGraphDataNode).position, (nextNode as GraphxSpatialGraphDataNode).position);
         }
     }
 }

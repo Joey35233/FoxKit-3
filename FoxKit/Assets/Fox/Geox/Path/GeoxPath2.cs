@@ -59,7 +59,11 @@ namespace Fox.Geox
 
             // Working off the assumption that the indices are for the vertices and the edges are implicitly linked
             path.nodes.Capacity = header.PrimCount + 1;
+            for (int i = 0; i < path.nodes.Capacity; i++)
+                path.nodes.Add(default);
             path.edges.Capacity = header.PrimCount;
+            for (int i = 0; i < path.edges.Capacity; i++)
+                path.edges.Add(default);
 
             for (int i = 0; i < header.PrimCount; i++)
             {

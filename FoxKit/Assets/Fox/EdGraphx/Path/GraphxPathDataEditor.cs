@@ -14,9 +14,9 @@ namespace Fox.EdGraphx
 
         public Bounds OnGetFrameBounds()
         {
-            var bounds = new Bounds(Path.nodes[0].Get().position, new Vector3(0, 0, 0));
+            var bounds = new Bounds(Path.nodes[0].position, new Vector3(0, 0, 0));
             for (int i = 1; i < Path.nodes.Count; i++)
-                bounds.Encapsulate(Path.nodes[i].Get().position);
+                bounds.Encapsulate(Path.nodes[i].position);
 
             return bounds;
         }
