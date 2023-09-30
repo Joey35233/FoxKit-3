@@ -14,9 +14,17 @@ namespace Fox.Core
         {
             base.OnDeserializeEntity(gameObject, logger);
 
-            if (this.GetComponentInParent<Entity>() == null)
+            if (this.owner is not { } owner )
             {
                 this.gameObject.SetActive(false);
+            }
+            else if (owner is not Data data)
+            {
+                logger.AddError("Invalid DataElement owner.");
+            }
+            else
+            {
+                this.SetOwner(data);
             }
         }
     }
