@@ -18,15 +18,15 @@ namespace Fox.Sim
 		// Properties
 		[field: UnityEngine.SerializeField]
 		protected Fox.Sim.SimDirectionControlParam controlParam { get; set; }
-
+		
 		public Fox.Kernel.String refBone { get => Get_refBone(); set { Set_refBone(value); } }
 		private partial Fox.Kernel.String Get_refBone();
 		private partial void Set_refBone(Fox.Kernel.String value);
-
+		
 		public UnityEngine.Quaternion offset { get => Get_offset(); set { Set_offset(value); } }
 		private partial UnityEngine.Quaternion Get_offset();
 		private partial void Set_offset(UnityEngine.Quaternion value);
-
+		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;
@@ -55,7 +55,7 @@ namespace Fox.Sim
 		// Constructors
 		public SimDirectionControl(ulong id) : base(id) { }
 		public SimDirectionControl() : base() { }
-
+		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{
 			switch (propertyName.CString)

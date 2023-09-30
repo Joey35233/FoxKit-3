@@ -18,10 +18,10 @@ namespace Fox.Anim
 		// Properties
 		[field: UnityEngine.SerializeField]
 		public Fox.Kernel.DynamicArray<Fox.Kernel.String> skelList { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
-
+		
 		[field: UnityEngine.SerializeField]
 		public Fox.Kernel.DynamicArray<Fox.Anim.ParameterMaskElement> shaderList { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Anim.ParameterMaskElement>();
-
+		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;
@@ -49,7 +49,7 @@ namespace Fox.Anim
 		// Constructors
 		public FacialMaskElement(ulong id) : base(id) { }
 		public FacialMaskElement() : base() { }
-
+		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{
 			switch (propertyName.CString)

@@ -18,7 +18,7 @@ namespace Tpp.Effect
 		// Properties
 		[field: UnityEngine.SerializeField]
 		public Tpp.Effect.TppNightVisionParam param { get; set; }
-
+		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;
@@ -45,7 +45,7 @@ namespace Tpp.Effect
 		// Constructors
 		public TppNightVision(ulong id) : base(id) { }
 		public TppNightVision() : base() { }
-
+		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{
 			switch (propertyName.CString)

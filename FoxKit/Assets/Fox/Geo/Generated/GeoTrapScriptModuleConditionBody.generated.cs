@@ -18,10 +18,10 @@ namespace Fox.Geo
 		// Properties
 		[field: UnityEngine.SerializeField]
 		protected Fox.Kernel.DynamicArray<Fox.Core.SafeScript> checkScriptArray { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Core.SafeScript>();
-
+		
 		[field: UnityEngine.SerializeField]
 		protected Fox.Kernel.DynamicArray<Fox.Core.SafeScript> execScriptArray { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Core.SafeScript>();
-
+		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;
@@ -49,7 +49,7 @@ namespace Fox.Geo
 		// Constructors
 		public GeoTrapScriptModuleConditionBody(ulong id) : base(id) { }
 		public GeoTrapScriptModuleConditionBody() : base() { }
-
+		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{
 			switch (propertyName.CString)

@@ -18,15 +18,15 @@ namespace Fox.Ph
 		// Properties
 		[field: UnityEngine.SerializeField]
 		protected Fox.Ph.PhShapeParam param { get; set; }
-
+		
 		public UnityEngine.Vector3 offset { get => Get_offset(); set { Set_offset(value); } }
 		private partial UnityEngine.Vector3 Get_offset();
 		private partial void Set_offset(UnityEngine.Vector3 value);
-
+		
 		public UnityEngine.Quaternion rotation { get => Get_rotation(); set { Set_rotation(value); } }
 		private partial UnityEngine.Quaternion Get_rotation();
 		private partial void Set_rotation(UnityEngine.Quaternion value);
-
+		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;
@@ -55,7 +55,7 @@ namespace Fox.Ph
 		// Constructors
 		public PhShape(ulong id) : base(id) { }
 		public PhShape() : base() { }
-
+		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{
 			switch (propertyName.CString)

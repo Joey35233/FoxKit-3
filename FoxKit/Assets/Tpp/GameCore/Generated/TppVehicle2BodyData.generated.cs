@@ -18,25 +18,25 @@ namespace Tpp.GameCore
 		// Properties
 		[field: UnityEngine.SerializeField]
 		protected byte vehicleTypeIndex { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		protected byte proxyVehicleTypeIndex { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		protected byte bodyImplTypeIndex { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		protected Fox.Core.FilePtr partsFile { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		protected byte bodyInstanceCount { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		protected Fox.Kernel.DynamicArray<Tpp.GameCore.TppVehicle2WeaponParameter> weaponParams { get; private set; } = new Fox.Kernel.DynamicArray<Tpp.GameCore.TppVehicle2WeaponParameter>();
-
+		
 		[field: UnityEngine.SerializeField]
 		protected Fox.Kernel.DynamicArray<Fox.Core.FilePtr> fovaFiles { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Core.FilePtr>();
-
+		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;
@@ -69,7 +69,7 @@ namespace Tpp.GameCore
 		// Constructors
 		public TppVehicle2BodyData(ulong id) : base(id) { }
 		public TppVehicle2BodyData() : base() { }
-
+		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{
 			switch (propertyName.CString)

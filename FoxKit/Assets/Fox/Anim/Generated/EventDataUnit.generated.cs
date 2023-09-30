@@ -18,19 +18,19 @@ namespace Fox.Anim
 		// Properties
 		[field: UnityEngine.SerializeField]
 		public Fox.Kernel.String eventName { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public Fox.Kernel.DynamicArray<Fox.Anim.TimeSection> sections { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Anim.TimeSection>();
-
+		
 		[field: UnityEngine.SerializeField]
 		public Fox.Kernel.DynamicArray<Fox.Kernel.String> paramString { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
-
+		
 		[field: UnityEngine.SerializeField]
 		public Fox.Kernel.DynamicArray<int> paramInt { get; private set; } = new Fox.Kernel.DynamicArray<int>();
-
+		
 		[field: UnityEngine.SerializeField]
 		public Fox.Kernel.DynamicArray<float> paramFloat { get; private set; } = new Fox.Kernel.DynamicArray<float>();
-
+		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;
@@ -61,7 +61,7 @@ namespace Fox.Anim
 		// Constructors
 		public EventDataUnit(ulong id) : base(id) { }
 		public EventDataUnit() : base() { }
-
+		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{
 			switch (propertyName.CString)

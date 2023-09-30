@@ -18,17 +18,17 @@ namespace Fox.Ph
 		// Properties
 		[field: UnityEngine.SerializeField]
 		protected Fox.Ph.PhConstraintParam param { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public Fox.Core.EntityLink bodyA { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public Fox.Core.EntityLink bodyB { get; set; }
-
+		
 		public UnityEngine.Vector3 defaultPosition { get => Get_defaultPosition(); set { Set_defaultPosition(value); } }
 		private partial UnityEngine.Vector3 Get_defaultPosition();
 		private partial void Set_defaultPosition(UnityEngine.Vector3 value);
-
+		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;
@@ -58,7 +58,7 @@ namespace Fox.Ph
 		// Constructors
 		public PhConstraint(ulong id) : base(id) { }
 		public PhConstraint() : base() { }
-
+		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{
 			switch (propertyName.CString)

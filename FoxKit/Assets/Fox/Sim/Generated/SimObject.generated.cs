@@ -18,13 +18,13 @@ namespace Fox.Sim
 		// Properties
 		[field: UnityEngine.SerializeField]
 		protected Fox.Sim.SimObjectParam objectParam { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		protected Fox.Sim.SimEngineParam engineParam { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public Fox.Kernel.DynamicArray<Fox.Sim.SimControlElement> controls { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Sim.SimControlElement>();
-
+		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;
@@ -53,7 +53,7 @@ namespace Fox.Sim
 		// Constructors
 		public SimObject(ulong id) : base(id) { }
 		public SimObject() : base() { }
-
+		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{
 			switch (propertyName.CString)

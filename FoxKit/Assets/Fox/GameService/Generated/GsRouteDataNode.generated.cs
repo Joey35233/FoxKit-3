@@ -18,7 +18,7 @@ namespace Fox.GameService
 		// Properties
 		[field: UnityEngine.SerializeField]
 		public Fox.Kernel.DynamicArray<Fox.GameService.GsRouteDataNodeEvent> nodeEvents { get; private set; } = new Fox.Kernel.DynamicArray<Fox.GameService.GsRouteDataNodeEvent>();
-
+		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;
@@ -45,7 +45,7 @@ namespace Fox.GameService
 		// Constructors
 		public GsRouteDataNode(ulong id) : base(id) { }
 		public GsRouteDataNode() : base() { }
-
+		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{
 			switch (propertyName.CString)

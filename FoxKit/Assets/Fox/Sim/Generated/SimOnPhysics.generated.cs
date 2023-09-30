@@ -18,38 +18,38 @@ namespace Fox.Sim
 		// Properties
 		[field: UnityEngine.SerializeField]
 		public Fox.Kernel.StringMap<Fox.Sim.SimAssociationUnit> simRootBones { get; private set; } = new Fox.Kernel.StringMap<Fox.Sim.SimAssociationUnit>();
-
+		
 		[field: UnityEngine.SerializeField]
 		public Fox.Kernel.StringMap<Fox.Sim.SimAssociationUnit> simBones { get; private set; } = new Fox.Kernel.StringMap<Fox.Sim.SimAssociationUnit>();
-
+		
 		[field: UnityEngine.SerializeField]
 		public Fox.Kernel.StringMap<Fox.Sim.SimAssociationUnit> simTransBones { get; private set; } = new Fox.Kernel.StringMap<Fox.Sim.SimAssociationUnit>();
-
+		
 		[field: UnityEngine.SerializeField]
 		public Fox.Kernel.StringMap<Fox.Sim.SimAssociationUnit> simHitBones { get; private set; } = new Fox.Kernel.StringMap<Fox.Sim.SimAssociationUnit>();
-
+		
 		[field: UnityEngine.SerializeField]
 		public uint formatVersion { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public Fox.Core.EntityLink physicsData { get; set; }
-
+		
 		public SimLodLevelName minLodLevel { get => Get_minLodLevel(); set { Set_minLodLevel(value); } }
 		private partial SimLodLevelName Get_minLodLevel();
 		private partial void Set_minLodLevel(SimLodLevelName value);
-
+		
 		public SimLodLevelName maxLodLevel { get => Get_maxLodLevel(); set { Set_maxLodLevel(value); } }
 		private partial SimLodLevelName Get_maxLodLevel();
 		private partial void Set_maxLodLevel(SimLodLevelName value);
-
+		
 		public bool isEnableGeoCheck { get => Get_isEnableGeoCheck(); set { Set_isEnableGeoCheck(value); } }
 		private partial bool Get_isEnableGeoCheck();
 		private partial void Set_isEnableGeoCheck(bool value);
-
+		
 		public bool convertMoveToWind { get => Get_convertMoveToWind(); set { Set_convertMoveToWind(value); } }
 		private partial bool Get_convertMoveToWind();
 		private partial void Set_convertMoveToWind(bool value);
-
+		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;
@@ -85,7 +85,7 @@ namespace Fox.Sim
 		// Constructors
 		public SimOnPhysics(ulong id) : base(id) { }
 		public SimOnPhysics() : base() { }
-
+		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{
 			switch (propertyName.CString)

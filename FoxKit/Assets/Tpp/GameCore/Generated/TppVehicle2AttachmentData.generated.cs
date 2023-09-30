@@ -18,25 +18,25 @@ namespace Tpp.GameCore
 		// Properties
 		[field: UnityEngine.SerializeField]
 		protected byte vehicleTypeCode { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		protected byte attachmentImplTypeIndex { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		protected Fox.Core.FilePtr attachmentFile { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		protected byte attachmentInstanceCount { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		protected Fox.Kernel.String bodyCnpName { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		protected Fox.Kernel.String attachmentBoneName { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		protected Fox.Kernel.DynamicArray<Tpp.GameCore.TppVehicle2WeaponParameter> weaponParams { get; private set; } = new Fox.Kernel.DynamicArray<Tpp.GameCore.TppVehicle2WeaponParameter>();
-
+		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;
@@ -69,7 +69,7 @@ namespace Tpp.GameCore
 		// Constructors
 		public TppVehicle2AttachmentData(ulong id) : base(id) { }
 		public TppVehicle2AttachmentData() : base() { }
-
+		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{
 			switch (propertyName.CString)

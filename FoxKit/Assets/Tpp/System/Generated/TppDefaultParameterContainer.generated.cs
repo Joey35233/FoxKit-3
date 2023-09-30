@@ -18,10 +18,10 @@ namespace Tpp.System
 		// Properties
 		[field: UnityEngine.SerializeField]
 		public Fox.Kernel.String id { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public Fox.Kernel.StringMap<Tpp.System.TppDefaultParameterElement> @params { get; private set; } = new Fox.Kernel.StringMap<Tpp.System.TppDefaultParameterElement>();
-
+		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;
@@ -49,7 +49,7 @@ namespace Tpp.System
 		// Constructors
 		public TppDefaultParameterContainer(ulong id) : base(id) { }
 		public TppDefaultParameterContainer() : base() { }
-
+		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{
 			switch (propertyName.CString)

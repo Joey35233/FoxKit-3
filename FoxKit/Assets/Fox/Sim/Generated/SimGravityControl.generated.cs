@@ -18,10 +18,10 @@ namespace Fox.Sim
 		// Properties
 		[field: UnityEngine.SerializeField]
 		protected Fox.Sim.SimGravityControlParam controlParam { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public float gravityCoefficient { get; set; }
-
+		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;
@@ -49,7 +49,7 @@ namespace Fox.Sim
 		// Constructors
 		public SimGravityControl(ulong id) : base(id) { }
 		public SimGravityControl() : base() { }
-
+		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{
 			switch (propertyName.CString)

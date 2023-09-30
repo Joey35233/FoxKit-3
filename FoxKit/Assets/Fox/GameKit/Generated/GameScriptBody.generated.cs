@@ -18,10 +18,10 @@ namespace Fox.GameKit
 		// Properties
 		[field: UnityEngine.SerializeField]
 		public bool enable { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public Fox.GameKit.CheckpointData storage { get; protected set; }
-
+		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;
@@ -49,7 +49,7 @@ namespace Fox.GameKit
 		// Constructors
 		public GameScriptBody(ulong id) : base(id) { }
 		public GameScriptBody() : base() { }
-
+		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{
 			switch (propertyName.CString)

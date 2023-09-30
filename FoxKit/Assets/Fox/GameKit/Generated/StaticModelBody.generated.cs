@@ -18,13 +18,13 @@ namespace Fox.GameKit
 		// Properties
 		[field: UnityEngine.SerializeField]
 		protected Fox.Geo.CollisionReference geom { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public bool isVisible { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public bool isGeomActive { get; set; }
-
+		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;
@@ -53,7 +53,7 @@ namespace Fox.GameKit
 		// Constructors
 		public StaticModelBody(ulong id) : base(id) { }
 		public StaticModelBody() : base() { }
-
+		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{
 			switch (propertyName.CString)

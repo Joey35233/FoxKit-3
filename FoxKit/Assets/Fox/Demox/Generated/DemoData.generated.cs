@@ -18,145 +18,145 @@ namespace Fox.Demox
 		// Properties
 		[field: UnityEngine.SerializeField]
 		public Fox.Kernel.DynamicArray<Fox.Core.FilePtr> evfFiles { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Core.FilePtr>();
-
+		
 		[field: UnityEngine.SerializeField]
 		public bool onMemory { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public int demoLength { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public int priority { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public Fox.Kernel.Path scriptPath { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public Fox.Kernel.StringMap<Fox.Core.FilePtr> fmdlFiles { get; private set; } = new Fox.Kernel.StringMap<Fox.Core.FilePtr>();
-
+		
 		[field: UnityEngine.SerializeField]
 		public Fox.Kernel.StringMap<Fox.Core.FilePtr> helpBoneFiles { get; private set; } = new Fox.Kernel.StringMap<Fox.Core.FilePtr>();
-
+		
 		[field: UnityEngine.SerializeField]
 		public Fox.Kernel.StringMap<Fox.Demo.PartsDesc> partsDesc { get; private set; } = new Fox.Kernel.StringMap<Fox.Demo.PartsDesc>();
-
+		
 		[field: UnityEngine.SerializeField]
 		public Fox.Kernel.DynamicArray<Fox.Demo.ClipData> clipDatas { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Demo.ClipData>();
-
+		
 		[field: UnityEngine.SerializeField]
 		public Fox.Kernel.DynamicArray<Fox.Kernel.Path> loadFiles { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.Path>();
-
+		
 		[field: UnityEngine.SerializeField]
 		public Fox.Kernel.String demoId { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public Fox.Core.EntityLink playingRoot { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public Fox.Core.EntityLink streamAnimation { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public Fox.Kernel.Path demoStreamPath { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public Fox.Kernel.Path motionPath { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public Fox.Core.FilePtr motionFile { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public Fox.Kernel.Path audioPath { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public Fox.Core.FilePtr subtitleFile { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public Fox.Core.FilePtr subtitleBinaryFile { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public Fox.Core.FilePtr nodeDataFile { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public Fox.Kernel.DynamicArray<Fox.Kernel.String> stringParams { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
-
+		
 		[field: UnityEngine.SerializeField]
 		public Fox.Kernel.StringMap<Fox.Core.EntityLink> entityParams { get; private set; } = new Fox.Kernel.StringMap<Fox.Core.EntityLink>();
-
+		
 		[field: UnityEngine.SerializeField]
 		public Fox.Kernel.StringMap<Fox.Core.FilePtr> fileParams { get; private set; } = new Fox.Kernel.StringMap<Fox.Core.FilePtr>();
-
+		
 		[field: UnityEngine.SerializeField]
 		public Fox.Kernel.StringMap<Fox.Demo.DemoControlCharacterDesc> controlCharacters { get; private set; } = new Fox.Kernel.StringMap<Fox.Demo.DemoControlCharacterDesc>();
-
+		
 		[field: UnityEngine.SerializeField]
 		public Fox.Kernel.StringMap<Fox.Core.EntityLink> controlDatas { get; private set; } = new Fox.Kernel.StringMap<Fox.Core.EntityLink>();
-
+		
 		[field: UnityEngine.SerializeField]
 		public Fox.Kernel.StringMap<Fox.Kernel.String> controlCollectibles { get; private set; } = new Fox.Kernel.StringMap<Fox.Kernel.String>();
-
+		
 		[field: UnityEngine.SerializeField]
 		public Fox.Kernel.StringMap<Fox.Demo.DemoParameter> parameters { get; private set; } = new Fox.Kernel.StringMap<Fox.Demo.DemoParameter>();
-
+		
 		[field: UnityEngine.SerializeField]
 		public Fox.Kernel.StringMap<Fox.Kernel.String> setupLights { get; private set; } = new Fox.Kernel.StringMap<Fox.Kernel.String>();
-
+		
 		[field: UnityEngine.SerializeField]
 		public Utility_InterpType cameraInterpType { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public int cameraInterpFrame { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public float cameraInterpCurveRate { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public float cameraInterpScurveCenter { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public UnityEngine.Vector3 cameraTranslation { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public UnityEngine.Quaternion cameraRotation { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public float cameraParam { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public float cameraDistanceToLookAt { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public UnityEngine.Vector3 cameraStartTranslation { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public UnityEngine.Quaternion cameraStartRotation { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public float cameraStartParam { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public float cameraStartDistanceToLookAt { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public int eventCacheNum { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public int eventInterpCacheNum { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public int eventSkipCacheNum { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public Fox.Kernel.DynamicArray<Fox.Kernel.String> highestTextureStreamModel { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
-
+		
 		[field: UnityEngine.SerializeField]
 		public Fox.Kernel.DynamicArray<Fox.Kernel.Path> highestTexture { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.Path>();
-
+		
 		[field: UnityEngine.SerializeField]
 		public Fox.Kernel.StringMap<int> objectNum { get; private set; } = new Fox.Kernel.StringMap<int>();
-
+		
 		[field: UnityEngine.SerializeField]
 		public Fox.Core.EntityLink blockPositionSetter { get; set; }
-
+		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;
@@ -229,7 +229,7 @@ namespace Fox.Demox
 		// Constructors
 		public DemoData(ulong id) : base(id) { }
 		public DemoData() : base() { }
-
+		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{
 			switch (propertyName.CString)

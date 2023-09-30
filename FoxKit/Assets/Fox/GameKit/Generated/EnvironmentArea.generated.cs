@@ -18,16 +18,16 @@ namespace Fox.GameKit
 		// Properties
 		[field: UnityEngine.SerializeField]
 		public Fox.GameKit.EnvironmentParameter parameter { get; protected set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public uint priority { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public bool enable { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public Fox.Kernel.DynamicArray<Fox.Core.EntityLink> shapes { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityLink>();
-
+		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;
@@ -57,7 +57,7 @@ namespace Fox.GameKit
 		// Constructors
 		public EnvironmentArea(ulong id) : base(id) { }
 		public EnvironmentArea() : base() { }
-
+		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{
 			switch (propertyName.CString)

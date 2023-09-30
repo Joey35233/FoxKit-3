@@ -18,13 +18,13 @@ namespace Fox.GameKit
 		// Properties
 		[field: UnityEngine.SerializeField]
 		protected Fox.Core.Entity checkPointParam { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		protected Fox.Kernel.StringMap<Fox.Core.Entity> checkPointData { get; private set; } = new Fox.Kernel.StringMap<Fox.Core.Entity>();
-
+		
 		[field: UnityEngine.SerializeField]
 		protected bool isReplacable { get; set; }
-
+		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;
@@ -53,7 +53,7 @@ namespace Fox.GameKit
 		// Constructors
 		public CheckpointUnit(ulong id) : base(id) { }
 		public CheckpointUnit() : base() { }
-
+		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{
 			switch (propertyName.CString)

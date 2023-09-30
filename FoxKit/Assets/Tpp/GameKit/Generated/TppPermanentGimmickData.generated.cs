@@ -18,19 +18,19 @@ namespace Tpp.GameKit
 		// Properties
 		[field: UnityEngine.SerializeField]
 		public Fox.Core.FilePtr partsFile { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public Fox.Core.FilePtr locaterFile { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public Fox.Core.DataElement parameters { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		protected uint flags1 { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		protected uint flags2 { get; set; }
-
+		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;
@@ -61,7 +61,7 @@ namespace Tpp.GameKit
 		// Constructors
 		public TppPermanentGimmickData(ulong id) : base(id) { }
 		public TppPermanentGimmickData() : base() { }
-
+		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{
 			switch (propertyName.CString)

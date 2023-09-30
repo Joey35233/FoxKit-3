@@ -18,15 +18,15 @@ namespace Fox.Sim
 		// Properties
 		[field: UnityEngine.SerializeField]
 		protected Fox.Sim.SimAssociationUnitParam param { get; set; }
-
+		
 		public Fox.Kernel.String boneName { get => Get_boneName(); set { Set_boneName(value); } }
 		private partial Fox.Kernel.String Get_boneName();
 		private partial void Set_boneName(Fox.Kernel.String value);
-
+		
 		public bool initialized { get => Get_initialized(); set { Set_initialized(value); } }
 		private partial bool Get_initialized();
 		private partial void Set_initialized(bool value);
-
+		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;
@@ -55,7 +55,7 @@ namespace Fox.Sim
 		// Constructors
 		public SimAssociationUnit(ulong id) : base(id) { }
 		public SimAssociationUnit() : base() { }
-
+		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{
 			switch (propertyName.CString)

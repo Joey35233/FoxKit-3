@@ -18,13 +18,13 @@ namespace Fox.Core
 		// Properties
 		[field: UnityEngine.SerializeField]
 		public Fox.Kernel.Path referenceFilePath { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public bool isReferenceLocked { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		protected Fox.Core.DataSetDifference dataSetDifference { get; set; }
-
+		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;
@@ -53,7 +53,7 @@ namespace Fox.Core
 		// Constructors
 		public DataSetReference(ulong id) : base(id) { }
 		public DataSetReference() : base() { }
-
+		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{
 			switch (propertyName.CString)

@@ -18,16 +18,16 @@ namespace Tpp.GameKit
 		// Properties
 		[field: UnityEngine.SerializeField]
 		public uint reservedCount { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public float upgradeLodRateForHighEnd { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public Tpp.GameKit.ObjectBrushPluginBushDataElement gimmickParameter { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public Fox.Core.EntityLink externalGimmickParameter { get; set; }
-
+		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;
@@ -57,7 +57,7 @@ namespace Tpp.GameKit
 		// Constructors
 		public TppObjectBrushPluginBush(ulong id) : base(id) { }
 		public TppObjectBrushPluginBush() : base() { }
-
+		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{
 			switch (propertyName.CString)

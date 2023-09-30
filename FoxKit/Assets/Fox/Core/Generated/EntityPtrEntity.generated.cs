@@ -18,7 +18,7 @@ namespace Fox.Core
 		// Properties
 		[field: UnityEngine.SerializeField]
 		protected Fox.Core.Entity value { get; set; }
-
+		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;
@@ -45,7 +45,7 @@ namespace Fox.Core
 		// Constructors
 		public EntityPtrEntity(ulong id) : base(id) { }
 		public EntityPtrEntity() : base() { }
-
+		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{
 			switch (propertyName.CString)

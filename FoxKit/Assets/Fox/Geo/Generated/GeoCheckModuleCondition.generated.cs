@@ -18,13 +18,13 @@ namespace Fox.Geo
 		// Properties
 		[field: UnityEngine.SerializeField]
 		public bool isAndCheck { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public Fox.Kernel.DynamicArray<Fox.Kernel.String> checkFuncNames { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
-
+		
 		[field: UnityEngine.SerializeField]
 		public Fox.Kernel.DynamicArray<Fox.Geo.GeoTrapModuleCallbackDataElement> checkCallbackDataElements { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Geo.GeoTrapModuleCallbackDataElement>();
-
+		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;
@@ -53,7 +53,7 @@ namespace Fox.Geo
 		// Constructors
 		public GeoCheckModuleCondition(ulong id) : base(id) { }
 		public GeoCheckModuleCondition() : base() { }
-
+		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{
 			switch (propertyName.CString)

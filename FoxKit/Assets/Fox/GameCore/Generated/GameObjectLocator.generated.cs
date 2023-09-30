@@ -18,13 +18,13 @@ namespace Fox.GameCore
 		// Properties
 		[field: UnityEngine.SerializeField]
 		public Fox.Kernel.String typeName { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public uint groupId { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public Fox.Core.DataElement parameters { get; set; }
-
+		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;
@@ -53,7 +53,7 @@ namespace Fox.GameCore
 		// Constructors
 		public GameObjectLocator(ulong id) : base(id) { }
 		public GameObjectLocator() : base() { }
-
+		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{
 			switch (propertyName.CString)

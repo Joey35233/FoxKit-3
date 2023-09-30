@@ -18,10 +18,10 @@ namespace Fox.Graphx
 		// Properties
 		[field: UnityEngine.SerializeField]
 		public Fox.Kernel.DynamicArray<Fox.Graphx.GraphxSpatialGraphDataNode> nodes { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Graphx.GraphxSpatialGraphDataNode>();
-
+		
 		[field: UnityEngine.SerializeField]
 		public Fox.Kernel.DynamicArray<Fox.Graphx.GraphxSpatialGraphDataEdge> edges { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Graphx.GraphxSpatialGraphDataEdge>();
-
+		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;
@@ -49,7 +49,7 @@ namespace Fox.Graphx
 		// Constructors
 		public GraphxSpatialGraphData(ulong id) : base(id) { }
 		public GraphxSpatialGraphData() : base() { }
-
+		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{
 			switch (propertyName.CString)

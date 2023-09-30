@@ -18,25 +18,25 @@ namespace Fox.Phx
 		// Properties
 		[field: UnityEngine.SerializeField]
 		public Fox.Kernel.DynamicArray<Fox.Core.EntityLink> vehicleAxes { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityLink>();
-
+		
 		[field: UnityEngine.SerializeField]
 		public Fox.Kernel.DynamicArray<float> torqueDistributions { get; private set; } = new Fox.Kernel.DynamicArray<float>();
-
+		
 		[field: UnityEngine.SerializeField]
 		public Fox.Kernel.DynamicArray<float> gearRatios { get; private set; } = new Fox.Kernel.DynamicArray<float>();
-
+		
 		[field: UnityEngine.SerializeField]
 		protected Fox.Phx.PhVehicleNormalEngineParam vehicleNormalEngineParam { get; set; }
-
+		
 		public Fox.Kernel.DynamicArray<float> specPointAngularVelocity { get => Get_specPointAngularVelocity(); }
 		private partial Fox.Kernel.DynamicArray<float> Get_specPointAngularVelocity();
-
+		
 		public Fox.Kernel.DynamicArray<float> specPointTorque { get => Get_specPointTorque(); }
 		private partial Fox.Kernel.DynamicArray<float> Get_specPointTorque();
-
+		
 		public Fox.Kernel.DynamicArray<float> specPointBreakTorque { get => Get_specPointBreakTorque(); }
 		private partial Fox.Kernel.DynamicArray<float> Get_specPointBreakTorque();
-
+		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;
@@ -69,7 +69,7 @@ namespace Fox.Phx
 		// Constructors
 		public PhxVehicleNormalEngine(ulong id) : base(id) { }
 		public PhxVehicleNormalEngine() : base() { }
-
+		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{
 			switch (propertyName.CString)

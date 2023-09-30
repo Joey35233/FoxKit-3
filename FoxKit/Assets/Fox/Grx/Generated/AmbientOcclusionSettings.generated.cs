@@ -18,16 +18,16 @@ namespace Fox.Grx
 		// Properties
 		[field: UnityEngine.SerializeField]
 		public AmbientOcclusionSettings_Method method { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public AmbientOcclusionSettings_LightAttachment attachment { get; set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public Fox.Grx.GrxLineSSAOParameters lineSSAOParameters { get; protected set; }
-
+		
 		[field: UnityEngine.SerializeField]
 		public Fox.Grx.GrxAreaSSAOParameters areaSSAOParameters { get; protected set; }
-
+		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;
@@ -57,7 +57,7 @@ namespace Fox.Grx
 		// Constructors
 		public AmbientOcclusionSettings(ulong id) : base(id) { }
 		public AmbientOcclusionSettings() : base() { }
-
+		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{
 			switch (propertyName.CString)
