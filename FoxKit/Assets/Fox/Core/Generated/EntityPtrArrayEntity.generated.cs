@@ -17,8 +17,8 @@ namespace Fox.Core
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Fox.Core.Entity>> array { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Fox.Core.Entity>>();
-		
+		public Fox.Kernel.DynamicArray<Fox.Core.Entity> array { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Core.Entity>();
+
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;
@@ -45,7 +45,7 @@ namespace Fox.Core
 		// Constructors
 		public EntityPtrArrayEntity(ulong id) : base(id) { }
 		public EntityPtrArrayEntity() : base() { }
-		
+
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{
 			switch (propertyName.CString)
@@ -92,7 +92,7 @@ namespace Fox.Core
 			switch (propertyName.CString)
 			{
 				case "array":
-					while(this.array.Count <= index) { this.array.Add(default(Fox.Core.EntityPtr<Fox.Core.Entity>)); }
+					while(this.array.Count <= index) { this.array.Add(default(Fox.Core.Entity)); }
 					this.array[index] = value.GetValueAsEntityPtr<Fox.Core.Entity>();
 					return;
 				default:

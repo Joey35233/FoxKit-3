@@ -17,8 +17,8 @@ namespace Fox.Sim
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		protected Fox.Core.EntityPtr<Fox.Sim.SimHitGroupControlParam> controlParam { get; set; } = new Fox.Core.EntityPtr<Fox.Sim.SimHitGroupControlParam>();
-		
+		protected Fox.Sim.SimHitGroupControlParam controlParam { get; set; }
+
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;
@@ -45,7 +45,7 @@ namespace Fox.Sim
 		// Constructors
 		public SimHitGroupControl(ulong id) : base(id) { }
 		public SimHitGroupControl() : base() { }
-		
+
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{
 			switch (propertyName.CString)

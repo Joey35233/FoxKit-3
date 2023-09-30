@@ -17,8 +17,8 @@ namespace Fox.Ui
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Fox.Ui.UiFontDataElement>> fonts { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Fox.Ui.UiFontDataElement>>();
-		
+		public Fox.Kernel.DynamicArray<Fox.Ui.UiFontDataElement> fonts { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Ui.UiFontDataElement>();
+
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;
@@ -45,7 +45,7 @@ namespace Fox.Ui
 		// Constructors
 		public UiFontGroupData(ulong id) : base(id) { }
 		public UiFontGroupData() : base() { }
-		
+
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{
 			switch (propertyName.CString)
@@ -92,7 +92,7 @@ namespace Fox.Ui
 			switch (propertyName.CString)
 			{
 				case "fonts":
-					while(this.fonts.Count <= index) { this.fonts.Add(default(Fox.Core.EntityPtr<Fox.Ui.UiFontDataElement>)); }
+					while(this.fonts.Count <= index) { this.fonts.Add(default(Fox.Ui.UiFontDataElement)); }
 					this.fonts[index] = value.GetValueAsEntityPtr<Fox.Ui.UiFontDataElement>();
 					return;
 				default:

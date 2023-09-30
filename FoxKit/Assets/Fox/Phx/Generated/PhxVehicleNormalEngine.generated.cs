@@ -18,28 +18,25 @@ namespace Fox.Phx
 		// Properties
 		[field: UnityEngine.SerializeField]
 		public Fox.Kernel.DynamicArray<Fox.Core.EntityLink> vehicleAxes { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityLink>();
-		
+
 		[field: UnityEngine.SerializeField]
 		public Fox.Kernel.DynamicArray<float> torqueDistributions { get; private set; } = new Fox.Kernel.DynamicArray<float>();
-		
+
 		[field: UnityEngine.SerializeField]
 		public Fox.Kernel.DynamicArray<float> gearRatios { get; private set; } = new Fox.Kernel.DynamicArray<float>();
-		
+
 		[field: UnityEngine.SerializeField]
-		protected Fox.Core.EntityPtr<Fox.Phx.PhVehicleNormalEngineParam> vehicleNormalEngineParam { get; set; } = new Fox.Core.EntityPtr<Fox.Phx.PhVehicleNormalEngineParam>();
-		
-		public Fox.Kernel.DynamicArray<float> specPointAngularVelocity { get => Get_specPointAngularVelocity(); set { Set_specPointAngularVelocity(value); } }
+		protected Fox.Phx.PhVehicleNormalEngineParam vehicleNormalEngineParam { get; set; }
+
+		public Fox.Kernel.DynamicArray<float> specPointAngularVelocity { get => Get_specPointAngularVelocity(); }
 		private partial Fox.Kernel.DynamicArray<float> Get_specPointAngularVelocity();
-		private partial void Set_specPointAngularVelocity(Fox.Kernel.DynamicArray<float> value);
-		
-		public Fox.Kernel.DynamicArray<float> specPointTorque { get => Get_specPointTorque(); set { Set_specPointTorque(value); } }
+
+		public Fox.Kernel.DynamicArray<float> specPointTorque { get => Get_specPointTorque(); }
 		private partial Fox.Kernel.DynamicArray<float> Get_specPointTorque();
-		private partial void Set_specPointTorque(Fox.Kernel.DynamicArray<float> value);
-		
-		public Fox.Kernel.DynamicArray<float> specPointBreakTorque { get => Get_specPointBreakTorque(); set { Set_specPointBreakTorque(value); } }
+
+		public Fox.Kernel.DynamicArray<float> specPointBreakTorque { get => Get_specPointBreakTorque(); }
 		private partial Fox.Kernel.DynamicArray<float> Get_specPointBreakTorque();
-		private partial void Set_specPointBreakTorque(Fox.Kernel.DynamicArray<float> value);
-		
+
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;
@@ -72,7 +69,7 @@ namespace Fox.Phx
 		// Constructors
 		public PhxVehicleNormalEngine(ulong id) : base(id) { }
 		public PhxVehicleNormalEngine() : base() { }
-		
+
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{
 			switch (propertyName.CString)

@@ -4,7 +4,7 @@ namespace Fox.Sim
 {
     public partial class SimDirectionControl : Fox.Sim.SimControlElement
     {
-        private SimDirectionControlParam param => controlParam.Get();
+        private SimDirectionControlParam param => controlParam;
 
         private partial String Get_refBone() => param.GetRefBone();
         private partial void Set_refBone(String value) => param.SetRefBone(value);

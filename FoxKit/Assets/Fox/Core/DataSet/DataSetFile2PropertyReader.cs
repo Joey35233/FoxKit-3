@@ -52,8 +52,6 @@ namespace Fox.Core.Serialization
         /// <param name="container">Container type of the property.</param>
         public delegate void OnPropertyNameUnhashedCallback(PropertyInfo.PropertyType type, String name, ushort arraySize, PropertyInfo.ContainerType container);
 
-        public delegate void RequestEntityLink(ulong address, ulong packagePath, ulong archivePath, ulong nameInArchive, EntityLink entityLink);
-
         public DataSetFile2PropertyReader(
             Func<StrCode, String> unhashString,
             RequestSetEntityPtr requestEntityPtr,
@@ -214,6 +212,8 @@ namespace Fox.Core.Serialization
                 handle = null,
             };
 
+            setProperty(name, new Value(entityLink));
+
             requestSetEntityHandle(address, (Entity ptr) =>
             {
                 entityLink.handle = ptr;
@@ -230,12 +230,7 @@ namespace Fox.Core.Serialization
         private void ReadEntityPtr(FileStreamReader reader, SetProperty setProperty, Type ptrType, String name)
         {
             ulong address = reader.ReadUInt64();
-            requestSetEntityPtr(address, (Entity ptr) =>
-            {
-                var entityPtr = Activator.CreateInstance(typeof(EntityPtr<>).MakeGenericType(ptrType)) as IEntityPtr;
-                entityPtr.Reset(ptr);
-                setProperty(name, new Value(entityPtr));
-            });
+            requestSetEntityPtr(address, (Entity ptr) => setProperty(name, new Value(ptr)));
         }
 
         private Value ReadPropertyValue(FileStreamReader reader, PropertyInfo.PropertyType type)

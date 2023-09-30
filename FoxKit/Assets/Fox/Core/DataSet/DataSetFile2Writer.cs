@@ -149,7 +149,6 @@ namespace Fox.Core
             }
 
             dataSet.name = System.String.Empty;
-            dataSet.ClearData();
 
             int dataSetIndex = -1;
             var usedNames = new HashSet<string>();

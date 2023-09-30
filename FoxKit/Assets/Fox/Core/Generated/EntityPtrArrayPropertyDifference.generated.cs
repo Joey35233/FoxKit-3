@@ -17,11 +17,11 @@ namespace Fox.Core
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Fox.Core.Entity>> originalValues { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Fox.Core.Entity>>();
-		
+		public Fox.Kernel.DynamicArray<Fox.Core.Entity> originalValues { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Core.Entity>();
+
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Fox.Core.Entity>> values { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Fox.Core.Entity>>();
-		
+		public Fox.Kernel.DynamicArray<Fox.Core.Entity> values { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Core.Entity>();
+
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;
@@ -49,7 +49,7 @@ namespace Fox.Core
 		// Constructors
 		public EntityPtrArrayPropertyDifference(ulong id) : base(id) { }
 		public EntityPtrArrayPropertyDifference() : base() { }
-		
+
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{
 			switch (propertyName.CString)
@@ -100,11 +100,11 @@ namespace Fox.Core
 			switch (propertyName.CString)
 			{
 				case "originalValues":
-					while(this.originalValues.Count <= index) { this.originalValues.Add(default(Fox.Core.EntityPtr<Fox.Core.Entity>)); }
+					while(this.originalValues.Count <= index) { this.originalValues.Add(default(Fox.Core.Entity)); }
 					this.originalValues[index] = value.GetValueAsEntityPtr<Fox.Core.Entity>();
 					return;
 				case "values":
-					while(this.values.Count <= index) { this.values.Add(default(Fox.Core.EntityPtr<Fox.Core.Entity>)); }
+					while(this.values.Count <= index) { this.values.Add(default(Fox.Core.Entity)); }
 					this.values[index] = value.GetValueAsEntityPtr<Fox.Core.Entity>();
 					return;
 				default:

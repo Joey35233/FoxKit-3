@@ -17,12 +17,12 @@ namespace Fox.Sim
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		protected Fox.Core.EntityPtr<Fox.Sim.SimInertialControlParam> controlParam { get; set; } = new Fox.Core.EntityPtr<Fox.Sim.SimInertialControlParam>();
-		
+		protected Fox.Sim.SimInertialControlParam controlParam { get; set; }
+
 		public float inertialCoefficient { get => Get_inertialCoefficient(); set { Set_inertialCoefficient(value); } }
 		private partial float Get_inertialCoefficient();
 		private partial void Set_inertialCoefficient(float value);
-		
+
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;
@@ -50,7 +50,7 @@ namespace Fox.Sim
 		// Constructors
 		public SimInertialControl(ulong id) : base(id) { }
 		public SimInertialControl() : base() { }
-		
+
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{
 			switch (propertyName.CString)

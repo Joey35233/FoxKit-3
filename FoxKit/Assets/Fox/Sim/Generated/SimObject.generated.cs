@@ -17,14 +17,14 @@ namespace Fox.Sim
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		protected Fox.Core.EntityPtr<Fox.Sim.SimObjectParam> objectParam { get; set; } = new Fox.Core.EntityPtr<Fox.Sim.SimObjectParam>();
-		
+		protected Fox.Sim.SimObjectParam objectParam { get; set; }
+
 		[field: UnityEngine.SerializeField]
-		protected Fox.Core.EntityPtr<Fox.Sim.SimEngineParam> engineParam { get; set; } = new Fox.Core.EntityPtr<Fox.Sim.SimEngineParam>();
-		
+		protected Fox.Sim.SimEngineParam engineParam { get; set; }
+
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Fox.Sim.SimControlElement>> controls { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Fox.Sim.SimControlElement>>();
-		
+		public Fox.Kernel.DynamicArray<Fox.Sim.SimControlElement> controls { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Sim.SimControlElement>();
+
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;
@@ -53,7 +53,7 @@ namespace Fox.Sim
 		// Constructors
 		public SimObject(ulong id) : base(id) { }
 		public SimObject() : base() { }
-		
+
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{
 			switch (propertyName.CString)
@@ -110,7 +110,7 @@ namespace Fox.Sim
 			switch (propertyName.CString)
 			{
 				case "controls":
-					while(this.controls.Count <= index) { this.controls.Add(default(Fox.Core.EntityPtr<Fox.Sim.SimControlElement>)); }
+					while(this.controls.Count <= index) { this.controls.Add(default(Fox.Sim.SimControlElement)); }
 					this.controls[index] = value.GetValueAsEntityPtr<Fox.Sim.SimControlElement>();
 					return;
 				default:

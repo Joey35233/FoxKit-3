@@ -2,7 +2,7 @@
 {
     public partial class PhPrimitiveShape : Fox.Ph.PhShape
     {
-        private PhShapeParam shapeParam => param.Get();
+        private PhShapeParam shapeParam => param;
 
         private partial UnityEngine.Vector3 Get_size() => shapeParam.GetSize();
         private partial void Set_size(UnityEngine.Vector3 value) => shapeParam.SetSize(value);

@@ -2,7 +2,7 @@
 {
     public partial class SimClothControl : Fox.Sim.SimControlElement
     {
-        private SimClothControlParam param => controlParam.Get();
+        private SimClothControlParam param => controlParam;
 
         private partial float Get_windCoefficient() => param.GetWindCoefficient();
         private partial void Set_windCoefficient(float value) => param.SetWindCoefficient(value);

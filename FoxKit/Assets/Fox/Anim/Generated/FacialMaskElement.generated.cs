@@ -18,10 +18,10 @@ namespace Fox.Anim
 		// Properties
 		[field: UnityEngine.SerializeField]
 		public Fox.Kernel.DynamicArray<Fox.Kernel.String> skelList { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
-		
+
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Fox.Anim.ParameterMaskElement>> shaderList { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Fox.Anim.ParameterMaskElement>>();
-		
+		public Fox.Kernel.DynamicArray<Fox.Anim.ParameterMaskElement> shaderList { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Anim.ParameterMaskElement>();
+
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;
@@ -49,7 +49,7 @@ namespace Fox.Anim
 		// Constructors
 		public FacialMaskElement(ulong id) : base(id) { }
 		public FacialMaskElement() : base() { }
-		
+
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{
 			switch (propertyName.CString)
@@ -104,7 +104,7 @@ namespace Fox.Anim
 					this.skelList[index] = value.GetValueAsString();
 					return;
 				case "shaderList":
-					while(this.shaderList.Count <= index) { this.shaderList.Add(default(Fox.Core.EntityPtr<Fox.Anim.ParameterMaskElement>)); }
+					while(this.shaderList.Count <= index) { this.shaderList.Add(default(Fox.Anim.ParameterMaskElement)); }
 					this.shaderList[index] = value.GetValueAsEntityPtr<Fox.Anim.ParameterMaskElement>();
 					return;
 				default:

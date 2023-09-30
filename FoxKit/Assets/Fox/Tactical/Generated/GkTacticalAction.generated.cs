@@ -18,31 +18,31 @@ namespace Fox.Tactical
 		// Properties
 		[field: UnityEngine.SerializeField]
 		public bool enable { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		public bool enableInGame { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		public Fox.Kernel.String worldName { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		public Fox.Core.EntityLink userData { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		public Fox.Kernel.String userId { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Fox.Tactical.GkTacticalActionWaypoint>> waypoints { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Fox.Tactical.GkTacticalActionWaypoint>>();
-		
+		public Fox.Kernel.DynamicArray<Fox.Tactical.GkTacticalActionWaypoint> waypoints { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Tactical.GkTacticalActionWaypoint>();
+
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Fox.Tactical.GkTacticalActionEdge>> edges { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Fox.Tactical.GkTacticalActionEdge>>();
-		
+		public Fox.Kernel.DynamicArray<Fox.Tactical.GkTacticalActionEdge> edges { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Tactical.GkTacticalActionEdge>();
+
 		[field: UnityEngine.SerializeField]
 		public Fox.Kernel.DynamicArray<Fox.Kernel.String> attributeNames { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
-		
+
 		[field: UnityEngine.SerializeField]
 		public uint attribute { get; set; }
-		
+
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;
@@ -77,7 +77,7 @@ namespace Fox.Tactical
 		// Constructors
 		public GkTacticalAction(ulong id) : base(id) { }
 		public GkTacticalAction() : base() { }
-		
+
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{
 			switch (propertyName.CString)
@@ -162,11 +162,11 @@ namespace Fox.Tactical
 			switch (propertyName.CString)
 			{
 				case "waypoints":
-					while(this.waypoints.Count <= index) { this.waypoints.Add(default(Fox.Core.EntityPtr<Fox.Tactical.GkTacticalActionWaypoint>)); }
+					while(this.waypoints.Count <= index) { this.waypoints.Add(default(Fox.Tactical.GkTacticalActionWaypoint)); }
 					this.waypoints[index] = value.GetValueAsEntityPtr<Fox.Tactical.GkTacticalActionWaypoint>();
 					return;
 				case "edges":
-					while(this.edges.Count <= index) { this.edges.Add(default(Fox.Core.EntityPtr<Fox.Tactical.GkTacticalActionEdge>)); }
+					while(this.edges.Count <= index) { this.edges.Add(default(Fox.Tactical.GkTacticalActionEdge)); }
 					this.edges[index] = value.GetValueAsEntityPtr<Fox.Tactical.GkTacticalActionEdge>();
 					return;
 				case "attributeNames":

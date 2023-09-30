@@ -2,7 +2,7 @@
 {
     public partial class PhShoulderConstraint : Fox.Ph.PhConstraint
     {
-        private PhShoulderConstraintParam shoulderConstraint => param.Get() as PhShoulderConstraintParam;
+        private PhShoulderConstraintParam shoulderConstraint => param as PhShoulderConstraintParam;
 
         private partial bool Get_limitedFlag() => shoulderConstraint.GetLimitedFlag();
         private partial void Set_limitedFlag(bool value) => shoulderConstraint.SetLimitedFlag(value);

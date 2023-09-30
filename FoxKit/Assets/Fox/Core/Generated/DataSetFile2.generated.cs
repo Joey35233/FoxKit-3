@@ -16,9 +16,9 @@ namespace Fox.Core
 	public partial class DataSetFile2 : Fox.Core.EntityFile
 	{
 		// Properties
-		public Fox.Core.EntityPtr<Fox.Core.DataSet> dataSet { get => Get_dataSet(); }
-		private partial Fox.Core.EntityPtr<Fox.Core.DataSet> Get_dataSet();
-		
+		public Fox.Core.DataSet dataSet { get => Get_dataSet(); }
+		private partial Fox.Core.DataSet Get_dataSet();
+
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;
@@ -45,7 +45,7 @@ namespace Fox.Core
 		// Constructors
 		public DataSetFile2(ulong id) : base(id) { }
 		public DataSetFile2() : base() { }
-		
+
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{
 			switch (propertyName.CString)

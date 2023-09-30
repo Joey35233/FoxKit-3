@@ -17,14 +17,14 @@ namespace Fox.Ph
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Fox.Core.Entity>> bodies { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Fox.Core.Entity>>();
-		
+		public Fox.Kernel.DynamicArray<Fox.Core.Entity> bodies { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Core.Entity>();
+
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Fox.Ph.PhConstraintParam>> constraints { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Fox.Ph.PhConstraintParam>>();
-		
+		public Fox.Kernel.DynamicArray<Fox.Ph.PhConstraintParam> constraints { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Ph.PhConstraintParam>();
+
 		[field: UnityEngine.SerializeField]
 		public Fox.Kernel.DynamicArray<int> bodyIndices { get; private set; } = new Fox.Kernel.DynamicArray<int>();
-		
+
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;
@@ -53,7 +53,7 @@ namespace Fox.Ph
 		// Constructors
 		public PhObjectDesc(ulong id) : base(id) { }
 		public PhObjectDesc() : base() { }
-		
+
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{
 			switch (propertyName.CString)
@@ -108,11 +108,11 @@ namespace Fox.Ph
 			switch (propertyName.CString)
 			{
 				case "bodies":
-					while(this.bodies.Count <= index) { this.bodies.Add(default(Fox.Core.EntityPtr<Fox.Core.Entity>)); }
+					while(this.bodies.Count <= index) { this.bodies.Add(default(Fox.Core.Entity)); }
 					this.bodies[index] = value.GetValueAsEntityPtr<Fox.Core.Entity>();
 					return;
 				case "constraints":
-					while(this.constraints.Count <= index) { this.constraints.Add(default(Fox.Core.EntityPtr<Fox.Ph.PhConstraintParam>)); }
+					while(this.constraints.Count <= index) { this.constraints.Add(default(Fox.Ph.PhConstraintParam)); }
 					this.constraints[index] = value.GetValueAsEntityPtr<Fox.Ph.PhConstraintParam>();
 					return;
 				case "bodyIndices":

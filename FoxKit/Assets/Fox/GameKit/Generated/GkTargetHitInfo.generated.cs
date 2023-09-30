@@ -17,23 +17,23 @@ namespace Fox.GameKit
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		public Fox.Core.EntityPtr<Fox.GameKit.GkTargetData> offense { get; set; } = new Fox.Core.EntityPtr<Fox.GameKit.GkTargetData>();
-		
+		public Fox.GameKit.GkTargetData offense { get; set; }
+
 		[field: UnityEngine.SerializeField]
-		public Fox.Core.EntityPtr<Fox.GameKit.GkTargetData> defense { get; set; } = new Fox.Core.EntityPtr<Fox.GameKit.GkTargetData>();
-		
+		public Fox.GameKit.GkTargetData defense { get; set; }
+
 		[field: UnityEngine.SerializeField]
 		public UnityEngine.Vector3 hitPosition { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		public UnityEngine.Vector3 hitNormal { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		public UnityEngine.Vector3 hitDirection { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		public UnityEngine.Vector3 attackDirection { get; set; }
-		
+
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;
@@ -65,7 +65,7 @@ namespace Fox.GameKit
 		// Constructors
 		public GkTargetHitInfo(ulong id) : base(id) { }
 		public GkTargetHitInfo() : base() { }
-		
+
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{
 			switch (propertyName.CString)

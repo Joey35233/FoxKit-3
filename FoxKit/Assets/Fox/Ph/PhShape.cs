@@ -2,7 +2,7 @@
 {
     public partial class PhShape : Fox.Ph.PhSubObject
     {
-        private PhShapeParam shapeParam => param.Get();
+        private PhShapeParam shapeParam => param;
 
         private partial UnityEngine.Vector3 Get_offset() => shapeParam.GetOffset();
         private partial void Set_offset(UnityEngine.Vector3 value) => shapeParam.SetOffset(value);

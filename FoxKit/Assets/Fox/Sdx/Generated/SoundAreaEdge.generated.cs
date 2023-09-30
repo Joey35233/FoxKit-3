@@ -17,14 +17,14 @@ namespace Fox.Sdx
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		public Fox.Core.EntityPtr<Fox.Sdx.SoundAreaEdgeParameter> parameter { get; set; } = new Fox.Core.EntityPtr<Fox.Sdx.SoundAreaEdgeParameter>();
-		
+		public Fox.Sdx.SoundAreaEdgeParameter parameter { get; set; }
+
 		[field: UnityEngine.SerializeField]
 		public Fox.Core.EntityLink prevArea { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		public Fox.Core.EntityLink nextArea { get; set; }
-		
+
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;
@@ -53,7 +53,7 @@ namespace Fox.Sdx
 		// Constructors
 		public SoundAreaEdge(ulong id) : base(id) { }
 		public SoundAreaEdge() : base() { }
-		
+
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{
 			switch (propertyName.CString)

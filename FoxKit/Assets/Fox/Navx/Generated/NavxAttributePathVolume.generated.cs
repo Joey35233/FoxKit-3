@@ -18,10 +18,10 @@ namespace Fox.Navx
 		// Properties
 		[field: UnityEngine.SerializeField]
 		public Fox.Kernel.String worldName { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Fox.Navx.NavxAttributeInfo>> attributeInfos { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Fox.Navx.NavxAttributeInfo>>();
-		
+		public Fox.Kernel.DynamicArray<Fox.Navx.NavxAttributeInfo> attributeInfos { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Navx.NavxAttributeInfo>();
+
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;
@@ -49,7 +49,7 @@ namespace Fox.Navx
 		// Constructors
 		public NavxAttributePathVolume(ulong id) : base(id) { }
 		public NavxAttributePathVolume() : base() { }
-		
+
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{
 			switch (propertyName.CString)
@@ -101,7 +101,7 @@ namespace Fox.Navx
 			switch (propertyName.CString)
 			{
 				case "attributeInfos":
-					while(this.attributeInfos.Count <= index) { this.attributeInfos.Add(default(Fox.Core.EntityPtr<Fox.Navx.NavxAttributeInfo>)); }
+					while(this.attributeInfos.Count <= index) { this.attributeInfos.Add(default(Fox.Navx.NavxAttributeInfo)); }
 					this.attributeInfos[index] = value.GetValueAsEntityPtr<Fox.Navx.NavxAttributeInfo>();
 					return;
 				default:

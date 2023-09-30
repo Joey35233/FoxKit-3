@@ -17,7 +17,7 @@ namespace Fox.GameService
 
             for (int nodeIndex = 0; nodeIndex < nodes.Count; nodeIndex++)
             {
-                var node = (GsRouteDataNode)nodes[nodeIndex].Get();
+                var node = (GsRouteDataNode)nodes[nodeIndex];
 
                 Gizmos.DrawWireCube(node.position, ScaleNode);
 

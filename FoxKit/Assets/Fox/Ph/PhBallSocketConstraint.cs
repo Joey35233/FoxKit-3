@@ -2,7 +2,7 @@
 {
     public partial class PhBallsocketConstraint : Fox.Ph.PhConstraint
     {
-        private PhBallsocketConstraintParam ballsocketConstraint => param.Get() as PhBallsocketConstraintParam;
+        private PhBallsocketConstraintParam ballsocketConstraint => param as PhBallsocketConstraintParam;
 
         private partial bool Get_limitedFlag() => ballsocketConstraint.GetLimitedFlag();
         private partial void Set_limitedFlag(bool value) => ballsocketConstraint.SetLimitedFlag(value);

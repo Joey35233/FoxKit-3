@@ -17,19 +17,19 @@ namespace Fox.Sim
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		protected Fox.Core.EntityPtr<Fox.Sim.SimClothControlParam> controlParam { get; set; } = new Fox.Core.EntityPtr<Fox.Sim.SimClothControlParam>();
-		
+		protected Fox.Sim.SimClothControlParam controlParam { get; set; }
+
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Fox.Sim.SimClothControlUnit>> clothControlUnits { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Fox.Sim.SimClothControlUnit>>();
-		
+		public Fox.Kernel.DynamicArray<Fox.Sim.SimClothControlUnit> clothControlUnits { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Sim.SimClothControlUnit>();
+
 		public float windCoefficient { get => Get_windCoefficient(); set { Set_windCoefficient(value); } }
 		private partial float Get_windCoefficient();
 		private partial void Set_windCoefficient(float value);
-		
+
 		public bool isLoop { get => Get_isLoop(); set { Set_isLoop(value); } }
 		private partial bool Get_isLoop();
 		private partial void Set_isLoop(bool value);
-		
+
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;
@@ -59,7 +59,7 @@ namespace Fox.Sim
 		// Constructors
 		public SimClothControl(ulong id) : base(id) { }
 		public SimClothControl() : base() { }
-		
+
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{
 			switch (propertyName.CString)
@@ -121,7 +121,7 @@ namespace Fox.Sim
 			switch (propertyName.CString)
 			{
 				case "clothControlUnits":
-					while(this.clothControlUnits.Count <= index) { this.clothControlUnits.Add(default(Fox.Core.EntityPtr<Fox.Sim.SimClothControlUnit>)); }
+					while(this.clothControlUnits.Count <= index) { this.clothControlUnits.Add(default(Fox.Sim.SimClothControlUnit)); }
 					this.clothControlUnits[index] = value.GetValueAsEntityPtr<Fox.Sim.SimClothControlUnit>();
 					return;
 				default:

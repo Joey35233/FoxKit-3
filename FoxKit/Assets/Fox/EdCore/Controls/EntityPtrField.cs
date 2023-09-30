@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 
 namespace Fox.EdCore
 {
-    public class EntityPtrField<T> : BaseField<Fox.Core.EntityPtr<T>>, IFoxField, ICustomBindable
+    public class EntityPtrField<T> : BaseField<T>, IFoxField, ICustomBindable
         where T : Entity
     {
         private SerializedProperty PtrProperty;
@@ -99,7 +99,7 @@ namespace Fox.EdCore
             {
                 var property = FoxFieldUtils.SerializedPropertyBindEventBindProperty.GetValue(evt) as SerializedProperty;
 
-                PtrProperty = property.FindPropertyRelative("_ptr");
+                PtrProperty = property;
 
                 BindingExtensions.TrackPropertyValue(this, PtrProperty, OnPropertyChanged);
 
@@ -180,7 +180,7 @@ namespace Fox.EdCore
             if (label is not null)
                 this.label = label;
 
-            PtrProperty = property.FindPropertyRelative("_ptr");
+            PtrProperty = property;
 
             BindingExtensions.TrackPropertyValue(this, PtrProperty, OnPropertyChanged);
 
@@ -188,26 +188,26 @@ namespace Fox.EdCore
         }
     }
 
-    [CustomPropertyDrawer(typeof(Core.EntityPtr<>))]
-    public class EntityPtrDrawer : PropertyDrawer
-    {
-        public override VisualElement CreatePropertyGUI(SerializedProperty property)
-        {
-            // Get the generic type argument
-            Type genericArgument = fieldInfo.FieldType.GenericTypeArguments[0];
-
-            // Create a generic type with the correct number of type arguments
-            Type genericType = typeof(EntityPtrField<>).MakeGenericType(genericArgument);
-
-            // Create an instance of the generic type
-            var genericField = (BindableElement)Activator.CreateInstance(genericType, new object[] { property.name });
-            genericField.BindProperty(property);
-
-            genericField.Q(className: BaseField<float>.labelUssClassName).AddToClassList(PropertyField.labelUssClassName);
-            genericField.Q(className: BaseField<float>.inputUssClassName).AddToClassList(PropertyField.inputUssClassName);
-            genericField.AddToClassList(BaseField<float>.alignedFieldUssClassName);
-
-            return genericField;
-        }
-    }
+    // [CustomPropertyDrawer(typeof(Core.EntityPtr<>))]
+    // public class EntityPtrDrawer : PropertyDrawer
+    // {
+    //     public override VisualElement CreatePropertyGUI(SerializedProperty property)
+    //     {
+    //         // Get the generic type argument
+    //         Type genericArgument = fieldInfo.FieldType.GenericTypeArguments[0];
+    //
+    //         // Create a generic type with the correct number of type arguments
+    //         Type genericType = typeof(EntityPtrField<>).MakeGenericType(genericArgument);
+    //
+    //         // Create an instance of the generic type
+    //         var genericField = (BindableElement)Activator.CreateInstance(genericType, new object[] { property.name });
+    //         genericField.BindProperty(property);
+    //
+    //         genericField.Q(className: BaseField<float>.labelUssClassName).AddToClassList(PropertyField.labelUssClassName);
+    //         genericField.Q(className: BaseField<float>.inputUssClassName).AddToClassList(PropertyField.inputUssClassName);
+    //         genericField.AddToClassList(BaseField<float>.alignedFieldUssClassName);
+    //
+    //         return genericField;
+    //     }
+    // }
 }

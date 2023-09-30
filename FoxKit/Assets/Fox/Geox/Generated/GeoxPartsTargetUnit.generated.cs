@@ -17,8 +17,8 @@ namespace Fox.Geox
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Fox.Geox.GeoxPartsTargetObject>> objectArray { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Fox.Geox.GeoxPartsTargetObject>>();
-		
+		public Fox.Kernel.DynamicArray<Fox.Geox.GeoxPartsTargetObject> objectArray { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Geox.GeoxPartsTargetObject>();
+
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;
@@ -45,7 +45,7 @@ namespace Fox.Geox
 		// Constructors
 		public GeoxPartsTargetUnit(ulong id) : base(id) { }
 		public GeoxPartsTargetUnit() : base() { }
-		
+
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{
 			switch (propertyName.CString)
@@ -92,7 +92,7 @@ namespace Fox.Geox
 			switch (propertyName.CString)
 			{
 				case "objectArray":
-					while(this.objectArray.Count <= index) { this.objectArray.Add(default(Fox.Core.EntityPtr<Fox.Geox.GeoxPartsTargetObject>)); }
+					while(this.objectArray.Count <= index) { this.objectArray.Add(default(Fox.Geox.GeoxPartsTargetObject)); }
 					this.objectArray[index] = value.GetValueAsEntityPtr<Fox.Geox.GeoxPartsTargetObject>();
 					return;
 				default:

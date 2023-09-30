@@ -2,7 +2,7 @@
 {
     public partial class PhMultiHingeConstraint : Fox.Ph.PhConstraint
     {
-        private PhMultiHingeConstraintParam multiHingeConstraint => param.Get() as PhMultiHingeConstraintParam;
+        private PhMultiHingeConstraintParam multiHingeConstraint => param as PhMultiHingeConstraintParam;
 
         private partial UnityEngine.Quaternion Get_axis() => throw new System.NotImplementedException();
         private partial void Set_axis(UnityEngine.Quaternion value) => throw new System.NotImplementedException();

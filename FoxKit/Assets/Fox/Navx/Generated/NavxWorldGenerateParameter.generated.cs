@@ -18,70 +18,70 @@ namespace Fox.Navx
 		// Properties
 		[field: UnityEngine.SerializeField]
 		public float resolution { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		public float verticalThreshold { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		public bool doesDivideIslandWithSector { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		public bool doesHoleSimplification { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		public float holeSimplificationConvexThreshold { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		public float holeSimplificationObbExpandThreshold { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		public float holeSimplificationObbToAabbThreshold { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		public float holeSimplificationSmoothingThreshold { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		public bool isHoleSimplificationDoesNotClosePassage { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		public uint holeSimplificationReduceCount { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		public bool doesAdjustSearchSpaceToNavmesh { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		public bool doesGenerateFillNavVolumeInRadius { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		public Fox.Kernel.Path roughGraphFilePath { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		public Fox.Core.FilePtr roughGraphFilePtr { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		public Fox.Kernel.String worldName { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		public uint maxFileSizeInKb { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Fox.Navx.NavxNavigableParameter>> parameters { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Fox.Navx.NavxNavigableParameter>>();
-		
+		public Fox.Kernel.DynamicArray<Fox.Navx.NavxNavigableParameter> parameters { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Navx.NavxNavigableParameter>();
+
 		[field: UnityEngine.SerializeField]
 		public uint sectorSizeHorizontal { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		public uint tileSizeHorizontal { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		public uint searchSpaceBucketSizeHorizontal { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		public Fox.Kernel.DynamicArray<Fox.Kernel.String> collisionAttributes { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
-		
+
 		[field: UnityEngine.SerializeField]
 		public Fox.Kernel.Path loadFox2FileListScriptPath { get; set; }
-		
+
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;
@@ -129,7 +129,7 @@ namespace Fox.Navx
 		// Constructors
 		public NavxWorldGenerateParameter(ulong id) : base(id) { }
 		public NavxWorldGenerateParameter() : base() { }
-		
+
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{
 			switch (propertyName.CString)
@@ -280,7 +280,7 @@ namespace Fox.Navx
 			switch (propertyName.CString)
 			{
 				case "parameters":
-					while(this.parameters.Count <= index) { this.parameters.Add(default(Fox.Core.EntityPtr<Fox.Navx.NavxNavigableParameter>)); }
+					while(this.parameters.Count <= index) { this.parameters.Add(default(Fox.Navx.NavxNavigableParameter)); }
 					this.parameters[index] = value.GetValueAsEntityPtr<Fox.Navx.NavxNavigableParameter>();
 					return;
 				case "collisionAttributes":

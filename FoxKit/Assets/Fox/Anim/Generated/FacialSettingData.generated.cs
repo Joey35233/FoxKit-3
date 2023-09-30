@@ -17,17 +17,17 @@ namespace Fox.Anim
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Fox.Anim.FacialMaskElement>> aspectMaskList { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Fox.Anim.FacialMaskElement>>();
-		
+		public Fox.Kernel.DynamicArray<Fox.Anim.FacialMaskElement> aspectMaskList { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Anim.FacialMaskElement>();
+
 		[field: UnityEngine.SerializeField]
-		public Fox.Core.EntityPtr<Fox.Anim.FacialMaskElement> mouthMask { get; set; } = new Fox.Core.EntityPtr<Fox.Anim.FacialMaskElement>();
-		
+		public Fox.Anim.FacialMaskElement mouthMask { get; set; }
+
 		[field: UnityEngine.SerializeField]
-		public Fox.Core.EntityPtr<Fox.Anim.FacialMaskElement> lipMask { get; set; } = new Fox.Core.EntityPtr<Fox.Anim.FacialMaskElement>();
-		
+		public Fox.Anim.FacialMaskElement lipMask { get; set; }
+
 		[field: UnityEngine.SerializeField]
 		public Fox.Kernel.String rootName { get; set; }
-		
+
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;
@@ -57,7 +57,7 @@ namespace Fox.Anim
 		// Constructors
 		public FacialSettingData(ulong id) : base(id) { }
 		public FacialSettingData() : base() { }
-		
+
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{
 			switch (propertyName.CString)
@@ -119,7 +119,7 @@ namespace Fox.Anim
 			switch (propertyName.CString)
 			{
 				case "aspectMaskList":
-					while(this.aspectMaskList.Count <= index) { this.aspectMaskList.Add(default(Fox.Core.EntityPtr<Fox.Anim.FacialMaskElement>)); }
+					while(this.aspectMaskList.Count <= index) { this.aspectMaskList.Add(default(Fox.Anim.FacialMaskElement)); }
 					this.aspectMaskList[index] = value.GetValueAsEntityPtr<Fox.Anim.FacialMaskElement>();
 					return;
 				default:

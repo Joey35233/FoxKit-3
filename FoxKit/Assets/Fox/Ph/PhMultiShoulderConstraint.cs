@@ -2,7 +2,7 @@
 {
     public partial class PhMultiShoulderConstraint : Fox.Ph.PhConstraint
     {
-        private PhMultiShoulderConstraintParam multiShoulderConstraint => param.Get() as PhMultiShoulderConstraintParam;
+        private PhMultiShoulderConstraintParam multiShoulderConstraint => param as PhMultiShoulderConstraintParam;
 
         private partial UnityEngine.Quaternion Get_refVec0() => throw new System.NotImplementedException();
         private partial void Set_refVec0(UnityEngine.Quaternion value) => throw new System.NotImplementedException();

@@ -5,8 +5,8 @@ namespace Fox.Phx
 {
     public partial class PhxVehicleAxis : Fox.Core.Data
     {
-        private PhxWheelConstraintParam wheelConstraint => wheelConstraintParam.Get();
-        private PhVehicleAxisParam vehicleAxis => vehicleAxisParam.Get();
+        private PhxWheelConstraintParam wheelConstraint => wheelConstraintParam;
+        private PhVehicleAxisParam vehicleAxis => vehicleAxisParam;
 
         private partial UnityEngine.Vector3 Get_wheelFront() => wheelConstraint.GetFrontL();
         private partial void Set_wheelFront(UnityEngine.Vector3 value) => wheelConstraint.SetFrontL(value);
@@ -50,20 +50,10 @@ namespace Fox.Phx
         private partial DynamicArray<String> Get_AssignedBoneNames()
         {
             var assignedBoneNames = new DynamicArray<String>();
-            foreach (EntityPtr<PhxWheelAssociationUnitParam> wheelAssociationUnit in wheelAssociationUnitParams)
-                assignedBoneNames.Add(wheelAssociationUnit.Get().GetBoneName());
+            foreach (PhxWheelAssociationUnitParam wheelAssociationUnit in wheelAssociationUnitParams)
+                assignedBoneNames.Add(wheelAssociationUnit.GetBoneName());
 
             return assignedBoneNames;
-        }
-        private partial void Set_AssignedBoneNames(DynamicArray<String> value)
-        {
-            int i = 0;
-            foreach (EntityPtr<PhxWheelAssociationUnitParam> wheelAssociationUnit in wheelAssociationUnitParams)
-            {
-                wheelAssociationUnit.Get().SetBoneName(value[i]);
-
-                i++;
-            }
         }
     }
 }

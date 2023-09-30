@@ -17,8 +17,8 @@ namespace Fox.Geo
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		protected Fox.Core.EntityPtr<Fox.Core.SafeScript> script { get; set; } = new Fox.Core.EntityPtr<Fox.Core.SafeScript>();
-		
+		protected Fox.Core.SafeScript script { get; set; }
+
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;
@@ -45,7 +45,7 @@ namespace Fox.Geo
 		// Constructors
 		public GeoTrapScriptConditionBody(ulong id) : base(id) { }
 		public GeoTrapScriptConditionBody() : base() { }
-		
+
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{
 			switch (propertyName.CString)

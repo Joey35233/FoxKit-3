@@ -18,16 +18,16 @@ namespace Fox.Sdx
 		// Properties
 		[field: UnityEngine.SerializeField]
 		public uint priority { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
-		public Fox.Core.EntityPtr<Fox.Sdx.SoundAreaParameter> parameter { get; set; } = new Fox.Core.EntityPtr<Fox.Sdx.SoundAreaParameter>();
-		
+		public Fox.Sdx.SoundAreaParameter parameter { get; set; }
+
 		[field: UnityEngine.SerializeField]
 		public Fox.Kernel.DynamicArray<Fox.Core.EntityLink> members { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityLink>();
-		
+
 		[field: UnityEngine.SerializeField]
 		public Fox.Kernel.DynamicArray<Fox.Core.EntityLink> edges { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityLink>();
-		
+
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;
@@ -57,7 +57,7 @@ namespace Fox.Sdx
 		// Constructors
 		public SoundAreaGroup(ulong id) : base(id) { }
 		public SoundAreaGroup() : base() { }
-		
+
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{
 			switch (propertyName.CString)

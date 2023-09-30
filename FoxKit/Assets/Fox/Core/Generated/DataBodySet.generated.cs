@@ -17,8 +17,8 @@ namespace Fox.Core
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		protected Fox.Kernel.StringMap<Fox.Core.EntityPtr<Fox.Core.DataBody>> dataBodyList { get; private set; } = new Fox.Kernel.StringMap<Fox.Core.EntityPtr<Fox.Core.DataBody>>();
-		
+		protected Fox.Kernel.StringMap<Fox.Core.DataBody> dataBodyList { get; private set; } = new Fox.Kernel.StringMap<Fox.Core.DataBody>();
+
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;
@@ -45,7 +45,7 @@ namespace Fox.Core
 		// Constructors
 		public DataBodySet(ulong id) : base(id) { }
 		public DataBodySet() : base() { }
-		
+
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{
 			switch (propertyName.CString)

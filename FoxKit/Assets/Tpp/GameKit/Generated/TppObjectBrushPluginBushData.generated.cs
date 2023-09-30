@@ -17,8 +17,8 @@ namespace Tpp.GameKit
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		public Fox.Core.EntityPtr<Tpp.GameKit.ObjectBrushPluginBushDataElement> parameter { get; set; } = new Fox.Core.EntityPtr<Tpp.GameKit.ObjectBrushPluginBushDataElement>();
-		
+		public Tpp.GameKit.ObjectBrushPluginBushDataElement parameter { get; set; }
+
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;
@@ -45,7 +45,7 @@ namespace Tpp.GameKit
 		// Constructors
 		public TppObjectBrushPluginBushData(ulong id) : base(id) { }
 		public TppObjectBrushPluginBushData() : base() { }
-		
+
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{
 			switch (propertyName.CString)

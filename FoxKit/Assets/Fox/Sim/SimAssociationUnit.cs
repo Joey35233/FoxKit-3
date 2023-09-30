@@ -4,7 +4,7 @@ namespace Fox.Sim
 {
     public partial class SimAssociationUnit : Fox.Phx.PhxAssociationUnitElement
     {
-        private SimAssociationUnitParam associationUnit => param.Get();
+        private SimAssociationUnitParam associationUnit => param;
 
         private partial String Get_boneName() => associationUnit.boneName;
         private partial void Set_boneName(String value) => associationUnit.boneName = value;

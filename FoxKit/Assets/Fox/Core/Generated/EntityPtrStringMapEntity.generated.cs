@@ -17,8 +17,8 @@ namespace Fox.Core
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.StringMap<Fox.Core.EntityPtr<Fox.Core.Entity>> stringMap { get; private set; } = new Fox.Kernel.StringMap<Fox.Core.EntityPtr<Fox.Core.Entity>>();
-		
+		public Fox.Kernel.StringMap<Fox.Core.Entity> stringMap { get; private set; } = new Fox.Kernel.StringMap<Fox.Core.Entity>();
+
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;
@@ -45,7 +45,7 @@ namespace Fox.Core
 		// Constructors
 		public EntityPtrStringMapEntity(ulong id) : base(id) { }
 		public EntityPtrStringMapEntity() : base() { }
-		
+
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{
 			switch (propertyName.CString)

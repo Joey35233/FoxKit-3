@@ -17,11 +17,11 @@ namespace Fox.Sdx
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		public Fox.Core.EntityPtr<Fox.Sdx.SoundAreaParameter> parameter { get; set; } = new Fox.Core.EntityPtr<Fox.Sdx.SoundAreaParameter>();
-		
+		public Fox.Sdx.SoundAreaParameter parameter { get; set; }
+
 		[field: UnityEngine.SerializeField]
 		public Fox.Kernel.String volumeRtpc { get; set; }
-		
+
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;
@@ -49,7 +49,7 @@ namespace Fox.Sdx
 		// Constructors
 		public SoundAreaGlobal(ulong id) : base(id) { }
 		public SoundAreaGlobal() : base() { }
-		
+
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{
 			switch (propertyName.CString)

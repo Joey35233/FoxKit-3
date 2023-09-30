@@ -17,11 +17,11 @@ namespace Fox.Graphx
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Fox.Graphx.GraphxSpatialGraphDataNode>> nodes { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Fox.Graphx.GraphxSpatialGraphDataNode>>();
-		
+		public Fox.Kernel.DynamicArray<Fox.Graphx.GraphxSpatialGraphDataNode> nodes { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Graphx.GraphxSpatialGraphDataNode>();
+
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Fox.Graphx.GraphxSpatialGraphDataEdge>> edges { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Fox.Graphx.GraphxSpatialGraphDataEdge>>();
-		
+		public Fox.Kernel.DynamicArray<Fox.Graphx.GraphxSpatialGraphDataEdge> edges { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Graphx.GraphxSpatialGraphDataEdge>();
+
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;
@@ -49,7 +49,7 @@ namespace Fox.Graphx
 		// Constructors
 		public GraphxSpatialGraphData(ulong id) : base(id) { }
 		public GraphxSpatialGraphData() : base() { }
-		
+
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{
 			switch (propertyName.CString)
@@ -100,11 +100,11 @@ namespace Fox.Graphx
 			switch (propertyName.CString)
 			{
 				case "nodes":
-					while(this.nodes.Count <= index) { this.nodes.Add(default(Fox.Core.EntityPtr<Fox.Graphx.GraphxSpatialGraphDataNode>)); }
+					while(this.nodes.Count <= index) { this.nodes.Add(default(Fox.Graphx.GraphxSpatialGraphDataNode)); }
 					this.nodes[index] = value.GetValueAsEntityPtr<Fox.Graphx.GraphxSpatialGraphDataNode>();
 					return;
 				case "edges":
-					while(this.edges.Count <= index) { this.edges.Add(default(Fox.Core.EntityPtr<Fox.Graphx.GraphxSpatialGraphDataEdge>)); }
+					while(this.edges.Count <= index) { this.edges.Add(default(Fox.Graphx.GraphxSpatialGraphDataEdge)); }
 					this.edges[index] = value.GetValueAsEntityPtr<Fox.Graphx.GraphxSpatialGraphDataEdge>();
 					return;
 				default:

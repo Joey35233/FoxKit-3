@@ -17,11 +17,11 @@ namespace Fox.Core
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		protected Fox.Kernel.StringMap<Fox.Core.EntityPtr<Fox.Core.Entity>> entityDifferences { get; private set; } = new Fox.Kernel.StringMap<Fox.Core.EntityPtr<Fox.Core.Entity>>();
-		
+		protected Fox.Kernel.StringMap<Fox.Core.Entity> entityDifferences { get; private set; } = new Fox.Kernel.StringMap<Fox.Core.Entity>();
+
 		[field: UnityEngine.SerializeField]
-		protected Fox.Kernel.StringMap<Fox.Core.EntityPtr<Fox.Core.PropertyDifference>> propertyDifferences { get; private set; } = new Fox.Kernel.StringMap<Fox.Core.EntityPtr<Fox.Core.PropertyDifference>>();
-		
+		protected Fox.Kernel.StringMap<Fox.Core.PropertyDifference> propertyDifferences { get; private set; } = new Fox.Kernel.StringMap<Fox.Core.PropertyDifference>();
+
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;
@@ -49,7 +49,7 @@ namespace Fox.Core
 		// Constructors
 		public EntityDifference(ulong id) : base(id) { }
 		public EntityDifference() : base() { }
-		
+
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{
 			switch (propertyName.CString)

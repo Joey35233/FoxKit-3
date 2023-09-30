@@ -17,11 +17,11 @@ namespace Fox.Core
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		protected Fox.Kernel.StringMap<Fox.Core.EntityPtr<Fox.Core.Bucket>> buckets { get; private set; } = new Fox.Kernel.StringMap<Fox.Core.EntityPtr<Fox.Core.Bucket>>();
-		
+		protected Fox.Kernel.StringMap<Fox.Core.Bucket> buckets { get; private set; } = new Fox.Kernel.StringMap<Fox.Core.Bucket>();
+
 		[field: UnityEngine.SerializeField]
-		protected Fox.Core.EntityPtr<Fox.Core.Bucket> mainBucket { get; set; } = new Fox.Core.EntityPtr<Fox.Core.Bucket>();
-		
+		protected Fox.Core.Bucket mainBucket { get; set; }
+
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;
@@ -49,7 +49,7 @@ namespace Fox.Core
 		// Constructors
 		public BucketCollector(ulong id) : base(id) { }
 		public BucketCollector() : base() { }
-		
+
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{
 			switch (propertyName.CString)

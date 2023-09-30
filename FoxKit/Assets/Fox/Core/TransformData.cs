@@ -47,7 +47,7 @@ namespace Fox.Core
 
         public void SetTransform(TransformEntity transform)
         {
-            this.transform = new EntityPtr<TransformEntity>(transform);
+            this.transform = transform;
             transform.SetOwner(this);
 
             UpdateTransform();
@@ -62,10 +62,10 @@ namespace Fox.Core
 
         private void UpdateTransform()
         {
-            if (transform.IsNull())
+            if (transform is null)
                 SetTransform(TransformEntity.GetDefault());
 
-            TransformEntity transformEntity = transform.Get();
+            TransformEntity transformEntity = transform;
             transformEntity.translation = Math.FoxToUnityVector3(transformEntity.translation);
             transformEntity.rotQuat = Math.FoxToUnityQuaternion(transformEntity.rotQuat);
             transformEntity.scale = transformEntity.scale;

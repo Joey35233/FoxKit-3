@@ -2,7 +2,7 @@
 {
     public partial class PhCylinderConstraint : Fox.Ph.PhConstraint
     {
-        private PhCylinderConstraintParam cylinderConstraint => param.Get() as PhCylinderConstraintParam;
+        private PhCylinderConstraintParam cylinderConstraint => param as PhCylinderConstraintParam;
 
         private partial UnityEngine.Quaternion Get_axis() => throw new System.NotImplementedException();
         private partial void Set_axis(UnityEngine.Quaternion value) => throw new System.NotImplementedException();

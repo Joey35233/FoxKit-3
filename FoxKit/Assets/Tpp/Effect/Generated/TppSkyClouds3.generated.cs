@@ -17,8 +17,8 @@ namespace Tpp.Effect
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		public Fox.Core.EntityPtr<Tpp.Effect.TppSkyClouds3Param> param { get; protected set; } = new Fox.Core.EntityPtr<Tpp.Effect.TppSkyClouds3Param>();
-		
+		public Tpp.Effect.TppSkyClouds3Param param { get; protected set; }
+
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;
@@ -45,7 +45,7 @@ namespace Tpp.Effect
 		// Constructors
 		public TppSkyClouds3(ulong id) : base(id) { }
 		public TppSkyClouds3() : base() { }
-		
+
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{
 			switch (propertyName.CString)

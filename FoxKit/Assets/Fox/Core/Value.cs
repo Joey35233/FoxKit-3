@@ -61,10 +61,11 @@ namespace Fox.Core
             value = v2;
         }
 
-        public Value(IEntityPtr entity)
-        {
-            value = entity;
-        }
+        // TODO: Old EntityPtr<T> constructor; delete
+        // public Value(Entity entity)
+        // {
+        //     value = entity;
+        // }
 
         public Value(EntityLink entityLink)
         {
@@ -159,7 +160,7 @@ namespace Fox.Core
 
         public double GetValueAsDouble() => (double)value;
 
-        public EntityPtr<T> GetValueAsEntityPtr<T>() where T : Entity => (EntityPtr<T>)value;
+        public T GetValueAsEntityPtr<T>() where T : Entity => (T)value;
 
         public EntityLink GetValueAsEntityLink() => (EntityLink)value;
 

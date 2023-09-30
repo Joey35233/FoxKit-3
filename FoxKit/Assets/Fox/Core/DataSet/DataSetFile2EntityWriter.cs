@@ -262,12 +262,10 @@ namespace Fox.Core
                     break;
                 case PropertyInfo.PropertyType.EntityPtr:
                     {
-                        Entity entity = ((IEntityPtr)item).Get();
-
                         ulong address = 0;
-                        if (entity != null)
+                        if ((Entity)item != null)
                         {
-                            address = addresses[entity];
+                            address = addresses[(Entity)item];
                         }
 
                         writer.Write(address);

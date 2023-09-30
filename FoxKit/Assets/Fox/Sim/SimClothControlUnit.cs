@@ -2,7 +2,7 @@
 {
     public partial class SimClothControlUnit : Fox.Core.DataElement
     {
-        private SimClothControlUnitParam param => controlUnitParam.Get();
+        private SimClothControlUnitParam param => controlUnitParam;
 
         private partial float Get_mass() => param.GetMass();
         private partial void Set_mass(float value) => param.SetMass(value);

@@ -17,8 +17,8 @@ namespace Fox.GameKit
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		public Fox.Core.EntityPtr<Fox.GameKit.EnvironmentParameter> parameter { get; protected set; } = new Fox.Core.EntityPtr<Fox.GameKit.EnvironmentParameter>();
-		
+		public Fox.GameKit.EnvironmentParameter parameter { get; protected set; }
+
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;
@@ -45,7 +45,7 @@ namespace Fox.GameKit
 		// Constructors
 		public EnvironmentGlobal(ulong id) : base(id) { }
 		public EnvironmentGlobal() : base() { }
-		
+
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{
 			switch (propertyName.CString)

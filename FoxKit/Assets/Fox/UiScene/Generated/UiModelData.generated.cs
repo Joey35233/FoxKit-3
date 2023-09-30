@@ -18,43 +18,43 @@ namespace Fox.UiScene
 		// Properties
 		[field: UnityEngine.SerializeField]
 		public Fox.Core.FilePtr data { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		public Fox.Kernel.String sceneName { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		public int priority { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		public Fox.Kernel.DynamicArray<Fox.Core.EntityLink> animations { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityLink>();
-		
+
 		[field: UnityEngine.SerializeField]
 		public bool useLayoutCamera { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		public UiModelDataFlag flag { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		public float billboardMin { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		public float billboardMax { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		public Fox.Core.Entity connection_connectModelDataHandle { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		public Fox.Kernel.String connection_connectModelNodeName { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		public UnityEngine.Color color { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		public UiInheritanceSetting inheritanceSetting { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Fox.UiScene.UiModelNodeElement>> modelNodes { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Fox.UiScene.UiModelNodeElement>>();
-		
+		public Fox.Kernel.DynamicArray<Fox.UiScene.UiModelNodeElement> modelNodes { get; private set; } = new Fox.Kernel.DynamicArray<Fox.UiScene.UiModelNodeElement>();
+
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;
@@ -93,7 +93,7 @@ namespace Fox.UiScene
 		// Constructors
 		public UiModelData(ulong id) : base(id) { }
 		public UiModelData() : base() { }
-		
+
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{
 			switch (propertyName.CString)
@@ -203,7 +203,7 @@ namespace Fox.UiScene
 					this.animations[index] = value.GetValueAsEntityLink();
 					return;
 				case "modelNodes":
-					while(this.modelNodes.Count <= index) { this.modelNodes.Add(default(Fox.Core.EntityPtr<Fox.UiScene.UiModelNodeElement>)); }
+					while(this.modelNodes.Count <= index) { this.modelNodes.Add(default(Fox.UiScene.UiModelNodeElement)); }
 					this.modelNodes[index] = value.GetValueAsEntityPtr<Fox.UiScene.UiModelNodeElement>();
 					return;
 				default:

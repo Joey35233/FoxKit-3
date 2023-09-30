@@ -17,8 +17,8 @@ namespace Tpp.Effect
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		public Fox.Core.EntityPtr<Tpp.Effect.TppGlobalVolumetricFogParam> param { get; protected set; } = new Fox.Core.EntityPtr<Tpp.Effect.TppGlobalVolumetricFogParam>();
-		
+		public Tpp.Effect.TppGlobalVolumetricFogParam param { get; protected set; }
+
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;
@@ -45,7 +45,7 @@ namespace Tpp.Effect
 		// Constructors
 		public TppGlobalVolumetricFog(ulong id) : base(id) { }
 		public TppGlobalVolumetricFog() : base() { }
-		
+
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{
 			switch (propertyName.CString)

@@ -114,7 +114,7 @@ namespace Fox.Core
                 switch (property.Type)
                 {
                     case PropertyInfo.PropertyType.EntityPtr:
-                        CollectReferencedEntity(GetProperty(property.Name).GetValueAsEntityPtr<Entity>().Get(), alreadyCollectedEntities);
+                        CollectReferencedEntity(GetProperty(property.Name).GetValueAsEntityPtr<Entity>(), alreadyCollectedEntities);
                         break;
                     case PropertyInfo.PropertyType.EntityHandle:
                         CollectReferencedEntity(GetProperty(property.Name).GetValueAsEntityHandle(), alreadyCollectedEntities);
@@ -134,7 +134,7 @@ namespace Fox.Core
                     switch (property.Type)
                     {
                         case PropertyInfo.PropertyType.EntityPtr:
-                            CollectReferencedEntity(((IEntityPtr)item.Value).Get(), alreadyCollectedEntities);
+                            CollectReferencedEntity((Entity)item.Value, alreadyCollectedEntities);
                             break;
                         case PropertyInfo.PropertyType.EntityHandle:
                             CollectReferencedEntity((Entity)item.Value, alreadyCollectedEntities);
@@ -153,7 +153,7 @@ namespace Fox.Core
                     switch (property.Type)
                     {
                         case PropertyInfo.PropertyType.EntityPtr:
-                            CollectReferencedEntity(((IEntityPtr)item).Get(), alreadyCollectedEntities);
+                            CollectReferencedEntity((Entity)item, alreadyCollectedEntities);
                             break;
                         case PropertyInfo.PropertyType.EntityHandle:
                             CollectReferencedEntity((Entity)item, alreadyCollectedEntities);

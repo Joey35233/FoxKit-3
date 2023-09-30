@@ -17,8 +17,8 @@ namespace Fox.GameService
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		public Fox.Core.EntityPtr<Fox.GameService.GsRouteDataEdgeEvent> edgeEvent { get; set; } = new Fox.Core.EntityPtr<Fox.GameService.GsRouteDataEdgeEvent>();
-		
+		public Fox.GameService.GsRouteDataEdgeEvent edgeEvent { get; set; }
+
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;
@@ -45,7 +45,7 @@ namespace Fox.GameService
 		// Constructors
 		public GsRouteDataEdge(ulong id) : base(id) { }
 		public GsRouteDataEdge() : base() { }
-		
+
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{
 			switch (propertyName.CString)

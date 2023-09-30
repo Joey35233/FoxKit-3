@@ -2,7 +2,7 @@
 {
     public partial class SimOnPhysics : Fox.Sim.SimObject
     {
-        private SimEngineOnPhysicsParam simEngineOnPhysics => engineParam.Get() as SimEngineOnPhysicsParam;
+        private SimEngineOnPhysicsParam simEngineOnPhysics => engineParam as SimEngineOnPhysicsParam;
 
         private partial SimLodLevelName Get_minLodLevel() => simEngineOnPhysics.minLodLevel;
         private partial void Set_minLodLevel(SimLodLevelName value) => simEngineOnPhysics.minLodLevel = value;

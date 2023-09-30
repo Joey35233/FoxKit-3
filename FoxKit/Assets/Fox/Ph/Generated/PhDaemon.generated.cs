@@ -17,20 +17,20 @@ namespace Fox.Ph
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		public Fox.Core.EntityPtr<Fox.Ph.PhMaterialManager> materialManager { get; set; } = new Fox.Core.EntityPtr<Fox.Ph.PhMaterialManager>();
-		
+		public Fox.Ph.PhMaterialManager materialManager { get; set; }
+
 		[field: UnityEngine.SerializeField]
 		public float defaultFriction { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		public float defaultRestitution { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		public bool isParallel { get; set; }
-		
+
 		[field: UnityEngine.SerializeField]
 		public bool isUseSmallJob { get; set; }
-		
+
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;
@@ -61,7 +61,7 @@ namespace Fox.Ph
 		// Constructors
 		public PhDaemon(ulong id) : base(id) { }
 		public PhDaemon() : base() { }
-		
+
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{
 			switch (propertyName.CString)

@@ -40,42 +40,10 @@ namespace Fox.EdCore
                 Type type when type == typeof(Color) => () => new ColorField(),
                 Type type when type == typeof(Quaternion) => () => new QuaternionField(),
                 Type type when type == typeof(FilePtr) => () => new FilePtrField(),
+                Type type when type.IsSubclassOf(typeof(Entity)) && type != typeof(Entity) => () => Activator.CreateInstance(typeof(EntityPtrField<>).MakeGenericType(type)) as IFoxField,
                 Type type when type == typeof(Entity) => () => new EntityHandleField(),
-                Type type when type.IsGenericType && type.GetGenericTypeDefinition() == typeof(EntityPtr<>) => () => Activator.CreateInstance(typeof(EntityPtrField<>).MakeGenericType(type.GenericTypeArguments)) as IFoxField,
                 Type type when type == typeof(Matrix4x4) => () => new Matrix4Field(),
                 Type type when type == typeof(EntityLink) => () => new EntityLinkField(),
-                _ => throw new ArgumentException($"Invalid Fox type: {propertyType}."),
-            };
-        }
-
-        public static Func<IFoxField> GetTypeFieldConstructorWithLabelPlaceholder(Type propertyType)
-        {
-            return propertyType switch
-            {
-                Type type when type == typeof(bool) => () => new BoolField("p"),
-                Type type when type == typeof(sbyte) => () => new Int8Field("p", false),
-                Type type when type == typeof(byte) => () => new UInt8Field("p", false),
-                Type type when type == typeof(short) => () => new Int16Field("p", false),
-                Type type when type == typeof(ushort) => () => new UInt16Field("p", false),
-                Type type when type == typeof(int) => () => new Int32Field("p", false),
-                Type type when type == typeof(uint) => () => new UInt32Field("p", false),
-                Type type when type == typeof(long) => () => new Int64Field("p", false),
-                Type type when type == typeof(ulong) => () => new UInt64Field("p", false),
-                Type type when type == typeof(float) => () => new FloatField("p", false),
-                Type type when type == typeof(double) => () => new DoubleField("p", false),
-                Type type when type == typeof(String) => () => new StringField("p"),
-                Type type when type == typeof(Path) => () => new PathField("p"),
-                Type type when type == typeof(Vector3) => () => new Vector3Field("p"),
-                Type type when type == typeof(Vector4) => () => new Vector4Field("p"),
-                Type type when type == typeof(Color) => () => new ColorField("p"),
-                Type type when type == typeof(Quaternion) => () => new QuaternionField("p"),
-                Type type when type == typeof(FilePtr) => () => new FilePtrField("p"),
-                Type type when type == typeof(Entity) => () => new EntityHandleField("p"),
-                Type type when type.IsGenericType && type.GetGenericTypeDefinition() == typeof(EntityPtr<>) => () => Activator.CreateInstance(typeof(EntityPtrField<>).MakeGenericType(type.GenericTypeArguments[0]), new object[] { "p" }) as IFoxField,
-                Type type when type == typeof(Matrix4x4) => () => new Matrix4Field("p"),
-                Type type when type == typeof(EntityLink) => () => new EntityLinkField("p"),
-                Type type when type.IsEnum => type.IsDefined(typeof(FlagsAttribute), inherit: false) ? () => new EnumFlagsField("p") : () => new EnumField("p"),
-                Type type when type.IsGenericType && type.GetGenericTypeDefinition() == typeof(StaticArray<>) => () => Activator.CreateInstance(typeof(StaticArrayField<>).MakeGenericType(type.GenericTypeArguments), new object[] { "p" }) as IFoxField,
                 _ => throw new ArgumentException($"Invalid Fox type: {propertyType}."),
             };
         }
@@ -125,8 +93,6 @@ namespace Fox.EdCore
                 PropertyType.Vector3 => new Vector3Field(),
                 PropertyType.Vector4 => new Vector4Field(),
                 PropertyType.Quat => new QuaternionField(),
-                //case PropertyType.Matrix3:
-                //    return new QuaternionField();
                 PropertyType.Matrix4 => new Matrix4Field(),
                 PropertyType.Color => new ColorField(),
                 PropertyType.FilePtr => new FilePtrField(),

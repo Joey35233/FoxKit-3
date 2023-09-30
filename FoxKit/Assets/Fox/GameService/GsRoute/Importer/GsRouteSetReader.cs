@@ -140,11 +140,11 @@ namespace Fox.GameService
                 {
                     GsRouteDataEdge edge = new GameObject().AddComponent<GsRouteDataEdge>();
                     edge.SetOwner(routeData);
-                    routeData.edges.Add(new EntityPtr<GraphxSpatialGraphDataEdge>(edge));
+                    routeData.edges.Add(edge);
 
                     GsRouteDataNode node = new GameObject().AddComponent<GsRouteDataNode>();
                     node.SetOwner(routeData);
-                    routeData.nodes.Add(new EntityPtr<GraphxSpatialGraphDataNode>(node));
+                    routeData.nodes.Add(node);
 
                     // Position
                     reader.Seek(routeDefPosition + positionsOffset + (j * nodePositionSizeInBytes));
@@ -219,26 +219,20 @@ namespace Fox.GameService
                             case GsRouteDataRouteEventAimPoint.Type.RouteAsSightMovePath:
                                 {
                                     GsRouteDataRtEvAimPointRouteAsSightMovePath result = new GameObject().AddComponent<GsRouteDataRtEvAimPointRouteAsSightMovePath>();
-                                    result.routeNames = new StaticArray<Kernel.String>(new Kernel.String[]
-                                    {
-                                        new (reader.ReadStrCode32().ToString()),
-                                        new (reader.ReadStrCode32().ToString()),
-                                        new (reader.ReadStrCode32().ToString()),
-                                        new (reader.ReadStrCode32().ToString())
-                                    });
+                                    result.routeNames.Add(new Kernel.String(reader.ReadStrCode32().ToString()));
+                                    result.routeNames.Add(new Kernel.String(reader.ReadStrCode32().ToString()));
+                                    result.routeNames.Add(new Kernel.String(reader.ReadStrCode32().ToString()));
+                                    result.routeNames.Add(new Kernel.String(reader.ReadStrCode32().ToString()));
                                     aimPoint = result;
                                 }
                                 break;
                             case GsRouteDataRouteEventAimPoint.Type.RouteAsObject:
                                 {
                                     GsRouteDataRtEvAimPointRouteAsObject result = new GameObject().AddComponent<GsRouteDataRtEvAimPointRouteAsObject>();
-                                    result.routeNames = new StaticArray<Kernel.String>(new Kernel.String[]
-                                    {
-                                        new (reader.ReadStrCode32().ToString()),
-                                        new (reader.ReadStrCode32().ToString()),
-                                        new (reader.ReadStrCode32().ToString()),
-                                        new (reader.ReadStrCode32().ToString())
-                                    });
+                                    result.routeNames.Add(new Kernel.String(reader.ReadStrCode32().ToString()));
+                                    result.routeNames.Add(new Kernel.String(reader.ReadStrCode32().ToString()));
+                                    result.routeNames.Add(new Kernel.String(reader.ReadStrCode32().ToString()));
+                                    result.routeNames.Add(new Kernel.String(reader.ReadStrCode32().ToString()));
                                     aimPoint = result;
                                 }
                                 break;
@@ -248,7 +242,7 @@ namespace Fox.GameService
 
                         GsRouteDataRouteEvent routeEvent = GameServiceModule.GsRouteDataEventDeserializationMap[eventDef.Id](reader);
                         routeEvent.SetOwner(routeData);
-                        routeEvent.aimPoint = new EntityPtr<GsRouteDataRouteEventAimPoint>(aimPoint);
+                        routeEvent.aimPoint = aimPoint;
 
                         if (fileVersion == RouteSetVersion.TPP)
                             reader.Skip(4); //snippet
@@ -256,7 +250,7 @@ namespace Fox.GameService
                         if (eventDef.Affinity == EventAffinity.Edge)
                         {
                             var edgeEvent = routeEvent as GsRouteDataEdgeEvent;
-                            edge.edgeEvent = new EntityPtr<GsRouteDataEdgeEvent>(edgeEvent);
+                            edge.edgeEvent = edgeEvent;
                         }
                         else
                         {
@@ -264,22 +258,22 @@ namespace Fox.GameService
                             nodeEvent.isLoop = eventDef.IsLoop;
                             nodeEvent.time = eventDef.Time;
                             nodeEvent.direction = eventDef.Direction;
-                            node.nodeEvents.Add(new EntityPtr<GsRouteDataNodeEvent>(nodeEvent));
+                            node.nodeEvents.Add(nodeEvent);
                         }
                     }
                 }
 
                 for (int j = 0; j < nodeCount; j++)
                 {
-                    EntityPtr<GraphxSpatialGraphDataNode> node = routeData.nodes[j];
+                    GraphxSpatialGraphDataNode node = routeData.nodes[j];
 
-                    EntityPtr<GraphxSpatialGraphDataEdge> prevEdge = routeData.edges[(j - 1 + nodeCount) % nodeCount];
-                    EntityPtr<GraphxSpatialGraphDataEdge> nextEdge = routeData.edges[j];
+                    GraphxSpatialGraphDataEdge prevEdge = routeData.edges[(j - 1 + nodeCount) % nodeCount];
+                    GraphxSpatialGraphDataEdge nextEdge = routeData.edges[j];
 
-                    node.Get().inlinks.Add(prevEdge.Get());
-                    prevEdge.Get().nextNode = node.Get();
-                    node.Get().outlinks.Add(nextEdge.Get());
-                    nextEdge.Get().prevNode = node.Get();
+                    node.inlinks.Add(prevEdge);
+                    prevEdge.nextNode = node;
+                    node.outlinks.Add(nextEdge);
+                    nextEdge.prevNode = node;
                 }
             }
 
