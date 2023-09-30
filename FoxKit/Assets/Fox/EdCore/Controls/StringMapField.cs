@@ -115,6 +115,7 @@ namespace Fox.EdCore
         {
             ListViewInput.itemsSource = StringMapProperty.GetValue() as IList;
             ListViewInput.RefreshItems();
+            ListViewInput.Rebuild();
         }
 
         private void AddButton_clicked()
@@ -181,7 +182,7 @@ namespace Fox.EdCore
 
             if (label is not null)
                 this.label = label;
-            StringMapProperty = property.Copy();
+            StringMapProperty = property;
 
             BindingExtensions.TrackPropertyValue(this, StringMapProperty, OnPropertyChanged);
 
