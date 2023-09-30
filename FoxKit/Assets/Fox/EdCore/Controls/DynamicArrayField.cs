@@ -1,13 +1,9 @@
 ﻿using Fox.Kernel;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Reflection;
 using UnityEditor;
 using UnityEditor.UIElements;
-using UnityEngine;
 using UnityEngine.UIElements;
-using IList = System.Collections.IList;
 
 namespace Fox.EdCore
 {
@@ -17,8 +13,6 @@ namespace Fox.EdCore
 
         private static readonly Func<IFoxField> DefaultFieldConstructor = FoxFieldUtils.GetBindableElementConstructorForType(typeof(T));
         private Func<IFoxField> FieldConstructor = DefaultFieldConstructor;
-
-        private SerializedProperty DynamicArrayProperty;
 
         public static new readonly string ussClassName = "fox-dynamicarray-field";
         public static new readonly string labelUssClassName = ussClassName + "__label";
@@ -49,6 +43,7 @@ namespace Fox.EdCore
             ListViewInput.itemsSource = value;
             ListViewInput.makeItem = MakeItem;
             ListViewInput.bindItem = BindItem;
+            ListViewInput.unbindItem = (element, i) => {};
             ListViewInput.style.flexGrow = 1.0f;
             ListViewInput.selectionType = SelectionType.Single;
             ListViewInput.showBorder = true;
@@ -56,35 +51,19 @@ namespace Fox.EdCore
             ListViewInput.reorderable = false;
             ListViewInput.showBoundCollectionSize = false;
             ListViewInput.virtualizationMethod = CollectionVirtualizationMethod.DynamicHeight;
-            ListViewInput.showAddRemoveFooter = false;
+            ListViewInput.showAddRemoveFooter = true;
 
-            // Technically, the header is the footer, just at the top.
-            var header = new VisualElement
-            {
-                name = ListView.footerUssClassName
-            };
-            header.AddToClassList(ListView.footerUssClassName);
-
-            var addButton = new Button(AddButton_clicked)
-            {
-                name = ListView.ussClassName + "__add-button",
-                text = "＋"
-            };
+            Button addButton = ListViewInput.Q<Button>(name: "unity-list-view__add-button");
+            addButton.text = "＋";
             addButton.AddToClassList(addButtonUssClassName);
 
-            var removeButton = new Button(RemoveButton_clicked)
-            {
-                name = ListView.ussClassName + "__remove-button",
-                text = "－"
-            };
+            Button removeButton = ListViewInput.Q<Button>(name: "unity-list-view__remove-button");
             removeButton.AddToClassList(removeButtonUssClassName);
+            removeButton.text = "－";
 
-            header.Add(removeButton);
-            header.Add(addButton);
-
-            ListViewInput.hierarchy.Insert(0, header);
-            ListViewInput.AddToClassList(ListView.listViewWithFooterUssClassName);
-            ListViewInput.Q<ScrollView>(className: ListView.listScrollViewUssClassName).AddToClassList(ListView.scrollViewWithFooterUssClassName);
+            VisualElement footer = ListViewInput.Q(name: ListView.footerUssClassName);
+            ListViewInput.Remove(footer);
+            ListViewInput.hierarchy.Insert(0, footer); // Technically, this is now the header.
 
             AddToClassList(ussClassName);
             labelElement.AddToClassList(labelUssClassName);
@@ -101,66 +80,20 @@ namespace Fox.EdCore
             {
                 var property = FoxFieldUtils.SerializedPropertyBindEventBindProperty.GetValue(evt) as SerializedProperty;
 
-                if (property.type.StartsWith("Fox.Kernel.DynamicArray"))
+                if (!property.isArray)
                 {
-                    // DynamicArrayProperty = property;
-                    //
-                    // BindingExtensions.TrackPropertyValue(this, DynamicArrayProperty, OnPropertyChanged);
-                    //
-                    // OnPropertyChanged(null);
+                    BindingExtensions.BindProperty(ListViewInput, property.FindPropertyRelative("_list"));
 
-                    ListViewInput.BindProperty(property.FindPropertyRelative("_list"));
-
-                    // Stop the DynamicArrayField itself's binding event; it's just a container for the actual BindableElements.
                     evt.StopPropagation();
                 }
             }
-        }
-
-        private void OnPropertyChanged(SerializedProperty property)
-        {
-            ListViewInput.itemsSource = DynamicArrayProperty.GetValue() as IList;
-            ListViewInput.RefreshItems();
-        }
-
-        private void AddButton_clicked()
-        {
-            SerializedProperty listProperty = DynamicArrayProperty.FindPropertyRelative("_list");
-
-            int targetValue = listProperty.arraySize;
-            listProperty.InsertArrayElementAtIndex(targetValue);
-
-            SerializedProperty prop = listProperty.GetArrayElementAtIndex(targetValue);
-            if (typeof(T).IsClass && prop.propertyType == SerializedPropertyType.ObjectReference)
-                prop.boxedValue = null;
-
-            _ = DynamicArrayProperty.serializedObject.ApplyModifiedProperties();
-        }
-
-        private void RemoveButton_clicked()
-        {
-            SerializedProperty listProperty = DynamicArrayProperty.FindPropertyRelative("_list");
-
-            if (ListViewInput.selectedIndex != -1)
-            {
-                foreach (int selectedIndex in ListViewInput.selectedIndices)
-                {
-                    listProperty.DeleteArrayElementAtIndex(selectedIndex);
-                }
-            }
-            else
-            {
-                listProperty.DeleteArrayElementAtIndex(listProperty.arraySize - 1);
-            }
-
-            _ = DynamicArrayProperty.serializedObject.ApplyModifiedProperties();
         }
 
         private VisualElement MakeItem() => FieldConstructor() as VisualElement;
 
         private void BindItem(VisualElement element, int index)
         {
-            var itemProperty = DynamicArrayProperty.FindPropertyRelative("_list").GetArrayElementAtIndex(index) as SerializedProperty;
+            var itemProperty = ListViewInput.itemsSource[index] as SerializedProperty;
             (element as ICustomBindable).BindProperty(itemProperty, $"[{index}]");
 
             element.AddToClassList(BaseCompositeField<UnityEngine.Vector4, FloatField, float>.fieldUssClassName);
@@ -175,13 +108,7 @@ namespace Fox.EdCore
 
             if (label is not null)
                 this.label = label;
-
-            //ListViewInput.BindProperty(property.FindPropertyRelative("_list"));
-            DynamicArrayProperty = property;
-
-            BindingExtensions.TrackPropertyValue(this, DynamicArrayProperty, OnPropertyChanged);
-
-            OnPropertyChanged(null);
+            BindingExtensions.BindProperty(ListViewInput, property.FindPropertyRelative("_list"));
         }
     }
 
