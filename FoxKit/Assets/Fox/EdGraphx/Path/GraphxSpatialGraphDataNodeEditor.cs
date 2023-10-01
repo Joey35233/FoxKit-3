@@ -11,9 +11,9 @@ namespace Fox.EdGraphx
     {
         private GraphxSpatialGraphDataNode Node => (GraphxSpatialGraphDataNode)target;
 
-        private bool HasFrameBounds() => true;
+        private bool HasFrameBounds() => Node.transform.parent.GetComponent<GraphxSpatialGraphData>() is not null;
 
-        public Bounds OnGetFrameBounds() => new Bounds(Node.position, new Vector3(1, 1, 1));
+        public Bounds OnGetFrameBounds() => new Bounds(Node.transform.parent.GetComponent<GraphxSpatialGraphData>().GetGraphWorldPosition(Node.position), new Vector3(1, 1, 1));
 
         private void OnEnable()
         {
@@ -27,10 +27,10 @@ namespace Fox.EdGraphx
 
         protected virtual void OnSceneGUI()
         {
-            if (Node.transform.parent.GetComponent<GraphxSpatialGraphData>() is not { } graph)
-                return;
+            GraphxSpatialGraphData graph = Node.transform.parent.GetComponent<GraphxSpatialGraphData>();
 
-            Handles.matrix = graph.transform.localToWorldMatrix;
+            Handles.matrix = graph.GetGraphWorldMatrix();
+
             EditorGUI.BeginChangeCheck();
             Vector3 newTargetPosition = Handles.PositionHandle(Node.position, Quaternion.identity);
             if (EditorGUI.EndChangeCheck())

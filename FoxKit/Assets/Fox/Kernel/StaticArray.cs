@@ -94,5 +94,10 @@ namespace Fox.Kernel
         {
             _list = new List<T>(array);
         }
+
+        public StaticArray(StaticArray<T> array)
+        {
+            _list = new List<T>(array._list);
+        }
     }
 }

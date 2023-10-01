@@ -10,7 +10,7 @@ namespace Fox.EdGraphx
     {
         private GraphxSpatialGraphDataEdge Edge => (GraphxSpatialGraphDataEdge)target;
 
-        private bool HasFrameBounds() => Edge.prevNode != null && Edge.nextNode != null;
+        private bool HasFrameBounds() => Edge.transform.parent.GetComponent<GraphxSpatialGraphData>() is not null && Edge.prevNode is not null && Edge.nextNode is not null;
 
         private void OnEnable()
         {
@@ -24,11 +24,11 @@ namespace Fox.EdGraphx
 
         public Bounds OnGetFrameBounds()
         {
-            Matrix4x4 mat = Edge.transform.parent.localToWorldMatrix;
+            GraphxSpatialGraphData graph = Edge.transform.parent.GetComponent<GraphxSpatialGraphData>();
 
-            var bounds = new Bounds(mat.MultiplyPoint((Edge.prevNode as GraphxSpatialGraphDataNode).position),
+            var bounds = new Bounds(graph.GetGraphWorldPosition((Edge.prevNode as GraphxSpatialGraphDataNode).position),
                 new Vector3(0, 0, 0));
-            bounds.Encapsulate(mat.MultiplyPoint((Edge.nextNode as GraphxSpatialGraphDataNode).position));
+            bounds.Encapsulate(graph.GetGraphWorldPosition((Edge.nextNode as GraphxSpatialGraphDataNode).position));
 
             return bounds;
         }

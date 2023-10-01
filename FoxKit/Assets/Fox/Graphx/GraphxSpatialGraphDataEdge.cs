@@ -6,10 +6,13 @@ namespace Fox.Graphx
     {
         public void OnDrawGizmos()
         {
-            Matrix4x4 mat = transform.parent.localToWorldMatrix;
+            if (transform.parent.GetComponent<GraphxSpatialGraphData>() is not { } graph)
+                return;
 
-            Gizmos.DrawLine(mat.MultiplyPoint((prevNode as GraphxSpatialGraphDataNode).position),
-                mat.MultiplyPoint((nextNode as GraphxSpatialGraphDataNode).position));
+            Gizmos.matrix = graph.GetGraphWorldMatrix();
+
+            Gizmos.DrawLine((prevNode as GraphxSpatialGraphDataNode).position,
+                (nextNode as GraphxSpatialGraphDataNode).position);
         }
     }
 }

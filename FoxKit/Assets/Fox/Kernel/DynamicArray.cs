@@ -84,5 +84,10 @@ namespace Fox.Kernel
         {
             _list = new List<T>(capacity);
         }
+
+        public DynamicArray(DynamicArray<T> array)
+        {
+            _list = new List<T>(array._list);
+        }
     }
 }
