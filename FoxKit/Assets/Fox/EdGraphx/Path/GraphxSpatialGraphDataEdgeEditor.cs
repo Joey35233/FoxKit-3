@@ -12,11 +12,23 @@ namespace Fox.EdGraphx
 
         private bool HasFrameBounds() => Edge.prevNode != null && Edge.nextNode != null;
 
+        private void OnEnable()
+        {
+            Tools.hidden = true;
+        }
+
+        private void OnDisable()
+        {
+            Tools.hidden = false;
+        }
+
         public Bounds OnGetFrameBounds()
         {
-            var bounds = new Bounds((Edge.prevNode as GraphxSpatialGraphDataNode).position,
+            Matrix4x4 mat = Edge.transform.parent.localToWorldMatrix;
+
+            var bounds = new Bounds(mat.MultiplyPoint((Edge.prevNode as GraphxSpatialGraphDataNode).position),
                 new Vector3(0, 0, 0));
-            bounds.Encapsulate((Edge.nextNode as GraphxSpatialGraphDataNode).position);
+            bounds.Encapsulate(mat.MultiplyPoint((Edge.nextNode as GraphxSpatialGraphDataNode).position));
 
             return bounds;
         }

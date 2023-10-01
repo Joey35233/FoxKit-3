@@ -27,7 +27,7 @@ namespace Fox.Core
         {
             base.OverridePropertiesForExport(context);
 
-            if (this.GetComponentInParent<TransformData>() is not { } parent)
+            if (this.transform.parent.GetComponent<TransformData>() is not {} parent)
             {
                 // TODO What do we do about orphaned transforms?
                 return;

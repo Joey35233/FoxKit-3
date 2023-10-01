@@ -8,6 +8,8 @@ namespace Fox.Graphx
 
         public void OnDrawGizmos()
         {
+            Gizmos.matrix = transform.parent.localToWorldMatrix;
+
             Gizmos.DrawWireCube(position, Scale);
         }
     }
