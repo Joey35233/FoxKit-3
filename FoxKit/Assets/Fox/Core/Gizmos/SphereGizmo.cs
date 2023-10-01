@@ -16,7 +16,7 @@ namespace Fox.Core
         public float Radius = 1.0f;
         public GUIStyle LabelStyle;
 
-        private void DrawGizmos(bool isSelected)
+        protected virtual void DrawGizmos(bool isSelected)
         {
             if (Transform is null)
                 return;
@@ -39,7 +39,7 @@ namespace Fox.Core
 
             if (!String.IsNullOrEmpty(this.GizmoPath))
             {
-                Gizmos.DrawIcon(Transform.position, GizmoPath, true);
+                Gizmos.DrawIcon(Transform.position, GizmoPath, true, isSelected ? SelectedColor : Color.white);
             }
         }
 

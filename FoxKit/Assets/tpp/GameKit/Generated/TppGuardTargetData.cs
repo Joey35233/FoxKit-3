@@ -1,29 +1,28 @@
-using Fox.Core;
-using UnityEngine;
 
-namespace Fox.Sdx
+
+using Fox.Core;
+
+namespace Tpp.GameKit
 {
-    public partial class SoundSource : Fox.Core.TransformData
-    {
+	public partial class TppGuardTargetData : Fox.Core.TransformData
+	{
         private readonly SphereGizmo Gizmo = new SphereGizmo
         {
-            SelectedColor = EditorColors.PlayerUtilityColor,
-            GizmoPath = "Fox/Sdx/SoundSource.png"
+            SelectedColor = EditorColors.HostileColor,
+            GizmoPath = "Tpp/GameKit/TppGuardTargetData.png",
         };
 
         public void OnDrawGizmos()
         {
             Gizmo.Transform = this.transform;
-            Gizmo.Radius = this.playRange;
-            Gizmo.Label = this.name;
+            Gizmo.Radius = this.radius;
             Gizmo.OnDrawGizmos();
         }
 
         public void OnDrawGizmosSelected()
         {
             Gizmo.Transform = this.transform;
-            Gizmo.Radius = this.playRange;
-            Gizmo.Label = null;
+            Gizmo.Radius = this.radius;
             Gizmo.OnDrawGizmosSelected();
         }
     }

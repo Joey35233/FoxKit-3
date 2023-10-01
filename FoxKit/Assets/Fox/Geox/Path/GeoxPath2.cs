@@ -146,6 +146,7 @@ namespace Fox.Geox
             {
                 Graphx.GraphxSpatialGraphDataNode node = nodes[nodeIndex];
 
+                Gizmos.color = EditorColors.PlayerUtilityColor;
                 Gizmos.DrawWireCube(node.position, ScaleNode);
 
                 for (int edgeIndex = 0; edgeIndex < node.outlinks.Count; edgeIndex++)
