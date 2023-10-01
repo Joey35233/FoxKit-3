@@ -50,7 +50,7 @@ namespace Fox.Core
 
             bool isReadingDynamicProperty = false;
 
-            SetProperty setProperty = entity.SetProperty;
+            SetProperty setProperty = (propertyName, val) => SetProperty(entity, propertyName, val);
             SetPropertyElementByIndex setPropertyElementByIndex = entity.SetPropertyElement;
             SetPropertyElementByKey setPropertyElementByKey = entity.SetPropertyElement;
 
@@ -76,6 +76,34 @@ namespace Fox.Core
             }
 
             return new AddressedEntity { Address = address, Entity = entity };
+        }
+
+        private void SetProperty(Entity entity, String propertyName, Value val)
+        {
+            entity.SetProperty(propertyName, val);
+
+            // Handle special cases
+            if (entity is not TransformData)
+            {
+                return;
+            }
+
+            if (propertyName.CString == "parent")
+            {
+                if (val is null)
+                {
+                    return;
+                }
+
+                TransformData parentEntity = val.GetValueAsEntityPtr<TransformData>();
+                if (parentEntity is null)
+                {
+                    return;
+                }
+
+                UnityEngine.Transform parentTransform = parentEntity.transform;
+                entity.transform.SetParent(parentTransform, false);
+            }
         }
 
         private static void OnPropertyNameUnhashed(PropertyInfo.PropertyType type, String name, ushort arraySize, PropertyInfo.ContainerType container, Entity entity, bool isReadingDynamicProperty)

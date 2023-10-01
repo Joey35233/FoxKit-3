@@ -79,19 +79,6 @@ namespace FoxKit.MenuItems
                 entity.OnDeserializeEntity(gameObject, logger);
             }
 
-            foreach (Entity entity in transformGameObjects.Keys)
-            {
-                var transformData = entity as TransformData;
-
-                Entity parent = transformData.GetComponentInParent<Entity>();
-                if (parent == null)
-                    continue;
-
-                UnityEngine.GameObject parentGameObject = transformGameObjects[parent];
-                UnityEngine.GameObject gameObject = transformGameObjects[entity];
-                gameObject.transform.SetParent(parentGameObject.transform, false);
-            }
-
             _ = EditorSceneManager.SaveScene(scene, "Assets/Scenes/" + CsSystem.IO.Path.GetFileName(assetPath) + ".unity");
             logger.LogToUnityConsole();
         }
