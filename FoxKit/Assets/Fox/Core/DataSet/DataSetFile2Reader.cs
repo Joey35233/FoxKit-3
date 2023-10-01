@@ -57,13 +57,12 @@ namespace Fox.Core
                     .Read(reader, gameObject, (hash) => stringTable[hash]);
                 entities.Add(addressedEntity.Address, addressedEntity.Entity);
 
-                // Create GameObject
+                // Name GameObject
                 if (addressedEntity.Entity is DataElement)
                 {
                     gameObject.name = $"{addressedEntity.Entity.GetClassEntityInfo().Name}<0x{addressedEntity.Address:X8}>";
                 }
-
-                if (addressedEntity.Entity is DataSet)
+                else if (addressedEntity.Entity is DataSet)
                 {
                     gameObject.name = "DataSet";
                     result.DataSetGameObject = gameObject;

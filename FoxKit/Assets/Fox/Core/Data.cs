@@ -10,7 +10,7 @@ namespace Fox.Core
 
         public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
         {
-            if (name != (String)null)
+            if (name != (String)null && name.Length > 0)
                 gameObject.name = name.CString;
 
             base.OnDeserializeEntity(gameObject, logger);

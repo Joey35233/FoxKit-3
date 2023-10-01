@@ -148,8 +148,6 @@ namespace Fox.Core
                 entities.Insert(0, dataSet);
             }
 
-            dataSet.name = System.String.Empty;
-
             int dataSetIndex = -1;
             var usedNames = new HashSet<string>();
             for (int i = 0; i < entities.Count; i++)
