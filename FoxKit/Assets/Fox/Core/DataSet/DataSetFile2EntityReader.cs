@@ -3,6 +3,7 @@ using Fox.Core.Utils;
 using Fox.Fio;
 using Fox.Kernel;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using static Fox.Core.Serialization.DataSetFile2PropertyReader;
 using String = Fox.Kernel.String;
@@ -19,12 +20,17 @@ namespace Fox.Core
     {
         private readonly RequestSetEntityPtr requestSetEntityPtr;
         private readonly RequestSetEntityHandle requestSetEntityHandle;
+        private readonly IDictionary<TransformData, TransformData> childToParentTransformDataMap;
         private readonly TaskLogger logger;
 
-        public DataSetFile2AddressedEntityReader(RequestSetEntityPtr requestSetEntityPtr, RequestSetEntityHandle requestSetEntityHandle, TaskLogger logger)
+        public DataSetFile2AddressedEntityReader(RequestSetEntityPtr requestSetEntityPtr,
+            RequestSetEntityHandle requestSetEntityHandle,
+            IDictionary<TransformData, TransformData> childToParentTransformDataMap,
+            TaskLogger logger)
         {
             this.requestSetEntityPtr = requestSetEntityPtr ?? throw new ArgumentNullException(nameof(requestSetEntityPtr));
             this.requestSetEntityHandle = requestSetEntityHandle ?? throw new ArgumentNullException(nameof(requestSetEntityHandle));
+            this.childToParentTransformDataMap = childToParentTransformDataMap;
             this.logger = logger;
         }
 
@@ -101,8 +107,7 @@ namespace Fox.Core
                     return;
                 }
 
-                UnityEngine.Transform parentTransform = parentEntity.transform;
-                entity.transform.SetParent(parentTransform, false);
+                childToParentTransformDataMap.Add(entity as TransformData, parentEntity);
             }
         }
 

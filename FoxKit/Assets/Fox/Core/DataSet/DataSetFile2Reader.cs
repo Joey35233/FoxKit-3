@@ -21,6 +21,7 @@ namespace Fox.Core
             public List<Entity> Entities;
             public List<GameObject> GameObjects;
             public GameObject DataSetGameObject;
+            public IDictionary<TransformData, TransformData> TransformDataChildToParentMap = new Dictionary<TransformData, TransformData>();
         }
 
         public ReadResult Read(FileStreamReader reader, TaskLogger logger)
@@ -53,7 +54,7 @@ namespace Fox.Core
             {
                 var gameObject = new GameObject();
 
-                AddressedEntity addressedEntity = new DataSetFile2AddressedEntityReader(RequestSetEntityPtr, RequestSetEntityHandle, logger)
+                AddressedEntity addressedEntity = new DataSetFile2AddressedEntityReader(RequestSetEntityPtr, RequestSetEntityHandle, result.TransformDataChildToParentMap, logger)
                     .Read(reader, gameObject, (hash) => stringTable[hash]);
                 entities.Add(addressedEntity.Address, addressedEntity.Entity);
 
