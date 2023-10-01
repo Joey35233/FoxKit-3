@@ -30,8 +30,6 @@ namespace FoxKit.MenuItems
             DataSetFile2Reader.ReadResult readResult = fox2Reader.Read(reader, logger);
 
             var typeCount = new Dictionary<Type, int>();
-            var transformGameObjects = new Dictionary<Entity, UnityEngine.GameObject>();
-
             foreach (UnityEngine.GameObject gameObject in readResult.GameObjects)
             {
                 Entity entity = gameObject.GetComponent<Entity>();
@@ -58,7 +56,13 @@ namespace FoxKit.MenuItems
                 // Parenting
                 if (entity is TransformData)
                 {
-                    transformGameObjects.Add(entity, gameObject);
+                    var thisTransform = entity as TransformData;
+                    if (readResult.TransformDataChildToParentMap.ContainsKey(thisTransform))
+                    {
+                        TransformData parentEntity = readResult.TransformDataChildToParentMap[thisTransform];
+                        UnityEngine.Transform parentTransform = parentEntity.transform;
+                        entity.transform.SetParent(parentTransform, false);
+                    }
                 }
                 else if (entity is DataElement)
                 {
