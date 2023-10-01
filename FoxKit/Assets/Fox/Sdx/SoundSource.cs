@@ -5,7 +5,11 @@ namespace Fox.Sdx
 {
     public partial class SoundSource : Fox.Core.TransformData
     {
-        private readonly SphereGizmo Gizmo = new SphereGizmo { SelectedColor = EditorColors.AudioSelectedColor, UnselectedColor = EditorColors.AudioUnselectedColor };
+        private readonly SphereGizmo Gizmo = new SphereGizmo
+        {
+            SelectedColor = EditorColors.AudioSelectedColor,
+            GizmoPath = "Fox/Sdx/SoundSource.png"
+        };
 
         public void OnDrawGizmos()
         {

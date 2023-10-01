@@ -11,7 +11,7 @@ namespace Fox.Core
     {
         public UnityEngine.Transform Transform = null;
         public string Label = null;
-        public Color UnselectedColor = EditorColors.GenericUnselectedColor;
+        public string GizmoPath = null;
         public Color SelectedColor = EditorColors.GenericSelectedColor;
         public float Radius = 1.0f;
         public GUIStyle LabelStyle;
@@ -23,10 +23,11 @@ namespace Fox.Core
 
             Gizmos.matrix = Transform.localToWorldMatrix;
 
-            Color faceColor = isSelected ? SelectedColor : UnselectedColor;
-
-            Gizmos.color = faceColor;
-            Gizmos.DrawWireSphere(Vector3.zero, Radius);
+            if (isSelected)
+            {
+                Gizmos.color = SelectedColor;
+                Gizmos.DrawWireSphere(Vector3.zero, Radius);
+            }
 
             // TODO Store the GuiStyle in a global location
             if (LabelStyle == null)
@@ -36,9 +37,9 @@ namespace Fox.Core
                 LabelStyle.normal.textColor = EditorColors.LabelIdleColor;
             }
 
-            if (!String.IsNullOrEmpty(this.Label))
+            if (!String.IsNullOrEmpty(this.GizmoPath))
             {
-                Handles.Label(Transform.position, Label, LabelStyle);
+                Gizmos.DrawIcon(Transform.position, GizmoPath, true);
             }
         }
 
