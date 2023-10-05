@@ -269,7 +269,7 @@ namespace Fox.Gr
 
             public Bounds Bounds;
 
-            public uint[] IBufferSliceIndices;
+            public uint IBufferSliceStartIndex;
         }
 
         private struct MeshBufferDesc
@@ -481,7 +481,7 @@ namespace Fox.Gr
 
                     if (flags.HasFlag(MeshGroupHeaderFlags.A))
                     {
-                        reader.Seek(def.GetBufferPosition(BufferType.MaterialParams).Value + unknownPositionIndex * 16);
+                        reader.Seek(def.GetBufferPosition(BufferType.MaterialParams).Value + (unknownPositionIndex * 16));
 
                         meshGroup.transform.localPosition = reader.ReadPositionF();
                     }
@@ -571,7 +571,6 @@ namespace Fox.Gr
                         ref AggregateMeshGroupDef aggregateMeshGroupDef = ref meshGroupDefs[i];
 
                         aggregateMeshGroupDef.MeshDefIndices = new uint[aggregateMeshGroupDef.TotalMeshCount];
-                        aggregateMeshGroupDef.IBufferSliceIndices = new uint[aggregateMeshGroupDef.TotalMeshCount];
                         aggregateMeshGroupDef.Bounds = InvalidBoundingBox;
                     }
 
@@ -600,8 +599,7 @@ namespace Fox.Gr
                         reader.Skip(4);
 
                         ushort ibufferSlicesStartIndex = reader.ReadUInt16();
-                        for (uint j = 0; j < meshCount; j++)
-                            aggregateMeshGroupDef.IBufferSliceIndices[aggregateMeshGroupDef.SpanCounter + j] = ibufferSlicesStartIndex + j;
+                        aggregateMeshGroupDef.IBufferSliceStartIndex = ibufferSlicesStartIndex;
 
                         aggregateMeshGroupDef.SpanCounter += meshCount;
                     }
@@ -610,6 +608,9 @@ namespace Fox.Gr
                 for (uint i = 0; i < meshGroupDefs.LongLength; i++)
                 {
                     AggregateMeshGroupDef aggregateMeshGroupDef = meshGroupDefs[i];
+
+                    if (aggregateMeshGroupDef.TotalMeshCount == 0)
+                        continue;
 
                     GameObject meshGroup = meshGroups[i];
 
@@ -659,9 +660,7 @@ namespace Fox.Gr
                         uint highLodIBufferSliceStartIndex = reader.ReadUInt32();
                         uint highLodIBufferSliceCount = reader.ReadUInt32();
 
-                        // TODO: Fix properly
-                        reader.Skip(4);
-                        //uint iBufferSlicesStartIndex = iBufferSlicesGroupStartIndex + reader.ReadUInt32();
+                        uint iBufferSlicesStartIndex = aggregateMeshGroupDef.IBufferSliceStartIndex + reader.ReadUInt32();
 
                         totalIndexCount += highLodIBufferSliceCount;
 
