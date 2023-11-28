@@ -110,10 +110,16 @@ namespace Tpp.Effect
 			switch (propertyName.CString)
 			{
 				case "textures":
-					this.textures.Insert(key, value.GetValueAsPath());
+					if (this.textures.ContainsKey(key))
+						this.textures[key] = value.GetValueAsPath();
+					else
+						this.textures.Insert(key, value.GetValueAsPath());
 					return;
 				case "forceLargeTextures":
-					this.forceLargeTextures.Insert(key, value.GetValueAsPath());
+					if (this.forceLargeTextures.ContainsKey(key))
+						this.forceLargeTextures[key] = value.GetValueAsPath();
+					else
+						this.forceLargeTextures.Insert(key, value.GetValueAsPath());
 					return;
 				default:
 					base.SetPropertyElement(propertyName, key, value);

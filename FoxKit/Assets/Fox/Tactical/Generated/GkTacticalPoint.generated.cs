@@ -111,7 +111,10 @@ namespace Fox.Tactical
 			switch (propertyName.CString)
 			{
 				case "tags":
-					this.tags.Insert(key, value.GetValueAsUInt8());
+					if (this.tags.ContainsKey(key))
+						this.tags[key] = value.GetValueAsUInt8();
+					else
+						this.tags.Insert(key, value.GetValueAsUInt8());
 					return;
 				default:
 					base.SetPropertyElement(propertyName, key, value);

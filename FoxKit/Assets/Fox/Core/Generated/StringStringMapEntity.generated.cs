@@ -102,7 +102,10 @@ namespace Fox.Core
 			switch (propertyName.CString)
 			{
 				case "stringMap":
-					this.stringMap.Insert(key, value.GetValueAsString());
+					if (this.stringMap.ContainsKey(key))
+						this.stringMap[key] = value.GetValueAsString();
+					else
+						this.stringMap.Insert(key, value.GetValueAsString());
 					return;
 				default:
 					base.SetPropertyElement(propertyName, key, value);

@@ -111,7 +111,10 @@ namespace Fox.Demo
 			switch (propertyName.CString)
 			{
 				case "partNames":
-					this.partNames.Insert(key, value.GetValueAsString());
+					if (this.partNames.ContainsKey(key))
+						this.partNames[key] = value.GetValueAsString();
+					else
+						this.partNames.Insert(key, value.GetValueAsString());
 					return;
 				default:
 					base.SetPropertyElement(propertyName, key, value);

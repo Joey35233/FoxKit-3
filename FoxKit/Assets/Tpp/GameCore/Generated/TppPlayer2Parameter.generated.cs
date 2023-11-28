@@ -182,10 +182,16 @@ namespace Tpp.GameCore
 			switch (propertyName.CString)
 			{
 				case "vfxFiles":
-					this.vfxFiles.Insert(key, value.GetValueAsFilePtr());
+					if (this.vfxFiles.ContainsKey(key))
+						this.vfxFiles[key] = value.GetValueAsFilePtr();
+					else
+						this.vfxFiles.Insert(key, value.GetValueAsFilePtr());
 					return;
 				case "TODO_trapTags":
-					this.TODO_trapTags.Insert(key, value.GetValueAsUInt8());
+					if (this.TODO_trapTags.ContainsKey(key))
+						this.TODO_trapTags[key] = value.GetValueAsUInt8();
+					else
+						this.TODO_trapTags.Insert(key, value.GetValueAsUInt8());
 					return;
 				default:
 					base.SetPropertyElement(propertyName, key, value);

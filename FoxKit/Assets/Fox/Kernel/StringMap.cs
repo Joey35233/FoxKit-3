@@ -216,7 +216,7 @@ namespace Fox.Kernel
                 }
                 else
                 {
-                    Cells[(int)lastIndex] = Cells[(int)nextIndex];
+                    Cells[(int)lastIndex] = nextCell;
                     Cell cell = Cells[(int)lastIndex];
                     cell.Distance--;
                     Cells[(int)lastIndex] = cell;
@@ -254,7 +254,7 @@ namespace Fox.Kernel
                 }
                 else if (key == cell.Key)
                 {
-                    value = Cells[(int)index].Value;
+                    value = cell.Value;
                     return true;
                 }
 
@@ -263,7 +263,48 @@ namespace Fox.Kernel
             }
         }
 
-        public T this[String key] => TryGetValue(key, out T value) ? value : throw new KeyNotFoundException();
+        private bool TryInsert(String key, T value)
+        {
+            if (key is null)
+                throw new ArgumentNullException();
+
+            uint index = key.Hash & HashMask;
+
+            uint probeDistance = 0;
+            while (true)
+            {
+                Cell cell = Cells[(int)index];
+
+                // If cell is uninitialized
+                if (!cell.Occupied)
+                {
+                    return false;
+                }
+                else if (probeDistance > cell.Distance)
+                {
+                    return false;
+                }
+                else if (key == cell.Key)
+                {
+                    cell.Value = value;
+                    Cells[(int)index] = cell;
+                    return true;
+                }
+
+                index = (index + 1) & HashMask; // Loop index back to 0 if it will exceed Capacity.
+                probeDistance++;
+            }
+        }
+
+        public T this[String key]
+        {
+            get => TryGetValue(key, out T value) ? value : throw new KeyNotFoundException();
+            set
+            {
+                if (!TryInsert(key, value))
+                    throw new KeyNotFoundException();
+            }
+        }
         object IStringMap.this[String key] => this[key];
 
         public bool ContainsKey(String key) => TryGetValue(key, out _);

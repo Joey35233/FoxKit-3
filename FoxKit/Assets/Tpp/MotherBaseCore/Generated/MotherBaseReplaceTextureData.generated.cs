@@ -114,7 +114,10 @@ namespace Tpp.MotherBaseCore
 			switch (propertyName.CString)
 			{
 				case "flags":
-					this.flags.Insert(key, value.GetValueAsInt32());
+					if (this.flags.ContainsKey(key))
+						this.flags[key] = value.GetValueAsInt32();
+					else
+						this.flags.Insert(key, value.GetValueAsInt32());
 					return;
 				default:
 					base.SetPropertyElement(propertyName, key, value);

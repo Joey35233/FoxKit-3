@@ -111,7 +111,10 @@ namespace Fox.Core
 			switch (propertyName.CString)
 			{
 				case "buckets":
-					this.buckets.Insert(key, value.GetValueAsEntityPtr<Fox.Core.Bucket>());
+					if (this.buckets.ContainsKey(key))
+						this.buckets[key] = value.GetValueAsEntityPtr<Fox.Core.Bucket>();
+					else
+						this.buckets.Insert(key, value.GetValueAsEntityPtr<Fox.Core.Bucket>());
 					return;
 				default:
 					base.SetPropertyElement(propertyName, key, value);

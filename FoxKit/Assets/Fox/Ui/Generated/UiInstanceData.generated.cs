@@ -111,7 +111,10 @@ namespace Fox.Ui
 			switch (propertyName.CString)
 			{
 				case "createWindowParams":
-					this.createWindowParams.Insert(key, value.GetValueAsFilePtr());
+					if (this.createWindowParams.ContainsKey(key))
+						this.createWindowParams[key] = value.GetValueAsFilePtr();
+					else
+						this.createWindowParams.Insert(key, value.GetValueAsFilePtr());
 					return;
 				default:
 					base.SetPropertyElement(propertyName, key, value);

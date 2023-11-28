@@ -110,10 +110,16 @@ namespace Fox.Core
 			switch (propertyName.CString)
 			{
 				case "originalValues":
-					this.originalValues.Insert(key, value.GetValueAsColor());
+					if (this.originalValues.ContainsKey(key))
+						this.originalValues[key] = value.GetValueAsColor();
+					else
+						this.originalValues.Insert(key, value.GetValueAsColor());
 					return;
 				case "values":
-					this.values.Insert(key, value.GetValueAsColor());
+					if (this.values.ContainsKey(key))
+						this.values[key] = value.GetValueAsColor();
+					else
+						this.values.Insert(key, value.GetValueAsColor());
 					return;
 				default:
 					base.SetPropertyElement(propertyName, key, value);

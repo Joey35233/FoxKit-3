@@ -225,43 +225,82 @@ namespace Fox.Demox
 			switch (propertyName.CString)
 			{
 				case "locatorTypes":
-					this.locatorTypes.Insert(key, (DemoStreamAnimation_LocatorType)value.GetValueAsInt32());
+					if (this.locatorTypes.ContainsKey(key))
+						this.locatorTypes[key] = (DemoStreamAnimation_LocatorType)value.GetValueAsInt32();
+					else
+						this.locatorTypes.Insert(key, (DemoStreamAnimation_LocatorType)value.GetValueAsInt32());
 					return;
 				case "cameraTypes":
-					this.cameraTypes.Insert(key, (DemoStreamAnimation_CameraType)value.GetValueAsInt32());
+					if (this.cameraTypes.ContainsKey(key))
+						this.cameraTypes[key] = (DemoStreamAnimation_CameraType)value.GetValueAsInt32();
+					else
+						this.cameraTypes.Insert(key, (DemoStreamAnimation_CameraType)value.GetValueAsInt32());
 					return;
 				case "modelFiles":
-					this.modelFiles.Insert(key, value.GetValueAsFilePtr());
+					if (this.modelFiles.ContainsKey(key))
+						this.modelFiles[key] = value.GetValueAsFilePtr();
+					else
+						this.modelFiles.Insert(key, value.GetValueAsFilePtr());
 					return;
 				case "helpBoneFiles":
-					this.helpBoneFiles.Insert(key, value.GetValueAsFilePtr());
+					if (this.helpBoneFiles.ContainsKey(key))
+						this.helpBoneFiles[key] = value.GetValueAsFilePtr();
+					else
+						this.helpBoneFiles.Insert(key, value.GetValueAsFilePtr());
 					return;
 				case "partsFiles":
-					this.partsFiles.Insert(key, value.GetValueAsFilePtr());
+					if (this.partsFiles.ContainsKey(key))
+						this.partsFiles[key] = value.GetValueAsFilePtr();
+					else
+						this.partsFiles.Insert(key, value.GetValueAsFilePtr());
 					return;
 				case "coverModelFiles":
-					this.coverModelFiles.Insert(key, value.GetValueAsFilePtr());
+					if (this.coverModelFiles.ContainsKey(key))
+						this.coverModelFiles[key] = value.GetValueAsFilePtr();
+					else
+						this.coverModelFiles.Insert(key, value.GetValueAsFilePtr());
 					return;
 				case "modelPartsDictionary":
-					this.modelPartsDictionary.Insert(key, value.GetValueAsString());
+					if (this.modelPartsDictionary.ContainsKey(key))
+						this.modelPartsDictionary[key] = value.GetValueAsString();
+					else
+						this.modelPartsDictionary.Insert(key, value.GetValueAsString());
 					return;
 				case "coverModelDictionary":
-					this.coverModelDictionary.Insert(key, value.GetValueAsString());
+					if (this.coverModelDictionary.ContainsKey(key))
+						this.coverModelDictionary[key] = value.GetValueAsString();
+					else
+						this.coverModelDictionary.Insert(key, value.GetValueAsString());
 					return;
 				case "modelProxyPaths":
-					this.modelProxyPaths.Insert(key, value.GetValueAsPath());
+					if (this.modelProxyPaths.ContainsKey(key))
+						this.modelProxyPaths[key] = value.GetValueAsPath();
+					else
+						this.modelProxyPaths.Insert(key, value.GetValueAsPath());
 					return;
 				case "partsProxyPaths":
-					this.partsProxyPaths.Insert(key, value.GetValueAsPath());
+					if (this.partsProxyPaths.ContainsKey(key))
+						this.partsProxyPaths[key] = value.GetValueAsPath();
+					else
+						this.partsProxyPaths.Insert(key, value.GetValueAsPath());
 					return;
 				case "dynamicModel":
-					this.dynamicModel.Insert(key, value.GetValueAsEntityPtr<Fox.Demox.DemoDynamicFileChangeModel>());
+					if (this.dynamicModel.ContainsKey(key))
+						this.dynamicModel[key] = value.GetValueAsEntityPtr<Fox.Demox.DemoDynamicFileChangeModel>();
+					else
+						this.dynamicModel.Insert(key, value.GetValueAsEntityPtr<Fox.Demox.DemoDynamicFileChangeModel>());
 					return;
 				case "dynamicParts":
-					this.dynamicParts.Insert(key, value.GetValueAsEntityPtr<Fox.Demox.DemoDynamicFileChangeModel>());
+					if (this.dynamicParts.ContainsKey(key))
+						this.dynamicParts[key] = value.GetValueAsEntityPtr<Fox.Demox.DemoDynamicFileChangeModel>();
+					else
+						this.dynamicParts.Insert(key, value.GetValueAsEntityPtr<Fox.Demox.DemoDynamicFileChangeModel>());
 					return;
 				case "dynamicFv2":
-					this.dynamicFv2.Insert(key, value.GetValueAsEntityPtr<Fox.Demox.DemoFv2ResourceMemory>());
+					if (this.dynamicFv2.ContainsKey(key))
+						this.dynamicFv2[key] = value.GetValueAsEntityPtr<Fox.Demox.DemoFv2ResourceMemory>();
+					else
+						this.dynamicFv2.Insert(key, value.GetValueAsEntityPtr<Fox.Demox.DemoFv2ResourceMemory>());
 					return;
 				default:
 					base.SetPropertyElement(propertyName, key, value);

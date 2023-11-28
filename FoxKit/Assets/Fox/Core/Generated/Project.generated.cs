@@ -111,7 +111,10 @@ namespace Fox.Core
 			switch (propertyName.CString)
 			{
 				case "dataSetPaths":
-					this.dataSetPaths.Insert(key, value.GetValueAsPath());
+					if (this.dataSetPaths.ContainsKey(key))
+						this.dataSetPaths[key] = value.GetValueAsPath();
+					else
+						this.dataSetPaths.Insert(key, value.GetValueAsPath());
 					return;
 				default:
 					base.SetPropertyElement(propertyName, key, value);

@@ -111,7 +111,10 @@ namespace Tpp.Effect
 			switch (propertyName.CString)
 			{
 				case "materialSoundList":
-					this.materialSoundList.Insert(key, value.GetValueAsString());
+					if (this.materialSoundList.ContainsKey(key))
+						this.materialSoundList[key] = value.GetValueAsString();
+					else
+						this.materialSoundList.Insert(key, value.GetValueAsString());
 					return;
 				default:
 					base.SetPropertyElement(propertyName, key, value);

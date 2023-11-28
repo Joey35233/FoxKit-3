@@ -184,16 +184,28 @@ namespace Fox.Sim
 			switch (propertyName.CString)
 			{
 				case "simRootBones":
-					this.simRootBones.Insert(key, value.GetValueAsEntityPtr<Fox.Sim.SimAssociationUnit>());
+					if (this.simRootBones.ContainsKey(key))
+						this.simRootBones[key] = value.GetValueAsEntityPtr<Fox.Sim.SimAssociationUnit>();
+					else
+						this.simRootBones.Insert(key, value.GetValueAsEntityPtr<Fox.Sim.SimAssociationUnit>());
 					return;
 				case "simBones":
-					this.simBones.Insert(key, value.GetValueAsEntityPtr<Fox.Sim.SimAssociationUnit>());
+					if (this.simBones.ContainsKey(key))
+						this.simBones[key] = value.GetValueAsEntityPtr<Fox.Sim.SimAssociationUnit>();
+					else
+						this.simBones.Insert(key, value.GetValueAsEntityPtr<Fox.Sim.SimAssociationUnit>());
 					return;
 				case "simTransBones":
-					this.simTransBones.Insert(key, value.GetValueAsEntityPtr<Fox.Sim.SimAssociationUnit>());
+					if (this.simTransBones.ContainsKey(key))
+						this.simTransBones[key] = value.GetValueAsEntityPtr<Fox.Sim.SimAssociationUnit>();
+					else
+						this.simTransBones.Insert(key, value.GetValueAsEntityPtr<Fox.Sim.SimAssociationUnit>());
 					return;
 				case "simHitBones":
-					this.simHitBones.Insert(key, value.GetValueAsEntityPtr<Fox.Sim.SimAssociationUnit>());
+					if (this.simHitBones.ContainsKey(key))
+						this.simHitBones[key] = value.GetValueAsEntityPtr<Fox.Sim.SimAssociationUnit>();
+					else
+						this.simHitBones.Insert(key, value.GetValueAsEntityPtr<Fox.Sim.SimAssociationUnit>());
 					return;
 				default:
 					base.SetPropertyElement(propertyName, key, value);

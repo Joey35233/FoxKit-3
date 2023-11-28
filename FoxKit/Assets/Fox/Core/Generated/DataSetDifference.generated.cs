@@ -102,7 +102,10 @@ namespace Fox.Core
 			switch (propertyName.CString)
 			{
 				case "dataList":
-					this.dataList.Insert(key, value.GetValueAsEntityPtr<Fox.Core.EntityDifference>());
+					if (this.dataList.ContainsKey(key))
+						this.dataList[key] = value.GetValueAsEntityPtr<Fox.Core.EntityDifference>();
+					else
+						this.dataList.Insert(key, value.GetValueAsEntityPtr<Fox.Core.EntityDifference>());
 					return;
 				default:
 					base.SetPropertyElement(propertyName, key, value);

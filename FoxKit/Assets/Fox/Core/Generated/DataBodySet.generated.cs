@@ -102,7 +102,10 @@ namespace Fox.Core
 			switch (propertyName.CString)
 			{
 				case "dataBodyList":
-					this.dataBodyList.Insert(key, value.GetValueAsEntityPtr<Fox.Core.DataBody>());
+					if (this.dataBodyList.ContainsKey(key))
+						this.dataBodyList[key] = value.GetValueAsEntityPtr<Fox.Core.DataBody>();
+					else
+						this.dataBodyList.Insert(key, value.GetValueAsEntityPtr<Fox.Core.DataBody>());
 					return;
 				default:
 					base.SetPropertyElement(propertyName, key, value);

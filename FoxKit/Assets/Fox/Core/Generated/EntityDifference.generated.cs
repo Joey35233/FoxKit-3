@@ -110,10 +110,16 @@ namespace Fox.Core
 			switch (propertyName.CString)
 			{
 				case "entityDifferences":
-					this.entityDifferences.Insert(key, value.GetValueAsEntityPtr<Fox.Core.Entity>());
+					if (this.entityDifferences.ContainsKey(key))
+						this.entityDifferences[key] = value.GetValueAsEntityPtr<Fox.Core.Entity>();
+					else
+						this.entityDifferences.Insert(key, value.GetValueAsEntityPtr<Fox.Core.Entity>());
 					return;
 				case "propertyDifferences":
-					this.propertyDifferences.Insert(key, value.GetValueAsEntityPtr<Fox.Core.PropertyDifference>());
+					if (this.propertyDifferences.ContainsKey(key))
+						this.propertyDifferences[key] = value.GetValueAsEntityPtr<Fox.Core.PropertyDifference>();
+					else
+						this.propertyDifferences.Insert(key, value.GetValueAsEntityPtr<Fox.Core.PropertyDifference>());
 					return;
 				default:
 					base.SetPropertyElement(propertyName, key, value);

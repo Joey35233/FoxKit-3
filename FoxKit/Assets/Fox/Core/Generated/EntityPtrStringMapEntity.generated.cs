@@ -102,7 +102,10 @@ namespace Fox.Core
 			switch (propertyName.CString)
 			{
 				case "stringMap":
-					this.stringMap.Insert(key, value.GetValueAsEntityPtr<Fox.Core.Entity>());
+					if (this.stringMap.ContainsKey(key))
+						this.stringMap[key] = value.GetValueAsEntityPtr<Fox.Core.Entity>();
+					else
+						this.stringMap.Insert(key, value.GetValueAsEntityPtr<Fox.Core.Entity>());
 					return;
 				default:
 					base.SetPropertyElement(propertyName, key, value);

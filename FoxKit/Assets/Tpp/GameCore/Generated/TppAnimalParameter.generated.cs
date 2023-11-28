@@ -141,7 +141,10 @@ namespace Tpp.GameCore
 			switch (propertyName.CString)
 			{
 				case "vfxFiles":
-					this.vfxFiles.Insert(key, value.GetValueAsFilePtr());
+					if (this.vfxFiles.ContainsKey(key))
+						this.vfxFiles[key] = value.GetValueAsFilePtr();
+					else
+						this.vfxFiles.Insert(key, value.GetValueAsFilePtr());
 					return;
 				default:
 					base.SetPropertyElement(propertyName, key, value);

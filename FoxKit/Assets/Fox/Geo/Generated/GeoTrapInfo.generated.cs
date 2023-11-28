@@ -201,7 +201,10 @@ namespace Fox.Geo
 			switch (propertyName.CString)
 			{
 				case "moverTags":
-					this.moverTags.Insert(key, value.GetValueAsUInt8());
+					if (this.moverTags.ContainsKey(key))
+						this.moverTags[key] = value.GetValueAsUInt8();
+					else
+						this.moverTags.Insert(key, value.GetValueAsUInt8());
 					return;
 				default:
 					base.SetPropertyElement(propertyName, key, value);

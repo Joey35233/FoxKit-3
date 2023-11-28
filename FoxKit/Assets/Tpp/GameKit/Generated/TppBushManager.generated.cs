@@ -216,7 +216,10 @@ namespace Tpp.GameKit
 			switch (propertyName.CString)
 			{
 				case "noiseSeEventNames":
-					this.noiseSeEventNames.Insert(key, value.GetValueAsString());
+					if (this.noiseSeEventNames.ContainsKey(key))
+						this.noiseSeEventNames[key] = value.GetValueAsString();
+					else
+						this.noiseSeEventNames.Insert(key, value.GetValueAsString());
 					return;
 				default:
 					base.SetPropertyElement(propertyName, key, value);

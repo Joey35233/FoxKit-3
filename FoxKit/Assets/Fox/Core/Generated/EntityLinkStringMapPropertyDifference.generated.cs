@@ -110,10 +110,16 @@ namespace Fox.Core
 			switch (propertyName.CString)
 			{
 				case "originalValues":
-					this.originalValues.Insert(key, value.GetValueAsEntityLink());
+					if (this.originalValues.ContainsKey(key))
+						this.originalValues[key] = value.GetValueAsEntityLink();
+					else
+						this.originalValues.Insert(key, value.GetValueAsEntityLink());
 					return;
 				case "values":
-					this.values.Insert(key, value.GetValueAsEntityLink());
+					if (this.values.ContainsKey(key))
+						this.values[key] = value.GetValueAsEntityLink();
+					else
+						this.values.Insert(key, value.GetValueAsEntityLink());
 					return;
 				default:
 					base.SetPropertyElement(propertyName, key, value);

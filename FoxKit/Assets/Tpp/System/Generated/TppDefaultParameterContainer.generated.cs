@@ -111,7 +111,10 @@ namespace Tpp.System
 			switch (propertyName.CString)
 			{
 				case "@params":
-					this.@params.Insert(key, value.GetValueAsEntityPtr<Tpp.System.TppDefaultParameterElement>());
+					if (this.@params.ContainsKey(key))
+						this.@params[key] = value.GetValueAsEntityPtr<Tpp.System.TppDefaultParameterElement>();
+					else
+						this.@params.Insert(key, value.GetValueAsEntityPtr<Tpp.System.TppDefaultParameterElement>());
 					return;
 				default:
 					base.SetPropertyElement(propertyName, key, value);

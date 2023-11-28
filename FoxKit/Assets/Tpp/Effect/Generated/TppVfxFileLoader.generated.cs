@@ -118,13 +118,22 @@ namespace Tpp.Effect
 			switch (propertyName.CString)
 			{
 				case "vfxFiles":
-					this.vfxFiles.Insert(key, value.GetValueAsFilePtr());
+					if (this.vfxFiles.ContainsKey(key))
+						this.vfxFiles[key] = value.GetValueAsFilePtr();
+					else
+						this.vfxFiles.Insert(key, value.GetValueAsFilePtr());
 					return;
 				case "geoMaterialFiles":
-					this.geoMaterialFiles.Insert(key, value.GetValueAsFilePtr());
+					if (this.geoMaterialFiles.ContainsKey(key))
+						this.geoMaterialFiles[key] = value.GetValueAsFilePtr();
+					else
+						this.geoMaterialFiles.Insert(key, value.GetValueAsFilePtr());
 					return;
 				case "otherFiles":
-					this.otherFiles.Insert(key, value.GetValueAsFilePtr());
+					if (this.otherFiles.ContainsKey(key))
+						this.otherFiles[key] = value.GetValueAsFilePtr();
+					else
+						this.otherFiles.Insert(key, value.GetValueAsFilePtr());
 					return;
 				default:
 					base.SetPropertyElement(propertyName, key, value);

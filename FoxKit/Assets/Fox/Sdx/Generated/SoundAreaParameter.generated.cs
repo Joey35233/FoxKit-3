@@ -156,7 +156,10 @@ namespace Fox.Sdx
 			switch (propertyName.CString)
 			{
 				case "auxSends":
-					this.auxSends.Insert(key, value.GetValueAsFloat());
+					if (this.auxSends.ContainsKey(key))
+						this.auxSends[key] = value.GetValueAsFloat();
+					else
+						this.auxSends.Insert(key, value.GetValueAsFloat());
 					return;
 				default:
 					base.SetPropertyElement(propertyName, key, value);

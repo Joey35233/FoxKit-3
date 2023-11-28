@@ -102,7 +102,10 @@ namespace Fox.GameKit
 			switch (propertyName.CString)
 			{
 				case "intervalTimers":
-					this.intervalTimers.Insert(key, value.GetValueAsDouble());
+					if (this.intervalTimers.ContainsKey(key))
+						this.intervalTimers[key] = value.GetValueAsDouble();
+					else
+						this.intervalTimers.Insert(key, value.GetValueAsDouble());
 					return;
 				default:
 					base.SetPropertyElement(propertyName, key, value);

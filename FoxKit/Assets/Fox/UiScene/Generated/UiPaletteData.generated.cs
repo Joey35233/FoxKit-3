@@ -102,7 +102,10 @@ namespace Fox.UiScene
 			switch (propertyName.CString)
 			{
 				case "colors":
-					this.colors.Insert(key, value.GetValueAsColor());
+					if (this.colors.ContainsKey(key))
+						this.colors[key] = value.GetValueAsColor();
+					else
+						this.colors.Insert(key, value.GetValueAsColor());
 					return;
 				default:
 					base.SetPropertyElement(propertyName, key, value);

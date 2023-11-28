@@ -120,7 +120,10 @@ namespace Fox.GameKit
 			switch (propertyName.CString)
 			{
 				case "targetTags":
-					this.targetTags.Insert(key, value.GetValueAsUInt8());
+					if (this.targetTags.ContainsKey(key))
+						this.targetTags[key] = value.GetValueAsUInt8();
+					else
+						this.targetTags.Insert(key, value.GetValueAsUInt8());
 					return;
 				default:
 					base.SetPropertyElement(propertyName, key, value);

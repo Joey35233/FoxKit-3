@@ -524,37 +524,70 @@ namespace Fox.Demox
 			switch (propertyName.CString)
 			{
 				case "fmdlFiles":
-					this.fmdlFiles.Insert(key, value.GetValueAsFilePtr());
+					if (this.fmdlFiles.ContainsKey(key))
+						this.fmdlFiles[key] = value.GetValueAsFilePtr();
+					else
+						this.fmdlFiles.Insert(key, value.GetValueAsFilePtr());
 					return;
 				case "helpBoneFiles":
-					this.helpBoneFiles.Insert(key, value.GetValueAsFilePtr());
+					if (this.helpBoneFiles.ContainsKey(key))
+						this.helpBoneFiles[key] = value.GetValueAsFilePtr();
+					else
+						this.helpBoneFiles.Insert(key, value.GetValueAsFilePtr());
 					return;
 				case "partsDesc":
-					this.partsDesc.Insert(key, value.GetValueAsEntityPtr<Fox.Demo.PartsDesc>());
+					if (this.partsDesc.ContainsKey(key))
+						this.partsDesc[key] = value.GetValueAsEntityPtr<Fox.Demo.PartsDesc>();
+					else
+						this.partsDesc.Insert(key, value.GetValueAsEntityPtr<Fox.Demo.PartsDesc>());
 					return;
 				case "entityParams":
-					this.entityParams.Insert(key, value.GetValueAsEntityLink());
+					if (this.entityParams.ContainsKey(key))
+						this.entityParams[key] = value.GetValueAsEntityLink();
+					else
+						this.entityParams.Insert(key, value.GetValueAsEntityLink());
 					return;
 				case "fileParams":
-					this.fileParams.Insert(key, value.GetValueAsFilePtr());
+					if (this.fileParams.ContainsKey(key))
+						this.fileParams[key] = value.GetValueAsFilePtr();
+					else
+						this.fileParams.Insert(key, value.GetValueAsFilePtr());
 					return;
 				case "controlCharacters":
-					this.controlCharacters.Insert(key, value.GetValueAsEntityPtr<Fox.Demo.DemoControlCharacterDesc>());
+					if (this.controlCharacters.ContainsKey(key))
+						this.controlCharacters[key] = value.GetValueAsEntityPtr<Fox.Demo.DemoControlCharacterDesc>();
+					else
+						this.controlCharacters.Insert(key, value.GetValueAsEntityPtr<Fox.Demo.DemoControlCharacterDesc>());
 					return;
 				case "controlDatas":
-					this.controlDatas.Insert(key, value.GetValueAsEntityLink());
+					if (this.controlDatas.ContainsKey(key))
+						this.controlDatas[key] = value.GetValueAsEntityLink();
+					else
+						this.controlDatas.Insert(key, value.GetValueAsEntityLink());
 					return;
 				case "controlCollectibles":
-					this.controlCollectibles.Insert(key, value.GetValueAsString());
+					if (this.controlCollectibles.ContainsKey(key))
+						this.controlCollectibles[key] = value.GetValueAsString();
+					else
+						this.controlCollectibles.Insert(key, value.GetValueAsString());
 					return;
 				case "parameters":
-					this.parameters.Insert(key, value.GetValueAsEntityPtr<Fox.Demo.DemoParameter>());
+					if (this.parameters.ContainsKey(key))
+						this.parameters[key] = value.GetValueAsEntityPtr<Fox.Demo.DemoParameter>();
+					else
+						this.parameters.Insert(key, value.GetValueAsEntityPtr<Fox.Demo.DemoParameter>());
 					return;
 				case "setupLights":
-					this.setupLights.Insert(key, value.GetValueAsString());
+					if (this.setupLights.ContainsKey(key))
+						this.setupLights[key] = value.GetValueAsString();
+					else
+						this.setupLights.Insert(key, value.GetValueAsString());
 					return;
 				case "objectNum":
-					this.objectNum.Insert(key, value.GetValueAsInt32());
+					if (this.objectNum.ContainsKey(key))
+						this.objectNum[key] = value.GetValueAsInt32();
+					else
+						this.objectNum.Insert(key, value.GetValueAsInt32());
 					return;
 				default:
 					base.SetPropertyElement(propertyName, key, value);

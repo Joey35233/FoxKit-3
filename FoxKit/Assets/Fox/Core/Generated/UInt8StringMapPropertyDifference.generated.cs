@@ -110,10 +110,16 @@ namespace Fox.Core
 			switch (propertyName.CString)
 			{
 				case "originalValues":
-					this.originalValues.Insert(key, value.GetValueAsUInt8());
+					if (this.originalValues.ContainsKey(key))
+						this.originalValues[key] = value.GetValueAsUInt8();
+					else
+						this.originalValues.Insert(key, value.GetValueAsUInt8());
 					return;
 				case "values":
-					this.values.Insert(key, value.GetValueAsUInt8());
+					if (this.values.ContainsKey(key))
+						this.values[key] = value.GetValueAsUInt8();
+					else
+						this.values.Insert(key, value.GetValueAsUInt8());
 					return;
 				default:
 					base.SetPropertyElement(propertyName, key, value);

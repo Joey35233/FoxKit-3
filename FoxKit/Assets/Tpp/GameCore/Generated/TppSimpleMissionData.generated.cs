@@ -111,7 +111,10 @@ namespace Tpp.GameCore
 			switch (propertyName.CString)
 			{
 				case "subScripts":
-					this.subScripts.Insert(key, value.GetValueAsFilePtr());
+					if (this.subScripts.ContainsKey(key))
+						this.subScripts[key] = value.GetValueAsFilePtr();
+					else
+						this.subScripts.Insert(key, value.GetValueAsFilePtr());
 					return;
 				default:
 					base.SetPropertyElement(propertyName, key, value);

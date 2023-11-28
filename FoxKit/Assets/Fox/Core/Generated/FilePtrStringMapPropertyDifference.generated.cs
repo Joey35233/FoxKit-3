@@ -110,10 +110,16 @@ namespace Fox.Core
 			switch (propertyName.CString)
 			{
 				case "originalValues":
-					this.originalValues.Insert(key, value.GetValueAsFilePtr());
+					if (this.originalValues.ContainsKey(key))
+						this.originalValues[key] = value.GetValueAsFilePtr();
+					else
+						this.originalValues.Insert(key, value.GetValueAsFilePtr());
 					return;
 				case "values":
-					this.values.Insert(key, value.GetValueAsFilePtr());
+					if (this.values.ContainsKey(key))
+						this.values[key] = value.GetValueAsFilePtr();
+					else
+						this.values.Insert(key, value.GetValueAsFilePtr());
 					return;
 				default:
 					base.SetPropertyElement(propertyName, key, value);

@@ -195,10 +195,16 @@ namespace Fox.Core
 			switch (propertyName.CString)
 			{
 				case "dataSetFiles":
-					this.dataSetFiles.Insert(key, value.GetValueAsFilePtr());
+					if (this.dataSetFiles.ContainsKey(key))
+						this.dataSetFiles[key] = value.GetValueAsFilePtr();
+					else
+						this.dataSetFiles.Insert(key, value.GetValueAsFilePtr());
 					return;
 				case "dataBodySets":
-					this.dataBodySets.Insert(key, value.GetValueAsEntityPtr<Fox.Core.DataBodySet>());
+					if (this.dataBodySets.ContainsKey(key))
+						this.dataBodySets[key] = value.GetValueAsEntityPtr<Fox.Core.DataBodySet>();
+					else
+						this.dataBodySets.Insert(key, value.GetValueAsEntityPtr<Fox.Core.DataBodySet>());
 					return;
 				default:
 					base.SetPropertyElement(propertyName, key, value);

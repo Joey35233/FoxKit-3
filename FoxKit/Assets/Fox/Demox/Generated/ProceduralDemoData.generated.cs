@@ -164,19 +164,34 @@ namespace Fox.Demox
 			switch (propertyName.CString)
 			{
 				case "evfFiles":
-					this.evfFiles.Insert(key, value.GetValueAsFilePtr());
+					if (this.evfFiles.ContainsKey(key))
+						this.evfFiles[key] = value.GetValueAsFilePtr();
+					else
+						this.evfFiles.Insert(key, value.GetValueAsFilePtr());
 					return;
 				case "eventFiles":
-					this.eventFiles.Insert(key, value.GetValueAsFilePtr());
+					if (this.eventFiles.ContainsKey(key))
+						this.eventFiles[key] = value.GetValueAsFilePtr();
+					else
+						this.eventFiles.Insert(key, value.GetValueAsFilePtr());
 					return;
 				case "entityParams":
-					this.entityParams.Insert(key, value.GetValueAsEntityLink());
+					if (this.entityParams.ContainsKey(key))
+						this.entityParams[key] = value.GetValueAsEntityLink();
+					else
+						this.entityParams.Insert(key, value.GetValueAsEntityLink());
 					return;
 				case "fileParams":
-					this.fileParams.Insert(key, value.GetValueAsFilePtr());
+					if (this.fileParams.ContainsKey(key))
+						this.fileParams[key] = value.GetValueAsFilePtr();
+					else
+						this.fileParams.Insert(key, value.GetValueAsFilePtr());
 					return;
 				case "objectNum":
-					this.objectNum.Insert(key, value.GetValueAsInt32());
+					if (this.objectNum.ContainsKey(key))
+						this.objectNum[key] = value.GetValueAsInt32();
+					else
+						this.objectNum.Insert(key, value.GetValueAsInt32());
 					return;
 				default:
 					base.SetPropertyElement(propertyName, key, value);

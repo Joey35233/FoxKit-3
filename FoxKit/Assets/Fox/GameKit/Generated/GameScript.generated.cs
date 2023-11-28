@@ -120,7 +120,10 @@ namespace Fox.GameKit
 			switch (propertyName.CString)
 			{
 				case "variables":
-					this.variables.Insert(key, value.GetValueAsEntityLink());
+					if (this.variables.ContainsKey(key))
+						this.variables[key] = value.GetValueAsEntityLink();
+					else
+						this.variables.Insert(key, value.GetValueAsEntityLink());
 					return;
 				default:
 					base.SetPropertyElement(propertyName, key, value);

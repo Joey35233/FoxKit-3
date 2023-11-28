@@ -161,19 +161,34 @@ namespace Tpp.GameCore
 			switch (propertyName.CString)
 			{
 				case "partsFiles":
-					this.partsFiles.Insert(key, value.GetValueAsFilePtr());
+					if (this.partsFiles.ContainsKey(key))
+						this.partsFiles[key] = value.GetValueAsFilePtr();
+					else
+						this.partsFiles.Insert(key, value.GetValueAsFilePtr());
 					return;
 				case "vfxFiles":
-					this.vfxFiles.Insert(key, value.GetValueAsFilePtr());
+					if (this.vfxFiles.ContainsKey(key))
+						this.vfxFiles[key] = value.GetValueAsFilePtr();
+					else
+						this.vfxFiles.Insert(key, value.GetValueAsFilePtr());
 					return;
 				case "fmdlFiles":
-					this.fmdlFiles.Insert(key, value.GetValueAsFilePtr());
+					if (this.fmdlFiles.ContainsKey(key))
+						this.fmdlFiles[key] = value.GetValueAsFilePtr();
+					else
+						this.fmdlFiles.Insert(key, value.GetValueAsFilePtr());
 					return;
 				case "geomFiles":
-					this.geomFiles.Insert(key, value.GetValueAsFilePtr());
+					if (this.geomFiles.ContainsKey(key))
+						this.geomFiles[key] = value.GetValueAsFilePtr();
+					else
+						this.geomFiles.Insert(key, value.GetValueAsFilePtr());
 					return;
 				case "fovaFiles":
-					this.fovaFiles.Insert(key, value.GetValueAsFilePtr());
+					if (this.fovaFiles.ContainsKey(key))
+						this.fovaFiles[key] = value.GetValueAsFilePtr();
+					else
+						this.fovaFiles.Insert(key, value.GetValueAsFilePtr());
 					return;
 				default:
 					base.SetPropertyElement(propertyName, key, value);

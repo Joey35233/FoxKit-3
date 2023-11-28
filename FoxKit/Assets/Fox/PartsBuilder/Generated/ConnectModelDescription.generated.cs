@@ -102,7 +102,10 @@ namespace Fox.PartsBuilder
 			switch (propertyName.CString)
 			{
 				case "connectPointNames":
-					this.connectPointNames.Insert(key, value.GetValueAsString());
+					if (this.connectPointNames.ContainsKey(key))
+						this.connectPointNames[key] = value.GetValueAsString();
+					else
+						this.connectPointNames.Insert(key, value.GetValueAsString());
 					return;
 				default:
 					base.SetPropertyElement(propertyName, key, value);

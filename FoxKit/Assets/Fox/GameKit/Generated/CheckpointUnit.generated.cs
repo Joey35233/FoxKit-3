@@ -120,7 +120,10 @@ namespace Fox.GameKit
 			switch (propertyName.CString)
 			{
 				case "checkPointData":
-					this.checkPointData.Insert(key, value.GetValueAsEntityPtr<Fox.Core.Entity>());
+					if (this.checkPointData.ContainsKey(key))
+						this.checkPointData[key] = value.GetValueAsEntityPtr<Fox.Core.Entity>();
+					else
+						this.checkPointData.Insert(key, value.GetValueAsEntityPtr<Fox.Core.Entity>());
 					return;
 				default:
 					base.SetPropertyElement(propertyName, key, value);

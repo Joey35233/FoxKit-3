@@ -130,7 +130,10 @@ namespace Fox.Phx
 			switch (propertyName.CString)
 			{
 				case "connections":
-					this.connections.Insert(key, value.GetValueAsEntityPtr<Fox.Phx.PhxAssociationUnitElement>());
+					if (this.connections.ContainsKey(key))
+						this.connections[key] = value.GetValueAsEntityPtr<Fox.Phx.PhxAssociationUnitElement>();
+					else
+						this.connections.Insert(key, value.GetValueAsEntityPtr<Fox.Phx.PhxAssociationUnitElement>());
 					return;
 				default:
 					base.SetPropertyElement(propertyName, key, value);
