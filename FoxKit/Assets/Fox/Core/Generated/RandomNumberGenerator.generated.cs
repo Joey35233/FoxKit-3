@@ -40,13 +40,6 @@ namespace Fox.Core
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		
-		public RandomNumberGenerator()
-		{
-			
-		}
 		
 		public virtual Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

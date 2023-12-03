@@ -67,10 +67,6 @@ namespace Fox.Grx
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public GlobalCameraSettings(ulong id) : base(id) { }
-		public GlobalCameraSettings() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

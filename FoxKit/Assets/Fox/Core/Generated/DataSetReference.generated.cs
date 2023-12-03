@@ -49,10 +49,6 @@ namespace Fox.Core
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public DataSetReference(ulong id) : base(id) { }
-		public DataSetReference() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

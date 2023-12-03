@@ -41,10 +41,6 @@ namespace Fox.Core
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public BlockScript(ulong id) : base(id) { }
-		public BlockScript() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

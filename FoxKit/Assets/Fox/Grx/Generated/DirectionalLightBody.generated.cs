@@ -41,10 +41,6 @@ namespace Fox.Grx
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public DirectionalLightBody(ulong id) : base(id) { }
-		public DirectionalLightBody() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

@@ -41,10 +41,6 @@ namespace Tpp.GameKit
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public TppAdditionalSearchableLightData(ulong id) : base(id) { }
-		public TppAdditionalSearchableLightData() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

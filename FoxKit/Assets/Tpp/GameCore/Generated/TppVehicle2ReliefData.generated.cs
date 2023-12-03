@@ -41,10 +41,6 @@ namespace Tpp.GameCore
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public TppVehicle2ReliefData(ulong id) : base(id) { }
-		public TppVehicle2ReliefData() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

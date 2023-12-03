@@ -73,10 +73,6 @@ namespace Tpp.GameKit
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public TppPermanentGimmickSearchLightParameter(ulong id) : base(id) { }
-		public TppPermanentGimmickSearchLightParameter() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

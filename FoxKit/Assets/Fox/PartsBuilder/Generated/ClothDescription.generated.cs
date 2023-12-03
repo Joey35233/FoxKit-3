@@ -49,10 +49,6 @@ namespace Fox.PartsBuilder
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public ClothDescription(ulong id) : base(id) { }
-		public ClothDescription() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

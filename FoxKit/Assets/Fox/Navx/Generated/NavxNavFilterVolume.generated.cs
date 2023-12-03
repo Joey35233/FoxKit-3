@@ -41,10 +41,6 @@ namespace Fox.Navx
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public NavxNavFilterVolume(ulong id) : base(id) { }
-		public NavxNavFilterVolume() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

@@ -53,10 +53,6 @@ namespace Fox.Gr
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public TerrainMaterialConfigration(ulong id) : base(id) { }
-		public TerrainMaterialConfigration() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

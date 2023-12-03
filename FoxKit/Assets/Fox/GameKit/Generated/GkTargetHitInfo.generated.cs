@@ -61,10 +61,6 @@ namespace Fox.GameKit
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public GkTargetHitInfo(ulong id) : base(id) { }
-		public GkTargetHitInfo() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

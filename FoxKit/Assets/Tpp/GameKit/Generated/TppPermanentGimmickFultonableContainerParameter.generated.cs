@@ -45,10 +45,6 @@ namespace Tpp.GameKit
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public TppPermanentGimmickFultonableContainerParameter(ulong id) : base(id) { }
-		public TppPermanentGimmickFultonableContainerParameter() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

@@ -45,10 +45,6 @@ namespace Fox.Core
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public Vector4ArrayPropertyDifference(ulong id) : base(id) { }
-		public Vector4ArrayPropertyDifference() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

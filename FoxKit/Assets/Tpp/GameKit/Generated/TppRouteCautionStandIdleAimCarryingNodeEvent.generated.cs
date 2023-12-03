@@ -41,10 +41,6 @@ namespace Tpp.GameKit
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public TppRouteCautionStandIdleAimCarryingNodeEvent(ulong id) : base(id) { }
-		public TppRouteCautionStandIdleAimCarryingNodeEvent() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

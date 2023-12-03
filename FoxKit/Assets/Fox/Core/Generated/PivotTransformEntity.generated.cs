@@ -55,10 +55,6 @@ namespace Fox.Core
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public PivotTransformEntity(ulong id) : base(id) { }
-		public PivotTransformEntity() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

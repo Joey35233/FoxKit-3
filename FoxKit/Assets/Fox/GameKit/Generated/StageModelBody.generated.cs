@@ -36,10 +36,6 @@ namespace Fox.GameKit
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public StageModelBody(ulong id) : base(id) { }
-		public StageModelBody() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

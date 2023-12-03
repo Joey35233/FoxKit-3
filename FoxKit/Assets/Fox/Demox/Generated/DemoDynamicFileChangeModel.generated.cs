@@ -53,10 +53,6 @@ namespace Fox.Demox
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public DemoDynamicFileChangeModel(ulong id) : base(id) { }
-		public DemoDynamicFileChangeModel() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

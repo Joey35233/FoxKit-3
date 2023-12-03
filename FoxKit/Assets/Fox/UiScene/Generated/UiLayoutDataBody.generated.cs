@@ -36,10 +36,6 @@ namespace Fox.UiScene
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public UiLayoutDataBody(ulong id) : base(id) { }
-		public UiLayoutDataBody() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

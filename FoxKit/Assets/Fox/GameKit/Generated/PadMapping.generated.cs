@@ -36,10 +36,6 @@ namespace Fox.GameKit
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public PadMapping(ulong id) : base(id) { }
-		public PadMapping() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

@@ -49,10 +49,6 @@ namespace Tpp.Effect
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public TppWaterBounding(ulong id) : base(id) { }
-		public TppWaterBounding() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

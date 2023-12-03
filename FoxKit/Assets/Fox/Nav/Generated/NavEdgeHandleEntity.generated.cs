@@ -41,10 +41,6 @@ namespace Fox.Nav
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public NavEdgeHandleEntity(ulong id) : base(id) { }
-		public NavEdgeHandleEntity() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

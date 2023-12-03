@@ -36,10 +36,6 @@ namespace Tpp.System
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public TppOffenseTargetData(ulong id) : base(id) { }
-		public TppOffenseTargetData() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

@@ -65,10 +65,6 @@ namespace Fox.Des
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public DesEffectData(ulong id) : base(id) { }
-		public DesEffectData() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

@@ -45,10 +45,6 @@ namespace Fox.Core
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public EntityHandleArrayPropertyDifference(ulong id) : base(id) { }
-		public EntityHandleArrayPropertyDifference() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

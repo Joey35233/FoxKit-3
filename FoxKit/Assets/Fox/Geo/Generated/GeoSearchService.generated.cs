@@ -36,10 +36,6 @@ namespace Fox.Geo
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public GeoSearchService(ulong id) : base(id) { }
-		public GeoSearchService() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

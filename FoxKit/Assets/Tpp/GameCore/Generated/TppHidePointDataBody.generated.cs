@@ -36,10 +36,6 @@ namespace Tpp.GameCore
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public TppHidePointDataBody(ulong id) : base(id) { }
-		public TppHidePointDataBody() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

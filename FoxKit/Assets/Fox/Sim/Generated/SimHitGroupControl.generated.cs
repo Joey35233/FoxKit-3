@@ -41,10 +41,6 @@ namespace Fox.Sim
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public SimHitGroupControl(ulong id) : base(id) { }
-		public SimHitGroupControl() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

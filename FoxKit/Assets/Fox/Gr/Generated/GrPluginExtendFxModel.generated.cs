@@ -36,10 +36,6 @@ namespace Fox.Gr
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public GrPluginExtendFxModel(ulong id) : base(id) { }
-		public GrPluginExtendFxModel() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

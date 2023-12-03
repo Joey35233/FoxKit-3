@@ -57,10 +57,6 @@ namespace Fox.Anim
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public EventDataUnit(ulong id) : base(id) { }
-		public EventDataUnit() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

@@ -41,10 +41,6 @@ namespace Fox.Core
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public Matrix3Entity(ulong id) : base(id) { }
-		public Matrix3Entity() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

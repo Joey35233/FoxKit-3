@@ -36,10 +36,6 @@ namespace Fox.GameKit
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public GkSmartObjectBody(ulong id) : base(id) { }
-		public GkSmartObjectBody() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

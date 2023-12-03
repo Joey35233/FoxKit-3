@@ -45,10 +45,6 @@ namespace Fox.Phx
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public PhxVehicleTransmission(ulong id) : base(id) { }
-		public PhxVehicleTransmission() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

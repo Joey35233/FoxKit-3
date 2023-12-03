@@ -36,10 +36,6 @@ namespace Tpp.Ui
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public MbdvcBootBody(ulong id) : base(id) { }
-		public MbdvcBootBody() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

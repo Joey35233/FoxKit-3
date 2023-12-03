@@ -36,10 +36,6 @@ namespace Fox.EdDemo
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public AvatarPhotoTextureLoadParameter(ulong id) : base(id) { }
-		public AvatarPhotoTextureLoadParameter() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

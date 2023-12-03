@@ -36,10 +36,6 @@ namespace Fox.Geox
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public GeoxPartsTargetOffenseObjectBody(ulong id) : base(id) { }
-		public GeoxPartsTargetOffenseObjectBody() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

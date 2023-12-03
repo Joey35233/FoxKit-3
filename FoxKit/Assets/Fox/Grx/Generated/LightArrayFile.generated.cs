@@ -36,10 +36,6 @@ namespace Fox.Grx
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public LightArrayFile(ulong id) : base(id) { }
-		public LightArrayFile() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

@@ -61,10 +61,6 @@ namespace Fox.Sim
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public SimClothControlUnitParam(ulong id) : base(id) { }
-		public SimClothControlUnitParam() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

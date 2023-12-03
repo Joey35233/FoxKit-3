@@ -156,20 +156,20 @@ namespace Fox.GameService
 
                         long packedPosition = reader.ReadInt64();
 
-                        uint packed_x = (uint)(packedPosition & 0x003FFFFF);
-                        if ((packed_x & (1 << 21)) != 0)
-                            packed_x |= 0xFFC00000;
-                        float x = (float)(int)packed_x / 1024;
+                        uint packedX = (uint)(packedPosition & 0x003FFFFF);
+                        if ((packedX & (1 << 21)) != 0)
+                            packedX |= 0xFFC00000;
+                        float x = (float)(int)packedX / 1024;
 
-                        uint packed_y = (uint)((packedPosition >> 22) & 0x000FFFFF);
-                        if ((packed_y & (1 << 19)) != 0)
-                            packed_y |= 0xFFF00000;
-                        float y = (float)(int)packed_y / 1024;
+                        uint packedY = (uint)((packedPosition >> 22) & 0x000FFFFF);
+                        if ((packedY & (1 << 19)) != 0)
+                            packedY |= 0xFFF00000;
+                        float y = (float)(int)packedY / 1024;
 
-                        uint packed_z = (uint)((packedPosition >> 42) & 0x003FFFFF);
-                        if ((packed_z & (1 << 21)) != 0)
-                            packed_z |= 0xFFC00000;
-                        float z = (float)(int)packed_z / 1024;
+                        uint packedZ = (uint)((packedPosition >> 42) & 0x003FFFFF);
+                        if ((packedZ & (1 << 21)) != 0)
+                            packedZ |= 0xFFC00000;
+                        float z = (float)(int)packedZ / 1024;
 
                         node.position = Fox.Kernel.Math.FoxToUnityVector3(new Vector3(x, y, z)) + origin;
                     }
@@ -240,7 +240,9 @@ namespace Fox.GameService
                         aimPoint.SetOwner(routeData);
                         reader.Seek(payloadPosition);
 
-                        GsRouteDataRouteEvent routeEvent = GameServiceModule.GsRouteDataEventDeserializationMap[eventDef.Id](reader);
+                        var routeEventObject = new GameObject();
+                        uint[] binaryData = { reader.ReadUInt32(), reader.ReadUInt32(), reader.ReadUInt32(), reader.ReadUInt32() };
+                        GsRouteDataRouteEvent routeEvent = GameServiceModule.GsRouteDataEventDeserializationMap[eventDef.Id](routeEventObject, binaryData);
                         routeEvent.SetOwner(routeData);
                         routeEvent.aimPoint = aimPoint;
 

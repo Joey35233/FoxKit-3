@@ -41,10 +41,6 @@ namespace Fox.Geox
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public GeoxPathEdge(ulong id) : base(id) { }
-		public GeoxPathEdge() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

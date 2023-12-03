@@ -36,10 +36,6 @@ namespace Fox.Geo
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public GeoCollisionPrimitiveBase(ulong id) : base(id) { }
-		public GeoCollisionPrimitiveBase() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

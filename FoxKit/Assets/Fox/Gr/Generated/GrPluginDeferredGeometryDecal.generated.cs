@@ -36,10 +36,6 @@ namespace Fox.Gr
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public GrPluginDeferredGeometryDecal(ulong id) : base(id) { }
-		public GrPluginDeferredGeometryDecal() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

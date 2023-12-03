@@ -49,10 +49,6 @@ namespace Fox.UiScene
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public UiAnimWorkMemoryData(ulong id) : base(id) { }
-		public UiAnimWorkMemoryData() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

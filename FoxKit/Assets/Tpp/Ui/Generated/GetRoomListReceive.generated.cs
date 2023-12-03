@@ -36,10 +36,6 @@ namespace Tpp.Ui
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public GetRoomListReceive(ulong id) : base(id) { }
-		public GetRoomListReceive() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

@@ -36,10 +36,6 @@ namespace Fox.Ph
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public PhSubObject(ulong id) : base(id) { }
-		public PhSubObject() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

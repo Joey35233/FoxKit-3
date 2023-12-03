@@ -55,10 +55,6 @@ namespace Fox.Core
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public TransformRTEntity(ulong id) : base(id) { }
-		public TransformRTEntity() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

@@ -48,13 +48,6 @@ namespace Fox.Core
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		
-		public OrientedBoundingBox()
-		{
-			
-		}
 		
 		public virtual Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

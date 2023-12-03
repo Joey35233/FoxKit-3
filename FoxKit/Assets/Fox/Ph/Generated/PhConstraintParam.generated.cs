@@ -41,10 +41,6 @@ namespace Fox.Ph
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public PhConstraintParam(ulong id) : base(id) { }
-		public PhConstraintParam() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

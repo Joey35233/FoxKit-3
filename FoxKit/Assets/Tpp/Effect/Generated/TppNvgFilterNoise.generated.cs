@@ -73,10 +73,6 @@ namespace Tpp.Effect
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public TppNvgFilterNoise(ulong id) : base(id) { }
-		public TppNvgFilterNoise() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

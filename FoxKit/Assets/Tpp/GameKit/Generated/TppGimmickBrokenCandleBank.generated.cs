@@ -57,10 +57,6 @@ namespace Tpp.GameKit
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public TppGimmickBrokenCandleBank(ulong id) : base(id) { }
-		public TppGimmickBrokenCandleBank() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

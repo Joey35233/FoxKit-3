@@ -41,10 +41,6 @@ namespace Fox.GameKit
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public SubtitlesBlockControllerData(ulong id) : base(id) { }
-		public SubtitlesBlockControllerData() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

@@ -69,10 +69,6 @@ namespace Fox.Fx
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public FxLocatorData(ulong id) : base(id) { }
-		public FxLocatorData() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

@@ -36,10 +36,6 @@ namespace Tpp.Ui
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public EndingSettingFile(ulong id) : base(id) { }
-		public EndingSettingFile() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

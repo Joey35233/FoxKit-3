@@ -36,10 +36,6 @@ namespace Fox.Core
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public PassiveBlockController(ulong id) : base(id) { }
-		public PassiveBlockController() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

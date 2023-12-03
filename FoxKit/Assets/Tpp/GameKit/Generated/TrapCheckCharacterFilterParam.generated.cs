@@ -66,10 +66,6 @@ namespace Tpp.GameKit
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public TrapCheckCharacterFilterParam(ulong id) : base(id) { }
-		public TrapCheckCharacterFilterParam() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

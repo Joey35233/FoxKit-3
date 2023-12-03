@@ -81,10 +81,6 @@ namespace Tpp.Effect
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public TppLensFlareRateGraph(ulong id) : base(id) { }
-		public TppLensFlareRateGraph() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

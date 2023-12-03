@@ -36,10 +36,6 @@ namespace Tpp.System
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public TppPauseMenu(ulong id) : base(id) { }
-		public TppPauseMenu() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

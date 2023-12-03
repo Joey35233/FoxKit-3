@@ -49,10 +49,6 @@ namespace Tpp.System
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public TppLocationData(ulong id) : base(id) { }
-		public TppLocationData() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

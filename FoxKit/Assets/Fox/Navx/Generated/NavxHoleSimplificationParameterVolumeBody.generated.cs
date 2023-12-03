@@ -36,10 +36,6 @@ namespace Fox.Navx
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public NavxHoleSimplificationParameterVolumeBody(ulong id) : base(id) { }
-		public NavxHoleSimplificationParameterVolumeBody() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

@@ -53,10 +53,6 @@ namespace Fox.Sdx
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public SoundAreaGroup(ulong id) : base(id) { }
-		public SoundAreaGroup() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

@@ -49,10 +49,6 @@ namespace Tpp.GameKit
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public TppRoutePutHostageInVehicleNodeEvent(ulong id) : base(id) { }
-		public TppRoutePutHostageInVehicleNodeEvent() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

@@ -36,10 +36,6 @@ namespace Fox.Sdx
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public SoundPackageBody(ulong id) : base(id) { }
-		public SoundPackageBody() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

@@ -36,10 +36,6 @@ namespace Fox.Graphx
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public GraphxPathVolumeBody(ulong id) : base(id) { }
-		public GraphxPathVolumeBody() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

@@ -36,10 +36,6 @@ namespace Fox.Geo
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public GeoCheckModuleConditionBody(ulong id) : base(id) { }
-		public GeoCheckModuleConditionBody() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

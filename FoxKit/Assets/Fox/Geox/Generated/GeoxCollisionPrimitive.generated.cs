@@ -57,10 +57,6 @@ namespace Fox.Geox
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public GeoxCollisionPrimitive(ulong id) : base(id) { }
-		public GeoxCollisionPrimitive() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

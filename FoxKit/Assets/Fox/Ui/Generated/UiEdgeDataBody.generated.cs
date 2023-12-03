@@ -69,10 +69,6 @@ namespace Fox.Ui
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public UiEdgeDataBody(ulong id) : base(id) { }
-		public UiEdgeDataBody() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

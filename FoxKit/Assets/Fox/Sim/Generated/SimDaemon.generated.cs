@@ -53,10 +53,6 @@ namespace Fox.Sim
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public SimDaemon(ulong id) : base(id) { }
-		public SimDaemon() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

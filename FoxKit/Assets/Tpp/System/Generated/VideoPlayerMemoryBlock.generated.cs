@@ -57,10 +57,6 @@ namespace Tpp.System
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public VideoPlayerMemoryBlock(ulong id) : base(id) { }
-		public VideoPlayerMemoryBlock() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

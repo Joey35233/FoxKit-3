@@ -49,10 +49,6 @@ namespace Fox.Graphx
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public GraphxSpatialGraphDataNode(ulong id) : base(id) { }
-		public GraphxSpatialGraphDataNode() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

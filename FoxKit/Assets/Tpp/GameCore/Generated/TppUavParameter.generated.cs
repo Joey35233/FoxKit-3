@@ -41,10 +41,6 @@ namespace Tpp.GameCore
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public TppUavParameter(ulong id) : base(id) { }
-		public TppUavParameter() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

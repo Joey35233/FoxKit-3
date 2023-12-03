@@ -36,10 +36,6 @@ namespace Fox.MotionGraph
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public MotionGraphBlendValueStringConverter(ulong id) : base(id) { }
-		public MotionGraphBlendValueStringConverter() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

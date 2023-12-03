@@ -53,10 +53,6 @@ namespace Tpp.Effect
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public TppWaterRippleViewport(ulong id) : base(id) { }
-		public TppWaterRippleViewport() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

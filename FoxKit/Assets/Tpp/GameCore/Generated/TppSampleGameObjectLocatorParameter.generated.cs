@@ -41,10 +41,6 @@ namespace Tpp.GameCore
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public TppSampleGameObjectLocatorParameter(ulong id) : base(id) { }
-		public TppSampleGameObjectLocatorParameter() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

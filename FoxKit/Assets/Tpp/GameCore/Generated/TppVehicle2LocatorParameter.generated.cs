@@ -36,10 +36,6 @@ namespace Tpp.GameCore
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public TppVehicle2LocatorParameter(ulong id) : base(id) { }
-		public TppVehicle2LocatorParameter() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

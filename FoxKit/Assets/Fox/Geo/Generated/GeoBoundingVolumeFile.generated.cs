@@ -36,10 +36,6 @@ namespace Fox.Geo
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public GeoBoundingVolumeFile(ulong id) : base(id) { }
-		public GeoBoundingVolumeFile() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

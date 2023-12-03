@@ -36,10 +36,6 @@ namespace Tpp.GameKit
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public TppThermalStaticModel(ulong id) : base(id) { }
-		public TppThermalStaticModel() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

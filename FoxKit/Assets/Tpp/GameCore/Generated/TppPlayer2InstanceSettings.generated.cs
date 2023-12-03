@@ -56,13 +56,6 @@ namespace Tpp.GameCore
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		
-		public TppPlayer2InstanceSettings()
-		{
-			
-		}
 		
 		public virtual Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

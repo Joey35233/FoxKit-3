@@ -9,11 +9,29 @@ namespace Tpp.GameKit
 		public static readonly StrCode32 Id = new StrCode32("ConversationIdle");
 		public override StrCode32 GetId() => Id;
 
-        public static TppRouteConversationIdleNodeEvent Deserialize(FileStreamReader reader)
+        public static TppRouteConversationIdleNodeEvent Deserialize(UnityEngine.GameObject gameObject, uint[] binaryData)
         {
-            var result = new TppRouteConversationIdleNodeEvent { conversationLabel = new String(reader.ReadStrCode32().ToString()), friendCharacterId = new String(reader.ReadStrCode32().ToString()), range = reader.ReadUInt32() };
+            TppRouteConversationIdleNodeEvent result = gameObject.AddComponent<TppRouteConversationIdleNodeEvent>();
 
-            reader.SkipPadding(4);
+            StrCode32 conversationLabel;
+            StrCode32 friendCharacterId;
+            uint range;
+            unsafe
+            {
+                fixed (uint* binaryDataPtr = binaryData)
+                {
+                    uint* ptr = binaryDataPtr;
+                    conversationLabel = *(StrCode32*)ptr;
+                    ptr += 1;
+                    friendCharacterId = *(StrCode32*)ptr;
+                    ptr += 1;
+                    range = *(uint*)ptr;
+                }
+            }
+
+            result.conversationLabel = new String(conversationLabel.ToString());
+            result.friendCharacterId = new String(friendCharacterId.ToString());
+            result.range = range;
 
             return result;
         }

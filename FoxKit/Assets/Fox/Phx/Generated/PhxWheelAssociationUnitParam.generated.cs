@@ -41,10 +41,6 @@ namespace Fox.Phx
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public PhxWheelAssociationUnitParam(ulong id) : base(id) { }
-		public PhxWheelAssociationUnitParam() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

@@ -49,10 +49,6 @@ namespace Fox.Geox
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public GeoxPartsTargetFollowSkeleton(ulong id) : base(id) { }
-		public GeoxPartsTargetFollowSkeleton() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

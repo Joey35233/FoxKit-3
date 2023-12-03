@@ -49,10 +49,6 @@ namespace Tpp.MotherBaseCore
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public MotherBaseConstructConnectLocator(ulong id) : base(id) { }
-		public MotherBaseConstructConnectLocator() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

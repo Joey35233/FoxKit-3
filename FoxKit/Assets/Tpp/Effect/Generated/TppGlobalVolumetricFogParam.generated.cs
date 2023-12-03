@@ -106,10 +106,6 @@ namespace Tpp.Effect
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public TppGlobalVolumetricFogParam(ulong id) : base(id) { }
-		public TppGlobalVolumetricFogParam() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

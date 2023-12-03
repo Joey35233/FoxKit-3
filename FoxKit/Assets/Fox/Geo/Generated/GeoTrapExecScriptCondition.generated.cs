@@ -53,10 +53,6 @@ namespace Fox.Geo
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public GeoTrapExecScriptCondition(ulong id) : base(id) { }
-		public GeoTrapExecScriptCondition() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

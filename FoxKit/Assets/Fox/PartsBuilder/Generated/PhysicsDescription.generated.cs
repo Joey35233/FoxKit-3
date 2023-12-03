@@ -41,10 +41,6 @@ namespace Fox.PartsBuilder
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public PhysicsDescription(ulong id) : base(id) { }
-		public PhysicsDescription() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

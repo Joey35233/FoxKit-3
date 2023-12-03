@@ -49,10 +49,6 @@ namespace Tpp.GameCore
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public TppVolgin2Parameter(ulong id) : base(id) { }
-		public TppVolgin2Parameter() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

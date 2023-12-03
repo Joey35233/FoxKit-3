@@ -45,10 +45,6 @@ namespace Tpp.GameKit
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public TppRouteVehicleBackFastEdgeEvent(ulong id) : base(id) { }
-		public TppRouteVehicleBackFastEdgeEvent() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

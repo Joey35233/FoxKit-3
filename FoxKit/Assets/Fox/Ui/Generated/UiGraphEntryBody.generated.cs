@@ -36,10 +36,6 @@ namespace Fox.Ui
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public UiGraphEntryBody(ulong id) : base(id) { }
-		public UiGraphEntryBody() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

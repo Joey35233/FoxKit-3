@@ -45,10 +45,6 @@ namespace Fox.Gr
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public GrFilmicTonemapParameter(ulong id) : base(id) { }
-		public GrFilmicTonemapParameter() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

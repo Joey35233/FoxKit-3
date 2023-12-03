@@ -53,10 +53,6 @@ namespace Fox.Grx
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public AmbientOcclusionSettings(ulong id) : base(id) { }
-		public AmbientOcclusionSettings() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

@@ -41,10 +41,6 @@ namespace Fox.GameKit
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public CheckpointTrapScriptModuleCondition(ulong id) : base(id) { }
-		public CheckpointTrapScriptModuleCondition() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

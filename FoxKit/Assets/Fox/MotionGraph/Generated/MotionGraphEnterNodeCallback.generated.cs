@@ -36,10 +36,6 @@ namespace Fox.MotionGraph
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public MotionGraphEnterNodeCallback(ulong id) : base(id) { }
-		public MotionGraphEnterNodeCallback() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

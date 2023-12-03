@@ -77,10 +77,6 @@ namespace Fox.Demox
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public DemoResource(ulong id) : base(id) { }
-		public DemoResource() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

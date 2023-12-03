@@ -36,10 +36,6 @@ namespace Tpp.GameCore
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public TppNoiseAreaBody2(ulong id) : base(id) { }
-		public TppNoiseAreaBody2() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

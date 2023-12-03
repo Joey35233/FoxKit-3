@@ -57,10 +57,6 @@ namespace Fox.Ph
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public PhDaemon(ulong id) : base(id) { }
-		public PhDaemon() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

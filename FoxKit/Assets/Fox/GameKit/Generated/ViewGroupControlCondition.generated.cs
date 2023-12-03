@@ -49,10 +49,6 @@ namespace Fox.GameKit
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public ViewGroupControlCondition(ulong id) : base(id) { }
-		public ViewGroupControlCondition() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

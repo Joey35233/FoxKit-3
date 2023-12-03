@@ -36,10 +36,6 @@ namespace Fox.Character
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public GkPathLineTargetBody(ulong id) : base(id) { }
-		public GkPathLineTargetBody() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

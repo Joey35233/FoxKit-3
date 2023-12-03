@@ -41,10 +41,6 @@ namespace Tpp.GameCore
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public TppTrapExecLostHostageCallbackDataElement(ulong id) : base(id) { }
-		public TppTrapExecLostHostageCallbackDataElement() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

@@ -36,10 +36,6 @@ namespace Fox.Navx
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public NavxSquareGraphBounderData(ulong id) : base(id) { }
-		public NavxSquareGraphBounderData() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

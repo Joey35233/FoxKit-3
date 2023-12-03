@@ -36,10 +36,6 @@ namespace Fox.Ph
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public PhPrimitiveShapeParam(ulong id) : base(id) { }
-		public PhPrimitiveShapeParam() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

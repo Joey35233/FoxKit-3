@@ -57,10 +57,6 @@ namespace Tpp.GameKit
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public BushOffenseTargetData(ulong id) : base(id) { }
-		public BushOffenseTargetData() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

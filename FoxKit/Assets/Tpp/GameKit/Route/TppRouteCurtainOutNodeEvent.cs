@@ -9,6 +9,6 @@ namespace Tpp.GameKit
 		public static readonly StrCode32 Id = new StrCode32("CurtainOut");
 		public override StrCode32 GetId() => Id;
 
-		public static TppRouteCurtainOutNodeEvent Deserialize(FileStreamReader reader) => new TppRouteCurtainOutNodeEvent { binaryData = new StaticArray<uint>(new uint[] { reader.ReadUInt32(), reader.ReadUInt32(), reader.ReadUInt32(), reader.ReadUInt32() }), };
+		public static TppRouteCurtainOutNodeEvent Deserialize(UnityEngine.GameObject gameObject, uint[] binaryData) { TppRouteCurtainOutNodeEvent component = gameObject.AddComponent<TppRouteCurtainOutNodeEvent>(); component.binaryData = new StaticArray<uint>(binaryData); return component; }
 	}
 }

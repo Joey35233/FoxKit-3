@@ -36,10 +36,6 @@ namespace Fox.Demox
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public StageLightFadeDataBody(ulong id) : base(id) { }
-		public StageLightFadeDataBody() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

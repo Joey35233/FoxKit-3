@@ -41,10 +41,6 @@ namespace Tpp.Effect
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public TppWeatherEffectBase(ulong id) : base(id) { }
-		public TppWeatherEffectBase() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

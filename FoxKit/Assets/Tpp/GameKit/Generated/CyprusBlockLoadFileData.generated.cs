@@ -49,10 +49,6 @@ namespace Tpp.GameKit
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public CyprusBlockLoadFileData(ulong id) : base(id) { }
-		public CyprusBlockLoadFileData() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

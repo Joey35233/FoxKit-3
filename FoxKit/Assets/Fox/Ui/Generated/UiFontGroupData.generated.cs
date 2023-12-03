@@ -41,10 +41,6 @@ namespace Fox.Ui
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public UiFontGroupData(ulong id) : base(id) { }
-		public UiFontGroupData() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

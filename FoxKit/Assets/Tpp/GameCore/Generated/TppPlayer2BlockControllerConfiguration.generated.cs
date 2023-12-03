@@ -60,13 +60,6 @@ namespace Tpp.GameCore
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		
-		public TppPlayer2BlockControllerConfiguration()
-		{
-			
-		}
 		
 		public virtual Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

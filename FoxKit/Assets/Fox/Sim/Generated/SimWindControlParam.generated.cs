@@ -41,10 +41,6 @@ namespace Fox.Sim
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public SimWindControlParam(ulong id) : base(id) { }
-		public SimWindControlParam() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

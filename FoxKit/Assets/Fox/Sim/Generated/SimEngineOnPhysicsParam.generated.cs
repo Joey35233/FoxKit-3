@@ -53,10 +53,6 @@ namespace Fox.Sim
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public SimEngineOnPhysicsParam(ulong id) : base(id) { }
-		public SimEngineOnPhysicsParam() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

@@ -53,10 +53,6 @@ namespace Tpp.GameKit
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public TppTrapExecEnvironmentMotionCallbackDataElement(ulong id) : base(id) { }
-		public TppTrapExecEnvironmentMotionCallbackDataElement() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

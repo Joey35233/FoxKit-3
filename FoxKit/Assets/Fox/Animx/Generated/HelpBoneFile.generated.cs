@@ -36,10 +36,6 @@ namespace Fox.Animx
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public HelpBoneFile(ulong id) : base(id) { }
-		public HelpBoneFile() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

@@ -57,10 +57,6 @@ namespace Fox.PartsBuilder
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public GeomDescription(ulong id) : base(id) { }
-		public GeomDescription() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

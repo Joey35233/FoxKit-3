@@ -36,10 +36,6 @@ namespace Fox.Core
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public ComponentInsertionInfo(ulong id) : base(id) { }
-		public ComponentInsertionInfo() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

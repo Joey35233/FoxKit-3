@@ -36,10 +36,6 @@ namespace Fox.Graphx
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public GraphxPathData(ulong id) : base(id) { }
-		public GraphxPathData() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

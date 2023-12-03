@@ -9,6 +9,6 @@ namespace Tpp.GameKit
 		public static readonly StrCode32 Id = new StrCode32("RunOnly");
 		public override StrCode32 GetId() => Id;
 
-		public static TppRouteRunOnlyEdgeEvent Deserialize(FileStreamReader reader) => new TppRouteRunOnlyEdgeEvent { binaryData = new StaticArray<uint>(new uint[] { reader.ReadUInt32(), reader.ReadUInt32(), reader.ReadUInt32(), reader.ReadUInt32() }), };
+		public static TppRouteRunOnlyEdgeEvent Deserialize(UnityEngine.GameObject gameObject, uint[] binaryData) { TppRouteRunOnlyEdgeEvent component = gameObject.AddComponent<TppRouteRunOnlyEdgeEvent>(); component.binaryData = new StaticArray<uint>(binaryData); return component; }
 	}
 }

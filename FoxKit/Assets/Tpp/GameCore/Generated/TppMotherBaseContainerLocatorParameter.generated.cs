@@ -53,10 +53,6 @@ namespace Tpp.GameCore
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public TppMotherBaseContainerLocatorParameter(ulong id) : base(id) { }
-		public TppMotherBaseContainerLocatorParameter() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

@@ -45,10 +45,6 @@ namespace Tpp.Effect
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public TppReflectionSettingTrapCallbackDataElement(ulong id) : base(id) { }
-		public TppReflectionSettingTrapCallbackDataElement() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

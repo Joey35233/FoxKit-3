@@ -49,10 +49,6 @@ namespace Tpp.Effect
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public TppTrapExecThunderLightningCallbackDataElement(ulong id) : base(id) { }
-		public TppTrapExecThunderLightningCallbackDataElement() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

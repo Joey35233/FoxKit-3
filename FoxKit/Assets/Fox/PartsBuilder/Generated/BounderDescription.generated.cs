@@ -41,10 +41,6 @@ namespace Fox.PartsBuilder
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public BounderDescription(ulong id) : base(id) { }
-		public BounderDescription() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

@@ -41,10 +41,6 @@ namespace Tpp.GameKit
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public TrapExecChangeLodSkeletonModelParam(ulong id) : base(id) { }
-		public TrapExecChangeLodSkeletonModelParam() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

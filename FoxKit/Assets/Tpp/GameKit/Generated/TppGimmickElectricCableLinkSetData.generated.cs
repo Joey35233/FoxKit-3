@@ -57,10 +57,6 @@ namespace Tpp.GameKit
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public TppGimmickElectricCableLinkSetData(ulong id) : base(id) { }
-		public TppGimmickElectricCableLinkSetData() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

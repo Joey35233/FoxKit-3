@@ -45,10 +45,6 @@ namespace Fox.Anim
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public TimeSection(ulong id) : base(id) { }
-		public TimeSection() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

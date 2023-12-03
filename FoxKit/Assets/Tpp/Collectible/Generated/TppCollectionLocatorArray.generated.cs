@@ -73,10 +73,6 @@ namespace Tpp.Collectible
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public TppCollectionLocatorArray(ulong id) : base(id) { }
-		public TppCollectionLocatorArray() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

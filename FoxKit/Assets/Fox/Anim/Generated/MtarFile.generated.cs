@@ -36,10 +36,6 @@ namespace Fox.Anim
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public MtarFile(ulong id) : base(id) { }
-		public MtarFile() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

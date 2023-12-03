@@ -36,10 +36,6 @@ namespace Fox.Grx
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public ReflectionSettingBody(ulong id) : base(id) { }
-		public ReflectionSettingBody() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

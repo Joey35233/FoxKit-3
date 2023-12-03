@@ -36,10 +36,6 @@ namespace Fox.Navx
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public NavxKeepNavLocator(ulong id) : base(id) { }
-		public NavxKeepNavLocator() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

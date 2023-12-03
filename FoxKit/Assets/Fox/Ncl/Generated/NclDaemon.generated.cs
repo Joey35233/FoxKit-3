@@ -45,10 +45,6 @@ namespace Fox.Ncl
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public NclDaemon(ulong id) : base(id) { }
-		public NclDaemon() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

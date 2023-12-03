@@ -53,10 +53,6 @@ namespace Tpp.Radio
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public TppEspionageRadioLocatorParameter(ulong id) : base(id) { }
-		public TppEspionageRadioLocatorParameter() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

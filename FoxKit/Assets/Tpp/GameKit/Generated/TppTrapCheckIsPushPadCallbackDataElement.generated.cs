@@ -45,10 +45,6 @@ namespace Tpp.GameKit
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public TppTrapCheckIsPushPadCallbackDataElement(ulong id) : base(id) { }
-		public TppTrapCheckIsPushPadCallbackDataElement() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

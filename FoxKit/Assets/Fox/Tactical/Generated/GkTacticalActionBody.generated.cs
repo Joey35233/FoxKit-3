@@ -41,10 +41,6 @@ namespace Fox.Tactical
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public GkTacticalActionBody(ulong id) : base(id) { }
-		public GkTacticalActionBody() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

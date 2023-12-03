@@ -97,10 +97,6 @@ namespace Fox.PartsBuilder
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public EffectDescription(ulong id) : base(id) { }
-		public EffectDescription() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

@@ -57,10 +57,6 @@ namespace Tpp.GameCore
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public TppSoldier2Parameter(ulong id) : base(id) { }
-		public TppSoldier2Parameter() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

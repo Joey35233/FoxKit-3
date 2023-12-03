@@ -41,10 +41,6 @@ namespace Tpp.GameKit
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public TppRouteVehicleAntiPlayerFireNodeEvent(ulong id) : base(id) { }
-		public TppRouteVehicleAntiPlayerFireNodeEvent() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

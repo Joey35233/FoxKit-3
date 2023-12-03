@@ -9,6 +9,6 @@ namespace Tpp.GameKit
 		public static readonly StrCode32 Id = new StrCode32("DropPoint");
 		public override StrCode32 GetId() => Id;
 
-		public static TppRouteDropPointNodeEvent Deserialize(FileStreamReader reader) => new TppRouteDropPointNodeEvent { binaryData = new StaticArray<uint>(new uint[] { reader.ReadUInt32(), reader.ReadUInt32(), reader.ReadUInt32(), reader.ReadUInt32() }), };
+		public static TppRouteDropPointNodeEvent Deserialize(UnityEngine.GameObject gameObject, uint[] binaryData) { TppRouteDropPointNodeEvent component = gameObject.AddComponent<TppRouteDropPointNodeEvent>(); component.binaryData = new StaticArray<uint>(binaryData); return component; }
 	}
 }

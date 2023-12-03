@@ -53,10 +53,6 @@ namespace Fox.GameKit
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public EnvironmentArea(ulong id) : base(id) { }
-		public EnvironmentArea() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

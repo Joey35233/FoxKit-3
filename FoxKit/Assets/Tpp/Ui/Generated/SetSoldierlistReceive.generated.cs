@@ -36,10 +36,6 @@ namespace Tpp.Ui
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public SetSoldierlistReceive(ulong id) : base(id) { }
-		public SetSoldierlistReceive() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

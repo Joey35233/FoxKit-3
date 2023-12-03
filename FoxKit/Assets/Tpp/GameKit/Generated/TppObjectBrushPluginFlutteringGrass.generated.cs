@@ -53,10 +53,6 @@ namespace Tpp.GameKit
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public TppObjectBrushPluginFlutteringGrass(ulong id) : base(id) { }
-		public TppObjectBrushPluginFlutteringGrass() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

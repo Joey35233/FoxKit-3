@@ -65,10 +65,6 @@ namespace Tpp.GameCore
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public LuxuryBlockControllerData(ulong id) : base(id) { }
-		public LuxuryBlockControllerData() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

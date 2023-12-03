@@ -41,10 +41,6 @@ namespace Fox.Geox
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public GeoxGeomSetLoader(ulong id) : base(id) { }
-		public GeoxGeomSetLoader() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

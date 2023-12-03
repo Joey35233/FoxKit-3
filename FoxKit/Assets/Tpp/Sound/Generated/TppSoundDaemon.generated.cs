@@ -41,10 +41,6 @@ namespace Tpp.Sound
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public TppSoundDaemon(ulong id) : base(id) { }
-		public TppSoundDaemon() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

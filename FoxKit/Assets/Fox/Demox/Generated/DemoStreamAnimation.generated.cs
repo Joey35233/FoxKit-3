@@ -101,10 +101,6 @@ namespace Fox.Demox
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public DemoStreamAnimation(ulong id) : base(id) { }
-		public DemoStreamAnimation() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

@@ -36,10 +36,6 @@ namespace Tpp.MotherBaseStage
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public MotherBaseStageSetupFile(ulong id) : base(id) { }
-		public MotherBaseStageSetupFile() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

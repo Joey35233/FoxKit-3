@@ -41,10 +41,6 @@ namespace Tpp.Effect
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public TppDemoIntelligenceObject(ulong id) : base(id) { }
-		public TppDemoIntelligenceObject() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

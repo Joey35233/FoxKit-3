@@ -49,10 +49,6 @@ namespace Fox.Navx
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public NavxNavFileConnector(ulong id) : base(id) { }
-		public NavxNavFileConnector() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

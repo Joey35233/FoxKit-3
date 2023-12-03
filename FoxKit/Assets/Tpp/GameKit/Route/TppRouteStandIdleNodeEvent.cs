@@ -9,6 +9,6 @@ namespace Tpp.GameKit
 		public static readonly StrCode32 Id = new StrCode32("StandIdle");
 		public override StrCode32 GetId() => Id;
 
-		public static TppRouteStandIdleNodeEvent Deserialize(FileStreamReader reader) => new TppRouteStandIdleNodeEvent { binaryData = new StaticArray<uint>(new uint[] { reader.ReadUInt32(), reader.ReadUInt32(), reader.ReadUInt32(), reader.ReadUInt32() }), };
+		public static TppRouteStandIdleNodeEvent Deserialize(UnityEngine.GameObject gameObject, uint[] binaryData) { TppRouteStandIdleNodeEvent component = gameObject.AddComponent<TppRouteStandIdleNodeEvent>(); component.binaryData = new StaticArray<uint>(binaryData); return component; }
 	}
 }

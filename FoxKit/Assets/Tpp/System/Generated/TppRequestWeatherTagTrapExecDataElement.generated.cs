@@ -49,10 +49,6 @@ namespace Tpp.System
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public TppRequestWeatherTagTrapExecDataElement(ulong id) : base(id) { }
-		public TppRequestWeatherTagTrapExecDataElement() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

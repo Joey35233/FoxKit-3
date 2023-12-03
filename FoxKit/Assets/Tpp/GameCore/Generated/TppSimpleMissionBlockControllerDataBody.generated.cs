@@ -36,10 +36,6 @@ namespace Tpp.GameCore
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public TppSimpleMissionBlockControllerDataBody(ulong id) : base(id) { }
-		public TppSimpleMissionBlockControllerDataBody() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

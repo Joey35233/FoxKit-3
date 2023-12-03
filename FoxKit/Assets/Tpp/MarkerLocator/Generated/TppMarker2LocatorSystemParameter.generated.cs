@@ -36,10 +36,6 @@ namespace Tpp.MarkerLocator
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public TppMarker2LocatorSystemParameter(ulong id) : base(id) { }
-		public TppMarker2LocatorSystemParameter() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

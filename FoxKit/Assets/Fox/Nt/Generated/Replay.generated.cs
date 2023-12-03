@@ -36,10 +36,6 @@ namespace Fox.Nt
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public Replay(ulong id) : base(id) { }
-		public Replay() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

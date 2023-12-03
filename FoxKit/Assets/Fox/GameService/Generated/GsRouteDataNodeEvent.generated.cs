@@ -49,10 +49,6 @@ namespace Fox.GameService
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public GsRouteDataNodeEvent(ulong id) : base(id) { }
-		public GsRouteDataNodeEvent() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

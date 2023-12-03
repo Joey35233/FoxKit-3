@@ -45,10 +45,6 @@ namespace Fox.Navx
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public NavxAttributeInfo(ulong id) : base(id) { }
-		public NavxAttributeInfo() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

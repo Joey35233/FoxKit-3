@@ -45,10 +45,6 @@ namespace Tpp.GameCore
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public TppTrapExecCombatLocatorCallbackDataElement(ulong id) : base(id) { }
-		public TppTrapExecCombatLocatorCallbackDataElement() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

@@ -41,10 +41,6 @@ namespace Fox.UiScene
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public UiReplaceTextureData(ulong id) : base(id) { }
-		public UiReplaceTextureData() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

@@ -52,13 +52,6 @@ namespace Fox.Animx
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		
-		public PluginAngleLimit()
-		{
-			
-		}
 		
 		public virtual Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

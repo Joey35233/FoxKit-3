@@ -65,10 +65,6 @@ namespace Tpp.GameKit
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public TppPermanentGimmickGatlingGunParameter(ulong id) : base(id) { }
-		public TppPermanentGimmickGatlingGunParameter() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

@@ -81,10 +81,6 @@ namespace Fox.EdDemo
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public ChildrenIdConvertParameter(ulong id) : base(id) { }
-		public ChildrenIdConvertParameter() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

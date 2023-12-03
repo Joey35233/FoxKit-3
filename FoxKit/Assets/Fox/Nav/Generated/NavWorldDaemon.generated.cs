@@ -36,10 +36,6 @@ namespace Fox.Nav
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public NavWorldDaemon(ulong id) : base(id) { }
-		public NavWorldDaemon() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

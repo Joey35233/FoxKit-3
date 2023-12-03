@@ -61,10 +61,6 @@ namespace Tpp.Effect
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public TppPrimRiverModelOverlay(ulong id) : base(id) { }
-		public TppPrimRiverModelOverlay() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

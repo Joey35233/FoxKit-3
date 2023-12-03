@@ -45,10 +45,6 @@ namespace Fox.EdDemo
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public DemoRelativePlayParameter(ulong id) : base(id) { }
-		public DemoRelativePlayParameter() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

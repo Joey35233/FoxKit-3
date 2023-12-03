@@ -36,10 +36,6 @@ namespace Tpp.GameKit
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public TppPermeableStaticModel(ulong id) : base(id) { }
-		public TppPermeableStaticModel() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

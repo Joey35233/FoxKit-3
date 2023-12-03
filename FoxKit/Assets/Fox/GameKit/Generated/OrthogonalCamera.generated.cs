@@ -45,10 +45,6 @@ namespace Fox.GameKit
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public OrthogonalCamera(ulong id) : base(id) { }
-		public OrthogonalCamera() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

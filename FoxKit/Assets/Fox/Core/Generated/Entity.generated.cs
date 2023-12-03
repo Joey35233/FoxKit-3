@@ -35,17 +35,6 @@ namespace Fox.Core
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public Entity(ulong id)
-		{
-			this.Id = id;
-		}
-		public Entity()
-		{
-			
-			this.Id = 0;
-		}
 		
 		public virtual Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

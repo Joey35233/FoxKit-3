@@ -51,10 +51,6 @@ namespace Tpp.GameKit
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public TppPermanentGimmickInfraredSensorParameter(ulong id) : base(id) { }
-		public TppPermanentGimmickInfraredSensorParameter() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

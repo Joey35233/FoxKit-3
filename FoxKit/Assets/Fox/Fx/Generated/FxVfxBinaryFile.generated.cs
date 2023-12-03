@@ -36,10 +36,6 @@ namespace Fox.Fx
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public FxVfxBinaryFile(ulong id) : base(id) { }
-		public FxVfxBinaryFile() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

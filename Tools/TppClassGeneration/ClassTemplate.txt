@@ -53,17 +53,6 @@ namespace {{ info.get_root_namespace() }}.{{ info.get_namespace_without_prefix()
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		{% if info.is_entity() %}public {{ info.name }}(ulong id){% if info.parent %} : base(id) { }{% else %}
-		{
-			this.Id = id;
-		}{% endif %}{% endif %}
-		public {{ info.name }}(){% if info.parent %} : base() { }{% else %}
-		{
-			{% if info.is_entity() %}
-			this.Id = 0;{% endif %}
-		}{% endif %}
 		
 		public {% if info.is_root() %}virtual{% else %}override{% endif %} Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{
@@ -171,7 +160,10 @@ namespace {{ info.get_root_namespace() }}.{{ info.get_namespace_without_prefix()
 			{
 				{% for property_name in info.get_string_map_properties() -%}
 				case "{{ info.properties[property_name].get_safe_name() }}":
-					this.{{ info.properties[property_name].get_safe_name() }}.Insert(key, {{ info.properties[property_name].get_value_extraction_string() }});
+					if (this.{{ info.properties[property_name].get_safe_name() }}.ContainsKey(key))
+						this.{{ info.properties[property_name].get_safe_name() }}[key] = {{ info.properties[property_name].get_value_extraction_string() }};
+					else
+						this.{{ info.properties[property_name].get_safe_name() }}.Insert(key, {{ info.properties[property_name].get_value_extraction_string() }});
 					return;
 				{% endfor %}default:
 					{%- if info.name == "Entity" %}

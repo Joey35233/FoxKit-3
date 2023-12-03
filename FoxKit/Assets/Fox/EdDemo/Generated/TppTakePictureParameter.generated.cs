@@ -36,10 +36,6 @@ namespace Fox.EdDemo
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public TppTakePictureParameter(ulong id) : base(id) { }
-		public TppTakePictureParameter() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

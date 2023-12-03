@@ -10,14 +10,31 @@ namespace Tpp.GameKit
 		public static readonly StrCode32 Id = new StrCode32("PutHostageInVehicle");
 		public override StrCode32 GetId() => Id;
 
-        public static TppRoutePutHostageInVehicleNodeEvent Deserialize(FileStreamReader reader)
+        public static TppRoutePutHostageInVehicleNodeEvent Deserialize(UnityEngine.GameObject gameObject, uint[] binaryData)
         {
-            uint unknown = reader.ReadUInt32();
+            TppRoutePutHostageInVehicleNodeEvent result = gameObject.AddComponent<TppRoutePutHostageInVehicleNodeEvent>();
+
+            uint unknown;
+            StrCode32 message;
+            StrCode32 routeName;
+            unsafe
+            {
+                fixed (uint* binaryDataPtr = binaryData)
+                {
+                    uint* ptr = binaryDataPtr;
+                    unknown = *ptr;
+                    ptr += 1;
+                    message = *(StrCode32*)ptr;
+                    ptr += 1;
+                    routeName = *(StrCode32*)ptr;
+                }
+            }
+
             Debug.Assert(unknown == 0);
 
-            var result = new TppRoutePutHostageInVehicleNodeEvent { unknown = unknown, message = new String(reader.ReadStrCode32().ToString()), routeName = new String(reader.ReadStrCode32().ToString()) };
-
-            reader.SkipPadding(4);
+            result.unknown = unknown;
+            result.message = new String(message.ToString());
+            result.routeName = new String(routeName.ToString());
 
             return result;
         }

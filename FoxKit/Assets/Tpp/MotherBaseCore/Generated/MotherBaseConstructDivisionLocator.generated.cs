@@ -49,10 +49,6 @@ namespace Tpp.MotherBaseCore
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public MotherBaseConstructDivisionLocator(ulong id) : base(id) { }
-		public MotherBaseConstructDivisionLocator() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

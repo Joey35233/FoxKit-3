@@ -53,10 +53,6 @@ namespace Fox.Geox
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public GeoxCollisionPyraidFreeShape(ulong id) : base(id) { }
-		public GeoxCollisionPyraidFreeShape() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

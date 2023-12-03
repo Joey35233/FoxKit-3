@@ -36,10 +36,6 @@ namespace Tpp.Ui
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public GetWormholeListReceive(ulong id) : base(id) { }
-		public GetWormholeListReceive() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

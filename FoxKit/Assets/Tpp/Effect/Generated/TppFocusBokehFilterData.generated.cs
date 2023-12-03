@@ -61,10 +61,6 @@ namespace Tpp.Effect
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public TppFocusBokehFilterData(ulong id) : base(id) { }
-		public TppFocusBokehFilterData() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

@@ -65,10 +65,6 @@ namespace Tpp.Effect
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public TppHandLightLensFlareRoot(ulong id) : base(id) { }
-		public TppHandLightLensFlareRoot() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

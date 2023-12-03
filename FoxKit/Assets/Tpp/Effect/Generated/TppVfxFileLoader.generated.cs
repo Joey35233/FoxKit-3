@@ -49,10 +49,6 @@ namespace Tpp.Effect
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public TppVfxFileLoader(ulong id) : base(id) { }
-		public TppVfxFileLoader() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

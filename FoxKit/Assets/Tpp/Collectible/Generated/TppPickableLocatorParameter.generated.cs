@@ -57,10 +57,6 @@ namespace Tpp.Collectible
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public TppPickableLocatorParameter(ulong id) : base(id) { }
-		public TppPickableLocatorParameter() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

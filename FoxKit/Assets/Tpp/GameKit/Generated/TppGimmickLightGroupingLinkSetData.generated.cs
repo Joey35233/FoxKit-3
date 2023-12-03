@@ -49,10 +49,6 @@ namespace Tpp.GameKit
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public TppGimmickLightGroupingLinkSetData(ulong id) : base(id) { }
-		public TppGimmickLightGroupingLinkSetData() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

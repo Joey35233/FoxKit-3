@@ -53,10 +53,6 @@ namespace Tpp.Sound
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public TppAreaEdgeParameter(ulong id) : base(id) { }
-		public TppAreaEdgeParameter() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

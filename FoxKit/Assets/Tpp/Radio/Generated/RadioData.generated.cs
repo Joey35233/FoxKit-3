@@ -41,10 +41,6 @@ namespace Tpp.Radio
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public RadioData(ulong id) : base(id) { }
-		public RadioData() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

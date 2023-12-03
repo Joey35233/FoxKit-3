@@ -36,10 +36,6 @@ namespace Fox.Graphx
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public GraphxPathVertexInsertionInfo(ulong id) : base(id) { }
-		public GraphxPathVertexInsertionInfo() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

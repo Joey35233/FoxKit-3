@@ -45,10 +45,6 @@ namespace Fox.Ph
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public PhPolyhedronShapeParam(ulong id) : base(id) { }
-		public PhPolyhedronShapeParam() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

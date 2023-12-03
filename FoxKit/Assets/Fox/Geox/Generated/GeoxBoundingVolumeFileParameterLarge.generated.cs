@@ -41,10 +41,6 @@ namespace Fox.Geox
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public GeoxBoundingVolumeFileParameterLarge(ulong id) : base(id) { }
-		public GeoxBoundingVolumeFileParameterLarge() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

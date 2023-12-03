@@ -36,10 +36,6 @@ namespace Fox.Nav
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public NavNavFile(ulong id) : base(id) { }
-		public NavNavFile() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

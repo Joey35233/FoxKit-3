@@ -41,10 +41,6 @@ namespace Fox.Demox
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public DemoFv2ResourceMemory(ulong id) : base(id) { }
-		public DemoFv2ResourceMemory() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

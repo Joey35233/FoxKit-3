@@ -129,10 +129,6 @@ namespace Tpp.Sound
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public TppSoundWorld(ulong id) : base(id) { }
-		public TppSoundWorld() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

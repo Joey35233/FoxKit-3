@@ -45,10 +45,6 @@ namespace Fox.EdDemo
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public TppFuneralDemoParameter(ulong id) : base(id) { }
-		public TppFuneralDemoParameter() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

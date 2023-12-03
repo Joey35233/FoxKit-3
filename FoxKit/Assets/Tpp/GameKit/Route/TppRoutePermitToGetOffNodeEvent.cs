@@ -9,6 +9,6 @@ namespace Tpp.GameKit
 		public static readonly StrCode32 Id = new StrCode32("PermitToGetOff");
 		public override StrCode32 GetId() => Id;
 
-		public static TppRoutePermitToGetOffNodeEvent Deserialize(FileStreamReader reader) => new TppRoutePermitToGetOffNodeEvent { binaryData = new StaticArray<uint>(new uint[] { reader.ReadUInt32(), reader.ReadUInt32(), reader.ReadUInt32(), reader.ReadUInt32() }), };
+		public static TppRoutePermitToGetOffNodeEvent Deserialize(UnityEngine.GameObject gameObject, uint[] binaryData) { TppRoutePermitToGetOffNodeEvent component = gameObject.AddComponent<TppRoutePermitToGetOffNodeEvent>(); component.binaryData = new StaticArray<uint>(binaryData); return component; }
 	}
 }

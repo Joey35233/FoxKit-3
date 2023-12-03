@@ -87,10 +87,6 @@ namespace Fox.Ph
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public PhBallsocketConstraint(ulong id) : base(id) { }
-		public PhBallsocketConstraint() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

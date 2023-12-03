@@ -57,10 +57,6 @@ namespace Fox.Demo
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public ClipData(ulong id) : base(id) { }
-		public ClipData() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

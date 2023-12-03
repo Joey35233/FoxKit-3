@@ -125,10 +125,6 @@ namespace Fox.Navx
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public NavxWorldGenerateParameter(ulong id) : base(id) { }
-		public NavxWorldGenerateParameter() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

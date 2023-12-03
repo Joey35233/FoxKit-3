@@ -45,10 +45,6 @@ namespace Tpp.MotherBaseCore
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public MotherBaseReplaceTextureData(ulong id) : base(id) { }
-		public MotherBaseReplaceTextureData() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

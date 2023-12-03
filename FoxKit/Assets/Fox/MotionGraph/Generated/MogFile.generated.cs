@@ -36,10 +36,6 @@ namespace Fox.MotionGraph
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public MogFile(ulong id) : base(id) { }
-		public MogFile() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

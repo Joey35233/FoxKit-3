@@ -36,10 +36,6 @@ namespace Tpp.GameKit
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public ObjectBrushPluginSkeletonModelBody(ulong id) : base(id) { }
-		public ObjectBrushPluginSkeletonModelBody() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

@@ -53,10 +53,6 @@ namespace Fox.GameKit
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public ObjectBrushBlock(ulong id) : base(id) { }
-		public ObjectBrushBlock() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

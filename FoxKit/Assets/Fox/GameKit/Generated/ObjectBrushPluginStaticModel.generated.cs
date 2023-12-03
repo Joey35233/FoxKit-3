@@ -69,10 +69,6 @@ namespace Fox.GameKit
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public ObjectBrushPluginStaticModel(ulong id) : base(id) { }
-		public ObjectBrushPluginStaticModel() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

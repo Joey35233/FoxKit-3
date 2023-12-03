@@ -77,10 +77,6 @@ namespace Tpp.Effect
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public TppWaterDropsOnCameraLens(ulong id) : base(id) { }
-		public TppWaterDropsOnCameraLens() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

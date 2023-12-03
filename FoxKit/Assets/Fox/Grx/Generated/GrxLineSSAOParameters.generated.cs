@@ -93,10 +93,6 @@ namespace Fox.Grx
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public GrxLineSSAOParameters(ulong id) : base(id) { }
-		public GrxLineSSAOParameters() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

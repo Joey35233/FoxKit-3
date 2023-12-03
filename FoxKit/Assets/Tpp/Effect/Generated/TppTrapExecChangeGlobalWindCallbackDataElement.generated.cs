@@ -65,10 +65,6 @@ namespace Tpp.Effect
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public TppTrapExecChangeGlobalWindCallbackDataElement(ulong id) : base(id) { }
-		public TppTrapExecChangeGlobalWindCallbackDataElement() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

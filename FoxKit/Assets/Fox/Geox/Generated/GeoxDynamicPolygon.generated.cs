@@ -49,10 +49,6 @@ namespace Fox.Geox
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public GeoxDynamicPolygon(ulong id) : base(id) { }
-		public GeoxDynamicPolygon() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

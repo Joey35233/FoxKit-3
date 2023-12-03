@@ -92,10 +92,6 @@ namespace Fox.Ph
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public PhMultiHingeConstraint(ulong id) : base(id) { }
-		public PhMultiHingeConstraint() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

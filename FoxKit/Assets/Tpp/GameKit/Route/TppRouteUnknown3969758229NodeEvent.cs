@@ -9,6 +9,6 @@ namespace Tpp.GameKit
 		public static readonly StrCode32 Id = HashingBitConverter.ToStrCode32(3969758229);
 		public override StrCode32 GetId() => Id;
 
-		public static TppRouteUnknown3969758229NodeEvent Deserialize(FileStreamReader reader) => new TppRouteUnknown3969758229NodeEvent { binaryData = new StaticArray<uint>(new uint[] { reader.ReadUInt32(), reader.ReadUInt32(), reader.ReadUInt32(), reader.ReadUInt32() }), };
+		public static TppRouteUnknown3969758229NodeEvent Deserialize(UnityEngine.GameObject gameObject, uint[] binaryData) { TppRouteUnknown3969758229NodeEvent component = gameObject.AddComponent<TppRouteUnknown3969758229NodeEvent>(); component.binaryData = new StaticArray<uint>(binaryData); return component; }
 	}
 }

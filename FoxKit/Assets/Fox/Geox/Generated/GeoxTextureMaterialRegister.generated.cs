@@ -49,10 +49,6 @@ namespace Fox.Geox
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public GeoxTextureMaterialRegister(ulong id) : base(id) { }
-		public GeoxTextureMaterialRegister() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

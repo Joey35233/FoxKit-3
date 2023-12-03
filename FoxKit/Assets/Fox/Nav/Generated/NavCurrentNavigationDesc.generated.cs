@@ -89,10 +89,6 @@ namespace Fox.Nav
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public NavCurrentNavigationDesc(ulong id) : base(id) { }
-		public NavCurrentNavigationDesc() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

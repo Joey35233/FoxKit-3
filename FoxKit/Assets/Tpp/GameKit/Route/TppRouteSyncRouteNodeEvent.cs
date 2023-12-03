@@ -9,11 +9,25 @@ namespace Tpp.GameKit
 		public static readonly StrCode32 Id = new StrCode32("SyncRoute");
 		public override StrCode32 GetId() => Id;
 
-        public static TppRouteSyncRouteNodeEvent Deserialize(FileStreamReader reader)
+        public static TppRouteSyncRouteNodeEvent Deserialize(UnityEngine.GameObject gameObject, uint[] binaryData)
         {
-            var result = new TppRouteSyncRouteNodeEvent { syncTableId = new String(reader.ReadStrCode32().ToString()), step = reader.ReadInt32() };
+            TppRouteSyncRouteNodeEvent result = gameObject.AddComponent<TppRouteSyncRouteNodeEvent>();
 
-            reader.SkipPadding(8);
+            StrCode32 syncTableId;
+            int step;
+            unsafe
+            {
+                fixed (uint* binaryDataPtr = binaryData)
+                {
+                    uint* ptr = binaryDataPtr;
+                    syncTableId = *(StrCode32*)ptr;
+                    ptr += 1;
+                    step = *(int*)ptr;
+                }
+            }
+
+            result.syncTableId = new String(syncTableId.ToString());
+            result.step = step;
 
             return result;
         }

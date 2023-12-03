@@ -45,10 +45,6 @@ namespace Fox.PartsBuilder
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public FoxOffsetModelDescription(ulong id) : base(id) { }
-		public FoxOffsetModelDescription() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

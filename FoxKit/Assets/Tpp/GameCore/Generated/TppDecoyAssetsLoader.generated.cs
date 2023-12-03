@@ -49,10 +49,6 @@ namespace Tpp.GameCore
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public TppDecoyAssetsLoader(ulong id) : base(id) { }
-		public TppDecoyAssetsLoader() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

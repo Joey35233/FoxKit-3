@@ -9,6 +9,6 @@ namespace Tpp.GameKit
 		public static readonly StrCode32 Id = new StrCode32("WalkerGearRelaxedRun");
 		public override StrCode32 GetId() => Id;
 
-		public static TppRouteWalkerGearRelaxedRunEdgeEvent Deserialize(FileStreamReader reader) => new TppRouteWalkerGearRelaxedRunEdgeEvent { binaryData = new StaticArray<uint>(new uint[] { reader.ReadUInt32(), reader.ReadUInt32(), reader.ReadUInt32(), reader.ReadUInt32() }), };
+		public static TppRouteWalkerGearRelaxedRunEdgeEvent Deserialize(UnityEngine.GameObject gameObject, uint[] binaryData) { TppRouteWalkerGearRelaxedRunEdgeEvent component = gameObject.AddComponent<TppRouteWalkerGearRelaxedRunEdgeEvent>(); component.binaryData = new StaticArray<uint>(binaryData); return component; }
 	}
 }

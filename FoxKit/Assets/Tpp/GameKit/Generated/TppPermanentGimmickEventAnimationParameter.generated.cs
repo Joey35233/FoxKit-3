@@ -53,10 +53,6 @@ namespace Tpp.GameKit
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public TppPermanentGimmickEventAnimationParameter(ulong id) : base(id) { }
-		public TppPermanentGimmickEventAnimationParameter() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

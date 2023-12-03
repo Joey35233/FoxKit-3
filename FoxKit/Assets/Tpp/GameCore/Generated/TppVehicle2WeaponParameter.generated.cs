@@ -93,10 +93,6 @@ namespace Tpp.GameCore
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public TppVehicle2WeaponParameter(ulong id) : base(id) { }
-		public TppVehicle2WeaponParameter() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

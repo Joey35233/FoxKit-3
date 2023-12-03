@@ -41,10 +41,6 @@ namespace Tpp.GameKit
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public TppRouteWalkerGearRelaxedWalkEdgeEvent(ulong id) : base(id) { }
-		public TppRouteWalkerGearRelaxedWalkEdgeEvent() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

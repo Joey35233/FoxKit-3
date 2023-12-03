@@ -45,10 +45,6 @@ namespace Tpp.Sound
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public TppAmbientSoundSource(ulong id) : base(id) { }
-		public TppAmbientSoundSource() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

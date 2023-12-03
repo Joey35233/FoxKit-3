@@ -61,10 +61,6 @@ namespace Fox.Grx
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public ColorCorrectionData(ulong id) : base(id) { }
-		public ColorCorrectionData() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

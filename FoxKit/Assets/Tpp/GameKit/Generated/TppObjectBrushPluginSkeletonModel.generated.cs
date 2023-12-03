@@ -97,10 +97,6 @@ namespace Tpp.GameKit
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public TppObjectBrushPluginSkeletonModel(ulong id) : base(id) { }
-		public TppObjectBrushPluginSkeletonModel() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

@@ -45,10 +45,6 @@ namespace Fox.Phx
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public PhVehicleAxisParam(ulong id) : base(id) { }
-		public PhVehicleAxisParam() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

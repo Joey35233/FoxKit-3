@@ -49,10 +49,6 @@ namespace Tpp.Effect
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public TppWeatherParasiteUnitParam(ulong id) : base(id) { }
-		public TppWeatherParasiteUnitParam() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

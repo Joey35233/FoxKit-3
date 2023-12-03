@@ -41,10 +41,6 @@ namespace Fox.Gr
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public GrViewportRenderingParameters(ulong id) : base(id) { }
-		public GrViewportRenderingParameters() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

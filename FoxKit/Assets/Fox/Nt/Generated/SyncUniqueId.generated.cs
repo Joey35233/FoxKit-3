@@ -36,10 +36,6 @@ namespace Fox.Nt
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public SyncUniqueId(ulong id) : base(id) { }
-		public SyncUniqueId() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

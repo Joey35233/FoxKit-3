@@ -35,13 +35,6 @@ namespace Fox.Ncl
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		
-		public NclTransactionCallback()
-		{
-			
-		}
 		
 		public virtual Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

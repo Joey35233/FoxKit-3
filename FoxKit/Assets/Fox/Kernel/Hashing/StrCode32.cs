@@ -1,14 +1,14 @@
 ﻿using System;
-
+using System.Runtime.InteropServices;
 using UnityEngine;
 
 namespace Fox.Kernel
 {
-    [Serializable]
+    [Serializable, StructLayout(LayoutKind.Explicit, Size = 4)]
     public struct StrCode32 : IEquatable<uint>
     {
         [SerializeField]
-        private uint _hash;
+        [FieldOffset(0)] uint _hash;
 
         public StrCode32(string str)
         {

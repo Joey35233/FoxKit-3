@@ -41,10 +41,6 @@ namespace Fox.Demox
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public DemoxEffectMemoryPoolData(ulong id) : base(id) { }
-		public DemoxEffectMemoryPoolData() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

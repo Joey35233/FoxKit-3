@@ -41,10 +41,6 @@ namespace Tpp.Effect
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public TppTrapExecOnOffVolumetricFogCallbackDataElement(ulong id) : base(id) { }
-		public TppTrapExecOnOffVolumetricFogCallbackDataElement() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

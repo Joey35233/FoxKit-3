@@ -53,10 +53,6 @@ namespace Tpp.Effect
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public TppRainFilterInterrupt(ulong id) : base(id) { }
-		public TppRainFilterInterrupt() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

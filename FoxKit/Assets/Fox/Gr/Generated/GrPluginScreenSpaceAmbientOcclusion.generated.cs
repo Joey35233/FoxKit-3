@@ -36,10 +36,6 @@ namespace Fox.Gr
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public GrPluginScreenSpaceAmbientOcclusion(ulong id) : base(id) { }
-		public GrPluginScreenSpaceAmbientOcclusion() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

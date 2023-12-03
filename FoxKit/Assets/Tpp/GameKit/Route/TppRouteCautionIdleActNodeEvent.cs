@@ -10,13 +10,27 @@ namespace Tpp.GameKit
 		public static readonly StrCode32 Id = new StrCode32("CautionIdleAct");
 		public override StrCode32 GetId() => Id;
 
-        public static TppRouteCautionIdleActNodeEvent Deserialize(FileStreamReader reader)
+        public static TppRouteCautionIdleActNodeEvent Deserialize(UnityEngine.GameObject gameObject, uint[] binaryData)
         {
-            var result = new TppRouteCautionIdleActNodeEvent { animationName = new String(reader.ReadStrCode32().ToString()), unknown = reader.ReadUInt16() };
+            TppRouteCautionIdleActNodeEvent result = gameObject.AddComponent<TppRouteCautionIdleActNodeEvent>();
 
-            Debug.Assert(result.unknown == 0);
+            StrCode32 animationName;
+            ushort unknown;
+            unsafe
+            {
+                fixed (uint* binaryDataPtr = binaryData)
+                {
+                    uint* ptr = binaryDataPtr;
+                    animationName = *(StrCode32*)ptr;
+                    ptr += 1;
+                    unknown = *(ushort*)ptr;
+                }
+            }
 
-            reader.SkipPadding(10);
+            Debug.Assert(unknown == 0);
+
+            result.animationName = new String(animationName.ToString());
+            result.unknown = unknown;
 
             return result;
         }

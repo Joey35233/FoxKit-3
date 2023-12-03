@@ -53,10 +53,6 @@ namespace Fox.GameKit
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public GkConeSightCheckParam(ulong id) : base(id) { }
-		public GkConeSightCheckParam() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

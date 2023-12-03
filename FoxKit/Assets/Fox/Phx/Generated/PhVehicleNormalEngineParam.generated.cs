@@ -49,10 +49,6 @@ namespace Fox.Phx
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public PhVehicleNormalEngineParam(ulong id) : base(id) { }
-		public PhVehicleNormalEngineParam() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

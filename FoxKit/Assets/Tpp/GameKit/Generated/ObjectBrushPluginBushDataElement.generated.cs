@@ -129,10 +129,6 @@ namespace Tpp.GameKit
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public ObjectBrushPluginBushDataElement(ulong id) : base(id) { }
-		public ObjectBrushPluginBushDataElement() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

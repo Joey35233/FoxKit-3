@@ -36,10 +36,6 @@ namespace Fox.Des
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public DesDaemon(ulong id) : base(id) { }
-		public DesDaemon() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

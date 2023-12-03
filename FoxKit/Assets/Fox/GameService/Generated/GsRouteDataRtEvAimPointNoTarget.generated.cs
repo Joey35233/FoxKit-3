@@ -36,10 +36,6 @@ namespace Fox.GameService
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public GsRouteDataRtEvAimPointNoTarget(ulong id) : base(id) { }
-		public GsRouteDataRtEvAimPointNoTarget() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

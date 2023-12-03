@@ -36,10 +36,6 @@ namespace Fox.Demo
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public DemoBlockPositionSetterBody(ulong id) : base(id) { }
-		public DemoBlockPositionSetterBody() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

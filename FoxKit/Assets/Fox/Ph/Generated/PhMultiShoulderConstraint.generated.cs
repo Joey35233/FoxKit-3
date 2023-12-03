@@ -77,10 +77,6 @@ namespace Fox.Ph
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public PhMultiShoulderConstraint(ulong id) : base(id) { }
-		public PhMultiShoulderConstraint() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

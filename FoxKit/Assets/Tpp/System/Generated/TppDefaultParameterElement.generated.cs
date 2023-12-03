@@ -41,10 +41,6 @@ namespace Tpp.System
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public TppDefaultParameterElement(ulong id) : base(id) { }
-		public TppDefaultParameterElement() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

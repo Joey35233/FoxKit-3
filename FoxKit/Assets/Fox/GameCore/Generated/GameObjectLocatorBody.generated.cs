@@ -36,10 +36,6 @@ namespace Fox.GameCore
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public GameObjectLocatorBody(ulong id) : base(id) { }
-		public GameObjectLocatorBody() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

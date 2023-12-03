@@ -53,10 +53,6 @@ namespace Tpp.Effect
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public TppSkyEffectControler(ulong id) : base(id) { }
-		public TppSkyEffectControler() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

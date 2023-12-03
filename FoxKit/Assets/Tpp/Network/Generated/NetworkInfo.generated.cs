@@ -53,10 +53,6 @@ namespace Tpp.Network
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public NetworkInfo(ulong id) : base(id) { }
-		public NetworkInfo() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{

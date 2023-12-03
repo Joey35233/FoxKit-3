@@ -49,10 +49,6 @@ namespace Tpp.GameCore
 
 			ClassInfoInitialized = true;
 		}
-
-		// Constructors
-		public TppPlayer2AdditionalPartsBlockData(ulong id) : base(id) { }
-		public TppPlayer2AdditionalPartsBlockData() : base() { }
 		
 		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
 		{
