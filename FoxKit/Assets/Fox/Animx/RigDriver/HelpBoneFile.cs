@@ -31,6 +31,7 @@ namespace Fox.Animx
             }
 
             UnityEngine.Transform target = Selection.transforms[0];
+            SkinnedMeshRenderer firstMeshRenderer = target.GetComponentInChildren<SkinnedMeshRenderer>();
 
             unsafe
             {
@@ -45,7 +46,7 @@ namespace Fox.Animx
                     {
                         var unit = (DriverUnit*)(dataPtr + offsets[i]);
 
-                        var driver = RigDriver.Deserialize(unit);
+                        var driver = RigDriver.Deserialize(unit, firstMeshRenderer.bones);
                         driver.name = $"RigDriver{i:D4}";
                     }
                 }
