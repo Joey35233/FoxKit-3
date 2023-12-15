@@ -97,6 +97,6 @@ namespace Fox.Fio
 
         public void Seek(long count) => BaseStream.Seek(count, System.IO.SeekOrigin.Begin);
 
-        public void Align(uint alignment) => BaseStream.Position = (BaseStream.Position + (alignment - 1)) & (-alignment);
+        public void Align(uint alignment) => AlignmentUtils.Align(BaseStream.Position, alignment);
     }
 }
