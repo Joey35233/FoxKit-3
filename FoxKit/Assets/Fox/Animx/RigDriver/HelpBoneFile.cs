@@ -8,7 +8,7 @@ namespace Fox.Animx
     [StructLayout(LayoutKind.Sequential, Pack = 16)]
     unsafe struct FrdvHeader
     {
-        public fixed char Signature[4];
+        public uint Signature;
 
         public uint Version;
 
@@ -17,7 +17,7 @@ namespace Fox.Animx
 
     public partial class HelpBoneFile : Fox.Core.RawFile
     {
-        public void Read(ReadOnlySpan<byte> data)
+        public static void Read(ReadOnlySpan<byte> data)
         {
             if (data.IsEmpty)
                 return;
@@ -34,12 +34,15 @@ namespace Fox.Animx
             UnityEngine.Transform target = Selection.transforms[0];
             SkinnedMeshRenderer firstMeshRenderer = target.GetComponentInChildren<SkinnedMeshRenderer>();
 
+            GameObject rigObject = new ("RIG");
+            rigObject.transform.SetParent(target);
+
             unsafe
             {
                 fixed (byte* dataPtr = data)
                 {
                     var header = (FrdvHeader*)dataPtr;
-                    Debug.Assert(header->Version == 2830171915);
+                    Debug.Assert(header->Version == 201306280);
 
                     uint* offsets = (uint*)(dataPtr + sizeof(FrdvHeader));
 
@@ -51,23 +54,9 @@ namespace Fox.Animx
 
                         var unit = (DriverUnit*)(dataPtr + offsets[i]);
 
-                        var driver = RigDriver.Deserialize(unit, firstMeshRenderer.bones);
-                        driver.name = $"RigDriver{i:D4}";
-
-                        var unitParams = (DriverUnitParams*)(dataPtr + offsets[i] + sizeof(DriverUnit));
-                        RigDriver.DeserializeParam(driver, unitParams);
-                        if (unit->Type < DriverUnitAction.DriverUnitAction19)
-                        {
-                            var unitHelper = (DriverUnitHelper*)(dataPtr + offsets[i] + sizeof(DriverUnit) + sizeof(DriverUnitParams));
-                            RigDriver.DeserializeHelper(driver, unitHelper);
-                        }
-                        else
-                        {
-                            var unitMaterial = (DriverUnitMaterial*)(dataPtr + offsets[i] + sizeof(DriverUnit) + sizeof(DriverUnitParams));
-                            RigDriver.DeserializeMaterial(driver, unitMaterial);
-                        }
-                        var unitVectors = (DriverUnitVectors*)(dataPtr + offsets[i] + sizeof(DriverUnit) + 0x30);
-                        RigDriver.DeserializeVectors(driver, unitVectors);
+                        RigDriver driver = rigObject.AddComponent<RigDriver>();
+                        if (driver != null)
+                            RigDriver.Deserialize(driver, unit, firstMeshRenderer.bones);
                     }
                 }
             }
