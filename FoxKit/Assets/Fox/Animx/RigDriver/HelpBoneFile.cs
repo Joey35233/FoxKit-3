@@ -19,6 +19,9 @@ namespace Fox.Animx
     {
         public void Read(ReadOnlySpan<byte> data)
         {
+            if (data.IsEmpty)
+                return;
+
             if (Selection.transforms.Length < 1)
             {
                 return;
@@ -42,6 +45,10 @@ namespace Fox.Animx
 
                     for (uint i = 0; i < header->EntryCount; i++)
                     {
+                        uint offset = offsets[i];
+                        if (offset == 0)
+                            continue;
+
                         var unit = (DriverUnit*)(dataPtr + offsets[i]);
 
                         var driver = RigDriver.Deserialize(unit, firstMeshRenderer.bones);
