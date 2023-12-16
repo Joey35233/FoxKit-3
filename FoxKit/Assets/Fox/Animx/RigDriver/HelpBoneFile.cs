@@ -1,9 +1,7 @@
-﻿using Fox.Fio;
 using System;
 using System.Runtime.InteropServices;
 using UnityEditor;
 using UnityEngine;
-using String = Fox.Kernel.String;
 
 namespace Fox.Animx
 {
@@ -48,6 +46,21 @@ namespace Fox.Animx
 
                         var driver = RigDriver.Deserialize(unit, firstMeshRenderer.bones);
                         driver.name = $"RigDriver{i:D4}";
+
+                        var unitParams = (DriverUnitParams*)(dataPtr + offsets[i] + sizeof(DriverUnit));
+                        RigDriver.DeserializeParam(driver, unitParams);
+                        if (unit->Type < DriverUnitAction.DriverUnitAction19)
+                        {
+                            var unitHelper = (DriverUnitHelper*)(dataPtr + offsets[i] + sizeof(DriverUnit) + sizeof(DriverUnitParams));
+                            RigDriver.DeserializeHelper(driver, unitHelper);
+                        }
+                        else
+                        {
+                            var unitMaterial = (DriverUnitMaterial*)(dataPtr + offsets[i] + sizeof(DriverUnit) + sizeof(DriverUnitParams));
+                            RigDriver.DeserializeMaterial(driver, unitMaterial);
+                        }
+                        var unitVectors = (DriverUnitVectors*)(dataPtr + offsets[i] + sizeof(DriverUnit) + 0x30);
+                        RigDriver.DeserializeVectors(driver, unitVectors);
                     }
                 }
             }
