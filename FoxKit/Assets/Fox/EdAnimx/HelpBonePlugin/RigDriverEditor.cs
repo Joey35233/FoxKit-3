@@ -60,7 +60,7 @@ namespace Fox.EdAnimx
                     var axisField = new EnumField("Axis"); axisField.bindingPath = axisField.label; root.Add(axisField);
                     break;
                 }
-                case DriverUnitAction.Type2:
+                case DriverUnitAction.WeightedCopyRotation:
                 {
                     ObjectField targetField = CreateTransformField("Target"); targetField.bindingPath = targetField.label; root.Add(targetField);
                     ObjectField sourceField = CreateTransformField("Source"); sourceField.bindingPath = sourceField.label; root.Add(sourceField);
@@ -151,6 +151,8 @@ namespace Fox.EdAnimx
 
                     var weightField = new FloatField("Weight"); weightField.bindingPath = weightField.label; root.Add(weightField);
 
+                    var weightBField = new FloatField("WeightB"); weightBField.bindingPath = weightBField.label; root.Add(weightBField);
+
                     var vecAField = new Vector3Field("VectorA"); vecAField.bindingPath = vecAField.label; root.Add(vecAField);
                     break;
                 }
@@ -217,6 +219,9 @@ namespace Fox.EdAnimx
                     var limitMinBField = new FloatField("LimitMinB"); limitMinBField.bindingPath = limitMinBField.label; root.Add(limitMinBField);
                     var limitMaxBField = new FloatField("LimitMaxB"); limitMaxBField.bindingPath = limitMaxBField.label; root.Add(limitMaxBField);
                     var axisBField = new EnumField("AxisB"); axisBField.bindingPath = axisBField.label; root.Add(axisBField);
+
+                    var vecAField = new Vector3Field("VectorA"); vecAField.bindingPath = vecAField.label; root.Add(vecAField);
+                    var vecBField = new Vector3Field("VectorB"); vecBField.bindingPath = vecBField.label; root.Add(vecBField);
                     break;
                 }
                 case DriverUnitAction.Type13:
