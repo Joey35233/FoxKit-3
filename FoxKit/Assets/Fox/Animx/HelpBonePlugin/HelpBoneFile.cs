@@ -47,9 +47,9 @@ namespace Fox.Animx
 
             public float LimitMaxB;
             public DriverLimitAxis AxisB;
-            public bool Type14Bool;
 
-            public DriverType14Enum Type14Enum;
+            public DriverRotationMode RotationMode;
+            public DriverRotationOrder RotationOrder;
         }
 
         [StructLayout(LayoutKind.Sequential)]
@@ -135,7 +135,8 @@ namespace Fox.Animx
                 driver.LimitMinB = multiAxisParam->LimitMinB;
                 driver.LimitMaxB = multiAxisParam->LimitMaxB;
                 driver.AxisB = multiAxisParam->AxisB;
-                driver.Type14Bool = multiAxisParam->Type14Bool;
+                driver.RotationMode = multiAxisParam->RotationMode;
+                driver.RotationOrder = multiAxisParam->RotationOrder;
             }
             else
             {

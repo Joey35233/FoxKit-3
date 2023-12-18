@@ -148,6 +148,8 @@ namespace Fox.Animx
                     Vector3 target_lp = TargetLocalBindPosition;
                     target_lp[(int)Axis] = axisValue * 0.1f;
 
+                    Quaternion target_lr = Quaternion.Normalize(Quaternion.SlerpUnclamped(Quaternion.identity, source_lr, WeightB));
+
                     TargetParent.GetGlobalTR(stream, out Vector3 targetParent_p, out Quaternion targetParent_r);
                     WriteLocalRotAndPos(Target, stream, targetParent_r, targetParent_p, target_lr, target_lp);
 
@@ -544,6 +546,8 @@ namespace Fox.Animx
                 case DriverLimitAxis.Z:
                     return RotateX(radians);
             }
+
+            return Quaternion.identity;
         }
 
         private static Quaternion RotateX(float radians)
@@ -566,12 +570,12 @@ namespace Fox.Animx
 
         private static Quaternion EulerToQuat(float a, float b, float c, bool invertOrder)
         {
-            float cosA = Mathf.Cos(a * 0.5);
-            float cosB = Mathf.Cos(b * 0.5);
-            float cosC = Mathf.Cos(c * 0.5);
-            float sinA = Mathf.Sin(a * 0.5);
-            float sinB = Mathf.Sin(b * 0.5);
-            float sinC = Mathf.Sin(c * 0.5);
+            float cosA = Mathf.Cos(a * 0.5f);
+            float cosB = Mathf.Cos(b * 0.5f);
+            float cosC = Mathf.Cos(c * 0.5f);
+            float sinA = Mathf.Sin(a * 0.5f);
+            float sinB = Mathf.Sin(b * 0.5f);
+            float sinC = Mathf.Sin(c * 0.5f);
             float sinBcosA = sinB * cosA;
             float sinAcosB = sinA * cosB;
             float sinBsinAcosC = sinB * sinA * cosC;
@@ -624,8 +628,8 @@ namespace Fox.Animx
         public float LimitMinB;
         public float LimitMaxB;
         public DriverLimitAxis AxisB;
-        public bool Type14Bool;
-        public DriverType14Enum Type14Enum;
+        public DriverRotationMode RotationMode;
+        public DriverRotationOrder RotationOrder;
 
         public String MaterialNameA;
 
@@ -693,8 +697,8 @@ namespace Fox.Animx
             job.LimitMinB = data.LimitMinB;
             job.LimitMaxB = data.LimitMaxB;
             job.AxisB = data.AxisB;
-            job.Type14Bool = data.Type14Bool;
-            job.Type14Enum = data.Type14Enum;
+            job.RotationMode = data.RotationMode;
+            job.RotationOrder = data.RotationOrder;
             job.VectorA = data.VectorA;
             job.VectorB = data.VectorB;
             job.VectorC = data.VectorC;
