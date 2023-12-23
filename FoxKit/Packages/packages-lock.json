@@ -7,6 +7,13 @@
       "dependencies": {},
       "hash": "9833a319b856de724ab612766d2bf24b43ceee02"
     },
+    "com.autodesk.fbx": {
+      "version": "4.2.1",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
     "com.unity.ai.navigation": {
       "version": "1.1.1",
       "depth": 0,
@@ -47,6 +54,16 @@
       "depth": 1,
       "source": "registry",
       "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.formats.fbx": {
+      "version": "4.2.1",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.timeline": "1.7.1",
+        "com.autodesk.fbx": "4.2.1"
+      },
       "url": "https://packages.unity.com"
     },
     "com.unity.ide.rider": {

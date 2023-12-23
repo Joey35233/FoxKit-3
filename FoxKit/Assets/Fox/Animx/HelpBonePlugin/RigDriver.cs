@@ -107,11 +107,11 @@ namespace Fox.Animx
                 {
                     Quaternion source_lr = GetLocalRotation(Source.GetRotation(stream), SourceParent.IsValid(stream) ? SourceParent.GetRotation(stream) : null);
 
-                    float source_lr_cosHalfTheta = Mathf.Min(Mathf.Abs(source_lr.w), 1);
+                    float cosHalfTheta = Mathf.Min(Mathf.Abs(source_lr.w), 1);
 
-                    float source_lr_halfTheta = Mathf.Acos(source_lr_cosHalfTheta);
-                    float source_lr_theta = source_lr_halfTheta * 2 * Mathf.Rad2Deg;
-                    float axisValue = Mathf.Clamp(source_lr_theta * Weight, LimitMin, LimitMax);
+                    float halfTheta = Mathf.Acos(cosHalfTheta);
+                    float theta = halfTheta * 2 * Mathf.Rad2Deg;
+                    float axisValue = Mathf.Clamp(theta * Weight, LimitMin, LimitMax);
 
                     Vector3 target_lp = TargetLocalBindPosition;
                     target_lp[(int)Axis] = axisValue * 0.1f;
@@ -139,16 +139,96 @@ namespace Fox.Animx
                 {
                     Quaternion source_lr = GetLocalRotation(Source.GetRotation(stream), SourceParent.IsValid(stream) ? SourceParent.GetRotation(stream) : null);
 
-                    float source_lr_cosHalfTheta = Mathf.Min(Mathf.Abs(source_lr.w), 1);
+                    float cosHalfTheta = Mathf.Min(Mathf.Abs(source_lr.w), 1);
 
-                    float source_lr_halfTheta = Mathf.Acos(source_lr_cosHalfTheta);
-                    float source_lr_theta = source_lr_halfTheta * 2 * Mathf.Rad2Deg;
-                    float axisValue = Mathf.Clamp(source_lr_theta * Weight, LimitMin, LimitMax);
+                    float halfTheta = Mathf.Acos(cosHalfTheta);
+                    float theta = halfTheta * 2 * Mathf.Rad2Deg;
+                    float axisValue = Mathf.Clamp(theta * Weight, LimitMin, LimitMax);
 
                     Vector3 target_lp = TargetLocalBindPosition;
                     target_lp[(int)Axis] = axisValue * 0.1f;
 
                     Quaternion target_lr = Quaternion.Normalize(Quaternion.SlerpUnclamped(Quaternion.identity, source_lr, WeightB));
+
+                    TargetParent.GetGlobalTR(stream, out Vector3 targetParent_p, out Quaternion targetParent_r);
+                    WriteLocalRotAndPos(Target, stream, targetParent_r, targetParent_p, target_lr, target_lp);
+
+                    break;
+                }
+                case DriverUnitAction.Type4:
+                {
+                    Quaternion source_lr = GetLocalRotation(Source.GetRotation(stream), SourceParent.IsValid(stream) ? SourceParent.GetRotation(stream) : null);
+
+                    Vector3 vecA_lv = source_lr * VectorA;
+                    Quaternion vecA_dr = Quaternion.FromToRotation(VectorA, vecA_lv);
+
+                    float cosHalfTheta = Mathf.Min(Mathf.Abs(vecA_dr.w), 1);
+
+                    float halfTheta = Mathf.Acos(cosHalfTheta);
+                    float theta = halfTheta * 2 * Mathf.Rad2Deg;
+                    float axisValue = Mathf.Clamp(theta * Weight, LimitMin, LimitMax);
+
+                    Vector3 target_lp = TargetLocalBindPosition;
+                    target_lp[(int)Axis] = axisValue * 0.1f;
+
+                    TargetParent.GetGlobalTR(stream, out Vector3 targetParent_p, out Quaternion targetParent_r);
+                    WriteLocalPos(Target, stream, targetParent_r, targetParent_p, target_lp);
+                    Target.SetRotation(stream, targetParent_r);
+
+                    break;
+                }
+                case DriverUnitAction.Type5:
+                {
+                    Quaternion source_lr = GetLocalRotation(Source.GetRotation(stream), SourceParent.IsValid(stream) ? SourceParent.GetRotation(stream) : null);
+
+                    Vector3 vecA_lv = source_lr * VectorA;
+
+                    Vector3 target_lp = TargetLocalBindPosition;
+
+                    Quaternion vecA_dr = Quaternion.FromToRotation(VectorA, vecA_lv);
+
+                    Quaternion target_lr;
+                    if (Weight < 0)
+                    {
+                        target_lr = Quaternion.Normalize(Quaternion.SlerpUnclamped(Quaternion.identity, vecA_dr, -Weight));
+                        target_lr = Quaternion.Inverse(target_lr);
+                    }
+                    else
+                    {
+                        target_lr = Quaternion.Normalize(Quaternion.SlerpUnclamped(Quaternion.identity, vecA_dr, Weight));
+                    }
+
+                    TargetParent.GetGlobalTR(stream, out Vector3 targetParent_p, out Quaternion targetParent_r);
+                    WriteLocalRotAndPos(Target, stream, targetParent_r, targetParent_p, target_lr, target_lp);
+
+                    break;
+                }
+                case DriverUnitAction.Type6:
+                {
+                    Quaternion source_lr = GetLocalRotation(Source.GetRotation(stream), SourceParent.IsValid(stream) ? SourceParent.GetRotation(stream) : null);
+
+                    Vector3 vecA_lv = source_lr * VectorA;
+                    Quaternion vecA_dr = Quaternion.FromToRotation(VectorA, vecA_lv);
+
+                    float cosHalfTheta = Mathf.Min(Mathf.Abs(vecA_dr.w), 1);
+
+                    float halfTheta = Mathf.Acos(cosHalfTheta);
+                    float theta = halfTheta * 2 * Mathf.Rad2Deg;
+                    float axisValue = Mathf.Clamp(theta * Weight, LimitMin, LimitMax);
+
+                    Vector3 target_lp = TargetLocalBindPosition;
+                    target_lp[(int)Axis] = (axisValue + Offset) * 0.1f;
+
+                    Quaternion target_lr;
+                    if (WeightB < 0)
+                    {
+                        target_lr = Quaternion.Normalize(Quaternion.SlerpUnclamped(Quaternion.identity, vecA_dr, -WeightB));
+                        target_lr = Quaternion.Inverse(target_lr);
+                    }
+                    else
+                    {
+                        target_lr = Quaternion.Normalize(Quaternion.SlerpUnclamped(Quaternion.identity, vecA_dr, WeightB));
+                    }
 
                     TargetParent.GetGlobalTR(stream, out Vector3 targetParent_p, out Quaternion targetParent_r);
                     WriteLocalRotAndPos(Target, stream, targetParent_r, targetParent_p, target_lr, target_lp);
