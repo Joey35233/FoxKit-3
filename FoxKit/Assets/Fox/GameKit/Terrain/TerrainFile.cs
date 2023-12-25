@@ -1,6 +1,6 @@
 using Fox.Core;
 
-namespace Fox.Gr
+namespace Fox.GameKit
 {
     public partial class TerrainFile : RawFile
     {

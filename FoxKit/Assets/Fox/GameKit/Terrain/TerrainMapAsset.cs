@@ -4,7 +4,7 @@ using Fox.Kernel;
 using System.Linq;
 using UnityEngine;
 
-namespace Fox.Gr
+namespace Fox.GameKit
 {
     public enum TerrainFileType
     {

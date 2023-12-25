@@ -2,7 +2,7 @@ using Fox.Fio;
 using System.Linq;
 using UnityEngine;
 
-namespace Fox.Gr
+namespace Fox.GameKit
 {
     public class TerrainFileReader
     {

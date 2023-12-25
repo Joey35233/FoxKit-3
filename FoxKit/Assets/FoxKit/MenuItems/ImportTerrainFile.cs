@@ -18,8 +18,8 @@ namespace FoxKit.MenuItems
 
             using var reader = new FileStreamReader(System.IO.File.OpenRead(assetPath));
 
-            Fox.Gr.TerrainMapAsset asset = ScriptableObject.CreateInstance<Fox.Gr.TerrainMapAsset>();
-            if (Fox.Gr.TerrainMapAsset.TryReadTerrainFile(asset, reader, Fox.Gr.TerrainFileType.TRE2))
+            Fox.GameKit.TerrainMapAsset asset = ScriptableObject.CreateInstance<Fox.GameKit.TerrainMapAsset>();
+            if (Fox.GameKit.TerrainMapAsset.TryReadTerrainFile(asset, reader, Fox.GameKit.TerrainFileType.TRE2))
             {
 
                 AssetDatabase.CreateAsset(asset, $"Assets/Game/Assets/{Path.GetFileNameWithoutExtension(assetPath)}.asset");

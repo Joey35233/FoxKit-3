@@ -1,10 +1,11 @@
+using Fox.GameKit;
 using System;
 using System.IO;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine.UIElements;
 
-namespace Fox.Gr.Editor
+namespace Fox.EdGameKit
 {
     [CustomEditor(typeof(TerrainMapAsset))]
     public class TerrainFileAssetEditor : UnityEditor.Editor

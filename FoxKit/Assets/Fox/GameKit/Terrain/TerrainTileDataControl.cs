@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Fox.Gr
+namespace Fox.GameKit
 {
     public struct TerrainTileDataControl
     {
