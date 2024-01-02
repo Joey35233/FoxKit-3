@@ -1,3 +1,4 @@
+using Fox.Core;
 using Fox.Fio;
 using System.IO;
 using UnityEditor;
@@ -16,20 +17,17 @@ namespace FoxKit.MenuItems
                 return;
             }
 
-            using var reader = new FileStreamReader(System.IO.File.OpenRead(assetPath));
-
-            Fox.GameKit.TerrainMapAsset asset = ScriptableObject.CreateInstance<Fox.GameKit.TerrainMapAsset>();
-            if (Fox.GameKit.TerrainMapAsset.TryReadTerrainFile(asset, reader, Fox.GameKit.TerrainFileType.TRE2))
+            Fox.Gr.Terrain.TerrainTileAsset asset = ScriptableObject.CreateInstance<Fox.Gr.Terrain.TerrainTileAsset>();
+            if (Fox.Gr.TerrainFile.TryDeserialize(asset, System.IO.File.ReadAllBytes(assetPath)))
             {
-
-                AssetDatabase.CreateAsset(asset, $"Assets/Game/Assets/{Path.GetFileNameWithoutExtension(assetPath)}.asset");
+                AssetDatabase.CreateAsset(asset, $"Assets/Game/{assetPath.Substring(assetPath.LastIndexOf("Assets"))}.asset");
 
                 // Need to save the embedded textures to the asset
                 //AssetDatabase.AddObjectToAsset(asset.LodParam, asset);
                 //AssetDatabase.AddObjectToAsset(asset.MaxHeight, asset);
                 //AssetDatabase.AddObjectToAsset(asset.MinHeight, asset);
-                AssetDatabase.AddObjectToAsset(asset.DataControl.HeightMap, asset);
-                AssetDatabase.AddObjectToAsset(asset.DataControl.ComboTexture, asset);
+                // AssetDatabase.AddObjectToAsset(asset.DataControl.HeightMap, asset);
+                // AssetDatabase.AddObjectToAsset(asset.DataControl.ComboTexture, asset);
                 //AssetDatabase.AddObjectToAsset(asset.MaterialIds, asset);
                 //AssetDatabase.AddObjectToAsset(asset.ConfigrationIds, asset);
 

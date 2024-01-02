@@ -81,5 +81,22 @@ namespace Fox.Core
 
             return null;
         }
+
+        public FoxDataNode* FindNode(String name)
+        {
+            for (FoxDataNode* node = GetSelfPointer(); node != null; node = node->GetNext())
+            {
+                if (node->Name.Hash == name.Hash32)
+                    return node;
+
+                FoxDataNode* child = node->GetChildren();
+                if (child is not null)
+                {
+                    return child->FindNode(name);
+                }
+            }
+
+            return null;
+        }
     }
 }
