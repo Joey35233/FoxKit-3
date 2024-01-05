@@ -21,16 +21,18 @@ namespace Fox.Gr.Terrain
         Tile = 1,
     }
 
-    [Serializable]
-    public struct TerrainTileDef
+    public unsafe class TerrainTileAsset : ScriptableObject
     {
+        public TerrainType Type;
+
+        public uint HeightFormat;
         public float MinHeightWS;
         public float MaxHeightWS;
 
-        public Texture2D HeightMap;
+        public Texture2DArray HeightMap;
 
         public uint ComboFormat;
-        public Texture2D ComboTexture;
+        public Texture2DArray ComboTexture;
 
         public uint Height;
         public uint Width;
@@ -38,67 +40,48 @@ namespace Fox.Gr.Terrain
         public ushort ClusterGridSize;
         public ushort MaxLodLevel;
         public ushort LodCount;
-    }
 
-    [Serializable]
-    public struct TerrainMapLocatorDesc
-    {
-        public uint TotalGridWidth;
-        public uint TotalGridHeight;
-        public uint LodCount;
-        public float MinHeightWS;
-        public float MaxHeightWS;
-        public float GridDistance;
-    }
+        public struct TerrainMapLocatorDesc
+        {
+            public uint TotalGridWidth;
+            public uint TotalGridHeight;
+            public uint LodCount;
+            public float MinHeightWS;
+            public float MaxHeightWS;
+            public float GridDistance;
+        }
 
-    [Serializable]
-    public struct TerrainTileMatMapControl
-    {
+        private TerrainMapLocatorDesc LocatorDesc;
+        public TerrainMapLocatorDesc? MapLocatorDesc => Type == TerrainType.Map ? LocatorDesc : null;
+
         public Texture2D Params;
         public Texture2D ConfigurationIds;
         public Texture2D MaterialIds;
         public Texture2D MinHeight;
         public Texture2D MaxHeight;
-    }
-
-    public unsafe class TerrainTileAsset : ScriptableObject
-    {
-        public TerrainType Type;
-
-        public TerrainTileDef TileDef;
-
-        public TerrainMapLocatorDesc MapLocatorDesc;
-
-        public TerrainTileMatMapControl MatMapControl;
-
-        [NonSerialized]
-        public uint LodCount;
 
         public void Awake()
         {
-            LodCount = TileDef.LodCount;
-
             Debug.Log("Awake called");
         }
 
         public void OnEnable()
         {
-            LodCount = TileDef.LodCount;
-
             Debug.Log("OnEnable called");
         }
 
         public void OnDisable()
         {
-            LodCount = TileDef.LodCount;
-
             Debug.Log("OnDisable called");
         }
 
         public static bool TryReadTerrainFile(TerrainTileAsset control, ReadOnlySpan<byte> data, FileType fileType)
         {
             if (fileType == FileType.TRE2)
+            {
+                control.Type = TerrainType.Map;
                 return TryReadTRE2(control, data);
+            }
 
             // if (fileType == TerrainFileType.HTRE)
             //     return TryReadHTRE(control, data);
@@ -170,7 +153,7 @@ namespace Fox.Gr.Terrain
                         uint maxLodLevel = maxLodLevelParam->GetUIntValue();
                         float gridDistance = gridDistanceParam->GetFloatValue();
 
-                        ref TerrainMapLocatorDesc locatorDesc = ref control.MapLocatorDesc;
+                        ref TerrainMapLocatorDesc locatorDesc = ref control.LocatorDesc;
                         locatorDesc.GridDistance = gridDistance;
                         locatorDesc.MinHeightWS = -50;
                         locatorDesc.MaxHeightWS = 200;
@@ -181,17 +164,16 @@ namespace Fox.Gr.Terrain
 
                         locatorDesc.LodCount = maxLodLevel + 1;
 
-                        ref TerrainTileDef def = ref control.TileDef;
-                        def.MaxLodLevel = (ushort)maxLodLevel;
-                        def.LodCount = (ushort)(def.MaxLodLevel + 1);
-                        def.MaxHeightWS = locatorDesc.MaxHeightWS;
-                        def.MinHeightWS = locatorDesc.MinHeightWS;
-                        def.Width = width / highPerLow;
-                        def.Height = height / highPerLow;
-                        def.ClusterGridSize = 32;
-                        def.ComboFormat = 6;
+                        control.MaxLodLevel = (ushort)maxLodLevel;
+                        control.LodCount = (ushort)(control.MaxLodLevel + 1);
+                        control.MaxHeightWS = locatorDesc.MaxHeightWS;
+                        control.MinHeightWS = locatorDesc.MinHeightWS;
+                        control.Width = width / highPerLow;
+                        control.Height = height / highPerLow;
+                        control.ClusterGridSize = 32;
+                        control.ComboFormat = 6;
 
-                        uint texelCount = def.Width * def.Height;
+                        uint texelCount = control.Width * control.Height;
 
                         // if (comboTextureNode->GetData() is not null)
                         // {
@@ -203,6 +185,9 @@ namespace Fox.Gr.Terrain
                         //
                         //     def.ComboTexture = ReadRGBA32TileTexture(reader, def.MapChunkWidthWS, def.MapChunkHeightWS);
                         // }
+
+                        control.HeightFormat = 1;
+
                         //
                         // if (heightMapNode->GetData() is not null)
                         // {
