@@ -1,4 +1,7 @@
-﻿namespace Fox.Ph
+﻿using Fox.Core.Utils;
+using UnityEngine;
+
+namespace Fox.Ph
 {
     public partial class PhBallsocketConstraintParam : Fox.Ph.PhConstraintParam
     {
@@ -31,5 +34,31 @@
 
         internal bool GetStopTwistFlag() => stopTwistFlag;
         internal void SetStopTwistFlag(bool value) => stopTwistFlag = value;
+
+        public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
+        {
+            refA = Fox.Kernel.Math.FoxToUnityVector3(refA);
+            refB = Fox.Kernel.Math.FoxToUnityVector3(refB);
+            springRef = Fox.Kernel.Math.FoxToUnityVector3(springRef);
+
+            base.OnDeserializeEntity(gameObject, logger);
+        }
+
+        public override void DrawGizmos()
+        {
+            if (limitedFlag && limit > 0)
+            {
+                Gizmos.color = Color.cyan;
+                Gizmos.DrawLine(Vector3.zero, refA * 0.1f);
+                Gizmos.DrawLine(Vector3.zero, refB * 0.1f);
+
+                if (springFlag && springConstant > 0)
+                {
+                    Vector3 actualSpringRef = springRefCustomFlag ? springRef : refB;
+                    Gizmos.color = Color.magenta;
+                    Gizmos.DrawLine(Vector3.zero, actualSpringRef * 0.1f);
+                }
+            }
+        }
     }
 }

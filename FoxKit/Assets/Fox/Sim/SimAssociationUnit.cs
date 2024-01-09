@@ -1,4 +1,6 @@
-﻿using Fox.Kernel;
+﻿using Fox.Core.Utils;
+using Fox.Kernel;
+using UnityEngine;
 
 namespace Fox.Sim
 {
@@ -11,5 +13,14 @@ namespace Fox.Sim
 
         private partial bool Get_initialized() => associationUnit.initialized;
         private partial void Set_initialized(bool value) => associationUnit.SetInitialized(value);
+
+        public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
+        {
+            bodyOffsetPos = Fox.Kernel.Math.FoxToUnityVector3(bodyOffsetPos);
+            constraintOffsetPos = Fox.Kernel.Math.FoxToUnityVector3(constraintOffsetPos);
+            offsetRot = Fox.Kernel.Math.FoxToUnityQuaternion(offsetRot);
+
+            base.OnDeserializeEntity(gameObject, logger);
+        }
     }
 }

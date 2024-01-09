@@ -1,4 +1,7 @@
-﻿using Fox.Kernel;
+﻿using Fox.Core.Utils;
+using System;
+using UnityEngine;
+using String = Fox.Kernel.String;
 
 namespace Fox.Ph
 {
@@ -63,5 +66,30 @@ namespace Fox.Ph
 
         internal String GetMaterial() => material;
         internal void SetMaterial(String value) => material = value;
+
+        [NonSerialized]
+        internal PhShapeParam ShapeParam;
+
+        public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
+        {
+            defaultPosition = Fox.Kernel.Math.FoxToUnityVector3(defaultPosition);
+            defaultRotation = Fox.Kernel.Math.FoxToUnityQuaternion(defaultRotation);
+
+            centerOfMassOffset = Fox.Kernel.Math.FoxToUnityVector3(centerOfMassOffset);
+
+            base.OnDeserializeEntity(gameObject, logger);
+        }
+
+        private void OnValidate()
+        {
+            defaultRotation = Quaternion.Normalize(defaultRotation);
+        }
+
+        internal void OnDrawGizmos()
+        {
+            Gizmos.matrix = Matrix4x4.TRS(defaultPosition, defaultRotation, Vector3.one);
+            if (ShapeParam != null)
+                ShapeParam.DrawGizmos();
+        }
     }
 }
