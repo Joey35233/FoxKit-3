@@ -1,4 +1,5 @@
-﻿using Fox.Core.Utils;
+﻿using Fox.Core;
+using Fox.Core.Utils;
 using Fox.Kernel;
 using UnityEngine;
 
@@ -21,6 +22,15 @@ namespace Fox.Sim
             offsetRot = Fox.Kernel.Math.FoxToUnityQuaternion(offsetRot);
 
             base.OnDeserializeEntity(gameObject, logger);
+        }
+
+        public override void OverridePropertiesForExport(EntityExportContext context)
+        {
+            context.OverrideProperty("bodyOffsetPos", Math.UnityToFoxVector3(bodyOffsetPos));
+            context.OverrideProperty("constraintOffsetPos", Math.UnityToFoxVector3(constraintOffsetPos));
+            context.OverrideProperty("offsetRot", Math.FoxToUnityQuaternion(offsetRot));
+
+            base.OverridePropertiesForExport(context);
         }
     }
 }

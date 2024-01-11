@@ -1,4 +1,5 @@
-﻿using Fox.Core.Utils;
+﻿using Fox.Core;
+using Fox.Core.Utils;
 using UnityEngine;
 
 namespace Fox.Ph
@@ -42,6 +43,15 @@ namespace Fox.Ph
             springRef = Fox.Kernel.Math.FoxToUnityVector3(springRef);
 
             base.OnDeserializeEntity(gameObject, logger);
+        }
+
+        public override void OverridePropertiesForExport(EntityExportContext context)
+        {
+            context.OverrideProperty("refA", Kernel.Math.UnityToFoxVector3(refA));
+            context.OverrideProperty("refB", Kernel.Math.UnityToFoxVector3(refB));
+            context.OverrideProperty("springRef", Kernel.Math.UnityToFoxVector3(springRef));
+
+            base.OverridePropertiesForExport(context);
         }
 
         public override void DrawGizmos()

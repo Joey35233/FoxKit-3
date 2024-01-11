@@ -1,4 +1,5 @@
-﻿using Fox.Core.Utils;
+﻿using Fox.Core;
+using Fox.Core.Utils;
 using System;
 using UnityEngine;
 
@@ -19,6 +20,13 @@ namespace Fox.Ph
             defaultPosition = Fox.Kernel.Math.FoxToUnityVector3(defaultPosition);
 
             base.OnDeserializeEntity(gameObject, logger);
+        }
+
+        public override void OverridePropertiesForExport(EntityExportContext context)
+        {
+            context.OverrideProperty("defaultPosition", Kernel.Math.UnityToFoxVector3(defaultPosition));
+
+            base.OverridePropertiesForExport(context);
         }
 
         public virtual void DrawGizmos()

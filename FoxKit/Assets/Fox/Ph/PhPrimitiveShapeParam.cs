@@ -1,4 +1,5 @@
-﻿using Fox.Core.Utils;
+﻿using Fox.Core;
+using Fox.Core.Utils;
 using UnityEngine;
 
 namespace Fox.Ph
@@ -13,6 +14,14 @@ namespace Fox.Ph
             rotation = Fox.Kernel.Math.FoxToUnityQuaternion(rotation);
 
             base.OnDeserializeEntity(gameObject, logger);
+        }
+
+        public override void OverridePropertiesForExport(EntityExportContext context)
+        {
+            context.OverrideProperty("offset", Kernel.Math.UnityToFoxVector3(offset));
+            context.OverrideProperty("rotation", Kernel.Math.FoxToUnityQuaternion(rotation));
+
+            base.OverridePropertiesForExport(context);
         }
 
         internal override void DrawGizmos()
