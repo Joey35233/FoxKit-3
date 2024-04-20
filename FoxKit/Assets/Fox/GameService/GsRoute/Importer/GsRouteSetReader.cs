@@ -219,20 +219,20 @@ namespace Fox.GameService
                             case GsRouteDataRouteEventAimPoint.Type.RouteAsSightMovePath:
                                 {
                                     GsRouteDataRtEvAimPointRouteAsSightMovePath result = new GameObject().AddComponent<GsRouteDataRtEvAimPointRouteAsSightMovePath>();
-                                    result.routeNames.Add(new Kernel.String(reader.ReadStrCode32().ToString()));
-                                    result.routeNames.Add(new Kernel.String(reader.ReadStrCode32().ToString()));
-                                    result.routeNames.Add(new Kernel.String(reader.ReadStrCode32().ToString()));
-                                    result.routeNames.Add(new Kernel.String(reader.ReadStrCode32().ToString()));
+                                    result.routeNames[0] = new Kernel.String(reader.ReadStrCode32().ToString());
+                                    result.routeNames[1] = new Kernel.String(reader.ReadStrCode32().ToString());
+                                    result.routeNames[2] = new Kernel.String(reader.ReadStrCode32().ToString());
+                                    result.routeNames[3] = new Kernel.String(reader.ReadStrCode32().ToString());
                                     aimPoint = result;
                                 }
                                 break;
                             case GsRouteDataRouteEventAimPoint.Type.RouteAsObject:
                                 {
                                     GsRouteDataRtEvAimPointRouteAsObject result = new GameObject().AddComponent<GsRouteDataRtEvAimPointRouteAsObject>();
-                                    result.routeNames.Add(new Kernel.String(reader.ReadStrCode32().ToString()));
-                                    result.routeNames.Add(new Kernel.String(reader.ReadStrCode32().ToString()));
-                                    result.routeNames.Add(new Kernel.String(reader.ReadStrCode32().ToString()));
-                                    result.routeNames.Add(new Kernel.String(reader.ReadStrCode32().ToString()));
+                                    result.routeNames[0] = new Kernel.String(reader.ReadStrCode32().ToString());
+                                    result.routeNames[1] = new Kernel.String(reader.ReadStrCode32().ToString());
+                                    result.routeNames[2] = new Kernel.String(reader.ReadStrCode32().ToString());
+                                    result.routeNames[3] = new Kernel.String(reader.ReadStrCode32().ToString());
                                     aimPoint = result;
                                 }
                                 break;

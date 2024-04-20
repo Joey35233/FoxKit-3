@@ -92,14 +92,22 @@ namespace Fox.Gr.Terrain
         private static bool TryReadTRE2(TerrainTileAsset control, ReadOnlySpan<byte> data)
         {
             if (data.IsEmpty || data.Length < sizeof(FoxDataHeader))
+            {
+                Debug.Log("Data is empty or length is less than header");
                 return false;
+            }
 
             fixed (byte* dataPtr = data)
             {
                 var header = (FoxDataHeader*)dataPtr;
 
                 if (header->Name.Hash != new String("tre2").Hash32)
+                {
+                    Debug.Log("Header hash isn't tre2");
                     return false;
+                }
+
+                Debug.Log($"Version is {header->Version}");
 
                 switch (header->Version)
                 {
@@ -107,8 +115,9 @@ namespace Fox.Gr.Terrain
                     case 3:
                         return TryReadTRE2V2or3(control, data, header);
                     case 4:
-                        //return TryReadTRE2V4(control, header);
+                        return TryReadTRE2V4(control, data, header);
                     default:
+                        Debug.Log("Unknown header version");
                         return false;
                 }
             }
@@ -219,14 +228,29 @@ namespace Fox.Gr.Terrain
             return false;
         }
 
-        private static bool TryReadHTRE(TerrainTileAsset data, FileStreamReader reader)
+        private static bool TryReadHTRE(TerrainTileAsset control, ReadOnlySpan<byte> data, FoxDataHeader* header)
         {
             return false;
         }
 
-        private static bool TryReadTRE2V4(TerrainTileAsset data, FileStreamReader reader, FoxDataHeaderContext header)
+        private static bool TryReadTRE2V4(TerrainTileAsset control, ReadOnlySpan<byte> data, FoxDataHeader* header)
         {
-            return false;
+            FoxDataNode* nodes = header->GetNodes();
+            if (nodes is null)
+            {
+                return false;
+            }
+
+            FoxDataNode* paramNode = nodes->FindNode(new String("param"));
+            FoxDataNode* maxHeightNode = nodes->FindNode(new String("maxHeight"));
+            FoxDataNode* minHeightNode = nodes->FindNode(new String("minHeight"));
+            FoxDataNode* heightMapNode = nodes->FindNode(new String("heightMap"));
+            FoxDataNode* comboTextureNode = nodes->FindNode(new String("comboTexture"));
+            FoxDataNode* materialIdsNode = nodes->FindNode(new String("materialIds"));
+            FoxDataNode* configrationIdsNode = nodes->FindNode(new String("configrationIds"));
+            FoxDataNode* layoutDescriptionNode = nodes->FindNode(new String("layoutDescription"));
+
+            return true;
         }
     }
 }

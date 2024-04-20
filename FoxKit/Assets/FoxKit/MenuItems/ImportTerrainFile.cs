@@ -14,14 +14,17 @@ namespace FoxKit.MenuItems
             string assetPath = EditorUtility.OpenFilePanel("Import Terrain", "", "tre2");
             if (System.String.IsNullOrEmpty(assetPath))
             {
+                Debug.Log("File doesn't exist or is empty");
                 return;
             }
+            Debug.Log($"File {assetPath} loaded");
 
             Fox.Gr.Terrain.TerrainTileAsset asset = ScriptableObject.CreateInstance<Fox.Gr.Terrain.TerrainTileAsset>();
             if (Fox.Gr.TerrainFile.TryDeserialize(asset, System.IO.File.ReadAllBytes(assetPath)))
             {
                 AssetDatabase.CreateAsset(asset, $"Assets/Game/{assetPath.Substring(assetPath.LastIndexOf("Assets"))}.asset");
 
+                Debug.Log($"Asset {asset.name} created");
                 // Need to save the embedded textures to the asset
                 //AssetDatabase.AddObjectToAsset(asset.LodParam, asset);
                 //AssetDatabase.AddObjectToAsset(asset.MaxHeight, asset);
@@ -32,6 +35,10 @@ namespace FoxKit.MenuItems
                 //AssetDatabase.AddObjectToAsset(asset.ConfigrationIds, asset);
 
                 AssetDatabase.SaveAssets();
+            }
+            else
+            {
+                Debug.Log($"Asset {asset.name} not created");
             }
         }
     }
