@@ -1,4 +1,4 @@
-﻿using Fox.Core;
+using Fox.Core;
 using Fox.Core.Utils;
 using Fox.Kernel;
 using System.Linq;
@@ -37,7 +37,7 @@ namespace Tpp.Effect
             {
                 Gizmos.matrix = transform.localToWorldMatrix * mat;
 
-                Gizmos.DrawCube(Vector3.zero, new Vector3(1, 0, 1));
+                Gizmos.DrawCube(Vector3.zero, new Vector3(2, 0, 2));
             }
         }
     }
