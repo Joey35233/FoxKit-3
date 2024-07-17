@@ -510,11 +510,11 @@ namespace Fox.Animx
                             target_lr = RotationOrder switch
                             {
                                 DriverRotationOrder.XYZ => EulerToQuat(euler.x, euler.y, euler.z, false),
-                                DriverRotationOrder.XZY => EulerToQuat(euler.x, euler.y, euler.z, true),
-                                DriverRotationOrder.YXZ => EulerToQuat(euler.x, euler.y, euler.z, true),
-                                DriverRotationOrder.YZX => EulerToQuat(euler.x, euler.y, euler.z, false),
-                                DriverRotationOrder.ZXY => EulerToQuat(euler.x, euler.y, euler.z, false),
-                                DriverRotationOrder.ZYX => EulerToQuat(euler.x, euler.y, euler.z, true),
+                                DriverRotationOrder.XZY => EulerToQuat(euler.x, euler.z, euler.y, true),
+                                DriverRotationOrder.YXZ => EulerToQuat(euler.y, euler.x, euler.z, true),
+                                DriverRotationOrder.YZX => EulerToQuat(euler.y, euler.z, euler.x, false),
+                                DriverRotationOrder.ZXY => EulerToQuat(euler.z, euler.x, euler.y, false),
+                                DriverRotationOrder.ZYX => EulerToQuat(euler.z, euler.y, euler.x, true),
                             };
 
                             break;

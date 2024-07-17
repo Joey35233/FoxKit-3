@@ -9,9 +9,11 @@ using String = Fox.Kernel.String;
 
 namespace Fox.Core
 {
-    [StructLayout(LayoutKind.Sequential, Size = 0x30)]
+    [StructLayout(LayoutKind.Sequential, Size = SelfSize)]
     public unsafe struct FoxDataNode
     {
+        public const int SelfSize = 0x30;
+        
         public FoxDataString Name;
         public uint Flags;
         public int DataOffset;

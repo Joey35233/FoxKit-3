@@ -4,9 +4,11 @@ using Debug = UnityEngine.Debug;
 
 namespace Fox.Core
 {
-    [StructLayout(LayoutKind.Sequential)]
+    [StructLayout(LayoutKind.Sequential, Size = SelfSize)]
     public unsafe struct FoxDataParameter
     {
+        public const int SelfSize = 0x10;
+        
         public enum DataType : ushort
         {
             UInt = 0,
