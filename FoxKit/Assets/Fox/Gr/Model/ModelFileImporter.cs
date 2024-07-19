@@ -826,7 +826,7 @@ namespace Fox.Gr
 
                     var sharedMaterials = new Material[mesh.subMeshCount];
                     for (uint j = 0; j < sharedMaterials.Length; j++)
-                        sharedMaterials[j] = new Material(Shader.Find("Fox/Gr/DebugDrawFlags"));
+                        sharedMaterials[j] = AssetDatabase.LoadAssetAtPath<Material>("Assets/Fox/Gr/Model/DebugDrawFlags.mat");
 
                     if (bones == null)
                     {
