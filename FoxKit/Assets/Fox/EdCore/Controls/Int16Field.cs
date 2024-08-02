@@ -162,24 +162,24 @@ namespace Fox.EdCore
         }
     }
 
-    [CustomPropertyDrawer(typeof(short))]
-    public class Int16Drawer : PropertyDrawer
-    {
-        private SerializedProperty property;
-        private Int16Field field;
-
-        public override VisualElement CreatePropertyGUI(SerializedProperty property)
-        {
-            this.property = property;
-
-            field = new Int16Field(property.name);
-            field.BindProperty(property);
-
-            field.labelElement.AddToClassList(PropertyField.labelUssClassName);
-            field.visualInput.AddToClassList(PropertyField.inputUssClassName);
-            field.AddToClassList(BaseField<ulong>.alignedFieldUssClassName);
-
-            return field;
-        }
-    }
+    // [CustomPropertyDrawer(typeof(short))]
+    // public class Int16Drawer : PropertyDrawer
+    // {
+    //     private SerializedProperty property;
+    //     private Int16Field field;
+    //
+    //     public override VisualElement CreatePropertyGUI(SerializedProperty property)
+    //     {
+    //         this.property = property;
+    //
+    //         field = new Int16Field(property.name);
+    //         field.BindProperty(property);
+    //
+    //         field.labelElement.AddToClassList(PropertyField.labelUssClassName);
+    //         field.visualInput.AddToClassList(PropertyField.inputUssClassName);
+    //         field.AddToClassList(BaseField<ulong>.alignedFieldUssClassName);
+    //
+    //         return field;
+    //     }
+    // }
 }

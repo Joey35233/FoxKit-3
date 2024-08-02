@@ -83,37 +83,37 @@ namespace Fox.EdCore
         }
     }
 
-    [CustomPropertyDrawer(typeof(System.Enum), true)]
-    public class EnumDrawer : PropertyDrawer
-    {
-        public override VisualElement CreatePropertyGUI(SerializedProperty property)
-        {
-            System.Type valueType = fieldInfo.FieldType;
-            bool valueTypeHasFlagsAttribute = valueType.IsDefined(typeof(System.FlagsAttribute), false);
-
-            IFoxField foxField;
-            if (valueTypeHasFlagsAttribute)
-            {
-                var field = new EnumFlagsField(property.name);
-                field.labelElement.AddToClassList(PropertyField.labelUssClassName);
-                field.visualInput.AddToClassList(PropertyField.inputUssClassName);
-                field.AddToClassList(BaseField<System.Enum>.alignedFieldUssClassName);
-
-                foxField = field;
-            }
-            else
-            {
-                var field = new EnumField(property.name);
-                field.labelElement.AddToClassList(PropertyField.labelUssClassName);
-                field.visualInput.AddToClassList(PropertyField.inputUssClassName);
-                field.AddToClassList(BaseField<System.Enum>.alignedFieldUssClassName);
-
-                foxField = field;
-            }
-
-            foxField.BindProperty(property);
-
-            return foxField as VisualElement;
-        }
-    }
+    // [CustomPropertyDrawer(typeof(System.Enum), true)]
+    // public class EnumDrawer : PropertyDrawer
+    // {
+    //     public override VisualElement CreatePropertyGUI(SerializedProperty property)
+    //     {
+    //         System.Type valueType = fieldInfo.FieldType;
+    //         bool valueTypeHasFlagsAttribute = valueType.IsDefined(typeof(System.FlagsAttribute), false);
+    //
+    //         IFoxField foxField;
+    //         if (valueTypeHasFlagsAttribute)
+    //         {
+    //             var field = new EnumFlagsField(property.name);
+    //             field.labelElement.AddToClassList(PropertyField.labelUssClassName);
+    //             field.visualInput.AddToClassList(PropertyField.inputUssClassName);
+    //             field.AddToClassList(BaseField<System.Enum>.alignedFieldUssClassName);
+    //
+    //             foxField = field;
+    //         }
+    //         else
+    //         {
+    //             var field = new EnumField(property.name);
+    //             field.labelElement.AddToClassList(PropertyField.labelUssClassName);
+    //             field.visualInput.AddToClassList(PropertyField.inputUssClassName);
+    //             field.AddToClassList(BaseField<System.Enum>.alignedFieldUssClassName);
+    //
+    //             foxField = field;
+    //         }
+    //
+    //         foxField.BindProperty(property);
+    //
+    //         return foxField as VisualElement;
+    //     }
+    // }
 }
