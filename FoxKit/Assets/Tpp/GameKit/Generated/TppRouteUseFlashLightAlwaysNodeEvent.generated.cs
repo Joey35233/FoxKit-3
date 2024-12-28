@@ -13,7 +13,7 @@ using Fox;
 namespace Tpp.GameKit
 {
 	[UnityEditor.InitializeOnLoad]
-	public partial class TppRouteUnknown1875147223NodeEvent : Fox.GameService.GsRouteDataNodeEvent
+	public partial class TppRouteUseFlashLightAlwaysNodeEvent : Fox.GameService.GsRouteDataNodeEvent
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
@@ -33,10 +33,10 @@ namespace Tpp.GameKit
 		{
 			return classInfo;
 		}
-		static TppRouteUnknown1875147223NodeEvent()
+		static TppRouteUseFlashLightAlwaysNodeEvent()
 		{
 			if (Fox.GameService.GsRouteDataNodeEvent.ClassInfoInitialized)
-				classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("TppRouteUnknown1875147223NodeEvent"), typeof(TppRouteUnknown1875147223NodeEvent), Fox.GameService.GsRouteDataNodeEvent.ClassInfo, 0, null, 0);
+				classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("TppRouteUseFlashLightAlwaysNodeEvent"), typeof(TppRouteUseFlashLightAlwaysNodeEvent), Fox.GameService.GsRouteDataNodeEvent.ClassInfo, 0, null, 0);
 			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("binaryData"), Fox.Core.PropertyInfo.PropertyType.UInt32, 76, 4, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 
 			ClassInfoInitialized = true;
