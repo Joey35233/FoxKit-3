@@ -17,9 +17,8 @@ namespace Fox.Kernel
 
         [SerializeField]
         private PathFileNameAndExtCode _hash;
+        public PathFileNameAndExtCode Hash => _hash;
 
-        public PathFileNameAndExtCode Hash => !_hash.IsValid() ? new PathFileNameAndExtCode(_cString) : _hash;
-        
         public String Extension => Hash.Extension;
 
         /// <summary>
@@ -61,7 +60,7 @@ namespace Fox.Kernel
 
         public bool IsPseudoNull() => (Length == 0) && (Hash == 0);
 
-        public bool IsHashed() => (Length == 0) && _hash.IsValid() && (_hash != Empty._hash);
+        public bool IsHashed() => (Length == 0) && (Hash != Empty.Hash);
 
         public override string ToString() => IsHashed() ? Hash.ToString() : CString;
 

@@ -250,7 +250,10 @@ namespace Fox.Core
                     {
                         var str = (Kernel.String)item;
                         _ = strings.Add(str);
-                        writer.WriteStrCode(str.Hash);
+                        if (str.Hash.IsValid())
+                            writer.WriteStrCode(str.Hash);
+                        else
+                            writer.WriteStrCode(new StrCode(str.CString));
                     }
                     break;
                 case PropertyInfo.PropertyType.Path:
