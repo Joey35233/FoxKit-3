@@ -15,5 +15,12 @@ namespace Fox.Core
 
             base.OnDeserializeEntity(gameObject, logger);
         }
+
+        public override void OverridePropertiesForExport(EntityExportContext context)
+        {
+            base.OverridePropertiesForExport(context);
+
+            context.OverrideProperty(nameof(name), new String(gameObject.name));
+        }
     }
 }

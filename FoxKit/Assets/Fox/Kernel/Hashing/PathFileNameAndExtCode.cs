@@ -1,20 +1,18 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Fox.Kernel
 {
-    [Serializable]
+    [Serializable, StructLayout(LayoutKind.Explicit, Size = 8)]
     public struct PathFileNameAndExtCode : IEquatable<ulong>
     {
+        [FormerlySerializedAs("hash")]
         [SerializeField]
-        private ulong _hash;
-
-        internal ulong Backing => _hash;
-
-        public String Extension => GetExtension();
-
+        [FieldOffset(0)] private ulong _hash;
         public PathFileNameAndExtCode(string str)
         {
             _hash = Hashing.PathFileNameAndExtCode(str);
@@ -25,7 +23,13 @@ namespace Fox.Kernel
             _hash = hash;
         }
 
-        // Kernel.StrCode
+        public bool IsValid() => _hash != 0;
+
+        internal ulong Backing => _hash;
+        
+        public String Extension => GetExtension();
+
+        // Kernel.PathFileNameAndExtCode
         public static bool operator ==(PathFileNameAndExtCode a, PathFileNameAndExtCode b) => a._hash == b._hash;
 
         public static bool operator !=(PathFileNameAndExtCode a, PathFileNameAndExtCode b) => !(a == b);

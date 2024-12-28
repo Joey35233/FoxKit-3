@@ -1,32 +1,54 @@
 ﻿using System;
-
+using System.Runtime.InteropServices;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Fox.Kernel
 {
-    [Serializable]
-#pragma warning disable CS0660 // Type defines operator == or operator != but does not override Object.Equals(object o)
-#pragma warning disable CS0661 // Type defines operator == or operator != but does not override Object.GetHashCode()
-    public struct PathFileNameCode
-#pragma warning restore CS0661 // Type defines operator == or operator != but does not override Object.GetHashCode()
-#pragma warning restore CS0660 // Type defines operator == or operator != but does not override Object.Equals(object o)
+    [Serializable, StructLayout(LayoutKind.Explicit, Size = 8)]
+    public struct PathFileNameCode : IEquatable<ulong>
     {
+        [FormerlySerializedAs("hash")]
         [SerializeField]
-        private ulong hash;
-
+        [FieldOffset(0)] private ulong _hash;
         public PathFileNameCode(string str)
         {
-            hash = Hashing.PathFileNameCode(str);
+            _hash = Hashing.PathFileNameCode(str);
         }
 
-        public static bool TryParse(string str, out PathFileNameCode outValue) =>
-            //outValue = null;
-            UInt64.TryParse(str, out outValue.hash);
+        internal PathFileNameCode(ulong hash)
+        {
+            _hash = hash;
+        }
 
-        public static bool operator ==(PathFileNameCode a, PathFileNameCode b) => a.hash == b.hash;
+        public bool IsValid() => _hash != 0;
+
+        internal ulong Backing => _hash;
+
+        // Kernel.PathFileNameCode
+        public static bool operator ==(PathFileNameCode a, PathFileNameCode b) => a._hash == b._hash;
 
         public static bool operator !=(PathFileNameCode a, PathFileNameCode b) => !(a == b);
 
-        public override string ToString() => hash.ToString("x");
+        // System.UInt64 comparisons
+        public static bool operator ==(PathFileNameCode a, ulong b) => a._hash == b;
+
+        public static bool operator !=(PathFileNameCode a, ulong b) => !(a == b);
+
+        // Generic overrides
+        public override bool Equals(object obj) => obj is PathFileNameCode rhs && this == rhs;
+
+        public override int GetHashCode() => unchecked((int)_hash);
+
+        public bool Equals(ulong other) => _hash.Equals(other);
+
+        // Bitwise operators
+        public static ulong operator &(PathFileNameCode a, ulong b) => a._hash & b;
+        public static uint operator &(PathFileNameCode a, uint b) => (uint)(a._hash & b);
+
+        public override string ToString() => $"0x{_hash:x16}";
+
+        // Step-down conversion
+        public static explicit operator PathFileNameCode32(PathFileNameCode value) => new((uint)(value._hash & 0xFFFFFFFF));
     }
 }

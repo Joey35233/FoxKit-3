@@ -17,7 +17,19 @@ namespace Fox.Kernel
 
         [SerializeField]
         private StrCode _hash;
-        public StrCode Hash => _hash;
+
+        public StrCode Hash
+        {
+            get
+            {
+                if (!_hash.IsValid())
+                    return new StrCode(_cString);
+                else if (IsHashed())
+                    return _hash;
+                else
+                    return new StrCode(_cString);
+            }
+        }
 
         public StrCode32 Hash32 => (StrCode32)Hash;
 
@@ -59,7 +71,7 @@ namespace Fox.Kernel
             _hash = hash;
         }
 
-        public bool IsHashed() => (Length == 0) && (Hash != Empty.Hash);
+        public bool IsHashed() => (Length == 0) && _hash.IsValid() && (_hash != Empty._hash);
 
         public override string ToString() => IsHashed() ? Hash.ToString() : CString;
 

@@ -19,6 +19,8 @@ namespace Fox.Kernel
         {
             _hash = hash;
         }
+        
+        public bool IsValid() => _hash != 0;
 
         internal uint Backing => _hash;
 
