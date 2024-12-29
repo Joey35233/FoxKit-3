@@ -2,7 +2,6 @@
 using Fox.Core.Utils;
 using System;
 using UnityEngine;
-using String = Fox.Kernel.String;
 
 namespace Fox.Ph
 {
@@ -65,26 +64,26 @@ namespace Fox.Ph
         internal PhRigidBodyType GetMotionType() => motionType;
         internal void SetMotionType(PhRigidBodyType value) => motionType = value;
 
-        internal String GetMaterial() => material;
-        internal void SetMaterial(String value) => material = value;
+        internal string GetMaterial() => material;
+        internal void SetMaterial(string value) => material = value;
 
         [NonSerialized]
         internal PhShapeParam ShapeParam;
 
         public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
         {
-            defaultPosition = Fox.Kernel.Math.FoxToUnityVector3(defaultPosition);
-            defaultRotation = Fox.Kernel.Math.FoxToUnityQuaternion(defaultRotation);
-            centerOfMassOffset = Fox.Kernel.Math.FoxToUnityVector3(centerOfMassOffset);
+            defaultPosition = Fox.Math.FoxToUnityVector3(defaultPosition);
+            defaultRotation = Fox.Math.FoxToUnityQuaternion(defaultRotation);
+            centerOfMassOffset = Fox.Math.FoxToUnityVector3(centerOfMassOffset);
 
             base.OnDeserializeEntity(gameObject, logger);
         }
 
         public override void OverridePropertiesForExport(EntityExportContext context)
         {
-            context.OverrideProperty("defaultPosition", Kernel.Math.UnityToFoxVector3(defaultPosition));
-            context.OverrideProperty("defaultRotation", Kernel.Math.FoxToUnityQuaternion(defaultRotation));
-            context.OverrideProperty("centerOfMassOffset", Kernel.Math.UnityToFoxVector3(centerOfMassOffset));
+            context.OverrideProperty("defaultPosition", Fox.Math.UnityToFoxVector3(defaultPosition));
+            context.OverrideProperty("defaultRotation", Fox.Math.FoxToUnityQuaternion(defaultRotation));
+            context.OverrideProperty("centerOfMassOffset", Fox.Math.UnityToFoxVector3(centerOfMassOffset));
 
             base.OverridePropertiesForExport(context);
         }

@@ -10,16 +10,16 @@ namespace Fox.Ph
 
         public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
         {
-            offset = Fox.Kernel.Math.FoxToUnityVector3(offset);
-            rotation = Fox.Kernel.Math.FoxToUnityQuaternion(rotation);
+            offset = Fox.Math.FoxToUnityVector3(offset);
+            rotation = Fox.Math.FoxToUnityQuaternion(rotation);
 
             base.OnDeserializeEntity(gameObject, logger);
         }
 
         public override void OverridePropertiesForExport(EntityExportContext context)
         {
-            context.OverrideProperty("offset", Kernel.Math.UnityToFoxVector3(offset));
-            context.OverrideProperty("rotation", Kernel.Math.FoxToUnityQuaternion(rotation));
+            context.OverrideProperty("offset", Fox.Math.UnityToFoxVector3(offset));
+            context.OverrideProperty("rotation", Fox.Math.FoxToUnityQuaternion(rotation));
 
             base.OverridePropertiesForExport(context);
         }

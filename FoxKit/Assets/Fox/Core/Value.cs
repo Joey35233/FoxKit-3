@@ -1,8 +1,7 @@
-﻿using Fox.Kernel;
+﻿using Fox;
 using System;
 using System.Collections;
 using UnityEngine;
-using String = Fox.Kernel.String;
 
 namespace Fox.Core
 {
@@ -117,7 +116,7 @@ namespace Fox.Core
             value = matrix4x4;
         }
 
-        public Value(String @string)
+        public Value(string @string)
         {
             value = @string;
         }
@@ -182,7 +181,7 @@ namespace Fox.Core
 
         public Matrix4x4 GetValueAsMatrix4() => (Matrix4x4)value;
 
-        public String GetValueAsString() => (String)value;
+        public string GetValueAsString() => (string)value;
 
         public Path GetValueAsPath() => (Path)value;
 

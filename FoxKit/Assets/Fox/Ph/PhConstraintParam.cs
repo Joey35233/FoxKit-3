@@ -17,14 +17,14 @@ namespace Fox.Ph
 
         public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
         {
-            defaultPosition = Fox.Kernel.Math.FoxToUnityVector3(defaultPosition);
+            defaultPosition = Fox.Math.FoxToUnityVector3(defaultPosition);
 
             base.OnDeserializeEntity(gameObject, logger);
         }
 
         public override void OverridePropertiesForExport(EntityExportContext context)
         {
-            context.OverrideProperty("defaultPosition", Kernel.Math.UnityToFoxVector3(defaultPosition));
+            context.OverrideProperty("defaultPosition", Fox.Math.UnityToFoxVector3(defaultPosition));
 
             base.OverridePropertiesForExport(context);
         }

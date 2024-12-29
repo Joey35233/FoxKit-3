@@ -1,9 +1,8 @@
-using Fox.Kernel;
+using Fox;
 using System;
 using System.Runtime.InteropServices;
 using UnityEditor;
 using UnityEngine;
-using String = Fox.Kernel.String;
 
 namespace Fox.Animx
 {

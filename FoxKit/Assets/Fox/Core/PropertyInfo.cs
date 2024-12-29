@@ -1,5 +1,4 @@
 ﻿using System;
-using String = Fox.Kernel.String;
 
 namespace Fox.Core
 {
@@ -95,7 +94,7 @@ namespace Fox.Core
         /// <summary>
         /// Name of the property.
         /// </summary>
-        public String Name
+        public string Name
         {
             get;
         }
@@ -182,7 +181,7 @@ namespace Fox.Core
 
         public PropertyInfo
         (
-            String name,
+            string name,
             PropertyType type,
             uint offset,
             uint arraySize = 1,
@@ -225,14 +224,14 @@ namespace Fox.Core
                 PropertyType.Float => typeof(float),
                 PropertyType.Double => typeof(double),
                 PropertyType.Bool => typeof(bool),
-                PropertyType.String => typeof(Fox.Kernel.String),
-                PropertyType.Path => typeof(Fox.Kernel.Path),
+                PropertyType.String => typeof(string),
+                PropertyType.Path => typeof(Fox.Path),
                 PropertyType.EntityPtr => propertyInfo.PtrType,
                 PropertyType.Vector3 => typeof(UnityEngine.Vector3),
                 PropertyType.Vector4 => typeof(UnityEngine.Vector4),
                 PropertyType.Quat => typeof(UnityEngine.Quaternion),
-                PropertyType.WideVector3 => typeof(Fox.Kernel.WideVector3),
-                PropertyType.Matrix3 => typeof(Fox.Kernel.Matrix3x3),
+                PropertyType.WideVector3 => typeof(Fox.WideVector3),
+                PropertyType.Matrix3 => typeof(Fox.Matrix3x3),
                 PropertyType.Matrix4 => typeof(UnityEngine.Matrix4x4),
                 PropertyType.Color => typeof(UnityEngine.Color),
                 PropertyType.FilePtr => typeof(FilePtr),

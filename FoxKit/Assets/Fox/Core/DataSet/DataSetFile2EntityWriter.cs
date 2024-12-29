@@ -1,5 +1,5 @@
 using Fox.Fio;
-using Fox.Kernel;
+using Fox;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -58,9 +58,9 @@ namespace Fox.Core
         private const uint MagicNumber = 0x746e65;
 
         private IDictionary<Entity, ulong> addresses;
-        private HashSet<Kernel.String> strings;
+        private HashSet<string> strings;
 
-        public void Write(Entity entity, EntityExportContext exportContext, IDictionary<Entity, ulong> addresses, HashSet<Kernel.String> strings, ulong address, ulong id, Stream output)
+        public void Write(Entity entity, EntityExportContext exportContext, IDictionary<Entity, ulong> addresses, HashSet<string> strings, ulong address, ulong id, Stream output)
         {
             this.addresses = addresses;
             this.strings = strings;
@@ -91,7 +91,7 @@ namespace Fox.Core
 
             foreach (EntityInfo @class in superClasses)
             {
-                foreach (System.Collections.Generic.KeyValuePair<Kernel.String, PropertyInfo> staticProperty in @class.StaticProperties)
+                foreach (System.Collections.Generic.KeyValuePair<string, PropertyInfo> staticProperty in @class.StaticProperties)
                 {
                     if (staticProperty.Value.Offset == 0)
                     {
@@ -123,7 +123,7 @@ namespace Fox.Core
             writer.Write(id);
             writer.Write(info.Version);
 
-            writer.Write(Kernel.HashingBitConverter.StrCodeToUInt64(info.Name.Hash));
+            writer.Write(Fox.HashingBitConverter.StrCodeToUInt64(new StrCode(info.Name)));
             writer.Write(Convert.ToUInt16(staticPropertyCount));
             writer.Write(Convert.ToUInt16(0)); // TODO: DynamicProperties count
             writer.Write((int)HeaderSize);
@@ -160,7 +160,7 @@ namespace Fox.Core
             ushort size = (ushort)(endPosition - headerPosition);
             output.Position = headerPosition;
 
-            writer.Write(HashingBitConverter.StrCodeToUInt64(property.Name.Hash));
+            writer.Write(HashingBitConverter.StrCodeToUInt64(new StrCode(property.Name)));
             writer.Write((byte)property.Type);
             writer.Write((byte)property.Container);
             writer.Write(arraySize);
@@ -172,22 +172,22 @@ namespace Fox.Core
 
         private ushort WriteStringMapProperty(Entity entity, EntityExportContext exportContext, PropertyInfo property, BinaryWriter writer)
         {
-            List<KeyValuePair<Kernel.String, object>> list = exportContext.OverridesProperty(property.Name.CString)
-                   ? ((IStringMap)exportContext.GetOverriddenProperty(property.Name.CString)).ToList()
+            List<KeyValuePair<string, object>> list = exportContext.OverridesProperty(property.Name)
+                   ? ((IStringMap)exportContext.GetOverriddenProperty(property.Name)).ToList()
                    : entity.GetProperty(property.Name).GetValueAsIStringMap().ToList();
 
             int skippedKeyCount = 0;
-            foreach (KeyValuePair<Kernel.String, object> item in list)
+            foreach (KeyValuePair<string, object> item in list)
             {
                 // TODO Are empty keys allowed?
-                if (System.String.IsNullOrEmpty(item.Key.CString))
+                if (System.String.IsNullOrEmpty(item.Key))
                 {
                     skippedKeyCount++;
                     continue;
                 }
 
                 _ = strings.Add(item.Key);
-                writer.Write(HashingBitConverter.StrCodeToUInt64(item.Key.Hash));
+                writer.Write(HashingBitConverter.StrCodeToUInt64(new StrCode(item.Key)));
                 WriteCollectionItem(writer, item.Value, property.Type);
                 writer.AlignWrite(16, 0x00);
             }
@@ -197,8 +197,8 @@ namespace Fox.Core
 
         private ushort WriteListProperty(Entity entity, EntityExportContext exportContext, PropertyInfo property, BinaryWriter writer)
         {
-            IList list = exportContext.OverridesProperty(property.Name.CString)
-                   ? (IList)exportContext.GetOverriddenProperty(property.Name.CString)
+            IList list = exportContext.OverridesProperty(property.Name)
+                   ? (IList)exportContext.GetOverriddenProperty(property.Name)
                    : entity.GetProperty(property.Name).GetValueAsIList();
 
             foreach (object item in list)
@@ -248,19 +248,16 @@ namespace Fox.Core
                     break;
                 case PropertyInfo.PropertyType.String:
                     {
-                        var str = (Kernel.String)item;
+                        var str = (string)item;
                         _ = strings.Add(str);
-                        if (str.Hash.IsValid())
-                            writer.WriteStrCode(str.Hash);
-                        else
-                            writer.WriteStrCode(new StrCode(str.CString));
+                        writer.WriteStrCode(new StrCode(str));
                     }
                     break;
                 case PropertyInfo.PropertyType.Path:
                     {
-                        var str = new Kernel.String(((Kernel.Path)item).CString);
+                        var str = ((Fox.Path)item).CString;
                         _ = strings.Add(str);
-                        writer.WriteStrCode(str.Hash);
+                        writer.WriteStrCode(new StrCode(str));
                     }
                     break;
                 case PropertyInfo.PropertyType.EntityPtr:
@@ -294,9 +291,9 @@ namespace Fox.Core
                 case PropertyInfo.PropertyType.FilePtr:
                     {
                         var ptr = (FilePtr)item;
-                        var str = new Kernel.String(ptr.path.CString);
+                        var str = ptr.path.CString;
                         _ = strings.Add(str);
-                        writer.WriteStrCode(str.Hash);
+                        writer.WriteStrCode(new StrCode(str));
                     }
                     break;
                 case PropertyInfo.PropertyType.EntityHandle:
@@ -313,13 +310,13 @@ namespace Fox.Core
                 case PropertyInfo.PropertyType.EntityLink:
                     {
                         var entityLink = (EntityLink)item;
-                        _ = strings.Add(new Kernel.String(entityLink.packagePath.CString));
-                        _ = strings.Add(new Kernel.String(entityLink.archivePath.CString));
-                        _ = strings.Add(new Kernel.String(entityLink.nameInArchive.CString));
+                        _ = strings.Add(entityLink.packagePath.CString);
+                        _ = strings.Add(entityLink.archivePath.CString);
+                        _ = strings.Add(entityLink.nameInArchive);
 
-                        writer.WriteStrCode(new Kernel.String(entityLink.packagePath.CString).Hash);
-                        writer.WriteStrCode(new Kernel.String(entityLink.archivePath.CString).Hash);
-                        writer.WriteStrCode(entityLink.nameInArchive.Hash);
+                        writer.WriteStrCode(new StrCode(entityLink.packagePath.CString));
+                        writer.WriteStrCode(new StrCode(entityLink.archivePath.CString));
+                        writer.WriteStrCode(new StrCode(entityLink.nameInArchive));
 
                         ulong address = 0;
                         if (entityLink.handle != null)
@@ -335,8 +332,8 @@ namespace Fox.Core
 
         private void WriteSingleValue(BinaryWriter writer, Entity entity, EntityExportContext exportContext, PropertyInfo property)
         {
-            object value = exportContext.OverridesProperty(property.Name.CString)
-                ? exportContext.GetOverriddenProperty(property.Name.CString)
+            object value = exportContext.OverridesProperty(property.Name)
+                ? exportContext.GetOverriddenProperty(property.Name)
                 : entity.GetProperty(property.Name).GetValueAsBoxedObject();
 
             WritePropertyItem(value, property.Type, writer);

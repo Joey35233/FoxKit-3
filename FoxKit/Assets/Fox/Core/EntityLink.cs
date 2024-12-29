@@ -1,7 +1,6 @@
-using Fox.Kernel;
+using Fox;
 using System;
 using UnityEngine;
-using String = Fox.Kernel.String;
 
 namespace Fox.Core
 {
@@ -34,9 +33,9 @@ namespace Fox.Core
         /// The referenced Entity's name.
         /// </summary>
         [SerializeField]
-        public String nameInArchive;
+        public string nameInArchive;
 
-        public EntityLink(Entity handle, Path packagePath, Path archivePath, String nameInArchive)
+        public EntityLink(Entity handle, Path packagePath, Path archivePath, string nameInArchive)
         {
             this.handle = handle;
             this.packagePath = packagePath;

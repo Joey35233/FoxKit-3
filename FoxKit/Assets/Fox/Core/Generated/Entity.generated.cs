@@ -31,14 +31,14 @@ namespace Fox.Core
 		}
 		static Entity()
 		{
-			classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("Entity"), typeof(Entity), null, -1, null, 2);
+			classInfo = new Fox.Core.EntityInfo("Entity", typeof(Entity), null, -1, null, 2);
 
 			ClassInfoInitialized = true;
 		}
 		
-		public virtual Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		public virtual Fox.Core.Value GetProperty(string propertyName)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				default:
 					if (this.DynamicProperties.TryGetValue(propertyName, out DynamicProperty property))
@@ -49,9 +49,9 @@ namespace Fox.Core
 			}
 		}
 
-		public virtual Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		public virtual Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				default:
 					if (this.DynamicProperties.TryGetValue(propertyName, out DynamicProperty property))
@@ -62,9 +62,9 @@ namespace Fox.Core
 			}
 		}
 
-		public virtual Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		public virtual Fox.Core.Value GetPropertyElement(string propertyName, string key)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				default:
 					if (this.DynamicProperties.TryGetValue(propertyName, out DynamicProperty property))
@@ -75,9 +75,9 @@ namespace Fox.Core
 			}
 		}
 
-		public virtual void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
+		public virtual void SetProperty(string propertyName, Fox.Core.Value value)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				default:
 					if (this.DynamicProperties.TryGetValue(propertyName, out DynamicProperty property))
@@ -89,9 +89,9 @@ namespace Fox.Core
 			}
 		}
 
-		public virtual void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
+		public virtual void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				default:
 					if (this.DynamicProperties.TryGetValue(propertyName, out DynamicProperty property))
@@ -103,9 +103,9 @@ namespace Fox.Core
 			}
 		}
 
-		public virtual void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
+		public virtual void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				default:
 					if (this.DynamicProperties.TryGetValue(propertyName, out DynamicProperty property))

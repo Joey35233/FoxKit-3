@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 using UnityEngine;
-using Math = Fox.Kernel.Math;
+using Math = Fox.Math;
 
 namespace Fox.Anim
 {

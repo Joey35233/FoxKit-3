@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Runtime.InteropServices;
-using Fox.Kernel;
+using Fox;
 
 namespace Fox.Anim
 {

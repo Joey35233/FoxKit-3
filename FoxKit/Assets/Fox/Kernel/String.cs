@@ -2,10 +2,10 @@
 using System.Runtime.InteropServices;
 using UnityEngine;
 
-namespace Fox.Kernel
+namespace Fox
 {
     [System.Serializable]
-    public class String : System.IEquatable<string>
+    public class StringDeprecate : System.IEquatable<string>
     {
         [SerializeField]
         private string _cString;
@@ -24,19 +24,19 @@ namespace Fox.Kernel
         /// <summary>
         /// The empty string.
         /// </summary>
-        public static String Empty => new("");
+        public static StringDeprecate Empty => new("");
 
         // Unfortunately, this must exist because Unity's serialization system tracks this down and screws up certain data structures like StringMap.
-        private String()
+        private StringDeprecate()
         {
             _cString = Empty.CString;
             _length = Empty.Length;
             _hash = Empty.Hash;
         }
 
-        public String(System.ReadOnlySpan<char> value) : this(new string(value)) { }
+        public StringDeprecate(System.ReadOnlySpan<char> value) : this(new string(value)) { }
 
-        public String(string name)
+        public StringDeprecate(string name)
         {
             if (name is null)
             {
@@ -52,7 +52,7 @@ namespace Fox.Kernel
             }
         }
 
-        public String(StrCode hash)
+        public StringDeprecate(StrCode hash)
         {
             _cString = null;
             _length = -1;
@@ -63,16 +63,16 @@ namespace Fox.Kernel
 
         public override string ToString() => IsHashed() ? Hash.ToString() : CString;
 
-        // Kernel.String
-        public static bool operator ==(String a, String b) => a?.Hash == b?.Hash;
-        public static bool operator !=(String a, String b) => !(a == b);
+        // Fox.String
+        public static bool operator ==(StringDeprecate a, StringDeprecate b) => a?.Hash == b?.Hash;
+        public static bool operator !=(StringDeprecate a, StringDeprecate b) => !(a == b);
 
         // System.String comparisons
-        public static bool operator ==(String a, string b) => a?.Hash == new StrCode(b);
-        public static bool operator !=(String a, string b) => !(a == b);
+        public static bool operator ==(StringDeprecate a, string b) => a?.Hash == new StrCode(b);
+        public static bool operator !=(StringDeprecate a, string b) => !(a == b);
 
         // Generic overrides
-        public override bool Equals(object obj) => obj is String rhs && this == rhs;
+        public override bool Equals(object obj) => obj is StringDeprecate rhs && this == rhs;
 
         public override int GetHashCode() => unchecked(Hash.GetHashCode());
 

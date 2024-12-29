@@ -136,7 +136,7 @@ namespace Fox.EdAnim
                                 Transform polePositionTrackProxy = CreateSegmentProxy(i, 1);
                                 unit.data.PoleRotationSource = polePositionTrackProxy;
 
-                                unit.data.ChainPlaneNormal = Kernel.Math.FoxToUnityVector3(unitDef->ChainPlaneNormal);
+                                unit.data.ChainPlaneNormal = Fox.Math.FoxToUnityVector3(unitDef->ChainPlaneNormal);
                             }
                             break;
                         case RigUnitType.LocalOrientation:
@@ -221,7 +221,7 @@ namespace Fox.EdAnim
                                 Transform polePositionTrackProxy = CreateSegmentProxy(i, 2);
                                 unit.data.PoleRotationSource = polePositionTrackProxy;
 
-                                unit.data.ChainPlaneNormal = Kernel.Math.FoxToUnityVector3(unitDef->ChainPlaneNormal);
+                                unit.data.ChainPlaneNormal = Fox.Math.FoxToUnityVector3(unitDef->ChainPlaneNormal);
                             }
                             break;
                         case RigUnitType.Unknown9:

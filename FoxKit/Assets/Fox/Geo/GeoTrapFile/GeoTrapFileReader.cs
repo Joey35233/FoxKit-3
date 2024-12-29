@@ -1,7 +1,7 @@
 using Fox.Core;
 using Fox.Core.Utils;
 using Fox.Fio;
-using Fox.Kernel;
+using Fox;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using Transform = UnityEngine.Transform;

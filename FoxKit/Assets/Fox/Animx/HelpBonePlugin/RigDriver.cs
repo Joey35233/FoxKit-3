@@ -1,4 +1,4 @@
-using Fox.Kernel;
+using Fox;
 using UnityEngine;
 using UnityEngine.Animations;
 using UnityEngine.Animations.Rigging;
@@ -637,13 +637,13 @@ namespace Fox.Animx
         public DriverRotationMode RotationMode;
         public DriverRotationOrder RotationOrder;
 
-        public String MaterialNameA;
+        public string MaterialNameA;
 
-        public String MaterialNameC;
-        public String MaterialParameterC;
-        public String MaterialNameB;
-        public String MaterialParameterA;
-        public String MaterialParameterB;
+        public string MaterialNameC;
+        public string MaterialParameterC;
+        public string MaterialNameB;
+        public string MaterialParameterA;
+        public string MaterialParameterB;
 
         public Vector3 VectorA;
         public Vector3 VectorB;

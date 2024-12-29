@@ -1,5 +1,5 @@
 using Fox.Core;
-using Fox.Kernel;
+using Fox;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -97,7 +97,7 @@ namespace Fox.EdCore
                         continue;
 
                     ICustomBindable propertyField = FoxFieldUtils.GetCustomBindableField(propertyInfo);
-                    propertyField.BindProperty(serializedObject.FindProperty($"<{propertyInfo.Name}>k__BackingField"), propertyInfo.Name.CString, propertyInfo);
+                    propertyField.BindProperty(serializedObject.FindProperty($"<{propertyInfo.Name}>k__BackingField"), propertyInfo.Name, propertyInfo);
                     var fieldElement = propertyField as VisualElement;
                     Label labelElement = fieldElement.Query<Label>(className: BaseField<float>.labelUssClassName).First();
                     if (entityInfo.LongestNamedVisibleFieldProperty is not null)

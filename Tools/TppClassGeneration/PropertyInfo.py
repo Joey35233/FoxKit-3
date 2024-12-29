@@ -40,19 +40,19 @@ class PropertyInfo:
 			"float" : "float",
 			"double" : "double",
 			"bool" : "bool",
-			"String" : "Fox.Kernel.String",
-			"Path" : "Fox.Kernel.Path",
+			"String" : "string",
+			"Path" : "Fox.Path",
 			"EntityPtr" : "object",
 			"Vector3" : "UnityEngine.Vector3",
 			"Vector4" : "UnityEngine.Vector4",
 			"Quat" : "UnityEngine.Quaternion",
-			"Matrix3" : "Fox.Kernel.Matrix3x3",
+			"Matrix3" : "Fox.Matrix3x3",
 			"Matrix4" : "UnityEngine.Matrix4x4",
 			"Color" : "UnityEngine.Color",
 			"FilePtr" : "Fox.Core.FilePtr",
 			"EntityHandle" : "Fox.Core.Entity",
 			"EntityLink" : "Fox.Core.EntityLink",
-			"WideVector3" : "Fox.Kernel.WideVector3",
+			"WideVector3" : "Fox.WideVector3",
 			"PropertyInfo" : "object"
 		}
 
@@ -122,10 +122,10 @@ class PropertyInfo:
 		if self.container == "StaticArray":
 			if self.array_size == 1:
 				return value_type_string
-			return f'Fox.Kernel.StaticArray<{value_type_string}>'
+			return f'Fox.StaticArray<{value_type_string}>'
 		if self.container == "StringMap":
-			return f'Fox.Kernel.StringMap<{value_type_string}>'
-		return f'Fox.Kernel.DynamicArray<{value_type_string}>'
+			return f'Fox.StringMap<{value_type_string}>'
+		return f'Fox.DynamicArray<{value_type_string}>'
 
 	def has_setter(self):
 		"""Gets whether the property has a setter.
@@ -156,10 +156,10 @@ class PropertyInfo:
 		value_type_string = self.get_value_type_string()
 
 		if self.container == "StaticArray":
-			return f'new Fox.Kernel.StaticArray<{value_type_string}>({self.array_size})'
+			return f'new Fox.StaticArray<{value_type_string}>({self.array_size})'
 		if self.container == "StringMap":
-			return f'new Fox.Kernel.StringMap<{value_type_string}>()'
-		return f'new Fox.Kernel.DynamicArray<{value_type_string}>()'
+			return f'new Fox.StringMap<{value_type_string}>()'
+		return f'new Fox.DynamicArray<{value_type_string}>()'
 
 	def get_value_getter_type_string(self):
 		"""Gets the type string to use with Value.GetValueAs...
@@ -284,7 +284,7 @@ class PropertyInfo:
 		enum_str = "null"
 		if self.enum_type:
 			enum_str = f'typeof({self.enum_type})'
-		return f'classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("{self.name}"), Fox.Core.PropertyInfo.PropertyType.{self.get_value_getter_type_string()}, {self.offset}, {self.array_size}, Fox.Core.PropertyInfo.ContainerType.{self.container}, {self.get_readable_string()}, {self.get_writable_string()}, {self.get_entity_ptr_type_string()}, {enum_str}, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.{"Accessor" if self.is_accessor_property() else "Field"}));'
+		return f'classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("{self.name}", Fox.Core.PropertyInfo.PropertyType.{self.get_value_getter_type_string()}, {self.offset}, {self.array_size}, Fox.Core.PropertyInfo.ContainerType.{self.container}, {self.get_readable_string()}, {self.get_writable_string()}, {self.get_entity_ptr_type_string()}, {enum_str}, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.{"Accessor" if self.is_accessor_property() else "Field"}));'
 
 	def is_collection_property(self):
 		"""Gets whether or not the property is a collection property.

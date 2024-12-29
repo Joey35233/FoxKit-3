@@ -2,7 +2,6 @@
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine.UIElements;
-using String = Fox.Kernel.String;
 
 namespace Fox.EdCore
 {
@@ -53,7 +52,7 @@ namespace Fox.EdCore
 
                 if (property.propertyType != SerializedPropertyType.String)
                 {
-                    BindingExtensions.BindProperty(this, property.FindPropertyRelative("_cString"));
+                    BindingExtensions.BindProperty(this, property);
 
                     evt.StopPropagation();
                 }
@@ -65,11 +64,11 @@ namespace Fox.EdCore
         {
             if (label is not null)
                 this.label = label;
-            BindingExtensions.BindProperty(this, property.FindPropertyRelative("_cString"));
+            BindingExtensions.BindProperty(this, property);
         }
     }
 
-    [CustomPropertyDrawer(typeof(String))]
+    [CustomPropertyDrawer(typeof(string))]
     public class StringDrawer : PropertyDrawer
     {
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
@@ -79,7 +78,7 @@ namespace Fox.EdCore
 
             field.labelElement.AddToClassList(PropertyField.labelUssClassName);
             field.visualInput.AddToClassList(PropertyField.inputUssClassName);
-            field.AddToClassList(BaseField<String>.alignedFieldUssClassName);
+            field.AddToClassList(BaseField<string>.alignedFieldUssClassName);
 
             return field;
         }

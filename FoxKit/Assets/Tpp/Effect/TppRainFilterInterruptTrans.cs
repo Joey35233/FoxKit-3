@@ -1,6 +1,6 @@
 using Fox.Core;
 using Fox.Core.Utils;
-using Fox.Kernel;
+using Fox;
 using System.Linq;
 using UnityEngine;
 
@@ -14,7 +14,7 @@ namespace Tpp.Effect
 
             for (int i = 0; i < planeMatrices.Count; i++)
             {
-                planeMatrices[i] = Fox.Kernel.Math.FoxToUnityMatrix(planeMatrices[i]);
+                planeMatrices[i] = Fox.Math.FoxToUnityMatrix(planeMatrices[i]);
             }
         }
 
@@ -25,7 +25,7 @@ namespace Tpp.Effect
             var convertedMatrices = new DynamicArray<Matrix4x4>(planeMatrices);
             for (int i = 0; i < convertedMatrices.Count; i++)
             {
-                convertedMatrices[i] = Fox.Kernel.Math.UnityToFoxMatrix(convertedMatrices[i]);
+                convertedMatrices[i] = Fox.Math.UnityToFoxMatrix(convertedMatrices[i]);
             }
 
             context.OverrideProperty(nameof(planeMatrices), convertedMatrices);

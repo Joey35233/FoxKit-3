@@ -1,4 +1,4 @@
-﻿namespace Fox.Kernel
+﻿namespace Fox
 {
     public struct WideVector3
     {

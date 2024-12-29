@@ -1,5 +1,5 @@
 ﻿using Fox.Core;
-using Fox.Kernel;
+using Fox;
 using System;
 using UnityEditor;
 using UnityEditor.UIElements;

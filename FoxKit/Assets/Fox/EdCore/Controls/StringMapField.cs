@@ -1,12 +1,11 @@
 ﻿using Fox.Core;
-using Fox.Kernel;
+using Fox;
 using System;
 using System.Collections;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
-using String = Fox.Kernel.String;
 
 namespace Fox.EdCore
 {
@@ -100,7 +99,7 @@ namespace Fox.EdCore
             {
                 var property = FoxFieldUtils.SerializedPropertyBindEventBindProperty.GetValue(evt) as SerializedProperty;
 
-                if (property.type.StartsWith("Fox.Kernel.StringMap"))
+                if (property.type.StartsWith("Fox.StringMap"))
                 {
                     StringMapProperty = property;
 
@@ -137,7 +136,7 @@ namespace Fox.EdCore
                 Undo.RecordObject(StringMapProperty.serializedObject.targetObject, $"Insert cell");
 
                 var stringMap = ListViewInput.itemsSource as StringMap<T>;
-                stringMap.Insert(new String(key), default);
+                stringMap.Insert(key, default);
 
                 // Apply without Undo so that the registered Undo event above works correctly.
                 _ = StringMapProperty.serializedObject.ApplyModifiedPropertiesWithoutUndo();
@@ -154,7 +153,7 @@ namespace Fox.EdCore
 
                 foreach (int selectedIndex in ListViewInput.selectedIndices)
                 {
-                    int absoluteIndex = (ListViewInput.itemsSource as IStringMap).OccupiedIndexToAbsoluteIndex(selectedIndex);
+                    int absoluteIndex = (ListViewInput.itemsSource as IStringMap).OccupiedIndexToBackingIndex(selectedIndex);
                     ListViewInput.itemsSource.RemoveAt(absoluteIndex);
                 }
 
@@ -168,9 +167,9 @@ namespace Fox.EdCore
         private void BindItem(VisualElement element, int index)
         {
             var stringMap = ListViewInput.itemsSource as StringMap<T>;
-            int i = (stringMap as IStringMap).OccupiedIndexToAbsoluteIndex(index);
+            int i = (stringMap as IStringMap).OccupiedIndexToBackingIndex(index);
 
-            SerializedProperty cellProperty = StringMapProperty.FindPropertyRelative("Cells").GetArrayElementAtIndex(i);
+            SerializedProperty cellProperty = StringMapProperty.FindPropertyRelative("CellsBacking").GetArrayElementAtIndex(i);
 
             var field = element as CellField;
             field.KeyField.BindProperty(cellProperty.FindPropertyRelative("Key"));

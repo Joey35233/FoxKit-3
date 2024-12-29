@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-namespace Fox.Kernel
+namespace Fox
 {
     [Serializable, StructLayout(LayoutKind.Explicit, Size = 4)]
     public struct PathFileNameCode32 : IEquatable<uint>
@@ -26,7 +26,7 @@ namespace Fox.Kernel
 
         internal uint Backing => _hash;
 
-        // Kernel.PathFileNameCode32
+        // Fox.PathFileNameCode32
         public static bool operator ==(PathFileNameCode32 a, PathFileNameCode32 b) => a._hash == b._hash;
 
         public static bool operator !=(PathFileNameCode32 a, PathFileNameCode32 b) => !(a == b);

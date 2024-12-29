@@ -10,14 +10,14 @@ namespace Fox.Graphx
         {
             base.OnDeserializeEntity(gameObject, logger);
 
-            position = Fox.Kernel.Math.FoxToUnityVector3(position);
+            position = Fox.Math.FoxToUnityVector3(position);
         }
 
         public override void OverridePropertiesForExport(EntityExportContext context)
         {
             base.OverridePropertiesForExport(context);
 
-            context.OverrideProperty(nameof(position), Fox.Kernel.Math.UnityToFoxVector3(position));
+            context.OverrideProperty(nameof(position), Fox.Math.UnityToFoxVector3(position));
         }
 
         private static readonly Vector3 Scale = Vector3.one * 0.25f;

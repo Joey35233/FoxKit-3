@@ -1,6 +1,6 @@
 using Fox.Core;
 using Fox.Core.Utils;
-using Fox.Kernel;
+using Fox;
 using UnityEngine;
 
 namespace Fox.Grx

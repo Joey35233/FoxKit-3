@@ -1,6 +1,6 @@
 using Fox.Fio;
 using Fox.GameService;
-using Fox.Kernel;
+using Fox;
 
 namespace Tpp.GameKit
 {
@@ -29,8 +29,8 @@ namespace Tpp.GameKit
                 }
             }
 
-            result.conversationLabel = new String(conversationLabel.ToString());
-            result.friendCharacterId = new String(friendCharacterId.ToString());
+            result.conversationLabel = conversationLabel.ToString();
+            result.friendCharacterId = friendCharacterId.ToString();
             result.range = range;
 
             return result;

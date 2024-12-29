@@ -2,7 +2,7 @@
 using System.Runtime.InteropServices;
 using UnityEngine;
 
-namespace Fox.Kernel
+namespace Fox
 {
     [Serializable, StructLayout(LayoutKind.Explicit, Size = 4)]
     public struct StrCode32 : IEquatable<uint>
@@ -24,7 +24,7 @@ namespace Fox.Kernel
 
         internal uint Backing => _hash;
 
-        // Kernel.StrCode32
+        // Fox.StrCode32
         public static bool operator ==(StrCode32 a, StrCode32 b) => a._hash == b._hash;
 
         public static bool operator !=(StrCode32 a, StrCode32 b) => !(a == b);

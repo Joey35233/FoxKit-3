@@ -38,7 +38,7 @@ namespace Tpp.GameKit
 
                 var direction = new Vector3((float)reader.ReadInt16() / global::System.Int16.MaxValue, (float)reader.ReadInt16() / global::System.Int16.MaxValue, (float)reader.ReadInt16() / global::System.Int16.MaxValue);
                 Quaternion rotation = Quaternion.identity;
-                rotation.SetLookRotation(Fox.Kernel.Math.FoxToUnityVector3(direction));
+                rotation.SetLookRotation(Fox.Math.FoxToUnityVector3(direction));
                 transform.rotQuat = rotation;
 
                 coverPoint.SetTransform(transform);
