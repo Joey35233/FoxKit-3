@@ -17,7 +17,6 @@ namespace Fox.Core
 
         public class ReadResult
         {
-            public List<Entity> Entities;
             public List<GameObject> GameObjects;
             public GameObject DataSetGameObject;
             public IDictionary<TransformData, TransformData> TransformDataChildToParentMap = new Dictionary<TransformData, TransformData>();
@@ -36,11 +35,12 @@ namespace Fox.Core
             stringTable = ReadStringTable(reader);
 
 			// v rlc with sai's direction, from Atvaark's FoxTool code
-            string path = "Assets/Fox/Core/DataSet/fox_dictionary.txt";
-            foreach (string line in System.IO.File.ReadAllLines(path))
-            {
-                _ = stringTable.TryAdd(new StrCode(line), line);
-            }
+            // TODO: Make different version or just figure out GZs weird path encryption
+            // string path = "Assets/Fox/Core/DataSet/fox_dictionary.txt";
+            // foreach (string line in System.IO.File.ReadAllLines(path))
+            // {
+            //     _ = stringTable.TryAdd(new StrCode(line), line);
+            // }
 			// ^
 
             reader.Seek(entityTableOffset);
@@ -73,7 +73,6 @@ namespace Fox.Core
 
             ResolveRequests(entities, gameObjects);
 
-            result.Entities = entities.Values.ToList();
             result.GameObjects = gameObjects.Values.ToList();
             return result;
         }

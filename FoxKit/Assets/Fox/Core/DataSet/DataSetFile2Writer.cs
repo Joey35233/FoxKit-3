@@ -1,5 +1,6 @@
 using Fox.Fio;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -141,13 +142,14 @@ namespace Fox.Core
 
         private static CreateDataSetResult CreateDataSet(List<Entity> entities)
         {
-            var dataSet = entities.FirstOrDefault(ent => ent is DataSet) as DataSet;
+            DataSet dataSet = entities.FirstOrDefault(ent => ent is DataSet) as DataSet;
             if (dataSet == null)
             {
                 dataSet = new GameObject("DataSet").AddComponent<DataSet>();
                 entities.Insert(0, dataSet);
             }
 
+            // Validate Entities
             int dataSetIndex = -1;
             var usedNames = new HashSet<string>();
             for (int i = 0; i < entities.Count; i++)
@@ -170,8 +172,73 @@ namespace Fox.Core
                 _ = usedNames.Add(entity.name);
             }
 
+            // Once Entities have been validated, update Data properties
+            for (int i = 0; i < entities.Count; i++)
+            {
+                if (entities[i] is Data data and not DataSet)
+                {
+                    dataSet.AddData(data);
+                    UpdateDataOwners(data);
+                }
+            }
+
             MoveItemAtIndexToFront(entities, dataSetIndex);
             return CreateDataSetResult.Success;
+        }
+
+        private static void UpdateDataOwners(Data data)
+        { 
+            EntityInfo entityInfo = data.GetClassEntityInfo();
+            foreach (PropertyInfo propertyInfo in entityInfo.OrderedStaticProperties)
+            {
+                if (propertyInfo.Type == PropertyInfo.PropertyType.EntityHandle)
+                {
+                    switch (propertyInfo.Container)
+                    {
+                    case PropertyInfo.ContainerType.StaticArray:
+                        if (propertyInfo.ArraySize == 1)
+                        {
+                            DataElement element = data.GetProperty(propertyInfo.Name).GetValueAsEntityHandle() as DataElement;
+                            if (element != null)
+                                element.SetOwner(data);
+                        }
+                        else
+                        {
+                            StaticArray<DataElement> staticArray = data.GetProperty(propertyInfo.Name).GetValueAsBoxedObject() as StaticArray<DataElement>;
+                            if (staticArray is null)
+                                continue;
+                            foreach (var element in staticArray)
+                            {
+                                if (element != null)
+                                    element.SetOwner(data);
+                            }
+                        }
+                        break;
+                    case PropertyInfo.ContainerType.DynamicArray:
+                        DynamicArray<DataElement> dynamicArray = data.GetProperty(propertyInfo.Name).GetValueAsBoxedObject() as DynamicArray<DataElement>;
+                        if (dynamicArray is null)
+                            continue;
+                        foreach (var element in dynamicArray)
+                        {
+                            if (element != null)
+                                element.SetOwner(data);
+                        }
+                        break;
+                    case PropertyInfo.ContainerType.StringMap:
+                        StringMap<DataElement> stringMap = data.GetProperty(propertyInfo.Name).GetValueAsStringMap<DataElement>() as StringMap<DataElement>;
+                        if (stringMap is null)
+                            continue;
+                        foreach (var element in stringMap)
+                        {
+                            if (element.Value != null)
+                                element.Value.SetOwner(data);
+                        }
+                        break;
+                    }
+                }
+                
+                
+            }
         }
 
         /// <summary>

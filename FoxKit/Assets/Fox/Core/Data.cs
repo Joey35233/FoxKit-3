@@ -18,8 +18,15 @@ namespace Fox.Core
         public override void OverridePropertiesForExport(EntityExportContext context)
         {
             base.OverridePropertiesForExport(context);
+            
+            // context.OverrideProperty(nameof(dataSet), context.DataSet)
 
             context.OverrideProperty(nameof(name), gameObject.name);
+        }
+
+        internal void SetDataSet(DataSet incomingDataSet)
+        {
+            this.dataSet = incomingDataSet;
         }
     }
 }

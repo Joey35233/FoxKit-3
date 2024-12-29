@@ -39,7 +39,7 @@ namespace Fox.Geox
             ForceFallDown = 0x200,
             [Description("DontFallWall")]
             DontFallWall = 0x400,
-        };
+        }
 
         public static GeoxPath2 Deserialize(GeomHeaderContext header)
         {

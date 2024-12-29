@@ -159,6 +159,56 @@ namespace Fox
         }
         void IStringMap.Insert(string key, object value) => Insert(key, value is T valueT ? valueT : throw new InvalidCastException());
 
+        private void InsertOrUpdateNoResize(string key, T value)
+        {
+            StrCode keyHash = new StrCode(key);
+            int index = (int)(keyHash & HashMask);
+
+            uint probeDistance = 0;
+            while (true)
+            {
+                Cell slot = CellsBacking[index];
+
+                // If slot is open, insert cell
+                if (!slot.Occupied)
+                {
+                    CellsBacking[index] = new Cell(probeDistance, key, value);
+                    return;
+                }
+
+                if (new StrCode(slot.Key) == keyHash)
+                {
+                    slot.Value = value;
+                    return;
+                }
+
+                // If another cell already exists
+                uint existingProbeDistance = slot.Distance;
+                if (existingProbeDistance < probeDistance)
+                {
+                    // Swap cells
+                    CellsBacking[index] = new Cell(probeDistance, key, value);
+                    key = slot.Key;
+                    value = slot.Value;
+                    probeDistance = existingProbeDistance;
+                }
+
+                index = (int)((index + 1) & HashMask); // Loop index back to 0 if it will exceed Capacity.
+                probeDistance++;
+            }
+        }
+        
+        public void InsertOrUpdate(string key, T value)
+        {
+            if (key is null)
+                throw new ArgumentNullException();
+
+            if (++CellCount >= Threshold)
+                Resize();
+
+            InsertOrUpdateNoResize(key, value);
+        }
+        
         public bool Remove(string key)
         {
             if (key is null)
