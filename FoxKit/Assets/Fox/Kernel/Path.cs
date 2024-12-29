@@ -2,7 +2,7 @@ using System;
 using System.Runtime.InteropServices;
 using UnityEngine;
 
-namespace Fox.Kernel
+namespace Fox
 {
     [Serializable]
     public class Path : IEquatable<string>
@@ -65,7 +65,7 @@ namespace Fox.Kernel
 
         public override string ToString() => IsHashed() ? Hash.ToString() : CString;
 
-        // Kernel.Path
+        // Fox.Path
         public static bool operator ==(Path a, Path b) => a?.Hash == b?.Hash;
         public static bool operator !=(Path a, Path b) => !(a == b);
 

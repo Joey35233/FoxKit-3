@@ -1,7 +1,6 @@
-using Fox.Kernel;
+using Fox;
 using System;
 using UnityEngine;
-using String = Fox.Kernel.String;
 
 namespace Tpp.GameKit
 {
@@ -15,12 +14,12 @@ namespace Tpp.GameKit
         private UnityEngine.Quaternion rotation;
 
         [SerializeField]
-        private String locatorName;
+        private string locatorName;
 
         [SerializeField]
         private Path dataSetName;
 
-        public NamedLocatorBinary(UnityEngine.Vector4 translation, UnityEngine.Quaternion rotation, String locatorName, Path dataSetName)
+        public NamedLocatorBinary(UnityEngine.Vector4 translation, UnityEngine.Quaternion rotation, string locatorName, Path dataSetName)
         {
             this.translation = translation;
             this.rotation = rotation;
@@ -36,7 +35,7 @@ namespace Tpp.GameKit
 
         public UnityEngine.Quaternion GetRotation() => rotation;
 
-        public String GetLocatorName() => locatorName;
+        public string GetLocatorName() => locatorName;
 
         public Path GetDataSetName() => dataSetName;
     }

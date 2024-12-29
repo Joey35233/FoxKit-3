@@ -15,7 +15,7 @@ namespace Fox.Core
         private const uint MagicNumber1 = 0x786f62f2;
         private const uint MagicNumber2 = 0x35;
 
-        private readonly HashSet<Kernel.String> strings = new();
+        private readonly HashSet<string> strings = new();
         private readonly Dictionary<Entity, ulong> addresses = new();
         private readonly Dictionary<Entity, ulong> ids = new();
 
@@ -78,9 +78,9 @@ namespace Fox.Core
             int stringTableOffset = (int)writer.BaseStream.Position;
 
             // Remove dupes and write string table
-            foreach (Kernel.String foxString in strings)
+            foreach (string foxString in strings)
             {
-                if (!System.String.IsNullOrEmpty(foxString.CString))
+                if (!string.IsNullOrEmpty(foxString))
                 {
                     WriteStringTableEntry(writer, foxString);
                 }
@@ -188,10 +188,10 @@ namespace Fox.Core
             list[0] = item;
         }
 
-        private void WriteStringTableEntry(BinaryWriter writer, Kernel.String foxString)
+        private void WriteStringTableEntry(BinaryWriter writer, string foxString)
         {
-            byte[] nameBytes = foxString.CString == null ? new byte[0] : Encoding.UTF8.GetBytes(foxString.CString);
-            writer.Write(Kernel.HashingBitConverter.StrCodeToUInt64(foxString.Hash));
+            byte[] nameBytes = foxString == null ? new byte[0] : Encoding.UTF8.GetBytes(foxString);
+            writer.Write(Fox.HashingBitConverter.StrCodeToUInt64(new StrCode(foxString)));
             writer.Write((uint)nameBytes.Length);
             writer.Write(nameBytes);
         }

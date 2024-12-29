@@ -2,7 +2,7 @@ using Fox.Core;
 using Fox.Core.Utils;
 using Fox.Fio;
 using Fox.Graphx;
-using Fox.Kernel;
+using Fox;
 using System;
 using UnityEditor.SceneManagement;
 using UnityEngine;
@@ -171,7 +171,7 @@ namespace Fox.GameService
                             packedZ |= 0xFFC00000;
                         float z = (float)(int)packedZ / 1024;
 
-                        node.position = Fox.Kernel.Math.FoxToUnityVector3(new Vector3(x, y, z)) + origin;
+                        node.position = Fox.Math.FoxToUnityVector3(new Vector3(x, y, z)) + origin;
                     }
                     else if (fileVersion == RouteSetVersion.TPP)
                     {
@@ -212,27 +212,27 @@ namespace Fox.GameService
                             case GsRouteDataRouteEventAimPoint.Type.Character:
                                 {
                                     GsRouteDataRtEvAimPointCharacter result = new GameObject().AddComponent<GsRouteDataRtEvAimPointCharacter>();
-                                    result.characterName = new Kernel.String(reader.ReadStrCode32().ToString());
+                                    result.characterName = reader.ReadStrCode32().ToString();
                                     aimPoint = result;
                                 }
                                 break;
                             case GsRouteDataRouteEventAimPoint.Type.RouteAsSightMovePath:
                                 {
                                     GsRouteDataRtEvAimPointRouteAsSightMovePath result = new GameObject().AddComponent<GsRouteDataRtEvAimPointRouteAsSightMovePath>();
-                                    result.routeNames[0] = new Kernel.String(reader.ReadStrCode32().ToString());
-                                    result.routeNames[1] = new Kernel.String(reader.ReadStrCode32().ToString());
-                                    result.routeNames[2] = new Kernel.String(reader.ReadStrCode32().ToString());
-                                    result.routeNames[3] = new Kernel.String(reader.ReadStrCode32().ToString());
+                                    result.routeNames[0] = reader.ReadStrCode32().ToString();
+                                    result.routeNames[1] = reader.ReadStrCode32().ToString();
+                                    result.routeNames[2] = reader.ReadStrCode32().ToString();
+                                    result.routeNames[3] = reader.ReadStrCode32().ToString();
                                     aimPoint = result;
                                 }
                                 break;
                             case GsRouteDataRouteEventAimPoint.Type.RouteAsObject:
                                 {
                                     GsRouteDataRtEvAimPointRouteAsObject result = new GameObject().AddComponent<GsRouteDataRtEvAimPointRouteAsObject>();
-                                    result.routeNames[0] = new Kernel.String(reader.ReadStrCode32().ToString());
-                                    result.routeNames[1] = new Kernel.String(reader.ReadStrCode32().ToString());
-                                    result.routeNames[2] = new Kernel.String(reader.ReadStrCode32().ToString());
-                                    result.routeNames[3] = new Kernel.String(reader.ReadStrCode32().ToString());
+                                    result.routeNames[0] = reader.ReadStrCode32().ToString();
+                                    result.routeNames[1] = reader.ReadStrCode32().ToString();
+                                    result.routeNames[2] = reader.ReadStrCode32().ToString();
+                                    result.routeNames[3] = reader.ReadStrCode32().ToString();
                                     aimPoint = result;
                                 }
                                 break;

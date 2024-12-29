@@ -3,7 +3,7 @@ using Fox.Core.Utils;
 using Fox.Fio;
 using Fox.Geo;
 using Fox.Graphx;
-using Fox.Kernel;
+using Fox;
 using UnityEngine;
 
 namespace Fox.Geox

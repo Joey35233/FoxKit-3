@@ -1,4 +1,4 @@
-using Fox.Kernel;
+using Fox;
 using UnityEngine;
 
 namespace Fox.Fio
@@ -31,7 +31,7 @@ namespace Fox.Fio
 
         public StrCode32 ReadStrCode32() => HashingBitConverter.ToStrCode32(ReadUInt32());
 
-        public String ReadNullTerminatedString() => new(ReadNullTerminatedCString());
+        public string ReadNullTerminatedString() => ReadNullTerminatedCString();
 
         public string ReadNullTerminatedCString()
         {

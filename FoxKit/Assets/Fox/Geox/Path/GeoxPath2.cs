@@ -2,11 +2,10 @@ using Fox.Core;
 using Fox.Fio;
 using Fox.Geo;
 using Fox.Graphx;
-using Fox.Kernel;
+using Fox;
 using System;
 using System.ComponentModel;
 using UnityEngine;
-using String = Fox.Kernel.String;
 
 namespace Fox.Geox
 {
@@ -77,7 +76,7 @@ namespace Fox.Geox
                 foreach (GeoxPathEdge.Tags tag in Enum.GetValues(geoEdgeTags.GetType()))
                 {
                     if (geoEdgeTags.HasFlag(tag))
-                        edge.edgeTags.Add(new String(tag.ToString()));
+                        edge.edgeTags.Add(tag.ToString());
                 }
 
                 ushort inNodeIndex = reader.ReadUInt16();

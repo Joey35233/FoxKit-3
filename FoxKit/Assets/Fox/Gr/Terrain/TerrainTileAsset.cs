@@ -5,7 +5,6 @@ using System.Linq;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Serialization;
-using String = Fox.Kernel.String;
 
 namespace Fox.Gr.Terrain
 {
@@ -101,7 +100,7 @@ namespace Fox.Gr.Terrain
             {
                 var header = (FoxDataHeader*)dataPtr;
 
-                if (header->Name.Hash != new String("tre2").Hash32)
+                if (header->Name.Hash != new StrCode32("tre2"))
                 {
                     Debug.Log("Header hash isn't tre2");
                     return false;

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Fox.Kernel
+namespace Fox
 {
     public static class TagUtils
     {
@@ -13,11 +13,11 @@ namespace Fox.Kernel
 
         private static int GetSetBitCount(ulong i) => GetSetBitCount((uint)i) + GetSetBitCount((uint)(i >> 32));
 
-        public static void AddEnumTags<T>(DynamicArray<String> array, uint tags)
+        public static void AddEnumTags<T>(DynamicArray<string> array, uint tags)
         {
             int bitCount = GetSetBitCount(tags);
 
-            var tagsArray = new DynamicArray<String>(bitCount);
+            var tagsArray = new DynamicArray<string>(bitCount);
 
             uint mask = 1;
             for (int i = 0; i < bitCount; mask <<= 1)
@@ -26,20 +26,20 @@ namespace Fox.Kernel
                 if (tag != 0)
                 {
                     if (Enum.IsDefined(typeof(T), tag))
-                        tagsArray.Add(new String(Enum.GetName(typeof(T), tag)));
+                        tagsArray.Add(Enum.GetName(typeof(T), tag));
                     else
-                        tagsArray.Add(new String(tag.ToString()));
+                        tagsArray.Add(tag.ToString());
 
                     i++;
                 }
             }
         }
 
-        public static void AddEnumTags<T>(DynamicArray<String> array, ulong tags)
+        public static void AddEnumTags<T>(DynamicArray<string> array, ulong tags)
         {
             int bitCount = GetSetBitCount(tags);
 
-            var tagsArray = new DynamicArray<String>(bitCount);
+            var tagsArray = new DynamicArray<string>(bitCount);
 
             ulong mask = 1;
             for (int i = 0; i < bitCount; mask <<= 1)
@@ -48,9 +48,9 @@ namespace Fox.Kernel
                 if (tag != 0)
                 {
                     if (Enum.IsDefined(typeof(T), tag))
-                        tagsArray.Add(new String(Enum.GetName(typeof(T), tag)));
+                        tagsArray.Add(Enum.GetName(typeof(T), tag));
                     else
-                        tagsArray.Add(new String(tag.ToString()));
+                        tagsArray.Add(tag.ToString());
 
                     i++;
                 }

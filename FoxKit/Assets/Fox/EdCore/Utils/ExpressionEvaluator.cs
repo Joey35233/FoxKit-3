@@ -323,7 +323,7 @@ namespace Fox.EdCore
                         case '%':
                             return (T)(object)((int)(object)values[0] % (int)(object)values[1]);
                         case '^':
-                            return (T)(object)(int)Math.Pow((int)(object)values[0], (int)(object)values[1]);
+                            return (T)(object)(int)System.Math.Pow((int)(object)values[0], (int)(object)values[1]);
                     }
                 }
             }

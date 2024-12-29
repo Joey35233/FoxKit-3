@@ -1,7 +1,6 @@
-﻿using Fox.Kernel;
+﻿using Fox;
 using System;
 using System.Runtime.InteropServices;
-using String = Fox.Kernel.String;
 
 namespace Fox.Core
 {

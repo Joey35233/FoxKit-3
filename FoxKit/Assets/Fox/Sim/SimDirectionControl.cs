@@ -1,4 +1,4 @@
-﻿using Fox.Kernel;
+﻿using Fox;
 
 namespace Fox.Sim
 {
@@ -6,8 +6,8 @@ namespace Fox.Sim
     {
         private SimDirectionControlParam param => controlParam;
 
-        private partial String Get_refBone() => param.GetRefBone();
-        private partial void Set_refBone(String value) => param.SetRefBone(value);
+        private partial string Get_refBone() => param.GetRefBone();
+        private partial void Set_refBone(string value) => param.SetRefBone(value);
 
         private partial UnityEngine.Quaternion Get_offset() => param.GetOffset();
         private partial void Set_offset(UnityEngine.Quaternion value) => param.SetOffset(value);

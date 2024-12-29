@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 using UnityEngine;
 
-namespace Fox.Kernel
+namespace Fox
 {
     [System.Serializable]
     public class DynamicArray<T> : IList<T>, IList

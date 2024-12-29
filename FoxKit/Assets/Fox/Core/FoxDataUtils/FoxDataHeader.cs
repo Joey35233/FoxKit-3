@@ -4,7 +4,6 @@ using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using UnityEngine.UIElements;
-using String = Fox.Kernel.String;
 
 namespace Fox.Core
 {

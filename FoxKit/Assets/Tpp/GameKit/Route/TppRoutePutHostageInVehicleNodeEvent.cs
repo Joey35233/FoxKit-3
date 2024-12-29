@@ -1,6 +1,6 @@
 using Fox.Fio;
 using Fox.GameService;
-using Fox.Kernel;
+using Fox;
 using UnityEngine;
 
 namespace Tpp.GameKit
@@ -33,8 +33,8 @@ namespace Tpp.GameKit
             Debug.Assert(unknown == 0);
 
             result.unknown = unknown;
-            result.message = new String(message.ToString());
-            result.routeName = new String(routeName.ToString());
+            result.message = message.ToString();
+            result.routeName = routeName.ToString();
 
             return result;
         }

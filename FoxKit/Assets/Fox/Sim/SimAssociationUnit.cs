@@ -1,6 +1,6 @@
 ﻿using Fox.Core;
 using Fox.Core.Utils;
-using Fox.Kernel;
+using Fox;
 using UnityEngine;
 
 namespace Fox.Sim
@@ -9,17 +9,17 @@ namespace Fox.Sim
     {
         private SimAssociationUnitParam associationUnit => param;
 
-        private partial String Get_boneName() => associationUnit.boneName;
-        private partial void Set_boneName(String value) => associationUnit.boneName = value;
+        private partial string Get_boneName() => associationUnit.boneName;
+        private partial void Set_boneName(string value) => associationUnit.boneName = value;
 
         private partial bool Get_initialized() => associationUnit.initialized;
         private partial void Set_initialized(bool value) => associationUnit.SetInitialized(value);
 
         public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
         {
-            bodyOffsetPos = Fox.Kernel.Math.FoxToUnityVector3(bodyOffsetPos);
-            constraintOffsetPos = Fox.Kernel.Math.FoxToUnityVector3(constraintOffsetPos);
-            offsetRot = Fox.Kernel.Math.FoxToUnityQuaternion(offsetRot);
+            bodyOffsetPos = Fox.Math.FoxToUnityVector3(bodyOffsetPos);
+            constraintOffsetPos = Fox.Math.FoxToUnityVector3(constraintOffsetPos);
+            offsetRot = Fox.Math.FoxToUnityQuaternion(offsetRot);
 
             base.OnDeserializeEntity(gameObject, logger);
         }

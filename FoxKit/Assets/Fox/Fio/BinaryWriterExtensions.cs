@@ -1,4 +1,4 @@
-using Fox.Kernel;
+using Fox;
 using System.IO;
 
 namespace Fox.Fio
@@ -43,10 +43,10 @@ namespace Fox.Fio
 
         public static void WritePathFileNameAndExtCode(this BinaryWriter writer, PathFileNameAndExtCode hash) => writer.Write(HashingBitConverter.PathFileNameAndExtCodeToUInt64(hash));
 
-        public static void WriteNullTerminatedString(this BinaryWriter writer, String str)
+        public static void WriteNullTerminatedString(this BinaryWriter writer, string str)
         {
-            writer.Write(str.CString.ToCharArray());
-            writer.Write('/');
+            writer.Write(str.ToCharArray());
+            writer.Write('\0');
         }
 
         public static void WriteZeros(this BinaryWriter writer, int count)

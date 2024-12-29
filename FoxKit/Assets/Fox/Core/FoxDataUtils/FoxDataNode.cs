@@ -1,11 +1,10 @@
 ﻿using Fox.Fio;
-using Fox.Kernel;
+using Fox;
 using System;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using UnityEngine.UIElements;
-using String = Fox.Kernel.String;
 
 namespace Fox.Core
 {
@@ -88,7 +87,7 @@ namespace Fox.Core
         {
             for (FoxDataNode* node = GetSelfPointer(); node != null; node = node->GetNext())
             {
-                if (node->Name.Hash == name.Hash32)
+                if (node->Name.Hash == new StrCode32(name))
                     return node;
 
                 FoxDataNode* child = node->GetChildren();

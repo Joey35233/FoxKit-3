@@ -38,18 +38,18 @@ namespace Fox.Ph
 
         public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
         {
-            refA = Fox.Kernel.Math.FoxToUnityVector3(refA);
-            refB = Fox.Kernel.Math.FoxToUnityVector3(refB);
-            springRef = Fox.Kernel.Math.FoxToUnityVector3(springRef);
+            refA = Fox.Math.FoxToUnityVector3(refA);
+            refB = Fox.Math.FoxToUnityVector3(refB);
+            springRef = Fox.Math.FoxToUnityVector3(springRef);
 
             base.OnDeserializeEntity(gameObject, logger);
         }
 
         public override void OverridePropertiesForExport(EntityExportContext context)
         {
-            context.OverrideProperty("refA", Kernel.Math.UnityToFoxVector3(refA));
-            context.OverrideProperty("refB", Kernel.Math.UnityToFoxVector3(refB));
-            context.OverrideProperty("springRef", Kernel.Math.UnityToFoxVector3(springRef));
+            context.OverrideProperty("refA", Fox.Math.UnityToFoxVector3(refA));
+            context.OverrideProperty("refB", Fox.Math.UnityToFoxVector3(refB));
+            context.OverrideProperty("springRef", Fox.Math.UnityToFoxVector3(springRef));
 
             base.OverridePropertiesForExport(context);
         }
