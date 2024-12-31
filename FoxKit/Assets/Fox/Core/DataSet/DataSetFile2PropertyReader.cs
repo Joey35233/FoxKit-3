@@ -228,7 +228,6 @@ namespace Fox.Core.Serialization
 
         private void ReadEntityPtr(FileStreamReader reader, SetProperty setProperty, Type ptrType, string name)
         {
-            Debug.Log(name);
             ulong address = reader.ReadUInt64();
             requestSetEntityPtr(address, (Entity ptr) => setProperty(name, new Value(ptr)));
         }
