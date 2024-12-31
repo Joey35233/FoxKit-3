@@ -4,14 +4,14 @@ namespace Fox.Core
 {
     public static class AssetManager
     {
-        public static T LoadAssetAtPath<T>(Kernel.Path path, out string unityPath) where T : UnityEngine.Object
+        public static T LoadAssetAtPath<T>(Fox.Path path, out string unityPath) where T : UnityEngine.Object
         {
             unityPath = "Assets/Game" + path.CString;
             T asset = AssetDatabase.LoadAssetAtPath<T>(unityPath);
             return asset;
         }
 
-        public static T LoadAssetAtPathWithExtensionReplacement<T>(Kernel.Path path, string newExtension, out string unityPath) where T : UnityEngine.Object
+        public static T LoadAssetAtPathWithExtensionReplacement<T>(Fox.Path path, string newExtension, out string unityPath) where T : UnityEngine.Object
         {
             unityPath = "Assets/Game" + path.CString + '.' + newExtension;
             T asset = AssetDatabase.LoadAssetAtPath<T>(unityPath);

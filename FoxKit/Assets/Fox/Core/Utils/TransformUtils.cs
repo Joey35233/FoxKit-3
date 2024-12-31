@@ -1,14 +1,14 @@
-﻿using Fox.Kernel;
+﻿using Fox;
 
 namespace Fox.Core
 {
     public static class TransformUtils
     {
-        public static UnityEngine.Transform FindTransformRecursive(UnityEngine.Transform transform, String name)
+        public static UnityEngine.Transform FindTransformRecursive(UnityEngine.Transform transform, string name)
         {
             foreach (UnityEngine.Transform child in transform)
             {
-                if (child.name == name.CString)
+                if (child.name == name)
                 {
                     return child;
                 }

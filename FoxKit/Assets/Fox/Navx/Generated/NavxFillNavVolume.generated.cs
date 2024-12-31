@@ -17,13 +17,13 @@ namespace Fox.Navx
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.String sceneName { get; set; }
+		public string sceneName { get; set; }
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.String worldName { get; set; }
+		public string worldName { get; set; }
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<Fox.Kernel.String> attributes { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
+		public Fox.DynamicArray<string> attributes { get; private set; } = new Fox.DynamicArray<string>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -42,17 +42,17 @@ namespace Fox.Navx
 		static NavxFillNavVolume()
 		{
 			if (Fox.Core.TransformData.ClassInfoInitialized)
-				classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("NavxFillNavVolume"), typeof(NavxFillNavVolume), Fox.Core.TransformData.ClassInfo, 288, "Navx", 0);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("sceneName"), Fox.Core.PropertyInfo.PropertyType.String, 304, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("worldName"), Fox.Core.PropertyInfo.PropertyType.String, 312, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("attributes"), Fox.Core.PropertyInfo.PropertyType.String, 320, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+				classInfo = new Fox.Core.EntityInfo("NavxFillNavVolume", typeof(NavxFillNavVolume), Fox.Core.TransformData.ClassInfo, 288, "Navx", 0);
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("sceneName", Fox.Core.PropertyInfo.PropertyType.String, 304, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("worldName", Fox.Core.PropertyInfo.PropertyType.String, 312, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("attributes", Fox.Core.PropertyInfo.PropertyType.String, 320, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		public override Fox.Core.Value GetProperty(string propertyName)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				case "sceneName":
 					return new Fox.Core.Value(sceneName);
@@ -65,9 +65,9 @@ namespace Fox.Navx
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				case "attributes":
 					return new Fox.Core.Value(this.attributes[index]);
@@ -76,18 +76,18 @@ namespace Fox.Navx
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				default:
 					return base.GetPropertyElement(propertyName, key);
 			}
 		}
 
-		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, Fox.Core.Value value)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				case "sceneName":
 					this.sceneName = value.GetValueAsString();
@@ -101,12 +101,12 @@ namespace Fox.Navx
 			}
 		}
 
-		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				case "attributes":
-					while(this.attributes.Count <= index) { this.attributes.Add(default(Fox.Kernel.String)); }
+					while(this.attributes.Count <= index) { this.attributes.Add(default(string)); }
 					this.attributes[index] = value.GetValueAsString();
 					return;
 				default:
@@ -115,9 +115,9 @@ namespace Fox.Navx
 			}
 		}
 
-		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

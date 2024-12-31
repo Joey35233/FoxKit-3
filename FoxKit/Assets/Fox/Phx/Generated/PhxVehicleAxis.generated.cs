@@ -23,13 +23,13 @@ namespace Fox.Phx
 		protected Fox.Phx.PhxWheelConstraintParam wheelConstraintParam { get; set; }
 		
 		[field: UnityEngine.SerializeField]
-		protected Fox.Kernel.DynamicArray<Fox.Phx.PhxWheelAssociationUnitParam> wheelAssociationUnitParams { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Phx.PhxWheelAssociationUnitParam>();
+		protected Fox.DynamicArray<Fox.Phx.PhxWheelAssociationUnitParam> wheelAssociationUnitParams { get; private set; } = new Fox.DynamicArray<Fox.Phx.PhxWheelAssociationUnitParam>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<float> torqueDistributions { get; private set; } = new Fox.Kernel.DynamicArray<float>();
+		public Fox.DynamicArray<float> torqueDistributions { get; private set; } = new Fox.DynamicArray<float>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<float> gearRatios { get; private set; } = new Fox.Kernel.DynamicArray<float>();
+		public Fox.DynamicArray<float> gearRatios { get; private set; } = new Fox.DynamicArray<float>();
 		
 		public UnityEngine.Vector3 wheelFront { get => Get_wheelFront(); set { Set_wheelFront(value); } }
 		private partial UnityEngine.Vector3 Get_wheelFront();
@@ -83,8 +83,8 @@ namespace Fox.Phx
 		private partial bool Get_useDifferential();
 		private partial void Set_useDifferential(bool value);
 		
-		public Fox.Kernel.DynamicArray<Fox.Kernel.String> AssignedBoneNames { get => Get_AssignedBoneNames(); }
-		private partial Fox.Kernel.DynamicArray<Fox.Kernel.String> Get_AssignedBoneNames();
+		public Fox.DynamicArray<string> AssignedBoneNames { get => Get_AssignedBoneNames(); }
+		private partial Fox.DynamicArray<string> Get_AssignedBoneNames();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -103,33 +103,33 @@ namespace Fox.Phx
 		static PhxVehicleAxis()
 		{
 			if (Fox.Core.Data.ClassInfoInitialized)
-				classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("PhxVehicleAxis"), typeof(PhxVehicleAxis), Fox.Core.Data.ClassInfo, 128, "Phx", 1);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("vehicleAxisParam"), Fox.Core.PropertyInfo.PropertyType.EntityPtr, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, typeof(Fox.Phx.PhVehicleAxisParam), null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("wheelConstraintParam"), Fox.Core.PropertyInfo.PropertyType.EntityPtr, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, typeof(Fox.Phx.PhxWheelConstraintParam), null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("wheelAssociationUnitParams"), Fox.Core.PropertyInfo.PropertyType.EntityPtr, 136, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, typeof(Fox.Phx.PhxWheelAssociationUnitParam), null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("torqueDistributions"), Fox.Core.PropertyInfo.PropertyType.Float, 152, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("gearRatios"), Fox.Core.PropertyInfo.PropertyType.Float, 168, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("wheelFront"), Fox.Core.PropertyInfo.PropertyType.Vector3, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Accessor));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("wheelUp"), Fox.Core.PropertyInfo.PropertyType.Vector3, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Accessor));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("wheelPositionOffset"), Fox.Core.PropertyInfo.PropertyType.Vector3, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Accessor));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("wheelRadius"), Fox.Core.PropertyInfo.PropertyType.Float, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Accessor));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("wheelFriction"), Fox.Core.PropertyInfo.PropertyType.Float, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Accessor));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("wheelRestitution"), Fox.Core.PropertyInfo.PropertyType.Float, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Accessor));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("wheelInertia"), Fox.Core.PropertyInfo.PropertyType.Float, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Accessor));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("suspentionLength"), Fox.Core.PropertyInfo.PropertyType.Float, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Accessor));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("maxSuspentionForceCoeff"), Fox.Core.PropertyInfo.PropertyType.Float, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Accessor));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("dampingCoeffElong"), Fox.Core.PropertyInfo.PropertyType.Float, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Accessor));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("dampingCoeffCompress"), Fox.Core.PropertyInfo.PropertyType.Float, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Accessor));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("maxBreakTorqueCoeff"), Fox.Core.PropertyInfo.PropertyType.Float, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Accessor));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("useDifferential"), Fox.Core.PropertyInfo.PropertyType.Bool, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Accessor));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("AssignedBoneNames"), Fox.Core.PropertyInfo.PropertyType.String, 0, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Accessor));
+				classInfo = new Fox.Core.EntityInfo("PhxVehicleAxis", typeof(PhxVehicleAxis), Fox.Core.Data.ClassInfo, 128, "Phx", 1);
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("vehicleAxisParam", Fox.Core.PropertyInfo.PropertyType.EntityPtr, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, typeof(Fox.Phx.PhVehicleAxisParam), null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("wheelConstraintParam", Fox.Core.PropertyInfo.PropertyType.EntityPtr, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, typeof(Fox.Phx.PhxWheelConstraintParam), null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("wheelAssociationUnitParams", Fox.Core.PropertyInfo.PropertyType.EntityPtr, 136, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, typeof(Fox.Phx.PhxWheelAssociationUnitParam), null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("torqueDistributions", Fox.Core.PropertyInfo.PropertyType.Float, 152, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("gearRatios", Fox.Core.PropertyInfo.PropertyType.Float, 168, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("wheelFront", Fox.Core.PropertyInfo.PropertyType.Vector3, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Accessor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("wheelUp", Fox.Core.PropertyInfo.PropertyType.Vector3, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Accessor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("wheelPositionOffset", Fox.Core.PropertyInfo.PropertyType.Vector3, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Accessor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("wheelRadius", Fox.Core.PropertyInfo.PropertyType.Float, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Accessor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("wheelFriction", Fox.Core.PropertyInfo.PropertyType.Float, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Accessor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("wheelRestitution", Fox.Core.PropertyInfo.PropertyType.Float, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Accessor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("wheelInertia", Fox.Core.PropertyInfo.PropertyType.Float, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Accessor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("suspentionLength", Fox.Core.PropertyInfo.PropertyType.Float, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Accessor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("maxSuspentionForceCoeff", Fox.Core.PropertyInfo.PropertyType.Float, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Accessor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("dampingCoeffElong", Fox.Core.PropertyInfo.PropertyType.Float, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Accessor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("dampingCoeffCompress", Fox.Core.PropertyInfo.PropertyType.Float, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Accessor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("maxBreakTorqueCoeff", Fox.Core.PropertyInfo.PropertyType.Float, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Accessor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("useDifferential", Fox.Core.PropertyInfo.PropertyType.Bool, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Accessor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("AssignedBoneNames", Fox.Core.PropertyInfo.PropertyType.String, 0, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Accessor));
 
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		public override Fox.Core.Value GetProperty(string propertyName)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				case "vehicleAxisParam":
 					return new Fox.Core.Value(vehicleAxisParam);
@@ -174,9 +174,9 @@ namespace Fox.Phx
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				case "wheelAssociationUnitParams":
 					return new Fox.Core.Value(this.wheelAssociationUnitParams[index]);
@@ -191,18 +191,18 @@ namespace Fox.Phx
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				default:
 					return base.GetPropertyElement(propertyName, key);
 			}
 		}
 
-		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, Fox.Core.Value value)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				case "vehicleAxisParam":
 					this.vehicleAxisParam = value.GetValueAsEntityPtr<Fox.Phx.PhVehicleAxisParam>();
@@ -255,9 +255,9 @@ namespace Fox.Phx
 			}
 		}
 
-		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				case "wheelAssociationUnitParams":
 					while(this.wheelAssociationUnitParams.Count <= index) { this.wheelAssociationUnitParams.Add(default(Fox.Phx.PhxWheelAssociationUnitParam)); }
@@ -272,7 +272,7 @@ namespace Fox.Phx
 					this.gearRatios[index] = value.GetValueAsFloat();
 					return;
 				case "AssignedBoneNames":
-					while(this.AssignedBoneNames.Count <= index) { this.AssignedBoneNames.Add(default(Fox.Kernel.String)); }
+					while(this.AssignedBoneNames.Count <= index) { this.AssignedBoneNames.Add(default(string)); }
 					this.AssignedBoneNames[index] = value.GetValueAsString();
 					return;
 				default:
@@ -281,9 +281,9 @@ namespace Fox.Phx
 			}
 		}
 
-		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

@@ -1,12 +1,11 @@
 using Fox.Core.Serialization;
 using Fox.Core.Utils;
 using Fox.Fio;
-using Fox.Kernel;
+using Fox;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using static Fox.Core.Serialization.DataSetFile2PropertyReader;
-using String = Fox.Kernel.String;
 
 namespace Fox.Core
 {
@@ -34,7 +33,7 @@ namespace Fox.Core
             this.logger = logger;
         }
 
-        public AddressedEntity Read(FileStreamReader reader, UnityEngine.GameObject gameObject, Func<StrCode, String> unhashString)
+        public AddressedEntity Read(FileStreamReader reader, UnityEngine.GameObject gameObject, Func<StrCode, string> unhashString)
         {
             ushort headerSize = reader.ReadUInt16();
             Debug.Assert(headerSize == 0x40);
@@ -47,11 +46,11 @@ namespace Fox.Core
             ulong address = BitConverter.ToUInt64(headerBytes, 10);
             ulong id = BitConverter.ToUInt64(headerBytes, 18);
             ushort version = BitConverter.ToUInt16(headerBytes, 26);
-            var classNameHash = Kernel.HashingBitConverter.ToStrCode(headerBytes, 28);
+            var classNameHash = Fox.HashingBitConverter.ToStrCode(headerBytes, 28);
             ushort staticPropertyCount = BitConverter.ToUInt16(headerBytes, 36);
             ushort dynamicPropertyCount = BitConverter.ToUInt16(headerBytes, 38);
 
-            var entityInfo = EntityInfo.GetEntityInfo(new String(classNameHash));
+            var entityInfo = EntityInfo.GetEntityInfo(classNameHash.ToString());
             var entity = gameObject.AddComponent(entityInfo.Type) as Entity;
 
             bool isReadingDynamicProperty = false;
@@ -64,7 +63,7 @@ namespace Fox.Core
             for (int i = 0; i < staticPropertyCount; i++)
             {
                 propertyReader.Read(reader,
-                    (PropertyInfo.PropertyType type, String name, ushort arraySize, PropertyInfo.ContainerType container) => OnPropertyNameUnhashed(type, name, arraySize, container, entity, isReadingDynamicProperty),
+                    (PropertyInfo.PropertyType type, string name, ushort arraySize, PropertyInfo.ContainerType container) => OnPropertyNameUnhashed(type, name, arraySize, container, entity, isReadingDynamicProperty),
                     (propertyName) => GetPtrType(entity, propertyName),
                     setProperty,
                     setPropertyElementByIndex,
@@ -74,7 +73,7 @@ namespace Fox.Core
             isReadingDynamicProperty = true;
             for (int i = 0; i < dynamicPropertyCount; i++)
             {
-                propertyReader.Read(reader, (PropertyInfo.PropertyType type, String name, ushort arraySize, PropertyInfo.ContainerType container) => OnPropertyNameUnhashed(type, name, arraySize, container, entity, isReadingDynamicProperty),
+                propertyReader.Read(reader, (PropertyInfo.PropertyType type, string name, ushort arraySize, PropertyInfo.ContainerType container) => OnPropertyNameUnhashed(type, name, arraySize, container, entity, isReadingDynamicProperty),
                     (propertyName) => typeof(Entity),
                     setProperty,
                     setPropertyElementByIndex,
@@ -84,7 +83,7 @@ namespace Fox.Core
             return new AddressedEntity { Address = address, Entity = entity };
         }
 
-        private void SetProperty(Entity entity, String propertyName, Value val)
+        private void SetProperty(Entity entity, string propertyName, Value val)
         {
             entity.SetProperty(propertyName, val);
 
@@ -94,7 +93,7 @@ namespace Fox.Core
                 return;
             }
 
-            if (propertyName.CString == "parent")
+            if (propertyName == "parent")
             {
                 if (val is null)
                 {
@@ -111,7 +110,7 @@ namespace Fox.Core
             }
         }
 
-        private static void OnPropertyNameUnhashed(PropertyInfo.PropertyType type, String name, ushort arraySize, PropertyInfo.ContainerType container, Entity entity, bool isReadingDynamicProperty)
+        private static void OnPropertyNameUnhashed(PropertyInfo.PropertyType type, string name, ushort arraySize, PropertyInfo.ContainerType container, Entity entity, bool isReadingDynamicProperty)
         {
             if (isReadingDynamicProperty)
             {
@@ -119,7 +118,7 @@ namespace Fox.Core
             }
         }
 
-        private Type GetPtrType(Entity entity, String propertyName)
+        private Type GetPtrType(Entity entity, string propertyName)
         {
             EntityInfo classInfo = entity.GetClassEntityInfo();
             while (classInfo != null)
@@ -133,7 +132,7 @@ namespace Fox.Core
                 classInfo = classInfo.Super;
             }
 
-            logger.AddError($"Unable to find property '{propertyName}' in Entity of type '{entity.GetClassEntityInfo().Name.CString}'.");
+            logger.AddError($"Unable to find property '{propertyName}' in Entity of type '{entity.GetClassEntityInfo().Name}'.");
             return null;
         }
     }

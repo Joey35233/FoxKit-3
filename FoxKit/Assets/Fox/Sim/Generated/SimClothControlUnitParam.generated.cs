@@ -51,20 +51,20 @@ namespace Fox.Sim
 		static SimClothControlUnitParam()
 		{
 			if (Fox.Core.Entity.ClassInfoInitialized)
-				classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("SimClothControlUnitParam"), typeof(SimClothControlUnitParam), Fox.Core.Entity.ClassInfo, 52, "Sim", 0);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("mass"), Fox.Core.PropertyInfo.PropertyType.Float, 52, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("thickness"), Fox.Core.PropertyInfo.PropertyType.Float, 56, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("limitedFlag"), Fox.Core.PropertyInfo.PropertyType.Bool, 72, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("limit"), Fox.Core.PropertyInfo.PropertyType.Float, 60, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("expansionRatio"), Fox.Core.PropertyInfo.PropertyType.Float, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("contractionRatio"), Fox.Core.PropertyInfo.PropertyType.Float, 68, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+				classInfo = new Fox.Core.EntityInfo("SimClothControlUnitParam", typeof(SimClothControlUnitParam), Fox.Core.Entity.ClassInfo, 52, "Sim", 0);
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("mass", Fox.Core.PropertyInfo.PropertyType.Float, 52, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("thickness", Fox.Core.PropertyInfo.PropertyType.Float, 56, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("limitedFlag", Fox.Core.PropertyInfo.PropertyType.Bool, 72, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("limit", Fox.Core.PropertyInfo.PropertyType.Float, 60, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("expansionRatio", Fox.Core.PropertyInfo.PropertyType.Float, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("contractionRatio", Fox.Core.PropertyInfo.PropertyType.Float, 68, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		public override Fox.Core.Value GetProperty(string propertyName)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				case "mass":
 					return new Fox.Core.Value(mass);
@@ -83,27 +83,27 @@ namespace Fox.Sim
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				default:
 					return base.GetPropertyElement(propertyName, key);
 			}
 		}
 
-		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, Fox.Core.Value value)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				case "mass":
 					this.mass = value.GetValueAsFloat();
@@ -129,9 +129,9 @@ namespace Fox.Sim
 			}
 		}
 
-		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -139,9 +139,9 @@ namespace Fox.Sim
 			}
 		}
 
-		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

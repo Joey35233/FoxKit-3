@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Fox.Kernel
+namespace Fox
 {
     public static class AlignmentUtils
     {

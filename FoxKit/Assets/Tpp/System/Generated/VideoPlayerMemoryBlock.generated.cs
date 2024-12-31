@@ -17,10 +17,10 @@ namespace Tpp.System
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.String identify { get; set; }
+		public string identify { get; set; }
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.String videoFormat { get; set; }
+		public string videoFormat { get; set; }
 		
 		[field: UnityEngine.SerializeField]
 		public uint videoWidth { get; set; }
@@ -48,19 +48,19 @@ namespace Tpp.System
 		static VideoPlayerMemoryBlock()
 		{
 			if (Fox.Core.Data.ClassInfoInitialized)
-				classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("VideoPlayerMemoryBlock"), typeof(VideoPlayerMemoryBlock), Fox.Core.Data.ClassInfo, 84, null, 0);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("identify"), Fox.Core.PropertyInfo.PropertyType.String, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("videoFormat"), Fox.Core.PropertyInfo.PropertyType.String, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("videoWidth"), Fox.Core.PropertyInfo.PropertyType.UInt32, 136, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("videoHeight"), Fox.Core.PropertyInfo.PropertyType.UInt32, 140, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("videoAllocateSize"), Fox.Core.PropertyInfo.PropertyType.UInt32, 144, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+				classInfo = new Fox.Core.EntityInfo("VideoPlayerMemoryBlock", typeof(VideoPlayerMemoryBlock), Fox.Core.Data.ClassInfo, 84, null, 0);
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("identify", Fox.Core.PropertyInfo.PropertyType.String, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("videoFormat", Fox.Core.PropertyInfo.PropertyType.String, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("videoWidth", Fox.Core.PropertyInfo.PropertyType.UInt32, 136, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("videoHeight", Fox.Core.PropertyInfo.PropertyType.UInt32, 140, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("videoAllocateSize", Fox.Core.PropertyInfo.PropertyType.UInt32, 144, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		public override Fox.Core.Value GetProperty(string propertyName)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				case "identify":
 					return new Fox.Core.Value(identify);
@@ -77,27 +77,27 @@ namespace Tpp.System
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				default:
 					return base.GetPropertyElement(propertyName, key);
 			}
 		}
 
-		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, Fox.Core.Value value)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				case "identify":
 					this.identify = value.GetValueAsString();
@@ -120,9 +120,9 @@ namespace Tpp.System
 			}
 		}
 
-		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -130,9 +130,9 @@ namespace Tpp.System
 			}
 		}
 
-		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

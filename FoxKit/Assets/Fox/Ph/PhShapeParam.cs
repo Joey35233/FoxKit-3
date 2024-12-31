@@ -10,5 +10,9 @@
 
         internal UnityEngine.Vector3 GetSize() => size;
         internal void SetSize(UnityEngine.Vector3 value) => size = value;
+
+        internal virtual void DrawGizmos()
+        {
+        }
     }
 }

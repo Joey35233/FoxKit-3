@@ -141,7 +141,7 @@ namespace Fox.EdCore
                 double sensitivity = NumericFieldDraggerUtility.CalculateIntDragSensitivity(startValue);
                 float acceleration = NumericFieldDraggerUtility.Acceleration(speed == DeltaSpeed.Fast, speed == DeltaSpeed.Slow);
                 int v = StringToValue(text);
-                v += (int)Math.Round(NumericFieldDraggerUtility.NiceDelta(delta, acceleration) * sensitivity);
+                v += (int)System.Math.Round(NumericFieldDraggerUtility.NiceDelta(delta, acceleration) * sensitivity);
                 if (parentIntegerField.isDelayed)
                 {
                     text = ValueToString(NumericPropertyFields.ClampToUInt8(v));
@@ -162,19 +162,19 @@ namespace Fox.EdCore
         }
     }
 
-    [CustomPropertyDrawer(typeof(byte))]
-    public class UInt8Drawer : PropertyDrawer
-    {
-        public override VisualElement CreatePropertyGUI(SerializedProperty property)
-        {
-            var field = new UInt8Field(property.name);
-            field.BindProperty(property);
-
-            field.labelElement.AddToClassList(PropertyField.labelUssClassName);
-            field.visualInput.AddToClassList(PropertyField.inputUssClassName);
-            field.AddToClassList(BaseField<byte>.alignedFieldUssClassName);
-
-            return field;
-        }
-    }
+    // [CustomPropertyDrawer(typeof(byte))]
+    // public class UInt8Drawer : PropertyDrawer
+    // {
+    //     public override VisualElement CreatePropertyGUI(SerializedProperty property)
+    //     {
+    //         var field = new UInt8Field(property.name);
+    //         field.BindProperty(property);
+    //
+    //         field.labelElement.AddToClassList(PropertyField.labelUssClassName);
+    //         field.visualInput.AddToClassList(PropertyField.inputUssClassName);
+    //         field.AddToClassList(BaseField<byte>.alignedFieldUssClassName);
+    //
+    //         return field;
+    //     }
+    // }
 }

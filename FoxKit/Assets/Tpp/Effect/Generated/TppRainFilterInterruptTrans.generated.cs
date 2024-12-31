@@ -17,16 +17,16 @@ namespace Tpp.Effect
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<UnityEngine.Matrix4x4> planeMatrices { get; private set; } = new Fox.Kernel.DynamicArray<UnityEngine.Matrix4x4>();
+		public Fox.DynamicArray<UnityEngine.Matrix4x4> planeMatrices { get; private set; } = new Fox.DynamicArray<UnityEngine.Matrix4x4>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<Fox.Kernel.Path> maskTextures { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.Path>();
+		public Fox.DynamicArray<Fox.Path> maskTextures { get; private set; } = new Fox.DynamicArray<Fox.Path>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<uint> interruptFlags { get; private set; } = new Fox.Kernel.DynamicArray<uint>();
+		public Fox.DynamicArray<uint> interruptFlags { get; private set; } = new Fox.DynamicArray<uint>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<uint> levels { get; private set; } = new Fox.Kernel.DynamicArray<uint>();
+		public Fox.DynamicArray<uint> levels { get; private set; } = new Fox.DynamicArray<uint>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -45,18 +45,18 @@ namespace Tpp.Effect
 		static TppRainFilterInterruptTrans()
 		{
 			if (Fox.Core.TransformData.ClassInfoInitialized)
-				classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("TppRainFilterInterruptTrans"), typeof(TppRainFilterInterruptTrans), Fox.Core.TransformData.ClassInfo, 400, null, 2);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("planeMatrices"), Fox.Core.PropertyInfo.PropertyType.Matrix4, 384, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("maskTextures"), Fox.Core.PropertyInfo.PropertyType.Path, 368, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("interruptFlags"), Fox.Core.PropertyInfo.PropertyType.UInt32, 400, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("levels"), Fox.Core.PropertyInfo.PropertyType.UInt32, 416, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+				classInfo = new Fox.Core.EntityInfo("TppRainFilterInterruptTrans", typeof(TppRainFilterInterruptTrans), Fox.Core.TransformData.ClassInfo, 400, null, 2);
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("planeMatrices", Fox.Core.PropertyInfo.PropertyType.Matrix4, 384, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("maskTextures", Fox.Core.PropertyInfo.PropertyType.Path, 368, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("interruptFlags", Fox.Core.PropertyInfo.PropertyType.UInt32, 400, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("levels", Fox.Core.PropertyInfo.PropertyType.UInt32, 416, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		public override Fox.Core.Value GetProperty(string propertyName)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				case "planeMatrices":
 					return new Fox.Core.Value(planeMatrices);
@@ -71,9 +71,9 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				case "planeMatrices":
 					return new Fox.Core.Value(this.planeMatrices[index]);
@@ -88,18 +88,18 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				default:
 					return base.GetPropertyElement(propertyName, key);
 			}
 		}
 
-		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, Fox.Core.Value value)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				default:
 					base.SetProperty(propertyName, value);
@@ -107,16 +107,16 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				case "planeMatrices":
 					while(this.planeMatrices.Count <= index) { this.planeMatrices.Add(default(UnityEngine.Matrix4x4)); }
 					this.planeMatrices[index] = value.GetValueAsMatrix4();
 					return;
 				case "maskTextures":
-					while(this.maskTextures.Count <= index) { this.maskTextures.Add(default(Fox.Kernel.Path)); }
+					while(this.maskTextures.Count <= index) { this.maskTextures.Add(default(Fox.Path)); }
 					this.maskTextures[index] = value.GetValueAsPath();
 					return;
 				case "interruptFlags":
@@ -133,9 +133,9 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

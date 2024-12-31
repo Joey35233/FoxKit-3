@@ -17,10 +17,10 @@ namespace Tpp.System
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.String id { get; set; }
+		public string id { get; set; }
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.StringMap<Tpp.System.TppDefaultParameterElement> @params { get; private set; } = new Fox.Kernel.StringMap<Tpp.System.TppDefaultParameterElement>();
+		public Fox.StringMap<Tpp.System.TppDefaultParameterElement> @params { get; private set; } = new Fox.StringMap<Tpp.System.TppDefaultParameterElement>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -39,38 +39,38 @@ namespace Tpp.System
 		static TppDefaultParameterContainer()
 		{
 			if (Fox.Core.Data.ClassInfoInitialized)
-				classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("TppDefaultParameterContainer"), typeof(TppDefaultParameterContainer), Fox.Core.Data.ClassInfo, 0, null, 0);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("id"), Fox.Core.PropertyInfo.PropertyType.String, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("params"), Fox.Core.PropertyInfo.PropertyType.EntityPtr, 128, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, typeof(Tpp.System.TppDefaultParameterElement), null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+				classInfo = new Fox.Core.EntityInfo("TppDefaultParameterContainer", typeof(TppDefaultParameterContainer), Fox.Core.Data.ClassInfo, 0, null, 0);
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("id", Fox.Core.PropertyInfo.PropertyType.String, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("params", Fox.Core.PropertyInfo.PropertyType.EntityPtr, 128, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, typeof(Tpp.System.TppDefaultParameterElement), null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		public override Fox.Core.Value GetProperty(string propertyName)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				case "id":
 					return new Fox.Core.Value(id);
 				case "@params":
-					return new Fox.Core.Value((Fox.Kernel.IStringMap)@params);
+					return new Fox.Core.Value((Fox.IStringMap)@params);
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				case "@params":
 					return new Fox.Core.Value(this.@params[key]);
@@ -79,9 +79,9 @@ namespace Tpp.System
 			}
 		}
 
-		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, Fox.Core.Value value)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				case "id":
 					this.id = value.GetValueAsString();
@@ -92,9 +92,9 @@ namespace Tpp.System
 			}
 		}
 
-		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -102,9 +102,9 @@ namespace Tpp.System
 			}
 		}
 
-		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				case "@params":
 					if (this.@params.ContainsKey(key))

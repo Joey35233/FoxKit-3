@@ -1,9 +1,9 @@
 using Fox.Core.Utils;
-using Fox.Kernel;
+using Fox;
 using System;
 using UnityEditor;
 using UnityEngine;
-using Math = Fox.Kernel.Math;
+using Math = Fox.Math;
 
 namespace Fox.Core
 {

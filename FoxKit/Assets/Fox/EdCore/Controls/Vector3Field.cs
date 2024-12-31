@@ -61,7 +61,7 @@ namespace Fox.EdCore
             base.ExecuteDefaultActionAtTarget(evt);
 
             // UNITYENHANCEMENT: https://github.com/Joey35233/FoxKit-3/issues/12
-            if (evt.eventTypeId == FoxFieldUtils.SerializedPropertyBindEventTypeId && !String.IsNullOrWhiteSpace(bindingPath))
+            if (evt.eventTypeId == FoxFieldUtils.SerializedPropertyBindEventTypeId && !System.String.IsNullOrWhiteSpace(bindingPath))
             {
                 var property = FoxFieldUtils.SerializedPropertyBindEventBindProperty.GetValue(evt) as SerializedProperty;
 
@@ -88,19 +88,19 @@ namespace Fox.EdCore
         }
     }
 
-    [CustomPropertyDrawer(typeof(UnityEngine.Vector3))]
-    public class Vector3Drawer : PropertyDrawer
-    {
-        public override VisualElement CreatePropertyGUI(SerializedProperty property)
-        {
-            var field = new Vector3Field(property.name);
-            field.BindProperty(property);
-
-            field.labelElement.AddToClassList(PropertyField.labelUssClassName);
-            field.visualInput.AddToClassList(PropertyField.inputUssClassName);
-            field.AddToClassList(BaseField<UnityEngine.Vector3>.alignedFieldUssClassName);
-
-            return field;
-        }
-    }
+    // [CustomPropertyDrawer(typeof(UnityEngine.Vector3))]
+    // public class Vector3Drawer : PropertyDrawer
+    // {
+    //     public override VisualElement CreatePropertyGUI(SerializedProperty property)
+    //     {
+    //         var field = new Vector3Field(property.name);
+    //         field.BindProperty(property);
+    //
+    //         field.labelElement.AddToClassList(PropertyField.labelUssClassName);
+    //         field.visualInput.AddToClassList(PropertyField.inputUssClassName);
+    //         field.AddToClassList(BaseField<UnityEngine.Vector3>.alignedFieldUssClassName);
+    //
+    //         return field;
+    //     }
+    // }
 }

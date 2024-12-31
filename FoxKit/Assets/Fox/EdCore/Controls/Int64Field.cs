@@ -82,7 +82,7 @@ namespace Fox.EdCore
                 double sensitivity = NumericFieldDraggerUtility.CalculateIntDragSensitivity(startValue);
                 float acceleration = NumericFieldDraggerUtility.Acceleration(speed == DeltaSpeed.Fast, speed == DeltaSpeed.Slow);
                 System.Numerics.BigInteger v = StringToValue(text);
-                v += (System.Numerics.BigInteger)Math.Round(NumericFieldDraggerUtility.NiceDelta(delta, acceleration) * sensitivity);
+                v += (System.Numerics.BigInteger)System.Math.Round(NumericFieldDraggerUtility.NiceDelta(delta, acceleration) * sensitivity);
                 if (parentIntegerField.isDelayed)
                 {
                     text = ValueToString(NumericPropertyFields.ClampToInt64(v));
@@ -103,19 +103,19 @@ namespace Fox.EdCore
         }
     }
 
-    [CustomPropertyDrawer(typeof(long))]
-    public class Int64Drawer : PropertyDrawer
-    {
-        public override VisualElement CreatePropertyGUI(SerializedProperty property)
-        {
-            var field = new Int64Field(property.name);
-            field.BindProperty(property);
-
-            field.labelElement.AddToClassList(PropertyField.labelUssClassName);
-            field.visualInput.AddToClassList(PropertyField.inputUssClassName);
-            field.AddToClassList(BaseField<ulong>.alignedFieldUssClassName);
-
-            return field;
-        }
-    }
+    // [CustomPropertyDrawer(typeof(long))]
+    // public class Int64Drawer : PropertyDrawer
+    // {
+    //     public override VisualElement CreatePropertyGUI(SerializedProperty property)
+    //     {
+    //         var field = new Int64Field(property.name);
+    //         field.BindProperty(property);
+    //
+    //         field.labelElement.AddToClassList(PropertyField.labelUssClassName);
+    //         field.visualInput.AddToClassList(PropertyField.inputUssClassName);
+    //         field.AddToClassList(BaseField<ulong>.alignedFieldUssClassName);
+    //
+    //         return field;
+    //     }
+    // }
 }

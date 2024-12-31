@@ -1,7 +1,7 @@
 using Fox.Core;
 using Fox.Core.Utils;
 using Fox.Fio;
-using Fox.Kernel;
+using Fox;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 
@@ -141,9 +141,9 @@ namespace Fox.Grx
                 pointLight.lightArea = new EntityLink
                 (
                     lightArea,
-                    new Kernel.Path(""),
-                    new Kernel.Path(""),
-                    new String(lightArea.name)
+                    new Fox.Path(""),
+                    new Fox.Path(""),
+                    lightArea.name
                 );
             }
 
@@ -184,9 +184,9 @@ namespace Fox.Grx
                 pointLight.lightArea = new EntityLink
                 (
                     irradiationPoint,
-                    new Kernel.Path(""),
-                    new Kernel.Path(""),
-                    new String(irradiationPoint.name)
+                    new Fox.Path(""),
+                    new Fox.Path(""),
+                    irradiationPoint.name
                 );
             }
         }
@@ -208,9 +208,9 @@ namespace Fox.Grx
                 spotLight.lightArea = new EntityLink
                 (
                     lightArea,
-                    new Kernel.Path(""),
-                    new Kernel.Path(""),
-                    new String(lightArea.name)
+                    new Fox.Path(""),
+                    new Fox.Path(""),
+                    lightArea.name
                 );
             }
 
@@ -264,9 +264,9 @@ namespace Fox.Grx
                 spotLight.irradiationPoint = new EntityLink
                 (
                     irradiationPoint,
-                    new Kernel.Path(""),
-                    new Kernel.Path(""),
-                    new String(irradiationPoint.name)
+                    new Fox.Path(""),
+                    new Fox.Path(""),
+                    irradiationPoint.name
                 );
             }
         }

@@ -2,7 +2,6 @@
 using System;
 using UnityEditor;
 using UnityEngine;
-using String = Fox.Kernel.String;
 
 namespace Fox.Core
 {
@@ -28,22 +27,22 @@ namespace Fox.Core
             {
                 FoxDataNodeContext realNode = node.Value;
 
-                String name = realNode.GetName();
-                Debug.Assert(name != (String)null);
+                string name = realNode.GetName();
+                Debug.Assert(name != null);
 
-                FoxDataParameterContext? parentParam = realNode.FindParameter(new String("Parent"));
+                FoxDataParameterContext? parentParam = realNode.FindParameter("Parent");
                 Debug.Assert(parentParam.HasValue);
-                String parentName = parentParam.Value.GetString();
-                Debug.Assert(parentName != (String)null);
+                string parentName = parentParam.Value.GetString();
+                Debug.Assert(parentName != null);
 
                 UnityEngine.Transform parent = Fox.Core.TransformUtils.FindTransformRecursive(target, parentName);
                 if (parent == null)
                 {
-                    Debug.LogError($"Could not find parent, {parentName.CString}, of CNP, {name.CString}, in selected object.");
+                    Debug.LogError($"Could not find parent, {parentName}, of CNP, {name}, in selected object.");
                     continue;
                 }
 
-                var cnp = new GameObject(name.CString);
+                var cnp = new GameObject(name);
                 _ = cnp.AddComponent<ConnectPoint>();
 
                 // Payload
@@ -108,23 +107,23 @@ namespace Fox.Core
                         UnityEngine.Transform parent = Fox.Core.TransformUtils.FindTransformRecursive(target, parentName);
                         if (parent is null)
                         {
-                            Debug.LogError($"Could not find Parent: {parentName.CString} of CNP: {name.CString} in selected object.");
+                            Debug.LogError($"Could not find Parent: {parentName} of CNP: {name} in selected object.");
                             return;
                         }
 
                         byte* payload = node->GetData();
                         if (payload is null)
                         {
-                            Debug.LogError($"{name.CString} has no transform.");
+                            Debug.LogError($"{name} has no transform.");
                             return;
                         }
 
-                        var cnp = new GameObject(name.CString);
+                        var cnp = new GameObject(name);
                         _ = cnp.AddComponent<ConnectPoint>();
 
                         UnityEngine.Transform cnpTransform = cnp.transform;
-                        cnpTransform.position = Kernel.Math.UnityToFoxVector3(*(Vector3*)payload); payload += 16;
-                        cnpTransform.rotation = Kernel.Math.UnityToFoxQuaternion(*(Quaternion*)payload); payload += 16;
+                        cnpTransform.position = Fox.Math.UnityToFoxVector3(*(Vector3*)payload); payload += 16;
+                        cnpTransform.rotation = Fox.Math.UnityToFoxQuaternion(*(Quaternion*)payload); payload += 16;
                         cnpTransform.localScale = *(Vector3*)payload; payload += 16;
 
                         cnpTransform.SetParent(parent, worldPositionStays: false);

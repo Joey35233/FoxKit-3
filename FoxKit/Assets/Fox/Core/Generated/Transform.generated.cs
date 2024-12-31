@@ -41,17 +41,17 @@ namespace Fox.Core
 		}
 		static Transform()
 		{
-			classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("Transform"), typeof(Transform), null, 0, null, 0);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("scale"), Fox.Core.PropertyInfo.PropertyType.Vector3, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("rotation_quat"), Fox.Core.PropertyInfo.PropertyType.Quat, 16, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("translation"), Fox.Core.PropertyInfo.PropertyType.Vector3, 32, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo = new Fox.Core.EntityInfo("Transform", typeof(Transform), null, 0, null, 0);
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("scale", Fox.Core.PropertyInfo.PropertyType.Vector3, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("rotation_quat", Fox.Core.PropertyInfo.PropertyType.Quat, 16, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("translation", Fox.Core.PropertyInfo.PropertyType.Vector3, 32, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 
 			ClassInfoInitialized = true;
 		}
 		
-		public virtual Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		public virtual Fox.Core.Value GetProperty(string propertyName)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				case "scale":
 					return new Fox.Core.Value(scale);
@@ -64,27 +64,27 @@ namespace Fox.Core
 			}
 		}
 
-		public virtual Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		public virtual Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				default:
 					throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
 			}
 		}
 
-		public virtual Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		public virtual Fox.Core.Value GetPropertyElement(string propertyName, string key)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				default:
 					throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
 			}
 		}
 
-		public virtual void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
+		public virtual void SetProperty(string propertyName, Fox.Core.Value value)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				case "scale":
 					this.scale = value.GetValueAsVector3();
@@ -100,18 +100,18 @@ namespace Fox.Core
 			}
 		}
 
-		public virtual void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
+		public virtual void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				default:
 					throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
 			}
 		}
 
-		public virtual void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
+		public virtual void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				default:
 					throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());

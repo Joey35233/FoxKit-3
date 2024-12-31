@@ -1,5 +1,5 @@
 using Fox.Fio;
-using Fox.Kernel;
+using Fox;
 using System;
 using Unity.Collections;
 using UnityEditor;
@@ -824,6 +824,10 @@ namespace Fox.Gr
                     localBounds.center = main.transform.worldToLocalMatrix * new Vector4(localBounds.center.x, localBounds.center.y, localBounds.center.z, 1.0f);
                     localBounds.size = main.transform.worldToLocalMatrix * localBounds.size;
 
+                    var sharedMaterials = new Material[mesh.subMeshCount];
+                    for (uint j = 0; j < sharedMaterials.Length; j++)
+                        sharedMaterials[j] = AssetDatabase.LoadAssetAtPath<Material>("Assets/Fox/Gr/Model/DebugDrawFlags.mat");
+
                     if (bones == null)
                     {
                         MeshFilter meshFilter = meshGroup.AddComponent<MeshFilter>();
@@ -831,10 +835,6 @@ namespace Fox.Gr
                         meshFilter.sharedMesh = mesh;
 
                         MeshRenderer meshRenderer = meshGroup.AddComponent<MeshRenderer>();
-
-                        var sharedMaterials = new Material[mesh.subMeshCount];
-                        for (uint j = 0; j < sharedMaterials.Length; j++)
-                            sharedMaterials[j] = defaultMaterial;
 
                         meshRenderer.sharedMaterials = sharedMaterials;
                     }
@@ -848,10 +848,6 @@ namespace Fox.Gr
                         skinnedMeshRenderer.bones = bones;
                         skinnedMeshRenderer.sharedMesh = mesh;
                         skinnedMeshRenderer.rootBone = bones[0];
-
-                        var sharedMaterials = new Material[mesh.subMeshCount];
-                        for (uint j = 0; j < sharedMaterials.Length; j++)
-                            sharedMaterials[j] = defaultMaterial;
 
                         skinnedMeshRenderer.sharedMaterials = sharedMaterials;
                     }

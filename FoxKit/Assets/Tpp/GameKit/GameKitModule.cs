@@ -8,16 +8,16 @@ namespace Tpp.GameKit
     {
         static GameKitModule()
         {
-            GameServiceModule.RegisterRouteDataEventDeserializationCallback(TppRouteUnknown1245047319NodeEvent.Id, TppRouteUnknown1245047319NodeEvent.Deserialize);
-            GameServiceModule.RegisterRouteDataEventDeserializationCallback(TppRouteUnknown1875147223NodeEvent.Id, TppRouteUnknown1875147223NodeEvent.Deserialize);
+            GameServiceModule.RegisterRouteDataEventDeserializationCallback(TppRoutePeep1NodeEvent.Id, TppRoutePeep1NodeEvent.Deserialize);
+            GameServiceModule.RegisterRouteDataEventDeserializationCallback(TppRouteUseFlashLightAlwaysNodeEvent.Id, TppRouteUseFlashLightAlwaysNodeEvent.Deserialize);
             GameServiceModule.RegisterRouteDataEventDeserializationCallback(TppRoutePermitToGetOffNodeEvent.Id, TppRoutePermitToGetOffNodeEvent.Deserialize);
             GameServiceModule.RegisterRouteDataEventDeserializationCallback(TppRouteUnknown2358641809NodeEvent.Id, TppRouteUnknown2358641809NodeEvent.Deserialize);
             GameServiceModule.RegisterRouteDataEventDeserializationCallback(TppRouteVehicleAntiPlayerFireNodeEvent.Id, TppRouteVehicleAntiPlayerFireNodeEvent.Deserialize);
-            GameServiceModule.RegisterRouteDataEventDeserializationCallback(TppRouteUnknown2795470991NodeEvent.Id, TppRouteUnknown2795470991NodeEvent.Deserialize);
+            GameServiceModule.RegisterRouteDataEventDeserializationCallback(TppRouteSkullFaceStandByVehicleNodeEvent.Id, TppRouteSkullFaceStandByVehicleNodeEvent.Deserialize);
             GameServiceModule.RegisterRouteDataEventDeserializationCallback(TppRouteUnknown3589755714NodeEvent.Id, TppRouteUnknown3589755714NodeEvent.Deserialize);
-            GameServiceModule.RegisterRouteDataEventDeserializationCallback(TppRouteUnknown3696614179NodeEvent.Id, TppRouteUnknown3696614179NodeEvent.Deserialize);
-            GameServiceModule.RegisterRouteDataEventDeserializationCallback(TppRouteUnknown3969758229NodeEvent.Id, TppRouteUnknown3969758229NodeEvent.Deserialize);
-            GameServiceModule.RegisterRouteDataEventDeserializationCallback(TppRouteUnknown4257632892NodeEvent.Id, TppRouteUnknown4257632892NodeEvent.Deserialize);
+            GameServiceModule.RegisterRouteDataEventDeserializationCallback(TppRouteSleepOnSofaNodeEvent.Id, TppRouteSleepOnSofaNodeEvent.Deserialize);
+            GameServiceModule.RegisterRouteDataEventDeserializationCallback(TppRouteDisableStealthModeNodeEvent.Id, TppRouteDisableStealthModeNodeEvent.Deserialize);
+            GameServiceModule.RegisterRouteDataEventDeserializationCallback(TppRouteBreakSteelTowerNodeEvent.Id, TppRouteBreakSteelTowerNodeEvent.Deserialize);
             GameServiceModule.RegisterRouteDataEventDeserializationCallback(TppRouteCautionNodeEvent.Id, TppRouteCautionNodeEvent.Deserialize);
             GameServiceModule.RegisterRouteDataEventDeserializationCallback(TppRouteCautionIdleActNodeEvent.Id, TppRouteCautionIdleActNodeEvent.Deserialize);
             GameServiceModule.RegisterRouteDataEventDeserializationCallback(TppRouteCautionSquatFireNodeEvent.Id, TppRouteCautionSquatFireNodeEvent.Deserialize);

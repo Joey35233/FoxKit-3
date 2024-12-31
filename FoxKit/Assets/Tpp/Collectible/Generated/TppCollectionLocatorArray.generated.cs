@@ -17,31 +17,31 @@ namespace Tpp.Collectible
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		protected Fox.Kernel.DynamicArray<UnityEngine.Vector3> positions { get; private set; } = new Fox.Kernel.DynamicArray<UnityEngine.Vector3>();
+		protected Fox.DynamicArray<UnityEngine.Vector3> positions { get; private set; } = new Fox.DynamicArray<UnityEngine.Vector3>();
 		
 		[field: UnityEngine.SerializeField]
-		protected Fox.Kernel.DynamicArray<uint> rotations { get; private set; } = new Fox.Kernel.DynamicArray<uint>();
+		protected Fox.DynamicArray<uint> rotations { get; private set; } = new Fox.DynamicArray<uint>();
 		
 		[field: UnityEngine.SerializeField]
-		protected Fox.Kernel.DynamicArray<uint> infos { get; private set; } = new Fox.Kernel.DynamicArray<uint>();
+		protected Fox.DynamicArray<uint> infos { get; private set; } = new Fox.DynamicArray<uint>();
 		
 		[field: UnityEngine.SerializeField]
-		protected Fox.Kernel.DynamicArray<ushort> segmentIndices { get; private set; } = new Fox.Kernel.DynamicArray<ushort>();
+		protected Fox.DynamicArray<ushort> segmentIndices { get; private set; } = new Fox.DynamicArray<ushort>();
 		
 		[field: UnityEngine.SerializeField]
-		protected Fox.Kernel.DynamicArray<ushort> locatorIndices { get; private set; } = new Fox.Kernel.DynamicArray<ushort>();
+		protected Fox.DynamicArray<ushort> locatorIndices { get; private set; } = new Fox.DynamicArray<ushort>();
 		
 		[field: UnityEngine.SerializeField]
-		protected Fox.Kernel.DynamicArray<ushort> locatorCounts { get; private set; } = new Fox.Kernel.DynamicArray<ushort>();
+		protected Fox.DynamicArray<ushort> locatorCounts { get; private set; } = new Fox.DynamicArray<ushort>();
 		
 		[field: UnityEngine.SerializeField]
-		protected Fox.Kernel.DynamicArray<byte> groupIds { get; private set; } = new Fox.Kernel.DynamicArray<byte>();
+		protected Fox.DynamicArray<byte> groupIds { get; private set; } = new Fox.DynamicArray<byte>();
 		
 		[field: UnityEngine.SerializeField]
-		protected Fox.Kernel.DynamicArray<ushort> segmentInfoIndices { get; private set; } = new Fox.Kernel.DynamicArray<ushort>();
+		protected Fox.DynamicArray<ushort> segmentInfoIndices { get; private set; } = new Fox.DynamicArray<ushort>();
 		
 		[field: UnityEngine.SerializeField]
-		protected Fox.Kernel.DynamicArray<ushort> segmentInfoCounts { get; private set; } = new Fox.Kernel.DynamicArray<ushort>();
+		protected Fox.DynamicArray<ushort> segmentInfoCounts { get; private set; } = new Fox.DynamicArray<ushort>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -60,23 +60,23 @@ namespace Tpp.Collectible
 		static TppCollectionLocatorArray()
 		{
 			if (Fox.Core.Data.ClassInfoInitialized)
-				classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("TppCollectionLocatorArray"), typeof(TppCollectionLocatorArray), Fox.Core.Data.ClassInfo, 208, null, 1);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("positions"), Fox.Core.PropertyInfo.PropertyType.Vector3, 120, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("rotations"), Fox.Core.PropertyInfo.PropertyType.UInt32, 136, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("infos"), Fox.Core.PropertyInfo.PropertyType.UInt32, 152, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("segmentIndices"), Fox.Core.PropertyInfo.PropertyType.UInt16, 168, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("locatorIndices"), Fox.Core.PropertyInfo.PropertyType.UInt16, 184, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("locatorCounts"), Fox.Core.PropertyInfo.PropertyType.UInt16, 200, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("groupIds"), Fox.Core.PropertyInfo.PropertyType.UInt8, 216, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("segmentInfoIndices"), Fox.Core.PropertyInfo.PropertyType.UInt16, 232, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("segmentInfoCounts"), Fox.Core.PropertyInfo.PropertyType.UInt16, 248, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+				classInfo = new Fox.Core.EntityInfo("TppCollectionLocatorArray", typeof(TppCollectionLocatorArray), Fox.Core.Data.ClassInfo, 208, null, 1);
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("positions", Fox.Core.PropertyInfo.PropertyType.Vector3, 120, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("rotations", Fox.Core.PropertyInfo.PropertyType.UInt32, 136, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("infos", Fox.Core.PropertyInfo.PropertyType.UInt32, 152, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("segmentIndices", Fox.Core.PropertyInfo.PropertyType.UInt16, 168, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("locatorIndices", Fox.Core.PropertyInfo.PropertyType.UInt16, 184, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("locatorCounts", Fox.Core.PropertyInfo.PropertyType.UInt16, 200, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("groupIds", Fox.Core.PropertyInfo.PropertyType.UInt8, 216, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("segmentInfoIndices", Fox.Core.PropertyInfo.PropertyType.UInt16, 232, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("segmentInfoCounts", Fox.Core.PropertyInfo.PropertyType.UInt16, 248, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		public override Fox.Core.Value GetProperty(string propertyName)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				case "positions":
 					return new Fox.Core.Value(positions);
@@ -101,9 +101,9 @@ namespace Tpp.Collectible
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				case "positions":
 					return new Fox.Core.Value(this.positions[index]);
@@ -128,18 +128,18 @@ namespace Tpp.Collectible
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				default:
 					return base.GetPropertyElement(propertyName, key);
 			}
 		}
 
-		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, Fox.Core.Value value)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				default:
 					base.SetProperty(propertyName, value);
@@ -147,9 +147,9 @@ namespace Tpp.Collectible
 			}
 		}
 
-		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				case "positions":
 					while(this.positions.Count <= index) { this.positions.Add(default(UnityEngine.Vector3)); }
@@ -193,9 +193,9 @@ namespace Tpp.Collectible
 			}
 		}
 
-		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

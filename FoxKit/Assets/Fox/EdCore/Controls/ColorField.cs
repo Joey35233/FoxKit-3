@@ -71,19 +71,19 @@ namespace Fox.EdCore
         }
     }
 
-    [CustomPropertyDrawer(typeof(UnityEngine.Color))]
-    public class ColorDrawer : PropertyDrawer
-    {
-        public override VisualElement CreatePropertyGUI(SerializedProperty property)
-        {
-            var field = new Fox.EdCore.ColorField(property.name);
-            field.BindProperty(property);
-
-            field.labelElement.AddToClassList(PropertyField.labelUssClassName);
-            field.visualInput.AddToClassList(PropertyField.inputUssClassName);
-            field.AddToClassList(BaseField<UnityEngine.Color>.alignedFieldUssClassName);
-
-            return field;
-        }
-    }
+    // [CustomPropertyDrawer(typeof(UnityEngine.Color))]
+    // public class ColorDrawer : PropertyDrawer
+    // {
+    //     public override VisualElement CreatePropertyGUI(SerializedProperty property)
+    //     {
+    //         var field = new Fox.EdCore.ColorField(property.name);
+    //         field.BindProperty(property);
+    //
+    //         field.labelElement.AddToClassList(PropertyField.labelUssClassName);
+    //         field.visualInput.AddToClassList(PropertyField.inputUssClassName);
+    //         field.AddToClassList(BaseField<UnityEngine.Color>.alignedFieldUssClassName);
+    //
+    //         return field;
+    //     }
+    // }
 }

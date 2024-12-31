@@ -20,7 +20,7 @@ namespace Tpp.GameKit
 		public uint padNumber { get; set; }
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<Fox.Kernel.String> checkButtons { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
+		public Fox.DynamicArray<string> checkButtons { get; private set; } = new Fox.DynamicArray<string>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -39,16 +39,16 @@ namespace Tpp.GameKit
 		static TppTrapCheckIsPushPadCallbackDataElement()
 		{
 			if (Fox.Geo.GeoTrapModuleCallbackDataElement.ClassInfoInitialized)
-				classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("TppTrapCheckIsPushPadCallbackDataElement"), typeof(TppTrapCheckIsPushPadCallbackDataElement), Fox.Geo.GeoTrapModuleCallbackDataElement.ClassInfo, 0, null, 0);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("padNumber"), Fox.Core.PropertyInfo.PropertyType.UInt32, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("checkButtons"), Fox.Core.PropertyInfo.PropertyType.String, 72, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+				classInfo = new Fox.Core.EntityInfo("TppTrapCheckIsPushPadCallbackDataElement", typeof(TppTrapCheckIsPushPadCallbackDataElement), Fox.Geo.GeoTrapModuleCallbackDataElement.ClassInfo, 0, null, 0);
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("padNumber", Fox.Core.PropertyInfo.PropertyType.UInt32, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("checkButtons", Fox.Core.PropertyInfo.PropertyType.String, 72, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		public override Fox.Core.Value GetProperty(string propertyName)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				case "padNumber":
 					return new Fox.Core.Value(padNumber);
@@ -59,9 +59,9 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				case "checkButtons":
 					return new Fox.Core.Value(this.checkButtons[index]);
@@ -70,18 +70,18 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				default:
 					return base.GetPropertyElement(propertyName, key);
 			}
 		}
 
-		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, Fox.Core.Value value)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				case "padNumber":
 					this.padNumber = value.GetValueAsUInt32();
@@ -92,12 +92,12 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				case "checkButtons":
-					while(this.checkButtons.Count <= index) { this.checkButtons.Add(default(Fox.Kernel.String)); }
+					while(this.checkButtons.Count <= index) { this.checkButtons.Add(default(string)); }
 					this.checkButtons[index] = value.GetValueAsString();
 					return;
 				default:
@@ -106,9 +106,9 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

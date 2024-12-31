@@ -1,17 +1,18 @@
 ﻿using Fox.Fio;
-using Fox.Kernel;
+using Fox;
 using System;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using UnityEngine.UIElements;
-using String = Fox.Kernel.String;
 
 namespace Fox.Core
 {
-    [StructLayout(LayoutKind.Sequential, Size = 0x30)]
+    [StructLayout(LayoutKind.Sequential, Size = SelfSize)]
     public unsafe struct FoxDataNode
     {
+        public const int SelfSize = 0x30;
+        
         public FoxDataString Name;
         public uint Flags;
         public int DataOffset;
@@ -70,6 +71,23 @@ namespace Fox.Core
             for (FoxDataNode* node = GetSelfPointer(); node != null; node = node->GetNext())
             {
                 if (node->Name.Hash == name)
+                    return node;
+
+                FoxDataNode* child = node->GetChildren();
+                if (child is not null)
+                {
+                    return child->FindNode(name);
+                }
+            }
+
+            return null;
+        }
+
+        public FoxDataNode* FindNode(String name)
+        {
+            for (FoxDataNode* node = GetSelfPointer(); node != null; node = node->GetNext())
+            {
+                if (node->Name.Hash == new StrCode32(name))
                     return node;
 
                 FoxDataNode* child = node->GetChildren();

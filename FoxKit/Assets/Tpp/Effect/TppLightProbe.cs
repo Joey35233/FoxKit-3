@@ -1,5 +1,5 @@
 using Fox.Core.Utils;
-using Fox.Kernel;
+using Fox;
 using System.ComponentModel;
 using UnityEngine;
 using CsSystem = System;

@@ -11,14 +11,14 @@ namespace Fox.Navx
         {
             base.OnDeserializeEntity(gameObject, logger);
 
-            topPos = Fox.Kernel.Math.FoxToUnityVector3(topPos);
+            topPos = Fox.Math.FoxToUnityVector3(topPos);
         }
 
         public override void OverridePropertiesForExport(EntityExportContext context)
         {
             base.OverridePropertiesForExport(context);
 
-            context.OverrideProperty(nameof(topPos), Fox.Kernel.Math.UnityToFoxVector3(topPos));
+            context.OverrideProperty(nameof(topPos), Fox.Math.UnityToFoxVector3(topPos));
         }
 
         private static readonly Vector3 Scale = Vector3.one * 0.25f;

@@ -1,11 +1,10 @@
 using Fox.Core.Utils;
-using Fox.Kernel;
+using Fox;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
-using String = Fox.Kernel.String;
 
 namespace Fox.Core
 {
@@ -25,7 +24,7 @@ namespace Fox.Core
         /// </summary>
         private StringMap<DynamicProperty> DynamicProperties { get; } = new StringMap<DynamicProperty>();
 
-        public bool AddDynamicProperty(PropertyInfo.PropertyType type, String name, ushort arraySize, PropertyInfo.ContainerType container)
+        public bool AddDynamicProperty(PropertyInfo.PropertyType type, string name, ushort arraySize, PropertyInfo.ContainerType container)
         {
             if (HasPropertyWithName(this, name))
             {
@@ -49,7 +48,7 @@ namespace Fox.Core
         /// <param name="entity">The Entity.</param>
         /// <param name="name">The name of the property to find.</param>
         /// <returns>True if a static or dynamic property was found, else false.</returns>
-        private static bool HasPropertyWithName(Entity entity, String name)
+        private static bool HasPropertyWithName(Entity entity, string name)
         {
             bool hasStaticProperty = EntityInfo.HasPropertyWithName(entity.GetClassEntityInfo(), name);
             return hasStaticProperty || entity.DynamicProperties.ContainsKey(name);
@@ -90,7 +89,7 @@ namespace Fox.Core
 
             foreach (EntityInfo @class in superClasses)
             {
-                foreach (KeyValuePair<String, PropertyInfo> staticProperty in @class.StaticProperties)
+                foreach (KeyValuePair<string, PropertyInfo> staticProperty in @class.StaticProperties)
                 {
                     if (staticProperty.Value.Offset == 0)
                     {
@@ -129,7 +128,7 @@ namespace Fox.Core
             else if (property.Container == PropertyInfo.ContainerType.StringMap)
             {
                 IStringMap list = GetProperty(property.Name).GetValueAsIStringMap();
-                foreach (KeyValuePair<Kernel.String, object> item in list.ToList())
+                foreach (KeyValuePair<string, object> item in list.ToList())
                 {
                     switch (property.Type)
                     {

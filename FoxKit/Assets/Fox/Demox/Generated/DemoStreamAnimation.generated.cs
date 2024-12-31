@@ -17,52 +17,52 @@ namespace Fox.Demox
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.Path streamPath { get; set; }
+		public Fox.Path streamPath { get; set; }
 		
 		[field: UnityEngine.SerializeField]
 		public uint demoLength { get; set; }
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.StringMap<DemoStreamAnimation_LocatorType> locatorTypes { get; private set; } = new Fox.Kernel.StringMap<DemoStreamAnimation_LocatorType>();
+		public Fox.StringMap<DemoStreamAnimation_LocatorType> locatorTypes { get; private set; } = new Fox.StringMap<DemoStreamAnimation_LocatorType>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.StringMap<DemoStreamAnimation_CameraType> cameraTypes { get; private set; } = new Fox.Kernel.StringMap<DemoStreamAnimation_CameraType>();
+		public Fox.StringMap<DemoStreamAnimation_CameraType> cameraTypes { get; private set; } = new Fox.StringMap<DemoStreamAnimation_CameraType>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.StringMap<Fox.Core.FilePtr> modelFiles { get; private set; } = new Fox.Kernel.StringMap<Fox.Core.FilePtr>();
+		public Fox.StringMap<Fox.Core.FilePtr> modelFiles { get; private set; } = new Fox.StringMap<Fox.Core.FilePtr>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.StringMap<Fox.Core.FilePtr> helpBoneFiles { get; private set; } = new Fox.Kernel.StringMap<Fox.Core.FilePtr>();
+		public Fox.StringMap<Fox.Core.FilePtr> helpBoneFiles { get; private set; } = new Fox.StringMap<Fox.Core.FilePtr>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.StringMap<Fox.Core.FilePtr> partsFiles { get; private set; } = new Fox.Kernel.StringMap<Fox.Core.FilePtr>();
+		public Fox.StringMap<Fox.Core.FilePtr> partsFiles { get; private set; } = new Fox.StringMap<Fox.Core.FilePtr>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.StringMap<Fox.Core.FilePtr> coverModelFiles { get; private set; } = new Fox.Kernel.StringMap<Fox.Core.FilePtr>();
+		public Fox.StringMap<Fox.Core.FilePtr> coverModelFiles { get; private set; } = new Fox.StringMap<Fox.Core.FilePtr>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.StringMap<Fox.Kernel.String> modelPartsDictionary { get; private set; } = new Fox.Kernel.StringMap<Fox.Kernel.String>();
+		public Fox.StringMap<string> modelPartsDictionary { get; private set; } = new Fox.StringMap<string>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.StringMap<Fox.Kernel.String> coverModelDictionary { get; private set; } = new Fox.Kernel.StringMap<Fox.Kernel.String>();
+		public Fox.StringMap<string> coverModelDictionary { get; private set; } = new Fox.StringMap<string>();
 		
 		[field: UnityEngine.SerializeField]
 		public uint updateJobCount { get; set; }
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.StringMap<Fox.Kernel.Path> modelProxyPaths { get; private set; } = new Fox.Kernel.StringMap<Fox.Kernel.Path>();
+		public Fox.StringMap<Fox.Path> modelProxyPaths { get; private set; } = new Fox.StringMap<Fox.Path>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.StringMap<Fox.Kernel.Path> partsProxyPaths { get; private set; } = new Fox.Kernel.StringMap<Fox.Kernel.Path>();
+		public Fox.StringMap<Fox.Path> partsProxyPaths { get; private set; } = new Fox.StringMap<Fox.Path>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.StringMap<Fox.Demox.DemoDynamicFileChangeModel> dynamicModel { get; private set; } = new Fox.Kernel.StringMap<Fox.Demox.DemoDynamicFileChangeModel>();
+		public Fox.StringMap<Fox.Demox.DemoDynamicFileChangeModel> dynamicModel { get; private set; } = new Fox.StringMap<Fox.Demox.DemoDynamicFileChangeModel>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.StringMap<Fox.Demox.DemoDynamicFileChangeModel> dynamicParts { get; private set; } = new Fox.Kernel.StringMap<Fox.Demox.DemoDynamicFileChangeModel>();
+		public Fox.StringMap<Fox.Demox.DemoDynamicFileChangeModel> dynamicParts { get; private set; } = new Fox.StringMap<Fox.Demox.DemoDynamicFileChangeModel>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.StringMap<Fox.Demox.DemoFv2ResourceMemory> dynamicFv2 { get; private set; } = new Fox.Kernel.StringMap<Fox.Demox.DemoFv2ResourceMemory>();
+		public Fox.StringMap<Fox.Demox.DemoFv2ResourceMemory> dynamicFv2 { get; private set; } = new Fox.StringMap<Fox.Demox.DemoFv2ResourceMemory>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -81,80 +81,80 @@ namespace Fox.Demox
 		static DemoStreamAnimation()
 		{
 			if (Fox.Core.Data.ClassInfoInitialized)
-				classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("DemoStreamAnimation"), typeof(DemoStreamAnimation), Fox.Core.Data.ClassInfo, 712, null, 3);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("streamPath"), Fox.Core.PropertyInfo.PropertyType.Path, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("demoLength"), Fox.Core.PropertyInfo.PropertyType.UInt32, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("locatorTypes"), Fox.Core.PropertyInfo.PropertyType.Int32, 136, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, typeof(DemoStreamAnimation_LocatorType), Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("cameraTypes"), Fox.Core.PropertyInfo.PropertyType.Int32, 184, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, typeof(DemoStreamAnimation_CameraType), Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("modelFiles"), Fox.Core.PropertyInfo.PropertyType.FilePtr, 232, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("helpBoneFiles"), Fox.Core.PropertyInfo.PropertyType.FilePtr, 280, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("partsFiles"), Fox.Core.PropertyInfo.PropertyType.FilePtr, 328, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("coverModelFiles"), Fox.Core.PropertyInfo.PropertyType.FilePtr, 376, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("modelPartsDictionary"), Fox.Core.PropertyInfo.PropertyType.String, 424, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("coverModelDictionary"), Fox.Core.PropertyInfo.PropertyType.String, 472, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("updateJobCount"), Fox.Core.PropertyInfo.PropertyType.UInt32, 768, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("modelProxyPaths"), Fox.Core.PropertyInfo.PropertyType.Path, 520, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("partsProxyPaths"), Fox.Core.PropertyInfo.PropertyType.Path, 568, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("dynamicModel"), Fox.Core.PropertyInfo.PropertyType.EntityPtr, 616, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, typeof(Fox.Demox.DemoDynamicFileChangeModel), null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("dynamicParts"), Fox.Core.PropertyInfo.PropertyType.EntityPtr, 664, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, typeof(Fox.Demox.DemoDynamicFileChangeModel), null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("dynamicFv2"), Fox.Core.PropertyInfo.PropertyType.EntityPtr, 712, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, typeof(Fox.Demox.DemoFv2ResourceMemory), null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+				classInfo = new Fox.Core.EntityInfo("DemoStreamAnimation", typeof(DemoStreamAnimation), Fox.Core.Data.ClassInfo, 712, null, 3);
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("streamPath", Fox.Core.PropertyInfo.PropertyType.Path, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("demoLength", Fox.Core.PropertyInfo.PropertyType.UInt32, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("locatorTypes", Fox.Core.PropertyInfo.PropertyType.Int32, 136, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, typeof(DemoStreamAnimation_LocatorType), Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("cameraTypes", Fox.Core.PropertyInfo.PropertyType.Int32, 184, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, typeof(DemoStreamAnimation_CameraType), Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("modelFiles", Fox.Core.PropertyInfo.PropertyType.FilePtr, 232, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("helpBoneFiles", Fox.Core.PropertyInfo.PropertyType.FilePtr, 280, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("partsFiles", Fox.Core.PropertyInfo.PropertyType.FilePtr, 328, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("coverModelFiles", Fox.Core.PropertyInfo.PropertyType.FilePtr, 376, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("modelPartsDictionary", Fox.Core.PropertyInfo.PropertyType.String, 424, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("coverModelDictionary", Fox.Core.PropertyInfo.PropertyType.String, 472, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("updateJobCount", Fox.Core.PropertyInfo.PropertyType.UInt32, 768, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("modelProxyPaths", Fox.Core.PropertyInfo.PropertyType.Path, 520, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("partsProxyPaths", Fox.Core.PropertyInfo.PropertyType.Path, 568, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("dynamicModel", Fox.Core.PropertyInfo.PropertyType.EntityPtr, 616, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, typeof(Fox.Demox.DemoDynamicFileChangeModel), null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("dynamicParts", Fox.Core.PropertyInfo.PropertyType.EntityPtr, 664, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, typeof(Fox.Demox.DemoDynamicFileChangeModel), null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("dynamicFv2", Fox.Core.PropertyInfo.PropertyType.EntityPtr, 712, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, typeof(Fox.Demox.DemoFv2ResourceMemory), null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		public override Fox.Core.Value GetProperty(string propertyName)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				case "streamPath":
 					return new Fox.Core.Value(streamPath);
 				case "demoLength":
 					return new Fox.Core.Value(demoLength);
 				case "locatorTypes":
-					return new Fox.Core.Value((Fox.Kernel.IStringMap)locatorTypes);
+					return new Fox.Core.Value((Fox.IStringMap)locatorTypes);
 				case "cameraTypes":
-					return new Fox.Core.Value((Fox.Kernel.IStringMap)cameraTypes);
+					return new Fox.Core.Value((Fox.IStringMap)cameraTypes);
 				case "modelFiles":
-					return new Fox.Core.Value((Fox.Kernel.IStringMap)modelFiles);
+					return new Fox.Core.Value((Fox.IStringMap)modelFiles);
 				case "helpBoneFiles":
-					return new Fox.Core.Value((Fox.Kernel.IStringMap)helpBoneFiles);
+					return new Fox.Core.Value((Fox.IStringMap)helpBoneFiles);
 				case "partsFiles":
-					return new Fox.Core.Value((Fox.Kernel.IStringMap)partsFiles);
+					return new Fox.Core.Value((Fox.IStringMap)partsFiles);
 				case "coverModelFiles":
-					return new Fox.Core.Value((Fox.Kernel.IStringMap)coverModelFiles);
+					return new Fox.Core.Value((Fox.IStringMap)coverModelFiles);
 				case "modelPartsDictionary":
-					return new Fox.Core.Value((Fox.Kernel.IStringMap)modelPartsDictionary);
+					return new Fox.Core.Value((Fox.IStringMap)modelPartsDictionary);
 				case "coverModelDictionary":
-					return new Fox.Core.Value((Fox.Kernel.IStringMap)coverModelDictionary);
+					return new Fox.Core.Value((Fox.IStringMap)coverModelDictionary);
 				case "updateJobCount":
 					return new Fox.Core.Value(updateJobCount);
 				case "modelProxyPaths":
-					return new Fox.Core.Value((Fox.Kernel.IStringMap)modelProxyPaths);
+					return new Fox.Core.Value((Fox.IStringMap)modelProxyPaths);
 				case "partsProxyPaths":
-					return new Fox.Core.Value((Fox.Kernel.IStringMap)partsProxyPaths);
+					return new Fox.Core.Value((Fox.IStringMap)partsProxyPaths);
 				case "dynamicModel":
-					return new Fox.Core.Value((Fox.Kernel.IStringMap)dynamicModel);
+					return new Fox.Core.Value((Fox.IStringMap)dynamicModel);
 				case "dynamicParts":
-					return new Fox.Core.Value((Fox.Kernel.IStringMap)dynamicParts);
+					return new Fox.Core.Value((Fox.IStringMap)dynamicParts);
 				case "dynamicFv2":
-					return new Fox.Core.Value((Fox.Kernel.IStringMap)dynamicFv2);
+					return new Fox.Core.Value((Fox.IStringMap)dynamicFv2);
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				case "locatorTypes":
 					return new Fox.Core.Value(this.locatorTypes[key]);
@@ -187,9 +187,9 @@ namespace Fox.Demox
 			}
 		}
 
-		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, Fox.Core.Value value)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				case "streamPath":
 					this.streamPath = value.GetValueAsPath();
@@ -206,9 +206,9 @@ namespace Fox.Demox
 			}
 		}
 
-		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -216,9 +216,9 @@ namespace Fox.Demox
 			}
 		}
 
-		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				case "locatorTypes":
 					if (this.locatorTypes.ContainsKey(key))

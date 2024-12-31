@@ -1,24 +1,22 @@
 using Fox.Core.Utils;
 using Fox.Fio;
-using Fox.Kernel;
+using Fox;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using String = Fox.Kernel.String;
 
 namespace Fox.Core
 {
     public class DataSetFile2Reader
     {
-        private IDictionary<StrCode, String> stringTable;
+        private IDictionary<StrCode, string> stringTable;
         private readonly IDictionary<ulong, Action<Entity>> entityPtrSetRequests = new Dictionary<ulong, Action<Entity>>();
         private readonly IDictionary<ulong, HashSet<Action<Entity>>> entityHandleSetRequests = new Dictionary<ulong, HashSet<Action<Entity>>>();
         private TaskLogger logger;
 
         public class ReadResult
         {
-            public List<Entity> Entities;
             public List<GameObject> GameObjects;
             public GameObject DataSetGameObject;
             public IDictionary<TransformData, TransformData> TransformDataChildToParentMap = new Dictionary<TransformData, TransformData>();
@@ -37,12 +35,12 @@ namespace Fox.Core
             stringTable = ReadStringTable(reader);
 
 			// v rlc with sai's direction, from Atvaark's FoxTool code
-            string path = "Assets/Fox/Core/DataSet/fox_dictionary.txt";
-            foreach (string line in System.IO.File.ReadAllLines(path))
-            {
-                var lineFoxString = new String(line);
-                _ = stringTable.TryAdd(lineFoxString.Hash, lineFoxString);
-            }
+            // TODO: Make different version or just figure out GZs weird path encryption
+            // string path = "Assets/Fox/Core/DataSet/fox_dictionary.txt";
+            // foreach (string line in System.IO.File.ReadAllLines(path))
+            // {
+            //     _ = stringTable.TryAdd(new StrCode(line), line);
+            // }
 			// ^
 
             reader.Seek(entityTableOffset);
@@ -75,16 +73,15 @@ namespace Fox.Core
 
             ResolveRequests(entities, gameObjects);
 
-            result.Entities = entities.Values.ToList();
             result.GameObjects = gameObjects.Values.ToList();
             return result;
         }
 
-        private static IDictionary<StrCode, String> ReadStringTable(FileStreamReader reader)
+        private static IDictionary<StrCode, string> ReadStringTable(FileStreamReader reader)
         {
-            var dictionary = new Dictionary<StrCode, String>
+            var dictionary = new Dictionary<StrCode, string>
             {
-                { String.Empty.Hash, String.Empty }
+                { new StrCode(string.Empty), string.Empty }
             };
 
             while (true)
@@ -102,7 +99,7 @@ namespace Fox.Core
                     continue;
                 }
 
-                dictionary.Add(hash, new String(new string(literal)));
+                dictionary.Add(hash, new string(literal));
             }
         }
 

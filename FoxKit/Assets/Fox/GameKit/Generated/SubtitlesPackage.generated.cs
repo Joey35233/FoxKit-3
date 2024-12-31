@@ -17,13 +17,13 @@ namespace Fox.GameKit
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<Fox.Core.FilePtr> subtitlesPackage { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Core.FilePtr>();
+		public Fox.DynamicArray<Fox.Core.FilePtr> subtitlesPackage { get; private set; } = new Fox.DynamicArray<Fox.Core.FilePtr>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<Fox.Core.FilePtr> subtitlesStreamData { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Core.FilePtr>();
+		public Fox.DynamicArray<Fox.Core.FilePtr> subtitlesStreamData { get; private set; } = new Fox.DynamicArray<Fox.Core.FilePtr>();
 		
 		[field: UnityEngine.SerializeField]
-		protected Fox.Kernel.DynamicArray<Fox.Kernel.Path> subtitlesStreamPath { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.Path>();
+		protected Fox.DynamicArray<Fox.Path> subtitlesStreamPath { get; private set; } = new Fox.DynamicArray<Fox.Path>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -42,17 +42,17 @@ namespace Fox.GameKit
 		static SubtitlesPackage()
 		{
 			if (Fox.Core.Data.ClassInfoInitialized)
-				classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("SubtitlesPackage"), typeof(SubtitlesPackage), Fox.Core.Data.ClassInfo, 112, "Subtitles", 2);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("subtitlesPackage"), Fox.Core.PropertyInfo.PropertyType.FilePtr, 120, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("subtitlesStreamData"), Fox.Core.PropertyInfo.PropertyType.FilePtr, 136, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("subtitlesStreamPath"), Fox.Core.PropertyInfo.PropertyType.Path, 152, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+				classInfo = new Fox.Core.EntityInfo("SubtitlesPackage", typeof(SubtitlesPackage), Fox.Core.Data.ClassInfo, 112, "Subtitles", 2);
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("subtitlesPackage", Fox.Core.PropertyInfo.PropertyType.FilePtr, 120, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("subtitlesStreamData", Fox.Core.PropertyInfo.PropertyType.FilePtr, 136, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("subtitlesStreamPath", Fox.Core.PropertyInfo.PropertyType.Path, 152, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		public override Fox.Core.Value GetProperty(string propertyName)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				case "subtitlesPackage":
 					return new Fox.Core.Value(subtitlesPackage);
@@ -65,9 +65,9 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				case "subtitlesPackage":
 					return new Fox.Core.Value(this.subtitlesPackage[index]);
@@ -80,18 +80,18 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				default:
 					return base.GetPropertyElement(propertyName, key);
 			}
 		}
 
-		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, Fox.Core.Value value)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				default:
 					base.SetProperty(propertyName, value);
@@ -99,9 +99,9 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				case "subtitlesPackage":
 					while(this.subtitlesPackage.Count <= index) { this.subtitlesPackage.Add(default(Fox.Core.FilePtr)); }
@@ -112,7 +112,7 @@ namespace Fox.GameKit
 					this.subtitlesStreamData[index] = value.GetValueAsFilePtr();
 					return;
 				case "subtitlesStreamPath":
-					while(this.subtitlesStreamPath.Count <= index) { this.subtitlesStreamPath.Add(default(Fox.Kernel.Path)); }
+					while(this.subtitlesStreamPath.Count <= index) { this.subtitlesStreamPath.Add(default(Fox.Path)); }
 					this.subtitlesStreamPath[index] = value.GetValueAsPath();
 					return;
 				default:
@@ -121,9 +121,9 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

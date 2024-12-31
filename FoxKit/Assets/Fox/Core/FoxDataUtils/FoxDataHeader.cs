@@ -4,13 +4,14 @@ using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using UnityEngine.UIElements;
-using String = Fox.Kernel.String;
 
 namespace Fox.Core
 {
-    [StructLayout(LayoutKind.Sequential, Size = 0x20)]
+    [StructLayout(LayoutKind.Sequential, Size = SelfSize)]
     public unsafe struct FoxDataHeader
     {
+        public const int SelfSize = 0x20;
+        
         public uint Version;
         public uint NodesOffset;
         public uint FileSize;

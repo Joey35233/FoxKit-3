@@ -38,8 +38,8 @@ namespace Fox.Core
             Vector3 exportPosition = parent.inheritTransform ? gameObjectTransform.position : gameObjectTransform.localPosition;
             Quaternion exportRotation = parent.inheritTransform ? gameObjectTransform.rotation : gameObjectTransform.localRotation;
 
-            context.OverrideProperty(nameof(transform_translation), Kernel.Math.UnityToFoxVector3(exportPosition));
-            context.OverrideProperty(nameof(transform_rotation_quat), Kernel.Math.UnityToFoxQuaternion(exportRotation));
+            context.OverrideProperty(nameof(transform_translation), Fox.Math.UnityToFoxVector3(exportPosition));
+            context.OverrideProperty(nameof(transform_rotation_quat), Fox.Math.UnityToFoxQuaternion(exportRotation));
             context.OverrideProperty(nameof(transform_scale), gameObjectTransform.localScale);
         }
     }

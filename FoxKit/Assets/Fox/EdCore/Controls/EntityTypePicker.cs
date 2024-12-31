@@ -63,7 +63,7 @@ namespace Fox.EdCore
                     name = "Types",
                     itemsSource = (System.Collections.IList)allItems,
                     makeItem = () => new Label(),
-                    bindItem = (VisualElement e, int i) => (e as Label).text = filteredItems[i].Name.CString,
+                    bindItem = (VisualElement e, int i) => (e as Label).text = filteredItems[i].Name,
                     showAlternatingRowBackgrounds = AlternatingRowBackground.All,
                     virtualizationMethod = CollectionVirtualizationMethod.FixedHeight,
                     fixedItemHeight = 22,
@@ -102,14 +102,14 @@ namespace Fox.EdCore
                 TypesListInput.itemsSource = filteredItems;
                 TypesListInput.selectedIndex = -1;
 
-                if (String.IsNullOrEmpty(evt.newValue))
+                if (string.IsNullOrEmpty(evt.newValue))
                 {
                     filteredItems.AddRange(allItems);
                 }
                 else
                 {
                     filteredItems.AddRange(from item in allItems
-                                           where item.Name.CString.IndexOf(evt.newValue, StringComparison.OrdinalIgnoreCase) >= 0
+                                           where item.Name.IndexOf(evt.newValue, StringComparison.OrdinalIgnoreCase) >= 0
                                            select item);
                 }
 

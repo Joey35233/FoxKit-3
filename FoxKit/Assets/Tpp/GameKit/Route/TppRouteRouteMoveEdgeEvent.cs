@@ -1,6 +1,6 @@
 using Fox.Fio;
 using Fox.GameService;
-using Fox.Kernel;
+using Fox;
 
 namespace Tpp.GameKit
 {

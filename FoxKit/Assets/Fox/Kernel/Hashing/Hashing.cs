@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
 
-namespace Fox.Kernel
+namespace Fox
 {
     public static class Hashing
     {
@@ -52,14 +54,38 @@ namespace Fox.Kernel
             return str;
         }
 
-        public static ulong StrCode(string name)
+        private static ulong StrCodeInner(string str)
         {
             const ulong seed0 = 0x9ae16a3b2f90404f;
-            ulong seed1 = (ulong)(name.Length > 0 ? (name[0] << 16) + name.Length : 0);
-            return CityHash.CityHash.CityHash64WithSeeds(name + '\0', seed0, seed1) & 0xFFFFFFFFFFFF;
+            ulong seed1 = (ulong)(str.Length > 0 ? (str[0] << 16) + str.Length : 0);
+            return CityHash.CityHash.CityHash64WithSeeds(str + '\0', seed0, seed1) & 0xFFFFFFFFFFFF;
         }
 
-        public static uint StrCode32(string name) => (uint)StrCode(name);
+        public static ulong StrCode(string str)
+        {
+            if (str.Length > 2)
+            {
+                bool hasHexPrefix = str.StartsWith("0x");
+                string subStr = str.Substring(2);
+                if (ulong.TryParse(subStr, NumberStyles.HexNumber, null, out ulong rawVar))
+                    return rawVar;
+            }
+            
+            return StrCodeInner(str);
+        }
+
+        public static uint StrCode32(string str)
+        {
+            if (str.Length > 2)
+            {
+                bool hasHexPrefix = str.StartsWith("0x");
+                string subStr = str.Substring(2);
+                if (uint.TryParse(subStr, NumberStyles.HexNumber, null, out uint rawVar))
+                    return rawVar;
+            }
+            
+            return (uint)StrCodeInner(str);
+        }
 
         public static ulong PathFileNameCode(string path)
         {

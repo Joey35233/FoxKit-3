@@ -1,5 +1,5 @@
 using Fox.GameKit;
-using Fox.Kernel;
+using Fox;
 using UnityEditor;
 
 namespace Tpp.GameKit
@@ -9,7 +9,7 @@ namespace Tpp.GameKit
     {
         static TppGameKitModule()
         {
-            FoxGameKitModule.RegisterObjBrushPluginDeserializationCallback(new StrCode32(TppObjectBrushPluginSkeletonModel.ClassInfo.Name.CString), TppObjectBrushPluginSkeletonModel.Deserialize);
+            FoxGameKitModule.RegisterObjBrushPluginDeserializationCallback(new StrCode32(TppObjectBrushPluginSkeletonModel.ClassInfo.Name), TppObjectBrushPluginSkeletonModel.Deserialize);
         }
     }
 }

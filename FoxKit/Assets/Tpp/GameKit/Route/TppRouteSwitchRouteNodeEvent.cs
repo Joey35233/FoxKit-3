@@ -1,6 +1,6 @@
 using Fox.Fio;
 using Fox.GameService;
-using Fox.Kernel;
+using Fox;
 
 namespace Tpp.GameKit
 {
@@ -29,9 +29,9 @@ namespace Tpp.GameKit
                 }
             }
 
-            result.routeName = new String(routeName.ToString());
-            result.function = new String(function.ToString());
-            result.argument = new String(argument.ToString());
+            result.routeName = routeName.ToString();
+            result.function = function.ToString();
+            result.argument = argument.ToString();
 
             return result;
         }

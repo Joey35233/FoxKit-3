@@ -1,7 +1,6 @@
-using Fox.Kernel;
+using Fox;
 using System;
 using UnityEngine;
-using String = Fox.Kernel.String;
 
 namespace Tpp.GameKit
 {
@@ -51,7 +50,7 @@ namespace Tpp.GameKit
 
         public UnityEngine.Vector3 GetScale() => scale;
 
-        public String GetLocatorName() => locatorName;
+        public string GetLocatorName() => locatorName;
 
         public Path GetDataSetName() => dataSetName;
     }

@@ -1,3 +1,4 @@
+using Fox.Core;
 using Fox.Fio;
 using System.IO;
 using UnityEditor;
@@ -13,27 +14,31 @@ namespace FoxKit.MenuItems
             string assetPath = EditorUtility.OpenFilePanel("Import Terrain", "", "tre2");
             if (System.String.IsNullOrEmpty(assetPath))
             {
+                Debug.Log("File doesn't exist or is empty");
                 return;
             }
+            Debug.Log($"File {assetPath} loaded");
 
-            using var reader = new FileStreamReader(System.IO.File.OpenRead(assetPath));
-
-            Fox.Gr.TerrainMapAsset asset = ScriptableObject.CreateInstance<Fox.Gr.TerrainMapAsset>();
-            if (Fox.Gr.TerrainMapAsset.TryReadTerrainFile(asset, reader, Fox.Gr.TerrainFileType.TRE2))
+            Fox.Gr.Terrain.TerrainTileAsset asset = ScriptableObject.CreateInstance<Fox.Gr.Terrain.TerrainTileAsset>();
+            if (Fox.Gr.TerrainFile.TryDeserialize(asset, System.IO.File.ReadAllBytes(assetPath)))
             {
+                AssetDatabase.CreateAsset(asset, $"Assets/Game/{assetPath.Substring(assetPath.LastIndexOf("Assets"))}.asset");
 
-                AssetDatabase.CreateAsset(asset, $"Assets/Game/Assets/{Path.GetFileNameWithoutExtension(assetPath)}.asset");
-
+                Debug.Log($"Asset {asset.name} created");
                 // Need to save the embedded textures to the asset
                 //AssetDatabase.AddObjectToAsset(asset.LodParam, asset);
                 //AssetDatabase.AddObjectToAsset(asset.MaxHeight, asset);
                 //AssetDatabase.AddObjectToAsset(asset.MinHeight, asset);
-                AssetDatabase.AddObjectToAsset(asset.DataControl.HeightMap, asset);
-                AssetDatabase.AddObjectToAsset(asset.DataControl.ComboTexture, asset);
+                // AssetDatabase.AddObjectToAsset(asset.DataControl.HeightMap, asset);
+                // AssetDatabase.AddObjectToAsset(asset.DataControl.ComboTexture, asset);
                 //AssetDatabase.AddObjectToAsset(asset.MaterialIds, asset);
                 //AssetDatabase.AddObjectToAsset(asset.ConfigrationIds, asset);
 
                 AssetDatabase.SaveAssets();
+            }
+            else
+            {
+                Debug.Log($"Asset {asset.name} not created");
             }
         }
     }

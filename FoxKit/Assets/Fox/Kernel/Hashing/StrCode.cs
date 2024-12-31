@@ -1,13 +1,14 @@
 ﻿using System;
+using System.Runtime.InteropServices;
 using UnityEngine;
 
-namespace Fox.Kernel
+namespace Fox
 {
-    [Serializable]
+    [Serializable, StructLayout(LayoutKind.Explicit, Size = 8)]
     public struct StrCode : IEquatable<ulong>
     {
         [SerializeField]
-        private ulong _hash;
+        [FieldOffset(0)] private ulong _hash;
 
         public StrCode(string str)
         {
@@ -19,9 +20,11 @@ namespace Fox.Kernel
             _hash = hash;
         }
 
+        public bool IsValid() => _hash != 0;
+
         internal ulong Backing => _hash;
 
-        // Kernel.StrCode
+        // Fox.StrCode
         public static bool operator ==(StrCode a, StrCode b) => a._hash == b._hash;
 
         public static bool operator !=(StrCode a, StrCode b) => !(a == b);

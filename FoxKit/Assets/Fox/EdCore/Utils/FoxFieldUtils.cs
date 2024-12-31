@@ -1,11 +1,10 @@
 using Fox.Core;
-using Fox.Kernel;
+using Fox;
 using System;
 using System.Reflection;
 using UnityEngine;
 using static Fox.Core.PropertyInfo;
 using PropertyInfo = Fox.Core.PropertyInfo;
-using String = Fox.Kernel.String;
 
 namespace Fox.EdCore
 {

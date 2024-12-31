@@ -1,4 +1,4 @@
-﻿using Fox.Kernel;
+﻿using Fox;
 
 namespace Fox.Fs
 {
@@ -6,13 +6,13 @@ namespace Fox.Fs
     {
         private struct FileTypeInfo
         {
-            public String Extension;
-            public System.Func<String, String> NameResolver;
+            public string Extension;
+            public System.Func<string, string> NameResolver;
         }
 
         private readonly StringMap<FileTypeInfo> TypeExtensionMap;
 
-        public void RegisterFileType(String extension, System.Func<String, String> nameResolver)
+        public void RegisterFileType(string extension, System.Func<string, string> nameResolver)
         {
             var info = new FileTypeInfo { Extension = extension, NameResolver = nameResolver };
 
