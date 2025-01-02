@@ -13,6 +13,7 @@ namespace Fox.EdCore
         where T : Entity
     {
         private SerializedProperty PtrProperty;
+        private EntityInfo EntityInfo = EntityInfo.GetEntityInfo<T>();
 
         private readonly VisualElement PropertyContainer;
         private readonly VisualElement Header;
@@ -151,9 +152,13 @@ namespace Fox.EdCore
 
                 PropertyContainer.visible = true;
                 PropertyContainer.Clear();
-                var entityField = new EntityField<T>();
-                entityField.PopulateAndBind(new SerializedObject(PtrProperty.objectReferenceValue));
-                PropertyContainer.Add(entityField);
+                Func<IEntityField> constructor = EntityFieldCustomEditorCollector.Get(EntityInfo);
+                IEntityField entityField = constructor == null ? new EntityField<T>() : constructor();
+                SerializedObject newObject = new SerializedObject(PtrProperty.objectReferenceValue);
+                entityField.Build(newObject);
+                VisualElement entityFieldElement = entityField as VisualElement;
+                entityFieldElement.Bind(newObject);
+                PropertyContainer.Add(entityFieldElement);
             }
         }
 

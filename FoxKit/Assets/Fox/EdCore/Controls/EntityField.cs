@@ -8,48 +8,27 @@ using UnityEngine.UIElements;
 
 namespace Fox.EdCore
 {
-    [CustomEditor(typeof(Entity), true)]
-    public class EntityEditor : UnityEditor.Editor
-    {
-        public virtual void OnBuildHeader(VisualElement element, SerializedObject serializedObject)
-        {
-            
-        }
-        
-        public virtual void OnBuildBody(VisualElement element, SerializedObject serializedObject)
-        {
-            
-        }
-        
-        public virtual void OnBuildFooter(VisualElement element, SerializedObject serializedObject)
-        {
-            
-        }
-
-        protected virtual bool ShouldOverrideBody() => false;
-        
-        public sealed override VisualElement CreateInspectorGUI()
-        {
-            var field = System.Activator.CreateInstance(typeof(EntityField<>).MakeGenericType((target as Entity).GetClassEntityInfo().Type)) as IEntityField;
-
-            field.OnBuildHeader += OnBuildHeader;
-            if (ShouldOverrideBody())
-                field.OnBuildBody += OnBuildBody;
-            field.OnBuildFooter += OnBuildFooter;
-            field.Build(this.serializedObject);
-            
-            return field as VisualElement;
-        }
-    }
-
     public class EntityField<T> : BaseField<T>, IEntityField where T : Entity
     {
         public static new readonly string ussClassName = "fox-entity-field";
         public static new readonly string inputUssClassName = ussClassName + "__input";
-
-        public event Action<VisualElement, SerializedObject> OnBuildHeader;
-        public event Action<VisualElement, SerializedObject> OnBuildBody;
-        public event Action<VisualElement, SerializedObject> OnBuildFooter;
+        
+        // Override configuration
+        protected virtual void BuildHeader(VisualElement element, SerializedObject serializedObject)
+        {
+            
+        }
+        
+        protected virtual bool ShouldOverrideBuildBody() => false;
+        protected virtual void BuildBodyOverride(VisualElement element, SerializedObject serializedObject)
+        {
+            
+        }
+        
+        protected virtual void BuildFooter(VisualElement element, SerializedObject serializedObject)
+        {
+            
+        }
 
         public VisualElement visualInput
         {
@@ -89,17 +68,17 @@ namespace Fox.EdCore
         {
             PreBuild(serializedObject);
             
-            OnBuildHeader?.Invoke(visualInput, serializedObject);
+            BuildHeader(visualInput, serializedObject);
 
-            if (OnBuildBody is not null)
-                OnBuildBody(visualInput, serializedObject);
+            if (ShouldOverrideBuildBody())
+                BuildBodyOverride(visualInput, serializedObject);
             else
-                PopulateFromEntity(serializedObject);
+                BuildBodyFromEntity(serializedObject);
 
-            OnBuildFooter?.Invoke(visualInput, serializedObject);
+            BuildFooter(visualInput, serializedObject);
         }
         
-        private void PopulateFromEntity(SerializedObject serializedObject)
+        private void BuildBodyFromEntity(SerializedObject serializedObject)
         {
             for (int i = SuperclassList.Count - 1; i > -1; i--)
             {
@@ -164,15 +143,22 @@ namespace Fox.EdCore
             return;
         }
 
-        public void PopulateAndBind(SerializedObject serializedObject)
-        {
-            PreBuild(serializedObject);
-            PopulateFromEntity(serializedObject);
-            
-            visualInput.Bind(serializedObject);
-        }
-
         public void SetLabel(string label) => this.label = label;
         public Label GetLabelElement() => labelElement;
+    }
+    
+    [CustomEditor(typeof(Entity), true)]
+    public class EntityEditor : UnityEditor.Editor
+    {
+        protected virtual IEntityField CreateField() => System.Activator.CreateInstance(typeof(EntityField<>).MakeGenericType((target as Entity).GetClassEntityInfo().Type)) as IEntityField;
+        
+        public sealed override VisualElement CreateInspectorGUI()
+        {
+            var field = CreateField();
+            
+            field.Build(this.serializedObject);
+            
+            return field as VisualElement;
+        }
     }
 }

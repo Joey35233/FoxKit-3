@@ -1,15 +1,29 @@
 using Fox;
+using Fox.EdCore;
 using Fox.GameKit;
 using UnityEngine;
 using UnityEditor;
 
 namespace Fox.EdGameKit
 {
-    [CustomEditor(typeof(StaticModelArray))]
-    public class StaticModelArrayEditor : Fox.EdCore.EntityEditor
+    [InitializeOnLoad]
+    public class StaticModelArrayField : EntityField<StaticModelArray>
     {
-        private int SelectedInstanceIndex = -1;
+        static StaticModelArrayField Create() => new();
+        static StaticModelArrayField()
+        {
+            EntityFieldCustomEditorCollector.Register(StaticModelArray.ClassInfo, Create);
+        }
 
+        protected override bool ShouldOverrideBuildBody() => false;
+    }
+    
+    [CustomEditor(typeof(StaticModelArray))]
+    public class StaticModelArrayEditor : EntityEditor
+    {
+        protected override IEntityField CreateField() => new StaticModelArrayField();
+        
+        private int SelectedInstanceIndex = -1;
         private void OnSceneGUI()
         {
             StaticModelArray modelArray = (StaticModelArray)target;
