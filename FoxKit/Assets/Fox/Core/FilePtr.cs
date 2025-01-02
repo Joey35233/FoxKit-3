@@ -1,6 +1,8 @@
 using Fox;
 using System;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 
 namespace Fox.Core
 {
@@ -8,12 +10,26 @@ namespace Fox.Core
     /// Stores a reference to a file.
     /// </summary>
     [Serializable]
-#pragma warning disable CS0660 // Type defines operator == or operator != but does not override Object.Equals(object o)
-#pragma warning disable CS0661 // Type defines operator == or operator != but does not override Object.GetHashCode()
     public class FilePtr
-#pragma warning restore CS0661 // Type defines operator == or operator != but does not override Object.GetHashCode()
-#pragma warning restore CS0660 // Type defines operator == or operator != but does not override Object.Equals(object o)
     {
+        protected bool Equals(FilePtr other)
+        {
+            return path == other.path;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            if (obj.GetType() != this.GetType()) return false;
+            return Equals((FilePtr)obj);
+        }
+
+        public override int GetHashCode()
+        {
+            return path.GetHashCode();
+        }
+
         [SerializeField]
         public Path path;
 
@@ -25,6 +41,12 @@ namespace Fox.Core
         public FilePtr(Path path)
         {
             this.path = path;
+        }
+
+        public AsyncOperationHandle<T> LoadAsync<T>() where T : class
+        {
+            var handle = Addressables.LoadAssetAsync<T>(path.CString);
+            return handle;
         }
 
         public static FilePtr Empty => new();

@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "com.alelievr.node-graph-processor": "https://github.com/alelievr/NodeGraphProcessor.git#upm",
+    "com.unity.addressables": "1.21.21",
     "com.unity.ai.navigation": "1.1.1",
     "com.unity.animation.rigging": "1.2.1",
     "com.unity.collab-proxy": "2.0.0",

@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 
 namespace Fox.EdCore
 {
-    public class EntityLinkField : BaseField<Core.EntityLink>, IFoxField, ICustomBindable
+    public class EntityLinkField : BaseField<Core.EntityLink>, IFoxField
     {
         private readonly EntityHandleField InternalHandleField;
         private readonly PathField InternalPackagePathField;
@@ -21,7 +21,13 @@ namespace Fox.EdCore
         {
             get;
         }
-        public EntityLinkField() : this(default)
+        public EntityLinkField() 
+            : this(label: null)
+        {
+        }
+        
+        public EntityLinkField(PropertyInfo propertyInfo)
+            : this(propertyInfo.Name)
         {
         }
 
@@ -38,6 +44,7 @@ namespace Fox.EdCore
             VisualElement row0 = new();
             row0.AddToClassList(BaseCompositeField<UnityEngine.Quaternion, FloatField, float>.fieldGroupUssClassName);
             InternalHandleField = new EntityHandleField();
+            InternalHandleField.bindingPath = nameof(EntityLink.handle);
             InternalHandleField.AddToClassList(BaseCompositeField<UnityEngine.Quaternion, FloatField, float>.firstFieldVariantUssClassName);
             InternalHandleField.AddToClassList(BaseCompositeField<UnityEngine.Quaternion, FloatField, float>.fieldUssClassName);
             InternalHandleField.Q(className: BaseField<UnityEngine.Quaternion>.ussClassName).AddToClassList(BaseCompositeField<UnityEngine.Quaternion, FloatField, float>.firstFieldVariantUssClassName);
@@ -49,6 +56,7 @@ namespace Fox.EdCore
             VisualElement row1 = new();
             row1.AddToClassList(BaseCompositeField<UnityEngine.Quaternion, FloatField, float>.fieldGroupUssClassName);
             InternalPackagePathField = new PathField();
+            InternalPackagePathField.bindingPath = nameof(EntityLink.packagePath);
             InternalPackagePathField.AddToClassList(BaseCompositeField<UnityEngine.Quaternion, FloatField, float>.firstFieldVariantUssClassName);
             InternalPackagePathField.AddToClassList(BaseCompositeField<UnityEngine.Quaternion, FloatField, float>.fieldUssClassName);
             InternalPackagePathField.Q(className: BaseField<UnityEngine.Quaternion>.ussClassName).AddToClassList(BaseCompositeField<UnityEngine.Quaternion, FloatField, float>.firstFieldVariantUssClassName);
@@ -60,6 +68,7 @@ namespace Fox.EdCore
             VisualElement row2 = new();
             row2.AddToClassList(BaseCompositeField<UnityEngine.Quaternion, FloatField, float>.fieldGroupUssClassName);
             InternalArchivePathField = new PathField();
+            InternalArchivePathField.bindingPath = nameof(EntityLink.archivePath);
             InternalArchivePathField.AddToClassList(BaseCompositeField<UnityEngine.Quaternion, FloatField, float>.firstFieldVariantUssClassName);
             InternalArchivePathField.AddToClassList(BaseCompositeField<UnityEngine.Quaternion, FloatField, float>.fieldUssClassName);
             InternalArchivePathField.Q(className: BaseField<UnityEngine.Quaternion>.ussClassName).AddToClassList(BaseCompositeField<UnityEngine.Quaternion, FloatField, float>.firstFieldVariantUssClassName);
@@ -71,6 +80,7 @@ namespace Fox.EdCore
             VisualElement row3 = new();
             row3.AddToClassList(BaseCompositeField<UnityEngine.Quaternion, FloatField, float>.fieldGroupUssClassName);
             InternalNameField = new StringField();
+            InternalNameField.bindingPath = nameof(EntityLink.nameInArchive);
             InternalNameField.AddToClassList(BaseCompositeField<UnityEngine.Quaternion, FloatField, float>.firstFieldVariantUssClassName);
             InternalNameField.AddToClassList(BaseCompositeField<UnityEngine.Quaternion, FloatField, float>.fieldUssClassName);
             InternalNameField.Q(className: BaseField<UnityEngine.Quaternion>.ussClassName).AddToClassList(BaseCompositeField<UnityEngine.Quaternion, FloatField, float>.firstFieldVariantUssClassName);
@@ -88,53 +98,24 @@ namespace Fox.EdCore
             visualInput.AddToClassList(BaseCompositeField<UnityEngine.Quaternion, FloatField, float>.inputUssClassName);
             styleSheets.Add(IFoxField.FoxFieldStyleSheet);
         }
-
-        protected override void ExecuteDefaultActionAtTarget(EventBase evt)
-        {
-            base.ExecuteDefaultActionAtTarget(evt);
-
-            // UNITYENHANCEMENT: https://github.com/Joey35233/FoxKit-3/issues/12
-            if (evt.eventTypeId == FoxFieldUtils.SerializedPropertyBindEventTypeId && !System.String.IsNullOrWhiteSpace(bindingPath))
-            {
-                var property = FoxFieldUtils.SerializedPropertyBindEventBindProperty.GetValue(evt) as SerializedProperty;
-
-                if (property.type == "EntityLink")
-                {
-                    InternalHandleField.BindProperty(property.FindPropertyRelative("handle"));
-                    InternalPackagePathField.BindProperty(property.FindPropertyRelative("packagePath"));
-                    InternalArchivePathField.BindProperty(property.FindPropertyRelative("archivePath"));
-                    InternalNameField.BindProperty(property.FindPropertyRelative("nameInArchive"));
-
-                    evt.StopPropagation();
-                }
-            }
-        }
-
-        public void BindProperty(SerializedProperty property) => BindProperty(property, null);
-        public void BindProperty(SerializedProperty property, string label, PropertyInfo propertyInfo = null)
-        {
-            if (label is not null)
-                this.label = label;
-            InternalHandleField.BindProperty(property.FindPropertyRelative("handle"));
-            InternalPackagePathField.BindProperty(property.FindPropertyRelative("packagePath"));
-            InternalArchivePathField.BindProperty(property.FindPropertyRelative("archivePath"));
-            InternalNameField.BindProperty(property.FindPropertyRelative("nameInArchive"));
-        }
+        
+        public void SetLabel(string label) => this.label = label;
+        public Label GetLabelElement() => this.labelElement;
     }
 
-    [CustomPropertyDrawer(typeof(Core.EntityLink))]
-    public class EntityLinkDrawer : PropertyDrawer
-    {
-        public override VisualElement CreatePropertyGUI(SerializedProperty property)
-        {
-            var field = new EntityLinkField(property.name);
-            field.BindProperty(property);
-
-            field.labelElement.AddToClassList(PropertyField.labelUssClassName);
-            field.visualInput.AddToClassList(PropertyField.inputUssClassName);
-            field.AddToClassList(BaseField<Core.EntityLink>.alignedFieldUssClassName);
-
-            return field;
-        }
-    }
+    // [CustomPropertyDrawer(typeof(Core.EntityLink))]
+    // public class EntityLinkDrawer : PropertyDrawer
+    // {
+    //     public override VisualElement CreatePropertyGUI(SerializedProperty property)
+    //     {
+    //         var field = new EntityLinkField(property.name);
+    //         field.BindProperty(property);
+    //
+    //         field.labelElement.AddToClassList(PropertyField.labelUssClassName);
+    //         field.visualInput.AddToClassList(PropertyField.inputUssClassName);
+    //         field.AddToClassList(BaseField<Core.EntityLink>.alignedFieldUssClassName);
+    //
+    //         return field;
+    //     }
+    // }
 }

@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 
 namespace Fox.EdCore
 {
-    public class StaticArrayField<T> : BaseField<StaticArray<T>>, IFoxField, ICustomBindable
+    public class StaticArrayField<T> : BaseField<StaticArray<T>>, IFoxField
     {
         private readonly ListView ListViewInput;
 
@@ -23,21 +23,31 @@ namespace Fox.EdCore
             get;
         }
 
-        public StaticArrayField() : this(default)
+        public StaticArrayField() 
+            : this(label: null)
         {
         }
-
+        
+        public StaticArrayField(PropertyInfo propertyInfo)
+            : this(propertyInfo.Name, new ListView(), propertyInfo)
+        {
+        }
+        
         public StaticArrayField(string label)
             : this(label, new ListView())
         {
         }
 
-        private StaticArrayField(string label, ListView visInput)
+        private StaticArrayField(string label, ListView visInput, PropertyInfo propertyInfo = null)
             : base(label, visInput)
         {
+            if (propertyInfo is not null)
+                FieldConstructor = FoxFieldUtils.GetBindableElementConstructorForPropertyInfo(propertyInfo);
+            
             ListViewInput = visInput;
             visualInput = ListViewInput;
 
+            ListViewInput.bindingPath = "_list";
             ListViewInput.itemsSource = value;
             ListViewInput.makeItem = MakeItem;
             ListViewInput.bindItem = BindItem;
@@ -55,59 +65,37 @@ namespace Fox.EdCore
             styleSheets.Add(IFoxField.FoxFieldStyleSheet);
         }
 
-        protected override void ExecuteDefaultActionAtTarget(EventBase evt)
-        {
-            base.ExecuteDefaultActionAtTarget(evt);
-
-            // UNITYENHANCEMENT: https://github.com/Joey35233/FoxKit-3/issues/12
-            if (evt.eventTypeId == FoxFieldUtils.SerializedPropertyBindEventTypeId && !System.String.IsNullOrWhiteSpace(bindingPath))
-            {
-                var property = FoxFieldUtils.SerializedPropertyBindEventBindProperty.GetValue(evt) as SerializedProperty;
-                if (!property.isArray)
-                {
-                    BindingExtensions.BindProperty(ListViewInput, property.FindPropertyRelative("_list"));
-
-                    evt.StopPropagation();
-                }
-            }
-        }
-
         private VisualElement MakeItem() => FieldConstructor() as VisualElement;
 
         private void BindItem(VisualElement element, int index)
         {
             var itemProperty = ListViewInput.itemsSource[index] as SerializedProperty;
-            (element as ICustomBindable).BindProperty(itemProperty, $"[{index}]");
+            BindableElement bindable = element as BindableElement;
+            bindable.BindProperty(itemProperty);
+            IFoxField foxField = element as IFoxField;
+            foxField.SetLabel($"[{index}]");
 
             element.AddToClassList(BaseCompositeField<UnityEngine.Vector4, FloatField, float>.fieldUssClassName);
             element.AddToClassList(BaseCompositeField<UnityEngine.Vector4, FloatField, float>.firstFieldVariantUssClassName);
         }
-
-        public void BindProperty(SerializedProperty property) => BindProperty(property, null);
-        public void BindProperty(SerializedProperty property, string label, PropertyInfo propertyInfo = null)
-        {
-            if (propertyInfo is not null)
-                FieldConstructor = FoxFieldUtils.GetBindableElementConstructorForPropertyInfo(propertyInfo);
-
-            if (label is not null)
-                this.label = label;
-            BindingExtensions.BindProperty(ListViewInput, property.FindPropertyRelative("_list"));
-        }
+        
+        public void SetLabel(string label) => this.label = label;
+        public Label GetLabelElement() => this.labelElement;
     }
 
-    [CustomPropertyDrawer(typeof(StaticArray<>))]
-    public class StaticArrayDrawer : PropertyDrawer
-    {
-        public override VisualElement CreatePropertyGUI(SerializedProperty property)
-        {
-            var genericField = (VisualElement)Activator.CreateInstance(typeof(StaticArrayField<>).MakeGenericType(fieldInfo.FieldType.GenericTypeArguments), new object[] { property.name });
-            (genericField as IFoxField).BindProperty(property);
-
-            genericField.Q(className: BaseField<float>.labelUssClassName).AddToClassList(PropertyField.labelUssClassName);
-            genericField.Q(className: BaseField<float>.inputUssClassName).AddToClassList(PropertyField.inputUssClassName);
-            genericField.AddToClassList(BaseField<float>.alignedFieldUssClassName);
-
-            return genericField;
-        }
-    }
+    // [CustomPropertyDrawer(typeof(StaticArray<>))]
+    // public class StaticArrayDrawer : PropertyDrawer
+    // {
+    //     public override VisualElement CreatePropertyGUI(SerializedProperty property)
+    //     {
+    //         var genericField = (VisualElement)Activator.CreateInstance(typeof(StaticArrayField<>).MakeGenericType(fieldInfo.FieldType.GenericTypeArguments), new object[] { property.name });
+    //         (genericField as IFoxField).BindProperty(property);
+    //
+    //         genericField.Q(className: BaseField<float>.labelUssClassName).AddToClassList(PropertyField.labelUssClassName);
+    //         genericField.Q(className: BaseField<float>.inputUssClassName).AddToClassList(PropertyField.inputUssClassName);
+    //         genericField.AddToClassList(BaseField<float>.alignedFieldUssClassName);
+    //
+    //         return genericField;
+    //     }
+    // }
 }

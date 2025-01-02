@@ -8,7 +8,7 @@ using UnityEngine.UIElements;
 
 namespace Fox.EdCore
 {
-    public class Int8Field : TextValueField<sbyte>, INotifyValueChanged<int>, IFoxField, ICustomBindable
+    public class Int8Field : TextValueField<sbyte>, INotifyValueChanged<int>, IFoxField
     {
         public override sbyte value
         {
@@ -89,13 +89,19 @@ namespace Fox.EdCore
         }
 
         public Int8Field()
-            : this(null) { }
-
-        public Int8Field(int maxLength)
-            : this(null, true, maxLength) { }
-
+            : this(label: null)
+        {
+        }
+        
         public Int8Field(bool hasDragger)
-            : this(null, hasDragger) { }
+            : this(label: null, hasDragger)
+        {
+        }
+        
+        public Int8Field(PropertyInfo propertyInfo, bool hasDragger = true, int maxLength = -1)
+            : this(propertyInfo.Name, hasDragger, maxLength)
+        {
+        }
 
         public Int8Field(string label, bool hasDragger = true, int maxLength = -1)
             : this(label, hasDragger, maxLength, new Int8Input())
@@ -116,14 +122,6 @@ namespace Fox.EdCore
         }
 
         public override void ApplyInputDeviceDelta(Vector3 delta, DeltaSpeed speed, sbyte startValue) => integerInput.ApplyInputDeviceDelta(delta, speed, startValue);
-
-        public void BindProperty(SerializedProperty property) => BindProperty(property, null);
-        public void BindProperty(SerializedProperty property, string label, PropertyInfo propertyInfo = null)
-        {
-            if (label is not null)
-                this.label = label;
-            BindingExtensions.BindProperty(this, property);
-        }
 
         private class Int8Input : TextValueInput
         {
@@ -160,6 +158,9 @@ namespace Fox.EdCore
                 return NumericPropertyFields.ClampToInt8(v);
             }
         }
+        
+        public void SetLabel(string label) => this.label = label;
+        public Label GetLabelElement() => this.labelElement;
     }
 
     // [CustomPropertyDrawer(typeof(sbyte))]

@@ -5,7 +5,7 @@ using UnityEngine.UIElements;
 
 namespace Fox.EdCore
 {
-    public class StringField : TextField, IFoxField, ICustomBindable
+    public class StringField : TextField, IFoxField
     {
         public static new readonly string ussClassName = "fox-string-field";
         public static new readonly string labelUssClassName = ussClassName + "__label";
@@ -17,13 +17,14 @@ namespace Fox.EdCore
         }
 
         public StringField()
-            : this(null) { }
-
-        public StringField(int maxLength)
-            : this(null, false, maxLength) { }
-
-        public StringField(bool multiline)
-            : this(null, multiline) { }
+            : this(label: null)
+        {
+        }
+        
+        public StringField(PropertyInfo propertyInfo)
+            : this(propertyInfo.Name)
+        {
+        }
 
         public StringField(string label, bool multiline = false, int maxLength = -1)
             : base(label, maxLength, multiline, false, '*')
@@ -40,32 +41,9 @@ namespace Fox.EdCore
 
             styleSheets.Add(IFoxField.FoxFieldStyleSheet);
         }
-
-        protected override void ExecuteDefaultActionAtTarget(EventBase evt)
-        {
-            base.ExecuteDefaultActionAtTarget(evt);
-
-            // UNITYENHANCEMENT: https://github.com/Joey35233/FoxKit-3/issues/12
-            if (evt.eventTypeId == FoxFieldUtils.SerializedPropertyBindEventTypeId && !System.String.IsNullOrWhiteSpace(bindingPath))
-            {
-                var property = FoxFieldUtils.SerializedPropertyBindEventBindProperty.GetValue(evt) as SerializedProperty;
-
-                if (property.propertyType != SerializedPropertyType.String)
-                {
-                    BindingExtensions.BindProperty(this, property);
-
-                    evt.StopPropagation();
-                }
-            }
-        }
-
-        public void BindProperty(SerializedProperty property) => BindProperty(property, null);
-        public void BindProperty(SerializedProperty property, string label, PropertyInfo propertyInfo = null)
-        {
-            if (label is not null)
-                this.label = label;
-            BindingExtensions.BindProperty(this, property);
-        }
+        
+        public void SetLabel(string label) => this.label = label;
+        public Label GetLabelElement() => this.labelElement;
     }
 
     [CustomPropertyDrawer(typeof(string))]

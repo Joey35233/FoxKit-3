@@ -8,7 +8,7 @@ using UnityEngine.UIElements;
 
 namespace Fox.EdCore
 {
-    public class UInt32Field : TextValueField<uint>, INotifyValueChanged<int>, IFoxField, ICustomBindable
+    public class UInt32Field : TextValueField<uint>, INotifyValueChanged<int>, IFoxField
     {
         public override uint value
         {
@@ -89,13 +89,19 @@ namespace Fox.EdCore
         }
 
         public UInt32Field()
-            : this(null) { }
-
-        public UInt32Field(int maxLength)
-            : this(null, true, maxLength) { }
-
+            : this(label: null)
+        {
+        }
+        
         public UInt32Field(bool hasDragger)
-            : this(null, hasDragger) { }
+            : this(label: null, hasDragger)
+        {
+        }
+        
+        public UInt32Field(PropertyInfo propertyInfo, bool hasDragger = true, int maxLength = -1)
+            : this(propertyInfo.Name, hasDragger, maxLength)
+        {
+        }
 
         public UInt32Field(string label, bool hasDragger = true, int maxLength = -1)
             : this(label, hasDragger, maxLength, new UInt32Input())
@@ -116,14 +122,6 @@ namespace Fox.EdCore
         }
 
         public override void ApplyInputDeviceDelta(Vector3 delta, DeltaSpeed speed, uint startValue) => integerInput.ApplyInputDeviceDelta(delta, speed, startValue);
-
-        public void BindProperty(SerializedProperty property) => BindProperty(property, null);
-        public void BindProperty(SerializedProperty property, string label, PropertyInfo propertyInfo = null)
-        {
-            if (label is not null)
-                this.label = label;
-            BindingExtensions.BindProperty(this, property);
-        }
 
         private class UInt32Input : TextValueInput
         {
@@ -160,6 +158,9 @@ namespace Fox.EdCore
                 return NumericPropertyFields.ClampToUInt32(v);
             }
         }
+        
+        public void SetLabel(string label) => this.label = label;
+        public Label GetLabelElement() => this.labelElement;
     }
 
     // [CustomPropertyDrawer(typeof(uint))]

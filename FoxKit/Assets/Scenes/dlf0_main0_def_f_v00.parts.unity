@@ -1,0 +1,3650 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!29 &1
+OcclusionCullingSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_OcclusionBakeSettings:
+    smallestOccluder: 5
+    smallestHole: 0.25
+    backfaceThreshold: 100
+  m_SceneGUID: 00000000000000000000000000000000
+  m_OcclusionCullingData: {fileID: 0}
+--- !u!104 &2
+RenderSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 9
+  m_Fog: 0
+  m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  m_FogMode: 3
+  m_FogDensity: 0.01
+  m_LinearFogStart: 0
+  m_LinearFogEnd: 300
+  m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
+  m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
+  m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
+  m_AmbientIntensity: 1
+  m_AmbientMode: 0
+  m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
+  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_HaloStrength: 0.5
+  m_FlareStrength: 1
+  m_FlareFadeSpeed: 3
+  m_HaloTexture: {fileID: 0}
+  m_SpotCookie: {fileID: 10001, guid: 0000000000000000e000000000000000, type: 0}
+  m_DefaultReflectionMode: 0
+  m_DefaultReflectionResolution: 128
+  m_ReflectionBounces: 1
+  m_ReflectionIntensity: 1
+  m_CustomReflection: {fileID: 0}
+  m_Sun: {fileID: 0}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_UseRadianceAmbientProbe: 0
+--- !u!157 &3
+LightmapSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 12
+  m_GIWorkflowMode: 1
+  m_GISettings:
+    serializedVersion: 2
+    m_BounceScale: 1
+    m_IndirectOutputScale: 1
+    m_AlbedoBoost: 1
+    m_EnvironmentLightingMode: 0
+    m_EnableBakedLightmaps: 1
+    m_EnableRealtimeLightmaps: 0
+  m_LightmapEditorSettings:
+    serializedVersion: 12
+    m_Resolution: 2
+    m_BakeResolution: 40
+    m_AtlasSize: 1024
+    m_AO: 0
+    m_AOMaxDistance: 1
+    m_CompAOExponent: 1
+    m_CompAOExponentDirect: 0
+    m_ExtractAmbientOcclusion: 0
+    m_Padding: 2
+    m_LightmapParameters: {fileID: 0}
+    m_LightmapsBakeMode: 1
+    m_TextureCompression: 1
+    m_FinalGather: 0
+    m_FinalGatherFiltering: 1
+    m_FinalGatherRayCount: 256
+    m_ReflectionCompression: 2
+    m_MixedBakeMode: 2
+    m_BakeBackend: 1
+    m_PVRSampling: 1
+    m_PVRDirectSampleCount: 32
+    m_PVRSampleCount: 512
+    m_PVRBounces: 2
+    m_PVREnvironmentSampleCount: 256
+    m_PVREnvironmentReferencePointCount: 2048
+    m_PVRFilteringMode: 1
+    m_PVRDenoiserTypeDirect: 1
+    m_PVRDenoiserTypeIndirect: 1
+    m_PVRDenoiserTypeAO: 1
+    m_PVRFilterTypeDirect: 0
+    m_PVRFilterTypeIndirect: 0
+    m_PVRFilterTypeAO: 0
+    m_PVREnvironmentMIS: 1
+    m_PVRCulling: 1
+    m_PVRFilteringGaussRadiusDirect: 1
+    m_PVRFilteringGaussRadiusIndirect: 5
+    m_PVRFilteringGaussRadiusAO: 2
+    m_PVRFilteringAtrousPositionSigmaDirect: 0.5
+    m_PVRFilteringAtrousPositionSigmaIndirect: 2
+    m_PVRFilteringAtrousPositionSigmaAO: 1
+    m_ExportTrainingData: 0
+    m_TrainingDataDestination: TrainingData
+    m_LightProbeSampleCountMultiplier: 4
+  m_LightingDataAsset: {fileID: 0}
+  m_LightingSettings: {fileID: 0}
+--- !u!196 &4
+NavMeshSettings:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_BuildSettings:
+    serializedVersion: 3
+    agentTypeID: 0
+    agentRadius: 0.5
+    agentHeight: 2
+    agentSlope: 45
+    agentClimb: 0.4
+    ledgeDropHeight: 0
+    maxJumpAcrossDistance: 0
+    minRegionArea: 2
+    manualCellSize: 0
+    cellSize: 0.16666667
+    manualTileSize: 0
+    tileSize: 256
+    buildHeightMesh: 0
+    maxJobWorkers: 0
+    preserveTilesOutsideBounds: 0
+    debug:
+      m_Flags: 0
+  m_NavMeshData: {fileID: 0}
+--- !u!1 &22578374
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 22578376}
+  - component: {fileID: 22578375}
+  m_Layer: 0
+  m_Name: DataSet
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &22578375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 22578374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6e974565e10a2048b266ff0b05dfc2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <name>k__BackingField: 
+  <dataSet>k__BackingField: {fileID: 0}
+  <dataList>k__BackingField:
+    Threshold: 230
+    HashMask: 255
+    CellCount: 28
+    CellsBacking:
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 1
+      Distance: 0
+      Key: ModelDescription0000
+      Value: {fileID: 1188659145}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 1
+      Distance: 0
+      Key: EffectDescription0012
+      Value: {fileID: 779043974}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 1
+      Distance: 0
+      Key: EffectDescription0007
+      Value: {fileID: 1194954825}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 1
+      Distance: 0
+      Key: EffectDescription0006
+      Value: {fileID: 1604160916}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 1
+      Distance: 0
+      Key: FoxTargetDescription0005
+      Value: {fileID: 131981409}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 1
+      Distance: 0
+      Key: EffectDescription0010
+      Value: {fileID: 1684122570}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 1
+      Distance: 0
+      Key: EffectDescription0014
+      Value: {fileID: 1567144579}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 1
+      Distance: 0
+      Key: FoxTargetDescription0000
+      Value: {fileID: 1693945326}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 1
+      Distance: 0
+      Key: EffectDescription0005
+      Value: {fileID: 350154814}
+    - Occupied: 1
+      Distance: 1
+      Key: EffectDescription0013
+      Value: {fileID: 191253197}
+    - Occupied: 1
+      Distance: 1
+      Key: EffectDescription0003
+      Value: {fileID: 1447951725}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 1
+      Distance: 0
+      Key: FoxTargetDescription0002
+      Value: {fileID: 573197934}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 1
+      Distance: 0
+      Key: EffectDescription0000
+      Value: {fileID: 117642370}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 1
+      Distance: 0
+      Key: EffectDescription0015
+      Value: {fileID: 61594531}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 1
+      Distance: 0
+      Key: EffectDescription0008
+      Value: {fileID: 1362404577}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 1
+      Distance: 0
+      Key: PhysicsDescription0001
+      Value: {fileID: 1363052123}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 1
+      Distance: 0
+      Key: SimDescription0001
+      Value: {fileID: 720751414}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 1
+      Distance: 0
+      Key: EffectDescription0018
+      Value: {fileID: 672090189}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 1
+      Distance: 0
+      Key: EffectDescription0009
+      Value: {fileID: 2053065392}
+    - Occupied: 1
+      Distance: 1
+      Key: EffectDescription0011
+      Value: {fileID: 1253449946}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 1
+      Distance: 0
+      Key: FoxTargetDescription0003
+      Value: {fileID: 1141431831}
+    - Occupied: 1
+      Distance: 0
+      Key: EffectDescription0004
+      Value: {fileID: 792700856}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 1
+      Distance: 0
+      Key: EffectDescription0017
+      Value: {fileID: 1594751627}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 1
+      Distance: 0
+      Key: EffectDescription0002
+      Value: {fileID: 704939657}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 1
+      Distance: 0
+      Key: EffectDescription0001
+      Value: {fileID: 869990647}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 1
+      Distance: 0
+      Key: SimDescription0004
+      Value: {fileID: 1986057289}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 1
+      Distance: 0
+      Key: EffectDescription0016
+      Value: {fileID: 1687301592}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 1
+      Distance: 0
+      Key: FoxTargetDescription0001
+      Value: {fileID: 531685060}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+    - Occupied: 0
+      Distance: 0
+      Key: 
+      Value: {fileID: 0}
+--- !u!4 &22578376
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 22578374}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1188659146}
+  - {fileID: 720751415}
+  - {fileID: 1693945327}
+  - {fileID: 531685061}
+  - {fileID: 573197935}
+  - {fileID: 1141431832}
+  - {fileID: 117642371}
+  - {fileID: 131981410}
+  - {fileID: 869990648}
+  - {fileID: 704939658}
+  - {fileID: 1447951726}
+  - {fileID: 792700857}
+  - {fileID: 350154815}
+  - {fileID: 1604160917}
+  - {fileID: 1194954826}
+  - {fileID: 1362404578}
+  - {fileID: 2053065393}
+  - {fileID: 1363052124}
+  - {fileID: 1253449947}
+  - {fileID: 779043975}
+  - {fileID: 191253198}
+  - {fileID: 1986057290}
+  - {fileID: 1567144580}
+  - {fileID: 61594532}
+  - {fileID: 1687301593}
+  - {fileID: 1684122571}
+  - {fileID: 1594751628}
+  - {fileID: 672090190}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &61594530
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 61594532}
+  - component: {fileID: 61594531}
+  m_Layer: 0
+  m_Name: EffectDescription0015
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &61594531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 61594530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39c3866145b001c4892e1ce49e72b0c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <name>k__BackingField: EffectDescription0015
+  <dataSet>k__BackingField: {fileID: 22578375}
+  <depends>k__BackingField:
+    _list:
+    - handle: {fileID: 1188659145}
+      packagePath:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      archivePath:
+        _cString: /Assets/tpp/parts/chara/dlf/dlf0_main0_def_f_v00.parts
+        _length: 54
+        _hash:
+          _hash: 16189034135237540033
+      nameInArchive: ModelDescription0000
+  <partName>k__BackingField: DiveSplash
+  <buildType>k__BackingField: 
+  <connectDestinationSkelNames>k__BackingField:
+    _list:
+    - SKL_000_WAIST
+  <connectDestinationCnpNames>k__BackingField:
+    _list: []
+  <offsetSkelPositions>k__BackingField:
+    _list:
+    - {x: 0, y: 0, z: 0}
+  <offsetCnpPositions>k__BackingField:
+    _list: []
+  <generalSkelParameters>k__BackingField:
+    _list:
+    - {x: 0, y: 0, z: 0, w: 0}
+  <generalCnpParameters>k__BackingField:
+    _list: []
+  <effectConnect>k__BackingField: 1
+  <changeEffectConnectSetting>k__BackingField: 0
+  <visibleModelWithEffect>k__BackingField: 1
+  <createStartEffect>k__BackingField: 0
+  <effectRandomSeed>k__BackingField: 0
+  <effectKind>k__BackingField: 0
+  <effectVariationName>k__BackingField: 
+  <effectFileFromVfxFileLoader>k__BackingField: 
+  <effectFileFromFilePtr>k__BackingField:
+    path:
+      _cString: /Assets/tpp/effect/vfx_data/chara/fx_tpp_chrdivspl01_s1.vfx
+      _length: 59
+      _hash:
+        _hash: 7352538918260935023
+--- !u!4 &61594532
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 61594530}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 22578376}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &117642369
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 117642371}
+  - component: {fileID: 117642370}
+  m_Layer: 0
+  m_Name: EffectDescription0000
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &117642370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 117642369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39c3866145b001c4892e1ce49e72b0c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <name>k__BackingField: EffectDescription0000
+  <dataSet>k__BackingField: {fileID: 22578375}
+  <depends>k__BackingField:
+    _list:
+    - handle: {fileID: 1188659145}
+      packagePath:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      archivePath:
+        _cString: /Assets/tpp/parts/chara/dlf/dlf0_main0_def_f_v00.parts
+        _length: 54
+        _hash:
+          _hash: 16189034135237540033
+      nameInArchive: ModelDescription0000
+  <partName>k__BackingField: breath
+  <buildType>k__BackingField: 
+  <connectDestinationSkelNames>k__BackingField:
+    _list: []
+  <connectDestinationCnpNames>k__BackingField:
+    _list:
+    - CNP_MOUTH
+  <offsetSkelPositions>k__BackingField:
+    _list: []
+  <offsetCnpPositions>k__BackingField:
+    _list:
+    - {x: 0, y: 0, z: 0}
+  <generalSkelParameters>k__BackingField:
+    _list: []
+  <generalCnpParameters>k__BackingField:
+    _list:
+    - {x: 0, y: 0, z: 0, w: 0}
+  <effectConnect>k__BackingField: 1
+  <changeEffectConnectSetting>k__BackingField: 0
+  <visibleModelWithEffect>k__BackingField: 1
+  <createStartEffect>k__BackingField: 0
+  <effectRandomSeed>k__BackingField: 0
+  <effectKind>k__BackingField: 0
+  <effectVariationName>k__BackingField: 
+  <effectFileFromVfxFileLoader>k__BackingField: 
+  <effectFileFromFilePtr>k__BackingField:
+    path:
+      _cString: /Assets/tpp/effect/vfx_data/smoke/fx_tpp_smkchrbrt01_s0GM.vfx
+      _length: 61
+      _hash:
+        _hash: 7352623526479430339
+--- !u!4 &117642371
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 117642369}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 22578376}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &131981408
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 131981410}
+  - component: {fileID: 131981409}
+  m_Layer: 0
+  m_Name: FoxTargetDescription0005
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &131981409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 131981408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc9293f402f00bf47bae8400bd0a22d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <name>k__BackingField: FoxTargetDescription0005
+  <dataSet>k__BackingField: {fileID: 22578375}
+  <depends>k__BackingField:
+    _list:
+    - handle: {fileID: 1188659145}
+      packagePath:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      archivePath:
+        _cString: /Assets/tpp/parts/chara/dlf/dlf0_main0_def_f_v00.parts
+        _length: 54
+        _hash:
+          _hash: 16189034135237540033
+      nameInArchive: ModelDescription0000
+  <partName>k__BackingField: TargetSetPlayDefense
+  <buildType>k__BackingField: 
+  <targetFile>k__BackingField:
+    path:
+      _cString: /Assets/tpp/parts/chara/sna/sna0_targetcqcdefense.tgt
+      _length: 53
+      _hash:
+        _hash: 16469676410697515923
+--- !u!4 &131981410
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 131981408}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 22578376}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &191253196
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 191253198}
+  - component: {fileID: 191253197}
+  m_Layer: 0
+  m_Name: EffectDescription0013
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &191253197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 191253196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39c3866145b001c4892e1ce49e72b0c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <name>k__BackingField: EffectDescription0013
+  <dataSet>k__BackingField: {fileID: 22578375}
+  <depends>k__BackingField:
+    _list:
+    - handle: {fileID: 1188659145}
+      packagePath:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      archivePath:
+        _cString: /Assets/tpp/parts/chara/dlf/dlf0_main0_def_f_v00.parts
+        _length: 54
+        _hash:
+          _hash: 16189034135237540033
+      nameInArchive: ModelDescription0000
+  <partName>k__BackingField: RainSplashSoundRight
+  <buildType>k__BackingField: 
+  <connectDestinationSkelNames>k__BackingField:
+    _list:
+    - SKL_021_RUARM
+  <connectDestinationCnpNames>k__BackingField:
+    _list: []
+  <offsetSkelPositions>k__BackingField:
+    _list:
+    - {x: 0, y: 0.1, z: 0}
+  <offsetCnpPositions>k__BackingField:
+    _list: []
+  <generalSkelParameters>k__BackingField:
+    _list:
+    - {x: 0, y: 0, z: 0, w: 0}
+  <generalCnpParameters>k__BackingField:
+    _list: []
+  <effectConnect>k__BackingField: 1
+  <changeEffectConnectSetting>k__BackingField: 0
+  <visibleModelWithEffect>k__BackingField: 1
+  <createStartEffect>k__BackingField: 0
+  <effectRandomSeed>k__BackingField: 0
+  <effectKind>k__BackingField: 0
+  <effectVariationName>k__BackingField: 
+  <effectFileFromVfxFileLoader>k__BackingField: fx_tpp_rinspl00sndr_s0MG
+  <effectFileFromFilePtr>k__BackingField:
+    path:
+      _cString: 
+      _length: 0
+      _hash:
+        _hash: 203000540209048
+--- !u!4 &191253198
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 191253196}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 22578376}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &350154813
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 350154815}
+  - component: {fileID: 350154814}
+  m_Layer: 0
+  m_Name: EffectDescription0005
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &350154814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 350154813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39c3866145b001c4892e1ce49e72b0c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <name>k__BackingField: EffectDescription0005
+  <dataSet>k__BackingField: {fileID: 22578375}
+  <depends>k__BackingField:
+    _list:
+    - handle: {fileID: 1188659145}
+      packagePath:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      archivePath:
+        _cString: /Assets/tpp/parts/chara/dlf/dlf0_main0_def_f_v00.parts
+        _length: 54
+        _hash:
+          _hash: 16189034135237540033
+      nameInArchive: ModelDescription0000
+  <partName>k__BackingField: EludeSplashM
+  <buildType>k__BackingField: 
+  <connectDestinationSkelNames>k__BackingField:
+    _list: []
+  <connectDestinationCnpNames>k__BackingField:
+    _list: []
+  <offsetSkelPositions>k__BackingField:
+    _list: []
+  <offsetCnpPositions>k__BackingField:
+    _list: []
+  <generalSkelParameters>k__BackingField:
+    _list: []
+  <generalCnpParameters>k__BackingField:
+    _list: []
+  <effectConnect>k__BackingField: 1
+  <changeEffectConnectSetting>k__BackingField: 0
+  <visibleModelWithEffect>k__BackingField: 1
+  <createStartEffect>k__BackingField: 0
+  <effectRandomSeed>k__BackingField: 0
+  <effectKind>k__BackingField: 0
+  <effectVariationName>k__BackingField: 
+  <effectFileFromVfxFileLoader>k__BackingField: fx_tpp_chrdsthndspl01_s0
+  <effectFileFromFilePtr>k__BackingField:
+    path:
+      _cString: 
+      _length: 0
+      _hash:
+        _hash: 203000540209048
+--- !u!4 &350154815
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 350154813}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 22578376}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &531685059
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 531685061}
+  - component: {fileID: 531685060}
+  m_Layer: 0
+  m_Name: FoxTargetDescription0001
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &531685060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 531685059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc9293f402f00bf47bae8400bd0a22d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <name>k__BackingField: FoxTargetDescription0001
+  <dataSet>k__BackingField: {fileID: 22578375}
+  <depends>k__BackingField:
+    _list:
+    - handle: {fileID: 1188659145}
+      packagePath:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      archivePath:
+        _cString: /Assets/tpp/parts/chara/dlf/dlf0_main0_def_f_v00.parts
+        _length: 54
+        _hash:
+          _hash: 16189034135237540033
+      nameInArchive: ModelDescription0000
+  <partName>k__BackingField: TargetCqcDefense
+  <buildType>k__BackingField: 
+  <targetFile>k__BackingField:
+    path:
+      _cString: /Assets/tpp/parts/chara/sna/sna0_targetcqcdefense.tgt
+      _length: 53
+      _hash:
+        _hash: 16469676410697515923
+--- !u!4 &531685061
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 531685059}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 22578376}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &573197933
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 573197935}
+  - component: {fileID: 573197934}
+  m_Layer: 0
+  m_Name: FoxTargetDescription0002
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &573197934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 573197933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc9293f402f00bf47bae8400bd0a22d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <name>k__BackingField: FoxTargetDescription0002
+  <dataSet>k__BackingField: {fileID: 22578375}
+  <depends>k__BackingField:
+    _list:
+    - handle: {fileID: 1188659145}
+      packagePath:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      archivePath:
+        _cString: /Assets/tpp/parts/chara/dlf/dlf0_main0_def_f_v00.parts
+        _length: 54
+        _hash:
+          _hash: 16189034135237540033
+      nameInArchive: ModelDescription0000
+  <partName>k__BackingField: TargetPushOffense
+  <buildType>k__BackingField: 
+  <targetFile>k__BackingField:
+    path:
+      _cString: /Assets/tpp/parts/chara/sna/sna0_targetpushoffense.tgt
+      _length: 54
+      _hash:
+        _hash: 16470676487716749673
+--- !u!4 &573197935
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 573197933}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 22578376}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &672090188
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 672090190}
+  - component: {fileID: 672090189}
+  m_Layer: 0
+  m_Name: EffectDescription0018
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &672090189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 672090188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39c3866145b001c4892e1ce49e72b0c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <name>k__BackingField: EffectDescription0018
+  <dataSet>k__BackingField: {fileID: 22578375}
+  <depends>k__BackingField:
+    _list:
+    - handle: {fileID: 1188659145}
+      packagePath:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      archivePath:
+        _cString: /Assets/tpp/parts/chara/dlf/dlf0_main0_def_f_v00.parts
+        _length: 54
+        _hash:
+          _hash: 16189034135237540033
+      nameInArchive: ModelDescription0000
+  <partName>k__BackingField: ChickenHeadFeather
+  <buildType>k__BackingField: 
+  <connectDestinationSkelNames>k__BackingField:
+    _list:
+    - SKL_004_HEAD
+  <connectDestinationCnpNames>k__BackingField:
+    _list: []
+  <offsetSkelPositions>k__BackingField:
+    _list:
+    - {x: 0, y: 0, z: 0}
+  <offsetCnpPositions>k__BackingField:
+    _list: []
+  <generalSkelParameters>k__BackingField:
+    _list:
+    - {x: 0, y: 0, z: 0, w: 0}
+  <generalCnpParameters>k__BackingField:
+    _list: []
+  <effectConnect>k__BackingField: 1
+  <changeEffectConnectSetting>k__BackingField: 0
+  <visibleModelWithEffect>k__BackingField: 1
+  <createStartEffect>k__BackingField: 0
+  <effectRandomSeed>k__BackingField: 0
+  <effectKind>k__BackingField: 0
+  <effectVariationName>k__BackingField: 
+  <effectFileFromVfxFileLoader>k__BackingField: 
+  <effectFileFromFilePtr>k__BackingField:
+    path:
+      _cString: /Assets/tpp/effect/vfx_data/item/fx_tpp_itmmskwng01_s1.vfx
+      _length: 58
+      _hash:
+        _hash: 7352216328697930210
+--- !u!4 &672090190
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 672090188}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 22578376}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &704939656
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 704939658}
+  - component: {fileID: 704939657}
+  m_Layer: 0
+  m_Name: EffectDescription0002
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &704939657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 704939656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39c3866145b001c4892e1ce49e72b0c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <name>k__BackingField: EffectDescription0002
+  <dataSet>k__BackingField: {fileID: 22578375}
+  <depends>k__BackingField:
+    _list:
+    - handle: {fileID: 1188659145}
+      packagePath:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      archivePath:
+        _cString: /Assets/tpp/parts/chara/dlf/dlf0_main0_def_f_v00.parts
+        _length: 54
+        _hash:
+          _hash: 16189034135237540033
+      nameInArchive: ModelDescription0000
+  <partName>k__BackingField: Hang
+  <buildType>k__BackingField: 
+  <connectDestinationSkelNames>k__BackingField:
+    _list: []
+  <connectDestinationCnpNames>k__BackingField:
+    _list: []
+  <offsetSkelPositions>k__BackingField:
+    _list: []
+  <offsetCnpPositions>k__BackingField:
+    _list: []
+  <generalSkelParameters>k__BackingField:
+    _list: []
+  <generalCnpParameters>k__BackingField:
+    _list: []
+  <effectConnect>k__BackingField: 1
+  <changeEffectConnectSetting>k__BackingField: 0
+  <visibleModelWithEffect>k__BackingField: 1
+  <createStartEffect>k__BackingField: 0
+  <effectRandomSeed>k__BackingField: 0
+  <effectKind>k__BackingField: 0
+  <effectVariationName>k__BackingField: 
+  <effectFileFromVfxFileLoader>k__BackingField: 
+  <effectFileFromFilePtr>k__BackingField:
+    path:
+      _cString: /Assets/tpp/effect/vfx_data/chara/fx_tpp_chrdsthnd01_s0LG.vfx
+      _length: 61
+      _hash:
+        _hash: 7352396201189142403
+--- !u!4 &704939658
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 704939656}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 22578376}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &720751413
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 720751415}
+  - component: {fileID: 720751414}
+  m_Layer: 0
+  m_Name: SimDescription0001
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &720751414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 720751413}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cb2e794eecc97249a7eeaef36b6f800, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <name>k__BackingField: SimDescription0001
+  <dataSet>k__BackingField: {fileID: 22578375}
+  <depends>k__BackingField:
+    _list:
+    - handle: {fileID: 1188659145}
+      packagePath:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      archivePath:
+        _cString: /Assets/tpp/parts/chara/dlf/dlf0_main0_def_f_v00.parts
+        _length: 54
+        _hash:
+          _hash: 16189034135237540033
+      nameInArchive: ModelDescription0000
+  <partName>k__BackingField: Sim_asr
+  <buildType>k__BackingField: 
+  <simFile>k__BackingField:
+    path:
+      _cString: /Assets/tpp/chara/sna/Fox_files/sna0_main0_asr.sim
+      _length: 50
+      _hash:
+        _hash: 3787609345773861314
+  <isActive>k__BackingField: 1
+--- !u!4 &720751415
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 720751413}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 22578376}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &779043973
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 779043975}
+  - component: {fileID: 779043974}
+  m_Layer: 0
+  m_Name: EffectDescription0012
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &779043974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 779043973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39c3866145b001c4892e1ce49e72b0c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <name>k__BackingField: EffectDescription0012
+  <dataSet>k__BackingField: {fileID: 22578375}
+  <depends>k__BackingField:
+    _list:
+    - handle: {fileID: 1188659145}
+      packagePath:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      archivePath:
+        _cString: /Assets/tpp/parts/chara/dlf/dlf0_main0_def_f_v00.parts
+        _length: 54
+        _hash:
+          _hash: 16189034135237540033
+      nameInArchive: ModelDescription0000
+  <partName>k__BackingField: RainSplashSoundLeft
+  <buildType>k__BackingField: 
+  <connectDestinationSkelNames>k__BackingField:
+    _list:
+    - SKL_011_LUARM
+  <connectDestinationCnpNames>k__BackingField:
+    _list: []
+  <offsetSkelPositions>k__BackingField:
+    _list:
+    - {x: 0, y: 0.1, z: 0}
+  <offsetCnpPositions>k__BackingField:
+    _list: []
+  <generalSkelParameters>k__BackingField:
+    _list:
+    - {x: 0, y: 0, z: 0, w: 0}
+  <generalCnpParameters>k__BackingField:
+    _list: []
+  <effectConnect>k__BackingField: 1
+  <changeEffectConnectSetting>k__BackingField: 0
+  <visibleModelWithEffect>k__BackingField: 1
+  <createStartEffect>k__BackingField: 0
+  <effectRandomSeed>k__BackingField: 0
+  <effectKind>k__BackingField: 0
+  <effectVariationName>k__BackingField: 
+  <effectFileFromVfxFileLoader>k__BackingField: fx_tpp_rinspl00sndl_s0MG
+  <effectFileFromFilePtr>k__BackingField:
+    path:
+      _cString: 
+      _length: 0
+      _hash:
+        _hash: 203000540209048
+--- !u!4 &779043975
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 779043973}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 22578376}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &792700855
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 792700857}
+  - component: {fileID: 792700856}
+  m_Layer: 0
+  m_Name: EffectDescription0004
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &792700856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 792700855}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39c3866145b001c4892e1ce49e72b0c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <name>k__BackingField: EffectDescription0004
+  <dataSet>k__BackingField: {fileID: 22578375}
+  <depends>k__BackingField:
+    _list:
+    - handle: {fileID: 1188659145}
+      packagePath:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      archivePath:
+        _cString: /Assets/tpp/parts/chara/dlf/dlf0_main0_def_f_v00.parts
+        _length: 54
+        _hash:
+          _hash: 16189034135237540033
+      nameInArchive: ModelDescription0000
+  <partName>k__BackingField: Sandstorm
+  <buildType>k__BackingField: 
+  <connectDestinationSkelNames>k__BackingField:
+    _list: []
+  <connectDestinationCnpNames>k__BackingField:
+    _list:
+    - CNP_CHEST
+  <offsetSkelPositions>k__BackingField:
+    _list: []
+  <offsetCnpPositions>k__BackingField:
+    _list:
+    - {x: 0, y: 0, z: 0}
+  <generalSkelParameters>k__BackingField:
+    _list: []
+  <generalCnpParameters>k__BackingField:
+    _list:
+    - {x: 0, y: 0, z: 0, w: 0}
+  <effectConnect>k__BackingField: 1
+  <changeEffectConnectSetting>k__BackingField: 0
+  <visibleModelWithEffect>k__BackingField: 1
+  <createStartEffect>k__BackingField: 0
+  <effectRandomSeed>k__BackingField: 0
+  <effectKind>k__BackingField: 0
+  <effectVariationName>k__BackingField: 
+  <effectFileFromVfxFileLoader>k__BackingField: fx_tpp_chrsndstm02_s1LG
+  <effectFileFromFilePtr>k__BackingField:
+    path:
+      _cString: 
+      _length: 0
+      _hash:
+        _hash: 203000540209048
+--- !u!4 &792700857
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 792700855}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 22578376}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &869990646
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 869990648}
+  - component: {fileID: 869990647}
+  m_Layer: 0
+  m_Name: EffectDescription0001
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &869990647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 869990646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39c3866145b001c4892e1ce49e72b0c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <name>k__BackingField: EffectDescription0001
+  <dataSet>k__BackingField: {fileID: 22578375}
+  <depends>k__BackingField:
+    _list:
+    - handle: {fileID: 1188659145}
+      packagePath:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      archivePath:
+        _cString: /Assets/tpp/parts/chara/dlf/dlf0_main0_def_f_v00.parts
+        _length: 54
+        _hash:
+          _hash: 16189034135237540033
+      nameInArchive: ModelDescription0000
+  <partName>k__BackingField: DiveSmoke
+  <buildType>k__BackingField: 
+  <connectDestinationSkelNames>k__BackingField:
+    _list:
+    - SKL_000_WAIST
+  <connectDestinationCnpNames>k__BackingField:
+    _list: []
+  <offsetSkelPositions>k__BackingField:
+    _list:
+    - {x: 0, y: 0, z: 0}
+  <offsetCnpPositions>k__BackingField:
+    _list: []
+  <generalSkelParameters>k__BackingField:
+    _list:
+    - {x: 0, y: 0, z: 0, w: 0}
+  <generalCnpParameters>k__BackingField:
+    _list: []
+  <effectConnect>k__BackingField: 1
+  <changeEffectConnectSetting>k__BackingField: 0
+  <visibleModelWithEffect>k__BackingField: 1
+  <createStartEffect>k__BackingField: 0
+  <effectRandomSeed>k__BackingField: 0
+  <effectKind>k__BackingField: 0
+  <effectVariationName>k__BackingField: 
+  <effectFileFromVfxFileLoader>k__BackingField: 
+  <effectFileFromFilePtr>k__BackingField:
+    path:
+      _cString: /Assets/tpp/effect/vfx_data/chara/fx_tpp_chrdivsmk01_s1.vfx
+      _length: 59
+      _hash:
+        _hash: 7352761678488082496
+--- !u!4 &869990648
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 869990646}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 22578376}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1141431830
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1141431832}
+  - component: {fileID: 1141431831}
+  m_Layer: 0
+  m_Name: FoxTargetDescription0003
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1141431831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1141431830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc9293f402f00bf47bae8400bd0a22d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <name>k__BackingField: FoxTargetDescription0003
+  <dataSet>k__BackingField: {fileID: 22578375}
+  <depends>k__BackingField:
+    _list:
+    - handle: {fileID: 1188659145}
+      packagePath:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      archivePath:
+        _cString: /Assets/tpp/parts/chara/dlf/dlf0_main0_def_f_v00.parts
+        _length: 54
+        _hash:
+          _hash: 16189034135237540033
+      nameInArchive: ModelDescription0000
+  <partName>k__BackingField: TargetBushOffense
+  <buildType>k__BackingField: 
+  <targetFile>k__BackingField:
+    path:
+      _cString: /Assets/tpp/parts/chara/sna/sna0_targetbushoffense.tgt
+      _length: 54
+      _hash:
+        _hash: 16470307492270789590
+--- !u!4 &1141431832
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1141431830}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 22578376}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1188659144
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1188659146}
+  - component: {fileID: 1188659145}
+  m_Layer: 0
+  m_Name: ModelDescription0000
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1188659145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1188659144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d666e44f26c5e0b49950e20de249f7a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <name>k__BackingField: ModelDescription0000
+  <dataSet>k__BackingField: {fileID: 22578375}
+  <depends>k__BackingField:
+    _list: []
+  <partName>k__BackingField: Body
+  <buildType>k__BackingField: 
+  <modelFile>k__BackingField:
+    path:
+      _cString: /Assets/tpp/chara/dlf/Scenes/dlf0_main0_def_f.fmdl
+      _length: 50
+      _hash:
+        _hash: 9557438653839966928
+  <connectPointFile>k__BackingField:
+    path:
+      _cString: /Assets/tpp/chara/dlf/Scenes/dlf0_main0_def_f.fcnp
+      _length: 50
+      _hash:
+        _hash: 18094011747520742096
+  <gameRigFile>k__BackingField:
+    path:
+      _cString: /Assets/tpp/rig/frig/human_finger.frig
+      _length: 38
+      _hash:
+        _hash: 5126107207622352185
+  <helpBoneFile>k__BackingField:
+    path:
+      _cString: /Assets/tpp/chara/dlf/Scenes/dlf0_main0_def_f.frdv
+      _length: 50
+      _hash:
+        _hash: 14835657417118188240
+  <lipAdjustBinaryFile>k__BackingField:
+    path:
+      _cString: /Assets/tpp/motion/lip_adjust_data/sna0.ladb
+      _length: 44
+      _hash:
+        _hash: 6816847634354497174
+  <facialSettingFile>k__BackingField:
+    path:
+      _cString: /Assets/tpp/motion/facial_setting_data/tppPlayer.fsd
+      _length: 52
+      _hash:
+        _hash: 13695748477339082960
+  <invisibleMeshNames>k__BackingField:
+    _list: []
+  <lodFarPixelSize>k__BackingField: 50
+  <lodNearPixelSize>k__BackingField: 400
+  <lodPolygonSize>k__BackingField: -1
+  <drawRejectionLevel>k__BackingField: 8
+  <rejectFarRangeShadowCast>k__BackingField: 2
+--- !u!4 &1188659146
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1188659144}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 22578376}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1194954824
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1194954826}
+  - component: {fileID: 1194954825}
+  m_Layer: 0
+  m_Name: EffectDescription0007
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1194954825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1194954824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39c3866145b001c4892e1ce49e72b0c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <name>k__BackingField: EffectDescription0007
+  <dataSet>k__BackingField: {fileID: 22578375}
+  <depends>k__BackingField:
+    _list:
+    - handle: {fileID: 1188659145}
+      packagePath:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      archivePath:
+        _cString: /Assets/tpp/parts/chara/dlf/dlf0_main0_def_f_v00.parts
+        _length: 54
+        _hash:
+          _hash: 16189034135237540033
+      nameInArchive: ModelDescription0000
+  <partName>k__BackingField: EludeSplashM2
+  <buildType>k__BackingField: 
+  <connectDestinationSkelNames>k__BackingField:
+    _list: []
+  <connectDestinationCnpNames>k__BackingField:
+    _list: []
+  <offsetSkelPositions>k__BackingField:
+    _list: []
+  <offsetCnpPositions>k__BackingField:
+    _list: []
+  <generalSkelParameters>k__BackingField:
+    _list: []
+  <generalCnpParameters>k__BackingField:
+    _list: []
+  <effectConnect>k__BackingField: 1
+  <changeEffectConnectSetting>k__BackingField: 0
+  <visibleModelWithEffect>k__BackingField: 1
+  <createStartEffect>k__BackingField: 0
+  <effectRandomSeed>k__BackingField: 0
+  <effectKind>k__BackingField: 0
+  <effectVariationName>k__BackingField: 
+  <effectFileFromVfxFileLoader>k__BackingField: 
+  <effectFileFromFilePtr>k__BackingField:
+    path:
+      _cString: 
+      _length: 0
+      _hash:
+        _hash: 203000540209048
+--- !u!4 &1194954826
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1194954824}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 22578376}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1253449945
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1253449947}
+  - component: {fileID: 1253449946}
+  m_Layer: 0
+  m_Name: EffectDescription0011
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1253449946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1253449945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39c3866145b001c4892e1ce49e72b0c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <name>k__BackingField: EffectDescription0011
+  <dataSet>k__BackingField: {fileID: 22578375}
+  <depends>k__BackingField:
+    _list:
+    - handle: {fileID: 1188659145}
+      packagePath:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      archivePath:
+        _cString: /Assets/tpp/parts/chara/dlf/dlf0_main0_def_f_v00.parts
+        _length: 54
+        _hash:
+          _hash: 16189034135237540033
+      nameInArchive: ModelDescription0000
+  <partName>k__BackingField: RainSplash
+  <buildType>k__BackingField: 
+  <connectDestinationSkelNames>k__BackingField:
+    _list:
+    - SKL_400_HEADROOT
+    - SKL_010_LSHLD
+    - SKL_020_RSHLD
+    - SKL_011_LUARM
+    - SKL_021_RUARM
+    - SKL_002_CHEST
+    - SKL_002_CHEST
+    - SKL_030_LTHIGH
+    - SKL_040_RTHIGH
+    - SKL_031_LLEG
+    - SKL_041_RLEG
+    - SKL_620_ITEM_SIM
+    - SKL_620_ITEM_SIM
+    - SKL_000_WAIST
+    - SKL_000_WAIST
+    - SKL_030_LTHIGH
+    - SKL_040_RTHIGH
+    - SKL_002_CHEST
+    - SKL_004_HEAD
+  <connectDestinationCnpNames>k__BackingField:
+    _list: []
+  <offsetSkelPositions>k__BackingField:
+    _list:
+    - {x: 0, y: 0.1, z: 0.03}
+    - {x: 0.05, y: -0.02, z: -0.05}
+    - {x: -0.05, y: -0.02, z: -0.05}
+    - {x: 0, y: -0.01, z: 0}
+    - {x: 0, y: -0.01, z: 0}
+    - {x: 0.07, y: 0.09, z: 0}
+    - {x: -0.07, y: 0.09, z: 0}
+    - {x: 0, y: -0.07, z: 0}
+    - {x: 0, y: -0.07, z: 0}
+    - {x: 0, y: 0, z: 0}
+    - {x: 0, y: 0, z: 0}
+    - {x: 0.08, y: -0.05, z: 0}
+    - {x: -0.08, y: -0.05, z: -0.05}
+    - {x: 0.05, y: 0.1, z: 0.02}
+    - {x: -0.05, y: 0.1, z: 0.02}
+    - {x: 0, y: -0.25, z: 0}
+    - {x: 0, y: -0.25, z: 0}
+    - {x: 0, y: 0.2, z: -0.04}
+    - {x: 0, y: 0.02, z: -0.02}
+  <offsetCnpPositions>k__BackingField:
+    _list: []
+  <generalSkelParameters>k__BackingField:
+    _list:
+    - {x: 0, y: 0.1, z: 0, w: 0}
+    - {x: 0, y: 0.11, z: 0, w: 0}
+    - {x: 0, y: 0.11, z: 0, w: 0}
+    - {x: 0, y: 0.06, z: 0, w: 0}
+    - {x: 0, y: 0.06, z: 0, w: 0}
+    - {x: 0, y: 0.11, z: 0, w: 0}
+    - {x: 0, y: 0.11, z: 0, w: 0}
+    - {x: 0, y: 0.1, z: 0, w: 0}
+    - {x: 0, y: 0.1, z: 0, w: 0}
+    - {x: 0, y: 0.08, z: 0, w: 0}
+    - {x: 0, y: 0.08, z: 0, w: 0}
+    - {x: 0, y: 0.1, z: 0, w: 0}
+    - {x: 0, y: 0.1, z: 0, w: 0}
+    - {x: 0, y: 0.1, z: 0, w: 0}
+    - {x: 0, y: 0.1, z: 0, w: 0}
+    - {x: 0, y: 0.09, z: 0, w: 0}
+    - {x: 0, y: 0.09, z: 0, w: 0}
+    - {x: 0, y: 0.08, z: 0, w: 0}
+    - {x: 0, y: 0.08, z: 0, w: 0}
+  <generalCnpParameters>k__BackingField:
+    _list: []
+  <effectConnect>k__BackingField: 1
+  <changeEffectConnectSetting>k__BackingField: 0
+  <visibleModelWithEffect>k__BackingField: 1
+  <createStartEffect>k__BackingField: 0
+  <effectRandomSeed>k__BackingField: 0
+  <effectKind>k__BackingField: 1
+  <effectVariationName>k__BackingField: 
+  <effectFileFromVfxFileLoader>k__BackingField: fx_tpp_rinspl00_s0MG
+  <effectFileFromFilePtr>k__BackingField:
+    path:
+      _cString: 
+      _length: 0
+      _hash:
+        _hash: 203000540209048
+--- !u!4 &1253449947
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1253449945}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 22578376}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1362404576
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1362404578}
+  - component: {fileID: 1362404577}
+  m_Layer: 0
+  m_Name: EffectDescription0008
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1362404577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1362404576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39c3866145b001c4892e1ce49e72b0c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <name>k__BackingField: EffectDescription0008
+  <dataSet>k__BackingField: {fileID: 22578375}
+  <depends>k__BackingField:
+    _list:
+    - handle: {fileID: 1188659145}
+      packagePath:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      archivePath:
+        _cString: /Assets/tpp/parts/chara/dlf/dlf0_main0_def_f_v00.parts
+        _length: 54
+        _hash:
+          _hash: 16189034135237540033
+      nameInArchive: ModelDescription0000
+  <partName>k__BackingField: EludeSplashS2
+  <buildType>k__BackingField: 
+  <connectDestinationSkelNames>k__BackingField:
+    _list: []
+  <connectDestinationCnpNames>k__BackingField:
+    _list: []
+  <offsetSkelPositions>k__BackingField:
+    _list: []
+  <offsetCnpPositions>k__BackingField:
+    _list: []
+  <generalSkelParameters>k__BackingField:
+    _list: []
+  <generalCnpParameters>k__BackingField:
+    _list: []
+  <effectConnect>k__BackingField: 1
+  <changeEffectConnectSetting>k__BackingField: 0
+  <visibleModelWithEffect>k__BackingField: 1
+  <createStartEffect>k__BackingField: 0
+  <effectRandomSeed>k__BackingField: 0
+  <effectKind>k__BackingField: 0
+  <effectVariationName>k__BackingField: 
+  <effectFileFromVfxFileLoader>k__BackingField: 
+  <effectFileFromFilePtr>k__BackingField:
+    path:
+      _cString: 
+      _length: 0
+      _hash:
+        _hash: 203000540209048
+--- !u!4 &1362404578
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1362404576}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 22578376}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1363052122
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1363052124}
+  - component: {fileID: 1363052123}
+  m_Layer: 0
+  m_Name: PhysicsDescription0001
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1363052123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1363052122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da7065df7378d9e45b8e456897fa8edf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <name>k__BackingField: PhysicsDescription0001
+  <dataSet>k__BackingField: {fileID: 22578375}
+  <depends>k__BackingField:
+    _list:
+    - handle: {fileID: 1188659145}
+      packagePath:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      archivePath:
+        _cString: /Assets/tpp/parts/chara/dlf/dlf0_main0_def_f_v00.parts
+        _length: 54
+        _hash:
+          _hash: 16189034135237540033
+      nameInArchive: ModelDescription0000
+  <partName>k__BackingField: Ragdoll
+  <buildType>k__BackingField: 
+  <physicsFile>k__BackingField:
+    path:
+      _cString: /Assets/tpp/parts/chara/sna/sna0_v01.ph
+      _length: 39
+      _hash:
+        _hash: 12446144121259461693
+--- !u!4 &1363052124
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1363052122}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 22578376}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1447951724
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1447951726}
+  - component: {fileID: 1447951725}
+  m_Layer: 0
+  m_Name: EffectDescription0003
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1447951725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1447951724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39c3866145b001c4892e1ce49e72b0c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <name>k__BackingField: EffectDescription0003
+  <dataSet>k__BackingField: {fileID: 22578375}
+  <depends>k__BackingField:
+    _list:
+    - handle: {fileID: 1188659145}
+      packagePath:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      archivePath:
+        _cString: /Assets/tpp/parts/chara/dlf/dlf0_main0_def_f_v00.parts
+        _length: 54
+        _hash:
+          _hash: 16189034135237540033
+      nameInArchive: ModelDescription0000
+  <partName>k__BackingField: Climb
+  <buildType>k__BackingField: 
+  <connectDestinationSkelNames>k__BackingField:
+    _list: []
+  <connectDestinationCnpNames>k__BackingField:
+    _list: []
+  <offsetSkelPositions>k__BackingField:
+    _list: []
+  <offsetCnpPositions>k__BackingField:
+    _list: []
+  <generalSkelParameters>k__BackingField:
+    _list: []
+  <generalCnpParameters>k__BackingField:
+    _list: []
+  <effectConnect>k__BackingField: 1
+  <changeEffectConnectSetting>k__BackingField: 0
+  <visibleModelWithEffect>k__BackingField: 1
+  <createStartEffect>k__BackingField: 0
+  <effectRandomSeed>k__BackingField: 0
+  <effectKind>k__BackingField: 0
+  <effectVariationName>k__BackingField: 
+  <effectFileFromVfxFileLoader>k__BackingField: 
+  <effectFileFromFilePtr>k__BackingField:
+    path:
+      _cString: /Assets/tpp/effect/vfx_data/chara/fx_tpp_chrdstwst01_s1LG.vfx
+      _length: 61
+      _hash:
+        _hash: 7352842634208311724
+--- !u!4 &1447951726
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1447951724}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 22578376}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1567144578
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1567144580}
+  - component: {fileID: 1567144579}
+  m_Layer: 0
+  m_Name: EffectDescription0014
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1567144579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1567144578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39c3866145b001c4892e1ce49e72b0c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <name>k__BackingField: EffectDescription0014
+  <dataSet>k__BackingField: {fileID: 22578375}
+  <depends>k__BackingField:
+    _list:
+    - handle: {fileID: 1188659145}
+      packagePath:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      archivePath:
+        _cString: /Assets/tpp/parts/chara/dlf/dlf0_main0_def_f_v00.parts
+        _length: 54
+        _hash:
+          _hash: 16189034135237540033
+      nameInArchive: ModelDescription0000
+  <partName>k__BackingField: Flare1
+  <buildType>k__BackingField: 
+  <connectDestinationSkelNames>k__BackingField:
+    _list:
+    - SKL_004_HEAD
+  <connectDestinationCnpNames>k__BackingField:
+    _list: []
+  <offsetSkelPositions>k__BackingField:
+    _list:
+    - {x: 0, y: 0.1, z: 0}
+  <offsetCnpPositions>k__BackingField:
+    _list: []
+  <generalSkelParameters>k__BackingField:
+    _list:
+    - {x: 0, y: 0.2, z: 0, w: 0}
+  <generalCnpParameters>k__BackingField:
+    _list: []
+  <effectConnect>k__BackingField: 1
+  <changeEffectConnectSetting>k__BackingField: 0
+  <visibleModelWithEffect>k__BackingField: 1
+  <createStartEffect>k__BackingField: 0
+  <effectRandomSeed>k__BackingField: 0
+  <effectKind>k__BackingField: 1
+  <effectVariationName>k__BackingField: 
+  <effectFileFromVfxFileLoader>k__BackingField: 
+  <effectFileFromFilePtr>k__BackingField:
+    path:
+      _cString: /Assets/tpp/effect/vfx_data/flare/fx_tpp_flrlgt24_m1LD.vfx
+      _length: 58
+      _hash:
+        _hash: 7353085366346156610
+--- !u!4 &1567144580
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1567144578}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 22578376}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1594751626
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1594751628}
+  - component: {fileID: 1594751627}
+  m_Layer: 0
+  m_Name: EffectDescription0017
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1594751627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1594751626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39c3866145b001c4892e1ce49e72b0c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <name>k__BackingField: EffectDescription0017
+  <dataSet>k__BackingField: {fileID: 22578375}
+  <depends>k__BackingField:
+    _list:
+    - handle: {fileID: 1188659145}
+      packagePath:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      archivePath:
+        _cString: /Assets/tpp/parts/chara/dlf/dlf0_main0_def_f_v00.parts
+        _length: 54
+        _hash:
+          _hash: 16189034135237540033
+      nameInArchive: ModelDescription0000
+  <partName>k__BackingField: Burn
+  <buildType>k__BackingField: 
+  <connectDestinationSkelNames>k__BackingField:
+    _list:
+    - SKL_041_RLEG
+    - SKL_031_LLEG
+    - SKL_040_RTHIGH
+    - SKL_030_LTHIGH
+    - SKL_021_RUARM
+    - SKL_011_LUARM
+    - SKL_000_WAIST
+  <connectDestinationCnpNames>k__BackingField:
+    _list: []
+  <offsetSkelPositions>k__BackingField:
+    _list:
+    - {x: 0, y: -0.3, z: 0}
+    - {x: 0, y: -0.3, z: 0}
+    - {x: 0, y: -0.2, z: 0}
+    - {x: 0, y: -0.2, z: 0}
+    - {x: 0, y: 0, z: 0}
+    - {x: 0, y: 0, z: 0}
+    - {x: 0, y: 0, z: 0}
+  <offsetCnpPositions>k__BackingField:
+    _list: []
+  <generalSkelParameters>k__BackingField:
+    _list:
+    - {x: 0, y: 0, z: 0, w: 0}
+    - {x: 0, y: 0, z: 0, w: 0}
+    - {x: 0, y: 0, z: 0, w: 0}
+    - {x: 0, y: 0, z: 0, w: 0}
+    - {x: 0, y: 0, z: 0, w: 0}
+    - {x: 0, y: 0, z: 0, w: 0}
+    - {x: 0, y: 0, z: 0, w: 0}
+  <generalCnpParameters>k__BackingField:
+    _list: []
+  <effectConnect>k__BackingField: 1
+  <changeEffectConnectSetting>k__BackingField: 0
+  <visibleModelWithEffect>k__BackingField: 1
+  <createStartEffect>k__BackingField: 0
+  <effectRandomSeed>k__BackingField: 0
+  <effectKind>k__BackingField: 0
+  <effectVariationName>k__BackingField: 
+  <effectFileFromVfxFileLoader>k__BackingField: 
+  <effectFileFromFilePtr>k__BackingField:
+    path:
+      _cString: /Assets/tpp/effect/vfx_data/fire/fx_tpp_firchr02_s2.vfx
+      _length: 55
+      _hash:
+        _hash: 7352243142514354919
+--- !u!4 &1594751628
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1594751626}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 22578376}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1604160915
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1604160917}
+  - component: {fileID: 1604160916}
+  m_Layer: 0
+  m_Name: EffectDescription0006
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1604160916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1604160915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39c3866145b001c4892e1ce49e72b0c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <name>k__BackingField: EffectDescription0006
+  <dataSet>k__BackingField: {fileID: 22578375}
+  <depends>k__BackingField:
+    _list:
+    - handle: {fileID: 1188659145}
+      packagePath:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      archivePath:
+        _cString: /Assets/tpp/parts/chara/dlf/dlf0_main0_def_f_v00.parts
+        _length: 54
+        _hash:
+          _hash: 16189034135237540033
+      nameInArchive: ModelDescription0000
+  <partName>k__BackingField: EludeSplashS
+  <buildType>k__BackingField: 
+  <connectDestinationSkelNames>k__BackingField:
+    _list: []
+  <connectDestinationCnpNames>k__BackingField:
+    _list: []
+  <offsetSkelPositions>k__BackingField:
+    _list: []
+  <offsetCnpPositions>k__BackingField:
+    _list: []
+  <generalSkelParameters>k__BackingField:
+    _list: []
+  <generalCnpParameters>k__BackingField:
+    _list: []
+  <effectConnect>k__BackingField: 1
+  <changeEffectConnectSetting>k__BackingField: 0
+  <visibleModelWithEffect>k__BackingField: 1
+  <createStartEffect>k__BackingField: 0
+  <effectRandomSeed>k__BackingField: 0
+  <effectKind>k__BackingField: 0
+  <effectVariationName>k__BackingField: 
+  <effectFileFromVfxFileLoader>k__BackingField: fx_tpp_chrdsthndspl02_s0
+  <effectFileFromFilePtr>k__BackingField:
+    path:
+      _cString: 
+      _length: 0
+      _hash:
+        _hash: 203000540209048
+--- !u!4 &1604160917
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1604160915}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 22578376}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1684122569
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1684122571}
+  - component: {fileID: 1684122570}
+  m_Layer: 0
+  m_Name: EffectDescription0010
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1684122570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1684122569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39c3866145b001c4892e1ce49e72b0c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <name>k__BackingField: EffectDescription0010
+  <dataSet>k__BackingField: {fileID: 22578375}
+  <depends>k__BackingField:
+    _list:
+    - handle: {fileID: 1188659145}
+      packagePath:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      archivePath:
+        _cString: /Assets/tpp/parts/chara/dlf/dlf0_main0_def_f_v00.parts
+        _length: 54
+        _hash:
+          _hash: 16189034135237540033
+      nameInArchive: ModelDescription0000
+  <partName>k__BackingField: fx_tpp_chrfotlpb01_s0
+  <buildType>k__BackingField: 
+  <connectDestinationSkelNames>k__BackingField:
+    _list: []
+  <connectDestinationCnpNames>k__BackingField:
+    _list:
+    - CNP_LOW_RHEEL
+    - CNP_LOW_LHEEL
+  <offsetSkelPositions>k__BackingField:
+    _list: []
+  <offsetCnpPositions>k__BackingField:
+    _list:
+    - {x: 0, y: 0, z: 0.15}
+    - {x: 0, y: 0, z: 0.15}
+  <generalSkelParameters>k__BackingField:
+    _list: []
+  <generalCnpParameters>k__BackingField:
+    _list:
+    - {x: 0, y: 0, z: 0, w: 0}
+    - {x: 0, y: 0, z: 0, w: 0}
+  <effectConnect>k__BackingField: 1
+  <changeEffectConnectSetting>k__BackingField: 0
+  <visibleModelWithEffect>k__BackingField: 1
+  <createStartEffect>k__BackingField: 0
+  <effectRandomSeed>k__BackingField: 0
+  <effectKind>k__BackingField: 0
+  <effectVariationName>k__BackingField: 
+  <effectFileFromVfxFileLoader>k__BackingField: fx_tpp_chrfotlpb01_s0
+  <effectFileFromFilePtr>k__BackingField:
+    path:
+      _cString: 
+      _length: 0
+      _hash:
+        _hash: 203000540209048
+--- !u!4 &1684122571
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1684122569}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 22578376}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1687301591
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1687301593}
+  - component: {fileID: 1687301592}
+  m_Layer: 0
+  m_Name: EffectDescription0016
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1687301592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1687301591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39c3866145b001c4892e1ce49e72b0c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <name>k__BackingField: EffectDescription0016
+  <dataSet>k__BackingField: {fileID: 22578375}
+  <depends>k__BackingField:
+    _list:
+    - handle: {fileID: 1188659145}
+      packagePath:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      archivePath:
+        _cString: /Assets/tpp/parts/chara/dlf/dlf0_main0_def_f_v00.parts
+        _length: 54
+        _hash:
+          _hash: 16189034135237540033
+      nameInArchive: ModelDescription0000
+  <partName>k__BackingField: DiveRiver
+  <buildType>k__BackingField: 
+  <connectDestinationSkelNames>k__BackingField:
+    _list:
+    - SKL_000_WAIST
+  <connectDestinationCnpNames>k__BackingField:
+    _list: []
+  <offsetSkelPositions>k__BackingField:
+    _list:
+    - {x: 0, y: 0, z: 0}
+  <offsetCnpPositions>k__BackingField:
+    _list: []
+  <generalSkelParameters>k__BackingField:
+    _list:
+    - {x: 0, y: 0, z: 0, w: 0}
+  <generalCnpParameters>k__BackingField:
+    _list: []
+  <effectConnect>k__BackingField: 1
+  <changeEffectConnectSetting>k__BackingField: 0
+  <visibleModelWithEffect>k__BackingField: 1
+  <createStartEffect>k__BackingField: 0
+  <effectRandomSeed>k__BackingField: 0
+  <effectKind>k__BackingField: 0
+  <effectVariationName>k__BackingField: 
+  <effectFileFromVfxFileLoader>k__BackingField: 
+  <effectFileFromFilePtr>k__BackingField:
+    path:
+      _cString: /Assets/tpp/effect/vfx_data/chara/fx_tpp_chrdivspl02_s1.vfx
+      _length: 59
+      _hash:
+        _hash: 7352328154177400095
+--- !u!4 &1687301593
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1687301591}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 22578376}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1693945325
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1693945327}
+  - component: {fileID: 1693945326}
+  m_Layer: 0
+  m_Name: FoxTargetDescription0000
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1693945326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1693945325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc9293f402f00bf47bae8400bd0a22d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <name>k__BackingField: FoxTargetDescription0000
+  <dataSet>k__BackingField: {fileID: 22578375}
+  <depends>k__BackingField:
+    _list:
+    - handle: {fileID: 1188659145}
+      packagePath:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      archivePath:
+        _cString: /Assets/tpp/parts/chara/dlf/dlf0_main0_def_f_v00.parts
+        _length: 54
+        _hash:
+          _hash: 16189034135237540033
+      nameInArchive: ModelDescription0000
+  <partName>k__BackingField: Target
+  <buildType>k__BackingField: 
+  <targetFile>k__BackingField:
+    path:
+      _cString: /Assets/tpp/parts/chara/sna/sna0_targetdefense.tgt
+      _length: 50
+      _hash:
+        _hash: 16470119792109531492
+--- !u!4 &1693945327
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1693945325}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 22578376}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1986057288
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1986057290}
+  - component: {fileID: 1986057289}
+  m_Layer: 0
+  m_Name: SimDescription0004
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1986057289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1986057288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cb2e794eecc97249a7eeaef36b6f800, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <name>k__BackingField: SimDescription0004
+  <dataSet>k__BackingField: {fileID: 22578375}
+  <depends>k__BackingField:
+    _list:
+    - handle: {fileID: 1188659145}
+      packagePath:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      archivePath:
+        _cString: /Assets/tpp/parts/chara/dlf/dlf0_main0_def_f_v00.parts
+        _length: 54
+        _hash:
+          _hash: 16189034135237540033
+      nameInArchive: ModelDescription0000
+  <partName>k__BackingField: Sim_broken_arm
+  <buildType>k__BackingField: 
+  <simFile>k__BackingField:
+    path:
+      _cString: /Assets/tpp/chara/sna/Fox_files/sna0_broken_arm_r.sim
+      _length: 53
+      _hash:
+        _hash: 3788020626821420744
+  <isActive>k__BackingField: 0
+--- !u!4 &1986057290
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1986057288}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 22578376}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2053065391
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2053065393}
+  - component: {fileID: 2053065392}
+  m_Layer: 0
+  m_Name: EffectDescription0009
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2053065392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2053065391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39c3866145b001c4892e1ce49e72b0c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <name>k__BackingField: EffectDescription0009
+  <dataSet>k__BackingField: {fileID: 22578375}
+  <depends>k__BackingField:
+    _list:
+    - handle: {fileID: 1188659145}
+      packagePath:
+        _cString: 
+        _length: 0
+        _hash:
+          _hash: 203000540209048
+      archivePath:
+        _cString: /Assets/tpp/parts/chara/dlf/dlf0_main0_def_f_v00.parts
+        _length: 54
+        _hash:
+          _hash: 16189034135237540033
+      nameInArchive: ModelDescription0000
+  <partName>k__BackingField: EludeSmokeM2
+  <buildType>k__BackingField: 
+  <connectDestinationSkelNames>k__BackingField:
+    _list: []
+  <connectDestinationCnpNames>k__BackingField:
+    _list: []
+  <offsetSkelPositions>k__BackingField:
+    _list: []
+  <offsetCnpPositions>k__BackingField:
+    _list: []
+  <generalSkelParameters>k__BackingField:
+    _list: []
+  <generalCnpParameters>k__BackingField:
+    _list: []
+  <effectConnect>k__BackingField: 1
+  <changeEffectConnectSetting>k__BackingField: 0
+  <visibleModelWithEffect>k__BackingField: 1
+  <createStartEffect>k__BackingField: 0
+  <effectRandomSeed>k__BackingField: 0
+  <effectKind>k__BackingField: 0
+  <effectVariationName>k__BackingField: 
+  <effectFileFromVfxFileLoader>k__BackingField: 
+  <effectFileFromFilePtr>k__BackingField:
+    path:
+      _cString: 
+      _length: 0
+      _hash:
+        _hash: 203000540209048
+--- !u!4 &2053065393
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2053065391}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 22578376}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

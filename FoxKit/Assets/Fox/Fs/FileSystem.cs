@@ -8,7 +8,7 @@ namespace Fox.Fs
     {
         public const string GameFolderPath = "Assets/Game";
 
-        private static string ResolvePathname(Path path)
+        public static string ResolvePathname(Path path)
         {
             string fullPath;
 

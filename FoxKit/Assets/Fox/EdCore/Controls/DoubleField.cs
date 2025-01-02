@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 
 namespace Fox.EdCore
 {
-    public class DoubleField : TextValueField<double>, IFoxField, ICustomBindable
+    public class DoubleField : TextValueField<double>, IFoxField
     {
         private DoubleInput doubleInput => (DoubleInput)textInputBase;
 
@@ -28,17 +28,18 @@ namespace Fox.EdCore
             get;
         }
 
-        public DoubleField() : this(null)
+        public DoubleField() 
+            : this(label: null)
         {
         }
-
-        public DoubleField(int maxLength)
-            : this(null, true, maxLength)
-        {
-        }
-
+        
         public DoubleField(bool hasDragger)
-            : this(null, hasDragger)
+            : this(label: null, hasDragger)
+        {
+        }
+        
+        public DoubleField(PropertyInfo propertyInfo, bool hasDragger = true, int maxLength = -1)
+            : this(propertyInfo.Name, hasDragger, maxLength)
         {
         }
 
@@ -63,14 +64,6 @@ namespace Fox.EdCore
         //internal override bool CanTryParse(string textString) => double.TryParse(textString, out _);
 
         public override void ApplyInputDeviceDelta(Vector3 delta, DeltaSpeed speed, double startValue) => doubleInput.ApplyInputDeviceDelta(delta, speed, startValue);
-
-        public void BindProperty(SerializedProperty property) => BindProperty(property, null);
-        public void BindProperty(SerializedProperty property, string label, PropertyInfo propertyInfo = null)
-        {
-            if (label is not null)
-                this.label = label;
-            BindingExtensions.BindProperty(this, property);
-        }
 
         private class DoubleInput : TextValueInput
         {
@@ -108,6 +101,9 @@ namespace Fox.EdCore
                 return v;
             }
         }
+        
+        public void SetLabel(string label) => this.label = label;
+        public Label GetLabelElement() => this.labelElement;
     }
 
     // [CustomPropertyDrawer(typeof(double))]

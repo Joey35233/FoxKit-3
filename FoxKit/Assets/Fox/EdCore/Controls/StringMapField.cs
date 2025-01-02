@@ -9,7 +9,7 @@ using UnityEngine.UIElements;
 
 namespace Fox.EdCore
 {
-    public class StringMapField<T> : BaseField<StringMap<T>>, IFoxField, ICustomBindable
+    public class StringMapField<T> : BaseField<StringMap<T>>, IFoxField
     {
         private readonly ListView ListViewInput;
 
@@ -30,7 +30,13 @@ namespace Fox.EdCore
             get;
         }
 
-        public StringMapField() : this(default)
+        public StringMapField() 
+            : this(label: null)
+        {
+        }
+        
+        public StringMapField(PropertyInfo propertyInfo)
+            : this(propertyInfo.Name, new ListView(), propertyInfo)
         {
         }
 
@@ -39,9 +45,20 @@ namespace Fox.EdCore
         {
         }
 
-        private StringMapField(string label, ListView visInput)
+        private StringMapField(string label, ListView visInput, PropertyInfo propertyInfo = null)
             : base(label, visInput)
         {
+            if (propertyInfo is not null)
+            {
+                FieldConstructor = FoxFieldUtils.GetBindableElementConstructorForPropertyInfo(propertyInfo);
+                PropertyInfo = propertyInfo;
+            }
+            else
+            {
+                Debug.LogWarning("EdCore: StringMap can currently only be bound to Entity properties.");
+                return;
+            }
+            
             ListViewInput = visInput;
             visualInput = ListViewInput;
 
@@ -99,7 +116,7 @@ namespace Fox.EdCore
             {
                 var property = FoxFieldUtils.SerializedPropertyBindEventBindProperty.GetValue(evt) as SerializedProperty;
 
-                if (property.type.StartsWith("Fox.StringMap"))
+                if (property.type.StartsWith("StringMap"))
                 {
                     StringMapProperty = property;
 
@@ -114,7 +131,7 @@ namespace Fox.EdCore
         }
         private void OnPropertyChanged(SerializedProperty property)
         {
-            if (property is not null)
+            if (property != null)
                 StringMapProperty = property.Copy();
 
             // TODO: Replace with custom virtualization controller here: https://docs.unity3d.com/ScriptReference/UIElements.CollectionViewController.html
@@ -174,28 +191,12 @@ namespace Fox.EdCore
             var field = element as CellField;
             field.KeyField.BindProperty(cellProperty.FindPropertyRelative("Key"));
             field.DataField.BindProperty(cellProperty.FindPropertyRelative("Value"));
+            
+            Label label = field.labelElement;
+            label.text = $"[{index}]";
 
             field.AddToClassList(BaseCompositeField<UnityEngine.Vector4, FloatField, float>.fieldUssClassName);
             field.AddToClassList(BaseCompositeField<UnityEngine.Vector4, FloatField, float>.firstFieldVariantUssClassName);
-
-            Label label = field.labelElement;
-            label.text = $"[{index}]";
-        }
-
-        public void BindProperty(SerializedProperty property) => BindProperty(property, null);
-        public void BindProperty(SerializedProperty property, string label, PropertyInfo propertyInfo = null)
-        {
-            PropertyInfo = propertyInfo;
-            if (PropertyInfo is not null)
-                FieldConstructor = FoxFieldUtils.GetBindableElementConstructorForPropertyInfo(PropertyInfo);
-
-            if (label is not null)
-                this.label = label;
-            StringMapProperty = property;
-
-            BindingExtensions.TrackPropertyValue(this, StringMapProperty, OnPropertyChanged);
-
-            OnPropertyChanged(null);
         }
 
         private class CellField : VisualElement
@@ -245,21 +246,24 @@ namespace Fox.EdCore
                 visualInput.AddToClassList(BaseCompositeField<UnityEngine.Vector4, FloatField, float>.inputUssClassName);
             }
         }
+
+        public void SetLabel(string label) => this.label = label;
+        public Label GetLabelElement() => this.labelElement;
     }
 
-    [CustomPropertyDrawer(typeof(StringMap<>))]
-    public class StringMapDrawer : PropertyDrawer
-    {
-        public override VisualElement CreatePropertyGUI(SerializedProperty property)
-        {
-            var genericField = (VisualElement)Activator.CreateInstance(typeof(StringMapField<>).MakeGenericType(fieldInfo.FieldType.GenericTypeArguments), new object[] { property.name });
-            (genericField as IFoxField).BindProperty(property);
-
-            genericField.Q(className: BaseField<float>.labelUssClassName).AddToClassList(PropertyField.labelUssClassName);
-            genericField.Q(className: BaseField<float>.inputUssClassName).AddToClassList(PropertyField.inputUssClassName);
-            genericField.AddToClassList(BaseField<float>.alignedFieldUssClassName);
-
-            return genericField;
-        }
-    }
+    // [CustomPropertyDrawer(typeof(StringMap<>))]
+    // public class StringMapDrawer : PropertyDrawer
+    // {
+    //     public override VisualElement CreatePropertyGUI(SerializedProperty property)
+    //     {
+    //         var genericField = (VisualElement)Activator.CreateInstance(typeof(StringMapField<>).MakeGenericType(fieldInfo.FieldType.GenericTypeArguments), new object[] { property.name });
+    //         (genericField as IFoxField).BindProperty(property);
+    //
+    //         genericField.Q(className: BaseField<float>.labelUssClassName).AddToClassList(PropertyField.labelUssClassName);
+    //         genericField.Q(className: BaseField<float>.inputUssClassName).AddToClassList(PropertyField.inputUssClassName);
+    //         genericField.AddToClassList(BaseField<float>.alignedFieldUssClassName);
+    //
+    //         return genericField;
+    //     }
+    // }
 }

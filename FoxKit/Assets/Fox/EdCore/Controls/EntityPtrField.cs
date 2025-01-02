@@ -9,7 +9,7 @@ using PropertyInfo = Fox.Core.PropertyInfo;
 
 namespace Fox.EdCore
 {
-    public class EntityPtrField<T> : BaseField<T>, IFoxField, ICustomBindable
+    public class EntityPtrField<T> : BaseField<T>, IFoxField
         where T : Entity
     {
         private SerializedProperty PtrProperty;
@@ -50,7 +50,13 @@ namespace Fox.EdCore
             get; private set;
         }
 
-        public EntityPtrField() : this(default)
+        public EntityPtrField() 
+            : this(label: null)
+        {
+        }
+        
+        public EntityPtrField(PropertyInfo propertyInfo)
+            : this(propertyInfo.Name)
         {
         }
 
@@ -115,7 +121,7 @@ namespace Fox.EdCore
 
         private void OnPropertyChanged(SerializedProperty property)
         {
-            // [－] clicked
+            // [-] clicked
             if (PtrProperty.objectReferenceValue is null)
             {
                 Header.RemoveFromClassList(headerLivePtrUssClassName);
@@ -130,7 +136,7 @@ namespace Fox.EdCore
                 PropertyContainer.Clear();
                 PropertyContainer.visible = false;
             }
-            // [＋] clicked
+            // [+] clicked
             else
             {
                 Header.AddToClassList(headerLivePtrUssClassName);
@@ -145,9 +151,9 @@ namespace Fox.EdCore
 
                 PropertyContainer.visible = true;
                 PropertyContainer.Clear();
-                var entityField = new EntityField<T>() as ICustomBindable;
-                entityField.BindProperty(PtrProperty);
-                PropertyContainer.Add(entityField as VisualElement);
+                var entityField = new EntityField<T>();
+                entityField.PopulateAndBind(new SerializedObject(PtrProperty.objectReferenceValue));
+                PropertyContainer.Add(entityField);
             }
         }
 
@@ -182,19 +188,9 @@ namespace Fox.EdCore
                 break;
             }
         }
-
-        public void BindProperty(SerializedProperty property) => BindProperty(property, null);
-        public void BindProperty(SerializedProperty property, string label, PropertyInfo propertyInfo = null)
-        {
-            if (label is not null)
-                this.label = label;
-
-            PtrProperty = property;
-
-            BindingExtensions.TrackPropertyValue(this, PtrProperty, OnPropertyChanged);
-
-            OnPropertyChanged(null);
-        }
+        
+        public void SetLabel(string label) => this.label = label;
+        public Label GetLabelElement() => this.labelElement;
     }
 
     // [CustomPropertyDrawer(typeof(Core.EntityPtr<>))]

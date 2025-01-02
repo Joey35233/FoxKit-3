@@ -12,10 +12,6 @@ namespace Fox
         public string CString => _cString;
 
         [SerializeField]
-        private int _length;
-        public int Length => _length;
-
-        [SerializeField]
         private PathFileNameAndExtCode _hash;
         public PathFileNameAndExtCode Hash => _hash;
 
@@ -29,7 +25,6 @@ namespace Fox
         private Path()
         {
             _cString = Empty.CString;
-            _length = Empty.Length;
             _hash = Empty.Hash;
         }
 
@@ -40,13 +35,11 @@ namespace Fox
             if (name is null)
             {
                 _cString = null;
-                _length = -1;
                 _hash = HashingBitConverter.ToPathFileNameAndExtCode(0);
             }
             else
             {
                 _cString = name;
-                _length = name.Length;
                 _hash = new PathFileNameAndExtCode(name);
             }
         }
@@ -54,13 +47,10 @@ namespace Fox
         public Path(PathFileNameAndExtCode hash)
         {
             _cString = null;
-            _length = -1;
             _hash = hash;
         }
-
-        public bool IsPseudoNull() => (Length == 0) && (Hash == 0);
-
-        public bool IsHashed() => (Length == 0) && (Hash != Empty.Hash);
+        
+        public bool IsHashed() => (string.IsNullOrEmpty(CString)) && (Hash != Empty.Hash);
 
         public override string ToString() => IsHashed() ? Hash.ToString() : CString;
 

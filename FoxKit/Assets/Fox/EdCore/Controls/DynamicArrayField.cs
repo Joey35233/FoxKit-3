@@ -4,10 +4,11 @@ using System.Reflection;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine.UIElements;
+using PropertyInfo = Fox.Core.PropertyInfo;
 
 namespace Fox.EdCore
 {
-    public class DynamicArrayField<T> : BaseField<DynamicArray<T>>, IFoxField, ICustomBindable
+    public class DynamicArrayField<T> : BaseField<DynamicArray<T>>, IFoxField
     {
         private readonly ListView ListViewInput;
 
@@ -25,7 +26,13 @@ namespace Fox.EdCore
             get;
         }
 
-        public DynamicArrayField() : this(default)
+        public DynamicArrayField() 
+            : this(label: null)
+        {
+        }
+        
+        public DynamicArrayField(PropertyInfo propertyInfo)
+            : this(propertyInfo.Name, new ListView(), propertyInfo)
         {
         }
 
@@ -34,12 +41,16 @@ namespace Fox.EdCore
         {
         }
 
-        private DynamicArrayField(string label, ListView visInput)
+        private DynamicArrayField(string label, ListView visInput, PropertyInfo propertyInfo = null)
             : base(label, visInput)
         {
+            if (propertyInfo is not null)
+                FieldConstructor = FoxFieldUtils.GetBindableElementConstructorForPropertyInfo(propertyInfo);
+            
             ListViewInput = visInput;
             visualInput = ListViewInput;
 
+            ListViewInput.bindingPath = "_list";
             ListViewInput.itemsSource = value;
             ListViewInput.makeItem = MakeItem;
             ListViewInput.bindItem = BindItem;
@@ -71,45 +82,22 @@ namespace Fox.EdCore
             styleSheets.Add(IFoxField.FoxFieldStyleSheet);
         }
 
-        protected override void ExecuteDefaultActionAtTarget(EventBase evt)
-        {
-            base.ExecuteDefaultActionAtTarget(evt);
-
-            // UNITYENHANCEMENT: https://github.com/Joey35233/FoxKit-3/issues/12
-            if (evt.eventTypeId == FoxFieldUtils.SerializedPropertyBindEventTypeId && !System.String.IsNullOrWhiteSpace(bindingPath))
-            {
-                var property = FoxFieldUtils.SerializedPropertyBindEventBindProperty.GetValue(evt) as SerializedProperty;
-
-                if (!property.isArray)
-                {
-                    BindingExtensions.BindProperty(ListViewInput, property.FindPropertyRelative("_list"));
-
-                    evt.StopPropagation();
-                }
-            }
-        }
-
         private VisualElement MakeItem() => FieldConstructor() as VisualElement;
 
         private void BindItem(VisualElement element, int index)
         {
             var itemProperty = ListViewInput.itemsSource[index] as SerializedProperty;
-            (element as ICustomBindable).BindProperty(itemProperty, $"[{index}]");
+            BindableElement bindable = element as BindableElement;
+            bindable.BindProperty(itemProperty);
+            IFoxField foxField = element as IFoxField;
+            foxField.SetLabel($"[{index}]");
 
             element.AddToClassList(BaseCompositeField<UnityEngine.Vector4, FloatField, float>.fieldUssClassName);
             element.AddToClassList(BaseCompositeField<UnityEngine.Vector4, FloatField, float>.firstFieldVariantUssClassName);
         }
-
-        public void BindProperty(SerializedProperty property) => BindProperty(property, null);
-        public void BindProperty(SerializedProperty property, string label, Core.PropertyInfo propertyInfo = null)
-        {
-            if (propertyInfo is not null)
-                FieldConstructor = FoxFieldUtils.GetBindableElementConstructorForPropertyInfo(propertyInfo);
-
-            if (label is not null)
-                this.label = label;
-            BindingExtensions.BindProperty(ListViewInput, property.FindPropertyRelative("_list"));
-        }
+        
+        public void SetLabel(string label) => this.label = label;
+        public Label GetLabelElement() => this.labelElement;
     }
 
     [CustomPropertyDrawer(typeof(DynamicArray<>))]

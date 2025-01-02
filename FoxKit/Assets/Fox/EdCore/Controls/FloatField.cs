@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 
 namespace Fox.EdCore
 {
-    public class FloatField : TextValueField<float>, IFoxField, ICustomBindable
+    public class FloatField : TextValueField<float>, IFoxField
     {
         private FloatInput floatInput => (FloatInput)textInputBase;
 
@@ -28,13 +28,20 @@ namespace Fox.EdCore
             get;
         }
 
-        public FloatField() : this(null) { }
-
-        public FloatField(int maxLength)
-            : this(null, true, maxLength) { }
-
+        public FloatField() 
+            : this(label: null)
+        {
+        }
+        
         public FloatField(bool hasDragger)
-            : this(null, hasDragger) { }
+            : this(label: null, hasDragger)
+        {
+        }
+        
+        public FloatField(PropertyInfo propertyInfo, bool hasDragger = true, int maxLength = -1)
+            : this(propertyInfo.Name, hasDragger, maxLength)
+        {
+        }
 
         public FloatField(string label, bool hasDragger = true, int maxLength = -1)
             : this(label, hasDragger, maxLength, new FloatInput())
@@ -57,14 +64,6 @@ namespace Fox.EdCore
         //internal override bool CanTryParse(string textString) => float.TryParse(textString, out _);
 
         public override void ApplyInputDeviceDelta(Vector3 delta, DeltaSpeed speed, float startValue) => floatInput.ApplyInputDeviceDelta(delta, speed, startValue);
-
-        public void BindProperty(SerializedProperty property) => BindProperty(property, null);
-        public void BindProperty(SerializedProperty property, string label, PropertyInfo propertyInfo = null)
-        {
-            if (label is not null)
-                this.label = label;
-            BindingExtensions.BindProperty(this, property);
-        }
 
         private class FloatInput : TextValueInput
         {
@@ -102,6 +101,9 @@ namespace Fox.EdCore
                 return NumericPropertyFields.ClampToFloat(v);
             }
         }
+        
+        public void SetLabel(string label) => this.label = label;
+        public Label GetLabelElement() => this.labelElement;
     }
 
     // [CustomPropertyDrawer(typeof(float))]

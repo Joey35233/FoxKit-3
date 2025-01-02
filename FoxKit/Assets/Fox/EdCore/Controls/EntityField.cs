@@ -1,6 +1,8 @@
+using System;
 using Fox.Core;
 using Fox;
 using UnityEditor;
+using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -9,18 +11,45 @@ namespace Fox.EdCore
     [CustomEditor(typeof(Entity), true)]
     public class EntityEditor : UnityEditor.Editor
     {
-        public override VisualElement CreateInspectorGUI()
+        public virtual void OnBuildHeader(VisualElement element, SerializedObject serializedObject)
         {
-            var field = System.Activator.CreateInstance(typeof(EntityField<>).MakeGenericType(new System.Type[] { (target as Entity).GetClassEntityInfo().Type })) as ICustomBindable;
-            field.Bind(this.serializedObject);
+            
+        }
+        
+        public virtual void OnBuildBody(VisualElement element, SerializedObject serializedObject)
+        {
+            
+        }
+        
+        public virtual void OnBuildFooter(VisualElement element, SerializedObject serializedObject)
+        {
+            
+        }
+
+        protected virtual bool ShouldOverrideBody() => false;
+        
+        public sealed override VisualElement CreateInspectorGUI()
+        {
+            var field = System.Activator.CreateInstance(typeof(EntityField<>).MakeGenericType((target as Entity).GetClassEntityInfo().Type)) as IEntityField;
+
+            field.OnBuildHeader += OnBuildHeader;
+            if (ShouldOverrideBody())
+                field.OnBuildBody += OnBuildBody;
+            field.OnBuildFooter += OnBuildFooter;
+            field.Build(this.serializedObject);
+            
             return field as VisualElement;
         }
     }
 
-    public class EntityField<T> : BaseField<T>, ICustomBindable where T : Entity
+    public class EntityField<T> : BaseField<T>, IEntityField where T : Entity
     {
         public static new readonly string ussClassName = "fox-entity-field";
         public static new readonly string inputUssClassName = ussClassName + "__input";
+
+        public event Action<VisualElement, SerializedObject> OnBuildHeader;
+        public event Action<VisualElement, SerializedObject> OnBuildBody;
+        public event Action<VisualElement, SerializedObject> OnBuildFooter;
 
         public VisualElement visualInput
         {
@@ -39,46 +68,66 @@ namespace Fox.EdCore
             styleSheets.Add(IFoxField.FoxFieldStyleSheet);
         }
 
-        public void BindProperty(SerializedProperty property) => BindProperty(property, null);
+        private EntityInfo EntityInfo;
+        private DynamicArray<EntityInfo> SuperclassList = new();
 
-        public void BindProperty(SerializedProperty property, string label, PropertyInfo propertyInfo = null)
-        {
-            Bind(new SerializedObject(property.objectReferenceValue));
-        }
-
-        public void Bind(SerializedObject serializedObject)
+        private void PreBuild(SerializedObject serializedObject)
         {
             var entity = serializedObject.targetObject as Entity;
-            EntityInfo entityInfo = entity.GetClassEntityInfo();
-
-            var supers = new DynamicArray<EntityInfo>();
-            EntityInfo entityInfoIterator = entityInfo;
+            EntityInfo = entity.GetClassEntityInfo();
+            
+            EntityInfo entityInfoIterator = EntityInfo;
             while (entityInfoIterator != null)
             {
-                supers.Add(entityInfoIterator);
+                SuperclassList.Add(entityInfoIterator);
 
                 entityInfoIterator = entityInfoIterator.Super;
             }
+        }
+        
+        void IEntityField.Build(SerializedObject serializedObject)
+        {
+            PreBuild(serializedObject);
+            
+            OnBuildHeader?.Invoke(visualInput, serializedObject);
 
-            for (int i = supers.Count - 1; i > -1; i--)
+            if (OnBuildBody is not null)
+                OnBuildBody(visualInput, serializedObject);
+            else
+                PopulateFromEntity(serializedObject);
+
+            OnBuildFooter?.Invoke(visualInput, serializedObject);
+        }
+        
+        private void PopulateFromEntity(SerializedObject serializedObject)
+        {
+            for (int i = SuperclassList.Count - 1; i > -1; i--)
             {
-                EntityInfo info = supers[i];
+                EntityInfo info = SuperclassList[i];
 
                 if (info != Entity.ClassInfo)
                 {
                     var headerLabel = new Label
                     {
-                        text = $"<b>{info.Name}</b>"
+                        text = $"<b>{info.Name}</b>",
+                        style =
+                        {
+                            fontSize = 16
+                        }
                     };
-                    headerLabel.style.fontSize = 16;
                     visualInput.Add(headerLabel);
 
-                    var headerLine = new VisualElement();
-                    headerLine.style.flexGrow = 1;
-                    headerLine.style.height = 0;
-                    headerLine.style.borderTopColor = Color.gray;
-                    headerLine.style.borderTopWidth = 1;
-                    headerLine.style.marginBottom = 4;
+                    var headerLine = new VisualElement
+                    {
+                        style =
+                        {
+                            flexGrow = 1,
+                            height = 0,
+                            borderTopColor = Color.gray,
+                            borderTopWidth = 1,
+                            marginBottom = 4
+                        }
+                    };
                     visualInput.Add(headerLine);
                 }
 
@@ -96,11 +145,11 @@ namespace Fox.EdCore
                     if (info == TransformData.ClassInfo && propertyInfo.Name != "transform" && propertyInfo.Name != "shearTransform" && propertyInfo.Name != "pivotTransform" && propertyInfo.Name != "flags")
                         continue;
 
-                    ICustomBindable propertyField = FoxFieldUtils.GetCustomBindableField(propertyInfo);
-                    propertyField.BindProperty(serializedObject.FindProperty($"<{propertyInfo.Name}>k__BackingField"), propertyInfo.Name, propertyInfo);
-                    var fieldElement = propertyField as VisualElement;
-                    Label labelElement = fieldElement.Query<Label>(className: BaseField<float>.labelUssClassName).First();
-                    if (entityInfo.LongestNamedVisibleFieldProperty is not null)
+                    IFoxField field = FoxFieldUtils.GetCustomBindableField(propertyInfo);
+                    VisualElement fieldElement = field as VisualElement;
+                    field.bindingPath = $"<{propertyInfo.Name}>k__BackingField";
+                    Label labelElement = field.GetLabelElement();
+                    if (EntityInfo.LongestNamedVisibleFieldProperty is not null)
                     {
                         labelElement.style.minWidth = StyleKeyword.Auto;
                         labelElement.style.width = info.LongestNamedVisibleFieldProperty.Name.Length * 8f;
@@ -114,5 +163,16 @@ namespace Fox.EdCore
 
             return;
         }
+
+        public void PopulateAndBind(SerializedObject serializedObject)
+        {
+            PreBuild(serializedObject);
+            PopulateFromEntity(serializedObject);
+            
+            visualInput.Bind(serializedObject);
+        }
+
+        public void SetLabel(string label) => this.label = label;
+        public Label GetLabelElement() => labelElement;
     }
 }

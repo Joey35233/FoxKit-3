@@ -8,7 +8,7 @@ using UnityEngine.UIElements;
 
 namespace Fox.EdCore
 {
-    public class Int16Field : TextValueField<short>, INotifyValueChanged<int>, IFoxField, ICustomBindable
+    public class Int16Field : TextValueField<short>, INotifyValueChanged<int>, IFoxField
     {
         public override short value
         {
@@ -89,13 +89,19 @@ namespace Fox.EdCore
         }
 
         public Int16Field()
-            : this(null) { }
-
-        public Int16Field(int maxLength)
-            : this(null, true, maxLength) { }
-
+            : this(label: null)
+        {
+        }
+        
         public Int16Field(bool hasDragger)
-            : this(null, hasDragger) { }
+            : this(label: null, hasDragger)
+        {
+        }
+        
+        public Int16Field(PropertyInfo propertyInfo, bool hasDragger = true, int maxLength = -1)
+            : this(propertyInfo.Name, hasDragger, maxLength)
+        {
+        }
 
         public Int16Field(string label, bool hasDragger = true, int maxLength = -1)
             : this(label, hasDragger, maxLength, new Int16Input())
@@ -116,14 +122,6 @@ namespace Fox.EdCore
         }
 
         public override void ApplyInputDeviceDelta(Vector3 delta, DeltaSpeed speed, short startValue) => integerInput.ApplyInputDeviceDelta(delta, speed, startValue);
-
-        public void BindProperty(SerializedProperty property) => BindProperty(property, null);
-        public void BindProperty(SerializedProperty property, string label, PropertyInfo propertyInfo = null)
-        {
-            if (label is not null)
-                this.label = label;
-            BindingExtensions.BindProperty(this, property);
-        }
 
         private class Int16Input : TextValueInput
         {
@@ -160,6 +158,9 @@ namespace Fox.EdCore
                 return NumericPropertyFields.ClampToInt16(v);
             }
         }
+        
+        public void SetLabel(string label) => this.label = label;
+        public Label GetLabelElement() => this.labelElement;
     }
 
     // [CustomPropertyDrawer(typeof(short))]

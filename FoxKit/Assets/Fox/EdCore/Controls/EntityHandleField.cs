@@ -8,7 +8,7 @@ using Object = UnityEngine.Object;
 
 namespace Fox.EdCore
 {
-    public class EntityHandleField : BaseField<Entity>, IFoxField, ICustomBindable
+    public class EntityHandleField : BaseField<Entity>, IFoxField
     {
         private SerializedProperty EntityProperty;
 
@@ -74,7 +74,14 @@ namespace Fox.EdCore
         }
 
         public EntityHandleField()
-            : this(null) { }
+            : this(label: null)
+        {
+        }
+        
+        public EntityHandleField(PropertyInfo propertyInfo)
+            : this(propertyInfo.Name)
+        {
+        }
 
         public EntityHandleField(string label)
             : this(label, new VisualElement()) { }
@@ -144,18 +151,6 @@ namespace Fox.EdCore
         }
 
         private void OnPropertyChanged(SerializedProperty property) => value = EntityProperty.objectReferenceValue as Entity;
-
-        public void BindProperty(SerializedProperty property) => BindProperty(property, null);
-        public void BindProperty(SerializedProperty property, string label, PropertyInfo propertyInfo = null)
-        {
-            if (label is not null)
-                this.label = label;
-            EntityProperty = property;
-
-            BindingExtensions.TrackPropertyValue(this, EntityProperty, OnPropertyChanged);
-
-            OnPropertyChanged(null);
-        }
 
         // UNITYENHANCEMENT: https://github.com/Joey35233/FoxKit-3/issues/12
         //[EventInterest(typeof(MouseDownEvent), typeof(KeyDownEvent), typeof(DragUpdatedEvent), typeof(DragPerformEvent), typeof(DragLeaveEvent))]
@@ -304,6 +299,9 @@ namespace Fox.EdCore
                 evt.StopPropagation();
             }
         }
+        
+        public void SetLabel(string label) => this.label = label;
+        public Label GetLabelElement() => this.labelElement;
     }
 
     // [CustomPropertyDrawer(typeof(EntityHandle))]

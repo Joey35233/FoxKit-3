@@ -5,7 +5,7 @@ using UnityEngine.UIElements;
 
 namespace Fox.EdCore
 {
-    public class BoolField : BaseBoolField, IFoxField, ICustomBindable
+    public class BoolField : BaseBoolField, IFoxField
     {
         public new class UxmlFactory : UxmlFactory<Toggle, UxmlTraits>
         {
@@ -37,7 +37,12 @@ namespace Fox.EdCore
         }
 
         public BoolField()
-            : this(null)
+            : this(label: null)
+        {
+        }
+        
+        public BoolField(PropertyInfo propertyInfo)
+            : this(propertyInfo.Name)
         {
         }
 
@@ -60,13 +65,8 @@ namespace Fox.EdCore
         // Lots of internal PseudoState-managing code
         //protected override void UpdateMixedValueContent() {}
 
-        public void BindProperty(SerializedProperty property) => BindProperty(property, null);
-        public void BindProperty(SerializedProperty property, string label, PropertyInfo propertyInfo = null)
-        {
-            if (label is not null)
-                this.label = label;
-            BindingExtensions.BindProperty(this, property);
-        }
+        public void SetLabel(string label) => this.label = label;
+        public Label GetLabelElement() => this.labelElement;
     }
 
     // [CustomPropertyDrawer(typeof(bool))]

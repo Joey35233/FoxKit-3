@@ -8,7 +8,7 @@ using UnityEngine.UIElements;
 
 namespace Fox.EdCore
 {
-    public class Int64Field : TextValueField<long>, IFoxField, ICustomBindable
+    public class Int64Field : TextValueField<long>, IFoxField
     {
         private Int64Input integerInput => (Int64Input)textInputBase;
 
@@ -30,13 +30,19 @@ namespace Fox.EdCore
         }
 
         public Int64Field()
-            : this(null) { }
-
-        public Int64Field(int maxLength)
-            : this(null, true, maxLength) { }
-
+            : this(label: null)
+        {
+        }
+        
         public Int64Field(bool hasDragger)
-            : this(null, hasDragger) { }
+            : this(label: null, hasDragger)
+        {
+        }
+        
+        public Int64Field(PropertyInfo propertyInfo, bool hasDragger = true, int maxLength = -1)
+            : this(propertyInfo.Name, hasDragger, maxLength)
+        {
+        }
 
         public Int64Field(string label, bool hasDragger = true, int maxLength = -1)
             : this(label, hasDragger, maxLength, new Int64Input())
@@ -57,14 +63,6 @@ namespace Fox.EdCore
         }
 
         public override void ApplyInputDeviceDelta(Vector3 delta, DeltaSpeed speed, long startValue) => integerInput.ApplyInputDeviceDelta(delta, speed, startValue);
-
-        public void BindProperty(SerializedProperty property) => BindProperty(property, null);
-        public void BindProperty(SerializedProperty property, string label, PropertyInfo propertyInfo = null)
-        {
-            if (label is not null)
-                this.label = label;
-            BindingExtensions.BindProperty(this, property);
-        }
 
         private class Int64Input : TextValueInput
         {
@@ -101,6 +99,9 @@ namespace Fox.EdCore
                 return NumericPropertyFields.ClampToInt64(v);
             }
         }
+        
+        public void SetLabel(string label) => this.label = label;
+        public Label GetLabelElement() => this.labelElement;
     }
 
     // [CustomPropertyDrawer(typeof(long))]

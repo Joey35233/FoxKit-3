@@ -2,11 +2,12 @@
 using System;
 using UnityEditor;
 using UnityEditor.UIElements;
+using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace Fox.EdCore
 {
-    public class Vector3Field : BaseField<UnityEngine.Vector3>, IFoxField, ICustomBindable
+    public class Vector3Field : BaseField<UnityEngine.Vector3>, IFoxField
     {
         private readonly FloatField XField;
         private readonly FloatField YField;
@@ -21,7 +22,13 @@ namespace Fox.EdCore
             get;
         }
 
-        public Vector3Field() : this(default)
+        public Vector3Field()
+            : this(label: null)
+        {
+        }
+        
+        public Vector3Field(PropertyInfo propertyInfo)
+            : this(propertyInfo.Name)
         {
         }
 
@@ -36,13 +43,16 @@ namespace Fox.EdCore
             visualInput = visInput;
 
             XField = new FloatField("X");
+            XField.bindingPath = nameof(Vector3.x);
             XField.AddToClassList(BaseCompositeField<UnityEngine.Vector3, FloatField, float>.firstFieldVariantUssClassName);
             XField.AddToClassList(BaseCompositeField<UnityEngine.Vector3, FloatField, float>.fieldUssClassName);
             visualInput.Add(XField);
             YField = new FloatField("Y");
+            YField.bindingPath = nameof(Vector3.y);
             YField.AddToClassList(BaseCompositeField<UnityEngine.Vector3, FloatField, float>.fieldUssClassName);
             visualInput.Add(YField);
             ZField = new FloatField("Z");
+            ZField.bindingPath = nameof(Vector3.z);
             ZField.AddToClassList(BaseCompositeField<UnityEngine.Vector3, FloatField, float>.fieldUssClassName);
             ZField.AddToClassList("unity-composite-field__field--last");
             visualInput.Add(ZField);
@@ -55,37 +65,9 @@ namespace Fox.EdCore
             visualInput.AddToClassList(BaseCompositeField<UnityEngine.Vector3, FloatField, float>.inputUssClassName);
             styleSheets.Add(IFoxField.FoxFieldStyleSheet);
         }
-
-        protected override void ExecuteDefaultActionAtTarget(EventBase evt)
-        {
-            base.ExecuteDefaultActionAtTarget(evt);
-
-            // UNITYENHANCEMENT: https://github.com/Joey35233/FoxKit-3/issues/12
-            if (evt.eventTypeId == FoxFieldUtils.SerializedPropertyBindEventTypeId && !System.String.IsNullOrWhiteSpace(bindingPath))
-            {
-                var property = FoxFieldUtils.SerializedPropertyBindEventBindProperty.GetValue(evt) as SerializedProperty;
-
-                if (property.propertyType != SerializedPropertyType.Float)
-                {
-                    BindingExtensions.BindProperty(XField, property.FindPropertyRelative("x"));
-                    BindingExtensions.BindProperty(YField, property.FindPropertyRelative("y"));
-                    BindingExtensions.BindProperty(ZField, property.FindPropertyRelative("z"));
-
-                    // Stop the Vector3Field itself's binding event; it's just a container for the actual BindableElements.
-                    evt.StopPropagation();
-                }
-            }
-        }
-
-        public void BindProperty(SerializedProperty property) => BindProperty(property, null);
-        public void BindProperty(SerializedProperty property, string label, PropertyInfo propertyInfo = null)
-        {
-            if (label is not null)
-                this.label = label;
-            BindingExtensions.BindProperty(XField, property.FindPropertyRelative("x"));
-            BindingExtensions.BindProperty(YField, property.FindPropertyRelative("y"));
-            BindingExtensions.BindProperty(ZField, property.FindPropertyRelative("z"));
-        }
+        
+        public void SetLabel(string label) => this.label = label;
+        public Label GetLabelElement() => this.labelElement;
     }
 
     // [CustomPropertyDrawer(typeof(UnityEngine.Vector3))]

@@ -2,11 +2,12 @@
 using System;
 using UnityEditor;
 using UnityEditor.UIElements;
+using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace Fox.EdCore
 {
-    public class QuaternionField : BaseField<UnityEngine.Quaternion>, IFoxField, ICustomBindable
+    public class QuaternionField : BaseField<UnityEngine.Quaternion>, IFoxField
     {
         private readonly FloatField XField;
         private readonly FloatField YField;
@@ -22,7 +23,13 @@ namespace Fox.EdCore
             get;
         }
 
-        public QuaternionField() : this(default)
+        public QuaternionField() 
+            : this(label: null)
+        {
+        }
+        
+        public QuaternionField(PropertyInfo propertyInfo)
+            : this(propertyInfo.Name)
         {
         }
 
@@ -37,16 +44,20 @@ namespace Fox.EdCore
             visualInput = visInput;
 
             XField = new FloatField("X");
+            XField.bindingPath = nameof(Quaternion.x);
             XField.AddToClassList(BaseCompositeField<UnityEngine.Quaternion, FloatField, float>.firstFieldVariantUssClassName);
             XField.AddToClassList(BaseCompositeField<UnityEngine.Quaternion, FloatField, float>.fieldUssClassName);
             visualInput.Add(XField);
             YField = new FloatField("Y");
+            YField.bindingPath = nameof(Quaternion.y);
             YField.AddToClassList(BaseCompositeField<UnityEngine.Quaternion, FloatField, float>.fieldUssClassName);
             visualInput.Add(YField);
             ZField = new FloatField("Z");
+            ZField.bindingPath = nameof(Quaternion.z);
             ZField.AddToClassList(BaseCompositeField<UnityEngine.Quaternion, FloatField, float>.fieldUssClassName);
             visualInput.Add(ZField);
             WField = new FloatField("W");
+            WField.bindingPath = nameof(Quaternion.w);
             WField.AddToClassList(BaseCompositeField<UnityEngine.Quaternion, FloatField, float>.fieldUssClassName);
             WField.AddToClassList("unity-composite-field__field--last");
             visualInput.Add(WField);
@@ -59,39 +70,9 @@ namespace Fox.EdCore
             visualInput.AddToClassList(BaseCompositeField<UnityEngine.Quaternion, FloatField, float>.inputUssClassName);
             styleSheets.Add(IFoxField.FoxFieldStyleSheet);
         }
-
-        protected override void ExecuteDefaultActionAtTarget(EventBase evt)
-        {
-            base.ExecuteDefaultActionAtTarget(evt);
-
-            // UNITYENHANCEMENT: https://github.com/Joey35233/FoxKit-3/issues/12
-            if (evt.eventTypeId == FoxFieldUtils.SerializedPropertyBindEventTypeId && !System.String.IsNullOrWhiteSpace(bindingPath))
-            {
-                var property = FoxFieldUtils.SerializedPropertyBindEventBindProperty.GetValue(evt) as SerializedProperty;
-
-                if (property.propertyType != SerializedPropertyType.Float)
-                {
-                    BindingExtensions.BindProperty(XField, property.FindPropertyRelative("x"));
-                    BindingExtensions.BindProperty(YField, property.FindPropertyRelative("y"));
-                    BindingExtensions.BindProperty(ZField, property.FindPropertyRelative("z"));
-                    BindingExtensions.BindProperty(WField, property.FindPropertyRelative("w"));
-
-                    // Stop the QuaternionField itself's binding event; it's just a container for the actual BindableElements.
-                    evt.StopPropagation();
-                }
-            }
-        }
-
-        public void BindProperty(SerializedProperty property) => BindProperty(property, null);
-        public void BindProperty(SerializedProperty property, string label, PropertyInfo propertyInfo = null)
-        {
-            if (label is not null)
-                this.label = label;
-            BindingExtensions.BindProperty(XField, property.FindPropertyRelative("x"));
-            BindingExtensions.BindProperty(YField, property.FindPropertyRelative("y"));
-            BindingExtensions.BindProperty(ZField, property.FindPropertyRelative("z"));
-            BindingExtensions.BindProperty(WField, property.FindPropertyRelative("w"));
-        }
+        
+        public void SetLabel(string label) => this.label = label;
+        public Label GetLabelElement() => this.labelElement;
     }
 
     // [CustomPropertyDrawer(typeof(UnityEngine.Quaternion))]
