@@ -145,7 +145,7 @@ namespace Fox.EdCore
             else
             {
                 EntityLabel.style.display = DisplayStyle.Flex;
-                EntityLabel.text = $"<b>{value.GetClassEntityInfo().Name}</b>";
+                EntityLabel.text = $"<b>{value.GetClassEntityInfo().Name}</b> {value.name}";
                 visualInput.AddToClassList(inputLivePtrUssClassName);
             }
         }
@@ -211,47 +211,44 @@ namespace Fox.EdCore
             }
         }
 
-        //[EventInterest(typeof(MouseDownEvent))]
-        //internal override void ExecuteDefaultActionDisabledAtTarget(EventBase evt)
-        //{
-        //    base.ExecuteDefaultActionDisabledAtTarget(evt);
+        // [EventInterest(typeof(MouseDownEvent))]
+        // internal override void ExecuteDefaultActionDisabledAtTarget(EventBase evt)
+        // {
+        //     base.ExecuteDefaultActionDisabledAtTarget(evt);
+        //
+        //     if ((evt as MouseDownEvent)?.button == (int)MouseButton.LeftMouse)
+        //         OnMouseDown(evt as MouseDownEvent);
+        // }
 
-        //    if ((evt as MouseDownEvent)?.button == (int)MouseButton.LeftMouse)
-        //        OnMouseDown(evt as MouseDownEvent);
-        //}
-
-        private void OnDragLeave() =>
-            // Make sure we've cleared the accept drop look, whether we we in a drop operation or not.
-            RemoveFromClassList("unity-object-field-display--accept-drop");
+        // Make sure we've cleared the accept drop look, whether we we in a drop operation or not.
+        private void OnDragLeave() => RemoveFromClassList("unity-object-field-display--accept-drop");
 
         private void OnMouseDown(MouseDownEvent evt)
         {
-            //GameObject targetGameObject = value?.gameObject;
+            if (value == null || value.gameObject is not GameObject targetGameObject)
+                return;
 
-            //if (targetGameObject == null)
-            //    return;
-
-            //// One click shows where the referenced object is, or pops up a preview
-            //if (evt.clickCount == 1)
-            //{
-            //    // ping object
-            //    bool anyModifiersPressed = evt.shiftKey || evt.ctrlKey;
-            //    if (!anyModifiersPressed && targetGameObject)
-            //    {
-            //        EditorGUIUtility.PingObject(targetGameObject);
-            //    }
-            //    evt.StopPropagation();
-            //}
-            //// Double click opens the asset in external app or changes selection to referenced object
-            //else if (evt.clickCount == 2)
-            //{
-            //    if (targetGameObject)
-            //    {
-            //        AssetDatabase.OpenAsset(targetGameObject);
-            //        GUIUtility.ExitGUI();
-            //    }
-            //    evt.StopPropagation();
-            //}
+            // One click shows where the referenced object is, or pops up a preview
+            if (evt.clickCount == 1)
+            {
+                // ping object
+                bool anyModifiersPressed = evt.shiftKey || evt.ctrlKey;
+                if (!anyModifiersPressed && targetGameObject)
+                {
+                    EditorGUIUtility.PingObject(targetGameObject);
+                }
+                evt.StopPropagation();
+            }
+            // Double click opens the asset in external app or changes selection to referenced object
+            else if (evt.clickCount == 2)
+            {
+                if (targetGameObject)
+                {
+                    AssetDatabase.OpenAsset(targetGameObject);
+                    GUIUtility.ExitGUI();
+                }
+                evt.StopPropagation();
+            }
         }
 
         private void OnKeyboardEnter()
