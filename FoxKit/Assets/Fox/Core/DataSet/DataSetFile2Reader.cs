@@ -11,7 +11,7 @@ namespace Fox.Core
     public class DataSetFile2Reader
     {
         private IDictionary<StrCode, string> stringTable;
-        private readonly IDictionary<ulong, Action<Entity>> entityPtrSetRequests = new Dictionary<ulong, Action<Entity>>();
+        private readonly IDictionary<ulong, List<Action<Entity>>> entityPtrSetRequests = new Dictionary<ulong, List<Action<Entity>>>();
         private readonly IDictionary<ulong, HashSet<Action<Entity>>> entityHandleSetRequests = new Dictionary<ulong, HashSet<Action<Entity>>>();
         private TaskLogger logger;
 
@@ -105,15 +105,22 @@ namespace Fox.Core
 
         private void ResolveRequests(IDictionary<ulong, Entity> entities, IDictionary<ulong, GameObject> gameObjects)
         {
-            foreach (KeyValuePair<ulong, Action<Entity>> setEntityPtr in entityPtrSetRequests)
+            foreach (KeyValuePair<ulong, List<Action<Entity>>> setEntityPtr in entityPtrSetRequests)
             {
-                if (entities.ContainsKey(setEntityPtr.Key))
+                if (!entities.ContainsKey(setEntityPtr.Key))
                 {
-                    setEntityPtr.Value(entities[setEntityPtr.Key]);
+                    logger.AddError($"Unable to resolve EntityPtr 0x{setEntityPtr.Key:X8}.");
                     continue;
                 }
 
-                logger.AddError($"Unable to resolve EntityPtr 0x{setEntityPtr.Key:X8}.");
+                foreach (Action<Entity> setter in setEntityPtr.Value)
+                {
+                    if (entities.ContainsKey(setEntityPtr.Key))
+                    {
+                        setter(entities[setEntityPtr.Key]);
+                        continue;
+                    }
+                }             
             }
 
             foreach (KeyValuePair<ulong, HashSet<Action<Entity>>> setEntityHandle in entityHandleSetRequests)
@@ -150,7 +157,14 @@ namespace Fox.Core
                 return;
             }
 
-            entityPtrSetRequests.Add(address, setPtr);
+            if (entityPtrSetRequests.ContainsKey((ulong)address))
+            {
+                entityPtrSetRequests[address].Add(setPtr);
+            }
+            else
+            {
+                entityPtrSetRequests.Add(address, new List<Action<Entity>>() { setPtr });
+            }
         }
 
         public void RequestSetEntityHandle(ulong address, Action<Entity> setHandle)
