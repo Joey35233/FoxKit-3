@@ -198,17 +198,6 @@ namespace Fox
             }
         }
         
-        public void InsertOrUpdate(string key, T value)
-        {
-            if (key is null)
-                throw new ArgumentNullException();
-
-            if (++CellCount >= Threshold)
-                Resize();
-
-            InsertOrUpdateNoResize(key, value);
-        }
-        
         public bool Remove(string key)
         {
             if (key is null)
@@ -409,7 +398,7 @@ namespace Fox
 
         public void Clear() => throw new NotImplementedException();
 
-        public bool Contains(object value) => throw new NotImplementedException();
+        public bool Contains(object value) => throw new NotImplementedException("Use ContainsKey");
 
         public int IndexOf(object value) => throw new NotImplementedException();
 

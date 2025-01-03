@@ -5,7 +5,10 @@ namespace Fox.Core
         internal void AddData(Data data)
         {
             data.SetDataSet(this);
-            dataList.InsertOrUpdate(data.name, data);
+            if (dataList.ContainsKey(data.name))
+                dataList[data.name] = data;
+            else
+                dataList.Insert(data.name, data);
         }
         
         public override void OverridePropertiesForExport(EntityExportContext context)
