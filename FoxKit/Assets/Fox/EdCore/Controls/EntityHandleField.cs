@@ -185,14 +185,11 @@ namespace Fox.EdCore
             {
                 var kdEvt = evt as KeyDownEvent;
 
-                if ((evt as KeyDownEvent)?.keyCode is KeyCode.Space or
-                    KeyCode.KeypadEnter or
-                    KeyCode.Return)
+                if ((evt as KeyDownEvent)?.keyCode is KeyCode.Space or KeyCode.KeypadEnter or KeyCode.Return)
                 {
                     OnKeyboardEnter();
                 }
-                else if (kdEvt.keyCode is KeyCode.Delete or
-                         KeyCode.Backspace)
+                else if (kdEvt.keyCode is KeyCode.Delete or KeyCode.Backspace)
                 {
                     OnKeyboardDelete();
                 }
@@ -219,9 +216,6 @@ namespace Fox.EdCore
         //     if ((evt as MouseDownEvent)?.button == (int)MouseButton.LeftMouse)
         //         OnMouseDown(evt as MouseDownEvent);
         // }
-
-        // Make sure we've cleared the accept drop look, whether we we in a drop operation or not.
-        private void OnDragLeave() => RemoveFromClassList("unity-object-field-display--accept-drop");
 
         private void OnMouseDown(MouseDownEvent evt)
         {
@@ -296,6 +290,9 @@ namespace Fox.EdCore
                 evt.StopPropagation();
             }
         }
+
+        // Make sure we've cleared the accept drop look, whether we we in a drop operation or not.
+        private void OnDragLeave() => RemoveFromClassList("unity-object-field-display--accept-drop");
         
         public void SetLabel(string label) => this.label = label;
         public Label GetLabelElement() => this.labelElement;

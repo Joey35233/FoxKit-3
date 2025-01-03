@@ -25,18 +25,14 @@ namespace Fox.Core
 
         public void Write(BinaryWriter writer, UnityEngine.SceneManagement.Scene sceneToExport)
         {
-            EditorUtility.DisplayProgressBar("FoxKit", "Gathering Entities...", 0);
-
             List<Entity> entities = GetEntitiesToExport(sceneToExport, out CreateDataSetResult result);
             if (result == CreateDataSetResult.Failure)
             {
-                EditorUtility.ClearProgressBar();
                 return;
             }
 
             IDictionary<Entity, EntityExportContext> exportContexts = new Dictionary<Entity, EntityExportContext>();
 
-            EditorUtility.DisplayProgressBar("FoxKit", "Converting Entities...", 0);
             foreach (Entity entity in entities)
             {
                 AssignAddress(entity);
@@ -52,10 +48,8 @@ namespace Fox.Core
 
             WriteEntities(writer, entities, exportContexts);
 
-            EditorUtility.DisplayProgressBar("FoxKit", $"Writing string table...", 0.99f);
             int stringTableOffset = WriteStringTable(writer);
             long endPosition = WriteHeader(writer, entities, headerPosition, stringTableOffset);
-            EditorUtility.ClearProgressBar();
 
             writer.BaseStream.Position = endPosition;
         }
@@ -96,16 +90,9 @@ namespace Fox.Core
 
         private void WriteEntities(BinaryWriter writer, List<Entity> entities, IDictionary<Entity, EntityExportContext> exportContexts)
         {
-            int writtenEntities = 0;
-            int entityCount = entities.Count;
-
             foreach (Entity entity in entities)
             {
-                float progress = (float)writtenEntities / (float)entityCount;
-                EditorUtility.DisplayProgressBar("FoxKit", $"Writing Entities ({writtenEntities + 1}/{entityCount})...", progress);
-
                 WriteEntity(writer, (uint)addresses[entity], ids[entity], entity, exportContexts[entity]);
-                writtenEntities++;
             }
         }
 
@@ -189,56 +176,69 @@ namespace Fox.Core
         private static void UpdateDataOwners(Data data)
         { 
             EntityInfo entityInfo = data.GetClassEntityInfo();
-            foreach (PropertyInfo propertyInfo in entityInfo.OrderedStaticProperties)
+            do
             {
-                if (propertyInfo.Type == PropertyInfo.PropertyType.EntityHandle)
+                // TODO: Might need to consider EntityLink
+                foreach (PropertyInfo propertyInfo in entityInfo.OrderedStaticProperties)
                 {
-                    switch (propertyInfo.Container)
+                    if (propertyInfo.Type == PropertyInfo.PropertyType.EntityPtr)
                     {
-                    case PropertyInfo.ContainerType.StaticArray:
-                        if (propertyInfo.ArraySize == 1)
+                        switch (propertyInfo.Container)
                         {
-                            DataElement element = data.GetProperty(propertyInfo.Name).GetValueAsEntityHandle() as DataElement;
-                            if (element != null)
-                                element.SetOwner(data);
+                            case PropertyInfo.ContainerType.StaticArray:
+                                if (propertyInfo.ArraySize == 1)
+                                {
+                                    DataElement element = data.GetProperty(propertyInfo.Name).GetValueAsEntityPtr<DataElement>();
+                                    if (element != null)
+                                        element.SetOwner(data);
+                                }
+                                else
+                                {
+                                    StaticArray<DataElement> staticArray =
+                                        data.GetProperty(propertyInfo.Name).GetValueAsIList() as
+                                            StaticArray<DataElement>;
+                                    if (staticArray is null)
+                                        continue;
+                                    foreach (var element in staticArray)
+                                    {
+                                        if (element != null)
+                                            element.SetOwner(data);
+                                    }
+                                }
+
+                                break;
+                            case PropertyInfo.ContainerType.DynamicArray:
+                                DynamicArray<DataElement> dynamicArray =
+                                    data.GetProperty(propertyInfo.Name).GetValueAsIList() as
+                                        DynamicArray<DataElement>;
+                                if (dynamicArray is null)
+                                    continue;
+                                foreach (var element in dynamicArray)
+                                {
+                                    if (element != null)
+                                        element.SetOwner(data);
+                                }
+
+                                break;
+                            case PropertyInfo.ContainerType.StringMap:
+                                StringMap<DataElement> stringMap =
+                                    data.GetProperty(propertyInfo.Name).GetValueAsStringMap<DataElement>() as
+                                        StringMap<DataElement>;
+                                if (stringMap is null)
+                                    continue;
+                                foreach (var element in stringMap)
+                                {
+                                    if (element.Value != null)
+                                        element.Value.SetOwner(data);
+                                }
+
+                                break;
                         }
-                        else
-                        {
-                            StaticArray<DataElement> staticArray = data.GetProperty(propertyInfo.Name).GetValueAsBoxedObject() as StaticArray<DataElement>;
-                            if (staticArray is null)
-                                continue;
-                            foreach (var element in staticArray)
-                            {
-                                if (element != null)
-                                    element.SetOwner(data);
-                            }
-                        }
-                        break;
-                    case PropertyInfo.ContainerType.DynamicArray:
-                        DynamicArray<DataElement> dynamicArray = data.GetProperty(propertyInfo.Name).GetValueAsBoxedObject() as DynamicArray<DataElement>;
-                        if (dynamicArray is null)
-                            continue;
-                        foreach (var element in dynamicArray)
-                        {
-                            if (element != null)
-                                element.SetOwner(data);
-                        }
-                        break;
-                    case PropertyInfo.ContainerType.StringMap:
-                        StringMap<DataElement> stringMap = data.GetProperty(propertyInfo.Name).GetValueAsStringMap<DataElement>() as StringMap<DataElement>;
-                        if (stringMap is null)
-                            continue;
-                        foreach (var element in stringMap)
-                        {
-                            if (element.Value != null)
-                                element.Value.SetOwner(data);
-                        }
-                        break;
                     }
                 }
-                
-                
-            }
+
+                entityInfo = entityInfo.Super;
+            } while (entityInfo != null);
         }
 
         /// <summary>

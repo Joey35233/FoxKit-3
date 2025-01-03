@@ -5,6 +5,7 @@ using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
+using Object = UnityEngine.Object;
 using PropertyInfo = Fox.Core.PropertyInfo;
 
 namespace Fox.EdCore
@@ -172,7 +173,21 @@ namespace Fox.EdCore
                     SpecificEntityType = EntityTypePickerPopup.ShowPopup(typeof(T))?.Type;
                     if (SpecificEntityType != null)
                     {
-                        PtrProperty.objectReferenceValue = new GameObject().AddComponent(SpecificEntityType);
+                        GameObject newGameObject = new GameObject();
+                        Entity newEntity = newGameObject.AddComponent(SpecificEntityType) as Entity;
+                        PtrProperty.objectReferenceValue = newEntity;
+
+                        Object targetObject = PtrProperty.serializedObject.targetObject;
+                        if (targetObject != null && targetObject is Entity targetEntity)
+                        {
+                            newEntity.transform.SetParent(targetEntity.gameObject.transform);
+                        }
+                        else
+                        {
+                            Debug.LogWarning("EntityPtrField: Owning entity invalid.");
+                        }
+                                
+                        
                         _ = PtrProperty.serializedObject.ApplyModifiedProperties();
                     }
                 }

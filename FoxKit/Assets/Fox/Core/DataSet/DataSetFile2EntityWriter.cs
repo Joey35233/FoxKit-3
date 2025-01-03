@@ -91,15 +91,15 @@ namespace Fox.Core
 
             foreach (EntityInfo @class in superClasses)
             {
-                foreach (System.Collections.Generic.KeyValuePair<string, PropertyInfo> staticProperty in @class.StaticProperties)
+                foreach (PropertyInfo staticProperty in @class.OrderedStaticProperties)
                 {
-                    if (staticProperty.Value.Offset == 0)
+                    if (staticProperty.Offset == 0)
                     {
                         continue;
                     }
 
                     staticPropertyCount++;
-                    WriteProperty(entity, exportContext, staticProperty.Value, writer);
+                    WriteProperty(entity, exportContext, staticProperty, writer);
                 }
             }
 
@@ -249,6 +249,7 @@ namespace Fox.Core
                 case PropertyInfo.PropertyType.String:
                     {
                         var str = (string)item;
+                        str = str ?? string.Empty;
                         _ = strings.Add(str);
                         writer.WriteStrCode(new StrCode(str));
                     }

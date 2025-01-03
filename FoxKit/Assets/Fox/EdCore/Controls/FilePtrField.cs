@@ -1,8 +1,9 @@
 ﻿using Fox.Core;
-using System;
 using UnityEditor;
 using UnityEditor.UIElements;
+using UnityEngine;
 using UnityEngine.UIElements;
+using Object = System.Object;
 
 namespace Fox.EdCore
 {
