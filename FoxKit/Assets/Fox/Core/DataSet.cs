@@ -2,6 +2,11 @@ namespace Fox.Core
 {
     public partial class DataSet : Fox.Core.Data
     {
+        internal void ClearDataList()
+        {
+            dataList.Clear();
+        }
+        
         internal void AddData(Data data)
         {
             data.SetDataSet(this);

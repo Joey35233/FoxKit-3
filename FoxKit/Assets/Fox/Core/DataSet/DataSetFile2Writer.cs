@@ -160,6 +160,7 @@ namespace Fox.Core
             }
 
             // Once Entities have been validated, update Data properties
+            dataSet.ClearDataList();
             for (int i = 0; i < entities.Count; i++)
             {
                 if (entities[i] is Data data and not DataSet)
