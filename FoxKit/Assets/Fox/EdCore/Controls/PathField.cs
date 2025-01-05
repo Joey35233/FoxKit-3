@@ -26,7 +26,7 @@ namespace Fox.EdCore
             get => new (TextField.value);
             set
             {
-                TextField.value = value.CString;
+                TextField.value = value?.String;
             }
         }
 
@@ -56,7 +56,7 @@ namespace Fox.EdCore
             visualInput = visInput;
 
             TextField = new TextField(maxLength, false, false, '*');
-            TextField.bindingPath = "_cString";
+            TextField.bindingPath = "cString";
             TextField.AddToClassList(BaseCompositeField<Path, FloatField, float>.firstFieldVariantUssClassName);
             TextField.AddToClassList(BaseCompositeField<Path, FloatField, float>.fieldUssClassName);
             visualInput.Add(TextField);
@@ -148,7 +148,7 @@ namespace Fox.EdCore
             {
                 // Explicit version of using a lambda + captured variables
                 PingEventClickCount = evt.clickCount;
-                Addressables.LoadResourceLocationsAsync(value.CString).Completed +=
+                Addressables.LoadResourceLocationsAsync(value.String).Completed +=
                     (handle) =>
                     {
                         IList<IResourceLocation> results = handle.Result;

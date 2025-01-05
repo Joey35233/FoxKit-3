@@ -1,72 +1,70 @@
 using System;
 using System.Runtime.InteropServices;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Fox
 {
     [Serializable]
-    public class Path : IEquatable<string>
+    public class Path
     {
         [SerializeField]
-        private string _cString;
-        public string CString => _cString;
+        private string cString;
+        public string String => cString;
 
-        [SerializeField]
-        private PathFileNameAndExtCode _hash;
-        public PathFileNameAndExtCode Hash => _hash;
+        public PathCode Hash => new PathCode(String);
 
-        public String Extension => Hash.Extension;
-
-        /// <summary>
-        /// The empty string.
-        /// </summary>
         public static Path Empty => new Path("");
 
         private Path()
         {
-            _cString = Empty.CString;
-            _hash = Empty.Hash;
+            cString = Empty.String;
         }
 
-        public Path(ReadOnlySpan<char> value) : this(new string(value)) { }
+        public Path(ReadOnlySpan<char> value)
+            : this(new string(value))
+        {
+            
+        }
 
         public Path(string name)
         {
             if (name is null)
-            {
-                _cString = null;
-                _hash = HashingBitConverter.ToPathFileNameAndExtCode(0);
-            }
+                cString = Empty.String;
             else
-            {
-                _cString = name;
-                _hash = new PathFileNameAndExtCode(name);
-            }
+                cString = name;
         }
 
-        public Path(PathFileNameAndExtCode hash)
+        public Path(PathCode hash)
         {
-            _cString = null;
-            _hash = hash;
+            throw new NotImplementedException();
         }
         
-        public bool IsHashed() => (string.IsNullOrEmpty(CString)) && (Hash != Empty.Hash);
-
-        public override string ToString() => IsHashed() ? Hash.ToString() : CString;
+        public override string ToString() => String;
 
         // Fox.Path
-        public static bool operator ==(Path a, Path b) => a?.Hash == b?.Hash;
+        public static bool operator ==(Path a, Path b)
+        {
+            if (a is null && b is not null)
+                return false;
+            if (a is not null && b is null)
+                return false;
+
+            if (a.String == b.String)
+                return true;
+
+            return a.Hash == b.Hash;
+        }
+
         public static bool operator !=(Path a, Path b) => !(a == b);
 
-        // System.String comparisons
-        public static bool operator ==(Path a, string b) => a?.Hash == new PathFileNameAndExtCode(b);
-        public static bool operator !=(Path a, string b) => !(a == b);
+        // // ReadOnlySpan<char> comparisons
+        public static bool operator ==(Path a, ReadOnlySpan<char> b) => a == new Path(b);
+        public static bool operator !=(Path a, ReadOnlySpan<char> b) => !(a == b);
 
         // Generic overrides
         public override bool Equals(object obj) => obj is Path rhs && this == rhs;
 
         public override int GetHashCode() => unchecked(Hash.GetHashCode());
-
-        public bool Equals(string other) => Hash == new PathFileNameAndExtCode(other);
     }
 }

@@ -23,7 +23,7 @@ namespace Fox.GameKit
                 return;
             }
 
-            string unityPath = "Assets/Game" + filePtr.path.CString;
+            string unityPath = "Assets/Game" + filePtr.path.String;
             Map = ScriptableObject.CreateInstance<Fox.Gr.Terrain.TerrainTileAsset>();
             if (Fox.Gr.TerrainFile.TryDeserialize(Map, System.IO.File.ReadAllBytes(unityPath)))
             {

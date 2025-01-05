@@ -396,7 +396,13 @@ namespace Fox
 
         public int Add(object value) => throw new NotImplementedException();
 
-        public void Clear() => throw new NotImplementedException();
+        public void Clear()
+        {
+            foreach (var pair in this)
+            {
+                this.Remove(pair.Key);
+            }
+        }
 
         public bool Contains(object value) => throw new NotImplementedException("Use ContainsKey");
 

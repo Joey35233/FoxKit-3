@@ -9,10 +9,12 @@ namespace Fox
     {
         [SerializeField]
         [FieldOffset(0)] private ulong _hash;
+        
+        public static readonly StrCode Empty = new StrCode("");
 
-        public StrCode(string str)
+        public StrCode(ReadOnlySpan<char> str)
         {
-            _hash = Hashing.StrCode(str);
+            _hash = Hashing.StringId(str);
         }
 
         internal StrCode(ulong hash)
@@ -28,6 +30,11 @@ namespace Fox
         public static bool operator ==(StrCode a, StrCode b) => a._hash == b._hash;
 
         public static bool operator !=(StrCode a, StrCode b) => !(a == b);
+        
+        // string
+        public static bool operator ==(StrCode a, string b) => a == new StrCode(b);
+
+        public static bool operator !=(StrCode a, string b) => !(a == b);
 
         // System.UInt64 comparisons
         public static bool operator ==(StrCode a, ulong b) => a._hash == b;
@@ -41,7 +48,7 @@ namespace Fox
 
         public bool Equals(ulong other) => _hash.Equals(other);
 
-        // Bitwise operators
+        // // Bitwise operators
         public static ulong operator &(StrCode a, ulong b) => a._hash & b;
         public static uint operator &(StrCode a, uint b) => (uint)(a._hash & b);
 

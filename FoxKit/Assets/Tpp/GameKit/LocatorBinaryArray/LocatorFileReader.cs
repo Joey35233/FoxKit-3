@@ -69,7 +69,7 @@ namespace Tpp.GameKit
             ScriptableObject lbaAsset = AssetManager.LoadAssetWithExtensionReplacement<ScriptableObject>(readPath, "asset", out unityPath);
             if (lbaAsset == null)
             {
-                string lbaPath = readPath.path.CString;
+                string lbaPath = readPath.path.String;
                 if (!File.Exists(lbaPath))
                 {
                     return null;

@@ -256,7 +256,7 @@ namespace Fox.Core
                     break;
                 case PropertyInfo.PropertyType.Path:
                     {
-                        var str = ((Fox.Path)item).CString;
+                        var str = ((Fox.Path)item).String;
                         _ = strings.Add(str);
                         writer.WriteStrCode(new StrCode(str));
                     }
@@ -292,7 +292,7 @@ namespace Fox.Core
                 case PropertyInfo.PropertyType.FilePtr:
                     {
                         var ptr = (FilePtr)item;
-                        var str = ptr.path.CString;
+                        var str = ptr.path.String;
                         _ = strings.Add(str);
                         writer.WriteStrCode(new StrCode(str));
                     }
@@ -311,12 +311,12 @@ namespace Fox.Core
                 case PropertyInfo.PropertyType.EntityLink:
                     {
                         var entityLink = (EntityLink)item;
-                        _ = strings.Add(entityLink.packagePath.CString);
-                        _ = strings.Add(entityLink.archivePath.CString);
+                        _ = strings.Add(entityLink.packagePath.String);
+                        _ = strings.Add(entityLink.archivePath.String);
                         _ = strings.Add(entityLink.nameInArchive);
 
-                        writer.WriteStrCode(new StrCode(entityLink.packagePath.CString));
-                        writer.WriteStrCode(new StrCode(entityLink.archivePath.CString));
+                        writer.WriteStrCode(new StrCode(entityLink.packagePath.String));
+                        writer.WriteStrCode(new StrCode(entityLink.archivePath.String));
                         writer.WriteStrCode(new StrCode(entityLink.nameInArchive));
 
                         ulong address = 0;

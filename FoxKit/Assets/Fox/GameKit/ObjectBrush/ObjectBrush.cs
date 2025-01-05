@@ -15,7 +15,7 @@ namespace Fox.GameKit
         {
             base.OnDeserializeEntity(gameObject, logger);
 
-            string obrPath = "/Game" + obrFile.path.CString;
+            string obrPath = "/Game" + obrFile.path.String;
             if (System.String.IsNullOrEmpty(obrPath))
             {
                 Debug.LogWarning($"{name}: obrFile is null");
@@ -63,11 +63,11 @@ namespace Fox.GameKit
                     {
                         case ObjectBrushPluginClone pluginClone:
                             transform.scale = Vector3.one * Mathf.Lerp(pluginClone.minSize, pluginClone.maxSize, normalizedScale);
-                            instanceGameObject = MakeStaticModelGameObject(transform, "/Assets/Game" + pluginClone.modelFile.path.CString, gameObject);
+                            instanceGameObject = MakeStaticModelGameObject(transform, "/Assets/Game" + pluginClone.modelFile.path.String, gameObject);
                             break;
                         case ObjectBrushPluginStaticModel pluginStaticModel:
                             transform.scale = Vector3.one * Mathf.Lerp(pluginStaticModel.minSize, pluginStaticModel.maxSize, normalizedScale);
-                            instanceGameObject = MakeStaticModelGameObject(transform, "/Assets/Game" + pluginStaticModel.modelFile.path.CString, gameObject);
+                            instanceGameObject = MakeStaticModelGameObject(transform, "/Assets/Game" + pluginStaticModel.modelFile.path.String, gameObject);
                             break;
                         case null:
                             throw new ArgumentNullException();

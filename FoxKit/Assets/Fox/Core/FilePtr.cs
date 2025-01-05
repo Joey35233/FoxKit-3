@@ -45,7 +45,7 @@ namespace Fox.Core
 
         public AsyncOperationHandle<T> LoadAsync<T>() where T : class
         {
-            var handle = Addressables.LoadAssetAsync<T>(path.CString);
+            var handle = Addressables.LoadAssetAsync<T>(path.String);
             return handle;
         }
 

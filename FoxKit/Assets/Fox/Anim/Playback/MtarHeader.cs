@@ -7,7 +7,7 @@ namespace Fox.Anim
     [StructLayout(LayoutKind.Sequential)]
     internal struct MtarFileHeader
     {
-        public PathFileNameCode Path;
+        public PathCode Path;
         public uint DataOffset;
         public ushort DataSize;
         public ushort Unknown;
@@ -16,7 +16,7 @@ namespace Fox.Anim
     [StructLayout(LayoutKind.Sequential)]
     internal struct Mtar2FileHeader
     {
-        public PathFileNameCode Path;
+        public PathCode Path;
         public uint DataOffset;
         public ushort DataSize;
 

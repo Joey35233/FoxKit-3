@@ -68,10 +68,10 @@ namespace Fox.GameKit
         private void ReloadFile()
         {
             Path targetPath = modelFile.path;
-            if (string.IsNullOrEmpty(targetPath.CString))
+            if (string.IsNullOrEmpty(targetPath.String))
                 return;
             
-            var handle = Addressables.LoadAssetAsync<GameObject>(targetPath.CString);
+            var handle = Addressables.LoadAssetAsync<GameObject>(targetPath.String);
             handle.Completed += HandleOnCompleted;
         }
         private void HandleOnCompleted(AsyncOperationHandle<GameObject> handle)
