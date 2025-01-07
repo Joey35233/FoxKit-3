@@ -175,6 +175,7 @@ namespace Fox.EdCore
                     {
                         GameObject newGameObject = new GameObject();
                         Entity newEntity = newGameObject.AddComponent(SpecificEntityType) as Entity;
+                        newGameObject.name = newEntity.ToString();
                         PtrProperty.objectReferenceValue = newEntity;
 
                         Object targetObject = PtrProperty.serializedObject.targetObject;
@@ -186,7 +187,6 @@ namespace Fox.EdCore
                         {
                             Debug.LogWarning("EntityPtrField: Owning entity invalid.");
                         }
-                                
                         
                         _ = PtrProperty.serializedObject.ApplyModifiedProperties();
                     }
