@@ -146,7 +146,7 @@ namespace Fox.Geox
                 Graphx.GraphxSpatialGraphDataNode node = nodes[nodeIndex];
 
                 Gizmos.color = EditorColors.PlayerUtilityColor;
-                Gizmos.DrawWireCube(node.position, ScaleNode);
+                Gizmos.DrawWireCube(this.transform.position + node.position, ScaleNode);
 
                 for (int edgeIndex = 0; edgeIndex < node.outlinks.Count; edgeIndex++)
                 {
@@ -154,7 +154,7 @@ namespace Fox.Geox
 
                     var prevNode = edge.prevNode as GeoxPathNode;
                     var nextNode = edge.nextNode as GeoxPathNode;
-                    Gizmos.DrawLine(prevNode.position, nextNode.position);
+                    Gizmos.DrawLine(this.transform.position+prevNode.position, this.transform.position + nextNode.position);
                 }
             }
         }
