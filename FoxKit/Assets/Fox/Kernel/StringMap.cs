@@ -52,14 +52,14 @@ namespace Fox
         private uint HashMask; // Since this map has a 2^n size, (hash & HashMask) or (hash & Capacity - 1)
                                // serves the same remapping purpose as (hash % Capacity)
 
-        [SerializeField]
-        private int CellCount;
+        [FormerlySerializedAs("CellCount")] [SerializeField]
+        private int OccupiedCount;
         [SerializeField]
         private List<Cell> CellsBacking; // Unfortunately, we have to use a List<T> instead of an array because SerializedProperty.boxedObject won't work any other way which is weird
 
         public StringMap()
         {
-            CellCount = 0;
+            OccupiedCount = 0;
 
             Allocate(InitialSize);
         }
@@ -79,7 +79,7 @@ namespace Fox
 
         public StringMap(int capacity)
         {
-            CellCount = 0;
+            OccupiedCount = 0;
 
             Allocate(capacity <= InitialSize ? InitialSize : RoundUpToPowerOfTwo(capacity));
         }
@@ -152,7 +152,7 @@ namespace Fox
             if (key is null)
                 throw new ArgumentNullException();
 
-            if (++CellCount >= Threshold)
+            if (++OccupiedCount >= Threshold)
                 Resize();
 
             InsertNoResize(key, value);
@@ -268,7 +268,7 @@ namespace Fox
                 lastIndex = nextIndex; // Loop index back to 0 if it will exceed Capacity.
             }
 
-            CellCount--;
+            OccupiedCount--;
             return true;
         }
 
@@ -366,14 +366,14 @@ namespace Fox
                 if (cell.Occupied)
                     total += cell.Distance;
 
-            return ((float)total / CellCount) + 1;
+            return ((float)total / OccupiedCount) + 1;
         }
 
         public bool IsFixedSize => false;
 
         public bool IsReadOnly => false;
 
-        public int Count => CellCount;
+        public int Count => OccupiedCount;
 
         public bool IsSynchronized => throw new NotImplementedException();
 
@@ -398,10 +398,9 @@ namespace Fox
 
         public void Clear()
         {
-            foreach (var pair in this)
-            {
-                this.Remove(pair.Key);
-            }
+            OccupiedCount = 0;
+            for (int i = 0; i < CellsBacking.Count; i++)
+                CellsBacking[i] = new Cell();
         }
 
         public bool Contains(object value) => throw new NotImplementedException("Use ContainsKey");
@@ -454,7 +453,7 @@ namespace Fox
                 lastIndex = nextIndex; // Loop index back to 0 if it will exceed Capacity.
             }
 
-            CellCount--;
+            OccupiedCount--;
         }
 
         public void CopyTo(Array array, int index) => throw new NotImplementedException();
