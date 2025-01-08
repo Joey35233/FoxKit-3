@@ -99,5 +99,28 @@ namespace Fox
         {
             _list = new List<T>(array._list);
         }
+        
+        public StaticArray(StaticArray<T> array, int capacity)
+        {
+            if (capacity < 0)
+                throw new ArgumentOutOfRangeException();
+            
+            _list = new List<T>(capacity);
+            
+            if (capacity <= array.Count)
+            {
+                _list = new List<T>(capacity);
+                for (int i = 0; i < capacity; i++)
+                    _list.Add(array[i]);
+            }
+            else
+            {
+                for (int i = 0; i < array.Count; i++)
+                    _list.Add(array[i]);
+                
+                for (int i = 0; i < capacity - array.Count; i++)
+                    _list.Add(default);
+            }
+        }
     }
 }

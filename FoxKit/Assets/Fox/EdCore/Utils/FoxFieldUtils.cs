@@ -83,9 +83,9 @@ namespace Fox.EdCore
 
         // SerializedProperty | set BaseField<T>.value -> SVWN() + ChangeEvent<T> -> Event received but the property is longer different
         // value              | SVWN() + ChangeEvent<T> -> ApplyModifiedProperties() -> set BaseField<T>.value but stopped because the value is no longer different
-        public static IFoxField GetCustomBindableField(PropertyInfo propertyInfo)
+        public static IFoxField GetCustomBindableField(PropertyInfo propertyInfo, bool staticArrayOverride = false)
         {
-            if (propertyInfo.Container == ContainerType.StaticArray && propertyInfo.ArraySize > 1)
+            if (propertyInfo.Container == ContainerType.StaticArray && (propertyInfo.ArraySize > 1 || staticArrayOverride))
                 return Activator.CreateInstance(typeof(StaticArrayField<>).MakeGenericType(new Type[] { PropertyInfo.GetTypeFromPropertyInfo(propertyInfo) }), propertyInfo) as IFoxField;
 
             if (propertyInfo.Container is ContainerType.DynamicArray or ContainerType.List)
