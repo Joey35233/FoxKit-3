@@ -5,6 +5,7 @@ namespace Fox.Core
     /// <summary>
     /// Metadata defining a property.
     /// </summary>
+    [Serializable]
     public class PropertyInfo
     {
         /// <summary>

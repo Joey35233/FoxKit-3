@@ -19,11 +19,6 @@ namespace Fox.Core
             get;
         }
 
-        /// <summary>
-        /// The Entity's dynamically-added properties.
-        /// </summary>
-        private StringMap<DynamicProperty> DynamicProperties { get; } = new StringMap<DynamicProperty>();
-
         public bool AddDynamicProperty(PropertyInfo.PropertyType type, string name, ushort arraySize, PropertyInfo.ContainerType container)
         {
             if (HasPropertyWithName(this, name))
@@ -32,7 +27,7 @@ namespace Fox.Core
             }
 
             var propertyInfo = new PropertyInfo(name, type, 0, arraySize, container);
-            DynamicProperties.Insert(name, new DynamicProperty(propertyInfo));
+            // TODO: DynamicProperties.Insert(name, new DynamicProperty(propertyInfo));
             return true;
         }
 
@@ -51,7 +46,7 @@ namespace Fox.Core
         private static bool HasPropertyWithName(Entity entity, string name)
         {
             bool hasStaticProperty = EntityInfo.HasPropertyWithName(entity.GetClassEntityInfo(), name);
-            return hasStaticProperty || entity.DynamicProperties.ContainsKey(name);
+            return hasStaticProperty || false; // TODO: entity.DynamicProperties.ContainsKey(name);
         }
 
         /// <summary>

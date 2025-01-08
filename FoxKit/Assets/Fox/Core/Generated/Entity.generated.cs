@@ -41,10 +41,10 @@ namespace Fox.Core
 			switch (propertyName)
 			{
 				default:
-					if (this.DynamicProperties.TryGetValue(propertyName, out DynamicProperty property))
-					{
-						return property.GetValue();
-					}
+					// if (this.DynamicProperties.TryGetValue(propertyName, out DynamicProperty property))
+					// {
+					// 	return property.GetValue();
+					// }
 					throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
 			}
 		}
@@ -54,10 +54,10 @@ namespace Fox.Core
 			switch (propertyName)
 			{
 				default:
-					if (this.DynamicProperties.TryGetValue(propertyName, out DynamicProperty property))
-					{
-						return property.GetElement(index);
-					}
+					// if (this.DynamicProperties.TryGetValue(propertyName, out DynamicProperty property))
+					// {
+					// 	return property.GetElement(index);
+					// }
 					throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
 			}
 		}
@@ -67,10 +67,10 @@ namespace Fox.Core
 			switch (propertyName)
 			{
 				default:
-					if (this.DynamicProperties.TryGetValue(propertyName, out DynamicProperty property))
-					{
-						return property.GetElement(key);
-					}
+					// if (this.DynamicProperties.TryGetValue(propertyName, out DynamicProperty property))
+					// {
+					// 	return property.GetElement(key);
+					// }
 					throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
 			}
 		}
@@ -80,11 +80,11 @@ namespace Fox.Core
 			switch (propertyName)
 			{
 				default:
-					if (this.DynamicProperties.TryGetValue(propertyName, out DynamicProperty property))
-					{
-						property.SetValue(value);
-						return;
-					}
+					// if (this.DynamicProperties.TryGetValue(propertyName, out DynamicProperty property))
+					// {
+					// 	property.SetValue(value);
+					// 	return;
+					// }
 					throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
 			}
 		}
@@ -94,11 +94,11 @@ namespace Fox.Core
 			switch (propertyName)
 			{
 				default:
-					if (this.DynamicProperties.TryGetValue(propertyName, out DynamicProperty property))
-					{
-						property.SetElement(index, value);
-						return;
-					}
+					// if (this.DynamicProperties.TryGetValue(propertyName, out DynamicProperty property))
+					// {
+					// 	property.SetElement(index, value);
+					// 	return;
+					// }
 					throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
 			}
 		}
@@ -108,11 +108,11 @@ namespace Fox.Core
 			switch (propertyName)
 			{
 				default:
-					if (this.DynamicProperties.TryGetValue(propertyName, out DynamicProperty property))
-					{
-						property.SetElement(key, value);
-						return;
-					}
+					// if (this.DynamicProperties.TryGetValue(propertyName, out DynamicProperty property))
+					// {
+					// 	property.SetElement(key, value);
+					// 	return;
+					// }
 					throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
 			}
 		}
