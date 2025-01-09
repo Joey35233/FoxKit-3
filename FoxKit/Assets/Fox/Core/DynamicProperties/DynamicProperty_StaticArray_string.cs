@@ -2,7 +2,7 @@
 
 namespace Fox.Core
 {
-    [AddComponentMenu("DynamicProperty - StaticArray<String>")]
+    [SpecifiedDynamicProperty(typeof(StaticArray<string>)), AddComponentMenu("DynamicProperty - StaticArray<String>")]
     public class DynamicProperty_StaticArray_String : DynamicProperty
     {
         [SerializeField]

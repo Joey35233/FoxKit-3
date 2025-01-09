@@ -32,6 +32,7 @@ namespace Fox.EdCore
                     height = 0,
                     borderTopColor = Color.gray,
                     borderTopWidth = 1,
+                    marginTop = 4,
                     marginBottom = 4
                 }
             };

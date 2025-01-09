@@ -18,4 +18,16 @@ namespace Fox.Core
         internal const string VALUE_PROPERTY_NAME = "SerializedField";
         public abstract Value GetValue();
     }
+
+    internal class SpecifiedDynamicProperty : Attribute
+    {
+        private static readonly Type DynamicPropertyType = typeof(DynamicProperty);
+        private Type TargetType;
+        
+        public SpecifiedDynamicProperty(Type targetType)
+        {
+            Debug.Assert(targetType.IsSubclassOf(DynamicPropertyType));
+            TargetType = targetType;
+        }
+    }
 }
