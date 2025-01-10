@@ -41,10 +41,10 @@ namespace Fox.Core
 			switch (propertyName)
 			{
 				default:
-					// if (this.DynamicProperties.TryGetValue(propertyName, out DynamicProperty property))
-					// {
-					// 	return property.GetValue();
-					// }
+					foreach (var dynamicProperty in gameObject.GetComponents<DynamicProperty>())
+						if (dynamicProperty.Name == propertyName)
+							return dynamicProperty.GetValue();
+					
 					throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
 			}
 		}
@@ -54,10 +54,10 @@ namespace Fox.Core
 			switch (propertyName)
 			{
 				default:
-					// if (this.DynamicProperties.TryGetValue(propertyName, out DynamicProperty property))
-					// {
-					// 	return property.GetElement(index);
-					// }
+					foreach (var dynamicProperty in gameObject.GetComponents<DynamicProperty>())
+						if (dynamicProperty.Name == propertyName && dynamicProperty.GetContainerType() != PropertyInfo.ContainerType.StringMap)
+							return dynamicProperty.GetElement(index);
+					
 					throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
 			}
 		}
@@ -67,10 +67,10 @@ namespace Fox.Core
 			switch (propertyName)
 			{
 				default:
-					// if (this.DynamicProperties.TryGetValue(propertyName, out DynamicProperty property))
-					// {
-					// 	return property.GetElement(key);
-					// }
+					foreach (var dynamicProperty in gameObject.GetComponents<DynamicProperty>())
+						if (dynamicProperty.Name == propertyName && dynamicProperty.GetContainerType() == PropertyInfo.ContainerType.StringMap)
+							return dynamicProperty.GetElement(key);
+					
 					throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
 			}
 		}
@@ -80,11 +80,6 @@ namespace Fox.Core
 			switch (propertyName)
 			{
 				default:
-					// if (this.DynamicProperties.TryGetValue(propertyName, out DynamicProperty property))
-					// {
-					// 	property.SetValue(value);
-					// 	return;
-					// }
 					throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
 			}
 		}
@@ -94,11 +89,13 @@ namespace Fox.Core
 			switch (propertyName)
 			{
 				default:
-					// if (this.DynamicProperties.TryGetValue(propertyName, out DynamicProperty property))
-					// {
-					// 	property.SetElement(index, value);
-					// 	return;
-					// }
+					foreach (var dynamicProperty in gameObject.GetComponents<DynamicProperty>())
+						if (dynamicProperty.Name == propertyName && dynamicProperty.GetContainerType() != PropertyInfo.ContainerType.StringMap)
+						{
+							dynamicProperty.SetElement(index, value);
+							return;
+						}
+
 					throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
 			}
 		}
@@ -108,11 +105,13 @@ namespace Fox.Core
 			switch (propertyName)
 			{
 				default:
-					// if (this.DynamicProperties.TryGetValue(propertyName, out DynamicProperty property))
-					// {
-					// 	property.SetElement(key, value);
-					// 	return;
-					// }
+					foreach (var dynamicProperty in gameObject.GetComponents<DynamicProperty>())
+						if (dynamicProperty.Name == propertyName && dynamicProperty.GetContainerType() == PropertyInfo.ContainerType.StringMap)
+						{
+							dynamicProperty.SetElement(key, value);
+							return;
+						}
+
 					throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
 			}
 		}

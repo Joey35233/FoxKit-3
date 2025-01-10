@@ -39,7 +39,7 @@ namespace Fox.EdCore
             BaseElement.Add(headerLine);
 
             PropertyInfo propertyInfo = DynamicProperty.GetPropertyInfo();
-            if (propertyInfo.Container == PropertyInfo.ContainerType.StaticArray && DynamicProperty.IsStaticArrayOverride())
+            if (propertyInfo.Container == PropertyInfo.ContainerType.StaticArray)
             {
                 ArraySizeField = new UInt32Field("arraySize");
                 ArraySizeField.value = propertyInfo.ArraySize;

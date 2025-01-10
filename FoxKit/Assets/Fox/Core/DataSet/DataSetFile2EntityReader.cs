@@ -5,6 +5,7 @@ using Fox;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using JetBrains.Annotations;
 using static Fox.Core.Serialization.DataSetFile2PropertyReader;
 
 namespace Fox.Core
@@ -63,7 +64,6 @@ namespace Fox.Core
             for (int i = 0; i < staticPropertyCount; i++)
             {
                 propertyReader.Read(reader,
-                    (PropertyInfo.PropertyType type, string name, ushort arraySize, PropertyInfo.ContainerType container) => OnPropertyNameUnhashed(type, name, arraySize, container, entity, isReadingDynamicProperty),
                     (propertyName) => GetPtrType(entity, propertyName),
                     setProperty,
                     setPropertyElementByIndex,
@@ -73,11 +73,13 @@ namespace Fox.Core
             isReadingDynamicProperty = true;
             for (int i = 0; i < dynamicPropertyCount; i++)
             {
-                propertyReader.Read(reader, (PropertyInfo.PropertyType type, string name, ushort arraySize, PropertyInfo.ContainerType container) => OnPropertyNameUnhashed(type, name, arraySize, container, entity, isReadingDynamicProperty),
-                    (propertyName) => typeof(Entity),
-                    setProperty,
+                propertyReader.Read(reader,
+                    (_) => typeof(Entity),
+                    null,
                     setPropertyElementByIndex,
-                    setPropertyElementByKey);
+                    setPropertyElementByKey,
+                    true,
+                    (PropertyInfo.PropertyType type, string name, ushort arraySize, PropertyInfo.ContainerType container) => OnPropertyNameUnhashed(type, name, arraySize, container, entity));
             }
 
             return new AddressedEntity { Address = address, Entity = entity };
@@ -110,12 +112,9 @@ namespace Fox.Core
             }
         }
 
-        private static void OnPropertyNameUnhashed(PropertyInfo.PropertyType type, string name, ushort arraySize, PropertyInfo.ContainerType container, Entity entity, bool isReadingDynamicProperty)
+        private static DynamicProperty OnPropertyNameUnhashed(PropertyInfo.PropertyType type, string name, ushort arraySize, PropertyInfo.ContainerType container, Entity entity)
         {
-            if (isReadingDynamicProperty)
-            {
-                _ = entity.AddDynamicProperty(type, name, arraySize, container);
-            }
+            return entity.AddDynamicProperty(type, name, arraySize, container);
         }
 
         private Type GetPtrType(Entity entity, string propertyName)

@@ -65,15 +65,16 @@ namespace Fox.Core.Serialization
 
         public void Read(
             FileStreamReader reader,
-            OnPropertyNameUnhashedCallback onPropertyNameUnhashed,
             GetPtrType getPtrType,
             SetProperty setProperty,
             SetPropertyElementByIndex setPropertyElementByIndex,
-            SetPropertyElementByKey setPropertyElementByKey)
+            SetPropertyElementByKey setPropertyElementByKey,
+            bool isReadingDynamicProperty = false,
+            OnPropertyNameUnhashedCallback onPropertyNameUnhashed = null)
         {
             Debug.Assert(reader != null);
             Debug.Assert(getPtrType != null);
-            Debug.Assert(setProperty != null);
+            Debug.Assert(isReadingDynamicProperty ? setProperty == null : setProperty != null);
             Debug.Assert(setPropertyElementByIndex != null);
             Debug.Assert(setPropertyElementByKey != null);
 
@@ -84,11 +85,12 @@ namespace Fox.Core.Serialization
             ushort arraySize = BitConverter.ToUInt16(headerBytes, 10);
 
             string name = unhashString(nameHash);
-            onPropertyNameUnhashed(dataType, name, containerType == PropertyInfo.ContainerType.StaticArray ? arraySize : (ushort)1, containerType);
+            if (isReadingDynamicProperty)
+                onPropertyNameUnhashed(dataType, name, arraySize, containerType);
 
             Type ptrType = getPtrType(name);
 
-            if (containerType == PropertyInfo.ContainerType.StaticArray && arraySize == 1)
+            if (containerType == PropertyInfo.ContainerType.StaticArray && arraySize == 1 && !isReadingDynamicProperty)
             {
                 ReadProperty(reader, setProperty, name, dataType, ptrType);
             }

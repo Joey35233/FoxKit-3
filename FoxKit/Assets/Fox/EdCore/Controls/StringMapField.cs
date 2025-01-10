@@ -147,7 +147,7 @@ namespace Fox.EdCore
                 var propertyList = targetDynamicProperty.GetValue().GetValueAsStringMap<T>();
                 ListViewInput.itemsSource = propertyList as IList;
             }
-            ListViewInput.Rebuild();
+            ListViewInput.Rebuild(); 
         }
 
         private void AddButton_clicked()

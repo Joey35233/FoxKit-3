@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 namespace Fox.Core
@@ -19,16 +20,12 @@ namespace Fox.Core
             get;
         }
 
-        public bool AddDynamicProperty(PropertyInfo.PropertyType type, string name, ushort arraySize, PropertyInfo.ContainerType container)
+        public DynamicProperty AddDynamicProperty(PropertyInfo.PropertyType type, string propertyName, ushort arraySize, PropertyInfo.ContainerType container)
         {
-            if (HasPropertyWithName(this, name))
-            {
-                return false;
-            }
+            if (HasPropertyWithName(this, propertyName))
+                return null;
 
-            var propertyInfo = new PropertyInfo(name, type, 0, arraySize, container);
-            // TODO: DynamicProperties.Insert(name, new DynamicProperty(propertyInfo));
-            return true;
+            return DynamicPropertyCollector.GetSpecificTypeForDescription(this.gameObject, type, propertyName, container, arraySize);
         }
 
         /// <summary>
@@ -43,10 +40,17 @@ namespace Fox.Core
         /// <param name="entity">The Entity.</param>
         /// <param name="name">The name of the property to find.</param>
         /// <returns>True if a static or dynamic property was found, else false.</returns>
-        private static bool HasPropertyWithName(Entity entity, string name)
+        public static bool HasPropertyWithName(Entity entity, string name)
         {
             bool hasStaticProperty = EntityInfo.HasPropertyWithName(entity.GetClassEntityInfo(), name);
-            return hasStaticProperty || false; // TODO: entity.DynamicProperties.ContainsKey(name);
+            if (hasStaticProperty)
+                return true;
+            
+            foreach (var dynamicProperty in entity.gameObject.GetComponents<DynamicProperty>())
+                if (dynamicProperty.Name == name)
+                    return true;
+
+            return false;
         }
 
         /// <summary>
