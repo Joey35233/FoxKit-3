@@ -111,12 +111,20 @@ namespace Fox.Geox
                 var nextNode = edge.nextNode as GraphxSpatialGraphDataNode;
 
                 float yMin = this.transform.position.y;
-                float yMax = yMin + trapPath.height;
+                float yMax = this.transform.TransformPoint(new Vector3(0, trapPath.height, 0)).y;
 
-                Gizmos.DrawLine(new Vector3(prevNode.position.x, yMin, prevNode.position.z), new Vector3(nextNode.position.x, yMin, nextNode.position.z));
-                Gizmos.DrawLine(new Vector3(prevNode.position.x, yMax, prevNode.position.z), new Vector3(nextNode.position.x, yMax, nextNode.position.z));
+                Vector3 prevNodePos = this.transform.TransformPoint(prevNode.position);
+                Vector3 nextNodePos = this.transform.TransformPoint(nextNode.position);
 
-                Gizmos.DrawLine(new Vector3(nextNode.position.x, yMin, nextNode.position.z), new Vector3(nextNode.position.x, yMax, nextNode.position.z));
+                float prevNodex = this.transform.position.x + prevNode.position.x;
+                float prevNodez = this.transform.position.z + prevNode.position.z;
+                float nextNodex = this.transform.position.x + nextNode.position.x;
+                float nextNodez = this.transform.position.z + nextNode.position.z;
+
+                Gizmos.DrawLine(new Vector3(prevNodePos.x, yMin, prevNodePos.z), new Vector3(nextNodePos.x, yMin, nextNodePos.z));
+                Gizmos.DrawLine(new Vector3(prevNodePos.x, yMax, prevNodePos.z), new Vector3(nextNodePos.x, yMax, nextNodePos.z));
+
+                Gizmos.DrawLine(new Vector3(nextNodePos.x, yMin, nextNodePos.z), new Vector3(nextNodePos.x, yMax, nextNodePos.z));
             }
         }
 

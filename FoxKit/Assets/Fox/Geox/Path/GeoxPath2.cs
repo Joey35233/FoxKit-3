@@ -154,7 +154,11 @@ namespace Fox.Geox
 
                     var prevNode = edge.prevNode as GeoxPathNode;
                     var nextNode = edge.nextNode as GeoxPathNode;
-                    Gizmos.DrawLine(this.transform.position+prevNode.position, this.transform.position + nextNode.position);
+
+                    Vector3 prevNodePos = this.transform.TransformPoint(prevNode.position);
+                    Vector3 nextNodePos = this.transform.TransformPoint(nextNode.position);
+
+                    Gizmos.DrawLine(prevNodePos, nextNodePos);
                 }
             }
         }
