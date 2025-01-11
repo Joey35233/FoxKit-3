@@ -85,10 +85,9 @@ namespace Fox.Core
                 superClasses.Add(current.Super);
                 current = current.Super;
             }
-
             superClasses.Reverse();
+            
             uint staticPropertyCount = 0;
-
             foreach (EntityInfo @class in superClasses)
             {
                 foreach (PropertyInfo staticProperty in @class.OrderedStaticProperties)
@@ -102,17 +101,17 @@ namespace Fox.Core
                     WriteProperty(entity, exportContext, staticProperty, writer);
                 }
             }
-
             uint staticDataSize = (uint)(output.Position - headerPosition);
-            /**
-             * TODO
-             * foreach (var dynamicProperty in entity.DynamicProperties)
-            {
-                dynamicProperty.Write(output);
-            }*/
 
+            uint dynamicPropertyCount = 0;
+            foreach (var dynamicProperty in entity.GetComponents<DynamicProperty>())
+            {
+                WriteProperty(entity, exportContext, dynamicProperty.GetPropertyInfo(), writer, true);
+                dynamicPropertyCount++;
+            }
             long endPosition = output.Position;
             uint dataSize = (uint)(endPosition - headerPosition);
+            
             output.Position = headerPosition;
 
             writer.Write(HeaderSize);
@@ -123,9 +122,9 @@ namespace Fox.Core
             writer.Write(id);
             writer.Write(info.Version);
 
-            writer.Write(Fox.HashingBitConverter.StrCodeToUInt64(new StrCode(info.Name)));
+            writer.WriteStrCode(new StrCode(info.Name));
             writer.Write(Convert.ToUInt16(staticPropertyCount));
-            writer.Write(Convert.ToUInt16(0)); // TODO: DynamicProperties count
+            writer.Write(Convert.ToUInt16(dynamicPropertyCount));
             writer.Write((int)HeaderSize);
             writer.Write(staticDataSize);
             writer.Write(dataSize);
@@ -133,7 +132,7 @@ namespace Fox.Core
             output.Position = endPosition;
         }
 
-        private void WriteProperty(Entity entity, EntityExportContext exportContext, PropertyInfo property, BinaryWriter writer)
+        private void WriteProperty(Entity entity, EntityExportContext exportContext, PropertyInfo property, BinaryWriter writer, bool isWritingDynamicProperty = false)
         {
             _ = strings.Add(property.Name);
 
@@ -142,7 +141,7 @@ namespace Fox.Core
             output.Position += 32;
 
             ushort arraySize = (ushort)property.ArraySize;
-            if (property.Container == PropertyInfo.ContainerType.StaticArray && property.ArraySize == 1)
+            if (property.Container == PropertyInfo.ContainerType.StaticArray && property.ArraySize == 1 && !isWritingDynamicProperty)
             {
                 WriteSingleValue(writer, entity, exportContext, property);
             }

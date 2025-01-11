@@ -136,11 +136,18 @@ namespace Fox.EdCore
 
             // TODO: Replace with custom virtualization controller here: https://docs.unity3d.com/ScriptReference/UIElements.CollectionViewController.html
             var target = StringMapProperty.serializedObject.targetObject;
-            var targetEntity = target as Entity;
-            var propertyTest = targetEntity.GetProperty(PropertyInfo.Name);
-            var propertyList = propertyTest.GetValueAsStringMap<T>();
-            ListViewInput.itemsSource = propertyList as IList;
-            ListViewInput.Rebuild();
+            if (target is Entity targetEntity)
+            {
+                var propertyTest = targetEntity.GetProperty(PropertyInfo.Name);
+                var propertyList = propertyTest.GetValueAsStringMap<T>();
+                ListViewInput.itemsSource = propertyList as IList;
+            }
+            else if (target is DynamicProperty targetDynamicProperty)
+            {
+                var propertyList = targetDynamicProperty.GetValue().GetValueAsStringMap<T>();
+                ListViewInput.itemsSource = propertyList as IList;
+            }
+            ListViewInput.Rebuild(); 
         }
 
         private void AddButton_clicked()
