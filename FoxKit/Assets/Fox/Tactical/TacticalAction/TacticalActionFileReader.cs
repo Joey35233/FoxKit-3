@@ -1,6 +1,5 @@
 ﻿using Fox.Core.Utils;
 using Fox.Fio;
-using System.Linq;
 using UnityEngine;
 
 namespace Fox.Tactical
@@ -14,12 +13,11 @@ namespace Fox.Tactical
             Debug.Assert(reader.ReadUInt32() == NTA_SIGNATURE, "Invalid NTA file.");
             Debug.Assert(reader.ReadUInt16() == 1, "Invalid NTA version.");
             ushort worldCount = reader.ReadUInt16();
+            uint worldOffset = reader.ReadUInt32();
 
+            reader.Seek(worldOffset);
             for (int worldIndex = 0; worldIndex < worldCount; worldIndex++)
             {
-                reader.Seek(0x8+(worldIndex*4));
-                uint worldOffset = reader.ReadUInt32();
-                reader.Seek(worldOffset);
                 StrCode worldName = reader.ReadStrCode();
                 uint actionCount = reader.ReadUInt32();
                 uint actionsOffset = reader.ReadUInt32();
@@ -56,6 +54,8 @@ namespace Fox.Tactical
                     tacticalAction.attribute = reader.ReadUInt16();
                     reader.Skip(6);
                 }
+
+                reader.Seek(nextOffset);
             }
         }
     }
