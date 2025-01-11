@@ -53,9 +53,7 @@ namespace Fox.Core
 
             var entityInfo = EntityInfo.GetEntityInfo(classNameHash.ToString());
             var entity = gameObject.AddComponent(entityInfo.Type) as Entity;
-
-            bool isReadingDynamicProperty = false;
-
+            
             SetProperty setProperty = (propertyName, val) => SetProperty(entity, propertyName, val);
             SetPropertyElementByIndex setPropertyElementByIndex = entity.SetPropertyElement;
             SetPropertyElementByKey setPropertyElementByKey = entity.SetPropertyElement;
@@ -70,16 +68,13 @@ namespace Fox.Core
                     setPropertyElementByKey);
             }
 
-            isReadingDynamicProperty = true;
             for (int i = 0; i < dynamicPropertyCount; i++)
             {
-                propertyReader.Read(reader,
+                propertyReader.ReadDynamic(reader,
                     (_) => typeof(Entity),
-                    null,
                     setPropertyElementByIndex,
                     setPropertyElementByKey,
-                    true,
-                    (PropertyInfo.PropertyType type, string name, ushort arraySize, PropertyInfo.ContainerType container) => OnPropertyNameUnhashed(type, name, arraySize, container, entity));
+                    (type, name, arraySize, container) => OnPropertyNameUnhashed(type, name, arraySize, container, entity));
             }
 
             return new AddressedEntity { Address = address, Entity = entity };

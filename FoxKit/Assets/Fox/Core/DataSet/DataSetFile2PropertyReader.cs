@@ -68,13 +68,11 @@ namespace Fox.Core.Serialization
             GetPtrType getPtrType,
             SetProperty setProperty,
             SetPropertyElementByIndex setPropertyElementByIndex,
-            SetPropertyElementByKey setPropertyElementByKey,
-            bool isReadingDynamicProperty = false,
-            OnPropertyNameUnhashedCallback onPropertyNameUnhashed = null)
+            SetPropertyElementByKey setPropertyElementByKey)
         {
             Debug.Assert(reader != null);
             Debug.Assert(getPtrType != null);
-            Debug.Assert(isReadingDynamicProperty ? setProperty == null : setProperty != null);
+            Debug.Assert(setProperty != null);
             Debug.Assert(setPropertyElementByIndex != null);
             Debug.Assert(setPropertyElementByKey != null);
 
@@ -85,16 +83,50 @@ namespace Fox.Core.Serialization
             ushort arraySize = BitConverter.ToUInt16(headerBytes, 10);
 
             string name = unhashString(nameHash);
-            if (isReadingDynamicProperty)
-                onPropertyNameUnhashed(dataType, name, arraySize, containerType);
 
             Type ptrType = getPtrType(name);
 
-            if (containerType == PropertyInfo.ContainerType.StaticArray && arraySize == 1 && !isReadingDynamicProperty)
+            if (containerType == PropertyInfo.ContainerType.StaticArray && arraySize == 1)
             {
                 ReadProperty(reader, setProperty, name, dataType, ptrType);
             }
             else if (containerType == PropertyInfo.ContainerType.StringMap)
+            {
+                ReadStringMap(reader, setPropertyElementByKey, name, dataType, ptrType, arraySize);
+            }
+            else
+            {
+                ReadArray(reader, setPropertyElementByIndex, name, dataType, ptrType, arraySize);
+            }
+
+            reader.Align(16);
+        }
+        
+        public void ReadDynamic(
+            FileStreamReader reader,
+            GetPtrType getPtrType,
+            SetPropertyElementByIndex setPropertyElementByIndex,
+            SetPropertyElementByKey setPropertyElementByKey,
+            OnPropertyNameUnhashedCallback onPropertyNameUnhashed)
+        {
+            Debug.Assert(reader != null);
+            Debug.Assert(getPtrType != null);
+            Debug.Assert(setPropertyElementByIndex != null);
+            Debug.Assert(setPropertyElementByKey != null);
+            Debug.Assert(onPropertyNameUnhashed != null);
+
+            byte[] headerBytes = reader.ReadBytes(32);
+            var nameHash = HashingBitConverter.ToStrCode(headerBytes, 0);
+            var dataType = (PropertyInfo.PropertyType)headerBytes[8];
+            var containerType = (PropertyInfo.ContainerType)headerBytes[9];
+            ushort arraySize = BitConverter.ToUInt16(headerBytes, 10);
+
+            string name = unhashString(nameHash);
+            onPropertyNameUnhashed(dataType, name, arraySize, containerType);
+
+            Type ptrType = getPtrType(name);
+
+            if (containerType == PropertyInfo.ContainerType.StringMap)
             {
                 ReadStringMap(reader, setPropertyElementByKey, name, dataType, ptrType, arraySize);
             }

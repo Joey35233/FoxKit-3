@@ -105,46 +105,38 @@ namespace Fox.Core
 
         private void ResolveRequests(IDictionary<ulong, Entity> entities, IDictionary<ulong, GameObject> gameObjects)
         {
-            foreach (KeyValuePair<ulong, List<Action<Entity>>> setEntityPtr in entityPtrSetRequests)
+            foreach ((ulong address, List<Action<Entity>> setters) in entityPtrSetRequests)
             {
-                if (!entities.ContainsKey(setEntityPtr.Key))
-                {
-                    logger.AddError($"Unable to resolve EntityPtr 0x{setEntityPtr.Key:X8}.");
-                    continue;
-                }
-
-                foreach (Action<Entity> setter in setEntityPtr.Value)
-                {
-                    if (entities.ContainsKey(setEntityPtr.Key))
-                    {
-                        setter(entities[setEntityPtr.Key]);
-                        continue;
-                    }
-                }             
+                if (address == 0)
+                    foreach (Action<Entity> setter in setters)
+                        setter(null);
+                else if (entities.TryGetValue(address, out var entity))
+                    foreach (Action<Entity> setter in setters)
+                        setter(entity);
+                else
+                    logger.AddError($"Unable to resolve EntityPtr 0x{address:X8}.");
             }
 
-            foreach (KeyValuePair<ulong, HashSet<Action<Entity>>> setEntityHandle in entityHandleSetRequests)
+            foreach ((ulong address, HashSet<Action<Entity>> setters) in entityHandleSetRequests)
             {
-                if (entities.ContainsKey(setEntityHandle.Key))
+                if (address == 0)
+                    foreach (Action<Entity> setter in setters)
+                        setter(null);
+                
+                else if (entities.TryGetValue(address, out var entity))
                 {
-                    if (!gameObjects.ContainsKey(setEntityHandle.Key))
+                    if (!gameObjects.ContainsKey(address))
                     {
-                        foreach (Action<Entity> request in setEntityHandle.Value)
-                        {
-                            request(entities[setEntityHandle.Key]);
-                        }
+                        foreach (Action<Entity> setter in setters)
+                            setter(entity);
                         continue;
                     }
 
-                    foreach (Action<Entity> request in setEntityHandle.Value)
-                    {
-                        request(gameObjects[setEntityHandle.Key].GetComponent<Entity>());
-                    }
+                    foreach (Action<Entity> setter in setters)
+                        setter(gameObjects[address].GetComponent<Entity>());
                 }
                 else
-                {
-                    logger.AddError($"Unable to resolve EntityHandle 0x{setEntityHandle.Key:X8}");
-                }
+                    logger.AddError($"Unable to resolve EntityHandle 0x{address:X8}");
             }
 
             // TODO EntityLink
@@ -152,34 +144,18 @@ namespace Fox.Core
 
         public void RequestSetEntityPtr(ulong address, Action<Entity> setPtr)
         {
-            if (address == 0)
-            {
-                return;
-            }
-
-            if (entityPtrSetRequests.ContainsKey((ulong)address))
-            {
-                entityPtrSetRequests[address].Add(setPtr);
-            }
+            if (entityPtrSetRequests.TryGetValue(address, out var request))
+                request.Add(setPtr);
             else
-            {
                 entityPtrSetRequests.Add(address, new List<Action<Entity>>() { setPtr });
-            }
         }
 
         public void RequestSetEntityHandle(ulong address, Action<Entity> setHandle)
         {
-            if (address == 0)
-            {
-                return;
-            }
-
-            if (!entityHandleSetRequests.ContainsKey(address))
-            {
-                entityHandleSetRequests.Add(address, new HashSet<Action<Entity>>());
-            }
-
-            _ = entityHandleSetRequests[address].Add(setHandle);
+            if (entityHandleSetRequests.TryGetValue(address, out var request))
+                _ = request.Add(setHandle);
+            else
+                entityHandleSetRequests.Add(address, new HashSet<Action<Entity>> { setHandle });
         }
     }
 }
