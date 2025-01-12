@@ -21,8 +21,6 @@ namespace Fox.Core.Serialization
         /// <param name="value">The value to assign to the property.</param>
         public delegate void SetProperty(string propertyName, Value value);
 
-        public delegate Type GetPtrType(string propertyName);
-
         /// <summary>
         /// Sets the value of an array property at a given index.
         /// </summary>
