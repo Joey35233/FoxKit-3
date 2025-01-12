@@ -62,7 +62,6 @@ namespace Fox.Core
             for (int i = 0; i < staticPropertyCount; i++)
             {
                 propertyReader.Read(reader,
-                    (propertyName) => GetPtrType(entity, propertyName),
                     setProperty,
                     setPropertyElementByIndex,
                     setPropertyElementByKey);
@@ -71,7 +70,6 @@ namespace Fox.Core
             for (int i = 0; i < dynamicPropertyCount; i++)
             {
                 propertyReader.ReadDynamic(reader,
-                    (_) => typeof(Entity),
                     setPropertyElementByIndex,
                     setPropertyElementByKey,
                     (type, name, arraySize, container) => OnPropertyNameUnhashed(type, name, arraySize, container, entity));
@@ -110,24 +108,6 @@ namespace Fox.Core
         private static DynamicProperty OnPropertyNameUnhashed(PropertyInfo.PropertyType type, string name, ushort arraySize, PropertyInfo.ContainerType container, Entity entity)
         {
             return entity.AddDynamicProperty(type, name, arraySize, container);
-        }
-
-        private Type GetPtrType(Entity entity, string propertyName)
-        {
-            EntityInfo classInfo = entity.GetClassEntityInfo();
-            while (classInfo != null)
-            {
-                StringMap<PropertyInfo> properties = classInfo.StaticProperties;
-                if (properties.ContainsKey(propertyName))
-                {
-                    return properties[propertyName].PtrType;
-                }
-
-                classInfo = classInfo.Super;
-            }
-
-            logger.AddError($"Unable to find property '{propertyName}' in Entity of type '{entity.GetClassEntityInfo().Name}'.");
-            return null;
         }
     }
 }

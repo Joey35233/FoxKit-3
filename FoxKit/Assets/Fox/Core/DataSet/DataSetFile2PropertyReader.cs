@@ -65,13 +65,11 @@ namespace Fox.Core.Serialization
 
         public void Read(
             FileStreamReader reader,
-            GetPtrType getPtrType,
             SetProperty setProperty,
             SetPropertyElementByIndex setPropertyElementByIndex,
             SetPropertyElementByKey setPropertyElementByKey)
         {
             Debug.Assert(reader != null);
-            Debug.Assert(getPtrType != null);
             Debug.Assert(setProperty != null);
             Debug.Assert(setPropertyElementByIndex != null);
             Debug.Assert(setPropertyElementByKey != null);
@@ -84,19 +82,17 @@ namespace Fox.Core.Serialization
 
             string name = unhashString(nameHash);
 
-            Type ptrType = getPtrType(name);
-
             if (containerType == PropertyInfo.ContainerType.StaticArray && arraySize == 1)
             {
-                ReadProperty(reader, setProperty, name, dataType, ptrType);
+                ReadProperty(reader, setProperty, name, dataType);
             }
             else if (containerType == PropertyInfo.ContainerType.StringMap)
             {
-                ReadStringMap(reader, setPropertyElementByKey, name, dataType, ptrType, arraySize);
+                ReadStringMap(reader, setPropertyElementByKey, name, dataType, arraySize);
             }
             else
             {
-                ReadArray(reader, setPropertyElementByIndex, name, dataType, ptrType, arraySize);
+                ReadArray(reader, setPropertyElementByIndex, name, dataType, arraySize);
             }
 
             reader.Align(16);
@@ -104,13 +100,11 @@ namespace Fox.Core.Serialization
         
         public void ReadDynamic(
             FileStreamReader reader,
-            GetPtrType getPtrType,
             SetPropertyElementByIndex setPropertyElementByIndex,
             SetPropertyElementByKey setPropertyElementByKey,
             OnPropertyNameUnhashedCallback onPropertyNameUnhashed)
         {
             Debug.Assert(reader != null);
-            Debug.Assert(getPtrType != null);
             Debug.Assert(setPropertyElementByIndex != null);
             Debug.Assert(setPropertyElementByKey != null);
             Debug.Assert(onPropertyNameUnhashed != null);
@@ -124,21 +118,19 @@ namespace Fox.Core.Serialization
             string name = unhashString(nameHash);
             onPropertyNameUnhashed(dataType, name, arraySize, containerType);
 
-            Type ptrType = getPtrType(name);
-
             if (containerType == PropertyInfo.ContainerType.StringMap)
             {
-                ReadStringMap(reader, setPropertyElementByKey, name, dataType, ptrType, arraySize);
+                ReadStringMap(reader, setPropertyElementByKey, name, dataType, arraySize);
             }
             else
             {
-                ReadArray(reader, setPropertyElementByIndex, name, dataType, ptrType, arraySize);
+                ReadArray(reader, setPropertyElementByIndex, name, dataType, arraySize);
             }
 
             reader.Align(16);
         }
 
-        private void ReadArray(FileStreamReader reader, SetPropertyElementByIndex setPropertyElementByIndex, string name, PropertyInfo.PropertyType dataType, Type ptrType, ushort arraySize)
+        private void ReadArray(FileStreamReader reader, SetPropertyElementByIndex setPropertyElementByIndex, string name, PropertyInfo.PropertyType dataType, ushort arraySize)
         {
             for (ushort i = 0; i < arraySize; i++)
             {
@@ -152,7 +144,7 @@ namespace Fox.Core.Serialization
 
                 if (dataType == PropertyInfo.PropertyType.EntityPtr)
                 {
-                    ReadEntityPtr(reader, setProperty, ptrType, name);
+                    ReadEntityPtr(reader, setProperty, name);
                 }
                 else if (dataType == PropertyInfo.PropertyType.EntityHandle)
                 {
@@ -170,7 +162,7 @@ namespace Fox.Core.Serialization
             }
         }
 
-        private void ReadStringMap(FileStreamReader reader, SetPropertyElementByKey setPropertyElementByKey, string name, PropertyInfo.PropertyType dataType, Type ptrType, ushort arraySize)
+        private void ReadStringMap(FileStreamReader reader, SetPropertyElementByKey setPropertyElementByKey, string name, PropertyInfo.PropertyType dataType, ushort arraySize)
         {
             for (int i = 0; i < arraySize; i++)
             {
@@ -186,7 +178,7 @@ namespace Fox.Core.Serialization
 
                 if (dataType == PropertyInfo.PropertyType.EntityPtr)
                 {
-                    ReadEntityPtr(reader, setProperty, ptrType, name);
+                    ReadEntityPtr(reader, setProperty, name);
                 }
                 else if (dataType == PropertyInfo.PropertyType.EntityHandle)
                 {
@@ -206,13 +198,13 @@ namespace Fox.Core.Serialization
             }
         }
 
-        private void ReadProperty(FileStreamReader reader, SetProperty setProperty, string name, PropertyInfo.PropertyType dataType, Type ptrType)
+        private void ReadProperty(FileStreamReader reader, SetProperty setProperty, string name, PropertyInfo.PropertyType dataType)
         {
             // Entity references can't be resolved until the referenced Entity is loaded.
             // Register a callback to assign the property value once the Entity has been loaded.
             if (dataType == PropertyInfo.PropertyType.EntityPtr)
             {
-                ReadEntityPtr(reader, setProperty, ptrType, name);
+                ReadEntityPtr(reader, setProperty, name);
             }
             else if (dataType == PropertyInfo.PropertyType.EntityHandle)
             {
@@ -260,7 +252,7 @@ namespace Fox.Core.Serialization
             requestSetEntityHandle(address, (Entity ptr) => setProperty(name, new Value(ptr)));
         }
 
-        private void ReadEntityPtr(FileStreamReader reader, SetProperty setProperty, Type ptrType, string name)
+        private void ReadEntityPtr(FileStreamReader reader, SetProperty setProperty, string name)
         {
             ulong address = reader.ReadUInt64();
             requestSetEntityPtr(address, (Entity ptr) => setProperty(name, new Value(ptr)));
