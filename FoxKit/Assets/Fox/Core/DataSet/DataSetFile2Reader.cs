@@ -138,8 +138,6 @@ namespace Fox.Core
                 else
                     logger.AddError($"Unable to resolve EntityHandle 0x{address:X8}");
             }
-
-            // TODO EntityLink
         }
 
         public void RequestSetEntityPtr(ulong address, Action<Entity> setPtr)
