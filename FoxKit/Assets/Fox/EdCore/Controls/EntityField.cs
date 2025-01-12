@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Fox.Core;
 using Fox;
 using UnityEditor;
@@ -8,32 +9,19 @@ using UnityEngine.UIElements;
 
 namespace Fox.EdCore
 {
+    public struct EntityFieldBuildContext
+    {
+        public EntityField<Entity> Field;
+        public VisualElement Element;
+        public SerializedObject Object;
+    }
+    
     public class EntityField<T> : BaseField<T>, IEntityField where T : Entity
     {
         public static new readonly string ussClassName = "fox-entity-field";
         public static new readonly string inputUssClassName = ussClassName + "__input";
-        
-        // Override configuration
-        protected virtual void BuildHeader(VisualElement element, SerializedObject serializedObject)
-        {
-            
-        }
-        
-        protected virtual bool ShouldOverrideBuildBody() => false;
-        protected virtual void BuildBodyOverride(VisualElement element, SerializedObject serializedObject)
-        {
-            
-        }
-        
-        protected virtual void BuildFooter(VisualElement element, SerializedObject serializedObject)
-        {
-            
-        }
 
-        public VisualElement visualInput
-        {
-            get;
-        }
+        public VisualElement visualInput { get; }
 
         public EntityField() : this(new VisualElement()) { }
 
@@ -48,96 +36,115 @@ namespace Fox.EdCore
         }
 
         private EntityInfo EntityInfo;
-        private DynamicArray<EntityInfo> SuperclassList = new();
+        private readonly List<(EntityInfo, CustomEntityFieldDesc?)> SuperclassList = new();
 
-        private void PreBuild(SerializedObject serializedObject)
+        private void PreBuild(EntityFieldBuildContext context)
         {
-            var entity = serializedObject.targetObject as Entity;
+            var entity = context.Object.targetObject as Entity;
             EntityInfo = entity.GetClassEntityInfo();
             
             EntityInfo entityInfoIterator = EntityInfo;
             while (entityInfoIterator != null)
             {
-                SuperclassList.Add(entityInfoIterator);
+                CustomEntityFieldDesc? customFieldDesc = CustomEntityFieldManager.Get(entityInfoIterator);
+                
+                SuperclassList.Add((entityInfoIterator, customFieldDesc));
 
                 entityInfoIterator = entityInfoIterator.Super;
             }
         }
-        
+
         void IEntityField.Build(SerializedObject serializedObject)
         {
-            PreBuild(serializedObject);
-            
-            BuildHeader(visualInput, serializedObject);
-
-            if (ShouldOverrideBuildBody())
-                BuildBodyOverride(visualInput, serializedObject);
-            else
-                BuildBodyFromEntity(serializedObject);
-
-            BuildFooter(visualInput, serializedObject);
+            EntityFieldBuildContext context = new EntityFieldBuildContext{ Field = this as EntityField<Entity>, Element = visualInput, Object = serializedObject };
+            PreBuild(context);
+            BuildBodyFromEntity(context);
         }
         
-        private void BuildBodyFromEntity(SerializedObject serializedObject)
+        private void BuildBodyFromEntity(EntityFieldBuildContext context)
         {
             for (int i = SuperclassList.Count - 1; i > -1; i--)
             {
-                EntityInfo info = SuperclassList[i];
+                (EntityInfo classInfo, CustomEntityFieldDesc? customFieldDesc) = SuperclassList[i];
 
-                if (info != Entity.ClassInfo)
+                // ----------------
+                // Draw name of class with underline
+                var headerLabel = new Label
                 {
-                    var headerLabel = new Label
+                    text = $"{(i != 0 ? "↱" : "")}<b>{classInfo.Name}</b>",
+                    style =
                     {
-                        text = $"<b>{info.Name}</b>",
-                        style =
-                        {
-                            fontSize = 16
-                        }
-                    };
-                    visualInput.Add(headerLabel);
-
-                    var headerLine = new VisualElement
-                    {
-                        style =
-                        {
-                            flexGrow = 1,
-                            height = 0,
-                            borderTopColor = Color.gray,
-                            borderTopWidth = 1,
-                            marginBottom = 4
-                        }
-                    };
-                    visualInput.Add(headerLine);
-                }
-
-                // TODO: Refactor into custom editor support
-                if (info == Data.ClassInfo || info == DataElement.ClassInfo || info == DataSet.ClassInfo || info == TransformEntity.ClassInfo || info == ShearTransformEntity.ClassInfo || info == PivotTransformEntity.ClassInfo)
-                    continue;
-
-                foreach (PropertyInfo propertyInfo in info.OrderedStaticProperties)
-                {
-                    // TODO: Reimplement property hiding based on access modifiers once custom editor support is further along.
-                    if (/*propertyInfo.Readable == PropertyInfo.PropertyExport.Never || */propertyInfo.Backing == PropertyInfo.BackingType.Accessor)
-                        continue;
-
-                    // TODO: Refactor into custom editor support
-                    if (info == TransformData.ClassInfo && propertyInfo.Name != "transform" && propertyInfo.Name != "shearTransform" && propertyInfo.Name != "pivotTransform" && propertyInfo.Name != "flags")
-                        continue;
-
-                    IFoxField field = FoxFieldUtils.GetCustomBindableField(propertyInfo);
-                    VisualElement fieldElement = field as VisualElement;
-                    field.bindingPath = $"<{propertyInfo.Name}>k__BackingField";
-                    Label labelElement = field.GetLabelElement();
-                    if (EntityInfo.LongestNamedVisibleFieldProperty is not null)
-                    {
-                        labelElement.style.minWidth = StyleKeyword.Auto;
-                        labelElement.style.width = info.LongestNamedVisibleFieldProperty.Name.Length * 8f;
+                        fontSize = 16
                     }
+                };
+                visualInput.Add(headerLabel);
 
-                    // TODO: Reimplement property disabling based on access modifiers once custom editor support is further along.
-                    // fieldElement.SetEnabled(propertyInfo.Writable != PropertyInfo.PropertyExport.Never);
-                    visualInput.Add(fieldElement);
+                var headerLine = new VisualElement
+                {
+                    style =
+                    {
+                        flexGrow = 1,
+                        height = 0,
+                        borderTopColor = Color.gray,
+                        borderTopWidth = 1,
+                        marginBottom = 4
+                    }
+                };
+                visualInput.Add(headerLine);
+
+                // ----------------
+                // Should this class' editor be drawn or is there a higher-level Entity with a custom field that overrides this?
+                bool buildIsOverriddenByMoreSpecificClass = false;
+                for (int j = 0; j < i; j++)
+                {
+                    (_, CustomEntityFieldDesc? iteratorCustomFieldDesc) = SuperclassList[j];
+                    if (iteratorCustomFieldDesc?.BodyOverrideBehavior == BuildBodyOverrideBehavior.ChildrenOverride)
+                    {
+                        buildIsOverriddenByMoreSpecificClass = true;
+                        break;
+                    }
                 }
+                if (buildIsOverriddenByMoreSpecificClass)
+                    continue;
+                
+                // ----------------
+                // CUSTOM HEADER
+                customFieldDesc?.BuildHeader?.Invoke(context);
+                
+                // ----------------
+                // CUSTOM BODY
+                if (customFieldDesc?.BuildBody is { } buildBody)
+                {
+                    buildBody(context);
+                }
+                else
+                {
+                    foreach (PropertyInfo propertyInfo in classInfo.OrderedStaticProperties)
+                    {
+                        // TODO: Reimplement property hiding based on access modifiers once custom editor support is further along.
+                        if (/*propertyInfo.Readable == PropertyInfo.PropertyExport.Never || */propertyInfo.Backing == PropertyInfo.BackingType.Accessor)
+                            continue;
+
+                        IFoxField field = FoxFieldUtils.GetCustomBindableField(propertyInfo);
+                        VisualElement fieldElement = field as VisualElement;
+                        field.SetBindingPathForPropertyName(propertyInfo.Name);
+                        Label fieldLabel = field.GetLabelElement();
+                        if (EntityInfo.LongestNamedVisibleFieldProperty is not null)
+                        {
+                            fieldLabel.style.minWidth = StyleKeyword.Auto;
+                            fieldLabel.style.width = classInfo.LongestNamedVisibleFieldProperty.Name.Length * 8f;
+                        }
+
+                        // TODO: Reimplement property disabling based on access modifiers once custom editor support is further along.
+                        // fieldElement.SetEnabled(propertyInfo.Writable != PropertyInfo.PropertyExport.Never);
+                        
+                        visualInput.Add(fieldElement);
+                    }
+                }
+                
+                // ----------------
+                // CUSTOM FOOTER
+                customFieldDesc?.BuildFooter?.Invoke(context);
             }
 
             return;
@@ -150,12 +157,15 @@ namespace Fox.EdCore
     [CustomEditor(typeof(Entity), true)]
     public class EntityEditor : UnityEditor.Editor
     {
-        protected virtual IEntityField CreateField() => System.Activator.CreateInstance(typeof(EntityField<>).MakeGenericType((target as Entity).GetClassEntityInfo().Type)) as IEntityField;
+        protected new Entity target => base.target as Entity;
         
         public sealed override VisualElement CreateInspectorGUI()
         {
-            var field = CreateField();
+            EntityInfo entityInfo = target.GetClassEntityInfo();
             
+            CustomEntityFieldDesc? customFieldDesc = CustomEntityFieldManager.Get(entityInfo);
+            IEntityField field = customFieldDesc?.Constructor() ?? Activator.CreateInstance(typeof(EntityField<>).MakeGenericType(entityInfo.Type)) as IEntityField;
+
             field.Build(this.serializedObject);
             
             return field as VisualElement;

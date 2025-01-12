@@ -168,6 +168,6 @@ namespace Fox.Core
             }
         }
 
-        public override string ToString() => Name.ToString();
+        public override string ToString() => Name;
     }
 }

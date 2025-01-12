@@ -153,8 +153,8 @@ namespace Fox.EdCore
 
                 PropertyContainer.visible = true;
                 PropertyContainer.Clear();
-                Func<IEntityField> constructor = EntityFieldCustomEditorCollector.Get(EntityInfo);
-                IEntityField entityField = constructor == null ? new EntityField<T>() : constructor();
+                CustomEntityFieldDesc? customFieldDesc = CustomEntityFieldManager.Get(EntityInfo);
+                IEntityField entityField = customFieldDesc?.Constructor is {} customConstructor ? customConstructor() : new EntityField<T>();
                 SerializedObject newObject = new SerializedObject(PtrProperty.objectReferenceValue);
                 entityField.Build(newObject);
                 VisualElement entityFieldElement = entityField as VisualElement;

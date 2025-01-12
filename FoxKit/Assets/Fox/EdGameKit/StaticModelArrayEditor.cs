@@ -6,23 +6,23 @@ using UnityEditor;
 
 namespace Fox.EdGameKit
 {
-    [InitializeOnLoad]
+    [CustomEntityField]
     public class StaticModelArrayField : EntityField<StaticModelArray>
     {
-        static StaticModelArrayField Create() => new();
         static StaticModelArrayField()
         {
-            EntityFieldCustomEditorCollector.Register(StaticModelArray.ClassInfo, Create);
+            CustomEntityFieldDesc desc = new CustomEntityFieldDesc
+            {
+                Constructor = () => new StaticModelArrayField(),
+            };
+            
+            CustomEntityFieldManager.Register(StaticModelArray.ClassInfo, desc);
         }
-
-        protected override bool ShouldOverrideBuildBody() => false;
     }
     
     [CustomEditor(typeof(StaticModelArray))]
     public class StaticModelArrayEditor : EntityEditor
     {
-        protected override IEntityField CreateField() => new StaticModelArrayField();
-        
         private int SelectedInstanceIndex = -1;
         private void OnSceneGUI()
         {
@@ -38,13 +38,11 @@ namespace Fox.EdGameKit
                 Quaternion rotation = Quaternion.LookRotation(matrix.GetColumn(2), matrix.GetColumn(1));
                 Vector3 scale = new Vector3(matrix.GetColumn(0).magnitude, matrix.GetColumn(1).magnitude, matrix.GetColumn(2).magnitude);
 
-                // Draw a handle for each instance
                 if (Handles.Button(position, Quaternion.identity, 0.1f, 0.1f, Handles.SphereHandleCap))
                 {
                     SelectedInstanceIndex = i;
                 }
 
-                // If selected, show position handles
                 if (SelectedInstanceIndex == i)
                 {
                     EditorGUI.BeginChangeCheck();
@@ -60,22 +58,5 @@ namespace Fox.EdGameKit
                 }
             }
         }
-
-        // public override void OnInspectorGUI()
-        // {
-        //     base.OnInspectorGUI();
-        //
-        //     StaticModelArray modelArray = (StaticModelArray)target;
-        //
-        //     if (GUILayout.Button("Add Instance"))
-        //     {
-        //         modelArray.AddInstance(Vector3.zero, Quaternion.identity, Vector3.one);
-        //     }
-        //
-        //     if (GUILayout.Button("Clear Instances"))
-        //     {
-        //         modelArray.transforms.Clear();
-        //     }
-        // }
     }
 }
