@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Grx
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Grx/LightArrayFile")]
 	public partial class LightArrayFile : Fox.Core.RawFile
 	{
 		// ClassInfos

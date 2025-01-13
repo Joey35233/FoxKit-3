@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.Ui
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppUi/SetSoldierlistReceive")]
 	public partial class SetSoldierlistReceive : Fox.Core.Entity
 	{
 		// ClassInfos

@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Grx
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Grx/GrxShape")]
 	public partial class GrxShape : Fox.Core.Entity
 	{
 		// ClassInfos

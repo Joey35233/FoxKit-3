@@ -2,7 +2,7 @@
 
 namespace Fox.Core
 {
-    [AddComponentMenu("DynamicProperty - StaticArray<uint8>")]
+    [AddComponentMenu("FoxCore/DynamicProperty - StaticArray<uint8>")]
     public class DynamicProperty_StaticArray_uint8 : DynamicProperty
     {
         [SerializeField]

@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Sim
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Sim/SimOnPhysics")]
 	public partial class SimOnPhysics : Fox.Sim.SimObject
 	{
 		// Properties

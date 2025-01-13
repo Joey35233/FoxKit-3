@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.GameCore
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppGameCore/TppSampleGameObjectLocatorParameter")]
 	public partial class TppSampleGameObjectLocatorParameter : Fox.Core.DataElement
 	{
 		// Properties

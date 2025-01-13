@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Fox.Core
 {
-    [AddComponentMenu("DynamicProperty - StaticArray<bool>")]
+    [AddComponentMenu("FoxCore/DynamicProperty - StaticArray<bool>")]
     public class DynamicProperty_StaticArray_bool : DynamicProperty
     {
         [SerializeField]

@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Geox
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Geox/CollisionLocator")]
 	public partial class CollisionLocator : Fox.Core.TransformData
 	{
 		// Properties

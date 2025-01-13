@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Fox.Core
 {
-    [AddComponentMenu("DynamicProperty - DynamicArray<String>")]
+    [AddComponentMenu("FoxCore/DynamicProperty - DynamicArray<String>")]
     public class DynamicProperty_DynamicArray_String : DynamicProperty
     {
         [SerializeField]

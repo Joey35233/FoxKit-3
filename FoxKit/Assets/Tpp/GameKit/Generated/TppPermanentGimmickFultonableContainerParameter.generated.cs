@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.GameKit
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppGameKit/TppPermanentGimmickFultonableContainerParameter")]
 	public partial class TppPermanentGimmickFultonableContainerParameter : Fox.Core.DataElement
 	{
 		// Properties

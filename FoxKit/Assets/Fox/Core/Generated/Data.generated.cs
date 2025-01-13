@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Core
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxCore/Data")]
 	public partial class Data : Fox.Core.Entity
 	{
 		// Properties

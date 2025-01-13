@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.Ui
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppUi/GetWormholeListReceive")]
 	public partial class GetWormholeListReceive : Fox.Core.Entity
 	{
 		// ClassInfos

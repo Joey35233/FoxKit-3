@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Gr
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Gr/GrPluginRawDecal")]
 	public partial class GrPluginRawDecal : Fox.Gr.GrRenderPlugin
 	{
 		// ClassInfos

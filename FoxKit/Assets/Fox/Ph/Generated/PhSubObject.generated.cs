@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Ph
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Ph/PhSubObject")]
 	public partial class PhSubObject : Fox.Core.TransformData
 	{
 		// ClassInfos

@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Anim
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Anim/ParameterMaskElement")]
 	public partial class ParameterMaskElement : Fox.Core.DataElement
 	{
 		// Properties

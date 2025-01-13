@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.System
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppSystem/TppTrapLockEventSequenceCallbackDataElement")]
 	public partial class TppTrapLockEventSequenceCallbackDataElement : Fox.Geo.GeoTrapModuleCallbackDataElement
 	{
 		// Properties

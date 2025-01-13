@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Geox
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Geox/GeoxPartsTargetOffenseObject")]
 	public partial class GeoxPartsTargetOffenseObject : Fox.Geox.GeoxPartsTargetObject
 	{
 		// Properties

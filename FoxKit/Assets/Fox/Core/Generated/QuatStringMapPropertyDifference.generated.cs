@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Core
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxCore/QuatStringMapPropertyDifference")]
 	public partial class QuatStringMapPropertyDifference : Fox.Core.PropertyDifference
 	{
 		// Properties

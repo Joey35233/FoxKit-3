@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.GameKit
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppGameKit/TppPermeableStaticModel")]
 	public partial class TppPermeableStaticModel : Fox.GameKit.StaticModelArrayPathFilter
 	{
 		// ClassInfos

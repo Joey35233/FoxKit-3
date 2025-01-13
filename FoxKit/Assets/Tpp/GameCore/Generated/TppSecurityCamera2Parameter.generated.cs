@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.GameCore
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppGameCore/TppSecurityCamera2Parameter")]
 	public partial class TppSecurityCamera2Parameter : Fox.Core.DataElement
 	{
 		// Properties

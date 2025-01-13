@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Anim
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Anim/EvbFile")]
 	public partial class EvbFile : Fox.Core.RawFile
 	{
 		// ClassInfos

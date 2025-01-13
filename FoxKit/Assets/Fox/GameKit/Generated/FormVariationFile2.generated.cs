@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.GameKit
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxGameKit/FormVariationFile2")]
 	public partial class FormVariationFile2 : Fox.Core.RawFile
 	{
 		// ClassInfos

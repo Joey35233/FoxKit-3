@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.Effect
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppEffect/TppAreaVolumetricFogParam")]
 	public partial class TppAreaVolumetricFogParam : Fox.Core.DataElement
 	{
 		// Properties

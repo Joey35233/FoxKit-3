@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Core
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxCore/SafeScript")]
 	public partial class SafeScript : Fox.Core.Script
 	{
 		// ClassInfos

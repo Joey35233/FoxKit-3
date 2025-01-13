@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.PartsBuilder
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("PartsBuilder/ClothDescription")]
 	public partial class ClothDescription : Fox.PartsBuilder.PartDescription
 	{
 		// Properties

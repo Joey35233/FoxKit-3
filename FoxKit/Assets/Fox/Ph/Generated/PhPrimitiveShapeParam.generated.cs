@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Ph
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Ph/PhPrimitiveShapeParam")]
 	public partial class PhPrimitiveShapeParam : Fox.Ph.PhShapeParam
 	{
 		// ClassInfos

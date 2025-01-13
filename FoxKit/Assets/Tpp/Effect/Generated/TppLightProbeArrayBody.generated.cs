@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.Effect
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppEffect/TppLightProbeArrayBody")]
 	public partial class TppLightProbeArrayBody : Fox.Core.TransformDataBody
 	{
 		// ClassInfos

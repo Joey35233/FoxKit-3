@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.Sound
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppSound/TppSoundWorldBody")]
 	public partial class TppSoundWorldBody : Fox.Core.DataBody
 	{
 		// ClassInfos

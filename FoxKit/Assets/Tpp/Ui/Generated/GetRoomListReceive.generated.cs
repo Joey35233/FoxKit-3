@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.Ui
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppUi/GetRoomListReceive")]
 	public partial class GetRoomListReceive : Fox.Core.Entity
 	{
 		// ClassInfos

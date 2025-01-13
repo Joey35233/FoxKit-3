@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Gr
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Gr/GrPluginMotionBlur")]
 	public partial class GrPluginMotionBlur : Fox.Gr.GrRenderPlugin
 	{
 		// ClassInfos

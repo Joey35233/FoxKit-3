@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.GameCore
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppGameCore/TppVolgin2forVrLocatorParameter")]
 	public partial class TppVolgin2forVrLocatorParameter : Fox.Core.DataElement
 	{
 		// Properties

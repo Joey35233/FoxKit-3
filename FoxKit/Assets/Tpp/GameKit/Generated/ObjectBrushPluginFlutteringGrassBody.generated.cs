@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.GameKit
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppGameKit/ObjectBrushPluginFlutteringGrassBody")]
 	public partial class ObjectBrushPluginFlutteringGrassBody : Fox.GameKit.ObjectBrushPluginCloneBody
 	{
 		// ClassInfos

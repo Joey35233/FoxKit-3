@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Fx
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Fx/FxVfxBinaryFile")]
 	public partial class FxVfxBinaryFile : Fox.Core.RawFile
 	{
 		// ClassInfos

@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Gr
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Gr/GrPluginScreenSpaceAmbientOcclusion")]
 	public partial class GrPluginScreenSpaceAmbientOcclusion : Fox.Gr.GrRenderPlugin
 	{
 		// ClassInfos

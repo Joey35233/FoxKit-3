@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.GameKit
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxGameKit/StageModelBody")]
 	public partial class StageModelBody : Fox.Core.TransformDataBody
 	{
 		// ClassInfos

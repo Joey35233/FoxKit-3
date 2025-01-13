@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.System
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppSystem/TppCheckPointLocator")]
 	public partial class TppCheckPointLocator : Fox.Core.Locator
 	{
 		// Properties

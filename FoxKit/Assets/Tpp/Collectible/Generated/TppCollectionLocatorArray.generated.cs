@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.Collectible
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppCollectible/TppCollectionLocatorArray")]
 	public partial class TppCollectionLocatorArray : Fox.Core.Data
 	{
 		// Properties

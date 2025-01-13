@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Navx
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Navx/NavxNavFilterBody")]
 	public partial class NavxNavFilterBody : Fox.Core.TransformDataBody
 	{
 		// ClassInfos

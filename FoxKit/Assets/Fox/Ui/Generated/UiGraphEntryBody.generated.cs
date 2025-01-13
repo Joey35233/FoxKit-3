@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Ui
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Ui/UiGraphEntryBody")]
 	public partial class UiGraphEntryBody : Fox.Core.DataBody
 	{
 		// ClassInfos

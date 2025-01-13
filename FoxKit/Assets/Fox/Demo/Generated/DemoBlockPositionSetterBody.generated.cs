@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Demo
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Demo/DemoBlockPositionSetterBody")]
 	public partial class DemoBlockPositionSetterBody : Fox.Core.TransformDataBody
 	{
 		// ClassInfos

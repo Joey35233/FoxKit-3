@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.Effect
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppEffect/TppWaterBounding")]
 	public partial class TppWaterBounding : Fox.Core.TransformData
 	{
 		// Properties

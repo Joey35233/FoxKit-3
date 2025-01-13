@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Core
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxCore/PointComponentSet")]
 	public partial class PointComponentSet : Fox.Core.ComponentSet
 	{
 		// ClassInfos

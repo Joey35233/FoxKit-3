@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Grx
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Grx/PointLightBody")]
 	public partial class PointLightBody : Fox.Core.TransformDataBody
 	{
 		// Properties

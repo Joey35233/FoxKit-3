@@ -12,7 +12,7 @@ using Fox;
 
 namespace {{ info.get_root_namespace() }}.{{ info.get_namespace_without_prefix() }}
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("{{ info.get_add_component_name() }}")]
 	public partial class {{ info.name }} {% if info.parent %}: {{ info.get_parent_string() }}{% endif %}
 	{
 		{%- if not info.properties|length == 0 %}
@@ -63,10 +63,9 @@ namespace {{ info.get_root_namespace() }}.{{ info.get_namespace_without_prefix()
 					return new Fox.Core.Value({%- if info.properties[property_name].container == "StringMap" -%}(Fox.IStringMap){%- endif -%}{{ info.properties[property_name].get_safe_name() }});
 				{% endfor %}default:
 					{%- if info.name == "Entity" %}
-					if (this.DynamicProperties.TryGetValue(propertyName, out DynamicProperty property))
-					{
-						return property.GetValue();
-					}
+					foreach (var dynamicProperty in gameObject.GetComponents<DynamicProperty>())
+						if (dynamicProperty.Name == propertyName)
+							return dynamicProperty.GetValue();
 					{%- endif %}
 					{% if info.is_root() %}throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());{% else %}return base.GetProperty(propertyName);{%- endif %}
 			}
@@ -81,10 +80,9 @@ namespace {{ info.get_root_namespace() }}.{{ info.get_namespace_without_prefix()
 					return new Fox.Core.Value(this.{{ info.properties[property_name].get_safe_name() }}[index]);
 				{% endfor %}default:
 					{%- if info.name == "Entity" %}
-					if (this.DynamicProperties.TryGetValue(propertyName, out DynamicProperty property))
-					{
-						return property.GetElement(index);
-					}
+					foreach (var dynamicProperty in gameObject.GetComponents<DynamicProperty>())
+						if (dynamicProperty.Name == propertyName && dynamicProperty.GetContainerType() != PropertyInfo.ContainerType.StringMap)
+							return dynamicProperty.GetElement(index);
 					{%- endif %}
 					{% if info.is_root() %}throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());{% else %}return base.GetPropertyElement(propertyName, index);{%- endif %}
 			}
@@ -99,10 +97,9 @@ namespace {{ info.get_root_namespace() }}.{{ info.get_namespace_without_prefix()
 					return new Fox.Core.Value(this.{{ info.properties[property_name].get_safe_name() }}[key]);
 				{% endfor %}default:
 					{%- if info.name == "Entity" %}
-					if (this.DynamicProperties.TryGetValue(propertyName, out DynamicProperty property))
-					{
-						return property.GetElement(key);
-					}
+					foreach (var dynamicProperty in gameObject.GetComponents<DynamicProperty>())
+						if (dynamicProperty.Name == propertyName && dynamicProperty.GetContainerType() == PropertyInfo.ContainerType.StringMap)
+							return dynamicProperty.GetElement(key);
 					{%- endif %}
 					{% if info.is_root() %}throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());{% else %}return base.GetPropertyElement(propertyName, key);{%- endif %}
 			}
@@ -120,11 +117,6 @@ namespace {{ info.get_root_namespace() }}.{{ info.get_namespace_without_prefix()
 				{% endif -%}
 				{%- endfor %}default:
 					{%- if info.name == "Entity" %}
-					if (this.DynamicProperties.TryGetValue(propertyName, out DynamicProperty property))
-					{
-						property.SetValue(value);
-						return;
-					}
 					{%- endif %}
 					{% if info.is_root() %}throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());{% else %}base.SetProperty(propertyName, value);
 					return;{%- endif %}
@@ -143,11 +135,12 @@ namespace {{ info.get_root_namespace() }}.{{ info.get_namespace_without_prefix()
 				{% endfor -%}
 				default:
 					{%- if info.name == "Entity" %}
-					if (this.DynamicProperties.TryGetValue(propertyName, out DynamicProperty property))
-					{
-						property.SetElement(index, value);
-						return;
-					}
+					foreach (var dynamicProperty in gameObject.GetComponents<DynamicProperty>())
+						if (dynamicProperty.Name == propertyName && dynamicProperty.GetContainerType() != PropertyInfo.ContainerType.StringMap)
+						{
+							dynamicProperty.SetElement(index, value);
+							return;
+						}
 					{%- endif %}
 					{% if info.is_root() %}throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());{% else %}base.SetPropertyElement(propertyName, index, value);
 					return;{%- endif %}
@@ -167,11 +160,12 @@ namespace {{ info.get_root_namespace() }}.{{ info.get_namespace_without_prefix()
 					return;
 				{% endfor %}default:
 					{%- if info.name == "Entity" %}
-					if (this.DynamicProperties.TryGetValue(propertyName, out DynamicProperty property))
-					{
-						property.SetElement(key, value);
-						return;
-					}
+					foreach (var dynamicProperty in gameObject.GetComponents<DynamicProperty>())
+						if (dynamicProperty.Name == propertyName && dynamicProperty.GetContainerType() == PropertyInfo.ContainerType.StringMap)
+						{
+							dynamicProperty.SetElement(key, value);
+							return;
+						}
 					{%- endif %}
 					{% if info.is_root() %}throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());{% else %}base.SetPropertyElement(propertyName, key, value);
 					return;{%- endif %}

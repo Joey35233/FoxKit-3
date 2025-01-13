@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Graphx
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Graphx/GraphxSpatialGraph")]
 	public partial class GraphxSpatialGraph : Fox.Core.TransformDataBody
 	{
 		// ClassInfos

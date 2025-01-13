@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Geo
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Geo/GeoBoundingVolumeFile")]
 	public partial class GeoBoundingVolumeFile : Fox.Core.RawFile
 	{
 		// ClassInfos

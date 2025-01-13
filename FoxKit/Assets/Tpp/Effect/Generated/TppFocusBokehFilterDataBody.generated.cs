@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.Effect
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppEffect/TppFocusBokehFilterDataBody")]
 	public partial class TppFocusBokehFilterDataBody : Fox.Core.DataBody
 	{
 		// ClassInfos

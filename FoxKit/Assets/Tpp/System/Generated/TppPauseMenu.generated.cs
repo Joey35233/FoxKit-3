@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.System
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppSystem/TppPauseMenu")]
 	public partial class TppPauseMenu : Fox.Core.Actor
 	{
 		// ClassInfos

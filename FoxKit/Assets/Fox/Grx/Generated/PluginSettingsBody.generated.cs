@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Grx
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Grx/PluginSettingsBody")]
 	public partial class PluginSettingsBody : Fox.Core.DataBody
 	{
 		// ClassInfos

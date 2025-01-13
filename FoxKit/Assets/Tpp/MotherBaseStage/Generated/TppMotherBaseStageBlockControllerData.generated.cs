@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.MotherBaseStage
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppMotherBaseStage/TppMotherBaseStageBlockControllerData")]
 	public partial class TppMotherBaseStageBlockControllerData : Fox.Core.Data
 	{
 		// Properties

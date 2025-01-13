@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.GameKit
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxGameKit/SubtitlesPackage")]
 	public partial class SubtitlesPackage : Fox.Core.Data
 	{
 		// Properties

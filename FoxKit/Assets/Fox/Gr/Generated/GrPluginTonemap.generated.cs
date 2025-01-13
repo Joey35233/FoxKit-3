@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Gr
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Gr/GrPluginTonemap")]
 	public partial class GrPluginTonemap : Fox.Gr.GrRenderPlugin
 	{
 		// ClassInfos

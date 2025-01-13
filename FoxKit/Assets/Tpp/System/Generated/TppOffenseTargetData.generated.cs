@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.System
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppSystem/TppOffenseTargetData")]
 	public partial class TppOffenseTargetData : Fox.GameKit.GkTargetData
 	{
 		// ClassInfos

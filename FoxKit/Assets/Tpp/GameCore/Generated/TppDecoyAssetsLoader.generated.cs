@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.GameCore
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppGameCore/TppDecoyAssetsLoader")]
 	public partial class TppDecoyAssetsLoader : Fox.Core.Data
 	{
 		// Properties

@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Ui
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Ui/TexListFile")]
 	public partial class TexListFile : Fox.Core.RawFile
 	{
 		// ClassInfos

@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.GameKit
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppGameKit/TppTrapCheckIsEnemyCallbackDataElement")]
 	public partial class TppTrapCheckIsEnemyCallbackDataElement : Fox.Geo.GeoTrapModuleCallbackDataElement
 	{
 		// ClassInfos

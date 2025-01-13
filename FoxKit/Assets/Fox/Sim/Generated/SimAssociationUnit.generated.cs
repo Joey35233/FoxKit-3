@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Sim
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Sim/SimAssociationUnit")]
 	public partial class SimAssociationUnit : Fox.Phx.PhxAssociationUnitElement
 	{
 		// Properties

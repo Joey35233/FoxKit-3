@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Gr
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Gr/GrPlugin2DShrink")]
 	public partial class GrPlugin2DShrink : Fox.Gr.GrPlugin2D
 	{
 		// ClassInfos

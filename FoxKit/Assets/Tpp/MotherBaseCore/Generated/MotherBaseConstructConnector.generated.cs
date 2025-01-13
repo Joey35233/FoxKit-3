@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.MotherBaseCore
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppMotherBaseCore/MotherBaseConstructConnector")]
 	public partial class MotherBaseConstructConnector : Fox.Core.Entity
 	{
 		// ClassInfos

@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.Effect
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppEffect/TppTrapRainFilterCallbackDataElement")]
 	public partial class TppTrapRainFilterCallbackDataElement : Fox.Geo.GeoTrapModuleCallbackDataElement
 	{
 		// ClassInfos

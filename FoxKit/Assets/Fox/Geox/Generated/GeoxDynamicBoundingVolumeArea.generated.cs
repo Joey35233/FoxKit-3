@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Geox
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Geox/GeoxDynamicBoundingVolumeArea")]
 	public partial class GeoxDynamicBoundingVolumeArea : Fox.Core.TransformData
 	{
 		// ClassInfos

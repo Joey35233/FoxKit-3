@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Core
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxCore/ScriptBlockScript")]
 	public partial class ScriptBlockScript : Fox.Core.Data
 	{
 		// Properties

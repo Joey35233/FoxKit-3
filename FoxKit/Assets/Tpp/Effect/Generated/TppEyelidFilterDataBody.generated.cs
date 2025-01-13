@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.Effect
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppEffect/TppEyelidFilterDataBody")]
 	public partial class TppEyelidFilterDataBody : Fox.Core.DataBody
 	{
 		// ClassInfos

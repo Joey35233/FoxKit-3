@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.GameCore
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppGameCore/TppSimpleMissionData")]
 	public partial class TppSimpleMissionData : Fox.Core.Data
 	{
 		// Properties

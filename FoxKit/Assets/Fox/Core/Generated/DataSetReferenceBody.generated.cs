@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Core
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxCore/DataSetReferenceBody")]
 	public partial class DataSetReferenceBody : Fox.Core.TransformDataBody
 	{
 		// ClassInfos

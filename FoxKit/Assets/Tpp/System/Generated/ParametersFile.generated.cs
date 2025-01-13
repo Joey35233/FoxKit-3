@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.System
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppSystem/ParametersFile")]
 	public partial class ParametersFile : Fox.Core.RawFile
 	{
 		// ClassInfos

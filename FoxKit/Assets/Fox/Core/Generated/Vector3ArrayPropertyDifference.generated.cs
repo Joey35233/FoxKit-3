@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Core
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxCore/Vector3ArrayPropertyDifference")]
 	public partial class Vector3ArrayPropertyDifference : Fox.Core.PropertyDifference
 	{
 		// Properties

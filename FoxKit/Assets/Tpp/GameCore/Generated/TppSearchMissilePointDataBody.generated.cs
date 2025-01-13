@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.GameCore
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppGameCore/TppSearchMissilePointDataBody")]
 	public partial class TppSearchMissilePointDataBody : Fox.Core.TransformDataBody
 	{
 		// ClassInfos

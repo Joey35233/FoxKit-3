@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.Effect
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppEffect/TppFirePropagationLights")]
 	public partial class TppFirePropagationLights : Fox.Core.Data
 	{
 		// ClassInfos

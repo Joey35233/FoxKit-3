@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.GameCore
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppGameCore/TppRat2Parameter")]
 	public partial class TppRat2Parameter : Fox.Core.DataElement
 	{
 		// Properties

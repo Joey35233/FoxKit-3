@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.GameCore
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppGameCore/TppVehicle2LocatorParameter")]
 	public partial class TppVehicle2LocatorParameter : Fox.Core.DataElement
 	{
 		// ClassInfos

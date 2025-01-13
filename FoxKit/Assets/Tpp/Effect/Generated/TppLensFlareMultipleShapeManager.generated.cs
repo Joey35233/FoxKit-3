@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.Effect
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppEffect/TppLensFlareMultipleShapeManager")]
 	public partial class TppLensFlareMultipleShapeManager : Fox.Core.Entity
 	{
 		// ClassInfos

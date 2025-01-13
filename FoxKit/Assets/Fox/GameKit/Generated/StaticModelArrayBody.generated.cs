@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.GameKit
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxGameKit/StaticModelArrayBody")]
 	public partial class StaticModelArrayBody : Fox.Core.DataBody
 	{
 		// Properties

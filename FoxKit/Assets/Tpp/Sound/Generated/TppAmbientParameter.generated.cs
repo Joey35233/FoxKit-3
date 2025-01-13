@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.Sound
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppSound/TppAmbientParameter")]
 	public partial class TppAmbientParameter : Fox.Core.Data
 	{
 		// Properties

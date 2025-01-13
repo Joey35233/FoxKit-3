@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Geox
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Geox/GeoxPolygonMarker")]
 	public partial class GeoxPolygonMarker : Fox.Core.TransformData
 	{
 		// Properties

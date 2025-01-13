@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Anim
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Anim/CaarFile")]
 	public partial class CaarFile : Fox.Core.RawFile
 	{
 		// ClassInfos

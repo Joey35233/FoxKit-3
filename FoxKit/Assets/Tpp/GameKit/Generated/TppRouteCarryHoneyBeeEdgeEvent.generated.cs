@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.GameKit
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppGameKit/TppRouteCarryHoneyBeeEdgeEvent")]
 	public partial class TppRouteCarryHoneyBeeEdgeEvent : Fox.GameService.GsRouteDataEdgeEvent
 	{
 		// Properties

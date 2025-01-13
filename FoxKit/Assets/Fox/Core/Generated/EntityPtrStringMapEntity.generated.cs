@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Core
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxCore/EntityPtrStringMapEntity")]
 	public partial class EntityPtrStringMapEntity : Fox.Core.Entity
 	{
 		// Properties

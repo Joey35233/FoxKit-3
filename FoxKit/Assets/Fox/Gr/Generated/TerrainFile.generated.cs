@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Gr
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Gr/TerrainFile")]
 	public partial class TerrainFile : Fox.Core.RawFile
 	{
 		// ClassInfos

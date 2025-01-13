@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Demox
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Demox/DemoxEffectMemoryPoolDataBody")]
 	public partial class DemoxEffectMemoryPoolDataBody : Fox.Core.DataBody
 	{
 		// ClassInfos

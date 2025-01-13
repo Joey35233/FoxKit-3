@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Geo
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Geo/GeoTriggerTrap")]
 	public partial class GeoTriggerTrap : Fox.Core.TransformData
 	{
 		// Properties

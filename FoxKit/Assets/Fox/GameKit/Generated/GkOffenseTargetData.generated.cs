@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.GameKit
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxGameKit/GkOffenseTargetData")]
 	public partial class GkOffenseTargetData : Fox.GameKit.GkTargetData
 	{
 		// Properties

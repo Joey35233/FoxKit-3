@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Sim
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Sim/SimClothControlUnitParam")]
 	public partial class SimClothControlUnitParam : Fox.Core.Entity
 	{
 		// Properties

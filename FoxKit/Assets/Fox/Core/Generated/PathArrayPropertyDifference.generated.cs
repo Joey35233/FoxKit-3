@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Core
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxCore/PathArrayPropertyDifference")]
 	public partial class PathArrayPropertyDifference : Fox.Core.PropertyDifference
 	{
 		// Properties

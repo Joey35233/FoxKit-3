@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.GameKit
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxGameKit/CheckpointTrapScriptModuleCondition")]
 	public partial class CheckpointTrapScriptModuleCondition : Fox.Geo.GeoTrapScriptModuleCondition
 	{
 		// Properties

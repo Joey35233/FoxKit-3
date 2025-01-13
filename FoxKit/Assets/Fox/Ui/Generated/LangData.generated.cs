@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Ui
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Ui/LangData")]
 	public partial class LangData : Fox.Core.Data
 	{
 		// Properties

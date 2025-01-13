@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Core
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxCore/BucketCollector")]
 	public partial class BucketCollector : Fox.Core.Entity
 	{
 		// Properties

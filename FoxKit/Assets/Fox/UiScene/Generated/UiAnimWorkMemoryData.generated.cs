@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.UiScene
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("UiScene/UiAnimWorkMemoryData")]
 	public partial class UiAnimWorkMemoryData : Fox.Core.Data
 	{
 		// Properties

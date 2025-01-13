@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.Effect
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppEffect/TppSunLightFlare")]
 	public partial class TppSunLightFlare : Fox.Core.TransformData
 	{
 		// Properties

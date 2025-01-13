@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.Effect
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppEffect/TppSubViewport")]
 	public partial class TppSubViewport : Fox.Gr.GrViewport
 	{
 		// ClassInfos

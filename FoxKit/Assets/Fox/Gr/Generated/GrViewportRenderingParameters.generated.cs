@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Gr
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Gr/GrViewportRenderingParameters")]
 	public partial class GrViewportRenderingParameters : Fox.Gr.GrViewportParameter
 	{
 		// Properties

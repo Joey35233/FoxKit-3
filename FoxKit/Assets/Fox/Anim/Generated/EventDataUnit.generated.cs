@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Anim
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Anim/EventDataUnit")]
 	public partial class EventDataUnit : Fox.Core.Data
 	{
 		// Properties

@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Ncl
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Ncl/NclDaemon")]
 	public partial class NclDaemon : Fox.Core.Entity
 	{
 		// Properties

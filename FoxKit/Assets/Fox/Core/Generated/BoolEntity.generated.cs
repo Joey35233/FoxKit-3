@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Core
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxCore/BoolEntity")]
 	public partial class BoolEntity : Fox.Core.PropertyValueEntity
 	{
 		// Properties

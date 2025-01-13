@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.GameKit
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppGameKit/TppRouteDisableStealthModeNodeEvent")]
 	public partial class TppRouteDisableStealthModeNodeEvent : Fox.GameService.GsRouteDataNodeEvent
 	{
 		// Properties

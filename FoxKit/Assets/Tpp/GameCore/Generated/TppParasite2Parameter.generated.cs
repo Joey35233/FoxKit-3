@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.GameCore
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppGameCore/TppParasite2Parameter")]
 	public partial class TppParasite2Parameter : Fox.Core.DataElement
 	{
 		// Properties

@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Geox
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Geox/GeoxTextureMaterialRegisterBody")]
 	public partial class GeoxTextureMaterialRegisterBody : Fox.Core.DataBody
 	{
 		// ClassInfos

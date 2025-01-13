@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.GameKit
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxGameKit/GameSequenceController")]
 	public partial class GameSequenceController : Fox.Core.Entity
 	{
 		// ClassInfos

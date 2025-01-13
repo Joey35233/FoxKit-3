@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.GameCore
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppGameCore/LuxuryBlockControllerData")]
 	public partial class LuxuryBlockControllerData : Fox.Core.Data
 	{
 		// Properties

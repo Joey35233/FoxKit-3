@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Nt
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Nt/Replay")]
 	public partial class Replay : Fox.Core.Entity
 	{
 		// ClassInfos

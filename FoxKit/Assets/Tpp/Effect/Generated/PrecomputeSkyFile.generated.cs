@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.Effect
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppEffect/PrecomputeSkyFile")]
 	public partial class PrecomputeSkyFile : Fox.Core.RawFile
 	{
 		// ClassInfos

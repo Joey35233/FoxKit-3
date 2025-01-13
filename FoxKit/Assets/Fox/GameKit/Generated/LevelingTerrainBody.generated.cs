@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.GameKit
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxGameKit/LevelingTerrainBody")]
 	public partial class LevelingTerrainBody : Fox.Core.TransformDataBody
 	{
 		// ClassInfos

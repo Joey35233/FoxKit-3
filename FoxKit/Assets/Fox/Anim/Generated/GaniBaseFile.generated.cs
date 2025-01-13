@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Anim
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Anim/GaniBaseFile")]
 	public partial class GaniBaseFile : Fox.Core.RawFile
 	{
 		// ClassInfos

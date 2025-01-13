@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Geox
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Geox/GeoxGeomSetLoader")]
 	public partial class GeoxGeomSetLoader : Fox.Core.TransformData
 	{
 		// Properties

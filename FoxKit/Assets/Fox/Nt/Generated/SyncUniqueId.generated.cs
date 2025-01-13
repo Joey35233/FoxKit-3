@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Nt
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Nt/SyncUniqueId")]
 	public partial class SyncUniqueId : Fox.Core.Entity
 	{
 		// ClassInfos

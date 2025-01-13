@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.GameKit
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppGameKit/CyprusMissionControllerData")]
 	public partial class CyprusMissionControllerData : Fox.Core.Data
 	{
 		// ClassInfos

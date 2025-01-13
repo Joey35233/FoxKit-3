@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Des
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Des/DesDaemon")]
 	public partial class DesDaemon : Fox.Core.Entity
 	{
 		// ClassInfos

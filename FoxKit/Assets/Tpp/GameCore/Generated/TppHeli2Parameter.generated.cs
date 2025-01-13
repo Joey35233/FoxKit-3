@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.GameCore
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppGameCore/TppHeli2Parameter")]
 	public partial class TppHeli2Parameter : Fox.Core.DataElement
 	{
 		// Properties

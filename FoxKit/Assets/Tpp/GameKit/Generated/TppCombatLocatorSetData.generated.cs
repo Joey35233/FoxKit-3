@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.GameKit
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppGameKit/TppCombatLocatorSetData")]
 	public partial class TppCombatLocatorSetData : Fox.Core.Data
 	{
 		// Properties

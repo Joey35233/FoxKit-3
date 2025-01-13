@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.GameKit
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppGameKit/TppRouteSearchMissileNodeEvent")]
 	public partial class TppRouteSearchMissileNodeEvent : Fox.GameService.GsRouteDataNodeEvent
 	{
 		// Properties

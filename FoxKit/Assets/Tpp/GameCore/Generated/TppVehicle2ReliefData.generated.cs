@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.GameCore
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppGameCore/TppVehicle2ReliefData")]
 	public partial class TppVehicle2ReliefData : Fox.Core.Data
 	{
 		// Properties

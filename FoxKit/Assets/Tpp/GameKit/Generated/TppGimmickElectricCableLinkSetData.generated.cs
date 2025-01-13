@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.GameKit
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppGameKit/TppGimmickElectricCableLinkSetData")]
 	public partial class TppGimmickElectricCableLinkSetData : Fox.Core.Data
 	{
 		// Properties

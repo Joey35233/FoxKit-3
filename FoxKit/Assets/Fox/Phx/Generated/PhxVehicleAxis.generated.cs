@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Phx
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Phx/PhxVehicleAxis")]
 	public partial class PhxVehicleAxis : Fox.Core.Data
 	{
 		// Properties

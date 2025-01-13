@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Geo
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Geo/GeoPathGeomHeader")]
 	public partial class GeoPathGeomHeader : Fox.Core.Entity
 	{
 		// ClassInfos

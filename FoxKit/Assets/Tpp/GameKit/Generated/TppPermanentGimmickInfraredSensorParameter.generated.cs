@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.GameKit
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppGameKit/TppPermanentGimmickInfraredSensorParameter")]
 	public partial class TppPermanentGimmickInfraredSensorParameter : Fox.Core.DataElement
 	{
 		// Properties

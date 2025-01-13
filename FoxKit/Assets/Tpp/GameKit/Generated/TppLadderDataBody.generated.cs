@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.GameKit
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppGameKit/TppLadderDataBody")]
 	public partial class TppLadderDataBody : Fox.Core.TransformDataBody
 	{
 		// ClassInfos

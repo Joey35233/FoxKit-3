@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.GameCore
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppGameCore/TppSahelan2Parameter")]
 	public partial class TppSahelan2Parameter : Fox.Core.DataElement
 	{
 		// Properties

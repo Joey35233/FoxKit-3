@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.GameKit
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppGameKit/TppRoutePickUpHoneyBeeNodeEvent")]
 	public partial class TppRoutePickUpHoneyBeeNodeEvent : Fox.GameService.GsRouteDataNodeEvent
 	{
 		// Properties

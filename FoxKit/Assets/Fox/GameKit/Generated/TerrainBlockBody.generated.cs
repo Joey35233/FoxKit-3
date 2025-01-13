@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.GameKit
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxGameKit/TerrainBlockBody")]
 	public partial class TerrainBlockBody : Fox.Core.DataBody
 	{
 		// ClassInfos

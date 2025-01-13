@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Gr
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Gr/GrPluginDeferredGeometryOpaque")]
 	public partial class GrPluginDeferredGeometryOpaque : Fox.Gr.GrRenderPlugin
 	{
 		// ClassInfos

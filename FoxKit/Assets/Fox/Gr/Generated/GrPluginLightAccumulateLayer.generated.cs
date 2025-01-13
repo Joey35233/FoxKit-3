@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Gr
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Gr/GrPluginLightAccumulateLayer")]
 	public partial class GrPluginLightAccumulateLayer : Fox.Gr.GrRenderPlugin
 	{
 		// ClassInfos

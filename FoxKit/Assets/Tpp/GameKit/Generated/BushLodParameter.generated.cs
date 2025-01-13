@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.GameKit
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppGameKit/BushLodParameter")]
 	public partial class BushLodParameter : Fox.Core.DataElement
 	{
 		// Properties

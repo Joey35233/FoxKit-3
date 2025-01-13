@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Core
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxCore/EntityLinkArrayPropertyDifference")]
 	public partial class EntityLinkArrayPropertyDifference : Fox.Core.PropertyDifference
 	{
 		// Properties

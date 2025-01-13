@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.GameKit
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppGameKit/TppGimmickLightGroupingLinkSetData")]
 	public partial class TppGimmickLightGroupingLinkSetData : Fox.Core.Data
 	{
 		// Properties

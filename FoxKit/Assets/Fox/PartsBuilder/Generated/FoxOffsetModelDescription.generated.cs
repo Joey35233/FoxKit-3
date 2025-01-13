@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.PartsBuilder
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("PartsBuilder/FoxOffsetModelDescription")]
 	public partial class FoxOffsetModelDescription : Fox.PartsBuilder.ModelDescription
 	{
 		// Properties

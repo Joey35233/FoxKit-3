@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.GameKit
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxGameKit/GkEventTimerManager")]
 	public partial class GkEventTimerManager : Fox.Core.Entity
 	{
 		// ClassInfos

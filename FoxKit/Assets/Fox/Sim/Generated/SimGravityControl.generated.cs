@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Sim
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Sim/SimGravityControl")]
 	public partial class SimGravityControl : Fox.Sim.SimControlElement
 	{
 		// Properties

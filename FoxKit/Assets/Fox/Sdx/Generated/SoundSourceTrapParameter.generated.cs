@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Sdx
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Sdx/SoundSourceTrapParameter")]
 	public partial class SoundSourceTrapParameter : Fox.Geo.GeoTrapModuleCallbackDataElement
 	{
 		// Properties

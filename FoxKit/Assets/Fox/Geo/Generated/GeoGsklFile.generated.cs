@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Geo
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Geo/GeoGsklFile")]
 	public partial class GeoGsklFile : Fox.Core.RawFile
 	{
 		// ClassInfos

@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.Ui
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppUi/UiSupport")]
 	public partial class UiSupport : Fox.Core.Entity
 	{
 		// ClassInfos

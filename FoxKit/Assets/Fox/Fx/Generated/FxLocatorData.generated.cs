@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Fx
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Fx/FxLocatorData")]
 	public partial class FxLocatorData : Fox.Core.TransformData
 	{
 		// Properties

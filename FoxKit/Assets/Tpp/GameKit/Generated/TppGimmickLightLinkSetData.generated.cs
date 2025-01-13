@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.GameKit
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppGameKit/TppGimmickLightLinkSetData")]
 	public partial class TppGimmickLightLinkSetData : Fox.Core.Data
 	{
 		// Properties

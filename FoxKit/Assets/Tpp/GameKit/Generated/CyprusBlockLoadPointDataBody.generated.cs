@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.GameKit
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppGameKit/CyprusBlockLoadPointDataBody")]
 	public partial class CyprusBlockLoadPointDataBody : Fox.Core.DataBody
 	{
 		// ClassInfos

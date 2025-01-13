@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.Effect
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppEffect/TppRainFilterInterruptTransBody")]
 	public partial class TppRainFilterInterruptTransBody : Fox.Core.TransformDataBody
 	{
 		// ClassInfos

@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.GameKit
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxGameKit/CameraSelector")]
 	public partial class CameraSelector : Fox.Core.Entity
 	{
 		// ClassInfos

@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Core
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxCore/PropertyDifference")]
 	public partial class PropertyDifference : Fox.Core.Entity
 	{
 		// ClassInfos

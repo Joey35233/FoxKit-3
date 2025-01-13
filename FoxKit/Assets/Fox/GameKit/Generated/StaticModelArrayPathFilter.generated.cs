@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.GameKit
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxGameKit/StaticModelArrayPathFilter")]
 	public partial class StaticModelArrayPathFilter : Fox.Core.Data
 	{
 		// Properties

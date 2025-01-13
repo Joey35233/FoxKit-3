@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Demox
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Demox/DemoDynamicFileChangeModel")]
 	public partial class DemoDynamicFileChangeModel : Fox.Core.DataElement
 	{
 		// Properties

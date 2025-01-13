@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.GameKit
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxGameKit/CheckpointData")]
 	public partial class CheckpointData : Fox.Core.Entity
 	{
 		// ClassInfos

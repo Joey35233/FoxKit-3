@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.GameKit
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppGameKit/TppRouteSetTargetSpeedNodeEvent")]
 	public partial class TppRouteSetTargetSpeedNodeEvent : Fox.GameService.GsRouteDataNodeEvent
 	{
 		// Properties

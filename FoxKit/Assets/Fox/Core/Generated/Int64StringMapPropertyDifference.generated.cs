@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Core
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxCore/Int64StringMapPropertyDifference")]
 	public partial class Int64StringMapPropertyDifference : Fox.Core.PropertyDifference
 	{
 		// Properties

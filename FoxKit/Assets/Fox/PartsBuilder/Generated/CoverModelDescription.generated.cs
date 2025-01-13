@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.PartsBuilder
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("PartsBuilder/CoverModelDescription")]
 	public partial class CoverModelDescription : Fox.PartsBuilder.ModelDescription
 	{
 		// ClassInfos

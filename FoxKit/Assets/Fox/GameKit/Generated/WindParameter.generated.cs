@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.GameKit
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxGameKit/WindParameter")]
 	public partial class WindParameter : Fox.GameKit.EnvironmentParameter
 	{
 		// Properties

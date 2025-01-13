@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.GameKit
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxGameKit/GkSmartObjectSetBody")]
 	public partial class GkSmartObjectSetBody : Fox.Core.DataBody
 	{
 		// ClassInfos

@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.Effect
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppEffect/TppSkyEffectControler")]
 	public partial class TppSkyEffectControler : Fox.Core.Data
 	{
 		// Properties

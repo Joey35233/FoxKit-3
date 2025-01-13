@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Geo
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Geo/GeoTrapExecScriptConditionBody")]
 	public partial class GeoTrapExecScriptConditionBody : Fox.Geo.GeoCheckModuleConditionBody
 	{
 		// ClassInfos

@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.GameKit
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxGameKit/EnvironmentArea")]
 	public partial class EnvironmentArea : Fox.Core.TransformData
 	{
 		// Properties

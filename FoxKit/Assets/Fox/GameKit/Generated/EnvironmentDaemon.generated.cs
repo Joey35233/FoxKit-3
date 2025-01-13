@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.GameKit
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxGameKit/EnvironmentDaemon")]
 	public partial class EnvironmentDaemon : Fox.Core.Entity
 	{
 		// ClassInfos

@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.GameKit
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxGameKit/WindAreaBody")]
 	public partial class WindAreaBody : Fox.GameKit.EnvironmentAreaBody
 	{
 		// ClassInfos

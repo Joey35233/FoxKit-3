@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.Effect
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppEffect/TppPrimRiverModelParamOverlayBody")]
 	public partial class TppPrimRiverModelParamOverlayBody : Fox.Core.DataBody
 	{
 		// ClassInfos

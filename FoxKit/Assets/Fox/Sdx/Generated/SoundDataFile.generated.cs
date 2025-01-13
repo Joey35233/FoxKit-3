@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Sdx
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Sdx/SoundDataFile")]
 	public partial class SoundDataFile : Fox.Core.DataSetFile2
 	{
 		// ClassInfos

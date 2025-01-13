@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.GameCore
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppGameCore/TppBuddyQuiet2Parameter")]
 	public partial class TppBuddyQuiet2Parameter : Fox.Core.DataElement
 	{
 		// Properties

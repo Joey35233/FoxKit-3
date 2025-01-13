@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Ph
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Ph/PhRigidBody")]
 	public partial class PhRigidBody : Fox.Ph.PhSubObject
 	{
 		// Properties

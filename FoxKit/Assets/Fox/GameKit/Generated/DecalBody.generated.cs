@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.GameKit
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxGameKit/DecalBody")]
 	public partial class DecalBody : Fox.Core.TransformDataBody
 	{
 		// ClassInfos

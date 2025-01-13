@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Core
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxCore/StageBlockFile")]
 	public partial class StageBlockFile : Fox.Core.RawFile
 	{
 		// ClassInfos

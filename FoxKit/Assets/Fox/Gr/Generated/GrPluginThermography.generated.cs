@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Gr
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Gr/GrPluginThermography")]
 	public partial class GrPluginThermography : Fox.Gr.GrRenderPlugin
 	{
 		// ClassInfos

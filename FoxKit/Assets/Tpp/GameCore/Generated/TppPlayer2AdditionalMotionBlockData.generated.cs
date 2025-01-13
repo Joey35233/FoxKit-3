@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.GameCore
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppGameCore/TppPlayer2AdditionalMotionBlockData")]
 	public partial class TppPlayer2AdditionalMotionBlockData : Fox.Core.Data
 	{
 		// Properties

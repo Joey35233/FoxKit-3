@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.GameKit
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppGameKit/TppRouteBreakSteelTowerNodeEvent")]
 	public partial class TppRouteBreakSteelTowerNodeEvent : Fox.GameService.GsRouteDataNodeEvent
 	{
 		// Properties

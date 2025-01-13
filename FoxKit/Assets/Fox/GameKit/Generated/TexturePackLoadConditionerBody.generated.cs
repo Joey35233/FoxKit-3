@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.GameKit
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxGameKit/TexturePackLoadConditionerBody")]
 	public partial class TexturePackLoadConditionerBody : Fox.Core.DataBody
 	{
 		// ClassInfos

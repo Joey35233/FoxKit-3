@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Core
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxCore/ShapeData")]
 	public partial class ShapeData : Fox.Core.TransformData
 	{
 		// ClassInfos

@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Gr
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Gr/GrPluginDeferredGeometry")]
 	public partial class GrPluginDeferredGeometry : Fox.Gr.GrRenderPlugin
 	{
 		// ClassInfos

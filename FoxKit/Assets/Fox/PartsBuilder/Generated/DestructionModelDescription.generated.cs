@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.PartsBuilder
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("PartsBuilder/DestructionModelDescription")]
 	public partial class DestructionModelDescription : Fox.PartsBuilder.ModelDescription
 	{
 		// Properties

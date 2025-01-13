@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Gr
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Gr/GrPluginDeferredShading")]
 	public partial class GrPluginDeferredShading : Fox.Gr.GrRenderPlugin
 	{
 		// ClassInfos

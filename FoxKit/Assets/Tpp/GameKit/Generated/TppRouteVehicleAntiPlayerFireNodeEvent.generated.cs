@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.GameKit
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppGameKit/TppRouteVehicleAntiPlayerFireNodeEvent")]
 	public partial class TppRouteVehicleAntiPlayerFireNodeEvent : Fox.GameService.GsRouteDataNodeEvent
 	{
 		// Properties

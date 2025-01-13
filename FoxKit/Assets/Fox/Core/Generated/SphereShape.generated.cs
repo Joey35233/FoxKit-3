@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Core
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxCore/SphereShape")]
 	public partial class SphereShape : Fox.Core.ShapeData
 	{
 		// Properties

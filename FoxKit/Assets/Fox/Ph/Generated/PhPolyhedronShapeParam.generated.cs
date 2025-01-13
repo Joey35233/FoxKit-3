@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Ph
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Ph/PhPolyhedronShapeParam")]
 	public partial class PhPolyhedronShapeParam : Fox.Ph.PhShapeParam
 	{
 		// Properties

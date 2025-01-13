@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Core
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxCore/EntityClassDictionary")]
 	public partial class EntityClassDictionary : Fox.Core.Entity
 	{
 		// ClassInfos

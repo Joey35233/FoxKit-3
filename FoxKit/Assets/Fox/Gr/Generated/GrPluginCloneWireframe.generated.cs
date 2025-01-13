@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Gr
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Gr/GrPluginCloneWireframe")]
 	public partial class GrPluginCloneWireframe : Fox.Gr.GrPluginClone
 	{
 		// ClassInfos

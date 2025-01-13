@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.MotherBaseStage
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppMotherBaseStage/MotherBaseStageSetupFile")]
 	public partial class MotherBaseStageSetupFile : Fox.Core.RawFile
 	{
 		// ClassInfos

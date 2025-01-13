@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Phx
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Phx/PhxWheelConstraintParam")]
 	public partial class PhxWheelConstraintParam : Fox.Ph.PhConstraintParam
 	{
 		// Properties

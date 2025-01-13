@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Graphx
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Graphx/GraphxPathVertexInsertionInfo")]
 	public partial class GraphxPathVertexInsertionInfo : Fox.Core.ComponentInsertionInfo
 	{
 		// ClassInfos

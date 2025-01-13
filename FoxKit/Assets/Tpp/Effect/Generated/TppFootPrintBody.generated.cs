@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.Effect
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppEffect/TppFootPrintBody")]
 	public partial class TppFootPrintBody : Fox.Core.TransformDataBody
 	{
 		// ClassInfos

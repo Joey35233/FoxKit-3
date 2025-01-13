@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.Effect
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppEffect/TppLensFlareRoot")]
 	public partial class TppLensFlareRoot : Tpp.Effect.TppLensFlareRootBase
 	{
 		// Properties

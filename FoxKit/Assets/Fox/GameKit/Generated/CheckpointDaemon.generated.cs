@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.GameKit
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxGameKit/CheckpointDaemon")]
 	public partial class CheckpointDaemon : Fox.Core.Entity
 	{
 		// ClassInfos

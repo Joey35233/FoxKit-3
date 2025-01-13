@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.GameKit
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxGameKit/GameScriptBody")]
 	public partial class GameScriptBody : Fox.Core.DataBody
 	{
 		// Properties

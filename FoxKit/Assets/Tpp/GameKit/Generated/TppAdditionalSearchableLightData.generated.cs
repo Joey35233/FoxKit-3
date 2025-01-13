@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.GameKit
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppGameKit/TppAdditionalSearchableLightData")]
 	public partial class TppAdditionalSearchableLightData : Fox.Core.Data
 	{
 		// Properties

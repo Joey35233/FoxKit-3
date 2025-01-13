@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Core
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxCore/TransformDataBody")]
 	public partial class TransformDataBody : Fox.Core.DataBody
 	{
 		// Properties

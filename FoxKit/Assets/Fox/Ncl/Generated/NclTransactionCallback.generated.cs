@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Ncl
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Ncl/NclTransactionCallback")]
 	public partial class NclTransactionCallback 
 	{
 		// ClassInfos

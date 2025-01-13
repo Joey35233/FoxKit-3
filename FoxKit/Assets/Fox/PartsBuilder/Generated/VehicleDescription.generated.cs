@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.PartsBuilder
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("PartsBuilder/VehicleDescription")]
 	public partial class VehicleDescription : Fox.PartsBuilder.PartDescription
 	{
 		// Properties

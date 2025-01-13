@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.System
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppSystem/TppLocationInformationData")]
 	public partial class TppLocationInformationData : Fox.Core.Data
 	{
 		// Properties

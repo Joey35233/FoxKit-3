@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.Effect
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppEffect/TppLightProbeSHCoefficientsBody")]
 	public partial class TppLightProbeSHCoefficientsBody : Fox.Core.DataBody
 	{
 		// ClassInfos

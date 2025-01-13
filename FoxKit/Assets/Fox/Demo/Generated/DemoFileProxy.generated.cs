@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Demo
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Demo/DemoFileProxy")]
 	public partial class DemoFileProxy : Fox.Core.Data
 	{
 		// Properties

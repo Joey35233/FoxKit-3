@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Navx
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Navx/NavxHoleSimplificationParameterVolume")]
 	public partial class NavxHoleSimplificationParameterVolume : Fox.Core.TransformData
 	{
 		// Properties

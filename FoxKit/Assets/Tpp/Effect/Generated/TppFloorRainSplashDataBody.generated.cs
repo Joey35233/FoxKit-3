@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.Effect
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppEffect/TppFloorRainSplashDataBody")]
 	public partial class TppFloorRainSplashDataBody : Fox.Core.DataBody
 	{
 		// ClassInfos

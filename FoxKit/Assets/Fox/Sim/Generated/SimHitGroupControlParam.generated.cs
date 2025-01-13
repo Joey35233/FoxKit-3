@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Sim
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Sim/SimHitGroupControlParam")]
 	public partial class SimHitGroupControlParam : Fox.Sim.SimControlParam
 	{
 		// Properties

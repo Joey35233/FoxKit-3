@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Core
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxCore/UInt32StringMapPropertyDifference")]
 	public partial class UInt32StringMapPropertyDifference : Fox.Core.PropertyDifference
 	{
 		// Properties

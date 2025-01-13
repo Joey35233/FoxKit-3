@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.GameKit
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppGameKit/TppRouteCurtainInNodeEvent")]
 	public partial class TppRouteCurtainInNodeEvent : Fox.GameService.GsRouteDataNodeEvent
 	{
 		// Properties

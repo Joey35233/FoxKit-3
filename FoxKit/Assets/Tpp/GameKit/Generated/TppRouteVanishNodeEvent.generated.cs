@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.GameKit
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppGameKit/TppRouteVanishNodeEvent")]
 	public partial class TppRouteVanishNodeEvent : Fox.GameService.GsRouteDataNodeEvent
 	{
 		// Properties

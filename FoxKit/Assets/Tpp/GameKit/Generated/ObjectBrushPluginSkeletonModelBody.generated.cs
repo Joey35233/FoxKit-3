@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.GameKit
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppGameKit/ObjectBrushPluginSkeletonModelBody")]
 	public partial class ObjectBrushPluginSkeletonModelBody : Fox.GameKit.ObjectBrushPluginBody
 	{
 		// ClassInfos

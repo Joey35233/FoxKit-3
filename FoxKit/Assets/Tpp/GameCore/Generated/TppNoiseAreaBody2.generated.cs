@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.GameCore
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppGameCore/TppNoiseAreaBody2")]
 	public partial class TppNoiseAreaBody2 : Fox.Core.DataBody
 	{
 		// ClassInfos

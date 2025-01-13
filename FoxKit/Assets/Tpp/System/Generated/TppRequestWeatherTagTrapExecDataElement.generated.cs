@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.System
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppSystem/TppRequestWeatherTagTrapExecDataElement")]
 	public partial class TppRequestWeatherTagTrapExecDataElement : Fox.Geo.GeoTrapModuleCallbackDataElement
 	{
 		// Properties

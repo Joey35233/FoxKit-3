@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Tactical
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Tactical/GkTacticalActionBody")]
 	public partial class GkTacticalActionBody : Fox.Core.TransformDataBody
 	{
 		// Properties

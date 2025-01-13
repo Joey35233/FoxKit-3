@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Core
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxCore/Int16ArrayPropertyDifference")]
 	public partial class Int16ArrayPropertyDifference : Fox.Core.PropertyDifference
 	{
 		// Properties

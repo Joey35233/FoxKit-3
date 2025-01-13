@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Gr
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Gr/GrFilmicTonemapParameter")]
 	public partial class GrFilmicTonemapParameter : Fox.Gr.GrViewportParameter
 	{
 		// Properties

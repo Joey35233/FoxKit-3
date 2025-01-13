@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.GameService
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("GameService/GsRouteDataRtEvAimPointStaticPoint")]
 	public partial class GsRouteDataRtEvAimPointStaticPoint : Fox.GameService.GsRouteDataRouteEventAimPoint
 	{
 		// Properties

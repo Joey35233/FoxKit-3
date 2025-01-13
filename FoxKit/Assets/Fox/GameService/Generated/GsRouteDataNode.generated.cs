@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.GameService
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("GameService/GsRouteDataNode")]
 	public partial class GsRouteDataNode : Fox.Graphx.GraphxSpatialGraphDataNode
 	{
 		// Properties

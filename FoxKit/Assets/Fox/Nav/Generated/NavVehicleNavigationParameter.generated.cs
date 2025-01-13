@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Nav
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Nav/NavVehicleNavigationParameter")]
 	public partial class NavVehicleNavigationParameter : Fox.Nav.NavNavigationParameter
 	{
 		// Properties

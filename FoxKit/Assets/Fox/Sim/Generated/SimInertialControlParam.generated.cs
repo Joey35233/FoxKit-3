@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Sim
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Sim/SimInertialControlParam")]
 	public partial class SimInertialControlParam : Fox.Sim.SimControlParam
 	{
 		// Properties

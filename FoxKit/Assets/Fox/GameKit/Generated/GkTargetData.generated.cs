@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.GameKit
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxGameKit/GkTargetData")]
 	public partial class GkTargetData : Fox.Geo.TargetExtensionData
 	{
 		// Properties

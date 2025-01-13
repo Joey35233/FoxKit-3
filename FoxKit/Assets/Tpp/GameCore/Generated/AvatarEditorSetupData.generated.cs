@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.GameCore
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppGameCore/AvatarEditorSetupData")]
 	public partial class AvatarEditorSetupData : Fox.Core.Data
 	{
 		// Properties

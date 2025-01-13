@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.GameKit
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxGameKit/StaticModelArrayLocatorBody")]
 	public partial class StaticModelArrayLocatorBody : Fox.Core.TransformDataBody
 	{
 		// ClassInfos

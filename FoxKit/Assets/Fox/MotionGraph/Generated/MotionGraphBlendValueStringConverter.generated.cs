@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.MotionGraph
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("MotionGraph/MotionGraphBlendValueStringConverter")]
 	public partial class MotionGraphBlendValueStringConverter : Fox.MotionGraph.MotionGraphBlendValueConverter
 	{
 		// ClassInfos

@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.MotherBaseStage
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppMotherBaseStage/TppMotherBaseStageClusterParameterData")]
 	public partial class TppMotherBaseStageClusterParameterData : Fox.Core.Data
 	{
 		// Properties

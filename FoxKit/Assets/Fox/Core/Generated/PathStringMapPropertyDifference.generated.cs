@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Core
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxCore/PathStringMapPropertyDifference")]
 	public partial class PathStringMapPropertyDifference : Fox.Core.PropertyDifference
 	{
 		// Properties

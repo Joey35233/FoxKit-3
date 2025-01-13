@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.GameKit
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxGameKit/OrthogonalAimCamera")]
 	public partial class OrthogonalAimCamera : Fox.GameKit.AimCamera
 	{
 		// Properties

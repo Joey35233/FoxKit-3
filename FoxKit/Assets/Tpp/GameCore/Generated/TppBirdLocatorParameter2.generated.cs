@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.GameCore
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppGameCore/TppBirdLocatorParameter2")]
 	public partial class TppBirdLocatorParameter2 : Fox.Core.DataElement
 	{
 		// Properties

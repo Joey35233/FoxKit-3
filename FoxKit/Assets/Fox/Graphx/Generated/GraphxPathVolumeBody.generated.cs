@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Graphx
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Graphx/GraphxPathVolumeBody")]
 	public partial class GraphxPathVolumeBody : Fox.Graphx.GraphxPath
 	{
 		// ClassInfos

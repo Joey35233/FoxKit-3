@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.EdDemo
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("EdDemo/TppDemoParameter")]
 	public partial class TppDemoParameter : Fox.Demo.DemoParameter
 	{
 		// Properties

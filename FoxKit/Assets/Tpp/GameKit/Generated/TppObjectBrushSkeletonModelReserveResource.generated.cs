@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.GameKit
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppGameKit/TppObjectBrushSkeletonModelReserveResource")]
 	public partial class TppObjectBrushSkeletonModelReserveResource : Fox.Core.Data
 	{
 		// Properties

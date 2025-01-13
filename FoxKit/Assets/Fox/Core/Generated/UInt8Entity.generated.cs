@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Core
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxCore/UInt8Entity")]
 	public partial class UInt8Entity : Fox.Core.PropertyValueEntity
 	{
 		// Properties

@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Navx
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Navx/NavxSquareGraphBounderDataBody")]
 	public partial class NavxSquareGraphBounderDataBody : Fox.Navx.NavxBounderDataBody
 	{
 		// ClassInfos

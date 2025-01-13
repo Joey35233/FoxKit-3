@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.Effect
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppEffect/TppHeatHazeDataBody")]
 	public partial class TppHeatHazeDataBody : Fox.Core.DataBody
 	{
 		// ClassInfos

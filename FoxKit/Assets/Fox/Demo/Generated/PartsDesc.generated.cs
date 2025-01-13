@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Demo
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Demo/PartsDesc")]
 	public partial class PartsDesc : Fox.Core.DataElement
 	{
 		// Properties

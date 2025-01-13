@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Sim
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Sim/SimDirectionControlParam")]
 	public partial class SimDirectionControlParam : Fox.Sim.SimControlParam
 	{
 		// Properties

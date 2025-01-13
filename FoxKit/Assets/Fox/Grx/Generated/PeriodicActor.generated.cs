@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Grx
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Grx/PeriodicActor")]
 	public partial class PeriodicActor : Fox.Core.Actor
 	{
 		// ClassInfos

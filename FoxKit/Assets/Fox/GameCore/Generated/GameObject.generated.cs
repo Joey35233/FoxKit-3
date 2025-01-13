@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.GameCore
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("GameCore/GameObject")]
 	public partial class GameObject : Fox.Core.Data
 	{
 		// Properties

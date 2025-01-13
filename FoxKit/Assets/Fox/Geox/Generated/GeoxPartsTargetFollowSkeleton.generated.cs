@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Geox
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Geox/GeoxPartsTargetFollowSkeleton")]
 	public partial class GeoxPartsTargetFollowSkeleton : Fox.Core.Data
 	{
 		// Properties

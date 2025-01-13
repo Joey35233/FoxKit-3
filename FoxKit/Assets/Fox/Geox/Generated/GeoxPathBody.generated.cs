@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Geox
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Geox/GeoxPathBody")]
 	public partial class GeoxPathBody : Fox.Graphx.GraphxPath
 	{
 		// ClassInfos

@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Core
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxCore/ColorEntity")]
 	public partial class ColorEntity : Fox.Core.PropertyValueEntity
 	{
 		// Properties

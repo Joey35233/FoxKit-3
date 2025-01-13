@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.GameKit
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxGameKit/IntervalRegulator")]
 	public partial class IntervalRegulator : Fox.Core.Entity
 	{
 		// Properties

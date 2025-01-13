@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Grx
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Grx/ColorCorrectionData")]
 	public partial class ColorCorrectionData : Fox.Core.Data
 	{
 		// Properties

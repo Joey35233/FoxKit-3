@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.Effect
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppEffect/TppEffectUtility")]
 	public partial class TppEffectUtility : Fox.Core.Entity
 	{
 		// ClassInfos

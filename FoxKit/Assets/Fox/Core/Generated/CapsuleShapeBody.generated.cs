@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Core
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxCore/CapsuleShapeBody")]
 	public partial class CapsuleShapeBody : Fox.Core.ShapeDataBody
 	{
 		// Properties

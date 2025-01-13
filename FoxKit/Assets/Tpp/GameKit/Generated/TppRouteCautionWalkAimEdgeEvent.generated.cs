@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.GameKit
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppGameKit/TppRouteCautionWalkAimEdgeEvent")]
 	public partial class TppRouteCautionWalkAimEdgeEvent : Fox.GameService.GsRouteDataEdgeEvent
 	{
 		// Properties

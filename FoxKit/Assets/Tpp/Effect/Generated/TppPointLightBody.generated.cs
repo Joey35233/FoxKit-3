@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.Effect
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppEffect/TppPointLightBody")]
 	public partial class TppPointLightBody : Fox.Core.TransformDataBody
 	{
 		// Properties

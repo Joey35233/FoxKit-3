@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.GameKit
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppGameKit/TppCoverPointBody")]
 	public partial class TppCoverPointBody : Fox.Tactical.GkTacticalPointBody
 	{
 		// ClassInfos

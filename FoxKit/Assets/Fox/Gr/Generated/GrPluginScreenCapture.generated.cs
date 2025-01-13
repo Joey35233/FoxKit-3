@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Gr
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Gr/GrPluginScreenCapture")]
 	public partial class GrPluginScreenCapture : Fox.Gr.GrRenderPlugin
 	{
 		// ClassInfos

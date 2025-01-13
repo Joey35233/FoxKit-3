@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Gr
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Gr/GrPluginSky")]
 	public partial class GrPluginSky : Fox.Gr.GrRenderPlugin
 	{
 		// ClassInfos

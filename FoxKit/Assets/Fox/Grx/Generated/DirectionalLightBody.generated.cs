@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Grx
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Grx/DirectionalLightBody")]
 	public partial class DirectionalLightBody : Fox.Core.TransformDataBody
 	{
 		// Properties

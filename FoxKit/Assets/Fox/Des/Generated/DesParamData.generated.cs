@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Des
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Des/DesParamData")]
 	public partial class DesParamData : Fox.Core.Data
 	{
 		// Properties

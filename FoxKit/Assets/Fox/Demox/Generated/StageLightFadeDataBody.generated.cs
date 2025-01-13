@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Demox
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Demox/StageLightFadeDataBody")]
 	public partial class StageLightFadeDataBody : Fox.Core.DataBody
 	{
 		// ClassInfos

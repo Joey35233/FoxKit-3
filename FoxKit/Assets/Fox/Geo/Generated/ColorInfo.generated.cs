@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Geo
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Geo/ColorInfo")]
 	public partial class ColorInfo : Fox.Geo.MaterialInfoBase
 	{
 		// ClassInfos

@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Geo
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Geo/GeoGeomFile")]
 	public partial class GeoGeomFile : Fox.Core.RawFile
 	{
 		// ClassInfos

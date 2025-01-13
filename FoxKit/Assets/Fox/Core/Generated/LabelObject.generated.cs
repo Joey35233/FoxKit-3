@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Core
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxCore/LabelObject")]
 	public partial class LabelObject : Fox.Core.Entity
 	{
 		// ClassInfos

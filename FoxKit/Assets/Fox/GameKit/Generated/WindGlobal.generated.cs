@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.GameKit
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxGameKit/WindGlobal")]
 	public partial class WindGlobal : Fox.GameKit.EnvironmentGlobal
 	{
 		// ClassInfos

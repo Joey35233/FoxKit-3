@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.Effect
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppEffect/TppHiSpeedDustActor")]
 	public partial class TppHiSpeedDustActor : Fox.Core.Actor
 	{
 		// ClassInfos

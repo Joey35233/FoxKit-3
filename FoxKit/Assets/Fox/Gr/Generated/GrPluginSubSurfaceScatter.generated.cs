@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Gr
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Gr/GrPluginSubSurfaceScatter")]
 	public partial class GrPluginSubSurfaceScatter : Fox.Gr.GrRenderPlugin
 	{
 		// ClassInfos

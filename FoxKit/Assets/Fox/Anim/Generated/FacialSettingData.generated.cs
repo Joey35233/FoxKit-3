@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Anim
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Anim/FacialSettingData")]
 	public partial class FacialSettingData : Fox.Core.Data
 	{
 		// Properties

@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Core
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxCore/Int64Entity")]
 	public partial class Int64Entity : Fox.Core.PropertyValueEntity
 	{
 		// Properties

@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Gr
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Gr/GrPluginGlobalVolumetricFog")]
 	public partial class GrPluginGlobalVolumetricFog : Fox.Gr.GrRenderPlugin
 	{
 		// ClassInfos

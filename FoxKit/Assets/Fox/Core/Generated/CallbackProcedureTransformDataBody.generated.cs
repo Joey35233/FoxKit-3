@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Core
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxCore/CallbackProcedureTransformDataBody")]
 	public partial class CallbackProcedureTransformDataBody : Fox.Core.CallbackProcedureDataBody
 	{
 		// Properties

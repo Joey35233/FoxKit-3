@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Gr
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Gr/GrPluginWormhole")]
 	public partial class GrPluginWormhole : Fox.Gr.GrRenderPlugin
 	{
 		// ClassInfos

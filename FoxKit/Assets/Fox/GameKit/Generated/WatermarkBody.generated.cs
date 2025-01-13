@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.GameKit
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxGameKit/WatermarkBody")]
 	public partial class WatermarkBody : Fox.Core.DataBody
 	{
 		// ClassInfos

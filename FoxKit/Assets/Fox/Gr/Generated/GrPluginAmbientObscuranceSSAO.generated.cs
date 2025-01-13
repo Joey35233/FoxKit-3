@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Gr
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Gr/GrPluginAmbientObscuranceSSAO")]
 	public partial class GrPluginAmbientObscuranceSSAO : Fox.Gr.GrRenderPlugin
 	{
 		// ClassInfos

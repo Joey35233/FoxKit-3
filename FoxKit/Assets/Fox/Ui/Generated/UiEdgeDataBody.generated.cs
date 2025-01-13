@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Ui
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Ui/UiEdgeDataBody")]
 	public partial class UiEdgeDataBody : Fox.Core.DataBody
 	{
 		// Properties

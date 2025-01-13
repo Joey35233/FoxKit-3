@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Gr
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Gr/GrPluginColorCorrection")]
 	public partial class GrPluginColorCorrection : Fox.Gr.GrRenderPlugin
 	{
 		// ClassInfos

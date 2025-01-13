@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.Network
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppNetwork/NetworkInfo")]
 	public partial class NetworkInfo : Fox.Core.Entity
 	{
 		// Properties

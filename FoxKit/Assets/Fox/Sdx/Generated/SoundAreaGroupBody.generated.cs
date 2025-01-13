@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Sdx
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Sdx/SoundAreaGroupBody")]
 	public partial class SoundAreaGroupBody : Fox.Core.DataBody
 	{
 		// ClassInfos

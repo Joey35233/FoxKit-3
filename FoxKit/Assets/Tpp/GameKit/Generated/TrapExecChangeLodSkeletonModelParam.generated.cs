@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.GameKit
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppGameKit/TrapExecChangeLodSkeletonModelParam")]
 	public partial class TrapExecChangeLodSkeletonModelParam : Fox.Geo.GeoTrapModuleCallbackDataElement
 	{
 		// Properties

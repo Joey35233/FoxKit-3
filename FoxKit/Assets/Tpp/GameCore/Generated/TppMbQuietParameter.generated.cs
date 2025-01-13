@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.GameCore
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppGameCore/TppMbQuietParameter")]
 	public partial class TppMbQuietParameter : Fox.Core.DataElement
 	{
 		// Properties

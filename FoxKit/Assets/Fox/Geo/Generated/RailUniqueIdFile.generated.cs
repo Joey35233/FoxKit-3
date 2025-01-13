@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Geo
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Geo/RailUniqueIdFile")]
 	public partial class RailUniqueIdFile : Fox.Core.RawFile
 	{
 		// ClassInfos

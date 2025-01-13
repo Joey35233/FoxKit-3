@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.EdDemo
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("EdDemo/ChildrenIdConvertParameter")]
 	public partial class ChildrenIdConvertParameter : Fox.Demo.DemoParameter
 	{
 		// Properties

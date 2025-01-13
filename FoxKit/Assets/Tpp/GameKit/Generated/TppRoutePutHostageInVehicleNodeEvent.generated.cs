@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.GameKit
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppGameKit/TppRoutePutHostageInVehicleNodeEvent")]
 	public partial class TppRoutePutHostageInVehicleNodeEvent : Fox.GameService.GsRouteDataNodeEvent
 	{
 		// Properties

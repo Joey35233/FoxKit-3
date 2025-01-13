@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Core
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxCore/MaterialBody")]
 	public partial class MaterialBody : Fox.Core.DataBody
 	{
 		// ClassInfos

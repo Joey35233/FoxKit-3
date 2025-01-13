@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.UiScene
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("UiScene/UiPaletteDataBody")]
 	public partial class UiPaletteDataBody : Fox.Core.DataBody
 	{
 		// ClassInfos

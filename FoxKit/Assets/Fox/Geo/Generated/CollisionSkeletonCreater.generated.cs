@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Geo
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Geo/CollisionSkeletonCreater")]
 	public partial class CollisionSkeletonCreater : Fox.Core.Entity
 	{
 		// ClassInfos

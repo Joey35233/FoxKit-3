@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.Effect
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppEffect/TppWeatherRain")]
 	public partial class TppWeatherRain : Tpp.Effect.TppWeatherEffectBase
 	{
 		// ClassInfos

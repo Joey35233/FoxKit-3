@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.GameCore
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppGameCore/TppSnipePoint2Data")]
 	public partial class TppSnipePoint2Data : Fox.Core.TransformData
 	{
 		// Properties

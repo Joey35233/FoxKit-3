@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Core
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxCore/ConnectPointFile")]
 	public partial class ConnectPointFile : Fox.Core.RawFile
 	{
 		// ClassInfos

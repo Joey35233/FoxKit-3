@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Navx
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Navx/NavxAttributeInfo")]
 	public partial class NavxAttributeInfo : Fox.Core.DataElement
 	{
 		// Properties

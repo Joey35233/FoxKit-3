@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.Effect
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppEffect/TppPrimRiverModelParamTwoLayer")]
 	public partial class TppPrimRiverModelParamTwoLayer : Fox.Core.Data
 	{
 		// Properties

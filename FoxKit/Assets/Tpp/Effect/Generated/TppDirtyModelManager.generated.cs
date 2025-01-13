@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.Effect
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppEffect/TppDirtyModelManager")]
 	public partial class TppDirtyModelManager : Fox.Core.Entity
 	{
 		// ClassInfos

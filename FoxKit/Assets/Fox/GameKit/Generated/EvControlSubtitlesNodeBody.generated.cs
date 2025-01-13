@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.GameKit
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxGameKit/EvControlSubtitlesNodeBody")]
 	public partial class EvControlSubtitlesNodeBody : Fox.Ui.UiEventNodeBody
 	{
 		// ClassInfos

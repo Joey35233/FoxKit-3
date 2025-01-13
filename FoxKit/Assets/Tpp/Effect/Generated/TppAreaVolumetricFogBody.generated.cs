@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.Effect
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppEffect/TppAreaVolumetricFogBody")]
 	public partial class TppAreaVolumetricFogBody : Fox.Core.TransformDataBody
 	{
 		// ClassInfos

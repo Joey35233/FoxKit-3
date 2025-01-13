@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.GameKit
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxGameKit/StageBlockLowModel")]
 	public partial class StageBlockLowModel : Fox.Core.Data
 	{
 		// Properties

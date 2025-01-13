@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Gr
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Gr/GrPluginCloneDeferred")]
 	public partial class GrPluginCloneDeferred : Fox.Gr.GrPluginClone
 	{
 		// ClassInfos

@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.MotherBaseCore
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppMotherBaseCore/MotherBaseConstructDivisionLocatorBody")]
 	public partial class MotherBaseConstructDivisionLocatorBody : Fox.Core.TransformDataBody
 	{
 		// ClassInfos

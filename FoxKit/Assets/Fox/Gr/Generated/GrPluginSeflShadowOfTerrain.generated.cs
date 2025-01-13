@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Gr
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Gr/GrPluginSeflShadowOfTerrain")]
 	public partial class GrPluginSeflShadowOfTerrain : Fox.Gr.GrRenderPlugin
 	{
 		// ClassInfos

@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Ph
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Ph/PhShoulderConstraint")]
 	public partial class PhShoulderConstraint : Fox.Ph.PhConstraint
 	{
 		// Properties

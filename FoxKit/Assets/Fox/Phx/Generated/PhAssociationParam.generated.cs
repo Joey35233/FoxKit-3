@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Phx
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Phx/PhAssociationParam")]
 	public partial class PhAssociationParam : Fox.Core.Entity
 	{
 		// Properties

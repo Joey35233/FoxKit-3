@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Anim
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Anim/FacialMaskElement")]
 	public partial class FacialMaskElement : Fox.Core.DataElement
 	{
 		// Properties

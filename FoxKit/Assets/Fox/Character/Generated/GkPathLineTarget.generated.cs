@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Character
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Character/GkPathLineTarget")]
 	public partial class GkPathLineTarget : Fox.Graphx.GraphxPathData
 	{
 		// ClassInfos

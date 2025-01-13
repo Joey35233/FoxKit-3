@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Gr
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Gr/TerrainMaterialConfigration")]
 	public partial class TerrainMaterialConfigration : Fox.Core.Data
 	{
 		// Properties

@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Core
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxCore/PassiveBlockControllerData")]
 	public partial class PassiveBlockControllerData : Fox.Core.Data
 	{
 		// Properties

@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Nav
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Nav/NavNavFile")]
 	public partial class NavNavFile : Fox.Core.RawFile
 	{
 		// ClassInfos

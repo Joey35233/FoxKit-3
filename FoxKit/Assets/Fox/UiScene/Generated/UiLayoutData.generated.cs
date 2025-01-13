@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.UiScene
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("UiScene/UiLayoutData")]
 	public partial class UiLayoutData : Fox.Core.TransformData
 	{
 		// Properties

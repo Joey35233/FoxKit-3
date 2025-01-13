@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.GameKit
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppGameKit/TppGuardTargetDataBody")]
 	public partial class TppGuardTargetDataBody : Fox.Core.TransformDataBody
 	{
 		// ClassInfos

@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Navx
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Navx/NavxWorldGenerateParameter")]
 	public partial class NavxWorldGenerateParameter : Fox.Core.TransformData
 	{
 		// Properties

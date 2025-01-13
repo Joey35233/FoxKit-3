@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Grx
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Grx/ReflectionSettingBody")]
 	public partial class ReflectionSettingBody : Fox.Core.DataBody
 	{
 		// ClassInfos

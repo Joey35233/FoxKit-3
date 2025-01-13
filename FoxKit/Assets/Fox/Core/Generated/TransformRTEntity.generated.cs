@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Core
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxCore/TransformRTEntity")]
 	public partial class TransformRTEntity : Fox.Core.DataElement
 	{
 		// Properties

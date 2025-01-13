@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.EdDemo
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("EdDemo/TppTakePictureParameter")]
 	public partial class TppTakePictureParameter : Fox.Demo.DemoParameter
 	{
 		// ClassInfos

@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Geox
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Geox/GeoxCollisionFreeShapeBody")]
 	public partial class GeoxCollisionFreeShapeBody : Fox.Core.TransformDataBody
 	{
 		// ClassInfos

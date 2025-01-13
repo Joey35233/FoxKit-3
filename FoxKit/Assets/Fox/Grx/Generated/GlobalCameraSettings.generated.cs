@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Grx
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Grx/GlobalCameraSettings")]
 	public partial class GlobalCameraSettings : Fox.Core.Data
 	{
 		// Properties

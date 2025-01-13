@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.System
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppSystem/TppBlastOffenseTargetData")]
 	public partial class TppBlastOffenseTargetData : Tpp.System.TppOffenseTargetData
 	{
 		// ClassInfos

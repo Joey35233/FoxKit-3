@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.GameCore
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppGameCore/TppAnimalParameter")]
 	public partial class TppAnimalParameter : Fox.Core.DataElement
 	{
 		// Properties

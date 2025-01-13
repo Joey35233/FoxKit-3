@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.EdDemo
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("EdDemo/AvatarPhotoTextureLoadParameter")]
 	public partial class AvatarPhotoTextureLoadParameter : Fox.Demo.DemoParameter
 	{
 		// ClassInfos

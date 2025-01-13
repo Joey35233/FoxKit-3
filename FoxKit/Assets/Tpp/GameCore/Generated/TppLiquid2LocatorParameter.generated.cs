@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.GameCore
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppGameCore/TppLiquid2LocatorParameter")]
 	public partial class TppLiquid2LocatorParameter : Fox.Core.DataElement
 	{
 		// Properties

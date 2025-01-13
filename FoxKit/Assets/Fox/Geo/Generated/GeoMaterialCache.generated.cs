@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Geo
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Geo/GeoMaterialCache")]
 	public partial class GeoMaterialCache : Fox.Core.Entity
 	{
 		// ClassInfos

@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Core
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxCore/WideVector3StringMapPropertyDifference")]
 	public partial class WideVector3StringMapPropertyDifference : Fox.Core.PropertyDifference
 	{
 		// Properties

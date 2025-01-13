@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.Effect
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppEffect/TppCollectibleIndicationParam")]
 	public partial class TppCollectibleIndicationParam : Fox.Core.Data
 	{
 		// Properties

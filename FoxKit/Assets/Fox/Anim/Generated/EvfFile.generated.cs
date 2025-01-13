@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Anim
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Anim/EvfFile")]
 	public partial class EvfFile : Fox.Core.DataSetFile2
 	{
 		// ClassInfos

@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Anim
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Anim/RigFile")]
 	public partial class RigFile : Fox.Core.RawFile
 	{
 		// ClassInfos

@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.System
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppSystem/VideoPlayerMemoryBlock")]
 	public partial class VideoPlayerMemoryBlock : Fox.Core.Data
 	{
 		// Properties

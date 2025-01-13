@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.Ui
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppUi/HudCommonDataManager")]
 	public partial class HudCommonDataManager : Fox.Core.Entity
 	{
 		// ClassInfos

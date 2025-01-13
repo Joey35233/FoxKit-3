@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.GameKit
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxGameKit/EnvironmentParameter")]
 	public partial class EnvironmentParameter : Fox.Core.DataElement
 	{
 		// Properties

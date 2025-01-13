@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Geox
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Geox/GeoxCollisionPyraidFreeShape")]
 	public partial class GeoxCollisionPyraidFreeShape : Fox.Core.TransformData
 	{
 		// Properties

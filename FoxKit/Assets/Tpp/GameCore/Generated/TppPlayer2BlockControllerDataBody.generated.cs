@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.GameCore
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppGameCore/TppPlayer2BlockControllerDataBody")]
 	public partial class TppPlayer2BlockControllerDataBody : Fox.Core.DataBody
 	{
 		// ClassInfos

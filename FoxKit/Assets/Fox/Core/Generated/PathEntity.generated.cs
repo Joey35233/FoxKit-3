@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Core
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxCore/PathEntity")]
 	public partial class PathEntity : Fox.Core.PropertyValueEntity
 	{
 		// Properties

@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Phx
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Phx/PhVehicleNormalEngineParam")]
 	public partial class PhVehicleNormalEngineParam : Fox.Core.Entity
 	{
 		// Properties

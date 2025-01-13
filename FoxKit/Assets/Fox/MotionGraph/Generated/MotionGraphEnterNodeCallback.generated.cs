@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.MotionGraph
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("MotionGraph/MotionGraphEnterNodeCallback")]
 	public partial class MotionGraphEnterNodeCallback : Fox.Core.Entity
 	{
 		// ClassInfos

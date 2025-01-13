@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Core
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxCore/ColorArrayPropertyDifference")]
 	public partial class ColorArrayPropertyDifference : Fox.Core.PropertyDifference
 	{
 		// Properties

@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Gr
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Gr/GrDaemon")]
 	public partial class GrDaemon : Fox.Core.Actor
 	{
 		// ClassInfos

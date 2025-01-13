@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.GameService
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("GameService/GsRouteDataEdge")]
 	public partial class GsRouteDataEdge : Fox.Graphx.GraphxSpatialGraphDataEdge
 	{
 		// Properties

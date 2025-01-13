@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.Ui
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppUi/MbdvcBootBody")]
 	public partial class MbdvcBootBody : Fox.Core.DataBody
 	{
 		// ClassInfos

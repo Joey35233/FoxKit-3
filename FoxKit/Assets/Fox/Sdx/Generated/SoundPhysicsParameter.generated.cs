@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Sdx
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Sdx/SoundPhysicsParameter")]
 	public partial class SoundPhysicsParameter : Fox.Core.Data
 	{
 		// Properties

@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.GameKit
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppGameKit/TppRoutePermitToGetOffNodeEvent")]
 	public partial class TppRoutePermitToGetOffNodeEvent : Fox.GameService.GsRouteDataNodeEvent
 	{
 		// Properties

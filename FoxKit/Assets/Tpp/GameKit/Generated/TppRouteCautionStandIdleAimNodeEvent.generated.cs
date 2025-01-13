@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.GameKit
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppGameKit/TppRouteCautionStandIdleAimNodeEvent")]
 	public partial class TppRouteCautionStandIdleAimNodeEvent : Fox.GameService.GsRouteDataNodeEvent
 	{
 		// Properties

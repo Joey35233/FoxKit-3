@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.GameKit
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxGameKit/TerrainRenderBody")]
 	public partial class TerrainRenderBody : Fox.Core.TransformDataBody
 	{
 		// ClassInfos

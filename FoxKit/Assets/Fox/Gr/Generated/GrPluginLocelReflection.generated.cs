@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Gr
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Gr/GrPluginLocelReflection")]
 	public partial class GrPluginLocelReflection : Fox.Gr.GrRenderPlugin
 	{
 		// ClassInfos

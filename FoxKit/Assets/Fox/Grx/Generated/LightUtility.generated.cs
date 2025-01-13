@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Grx
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Grx/LightUtility")]
 	public partial class LightUtility : Fox.Core.Entity
 	{
 		// ClassInfos

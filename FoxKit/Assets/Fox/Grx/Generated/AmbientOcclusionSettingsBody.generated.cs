@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Grx
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Grx/AmbientOcclusionSettingsBody")]
 	public partial class AmbientOcclusionSettingsBody : Fox.Core.DataBody
 	{
 		// ClassInfos

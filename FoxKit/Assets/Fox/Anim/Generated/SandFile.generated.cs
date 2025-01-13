@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Anim
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Anim/SandFile")]
 	public partial class SandFile : Fox.Core.RawFile
 	{
 		// ClassInfos

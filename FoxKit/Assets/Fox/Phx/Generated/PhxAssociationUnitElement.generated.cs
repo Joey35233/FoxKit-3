@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Phx
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Phx/PhxAssociationUnitElement")]
 	public partial class PhxAssociationUnitElement : Fox.Core.DataElement
 	{
 		// Properties

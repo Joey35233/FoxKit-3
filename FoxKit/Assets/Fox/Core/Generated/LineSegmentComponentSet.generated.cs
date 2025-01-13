@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Core
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxCore/LineSegmentComponentSet")]
 	public partial class LineSegmentComponentSet : Fox.Core.ComponentSet
 	{
 		// ClassInfos

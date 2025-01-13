@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.GameKit
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppGameKit/TppRouteSitInChairNodeEvent")]
 	public partial class TppRouteSitInChairNodeEvent : Fox.GameService.GsRouteDataNodeEvent
 	{
 		// Properties

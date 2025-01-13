@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Demox
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Demox/DemoFv2ResourceMemory")]
 	public partial class DemoFv2ResourceMemory : Fox.Core.DataElement
 	{
 		// Properties

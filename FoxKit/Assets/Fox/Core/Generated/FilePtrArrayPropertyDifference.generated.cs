@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Core
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxCore/FilePtrArrayPropertyDifference")]
 	public partial class FilePtrArrayPropertyDifference : Fox.Core.PropertyDifference
 	{
 		// Properties

@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.Effect
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppEffect/TppDropletsDataBody")]
 	public partial class TppDropletsDataBody : Fox.Core.DataBody
 	{
 		// ClassInfos

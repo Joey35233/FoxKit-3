@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Geox
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Geox/GeoxBoundingVolumeFileParameter")]
 	public partial class GeoxBoundingVolumeFileParameter : Fox.Core.Data
 	{
 		// Properties

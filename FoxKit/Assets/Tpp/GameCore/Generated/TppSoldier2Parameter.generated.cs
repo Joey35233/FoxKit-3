@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.GameCore
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppGameCore/TppSoldier2Parameter")]
 	public partial class TppSoldier2Parameter : Fox.Core.DataElement
 	{
 		// Properties

@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Animx
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Animx/PluginAngleLimit")]
 	public partial class PluginAngleLimit 
 	{
 		// Properties

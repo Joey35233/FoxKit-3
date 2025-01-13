@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.GameKit
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppGameKit/TppPermanentGimmickEventAnimationParameter")]
 	public partial class TppPermanentGimmickEventAnimationParameter : Fox.Core.DataElement
 	{
 		// Properties

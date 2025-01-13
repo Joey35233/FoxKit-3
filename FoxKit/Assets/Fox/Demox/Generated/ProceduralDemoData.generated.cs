@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Demox
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Demox/ProceduralDemoData")]
 	public partial class ProceduralDemoData : Fox.Core.TransformData
 	{
 		// Properties

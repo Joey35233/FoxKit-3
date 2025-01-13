@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Core
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxCore/EditableBlockPackageBase")]
 	public partial class EditableBlockPackageBase : Fox.Core.Entity
 	{
 		// ClassInfos

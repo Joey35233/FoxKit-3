@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Core
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxCore/Vector3Entity")]
 	public partial class Vector3Entity : Fox.Core.PropertyValueEntity
 	{
 		// Properties

@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.GameKit
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppGameKit/TppPermanentGimmickWaterTowerParameter")]
 	public partial class TppPermanentGimmickWaterTowerParameter : Fox.Core.DataElement
 	{
 		// Properties

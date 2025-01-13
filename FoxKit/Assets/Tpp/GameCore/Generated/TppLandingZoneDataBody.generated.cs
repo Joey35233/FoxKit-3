@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.GameCore
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppGameCore/TppLandingZoneDataBody")]
 	public partial class TppLandingZoneDataBody : Fox.Core.TransformDataBody
 	{
 		// ClassInfos

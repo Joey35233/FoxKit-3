@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.Effect
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppEffect/TppCigaretteSmokeGlobalManager")]
 	public partial class TppCigaretteSmokeGlobalManager : Fox.Core.Entity
 	{
 		// ClassInfos

@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.GameKit
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxGameKit/StageLightFadeData")]
 	public partial class StageLightFadeData : Fox.Core.Data
 	{
 		// Properties

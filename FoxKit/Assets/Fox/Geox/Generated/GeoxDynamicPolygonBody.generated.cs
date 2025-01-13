@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Geox
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Geox/GeoxDynamicPolygonBody")]
 	public partial class GeoxDynamicPolygonBody : Fox.Core.TransformDataBody
 	{
 		// ClassInfos

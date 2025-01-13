@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.GameKit
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppGameKit/TppPermanentGimmickGatlingGunParameter")]
 	public partial class TppPermanentGimmickGatlingGunParameter : Fox.Core.DataElement
 	{
 		// Properties

@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Geo
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Geo/GeoPathFixedPackFile")]
 	public partial class GeoPathFixedPackFile : Fox.Core.RawFile
 	{
 		// ClassInfos

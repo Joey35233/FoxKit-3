@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Geox
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Geox/GeoxTrapAreaPath")]
 	public partial class GeoxTrapAreaPath : Fox.Graphx.GraphxPathData
 	{
 		// Properties

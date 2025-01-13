@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.Sound
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppSound/TppAreaEdgeParameter")]
 	public partial class TppAreaEdgeParameter : Fox.Sdx.SoundAreaEdgeParameter
 	{
 		// Properties

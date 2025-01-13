@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Core
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxCore/Matrix4ArrayPropertyDifference")]
 	public partial class Matrix4ArrayPropertyDifference : Fox.Core.PropertyDifference
 	{
 		// Properties

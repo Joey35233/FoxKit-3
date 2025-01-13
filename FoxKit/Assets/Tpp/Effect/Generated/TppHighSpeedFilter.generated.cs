@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.Effect
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppEffect/TppHighSpeedFilter")]
 	public partial class TppHighSpeedFilter : Fox.Core.Entity
 	{
 		// ClassInfos

@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.GameCore
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppGameCore/TppWolfParameter")]
 	public partial class TppWolfParameter : Fox.Core.DataElement
 	{
 		// Properties

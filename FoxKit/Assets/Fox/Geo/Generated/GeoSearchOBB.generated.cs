@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Geo
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Geo/GeoSearchOBB")]
 	public partial class GeoSearchOBB : Fox.Geo.GeoSearchObject
 	{
 		// Properties

@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Core
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxCore/DataSetDifference")]
 	public partial class DataSetDifference : Fox.Core.Entity
 	{
 		// Properties

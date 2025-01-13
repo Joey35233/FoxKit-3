@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.GameKit
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppGameKit/TppRouteUseFlashLightAlwaysNodeEvent")]
 	public partial class TppRouteUseFlashLightAlwaysNodeEvent : Fox.GameService.GsRouteDataNodeEvent
 	{
 		// Properties

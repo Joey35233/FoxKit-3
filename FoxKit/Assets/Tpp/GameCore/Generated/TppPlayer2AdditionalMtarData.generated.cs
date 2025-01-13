@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.GameCore
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppGameCore/TppPlayer2AdditionalMtarData")]
 	public partial class TppPlayer2AdditionalMtarData : Fox.Core.Data
 	{
 		// Properties

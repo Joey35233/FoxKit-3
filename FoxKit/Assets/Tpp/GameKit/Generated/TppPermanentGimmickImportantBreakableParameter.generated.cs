@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.GameKit
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppGameKit/TppPermanentGimmickImportantBreakableParameter")]
 	public partial class TppPermanentGimmickImportantBreakableParameter : Fox.Core.DataElement
 	{
 		// Properties

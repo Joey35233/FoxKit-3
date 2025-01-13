@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.GameKit
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppGameKit/EmblemBlender")]
 	public partial class EmblemBlender : Fox.Core.Data
 	{
 		// ClassInfos

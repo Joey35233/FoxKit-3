@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.Effect
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppEffect/TppBrainDamagedFilter")]
 	public partial class TppBrainDamagedFilter : Fox.Core.Entity
 	{
 		// ClassInfos

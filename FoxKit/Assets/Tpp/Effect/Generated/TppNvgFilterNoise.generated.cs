@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.Effect
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppEffect/TppNvgFilterNoise")]
 	public partial class TppNvgFilterNoise : Fox.Core.Data
 	{
 		// Properties

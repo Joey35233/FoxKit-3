@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Gr
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Gr/GrGraphicsSettingManager")]
 	public partial class GrGraphicsSettingManager : Fox.Core.Entity
 	{
 		// ClassInfos

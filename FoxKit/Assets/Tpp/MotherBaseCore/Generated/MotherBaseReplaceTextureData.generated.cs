@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.MotherBaseCore
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppMotherBaseCore/MotherBaseReplaceTextureData")]
 	public partial class MotherBaseReplaceTextureData : Fox.Core.Data
 	{
 		// Properties

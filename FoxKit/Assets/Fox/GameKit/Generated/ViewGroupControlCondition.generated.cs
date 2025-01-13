@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.GameKit
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxGameKit/ViewGroupControlCondition")]
 	public partial class ViewGroupControlCondition : Fox.Core.Data
 	{
 		// Properties

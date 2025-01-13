@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Anim
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Anim/MtarFile")]
 	public partial class MtarFile : Fox.Core.RawFile
 	{
 		// ClassInfos

@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.Effect
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppEffect/TppFourierOceanDataBody")]
 	public partial class TppFourierOceanDataBody : Fox.Core.DataBody
 	{
 		// ClassInfos

@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.PartsBuilder
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("PartsBuilder/SoundDescription")]
 	public partial class SoundDescription : Fox.PartsBuilder.PartDescription
 	{
 		// Properties

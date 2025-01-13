@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.GameCore
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppGameCore/TppBearLocatorParameter")]
 	public partial class TppBearLocatorParameter : Fox.Core.DataElement
 	{
 		// Properties

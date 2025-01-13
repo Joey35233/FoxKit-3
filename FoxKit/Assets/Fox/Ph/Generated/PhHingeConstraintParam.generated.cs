@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Ph
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Ph/PhHingeConstraintParam")]
 	public partial class PhHingeConstraintParam : Fox.Ph.PhConstraintParam
 	{
 		// Properties

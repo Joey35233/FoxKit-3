@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Core
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxCore/BlockScriptBody")]
 	public partial class BlockScriptBody : Fox.Core.DataBody
 	{
 		// ClassInfos

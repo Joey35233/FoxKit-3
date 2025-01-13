@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.Ui
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppUi/EndingSettingFile")]
 	public partial class EndingSettingFile : Fox.Core.RawFile
 	{
 		// ClassInfos

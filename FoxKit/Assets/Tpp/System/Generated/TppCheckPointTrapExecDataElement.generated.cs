@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.System
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppSystem/TppCheckPointTrapExecDataElement")]
 	public partial class TppCheckPointTrapExecDataElement : Fox.Geo.GeoTrapModuleCallbackDataElement
 	{
 		// Properties

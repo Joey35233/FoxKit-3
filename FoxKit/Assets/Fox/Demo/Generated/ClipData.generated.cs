@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Demo
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Demo/ClipData")]
 	public partial class ClipData : Fox.Core.DataElement
 	{
 		// Properties

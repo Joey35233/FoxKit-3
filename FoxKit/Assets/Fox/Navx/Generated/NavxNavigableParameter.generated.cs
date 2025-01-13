@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Navx
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Navx/NavxNavigableParameter")]
 	public partial class NavxNavigableParameter : Fox.Core.DataElement
 	{
 		// Properties

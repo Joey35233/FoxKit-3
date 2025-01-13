@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.MotherBaseCore
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppMotherBaseCore/MotherBaseConstructDataBody")]
 	public partial class MotherBaseConstructDataBody : Fox.Core.TransformDataBody
 	{
 		// ClassInfos

@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Demo
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Demo/DemoControlCharacterDesc")]
 	public partial class DemoControlCharacterDesc : Fox.Core.DataElement
 	{
 		// Properties

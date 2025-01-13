@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Navx
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Navx/NavxBounderLocator")]
 	public partial class NavxBounderLocator : Fox.Core.TransformData
 	{
 		// Properties

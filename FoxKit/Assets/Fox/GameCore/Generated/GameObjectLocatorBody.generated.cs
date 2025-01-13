@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.GameCore
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("GameCore/GameObjectLocatorBody")]
 	public partial class GameObjectLocatorBody : Fox.Core.TransformDataBody
 	{
 		// ClassInfos

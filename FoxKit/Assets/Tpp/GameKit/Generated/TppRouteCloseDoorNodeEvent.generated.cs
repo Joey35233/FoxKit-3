@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.GameKit
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppGameKit/TppRouteCloseDoorNodeEvent")]
 	public partial class TppRouteCloseDoorNodeEvent : Fox.GameService.GsRouteDataNodeEvent
 	{
 		// Properties

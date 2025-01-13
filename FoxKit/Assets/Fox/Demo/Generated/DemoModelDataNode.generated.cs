@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Demo
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Demo/DemoModelDataNode")]
 	public partial class DemoModelDataNode : Fox.Core.Data
 	{
 		// Properties

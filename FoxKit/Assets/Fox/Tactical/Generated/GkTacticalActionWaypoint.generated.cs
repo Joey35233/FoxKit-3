@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Tactical
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Tactical/GkTacticalActionWaypoint")]
 	public partial class GkTacticalActionWaypoint : Fox.Core.DataElement
 	{
 		// Properties

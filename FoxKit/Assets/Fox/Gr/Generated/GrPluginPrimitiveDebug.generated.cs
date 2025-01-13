@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Gr
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Gr/GrPluginPrimitiveDebug")]
 	public partial class GrPluginPrimitiveDebug : Fox.Gr.GrPluginPrimitiveUnfiltered
 	{
 		// ClassInfos

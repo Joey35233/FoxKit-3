@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Core
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxCore/Entity")]
 	public partial class Entity 
 	{
 		// ClassInfos
@@ -44,7 +44,6 @@ namespace Fox.Core
 					foreach (var dynamicProperty in gameObject.GetComponents<DynamicProperty>())
 						if (dynamicProperty.Name == propertyName)
 							return dynamicProperty.GetValue();
-					
 					throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
 			}
 		}
@@ -57,7 +56,6 @@ namespace Fox.Core
 					foreach (var dynamicProperty in gameObject.GetComponents<DynamicProperty>())
 						if (dynamicProperty.Name == propertyName && dynamicProperty.GetContainerType() != PropertyInfo.ContainerType.StringMap)
 							return dynamicProperty.GetElement(index);
-					
 					throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
 			}
 		}
@@ -70,7 +68,6 @@ namespace Fox.Core
 					foreach (var dynamicProperty in gameObject.GetComponents<DynamicProperty>())
 						if (dynamicProperty.Name == propertyName && dynamicProperty.GetContainerType() == PropertyInfo.ContainerType.StringMap)
 							return dynamicProperty.GetElement(key);
-					
 					throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
 			}
 		}
@@ -95,7 +92,6 @@ namespace Fox.Core
 							dynamicProperty.SetElement(index, value);
 							return;
 						}
-
 					throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
 			}
 		}
@@ -111,7 +107,6 @@ namespace Fox.Core
 							dynamicProperty.SetElement(key, value);
 							return;
 						}
-
 					throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
 			}
 		}

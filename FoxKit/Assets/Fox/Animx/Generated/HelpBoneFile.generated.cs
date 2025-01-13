@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Animx
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Animx/HelpBoneFile")]
 	public partial class HelpBoneFile : Fox.Core.RawFile
 	{
 		// ClassInfos

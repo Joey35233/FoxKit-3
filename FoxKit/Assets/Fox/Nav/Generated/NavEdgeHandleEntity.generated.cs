@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Nav
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Nav/NavEdgeHandleEntity")]
 	public partial class NavEdgeHandleEntity : Fox.Nav.NavNavigationGraphHandleEntity
 	{
 		// Properties

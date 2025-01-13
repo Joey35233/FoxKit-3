@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Core
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxCore/TagContainerEntity")]
 	public partial class TagContainerEntity : Fox.Core.Entity
 	{
 		// Properties

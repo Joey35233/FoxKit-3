@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.GameCore
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppGameCore/TppHorse2forVrParameter")]
 	public partial class TppHorse2forVrParameter : Fox.Core.DataElement
 	{
 		// Properties

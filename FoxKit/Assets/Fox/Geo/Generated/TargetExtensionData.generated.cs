@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Geo
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Geo/TargetExtensionData")]
 	public partial class TargetExtensionData : Fox.Core.Entity
 	{
 		// ClassInfos

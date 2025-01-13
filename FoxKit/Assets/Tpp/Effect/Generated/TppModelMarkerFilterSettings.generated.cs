@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.Effect
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppEffect/TppModelMarkerFilterSettings")]
 	public partial class TppModelMarkerFilterSettings : Fox.Core.Data
 	{
 		// Properties

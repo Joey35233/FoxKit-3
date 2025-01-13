@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Core
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxCore/BlockGroup")]
 	public partial class BlockGroup : Fox.Core.DataBody
 	{
 		// ClassInfos

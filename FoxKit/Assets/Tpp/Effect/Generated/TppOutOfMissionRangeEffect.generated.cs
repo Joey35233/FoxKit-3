@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.Effect
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppEffect/TppOutOfMissionRangeEffect")]
 	public partial class TppOutOfMissionRangeEffect : Fox.Core.Data
 	{
 		// Properties

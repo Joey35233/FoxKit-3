@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.PartsBuilder
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("PartsBuilder/PhysicsDescription")]
 	public partial class PhysicsDescription : Fox.PartsBuilder.PartDescription
 	{
 		// Properties

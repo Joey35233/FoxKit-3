@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Grx
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Grx/OccluderArrayBody")]
 	public partial class OccluderArrayBody : Fox.Core.TransformDataBody
 	{
 		// ClassInfos

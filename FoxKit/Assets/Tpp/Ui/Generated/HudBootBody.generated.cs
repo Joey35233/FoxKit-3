@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.Ui
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppUi/HudBootBody")]
 	public partial class HudBootBody : Fox.Core.DataBody
 	{
 		// ClassInfos

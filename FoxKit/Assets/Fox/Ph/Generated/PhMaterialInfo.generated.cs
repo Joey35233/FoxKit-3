@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Ph
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Ph/PhMaterialInfo")]
 	public partial class PhMaterialInfo : Fox.Geo.MaterialInfoBase
 	{
 		// Properties

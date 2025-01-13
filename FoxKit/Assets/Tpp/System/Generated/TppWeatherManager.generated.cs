@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.System
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppSystem/TppWeatherManager")]
 	public partial class TppWeatherManager : Fox.Core.Entity
 	{
 		// ClassInfos

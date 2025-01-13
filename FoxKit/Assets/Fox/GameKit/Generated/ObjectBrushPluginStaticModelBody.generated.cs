@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.GameKit
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxGameKit/ObjectBrushPluginStaticModelBody")]
 	public partial class ObjectBrushPluginStaticModelBody : Fox.GameKit.ObjectBrushPluginBody
 	{
 		// ClassInfos

@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.Effect
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppEffect/TppMarshModelPrimitiveBody")]
 	public partial class TppMarshModelPrimitiveBody : Fox.Core.DataBody
 	{
 		// ClassInfos

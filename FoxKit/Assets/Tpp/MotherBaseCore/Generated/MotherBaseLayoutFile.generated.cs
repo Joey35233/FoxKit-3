@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.MotherBaseCore
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppMotherBaseCore/MotherBaseLayoutFile")]
 	public partial class MotherBaseLayoutFile : Fox.Core.RawFile
 	{
 		// ClassInfos

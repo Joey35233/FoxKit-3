@@ -118,3 +118,6 @@ class EntityInfo:
 
     def get_namespace_without_prefix(self):
         return remove_prefix(remove_prefix(self.namespace, "Tpp"), "Fox")
+    
+    def get_add_component_name(self):
+        return f'{self.namespace}/{self.name}'

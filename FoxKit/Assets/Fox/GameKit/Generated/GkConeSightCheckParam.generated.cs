@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.GameKit
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxGameKit/GkConeSightCheckParam")]
 	public partial class GkConeSightCheckParam : Fox.GameKit.GkSightCheckParam
 	{
 		// Properties

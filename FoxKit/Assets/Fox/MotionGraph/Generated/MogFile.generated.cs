@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.MotionGraph
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("MotionGraph/MogFile")]
 	public partial class MogFile : Fox.Core.RawFile
 	{
 		// ClassInfos

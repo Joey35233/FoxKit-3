@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Core
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxCore/FloatEntity")]
 	public partial class FloatEntity : Fox.Core.PropertyValueEntity
 	{
 		// Properties

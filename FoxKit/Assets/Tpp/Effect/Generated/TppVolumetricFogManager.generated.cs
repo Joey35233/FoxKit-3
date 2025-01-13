@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.Effect
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppEffect/TppVolumetricFogManager")]
 	public partial class TppVolumetricFogManager : Fox.Core.Entity
 	{
 		// ClassInfos

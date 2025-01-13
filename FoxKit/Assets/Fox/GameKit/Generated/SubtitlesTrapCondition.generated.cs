@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.GameKit
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxGameKit/SubtitlesTrapCondition")]
 	public partial class SubtitlesTrapCondition : Fox.Geo.GeoTrapCondition
 	{
 		// Properties

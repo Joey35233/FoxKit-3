@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Geo
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Geo/CollisionGeomSet")]
 	public partial class CollisionGeomSet : Fox.Geo.CollisionObject
 	{
 		// ClassInfos

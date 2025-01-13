@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Navx
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Navx/NavxFillNavVolume")]
 	public partial class NavxFillNavVolume : Fox.Core.TransformData
 	{
 		// Properties

@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Geo
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Geo/GeoTrapBody")]
 	public partial class GeoTrapBody : Fox.Core.TransformDataBody
 	{
 		// Properties

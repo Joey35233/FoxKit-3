@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.GameKit
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxGameKit/CameraPriority")]
 	public partial class CameraPriority : Fox.Core.Entity
 	{
 		// ClassInfos

@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Core
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxCore/PivotTransformEntity")]
 	public partial class PivotTransformEntity : Fox.Core.DataElement
 	{
 		// Properties

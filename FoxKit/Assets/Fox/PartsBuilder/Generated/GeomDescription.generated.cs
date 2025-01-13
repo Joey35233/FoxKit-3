@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.PartsBuilder
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("PartsBuilder/GeomDescription")]
 	public partial class GeomDescription : Fox.PartsBuilder.PartDescription
 	{
 		// Properties

@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.GameService
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("GameService/GsRouteDataRouteEventAimPoint")]
 	public partial class GsRouteDataRouteEventAimPoint : Fox.Core.DataElement
 	{
 		// ClassInfos

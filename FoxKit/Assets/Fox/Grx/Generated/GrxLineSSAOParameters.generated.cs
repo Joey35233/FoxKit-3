@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Grx
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Grx/GrxLineSSAOParameters")]
 	public partial class GrxLineSSAOParameters : Fox.Core.Entity
 	{
 		// Properties

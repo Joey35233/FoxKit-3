@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.Effect
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppEffect/TppNightVisionParam")]
 	public partial class TppNightVisionParam : Fox.Core.DataElement
 	{
 		// Properties

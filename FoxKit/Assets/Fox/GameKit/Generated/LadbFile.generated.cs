@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.GameKit
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxGameKit/LadbFile")]
 	public partial class LadbFile : Fox.Core.RawFile
 	{
 		// ClassInfos

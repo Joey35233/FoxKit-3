@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.GameCore
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppGameCore/TppHidePointDataBody")]
 	public partial class TppHidePointDataBody : Fox.Core.TransformDataBody
 	{
 		// ClassInfos

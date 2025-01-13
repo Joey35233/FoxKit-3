@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Gr
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Gr/GrPluginMaterialLayer")]
 	public partial class GrPluginMaterialLayer : Fox.Gr.GrRenderPlugin
 	{
 		// ClassInfos

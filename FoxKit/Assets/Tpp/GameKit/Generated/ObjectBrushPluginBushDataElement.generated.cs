@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.GameKit
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppGameKit/ObjectBrushPluginBushDataElement")]
 	public partial class ObjectBrushPluginBushDataElement : Fox.Core.DataElement
 	{
 		// Properties

@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.System
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppSystem/TppDefaultParameterContainer")]
 	public partial class TppDefaultParameterContainer : Fox.Core.Data
 	{
 		// Properties

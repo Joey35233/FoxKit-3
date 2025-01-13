@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Ui
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Ui/UiOperationNodeBody")]
 	public partial class UiOperationNodeBody : Fox.Ui.UiNodeDataBody
 	{
 		// ClassInfos

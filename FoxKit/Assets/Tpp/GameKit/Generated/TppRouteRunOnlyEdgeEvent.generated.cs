@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.GameKit
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppGameKit/TppRouteRunOnlyEdgeEvent")]
 	public partial class TppRouteRunOnlyEdgeEvent : Fox.GameService.GsRouteDataEdgeEvent
 	{
 		// Properties

@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.GameKit
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxGameKit/TargetHitInfoCollector")]
 	public partial class TargetHitInfoCollector : Fox.Core.Entity
 	{
 		// ClassInfos

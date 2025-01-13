@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Core
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxCore/QuatArrayPropertyDifference")]
 	public partial class QuatArrayPropertyDifference : Fox.Core.PropertyDifference
 	{
 		// Properties

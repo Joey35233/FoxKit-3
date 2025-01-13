@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Gr
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Gr/GrPluginOpticalCamouflage")]
 	public partial class GrPluginOpticalCamouflage : Fox.Gr.GrRenderPlugin
 	{
 		// ClassInfos

@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Ui
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Ui/UiFontGroupData")]
 	public partial class UiFontGroupData : Fox.Core.Data
 	{
 		// Properties

@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.GameKit
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxGameKit/GkTargetHitInfo")]
 	public partial class GkTargetHitInfo : Fox.Core.Entity
 	{
 		// Properties

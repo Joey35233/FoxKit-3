@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.GameCore
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppGameCore/TppSpeechFile")]
 	public partial class TppSpeechFile : Fox.Core.RawFile
 	{
 		// ClassInfos

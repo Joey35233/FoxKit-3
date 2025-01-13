@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.GameKit
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxGameKit/StaticModelArrayLinkTarget")]
 	public partial class StaticModelArrayLinkTarget : Fox.Core.Data
 	{
 		// Properties

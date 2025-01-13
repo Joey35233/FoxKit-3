@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Ph
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Ph/PhBallsocketConstraint")]
 	public partial class PhBallsocketConstraint : Fox.Ph.PhConstraint
 	{
 		// Properties

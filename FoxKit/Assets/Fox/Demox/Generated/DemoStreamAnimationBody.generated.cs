@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Demox
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Demox/DemoStreamAnimationBody")]
 	public partial class DemoStreamAnimationBody : Fox.Core.DataBody
 	{
 		// ClassInfos

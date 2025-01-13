@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.PartsBuilder
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("PartsBuilder/GeomSkeletonDescription")]
 	public partial class GeomSkeletonDescription : Fox.PartsBuilder.PartDescription
 	{
 		// Properties

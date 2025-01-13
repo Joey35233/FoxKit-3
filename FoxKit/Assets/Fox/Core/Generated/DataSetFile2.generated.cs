@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Core
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxCore/DataSetFile2")]
 	public partial class DataSetFile2 : Fox.Core.EntityFile
 	{
 		// Properties

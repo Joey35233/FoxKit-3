@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Core
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxCore/Matrix4Entity")]
 	public partial class Matrix4Entity : Fox.Core.PropertyValueEntity
 	{
 		// Properties

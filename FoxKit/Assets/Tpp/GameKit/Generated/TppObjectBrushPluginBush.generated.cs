@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.GameKit
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppGameKit/TppObjectBrushPluginBush")]
 	public partial class TppObjectBrushPluginBush : Fox.GameKit.ObjectBrushPluginClone
 	{
 		// Properties

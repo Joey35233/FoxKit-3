@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.Radio
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppRadio/RadioData")]
 	public partial class RadioData : Fox.Core.Data
 	{
 		// Properties

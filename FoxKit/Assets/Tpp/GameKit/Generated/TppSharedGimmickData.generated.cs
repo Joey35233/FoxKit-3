@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.GameKit
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppGameKit/TppSharedGimmickData")]
 	public partial class TppSharedGimmickData : Fox.Core.Data
 	{
 		// Properties

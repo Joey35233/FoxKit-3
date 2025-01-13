@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Gr
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Gr/GrViewportColorCorrectionParameters")]
 	public partial class GrViewportColorCorrectionParameters : Fox.Gr.GrViewportParameter
 	{
 		// ClassInfos

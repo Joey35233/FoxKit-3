@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.Effect
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppEffect/TppSkySimTimeUpdater")]
 	public partial class TppSkySimTimeUpdater : Tpp.Effect.TppWeatherEffectBase
 	{
 		// ClassInfos

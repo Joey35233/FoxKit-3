@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.Effect
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppEffect/TppRainFilterBody")]
 	public partial class TppRainFilterBody : Fox.Core.DataBody
 	{
 		// ClassInfos

@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.GameKit
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppGameKit/TrapCheckCharacterFilterParam")]
 	public partial class TrapCheckCharacterFilterParam : Fox.Geo.GeoTrapModuleCallbackDataElement
 	{
 		// Properties

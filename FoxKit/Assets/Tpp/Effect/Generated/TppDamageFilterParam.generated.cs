@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.Effect
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppEffect/TppDamageFilterParam")]
 	public partial class TppDamageFilterParam : Fox.Core.TransformData
 	{
 		// Properties

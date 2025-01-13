@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.GameKit
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppGameKit/TppRouteMoveSlowEdgeEvent")]
 	public partial class TppRouteMoveSlowEdgeEvent : Fox.GameService.GsRouteDataEdgeEvent
 	{
 		// Properties

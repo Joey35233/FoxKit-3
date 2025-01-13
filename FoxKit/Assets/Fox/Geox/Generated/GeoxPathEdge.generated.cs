@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Geox
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Geox/GeoxPathEdge")]
 	public partial class GeoxPathEdge : Fox.Graphx.GraphxSpatialGraphDataEdge
 	{
 		// Properties

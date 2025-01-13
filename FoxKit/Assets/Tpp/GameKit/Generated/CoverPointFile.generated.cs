@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.GameKit
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppGameKit/CoverPointFile")]
 	public partial class CoverPointFile : Fox.Core.RawFile
 	{
 		// ClassInfos

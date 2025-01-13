@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.GameKit
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppGameKit/TppCoverPointFileTransform")]
 	public partial class TppCoverPointFileTransform : Fox.Core.TransformData
 	{
 		// Properties

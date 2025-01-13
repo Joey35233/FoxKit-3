@@ -12,7 +12,7 @@ using Fox;
 
 namespace Tpp.GameKit
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppGameKit/BushOffenseTargetData")]
 	public partial class BushOffenseTargetData : Fox.Geo.TargetExtensionData
 	{
 		// Properties
