@@ -162,20 +162,4 @@ namespace Fox.EdCore
         public void SetLabel(string label) => this.label = label;
         public Label GetLabelElement() => this.labelElement;
     }
-
-    // [CustomPropertyDrawer(typeof(byte))]
-    // public class UInt8Drawer : PropertyDrawer
-    // {
-    //     public override VisualElement CreatePropertyGUI(SerializedProperty property)
-    //     {
-    //         var field = new UInt8Field(property.name);
-    //         field.BindProperty(property);
-    //
-    //         field.labelElement.AddToClassList(PropertyField.labelUssClassName);
-    //         field.visualInput.AddToClassList(PropertyField.inputUssClassName);
-    //         field.AddToClassList(BaseField<byte>.alignedFieldUssClassName);
-    //
-    //         return field;
-    //     }
-    // }
 }

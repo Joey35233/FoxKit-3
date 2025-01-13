@@ -45,20 +45,4 @@ namespace Fox.EdCore
         public void SetLabel(string label) => this.label = label;
         public Label GetLabelElement() => this.labelElement;
     }
-
-    [CustomPropertyDrawer(typeof(string))]
-    public class StringDrawer : PropertyDrawer
-    {
-        public override VisualElement CreatePropertyGUI(SerializedProperty property)
-        {
-            var field = new StringField(property.name);
-            field.BindProperty(property);
-
-            field.labelElement.AddToClassList(PropertyField.labelUssClassName);
-            field.visualInput.AddToClassList(PropertyField.inputUssClassName);
-            field.AddToClassList(BaseField<string>.alignedFieldUssClassName);
-
-            return field;
-        }
-    }
 }

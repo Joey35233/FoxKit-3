@@ -212,27 +212,4 @@ namespace Fox.EdCore
         public void SetLabel(string label) => this.label = label;
         public Label GetLabelElement() => this.labelElement;
     }
-
-    // [CustomPropertyDrawer(typeof(Core.EntityPtr<>))]
-    // public class EntityPtrDrawer : PropertyDrawer
-    // {
-    //     public override VisualElement CreatePropertyGUI(SerializedProperty property)
-    //     {
-    //         // Get the generic type argument
-    //         Type genericArgument = fieldInfo.FieldType.GenericTypeArguments[0];
-    //
-    //         // Create a generic type with the correct number of type arguments
-    //         Type genericType = typeof(EntityPtrField<>).MakeGenericType(genericArgument);
-    //
-    //         // Create an instance of the generic type
-    //         var genericField = (BindableElement)Activator.CreateInstance(genericType, new object[] { property.name });
-    //         genericField.BindProperty(property);
-    //
-    //         genericField.Q(className: BaseField<float>.labelUssClassName).AddToClassList(PropertyField.labelUssClassName);
-    //         genericField.Q(className: BaseField<float>.inputUssClassName).AddToClassList(PropertyField.inputUssClassName);
-    //         genericField.AddToClassList(BaseField<float>.alignedFieldUssClassName);
-    //
-    //         return genericField;
-    //     }
-    // }
 }

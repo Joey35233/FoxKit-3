@@ -76,20 +76,4 @@ namespace Fox.EdCore
         public void SetLabel(string label) => this.label = label;
         public Label GetLabelElement() => this.labelElement;
     }
-
-    // [CustomPropertyDrawer(typeof(UnityEngine.Matrix4x4))]
-    // public class Matrix4Drawer : PropertyDrawer
-    // {
-    //     public override VisualElement CreatePropertyGUI(SerializedProperty property)
-    //     {
-    //         var field = new Matrix4Field(property.name);
-    //         field.BindProperty(property);
-    //
-    //         field.labelElement.AddToClassList(PropertyField.labelUssClassName);
-    //         field.visualInput.AddToClassList(PropertyField.inputUssClassName);
-    //         field.AddToClassList(BaseField<UnityEngine.Matrix4x4>.alignedFieldUssClassName);
-    //
-    //         return field;
-    //     }
-    // }
 }

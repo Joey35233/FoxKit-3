@@ -297,20 +297,4 @@ namespace Fox.EdCore
         public void SetLabel(string label) => this.label = label;
         public Label GetLabelElement() => this.labelElement;
     }
-
-    // [CustomPropertyDrawer(typeof(EntityHandle))]
-    // public class EntityHandleDrawer : PropertyDrawer
-    // {
-    //     public override VisualElement CreatePropertyGUI(SerializedProperty property)
-    //     {
-    //         var field = new EntityHandleField(property.name);
-    //         field.BindProperty(property);
-    //
-    //         field.labelElement.AddToClassList(PropertyField.labelUssClassName);
-    //         field.visualInput.AddToClassList(PropertyField.inputUssClassName);
-    //         field.AddToClassList(BaseField<Fox.Core.Entity>.alignedFieldUssClassName);
-    //
-    //         return field;
-    //     }
-    // }
 }

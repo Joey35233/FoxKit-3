@@ -7,21 +7,6 @@ namespace Fox.EdCore
 {
     public class BoolField : BaseBoolField, IFoxField
     {
-        public new class UxmlFactory : UxmlFactory<Toggle, UxmlTraits>
-        {
-        }
-
-        public new class UxmlTraits : BaseFieldTraits<bool, UxmlBoolAttributeDescription>
-        {
-            private readonly UxmlStringAttributeDescription Text = new() { name = "text" };
-
-            public override void Init(VisualElement ve, IUxmlAttributes bag, CreationContext cc)
-            {
-                base.Init(ve, bag, cc);
-                ((Toggle)ve).text = Text.GetValueFromBag(bag, cc);
-            }
-        }
-
         public static readonly string toggleUssClassName = "unity-toggle";
         public static readonly string toggleLabelUssClassName = toggleUssClassName + "__label";
         public static readonly string toggleInputUssClassName = toggleUssClassName + "__input";
@@ -68,20 +53,4 @@ namespace Fox.EdCore
         public void SetLabel(string label) => this.label = label;
         public Label GetLabelElement() => this.labelElement;
     }
-
-    // [CustomPropertyDrawer(typeof(bool))]
-    // public class BoolDrawer : PropertyDrawer
-    // {
-    //     public override VisualElement CreatePropertyGUI(SerializedProperty property)
-    //     {
-    //         var field = new BoolField(property.name);
-    //         field.BindProperty(property);
-    //
-    //         field.labelElement.AddToClassList(PropertyField.labelUssClassName);
-    //         field.visualInput.AddToClassList(PropertyField.inputUssClassName);
-    //         field.AddToClassList(BaseField<bool>.alignedFieldUssClassName);
-    //
-    //         return field;
-    //     }
-    // }
 }

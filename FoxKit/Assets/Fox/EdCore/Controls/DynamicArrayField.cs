@@ -99,20 +99,4 @@ namespace Fox.EdCore
         public void SetLabel(string label) => this.label = label;
         public Label GetLabelElement() => this.labelElement;
     }
-
-    [CustomPropertyDrawer(typeof(DynamicArray<>))]
-    public class DynamicArrayDrawer : PropertyDrawer
-    {
-        public override VisualElement CreatePropertyGUI(SerializedProperty property)
-        {
-            var genericField = (VisualElement)Activator.CreateInstance(typeof(DynamicArrayField<>).MakeGenericType(fieldInfo.FieldType.GenericTypeArguments), new object[] { property.name });
-            (genericField as IFoxField).BindProperty(property);
-
-            genericField.Q(className: BaseField<float>.labelUssClassName).AddToClassList(PropertyField.labelUssClassName);
-            genericField.Q(className: BaseField<float>.inputUssClassName).AddToClassList(PropertyField.inputUssClassName);
-            genericField.AddToClassList(BaseField<float>.alignedFieldUssClassName);
-
-            return genericField;
-        }
-    }
 }

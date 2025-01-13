@@ -70,20 +70,4 @@ namespace Fox.EdCore
         public void SetLabel(string label) => this.label = label;
         public Label GetLabelElement() => this.labelElement;
     }
-
-    // [CustomPropertyDrawer(typeof(UnityEngine.Color))]
-    // public class ColorDrawer : PropertyDrawer
-    // {
-    //     public override VisualElement CreatePropertyGUI(SerializedProperty property)
-    //     {
-    //         var field = new Fox.EdCore.ColorField(property.name);
-    //         field.BindProperty(property);
-    //
-    //         field.labelElement.AddToClassList(PropertyField.labelUssClassName);
-    //         field.visualInput.AddToClassList(PropertyField.inputUssClassName);
-    //         field.AddToClassList(BaseField<UnityEngine.Color>.alignedFieldUssClassName);
-    //
-    //         return field;
-    //     }
-    // }
 }
