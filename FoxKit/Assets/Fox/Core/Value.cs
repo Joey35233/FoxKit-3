@@ -159,7 +159,7 @@ namespace Fox.Core
 
         public double GetValueAsDouble() => (double)value;
 
-        public T GetValueAsEntityPtr<T>() where T : Entity => (T)value;
+        public T GetValueAsEntityPtr<T>() where T : Entity => value as T;
 
         public EntityLink GetValueAsEntityLink() => (EntityLink)value;
 

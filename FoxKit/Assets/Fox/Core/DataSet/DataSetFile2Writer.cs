@@ -195,9 +195,7 @@ namespace Fox.Core
                                 }
                                 else
                                 {
-                                    DataElement[] staticArray =
-                                        data.GetProperty(propertyInfo.Name).GetValueAsIList() as
-                                            DataElement[];
+                                    DataElement[] staticArray = data.GetProperty(propertyInfo.Name).GetValueAsIList() as DataElement[];
                                     if (staticArray is null)
                                         continue;
                                     foreach (var element in staticArray)
@@ -209,9 +207,7 @@ namespace Fox.Core
 
                                 break;
                             case PropertyInfo.ContainerType.DynamicArray:
-                                DynamicArray<DataElement> dynamicArray =
-                                    data.GetProperty(propertyInfo.Name).GetValueAsIList() as
-                                        DynamicArray<DataElement>;
+                                DynamicArray<DataElement> dynamicArray = data.GetProperty(propertyInfo.Name).GetValueAsIList() as DynamicArray<DataElement>;
                                 if (dynamicArray is null)
                                     continue;
                                 foreach (var element in dynamicArray)
@@ -222,9 +218,7 @@ namespace Fox.Core
 
                                 break;
                             case PropertyInfo.ContainerType.StringMap:
-                                StringMap<DataElement> stringMap =
-                                    data.GetProperty(propertyInfo.Name).GetValueAsStringMap<DataElement>() as
-                                        StringMap<DataElement>;
+                                StringMap<DataElement> stringMap = data.GetProperty(propertyInfo.Name).GetValueAsStringMap<DataElement>() as StringMap<DataElement>;
                                 if (stringMap is null)
                                     continue;
                                 foreach (var element in stringMap)
