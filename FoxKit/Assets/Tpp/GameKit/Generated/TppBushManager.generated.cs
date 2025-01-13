@@ -47,10 +47,10 @@ namespace Tpp.GameKit
 		protected UnityEngine.Vector3 cameraPos { get; set; }
 		
 		[field: UnityEngine.SerializeField]
-		protected Fox.DynamicArray<string> existMaterials { get; private set; } = new Fox.DynamicArray<string>();
+		protected CsSystem.Collections.Generic.List<string> existMaterials { get; private set; } = new CsSystem.Collections.Generic.List<string>();
 		
 		[field: UnityEngine.SerializeField]
-		protected Fox.DynamicArray<string> noiseSeType { get; private set; } = new Fox.DynamicArray<string>();
+		protected CsSystem.Collections.Generic.List<string> noiseSeType { get; private set; } = new CsSystem.Collections.Generic.List<string>();
 		
 		[field: UnityEngine.SerializeField]
 		protected Fox.StringMap<string> noiseSeEventNames { get; private set; } = new Fox.StringMap<string>();

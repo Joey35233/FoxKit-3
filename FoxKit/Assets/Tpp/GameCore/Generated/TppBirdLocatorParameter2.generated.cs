@@ -20,10 +20,10 @@ namespace Tpp.GameCore
 		public uint count { get; set; }
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<UnityEngine.Vector3> grounds { get; private set; } = new Fox.DynamicArray<UnityEngine.Vector3>();
+		public CsSystem.Collections.Generic.List<UnityEngine.Vector3> grounds { get; private set; } = new CsSystem.Collections.Generic.List<UnityEngine.Vector3>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<UnityEngine.Vector3> perchPoints { get; private set; } = new Fox.DynamicArray<UnityEngine.Vector3>();
+		public CsSystem.Collections.Generic.List<UnityEngine.Vector3> perchPoints { get; private set; } = new CsSystem.Collections.Generic.List<UnityEngine.Vector3>();
 		
 		[field: UnityEngine.SerializeField]
 		public byte radius { get; set; }

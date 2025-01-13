@@ -17,7 +17,7 @@ namespace Tpp.MotherBaseCore
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<ulong> pathCodes { get; private set; } = new Fox.DynamicArray<ulong>();
+		public CsSystem.Collections.Generic.List<ulong> pathCodes { get; private set; } = new CsSystem.Collections.Generic.List<ulong>();
 		
 		[field: UnityEngine.SerializeField]
 		public Fox.StringMap<int> flags { get; private set; } = new Fox.StringMap<int>();

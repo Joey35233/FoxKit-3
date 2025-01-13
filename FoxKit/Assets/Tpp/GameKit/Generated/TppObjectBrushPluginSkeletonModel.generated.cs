@@ -17,16 +17,16 @@ namespace Tpp.GameKit
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<Fox.Core.FilePtr> modelFile { get; private set; } = new Fox.DynamicArray<Fox.Core.FilePtr>();
+		public CsSystem.Collections.Generic.List<Fox.Core.FilePtr> modelFile { get; private set; } = new CsSystem.Collections.Generic.List<Fox.Core.FilePtr>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<Fox.Core.FilePtr> geomFile { get; private set; } = new Fox.DynamicArray<Fox.Core.FilePtr>();
+		public CsSystem.Collections.Generic.List<Fox.Core.FilePtr> geomFile { get; private set; } = new CsSystem.Collections.Generic.List<Fox.Core.FilePtr>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<Fox.Path> animFile { get; private set; } = new Fox.DynamicArray<Fox.Path>();
+		public CsSystem.Collections.Generic.List<Fox.Path> animFile { get; private set; } = new CsSystem.Collections.Generic.List<Fox.Path>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<Fox.Path> animWindyFile { get; private set; } = new Fox.DynamicArray<Fox.Path>();
+		public CsSystem.Collections.Generic.List<Fox.Path> animWindyFile { get; private set; } = new CsSystem.Collections.Generic.List<Fox.Path>();
 		
 		[field: UnityEngine.SerializeField]
 		public Fox.Core.FilePtr mtarFile { get; set; }

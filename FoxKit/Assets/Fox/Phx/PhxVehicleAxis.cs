@@ -47,9 +47,9 @@ namespace Fox.Phx
         private partial bool Get_useDifferential() => vehicleAxis.GetUseDifferential();
         private partial void Set_useDifferential(bool value) => vehicleAxis.SetUseDifferential(value);
 
-        private partial DynamicArray<string> Get_AssignedBoneNames()
+        private partial System.Collections.Generic.List<string> Get_AssignedBoneNames()
         {
-            var assignedBoneNames = new DynamicArray<string>();
+            var assignedBoneNames = new System.Collections.Generic.List<string>();
             foreach (PhxWheelAssociationUnitParam wheelAssociationUnit in wheelAssociationUnitParams)
                 assignedBoneNames.Add(wheelAssociationUnit.GetBoneName());
 

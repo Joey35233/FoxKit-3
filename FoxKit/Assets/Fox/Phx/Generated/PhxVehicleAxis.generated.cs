@@ -23,13 +23,13 @@ namespace Fox.Phx
 		protected Fox.Phx.PhxWheelConstraintParam wheelConstraintParam { get; set; }
 		
 		[field: UnityEngine.SerializeField]
-		protected Fox.DynamicArray<Fox.Phx.PhxWheelAssociationUnitParam> wheelAssociationUnitParams { get; private set; } = new Fox.DynamicArray<Fox.Phx.PhxWheelAssociationUnitParam>();
+		protected CsSystem.Collections.Generic.List<Fox.Phx.PhxWheelAssociationUnitParam> wheelAssociationUnitParams { get; private set; } = new CsSystem.Collections.Generic.List<Fox.Phx.PhxWheelAssociationUnitParam>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<float> torqueDistributions { get; private set; } = new Fox.DynamicArray<float>();
+		public CsSystem.Collections.Generic.List<float> torqueDistributions { get; private set; } = new CsSystem.Collections.Generic.List<float>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<float> gearRatios { get; private set; } = new Fox.DynamicArray<float>();
+		public CsSystem.Collections.Generic.List<float> gearRatios { get; private set; } = new CsSystem.Collections.Generic.List<float>();
 		
 		public UnityEngine.Vector3 wheelFront { get => Get_wheelFront(); set { Set_wheelFront(value); } }
 		private partial UnityEngine.Vector3 Get_wheelFront();
@@ -83,8 +83,8 @@ namespace Fox.Phx
 		private partial bool Get_useDifferential();
 		private partial void Set_useDifferential(bool value);
 		
-		public Fox.DynamicArray<string> AssignedBoneNames { get => Get_AssignedBoneNames(); }
-		private partial Fox.DynamicArray<string> Get_AssignedBoneNames();
+		public CsSystem.Collections.Generic.List<string> AssignedBoneNames { get => Get_AssignedBoneNames(); }
+		private partial CsSystem.Collections.Generic.List<string> Get_AssignedBoneNames();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;

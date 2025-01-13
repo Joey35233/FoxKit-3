@@ -53,28 +53,28 @@ namespace Tpp.MotherBaseStage
 		public uint[] clusterRequireRadiuses { get; private set; } = new uint[8];
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<short> cluster00loadAreaVertices { get; private set; } = new Fox.DynamicArray<short>();
+		public CsSystem.Collections.Generic.List<short> cluster00loadAreaVertices { get; private set; } = new CsSystem.Collections.Generic.List<short>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<short> cluster01loadAreaVertices { get; private set; } = new Fox.DynamicArray<short>();
+		public CsSystem.Collections.Generic.List<short> cluster01loadAreaVertices { get; private set; } = new CsSystem.Collections.Generic.List<short>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<short> cluster02loadAreaVertices { get; private set; } = new Fox.DynamicArray<short>();
+		public CsSystem.Collections.Generic.List<short> cluster02loadAreaVertices { get; private set; } = new CsSystem.Collections.Generic.List<short>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<short> cluster03loadAreaVertices { get; private set; } = new Fox.DynamicArray<short>();
+		public CsSystem.Collections.Generic.List<short> cluster03loadAreaVertices { get; private set; } = new CsSystem.Collections.Generic.List<short>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<short> cluster04loadAreaVertices { get; private set; } = new Fox.DynamicArray<short>();
+		public CsSystem.Collections.Generic.List<short> cluster04loadAreaVertices { get; private set; } = new CsSystem.Collections.Generic.List<short>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<short> cluster05loadAreaVertices { get; private set; } = new Fox.DynamicArray<short>();
+		public CsSystem.Collections.Generic.List<short> cluster05loadAreaVertices { get; private set; } = new CsSystem.Collections.Generic.List<short>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<short> cluster06loadAreaVertices { get; private set; } = new Fox.DynamicArray<short>();
+		public CsSystem.Collections.Generic.List<short> cluster06loadAreaVertices { get; private set; } = new CsSystem.Collections.Generic.List<short>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<short> cluster07loadAreaVertices { get; private set; } = new Fox.DynamicArray<short>();
+		public CsSystem.Collections.Generic.List<short> cluster07loadAreaVertices { get; private set; } = new CsSystem.Collections.Generic.List<short>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;

@@ -17,10 +17,10 @@ namespace Fox.Core
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<UnityEngine.Vector4> originalValues { get; private set; } = new Fox.DynamicArray<UnityEngine.Vector4>();
+		public CsSystem.Collections.Generic.List<UnityEngine.Vector4> originalValues { get; private set; } = new CsSystem.Collections.Generic.List<UnityEngine.Vector4>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<UnityEngine.Vector4> values { get; private set; } = new Fox.DynamicArray<UnityEngine.Vector4>();
+		public CsSystem.Collections.Generic.List<UnityEngine.Vector4> values { get; private set; } = new CsSystem.Collections.Generic.List<UnityEngine.Vector4>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;

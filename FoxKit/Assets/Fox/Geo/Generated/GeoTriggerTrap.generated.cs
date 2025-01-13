@@ -27,7 +27,7 @@ namespace Fox.Geo
 		public string uniqueId { get; set; }
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<string> groupTags { get; private set; } = new Fox.DynamicArray<string>();
+		public CsSystem.Collections.Generic.List<string> groupTags { get; private set; } = new CsSystem.Collections.Generic.List<string>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;

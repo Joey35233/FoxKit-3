@@ -26,7 +26,7 @@ namespace Fox.Core
 		public Fox.Path scriptPath { get; set; }
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<Fox.Core.EntityLink> blockGroups { get; private set; } = new Fox.DynamicArray<Fox.Core.EntityLink>();
+		public CsSystem.Collections.Generic.List<Fox.Core.EntityLink> blockGroups { get; private set; } = new CsSystem.Collections.Generic.List<Fox.Core.EntityLink>();
 		
 		[field: UnityEngine.SerializeField]
 		public bool isAddRelatedBlockGroupEachOther { get; set; }

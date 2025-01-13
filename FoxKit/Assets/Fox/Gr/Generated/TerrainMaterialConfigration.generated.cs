@@ -17,16 +17,16 @@ namespace Fox.Gr
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<uint> slot0 { get; private set; } = new Fox.DynamicArray<uint>();
+		public CsSystem.Collections.Generic.List<uint> slot0 { get; private set; } = new CsSystem.Collections.Generic.List<uint>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<uint> slot1 { get; private set; } = new Fox.DynamicArray<uint>();
+		public CsSystem.Collections.Generic.List<uint> slot1 { get; private set; } = new CsSystem.Collections.Generic.List<uint>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<uint> slot2 { get; private set; } = new Fox.DynamicArray<uint>();
+		public CsSystem.Collections.Generic.List<uint> slot2 { get; private set; } = new CsSystem.Collections.Generic.List<uint>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<uint> slot3 { get; private set; } = new Fox.DynamicArray<uint>();
+		public CsSystem.Collections.Generic.List<uint> slot3 { get; private set; } = new CsSystem.Collections.Generic.List<uint>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;

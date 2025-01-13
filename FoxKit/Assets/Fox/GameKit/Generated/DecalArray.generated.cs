@@ -50,25 +50,25 @@ namespace Fox.GameKit
 		protected uint decalFlags { get; set; }
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<UnityEngine.Vector3> scales { get; private set; } = new Fox.DynamicArray<UnityEngine.Vector3>();
+		public CsSystem.Collections.Generic.List<UnityEngine.Vector3> scales { get; private set; } = new CsSystem.Collections.Generic.List<UnityEngine.Vector3>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<UnityEngine.Quaternion> rotations { get; private set; } = new Fox.DynamicArray<UnityEngine.Quaternion>();
+		public CsSystem.Collections.Generic.List<UnityEngine.Quaternion> rotations { get; private set; } = new CsSystem.Collections.Generic.List<UnityEngine.Quaternion>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<UnityEngine.Vector3> translations { get; private set; } = new Fox.DynamicArray<UnityEngine.Vector3>();
+		public CsSystem.Collections.Generic.List<UnityEngine.Vector3> translations { get; private set; } = new CsSystem.Collections.Generic.List<UnityEngine.Vector3>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<Fox.Core.EntityLink> targets { get; private set; } = new Fox.DynamicArray<Fox.Core.EntityLink>();
+		public CsSystem.Collections.Generic.List<Fox.Core.EntityLink> targets { get; private set; } = new CsSystem.Collections.Generic.List<Fox.Core.EntityLink>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<uint> targetIndices { get; private set; } = new Fox.DynamicArray<uint>();
+		public CsSystem.Collections.Generic.List<uint> targetIndices { get; private set; } = new CsSystem.Collections.Generic.List<uint>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<uint> targetStartIndices { get; private set; } = new Fox.DynamicArray<uint>();
+		public CsSystem.Collections.Generic.List<uint> targetStartIndices { get; private set; } = new CsSystem.Collections.Generic.List<uint>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<int> renderingPriorities { get; private set; } = new Fox.DynamicArray<int>();
+		public CsSystem.Collections.Generic.List<int> renderingPriorities { get; private set; } = new CsSystem.Collections.Generic.List<int>();
 		
 		public bool isDisableAlbedo { get => Get_isDisableAlbedo(); set { Set_isDisableAlbedo(value); } }
 		private partial bool Get_isDisableAlbedo();

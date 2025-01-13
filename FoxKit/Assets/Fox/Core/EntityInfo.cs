@@ -113,7 +113,7 @@ namespace Fox.Core
         /// <summary>
         /// Metadata for all static properties in their original order.
         /// </summary>
-        public DynamicArray<Core.PropertyInfo> OrderedStaticProperties { get; } = new DynamicArray<Core.PropertyInfo>();
+        public System.Collections.Generic.List<Core.PropertyInfo> OrderedStaticProperties { get; } = new System.Collections.Generic.List<Core.PropertyInfo>();
 
         /// <summary>
         /// Metadata for all static properties in a StringMap for fast lookup.

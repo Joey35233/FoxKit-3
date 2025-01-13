@@ -29,7 +29,7 @@ namespace Fox.Geox
 		public string collisionMaterial { get; set; }
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<string> collisionAttributeNames { get; private set; } = new Fox.DynamicArray<string>();
+		public CsSystem.Collections.Generic.List<string> collisionAttributeNames { get; private set; } = new CsSystem.Collections.Generic.List<string>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;

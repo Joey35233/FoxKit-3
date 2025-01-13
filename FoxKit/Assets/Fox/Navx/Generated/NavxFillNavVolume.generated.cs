@@ -23,7 +23,7 @@ namespace Fox.Navx
 		public string worldName { get; set; }
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<string> attributes { get; private set; } = new Fox.DynamicArray<string>();
+		public CsSystem.Collections.Generic.List<string> attributes { get; private set; } = new CsSystem.Collections.Generic.List<string>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;

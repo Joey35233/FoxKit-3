@@ -50,7 +50,7 @@ namespace Fox.GameKit
 		public float lodParam { get; set; }
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<Fox.Core.EntityLink> materialConfigs { get; private set; } = new Fox.DynamicArray<Fox.Core.EntityLink>();
+		public CsSystem.Collections.Generic.List<Fox.Core.EntityLink> materialConfigs { get; private set; } = new CsSystem.Collections.Generic.List<Fox.Core.EntityLink>();
 		
 		[field: UnityEngine.SerializeField]
 		public Fox.Path baseColorTexture { get; set; }

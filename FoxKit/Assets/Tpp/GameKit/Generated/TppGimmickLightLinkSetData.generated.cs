@@ -23,7 +23,7 @@ namespace Tpp.GameKit
 		public Fox.Core.EntityLink ownerGimmick { get; set; }
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<Fox.Core.EntityLink> lightList { get; private set; } = new Fox.DynamicArray<Fox.Core.EntityLink>();
+		public CsSystem.Collections.Generic.List<Fox.Core.EntityLink> lightList { get; private set; } = new CsSystem.Collections.Generic.List<Fox.Core.EntityLink>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;

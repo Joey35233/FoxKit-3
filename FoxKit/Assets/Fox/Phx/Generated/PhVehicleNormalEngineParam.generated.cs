@@ -17,13 +17,13 @@ namespace Fox.Phx
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<float> specPointAngularVelocity { get; private set; } = new Fox.DynamicArray<float>();
+		public CsSystem.Collections.Generic.List<float> specPointAngularVelocity { get; private set; } = new CsSystem.Collections.Generic.List<float>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<float> specPointTorque { get; private set; } = new Fox.DynamicArray<float>();
+		public CsSystem.Collections.Generic.List<float> specPointTorque { get; private set; } = new CsSystem.Collections.Generic.List<float>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<float> specPointBreakTorque { get; private set; } = new Fox.DynamicArray<float>();
+		public CsSystem.Collections.Generic.List<float> specPointBreakTorque { get; private set; } = new CsSystem.Collections.Generic.List<float>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;

@@ -8,7 +8,7 @@ using PropertyInfo = Fox.Core.PropertyInfo;
 
 namespace Fox.EdCore
 {
-    public class DynamicArrayField<T> : BaseField<DynamicArray<T>>, IFoxField
+    public class DynamicArrayField<T> : BaseField<System.Collections.Generic.List<T>>, IFoxField
     {
         private readonly ListView ListViewInput;
 
@@ -50,7 +50,6 @@ namespace Fox.EdCore
             ListViewInput = visInput;
             visualInput = ListViewInput;
 
-            ListViewInput.bindingPath = "_list";
             ListViewInput.itemsSource = value;
             ListViewInput.makeItem = MakeItem;
             ListViewInput.bindItem = BindItem;
@@ -80,6 +79,23 @@ namespace Fox.EdCore
             labelElement.AddToClassList(labelUssClassName);
             visualInput.AddToClassList(inputUssClassName);
             styleSheets.Add(IFoxField.FoxFieldStyleSheet);
+        }
+        
+        protected override void ExecuteDefaultActionAtTarget(EventBase evt)
+        {
+            base.ExecuteDefaultActionAtTarget(evt);
+
+            // UNITYENHANCEMENT: https://github.com/Joey35233/FoxKit-3/issues/12
+            if (evt.eventTypeId == FoxFieldUtils.SerializedPropertyBindEventTypeId && !string.IsNullOrWhiteSpace(bindingPath))
+            {
+                var property = FoxFieldUtils.SerializedPropertyBindEventBindProperty.GetValue(evt) as SerializedProperty;
+                if (property.isArray)
+                {
+                    ListViewInput.BindProperty(property);
+
+                    evt.StopPropagation();
+                }
+            }
         }
 
         private VisualElement MakeItem() => FieldConstructor() as VisualElement;

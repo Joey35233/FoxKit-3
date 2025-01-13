@@ -13,11 +13,9 @@ namespace Fox
 
         private static int GetSetBitCount(ulong i) => GetSetBitCount((uint)i) + GetSetBitCount((uint)(i >> 32));
 
-        public static void AddEnumTags<T>(DynamicArray<string> array, uint tags)
+        public static void AddEnumTags<T>(System.Collections.Generic.List<string> array, uint tags)
         {
             int bitCount = GetSetBitCount(tags);
-
-            var tagsArray = new DynamicArray<string>(bitCount);
 
             uint mask = 1;
             for (int i = 0; i < bitCount; mask <<= 1)
@@ -26,20 +24,18 @@ namespace Fox
                 if (tag != 0)
                 {
                     if (Enum.IsDefined(typeof(T), tag))
-                        tagsArray.Add(Enum.GetName(typeof(T), tag));
+                        array.Add(Enum.GetName(typeof(T), tag));
                     else
-                        tagsArray.Add(tag.ToString());
+                        array.Add(tag.ToString());
 
                     i++;
                 }
             }
         }
 
-        public static void AddEnumTags<T>(DynamicArray<string> array, ulong tags)
+        public static void AddEnumTags<T>(System.Collections.Generic.List<string> array, ulong tags)
         {
             int bitCount = GetSetBitCount(tags);
-
-            var tagsArray = new DynamicArray<string>(bitCount);
 
             ulong mask = 1;
             for (int i = 0; i < bitCount; mask <<= 1)
@@ -48,9 +44,9 @@ namespace Fox
                 if (tag != 0)
                 {
                     if (Enum.IsDefined(typeof(T), tag))
-                        tagsArray.Add(Enum.GetName(typeof(T), tag));
+                        array.Add(Enum.GetName(typeof(T), tag));
                     else
-                        tagsArray.Add(tag.ToString());
+                        array.Add(tag.ToString());
 
                     i++;
                 }

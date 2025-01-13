@@ -17,10 +17,10 @@ namespace Fox.Nav
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		protected Fox.DynamicArray<float> turningRadii { get; private set; } = new Fox.DynamicArray<float>();
+		protected CsSystem.Collections.Generic.List<float> turningRadii { get; private set; } = new CsSystem.Collections.Generic.List<float>();
 		
 		[field: UnityEngine.SerializeField]
-		protected Fox.DynamicArray<float> turningSpeeds { get; private set; } = new Fox.DynamicArray<float>();
+		protected CsSystem.Collections.Generic.List<float> turningSpeeds { get; private set; } = new CsSystem.Collections.Generic.List<float>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;

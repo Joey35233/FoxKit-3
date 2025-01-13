@@ -65,7 +65,7 @@ namespace Fox.Navx
 		public uint maxFileSizeInKb { get; set; }
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<Fox.Navx.NavxNavigableParameter> parameters { get; private set; } = new Fox.DynamicArray<Fox.Navx.NavxNavigableParameter>();
+		public CsSystem.Collections.Generic.List<Fox.Navx.NavxNavigableParameter> parameters { get; private set; } = new CsSystem.Collections.Generic.List<Fox.Navx.NavxNavigableParameter>();
 		
 		[field: UnityEngine.SerializeField]
 		public uint sectorSizeHorizontal { get; set; }
@@ -77,7 +77,7 @@ namespace Fox.Navx
 		public uint searchSpaceBucketSizeHorizontal { get; set; }
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<string> collisionAttributes { get; private set; } = new Fox.DynamicArray<string>();
+		public CsSystem.Collections.Generic.List<string> collisionAttributes { get; private set; } = new CsSystem.Collections.Generic.List<string>();
 		
 		[field: UnityEngine.SerializeField]
 		public Fox.Path loadFox2FileListScriptPath { get; set; }

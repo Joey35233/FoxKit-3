@@ -17,7 +17,7 @@ namespace Tpp.Radio
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<Fox.Core.FilePtr> radioDataFile { get; private set; } = new Fox.DynamicArray<Fox.Core.FilePtr>();
+		public CsSystem.Collections.Generic.List<Fox.Core.FilePtr> radioDataFile { get; private set; } = new CsSystem.Collections.Generic.List<Fox.Core.FilePtr>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;

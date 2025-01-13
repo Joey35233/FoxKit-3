@@ -35,7 +35,7 @@ namespace Tpp.GameCore
 		protected string attachmentBoneName { get; set; }
 		
 		[field: UnityEngine.SerializeField]
-		protected Fox.DynamicArray<Tpp.GameCore.TppVehicle2WeaponParameter> weaponParams { get; private set; } = new Fox.DynamicArray<Tpp.GameCore.TppVehicle2WeaponParameter>();
+		protected CsSystem.Collections.Generic.List<Tpp.GameCore.TppVehicle2WeaponParameter> weaponParams { get; private set; } = new CsSystem.Collections.Generic.List<Tpp.GameCore.TppVehicle2WeaponParameter>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;

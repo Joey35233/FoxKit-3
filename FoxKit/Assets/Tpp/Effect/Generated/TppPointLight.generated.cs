@@ -23,7 +23,7 @@ namespace Tpp.Effect
 		public UnityEngine.Vector3 reachPoint { get; set; }
 		
 		[field: UnityEngine.SerializeField]
-		protected Fox.DynamicArray<uint> BynaryData { get; private set; } = new Fox.DynamicArray<uint>();
+		protected CsSystem.Collections.Generic.List<uint> BynaryData { get; private set; } = new CsSystem.Collections.Generic.List<uint>();
 		
 		[field: UnityEngine.SerializeField]
 		public Fox.Core.EntityLink lightArea { get; set; }

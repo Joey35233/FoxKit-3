@@ -17,25 +17,25 @@ namespace Fox.Phx
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<Fox.Core.EntityLink> vehicleAxes { get; private set; } = new Fox.DynamicArray<Fox.Core.EntityLink>();
+		public CsSystem.Collections.Generic.List<Fox.Core.EntityLink> vehicleAxes { get; private set; } = new CsSystem.Collections.Generic.List<Fox.Core.EntityLink>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<float> torqueDistributions { get; private set; } = new Fox.DynamicArray<float>();
+		public CsSystem.Collections.Generic.List<float> torqueDistributions { get; private set; } = new CsSystem.Collections.Generic.List<float>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<float> gearRatios { get; private set; } = new Fox.DynamicArray<float>();
+		public CsSystem.Collections.Generic.List<float> gearRatios { get; private set; } = new CsSystem.Collections.Generic.List<float>();
 		
 		[field: UnityEngine.SerializeField]
 		protected Fox.Phx.PhVehicleNormalEngineParam vehicleNormalEngineParam { get; set; }
 		
-		public Fox.DynamicArray<float> specPointAngularVelocity { get => Get_specPointAngularVelocity(); }
-		private partial Fox.DynamicArray<float> Get_specPointAngularVelocity();
+		public CsSystem.Collections.Generic.List<float> specPointAngularVelocity { get => Get_specPointAngularVelocity(); }
+		private partial CsSystem.Collections.Generic.List<float> Get_specPointAngularVelocity();
 		
-		public Fox.DynamicArray<float> specPointTorque { get => Get_specPointTorque(); }
-		private partial Fox.DynamicArray<float> Get_specPointTorque();
+		public CsSystem.Collections.Generic.List<float> specPointTorque { get => Get_specPointTorque(); }
+		private partial CsSystem.Collections.Generic.List<float> Get_specPointTorque();
 		
-		public Fox.DynamicArray<float> specPointBreakTorque { get => Get_specPointBreakTorque(); }
-		private partial Fox.DynamicArray<float> Get_specPointBreakTorque();
+		public CsSystem.Collections.Generic.List<float> specPointBreakTorque { get => Get_specPointBreakTorque(); }
+		private partial CsSystem.Collections.Generic.List<float> Get_specPointBreakTorque();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;

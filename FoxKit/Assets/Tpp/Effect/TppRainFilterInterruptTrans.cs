@@ -1,3 +1,4 @@
+using CsSystem = System;
 using Fox.Core;
 using Fox.Core.Utils;
 using Fox;
@@ -22,7 +23,7 @@ namespace Tpp.Effect
         {
             base.OverridePropertiesForExport(context);
 
-            var convertedMatrices = new DynamicArray<Matrix4x4>(planeMatrices);
+            var convertedMatrices = new CsSystem.Collections.Generic.List<Matrix4x4>(planeMatrices);
             for (int i = 0; i < convertedMatrices.Count; i++)
             {
                 convertedMatrices[i] = Fox.Math.UnityToFoxMatrix(convertedMatrices[i]);

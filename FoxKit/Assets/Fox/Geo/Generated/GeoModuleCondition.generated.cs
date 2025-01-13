@@ -20,16 +20,16 @@ namespace Fox.Geo
 		public bool isAndCheck { get; set; }
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<string> checkFuncNames { get; private set; } = new Fox.DynamicArray<string>();
+		public CsSystem.Collections.Generic.List<string> checkFuncNames { get; private set; } = new CsSystem.Collections.Generic.List<string>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<string> execFuncNames { get; private set; } = new Fox.DynamicArray<string>();
+		public CsSystem.Collections.Generic.List<string> execFuncNames { get; private set; } = new CsSystem.Collections.Generic.List<string>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<Fox.Geo.GeoTrapModuleCallbackDataElement> checkCallbackDataElements { get; private set; } = new Fox.DynamicArray<Fox.Geo.GeoTrapModuleCallbackDataElement>();
+		public CsSystem.Collections.Generic.List<Fox.Geo.GeoTrapModuleCallbackDataElement> checkCallbackDataElements { get; private set; } = new CsSystem.Collections.Generic.List<Fox.Geo.GeoTrapModuleCallbackDataElement>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<Fox.Geo.GeoTrapModuleCallbackDataElement> execCallbackDataElements { get; private set; } = new Fox.DynamicArray<Fox.Geo.GeoTrapModuleCallbackDataElement>();
+		public CsSystem.Collections.Generic.List<Fox.Geo.GeoTrapModuleCallbackDataElement> execCallbackDataElements { get; private set; } = new CsSystem.Collections.Generic.List<Fox.Geo.GeoTrapModuleCallbackDataElement>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;

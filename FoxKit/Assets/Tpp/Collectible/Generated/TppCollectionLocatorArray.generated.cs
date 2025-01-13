@@ -17,31 +17,31 @@ namespace Tpp.Collectible
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		protected Fox.DynamicArray<UnityEngine.Vector3> positions { get; private set; } = new Fox.DynamicArray<UnityEngine.Vector3>();
+		protected CsSystem.Collections.Generic.List<UnityEngine.Vector3> positions { get; private set; } = new CsSystem.Collections.Generic.List<UnityEngine.Vector3>();
 		
 		[field: UnityEngine.SerializeField]
-		protected Fox.DynamicArray<uint> rotations { get; private set; } = new Fox.DynamicArray<uint>();
+		protected CsSystem.Collections.Generic.List<uint> rotations { get; private set; } = new CsSystem.Collections.Generic.List<uint>();
 		
 		[field: UnityEngine.SerializeField]
-		protected Fox.DynamicArray<uint> infos { get; private set; } = new Fox.DynamicArray<uint>();
+		protected CsSystem.Collections.Generic.List<uint> infos { get; private set; } = new CsSystem.Collections.Generic.List<uint>();
 		
 		[field: UnityEngine.SerializeField]
-		protected Fox.DynamicArray<ushort> segmentIndices { get; private set; } = new Fox.DynamicArray<ushort>();
+		protected CsSystem.Collections.Generic.List<ushort> segmentIndices { get; private set; } = new CsSystem.Collections.Generic.List<ushort>();
 		
 		[field: UnityEngine.SerializeField]
-		protected Fox.DynamicArray<ushort> locatorIndices { get; private set; } = new Fox.DynamicArray<ushort>();
+		protected CsSystem.Collections.Generic.List<ushort> locatorIndices { get; private set; } = new CsSystem.Collections.Generic.List<ushort>();
 		
 		[field: UnityEngine.SerializeField]
-		protected Fox.DynamicArray<ushort> locatorCounts { get; private set; } = new Fox.DynamicArray<ushort>();
+		protected CsSystem.Collections.Generic.List<ushort> locatorCounts { get; private set; } = new CsSystem.Collections.Generic.List<ushort>();
 		
 		[field: UnityEngine.SerializeField]
-		protected Fox.DynamicArray<byte> groupIds { get; private set; } = new Fox.DynamicArray<byte>();
+		protected CsSystem.Collections.Generic.List<byte> groupIds { get; private set; } = new CsSystem.Collections.Generic.List<byte>();
 		
 		[field: UnityEngine.SerializeField]
-		protected Fox.DynamicArray<ushort> segmentInfoIndices { get; private set; } = new Fox.DynamicArray<ushort>();
+		protected CsSystem.Collections.Generic.List<ushort> segmentInfoIndices { get; private set; } = new CsSystem.Collections.Generic.List<ushort>();
 		
 		[field: UnityEngine.SerializeField]
-		protected Fox.DynamicArray<ushort> segmentInfoCounts { get; private set; } = new Fox.DynamicArray<ushort>();
+		protected CsSystem.Collections.Generic.List<ushort> segmentInfoCounts { get; private set; } = new CsSystem.Collections.Generic.List<ushort>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;

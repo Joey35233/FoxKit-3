@@ -105,7 +105,7 @@ namespace Fox.Core
             context.OverrideProperty(nameof(parent), exportParent);
 
             // Get child GameObjects
-            var exportChildren = new DynamicArray<Entity>();
+            var exportChildren = new System.Collections.Generic.List<Entity>();
 
             foreach (UnityEngine.Transform child in transform)
             {

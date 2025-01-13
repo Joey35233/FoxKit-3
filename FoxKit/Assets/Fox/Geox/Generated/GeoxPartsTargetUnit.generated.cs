@@ -17,7 +17,7 @@ namespace Fox.Geox
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<Fox.Geox.GeoxPartsTargetObject> objectArray { get; private set; } = new Fox.DynamicArray<Fox.Geox.GeoxPartsTargetObject>();
+		public CsSystem.Collections.Generic.List<Fox.Geox.GeoxPartsTargetObject> objectArray { get; private set; } = new CsSystem.Collections.Generic.List<Fox.Geox.GeoxPartsTargetObject>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;

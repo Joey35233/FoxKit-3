@@ -122,10 +122,10 @@ class PropertyInfo:
 		if self.container == "StaticArray":
 			if self.array_size == 1:
 				return value_type_string
-			return f'Fox.StaticArray<{value_type_string}>'
+			return f'{value_type_string}[]'
 		if self.container == "StringMap":
 			return f'Fox.StringMap<{value_type_string}>'
-		return f'Fox.DynamicArray<{value_type_string}>'
+		return f'CsSystem.Collections.Generic.List<{value_type_string}>'
 
 	def has_setter(self):
 		"""Gets whether the property has a setter.
@@ -156,10 +156,10 @@ class PropertyInfo:
 		value_type_string = self.get_value_type_string()
 
 		if self.container == "StaticArray":
-			return f'new Fox.StaticArray<{value_type_string}>({self.array_size})'
+			return f'new {value_type_string}[{self.array_size}]'
 		if self.container == "StringMap":
 			return f'new Fox.StringMap<{value_type_string}>()'
-		return f'new Fox.DynamicArray<{value_type_string}>()'
+		return f'new CsSystem.Collections.Generic.List<{value_type_string}>()'
 
 	def get_value_getter_type_string(self):
 		"""Gets the type string to use with Value.GetValueAs...

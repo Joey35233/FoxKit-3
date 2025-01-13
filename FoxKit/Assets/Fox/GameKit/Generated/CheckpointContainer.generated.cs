@@ -20,7 +20,7 @@ namespace Fox.GameKit
 		protected Fox.StringMap<Fox.GameKit.CheckpointUnit> checkPointUnits { get; private set; } = new Fox.StringMap<Fox.GameKit.CheckpointUnit>();
 		
 		[field: UnityEngine.SerializeField]
-		protected Fox.DynamicArray<string> passedCheckpoints { get; private set; } = new Fox.DynamicArray<string>();
+		protected CsSystem.Collections.Generic.List<string> passedCheckpoints { get; private set; } = new CsSystem.Collections.Generic.List<string>();
 		
 		[field: UnityEngine.SerializeField]
 		protected string latestCheckpointTag { get; set; }

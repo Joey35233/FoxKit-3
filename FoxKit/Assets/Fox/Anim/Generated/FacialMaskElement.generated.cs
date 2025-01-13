@@ -17,10 +17,10 @@ namespace Fox.Anim
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<string> skelList { get; private set; } = new Fox.DynamicArray<string>();
+		public CsSystem.Collections.Generic.List<string> skelList { get; private set; } = new CsSystem.Collections.Generic.List<string>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<Fox.Anim.ParameterMaskElement> shaderList { get; private set; } = new Fox.DynamicArray<Fox.Anim.ParameterMaskElement>();
+		public CsSystem.Collections.Generic.List<Fox.Anim.ParameterMaskElement> shaderList { get; private set; } = new CsSystem.Collections.Generic.List<Fox.Anim.ParameterMaskElement>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;

@@ -23,13 +23,13 @@ namespace Tpp.GameKit
 		public Fox.Core.EntityLink poleData { get; set; }
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<string> electricCable { get; private set; } = new Fox.DynamicArray<string>();
+		public CsSystem.Collections.Generic.List<string> electricCable { get; private set; } = new CsSystem.Collections.Generic.List<string>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<string> pole { get; private set; } = new Fox.DynamicArray<string>();
+		public CsSystem.Collections.Generic.List<string> pole { get; private set; } = new CsSystem.Collections.Generic.List<string>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<byte> cnpIndex { get; private set; } = new Fox.DynamicArray<byte>();
+		public CsSystem.Collections.Generic.List<byte> cnpIndex { get; private set; } = new CsSystem.Collections.Generic.List<byte>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;

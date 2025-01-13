@@ -207,7 +207,7 @@ namespace Fox.Core
 
                                 break;
                             case PropertyInfo.ContainerType.DynamicArray:
-                                DynamicArray<DataElement> dynamicArray = data.GetProperty(propertyInfo.Name).GetValueAsIList() as DynamicArray<DataElement>;
+                                System.Collections.Generic.List<DataElement> dynamicArray = data.GetProperty(propertyInfo.Name).GetValueAsIList() as System.Collections.Generic.List<DataElement>;
                                 if (dynamicArray is null)
                                     continue;
                                 foreach (var element in dynamicArray)

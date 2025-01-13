@@ -198,7 +198,7 @@ namespace Tpp.Effect
 		public uint numBands { get; set; }
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<UnityEngine.Vector4> coefficients { get; private set; } = new Fox.DynamicArray<UnityEngine.Vector4>();
+		public CsSystem.Collections.Generic.List<UnityEngine.Vector4> coefficients { get; private set; } = new CsSystem.Collections.Generic.List<UnityEngine.Vector4>();
 		
 		[field: UnityEngine.SerializeField]
 		public float cloudiness { get; set; }

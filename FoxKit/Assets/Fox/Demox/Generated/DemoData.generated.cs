@@ -17,7 +17,7 @@ namespace Fox.Demox
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<Fox.Core.FilePtr> evfFiles { get; private set; } = new Fox.DynamicArray<Fox.Core.FilePtr>();
+		public CsSystem.Collections.Generic.List<Fox.Core.FilePtr> evfFiles { get; private set; } = new CsSystem.Collections.Generic.List<Fox.Core.FilePtr>();
 		
 		[field: UnityEngine.SerializeField]
 		public bool onMemory { get; set; }
@@ -41,10 +41,10 @@ namespace Fox.Demox
 		public Fox.StringMap<Fox.Demo.PartsDesc> partsDesc { get; private set; } = new Fox.StringMap<Fox.Demo.PartsDesc>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<Fox.Demo.ClipData> clipDatas { get; private set; } = new Fox.DynamicArray<Fox.Demo.ClipData>();
+		public CsSystem.Collections.Generic.List<Fox.Demo.ClipData> clipDatas { get; private set; } = new CsSystem.Collections.Generic.List<Fox.Demo.ClipData>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<Fox.Path> loadFiles { get; private set; } = new Fox.DynamicArray<Fox.Path>();
+		public CsSystem.Collections.Generic.List<Fox.Path> loadFiles { get; private set; } = new CsSystem.Collections.Generic.List<Fox.Path>();
 		
 		[field: UnityEngine.SerializeField]
 		public string demoId { get; set; }
@@ -77,7 +77,7 @@ namespace Fox.Demox
 		public Fox.Core.FilePtr nodeDataFile { get; set; }
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<string> stringParams { get; private set; } = new Fox.DynamicArray<string>();
+		public CsSystem.Collections.Generic.List<string> stringParams { get; private set; } = new CsSystem.Collections.Generic.List<string>();
 		
 		[field: UnityEngine.SerializeField]
 		public Fox.StringMap<Fox.Core.EntityLink> entityParams { get; private set; } = new Fox.StringMap<Fox.Core.EntityLink>();
@@ -146,10 +146,10 @@ namespace Fox.Demox
 		public int eventSkipCacheNum { get; set; }
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<string> highestTextureStreamModel { get; private set; } = new Fox.DynamicArray<string>();
+		public CsSystem.Collections.Generic.List<string> highestTextureStreamModel { get; private set; } = new CsSystem.Collections.Generic.List<string>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<Fox.Path> highestTexture { get; private set; } = new Fox.DynamicArray<Fox.Path>();
+		public CsSystem.Collections.Generic.List<Fox.Path> highestTexture { get; private set; } = new CsSystem.Collections.Generic.List<Fox.Path>();
 		
 		[field: UnityEngine.SerializeField]
 		public Fox.StringMap<int> objectNum { get; private set; } = new Fox.StringMap<int>();

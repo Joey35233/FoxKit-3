@@ -20,16 +20,16 @@ namespace Fox.Anim
 		public string eventName { get; set; }
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<Fox.Anim.TimeSection> sections { get; private set; } = new Fox.DynamicArray<Fox.Anim.TimeSection>();
+		public CsSystem.Collections.Generic.List<Fox.Anim.TimeSection> sections { get; private set; } = new CsSystem.Collections.Generic.List<Fox.Anim.TimeSection>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<string> paramString { get; private set; } = new Fox.DynamicArray<string>();
+		public CsSystem.Collections.Generic.List<string> paramString { get; private set; } = new CsSystem.Collections.Generic.List<string>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<int> paramInt { get; private set; } = new Fox.DynamicArray<int>();
+		public CsSystem.Collections.Generic.List<int> paramInt { get; private set; } = new CsSystem.Collections.Generic.List<int>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<float> paramFloat { get; private set; } = new Fox.DynamicArray<float>();
+		public CsSystem.Collections.Generic.List<float> paramFloat { get; private set; } = new CsSystem.Collections.Generic.List<float>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;

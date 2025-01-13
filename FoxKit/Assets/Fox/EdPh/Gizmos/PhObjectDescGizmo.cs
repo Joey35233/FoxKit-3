@@ -12,7 +12,7 @@ namespace Fox.EdPh
         static void DrawGizmo(PhObjectDesc attached, GizmoType gizmoType)
         {
             // TODO: Move this out of gizmo code
-            var bodies = new DynamicArray<PhRigidBodyParam>(attached.bodies.Count);
+            var bodies = new System.Collections.Generic.List<PhRigidBodyParam>(attached.bodies.Count);
             PhRigidBodyParam mostRecentRigidBody = null;
             for (int i = 0; i < attached.bodies.Count; i++)
             {

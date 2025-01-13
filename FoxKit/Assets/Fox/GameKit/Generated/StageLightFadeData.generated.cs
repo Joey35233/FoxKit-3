@@ -17,13 +17,13 @@ namespace Fox.GameKit
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<Fox.Core.EntityLink> lightGroup { get; private set; } = new Fox.DynamicArray<Fox.Core.EntityLink>();
+		public CsSystem.Collections.Generic.List<Fox.Core.EntityLink> lightGroup { get; private set; } = new CsSystem.Collections.Generic.List<Fox.Core.EntityLink>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<UnityEngine.Color> colorList { get; private set; } = new Fox.DynamicArray<UnityEngine.Color>();
+		public CsSystem.Collections.Generic.List<UnityEngine.Color> colorList { get; private set; } = new CsSystem.Collections.Generic.List<UnityEngine.Color>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<float> requirdTime { get; private set; } = new Fox.DynamicArray<float>();
+		public CsSystem.Collections.Generic.List<float> requirdTime { get; private set; } = new CsSystem.Collections.Generic.List<float>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;

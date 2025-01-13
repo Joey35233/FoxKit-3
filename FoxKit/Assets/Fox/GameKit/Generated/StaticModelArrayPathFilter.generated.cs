@@ -17,7 +17,7 @@ namespace Fox.GameKit
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<Fox.Path> filterPath { get; private set; } = new Fox.DynamicArray<Fox.Path>();
+		public CsSystem.Collections.Generic.List<Fox.Path> filterPath { get; private set; } = new CsSystem.Collections.Generic.List<Fox.Path>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;

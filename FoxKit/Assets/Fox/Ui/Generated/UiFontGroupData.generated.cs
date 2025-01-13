@@ -17,7 +17,7 @@ namespace Fox.Ui
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<Fox.Ui.UiFontDataElement> fonts { get; private set; } = new Fox.DynamicArray<Fox.Ui.UiFontDataElement>();
+		public CsSystem.Collections.Generic.List<Fox.Ui.UiFontDataElement> fonts { get; private set; } = new CsSystem.Collections.Generic.List<Fox.Ui.UiFontDataElement>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;

@@ -17,16 +17,16 @@ namespace Tpp.Effect
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<UnityEngine.Matrix4x4> planeMatrices { get; private set; } = new Fox.DynamicArray<UnityEngine.Matrix4x4>();
+		public CsSystem.Collections.Generic.List<UnityEngine.Matrix4x4> planeMatrices { get; private set; } = new CsSystem.Collections.Generic.List<UnityEngine.Matrix4x4>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<Fox.Path> maskTextures { get; private set; } = new Fox.DynamicArray<Fox.Path>();
+		public CsSystem.Collections.Generic.List<Fox.Path> maskTextures { get; private set; } = new CsSystem.Collections.Generic.List<Fox.Path>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<uint> interruptFlags { get; private set; } = new Fox.DynamicArray<uint>();
+		public CsSystem.Collections.Generic.List<uint> interruptFlags { get; private set; } = new CsSystem.Collections.Generic.List<uint>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<uint> levels { get; private set; } = new Fox.DynamicArray<uint>();
+		public CsSystem.Collections.Generic.List<uint> levels { get; private set; } = new CsSystem.Collections.Generic.List<uint>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;

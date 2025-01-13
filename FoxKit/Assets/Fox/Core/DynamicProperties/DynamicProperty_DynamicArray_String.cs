@@ -7,7 +7,7 @@ namespace Fox.Core
     public class DynamicProperty_DynamicArray_String : DynamicProperty
     {
         [SerializeField]
-        private DynamicArray<string> SerializedField = new ();
+        private System.Collections.Generic.List<string> SerializedField = new ();
 
         internal override PropertyInfo.ContainerType GetContainerType() => PropertyInfo.ContainerType.DynamicArray;
 

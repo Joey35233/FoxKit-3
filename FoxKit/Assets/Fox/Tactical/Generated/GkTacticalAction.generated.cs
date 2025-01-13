@@ -32,13 +32,13 @@ namespace Fox.Tactical
 		public string userId { get; set; }
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<Fox.Tactical.GkTacticalActionWaypoint> waypoints { get; private set; } = new Fox.DynamicArray<Fox.Tactical.GkTacticalActionWaypoint>();
+		public CsSystem.Collections.Generic.List<Fox.Tactical.GkTacticalActionWaypoint> waypoints { get; private set; } = new CsSystem.Collections.Generic.List<Fox.Tactical.GkTacticalActionWaypoint>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<Fox.Tactical.GkTacticalActionEdge> edges { get; private set; } = new Fox.DynamicArray<Fox.Tactical.GkTacticalActionEdge>();
+		public CsSystem.Collections.Generic.List<Fox.Tactical.GkTacticalActionEdge> edges { get; private set; } = new CsSystem.Collections.Generic.List<Fox.Tactical.GkTacticalActionEdge>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<string> attributeNames { get; private set; } = new Fox.DynamicArray<string>();
+		public CsSystem.Collections.Generic.List<string> attributeNames { get; private set; } = new CsSystem.Collections.Generic.List<string>();
 		
 		[field: UnityEngine.SerializeField]
 		public uint attribute { get; set; }

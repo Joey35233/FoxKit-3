@@ -20,7 +20,7 @@ namespace Fox.Sim
 		protected Fox.Sim.SimClothControlParam controlParam { get; set; }
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<Fox.Sim.SimClothControlUnit> clothControlUnits { get; private set; } = new Fox.DynamicArray<Fox.Sim.SimClothControlUnit>();
+		public CsSystem.Collections.Generic.List<Fox.Sim.SimClothControlUnit> clothControlUnits { get; private set; } = new CsSystem.Collections.Generic.List<Fox.Sim.SimClothControlUnit>();
 		
 		public float windCoefficient { get => Get_windCoefficient(); set { Set_windCoefficient(value); } }
 		private partial float Get_windCoefficient();

@@ -17,22 +17,22 @@ namespace Tpp.Effect
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<UnityEngine.Matrix4x4> matrices { get; private set; } = new Fox.DynamicArray<UnityEngine.Matrix4x4>();
+		public CsSystem.Collections.Generic.List<UnityEngine.Matrix4x4> matrices { get; private set; } = new CsSystem.Collections.Generic.List<UnityEngine.Matrix4x4>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<uint> footChara { get; private set; } = new Fox.DynamicArray<uint>();
+		public CsSystem.Collections.Generic.List<uint> footChara { get; private set; } = new CsSystem.Collections.Generic.List<uint>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<uint> footLR { get; private set; } = new Fox.DynamicArray<uint>();
+		public CsSystem.Collections.Generic.List<uint> footLR { get; private set; } = new CsSystem.Collections.Generic.List<uint>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<float> alpha { get; private set; } = new Fox.DynamicArray<float>();
+		public CsSystem.Collections.Generic.List<float> alpha { get; private set; } = new CsSystem.Collections.Generic.List<float>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<bool> blood { get; private set; } = new Fox.DynamicArray<bool>();
+		public CsSystem.Collections.Generic.List<bool> blood { get; private set; } = new CsSystem.Collections.Generic.List<bool>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<bool> enable { get; private set; } = new Fox.DynamicArray<bool>();
+		public CsSystem.Collections.Generic.List<bool> enable { get; private set; } = new CsSystem.Collections.Generic.List<bool>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;

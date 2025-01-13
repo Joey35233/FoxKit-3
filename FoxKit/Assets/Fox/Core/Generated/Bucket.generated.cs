@@ -26,7 +26,7 @@ namespace Fox.Core
 		public string sceneName { get; protected set; }
 		
 		[field: UnityEngine.SerializeField]
-		protected Fox.DynamicArray<Fox.Core.Actor> actors { get; private set; } = new Fox.DynamicArray<Fox.Core.Actor>();
+		protected CsSystem.Collections.Generic.List<Fox.Core.Actor> actors { get; private set; } = new CsSystem.Collections.Generic.List<Fox.Core.Actor>();
 		
 		[field: UnityEngine.SerializeField]
 		protected Fox.StringMap<Fox.Core.FilePtr> dataSetFiles { get; private set; } = new Fox.StringMap<Fox.Core.FilePtr>();

@@ -17,22 +17,22 @@ namespace Fox.PartsBuilder
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<string> connectDestinationSkelNames { get; private set; } = new Fox.DynamicArray<string>();
+		public CsSystem.Collections.Generic.List<string> connectDestinationSkelNames { get; private set; } = new CsSystem.Collections.Generic.List<string>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<string> connectDestinationCnpNames { get; private set; } = new Fox.DynamicArray<string>();
+		public CsSystem.Collections.Generic.List<string> connectDestinationCnpNames { get; private set; } = new CsSystem.Collections.Generic.List<string>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<UnityEngine.Vector3> offsetSkelPositions { get; private set; } = new Fox.DynamicArray<UnityEngine.Vector3>();
+		public CsSystem.Collections.Generic.List<UnityEngine.Vector3> offsetSkelPositions { get; private set; } = new CsSystem.Collections.Generic.List<UnityEngine.Vector3>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<UnityEngine.Vector3> offsetCnpPositions { get; private set; } = new Fox.DynamicArray<UnityEngine.Vector3>();
+		public CsSystem.Collections.Generic.List<UnityEngine.Vector3> offsetCnpPositions { get; private set; } = new CsSystem.Collections.Generic.List<UnityEngine.Vector3>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<UnityEngine.Vector4> generalSkelParameters { get; private set; } = new Fox.DynamicArray<UnityEngine.Vector4>();
+		public CsSystem.Collections.Generic.List<UnityEngine.Vector4> generalSkelParameters { get; private set; } = new CsSystem.Collections.Generic.List<UnityEngine.Vector4>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<UnityEngine.Vector4> generalCnpParameters { get; private set; } = new Fox.DynamicArray<UnityEngine.Vector4>();
+		public CsSystem.Collections.Generic.List<UnityEngine.Vector4> generalCnpParameters { get; private set; } = new CsSystem.Collections.Generic.List<UnityEngine.Vector4>();
 		
 		[field: UnityEngine.SerializeField]
 		public bool effectConnect { get; set; }

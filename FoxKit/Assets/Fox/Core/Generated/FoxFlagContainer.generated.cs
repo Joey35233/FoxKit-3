@@ -17,7 +17,7 @@ namespace Fox.Core
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		protected Fox.DynamicArray<uint> status { get; private set; } = new Fox.DynamicArray<uint>();
+		protected CsSystem.Collections.Generic.List<uint> status { get; private set; } = new CsSystem.Collections.Generic.List<uint>();
 		
 		[field: UnityEngine.SerializeField]
 		protected string @string { get; set; }

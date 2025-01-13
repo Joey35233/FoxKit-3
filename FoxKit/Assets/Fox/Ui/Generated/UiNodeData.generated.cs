@@ -17,34 +17,34 @@ namespace Fox.Ui
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<Fox.Core.EntityLink> inputEdges { get; private set; } = new Fox.DynamicArray<Fox.Core.EntityLink>();
+		public CsSystem.Collections.Generic.List<Fox.Core.EntityLink> inputEdges { get; private set; } = new CsSystem.Collections.Generic.List<Fox.Core.EntityLink>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<Fox.Core.EntityLink> outputEdges { get; private set; } = new Fox.DynamicArray<Fox.Core.EntityLink>();
+		public CsSystem.Collections.Generic.List<Fox.Core.EntityLink> outputEdges { get; private set; } = new CsSystem.Collections.Generic.List<Fox.Core.EntityLink>();
 		
 		[field: UnityEngine.SerializeField]
 		public uint inputPortCount { get; set; }
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<UiNodeType> inputPortTypes { get; private set; } = new Fox.DynamicArray<UiNodeType>();
+		public CsSystem.Collections.Generic.List<UiNodeType> inputPortTypes { get; private set; } = new CsSystem.Collections.Generic.List<UiNodeType>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<string> inputPropertyNames { get; private set; } = new Fox.DynamicArray<string>();
+		public CsSystem.Collections.Generic.List<string> inputPropertyNames { get; private set; } = new CsSystem.Collections.Generic.List<string>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<UiNodePropType> inputPropertyTypes { get; private set; } = new Fox.DynamicArray<UiNodePropType>();
+		public CsSystem.Collections.Generic.List<UiNodePropType> inputPropertyTypes { get; private set; } = new CsSystem.Collections.Generic.List<UiNodePropType>();
 		
 		[field: UnityEngine.SerializeField]
 		public uint outputPortCount { get; set; }
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<UiNodeType> outputPortTypes { get; private set; } = new Fox.DynamicArray<UiNodeType>();
+		public CsSystem.Collections.Generic.List<UiNodeType> outputPortTypes { get; private set; } = new CsSystem.Collections.Generic.List<UiNodeType>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<string> outputPropertyNames { get; private set; } = new Fox.DynamicArray<string>();
+		public CsSystem.Collections.Generic.List<string> outputPropertyNames { get; private set; } = new CsSystem.Collections.Generic.List<string>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<UiNodePropType> outputPropertyTypes { get; private set; } = new Fox.DynamicArray<UiNodePropType>();
+		public CsSystem.Collections.Generic.List<UiNodePropType> outputPropertyTypes { get; private set; } = new CsSystem.Collections.Generic.List<UiNodePropType>();
 		
 		[field: UnityEngine.SerializeField]
 		public float xPosition { get; set; }

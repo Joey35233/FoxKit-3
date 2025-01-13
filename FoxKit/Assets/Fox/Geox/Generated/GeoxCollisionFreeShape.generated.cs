@@ -23,7 +23,7 @@ namespace Fox.Geox
 		public string collisionMaterial { get; protected set; }
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<string> collisionAttributeNames { get; private set; } = new Fox.DynamicArray<string>();
+		public CsSystem.Collections.Generic.List<string> collisionAttributeNames { get; private set; } = new CsSystem.Collections.Generic.List<string>();
 		
 		[field: UnityEngine.SerializeField]
 		public UnityEngine.Vector3[] points { get; private set; } = new UnityEngine.Vector3[8];

@@ -17,7 +17,7 @@ namespace Fox.Anim
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		public Fox.DynamicArray<Fox.Anim.FacialMaskElement> aspectMaskList { get; private set; } = new Fox.DynamicArray<Fox.Anim.FacialMaskElement>();
+		public CsSystem.Collections.Generic.List<Fox.Anim.FacialMaskElement> aspectMaskList { get; private set; } = new CsSystem.Collections.Generic.List<Fox.Anim.FacialMaskElement>();
 		
 		[field: UnityEngine.SerializeField]
 		public Fox.Anim.FacialMaskElement mouthMask { get; set; }

@@ -17,7 +17,7 @@ namespace Fox.Core
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		protected Fox.DynamicArray<Fox.Core.Entity> list { get; private set; } = new Fox.DynamicArray<Fox.Core.Entity>();
+		protected CsSystem.Collections.Generic.List<Fox.Core.Entity> list { get; private set; } = new CsSystem.Collections.Generic.List<Fox.Core.Entity>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;

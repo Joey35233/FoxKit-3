@@ -17,10 +17,10 @@ namespace Fox.Ph
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		protected Fox.DynamicArray<UnityEngine.Vector3> verts { get; private set; } = new Fox.DynamicArray<UnityEngine.Vector3>();
+		protected CsSystem.Collections.Generic.List<UnityEngine.Vector3> verts { get; private set; } = new CsSystem.Collections.Generic.List<UnityEngine.Vector3>();
 		
 		[field: UnityEngine.SerializeField]
-		protected Fox.DynamicArray<uint> polys { get; private set; } = new Fox.DynamicArray<uint>();
+		protected CsSystem.Collections.Generic.List<uint> polys { get; private set; } = new CsSystem.Collections.Generic.List<uint>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
