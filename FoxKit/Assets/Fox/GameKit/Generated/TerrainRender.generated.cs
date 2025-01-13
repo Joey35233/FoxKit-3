@@ -44,7 +44,7 @@ namespace Fox.GameKit
 		public bool isDebugMaterial { get; set; }
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.StaticArray<Fox.Core.EntityLink> materials { get; private set; } = new Fox.StaticArray<Fox.Core.EntityLink>(16);
+		public Fox.Core.EntityLink[] materials { get; private set; } = new Fox.Core.EntityLink[16];
 		
 		[field: UnityEngine.SerializeField]
 		public float lodParam { get; set; }

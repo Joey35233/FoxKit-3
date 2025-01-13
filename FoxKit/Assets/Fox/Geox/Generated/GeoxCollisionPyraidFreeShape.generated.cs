@@ -26,7 +26,7 @@ namespace Fox.Geox
 		public Fox.DynamicArray<string> collisionAttributeNames { get; private set; } = new Fox.DynamicArray<string>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.StaticArray<UnityEngine.Vector3> points { get; private set; } = new Fox.StaticArray<UnityEngine.Vector3>(5);
+		public UnityEngine.Vector3[] points { get; private set; } = new UnityEngine.Vector3[5];
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;

@@ -56,7 +56,7 @@ namespace Tpp.Sound
 		public string heightRtpc { get; set; }
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.StaticArray<Fox.Core.EntityLink> ambientParameter { get; private set; } = new Fox.StaticArray<Fox.Core.EntityLink>(8);
+		public Fox.Core.EntityLink[] ambientParameter { get; private set; } = new Fox.Core.EntityLink[8];
 		
 		[field: UnityEngine.SerializeField]
 		public string categoryFpvStateGroup { get; set; }

@@ -195,9 +195,9 @@ namespace Fox.Core
                                 }
                                 else
                                 {
-                                    StaticArray<DataElement> staticArray =
+                                    DataElement[] staticArray =
                                         data.GetProperty(propertyInfo.Name).GetValueAsIList() as
-                                            StaticArray<DataElement>;
+                                            DataElement[];
                                     if (staticArray is null)
                                         continue;
                                     foreach (var element in staticArray)

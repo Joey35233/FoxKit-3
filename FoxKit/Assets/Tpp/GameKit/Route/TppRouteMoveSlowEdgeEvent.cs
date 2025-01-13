@@ -9,6 +9,6 @@ namespace Tpp.GameKit
 		public static readonly StrCode32 Id = new StrCode32("MoveSlow");
 		public override StrCode32 GetId() => Id;
 
-		public static TppRouteMoveSlowEdgeEvent Deserialize(UnityEngine.GameObject gameObject, uint[] binaryData) { TppRouteMoveSlowEdgeEvent component = gameObject.AddComponent<TppRouteMoveSlowEdgeEvent>(); component.binaryData = new StaticArray<uint>(binaryData); return component; }
+		public static TppRouteMoveSlowEdgeEvent Deserialize(UnityEngine.GameObject gameObject, uint[] binaryData) { TppRouteMoveSlowEdgeEvent component = gameObject.AddComponent<TppRouteMoveSlowEdgeEvent>(); component.binaryData = binaryData; return component; }
 	}
 }

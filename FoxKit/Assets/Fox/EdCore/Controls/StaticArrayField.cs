@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 
 namespace Fox.EdCore
 {
-    public class StaticArrayField<T> : BaseField<StaticArray<T>>, IFoxField
+    public class StaticArrayField<T> : BaseField<T[]>, IFoxField
     {
         private readonly ListView ListViewInput;
 
@@ -47,7 +47,6 @@ namespace Fox.EdCore
             ListViewInput = visInput;
             visualInput = ListViewInput;
 
-            ListViewInput.bindingPath = "_list";
             ListViewInput.itemsSource = value;
             ListViewInput.makeItem = MakeItem;
             ListViewInput.bindItem = BindItem;
@@ -64,11 +63,31 @@ namespace Fox.EdCore
             visualInput.AddToClassList(inputUssClassName);
             styleSheets.Add(IFoxField.FoxFieldStyleSheet);
         }
+        
+        protected override void ExecuteDefaultActionAtTarget(EventBase evt)
+        {
+            base.ExecuteDefaultActionAtTarget(evt);
+
+            // UNITYENHANCEMENT: https://github.com/Joey35233/FoxKit-3/issues/12
+            if (evt.eventTypeId == FoxFieldUtils.SerializedPropertyBindEventTypeId && !string.IsNullOrWhiteSpace(bindingPath))
+            {
+                var property = FoxFieldUtils.SerializedPropertyBindEventBindProperty.GetValue(evt) as SerializedProperty;
+                if (property.isArray)
+                {
+                    ListViewInput.BindProperty(property);
+
+                    evt.StopPropagation();
+                }
+            }
+        }
 
         private VisualElement MakeItem() => FieldConstructor() as VisualElement;
 
         private void BindItem(VisualElement element, int index)
         {
+            if (index < 0 || index >= ListViewInput.itemsSource.Count)
+                return;
+            
             var itemProperty = ListViewInput.itemsSource[index] as SerializedProperty;
             BindableElement bindable = element as BindableElement;
             bindable.BindProperty(itemProperty);

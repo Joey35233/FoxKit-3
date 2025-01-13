@@ -6,14 +6,19 @@ namespace Fox.Core
     public class DynamicProperty_StaticArray_float : DynamicProperty
     {
         [SerializeField]
-        private StaticArray<float> SerializedField = new (1);
+        private float[] SerializedField = new float[1];
         
         internal override PropertyInfo.ContainerType GetContainerType() => PropertyInfo.ContainerType.StaticArray;
-        internal override PropertyInfo GetPropertyInfo() => new PropertyInfo(Name, PropertyInfo.PropertyType.Float, 0, (uint)SerializedField.Count);
+        internal override PropertyInfo GetPropertyInfo() => new PropertyInfo(Name, PropertyInfo.PropertyType.Float, 0, (uint)SerializedField.LongLength);
         
         internal override void ChangeStaticArraySize(uint newSize)
         {
-            SerializedField = new StaticArray<float>(SerializedField, (int)newSize);
+            float[] newList = new float[newSize];
+            
+            for (uint i = 0; i < (newSize <= SerializedField.LongLength ? newSize : SerializedField.LongLength); i++)
+                newList[i] = SerializedField[i];
+            
+            SerializedField = newList;
         }
 
         public override Value GetValue() => new Value(SerializedField);

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Fox.Core
 {
@@ -6,14 +7,19 @@ namespace Fox.Core
     public class DynamicProperty_StaticArray_bool : DynamicProperty
     {
         [SerializeField]
-        private StaticArray<bool> SerializedField = new (1);
+        private bool[] SerializedField = new bool[1];
         
         internal override PropertyInfo.ContainerType GetContainerType() => PropertyInfo.ContainerType.StaticArray;
-        internal override PropertyInfo GetPropertyInfo() => new PropertyInfo(Name, PropertyInfo.PropertyType.Bool, 0, (uint)SerializedField.Count);
+        internal override PropertyInfo GetPropertyInfo() => new PropertyInfo(Name, PropertyInfo.PropertyType.Bool, 0, (uint)SerializedField.LongLength);
         
         internal override void ChangeStaticArraySize(uint newSize)
         {
-            SerializedField = new StaticArray<bool>(SerializedField, (int)newSize);
+            bool[] newList = new bool[newSize];
+            
+            for (uint i = 0; i < (newSize <= SerializedField.LongLength ? newSize : SerializedField.LongLength); i++)
+                newList[i] = SerializedField[i];
+            
+            SerializedField = newList;
         }
 
         public override Value GetValue() => new Value(SerializedField);

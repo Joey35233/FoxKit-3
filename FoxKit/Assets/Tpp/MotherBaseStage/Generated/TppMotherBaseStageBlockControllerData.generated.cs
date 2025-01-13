@@ -44,37 +44,37 @@ namespace Tpp.MotherBaseStage
 		public uint divisionBlockSizeInBytes { get; set; }
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.StaticArray<byte> cluster00divisionPackageIds { get; private set; } = new Fox.StaticArray<byte>(12);
+		public byte[] cluster00divisionPackageIds { get; private set; } = new byte[12];
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.StaticArray<byte> cluster01divisionPackageIds { get; private set; } = new Fox.StaticArray<byte>(12);
+		public byte[] cluster01divisionPackageIds { get; private set; } = new byte[12];
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.StaticArray<byte> cluster02divisionPackageIds { get; private set; } = new Fox.StaticArray<byte>(12);
+		public byte[] cluster02divisionPackageIds { get; private set; } = new byte[12];
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.StaticArray<byte> cluster03divisionPackageIds { get; private set; } = new Fox.StaticArray<byte>(12);
+		public byte[] cluster03divisionPackageIds { get; private set; } = new byte[12];
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.StaticArray<byte> cluster04divisionPackageIds { get; private set; } = new Fox.StaticArray<byte>(12);
+		public byte[] cluster04divisionPackageIds { get; private set; } = new byte[12];
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.StaticArray<byte> cluster05divisionPackageIds { get; private set; } = new Fox.StaticArray<byte>(12);
+		public byte[] cluster05divisionPackageIds { get; private set; } = new byte[12];
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.StaticArray<byte> cluster06divisionPackageIds { get; private set; } = new Fox.StaticArray<byte>(12);
+		public byte[] cluster06divisionPackageIds { get; private set; } = new byte[12];
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.StaticArray<byte> cluster07divisionPackageIds { get; private set; } = new Fox.StaticArray<byte>(12);
+		public byte[] cluster07divisionPackageIds { get; private set; } = new byte[12];
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.StaticArray<UnityEngine.Vector3> clusterPositions { get; private set; } = new Fox.StaticArray<UnityEngine.Vector3>(8);
+		public UnityEngine.Vector3[] clusterPositions { get; private set; } = new UnityEngine.Vector3[8];
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.StaticArray<uint> clusterRequestRadiuses { get; private set; } = new Fox.StaticArray<uint>(8);
+		public uint[] clusterRequestRadiuses { get; private set; } = new uint[8];
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.StaticArray<uint> clusterRequireRadiuses { get; private set; } = new Fox.StaticArray<uint>(8);
+		public uint[] clusterRequireRadiuses { get; private set; } = new uint[8];
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;

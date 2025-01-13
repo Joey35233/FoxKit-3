@@ -9,6 +9,6 @@ namespace Tpp.GameKit
 		public static readonly StrCode32 Id = new StrCode32("Vanish");
 		public override StrCode32 GetId() => Id;
 
-		public static TppRouteVanishNodeEvent Deserialize(UnityEngine.GameObject gameObject, uint[] binaryData) { TppRouteVanishNodeEvent component = gameObject.AddComponent<TppRouteVanishNodeEvent>(); component.binaryData = new StaticArray<uint>(binaryData); return component; }
+		public static TppRouteVanishNodeEvent Deserialize(UnityEngine.GameObject gameObject, uint[] binaryData) { TppRouteVanishNodeEvent component = gameObject.AddComponent<TppRouteVanishNodeEvent>(); component.binaryData = binaryData; return component; }
 	}
 }

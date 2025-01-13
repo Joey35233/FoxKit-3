@@ -9,6 +9,6 @@ namespace Tpp.GameKit
 		public static readonly StrCode32 Id = new StrCode32("PermitGettingOff");
 		public override StrCode32 GetId() => Id;
 
-		public static TppRoutePermitGettingOffEdgeEvent Deserialize(UnityEngine.GameObject gameObject, uint[] binaryData) { TppRoutePermitGettingOffEdgeEvent component = gameObject.AddComponent<TppRoutePermitGettingOffEdgeEvent>(); component.binaryData = new StaticArray<uint>(binaryData); return component; }
+		public static TppRoutePermitGettingOffEdgeEvent Deserialize(UnityEngine.GameObject gameObject, uint[] binaryData) { TppRoutePermitGettingOffEdgeEvent component = gameObject.AddComponent<TppRoutePermitGettingOffEdgeEvent>(); component.binaryData = binaryData; return component; }
 	}
 }

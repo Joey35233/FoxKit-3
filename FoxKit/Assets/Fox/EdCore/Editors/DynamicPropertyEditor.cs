@@ -42,8 +42,7 @@ namespace Fox.EdCore
             if (propertyInfo.Container == PropertyInfo.ContainerType.StaticArray)
             {
                 ArraySizeField = new UInt32Field("arraySize");
-                ArraySizeField.value = propertyInfo.ArraySize;
-                ArraySizeField.RegisterValueChangedCallback<uint>(OnArraySizeChanged);
+                ArraySizeField.bindingPath = DynamicProperty.VALUE_PROPERTY_NAME + ".Array.size";
                 BaseElement.Add(ArraySizeField);
                 
                 ValueField = FoxFieldUtils.GetCustomBindableField(propertyInfo, staticArrayOverride: true);

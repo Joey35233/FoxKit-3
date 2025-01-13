@@ -17,7 +17,7 @@ namespace Tpp.GameKit
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		public Fox.StaticArray<uint> binaryData { get; private set; } = new Fox.StaticArray<uint>(4);
+		public uint[] binaryData { get; private set; } = new uint[4];
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;

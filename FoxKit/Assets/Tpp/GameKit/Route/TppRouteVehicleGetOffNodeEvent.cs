@@ -9,6 +9,6 @@ namespace Tpp.GameKit
 		public static readonly StrCode32 Id = new StrCode32("VehicleGetOff");
 		public override StrCode32 GetId() => Id;
 
-		public static TppRouteVehicleGetOffNodeEvent Deserialize(UnityEngine.GameObject gameObject, uint[] binaryData) { TppRouteVehicleGetOffNodeEvent component = gameObject.AddComponent<TppRouteVehicleGetOffNodeEvent>(); component.binaryData = new StaticArray<uint>(binaryData); return component; }
+		public static TppRouteVehicleGetOffNodeEvent Deserialize(UnityEngine.GameObject gameObject, uint[] binaryData) { TppRouteVehicleGetOffNodeEvent component = gameObject.AddComponent<TppRouteVehicleGetOffNodeEvent>(); component.binaryData = binaryData; return component; }
 	}
 }

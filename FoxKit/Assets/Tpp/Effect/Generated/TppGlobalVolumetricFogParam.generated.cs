@@ -60,10 +60,10 @@ namespace Tpp.Effect
 		public float falloff { get; set; }
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.StaticArray<float> exposureOffsetValues { get; private set; } = new Fox.StaticArray<float>(3);
+		public float[] exposureOffsetValues { get; private set; } = new float[3];
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.StaticArray<float> exposureOffsetTargets { get; private set; } = new Fox.StaticArray<float>(3);
+		public float[] exposureOffsetTargets { get; private set; } = new float[3];
 		
 		[field: UnityEngine.SerializeField]
 		protected uint flags { get; set; }

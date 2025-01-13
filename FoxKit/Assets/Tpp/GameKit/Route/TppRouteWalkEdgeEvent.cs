@@ -9,6 +9,6 @@ namespace Tpp.GameKit
 		public static readonly StrCode32 Id = new StrCode32("Walk");
 		public override StrCode32 GetId() => Id;
 
-		public static TppRouteWalkEdgeEvent Deserialize(UnityEngine.GameObject gameObject, uint[] binaryData) { TppRouteWalkEdgeEvent component = gameObject.AddComponent<TppRouteWalkEdgeEvent>(); component.binaryData = new StaticArray<uint>(binaryData); return component; }
+		public static TppRouteWalkEdgeEvent Deserialize(UnityEngine.GameObject gameObject, uint[] binaryData) { TppRouteWalkEdgeEvent component = gameObject.AddComponent<TppRouteWalkEdgeEvent>(); component.binaryData = binaryData; return component; }
 	}
 }

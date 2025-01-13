@@ -6,14 +6,19 @@ namespace Fox.Core
     public class DynamicProperty_StaticArray_uint8 : DynamicProperty
     {
         [SerializeField]
-        private StaticArray<byte> SerializedField = new (1);
+        private byte[] SerializedField = new byte[1];
         
         internal override PropertyInfo.ContainerType GetContainerType() => PropertyInfo.ContainerType.StaticArray;
-        internal override PropertyInfo GetPropertyInfo() => new PropertyInfo(Name, PropertyInfo.PropertyType.UInt8, 0, (uint)SerializedField.Count);
+        internal override PropertyInfo GetPropertyInfo() => new PropertyInfo(Name, PropertyInfo.PropertyType.UInt8, 0, (uint)SerializedField.LongLength);
         
         internal override void ChangeStaticArraySize(uint newSize)
         {
-            SerializedField = new StaticArray<byte>(SerializedField, (int)newSize);
+            byte[] newList = new byte[newSize];
+            
+            for (uint i = 0; i < (newSize <= SerializedField.LongLength ? newSize : SerializedField.LongLength); i++)
+                newList[i] = SerializedField[i];
+            
+            SerializedField = newList;
         }
 
         public override Value GetValue() => new Value(SerializedField);

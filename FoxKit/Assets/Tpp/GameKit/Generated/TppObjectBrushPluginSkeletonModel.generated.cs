@@ -56,10 +56,10 @@ namespace Tpp.GameKit
 		public uint reserveResourcePerBlock { get; set; }
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.StaticArray<float> lodLength { get; private set; } = new Fox.StaticArray<float>(4);
+		public float[] lodLength { get; private set; } = new float[4];
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.StaticArray<float> lodLengthForHighEnd { get; private set; } = new Fox.StaticArray<float>(4);
+		public float[] lodLengthForHighEnd { get; private set; } = new float[4];
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
