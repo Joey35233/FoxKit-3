@@ -54,7 +54,7 @@ namespace Fox.EdCore
             }
         }
 
-        void IEntityField.Build(SerializedObject serializedObject)
+        public void Build(SerializedObject serializedObject)
         {
             EntityFieldBuildContext context = new EntityFieldBuildContext{ Field = this as EntityField<Entity>, Element = visualInput, Object = serializedObject };
             PreBuild(context);

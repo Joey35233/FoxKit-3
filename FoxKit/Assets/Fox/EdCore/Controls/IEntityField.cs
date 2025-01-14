@@ -7,6 +7,6 @@ namespace Fox.EdCore
 {
     public interface IEntityField : IFoxField
     {
-        void Build(SerializedObject serializedObject);
+        public void Build(SerializedObject serializedObject);
     }
 }
