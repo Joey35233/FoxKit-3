@@ -159,7 +159,7 @@ namespace Fox.EdCore
     {
         protected new Entity target => base.target as Entity;
         
-        public sealed override VisualElement CreateInspectorGUI()
+        public override VisualElement CreateInspectorGUI()
         {
             EntityInfo entityInfo = target.GetClassEntityInfo();
             
