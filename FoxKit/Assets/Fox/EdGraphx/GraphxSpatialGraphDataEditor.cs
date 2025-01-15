@@ -15,10 +15,6 @@ namespace Assets.Fox.EdGraphx
         {
             VisualElement container = new VisualElement();
 
-            Button addNodeButton = new Button();
-            addNodeButton.text = "Add Node";
-            container.Add(addNodeButton);
-
             GraphxSpatialGraphDataField field = new GraphxSpatialGraphDataField();
             field.Build(this.serializedObject);
             container.Add(field);
