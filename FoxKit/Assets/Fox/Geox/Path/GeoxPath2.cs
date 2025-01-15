@@ -132,35 +132,5 @@ namespace Fox.Geox
 
             return path;
         }
-
-        private static readonly Color Color = Color.white;
-        private static readonly Vector3 Scale = Vector3.one * 0.1f;
-        private static readonly Vector3 ScaleNode = Vector3.one * 0.25f;
-
-        public void OnDrawGizmos()
-        {
-            Gizmos.matrix = Matrix4x4.identity;
-
-            for (int nodeIndex = 0; nodeIndex < nodes.Count; nodeIndex++)
-            {
-                Graphx.GraphxSpatialGraphDataNode node = nodes[nodeIndex];
-
-                Gizmos.color = EditorColors.PlayerUtilityColor;
-                Gizmos.DrawWireCube(this.transform.position + node.position, ScaleNode);
-
-                for (int edgeIndex = 0; edgeIndex < node.outlinks.Count; edgeIndex++)
-                {
-                    var edge = node.outlinks[edgeIndex] as GeoxPathEdge;
-
-                    var prevNode = edge.prevNode as GeoxPathNode;
-                    var nextNode = edge.nextNode as GeoxPathNode;
-
-                    Vector3 prevNodePos = this.transform.TransformPoint(prevNode.position);
-                    Vector3 nextNodePos = this.transform.TransformPoint(nextNode.position);
-
-                    Gizmos.DrawLine(prevNodePos, nextNodePos);
-                }
-            }
-        }
     }
 }

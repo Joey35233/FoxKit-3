@@ -21,15 +21,5 @@ namespace Fox.Graphx
         }
 
         private static readonly Vector3 Scale = Vector3.one * 0.25f;
-
-        public void OnDrawGizmos()
-        {
-            if (transform.parent.GetComponent<GraphxSpatialGraphData>() is not { } graph)
-                return;
-
-            Gizmos.matrix = graph.GetGraphWorldMatrix();
-
-            Gizmos.DrawWireCube(position, Scale);
-        }
     }
 }

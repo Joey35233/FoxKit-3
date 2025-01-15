@@ -1,4 +1,5 @@
-﻿using Fox.EdCore;
+﻿using Assets.Fox.EdGraphx;
+using Fox.EdCore;
 using Fox.Graphx;
 using UnityEditor;
 using UnityEngine;
@@ -6,7 +7,7 @@ using UnityEngine;
 namespace Fox.EdGraphx
 {
     [CustomEditor(typeof(GraphxPathData), editorForChildClasses: true)]
-    public class GraphxPathDataEditor : EntityEditor
+    public class GraphxPathDataEditor : GraphxSpatialGraphDataEditor
     {
         private GraphxPathData Path => (GraphxPathData)target;
 
