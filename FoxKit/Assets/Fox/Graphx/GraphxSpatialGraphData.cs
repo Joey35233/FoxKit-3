@@ -33,7 +33,7 @@ namespace Fox.Graphx
                 Graphx.GraphxSpatialGraphDataNode node = nodes[nodeIndex];
 
                 Gizmos.color = EditorColors.PlayerUtilityColor;
-                Gizmos.DrawWireCube(this.transform.position + node.position, ScaleNode);
+                Gizmos.DrawWireCube(this.transform.TransformPoint(node.position), ScaleNode);
 
                 for (int edgeIndex = 0; edgeIndex < node.outlinks.Count; edgeIndex++)
                 {
