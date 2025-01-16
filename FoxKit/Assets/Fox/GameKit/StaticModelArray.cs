@@ -63,9 +63,14 @@ namespace Fox.GameKit
         
         public void ReloadFile(TaskLogger logger = null)
         {
-            while (transform.childCount > 0)
-                DestroyImmediate(transform.GetChild(0).gameObject);
-            
+            for (int i = transform.childCount - 1; i >= 0; i--)
+            {
+                var child = transform.GetChild(i);
+                if (child.GetComponent<Entity>() != null)
+                    continue;
+                DestroyImmediate(child.gameObject);
+            }
+
             Path targetPath = modelFile?.path;
             if (targetPath is null || string.IsNullOrEmpty(targetPath.String))
                 return;
