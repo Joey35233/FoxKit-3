@@ -35,8 +35,8 @@ namespace Fox.Core
 
             UnityEngine.Transform ownerTransform = owner.transform;
 
-            Vector3 exportPosition = owner.inheritTransform ? ownerTransform.position : ownerTransform.localPosition;
-            Quaternion exportRotation = owner.inheritTransform ? ownerTransform.rotation : ownerTransform.localRotation;
+            Vector3 exportPosition = owner.inheritTransform ? ownerTransform.localPosition : ownerTransform.position;
+            Quaternion exportRotation = owner.inheritTransform ? ownerTransform.localRotation : ownerTransform.rotation;
             Vector3 exportScale = owner.inheritTransform ? ownerTransform.localScale : ownerTransform.lossyScale;
 
             context.OverrideProperty(nameof(transform_translation), Fox.Math.UnityToFoxVector3(exportPosition));
