@@ -42,11 +42,11 @@ namespace Fox.GameKit
             ReloadFile(logger);
         }
 
-        private GameObject Model;
+        private AsyncOperationHandle<GameObject> ModelHandle;
 
         private List<GameObject> Instances;
 
-        private void CreateModel(Matrix4x4 matrix)
+        private void CreateModel(GameObject model, Matrix4x4 matrix)
         {
             matrix = Fox.Math.FoxToUnityMatrix(matrix);
             
@@ -54,8 +54,8 @@ namespace Fox.GameKit
             Quaternion rotation = Quaternion.LookRotation(matrix.GetColumn(2), matrix.GetColumn(1));
             Vector3 scale = new Vector3(matrix.GetColumn(0).magnitude, matrix.GetColumn(1).magnitude, matrix.GetColumn(2).magnitude);
 
-            GameObject instance = GameObject.Instantiate(Model, position, rotation);
-            instance.name = "StaticModelArrayInstance";
+            GameObject instance = GameObject.Instantiate(model, position, rotation);
+            instance.name = "INSTANCE_WILL_RESET_ON_RELOAD";
             instance.transform.localScale = scale;
             instance.transform.SetParent(this.transform);
             instance.hideFlags = HideFlags.DontSaveInEditor;
@@ -83,7 +83,7 @@ namespace Fox.GameKit
                     }
                     else
                     {
-                        logger?.AddWarningMissingAsset(targetPath.String);
+                        Debug.Log($"Could not find: {targetPath.String}");
                     }
                         
                     Addressables.Release(handle);
@@ -92,12 +92,13 @@ namespace Fox.GameKit
 
         private void OnLoadAsset(AsyncOperationHandle<GameObject> handle)
         {
-            if (handle.Status == AsyncOperationStatus.Succeeded)
+            ModelHandle = handle;
+            
+            if (ModelHandle.Status == AsyncOperationStatus.Succeeded)
             {
-                Model = handle.Result;
                 foreach (var matrix in transforms)
                 {
-                    CreateModel(matrix);
+                    CreateModel(ModelHandle.Result, matrix);
                 }
             }
         }
@@ -109,19 +110,11 @@ namespace Fox.GameKit
             
             ReloadFile();
         }
-
-        public void AddInstance(Vector3 position, Quaternion rotation, Vector3 scale)
+        
+        private void OnDisable()
         {
-            Matrix4x4 matrix = Matrix4x4.TRS(position, rotation, scale);
-            transforms.Add(matrix);
-        }
-
-        public void UpdateInstance(int index, Matrix4x4 matrix)
-        {
-            if (index >= 0 && index < transforms.Count)
-            {
-                transforms[index] = matrix;
-            }
+            if (ModelHandle.IsValid())
+                Addressables.Release(ModelHandle);
         }
     }
 }
