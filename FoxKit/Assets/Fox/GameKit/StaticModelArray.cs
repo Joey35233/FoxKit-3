@@ -60,34 +60,33 @@ namespace Fox.GameKit
             instance.transform.SetParent(this.transform);
             instance.hideFlags = HideFlags.DontSaveInEditor;
         }
-
-        public void CreateInstance()
-        {
-            
-        }
         
-        private void ReloadFile(TaskLogger logger = null)
+        public void ReloadFile(TaskLogger logger = null)
         {
+            while (transform.childCount > 0)
+                DestroyImmediate(transform.GetChild(0).gameObject);
+            
             Path targetPath = modelFile?.path;
             if (targetPath is null || string.IsNullOrEmpty(targetPath.String))
                 return;
             
-            Addressables.LoadResourceLocationsAsync(targetPath.String).Completed +=
-                (handle) =>
-                {
-                    IList<IResourceLocation> results = handle.Result;
-                    if (results.Count > 0)
-                    {
-                        IResourceLocation firstLocation = results[0];
-                        Addressables.LoadAssetAsync<GameObject>(firstLocation).Completed += OnLoadAsset;
-                    }
-                    else
-                    {
-                        Debug.Log($"Could not find: {targetPath.String}");
-                    }
-                        
-                    Addressables.Release(handle);
-                };
+            var getLocationsHandle = Addressables.LoadResourceLocationsAsync(targetPath.String);
+            getLocationsHandle.WaitForCompletion();
+                
+            IList<IResourceLocation> results = getLocationsHandle.Result;
+            if (results.Count > 0)
+            {
+                IResourceLocation firstLocation = results[0];
+                ModelHandle = Addressables.LoadAssetAsync<GameObject>(firstLocation);
+                _ = ModelHandle.WaitForCompletion();
+                OnLoadAsset(ModelHandle);
+            }
+            else
+            {
+                Debug.Log($"Could not find: {targetPath.String}");
+            }
+                
+            Addressables.Release(getLocationsHandle);
         }
 
         private void OnLoadAsset(AsyncOperationHandle<GameObject> handle)
@@ -105,9 +104,6 @@ namespace Fox.GameKit
 
         private void OnEnable()
         {
-            while (transform.childCount > 0)
-                DestroyImmediate(transform.GetChild(0).gameObject);
-            
             ReloadFile();
         }
         
