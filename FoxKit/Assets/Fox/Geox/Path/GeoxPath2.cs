@@ -46,6 +46,7 @@ namespace Fox.Geox
         {
             base.ApplyCustomDefaultValues();
             enable = true;
+            selectIndex = 1;
         }
         public static GeoxPath2 Deserialize(GeomHeaderContext header)
         {
