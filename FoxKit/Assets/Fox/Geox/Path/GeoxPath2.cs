@@ -6,6 +6,7 @@ using Fox;
 using System;
 using System.ComponentModel;
 using UnityEngine;
+using System.IO;
 
 namespace Fox.Geox
 {
@@ -41,6 +42,11 @@ namespace Fox.Geox
             DontFallWall = 0x400,
         }
 
+        public override void ApplyCustomDefaultValues()
+        {
+            base.ApplyCustomDefaultValues();
+            enable = true;
+        }
         public static GeoxPath2 Deserialize(GeomHeaderContext header)
         {
             FileStreamReader reader = header.Reader;
@@ -48,11 +54,8 @@ namespace Fox.Geox
             Debug.Assert(header.Type == GeoPrimType.Path);
 
             GeoxPath2 path = new GameObject().AddComponent<GeoxPath2>();
-            path.enable = true;
-
-            TransformEntity transformEntity = new GameObject().AddComponent<TransformEntity>();
-            path.SetTransform(transformEntity);
-            //transformEntity.gameObject.name = $"{header.Name.ToString()}|{transformEntity.GetType().Name}";
+            path.ApplyCustomDefaultValues();
+            bool transformSet = false;
 
             TagUtils.AddEnumTags<Tags>(path.tags, (ulong)header.GetTags<Tags>());
 
@@ -70,7 +73,7 @@ namespace Fox.Geox
 
                 GeoxPathEdge edge = new GameObject().AddComponent<GeoxPathEdge>();
                 edge.SetOwner(path);
-                //edge.gameObject.name = $"{header.Name.ToString()}|{edge.GetType().Name}{i:0000}";
+                edge.name = edge.GetType().Name;
 
                 var geoEdgeTags = (GeoxPathEdge.Tags)reader.ReadUInt32();
                 foreach (GeoxPathEdge.Tags tag in Enum.GetValues(geoEdgeTags.GetType()))
@@ -90,12 +93,23 @@ namespace Fox.Geox
                     reader.Seek(header.Position + header.VertexBufferOffset + (16 * inNodeIndex));
                     node.position = reader.ReadPositionF();
 
+                    if (!transformSet)
+                    {
+                        path.transform.position = node.position;
+                        node.position = Vector3.zero;
+                        transformSet = true;
+                    }
+                    else
+                    {
+                        node.position -= path.transform.position;
+                    }
+
                     TagUtils.AddEnumTags<GeoxPathNode.Tags>(node.nodeTags, reader.ReadUInt32());
 
                     path.nodes[inNodeIndex] = node;
                     inNode = node;
 
-                    //node.gameObject.name = $"{header.Name.ToString()}|{node.GetType().Name}";
+                    node.name = node.GetType().Name;
                 }
                 else
                 {
@@ -113,19 +127,30 @@ namespace Fox.Geox
                     reader.Seek(header.Position + header.VertexBufferOffset + (16 * outNodeIndex));
                     node.position = reader.ReadPositionF();
 
+                    if (!transformSet)
+                    {
+                        path.transform.position = node.position;
+                        node.position = Vector3.zero;
+                        transformSet = true;
+                    }
+                    else
+                    {
+                        node.position -= path.transform.position;
+                    }
+
                     TagUtils.AddEnumTags<GeoxPathNode.Tags>(node.nodeTags, reader.ReadUInt32());
 
                     path.nodes[outNodeIndex] = node;
                     outNode = node;
 
-                    //node.gameObject.name = $"{header.Name.ToString()}|{node.GetType().Name}";
+                    node.gameObject.name = node.GetType().Name;
                 }
                 else
                 {
                     outNode = path.nodes[outNodeIndex];
                 }
                 edge.nextNode = outNode;
-                outNode.inlinks.Add(edge);
+                outNode.outlinks.Add(edge);
 
                 path.edges[i] = edge;
             }

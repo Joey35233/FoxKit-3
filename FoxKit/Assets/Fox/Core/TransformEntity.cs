@@ -10,6 +10,7 @@ namespace Fox.Core
             transform.translation = Vector3.zero;
             transform.rotQuat = Quaternion.identity;
             transform.scale = Vector3.one;
+            transform.name = transform.GetType().Name;
 
             return transform;
         }

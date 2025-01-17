@@ -1,14 +1,18 @@
 using Fox.Core.Utils;
-using Fox;
-using System;
-using UnityEditor;
 using UnityEngine;
-using Math = Fox.Math;
 
 namespace Fox.Core
 {
     public partial class TransformData : Data
     {
+        public override void ApplyCustomDefaultValues()
+        {
+            SetTransform(TransformEntity.GetDefault());
+
+            flags |= TransformData_Flags.ENABLE_VISIBILITY;
+            flags |= TransformData_Flags.ENABLE_SELECTION;
+            flags |= TransformData_Flags.ENABLE_INHERIT_TRANSFORM;
+        }
         private partial bool Get_inheritTransform() => flags.HasFlag(TransformData_Flags.ENABLE_INHERIT_TRANSFORM);
         private partial void Set_inheritTransform(bool value)
         {
@@ -80,6 +84,7 @@ namespace Fox.Core
             transformEntity.translation = Math.FoxToUnityVector3(transformEntity.translation);
             transformEntity.rotQuat = Math.FoxToUnityQuaternion(transformEntity.rotQuat);
             transformEntity.scale = transformEntity.scale;
+            transform.name = transform.GetType().Name;
 
             SetTransform(transform);
         }

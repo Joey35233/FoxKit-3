@@ -23,6 +23,7 @@ namespace Fox.Graphx
         private static readonly Color Color = Color.white;
         private static readonly Vector3 Scale = Vector3.one * 0.1f;
         private static readonly Vector3 ScaleNode = Vector3.one * 0.25f;
+        private static readonly float NormalLength = 0.25f;
 
         public void OnDrawGizmos()
         {
@@ -45,7 +46,23 @@ namespace Fox.Graphx
                     Vector3 prevNodePos = this.transform.TransformPoint(prevNode.position);
                     Vector3 nextNodePos = this.transform.TransformPoint(nextNode.position);
 
+                    Gizmos.color = EditorColors.PlayerUtilityColor;
                     Gizmos.DrawLine(prevNodePos, nextNodePos);
+
+                    //Normals
+
+                    Vector3 pathVec = nextNodePos - prevNodePos; // Start index at 1 to guarantee i - 1 exists
+                    Vector3 lineNormalVec = Vector3.Cross(pathVec, Vector3.up).normalized;
+                    lineNormalVec *= NormalLength;
+
+                    // Gizmo draw +lineNormalVec in green
+                    Gizmos.color = Color.green;
+                    Gizmos.DrawLine(prevNodePos, prevNodePos - lineNormalVec);
+                    Gizmos.DrawLine(nextNodePos, nextNodePos - lineNormalVec);
+                    // Gizmo draw -lineNormalVec in red
+                    Gizmos.color = Color.red;
+                    Gizmos.DrawLine(prevNodePos, prevNodePos + lineNormalVec);
+                    Gizmos.DrawLine(nextNodePos, nextNodePos + lineNormalVec);
                 }
             }
         }

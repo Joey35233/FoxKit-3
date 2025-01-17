@@ -181,5 +181,7 @@ namespace Fox.Core
         }
 
         public override string ToString() => $"{GetType().Name}";
+
+        public virtual void ApplyCustomDefaultValues() { }
     }
 }
