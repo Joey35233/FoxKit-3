@@ -1,4 +1,5 @@
 ﻿using Fox.Core;
+using System;
 using UnityEngine;
 using static UnityEngine.UI.CanvasScaler;
 
@@ -9,6 +10,8 @@ namespace Fox.Graphx
         public Matrix4x4 GetGraphWorldMatrix() => Matrix4x4.TRS(transform.position, transform.rotation, Vector3.one);
 
         public Vector3 GetGraphWorldPosition(Vector3 pos) => GetGraphWorldMatrix().MultiplyPoint(pos);
+
+        public virtual Type GetNodeType() => typeof(GraphxSpatialGraphDataNode);
 
         public int IndexOf(GraphxSpatialGraphDataNode node)
         {

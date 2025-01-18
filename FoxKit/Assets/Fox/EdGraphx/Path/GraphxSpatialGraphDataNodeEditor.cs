@@ -92,27 +92,31 @@ namespace Fox.EdGraphx
             }
 
             // Create node at current position
-            var go = new GameObject();
-            Undo.SetTransformParent(go.transform, graph.transform, "Set new graph node's parent");
-            Undo.RegisterCreatedObjectUndo(go, "Added graph node");
-            Undo.RegisterCompleteObjectUndo(go, "Added graph node");         
+            var newNodeGo = new GameObject();
+            Undo.SetTransformParent(newNodeGo.transform, graph.transform, "Set new graph node's parent");
+            Undo.RegisterCreatedObjectUndo(newNodeGo, "Added graph node");
+            Undo.RegisterCompleteObjectUndo(newNodeGo, "Added graph node");
 
-            var newComp = Undo.AddComponent<GraphxSpatialGraphDataNode>(go);
-            var usedNames = (from ent in UnityEngine.Object.FindObjectsOfType(typeof(GraphxSpatialGraphDataNode), true)
+            var nodeType = graph.GetNodeType();
+            var newComp = Undo.AddComponent(newNodeGo, nodeType) as GraphxSpatialGraphDataNode;
+            var usedNames = (from ent in UnityEngine.Object.FindObjectsOfType(nodeType, true)
                              select ent.name).ToHashSet();
-            go.name = Node.GenerateUniqueName(typeof(GraphxSpatialGraphDataNode), usedNames);
+            newNodeGo.name = Node.GenerateUniqueName(nodeType, usedNames);
 
             newComp.position = Node.position;
 
-            Selection.activeGameObject = go;
+            Selection.activeGameObject = newNodeGo;
 
-            // TODO Make class vary based on graph class
             // Add to owning graph
-            // TODO Add edge
             var nextIndex = index + 1;
 
             Undo.RecordObject(graph, "Added graph node");
             graph.AddGraphNode(nextIndex, newComp);
+
+            // Create edge
+            // (Overrideable behavior): Set outlinks
+            // If previous node had outlinks to next node, cut and paste them onto new node
+            // Set previous node's outlinks to new node
         }
 
         private void OnNextNodeButtonClicked()

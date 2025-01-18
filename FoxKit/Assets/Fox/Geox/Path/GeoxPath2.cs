@@ -42,6 +42,8 @@ namespace Fox.Geox
             DontFallWall = 0x400,
         }
 
+        public override Type GetNodeType() => typeof(GeoxPathNode);
+
         public override void Reset()
         {
             base.Reset();
