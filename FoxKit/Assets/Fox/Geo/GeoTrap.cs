@@ -10,5 +10,10 @@ namespace Fox.Geo
         {
             Gizmos.DrawIcon(obj.transform.position, "Fox/Geo/GeoTrap.png");
         }
+        public override void Reset()
+        {
+            base.Reset();
+            enable = true;
+        }
     }
 }

@@ -89,5 +89,15 @@ namespace Fox.GameKit
             if (ModelHandle.IsValid())
                 Addressables.Release(ModelHandle);
         }
+        public override void Reset()
+        {
+            base.Reset();
+            lodFarSize = -1;
+            lodNearSize = -1;
+            lodPolygonSize = -1;
+            color = Color.white;
+            drawRejectionLevel = StaticModel_DrawRejectionLevel.DEFAULT;
+            rejectFarRangeShadowCast = StaticModel_RejectFarRangeShadowCast.DEFAULT;
+        }
     }
 }

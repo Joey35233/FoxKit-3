@@ -7,8 +7,8 @@ namespace Fox.Core
     {
         public override void Reset()
         {
-            if (transform is null)
-                SetTransform(TransformEntity.GetDefault());
+            /*if (!transform)
+                SetTransform(TransformEntity.GetDefault());*/
 
             flags |= TransformData_Flags.ENABLE_VISIBILITY;
             flags |= TransformData_Flags.ENABLE_SELECTION;

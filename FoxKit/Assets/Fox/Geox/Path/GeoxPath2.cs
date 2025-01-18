@@ -55,6 +55,7 @@ namespace Fox.Geox
             Debug.Assert(header.Type == GeoPrimType.Path);
 
             GeoxPath2 path = new GameObject().AddComponent<GeoxPath2>();
+            path.SetTransform(TransformEntity.GetDefault());
             bool transformSet = false;
 
             TagUtils.AddEnumTags<Tags>(path.tags, (ulong)header.GetTags<Tags>());

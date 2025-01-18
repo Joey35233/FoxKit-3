@@ -2,13 +2,10 @@ using System;
 using System.Collections.Generic;
 using Fox.Core;
 using Fox.Core.Utils;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
-using UnityEngine.Rendering;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.ResourceManagement.ResourceLocations;
-using Transform = UnityEngine.Transform;
 
 namespace Fox.GameKit
 {
@@ -116,6 +113,16 @@ namespace Fox.GameKit
         {
             if (ModelHandle.IsValid())
                 Addressables.Release(ModelHandle);
+        }
+        public override void Reset()
+        {
+            base.Reset();
+            lodFarSize = -1;
+            lodNearSize = -1;
+            lodPolygonSize = -1;
+            drawRejectionLevel = StaticModelArray_DrawRejectionLevel.DEFAULT;
+            rejectFarRangeShadowCast = StaticModelArray_RejectFarRangeShadowCast.DEFAULT;
+            //TODO: colors[i]=uint.MaxValue; //encoded Color.white
         }
     }
 }
