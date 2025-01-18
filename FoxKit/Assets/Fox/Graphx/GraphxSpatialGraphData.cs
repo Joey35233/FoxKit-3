@@ -20,6 +20,16 @@ namespace Fox.Graphx
             return this.nodes[index];
         }
 
+        /// <summary>
+        /// Add a node at the specified index.
+        /// </summary>
+        /// <param name="index">Index to insert at.</param>
+        /// <param name="node">The new node.</param>
+        public void AddGraphNode(int index, GraphxSpatialGraphDataNode node)
+        {
+            this.nodes.Insert(index, node);
+        }
+
         private static readonly Color Color = Color.white;
         private static readonly Vector3 Scale = Vector3.one * 0.1f;
         private static readonly Vector3 ScaleNode = Vector3.one * 0.25f;

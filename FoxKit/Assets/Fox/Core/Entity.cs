@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using static UnityEngine.EventSystems.EventTrigger;
 
 namespace Fox.Core
 {
@@ -178,6 +179,21 @@ namespace Fox.Core
 
             _ = alreadyCollectedEntities.Add(entity);
             entity.CollectReferencedEntities(alreadyCollectedEntities);
+        }
+
+        public virtual string GenerateUniqueName(Type type, HashSet<string> invalidNames)
+        {
+            var index = 0;
+            while (true)
+            {
+                var workingName = type.Name + index.ToString("D4");
+                if (!invalidNames.Contains(workingName))
+                {
+                    return workingName;
+                }
+
+                index++;
+            }
         }
 
         public override string ToString() => $"{GetType().Name}";

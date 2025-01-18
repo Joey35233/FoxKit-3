@@ -1,7 +1,9 @@
 ﻿using Assets.Fox.EdGraphx;
+using Fox.Core;
 using Fox.EdCore;
 using Fox.Graphx;
 using System;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -44,7 +46,12 @@ namespace Fox.EdGraphx
 
         public override VisualElement CreateInspectorGUI()
         {
-            VisualElement container = new VisualElement();
+            VisualElement container = new VisualElement();            
+
+            Button addNodeButton = new Button();
+            addNodeButton.text = "Add Node";
+            addNodeButton.clicked += OnAddNodeButtonClicked;
+            container.Add(addNodeButton);
 
             Button nextNodeButton = new Button();
             nextNodeButton.text = "Next Node";
@@ -66,6 +73,46 @@ namespace Fox.EdGraphx
             container.Add(field);
 
             return container;
+        }
+
+        private void OnAddNodeButtonClicked()
+        {
+            var graph = Node.transform.GetComponentInParent<GraphxSpatialGraphData>();
+            if (graph == null)
+            {
+                Debug.LogError($"Parent GameObject is not a ${nameof(GraphxSpatialGraphData)}.");
+                return;
+            }
+
+            var index = graph.IndexOf(Node);
+            if (index == -1)
+            {
+                Debug.LogError($"Node is not assigned to parent's {nameof(GraphxSpatialGraphData.nodes)} property.");
+                return;
+            }
+
+            // Create node at current position
+            var go = new GameObject();
+            Undo.SetTransformParent(go.transform, graph.transform, "Set new graph node's parent");
+            Undo.RegisterCreatedObjectUndo(go, "Added graph node");
+            Undo.RegisterCompleteObjectUndo(go, "Added graph node");         
+
+            var newComp = Undo.AddComponent<GraphxSpatialGraphDataNode>(go);
+            var usedNames = (from ent in UnityEngine.Object.FindObjectsOfType(typeof(GraphxSpatialGraphDataNode), true)
+                             select ent.name).ToHashSet();
+            go.name = Node.GenerateUniqueName(typeof(GraphxSpatialGraphDataNode), usedNames);
+
+            newComp.position = Node.position;
+
+            Selection.activeGameObject = go;
+
+            // TODO Make class vary based on graph class
+            // Add to owning graph
+            // TODO Add edge
+            var nextIndex = index + 1;
+
+            Undo.RecordObject(graph, "Added graph node");
+            graph.AddGraphNode(nextIndex, newComp);
         }
 
         private void OnNextNodeButtonClicked()
