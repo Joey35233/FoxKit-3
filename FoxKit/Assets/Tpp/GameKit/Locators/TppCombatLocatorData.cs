@@ -25,5 +25,13 @@ namespace Tpp.GameKit
             Gizmo.OuterRadius = this.lostSearchRadius;
             Gizmo.OnDrawGizmosSelected();
         }
+        public override void Reset()
+        {
+            base.Reset();
+            radius = 10;
+            lostSearchRadius = 45;
+            memberCount = 2;
+            memberCountFront = 4;
+        }
     }
 }

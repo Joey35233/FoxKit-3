@@ -25,5 +25,11 @@ namespace Tpp.GameKit
             Gizmo.Radius = this.radius;
             Gizmo.OnDrawGizmosSelected();
         }
+        public override void Reset()
+        {
+            base.Reset();
+            radius = 15;
+            memberCount = 4;
+        }
     }
 }
