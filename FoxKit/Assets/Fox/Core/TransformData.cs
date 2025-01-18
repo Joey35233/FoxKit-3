@@ -5,9 +5,10 @@ namespace Fox.Core
 {
     public partial class TransformData : Data
     {
-        public override void ApplyCustomDefaultValues()
+        public override void Reset()
         {
-            SetTransform(TransformEntity.GetDefault());
+            if (transform is null)
+                SetTransform(TransformEntity.GetDefault());
 
             flags |= TransformData_Flags.ENABLE_VISIBILITY;
             flags |= TransformData_Flags.ENABLE_SELECTION;

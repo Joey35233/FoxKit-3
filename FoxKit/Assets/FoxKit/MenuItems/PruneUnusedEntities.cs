@@ -19,7 +19,7 @@ namespace FoxKit.MenuItems
                 foreach (DataElement child in data.transform.GetComponentsInChildren<DataElement>())
                 {
                     if (!referencedEntities.Contains(child))
-                        Object.Destroy(child);
+                        Object.DestroyImmediate(child.gameObject);
                 }
             }
         }

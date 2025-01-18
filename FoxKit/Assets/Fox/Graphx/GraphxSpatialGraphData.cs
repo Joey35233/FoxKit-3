@@ -33,6 +33,9 @@ namespace Fox.Graphx
             {
                 Graphx.GraphxSpatialGraphDataNode node = nodes[nodeIndex];
 
+                if (!node)
+                    return;
+
                 Gizmos.color = EditorColors.PlayerUtilityColor;
                 Gizmos.DrawWireCube(this.transform.TransformPoint(node.position), ScaleNode);
 
@@ -40,8 +43,14 @@ namespace Fox.Graphx
                 {
                     var edge = node.outlinks[edgeIndex] as GraphxSpatialGraphDataEdge;
 
+                    if (!edge)
+                        return;
+
                     var prevNode = edge.prevNode as GraphxSpatialGraphDataNode;
                     var nextNode = edge.nextNode as GraphxSpatialGraphDataNode;
+
+                    if (!prevNode || !nextNode)
+                        return;
 
                     Vector3 prevNodePos = this.transform.TransformPoint(prevNode.position);
                     Vector3 nextNodePos = this.transform.TransformPoint(nextNode.position);

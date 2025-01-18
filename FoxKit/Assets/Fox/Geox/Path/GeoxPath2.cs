@@ -42,9 +42,9 @@ namespace Fox.Geox
             DontFallWall = 0x400,
         }
 
-        public override void ApplyCustomDefaultValues()
+        public override void Reset()
         {
-            base.ApplyCustomDefaultValues();
+            base.Reset();
             enable = true;
             selectIndex = 1;
         }
@@ -55,7 +55,6 @@ namespace Fox.Geox
             Debug.Assert(header.Type == GeoPrimType.Path);
 
             GeoxPath2 path = new GameObject().AddComponent<GeoxPath2>();
-            path.ApplyCustomDefaultValues();
             bool transformSet = false;
 
             TagUtils.AddEnumTags<Tags>(path.tags, (ulong)header.GetTags<Tags>());
