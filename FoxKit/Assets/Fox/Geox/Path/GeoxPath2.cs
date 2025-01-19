@@ -2,11 +2,9 @@ using Fox.Core;
 using Fox.Fio;
 using Fox.Geo;
 using Fox.Graphx;
-using Fox;
 using System;
 using System.ComponentModel;
 using UnityEngine;
-using System.IO;
 
 namespace Fox.Geox
 {
@@ -48,7 +46,6 @@ namespace Fox.Geox
         {
             base.Reset();
             enable = true;
-            selectIndex = 1;
         }
         public static GeoxPath2 Deserialize(GeomHeaderContext header)
         {

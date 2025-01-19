@@ -2,6 +2,7 @@
 using Fox.Core.Utils;
 using Fox.Graphx;
 using UnityEngine;
+using System;
 
 namespace Fox.Navx
 {
@@ -22,6 +23,7 @@ namespace Fox.Navx
         }
 
         private static readonly Vector3 Scale = Vector3.one * 0.25f;
+        public override Type GetNodeType() => typeof(GraphxSpatialGraphDataNode);
 
         public void OnDrawGizmos()
         {

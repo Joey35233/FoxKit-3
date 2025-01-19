@@ -5,6 +5,7 @@ using Fox.Geo;
 using Fox.Graphx;
 using Fox;
 using UnityEngine;
+using System;
 
 namespace Fox.Geox
 {
@@ -95,6 +96,7 @@ namespace Fox.Geox
         }
 
         private static readonly Color Color = Color.red;
+        public override Type GetNodeType() => typeof(GraphxSpatialGraphDataNode);
 
         public void DrawGizmos(bool isSelected)
         {
