@@ -73,7 +73,7 @@ namespace Fox.Geox
 
                 GeoxPathEdge edge = new GameObject().AddComponent<GeoxPathEdge>();
                 edge.SetOwner(path);
-                edge.name = edge.GetType().Name;
+                edge.name = $"{path.name}|{edge.GetType().Name}{i:D4}";
 
                 var geoEdgeTags = (GeoxPathEdge.Tags)reader.ReadUInt32();
                 foreach (GeoxPathEdge.Tags tag in Enum.GetValues(geoEdgeTags.GetType()))
@@ -89,6 +89,7 @@ namespace Fox.Geox
                 {
                     GeoxPathNode node = new GameObject().AddComponent<GeoxPathNode>();
                     node.SetOwner(path);
+                    node.name = $"{path.name}|{node.GetType().Name}{inNodeIndex:D4}";
 
                     reader.Seek(header.Position + header.VertexBufferOffset + (16 * inNodeIndex));
                     node.position = reader.ReadPositionF();
@@ -123,6 +124,7 @@ namespace Fox.Geox
                 {
                     GeoxPathNode node = new GameObject().AddComponent<GeoxPathNode>();
                     node.SetOwner(path);
+                    node.name = $"{path.name}|{node.GetType().Name}{outNodeIndex:D4}";
 
                     reader.Seek(header.Position + header.VertexBufferOffset + (16 * outNodeIndex));
                     node.position = reader.ReadPositionF();

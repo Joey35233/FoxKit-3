@@ -1,4 +1,5 @@
 ﻿using Fox.Core;
+using Fox.Core.Utils;
 using System;
 using UnityEngine;
 using static UnityEngine.UI.CanvasScaler;

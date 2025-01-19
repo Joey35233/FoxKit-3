@@ -87,36 +87,25 @@ namespace Fox.Grx
             return result;
         }
 
-        private static TransformEntity ReadTransform(FileStreamReader reader)
+        private Locator ReadLocator(FileStreamReader reader)
         {
-            long rewindPos = reader.BaseStream.Position;
+            Locator locator = new GameObject().AddComponent<Locator>();
+            locator.SetTransform(TransformEntity.GetDefault());
 
-            TransformEntity transform = null;
+            long rewindPos = reader.BaseStream.Position;
 
             uint offset = reader.ReadUInt32();
             if (offset > 0)
             {
                 reader.Seek(rewindPos + offset);
 
-                transform = new GameObject().AddComponent<TransformEntity>();
-                transform.scale = reader.ReadVector3();
-                transform.rotQuat = reader.ReadRotationF();
-                transform.translation = reader.ReadPositionF();
-            }
+                locator.transform.localScale = reader.ReadVector3();
+                locator.transform.rotation = reader.ReadRotationF();
+                locator.transform.position = reader.ReadPositionF();
 
-            reader.Seek(rewindPos + 4);
+                reader.Seek(rewindPos + 4);
 
-            return transform;
-        }
-
-        private Locator ReadLocator(FileStreamReader reader)
-        {
-            if (ReadTransform(reader) is { } transform)
-            {
-                Locator locator = new GameObject().AddComponent<Locator>();
                 locator.size = 1;
-
-                locator.SetTransform(transform);
 
                 return locator;
             }
@@ -148,11 +137,8 @@ namespace Fox.Grx
             }
 
             {
-                TransformEntity transform = new GameObject().AddComponent<TransformEntity>();
-                transform.scale = Vector3.one;
-                transform.rotQuat = Quaternion.identity;
-                transform.translation = reader.ReadPositionF();
-                pointLight.SetTransform(transform);
+                pointLight.SetTransform(TransformEntity.GetDefault());
+                pointLight.transform.position = reader.ReadPositionF();
             }
 
             pointLight.outerRange = reader.ReadHalf();
@@ -215,14 +201,13 @@ namespace Fox.Grx
             }
 
             {
-                Vector3 position = reader.ReadPositionF();
+                spotLight.SetTransform(TransformEntity.GetDefault());
+
+                spotLight.transform.position = reader.ReadPositionF();
                 spotLight.reachPoint = reader.ReadPositionF();
 
-                TransformEntity transform = new GameObject().AddComponent<TransformEntity>();
-                transform.scale = Vector3.one;
-                transform.rotQuat = reader.ReadRotationF();
-                transform.translation = position;
-                spotLight.SetTransform(transform);
+                spotLight.transform.rotation = reader.ReadRotationF();
+                spotLight.transform.localScale = Vector3.one;
             }
 
             spotLight.outerRange = reader.ReadHalf();
