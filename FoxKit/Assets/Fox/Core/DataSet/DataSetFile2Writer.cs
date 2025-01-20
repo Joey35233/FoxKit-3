@@ -207,7 +207,7 @@ namespace Fox.Core
 
                                 break;
                             case PropertyInfo.ContainerType.DynamicArray:
-                                System.Collections.Generic.List<DataElement> dynamicArray = data.GetProperty(propertyInfo.Name).GetValueAsIList() as System.Collections.Generic.List<DataElement>;
+                                List<DataElement> dynamicArray = data.GetProperty(propertyInfo.Name).GetValueAsIList() as System.Collections.Generic.List<DataElement>;
                                 if (dynamicArray is null)
                                     continue;
                                 foreach (var element in dynamicArray)
@@ -250,10 +250,10 @@ namespace Fox.Core
             list[0] = item;
         }
 
-        private void WriteStringTableEntry(BinaryWriter writer, string foxString)
+        private void WriteStringTableEntry(BinaryWriter writer, string str)
         {
-            byte[] nameBytes = foxString == null ? new byte[0] : Encoding.UTF8.GetBytes(foxString);
-            writer.Write(Fox.HashingBitConverter.StrCodeToUInt64(new StrCode(foxString)));
+            byte[] nameBytes = str == null ? new byte[0] : Encoding.UTF8.GetBytes(str);
+            writer.Write(Hashing.StringIdHashDetectionOverride(str));
             writer.Write((uint)nameBytes.Length);
             writer.Write(nameBytes);
         }

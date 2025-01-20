@@ -214,6 +214,8 @@ namespace Fox
             return CityHashStrCodeInner(str);
         }
 
+        public static ulong StringIdHashDetectionOverride(ReadOnlySpan<char> str) => CityHashStrCodeInner(str);
+
         public static uint StringId32(ReadOnlySpan<char> str)
         {
             if (str.Length > 2 && str.StartsWith("0x"))

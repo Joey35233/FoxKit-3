@@ -159,7 +159,7 @@ namespace Fox.Core
             ushort size = (ushort)(endPosition - headerPosition);
             output.Position = headerPosition;
 
-            writer.Write(HashingBitConverter.StrCodeToUInt64(new StrCode(property.Name)));
+            writer.Write(Hashing.StringIdHashDetectionOverride(property.Name));
             writer.Write((byte)property.Type);
             writer.Write((byte)property.Container);
             writer.Write(arraySize);
@@ -186,7 +186,7 @@ namespace Fox.Core
                 }
 
                 _ = strings.Add(item.Key);
-                writer.Write(HashingBitConverter.StrCodeToUInt64(new StrCode(item.Key)));
+                writer.Write(Hashing.StringIdHashDetectionOverride(item.Key));
                 WriteCollectionItem(writer, item.Value, property.Type);
                 writer.AlignWrite(16, 0x00);
             }
@@ -250,14 +250,14 @@ namespace Fox.Core
                         var str = (string)item;
                         str = str ?? string.Empty;
                         _ = strings.Add(str);
-                        writer.WriteStrCode(new StrCode(str));
+                        writer.Write(Hashing.StringIdHashDetectionOverride(str));
                     }
                     break;
                 case PropertyInfo.PropertyType.Path:
                     {
                         var str = ((Fox.Path)item).String;
                         _ = strings.Add(str);
-                        writer.WriteStrCode(new StrCode(str));
+                        writer.Write(Hashing.StringIdHashDetectionOverride(str));
                     }
                     break;
                 case PropertyInfo.PropertyType.EntityPtr:
@@ -293,7 +293,7 @@ namespace Fox.Core
                         var ptr = (FilePtr)item;
                         var str = ptr.path.String;
                         _ = strings.Add(str);
-                        writer.WriteStrCode(new StrCode(str));
+                        writer.Write(Hashing.StringIdHashDetectionOverride(str));
                     }
                     break;
                 case PropertyInfo.PropertyType.EntityHandle:
@@ -314,9 +314,9 @@ namespace Fox.Core
                         _ = strings.Add(entityLink.archivePath.String);
                         _ = strings.Add(entityLink.nameInArchive);
 
-                        writer.WriteStrCode(new StrCode(entityLink.packagePath.String));
-                        writer.WriteStrCode(new StrCode(entityLink.archivePath.String));
-                        writer.WriteStrCode(new StrCode(entityLink.nameInArchive));
+                        writer.Write(Hashing.StringIdHashDetectionOverride(entityLink.packagePath.String));
+                        writer.Write(Hashing.StringIdHashDetectionOverride(entityLink.archivePath.String));
+                        writer.Write(Hashing.StringIdHashDetectionOverride(entityLink.nameInArchive));
 
                         ulong address = 0;
                         if (entityLink.handle != null)
