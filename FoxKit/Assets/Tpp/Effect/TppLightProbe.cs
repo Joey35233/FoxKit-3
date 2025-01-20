@@ -102,12 +102,12 @@ namespace Tpp.Effect
             drawRejectionLevel = TppLightProbe_DrawRejectionLevel.NO_REJECT;
         }
 
-        private void DrawGizmos(bool isSelected)
+        private void DrawDefault(bool isSelected)
         {
             Color colorOuterEdge = isSelected ? Color.white : new Color(0, 1, 0, 1);
-            Color colorOuterSide = isSelected ? new Color(0, 1, 0, 0.5f) : new Color(0,1,0,0.05f);
+            Color colorOuterSide = isSelected ? new Color(0, 1, 0, 0.5f) : new Color(0, 1, 0, 0.05f);
             Color colorInnerEdge = isSelected ? Color.white : new Color(1, 1, 0, 1);
-            Color colorInnerFace = isSelected ? new Color(1, 1, 0, 0.75f) : new Color(1,1,0,0.1f);
+            Color colorInnerFace = isSelected ? new Color(1, 1, 0, 0.75f) : new Color(1, 1, 0, 0.1f);
 
             //Draw outer box face
             Gizmos.color = colorOuterEdge;
@@ -189,6 +189,35 @@ namespace Tpp.Effect
             Gizmos.DrawLine(xPositive_yNegative_zNegative, xPositive_yNegative_zNegativeOuter);
             Gizmos.DrawLine(xPositive_yNegative_zPositive, xPositive_yNegative_zPositiveOuter);
             Gizmos.DrawLine(xNegative_yNegative_zPositive, xNegative_yNegative_zPositiveOuter);
+        }
+        private void DrawTriangularPrism(bool isSelected)
+        {
+            //TODO
+        }
+        private void DrawSemiCylinder(bool isSelected)
+        {
+            //TODO
+        }
+        private void DrawHalfSquare(bool isSelected)
+        {
+            //TODO
+        }
+        private void DrawGizmos(bool isSelected)
+        {
+            switch (shapeType)
+            {
+                case TppLightProbe_ShapeType.DEFAULT:
+                default:
+                    DrawDefault(isSelected);
+                    break;
+                case TppLightProbe_ShapeType.TRIALGULAR_PRISM:
+                    DrawTriangularPrism(isSelected);
+                    break;
+                case TppLightProbe_ShapeType.SEMI_CYLINDRICAL:
+                    DrawSemiCylinder(isSelected);
+                    break;
+            }
+            
 
             if (!isSelected)
                 Handles.Label(transform.position, gameObject.name);
