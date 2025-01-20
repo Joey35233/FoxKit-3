@@ -3,6 +3,7 @@ using Fox;
 using System.ComponentModel;
 using UnityEngine;
 using CsSystem = System;
+using UnityEditor;
 
 namespace Tpp.Effect
 {
@@ -88,11 +89,109 @@ namespace Tpp.Effect
         private partial TppLightProbe_PackingGeneration Get_packingGeneration() => throw new CsSystem.NotImplementedException();
         private partial void Set_packingGeneration(TppLightProbe_PackingGeneration value) => throw new CsSystem.NotImplementedException();
 
+        public override void Reset()
+        {
+            base.Reset();
+            enable = true;
+            innerScaleXNegative = 1;
+            innerScaleXPositive = 1;
+            innerScaleYNegative = 1;
+            innerScaleYPositive = 1;
+            innerScaleZNegative = 1;
+            innerScaleZPositive = 1;
+            drawRejectionLevel = TppLightProbe_DrawRejectionLevel.NO_REJECT;
+        }
+
         private void DrawGizmos(bool isSelected)
         {
-            Gizmos.matrix = this.transform.localToWorldMatrix;
+            Color colorOuterEdge = isSelected ? Color.white : new Color(0, 1, 0, 1);
+            Color colorOuterSide = isSelected ? new Color(0, 1, 0, 0.5f) : new Color(0,1,0,0.05f);
+            Color colorInnerEdge = isSelected ? Color.white : new Color(1, 1, 0, 1);
+            Color colorInnerFace = isSelected ? new Color(1, 1, 0, 0.75f) : new Color(1,1,0,0.1f);
 
+            //Draw outer box face
+            Gizmos.color = colorOuterEdge;
+            Gizmos.matrix = transform.localToWorldMatrix;
             Gizmos.DrawWireCube(Vector3.zero, Vector3.one);
+
+            //Draw outer box edge
+            Gizmos.color = colorOuterSide;
+            Gizmos.DrawCube(Vector3.zero, Vector3.one);
+
+            //Draw inner box edge
+            Gizmos.color = colorInnerEdge;
+            float xOffsetPos = innerScaleXPositive / 4;
+            float xOffsetNeg = innerScaleXNegative / 4;
+            float yOffsetPos = innerScaleYPositive / 4;
+            float yOffsetNeg = innerScaleYNegative / 4;
+            float zOffsetPos = innerScaleZPositive / 4;
+            float zOffsetNeg = innerScaleZNegative / 4;
+            Vector3 innerCenterOffset = new Vector3(
+                (xOffsetPos > xOffsetNeg ? xOffsetPos - xOffsetNeg : -(xOffsetNeg - xOffsetPos)),
+                (yOffsetPos > yOffsetNeg ? yOffsetPos - yOffsetNeg : -(yOffsetNeg - yOffsetPos)),
+                (zOffsetPos > zOffsetNeg ? zOffsetPos - zOffsetNeg : -(zOffsetNeg - zOffsetPos))
+            );
+            Gizmos.DrawWireCube(
+                innerCenterOffset,
+                new Vector3(
+                    (innerScaleXPositive + innerScaleXNegative) / 2,
+                    (innerScaleYPositive + innerScaleYNegative) / 2,
+                    (innerScaleZPositive + innerScaleZNegative) / 2
+                )
+            );
+
+            //Draw inner box face
+            Gizmos.color = colorInnerFace;
+            Gizmos.DrawCube(
+                innerCenterOffset,
+                new Vector3(
+                    (innerScaleXPositive + innerScaleXNegative) / 2,
+                    (innerScaleYPositive + innerScaleYNegative) / 2,
+                    (innerScaleZPositive + innerScaleZNegative) / 2
+                )
+            );
+
+            //Draw tesseract connection to scale
+            Gizmos.color = colorInnerEdge;
+            Vector3 xPositive = new Vector3(innerScaleXPositive / 2, 0, 0);
+            Vector3 yPositive = new Vector3(0, innerScaleYPositive / 2, 0);
+            Vector3 zPositive = new Vector3(0, 0, innerScaleZPositive / 2);
+            Vector3 xNegative = new Vector3(-(innerScaleXNegative / 2), 0, 0);
+            Vector3 yNegative = new Vector3(0, -(innerScaleYNegative / 2), 0);
+            Vector3 zNegative = new Vector3(0, 0, -(innerScaleZNegative / 2));
+            Vector3 xPositive_yPositive_zPositive = xPositive + yPositive + zPositive;
+            Vector3 xPositive_yNegative_zPositive = xPositive + yNegative + zPositive;
+            Vector3 xPositive_yPositive_zNegative = xPositive + yPositive + zNegative;
+            Vector3 xPositive_yNegative_zNegative = xPositive + yNegative + zNegative;
+            Vector3 xNegative_yNegative_zNegative = xNegative + yNegative + zNegative;
+            Vector3 xNegative_yNegative_zPositive = xNegative + yNegative + zPositive;
+            Vector3 xNegative_yPositive_zPositive = xNegative + yPositive + zPositive;
+            Vector3 xNegative_yPositive_zNegative = xNegative + yPositive + zNegative;
+            Vector3 xPositiveOuter = new Vector3(0.5f, 0, 0);
+            Vector3 yPositiveOuter = new Vector3(0, 0.5f, 0);
+            Vector3 zPositiveOuter = new Vector3(0, 0, 0.5f);
+            Vector3 xNegativeOuter = new Vector3(-0.5f, 0, 0);
+            Vector3 yNegativeOuter = new Vector3(0, -0.5f, 0);
+            Vector3 zNegativeOuter = new Vector3(0, 0, -0.5f);
+            Vector3 xPositive_yPositive_zPositiveOuter = xPositiveOuter + yPositiveOuter + zPositiveOuter;
+            Vector3 xPositive_yNegative_zPositiveOuter = xPositiveOuter + yNegativeOuter + zPositiveOuter;
+            Vector3 xPositive_yPositive_zNegativeOuter = xPositiveOuter + yPositiveOuter + zNegativeOuter;
+            Vector3 xPositive_yNegative_zNegativeOuter = xPositiveOuter + yNegativeOuter + zNegativeOuter;
+            Vector3 xNegative_yNegative_zNegativeOuter = xNegativeOuter + yNegativeOuter + zNegativeOuter;
+            Vector3 xNegative_yNegative_zPositiveOuter = xNegativeOuter + yNegativeOuter + zPositiveOuter;
+            Vector3 xNegative_yPositive_zPositiveOuter = xNegativeOuter + yPositiveOuter + zPositiveOuter;
+            Vector3 xNegative_yPositive_zNegativeOuter = xNegativeOuter + yPositiveOuter + zNegativeOuter;
+            Gizmos.DrawLine(xNegative_yPositive_zNegative, xNegative_yPositive_zNegativeOuter);
+            Gizmos.DrawLine(xPositive_yPositive_zNegative, xPositive_yPositive_zNegativeOuter);
+            Gizmos.DrawLine(xPositive_yPositive_zPositive, xPositive_yPositive_zPositiveOuter);
+            Gizmos.DrawLine(xNegative_yPositive_zPositive, xNegative_yPositive_zPositiveOuter);
+            Gizmos.DrawLine(xNegative_yNegative_zNegative, xNegative_yNegative_zNegativeOuter);
+            Gizmos.DrawLine(xPositive_yNegative_zNegative, xPositive_yNegative_zNegativeOuter);
+            Gizmos.DrawLine(xPositive_yNegative_zPositive, xPositive_yNegative_zPositiveOuter);
+            Gizmos.DrawLine(xNegative_yNegative_zPositive, xNegative_yNegative_zPositiveOuter);
+
+            if (!isSelected)
+                Handles.Label(transform.position, gameObject.name);
         }
 
         private void OnDrawGizmos() => DrawGizmos(false);

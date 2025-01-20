@@ -80,9 +80,8 @@ namespace Tpp.Effect
 
         private void ReadLightProbe(FileStreamReader reader)
         {
-            var lightGameObject = new GameObject();
-
             TppLightProbe lightProbe = new GameObject(ReadName(reader)).AddComponent<TppLightProbe>();
+            lightProbe.SetTransform(TransformEntity.GetDefault());
 
             uint localFlags = reader.ReadUInt32();
             lightProbe.enable = FlagUtils.GetFlag(localFlags, 0);
@@ -103,20 +102,18 @@ namespace Tpp.Effect
             lightProbe.innerScaleYNegative = reader.ReadHalf();
             lightProbe.innerScaleZNegative = reader.ReadHalf();
 
-            TransformEntity transform = new GameObject().AddComponent<TransformEntity>();
-            transform.scale = reader.ReadVector3();
-            transform.rotQuat = reader.ReadRotationF();
-            transform.translation = reader.ReadPositionF();
-            lightProbe.SetTransform(transform);
+            lightProbe.transform.localScale = reader.ReadVector3();
+            lightProbe.transform.rotation = reader.ReadRotationF();
+            lightProbe.transform.position = reader.ReadPositionF();
 
             uint innerAreaOffset = reader.ReadUInt32();
             if (innerAreaOffset != 0)
             {
                 var iaTransform = new Fox.Core.Transform { scale = reader.ReadVector3(), rotation_quat = reader.ReadRotationF(), translation = reader.ReadPositionF() };
 
-                Vector3 localIaPos = iaTransform.translation - transform.translation;
+                Vector3 localIaPos = iaTransform.translation - lightProbe.transform.position;
                 var absIaScale = new Vector3(Mathf.Abs(iaTransform.scale.x), Mathf.Abs(iaTransform.scale.y), Mathf.Abs(iaTransform.scale.z));
-                var posProbeScale = new Vector3(Mathf.Abs(transform.scale.x), Mathf.Abs(transform.scale.y), Mathf.Abs(transform.scale.z));
+                var posProbeScale = new Vector3(Mathf.Abs(lightProbe.transform.localScale.x), Mathf.Abs(lightProbe.transform.localScale.y), Mathf.Abs(lightProbe.transform.localScale.z));
                 Vector3 negProbeScale = -posProbeScale;
 
                 Vector3 iaUpper = localIaPos + absIaScale;

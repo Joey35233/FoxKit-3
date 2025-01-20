@@ -1,7 +1,7 @@
-﻿using Fox.Core.Utils;
+﻿using Fox.Core;
+using Fox.Core.Utils;
 using Fox.Fio;
 using System;
-using UnityEditor;
 using UnityEngine;
 
 namespace Fox.Tactical
@@ -66,7 +66,10 @@ namespace Fox.Tactical
                     uint rewindPos = (uint)reader.BaseStream.Position;
                     reader.Seek(worldOffset+actionNameOffset+(actionIndex*8));
                     GkTacticalAction tacticalAction = new GameObject(reader.ReadStrCode().ToString()).AddComponent<GkTacticalAction>();
+                    tacticalAction.SetTransform(TransformEntity.GetDefault());
                     tacticalAction.worldName = worldName.ToString();
+                    tacticalAction.enable = true;
+                    tacticalAction.enableInGame = true;
                     reader.Seek(rewindPos);
 
                     for (int waypointIndex = 0; waypointIndex < 2; waypointIndex++)
@@ -77,6 +80,7 @@ namespace Fox.Tactical
                         tacticalAction.edges.Insert(waypointIndex,new GameObject($"GkTacticalActionEdge{waypointIndex:0000}").AddComponent<GkTacticalActionEdge>());
                         tacticalAction.edges[waypointIndex].transform.parent = tacticalAction.gameObject.transform;
                         tacticalAction.edges[waypointIndex].actionName = reader.ReadStrCode32().ToString();
+                        tacticalAction.edges[waypointIndex].transform.parent = tacticalAction.waypoints[waypointIndex].transform;
                     }
                     tacticalAction.transform.position = tacticalAction.waypoints[0].position;
 

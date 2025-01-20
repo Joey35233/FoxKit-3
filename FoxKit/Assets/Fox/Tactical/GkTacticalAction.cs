@@ -6,6 +6,13 @@ namespace Fox.Tactical
     [System.Serializable]
     public partial class GkTacticalAction : Fox.Core.TransformData
     {
+        public override void Reset()
+        {
+            base.Reset();
+            enable = true;
+            enableInGame = true;
+
+        }
         private static readonly Color Color = Color.white;
         private static Color EdgeColor = Color.yellow;
         private static Color WaypointColor = new(0.0f, 0.5f, 0.0f);
@@ -27,9 +34,12 @@ namespace Fox.Tactical
             {
                 GkTacticalActionWaypoint waypoint = waypoints[i];
 
+                if (waypoint is null)
+                    return;
+
                 globalWaypointPositions[i] = this.transform.TransformPoint(new Vector3(-waypoint.position.x, waypoint.position.y, waypoint.position.z));
 
-                Gizmos.color = WaypointColor;
+                Gizmos.color = isSelected? WaypointColor : WaypointColor * 0.5f;
 
                 Vector3 right = Vector3.right * Scale.x;
                 Gizmos.DrawLine(globalWaypointPositions[i] - right, globalWaypointPositions[i] + right);
@@ -40,9 +50,9 @@ namespace Fox.Tactical
                 Vector3 forward = Vector3.forward * Scale.z;
                 Gizmos.DrawLine(globalWaypointPositions[i] - forward, globalWaypointPositions[i] + forward);
 
-                if (i > 0)
+                if (i > 0 && edges.Count>0)
                 {
-                    Gizmos.color = EdgeColor;
+                    Gizmos.color = isSelected? EdgeColor : EdgeColor * 0.5f;
                     Gizmos.DrawLine(globalWaypointPositions[i - 1], globalWaypointPositions[i]);
                 }
             }
