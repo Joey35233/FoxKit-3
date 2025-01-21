@@ -1,25 +1,23 @@
-﻿using System;
-using Fox.Core;
+﻿using Fox.Core;
 using Fox.Core.Utils;
 using UnityEngine;
 
-namespace Fox.Graphx
+namespace Fox.Sim
 {
-    public partial class GraphxPathVolume
+    public partial class SimGravityControlParam
     {
         public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
         {
             base.OnDeserializeEntity(gameObject, logger);
 
-            topPos = Fox.Math.FoxToUnityVector3(topPos);
+            customGravity = Fox.Math.FoxToUnityVector3(customGravity);
         }
 
         public override void OverridePropertiesForExport(EntityExportContext context)
         {
             base.OverridePropertiesForExport(context);
 
-            context.OverrideProperty(nameof(topPos), Fox.Math.UnityToFoxVector3(topPos));
+            context.OverrideProperty(nameof(customGravity), Fox.Math.UnityToFoxVector3(customGravity));
         }
-        public override Type GetNodeType() => typeof(GraphxSpatialGraphDataNode);
     }
 }

@@ -1,4 +1,8 @@
-﻿namespace Fox.Grx
+﻿using Fox.Core;
+using Fox.Core.Utils;
+using UnityEngine;
+
+namespace Fox.Grx
 {
     public partial class DirectionalLight : Fox.Core.TransformData
     {
@@ -19,5 +23,19 @@
 
         private partial bool Get_enableDistanceFade() => throw new System.NotImplementedException();
         private partial void Set_enableDistanceFade(bool value) => throw new System.NotImplementedException();
+
+        public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
+        {
+            base.OnDeserializeEntity(gameObject, logger);
+
+            direction = Fox.Math.FoxToUnityVector3(direction);
+        }
+
+        public override void OverridePropertiesForExport(EntityExportContext context)
+        {
+            base.OverridePropertiesForExport(context);
+
+            context.OverrideProperty(nameof(direction), Fox.Math.UnityToFoxVector3(direction));
+        }
     }
 }

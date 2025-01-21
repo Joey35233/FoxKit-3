@@ -1,4 +1,6 @@
-﻿using Fox;
+﻿using Fox.Core;
+using Fox.Core.Utils;
+using UnityEngine;
 
 namespace Fox.Sim
 {
@@ -9,5 +11,18 @@ namespace Fox.Sim
 
         internal UnityEngine.Quaternion GetOffset() => offset;
         internal void SetOffset(UnityEngine.Quaternion value) => offset = value;
+        public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
+        {
+            base.OnDeserializeEntity(gameObject, logger);
+
+            offset = Fox.Math.FoxToUnityQuaternion(offset);
+        }
+
+        public override void OverridePropertiesForExport(EntityExportContext context)
+        {
+            base.OverridePropertiesForExport(context);
+
+            context.OverrideProperty(nameof(offset), Fox.Math.UnityToFoxQuaternion(offset));
+        }
     }
 }

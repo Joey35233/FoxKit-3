@@ -1,5 +1,6 @@
 ﻿using Fox.Core;
-using Fox;
+using Fox.Core.Utils;
+using UnityEngine;
 
 namespace Fox.Phx
 {
@@ -54,6 +55,24 @@ namespace Fox.Phx
                 assignedBoneNames.Add(wheelAssociationUnit.GetBoneName());
 
             return assignedBoneNames;
+        }
+
+        public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
+        {
+            wheelFront = Fox.Math.FoxToUnityVector3(wheelFront);
+            wheelUp = Fox.Math.FoxToUnityVector3(wheelUp);
+            wheelPositionOffset = Fox.Math.FoxToUnityVector3(wheelPositionOffset);
+
+            base.OnDeserializeEntity(gameObject, logger);
+        }
+
+        public override void OverridePropertiesForExport(EntityExportContext context)
+        {
+            context.OverrideProperty(nameof(wheelFront), Fox.Math.UnityToFoxVector3(wheelFront));
+            context.OverrideProperty(nameof(wheelUp), Fox.Math.UnityToFoxVector3(wheelUp)); ;
+            context.OverrideProperty(nameof(wheelPositionOffset), Fox.Math.UnityToFoxVector3(wheelPositionOffset)); ;
+
+            base.OverridePropertiesForExport(context);
         }
     }
 }

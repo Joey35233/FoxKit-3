@@ -1,25 +1,23 @@
-﻿using System;
-using Fox.Core;
+﻿using Fox.Core;
 using Fox.Core.Utils;
 using UnityEngine;
 
-namespace Fox.Graphx
+namespace Fox.Ph
 {
-    public partial class GraphxPathVolume
+    public partial class PhActionParam
     {
         public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
         {
             base.OnDeserializeEntity(gameObject, logger);
 
-            topPos = Fox.Math.FoxToUnityVector3(topPos);
+            defaultPosition = Fox.Math.FoxToUnityVector3(defaultPosition);
         }
 
         public override void OverridePropertiesForExport(EntityExportContext context)
         {
             base.OverridePropertiesForExport(context);
 
-            context.OverrideProperty(nameof(topPos), Fox.Math.UnityToFoxVector3(topPos));
+            context.OverrideProperty(nameof(defaultPosition), Fox.Math.UnityToFoxVector3(defaultPosition));
         }
-        public override Type GetNodeType() => typeof(GraphxSpatialGraphDataNode);
     }
 }

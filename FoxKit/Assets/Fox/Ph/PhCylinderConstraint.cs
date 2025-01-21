@@ -1,4 +1,8 @@
-﻿namespace Fox.Ph
+﻿using Fox.Core;
+using Fox.Core.Utils;
+using UnityEngine;
+
+namespace Fox.Ph
 {
     public partial class PhCylinderConstraint : Fox.Ph.PhConstraint
     {
@@ -15,5 +19,18 @@
 
         private partial float Get_heightMax() => cylinderConstraint.GetHeightMax();
         private partial void Set_heightMax(float value) => cylinderConstraint.SetHeightMax(value);
+        public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
+        {
+            base.OnDeserializeEntity(gameObject, logger);
+
+            axis = Fox.Math.FoxToUnityQuaternion(axis);
+        }
+
+        public override void OverridePropertiesForExport(EntityExportContext context)
+        {
+            base.OverridePropertiesForExport(context);
+
+            context.OverrideProperty(nameof(axis), Fox.Math.UnityToFoxQuaternion(axis));
+        }
     }
 }

@@ -1,4 +1,8 @@
-﻿namespace Fox.Ph
+﻿using Fox.Core;
+using Fox.Core.Utils;
+using UnityEngine;
+
+namespace Fox.Ph
 {
     public partial class PhHingeConstraint : Fox.Ph.PhConstraint
     {
@@ -15,5 +19,18 @@
 
         private partial float Get_limitLo() => hingeConstraint.GetLimitLo();
         private partial void Set_limitLo(float value) => hingeConstraint.SetLimitLo(value);
+        public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
+        {
+            base.OnDeserializeEntity(gameObject, logger);
+
+            axis = Fox.Math.FoxToUnityQuaternion(axis);
+        }
+
+        public override void OverridePropertiesForExport(EntityExportContext context)
+        {
+            base.OverridePropertiesForExport(context);
+
+            context.OverrideProperty(nameof(axis), Fox.Math.UnityToFoxQuaternion(axis));
+        }
     }
 }

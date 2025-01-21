@@ -81,9 +81,9 @@ namespace Fox.Ph
 
         public override void OverridePropertiesForExport(EntityExportContext context)
         {
-            context.OverrideProperty("defaultPosition", Fox.Math.UnityToFoxVector3(defaultPosition));
-            context.OverrideProperty("defaultRotation", Fox.Math.FoxToUnityQuaternion(defaultRotation));
-            context.OverrideProperty("centerOfMassOffset", Fox.Math.UnityToFoxVector3(centerOfMassOffset));
+            context.OverrideProperty(nameof(defaultPosition), Fox.Math.UnityToFoxVector3(defaultPosition));
+            context.OverrideProperty(nameof(defaultRotation), Fox.Math.UnityToFoxQuaternion(defaultRotation));
+            context.OverrideProperty(nameof(centerOfMassOffset), Fox.Math.UnityToFoxVector3(centerOfMassOffset));
 
             base.OverridePropertiesForExport(context);
         }

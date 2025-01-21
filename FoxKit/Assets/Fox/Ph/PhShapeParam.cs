@@ -1,4 +1,8 @@
-﻿namespace Fox.Ph
+﻿using Fox.Core;
+using Fox.Core.Utils;
+using UnityEngine;
+
+namespace Fox.Ph
 {
     public partial class PhShapeParam : Fox.Core.Entity
     {
@@ -10,6 +14,21 @@
 
         internal UnityEngine.Vector3 GetSize() => size;
         internal void SetSize(UnityEngine.Vector3 value) => size = value;
+        public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
+        {
+            base.OnDeserializeEntity(gameObject, logger);
+
+            offset = Fox.Math.FoxToUnityVector3(offset);
+            rotation = Fox.Math.FoxToUnityQuaternion(rotation);
+        }
+
+        public override void OverridePropertiesForExport(EntityExportContext context)
+        {
+            base.OverridePropertiesForExport(context);
+
+            context.OverrideProperty(nameof(offset), Fox.Math.UnityToFoxVector3(offset));
+            context.OverrideProperty(nameof(rotation), Fox.Math.UnityToFoxQuaternion(rotation));
+        }
 
         internal virtual void DrawGizmos()
         {

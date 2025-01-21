@@ -1,4 +1,6 @@
-﻿using Fox;
+﻿using Fox.Core;
+using Fox.Core.Utils;
+using UnityEngine;
 
 namespace Fox.Ph
 {
@@ -63,5 +65,23 @@ namespace Fox.Ph
 
         private partial string Get_material() => param.GetMaterial();
         private partial void Set_material(string value) => param.SetMaterial(value);
+
+        public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
+        {
+            defaultPosition = Fox.Math.FoxToUnityVector3(defaultPosition);
+            defaultRotation = Fox.Math.FoxToUnityQuaternion(defaultRotation);
+            centerOfMassOffset = Fox.Math.FoxToUnityVector3(centerOfMassOffset);
+
+            base.OnDeserializeEntity(gameObject, logger);
+        }
+
+        public override void OverridePropertiesForExport(EntityExportContext context)
+        {
+            context.OverrideProperty(nameof(defaultPosition), Fox.Math.UnityToFoxVector3(defaultPosition));
+            context.OverrideProperty(nameof(defaultRotation), Fox.Math.UnityToFoxQuaternion(defaultRotation));
+            context.OverrideProperty(nameof(centerOfMassOffset), Fox.Math.UnityToFoxVector3(centerOfMassOffset));
+
+            base.OverridePropertiesForExport(context);
+        }
     }
 }

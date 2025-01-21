@@ -1,4 +1,8 @@
-﻿namespace Fox.Ph
+﻿using Fox.Core;
+using Fox.Core.Utils;
+using UnityEngine;
+
+namespace Fox.Ph
 {
     public partial class PhMultiShoulderConstraintParam : Fox.Ph.PhConstraintParam
     {
@@ -25,5 +29,20 @@
 
         internal bool GetIsPoweredFlag() => isPoweredFlag;
         internal void SetIsPoweredFlag(bool value) => isPoweredFlag = value;
+        public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
+        {
+            base.OnDeserializeEntity(gameObject, logger);
+
+            refVec0 = Fox.Math.FoxToUnityVector3(refVec0);
+            refVec1 = Fox.Math.FoxToUnityVector3(refVec1);
+        }
+
+        public override void OverridePropertiesForExport(EntityExportContext context)
+        {
+            base.OverridePropertiesForExport(context);
+
+            context.OverrideProperty(nameof(refVec0), Fox.Math.UnityToFoxVector3(refVec0));
+            context.OverrideProperty(nameof(refVec1), Fox.Math.UnityToFoxVector3(refVec1));
+        }
     }
 }
