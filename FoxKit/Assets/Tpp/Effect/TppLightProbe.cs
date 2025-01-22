@@ -4,6 +4,7 @@ using System.ComponentModel;
 using UnityEngine;
 using CsSystem = System;
 using UnityEditor;
+using Fox.Core;
 
 namespace Tpp.Effect
 {
@@ -89,6 +90,24 @@ namespace Tpp.Effect
         private partial TppLightProbe_PackingGeneration Get_packingGeneration() => throw new CsSystem.NotImplementedException();
         private partial void Set_packingGeneration(TppLightProbe_PackingGeneration value) => throw new CsSystem.NotImplementedException();
 
+        public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
+        {
+            base.OnDeserializeEntity(gameObject, logger);
+
+            float _xNegative = innerScaleXNegative;
+            float _xPositive = innerScaleXPositive;
+            innerScaleXNegative = _xPositive;
+            innerScaleXPositive = _xNegative;
+        }
+        public override void OverridePropertiesForExport(EntityExportContext context)
+        {
+            base.OverridePropertiesForExport(context);
+
+            float _xNegative = innerScaleXNegative;
+            float _xPositive = innerScaleXPositive;
+            context.OverrideProperty(nameof(innerScaleXNegative), _xPositive);
+            context.OverrideProperty(nameof(innerScaleXPositive), _xNegative);
+        }
         public override void Reset()
         {
             base.Reset();

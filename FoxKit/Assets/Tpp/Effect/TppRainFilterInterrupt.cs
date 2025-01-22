@@ -1,7 +1,6 @@
 using CsSystem = System;
 using Fox.Core;
 using Fox.Core.Utils;
-using Fox;
 using UnityEngine;
 
 namespace Tpp.Effect

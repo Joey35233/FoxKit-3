@@ -1,4 +1,5 @@
 using Fox;
+using Fox.Core;
 using Fox.Core.Utils;
 using Fox.Grx;
 using UnityEngine;
@@ -35,6 +36,18 @@ namespace Tpp.Effect
         private partial Path Get_importFilePath() => throw new CsSystem.NotImplementedException();
         private partial void Set_importFilePath(Path value) => throw new CsSystem.NotImplementedException();
 
+        public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
+        {
+            base.OnDeserializeEntity(gameObject, logger);
+
+            reachPoint = Fox.Math.FoxToUnityVector3(reachPoint);
+        }
+        public override void OverridePropertiesForExport(EntityExportContext context)
+        {
+            base.OverridePropertiesForExport(context);
+
+            context.OverrideProperty(nameof(reachPoint), Fox.Math.UnityToFoxVector3(reachPoint));
+        }
         private PointLightGizmo Gizmo = new PointLightGizmo();
 
         private void DrawGizmos(bool isSelected)

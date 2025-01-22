@@ -1,7 +1,23 @@
-﻿namespace Tpp.Effect
+﻿using Fox.Core;
+using Fox.Core.Utils;
+using UnityEngine;
+
+namespace Tpp.Effect
 {
     public partial class TppTrapExecChangeGlobalWindCallbackDataElement
     {
+        public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
+        {
+            base.OnDeserializeEntity(gameObject, logger);
+
+            rotation = Fox.Math.FoxToUnityQuaternion(rotation);
+        }
+        public override void OverridePropertiesForExport(EntityExportContext context)
+        {
+            base.OverridePropertiesForExport(context);
+
+            context.OverrideProperty(nameof(rotation), Fox.Math.UnityToFoxQuaternion(rotation));
+        }
         public override void Reset()
         {
             base.Reset();
