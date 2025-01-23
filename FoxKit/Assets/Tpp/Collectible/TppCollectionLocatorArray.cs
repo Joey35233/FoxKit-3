@@ -79,6 +79,12 @@ namespace Tpp.Collectible
 
             TYPE_STATION = 130
         }
+        private enum TppCollection_GroupType : byte
+        {
+            TYPE_NORMAL = 0,
+            TYPE_HERB = 1,
+            TYPE_STATION = 2,
+        }
         private Quaternion DecompressQuaternion( uint retQuat )
         {
             float x = (float)((retQuat >> 10 & 0x3ff) * 0.0009775171);
@@ -100,7 +106,37 @@ namespace Tpp.Collectible
             float sqrted = (float)1.0 / Mathf.Sqrt(y * y + x * x + z * z);
             float sinfTheta = Mathf.Sin(theta);
             theta = Mathf.Cos(theta);
-            return new Quaternion(sqrted * x * sinfTheta, sqrted * y * sinfTheta, sqrted * z * sinfTheta, theta).normalized;
+            return new Quaternion(sqrted * x * sinfTheta, sqrted * y * sinfTheta, sqrted * z * sinfTheta, theta);
+        }
+        private uint CompressQuaternion(Quaternion rotQuat)
+        {
+            uint compress = 0;
+
+            float theta = Mathf.Acos(rotQuat.w);
+            float sinfTheta = Mathf.Asin(rotQuat.w);
+
+            return compress;
+        }
+        private TppCollection_GroupType GetGroupId(TppCollection_Type type)
+        {
+            if (type < TppCollection_Type.TYPE_STATION)
+                if (type > TppCollection_Type.TYPE_PICTURE_PAZ)
+                    return TppCollection_GroupType.TYPE_HERB;
+                else
+                    return TppCollection_GroupType.TYPE_NORMAL;
+            else
+                return TppCollection_GroupType.TYPE_STATION;
+        }
+        private const ushort NUM_BLOCKS = 32;
+        private const ushort METERS_PER_BLOCK = 128 / 1;
+        private static ushort PositionFWSToBlockIndex(Vector3 positionFWS)
+        {
+            // block indices [0,32) x [0,32)
+            ushort blockX = (ushort)Mathf.FloorToInt((METERS_PER_BLOCK * NUM_BLOCKS / 2 + positionFWS.x) / METERS_PER_BLOCK);
+            ushort blockZ = (ushort)Mathf.FloorToInt((METERS_PER_BLOCK * NUM_BLOCKS / 2 + positionFWS.z) / METERS_PER_BLOCK);
+
+            // one-value block index [0, 32*32)
+            return (ushort)(blockZ * NUM_BLOCKS + blockX);
         }
         public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
         {
@@ -116,31 +152,97 @@ namespace Tpp.Collectible
 
             for (int i = 0; i < positions.Count; i++)
             {
-                GameObject colLocator = new($"TppCollectibleLocator{i:D4}");
-
-                colLocator.transform.position = positions[i];
-
-                colLocator.transform.rotation = rotationsQuat[i];
-
                 TppCollection_Type typeId = (TppCollection_Type)(infos[i] >> 24);
-                string typeName = CsSystem.Enum.GetName(typeof(TppCollection_Type), typeId);
-                string locatorName = (infos[i] & 0xFFFFFF).ToString("x");
-                colLocator.name = $"{typeName}|{locatorName}";
+                string uniqueId = (infos[i] & 0xFFFFFF).ToString("x");
 
-                colLocator.transform.parent = this.transform;
+                TppCollectionLocator colLocator = new GameObject(uniqueId).AddComponent<TppCollectionLocator>();
+
+                //TODO load relevant model
+                GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                cube.transform.parent = colLocator.transform;
+
+                colLocator.transform.parent = gameObject.transform;
+
+                colLocator.transform.SetPositionAndRotation(positions[i], rotationsQuat[i]);
+
+                colLocator.type = typeId;
             }
         }
         public override void OverridePropertiesForExport(EntityExportContext context)
         {
             base.OverridePropertiesForExport(context);
 
-            CsSystem.Collections.Generic.List<Vector3> _positions = positions;
+            /*CsSystem.Collections.Generic.List<Vector3> _positions = positions;
             for (int i = 0; i < positions.Count; i++)
                 _positions[i] = Fox.Math.UnityToFoxVector3(positions[i]);
 
-            context.OverrideProperty(nameof(positions), _positions);
+            context.OverrideProperty(nameof(positions), _positions);*/
+
+            Override(context);
 
             //rlc TODO rotation packing
+        }
+        public void Override(EntityExportContext context)
+        {
+            TppCollectionLocator[] locators = this.GetComponentsInChildren<TppCollectionLocator>();
+
+            int locatorsCount = locators.Length;
+
+            CsSystem.Collections.Generic.List<Vector3> _positions = new(locatorsCount);
+            CsSystem.Collections.Generic.List<uint> _rotations = new(locatorsCount);
+            CsSystem.Collections.Generic.List<uint> _infos = new(locatorsCount);
+
+            CsSystem.Collections.Generic.List<ushort> _segmentIndices = new();
+            CsSystem.Collections.Generic.List<ushort> _locatorIndices = new();
+            CsSystem.Collections.Generic.List<ushort> _locatorCounts = new();
+
+            CsSystem.Collections.Generic.List<ushort> _groupIds = new();
+            CsSystem.Collections.Generic.List<ushort> _segmentInfoIndices = new();
+            CsSystem.Collections.Generic.List<ushort> _segmentInfoCounts = new();
+
+            foreach (TppCollection_GroupType groupType in CsSystem.Enum.GetValues(typeof(TppCollection_GroupType)))
+            {
+                CsSystem.Collections.Generic.List<ushort> groupSegmentIndices = new();
+                CsSystem.Collections.Generic.List<ushort> groupLocatorIndices = new();
+                CsSystem.Collections.Generic.List<ushort> groupLocatorCounts = new();
+                int locatorGroupIndex = 0;
+                for (int i = 0; i < locators.Length; i++)
+                {
+                    if (groupType == GetGroupId(locators[i].type))
+                    {
+                        //Encode Locators:
+                        //  Position
+                        Vector3 position = Fox.Math.UnityToFoxVector3(locators[i].transform.position);
+                        _positions.Insert(locatorGroupIndex, position);
+
+                        //  Rotation
+                        Quaternion rotQuat = Fox.Math.UnityToFoxQuaternion(locators[i].transform.rotation);
+                        _rotations.Insert(locatorGroupIndex, CompressQuaternion(rotQuat));
+
+                        //  Info
+                        TppCollection_Type type = locators[i].type;
+                        string name = locators[i].name;
+                        if (!uint.TryParse(name, out uint nameHash))
+                            nameHash = (uint)new Fox.StrCode32(name).GetHashCode();
+                        _infos.Insert(locatorGroupIndex, (nameHash & 0xFFFFFF) | ((uint)type << 24));
+
+                        //Segment index
+                        ushort segmentInfo = PositionFWSToBlockIndex(position);
+                    }
+                }
+            }
+
+            context.OverrideProperty(nameof(positions), _positions);
+            context.OverrideProperty(nameof(rotations), _rotations);
+            context.OverrideProperty(nameof(infos), _infos);
+
+            context.OverrideProperty(nameof(segmentIndices), _segmentIndices);
+            context.OverrideProperty(nameof(locatorIndices), _locatorIndices);
+            context.OverrideProperty(nameof(locatorCounts), _locatorCounts);
+
+            context.OverrideProperty(nameof(groupIds), _groupIds);
+            context.OverrideProperty(nameof(segmentInfoIndices), _segmentInfoIndices);
+            context.OverrideProperty(nameof(segmentInfoCounts), _segmentInfoCounts);
         }
     }
 }
