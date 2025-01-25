@@ -185,7 +185,7 @@ namespace Fox.Core
 
         public Path GetValueAsPath() => (Path)value;
 
-        public IStringMap GetValueAsStringMap<T>() => (StringMap<T>)value;
+        public IStringMap GetValueAsStringMap<T>() => value as StringMap<T>;
 
         public IStringMap GetValueAsIStringMap() => (IStringMap)value;
 
