@@ -77,3 +77,4 @@ crashlytics-build.properties
 *.fox2.unity.meta
 /[Aa]ssets/Lib/*[Ff]mdl*/
 /[Aa]ssets/[Gg]ame/*
+FoxKit/Assets/AddressableAssetsData/AssetGroups/Default Local Group.asset

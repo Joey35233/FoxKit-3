@@ -82,12 +82,14 @@ namespace Tpp.Collectible
 
             TYPE_STATION = 130
         }
+        
         private enum TppCollection_GroupType : byte
         {
             TYPE_NORMAL = 0,
             TYPE_HERB = 1,
             TYPE_STATION = 2,
         }
+        
         private FilePtr GetModelFilePath(TppCollection_Type type)
         {
             string pathString = "";
@@ -154,63 +156,80 @@ namespace Tpp.Collectible
             };
             return new FilePtr(new Fox.Path(pathString));
         }
+        
         private Quaternion DecompressQuaternion( uint retQuat )
         {
-            float x = (float)((retQuat >> 10 & 0x3ff) * 0.0009775171);
-            float y = (float)((retQuat & 0x3ff) * 0.0009775171);
-            float z = (float)(1.0 - x) - y;
+            uint signs = retQuat >> 29;
+            float x = (retQuat >> 10 & 0x3ff) * 0.0009775171f;
+            float y = (retQuat & 0x3ff) * 0.0009775171f;
+            float theta = (retQuat >> 0x14 & 0x1ff) * 0.001956947f * 3.141593f;
+            
+            float z = 1.0f - x - y;
 
-            if ((retQuat >> 0x1d & 1) != 0)
+            if ((signs & 1) != 0)
                 x = -x;
 
-            if (((byte)(retQuat >> 0x1d) & 2) != 0)
+            if ((signs & 2) != 0)
                 y = -y;
 
-            if ((retQuat >> 0x1d & 4) != 0)
+            if ((signs & 4) != 0)
                 z = -z;
 
-            float theta = (float)((retQuat >> 0x14 & 0x1ff) * 0.001956947 * 3.141593 * 0.5);
-            float sqrted = (float)1.0 / Mathf.Sqrt(y * y + x * x + z * z);
-            float sinfTheta = Mathf.Sin(theta);
-            theta = Mathf.Cos(theta);
-            return new Quaternion(sqrted * x * sinfTheta, sqrted * y * sinfTheta, sqrted * z * sinfTheta, theta);
+            float thetaDiv2 = theta  / 2.0f;
+            float normFac = 1.0f / Mathf.Sqrt(y * y + x * x + z * z);
+            float sinThetaDiv2 = Mathf.Sin(thetaDiv2);
+            float cosThetaDiv2 = Mathf.Cos(thetaDiv2);
+            
+            return new Quaternion(x * normFac * sinThetaDiv2, y * normFac * sinThetaDiv2, z * normFac * sinThetaDiv2, cosThetaDiv2);
         }
+        
         private uint CompressQuaternion(Quaternion rotQuat)
         {
-            float x = rotQuat.x; float y = rotQuat.y;
-            float z = rotQuat.z; float w = rotQuat.w;
+            float x = rotQuat.x; 
+            float y = rotQuat.y;
+            float z = rotQuat.z; 
+            float w = rotQuat.w;
 
-            if(w<0)
+            if(w < 0.0f)
             {
-                x=-x; 
-                y=-y;
-                z=-z;
-                w=-w;
+                x = -x; 
+                y = -y;
+                z = -z;
+                w = -w;
             }
-            byte signs=0;
-            if (x < 0 )
-                signs = 1; x = -x;
+            
+            uint signs = 0;
+            if (x < 0)
+            {
+                x = -x;
+                signs |= 1; 
+            }
 
             if (y < 0)
-                signs |= 2; y = -y;
+            {
+                y = -y;
+                signs |= 2; 
+            }
 
             if (z < 0)
-                signs |= 4; z = -z;
+            {
+                z = -z;
+                signs |= 4;
+            }
 
             float normFactor = 1.0f / (x + y + z);
             x *= normFactor;
             y *= normFactor;
-            z *= normFactor;
 
-            float wCompressed = Mathf.Acos(w) * (2.0f * 0.3183099f * 511.0f) + 0.5f;
             float xCompressed = x * 1023.0f + 0.5f;
             float yCompressed = y * 1023.0f + 0.5f;
+            float wCompressed = Mathf.Acos(w) * 2.0f * 0.3183099f * 511.0f + 0.5f;
                                                     
-            int wInt = Mathf.FloorToInt(wCompressed);
-            int xInt = Mathf.FloorToInt(xCompressed);
-            int yInt = Mathf.FloorToInt(yCompressed);
+            uint xInt = (uint)Mathf.FloorToInt(xCompressed);
+            uint yInt = (uint)Mathf.FloorToInt(yCompressed);
+            uint wInt = (uint)Mathf.FloorToInt(wCompressed);
 
-            return (uint)((yInt & 0x3FF) | ((xInt & 0x3FF) << 10) | ((wInt & 0x3FF) << 20) | (signs << 29));
+            return (signs << 29) | (wInt << 20) | (xInt << 10) | (yInt << 0);
         }
         private TppCollection_GroupType GetGroupId(TppCollection_Type type)
         {
@@ -263,6 +282,7 @@ namespace Tpp.Collectible
                 colLocator.type = typeId;
             }
         }
+        
         public override void OverridePropertiesForExport(EntityExportContext context)
         {
             base.OverridePropertiesForExport(context);
@@ -277,6 +297,7 @@ namespace Tpp.Collectible
 
             //rlc TODO rotation packing
         }
+        
         public void Override(EntityExportContext context)
         {
             var locators = this.GetComponentsInChildren<TppCollectionLocator>().ToList();
