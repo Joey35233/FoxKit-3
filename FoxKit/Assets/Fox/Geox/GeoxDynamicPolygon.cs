@@ -1,7 +1,7 @@
 ﻿using Fox.Core;
 using Fox.Core.Utils;
 using UnityEngine;
-using CsSystem = System;
+using System.Collections.Generic;
 
 namespace Fox.Geox
 {
@@ -19,10 +19,9 @@ namespace Fox.Geox
         {
             base.OverridePropertiesForExport(context);
 
-            CsSystem.Collections.Generic.List<Vector3> _vertices = vertices;
+            List<Vector3> _vertices = new(vertices);
             for (int i = 0; i < _vertices.Count; i++)
                 _vertices[i] = Fox.Math.UnityToFoxVector3(_vertices[i]);
-
             context.OverrideProperty(nameof(vertices), _vertices);
         }
     }

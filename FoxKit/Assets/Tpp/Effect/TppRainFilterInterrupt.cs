@@ -1,7 +1,7 @@
-using CsSystem = System;
 using Fox.Core;
 using Fox.Core.Utils;
 using UnityEngine;
+using System.Collections.Generic;
 
 namespace Tpp.Effect
 {
@@ -12,22 +12,17 @@ namespace Tpp.Effect
             base.OnDeserializeEntity(gameObject, logger);
 
             for (int i = 0; i < planeMatrices.Count; i++)
-            {
                 planeMatrices[i] = Fox.Math.FoxToUnityMatrix(planeMatrices[i]);
-            }
         }
 
         public override void OverridePropertiesForExport(EntityExportContext context)
         {
             base.OverridePropertiesForExport(context);
 
-            var convertedMatrices = new CsSystem.Collections.Generic.List<Matrix4x4>(planeMatrices);
-            for (int i = 0; i < convertedMatrices.Count; i++)
-            {
-                convertedMatrices[i] = Fox.Math.UnityToFoxMatrix(convertedMatrices[i]);
-            }
-
-            context.OverrideProperty(nameof(planeMatrices), convertedMatrices);
+            List<Matrix4x4> _planeMatrices = new(planeMatrices);
+            for (int i = 0; i < _planeMatrices.Count; i++)
+                _planeMatrices[i] = Fox.Math.UnityToFoxMatrix(_planeMatrices[i]);
+            context.OverrideProperty(nameof(planeMatrices), _planeMatrices);
         }
 
         public void OnDrawGizmos()

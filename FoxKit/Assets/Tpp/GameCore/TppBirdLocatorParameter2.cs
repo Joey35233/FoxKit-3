@@ -1,7 +1,7 @@
 ﻿using Fox.Core;
 using Fox.Core.Utils;
 using UnityEngine;
-using CsSystem = System;
+using System.Collections.Generic;
 
 namespace Tpp.GameCore
 {
@@ -21,16 +21,14 @@ namespace Tpp.GameCore
         {
             base.OverridePropertiesForExport(context);
 
-            CsSystem.Collections.Generic.List<Vector3> _grounds
-                = grounds;
-            for (int i = 0; i < grounds.Count; i++)
-                _grounds[i] = Fox.Math.UnityToFoxVector3(grounds[i]);
+            List<Vector3> _grounds = new(grounds);
+            for (int i = 0; i < _grounds.Count; i++)
+                _grounds[i] = Fox.Math.UnityToFoxVector3(_grounds[i]);
             context.OverrideProperty(nameof(grounds), _grounds);
 
-            CsSystem.Collections.Generic.List<Vector3> _perchPoints
-                = perchPoints;
-            for (int i = 0; i < perchPoints.Count; i++)
-                _perchPoints[i] = Fox.Math.UnityToFoxVector3(perchPoints[i]);
+            List<Vector3> _perchPoints = new(perchPoints);
+            for (int i = 0; i < _perchPoints.Count; i++)
+                _perchPoints[i] = Fox.Math.UnityToFoxVector3(_perchPoints[i]);
             context.OverrideProperty(nameof(perchPoints), _perchPoints);
         }
     }

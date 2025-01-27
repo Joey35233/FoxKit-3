@@ -1,7 +1,7 @@
-﻿using CsSystem = System;
-using Fox.Core;
+﻿using Fox.Core;
 using Fox.Core.Utils;
 using UnityEngine;
+using System.Collections.Generic;
 
 namespace Fox.Geox
 {
@@ -22,16 +22,14 @@ namespace Fox.Geox
         {
             base.OverridePropertiesForExport(context);
 
-            CsSystem.Collections.Generic.List<Vector3> _posArray = posArray;
+            List<Vector3> _posArray = new(posArray);
             for (int i = 0; i < _posArray.Count; i++)
                 _posArray[i] = Fox.Math.UnityToFoxVector3(_posArray[i]);
-
             context.OverrideProperty(nameof(posArray), _posArray);
 
-            CsSystem.Collections.Generic.List<Quaternion> _rotArray = rotArray;
+            List<Quaternion> _rotArray = new(rotArray);
             for (int i = 0; i < _rotArray.Count; i++)
                 _rotArray[i] = Fox.Math.UnityToFoxQuaternion(_rotArray[i]);
-
             context.OverrideProperty(nameof(rotArray), _rotArray);
         }
     }
