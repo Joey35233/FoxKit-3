@@ -21,5 +21,14 @@ namespace Fox.Graphx
         }
 
         private static readonly Vector3 Scale = Vector3.one * 0.25f;
+        public void OnDrawGizmos()
+        {
+            Gizmos.matrix = Matrix4x4.identity;
+            Gizmos.color = EditorColors.PlayerUtilityColor;
+            if (!this.transform.parent)
+                Gizmos.DrawWireCube(this.transform.TransformPoint(position), Scale);
+            else
+                Gizmos.DrawWireCube(this.transform.parent.TransformPoint(position), Scale);
+        }
     }
 }

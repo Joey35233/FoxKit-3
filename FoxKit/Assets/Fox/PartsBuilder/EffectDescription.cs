@@ -1,7 +1,7 @@
 ﻿using Fox.Core;
 using Fox.Core.Utils;
 using UnityEngine;
-using CsSystem = System;
+using System.Collections.Generic;
 
 namespace Fox.PartsBuilder
 {
@@ -24,12 +24,12 @@ namespace Fox.PartsBuilder
         {
             base.OverridePropertiesForExport(context);
 
-            CsSystem.Collections.Generic.List<Vector3> _offsetSkelPositions = offsetSkelPositions;
+            List<Vector3> _offsetSkelPositions = offsetSkelPositions;
             for (int i = 0; i < _offsetSkelPositions.Count; i++)
                 _offsetSkelPositions[i] = Fox.Math.UnityToFoxVector3(_offsetSkelPositions[i]);
             context.OverrideProperty(nameof(offsetSkelPositions), _offsetSkelPositions);
 
-            CsSystem.Collections.Generic.List<Vector3> _offsetCnpPositions = offsetCnpPositions;
+            List<Vector3> _offsetCnpPositions = offsetCnpPositions;
             for (int i = 0; i < _offsetCnpPositions.Count; i++)
                 _offsetCnpPositions[i] = Fox.Math.UnityToFoxVector3(_offsetCnpPositions[i]);
             context.OverrideProperty(nameof(offsetCnpPositions), _offsetCnpPositions);
