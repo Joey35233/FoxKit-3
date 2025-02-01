@@ -5,6 +5,7 @@ using UnityEngine;
 using CsSystem = System;
 using UnityEditor;
 using Fox.Core;
+using System.Collections.Generic;
 
 namespace Tpp.Effect
 {
@@ -120,7 +121,28 @@ namespace Tpp.Effect
             innerScaleZPositive = 1;
             drawRejectionLevel = TppLightProbe_DrawRejectionLevel.NO_REJECT;
         }
-
+        private Vector3 GetInnerShapeCenter()
+        {
+            float xOffsetPos = innerScaleXPositive / 4;
+            float xOffsetNeg = innerScaleXNegative / 4;
+            float yOffsetPos = innerScaleYPositive / 4;
+            float yOffsetNeg = innerScaleYNegative / 4;
+            float zOffsetPos = innerScaleZPositive / 4;
+            float zOffsetNeg = innerScaleZNegative / 4;
+            return new(
+                (xOffsetPos > xOffsetNeg ? xOffsetPos - xOffsetNeg : -(xOffsetNeg - xOffsetPos)),
+                (yOffsetPos > yOffsetNeg ? yOffsetPos - yOffsetNeg : -(yOffsetNeg - yOffsetPos)),
+                (zOffsetPos > zOffsetNeg ? zOffsetPos - zOffsetNeg : -(zOffsetNeg - zOffsetPos))
+            );
+        }
+        private Vector3 GetInnerShapeScale()
+        {
+            return new(
+                (innerScaleXPositive + innerScaleXNegative) / 2,
+                (innerScaleYPositive + innerScaleYNegative) / 2,
+                (innerScaleZPositive + innerScaleZNegative) / 2
+            );
+        }
         private void DrawDefault(bool isSelected)
         {
             Color colorOuterEdge = isSelected ? Color.white : new Color(0, 1, 0, 1);
@@ -128,56 +150,34 @@ namespace Tpp.Effect
             Color colorInnerEdge = isSelected ? Color.white : new Color(1, 1, 0, 1);
             Color colorInnerFace = isSelected ? new Color(1, 1, 0, 0.75f) : new Color(1, 1, 0, 0.1f);
 
-            //Draw outer box face
+            Vector3 innerCenterOffset = GetInnerShapeCenter();
+            Vector3 innerScaleScale = GetInnerShapeScale();
+
+            //Draw outer box edge
             Gizmos.color = colorOuterEdge;
             Gizmos.matrix = transform.localToWorldMatrix;
             Gizmos.DrawWireCube(Vector3.zero, Vector3.one);
 
-            //Draw outer box edge
+            //Draw outer box face
             Gizmos.color = colorOuterSide;
             Gizmos.DrawCube(Vector3.zero, Vector3.one);
 
             //Draw inner box edge
             Gizmos.color = colorInnerEdge;
-            float xOffsetPos = innerScaleXPositive / 4;
-            float xOffsetNeg = innerScaleXNegative / 4;
-            float yOffsetPos = innerScaleYPositive / 4;
-            float yOffsetNeg = innerScaleYNegative / 4;
-            float zOffsetPos = innerScaleZPositive / 4;
-            float zOffsetNeg = innerScaleZNegative / 4;
-            Vector3 innerCenterOffset = new Vector3(
-                (xOffsetPos > xOffsetNeg ? xOffsetPos - xOffsetNeg : -(xOffsetNeg - xOffsetPos)),
-                (yOffsetPos > yOffsetNeg ? yOffsetPos - yOffsetNeg : -(yOffsetNeg - yOffsetPos)),
-                (zOffsetPos > zOffsetNeg ? zOffsetPos - zOffsetNeg : -(zOffsetNeg - zOffsetPos))
-            );
-            Gizmos.DrawWireCube(
-                innerCenterOffset,
-                new Vector3(
-                    (innerScaleXPositive + innerScaleXNegative) / 2,
-                    (innerScaleYPositive + innerScaleYNegative) / 2,
-                    (innerScaleZPositive + innerScaleZNegative) / 2
-                )
-            );
+            Gizmos.DrawWireCube(innerCenterOffset,innerScaleScale);
 
             //Draw inner box face
             Gizmos.color = colorInnerFace;
-            Gizmos.DrawCube(
-                innerCenterOffset,
-                new Vector3(
-                    (innerScaleXPositive + innerScaleXNegative) / 2,
-                    (innerScaleYPositive + innerScaleYNegative) / 2,
-                    (innerScaleZPositive + innerScaleZNegative) / 2
-                )
-            );
+            Gizmos.DrawCube(innerCenterOffset,innerScaleScale);
 
             //Draw tesseract connection to scale
             Gizmos.color = colorInnerEdge;
-            Vector3 xPositive = new Vector3(innerScaleXPositive / 2, 0, 0);
-            Vector3 yPositive = new Vector3(0, innerScaleYPositive / 2, 0);
-            Vector3 zPositive = new Vector3(0, 0, innerScaleZPositive / 2);
-            Vector3 xNegative = new Vector3(-(innerScaleXNegative / 2), 0, 0);
-            Vector3 yNegative = new Vector3(0, -(innerScaleYNegative / 2), 0);
-            Vector3 zNegative = new Vector3(0, 0, -(innerScaleZNegative / 2));
+            Vector3 xPositive = new(innerScaleXPositive / 2, 0, 0);
+            Vector3 yPositive = new(0, innerScaleYPositive / 2, 0);
+            Vector3 zPositive = new(0, 0, innerScaleZPositive / 2);
+            Vector3 xNegative = new(-(innerScaleXNegative / 2), 0, 0);
+            Vector3 yNegative = new(0, -(innerScaleYNegative / 2), 0);
+            Vector3 zNegative = new(0, 0, -(innerScaleZNegative / 2));
             Vector3 xPositive_yPositive_zPositive = xPositive + yPositive + zPositive;
             Vector3 xPositive_yNegative_zPositive = xPositive + yNegative + zPositive;
             Vector3 xPositive_yPositive_zNegative = xPositive + yPositive + zNegative;
@@ -186,12 +186,12 @@ namespace Tpp.Effect
             Vector3 xNegative_yNegative_zPositive = xNegative + yNegative + zPositive;
             Vector3 xNegative_yPositive_zPositive = xNegative + yPositive + zPositive;
             Vector3 xNegative_yPositive_zNegative = xNegative + yPositive + zNegative;
-            Vector3 xPositiveOuter = new Vector3(0.5f, 0, 0);
-            Vector3 yPositiveOuter = new Vector3(0, 0.5f, 0);
-            Vector3 zPositiveOuter = new Vector3(0, 0, 0.5f);
-            Vector3 xNegativeOuter = new Vector3(-0.5f, 0, 0);
-            Vector3 yNegativeOuter = new Vector3(0, -0.5f, 0);
-            Vector3 zNegativeOuter = new Vector3(0, 0, -0.5f);
+            Vector3 xPositiveOuter = new(0.5f, 0, 0);
+            Vector3 yPositiveOuter = new(0, 0.5f, 0);
+            Vector3 zPositiveOuter = new(0, 0, 0.5f);
+            Vector3 xNegativeOuter = new(-0.5f, 0, 0);
+            Vector3 yNegativeOuter = new(0, -0.5f, 0);
+            Vector3 zNegativeOuter = new(0, 0, -0.5f);
             Vector3 xPositive_yPositive_zPositiveOuter = xPositiveOuter + yPositiveOuter + zPositiveOuter;
             Vector3 xPositive_yNegative_zPositiveOuter = xPositiveOuter + yNegativeOuter + zPositiveOuter;
             Vector3 xPositive_yPositive_zNegativeOuter = xPositiveOuter + yPositiveOuter + zNegativeOuter;
@@ -209,13 +209,141 @@ namespace Tpp.Effect
             Gizmos.DrawLine(xPositive_yNegative_zPositive, xPositive_yNegative_zPositiveOuter);
             Gizmos.DrawLine(xNegative_yNegative_zPositive, xNegative_yNegative_zPositiveOuter);
         }
+        private Vector3 OffsetScaleVertex(Vector3 vertex, Vector3 offset, Vector3 scale)
+        {
+            return new Vector3()
+            {
+                x = offset.x + (vertex.x * scale.x),
+                y = offset.y + (vertex.y * scale.y),
+                z = offset.z + (vertex.z * scale.z),
+            };
+        }
+        private readonly static Vector3[] TriangularPrismVertices = new Vector3[6]{
+                new(0.5f, -0.5f, -0.5f),
+                new(0.5f, -0.5f, 0.5f),
+                new(-0.5f, -0.5f, 0.5f),
+                new(-0.5f, -0.5f, -0.5f),
+
+                new(0.5f, 0.5f, 0),
+                new(-0.5f, 0.5f, 0)
+        };
+        private void DrawTriangularPrismEdges(Vector3 offset, Vector3 scale)
+        {
+            Vector3[] vertices = new Vector3[TriangularPrismVertices.Length];
+            for (int i = 0; i < vertices.Length; i++)
+                vertices[i] = OffsetScaleVertex(TriangularPrismVertices[i], offset, scale);
+
+            Gizmos.DrawLine(vertices[0], vertices[1]);
+            Gizmos.DrawLine(vertices[1], vertices[2]);
+            Gizmos.DrawLine(vertices[2], vertices[3]);
+            Gizmos.DrawLine(vertices[3], vertices[0]);
+
+            Gizmos.DrawLine(vertices[4], vertices[0]);
+            Gizmos.DrawLine(vertices[4], vertices[1]);
+
+            Gizmos.DrawLine(vertices[4], vertices[5]);
+
+            Gizmos.DrawLine(vertices[5], vertices[2]);
+            Gizmos.DrawLine(vertices[5], vertices[3]);
+        }
         private void DrawTriangularPrism(bool isSelected)
         {
+            Color colorOuterEdge = isSelected ? Color.white : new Color(0, 1, 0, 1);
+            Color colorOuterSide = isSelected ? new Color(0, 1, 0, 0.5f) : new Color(0, 1, 0, 0.05f);
+            Color colorInnerEdge = isSelected ? Color.white : new Color(1, 1, 0, 1);
+            Color colorInnerFace = isSelected ? new Color(1, 1, 0, 0.75f) : new Color(1, 1, 0, 0.1f);
+
+            Gizmos.matrix = gameObject.transform.localToWorldMatrix;
+
+            // outer edges
+            Gizmos.color = colorOuterEdge;
+            DrawTriangularPrismEdges(Vector3.zero,Vector3.one);
+
+            // outer faces
             //TODO
+
+            // inner edges
+            Gizmos.color = colorInnerEdge;
+            Vector3 innerCenterOffset = GetInnerShapeCenter();
+            Vector3 innerScale = GetInnerShapeScale();
+            DrawTriangularPrismEdges(innerCenterOffset,innerScale);
+
+            //inner faces
+            //TODO
+
+            // tesseract edges
+            Gizmos.color = colorInnerEdge;
+            for (int i = 0; i < TriangularPrismVertices.Length; i++)
+                Gizmos.DrawLine(TriangularPrismVertices[i], OffsetScaleVertex(TriangularPrismVertices[i], innerCenterOffset, innerScale));
+        }
+        private readonly static Vector3[] SemiCylinderVertices = new Vector3[10]{
+                new(0.5f, -0.5f, -0.5f),
+                new(0.5f, -0.5f, 0.5f),
+                new(-0.5f, -0.5f, 0.5f),
+                new(-0.5f, -0.5f, -0.5f),
+
+                new(0.5f, 0.25f, -0.35f),
+                new(0.5f, 0.5f, 0),
+                new(0.5f, 0.25f, 0.35f),
+
+                new(-0.5f, 0.25f, 0.35f),
+                new(-0.5f, 0.5f, 0),
+                new(-0.5f, 0.25f, -0.35f),
+        };
+        private void DrawSemiCylinderEdges(Vector3 offset, Vector3 scale)
+        {
+            Vector3[] vertices = new Vector3[SemiCylinderVertices.Length];
+            for (int i = 0; i < vertices.Length; i++)
+                vertices[i] = OffsetScaleVertex(SemiCylinderVertices[i], offset, scale);
+
+            Gizmos.DrawLine(vertices[0], vertices[1]);
+            Gizmos.DrawLine(vertices[1], vertices[2]);
+            Gizmos.DrawLine(vertices[2], vertices[3]);
+            Gizmos.DrawLine(vertices[3], vertices[0]);
+
+            Gizmos.DrawLine(vertices[4], vertices[0]);
+            Gizmos.DrawLine(vertices[6], vertices[1]);
+
+            Gizmos.DrawLine(vertices[4], vertices[5]);
+            Gizmos.DrawLine(vertices[5], vertices[6]);
+            Gizmos.DrawLine(vertices[4], vertices[9]);
+            Gizmos.DrawLine(vertices[5], vertices[8]);
+            Gizmos.DrawLine(vertices[8], vertices[9]);
+            Gizmos.DrawLine(vertices[7], vertices[8]);
+            Gizmos.DrawLine(vertices[6], vertices[7]);
+
+            Gizmos.DrawLine(vertices[7], vertices[2]);
+            Gizmos.DrawLine(vertices[9], vertices[3]);
         }
         private void DrawSemiCylinder(bool isSelected)
         {
+            Color colorOuterEdge = isSelected ? Color.white : new Color(0, 1, 0, 1);
+            Color colorOuterSide = isSelected ? new Color(0, 1, 0, 0.5f) : new Color(0, 1, 0, 0.05f);
+            Color colorInnerEdge = isSelected ? Color.white : new Color(1, 1, 0, 1);
+            Color colorInnerFace = isSelected ? new Color(1, 1, 0, 0.75f) : new Color(1, 1, 0, 0.1f);
+
+            Gizmos.matrix = gameObject.transform.localToWorldMatrix;
+
+            // outer edges
+            Gizmos.color = colorOuterEdge;
+            DrawSemiCylinderEdges(Vector3.zero,Vector3.one);
+
+            // outer faces
             //TODO
+
+            // inner edges
+            Gizmos.color = colorInnerEdge;
+            Vector3 innerCenterOffset = GetInnerShapeCenter();
+            Vector3 innerScale = GetInnerShapeScale();
+            DrawSemiCylinderEdges(innerCenterOffset,innerScale);
+
+            // inner faces
+            //TODO
+
+            // tesseract edges
+            Gizmos.color = colorInnerEdge;
+            for (int i = 0; i < SemiCylinderVertices.Length; i++)
+                Gizmos.DrawLine(SemiCylinderVertices[i], OffsetScaleVertex(SemiCylinderVertices[i], innerCenterOffset, innerScale));
         }
         private void DrawHalfSquare(bool isSelected)
         {
