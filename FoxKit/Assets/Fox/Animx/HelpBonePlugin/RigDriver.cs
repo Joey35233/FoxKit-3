@@ -515,6 +515,7 @@ namespace Fox.Animx
                                 DriverRotationOrder.YZX => EulerToQuat(euler.y, euler.z, euler.x, false),
                                 DriverRotationOrder.ZXY => EulerToQuat(euler.z, euler.x, euler.y, false),
                                 DriverRotationOrder.ZYX => EulerToQuat(euler.z, euler.y, euler.x, true),
+                                _ => throw new System.NotImplementedException(),
                             };
 
                             break;
