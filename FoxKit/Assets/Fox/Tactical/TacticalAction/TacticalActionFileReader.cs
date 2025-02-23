@@ -51,6 +51,8 @@ namespace Fox.Tactical
 
             uint seekOffset = worldOffset;
 
+            var emptyHash32 = (StrCode32)StrCode.Empty;
+
             for (int worldIndex = 0; worldIndex < worldCount; worldIndex++)
             {
                 reader.Seek(seekOffset);
@@ -67,20 +69,49 @@ namespace Fox.Tactical
                     reader.Seek(worldOffset+actionNameOffset+(actionIndex*8));
                     GkTacticalAction tacticalAction = new GameObject(reader.ReadStrCode().ToString()).AddComponent<GkTacticalAction>();
                     tacticalAction.SetTransform(TransformEntity.GetDefault());
-                    tacticalAction.worldName = worldName.ToString();
+                    if(worldName==StrCode.Empty)
+                    {
+                        tacticalAction.worldName = "";
+                    }
+                    else
+                    {
+                        tacticalAction.worldName = worldName.ToString();
+                    }
                     tacticalAction.enable = true;
                     tacticalAction.enableInGame = true;
                     reader.Seek(rewindPos);
 
+                    bool bothWays = false;
                     for (int waypointIndex = 0; waypointIndex < 2; waypointIndex++)
                     {
                         tacticalAction.waypoints.Insert(waypointIndex,new GameObject($"GkTacticalActionWaypoint{waypointIndex:0000}").AddComponent<GkTacticalActionWaypoint>());
                         tacticalAction.waypoints[waypointIndex].transform.parent=tacticalAction.gameObject.transform;
                         tacticalAction.waypoints[waypointIndex].position = reader.ReadPositionF();
-                        tacticalAction.edges.Insert(waypointIndex,new GameObject($"GkTacticalActionEdge{waypointIndex:0000}").AddComponent<GkTacticalActionEdge>());
+                        var actionName = reader.ReadStrCode32();
+                        if (actionName == emptyHash32 || bothWays==true)
+                        {
+                            continue;
+                        }
+                        tacticalAction.edges.Insert(waypointIndex, new GameObject($"GkTacticalActionEdge{waypointIndex:0000}").AddComponent<GkTacticalActionEdge>());
                         tacticalAction.edges[waypointIndex].transform.parent = tacticalAction.gameObject.transform;
-                        tacticalAction.edges[waypointIndex].actionName = reader.ReadStrCode32().ToString();
+
                         tacticalAction.edges[waypointIndex].transform.parent = tacticalAction.waypoints[waypointIndex].transform;
+                        switch ((uint)actionName.GetHashCode())
+                        {
+                            case 1277978017: tacticalAction.edges[waypointIndex].actionName = "StepOn"; break;
+                            case 1139911476: tacticalAction.edges[waypointIndex].actionName = "StepDown"; break;
+                            case 2317903572: tacticalAction.edges[waypointIndex].actionName = "LadderUp"; break;
+                            case 3049138984: tacticalAction.edges[waypointIndex].actionName = "LadderDown"; break;
+                            case 3451056519:
+                                tacticalAction.edges[waypointIndex].actionName = "Door";
+                                bothWays = true;
+                                break;
+                            case 504469101:
+                                tacticalAction.edges[waypointIndex].actionName = actionName.ToString();
+                                bothWays = true;
+                                break;
+                            default: tacticalAction.edges[waypointIndex].actionName = actionName.ToString(); break;
+                        }
                     }
                     tacticalAction.transform.position = tacticalAction.waypoints[0].position;
 
@@ -90,10 +121,25 @@ namespace Fox.Tactical
                     tacticalAction.waypoints[0].position = Vector3.zero;
                     tacticalAction.waypoints[1].position = Fox.Math.UnityToFoxVector3(tacticalAction.waypoints[1].transform.localPosition);
 
-                    tacticalAction.edges[0].actionDirection = GkTacticalActionDirection.TACTICAL_ACTION_ONE_WAY_01;
-                    tacticalAction.edges[1].actionDirection = GkTacticalActionDirection.TACTICAL_ACTION_ONE_WAY_10;
+                    if (tacticalAction.edges.Count > 1)
+                    {
+                        tacticalAction.edges[0].actionDirection = GkTacticalActionDirection.TACTICAL_ACTION_ONE_WAY_01;
+                        tacticalAction.edges[1].actionDirection = GkTacticalActionDirection.TACTICAL_ACTION_ONE_WAY_10;
+                    }
+                    else if (tacticalAction.edges.Count==1)
+                    {
+                        tacticalAction.edges[0].actionDirection = GkTacticalActionDirection.TACTICAL_ACTION_BOTH_WAYS;
+                    }
 
-                    tacticalAction.userId = reader.ReadStrCode().ToString();
+                    var userId = reader.ReadStrCode();
+                    if (userId == StrCode.Empty)
+                    {
+                        tacticalAction.userId = "";
+                    }
+                    else
+                    { 
+                        tacticalAction.userId = userId.ToString(); 
+                    }
 
                     tacticalAction.attribute = reader.ReadUInt16();
                     if (tacticalAction.attribute != 0xffff )
