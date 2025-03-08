@@ -32,7 +32,7 @@ namespace Fox.Gr
             BoundingBox = 13,
             FileMeshBufferHeader = 14,
             MeshLodDesc = 16,
-            LodIndexSlice = 17,
+            IndexSpan = 17,
             Unk18 = 18,
             Unk19 = 19,
             LodInfo = 20,
@@ -66,7 +66,7 @@ namespace Fox.Gr
             0x0,  // 15 - Unknown
 
             0x10, // 16 - MeshLodDesc
-            0x8,  // 17 - LodIndexSlice
+            0x8,  // 17 - IndexSpan
             0x8,  // 18 - Type18
 
             0x0,  // 19 - Unknown
@@ -174,7 +174,7 @@ namespace Fox.Gr
 
             public uint _Padding0; // Assert(Padding0 == 0);
 
-            public ushort LodIndexSlicesStartIndex;
+            public ushort IndexSpansStartIndex;
 
             public ushort _Padding1; // Assert(Padding1 == 0);
             public uint _Padding2; // Assert(Padding2 == 0);
@@ -201,9 +201,9 @@ namespace Fox.Gr
 
             public ushort _Padding0; // Assert(Padding0 == 0);
 
-            public LodIndexSlice HighLodSlice;
+            public IndexSpan HighLodSpan;
 
-            public uint LodIndexSlicesStartIndex; // Only actually used if some EXE byte says to use multiple slices. Each slice's StartIndex is relative to the main slice.
+            public uint IndexSpansStartIndex; // Only actually used if some EXE byte says to use multiple slices. Each slice's StartIndex is relative to the main slice.
         }
         
         [StructLayout(LayoutKind.Sequential, Size = 0x10)]
@@ -360,7 +360,7 @@ namespace Fox.Gr
         }
         
         [StructLayout(LayoutKind.Sequential, Size = 0x8)]
-        public struct LodIndexSlice
+        public struct IndexSpan
         {
             public uint StartIndex;
             public uint Count;
@@ -530,7 +530,7 @@ namespace Fox.Gr
 
             public Bounds Bounds;
 
-            public uint LodIndexSlicesStartIndex;
+            public uint IndexSpansStartIndex;
         }
 
         private struct MeshBufferDesc
@@ -691,49 +691,44 @@ namespace Fox.Gr
                 }
 
                 // Process MeshHeaders. This is done as a pre-step because (all?) models have a stub MeshHeader that owns all other MeshHeaders but to which no MeshDefs belong.
-                GameObject[] meshes = null;
-                if (accessor.HasFeature(Fmdl.FeatureType.MeshHeader))
+                uint meshHeaderCount = accessor.GetFeatureCount(Fmdl.FeatureType.MeshHeader);
+                GameObject[] meshGameObjects = new GameObject[meshHeaderCount];
+
+                Fmdl.MeshHeader* meshHeaders = accessor.GetFeature<Fmdl.MeshHeader>(Fmdl.FeatureType.MeshHeader);
+                for (uint i = 0; i < meshHeaderCount; i++)
                 {
-                    uint meshHeaderCount = accessor.GetFeatureCount(Fmdl.FeatureType.MeshHeader);
+                    Fmdl.MeshHeader* meshHeader = meshHeaders + i;
 
-                    meshes = new GameObject[meshHeaderCount];
+                    ushort nameIdIndex = meshHeader->NameIdIndex;
+                    accessor.ValidateFeatureIndex(Fmdl.FeatureType.MeshHeader, Fmdl.FeatureType.StringId, nameIdIndex);
+                    string meshName = ReadId(ref accessor, nameIdIndex);
 
-                    Fmdl.MeshHeader* meshHeaders = accessor.GetFeature<Fmdl.MeshHeader>(Fmdl.FeatureType.MeshHeader);
-                    for (uint i = 0; i < meshHeaderCount; i++)
+                    Fmdl.MeshHeaderFlags flags = meshHeader->Flags;
+                    if (flags.HasFlag(Fmdl.MeshHeaderFlags.HasFragmentOffset) && bones is not null)
+                        logWarning("Mesh has both bones and fragment offsets.");
+                    if (flags.HasFlag(Fmdl.MeshHeaderFlags.B))
+                        logWarning("Mesh has B flag.");
+
+                    var mesh = new GameObject(meshName);
+                    meshGameObjects[i] = mesh;
+
+                    if (flags.HasFlag(Fmdl.MeshHeaderFlags.Invisible))
+                        mesh.SetActive(false);
+
+                    short parentIndex = meshHeader->ParentIndex;
+                    if (parentIndex > -1)
+                        accessor.ValidateFeatureIndex(Fmdl.FeatureType.MeshHeader, Fmdl.FeatureType.MeshHeader, (uint)parentIndex);
+
+                    mesh.transform.SetParent(parentIndex == -1 ? main.transform : meshGameObjects[parentIndex].transform);
+
+                    short fragmentOffsetVectorIndex = meshHeader->FragmentOffsetVectorIndex;
+                    Debug.Assert(flags.HasFlag(Fmdl.MeshHeaderFlags.HasFragmentOffset) == (fragmentOffsetVectorIndex != -1));
+
+                    if (flags.HasFlag(Fmdl.MeshHeaderFlags.HasFragmentOffset))
                     {
-                        Fmdl.MeshHeader* meshHeader = meshHeaders + i;
-
-                        ushort nameIdIndex = meshHeader->NameIdIndex;
-                        accessor.ValidateFeatureIndex(Fmdl.FeatureType.MeshHeader, Fmdl.FeatureType.StringId, nameIdIndex);
-                        string meshName = ReadId(ref accessor, nameIdIndex);
-
-                        Fmdl.MeshHeaderFlags flags = meshHeader->Flags;
-                        if (flags.HasFlag(Fmdl.MeshHeaderFlags.HasFragmentOffset) && bones is not null)
-                            logWarning("Mesh has both bones and fragment offsets.");
-                        if (flags.HasFlag(Fmdl.MeshHeaderFlags.B))
-                            logWarning("Mesh has B flag.");
-
-                        var mesh = new GameObject(meshName);
-                        meshes[i] = mesh;
-
-                        if (flags.HasFlag(Fmdl.MeshHeaderFlags.Invisible))
-                            mesh.SetActive(false);
-
-                        short parentIndex = meshHeader->ParentIndex;
-                        if (parentIndex > -1)
-                            accessor.ValidateFeatureIndex(Fmdl.FeatureType.MeshHeader, Fmdl.FeatureType.MeshHeader, (uint)parentIndex);
-
-                        mesh.transform.SetParent(parentIndex == -1 ? main.transform : meshes[parentIndex].transform);
-
-                        short fragmentOffsetVectorIndex = meshHeader->FragmentOffsetVectorIndex;
-                        Debug.Assert(flags.HasFlag(Fmdl.MeshHeaderFlags.HasFragmentOffset) == (fragmentOffsetVectorIndex != -1));
-
-                        if (flags.HasFlag(Fmdl.MeshHeaderFlags.HasFragmentOffset))
-                        {
-                            Vector4* vectors = (Vector4*)accessor.GetBuffer(Fmdl.BufferType.Vector);
-                            
-                            mesh.transform.localPosition = Fox.Math.FoxToUnityVector3(vectors[fragmentOffsetVectorIndex]);
-                        }
+                        Vector4* vectors = (Vector4*)accessor.GetBuffer(Fmdl.BufferType.Vector);
+                        
+                        mesh.transform.localPosition = Fox.Math.FoxToUnityVector3(vectors[fragmentOffsetVectorIndex]);
                     }
                 }
 
@@ -781,19 +776,20 @@ namespace Fox.Gr
                         }
                     }
                 }
-                
-                Material defaultMaterial = AssetDatabase.GetBuiltinExtraResource<Material>("Default-Material.mat");
-                context.AddObjectToAsset("Material", defaultMaterial);
 
                 // Preprocess MeshGroupDefs
                 if (accessor.HasFeature(Fmdl.FeatureType.MeshDef))
                 {
-                    var aggregateMeshDefs = new AggregateMeshDef[meshes.Length];
+                    // var aggregateMeshDefs = new AggregateMeshDef[meshes.Length];
 
                     uint meshDefCount = accessor.GetFeatureCount(Fmdl.FeatureType.MeshDef);
 
                     // Initial loops for input validation and collecting of data for AggregateMeshDefs
                     Fmdl.MeshDef* meshDefs = accessor.GetFeature<Fmdl.MeshDef>(Fmdl.FeatureType.MeshDef);
+                    Fmdl.MeshPacket* meshPackets = accessor.GetFeature<Fmdl.MeshPacket>(Fmdl.FeatureType.MeshPacket);
+                    Fmdl.PacketDataLayoutDesc* packetDataLayoutDescs = accessor.GetFeature<Fmdl.PacketDataLayoutDesc>(Fmdl.FeatureType.PacketDataLayoutDesc);
+                    Fmdl.MeshBufferHeader* meshBufferHeaders = accessor.GetFeature<Fmdl.MeshBufferHeader>(Fmdl.FeatureType.MeshBufferHeader);
+                    Fmdl.MeshBufferFormatElement* meshBufferFormatElements = accessor.GetFeature<Fmdl.MeshBufferFormatElement>(Fmdl.FeatureType.MeshBufferFormatElements);
                     for (uint i = 0; i < meshDefCount; i++)
                     {
                         Fmdl.MeshDef* meshDef = meshDefs + i;
@@ -803,76 +799,33 @@ namespace Fox.Gr
 
                         ushort headerIndex = meshDef->HeaderIndex;
                         accessor.ValidateFeatureIndex(Fmdl.FeatureType.MeshDef, Fmdl.FeatureType.MeshHeader, headerIndex);
+                        
+                        // Can now retrieve proper mesh GameObject and create respective Unity mesh
+                        GameObject meshGameObject = meshGameObjects[headerIndex];
+                        var unityMesh = new Mesh { name = meshGameObject.name };
 
                         ushort packetCount = meshDef->PacketCount;
                         ushort packetsStartIndex = meshDef->PacketsStartIndex;
                         if (packetCount > 0)
                             accessor.ValidateFeatureIndex(Fmdl.FeatureType.MeshDef, Fmdl.FeatureType.MeshPacket, (uint)(packetsStartIndex + packetCount - 1));
 
-                        aggregateMeshDefs[headerIndex].TotalPacketCount += packetCount;
-
                         ushort boundingBoxIndex = meshDef->BoundingBoxIndex;
                         accessor.ValidateFeatureIndex(Fmdl.FeatureType.MeshDef, Fmdl.FeatureType.BoundingBox, boundingBoxIndex);
+                        Bounds bounds = ReadBoundingBox(ref accessor, boundingBoxIndex);
+                        unityMesh.bounds = bounds;
 
-                        ushort lodIndexSlicesStartIndex = meshDef->LodIndexSlicesStartIndex;
-                        accessor.ValidateFeatureIndex(Fmdl.FeatureType.MeshDef, Fmdl.FeatureType.LodIndexSlice, lodIndexSlicesStartIndex);
-                    }
-
-                    // Create packet index remap array and initialize bounds
-                    for (uint i = 0; i < aggregateMeshDefs.LongLength; i++)
-                    {
-                        ref AggregateMeshDef aggregateMeshDef = ref aggregateMeshDefs[i];
-
-                        aggregateMeshDef.PacketIndices = new uint[aggregateMeshDef.TotalPacketCount];
-                        aggregateMeshDef.Bounds = InvalidBoundingBox;
-                    }
-
-                    // Actually set packet indices and update bounds
-                    for (uint i = 0; i < meshDefCount; i++)
-                    {
-                        Fmdl.MeshDef* meshDef = meshDefs + i;
-
-                        ushort headerIndex = meshDef->HeaderIndex;
-
-                        ref AggregateMeshDef aggregateMeshDef = ref aggregateMeshDefs[headerIndex];
-
-                        ushort packetCount = meshDef->PacketCount;
-                        ushort packetsStartIndex = meshDef->PacketsStartIndex;
-                        for (uint j = 0; j < packetCount; j++)
-                            aggregateMeshDef.PacketIndices[aggregateMeshDef.SpanCounter + j] = packetsStartIndex + j;
-
-                        ushort boundingBoxIndex = meshDef->BoundingBoxIndex;
-                        Bounds box = ReadBoundingBox(ref accessor, boundingBoxIndex);
-                        if (aggregateMeshDef.Bounds == InvalidBoundingBox)
-                            aggregateMeshDef.Bounds = box;
-                        else
-                            aggregateMeshDef.Bounds.Encapsulate(box);
-
-                        aggregateMeshDef.LodIndexSlicesStartIndex = meshDef->LodIndexSlicesStartIndex;
-
-                        aggregateMeshDef.SpanCounter += packetCount;
-                    }
-
-                    // Create and set data for each mesh
-                    for (uint i = 0; i < aggregateMeshDefs.LongLength; i++)
-                    {
-                        AggregateMeshDef aggregateMeshDef = aggregateMeshDefs[i];
-
-                        if (aggregateMeshDef.TotalPacketCount == 0)
-                            continue;
-
-                        GameObject meshGameObject = meshes[i];
+                        ushort meshIndexSpansStartIndex = meshDef->IndexSpansStartIndex;
+                        accessor.ValidateFeatureIndex(Fmdl.FeatureType.MeshDef, Fmdl.FeatureType.IndexSpan, meshIndexSpansStartIndex);
+                    
+                        // TODO: MERGE LOOPS
                         
                         // MeshDefs
-                        var layoutDescs = new MeshDataLayoutDesc[aggregateMeshDef.TotalPacketCount];
                         uint totalVertexCount = 0;
-                        uint totalIndexCount = 0;
+                        uint totalHighLodIndexCount = 0;
                         uint bufferCountToAllocate = 0;
-                        Fmdl.PacketDataLayoutDesc* packetDataLayoutDescs = accessor.GetFeature<Fmdl.PacketDataLayoutDesc>(Fmdl.FeatureType.PacketDataLayoutDesc);
-                        Fmdl.MeshPacket* meshPackets = accessor.GetFeature<Fmdl.MeshPacket>(Fmdl.FeatureType.MeshPacket);
-                        for (uint j = 0; j < aggregateMeshDef.TotalPacketCount; j++)
+                        for (uint j = 0; j < packetCount; j++)
                         {
-                            Fmdl.MeshPacket* meshPacket = meshPackets + aggregateMeshDef.PacketIndices[j];
+                            Fmdl.MeshPacket* meshPacket = meshPackets + packetsStartIndex + j;
 
                             // TODO: Extensive flag validation
                             Fmdl.MeshPacketFlags flags = meshPacket->Flags;
@@ -901,47 +854,48 @@ namespace Fox.Gr
                             totalVertexCount += vertexCount;
 
                             // TODO - Inc. validation
-                            Fmdl.LodIndexSlice hiLodSlice = meshPacket->HighLodSlice;
+                            Fmdl.IndexSpan hiLodSpan = meshPacket->HighLodSpan;
 
-                            uint lodIndexSlicesStartIndex = aggregateMeshDef.LodIndexSlicesStartIndex + meshPacket->LodIndexSlicesStartIndex;
+                            uint packetIndexSpansStartIndex = meshPacket->IndexSpansStartIndex;
+                            if (j == 0)
+                                Debug.Assert(meshIndexSpansStartIndex == packetIndexSpansStartIndex);
 
-                            totalIndexCount += hiLodSlice.Count;
+                            totalHighLodIndexCount += hiLodSpan.Count;
 
                             // Data layout
-                            Fmdl.PacketDataLayoutDesc* packetDataLayoutDesc = packetDataLayoutDescs + dataLayoutDescIndex;
+                            Fmdl.PacketDataLayoutDesc* dataLayoutDesc = packetDataLayoutDescs + dataLayoutDescIndex;
 
-                            byte bufferCount = packetDataLayoutDesc->BufferCount;
+                            byte bufferCount = dataLayoutDesc->BufferCount;
 
-                            byte formatElementCount = packetDataLayoutDesc->FormatElementCount;
+                            byte formatElementCount = dataLayoutDesc->FormatElementCount;
 
                             // TODO: Figure out
-                            sbyte firstUvSetIndex = packetDataLayoutDesc->PROBABLE_FirstUvSetIndex;
+                            sbyte firstUvSetIndex = dataLayoutDesc->PROBABLE_FirstUvSetIndex;
                             if (firstUvSetIndex != 0 && firstUvSetIndex != -128)
                                 logWarning("PacketDataLayoutDesc.Unknown0 != 0");
 
-                            byte uvCount = packetDataLayoutDesc->UvCount;
+                            byte uvCount = dataLayoutDesc->UvCount;
                             
                             Debug.Assert((firstUvSetIndex == -128) == (uvCount == 0));
 
-                            ushort bufferHeadersStartIndex = packetDataLayoutDesc->BufferHeadersStartIndex;
+                            ushort bufferHeadersStartIndex = dataLayoutDesc->BufferHeadersStartIndex;
                             if (bufferCount > 0)
                                 accessor.ValidateFeatureIndex(Fmdl.FeatureType.PacketDataLayoutDesc, Fmdl.FeatureType.MeshBufferHeader, (uint)(bufferHeadersStartIndex + bufferCount - 1));
 
-                            ushort formatElementsStartIndex = packetDataLayoutDesc->FormatElementsStartIndex;
+                            ushort formatElementsStartIndex = dataLayoutDesc->FormatElementsStartIndex;
                             if (formatElementCount > 0)
                                 accessor.ValidateFeatureIndex(Fmdl.FeatureType.PacketDataLayoutDesc, Fmdl.FeatureType.MeshBufferFormatElements, (uint)(formatElementsStartIndex + formatElementCount - 1));
 
-                            MeshDataLayoutDesc layoutDesc = layoutDescs[j] = new MeshDataLayoutDesc { BufferDescs = new MeshBufferDesc[bufferCount] };
+                            // MeshDataLayoutDesc layoutDesc = layoutDescs[j] = new MeshDataLayoutDesc { BufferDescs = new MeshBufferDesc[bufferCount] };
 
                             // MeshBufferHeader
                             uint internalFormatElementsIndex = 0;
-                            Fmdl.MeshBufferHeader* meshBufferHeaders = accessor.GetFeature<Fmdl.MeshBufferHeader>(Fmdl.FeatureType.MeshBufferHeader);
                             for (uint k = 0; k < bufferCount; k++)
                             {
                                 Fmdl.MeshBufferHeader* meshBufferHeader = meshBufferHeaders + bufferHeadersStartIndex + k;
 
                                 byte fileMeshBufferHeaderIndex = meshBufferHeader->FileMeshBufferHeaderIndex;
-                                if (fileMeshBufferHeaderIndex + 1 > bufferCountToAllocate)
+                                if (fileMeshBufferHeaderIndex + 1u > bufferCountToAllocate)
                                     bufferCountToAllocate = fileMeshBufferHeaderIndex + 1u;
 
                                 byte formatElementCountRelative = meshBufferHeader->FormatElementCount;
@@ -953,10 +907,9 @@ namespace Fox.Gr
 
                                 uint offset = meshBufferHeader->Offset;
 
-                                layoutDesc.BufferDescs[k] = new MeshBufferDesc { Stride = stride, Offset = offset, FileBufferIndex = fileMeshBufferHeaderIndex, Elements = new MeshBufferFormatElement[formatElementCountRelative] };
+                                // layoutDesc.BufferDescs[k] = new MeshBufferDesc { Stride = stride, Offset = offset, FileBufferIndex = fileMeshBufferHeaderIndex, Elements = new MeshBufferFormatElement[formatElementCountRelative] };
 
                                 // MeshBufferFormatElement
-                                Fmdl.MeshBufferFormatElement* meshBufferFormatElements = accessor.GetFeature<Fmdl.MeshBufferFormatElement>(Fmdl.FeatureType.MeshBufferFormatElements);
                                 for (uint l = 0; l < formatElementCountRelative; l++)
                                 {
                                     uint index = internalFormatElementsIndex + l;
@@ -969,25 +922,20 @@ namespace Fox.Gr
 
                                     ushort offsetRelative = meshBufferFormatElement->Offset;
 
-                                    layoutDesc.BufferDescs[k].Elements[l] = new MeshBufferFormatElement { Usage = usage, Type = type, Offset = offsetRelative };
+                                    // layoutDesc.BufferDescs[k].Elements[l] = new MeshBufferFormatElement { Usage = usage, Type = type, Offset = offsetRelative };
                                 }
                                 internalFormatElementsIndex += formatElementCountRelative;
                             }
                         }
 
-                        var uploadHelper = new BufferUploadHelper(bufferCountToAllocate, (uint)layoutDescs.LongLength);
+                        var uploadHelper = new BufferUploadHelper(bufferCountToAllocate, packetCount);
                         uploadHelper.Register(layoutDescs);
 
-                        // Unity Mesh
-                        var unityMesh = new Mesh
-                        {
-                            name = meshGameObject.name
-                        };
                         Debug.Assert(totalVertexCount <= Int32.MaxValue);
-                        Debug.Assert(totalIndexCount <= Int32.MaxValue);
+                        Debug.Assert(totalHighLodIndexCount <= Int32.MaxValue);
                         unityMesh.SetVertexBufferParams((int)totalVertexCount, uploadHelper.GetDescriptorArray());
-                        unityMesh.SetIndexBufferParams((int)totalIndexCount, IndexFormat.UInt16);
-                        unityMesh.subMeshCount = (int)aggregateMeshDef.TotalPacketCount;
+                        unityMesh.SetIndexBufferParams((int)totalHighLodIndexCount, IndexFormat.UInt16);
+                        unityMesh.subMeshCount = packetCount;
 
                         NativeArray<byte>[] outVBuffers = uploadHelper.CreateVertexBuffers(totalVertexCount);
                         //NativeArray<uint>[] outIBuffers = uploadHelper.CreateIndexBuffers(totalIndexCount);
@@ -997,12 +945,12 @@ namespace Fox.Gr
                         DEBUG_FinalFlags = 0;
     #endif
 
-                        // Populate vertex buffer for each submesh from packet info
+                        // Populate vertex buffer for each packet from packet info
                         uint vertexStart = 0;
                         uint indexStart = 0;
-                        for (uint j = 0; j < aggregateMeshDef.TotalPacketCount; j++)
+                        for (uint j = 0; j < packetCount; j++)
                         {
-                            Fmdl.MeshPacket* meshPacket = meshPackets + aggregateMeshDef.PacketIndices[j];
+                            Fmdl.MeshPacket* meshPacket = meshPackets + packetsStartIndex + j;
 
                             Fmdl.MeshPacketFlags flags = meshPacket->Flags;
 
@@ -1012,12 +960,12 @@ namespace Fox.Gr
 
                             ushort vertexCount = meshPacket->VertexCount;
 
-                            Fmdl.LodIndexSlice highLodSlice = meshPacket->HighLodSlice;
-                            Debug.Assert(highLodSlice.StartIndex <= Int32.MaxValue);
-                            Debug.Assert(highLodSlice.Count <= Int32.MaxValue);
+                            Fmdl.IndexSpan highLodSpan = meshPacket->HighLodSpan;
+                            Debug.Assert(highLodSpan.StartIndex <= Int32.MaxValue);
+                            Debug.Assert(highLodSpan.Count <= Int32.MaxValue);
 
                             // TODO: Fix properly
-                            //uint iBufferSlicesStartIndex = iBufferSlicesGroupStartIndex + reader.ReadUInt32();
+                            //uint iBufferSpansStartIndex = iBufferSpansGroupStartIndex + reader.ReadUInt32();
 
 
                             // TODO - hack!
@@ -1039,12 +987,12 @@ namespace Fox.Gr
                             }
 
                             // TODO: Validate doesn't consider *2s
-                            unityMesh.SetIndexBufferData(indexBuffer, (int)highLodSlice.StartIndex * 2, (int)indexStart * 2, (int)highLodSlice.Count * 2, UpdateFlags | MeshUpdateFlags.DontNotifyMeshUsers);
+                            unityMesh.SetIndexBufferData(indexBuffer, (int)highLodSpan.StartIndex * 2, (int)indexStart * 2, (int)highLodSpan.Count * 2, UpdateFlags | MeshUpdateFlags.DontNotifyMeshUsers);
 
-                            unityMesh.SetSubMesh((int)j, new SubMeshDescriptor { topology = MeshTopology.Triangles, indexStart = (int)indexStart, indexCount = (int)highLodSlice.Count, firstVertex = (int)vertexStart, vertexCount = vertexCount, baseVertex = (int)vertexStart }, UpdateFlags);
+                            unityMesh.SetSubMesh((int)j, new SubMeshDescriptor { topology = MeshTopology.Triangles, indexStart = (int)indexStart, indexCount = (int)highLodSpan.Count, firstVertex = (int)vertexStart, vertexCount = vertexCount, baseVertex = (int)vertexStart }, UpdateFlags);
 
                             vertexStart += vertexCount;
-                            indexStart += highLodSlice.Count;
+                            indexStart += highLodSpan.Count;
                         }
 
                         // Debug flags
@@ -1053,12 +1001,6 @@ namespace Fox.Gr
                         unityMesh.name += $"<{Convert.ToString(DEBUG_FinalFlags, 2).PadLeft(32, '0')}>";
     #endif
 
-                        unityMesh.bounds = aggregateMeshDef.Bounds;
-
-                        // Change bounds over to local space
-                        Bounds localBounds = unityMesh.bounds;
-                        localBounds.center = main.transform.worldToLocalMatrix * new Vector4(localBounds.center.x, localBounds.center.y, localBounds.center.z, 1.0f);
-                        localBounds.size = main.transform.worldToLocalMatrix * localBounds.size;
 
                         // Materials
                         // TODO: Move
@@ -1079,8 +1021,14 @@ namespace Fox.Gr
                         {
                             unityMesh.boneWeights = weightBuffer;
                             unityMesh.bindposes = bindPoses;
-
+                            
                             SkinnedMeshRenderer skinnedMeshRenderer = meshGameObject.AddComponent<SkinnedMeshRenderer>();
+                            
+                            // Change bounds over to local space
+                            Bounds localBounds = unityMesh.bounds;
+                            localBounds.center = main.transform.worldToLocalMatrix * new Vector4(localBounds.center.x, localBounds.center.y, localBounds.center.z, 1.0f);
+                            localBounds.size = main.transform.worldToLocalMatrix * localBounds.size;
+                            
                             skinnedMeshRenderer.localBounds = localBounds;
                             skinnedMeshRenderer.bones = bones;
                             skinnedMeshRenderer.sharedMesh = unityMesh;

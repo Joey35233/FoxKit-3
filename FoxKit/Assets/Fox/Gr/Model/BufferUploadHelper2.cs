@@ -87,7 +87,7 @@ namespace Fox.Gr
             private readonly uint[,] RemapDescCounts;
             private readonly RemapDesc[,,] RemapDescs;
 
-            public BufferUploadHelper(uint bufferCount, uint meshCount)
+            public BufferUploadHelper(uint bufferCount, uint packetCount)
             {
                 DescriptorCounts = new int[bufferCount];
                 DescriptorIndices = new int[DescriptorCounts.LongLength, (uint)Fmdl.MeshBufferFormatElementUsage.COUNT];
@@ -99,12 +99,13 @@ namespace Fox.Gr
 
                 Descriptors = new ExpandedVertexAttributeDescriptor[DescriptorIndices.GetLongLength(0), DescriptorIndices.GetLongLength(1)];
 
-                RemapDescCounts = new uint[bufferCount, meshCount];
+                RemapDescCounts = new uint[bufferCount, packetCount];
                 RemapDescs = new RemapDesc[RemapDescCounts.GetLongLength(0), RemapDescCounts.GetLongLength(1), (uint)Fmdl.MeshBufferFormatElementUsage.COUNT];
             }
 
             public void Register(MeshDataLayoutDesc[] layoutDescs)
             {
+                // Loop over all packets
                 for (uint i = 0; i < layoutDescs.LongLength; i++)
                 {
                     for (uint j = 0; j < layoutDescs[i].BufferDescs.LongLength; j++)
@@ -169,9 +170,11 @@ namespace Fox.Gr
                         Descriptors[i, j].Offset = Descriptors[i, j - 1].Offset + Descriptors[i, j - 1].Size;
                 }
 
-                for (uint i = 0; i < RemapDescCounts.GetLongLength(0); i++) // Buffer
+                // Loop over buffers
+                for (uint i = 0; i < RemapDescCounts.GetLongLength(0); i++)
                 {
-                    for (uint j = 0; j < RemapDescCounts.GetLongLength(1); j++) // Mesh
+                    // Loop over packets
+                    for (uint j = 0; j < RemapDescCounts.GetLongLength(1); j++)
                     {
                         for (uint k = 1; k < RemapDescCounts[i, j]; k++) // Element
                             RemapDescs[i, j, k].OutputOffset = Descriptors[i, DescriptorIndices[i, (uint)RemapDescs[i, j, k].Usage]].Offset;
