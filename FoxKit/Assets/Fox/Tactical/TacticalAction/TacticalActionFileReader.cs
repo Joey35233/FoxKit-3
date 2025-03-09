@@ -149,13 +149,16 @@ namespace Fox.Tactical
                     }
 
                     //set to comfortable local positions from globals
-                    tacticalAction.transform.position = tacticalAction.waypoints[0].position + ((tacticalAction.waypoints[1].position - tacticalAction.waypoints[0].position)/2);
+                    tacticalAction.transform.position = tacticalAction.waypoints[1].position - ((tacticalAction.waypoints[1].position - tacticalAction.waypoints[0].position)/2);
 
                     tacticalAction.waypoints[0].position -= tacticalAction.transform.position;
                     tacticalAction.waypoints[1].position -= tacticalAction.transform.position;
 
-                    tacticalAction.waypoints[0].transform.position = tacticalAction.waypoints[0].position;
-                    tacticalAction.waypoints[1].transform.position = tacticalAction.waypoints[1].position;
+                    tacticalAction.waypoints[0].transform.localPosition = tacticalAction.waypoints[0].position;
+                    tacticalAction.waypoints[1].transform.localPosition = tacticalAction.waypoints[1].position;
+
+                    tacticalAction.waypoints[0].position = Math.FoxToUnityVector3(tacticalAction.waypoints[0].position);
+                    tacticalAction.waypoints[1].position = Math.FoxToUnityVector3(tacticalAction.waypoints[1].position);
 
 
                     if (tacticalAction.edges[0].actionName == "LadderDown" || tacticalAction.edges[0].actionName == "StepDown")
