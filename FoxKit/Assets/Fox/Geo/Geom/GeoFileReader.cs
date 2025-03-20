@@ -2,6 +2,7 @@
 using Fox.Core.Utils;
 using Fox.Fio;
 using UnityEngine;
+using UnityEngine.SocialPlatforms;
 
 namespace Fox.Geo
 {
@@ -125,6 +126,7 @@ namespace Fox.Geo
                     var payloadPosition = childNode.GetDataPosition();
                     if (payloadPosition is null)
                         continue;
+                    var payloadEndPosition = (long)payloadPosition + childNode.GetDataSize();
 
                     reader.Seek((long)payloadPosition);
                     switch (childFlags) 
@@ -146,11 +148,11 @@ namespace Fox.Geo
                                 ReadBoundingVolume(reader);
                                 reader.Align(0x10);
                             }
-                            ReadGroup(reader);
+                            ReadGroup(reader, payloadEndPosition);
                             break;
                         case GeoPayloadType.Group:
                             reader.Seek((long)payloadPosition);
-                            ReadGroup(reader);
+                            ReadGroup(reader, payloadEndPosition);
                             break;
                     }
                 }
@@ -185,7 +187,7 @@ namespace Fox.Geo
                     CellBlockIndex.SetValue(reader.ReadUInt16(), j);
             }
         }
-        public void ReadGroup(FileStreamReader reader)
+        public void ReadGroup(FileStreamReader reader, long payloadEndPosition)
         {
             long BlocksStartPos = reader.BaseStream.Position;
             while(reader.ReadBoolean()!=true)
@@ -211,13 +213,13 @@ namespace Fox.Geo
 
                 reader.Seek(blockStartPos + RootAABBHeaderOffset);
 
-                long[] ptrs = new long[6];
-                ptrs.SetValue(blockStartPos + RootAABBHeaderOffset, 0);
+                ulong[] ptrs = new ulong[6];
+                ptrs.SetValue(blockStartPos + RootAABBHeaderOffset,0);
                 uint j = 1;
                 uint j_minusOne;
                 int iteratorIndex = 0;
                 int iteratorIndex_minusOne;
-                long ptr;
+                ulong ptr;
 
                 do
                 {
@@ -226,10 +228,10 @@ namespace Fox.Geo
                     j_minusOne = j - 1;
                     iteratorIndex_minusOne = iteratorIndex - 1;
 
-                    reader.Seek(ptr + 4);
-                    if (reader.ReadUInt32()!=0)
+                    reader.Seek((long)ptr + 4);
+                    if (reader.ReadUInt32() != 0) // if (Shape.Header.NextHeaderOffset != 0)
                     {
-                        ptrs[j - 1] = ptr + reader.ReadUInt32() * 16;
+                        ptrs[j - 1] = ptr + reader.ReadUInt32() * 16; // Shape.Header.NextHeaderOffset
 
                         j_minusOne = j;
                         iteratorIndex_minusOne = iteratorIndex;
@@ -237,41 +239,48 @@ namespace Fox.Geo
 
                     j = j_minusOne;
                     iteratorIndex = iteratorIndex_minusOne;
-                    reader.Seek(ptr);
+                    reader.Seek((long)ptr);
                     if ((reader.ReadUInt32() & 0x200) == 0) // if (Shape.Header.Info.Flags & GEO_SHAPE_FLAGS_NO_CHILD == 0)
                     {
-                        var geoHeader = new GeomHeaderContext(reader, ptr, GeomHeaderContext.OffsetSize.Bytes);
+                        var geoHeader = new GeomHeaderContext(reader, reader.BaseStream.Position, GeomHeaderContext.OffsetSize.Bytes);
 
-                        switch (geoHeader.Type)
+                        var type = geoHeader.Type;
+                        var count = geoHeader.PrimCount;
+
+                        reader.Seek(geoHeader.GetDataPosition());
+                        switch (type)
                         {
                             case GeoPrimType.AABB:
-                                reader.Seek(geoHeader.GetDataPosition());
                                 Vector3 BoundingBoxRadii = reader.ReadPaddedVector3();
                                 Vector3 BoundingBoxCenter = reader.ReadPaddedVector3();
                                 Debug.Log($"{BoundingBoxRadii},{BoundingBoxCenter}");
                                 break;
                             case GeoPrimType.Quad:
-                                reader.Seek(geoHeader.GetDataPosition());
-                                short IndexA = reader.ReadInt16();
-                                short IndexB = reader.ReadInt16();
-                                short IndexC = reader.ReadInt16();
-                                short IndexD = reader.ReadInt16();
-                                ushort GeoQuadMaterialInfo = reader.ReadUInt16();
-                                bool NoUseMaterial = ((GeoQuadMaterialInfo) & 1) != 0;
-                                bool NoUseAuxMaterial = ((GeoQuadMaterialInfo >> 1) & 1) != 0;
-                                byte MaterialIndex = (byte)((GeoQuadMaterialInfo >> 2)|0xF);
-                                byte AuxMaterialIndex = (byte)((GeoQuadMaterialInfo >> 9) | 0xF);
+                                for (int k = 0; k < count; k++)
+                                {
+                                    short[] Indices = new short[] { reader.ReadInt16(), reader.ReadInt16(), reader.ReadInt16(), reader.ReadInt16() };
+                                    Debug.Log($"Indices: {Indices[0]},{Indices[1]},{Indices[2]},{Indices[3]}");
+                                    ushort GeoQuadMaterialInfo = reader.ReadUInt16();
+                                    bool NoUseMaterial = ((GeoQuadMaterialInfo) & 1) != 0;
+                                    bool NoUseAuxMaterial = ((GeoQuadMaterialInfo >> 1) & 1) != 0;
+                                    byte MaterialIndex = (byte)((GeoQuadMaterialInfo >> 2) | 0xF);
+                                    byte AuxMaterialIndex = (byte)((GeoQuadMaterialInfo >> 9) | 0xF);
+                                }
+                                reader.Align(16);
                                 break;
                             default:
-                                Debug.LogError("Unknown GEO_PRIM_TYPE type detected!");
+                                Debug.LogError($"Unknown GEO_PRIM_TYPE type detected! @{geoHeader.Position}");
                                 break;
                         }
 
-                        if (geoHeader.ChildHeaderOffset!=0)
+                        if (geoHeader.ChildHeaderOffset != 0)
                         {
-                            j = j_minusOne + 1;
-                            iteratorIndex = iteratorIndex_minusOne + 1;
-                            ptrs[j_minusOne] = ptr + geoHeader.ChildHeaderOffset * 16;
+                            if (true)
+                            {
+                                j = j_minusOne + 1;
+                                iteratorIndex = iteratorIndex_minusOne + 1;
+                                ptrs[j_minusOne] = ptr + (ulong)(geoHeader.ChildHeaderOffset * 16);
+                            }
                         }
                     }
                 } while (j > 0);
