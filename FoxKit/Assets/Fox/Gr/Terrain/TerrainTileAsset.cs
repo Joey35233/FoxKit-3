@@ -127,13 +127,13 @@ namespace Fox.Gr.Terrain
             FoxDataNode* nodes = header->GetNodes();
             if (nodes is not null)
             {
-                FoxDataNode* paramNode = nodes->FindNode(new String("param"));
-                FoxDataNode* maxHeightNode = nodes->FindNode(new String("maxHeight"));
-                FoxDataNode* minHeightNode = nodes->FindNode(new String("minHeight"));
-                FoxDataNode* heightMapNode = nodes->FindNode(new String("heightMap"));
-                FoxDataNode* comboTextureNode = nodes->FindNode(new String("comboTexture"));
-                FoxDataNode* materialIdsNode = nodes->FindNode(new String("materialIds"));
-                FoxDataNode* configrationIdsNode = nodes->FindNode(new String("configrationIds"));
+                FoxDataNode* paramNode = nodes->FindNode("param");
+                FoxDataNode* maxHeightNode = nodes->FindNode("maxHeight");
+                FoxDataNode* minHeightNode = nodes->FindNode("minHeight");
+                FoxDataNode* heightMapNode = nodes->FindNode("heightMap");
+                FoxDataNode* comboTextureNode = nodes->FindNode("comboTexture");
+                FoxDataNode* materialIdsNode = nodes->FindNode("materialIds");
+                FoxDataNode* configrationIdsNode = nodes->FindNode("configrationIds");
 
                 if (paramNode is not null &&
                     maxHeightNode is not null &&
@@ -143,11 +143,11 @@ namespace Fox.Gr.Terrain
                     materialIdsNode is not null &&
                     configrationIdsNode is not null)
                 {
-                    FoxDataParameter* widthParam = paramNode->FindParameter(new String("width"));
-                    FoxDataParameter* heightParam = paramNode->FindParameter(new String("height"));
-                    FoxDataParameter* highPerLowParam = paramNode->FindParameter(new String("highPerLow"));
-                    FoxDataParameter* maxLodLevelParam = paramNode->FindParameter(new String("maxLodLevel"));
-                    FoxDataParameter* gridDistanceParam = paramNode->FindParameter(new String("gridDistance"));
+                    FoxDataParameter* widthParam = paramNode->FindParameter("width");
+                    FoxDataParameter* heightParam = paramNode->FindParameter("height");
+                    FoxDataParameter* highPerLowParam = paramNode->FindParameter("highPerLow");
+                    FoxDataParameter* maxLodLevelParam = paramNode->FindParameter("maxLodLevel");
+                    FoxDataParameter* gridDistanceParam = paramNode->FindParameter("gridDistance");
 
                     if (widthParam is not null &&
                         heightParam is not null &&
@@ -240,14 +240,14 @@ namespace Fox.Gr.Terrain
                 return false;
             }
 
-            FoxDataNode* paramNode = nodes->FindNode(new String("param"));
-            FoxDataNode* maxHeightNode = nodes->FindNode(new String("maxHeight"));
-            FoxDataNode* minHeightNode = nodes->FindNode(new String("minHeight"));
-            FoxDataNode* heightMapNode = nodes->FindNode(new String("heightMap"));
-            FoxDataNode* comboTextureNode = nodes->FindNode(new String("comboTexture"));
-            FoxDataNode* materialIdsNode = nodes->FindNode(new String("materialIds"));
-            FoxDataNode* configrationIdsNode = nodes->FindNode(new String("configrationIds"));
-            FoxDataNode* layoutDescriptionNode = nodes->FindNode(new String("layoutDescription"));
+            FoxDataNode* paramNode = nodes->FindNode("param");
+            FoxDataNode* maxHeightNode = nodes->FindNode("maxHeight");
+            FoxDataNode* minHeightNode = nodes->FindNode("minHeight");
+            FoxDataNode* heightMapNode = nodes->FindNode("heightMap");
+            FoxDataNode* comboTextureNode = nodes->FindNode("comboTexture");
+            FoxDataNode* materialIdsNode = nodes->FindNode("materialIds");
+            FoxDataNode* configrationIdsNode = nodes->FindNode("configrationIds");
+            FoxDataNode* layoutDescriptionNode = nodes->FindNode("layoutDescription");
 
             return true;
         }

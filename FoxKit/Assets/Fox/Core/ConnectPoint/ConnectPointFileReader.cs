@@ -37,7 +37,7 @@ namespace Fox.Core
                             return;
                         }
 
-                        FoxDataParameter* parentParam = node->FindParameter(new String("Parent"));
+                        FoxDataParameter* parentParam = node->FindParameter("Parent");
                         if (parentParam is null)
                         {
                             Debug.LogError($"Node does not have parent.");
