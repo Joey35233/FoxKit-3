@@ -18,7 +18,7 @@ namespace FoxKit.MenuItems
             var fcnpReader = new ConnectPointFileReader();
             // fcnpReader.Read(reader);
 
-            fcnpReader.ReadUnsafe(System.IO.File.ReadAllBytes(assetPath));
+            fcnpReader.Read(System.IO.File.ReadAllBytes(assetPath));
         }
     }
 }
