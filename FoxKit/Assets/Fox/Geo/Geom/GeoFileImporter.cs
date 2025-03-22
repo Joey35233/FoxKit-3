@@ -75,35 +75,34 @@ namespace Fox.Geo
 
         private void ReadGroup(GeoCommonTemp.GeoGroup* data)
         {
-            GeoCommonTemp.GeoBlock* blocks = &data->Blocks;
-            while (blocks->IsNotFinalEntry != true)
+            GeoCommonTemp.GeoBlock* block = &data->Blocks;
+            while (block->IsFinalEntry != true)
             {
-                // do stuff
+                GeoCommonTemp.GeoMaterialGroup* materialGroup = (GeoCommonTemp.GeoMaterialGroup*)((byte*)block + block->NextSectionOffset);
+                GeoCommonTemp.GeoMaterialHeader header = materialGroup->Header;
+
+                GeoCommonTemp.GeoMaterial* materials = (GeoCommonTemp.GeoMaterial*)(&materialGroup->Header + 1);
+
+                // Probably don't want to 
+                // for (uint i = header.MaterialsOffsetInEntries; i < header.MaterialsTotalSizeInEntries; i++)
+                // {
+                //     GeoCommonTemp.GeoMaterial* material = materials + i;
+                //     if (material->Name.IsValid())
+                //     {
+                //         // do stuff
+                //     }
+                // }
+                //
+                // for (uint i = header.AuxMaterialsOffsetInEntries; i < header.AuxMaterialsTotalSizeInEntries; i++)
+                // {
+                //     GeoCommonTemp.GeoMaterial* material = materials + i;
+                //     if (material->Name.IsValid())
+                //     {
+                //         // do stuff
+                //     }
+                // }
                 
-                blocks += 1;
-            }
-
-            GeoCommonTemp.GeoMaterialGroup* materialGroup = (GeoCommonTemp.GeoMaterialGroup*)(blocks + 1);
-            GeoCommonTemp.GeoMaterialHeader header = materialGroup->Header;
-
-            GeoCommonTemp.GeoMaterial* materials = (GeoCommonTemp.GeoMaterial*)(&materialGroup->Header + 1);
-            
-            for (uint i = header.MaterialsOffsetInEntries; i < header.MaterialsTotalSizeInEntries; i++)
-            {
-                GeoCommonTemp.GeoMaterial* material = materials + i;
-                if (material->Name.IsValid())
-                {
-                    // do stuff
-                }
-            }
-            
-            for (uint i = header.AuxMaterialsOffsetInEntries; i < header.AuxMaterialsTotalSizeInEntries; i++)
-            {
-                GeoCommonTemp.GeoMaterial* material = materials + i;
-                if (material->Name.IsValid())
-                {
-                    // do stuff
-                }
+                block += 1;
             }
         }
     }

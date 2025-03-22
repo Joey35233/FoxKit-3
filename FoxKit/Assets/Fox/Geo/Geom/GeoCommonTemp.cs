@@ -155,10 +155,10 @@ namespace Fox.Geo
         public unsafe struct GeoBlock
         {
             [FieldOffset(0)]
-            public bool IsNotFinalEntry;
+            public bool IsFinalEntry;
 
             [FieldOffset(1)]
-            public byte ShapesTotalSizeInEntries; // Includes the "null terminator" entry
+            public byte TotalShapeCount; // Includes the "null terminator" entry
             
             [FieldOffset(2)]
             public ushort ShapeDataSize;
