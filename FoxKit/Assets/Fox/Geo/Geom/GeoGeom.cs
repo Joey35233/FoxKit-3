@@ -1,10 +1,10 @@
 ﻿using System;
-using System.Numerics;
 using System.Runtime.InteropServices;
+using UnityEngine;
 
 namespace Fox.Geo
 {
-    public class GeoCommonTemp
+    public static class GeoGeom
     {
         public enum GeoCollisionTags : ulong
         {
@@ -89,13 +89,13 @@ namespace Fox.Geo
             BOSS = 0x8 * (0x10 * 15),
         }
         
-        public enum GeoPayloadType : uint
+        public enum NodePayloadType : uint
         {
             Type1 = 0x10,
             Type2 = 0x40,
             Bone = 0xB,
-            BoundingGroup = 0x0,
-            Group = 0x6,
+            Group = 0x0,
+            Block = 0x6,
         }
 
         [StructLayout(LayoutKind.Sequential)]
@@ -120,38 +120,6 @@ namespace Fox.Geo
             }
         }
 
-        [StructLayout(LayoutKind.Sequential)]
-        public unsafe struct GeoGroup
-        {
-            public GeoBlock Blocks;
-            
-            // The Blocks variable is a trick to support multiple with a default so the Material can't fit here
-        }
-
-        [StructLayout(LayoutKind.Sequential)]
-        public unsafe struct GeoMaterialHeader
-        {
-            public byte MaterialsOffsetInEntries;
-            public byte MaterialsTotalSizeInEntries;
-            public byte AuxMaterialsOffsetInEntries;
-            public byte AuxMaterialsTotalSizeInEntries;
-        }
-        
-        [StructLayout(LayoutKind.Sequential, Size = 12)]
-        public unsafe struct GeoMaterial
-        {
-            public StrCode32 Name;
-        }
-
-        // Pack = 16 might be wrong
-        [StructLayout(LayoutKind.Sequential, Pack = 16)]
-        public unsafe struct GeoMaterialGroup
-        {
-            public GeoMaterialHeader Header;
-
-            public GeoMaterial Materials;
-        }
-
         [StructLayout(LayoutKind.Explicit)]
         public unsafe struct GeoBlock
         {
@@ -159,61 +127,27 @@ namespace Fox.Geo
             public bool IsFinalEntry;
 
             [FieldOffset(1)]
-            public byte TotalShapeCount; // Includes the "null terminator" entry
+            public byte HeaderCount;
             
             [FieldOffset(2)]
-            public ushort ShapeDataSize;
+            public ushort HeadersDataSize;
 	
             [FieldOffset(4)]
-            public short LastHeaderOffsetMaybe; // short Padding1;
+            public ushort VertexBufferOffset_Unused;
 	
             [FieldOffset(8)]
-            public short FirstHeaderOffsetMaybe; // short Padding1;
+            public ushort HeadersOffset_Unused;
 	
             [FieldOffset(12)]
             public uint VertexBufferOffset;
 
             [FieldOffset(16)]
-            public uint RootAABBHeaderOffset;
+            public uint HeadersOffset;
 
             [FieldOffset(20)]
-            public uint NextSectionOffset;
+            public uint MaterialsHeaderOffset;
 	
             [FieldOffset(24)]
-            public GeoCollisionTags Tags;
-        }
-
-        [StructLayout(LayoutKind.Explicit)]
-        public unsafe struct BoundingVolume
-        {
-            [FieldOffset(0)]
-            public Vector3 BoundingBoxCorner;
-
-            [FieldOffset(12)]
-            public ushort GridTotalDataSize;
-
-            [FieldOffset(14)]
-            public ushort BlockCount;
-
-            [FieldOffset(16)]
-            public Vector3 BoundingBoxExtents;
-
-            [FieldOffset(28)]
-            public uint NextSectionOffset;
-
-            [FieldOffset(32)]
-            public Vector3 GridSize;
-
-            [FieldOffset(44)]
-            public uint CellCountX;
-
-            [FieldOffset(48)]
-            public uint CellCountY;
-
-            [FieldOffset(52)]
-            public uint CellCountZ;
-
-            [FieldOffset(56)]
             public GeoCollisionTags Tags;
         }
 
@@ -241,6 +175,7 @@ namespace Fox.Geo
             [FieldOffset(28)]
             public uint VertexBufferOffset;
         }
+        
         [StructLayout(LayoutKind.Explicit)]
         public unsafe struct GeoPrimAabb
         {
@@ -249,6 +184,7 @@ namespace Fox.Geo
             [FieldOffset(16)]
             public Vector3 BoundingBoxCenter;
         }
+
         [StructLayout(LayoutKind.Explicit)]
         public unsafe struct GeoPrimQuad
         {
@@ -263,6 +199,7 @@ namespace Fox.Geo
             [FieldOffset(8)]
             public short Info;
         }
+
         [StructLayout(LayoutKind.Explicit)]
         public unsafe struct VertexHeader
         {
@@ -278,6 +215,42 @@ namespace Fox.Geo
             public ulong VertexDataOffset;
             [FieldOffset(24)]
             public uint FmdlVertexBufferOffset;
+        }
+
+        [StructLayout(LayoutKind.Sequential)]
+        public unsafe struct GeoGroup
+        {	
+            public Vector3 BoundingBoxCorner;
+
+            public ushort GridTotalDataSize;
+            public ushort BlockCount;
+
+            public Vector3 BoundingBoxExtents;
+
+            public uint BlocksOffset;
+
+            public Vector3 GridSize;
+	
+            public uint CellCountX;
+            public uint CellCountY;
+            public uint CellCountZ;
+	
+            public GeoCollisionTags Tags;
+        }
+
+        [StructLayout(LayoutKind.Sequential)]
+        public unsafe struct GeoBlockMaterialsHeader
+        {
+            public byte MaterialsIndexOffset;
+            public byte MaterialsCount;
+            public byte AuxMaterialsIndexOffset;
+            public byte AuxMaterialsCount;
+        }
+        
+        [StructLayout(LayoutKind.Sequential, Size = 12)]
+        public unsafe struct GeoMaterial
+        {
+            public StrCode32 Name;
         }
     }
 }
