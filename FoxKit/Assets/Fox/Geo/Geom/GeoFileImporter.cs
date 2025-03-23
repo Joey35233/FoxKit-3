@@ -36,9 +36,14 @@ namespace Fox.Geo
                     context.LogImportError($"Version is {header->Version}");
                     return;
                 }
-                
+
+                var main = new GameObject(header->Name.Hash.ToString());
+
                 FoxDataNode* nodes = header->GetNodes();
                 ReadNodes(context, nodes);
+
+                context.AddObjectToAsset(header->Name.Hash.ToString(), main);
+                context.SetMainObject(main);
             }
         }
 
@@ -48,12 +53,17 @@ namespace Fox.Geo
             {
                 FoxDataString name = node->Name;
                 uint flags = node->Flags;
-                
+
+                var nodeGo = new GameObject(name.Hash.ToString());
+
                 for (var subNode = node; subNode != null; subNode = subNode->GetNext())
                 {
                     FoxDataString subName = subNode->Name;
                     GeoCommonTemp.GeoPayloadType subFlags = (GeoCommonTemp.GeoPayloadType)subNode->Flags;
-                    
+
+                    var subNodeGo = new GameObject(subName.Hash.ToString());
+                    subNodeGo.transform.SetParent(nodeGo.transform);
+
                     switch (subFlags)
                     {
                         case GeoCommonTemp.GeoPayloadType.Type1:
@@ -64,46 +74,104 @@ namespace Fox.Geo
                             string boneName = bone->ReadString();
                             break;
                         case GeoCommonTemp.GeoPayloadType.BoundingGroup:
+                            ReadBoundingGroup((GeoCommonTemp.BoundingVolume*)subNode->GetData());
                             break;
                         case GeoCommonTemp.GeoPayloadType.Group:
                             ReadGroup((GeoCommonTemp.GeoGroup*)subNode->GetData());
                             break;
                     }
+                    context.AddObjectToAsset(subName.Hash.ToString(), subNodeGo);
                 }
+
+                context.AddObjectToAsset(name.Hash.ToString(), nodeGo);
             }
         }
-
+        private void ReadBoundingGroup(GeoCommonTemp.BoundingVolume* data)
+        {
+            ReadGroup((GeoCommonTemp.GeoGroup*)data+data->NextSectionOffset);
+        }
         private void ReadGroup(GeoCommonTemp.GeoGroup* data)
         {
             GeoCommonTemp.GeoBlock* block = &data->Blocks;
             while (block->IsFinalEntry != true)
             {
-                GeoCommonTemp.GeoMaterialGroup* materialGroup = (GeoCommonTemp.GeoMaterialGroup*)((byte*)block + block->NextSectionOffset);
-                GeoCommonTemp.GeoMaterialHeader header = materialGroup->Header;
+                var shapes = (GeoCommonTemp.GeoGeomHeader*)block->FirstHeaderOffsetMaybe;
 
-                GeoCommonTemp.GeoMaterial* materials = (GeoCommonTemp.GeoMaterial*)(&materialGroup->Header + 1);
+                ReadShape(shapes);
 
-                // Probably don't want to 
-                // for (uint i = header.MaterialsOffsetInEntries; i < header.MaterialsTotalSizeInEntries; i++)
-                // {
-                //     GeoCommonTemp.GeoMaterial* material = materials + i;
-                //     if (material->Name.IsValid())
-                //     {
-                //         // do stuff
-                //     }
-                // }
-                //
-                // for (uint i = header.AuxMaterialsOffsetInEntries; i < header.AuxMaterialsTotalSizeInEntries; i++)
-                // {
-                //     GeoCommonTemp.GeoMaterial* material = materials + i;
-                //     if (material->Name.IsValid())
-                //     {
-                //         // do stuff
-                //     }
-                // }
-                
+                GeoCommonTemp.VertexHeader* vertexHeader = (GeoCommonTemp.VertexHeader*)(block + block->VertexBufferOffset);
+
                 block += 1;
             }
+
+            GeoCommonTemp.GeoMaterialGroup* materialGroup = (GeoCommonTemp.GeoMaterialGroup*)((byte*)block + block->NextSectionOffset);
+            GeoCommonTemp.GeoMaterialHeader header = materialGroup->Header;
+            // do stuff
+
+            GeoCommonTemp.GeoMaterial* materials = (GeoCommonTemp.GeoMaterial*)(&materialGroup->Header + 1);
+            
+            for (uint i = header.MaterialsOffsetInEntries; i < header.MaterialsTotalSizeInEntries; i++)
+            {
+                GeoCommonTemp.GeoMaterial* material = materials + i;
+                if (material->Name.IsValid())
+                {
+                    // do stuff
+                }
+            }
+            
+            for (uint i = header.AuxMaterialsOffsetInEntries; i < header.AuxMaterialsTotalSizeInEntries; i++)
+            {
+                GeoCommonTemp.GeoMaterial* material = materials + i;
+                if (material->Name.IsValid())
+                {
+                    // do stuff
+                }
+            }
+        }
+        private void ReadShape(GeoCommonTemp.GeoGeomHeader* geoGeomHeader)
+        {
+            GeoPrimType type = (GeoPrimType)(geoGeomHeader->Info & 0xF);
+            GeoShapeFlags flags = (GeoShapeFlags)(geoGeomHeader->Info >> 4 & 0xFFFFF);
+            byte primCount = (byte)(geoGeomHeader->Info >> 24 & 0xFF);
+
+            byte* prim = (byte*)(geoGeomHeader + 32);
+            switch (type)
+            {
+                case GeoPrimType.AABB:
+                    for (int i = 0; i < primCount; i++)
+                    {
+                        ReadPrimAabb((GeoCommonTemp.GeoPrimAabb*)prim + (i * 32));
+                    }
+                    break;
+                case GeoPrimType.Quad:
+                    for (int i = 0; i < primCount; i++)
+                    {
+                        ReadPrimQuad((GeoCommonTemp.GeoPrimQuad*)prim + (i * 12));
+                    }
+                    break;
+            }
+
+
+            while (geoGeomHeader->ChildHeaderOffset > 0)
+            {
+                ReadShape(geoGeomHeader + geoGeomHeader->ChildHeaderOffset);
+            }
+
+            while (geoGeomHeader->NextHeaderOffset > 0)
+            {
+                ReadShape(geoGeomHeader + geoGeomHeader->NextHeaderOffset);
+            }
+        }
+        private void ReadPrimAabb(GeoCommonTemp.GeoPrimAabb* prim)
+        {
+
+        }
+        private void ReadPrimQuad(GeoCommonTemp.GeoPrimQuad* prim)
+        {
+            bool NoUseMaterial = (prim->Info & 0x1) == 0x1;
+            bool NoUseAuxMaterial = (prim->Info>>1 & 0x1) == 0x1;
+            byte MaterialIndex = (byte)(prim->Info >> 2 & 0x7F);
+            byte AuxMaterialIndex = (byte)(prim->Info >> 9 & 0x7F);
         }
     }
 }

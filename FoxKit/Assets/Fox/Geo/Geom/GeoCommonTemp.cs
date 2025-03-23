@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Numerics;
 using System.Runtime.InteropServices;
 
 namespace Fox.Geo
@@ -180,6 +181,103 @@ namespace Fox.Geo
 	
             [FieldOffset(24)]
             public GeoCollisionTags Tags;
+        }
+
+        [StructLayout(LayoutKind.Explicit)]
+        public unsafe struct BoundingVolume
+        {
+            [FieldOffset(0)]
+            public Vector3 BoundingBoxCorner;
+
+            [FieldOffset(12)]
+            public ushort GridTotalDataSize;
+
+            [FieldOffset(14)]
+            public ushort BlockCount;
+
+            [FieldOffset(16)]
+            public Vector3 BoundingBoxExtents;
+
+            [FieldOffset(28)]
+            public uint NextSectionOffset;
+
+            [FieldOffset(32)]
+            public Vector3 GridSize;
+
+            [FieldOffset(44)]
+            public uint CellCountX;
+
+            [FieldOffset(48)]
+            public uint CellCountY;
+
+            [FieldOffset(52)]
+            public uint CellCountZ;
+
+            [FieldOffset(56)]
+            public GeoCollisionTags Tags;
+        }
+
+        [StructLayout(LayoutKind.Explicit)]
+        public unsafe struct GeoGeomHeader
+        {
+            [FieldOffset(0)]
+            public uint Info;
+
+            [FieldOffset(4)]
+            public uint NextHeaderOffset;
+
+            [FieldOffset(8)]
+            public uint PreviousHeaderOffset;
+
+            [FieldOffset(12)]
+            public uint ChildHeaderOffset;
+
+            [FieldOffset(16)]
+            public GeoCollisionTags Tags;
+
+            [FieldOffset(24)]
+            public StrCode32 Name;
+
+            [FieldOffset(28)]
+            public uint VertexBufferOffset;
+        }
+        [StructLayout(LayoutKind.Explicit)]
+        public unsafe struct GeoPrimAabb
+        {
+            [FieldOffset(0)]
+            public Vector3 BoundingBoxRadii;
+            [FieldOffset(16)]
+            public Vector3 BoundingBoxCenter;
+        }
+        [StructLayout(LayoutKind.Explicit)]
+        public unsafe struct GeoPrimQuad
+        {
+            [FieldOffset(0)]
+            public short IndexA;
+            [FieldOffset(2)]
+            public short IndexB;
+            [FieldOffset(4)]
+            public short IndexC;
+            [FieldOffset(6)]
+            public short IndexD;
+            [FieldOffset(8)]
+            public short Info;
+        }
+        [StructLayout(LayoutKind.Explicit)]
+        public unsafe struct VertexHeader
+        {
+            [FieldOffset(0)]
+            public uint VertexCount;
+            [FieldOffset(4)]
+            public uint VerticesIndexOffset;
+            [FieldOffset(8)]
+            public uint Unknown0or1;
+            [FieldOffset(12)]
+            public uint OriginIndex;
+            [FieldOffset(16)]
+            public ulong VertexDataOffset;
+            [FieldOffset(24)]
+            public uint FmdlVertexBufferOffset;
         }
     }
 }

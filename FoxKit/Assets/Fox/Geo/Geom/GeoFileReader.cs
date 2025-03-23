@@ -263,8 +263,8 @@ namespace Fox.Geo
                                     ushort GeoQuadMaterialInfo = reader.ReadUInt16();
                                     bool NoUseMaterial = ((GeoQuadMaterialInfo) & 1) != 0;
                                     bool NoUseAuxMaterial = ((GeoQuadMaterialInfo >> 1) & 1) != 0;
-                                    byte MaterialIndex = (byte)((GeoQuadMaterialInfo >> 2) | 0xF);
-                                    byte AuxMaterialIndex = (byte)((GeoQuadMaterialInfo >> 9) | 0xF);
+                                    byte MaterialIndex = (byte)((GeoQuadMaterialInfo >> 2) | 0x7F);
+                                    byte AuxMaterialIndex = (byte)((GeoQuadMaterialInfo >> 9) | 0x7F);
                                 }
                                 reader.Align(16);
                                 break;
