@@ -152,7 +152,7 @@ namespace Fox.Geo
         }
 
         [StructLayout(LayoutKind.Explicit)]
-        public unsafe struct GeoGeomHeader
+        public unsafe struct GeomHeader
         {
             [FieldOffset(0)]
             public uint Info;

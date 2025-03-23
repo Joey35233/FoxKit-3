@@ -101,7 +101,7 @@ namespace Fox.Geo
 
         private void ReadBlock(GeoGeom.GeoBlock* block)
         {
-            var shapes = (GeoGeom.GeoGeomHeader*)block->HeadersOffset;
+            var shapes = (GeoGeom.GeomHeader*)block->HeadersOffset;
 
             ReadShape(shapes);
 
@@ -130,13 +130,13 @@ namespace Fox.Geo
             // }
         }
         
-        private void ReadShape(GeoGeom.GeoGeomHeader* geoGeomHeader)
+        private void ReadShape(GeoGeom.GeomHeader* geomHeader)
         {
-            GeoPrimType type = (GeoPrimType)(geoGeomHeader->Info & 0xF);
-            GeoShapeFlags flags = (GeoShapeFlags)(geoGeomHeader->Info >> 4 & 0xFFFFF);
-            byte primCount = (byte)(geoGeomHeader->Info >> 24 & 0xFF);
+            GeoPrimType type = (GeoPrimType)(geomHeader->Info & 0xF);
+            GeoShapeFlags flags = (GeoShapeFlags)(geomHeader->Info >> 4 & 0xFFFFF);
+            byte primCount = (byte)(geomHeader->Info >> 24 & 0xFF);
 
-            byte* prim = (byte*)(geoGeomHeader + 32);
+            byte* prim = (byte*)(geomHeader + 1);
             switch (type)
             {
                 case GeoPrimType.AABB:
@@ -153,15 +153,14 @@ namespace Fox.Geo
                     break;
             }
 
-
-            while (geoGeomHeader->ChildHeaderOffset > 0)
+            while (geomHeader->ChildHeaderOffset > 0)
             {
-                ReadShape(geoGeomHeader + geoGeomHeader->ChildHeaderOffset);
+                ReadShape(geomHeader + geomHeader->ChildHeaderOffset);
             }
 
-            while (geoGeomHeader->NextHeaderOffset > 0)
+            while (geomHeader->NextHeaderOffset > 0)
             {
-                ReadShape(geoGeomHeader + geoGeomHeader->NextHeaderOffset);
+                ReadShape(geomHeader + geomHeader->NextHeaderOffset);
             }
         }
         
