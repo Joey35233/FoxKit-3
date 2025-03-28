@@ -167,6 +167,7 @@ namespace Fox.Geo
             AreaPath = 11,
         }
 
+        [Flags]
         public enum GeomHeaderFlags
         {
             Unknown6 = 0x1,
@@ -174,7 +175,7 @@ namespace Fox.Geo
             Unknown4 = 0x4,
             
             NoChild = 0x20,
-            Unknown1 = 0x200,
+            DoubleSided = 0x200,
             UseFmdlVertices = 0x800,
             HasChild = 0x2000,
             Unknown7 = 0x4000,
@@ -217,35 +218,24 @@ namespace Fox.Geo
             public Vector3 BoundingBoxCenter;
         }
 
-        [StructLayout(LayoutKind.Explicit)]
+        [StructLayout(LayoutKind.Sequential)]
         public unsafe struct GeoPrimPoly
         {
-            [FieldOffset(0)]
-            public short IndexA;
-            [FieldOffset(2)]
-            public short IndexB;
-            [FieldOffset(4)]
-            public short IndexC;
-            [FieldOffset(6)]
-            public short IndexD;
-            [FieldOffset(8)]
+            public ushort IndexA;
+            public ushort IndexB;
+            public ushort IndexC;
+            public ushort IndexD;
             public short Info;
         }
 
-        [StructLayout(LayoutKind.Explicit)]
-        public unsafe struct VertexHeader
+        [StructLayout(LayoutKind.Sequential, Size = 32)]
+        public unsafe struct PolyVertexHeader
         {
-            [FieldOffset(0)]
             public uint VertexCount;
-            [FieldOffset(4)]
             public uint VerticesIndexOffset;
-            [FieldOffset(8)]
             public uint Unknown0or1;
-            [FieldOffset(12)]
             public uint OriginIndex;
-            [FieldOffset(16)]
-            public ulong VertexDataOffset;
-            [FieldOffset(24)]
+            public long VertexDataOffset;
             public uint FmdlVertexBufferOffset;
         }
 

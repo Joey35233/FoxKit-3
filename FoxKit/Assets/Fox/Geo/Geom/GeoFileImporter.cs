@@ -1,17 +1,27 @@
-﻿using System;
+﻿#define DOUBLE_SIDED
+
+using System;
 using Fox.Core;
+using UnityEditor;
 using UnityEditor.AssetImporters;
 using UnityEngine;
+using UnityEngine.Rendering;
 using Transform = UnityEngine.Transform;
 using static Fox.Geo.GeoGeom;
+using Material = UnityEngine.Material;
 
 namespace Fox.Geo
 {
     [ScriptedImporter(0, "geoms")]
     public unsafe class GeoFileImporter : ScriptedImporter
     {
+        private Material VisualizerMaterial;
+        
         public override void OnImportAsset(AssetImportContext context)
         {
+            // Init globals
+            VisualizerMaterial = AssetDatabase.LoadAssetAtPath<Material>("Assets/Fox/Geo/Geom/GeomVisualizer.mat");
+            
             string name = System.IO.Path.GetFileName(context.assetPath);
         
             ReadOnlySpan<byte> fileData = System.IO.File.ReadAllBytes(assetPath);
@@ -76,10 +86,10 @@ namespace Fox.Geo
                         //     string boneName = bone->ReadString();
                         //     break;
                         case NodePayloadType.Group:
-                            ReadGroup((GeoGroup*)subNode->GetData(), subNodeGameObject);
+                            ReadGroup(context, (GeoGroup*)subNode->GetData(), subNodeGameObject);
                             break;
                         case NodePayloadType.Block:
-                            ReadBlock((GeoBlock*)subNode->GetData(), subNodeGameObject);
+                            ReadBlock(context, (GeoBlock*)subNode->GetData(), subNodeGameObject);
                             break;
                         default:
                             context.LogImportError("Unknown sub node type");
@@ -90,7 +100,7 @@ namespace Fox.Geo
             }
         }
 
-        private void ReadGroup(GeoGroup* group, GameObject parent)
+        private void ReadGroup(AssetImportContext context, GeoGroup* group, GameObject parent)
         {
             GameObject gameObject = new GameObject("Group");
             gameObject.transform.parent = parent.transform;
@@ -99,20 +109,20 @@ namespace Fox.Geo
             for (uint i = 0; i < group->BlockCount; i++)
             {
                 GeoBlock* block = blocks + i;
-                ReadBlock(block, gameObject);
+                ReadBlock(context, block, gameObject);
             }
         }
 
-        private void ReadBlock(GeoBlock* block, GameObject parent)
+        private void ReadBlock(AssetImportContext context, GeoBlock* block, GameObject parent)
         {
             GameObject gameObject = new GameObject("Block");
             gameObject.transform.parent = parent.transform;
             
             var headers = (GeomHeader*)((byte*)block + block->HeadersOffset);
 
-            ReadHeader(headers, gameObject);
+            ReadHeader(context, headers, gameObject);
 
-            VertexHeader* vertexHeader = (VertexHeader*)(block + block->VertexBufferOffset);
+            PolyVertexHeader* vertexHeader = (PolyVertexHeader*)(block + block->VertexBufferOffset);
 
             GeoBlockMaterialsHeader* materialsHeader = (GeoBlockMaterialsHeader*)((byte*)block + block->MaterialsHeaderOffset);
 
@@ -137,7 +147,7 @@ namespace Fox.Geo
             // }
         }
 
-        private void ReadHeader(GeomHeader* root, GameObject rootObject)
+        private void ReadHeader(AssetImportContext context, GeomHeader* root, GameObject rootObject)
         {
             GeomHeader** stack = stackalloc GeomHeader*[6];
             Transform[] parentStack = new Transform[6];
@@ -159,7 +169,7 @@ namespace Fox.Geo
                 GeomHeaderFlags flags = (GeomHeaderFlags)(header->Info >> 4 & 0xFFFFF);
                 byte primCount = (byte)(header->Info >> 24 & 0xFF);
                 
-                GameObject gameObject = new GameObject(type.ToString());
+                GameObject gameObject = new GameObject($"{((ulong)header)} | {type.ToString()}{(flags.HasFlag(GeomHeaderFlags.DoubleSided) ? " | DoubleSided" : "")}");
                 gameObject.transform.parent = parent;
 
                 byte* payload = (byte*)(header + 1);
@@ -168,9 +178,103 @@ namespace Fox.Geo
                 {
                     case GeoPrimType.AABB:
                         BoxCollider collider = gameObject.AddComponent<BoxCollider>();
+
+                        GeoPrimAabb* aabb = (GeoPrimAabb*)payload;
                         
-                        collider.size = Fox.Math.FoxToUnityVector3(*(Vector3*)(payload));
-                        collider.center = *(Vector3*)(payload + 16);
+                        collider.center = Fox.Math.FoxToUnityVector3(aabb->BoundingBoxCenter);
+                        collider.size = 2 * aabb->BoundingBoxRadii;
+                        
+                        break;
+                    case GeoPrimType.Poly:
+                        // TEMP
+                        if ((flags & GeomHeaderFlags.UseFmdlVertices) != 0)
+                            break;
+
+                        bool isDoubleSided = (flags & GeomHeaderFlags.DoubleSided) != 0;
+                        
+                        GeoPrimPoly* polys = (GeoPrimPoly*)payload;
+                        PolyVertexHeader* vertexHeader = (PolyVertexHeader*)((byte*)header + header->VertexBufferOffset * 16);
+                        
+                        // Technically a hack
+                        Vector3[] vertexBuffer = new Vector3[vertexHeader->VertexCount - 1];
+                        
+                        // TEMP; make faces for each side if double-sided for visualization
+                        
+                        Mesh mesh = new Mesh();
+                        mesh.name = gameObject.name;
+                        context.AddObjectToAsset(mesh.name, mesh);
+
+#if DOUBLE_SIDED
+                        ushort[] flatIndexBuffer = !isDoubleSided ? new ushort[primCount * 4] : new ushort[2 * primCount * 4];
+                        for (uint i = 0; i < primCount; i++)
+                        {
+                            // Opposite winding order of FoxKit
+                            GeoPrimPoly* poly = polys + i;
+                            flatIndexBuffer[i * 4 + 3] = poly->IndexA;
+                            flatIndexBuffer[i * 4 + 2] = poly->IndexB;
+                            flatIndexBuffer[i * 4 + 1] = poly->IndexC;
+                            flatIndexBuffer[i * 4 + 0] = poly->IndexD;
+                        }
+
+                        // TEMP; make faces for each side if double-sided for visualization
+                        if (isDoubleSided)
+                        {
+                            for (uint i = 0; i < primCount; i++)
+                            {
+                                // Opposite winding order of FoxKit
+                                GeoPrimPoly* poly = polys + i;
+                                flatIndexBuffer[flatIndexBuffer.Length / 2 + i * 4 + 0] = poly->IndexA;
+                                flatIndexBuffer[flatIndexBuffer.Length / 2 + i * 4 + 1] = poly->IndexB;
+                                flatIndexBuffer[flatIndexBuffer.Length / 2 + i * 4 + 2] = poly->IndexC;
+                                flatIndexBuffer[flatIndexBuffer.Length / 2 + i * 4 + 3] = poly->IndexD;
+                            }
+                        }
+#else
+                        ushort[] flatIndexBuffer = new ushort[primCount * 4];
+
+                        if (isDoubleSided)
+                        {
+                            for (uint i = 0; i < primCount; i++)
+                            {
+                                // Opposite winding order of FoxKit
+                                GeoPrimPoly* poly = polys + i;
+                                flatIndexBuffer[i * 4 + 0] = poly->IndexA;
+                                flatIndexBuffer[i * 4 + 1] = poly->IndexB;
+                                flatIndexBuffer[i * 4 + 2] = poly->IndexC;
+                                flatIndexBuffer[i * 4 + 3] = poly->IndexD;
+                            }
+                        }
+                        else
+                        {
+                            for (uint i = 0; i < primCount; i++)
+                            {
+                                // Opposite winding order of FoxKit
+                                GeoPrimPoly* poly = polys + i;
+                                flatIndexBuffer[i * 4 + 3] = poly->IndexA;
+                                flatIndexBuffer[i * 4 + 2] = poly->IndexB;
+                                flatIndexBuffer[i * 4 + 1] = poly->IndexC;
+                                flatIndexBuffer[i * 4 + 0] = poly->IndexD;
+                            }
+                        }
+#endif
+                        
+                        Vector4* vectors = (Vector4*)((byte*)vertexHeader + vertexHeader->VertexDataOffset);
+
+                        Vector3 origin = Fox.Math.FoxToUnityVector3(vectors[vertexHeader->OriginIndex]);
+                        for (uint i = 0; i < vertexBuffer.Length; i++)
+                        {
+                            vertexBuffer[i] = Fox.Math.FoxToUnityVector3((Vector3)vectors[i + vertexHeader->VerticesIndexOffset]) + origin;
+                        }
+                        
+                        mesh.SetVertices(vertexBuffer, 0, vertexBuffer.Length, MeshUpdateFlags.DontRecalculateBounds | MeshUpdateFlags.DontValidateIndices);
+                        mesh.SetIndices(flatIndexBuffer, MeshTopology.Quads, 0, false);
+                        mesh.UploadMeshData(true);
+                        Collider parentCollider = parent.GetComponent<BoxCollider>();
+                        if (parentCollider != null)
+                            mesh.bounds = parentCollider.bounds;
+
+                        gameObject.AddComponent<MeshRenderer>().material = VisualizerMaterial;
+                        gameObject.AddComponent<MeshFilter>().mesh = mesh;
                         
                         break;
                 }
@@ -183,7 +287,7 @@ namespace Fox.Geo
                     stackSize++;
                 }
 
-                if ((header->Info & 0x200) == 0)
+                if ((flags & GeomHeaderFlags.NoChild) == 0)
                 {
                     if (header->ChildHeaderOffset != 0)
                     {
