@@ -9,11 +9,11 @@ namespace Fox.Geo
     [InitializeOnLoad]
     public static class GeoModule
     {
-        internal static Dictionary<GeoPrimType, Func<GeomHeaderContext, TransformData>> GeoPrimDeserializationMap = new();
+        internal static Dictionary<GeoGeom.GeoPrimType, Func<GeomHeaderContext, TransformData>> GeoPrimDeserializationMap = new();
 
-        public static void RegisterGeomHeaderDeserializationCallback(GeoPrimType type, Func<GeomHeaderContext, TransformData> deserializeFunc)
+        public static void RegisterGeomHeaderDeserializationCallback(GeoGeom.GeoPrimType type, Func<GeomHeaderContext, TransformData> deserializeFunc)
         {
-            Debug.Assert(Enum.IsDefined(typeof(GeoPrimType), type));
+            Debug.Assert(Enum.IsDefined(typeof(GeoGeom.GeoPrimType), type));
             Debug.Assert(deserializeFunc != null);
 
             Debug.Assert(GeoPrimDeserializationMap.TryAdd(type, deserializeFunc));

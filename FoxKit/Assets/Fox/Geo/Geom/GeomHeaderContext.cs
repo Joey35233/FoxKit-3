@@ -1,40 +1,12 @@
 ﻿using Fox.Core;
 using Fox.Fio;
 using Fox;
+using static Fox.Geo.GeoGeom;
 using System;
 using System.Diagnostics;
 
 namespace Fox.Geo
 {
-    public enum GeoPrimType
-    {
-        Sphere = 0,
-        Unknown1 = 1,
-        Quad = 2,
-        Box = 3,
-        AABB = 4,
-        Unknown5 = 5,
-        Unknown6 = 6,
-        Unknown7 = 7,
-        Path = 8,
-        Unknown9 = 6,
-        Unknown10 = 7,
-        AreaPath = 11,
-    }
-
-    public enum GeoShapeFlags
-    {
-        Unknown6 = 0x1,
-        Unknown4 = 0x4,
-        NoChild = 0x20,
-        Unknown1 = 0x200,
-        UseFmdlVertices = 0x800,
-        HasChild = 0x2000,
-        Unknown7 = 0x4000,
-        Unknown2 = 0x8000,
-        Unknown5 = 0x80000,
-    }
-
     //[StructLayout(LayoutKind.Explicit, Size = 32)]
     public struct GeomHeaderContext
     {
@@ -72,8 +44,8 @@ namespace Fox.Geo
             _OffsetSize = offsetSize;
 
             Debug.Assert(PrimCount == 0);
-            Debug.Assert((Type & ~(GeoPrimType.Quad | GeoPrimType.Box | GeoPrimType.AABB | GeoPrimType.Path | GeoPrimType.AreaPath)) == 0);
-            Debug.Assert(System.Enum.IsDefined(typeof(GeoShapeFlags), Flags));
+            Debug.Assert((Type & ~(GeoPrimType.Poly | GeoPrimType.Box | GeoPrimType.AABB | GeoPrimType.Path | GeoPrimType.AreaPath)) == 0);
+            Debug.Assert(System.Enum.IsDefined(typeof(GeomHeaderFlags), Flags));
 
             if (_OffsetSize == OffsetSize.Lines)
             {
@@ -95,12 +67,12 @@ namespace Fox.Geo
                 return (GeoPrimType)((Reader.ReadUInt32() >> 0) & 0xF);
             }
         }
-        public GeoShapeFlags Flags
+        public GeomHeaderFlags Flags
         {
             get
             {
                 Reader.Seek(Position + Offset_Info);
-                return (GeoShapeFlags)((Reader.ReadUInt32() >> 4) & 0xFFFFF);
+                return (GeomHeaderFlags)((Reader.ReadUInt32() >> 4) & 0xFFFFF);
             }
         }
         public byte PrimCount

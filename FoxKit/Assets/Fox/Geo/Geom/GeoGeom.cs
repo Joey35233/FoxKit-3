@@ -150,6 +150,38 @@ namespace Fox.Geo
             [FieldOffset(24)]
             public GeoCollisionTags Tags;
         }
+        
+        public enum GeoPrimType
+        {
+            Dot = 0,
+            Line = 1,
+            Poly = 2,
+            Box = 3,
+            AABB = 4,
+            Reference = 5,
+            Unknown6 = 6,
+            Pyramid = 7,
+            Path = 8,
+            Unknown9 = 6,
+            Unknown10 = 7,
+            AreaPath = 11,
+        }
+
+        public enum GeomHeaderFlags
+        {
+            Unknown6 = 0x1,
+            Unknown9 = 0x2,
+            Unknown4 = 0x4,
+            
+            NoChild = 0x20,
+            Unknown1 = 0x200,
+            UseFmdlVertices = 0x800,
+            HasChild = 0x2000,
+            Unknown7 = 0x4000,
+            HasReference = 0x8000,
+            Unknown3 = 0x8000,
+            Unknown5 = 0x80000,
+        }
 
         [StructLayout(LayoutKind.Explicit)]
         public unsafe struct GeomHeader
@@ -186,7 +218,7 @@ namespace Fox.Geo
         }
 
         [StructLayout(LayoutKind.Explicit)]
-        public unsafe struct GeoPrimQuad
+        public unsafe struct GeoPrimPoly
         {
             [FieldOffset(0)]
             public short IndexA;

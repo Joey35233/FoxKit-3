@@ -3,11 +3,12 @@ using Fox.Core;
 using UnityEditor.AssetImporters;
 using UnityEngine;
 using Transform = UnityEngine.Transform;
+using static Fox.Geo.GeoGeom;
 
 namespace Fox.Geo
 {
     [ScriptedImporter(0, "geoms")]
-    public unsafe partial class GeoFileImporter : ScriptedImporter
+    public unsafe class GeoFileImporter : ScriptedImporter
     {
         public override void OnImportAsset(AssetImportContext context)
         {
@@ -41,27 +42,28 @@ namespace Fox.Geo
                 var main = new GameObject(header->Name.Hash.ToString());
 
                 FoxDataNode* nodes = header->GetNodes();
-                ReadNodes(context, nodes);
+                ReadNodes(context, nodes, main);
 
                 context.AddObjectToAsset(header->Name.Hash.ToString(), main);
                 context.SetMainObject(main);
             }
         }
 
-        private void ReadNodes(AssetImportContext context, FoxDataNode* nodes)
+        private void ReadNodes(AssetImportContext context, FoxDataNode* nodes, GameObject parent)
         {
             for (var node = nodes; node != null; node = node->GetNext())
             {
                 FoxDataString name = node->Name;
-                GeoGeom.NodePayloadType flags = (GeoGeom.NodePayloadType)node->Flags;
-                Debug.Assert(flags == GeoGeom.NodePayloadType.Type1 || flags == GeoGeom.NodePayloadType.Type2);
+                NodePayloadType flags = (NodePayloadType)node->Flags;
+                Debug.Assert(flags == NodePayloadType.Type1 || flags == NodePayloadType.Type2);
                 
                 var nodeGameObject = new GameObject(name.Hash.ToString());
+                nodeGameObject.transform.parent = parent.transform;
                 
-                for (var subNode = node; subNode != null; subNode = subNode->GetNext())
+                for (var subNode = node->GetChildren(); subNode != null; subNode = subNode->GetNext())
                 {
                     FoxDataString subName = subNode->Name;
-                    GeoGeom.NodePayloadType subFlags = (GeoGeom.NodePayloadType)subNode->Flags;
+                    NodePayloadType subFlags = (NodePayloadType)subNode->Flags;
 
                     var subNodeGameObject = new GameObject(subName.Hash.ToString());
                     subNodeGameObject.transform.parent = nodeGameObject.transform;
@@ -73,50 +75,48 @@ namespace Fox.Geo
                         //     GeoGeom.GeoBone* bone = (GeoGeom.GeoBone*)subNode->GetData();
                         //     string boneName = bone->ReadString();
                         //     break;
-                        case GeoGeom.NodePayloadType.Group:
-                            ReadGroup((GeoGeom.GeoGroup*)subNode->GetData(), subNodeGameObject);
+                        case NodePayloadType.Group:
+                            ReadGroup((GeoGroup*)subNode->GetData(), subNodeGameObject);
                             break;
-                        case GeoGeom.NodePayloadType.Block:
-                            ReadBlock((GeoGeom.GeoBlock*)subNode->GetData(), subNodeGameObject);
+                        case NodePayloadType.Block:
+                            ReadBlock((GeoBlock*)subNode->GetData(), subNodeGameObject);
                             break;
                         default:
                             context.LogImportError("Unknown sub node type");
                             return;
                     }
-                    context.AddObjectToAsset(subName.Hash.ToString(), subNodeGameObject);
                 }
 
-                context.AddObjectToAsset(name.Hash.ToString(), nodeGameObject);
             }
         }
 
-        private void ReadGroup(GeoGeom.GeoGroup* group, GameObject parent)
+        private void ReadGroup(GeoGroup* group, GameObject parent)
         {
-            GameObject gameObject = new GameObject();
+            GameObject gameObject = new GameObject("Group");
             gameObject.transform.parent = parent.transform;
             
-            GeoGeom.GeoBlock* blocks = (GeoGeom.GeoBlock*)((byte*)group + group->BlocksOffset);
+            GeoBlock* blocks = (GeoBlock*)((byte*)group + group->BlocksOffset);
             for (uint i = 0; i < group->BlockCount; i++)
             {
-                GeoGeom.GeoBlock* block = blocks + i;
+                GeoBlock* block = blocks + i;
                 ReadBlock(block, gameObject);
             }
         }
 
-        private void ReadBlock(GeoGeom.GeoBlock* block, GameObject parent)
+        private void ReadBlock(GeoBlock* block, GameObject parent)
         {
-            GameObject gameObject = new GameObject();
+            GameObject gameObject = new GameObject("Block");
             gameObject.transform.parent = parent.transform;
             
-            var shapes = (GeoGeom.GeomHeader*)block->HeadersOffset;
+            var headers = (GeomHeader*)((byte*)block + block->HeadersOffset);
 
-            ReadShape(shapes, gameObject);
+            ReadHeader(headers, gameObject);
 
-            GeoGeom.VertexHeader* vertexHeader = (GeoGeom.VertexHeader*)(block + block->VertexBufferOffset);
+            VertexHeader* vertexHeader = (VertexHeader*)(block + block->VertexBufferOffset);
 
-            GeoGeom.GeoBlockMaterialsHeader* materialsHeader = (GeoGeom.GeoBlockMaterialsHeader*)((byte*)block + block->MaterialsHeaderOffset);
+            GeoBlockMaterialsHeader* materialsHeader = (GeoBlockMaterialsHeader*)((byte*)block + block->MaterialsHeaderOffset);
 
-            GeoGeom.GeoMaterial* materials = (GeoGeom.GeoMaterial*)(&materialsHeader + 1);
+            GeoMaterial* materials = (GeoMaterial*)(&materialsHeader + 1);
 
             // for (uint i = 0; i < materialsHeader->MaterialsCount; i++)
             // {
@@ -137,35 +137,48 @@ namespace Fox.Geo
             // }
         }
 
-        private void ReadShape(GeoGeom.GeomHeader* root, GameObject rootObject)
+        private void ReadHeader(GeomHeader* root, GameObject rootObject)
         {
-            GeoGeom.GeomHeader** stack = stackalloc GeoGeom.GeomHeader*[6];
+            GeomHeader** stack = stackalloc GeomHeader*[6];
             Transform[] parentStack = new Transform[6];
             int stackSize = 0;
             
-            stack[stackSize++] = root;
-            parentStack[stackSize] = rootObject.transform.parent;
+            stack[stackSize] = root;
+            parentStack[stackSize] = rootObject.transform;
             stackSize++;
             
             while (stackSize > 0)
             {
                 // Pop from stack
-                GeoGeom.GeomHeader* header = stack[stackSize - 1];
+                GeomHeader* header = stack[stackSize - 1];
                 Transform parent = parentStack[stackSize - 1];
                 stackSize--;
                 
                 // Process GeomHeader
                 GeoPrimType type = (GeoPrimType)(header->Info & 0xF);
-                GeoShapeFlags flags = (GeoShapeFlags)(header->Info >> 4 & 0xFFFFF);
+                GeomHeaderFlags flags = (GeomHeaderFlags)(header->Info >> 4 & 0xFFFFF);
                 byte primCount = (byte)(header->Info >> 24 & 0xFF);
                 
                 GameObject gameObject = new GameObject(type.ToString());
                 gameObject.transform.parent = parent;
 
+                byte* payload = (byte*)(header + 1);
+
+                switch (type)
+                {
+                    case GeoPrimType.AABB:
+                        BoxCollider collider = gameObject.AddComponent<BoxCollider>();
+                        
+                        collider.size = Fox.Math.FoxToUnityVector3(*(Vector3*)(payload));
+                        collider.center = *(Vector3*)(payload + 16);
+                        
+                        break;
+                }
+
                 if (header->NextHeaderOffset != 0)
                 {
                     // Push onto stack
-                    stack[stackSize] = (GeoGeom.GeomHeader*)((byte*)header + header->NextHeaderOffset);
+                    stack[stackSize] = (GeomHeader*)((byte*)header + header->NextHeaderOffset * 16);
                     parentStack[stackSize] = parent;
                     stackSize++;
                 }
@@ -175,7 +188,7 @@ namespace Fox.Geo
                     if (header->ChildHeaderOffset != 0)
                     {
                         // Push onto stack
-                        stack[stackSize] = (GeoGeom.GeomHeader*)((byte*)header + header->ChildHeaderOffset);
+                        stack[stackSize] = (GeomHeader*)((byte*)header + header->ChildHeaderOffset * 16);
                         parentStack[stackSize] = gameObject.transform;
                         stackSize++;
                     }
@@ -183,12 +196,12 @@ namespace Fox.Geo
             }
         }
         
-        private void ReadPrimAabb(GeoGeom.GeoPrimAabb* prim)
+        private void ReadPrimAabb(GeoPrimAabb* prim)
         {
 
         }
         
-        private void ReadPrimQuad(GeoGeom.GeoPrimQuad* prim)
+        private void ReadPrimQuad(GeoPrimPoly* prim)
         {
             bool NoUseMaterial = (prim->Info & 0x1) == 0x1;
             bool NoUseAuxMaterial = (prim->Info>>1 & 0x1) == 0x1;

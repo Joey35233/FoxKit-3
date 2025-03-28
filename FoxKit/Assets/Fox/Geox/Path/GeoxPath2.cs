@@ -51,7 +51,7 @@ namespace Fox.Geox
         {
             FileStreamReader reader = header.Reader;
 
-            Debug.Assert(header.Type == GeoPrimType.Path);
+            Debug.Assert(header.Type == GeoGeom.GeoPrimType.Path);
 
             GeoxPath2 path = new GameObject().AddComponent<GeoxPath2>();
             path.SetTransform(TransformEntity.GetDefault());
