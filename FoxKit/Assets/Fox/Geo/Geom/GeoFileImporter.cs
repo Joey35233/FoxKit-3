@@ -221,7 +221,10 @@ namespace Fox.Geo
         {
             GameObject gameObject = new GameObject("Group");
             gameObject.transform.parent = parent.transform;
-            
+            var tags = gameObject.AddComponent<CollisionTags>();
+            tags.tags = group->Tags;
+
+
             GeoBlock* blocks = (GeoBlock*)((byte*)group + group->BlocksOffset);
             for (uint i = 0; i < group->BlockCount; i++)
             {
