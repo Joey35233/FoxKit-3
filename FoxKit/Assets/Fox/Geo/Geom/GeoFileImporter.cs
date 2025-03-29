@@ -10,7 +10,7 @@ using Material = UnityEngine.Material;
 
 namespace Fox.Geo
 {
-    [ScriptedImporter(0, "geomt")]
+    [ScriptedImporter(0, "geoms")]
     public unsafe class GeoFileImporter : ScriptedImporter
     {
         private Material VisualizerMaterial;
@@ -221,8 +221,13 @@ namespace Fox.Geo
         {
             GameObject gameObject = new GameObject("Group");
             gameObject.transform.parent = parent.transform;
-            var tags = gameObject.AddComponent<CollisionTags>();
-            tags.tags = group->Tags;
+            CollisionTags tagsComp = gameObject.AddComponent<CollisionTags>();
+            GeoCollisionTags tagsFile = group->Tags;
+            foreach (GeoCollisionTags tag in (GeoCollisionTags[])Enum.GetValues(typeof(GeoCollisionTags)))
+            {
+                string propertyName = Enum.GetName(typeof(GeoCollisionTags), tag);
+                typeof(CollisionTags).GetProperty(propertyName).SetValue(tagsComp, tagsFile.HasFlag(tag));
+            }
 
 
             GeoBlock* blocks = (GeoBlock*)((byte*)group + group->BlocksOffset);
