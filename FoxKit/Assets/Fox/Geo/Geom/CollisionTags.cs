@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System;
 using static Fox.Geo.GeoGeom;
 
 namespace Fox.Geo
@@ -6,7 +7,7 @@ namespace Fox.Geo
     [UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Geo/CollisionTags")]
     public class CollisionTags : MonoBehaviour
     {
-        public bool Padding0;
+        // public bool Padding0;
         public bool RECOIL;
         public bool CHARA;
         public bool SOUND_MGS4;
@@ -39,32 +40,32 @@ namespace Fox.Geo
         public bool HEIGHT_LIMIT;
         public bool NO_BEHIND_MGS4;
         public bool BEHIND_THROUGH_MGS4;
-        public bool Padding1;
+        // public bool Padding1;
 
-        public bool Padding2;
+        // public bool Padding2;
         public bool DOUBLE_SIDE;
         public bool WATER_SURFACE;
-        public bool CHARA_Part2;
+        // public bool CHARA_Part2;
 
         public bool TARGET_BLOCK;
         public bool DOG;
-        public bool Padding3;
+        // public bool Padding3;
         public bool NO_EFFECT;
 
         public bool EVENT_PHYSICS;
         public bool NO_WALL_MOVE;
         public bool MISSILE2;
-        public bool Padding4;
+        // public bool Padding4;
 
         public bool TppReserve1;
         public bool TppReserve2;
         public bool TppReserve3;
         public bool TppReserve4;
 
-        public bool Padding5;
-        public bool Padding6;
-        public bool Padding7;
-        public bool Padding8;
+        // public bool Padding5;
+        // public bool Padding6;
+        // public bool Padding7;
+        // public bool Padding8;
 
         public bool Sahelan;
         public bool RIDE_ON_OUTER;
@@ -85,5 +86,18 @@ namespace Fox.Geo
         public bool FULTON;
         public bool ITEM;
         public bool BOSS;
+
+		public void SetTags(GeoCollisionTags tags)
+		{
+			Type ctType = typeof(CollisionTags);
+
+            foreach (GeoCollisionTags tag in (GeoCollisionTags[])Enum.GetValues(typeof(GeoCollisionTags)))
+            {
+                string propertyName = Enum.GetName(typeof(GeoCollisionTags), tag);
+
+				var fieldInfo = ctType.GetField(propertyName);
+                fieldInfo.SetValue(this, tags.HasFlag(tag));
+            }
+		}
     }
 }

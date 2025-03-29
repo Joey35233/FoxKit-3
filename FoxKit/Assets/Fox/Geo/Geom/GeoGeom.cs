@@ -8,7 +8,7 @@ namespace Fox.Geo
     {
         public enum GeoCollisionTags : ulong
         {
-            Padding0 = 1,
+            // Padding0 = 1,
             RECOIL = 2,
             CHARA = 4,
             SOUND_MGS4 = 8,
@@ -41,32 +41,32 @@ namespace Fox.Geo
             HEIGHT_LIMIT = 0x1000000,
             NO_BEHIND_MGS4 = 0x2000000,
             BEHIND_THROUGH_MGS4 = 0x4000000,
-            Padding1 = 0x8000000,
+            // Padding1 = 0x8000000,
 
-            Padding2 = 0x10000000,
+            // Padding2 = 0x10000000,
             DOUBLE_SIDE = 0x20000000,
             WATER_SURFACE = 0x40000000,
-            CHARA_Part2 = 0x80000000,
+            // CHARA_Part2 = 0x80000000,
 
             TARGET_BLOCK = 0x100000000,
             DOG = 0x200000000,
-            Padding3 = 0x400000000,
+            // Padding3 = 0x400000000,
             NO_EFFECT = 0x800000000,
 
             EVENT_PHYSICS = 0x1000000000,
             NO_WALL_MOVE = 0x2000000000,
             MISSILE2 = 0x4000000000,
-            Padding4 = 0x8000000000,
+            // Padding4 = 0x8000000000,
 
             TppReserve1 = 0x1 * (0x10 * 10),
             TppReserve2 = 0x2 * (0x10 * 10),
             TppReserve3 = 0x4 * (0x10 * 10),
             TppReserve4 = 0x8 * (0x10 * 10),
 
-            Padding5 = 0x1 * (0x10 * 11),
-            Padding6 = 0x2 * (0x10 * 11),
-            Padding7 = 0x4 * (0x10 * 11),
-            Padding8 = 0x8 * (0x10 * 11),
+            // Padding5 = 0x1 * (0x10 * 11),
+            // Padding6 = 0x2 * (0x10 * 11),
+            // Padding7 = 0x4 * (0x10 * 11),
+            // Padding8 = 0x8 * (0x10 * 11),
 
             Sahelan = 0x1 * (0x10 * 12),
             RIDE_ON_OUTER = 0x2 * (0x10 * 12),

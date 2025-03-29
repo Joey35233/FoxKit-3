@@ -221,14 +221,7 @@ namespace Fox.Geo
         {
             GameObject gameObject = new GameObject("Group");
             gameObject.transform.parent = parent.transform;
-            CollisionTags tagsComp = gameObject.AddComponent<CollisionTags>();
-            GeoCollisionTags tagsFile = group->Tags;
-            foreach (GeoCollisionTags tag in (GeoCollisionTags[])Enum.GetValues(typeof(GeoCollisionTags)))
-            {
-                string propertyName = Enum.GetName(typeof(GeoCollisionTags), tag);
-                typeof(CollisionTags).GetProperty(propertyName).SetValue(tagsComp, tagsFile.HasFlag(tag));
-            }
-
+            	gameObject.AddComponent<CollisionTags>().SetTags(group->Tags);
 
             GeoBlock* blocks = (GeoBlock*)((byte*)group + group->BlocksOffset);
             for (uint i = 0; i < group->BlockCount; i++)
@@ -243,6 +236,8 @@ namespace Fox.Geo
             // TODO: How does traversal work here???
             GameObject gameObject = new GameObject("Block");
             gameObject.transform.parent = parent.transform;
+
+            gameObject.AddComponent<CollisionTags>().SetTags(block->Tags);
             
             var headers = (GeomHeader*)((byte*)block + block->HeadersOffset);
 
@@ -297,6 +292,7 @@ namespace Fox.Geo
                 
                 GameObject gameObject = new GameObject($"{((ulong)header)} | {type.ToString()}{(flags.HasFlag(GeomHeaderFlags.DoubleSided) ? " | DoubleSided" : "")}");
                 gameObject.transform.parent = parent;
+            	gameObject.AddComponent<CollisionTags>().SetTags(header->Tags);
 
                 byte* payload = (byte*)(header + 1);
 
