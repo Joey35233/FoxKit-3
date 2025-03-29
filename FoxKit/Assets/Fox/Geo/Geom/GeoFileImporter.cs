@@ -10,7 +10,7 @@ using Material = UnityEngine.Material;
 
 namespace Fox.Geo
 {
-    [ScriptedImporter(0, "geoms")]
+    [ScriptedImporter(1, "geom")]
     public unsafe class GeoFileImporter : ScriptedImporter
     {
         private Material VisualizerMaterial;
@@ -72,7 +72,7 @@ namespace Fox.Geo
                 NodePayloadType flags = (NodePayloadType)node->Flags;
                 Debug.Assert(flags == NodePayloadType.Type1 || flags == NodePayloadType.Type2);
                 
-                var nodeGameObject = new GameObject(name.Hash.ToString());
+                var nodeGameObject = new GameObject($"{(ulong)node} | NODE | {name.Hash.ToString()}");
                 nodeGameObject.transform.parent = parent.transform;
                 
                 for (var subNode = node->GetChildren(); subNode != null; subNode = subNode->GetNext())
@@ -80,21 +80,25 @@ namespace Fox.Geo
                     FoxDataString subName = subNode->Name;
                     NodePayloadType subFlags = (NodePayloadType)subNode->Flags;
 
-                    var subNodeGameObject = new GameObject(subName.Hash.ToString());
+                    var subNodeGameObject = new GameObject($"{(ulong)subNode} | NODE | {subName.Hash.ToString()}");
                     subNodeGameObject.transform.parent = nodeGameObject.transform;
+                    
+                    byte* subNodeData = subNode->GetData();
+                    if (subNodeData == null)
+                        continue;
                     
                     switch (subFlags)
                     {
                         // NOT VALID FOR GEOM(S)
                         // case GeoGeom.NodePayloadType.Bone:
-                        //     GeoGeom.GeoBone* bone = (GeoGeom.GeoBone*)subNode->GetData();
+                        //     GeoGeom.GeoBone* bone = (GeoGeom.GeoBone*)subNodeData;
                         //     string boneName = bone->ReadString();
                         //     break;
                         case NodePayloadType.Group:
-                            ReadGroup(context, (GeoGroup*)subNode->GetData(), subNodeGameObject);
+                            ReadGroup(context, (GeoGroup*)subNodeData, subNodeGameObject);
                             break;
                         case NodePayloadType.Block:
-                            ReadBlock(context, (GeoBlock*)subNode->GetData(), subNodeGameObject);
+                            ReadBlock(context, (GeoBlock*)subNodeData, subNodeGameObject);
                             break;
                         default:
                             context.LogImportError("Unknown sub node type");
@@ -219,7 +223,7 @@ namespace Fox.Geo
 
         private void ReadGroup(AssetImportContext context, GeoGroup* group, GameObject parent)
         {
-            GameObject gameObject = new GameObject("Group");
+            GameObject gameObject = new GameObject($"{(ulong)group} | GROUP");
             gameObject.transform.parent = parent.transform;
             	gameObject.AddComponent<CollisionTags>().SetTags(group->Tags);
 
@@ -234,7 +238,7 @@ namespace Fox.Geo
         private void ReadBlock(AssetImportContext context, GeoBlock* block, GameObject parent)
         {
             // TODO: How does traversal work here???
-            GameObject gameObject = new GameObject("Block");
+            GameObject gameObject = new GameObject($"{(ulong)block} | BLOCK");
             gameObject.transform.parent = parent.transform;
 
             gameObject.AddComponent<CollisionTags>().SetTags(block->Tags);
@@ -289,8 +293,13 @@ namespace Fox.Geo
                 GeoPrimType type = (GeoPrimType)(header->Info & 0xF);
                 GeomHeaderFlags flags = (GeomHeaderFlags)(header->Info >> 4 & 0xFFFFF);
                 byte primCount = (byte)(header->Info >> 24 & 0xFF);
+
+                uint expectedMask = ~(uint)(GeomHeaderFlags.DoubleSided | GeomHeaderFlags.HasChild | GeomHeaderFlags.UseFmdlVertices);
+                bool hasOtherFlags = ((uint)flags & expectedMask) != 0;
+                if (hasOtherFlags)
+                    context.LogImportError($"Other flags: {flags}");
                 
-                GameObject gameObject = new GameObject($"{((ulong)header)} | {type.ToString()}{(flags.HasFlag(GeomHeaderFlags.DoubleSided) ? " | DoubleSided" : "")}");
+                GameObject gameObject = new GameObject($"{(ulong)header} | {type.ToString()} | {flags.ToString()}");
                 gameObject.transform.parent = parent;
             	gameObject.AddComponent<CollisionTags>().SetTags(header->Tags);
 
@@ -321,12 +330,11 @@ namespace Fox.Geo
                         else
                             vertexBuffer = new Vector3[vertexHeader->VertexCount];
                         
-                        // TEMP; make faces for each side if double-sided for visualization
-                        
                         Mesh mesh = new Mesh();
                         mesh.name = gameObject.name;
                         context.AddObjectToAsset(mesh.name, mesh);
-
+                        
+                        // TEMP; make faces for each side if double-sided for visualization
                         ushort[] flatIndexBuffer = !isDoubleSided ? new ushort[primCount * 4] : new ushort[2 * primCount * 4];
                         for (uint i = 0; i < primCount; i++)
                         {
@@ -365,12 +373,16 @@ namespace Fox.Geo
                         }
                         else if (vertexHeader->VertexDataOffset != 0)
                         {
-                            float* buffer = (float*)((byte*)vertexHeader + vertexHeader->VertexDataOffset);
+                            byte* buffer = (byte*)vertexHeader + vertexHeader->VertexDataOffset;
                             for (uint i = 0; i < vertexBuffer.Length; i++)
                             {
                                 Vector3 vector = *(Vector3*)(buffer + i * 12);
                                 vertexBuffer[i] = Fox.Math.FoxToUnityVector3(vector);
                             }
+                        }
+                        else
+                        {
+                            context.LogImportError($"FMDL not found");
                         }
                         
                         mesh.SetVertices(vertexBuffer, 0, vertexBuffer.Length, MeshUpdateFlags.DontRecalculateBounds | MeshUpdateFlags.DontValidateIndices);
