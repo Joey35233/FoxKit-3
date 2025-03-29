@@ -1,6 +1,4 @@
-﻿#define DOUBLE_SIDED
-
-using System;
+﻿using System;
 using Fox.Core;
 using UnityEditor;
 using UnityEditor.AssetImporters;
@@ -12,7 +10,7 @@ using Material = UnityEngine.Material;
 
 namespace Fox.Geo
 {
-    [ScriptedImporter(0, "geoms")]
+    [ScriptedImporter(0, "geomt")]
     public unsafe class GeoFileImporter : ScriptedImporter
     {
         private Material VisualizerMaterial;
@@ -21,10 +19,13 @@ namespace Fox.Geo
         {
             // Init globals
             VisualizerMaterial = AssetDatabase.LoadAssetAtPath<Material>("Assets/Fox/Geo/Geom/GeomVisualizer.mat");
-            
+
             string name = System.IO.Path.GetFileName(context.assetPath);
         
             ReadOnlySpan<byte> fileData = System.IO.File.ReadAllBytes(assetPath);
+            
+            string fmdlPath = System.IO.Path.ChangeExtension(context.assetPath, ".fmdl");
+            ReadOnlySpan<byte> fmdlFileData = System.IO.File.Exists(fmdlPath) ? System.IO.File.ReadAllBytes(fmdlPath) : null;
 
             if (fileData.IsEmpty || fileData.Length < sizeof(FoxDataHeader))
             {
@@ -32,7 +33,7 @@ namespace Fox.Geo
                 return;
             }
 
-            fixed (byte* data = fileData)
+            fixed (byte* data = fileData, fmdlData = fmdlFileData)
             {
                 var header = (FoxDataHeader*)data;
 
@@ -52,6 +53,10 @@ namespace Fox.Geo
                 var main = new GameObject(header->Name.Hash.ToString());
 
                 FoxDataNode* nodes = header->GetNodes();
+                
+                if (fmdlFileData != null)
+                    TrySetVertexBuffer(nodes, fmdlData);
+                
                 ReadNodes(context, nodes, main);
 
                 context.AddObjectToAsset(header->Name.Hash.ToString(), main);
@@ -100,6 +105,118 @@ namespace Fox.Geo
             }
         }
 
+        private void TrySetVertexBuffer(FoxDataNode* nodes, byte* fmdlData)
+        {
+            byte* buffer = GetModelVertexBuffer(fmdlData);
+            if (buffer == null)
+                return;
+            
+            for (var node = nodes; node != null; node = node->GetNext())
+            {
+                NodePayloadType flags = (NodePayloadType)node->Flags;
+                if (flags != NodePayloadType.Type2)
+                    continue;;
+                
+                for (var subNode = node->GetChildren(); subNode != null; subNode = subNode->GetNext())
+                {
+                    NodePayloadType subFlags = (NodePayloadType)subNode->Flags;
+                    
+                    switch (subFlags)
+                    {
+                        case NodePayloadType.Group:
+                            GroupSetVertexBuffer((GeoGroup*)subNode->GetData(), buffer);
+                            break;
+                        case NodePayloadType.Block:
+                            BlockSetVertexBuffer((GeoBlock*)subNode->GetData(), buffer);
+                            break;
+                    }
+                }
+
+            }
+        }
+
+        private byte* GetModelVertexBuffer(byte* data)
+        {
+            uint featureTypes = *(uint*)(data + 0x10);
+            uint bufferTypes = *(uint*)(data + 0x18);
+            if ((featureTypes & (1 << 0xE)) != 0 && (bufferTypes & 0x4) != 0)
+            {
+                uint featureCount = *(uint*)(data + 0x20);
+                uint descOffset = *(uint*)(data + 0x8);
+                uint featuresDataOffset = *(uint*)(data + 0x28);
+                uint buffersDataOffset = *(uint*)(data + 0x30);
+                byte* features = data + descOffset;
+                
+                // Get buffer info
+                uint bufferHeaderIndex = 0;
+                bufferHeaderIndex += (bufferTypes & 0x1) != 0 ? 1u : 0u;
+                bufferHeaderIndex += (bufferTypes & 0x2) != 0 ? 1u : 0u;
+                
+                uint* bufferHeader = (uint*)(features + featureCount * 8);
+                bufferHeader += bufferHeaderIndex * 3;
+
+                uint vertexBufferDataOffset = bufferHeader[1];
+
+                byte* buffersData = data + buffersDataOffset;
+
+                // Feature search
+                byte* targetFeature = null;
+                for (uint i = 0; i < featureCount; i++)
+                {
+                    byte* feature = (byte*)(features + i * 8);
+                    if (feature[0] == 0xe)
+                    {
+                        targetFeature = feature;
+                        break;
+                    }
+                }
+                if (targetFeature == null)
+                    return null;
+
+                uint entryCount = *(ushort*)(targetFeature + 0x2) + *(targetFeature + 0x1) * 0x10000u;
+                byte* featuresData = data + featuresDataOffset + *(uint*)(targetFeature + 0x4);
+                byte* targetFeatureData = null;
+                for (uint i = 0; i < entryCount; i++)
+                {
+                    byte* featureData = featuresData + i * 16;
+                    if (*(ushort*)featureData == 0)
+                    {
+                        targetFeatureData = featureData;
+                        break;
+                    }
+                }
+                if (targetFeatureData == null)
+                    return null;
+                
+                byte* bufferData = buffersData + vertexBufferDataOffset + *(uint*)(targetFeatureData + 8);
+                return bufferData;
+            }
+
+            return null;
+        }
+
+        private void GroupSetVertexBuffer(GeoGroup* group, byte* buffer)
+        {
+            GeoBlock* blocks = (GeoBlock*)((byte*)group + group->BlocksOffset);
+            for (uint i = 0; i < group->BlockCount; i++)
+            {
+                GeoBlock* block = blocks + i;
+                BlockSetVertexBuffer(block, buffer);
+            }
+        }
+        
+        private void BlockSetVertexBuffer(GeoBlock* block, byte* buffer)
+        {
+            do
+            {
+                PolyVertexHeader* vertexHeader = (PolyVertexHeader*)((byte*)block + block->VertexBufferOffset);
+
+                vertexHeader->VertexDataOffset = vertexHeader->FmdlVertexBufferOffset + (long)buffer - (long)vertexHeader;
+                
+                block += 1;
+            } while (block->IsFinalEntry == false);
+        }
+
         private void ReadGroup(AssetImportContext context, GeoGroup* group, GameObject parent)
         {
             GameObject gameObject = new GameObject("Group");
@@ -115,6 +232,7 @@ namespace Fox.Geo
 
         private void ReadBlock(AssetImportContext context, GeoBlock* block, GameObject parent)
         {
+            // TODO: How does traversal work here???
             GameObject gameObject = new GameObject("Block");
             gameObject.transform.parent = parent.transform;
             
@@ -122,7 +240,7 @@ namespace Fox.Geo
 
             ReadHeader(context, headers, gameObject);
 
-            PolyVertexHeader* vertexHeader = (PolyVertexHeader*)(block + block->VertexBufferOffset);
+            PolyVertexHeader* vertexHeader = (PolyVertexHeader*)((byte*)block + block->VertexBufferOffset);
 
             GeoBlockMaterialsHeader* materialsHeader = (GeoBlockMaterialsHeader*)((byte*)block + block->MaterialsHeaderOffset);
 
@@ -186,17 +304,18 @@ namespace Fox.Geo
                         
                         break;
                     case GeoPrimType.Poly:
-                        // TEMP
-                        if ((flags & GeomHeaderFlags.UseFmdlVertices) != 0)
-                            break;
-
                         bool isDoubleSided = (flags & GeomHeaderFlags.DoubleSided) != 0;
+                        Debug.Assert(isDoubleSided == header->Tags.HasFlag(GeoCollisionTags.DOUBLE_SIDE));
                         
                         GeoPrimPoly* polys = (GeoPrimPoly*)payload;
                         PolyVertexHeader* vertexHeader = (PolyVertexHeader*)((byte*)header + header->VertexBufferOffset * 16);
                         
-                        // Technically a hack
-                        Vector3[] vertexBuffer = new Vector3[vertexHeader->VertexCount - 1];
+                        // Hack
+                        Vector3[] vertexBuffer;
+                        if ((flags & GeomHeaderFlags.UseFmdlVertices) == 0)
+                            vertexBuffer = new Vector3[vertexHeader->VertexCount - 1];
+                        else
+                            vertexBuffer = new Vector3[vertexHeader->VertexCount];
                         
                         // TEMP; make faces for each side if double-sided for visualization
                         
@@ -204,7 +323,6 @@ namespace Fox.Geo
                         mesh.name = gameObject.name;
                         context.AddObjectToAsset(mesh.name, mesh);
 
-#if DOUBLE_SIDED
                         ushort[] flatIndexBuffer = !isDoubleSided ? new ushort[primCount * 4] : new ushort[2 * primCount * 4];
                         for (uint i = 0; i < primCount; i++)
                         {
@@ -229,41 +347,26 @@ namespace Fox.Geo
                                 flatIndexBuffer[flatIndexBuffer.Length / 2 + i * 4 + 3] = poly->IndexD;
                             }
                         }
-#else
-                        ushort[] flatIndexBuffer = new ushort[primCount * 4];
-
-                        if (isDoubleSided)
-                        {
-                            for (uint i = 0; i < primCount; i++)
-                            {
-                                // Opposite winding order of FoxKit
-                                GeoPrimPoly* poly = polys + i;
-                                flatIndexBuffer[i * 4 + 0] = poly->IndexA;
-                                flatIndexBuffer[i * 4 + 1] = poly->IndexB;
-                                flatIndexBuffer[i * 4 + 2] = poly->IndexC;
-                                flatIndexBuffer[i * 4 + 3] = poly->IndexD;
-                            }
-                        }
-                        else
-                        {
-                            for (uint i = 0; i < primCount; i++)
-                            {
-                                // Opposite winding order of FoxKit
-                                GeoPrimPoly* poly = polys + i;
-                                flatIndexBuffer[i * 4 + 3] = poly->IndexA;
-                                flatIndexBuffer[i * 4 + 2] = poly->IndexB;
-                                flatIndexBuffer[i * 4 + 1] = poly->IndexC;
-                                flatIndexBuffer[i * 4 + 0] = poly->IndexD;
-                            }
-                        }
-#endif
                         
                         Vector4* vectors = (Vector4*)((byte*)vertexHeader + vertexHeader->VertexDataOffset);
 
-                        Vector3 origin = Fox.Math.FoxToUnityVector3(vectors[vertexHeader->OriginIndex]);
-                        for (uint i = 0; i < vertexBuffer.Length; i++)
+                        // TEMP
+                        if ((flags & GeomHeaderFlags.UseFmdlVertices) == 0)
                         {
-                            vertexBuffer[i] = Fox.Math.FoxToUnityVector3((Vector3)vectors[i + vertexHeader->VerticesIndexOffset]) + origin;
+                            Vector3 origin = Fox.Math.FoxToUnityVector3(vectors[vertexHeader->OriginIndex]);
+                            for (uint i = 0; i < vertexBuffer.Length; i++)
+                            {
+                                vertexBuffer[i] = Fox.Math.FoxToUnityVector3((Vector3)vectors[i + vertexHeader->VerticesIndexOffset]) + origin;
+                            }
+                        }
+                        else if (vertexHeader->VertexDataOffset != 0)
+                        {
+                            float* buffer = (float*)((byte*)vertexHeader + vertexHeader->VertexDataOffset);
+                            for (uint i = 0; i < vertexBuffer.Length; i++)
+                            {
+                                Vector3 vector = *(Vector3*)(buffer + i * 12);
+                                vertexBuffer[i] = Fox.Math.FoxToUnityVector3(vector);
+                            }
                         }
                         
                         mesh.SetVertices(vertexBuffer, 0, vertexBuffer.Length, MeshUpdateFlags.DontRecalculateBounds | MeshUpdateFlags.DontValidateIndices);
@@ -298,19 +401,6 @@ namespace Fox.Geo
                     }
                 }
             }
-        }
-        
-        private void ReadPrimAabb(GeoPrimAabb* prim)
-        {
-
-        }
-        
-        private void ReadPrimQuad(GeoPrimPoly* prim)
-        {
-            bool NoUseMaterial = (prim->Info & 0x1) == 0x1;
-            bool NoUseAuxMaterial = (prim->Info>>1 & 0x1) == 0x1;
-            byte MaterialIndex = (byte)(prim->Info >> 2 & 0x7F);
-            byte AuxMaterialIndex = (byte)(prim->Info >> 9 & 0x7F);
         }
     }
 }
