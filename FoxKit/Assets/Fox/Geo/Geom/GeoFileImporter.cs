@@ -131,7 +131,9 @@ namespace Fox.Geo
                             GroupSetVertexBuffer((GeoGroup*)subNode->GetData(), buffer);
                             break;
                         case NodePayloadType.Block:
-                            BlockSetVertexBuffer((GeoBlock*)subNode->GetData(), buffer);
+                            GeoBlock* block = (GeoBlock*)subNode->GetData();
+                            BlockSetVertexBuffer(block, buffer);
+                            Debug.Assert((block + 1)->IsFinalEntry);
                             break;
                     }
                 }
