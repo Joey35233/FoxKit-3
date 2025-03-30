@@ -4,13 +4,13 @@ using static Fox.Geo.GeoGeom;
 
 namespace Fox.Geo
 {
-    [UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Geo/CollisionTags")]
+    [AddComponentMenu("Geo/CollisionTags")]
     public class CollisionTags : MonoBehaviour
     {
         // public bool Padding0;
         public bool RECOIL;
         public bool CHARA;
-        public bool SOUND_MGS4;
+        public bool SOUND;
 
         public bool PLAYER;
         public bool ENEMY;
@@ -98,6 +98,12 @@ namespace Fox.Geo
 				var fieldInfo = ctType.GetField(propertyName);
                 fieldInfo.SetValue(this, tags.HasFlag(tag));
             }
+		}
+
+		public GeoCollisionTags GetTags()
+		{
+			// TODO
+			return 0;
 		}
     }
 }

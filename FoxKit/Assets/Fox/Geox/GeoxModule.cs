@@ -9,7 +9,7 @@ namespace Fox.Geox
         static GeoxModule()
         {
             GeoModule.RegisterGeomHeaderDeserializationCallback(GeoGeom.GeoPrimType.Path, GeoxPath2.Deserialize);
-            GeoModule.RegisterGeomHeaderDeserializationCallback(GeoGeom.GeoPrimType.AreaPath, GeoxTrapAreaPath.Deserialize);
+            GeoModule.RegisterGeomHeaderDeserializationCallback(GeoGeom.GeoPrimType.FreeArea, GeoxTrapAreaPath.Deserialize);
         }
     }
 }

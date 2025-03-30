@@ -39,7 +39,7 @@ namespace Fox.Geo
                 Debug.Assert(header.PreviousHeaderOffset == 0);
                 Debug.Assert(header.ChildHeaderOffset == 0);
                 Debug.Assert(header.VertexBufferOffset == 0);
-                if (header.Type is GeoPrimType.Box or GeoPrimType.AreaPath)
+                if (header.Type is GeoPrimType.Box or GeoPrimType.FreeArea)
                 {
                     if (header.Type == GeoPrimType.Box)
                     {
@@ -67,7 +67,7 @@ namespace Fox.Geo
                             triggerTrap.AddChild(shape);
                         }
                     }
-                    else if (header.Type == GeoPrimType.AreaPath && GeomHeaderContext.Deserialize(header) is { } trap)
+                    else if (header.Type == GeoPrimType.FreeArea && GeomHeaderContext.Deserialize(header) is { } trap)
                     {
 
                     }

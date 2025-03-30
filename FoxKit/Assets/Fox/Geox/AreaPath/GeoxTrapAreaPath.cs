@@ -16,7 +16,7 @@ namespace Fox.Geox
         {
             FileStreamReader reader = header.Reader;
 
-            Debug.Assert(header.Type == GeoGeom.GeoPrimType.AreaPath);
+            Debug.Assert(header.Type == GeoGeom.GeoPrimType.FreeArea);
 
             GeoTriggerTrap triggerTrap = new GameObject(header.Name.ToString()).AddComponent<GeoTriggerTrap>();
             triggerTrap.SetTransform(TransformEntity.GetDefault());

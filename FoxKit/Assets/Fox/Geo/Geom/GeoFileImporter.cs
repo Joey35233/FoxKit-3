@@ -294,110 +294,6 @@ namespace Fox.Geo
                 GeomHeaderFlags flags = (GeomHeaderFlags)(header->Info >> 4 & 0xFFFFF);
                 byte primCount = (byte)(header->Info >> 24 & 0xFF);
 
-                uint expectedMask = ~(uint)(GeomHeaderFlags.DoubleSided | GeomHeaderFlags.HasChild | GeomHeaderFlags.UseFmdlVertices);
-                bool hasOtherFlags = ((uint)flags & expectedMask) != 0;
-                if (hasOtherFlags)
-                    context.LogImportError($"Other flags: {flags}");
-                
-                GameObject gameObject = new GameObject($"{(ulong)header} | {type.ToString()} | {flags.ToString()}");
-                gameObject.transform.parent = parent;
-            	gameObject.AddComponent<CollisionTags>().SetTags(header->Tags);
-
-                byte* payload = (byte*)(header + 1);
-
-                switch (type)
-                {
-                    case GeoPrimType.AABB:
-                        BoxCollider collider = gameObject.AddComponent<BoxCollider>();
-
-                        GeoPrimAabb* aabb = (GeoPrimAabb*)payload;
-                        
-                        collider.center = Fox.Math.FoxToUnityVector3(aabb->BoundingBoxCenter);
-                        collider.size = 2 * aabb->BoundingBoxRadii;
-                        
-                        break;
-                    case GeoPrimType.Poly:
-                        bool isDoubleSided = (flags & GeomHeaderFlags.DoubleSided) != 0;
-                        Debug.Assert(isDoubleSided == header->Tags.HasFlag(GeoCollisionTags.DOUBLE_SIDE));
-                        
-                        GeoPrimPoly* polys = (GeoPrimPoly*)payload;
-                        PolyVertexHeader* vertexHeader = (PolyVertexHeader*)((byte*)header + header->VertexBufferOffset * 16);
-                        
-                        // Hack
-                        Vector3[] vertexBuffer;
-                        if ((flags & GeomHeaderFlags.UseFmdlVertices) == 0)
-                            vertexBuffer = new Vector3[vertexHeader->VertexCount - 1];
-                        else
-                            vertexBuffer = new Vector3[vertexHeader->VertexCount];
-                        
-                        Mesh mesh = new Mesh();
-                        mesh.name = gameObject.name;
-                        context.AddObjectToAsset(mesh.name, mesh);
-                        
-                        // TEMP; make faces for each side if double-sided for visualization
-                        ushort[] flatIndexBuffer = !isDoubleSided ? new ushort[primCount * 4] : new ushort[2 * primCount * 4];
-                        for (uint i = 0; i < primCount; i++)
-                        {
-                            // Opposite winding order of FoxKit
-                            GeoPrimPoly* poly = polys + i;
-                            flatIndexBuffer[i * 4 + 3] = poly->IndexA;
-                            flatIndexBuffer[i * 4 + 2] = poly->IndexB;
-                            flatIndexBuffer[i * 4 + 1] = poly->IndexC;
-                            flatIndexBuffer[i * 4 + 0] = poly->IndexD;
-                        }
-
-                        // TEMP; make faces for each side if double-sided for visualization
-                        if (isDoubleSided)
-                        {
-                            for (uint i = 0; i < primCount; i++)
-                            {
-                                // Opposite winding order of FoxKit
-                                GeoPrimPoly* poly = polys + i;
-                                flatIndexBuffer[flatIndexBuffer.Length / 2 + i * 4 + 0] = poly->IndexA;
-                                flatIndexBuffer[flatIndexBuffer.Length / 2 + i * 4 + 1] = poly->IndexB;
-                                flatIndexBuffer[flatIndexBuffer.Length / 2 + i * 4 + 2] = poly->IndexC;
-                                flatIndexBuffer[flatIndexBuffer.Length / 2 + i * 4 + 3] = poly->IndexD;
-                            }
-                        }
-                        
-                        Vector4* vectors = (Vector4*)((byte*)vertexHeader + vertexHeader->VertexDataOffset);
-
-                        // TEMP
-                        if ((flags & GeomHeaderFlags.UseFmdlVertices) == 0)
-                        {
-                            Vector3 origin = Fox.Math.FoxToUnityVector3(vectors[vertexHeader->OriginIndex]);
-                            for (uint i = 0; i < vertexBuffer.Length; i++)
-                            {
-                                vertexBuffer[i] = Fox.Math.FoxToUnityVector3((Vector3)vectors[i + vertexHeader->VerticesIndexOffset]) + origin;
-                            }
-                        }
-                        else if (vertexHeader->VertexDataOffset != 0)
-                        {
-                            byte* buffer = (byte*)vertexHeader + vertexHeader->VertexDataOffset;
-                            for (uint i = 0; i < vertexBuffer.Length; i++)
-                            {
-                                Vector3 vector = *(Vector3*)(buffer + i * 12);
-                                vertexBuffer[i] = Fox.Math.FoxToUnityVector3(vector);
-                            }
-                        }
-                        else
-                        {
-                            context.LogImportError($"FMDL not found");
-                        }
-                        
-                        mesh.SetVertices(vertexBuffer, 0, vertexBuffer.Length, MeshUpdateFlags.DontRecalculateBounds | MeshUpdateFlags.DontValidateIndices);
-                        mesh.SetIndices(flatIndexBuffer, MeshTopology.Quads, 0, false);
-                        mesh.UploadMeshData(true);
-                        Collider parentCollider = parent.GetComponent<BoxCollider>();
-                        if (parentCollider != null)
-                            mesh.bounds = parentCollider.bounds;
-
-                        gameObject.AddComponent<MeshRenderer>().material = VisualizerMaterial;
-                        gameObject.AddComponent<MeshFilter>().mesh = mesh;
-                        
-                        break;
-                }
-
                 if (header->NextHeaderOffset != 0)
                 {
                     // Push onto stack
@@ -406,8 +302,112 @@ namespace Fox.Geo
                     stackSize++;
                 }
 
-                if ((flags & GeomHeaderFlags.NoChild) == 0)
+                if ((flags & GeomHeaderFlags.Disable) == 0)
                 {
+                    uint expectedMask = ~(uint)(GeomHeaderFlags.DoubleSided | GeomHeaderFlags.HasChild | GeomHeaderFlags.UseFmdlVertices);
+                    bool hasOtherFlags = ((uint)flags & expectedMask) != 0;
+                    if (hasOtherFlags)
+                        context.LogImportError($"Other flags: {flags}");
+                    
+                    GameObject gameObject = new GameObject($"{(ulong)header} | {type.ToString()} | {flags.ToString()}");
+                    gameObject.transform.parent = parent;
+            	    gameObject.AddComponent<CollisionTags>().SetTags(header->Tags);
+
+                    byte* payload = (byte*)(header + 1);
+
+                    switch (type)
+                    {
+                        case GeoPrimType.AABB:
+                            BoxCollider collider = gameObject.AddComponent<BoxCollider>();
+
+                            GeoPrimAabb* aabb = (GeoPrimAabb*)payload;
+                            
+                            collider.center = Fox.Math.FoxToUnityVector3(aabb->BoundingBoxCenter);
+                            collider.size = 2 * aabb->BoundingBoxRadii;
+                            
+                            break;
+                        case GeoPrimType.Poly:
+                            bool isDoubleSided = (flags & GeomHeaderFlags.DoubleSided) != 0;
+                            Debug.Assert(isDoubleSided == ((header->Tags & GeoCollisionTags.DOUBLE_SIDE) != 0));
+                            
+                            GeoPrimPoly* polys = (GeoPrimPoly*)payload;
+                            PolyVertexHeader* vertexHeader = (PolyVertexHeader*)((byte*)header + header->VertexBufferOffset * 16);
+                            
+                            // Hack
+                            Vector3[] vertexBuffer;
+                            if ((flags & GeomHeaderFlags.UseFmdlVertices) == 0)
+                                vertexBuffer = new Vector3[vertexHeader->VertexCount - 1];
+                            else
+                                vertexBuffer = new Vector3[vertexHeader->VertexCount];
+                            
+                            Mesh mesh = new Mesh();
+                            mesh.name = gameObject.name;
+                            context.AddObjectToAsset(mesh.name, mesh);
+                            
+                            // TEMP; make faces for each side if double-sided for visualization
+                            ushort[] flatIndexBuffer = !isDoubleSided ? new ushort[primCount * 4] : new ushort[2 * primCount * 4];
+                            for (uint i = 0; i < primCount; i++)
+                            {
+                                // Opposite winding order of FoxKit
+                                GeoPrimPoly* poly = polys + i;
+                                flatIndexBuffer[i * 4 + 3] = poly->IndexA;
+                                flatIndexBuffer[i * 4 + 2] = poly->IndexB;
+                                flatIndexBuffer[i * 4 + 1] = poly->IndexC;
+                                flatIndexBuffer[i * 4 + 0] = poly->IndexD;
+                            }
+
+                            // TEMP; make faces for each side if double-sided for visualization
+                            if (isDoubleSided)
+                            {
+                                for (uint i = 0; i < primCount; i++)
+                                {
+                                    // Opposite winding order of FoxKit
+                                    GeoPrimPoly* poly = polys + i;
+                                    flatIndexBuffer[flatIndexBuffer.Length / 2 + i * 4 + 0] = poly->IndexA;
+                                    flatIndexBuffer[flatIndexBuffer.Length / 2 + i * 4 + 1] = poly->IndexB;
+                                    flatIndexBuffer[flatIndexBuffer.Length / 2 + i * 4 + 2] = poly->IndexC;
+                                    flatIndexBuffer[flatIndexBuffer.Length / 2 + i * 4 + 3] = poly->IndexD;
+                                }
+                            }
+                            
+                            Vector4* vectors = (Vector4*)((byte*)vertexHeader + vertexHeader->VertexDataOffset);
+
+                            // TEMP
+                            if ((flags & GeomHeaderFlags.UseFmdlVertices) == 0)
+                            {
+                                Vector3 origin = Fox.Math.FoxToUnityVector3(vectors[vertexHeader->OriginIndex]);
+                                for (uint i = 0; i < vertexBuffer.Length; i++)
+                                {
+                                    vertexBuffer[i] = Fox.Math.FoxToUnityVector3((Vector3)vectors[i + vertexHeader->VerticesIndexOffset]) + origin;
+                                }
+                            }
+                            else if (vertexHeader->VertexDataOffset != 0)
+                            {
+                                byte* buffer = (byte*)vertexHeader + vertexHeader->VertexDataOffset;
+                                for (uint i = 0; i < vertexBuffer.Length; i++)
+                                {
+                                    Vector3 vector = *(Vector3*)(buffer + i * 12);
+                                    vertexBuffer[i] = Fox.Math.FoxToUnityVector3(vector);
+                                }
+                            }
+                            else
+                            {
+                                context.LogImportError($"FMDL not found");
+                            }
+                            
+                            mesh.SetVertices(vertexBuffer, 0, vertexBuffer.Length, MeshUpdateFlags.DontRecalculateBounds | MeshUpdateFlags.DontValidateIndices);
+                            mesh.SetIndices(flatIndexBuffer, MeshTopology.Quads, 0, false);
+                            mesh.UploadMeshData(true);
+                            Collider parentCollider = parent.GetComponent<BoxCollider>();
+                            if (parentCollider != null)
+                                mesh.bounds = parentCollider.bounds;
+
+                            gameObject.AddComponent<MeshRenderer>().material = VisualizerMaterial;
+                            gameObject.AddComponent<MeshFilter>().mesh = mesh;
+                            
+                            break;
+                    }
+                
                     if (header->ChildHeaderOffset != 0)
                     {
                         // Push onto stack

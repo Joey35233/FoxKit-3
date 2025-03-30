@@ -164,7 +164,7 @@ namespace Fox.Geo
             Path = 8,
             Unknown9 = 6,
             Unknown10 = 7,
-            AreaPath = 11,
+            FreeArea = 11,
         }
 
         [Flags]
@@ -174,7 +174,7 @@ namespace Fox.Geo
             Unknown9 = 0x2,
             Unknown4 = 0x4,
             
-            NoChild = 0x20,
+            Disable = 0x20,
             DoubleSided = 0x200,
             UseFmdlVertices = 0x800,
             HasChild = 0x2000,

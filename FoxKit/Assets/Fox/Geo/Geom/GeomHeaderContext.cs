@@ -44,7 +44,7 @@ namespace Fox.Geo
             _OffsetSize = offsetSize;
 
             Debug.Assert(PrimCount == 0);
-            Debug.Assert((Type & ~(GeoPrimType.Poly | GeoPrimType.Box | GeoPrimType.AABB | GeoPrimType.Path | GeoPrimType.AreaPath)) == 0);
+            Debug.Assert((Type & ~(GeoPrimType.Poly | GeoPrimType.Box | GeoPrimType.AABB | GeoPrimType.Path | GeoPrimType.FreeArea)) == 0);
             Debug.Assert(System.Enum.IsDefined(typeof(GeomHeaderFlags), Flags));
 
             if (_OffsetSize == OffsetSize.Lines)
