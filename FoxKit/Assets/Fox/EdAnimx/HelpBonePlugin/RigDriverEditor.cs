@@ -46,7 +46,7 @@ namespace Fox.EdAnimx
         {
             switch (driver.data.Type)
             {
-                case DriverUnitAction.Type1:
+                case DriverUnitAction.RotATrn:
                 {
                     ObjectField targetField = CreateTransformField("Target"); targetField.bindingPath = targetField.label; root.Add(targetField);
                     ObjectField sourceField = CreateTransformField("Source"); sourceField.bindingPath = sourceField.label; root.Add(sourceField);
@@ -60,7 +60,7 @@ namespace Fox.EdAnimx
                     var axisField = new EnumField("Axis"); axisField.bindingPath = axisField.label; root.Add(axisField);
                     break;
                 }
-                case DriverUnitAction.WeightedCopyRotation:
+                case DriverUnitAction.Rot:
                 {
                     ObjectField targetField = CreateTransformField("Target"); targetField.bindingPath = targetField.label; root.Add(targetField);
                     ObjectField sourceField = CreateTransformField("Source"); sourceField.bindingPath = sourceField.label; root.Add(sourceField);
@@ -70,7 +70,7 @@ namespace Fox.EdAnimx
                     var weightField = new FloatField("Weight"); weightField.bindingPath = weightField.label; root.Add(weightField);
                     break;
                 }
-                case DriverUnitAction.Type3:
+                case DriverUnitAction.RotATurnRot:
                 {
                     ObjectField targetField = CreateTransformField("Target"); targetField.bindingPath = targetField.label; root.Add(targetField);
                     ObjectField sourceField = CreateTransformField("Source"); sourceField.bindingPath = sourceField.label; root.Add(sourceField);
@@ -86,7 +86,7 @@ namespace Fox.EdAnimx
                     var weightBField = new FloatField("WeightB"); weightBField.bindingPath = weightBField.label; root.Add(weightBField);
                     break;
                 }
-                case DriverUnitAction.Type4:
+                case DriverUnitAction.BendATrn:
                 {
                     ObjectField targetField = CreateTransformField("Target"); targetField.bindingPath = targetField.label; root.Add(targetField);
                     ObjectField sourceField = CreateTransformField("Source"); sourceField.bindingPath = sourceField.label; root.Add(sourceField);
@@ -100,7 +100,7 @@ namespace Fox.EdAnimx
                     var axisField = new EnumField("Axis"); axisField.bindingPath = axisField.label; root.Add(axisField);
                     break;
                 }
-                case DriverUnitAction.Type5:
+                case DriverUnitAction.Bend:
                 {
                     ObjectField targetField = CreateTransformField("Target"); targetField.bindingPath = targetField.label; root.Add(targetField);
                     ObjectField sourceField = CreateTransformField("Source"); sourceField.bindingPath = sourceField.label; root.Add(sourceField);
@@ -112,7 +112,7 @@ namespace Fox.EdAnimx
                     var vecAField = new Vector3Field("VectorA"); vecAField.bindingPath = vecAField.label; root.Add(vecAField);
                     break;
                 }
-                case DriverUnitAction.Type6:
+                case DriverUnitAction.BendATrnBend:
                 {
                     ObjectField targetField = CreateTransformField("Target"); targetField.bindingPath = targetField.label; root.Add(targetField);
                     ObjectField sourceField = CreateTransformField("Source"); sourceField.bindingPath = sourceField.label; root.Add(sourceField);
@@ -130,7 +130,7 @@ namespace Fox.EdAnimx
                     var vecAField = new Vector3Field("VectorA"); vecAField.bindingPath = vecAField.label; root.Add(vecAField);
                     break;
                 }
-                case DriverUnitAction.Type7:
+                case DriverUnitAction.Roll:
                 {
                     ObjectField targetField = CreateTransformField("Target"); targetField.bindingPath = targetField.label; root.Add(targetField);
                     ObjectField sourceField = CreateTransformField("Source"); sourceField.bindingPath = sourceField.label; root.Add(sourceField);
@@ -142,7 +142,7 @@ namespace Fox.EdAnimx
                     var vecAField = new Vector3Field("VectorA"); vecAField.bindingPath = vecAField.label; root.Add(vecAField);
                     break;
                 }
-                case DriverUnitAction.Type8:
+                case DriverUnitAction.BendRoll:
                 {
                     ObjectField targetField = CreateTransformField("Target"); targetField.bindingPath = targetField.label; root.Add(targetField);
                     ObjectField sourceField = CreateTransformField("Source"); sourceField.bindingPath = sourceField.label; root.Add(sourceField);
@@ -156,7 +156,7 @@ namespace Fox.EdAnimx
                     var vecAField = new Vector3Field("VectorA"); vecAField.bindingPath = vecAField.label; root.Add(vecAField);
                     break;
                 }
-                case DriverUnitAction.Type9:
+                case DriverUnitAction.RotRoll:
                 {
                     ObjectField targetField = CreateTransformField("Target"); targetField.bindingPath = targetField.label; root.Add(targetField);
                     ObjectField sourceField = CreateTransformField("Source"); sourceField.bindingPath = sourceField.label; root.Add(sourceField);
@@ -172,7 +172,7 @@ namespace Fox.EdAnimx
                     var vecAField = new Vector3Field("VectorA"); vecAField.bindingPath = vecAField.label; root.Add(vecAField);
                     break;
                 }
-                case DriverUnitAction.Type10:
+                case DriverUnitAction.PitchL:
                 {
                     ObjectField targetField = CreateTransformField("Target"); targetField.bindingPath = targetField.label; root.Add(targetField);
                     ObjectField sourceField = CreateTransformField("Source"); sourceField.bindingPath = sourceField.label; root.Add(sourceField);
@@ -189,7 +189,7 @@ namespace Fox.EdAnimx
                     var vecBField = new Vector3Field("VectorB"); vecBField.bindingPath = vecBField.label; root.Add(vecBField);
                     break;
                 }
-                case DriverUnitAction.Type11:
+                case DriverUnitAction.PitchA:
                 {
                     ObjectField targetField = CreateTransformField("Target"); targetField.bindingPath = targetField.label; root.Add(targetField);
                     ObjectField sourceField = CreateTransformField("Source"); sourceField.bindingPath = sourceField.label; root.Add(sourceField);
@@ -206,7 +206,7 @@ namespace Fox.EdAnimx
                     var vecBField = new Vector3Field("VectorB"); vecBField.bindingPath = vecBField.label; root.Add(vecBField);
                     break;
                 }
-                case DriverUnitAction.Type12:
+                case DriverUnitAction.RollPitchL:
                 {
                     ObjectField targetField = CreateTransformField("Target"); targetField.bindingPath = targetField.label; root.Add(targetField);
                     ObjectField sourceField = CreateTransformField("Source"); sourceField.bindingPath = sourceField.label; root.Add(sourceField);
@@ -224,7 +224,7 @@ namespace Fox.EdAnimx
                     var vecBField = new Vector3Field("VectorB"); vecBField.bindingPath = vecBField.label; root.Add(vecBField);
                     break;
                 }
-                case DriverUnitAction.Type13:
+                case DriverUnitAction.YawAPitchL:
                 {
                     ObjectField targetField = CreateTransformField("Target"); targetField.bindingPath = targetField.label; root.Add(targetField);
                     ObjectField sourceField = CreateTransformField("Source"); sourceField.bindingPath = sourceField.label; root.Add(sourceField);
@@ -245,7 +245,7 @@ namespace Fox.EdAnimx
                     var vecBField = new Vector3Field("VectorB"); vecBField.bindingPath = vecBField.label; root.Add(vecBField);
                     break;
                 }
-                case DriverUnitAction.Type14:
+                case DriverUnitAction.YawAPitchA:
                 {
                     ObjectField targetField = CreateTransformField("Target"); targetField.bindingPath = targetField.label; root.Add(targetField);
                     ObjectField sourceField = CreateTransformField("Source"); sourceField.bindingPath = sourceField.label; root.Add(sourceField);
@@ -268,7 +268,7 @@ namespace Fox.EdAnimx
                     var vecBField = new Vector3Field("VectorB"); vecBField.bindingPath = vecBField.label; root.Add(vecBField);
                     break;
                 }
-                case DriverUnitAction.Type15:
+                case DriverUnitAction.Dircns:
                 {
                     ObjectField targetField = CreateTransformField("Target"); targetField.bindingPath = targetField.label; root.Add(targetField);
                     ObjectField sourceField = CreateTransformField("Source"); sourceField.bindingPath = sourceField.label; root.Add(sourceField);
@@ -281,7 +281,7 @@ namespace Fox.EdAnimx
                     var vecDField = new Vector3Field("VectorD"); vecDField.bindingPath = vecDField.label; root.Add(vecDField);
                     break;
                 }
-                case DriverUnitAction.Type16:
+                case DriverUnitAction.Swell:
                 {
                     ObjectField targetField = CreateTransformField("Target"); targetField.bindingPath = targetField.label; root.Add(targetField);
                     ObjectField sourceField = CreateTransformField("Source"); sourceField.bindingPath = sourceField.label; root.Add(sourceField);
@@ -293,20 +293,7 @@ namespace Fox.EdAnimx
 
                     break;
                 }
-                case DriverUnitAction.Type17:
-                {
-                    ObjectField targetField = CreateTransformField("Target"); targetField.bindingPath = targetField.label; root.Add(targetField);
-                    ObjectField sourceField = CreateTransformField("Source"); sourceField.bindingPath = sourceField.label; root.Add(sourceField);
-                    ObjectField targetParentField = CreateTransformField("TargetParent"); targetParentField.bindingPath = targetParentField.label; root.Add(targetParentField);
-                    ObjectField sourceParentField = CreateTransformField("SourceParent"); sourceParentField.bindingPath = sourceParentField.label; root.Add(sourceParentField);
-
-                    var weightField = new FloatField("Weight"); weightField.bindingPath = weightField.label; root.Add(weightField);
-
-                    var vecAField = new Vector3Field("VectorA"); vecAField.bindingPath = vecAField.label; root.Add(vecAField);
-                    var vecBField = new Vector3Field("VectorB"); vecBField.bindingPath = vecBField.label; root.Add(vecBField);
-                    break;
-                }
-                case DriverUnitAction.Type18:
+                case DriverUnitAction.SwellRot:
                 {
                     ObjectField targetField = CreateTransformField("Target"); targetField.bindingPath = targetField.label; root.Add(targetField);
                     ObjectField sourceField = CreateTransformField("Source"); sourceField.bindingPath = sourceField.label; root.Add(sourceField);
@@ -319,7 +306,20 @@ namespace Fox.EdAnimx
                     var vecBField = new Vector3Field("VectorB"); vecBField.bindingPath = vecBField.label; root.Add(vecBField);
                     break;
                 }
-                case DriverUnitAction.Type19:
+                case DriverUnitAction.SwellRot_Copy:
+                {
+                    ObjectField targetField = CreateTransformField("Target"); targetField.bindingPath = targetField.label; root.Add(targetField);
+                    ObjectField sourceField = CreateTransformField("Source"); sourceField.bindingPath = sourceField.label; root.Add(sourceField);
+                    ObjectField targetParentField = CreateTransformField("TargetParent"); targetParentField.bindingPath = targetParentField.label; root.Add(targetParentField);
+                    ObjectField sourceParentField = CreateTransformField("SourceParent"); sourceParentField.bindingPath = sourceParentField.label; root.Add(sourceParentField);
+
+                    var weightField = new FloatField("Weight"); weightField.bindingPath = weightField.label; root.Add(weightField);
+
+                    var vecAField = new Vector3Field("VectorA"); vecAField.bindingPath = vecAField.label; root.Add(vecAField);
+                    var vecBField = new Vector3Field("VectorB"); vecBField.bindingPath = vecBField.label; root.Add(vecBField);
+                    break;
+                }
+                case DriverUnitAction.PitchASwitchLinear:
                 {
                     ObjectField sourceField = CreateTransformField("Source"); sourceField.bindingPath = sourceField.label; root.Add(sourceField);
                     ObjectField sourceParentField = CreateTransformField("SourceParent"); sourceParentField.bindingPath = sourceParentField.label; root.Add(sourceParentField);
@@ -339,7 +339,7 @@ namespace Fox.EdAnimx
                     var vecDField = new Vector3Field("VectorD"); vecDField.bindingPath = vecDField.label; root.Add(vecDField);
                     break;
                 }
-                case DriverUnitAction.Type20:
+                case DriverUnitAction.ParamSwitchAbs:
                 {
                     var weightField = new FloatField("Weight"); weightField.bindingPath = weightField.label; root.Add(weightField);
                     var limitMinField = new FloatField("LimitMin"); limitMinField.bindingPath = limitMinField.label; root.Add(limitMinField);
@@ -353,7 +353,7 @@ namespace Fox.EdAnimx
                     var materialParamCField = new StringField("MaterialParameterC"); materialParamCField.bindingPath = materialParamCField.label; root.Add(materialParamCField);
                     break;
                 }
-                case DriverUnitAction.Type21:
+                case DriverUnitAction.PitchACycle:
                 {
                     ObjectField sourceField = CreateTransformField("Source"); sourceField.bindingPath = sourceField.label; root.Add(sourceField);
                     ObjectField sourceParentField = CreateTransformField("SourceParent"); sourceParentField.bindingPath = sourceParentField.label; root.Add(sourceParentField);
@@ -368,7 +368,7 @@ namespace Fox.EdAnimx
                     var vecBField = new Vector3Field("VectorB"); vecBField.bindingPath = vecBField.label; root.Add(vecBField);
                     break;
                 }
-                case DriverUnitAction.Type22:
+                case DriverUnitAction.Mirror:
                 {
                     ObjectField targetField = CreateTransformField("Target"); targetField.bindingPath = targetField.label; root.Add(targetField);
                     ObjectField sourceField = CreateTransformField("Source"); sourceField.bindingPath = sourceField.label; root.Add(sourceField);
@@ -377,7 +377,7 @@ namespace Fox.EdAnimx
 
                     break;
                 }
-                case DriverUnitAction.Type23:
+                case DriverUnitAction.PitchALinearParam:
                 {
                     ObjectField sourceField = CreateTransformField("Source"); sourceField.bindingPath = sourceField.label; root.Add(sourceField);
                     ObjectField sourceParentField = CreateTransformField("SourceParent"); sourceParentField.bindingPath = sourceParentField.label; root.Add(sourceParentField);
