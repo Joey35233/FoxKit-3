@@ -10,7 +10,7 @@ using Material = UnityEngine.Material;
 
 namespace Fox.Geo
 {
-    [ScriptedImporter(1, "geom")]
+    [ScriptedImporter(100, "geom")]
     public unsafe class GeoFileImporter : ScriptedImporter
     {
         private Material VisualizerMaterial;
@@ -105,7 +105,6 @@ namespace Fox.Geo
                             return;
                     }
                 }
-
             }
         }
 
@@ -119,21 +118,23 @@ namespace Fox.Geo
             {
                 NodePayloadType flags = (NodePayloadType)node->Flags;
                 if (flags != NodePayloadType.Type2)
-                    continue;;
+                    continue;
                 
                 for (var subNode = node->GetChildren(); subNode != null; subNode = subNode->GetNext())
                 {
+                    byte* subNodeData = subNode->GetData();
+                    if (subNodeData == null)
+                        continue;
+                    
                     NodePayloadType subFlags = (NodePayloadType)subNode->Flags;
                     
                     switch (subFlags)
                     {
                         case NodePayloadType.Group:
-                            GroupSetVertexBuffer((GeoGroup*)subNode->GetData(), buffer);
+                            GroupSetVertexBuffer((GeoGroup*)subNodeData, buffer);
                             break;
                         case NodePayloadType.Block:
-                            GeoBlock* block = (GeoBlock*)subNode->GetData();
-                            BlockSetVertexBuffer(block, buffer);
-                            Debug.Assert((block + 1)->IsFinalEntry);
+                            BlockSetVertexBuffer((GeoBlock*)subNodeData, buffer);
                             break;
                     }
                 }
@@ -227,7 +228,23 @@ namespace Fox.Geo
         {
             GameObject gameObject = new GameObject($"{(ulong)group} | GROUP");
             gameObject.transform.parent = parent.transform;
-            	gameObject.AddComponent<CollisionTags>().SetTags(group->Tags);
+
+            GeoGroup groupStack = *group;
+            
+            BoxCollider boxCollider = gameObject.AddComponent<BoxCollider>();
+            Vector3 aabbExtents = groupStack.BoundingBoxExtents;
+            Vector3 aabbCorner = Fox.Math.FoxToUnityVector3(groupStack.BoundingBoxCorner);
+            aabbCorner = new Vector3(aabbCorner.x - aabbExtents.x, aabbCorner.y, aabbCorner.z);
+            boxCollider.center = aabbCorner + aabbExtents * 0.5f;
+            boxCollider.size = aabbExtents;
+            
+            GeoGroupInfo groupInfo = gameObject.AddComponent<GeoGroupInfo>();
+            groupInfo.CellSize = groupStack.CellSize;
+            groupInfo.CellCountX = groupStack.CellCountX;
+            groupInfo.CellCountY = groupStack.CellCountY;
+            groupInfo.CellCountZ = groupStack.CellCountZ;
+            
+            gameObject.AddComponent<CollisionTags>().SetTags(group->Tags);
 
             GeoBlock* blocks = (GeoBlock*)((byte*)group + group->BlocksOffset);
             for (uint i = 0; i < group->BlockCount; i++)
@@ -239,39 +256,43 @@ namespace Fox.Geo
 
         private void ReadBlock(AssetImportContext context, GeoBlock* block, GameObject parent)
         {
-            // TODO: How does traversal work here???
-            GameObject gameObject = new GameObject($"{(ulong)block} | BLOCK");
-            gameObject.transform.parent = parent.transform;
+            do
+            {
+                GameObject gameObject = new GameObject($"{(ulong)block} | BLOCK");
+                gameObject.transform.parent = parent.transform;
 
-            gameObject.AddComponent<CollisionTags>().SetTags(block->Tags);
+                gameObject.AddComponent<CollisionTags>().SetTags(block->Tags);
             
-            var headers = (GeomHeader*)((byte*)block + block->HeadersOffset);
+                var headers = (GeomHeader*)((byte*)block + block->HeadersOffset);
 
-            ReadHeader(context, headers, gameObject);
+                ReadHeader(context, headers, gameObject);
 
-            PolyVertexHeader* vertexHeader = (PolyVertexHeader*)((byte*)block + block->VertexBufferOffset);
+                PolyVertexHeader* vertexHeader = (PolyVertexHeader*)((byte*)block + block->VertexBufferOffset);
 
-            GeoBlockMaterialsHeader* materialsHeader = (GeoBlockMaterialsHeader*)((byte*)block + block->MaterialsHeaderOffset);
+                GeoBlockMaterialsHeader* materialsHeader = (GeoBlockMaterialsHeader*)((byte*)block + block->MaterialsHeaderOffset);
 
-            GeoMaterial* materials = (GeoMaterial*)(&materialsHeader + 1);
+                GeoMaterial* materials = (GeoMaterial*)(&materialsHeader + 1);
 
-            // for (uint i = 0; i < materialsHeader->MaterialsCount; i++)
-            // {
-            //     GeoCommonTemp.GeoMaterial* material = materials + materialsHeader->MaterialsIndexOffset + i;
-            //     if (material->Name.IsValid())
-            //     {
-            //         // do stuff
-            //     }
-            // }
-            //
-            // for (uint i = 0; i < materialsHeader->AuxMaterialsCount; i++)
-            // {
-            //     GeoCommonTemp.GeoMaterial* material = materials + materialsHeader->AuxMaterialsIndexOffset + i;
-            //     if (material->Name.IsValid())
-            //     {
-            //         // do stuff
-            //     }
-            // }
+                // for (uint i = 0; i < materialsHeader->MaterialsCount; i++)
+                // {
+                //     GeoCommonTemp.GeoMaterial* material = materials + materialsHeader->MaterialsIndexOffset + i;
+                //     if (material->Name.IsValid())
+                //     {
+                //         // do stuff
+                //     }
+                // }
+                //
+                // for (uint i = 0; i < materialsHeader->AuxMaterialsCount; i++)
+                // {
+                //     GeoCommonTemp.GeoMaterial* material = materials + materialsHeader->AuxMaterialsIndexOffset + i;
+                //     if (material->Name.IsValid())
+                //     {
+                //         // do stuff
+                //     }
+                // }
+                
+                block += 1;
+            } while (block->IsFinalEntry == false);
         }
 
         private void ReadHeader(AssetImportContext context, GeomHeader* root, GameObject rootObject)
@@ -306,7 +327,7 @@ namespace Fox.Geo
 
                 if ((flags & GeomHeaderFlags.Disable) == 0)
                 {
-                    uint expectedMask = ~(uint)(GeomHeaderFlags.DoubleSided | GeomHeaderFlags.HasChild | GeomHeaderFlags.UseFmdlVertices);
+                    uint expectedMask = ~(uint)(GeomHeaderFlags.DoubleSided | GeomHeaderFlags.HasChild | GeomHeaderFlags.UseFmdlVertices | GeomHeaderFlags.StopCheck);
                     bool hasOtherFlags = ((uint)flags & expectedMask) != 0;
                     if (hasOtherFlags)
                         context.LogImportError($"Other flags: {flags}");
@@ -407,6 +428,9 @@ namespace Fox.Geo
                             gameObject.AddComponent<MeshRenderer>().material = VisualizerMaterial;
                             gameObject.AddComponent<MeshFilter>().mesh = mesh;
                             
+                            break;
+                        default:
+                            context.LogImportError($"Unsupported prim type: {type}");
                             break;
                     }
                 

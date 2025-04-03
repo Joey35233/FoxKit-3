@@ -6,12 +6,13 @@ namespace Fox.Geo
 {
     public static class GeoGeom
     {
+        [Flags]
         public enum GeoCollisionTags : ulong
         {
             // Padding0 = 1,
             RECOIL = 2,
             CHARA = 4,
-            SOUND_MGS4 = 8,
+            SOUND = 8,
 
             PLAYER = 0x10,
             ENEMY = 0x20,
@@ -19,7 +20,7 @@ namespace Fox.Geo
             MISSILE = 0x80,
 
             BOMB = 0x100,
-            RADOR_MGS4 = 0x200,
+            // RADOR_MGS4 = 0x200,
             BLOOD = 0x400,
             IK = 0x800,
 
@@ -178,7 +179,7 @@ namespace Fox.Geo
             DoubleSided = 0x200,
             UseFmdlVertices = 0x800,
             HasChild = 0x2000,
-            Unknown7 = 0x4000,
+            StopCheck = 0x4000,
             HasReference = 0x8000,
             Unknown3 = 0x8000,
             Unknown5 = 0x80000,
@@ -251,7 +252,7 @@ namespace Fox.Geo
 
             public uint BlocksOffset;
 
-            public Vector3 GridSize;
+            public Vector3 CellSize;
 	
             public uint CellCountX;
             public uint CellCountY;
