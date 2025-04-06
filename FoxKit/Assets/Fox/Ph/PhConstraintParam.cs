@@ -10,11 +10,6 @@ namespace Fox.Ph
         internal UnityEngine.Vector3 GetDefaultPosition() => defaultPosition;
         internal void SetDefaultPosition(UnityEngine.Vector3 value) => defaultPosition = value;
 
-        [NonSerialized]
-        internal PhRigidBodyParam BodyA;
-        [NonSerialized]
-        internal PhRigidBodyParam BodyB;
-
         public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
         {
             defaultPosition = Fox.Math.FoxToUnityVector3(defaultPosition);

@@ -67,9 +67,6 @@ namespace Fox.Ph
         internal string GetMaterial() => material;
         internal void SetMaterial(string value) => material = value;
 
-        [NonSerialized]
-        internal PhShapeParam ShapeParam;
-
         public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
         {
             defaultPosition = Fox.Math.FoxToUnityVector3(defaultPosition);
@@ -91,13 +88,6 @@ namespace Fox.Ph
         private void OnValidate()
         {
             defaultRotation = Quaternion.Normalize(defaultRotation);
-        }
-
-        internal void OnDrawGizmos()
-        {
-            Gizmos.matrix = Matrix4x4.TRS(defaultPosition, defaultRotation, Vector3.one);
-            if (ShapeParam != null)
-                ShapeParam.DrawGizmos();
         }
     }
 }
