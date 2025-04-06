@@ -27,18 +27,33 @@ namespace Fox.Ph
         internal override void DrawGizmos()
         {
             Gizmos.color = Color.green;
-            Gizmos.matrix = Gizmos.matrix *= Matrix4x4.TRS(offset, rotation, size);
             switch (type)
             {
                 case PhShapeType.BOX:
-                    Gizmos.DrawWireCube(Vector3.zero, Vector3.one);
+                    Gizmos.matrix *= Matrix4x4.TRS(offset, rotation, size);
+                    Gizmos.DrawWireCube(Vector3.zero, size);
                     break;
                 case PhShapeType.SPHERE:
-                    Gizmos.DrawWireSphere(Vector3.zero, 1.0f);
+                    Gizmos.matrix *= Matrix4x4.TRS(offset, rotation, size);
+                    Gizmos.DrawWireSphere(Vector3.zero, size.magnitude);
+                    break;
+                case PhShapeType.CYLINDER:
+                    Gizmos.matrix *= Matrix4x4.TRS(offset, rotation, size);
+                    if (CylinderMesh == null)
+                        CylinderMesh = Resources.GetBuiltinResource<Mesh>("Cylinder.fbx");
+                    Gizmos.DrawWireMesh(CylinderMesh);
                     break;
                 case PhShapeType.CAPSULE:
                     if (CylinderMesh == null)
                         CylinderMesh = Resources.GetBuiltinResource<Mesh>("Cylinder.fbx");
+                    
+                    Matrix4x4 matrix = Matrix4x4.TRS(offset, rotation, size);
+                    
+                    float sphereScale = size.z;
+                    Gizmos.DrawWireSphere(matrix * Vector3.up, sphereScale);
+                    Gizmos.DrawWireSphere(matrix * Vector3.down, sphereScale);
+                    
+                    Gizmos.matrix *= matrix;
                     Gizmos.DrawWireMesh(CylinderMesh);
                     break;
             }
