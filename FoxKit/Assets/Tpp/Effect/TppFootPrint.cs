@@ -44,9 +44,9 @@ namespace Tpp.Effect
 
                 fpLoc.transform.parent = gameObject.transform;
 
-                fpLoc.footChara = (FootPrintChara)(footChara[i]&7);
-                fpLoc.nvg = footChara[i]>>7==1;
-                fpLoc.footLR = footLR[i]>0;
+                fpLoc.footChara = (FootPrintChara)(footChara[i] & 7);
+                fpLoc.nvg = footChara[i] >> 7 == 1;
+                fpLoc.footLR = footLR[i] > 0;
                 fpLoc.alpha = alpha[i];
                 fpLoc.blood = blood[i];
                 fpLoc.enable = enable[i];
@@ -80,7 +80,7 @@ namespace Tpp.Effect
                 if (fpLoc.nvg)
                     _footCharaLoc |= 8;
                 _footChara.Insert(i, _footCharaLoc);
-                _footLR.Insert(i, (uint)(fpLoc.footLR ? 1 : 0) );
+                _footLR.Insert(i, fpLoc.footLR ? 1u : 0u);
                 _alpha.Insert(i, fpLoc.alpha);
                 _blood.Insert(i, fpLoc.blood);
                 _enable.Insert(i, fpLoc.enable);

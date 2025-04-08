@@ -18,8 +18,8 @@ namespace Fox.Ph
         {
             base.OverridePropertiesForExport(context);
 
-            context.OverrideProperty(nameof(refA), Fox.Math.FoxToUnityVector3(refA));
-            context.OverrideProperty(nameof(refB), Fox.Math.FoxToUnityVector3(refB));
+            context.OverrideProperty(nameof(refA), Fox.Math.UnityToFoxVector3(refA));
+            context.OverrideProperty(nameof(refB), Fox.Math.UnityToFoxVector3(refB));
         }
     }
 }

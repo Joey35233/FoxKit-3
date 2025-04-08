@@ -71,9 +71,9 @@ namespace Fox.Core
 
         public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
         {
-            OnDeserializeTransformEntity();
-
             base.OnDeserializeEntity(gameObject, logger);
+            
+            OnDeserializeTransformEntity();
         }
 
         private void OnDeserializeTransformEntity()

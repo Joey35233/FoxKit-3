@@ -17,6 +17,7 @@ namespace Fox
 
         public static Vector3 FoxToUnityVector3(Vector3 v) => new(-v.x, v.y, v.z);
         public static Vector4 FoxToUnityVector4(Vector4 v) => new(-v.x, v.y, v.z, v.w);
+        public static (float x, float y, float z) FoxToUnityVectorComponents(Vector3 v) => (-v.x, v.y, v.z);
         public static Quaternion FoxToUnityQuaternion(Quaternion v)
         {
             v.ToAngleAxis(out float angle, out Vector3 axis);
@@ -28,6 +29,7 @@ namespace Fox
 
         public static Vector3 UnityToFoxVector3(Vector3 v) => new(-v.x, v.y, v.z);
         public static Vector4 UnityToFoxVector4(Vector4 v) => new(-v.x, v.y, v.z, v.w);
+        public static (float x, float y, float z) UnityToFoxVectorComponents(Vector3 v) => (-v.x, v.y, v.z);
         public static Quaternion UnityToFoxQuaternion(Quaternion v)
         {
             v.ToAngleAxis(out float angle, out Vector3 axis);

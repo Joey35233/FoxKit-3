@@ -8,21 +8,7 @@ namespace Fox.Ph
     {
         private static Mesh CylinderMesh;
 
-        public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
-        {
-            offset = Fox.Math.FoxToUnityVector3(offset);
-            rotation = Fox.Math.FoxToUnityQuaternion(rotation);
-
-            base.OnDeserializeEntity(gameObject, logger);
-        }
-
-        public override void OverridePropertiesForExport(EntityExportContext context)
-        {
-            context.OverrideProperty("offset", Fox.Math.UnityToFoxVector3(offset));
-            context.OverrideProperty("rotation", Fox.Math.FoxToUnityQuaternion(rotation));
-
-            base.OverridePropertiesForExport(context);
-        }
+        public new PhPrimitiveShapeType GetType() => (PhPrimitiveShapeType)type;
 
         internal override void DrawGizmos()
         {
@@ -34,10 +20,9 @@ namespace Fox.Ph
                 case PhShapeType.BOX:
                     if (size.x > 0 && size.y > 0 && size.z > 0)
                     {
-                        float radius = size.magnitude;
-                        Vector3 scale = new Vector3(radius, radius, radius);
+                        Vector3 radii = size;
                     
-                        Gizmos.DrawWireCube(Vector3.zero, scale);
+                        Gizmos.DrawWireCube(Vector3.zero, 2*radii);
                     }
                     break;
                 case PhShapeType.SPHERE:

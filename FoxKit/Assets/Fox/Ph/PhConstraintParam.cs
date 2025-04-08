@@ -12,16 +12,16 @@ namespace Fox.Ph
 
         public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
         {
-            defaultPosition = Fox.Math.FoxToUnityVector3(defaultPosition);
-
             base.OnDeserializeEntity(gameObject, logger);
+            
+            defaultPosition = Fox.Math.FoxToUnityVector3(defaultPosition);
         }
 
         public override void OverridePropertiesForExport(EntityExportContext context)
         {
-            context.OverrideProperty("defaultPosition", Fox.Math.UnityToFoxVector3(defaultPosition));
-
             base.OverridePropertiesForExport(context);
+            
+            context.OverrideProperty(nameof(defaultPosition), Fox.Math.UnityToFoxVector3(defaultPosition));
         }
 
         public virtual void DrawGizmos()
