@@ -31,20 +31,5 @@ namespace Fox.Ph
 
         private partial bool Get_isPoweredFlag() => multiShoulderConstraint.GetIsPoweredFlag();
         private partial void Set_isPoweredFlag(bool value) => multiShoulderConstraint.SetIsPoweredFlag(value);
-        public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
-        {
-            base.OnDeserializeEntity(gameObject, logger);
-
-            refVec0 = Fox.Math.FoxToUnityQuaternion(refVec0);
-            refVec1 = Fox.Math.FoxToUnityQuaternion(refVec1);
-        }
-
-        public override void OverridePropertiesForExport(EntityExportContext context)
-        {
-            base.OverridePropertiesForExport(context);
-
-            context.OverrideProperty(nameof(refVec0), Fox.Math.UnityToFoxQuaternion(refVec0));
-            context.OverrideProperty(nameof(refVec1), Fox.Math.UnityToFoxQuaternion(refVec1));
-        }
     }
 }

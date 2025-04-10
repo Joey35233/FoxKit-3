@@ -1,4 +1,5 @@
-﻿using Fox.Core;
+﻿using System;
+using Fox.Core;
 using Fox.Core.Utils;
 using UnityEngine;
 
@@ -10,10 +11,16 @@ namespace Fox.Ph
         internal void SetOffset(UnityEngine.Vector3 value) => offset = value;
 
         internal UnityEngine.Quaternion GetRotation() => rotation;
-        internal void SetRotation(UnityEngine.Quaternion value) => rotation = value;
+        internal void SetRotation(UnityEngine.Quaternion value) => rotation = value.normalized;
 
         internal UnityEngine.Vector3 GetSize() => size;
         internal void SetSize(UnityEngine.Vector3 value) => size = value;
+
+        public void OnValidate()
+        {
+            rotation = rotation.normalized;
+        }
+
         public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
         {
             base.OnDeserializeEntity(gameObject, logger);

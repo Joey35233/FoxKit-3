@@ -11,7 +11,7 @@ namespace Fox.Ph
         internal void SetDefaultPosition(UnityEngine.Vector3 value) => defaultPosition = value;
 
         internal UnityEngine.Quaternion GetDefaultRotation() => defaultRotation;
-        internal void SetDefaultRotation(UnityEngine.Quaternion value) => defaultRotation = value;
+        internal void SetDefaultRotation(UnityEngine.Quaternion value) => defaultRotation = value.normalized;
 
         internal float GetMass() => mass;
         internal void SetMass(float value) => mass = value;
@@ -67,6 +67,11 @@ namespace Fox.Ph
         internal string GetMaterial() => material;
         internal void SetMaterial(string value) => material = value;
 
+        private void OnValidate()
+        {
+            defaultRotation = defaultRotation.normalized;
+        }
+
         public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
         {
             base.OnDeserializeEntity(gameObject, logger);
@@ -83,11 +88,6 @@ namespace Fox.Ph
             context.OverrideProperty(nameof(defaultPosition), Fox.Math.UnityToFoxVector3(defaultPosition));
             context.OverrideProperty(nameof(defaultRotation), Fox.Math.UnityToFoxQuaternion(defaultRotation));
             context.OverrideProperty(nameof(centerOfMassOffset), Fox.Math.UnityToFoxVector3(centerOfMassOffset));
-        }
-
-        private void OnValidate()
-        {
-            defaultRotation = Quaternion.Normalize(defaultRotation);
         }
     }
 }

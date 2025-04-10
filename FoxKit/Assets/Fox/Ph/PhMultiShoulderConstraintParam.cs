@@ -29,6 +29,7 @@ namespace Fox.Ph
 
         internal bool GetIsPoweredFlag() => isPoweredFlag;
         internal void SetIsPoweredFlag(bool value) => isPoweredFlag = value;
+        
         public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
         {
             base.OnDeserializeEntity(gameObject, logger);
