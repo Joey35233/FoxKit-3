@@ -32,21 +32,21 @@ namespace FoxEditorTools
 
     public class EditorWindow_GameObject : EditorWindow
     {
-        private string selectedType = "TppBossQuiet2";
-        private string selectedSoldierFaction = "Soviet";
+        private string selectedType = "TppSoldier2";
+        private string selectedFaction = "Soviet";
         private string inputName;
         private uint inputGroupId = 0;
-        private uint inputTotalCount = 1;
-        private uint inputRealizedCount = 1;
+        private uint inputTotalCount = 160;
+        private uint inputRealizedCount = 12;
 
         private static readonly Dictionary<string, GameObjectInfo> typeData = new()
-            {
-                //"TppBear",
-                //"TppBuddyDog2",
-                //"TppBuddyPuppy",
-                //"TppBuddyQuiet2",
+            { 
+                { "TppBear", new GameObjectInfo("BearGameObject", 0, 1, 1, "TppBearParameter") },
+                { "TppBuddyDog2", new GameObjectInfo("BuddyDogGameObject", 0, 1, 1, "TppBuddyDog2Parameter") },
+                { "TppBuddyPuppy", new GameObjectInfo("BuddyPuppy", 0, 1, 1, "TppBuddyPuppyParameter") },
+                { "TppBuddyQuiet2", new GameObjectInfo("BuddyQuietGameObject", 0, 1, 1, "TppBuddyQuiet2Parameter") },
                 { "TppBossQuiet2", new GameObjectInfo("BossQuietGameObject", 0, 1, 1, "TppBossQuiet2Parameter") },//tex: is also sniper parasites
-                //"TppCodeTalker2",
+                //{ "TppCodeTalker2", new GameObjectInfo("GameObjectTppCodeTalker2", 0, 1, 1, "TppHostage2Parameter") },
                 //"TppCommandPost2",
                 //"TppCommonWalkerGear2",
                 //"TppCorpse",
@@ -62,6 +62,7 @@ namespace FoxEditorTools
                 //"TppHeli2",
                 //"TppHorse2",
                 //"TppHostage2",
+                { "TppHostage2", new GameObjectInfo("Hostage2GameObject2", 0, 14, 5, "TppHostage2Parameter") },
                 //"TppHostageKaz",
                 //"TppHostageUnique",
                 //"TppHostageUnique2",
@@ -91,30 +92,30 @@ namespace FoxEditorTools
                 //"TppZebra",
         };
 
-        private static readonly Dictionary<string, List<string>> extraOptionsPerType = new()
-        {
-            { "TppSoldier2", new List<string> { "Soviet", "PF", "XOF", "DD" } }
-        };
-
-
         private static readonly Dictionary<string, Type> parameterTypes = new()
-        {
+        { 
+            { "TppBearParameter", typeof(TppBearParameter) },
+            { "TppBuddyDog2Parameter", typeof(TppBuddyDog2Parameter) },
+            { "TppBuddyPuppyParameter", typeof(TppBuddyPuppyParameter) },
+            { "TppBuddyQuiet2Parameter", typeof(TppBuddyQuiet2Parameter) },
             { "TppBossQuiet2Parameter", typeof(TppBossQuiet2Parameter) },
+            { "TppHostage2Parameter", typeof(TppHostage2Parameter) },
             { "TppSoldier2Parameter", typeof(TppSoldier2Parameter) },
         };
 
-        private readonly List<string> soldierFactions = new() {
-            "Soviet",
-            "PF",
-            "XOF",
-            "Fatigue - Drab (Male)",
-            "Fatigue - Drab (Female)",
-            "Fatigue - Tiger (Male)",
-            "Fatigue - Tiger (Female)",
-            "Sneaking Suit (Male)",
-            "Sneaking Suit (Female)",
-            "Battle Dress (Male)",
-            "Battle Dress (Female)"
+        // new: faction options per type
+        private static readonly Dictionary<string, List<string>> factionOptions = new()
+        {
+            { "TppBuddyQuiet2", new List<string> { "Naked", "Naked (Blood)", "Naked (Silver Q)", "Naked (Gold Q)", "Sniper Wolf", "Gray XOF" } },
+            { "TppBossQuiet2", new List<string> { "Quiet", "Female Skull" } },
+            { "TppHostage2", new List<string> { "Soviet Prisoner (Male)", "Soviet Prisoner (Female)", "Africa Prisoner (Male)", "Africa Prisoner (Female)", "DD Prisoner" } },
+            { "TppSoldier2", new List<string> {
+                "Soviet", "PF", "XOF",
+                "Fatigue - Drab (Male)", "Fatigue - Drab (Female)",
+                "Fatigue - Tiger (Male)", "Fatigue - Tiger (Female)",
+                "Sneaking Suit (Male)", "Sneaking Suit (Female)",
+                "Battle Dress (Male)", "Battle Dress (Female)"
+            }}
         };
 
         [MenuItem("FoxKit/Editor Tools/GameObject Creator")]
@@ -122,7 +123,7 @@ namespace FoxEditorTools
         {
             var window = GetWindow<EditorWindow_GameObject>();
             window.titleContent = new GUIContent("GameObject Creator");
-            window.minSize = new Vector2(250, 200);
+            window.minSize = new Vector2(350, 250);
         }
 
         public void CreateGUI()
@@ -135,8 +136,8 @@ namespace FoxEditorTools
             var nameField = new TextField("GameObject Name");
             var totalCountField = new IntegerField("Total Count");
             var realizedCountField = new IntegerField("Realized Count");
-            var factionPopup = new PopupField<string>("Soldier Faction", soldierFactions, selectedSoldierFaction);
-            factionPopup.style.display = selectedType == "TppSoldier2" ? DisplayStyle.Flex : DisplayStyle.None;
+            var factionPopup = new PopupField<string>("Faction", new List<string>(), 0);
+            factionPopup.style.display = DisplayStyle.None;
 
             rootVisualElement.Add(popup);
             rootVisualElement.Add(nameField);
@@ -155,23 +156,22 @@ namespace FoxEditorTools
                 totalCountField.value = (int)inputTotalCount;
                 realizedCountField.value = (int)inputRealizedCount;
 
-                if (selectedType == "TppSoldier2")
+                if (factionOptions.TryGetValue(selectedType, out var factions))
                 {
+                    factionPopup.choices = factions;
+                    factionPopup.value = factions[0];
+                    selectedFaction = factions[0];
+
                     if (!rootVisualElement.Contains(factionPopup))
-                    {
-                        rootVisualElement.Insert(2, factionPopup); // insert before createButton
-                    }
+                        rootVisualElement.Insert(2, factionPopup);
+
                     factionPopup.style.display = DisplayStyle.Flex;
                 }
                 else
                 {
-                    if (rootVisualElement.Contains(factionPopup))
-                    {
-                        factionPopup.style.display = DisplayStyle.None;
-                    }
+                    factionPopup.style.display = DisplayStyle.None;
                 }
             }
-
 
             popup.RegisterValueChangedCallback(evt =>
             {
@@ -181,7 +181,7 @@ namespace FoxEditorTools
 
             factionPopup.RegisterValueChangedCallback(evt =>
             {
-                selectedSoldierFaction = evt.newValue;
+                selectedFaction = evt.newValue;
             });
 
             UpdateFields();
@@ -256,48 +256,156 @@ namespace FoxEditorTools
 
         private void ConfigureParameter(string typeName, DataElement param)
         {
-            if (typeName == "TppSoldier2" && param is TppSoldier2Parameter soldier)
+            if (typeName == "TppBear" && param is TppBearParameter bearParameter)
             {
-                switch (selectedSoldierFaction)
+                bearParameter.partsFile = new FilePtr(new Path("/Assets/tpp/parts/chara/ber/ber0_main0_def_v00.parts"));
+                bearParameter.mtarFile = new FilePtr(new Path("/Assets/tpp/motion/mtar/bear/Bear_layers.mtar"));
+                bearParameter.mogFile = new FilePtr(new Path("/Assets/tpp/motion/motion_graph/bear/Bear_layers.mog"));
+
+                bearParameter.fovaFiles.Add(new FilePtr(new Path("/Assets/tpp/fova/chara/ber/ber0_c00.fv2")));
+            }
+            else if (typeName == "TppBuddyDog2" && param is TppBuddyDog2Parameter buddyDogParam)
+            {
+                buddyDogParam.partsFile = new FilePtr(new Path("/Assets/tpp/parts/chara/ddg/ddg0_main0_def_v00.parts"));
+
+                buddyDogParam.motionGraphFile = new FilePtr(new Path(""));
+                buddyDogParam.mtarFile = new FilePtr(new Path(""));
+                buddyDogParam.extensionMtarFile = new FilePtr(new Path(""));
+            }
+            else if (typeName == "TppBuddyPuppy" && param is TppBuddyPuppyParameter buddyPuppyDogParam)
+            {
+                buddyPuppyDogParam.partsFile = new FilePtr(new Path("/Assets/tpp/parts/chara/ddg/ddg0_main0_def_v00.parts"));
+                buddyPuppyDogParam.motionGraphFile = new FilePtr(new Path(""));
+                buddyPuppyDogParam.mtarFile = new FilePtr(new Path(""));
+
+                //buddyPuppyDogParam.vfxFiles.Insert(null, new FilePtr(new Path("/Assets/tpp/effect/vfx_data/flare/fx_tpp_flrwepref01_s5MG.vfx"))); Empty
+
+                buddyPuppyDogParam.fovaFiles.Add(new FilePtr(new Path("/Assets/tpp/fova/chara/ddg/ddg1_v01_c00.fv2")));
+                buddyPuppyDogParam.fovaFiles.Add(new FilePtr(new Path("/Assets/tpp/fova/chara/ddg/ddg1_v02_c00.fv2")));
+            }
+            else if (typeName == "TppBuddyQuiet2" && param is TppBuddyQuiet2Parameter TppBuddyQuiet2Parameter)
+            {
+                switch (selectedFaction)
                 {
-                    case "Soviet":
-                        soldier.partsFile = new FilePtr(new Path("/Assets/tpp/parts/chara/svs/svs0_main0_def_v00.parts"));
+                    case "Naked":TppBuddyQuiet2Parameter.partsFile = new FilePtr(new Path("/Assets/tpp/parts/chara/qui/qui0_main0_def_v00.parts"));
                         break;
-                    case "PF":
-                        soldier.partsFile = new FilePtr(new Path("/Assets/tpp/parts/chara/pfs/pfs0_main0_def_v00.parts"));
+                    case "Naked (Blood)":TppBuddyQuiet2Parameter.partsFile = new FilePtr(new Path("/Assets/tpp/parts/chara/qui/qui0_main0_bld_v00.parts"));
                         break;
-                    case "XOF":
-                        soldier.partsFile = new FilePtr(new Path("/Assets/tpp/parts/chara/wss/wss4_main0_def_v00.parts"));
+                    case "Naked (Silver Q)":TppBuddyQuiet2Parameter.partsFile = new FilePtr(new Path("/Assets/tpp/parts/chara/qui/qui0_main0_slv_v00.parts"));
                         break;
-                    case "Fatigue - Drab (Male)":
-                        soldier.partsFile = new FilePtr(new Path("/Assets/tpp/parts/chara/dds/dds3_main0_def_v00.parts"));
+                    case "Naked (Gold Q)":TppBuddyQuiet2Parameter.partsFile = new FilePtr(new Path("/Assets/tpp/parts/chara/qui/qui0_main0_gld_v00.parts"));
                         break;
-                    case "Fatigue - Drab (Female)":
-                        soldier.partsFile = new FilePtr(new Path("/Assets/tpp/parts/chara/dds/dds8_main0_def_v00.parts"));
+                    case "Sniper Wolf":TppBuddyQuiet2Parameter.partsFile = new FilePtr(new Path("/Assets/tpp/parts/chara/qui/qui4_main0_def_v00.parts"));
                         break;
-                    case "Fatigue - Tiger (Male)":
-                        soldier.partsFile = new FilePtr(new Path("/Assets/tpp/parts/chara/dds/dds5_enem0_def_v00.parts"));
-                        break;
-                    case "Fatigue - Tiger (Female)":
-                        soldier.partsFile = new FilePtr(new Path("/Assets/tpp/parts/chara/dds/dds6_enef0_def_v00.parts"));
-                        break;
-                    case "Sneaking Suit (Male)":
-                        soldier.partsFile = new FilePtr(new Path("/Assets/tpp/parts/chara/sna/sna4_enem0_def_v00.parts"));
-                        break;
-                    case "Sneaking Suit (Female)":
-                        soldier.partsFile = new FilePtr(new Path("/Assets/tpp/parts/chara/sna/sna4_enef0_def_v00.parts"));
-                        break;
-                    case "Battle Dress (Male)":
-                        soldier.partsFile = new FilePtr(new Path("/Assets/tpp/parts/chara/sna/sna5_enem0_def_v00.parts"));
-                        break;
-                    case "Battle Dress (Female)":
-                        soldier.partsFile = new FilePtr(new Path("/Assets/tpp/parts/chara/sna/sna5_enef0_def_v00.parts"));
+                    case "Gray XOF":TppBuddyQuiet2Parameter.partsFile = new FilePtr(new Path("/Assets/tpp/parts/chara/qui/qui5_main0_def_v00.parts"));
                         break;
                 }
+                TppBuddyQuiet2Parameter.vfxFiles.Insert("Blood0", new FilePtr(new Path("/Assets/tpp/effect/vfx_data/blood/fx_tpp_splbld01_s1LG.vfx")));
+                TppBuddyQuiet2Parameter.vfxFiles.Insert("Blood1", new FilePtr(new Path("/Assets/tpp/effect/vfx_data/blood/fx_tpp_splbld03_s1LG.vfx")));
+                TppBuddyQuiet2Parameter.vfxFiles.Insert("Blood2", new FilePtr(new Path("/Assets/tpp/effect/vfx_data/blood/fx_tpp_splbld06_s1.vfx")));
+                TppBuddyQuiet2Parameter.vfxFiles.Insert("SightLight", new FilePtr(new Path("/Assets/tpp/effect/vfx_data/flare/fx_tpp_flrwepref01_s5MG.vfx")));
+                TppBuddyQuiet2Parameter.vfxFiles.Insert("EyeFlare", new FilePtr(new Path("/Assets/tpp/effect/vfx_data/flare/fx_tpp_flrlgtquieye_m1.vfx")));
+                TppBuddyQuiet2Parameter.vfxFiles.Insert("Warp", new FilePtr(new Path("/Assets/tpp/effect/vfx_data/chara/fx_tpp_chrwmuwrp01_s1.vfx")));
+                TppBuddyQuiet2Parameter.vfxFiles.Insert("LandingSmoke", new FilePtr(new Path("/Assets/tpp/effect/vfx_data/chara/fx_tpp_chrquignddwn01_m1.vfx")));
+                TppBuddyQuiet2Parameter.vfxFiles.Insert("SprintSmoke", new FilePtr(new Path("/Assets/tpp/effect/vfx_data/chara/fx_tpp_chrquifotsmk02_m1.vfx")));
+                TppBuddyQuiet2Parameter.vfxFiles.Insert("SlidingSmoke", new FilePtr(new Path("/Assets/tpp/effect/vfx_data/chara/fx_tpp_chrquifotsmk03_s1.vfx")));
+                TppBuddyQuiet2Parameter.vfxFiles.Insert("HaloSmoke", new FilePtr(new Path("/Assets/tpp/effect/vfx_data/chara/fx_tpp_chrquidnwgnd01_m2.vfx")));
+                TppBuddyQuiet2Parameter.vfxFiles.Insert("WaterPillar", new FilePtr(new Path("/Assets/tpp/effect/vfx_data/chara/fx_tpp_chrquifotwtr01_m1.vfx")));
+                TppBuddyQuiet2Parameter.vfxFiles.Insert("DamageFirefly", new FilePtr(new Path("/Assets/tpp/effect/vfx_data/blood/fx_tpp_splbldwmu01_s1.vfx")));
+                TppBuddyQuiet2Parameter.vfxFiles.Insert("Dead", new FilePtr(new Path("/Assets/tpp/effect/vfx_data/blood/fx_tpp_splbldwmu02_s1.vfx")));
 
-                soldier.vfxFiles.Insert("Blood0", new FilePtr(new Path("/Assets/tpp/effect/vfx_data/blood/fx_tpp_splbld01_s1LG.vfx")));
-                soldier.vfxFiles.Insert("Blood1", new FilePtr(new Path("/Assets/tpp/effect/vfx_data/blood/fx_tpp_splbld03_s1LG.vfx")));
-                soldier.vfxFiles.Insert("Blood2", new FilePtr(new Path("/Assets/tpp/effect/vfx_data/blood/fx_tpp_splbld06_s1.vfx")));
+            }
+            else if (typeName == "TppBossQuiet2" && param is TppBossQuiet2Parameter bossQuiet2Param)
+            {
+                switch (selectedFaction)
+                {
+                    case "Quiet":bossQuiet2Param.partsFile = new FilePtr(new Path("/Assets/tpp/parts/chara/qui/qui0_main0_def_v00.parts"));
+                        break;
+                    case "Female Skull":bossQuiet2Param.partsFile = new FilePtr(new Path("/Assets/tpp/parts/chara/wmu/wmu1_main0_def_v00.parts"));
+                        break;
+                }
+                bossQuiet2Param.motionGraphFile = new FilePtr(new Path("/Assets/tpp/motion/motion_graph/bossquiet2/BossQuiet2_layers.mog"));
+                bossQuiet2Param.mtarFile = new FilePtr(new Path("/Assets/tpp/motion/mtar/bossquiet2/BossQuiet2_layers.mtar"));
+                bossQuiet2Param.extensionMtarFile = new FilePtr(new Path("")); // It's empty
+
+                bossQuiet2Param.vfxFiles.Insert("SightLight", new FilePtr(new Path("/Assets/tpp/effect/vfx_data/flare/fx_tpp_flrwepref01_s5MG.vfx")));
+                bossQuiet2Param.vfxFiles.Insert("EyeFlare", new FilePtr(new Path("/Assets/tpp/effect/vfx_data/flare/fx_tpp_flrlgtquieye_m1.vfx")));
+                bossQuiet2Param.vfxFiles.Insert("LandingSmoke", new FilePtr(new Path("/Assets/tpp/effect/vfx_data/chara/fx_tpp_chrwmuatk01_m1.vfx")));
+                bossQuiet2Param.vfxFiles.Insert("WarpStart", new FilePtr(new Path("/Assets/tpp/effect/vfx_data/chara/fx_tpp_chrwmuwrp01_s1.vfx")));
+                bossQuiet2Param.vfxFiles.Insert("SprintSmoke", new FilePtr(new Path("/Assets/tpp/effect/vfx_data/chara/fx_tpp_chrquifotsmk02_m1.vfx")));
+                bossQuiet2Param.vfxFiles.Insert("DrippedBlood", new FilePtr(new Path("/Assets/tpp/effect/vfx_data/blood/fx_tpp_blddcl00_s1LG.vfx")));
+                bossQuiet2Param.vfxFiles.Insert("Recover", new FilePtr(new Path("/Assets/tpp/effect/vfx_data/flare/fx_tpp_flrrbw01_s5.vfx")));
+                bossQuiet2Param.vfxFiles.Insert("DamageFirefly", new FilePtr(new Path("/Assets/tpp/effect/vfx_data/blood/fx_tpp_splbldwmu01_s1.vfx")));
+                bossQuiet2Param.vfxFiles.Insert("BloodS", new FilePtr(new Path("/Assets/tpp/effect/vfx_data/blood/fx_tpp_splbld01_s1LG.vfx")));
+                bossQuiet2Param.vfxFiles.Insert("BloodL", new FilePtr(new Path("/Assets/tpp/effect/vfx_data/blood/fx_tpp_splbld03_s1LG.vfx")));
+                bossQuiet2Param.vfxFiles.Insert("WarpEnd", new FilePtr(new Path("/Assets/tpp/effect/vfx_data/chara/fx_tpp_chrwmuwrp02_s1.vfx")));
+                bossQuiet2Param.vfxFiles.Insert("Dead", new FilePtr(new Path("/Assets/tpp/effect/vfx_data/blood/fx_tpp_splbldwmu02_s1.vfx")));
+                bossQuiet2Param.vfxFiles.Insert("BulletLine", new FilePtr(new Path("/Assets/tpp/effect/vfx_data/weapon/fx_tpp_wepbltblr01_s0LG.vfx")));
+                bossQuiet2Param.vfxFiles.Insert("WeaponGenerate", new FilePtr(new Path(""))); // Empty
+                bossQuiet2Param.vfxFiles.Insert("BloodSplash", new FilePtr(new Path(""))); // Empty
+                bossQuiet2Param.vfxFiles.Insert("JumpStart", new FilePtr(new Path("/Assets/tpp/effect/vfx_data/chara/fx_tpp_chrquiwrp01_s1.vfx")));
+                bossQuiet2Param.vfxFiles.Insert("SprintWater", new FilePtr(new Path("/Assets/tpp/effect/vfx_data/chara/fx_tpp_chrquifotwtr01_m1.vfx")));
+                bossQuiet2Param.vfxFiles.Insert("MacheteCounterHit", new FilePtr(new Path(""))); // Empty
+            }
+            else if (typeName == "TppHostage2" && param is TppHostage2Parameter hostage2Param)
+            {
+                switch (selectedFaction)
+                {
+                    case "Soviet Prisoner (Male)":
+                        hostage2Param.partsFile = new FilePtr(new Path("/Assets/tpp/parts/chara/prs/prs2_main0_def_v00.parts"));
+                        break;
+                    case "Soviet Prisoner (Female)":
+                        hostage2Param.partsFile = new FilePtr(new Path("/Assets/tpp/parts/chara/prs/prs3_main0_def_v00.parts"));
+                        break;
+                    case "Africa Prisoner (Male)":
+                        hostage2Param.partsFile = new FilePtr(new Path("/Assets/tpp/parts/chara/prs/prs5_main0_def_v00.parts"));
+                        break;
+                    case "Africa Prisoner (Female)":
+                        hostage2Param.partsFile = new FilePtr(new Path("/Assets/tpp/parts/chara/prs/prs6_main0_def_v00.parts"));
+                        break;
+                    case "DD Prisoner":
+                        hostage2Param.partsFile = new FilePtr(new Path("/Assets/tpp/parts/chara/prs/pdd5_main0_def_v00.parts"));
+                        break;
+                    
+                }
+                hostage2Param.motionGraphFile = new FilePtr(new Path("/Assets/tpp/motion/motion_graph/hostage2/Hostage2_layers.mog"));
+                hostage2Param.mtarFile = new FilePtr(new Path("/Assets/tpp/motion/mtar/hostage2/Hostage2_layers.mtar"));
+                hostage2Param.extensionMtarFile = new FilePtr(new Path("")); // Empty as per XML
+
+                hostage2Param.vfxFiles.Insert("Blood0", new FilePtr(new Path("/Assets/tpp/effect/vfx_data/blood/fx_tpp_splbld01_s1LG.vfx")));
+                hostage2Param.vfxFiles.Insert("Blood1", new FilePtr(new Path("/Assets/tpp/effect/vfx_data/blood/fx_tpp_splbld03_s1LG.vfx")));
+                hostage2Param.vfxFiles.Insert("Blood2", new FilePtr(new Path("/Assets/tpp/effect/vfx_data/blood/fx_tpp_splbld06_s1.vfx")));
+            }
+            else if (typeName == "TppSoldier2" && param is TppSoldier2Parameter soldierParam)
+            {
+                switch (selectedFaction)
+                {
+                    case "Soviet":soldierParam.partsFile = new FilePtr(new Path("/Assets/tpp/parts/chara/svs/svs0_main0_def_v00.parts"));
+                        break;
+                    case "PF":soldierParam.partsFile = new FilePtr(new Path("/Assets/tpp/parts/chara/pfs/pfs0_main0_def_v00.parts"));
+                        break;
+                    case "XOF":soldierParam.partsFile = new FilePtr(new Path("/Assets/tpp/parts/chara/wss/wss4_main0_def_v00.parts"));
+                        break;
+                    case "Fatigue - Drab (Male)":soldierParam.partsFile = new FilePtr(new Path("/Assets/tpp/parts/chara/dds/dds3_main0_def_v00.parts"));
+                        break;
+                    case "Fatigue - Drab (Female)":soldierParam.partsFile = new FilePtr(new Path("/Assets/tpp/parts/chara/dds/dds8_main0_def_v00.parts"));
+                        break;
+                    case "Fatigue - Tiger (Male)":soldierParam.partsFile = new FilePtr(new Path("/Assets/tpp/parts/chara/dds/dds5_enem0_def_v00.parts"));
+                        break;
+                    case "Fatigue - Tiger (Female)":soldierParam.partsFile = new FilePtr(new Path("/Assets/tpp/parts/chara/dds/dds6_enef0_def_v00.parts"));
+                        break;
+                    case "Sneaking Suit (Male)":soldierParam.partsFile = new FilePtr(new Path("/Assets/tpp/parts/chara/sna/sna4_enem0_def_v00.parts"));
+                        break;
+                    case "Sneaking Suit (Female)":soldierParam.partsFile = new FilePtr(new Path("/Assets/tpp/parts/chara/sna/sna4_enef0_def_v00.parts"));
+                        break;
+                    case "Battle Dress (Male)":soldierParam.partsFile = new FilePtr(new Path("/Assets/tpp/parts/chara/sna/sna5_enem0_def_v00.parts"));
+                        break;
+                    case "Battle Dress (Female)":soldierParam.partsFile = new FilePtr(new Path("/Assets/tpp/parts/chara/sna/sna5_enef0_def_v00.parts"));
+                        break;
+                }
+                soldierParam.vfxFiles.Insert("Blood0", new FilePtr(new Path("/Assets/tpp/effect/vfx_data/blood/fx_tpp_splbld01_s1LG.vfx")));
+                soldierParam.vfxFiles.Insert("Blood1", new FilePtr(new Path("/Assets/tpp/effect/vfx_data/blood/fx_tpp_splbld03_s1LG.vfx")));
+                soldierParam.vfxFiles.Insert("Blood2", new FilePtr(new Path("/Assets/tpp/effect/vfx_data/blood/fx_tpp_splbld06_s1.vfx")));
             }
         }
     }
