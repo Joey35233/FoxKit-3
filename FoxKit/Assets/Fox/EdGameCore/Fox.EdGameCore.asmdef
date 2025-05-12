@@ -2,10 +2,15 @@
     "name": "Fox.EdGameCore",
     "rootNamespace": "",
     "references": [
+        "GUID:81cb099f52ec3a546b9ed24e88277dbb",
+        "GUID:db3d8564ad49c9943994cfc411ae1224",
+        "GUID:6215282ee75f28a44abd0d6e20f2a4a5",
         "GUID:3e6e7090655bd8349aace8bb0ba74d58",
+        "GUID:fb29eb41f6444e24e807a401c751ea0e",
+        "GUID:46163a9f248e4dc49aa56eab99ef988e",
+        "GUID:9bb4367371efc0e4e8f5074a8ef9a451",
         "GUID:5b8f955bd1f276f4e8d2dad834a3fa2b",
-        "GUID:d5958904b6c15a644a73c3942ee7f327",
-        "GUID:6215282ee75f28a44abd0d6e20f2a4a5"
+        "GUID:319d04c865514f77b381f414d42c4e48"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
