@@ -15,7 +15,7 @@ namespace Tpp.EdGameCore
         private PopupField<string> gameObjectTypeDropdown;
         private PopupField<string> presetPopup;
 
-        private TextField defaultNameField;
+        // private TextField defaultNameField;
         // private Int32Field groupIdField;
         // private Int32Field totalCountField;
         // private Int32Field realizedCountField;
@@ -39,14 +39,14 @@ namespace Tpp.EdGameCore
             presetPopup = new PopupField<string>("Preset", DefaultPresetList, 0);
             presetPopup.style.display = DisplayStyle.None;
 
-            defaultNameField = new TextField("GameObject Name");
+            // defaultNameField = new TextField("GameObject Name");
             // groupIdField = new Int32Field("GroupId");
             // totalCountField = new Int32Field("Total Count");
             // realizedCountField = new Int32Field("Realized Count");
 
             rootVisualElement.Add(gameObjectTypeDropdown);
             rootVisualElement.Add(presetPopup);
-            rootVisualElement.Add(defaultNameField);
+            // rootVisualElement.Add(defaultNameField);
             // rootVisualElement.Add(groupIdField);
             // rootVisualElement.Add(totalCountField);
             // rootVisualElement.Add(realizedCountField);
@@ -78,7 +78,7 @@ namespace Tpp.EdGameCore
             if (!hasInfo)
                 return;
             
-            defaultNameField.value = info.DefaultName;
+            // defaultNameField.value = info.DefaultName;
             // groupIdField.value = (int)info.GroupId;
             // totalCountField.value = (int)info.TotalCount;
             // realizedCountField.value = (int)info.RealizedCount;
@@ -110,37 +110,40 @@ namespace Tpp.EdGameCore
             if (!hasInfo)
                 return;
 
-            // Create new Fox GameObject
+            // Create/setup new Fox GameObject
             List<Fox.GameCore.GameObject> gameObjects = new List<Fox.GameCore.GameObject>();
             Fox.GameCore.GameObject[] existingGameObjects = FindObjectsOfType<Fox.GameCore.GameObject>(true);
 
-            Fox.GameCore.GameObject targetGameObject = null;
-            foreach (var gameObject in existingGameObjects)
-                if (gameObject.typeName == selectedType && gameObject.gameObject.scene == scene)
-                    targetGameObject = gameObject;
+            Fox.GameCore.GameObject gameObject = null;
+            foreach (var existingObject in existingGameObjects)
+                if (existingObject.typeName == selectedType && existingObject.gameObject.scene == scene)
+                    gameObject = existingObject;
 
-            if (targetGameObject == null)
+            if (gameObject == null)
             {
-                targetGameObject = new UnityEngine.GameObject(defaultNameField.value).AddComponent<Fox.GameCore.GameObject>();
+                gameObject = new UnityEngine.GameObject().AddComponent<Fox.GameCore.GameObject>();
                 //SceneManager.MoveGameObjectToScene(obj, scene);
             }
-            
-            // Reset children
-            while (targetGameObject.transform.childCount > 0)
-                DestroyImmediate(targetGameObject.transform.GetChild(0).gameObject);
+            else
+            {
+                // Reset children
+                while (gameObject.transform.childCount > 0)
+                    DestroyImmediate(gameObject.transform.GetChild(0).gameObject);
+            }
             
             // Initialize
-            targetGameObject.typeName = selectedType;
+            gameObject.name = $"{selectedType}GameObject";
+            gameObject.typeName = selectedType;
             // targetGameObject.groupId = info.GroupId;
             // targetGameObject.totalCount = info.TotalCount;
             // targetGameObject.realizedCount = info.RealizedCount;
 
             DataElement parameterBase = info.CreateParameterFunc(selectedPreset);
             parameterBase.name = "Parameters";
-            targetGameObject.parameters = parameterBase;
-            parameterBase.SetOwner(targetGameObject);
+            gameObject.parameters = parameterBase;
+            parameterBase.SetOwner(gameObject);
 
-            Selection.activeGameObject = targetGameObject.gameObject;
+            Selection.activeGameObject = gameObject.gameObject;
         }
     }
 }

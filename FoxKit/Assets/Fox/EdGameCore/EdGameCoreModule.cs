@@ -9,7 +9,6 @@ namespace Fox.EdGameCore
 {
     public struct GameObjectEditorInfo
     {
-        public string DefaultName;
         public List<string> Presets;
         public Func<string, DataElement> CreateParameterFunc;
     }

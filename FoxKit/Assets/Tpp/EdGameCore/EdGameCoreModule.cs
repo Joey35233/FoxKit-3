@@ -12,7 +12,6 @@ namespace Tpp.EdGameCore
         {
             Fox.EdGameCore.EdGameCoreModule.RegisterGameObjectEditorInfo("TppBear", new Fox.EdGameCore.GameObjectEditorInfo
             { 
-                DefaultName = "BearGameObject", 
                 CreateParameterFunc = (preset) =>
                 {
                     var param = new UnityEngine.GameObject().AddComponent<Tpp.GameCore.TppBearParameter>();
@@ -28,7 +27,6 @@ namespace Tpp.EdGameCore
             });
             Fox.EdGameCore.EdGameCoreModule.RegisterGameObjectEditorInfo("TppBuddyDog2", new Fox.EdGameCore.GameObjectEditorInfo
             { 
-                DefaultName = "BuddyDogGameObject", 
                 CreateParameterFunc = (preset) =>
                 {
                     var param = new UnityEngine.GameObject().AddComponent<Tpp.GameCore.TppBuddyDog2Parameter>();
@@ -44,7 +42,6 @@ namespace Tpp.EdGameCore
             });
             Fox.EdGameCore.EdGameCoreModule.RegisterGameObjectEditorInfo("TppBuddyPuppy", new Fox.EdGameCore.GameObjectEditorInfo
             { 
-                DefaultName = "BuddyPuppyGameObject", 
                 CreateParameterFunc = (preset) =>
                 {
                     var param = new UnityEngine.GameObject().AddComponent<Tpp.GameCore.TppBuddyPuppyParameter>();
@@ -63,7 +60,6 @@ namespace Tpp.EdGameCore
             });
             Fox.EdGameCore.EdGameCoreModule.RegisterGameObjectEditorInfo("TppBuddyQuiet2", new Fox.EdGameCore.GameObjectEditorInfo
             { 
-                DefaultName = "BuddyQuietGameObject", 
                 Presets = new List<string>
                 {
                     "Naked", 
@@ -117,7 +113,6 @@ namespace Tpp.EdGameCore
             });
             Fox.EdGameCore.EdGameCoreModule.RegisterGameObjectEditorInfo("TppBossQuiet2", new Fox.EdGameCore.GameObjectEditorInfo
             { 
-                DefaultName = "BossQuietGameObject", 
                 Presets = new List<string> 
                 { 
                     "Quiet",
@@ -164,7 +159,6 @@ namespace Tpp.EdGameCore
             });
             Fox.EdGameCore.EdGameCoreModule.RegisterGameObjectEditorInfo("TppHostage2", new Fox.EdGameCore.GameObjectEditorInfo
             { 
-                DefaultName = "Hostage2GameObject2", 
                 Presets = new List<string>
                 {
                     "Soviet Prisoner (Male)", 
@@ -209,14 +203,17 @@ namespace Tpp.EdGameCore
             });
             Fox.EdGameCore.EdGameCoreModule.RegisterGameObjectEditorInfo("TppSoldier2", new Fox.EdGameCore.GameObjectEditorInfo
             { 
-                DefaultName = "Soldier2GameObject", 
                 Presets = new List<string>
                 {
                     "Soviet", "PF", "XOF",
-                    "Fatigue - Drab (Male)", "Fatigue - Drab (Female)",
-                    "Fatigue - Tiger (Male)", "Fatigue - Tiger (Female)",
-                    "Sneaking Suit (Male)", "Sneaking Suit (Female)",
-                    "Battle Dress (Male)", "Battle Dress (Female)"
+                    "Fatigue - Drab (Male)", 
+                    "Fatigue - Drab (Female)",
+                    "Fatigue - Tiger (Male)", 
+                    "Fatigue - Tiger (Female)",
+                    "Sneaking Suit (Male)", 
+                    "Sneaking Suit (Female)",
+                    "Battle Dress (Male)", 
+                    "Battle Dress (Female)"
                 },
                 CreateParameterFunc = (preset) =>
                 {
