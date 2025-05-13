@@ -61,6 +61,20 @@ namespace Tpp.EdGameCore
                 selectedPreset = evt.newValue;
             });
 
+            realizedCountField.RegisterValueChangedCallback(evt =>
+            {
+                if (evt.newValue > totalCountField.value)
+                {
+                    realizedCountField.SetValueWithoutNotify(totalCountField.value);
+                    Debug.LogWarning("Realized count cannot be greater than total count."); //Because why would it?
+
+                    //TODO: warn if the Total Count is exceeding the recommened value for said GameObject type?
+                    //this will ensure that the game won't crash on a rideculously high number of Total Count
+                }
+            });
+
+
+
             var createGameObjectButton = new Button(OnCreateButtonClicked)
             {
                 text = "Create GameObject"
