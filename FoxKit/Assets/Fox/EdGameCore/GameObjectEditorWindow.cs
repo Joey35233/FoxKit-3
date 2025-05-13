@@ -15,13 +15,11 @@ namespace Tpp.EdGameCore
         private PopupField<string> gameObjectTypeDropdown;
         private PopupField<string> presetPopup;
 
-        // private TextField defaultNameField;
-        // private Int32Field groupIdField;
-        // private Int32Field totalCountField;
-        // private Int32Field realizedCountField;
-
         private string selectedType = "TppBear";
         private string selectedPreset = null;
+        private Int32Field groupIdField;
+        private Int32Field totalCountField;
+        private Int32Field realizedCountField;
 
         private static readonly List<string> DefaultPresetList = new();
 
@@ -39,17 +37,16 @@ namespace Tpp.EdGameCore
             presetPopup = new PopupField<string>("Preset", DefaultPresetList, 0);
             presetPopup.style.display = DisplayStyle.None;
 
-            // defaultNameField = new TextField("GameObject Name");
-            // groupIdField = new Int32Field("GroupId");
-            // totalCountField = new Int32Field("Total Count");
-            // realizedCountField = new Int32Field("Realized Count");
+            groupIdField = new Int32Field("GroupId");
+            totalCountField = new Int32Field("Total Count");
+            realizedCountField = new Int32Field("Realized Count");
 
             rootVisualElement.Add(gameObjectTypeDropdown);
             rootVisualElement.Add(presetPopup);
-            // rootVisualElement.Add(defaultNameField);
-            // rootVisualElement.Add(groupIdField);
-            // rootVisualElement.Add(totalCountField);
-            // rootVisualElement.Add(realizedCountField);
+
+            rootVisualElement.Add(groupIdField);
+            rootVisualElement.Add(totalCountField);
+            rootVisualElement.Add(realizedCountField);
 
             UpdateFields();
 
@@ -76,12 +73,13 @@ namespace Tpp.EdGameCore
         {
             bool hasInfo = Fox.EdGameCore.EdGameCoreModule.TryGetEditorInfoForGameObjectType(selectedType, out GameObjectEditorInfo info);
             if (!hasInfo)
+            {
                 return;
-            
-            // defaultNameField.value = info.DefaultName;
-            // groupIdField.value = (int)info.GroupId;
-            // totalCountField.value = (int)info.TotalCount;
-            // realizedCountField.value = (int)info.RealizedCount;
+            }
+
+            groupIdField.value = info.groupId;
+            totalCountField.value = info.totalCount;
+            realizedCountField.value = info.realizedCount;
 
             List<string> presets = info.Presets;
             if (presets != null)
@@ -134,9 +132,9 @@ namespace Tpp.EdGameCore
             // Initialize
             gameObject.name = $"{selectedType}GameObject";
             gameObject.typeName = selectedType;
-            // targetGameObject.groupId = info.GroupId;
-            // targetGameObject.totalCount = info.TotalCount;
-            // targetGameObject.realizedCount = info.RealizedCount;
+            gameObject.groupId = (uint)groupIdField.value;
+            gameObject.totalCount = (uint)totalCountField.value;
+            gameObject.realizedCount = (uint)realizedCountField.value;
 
             DataElement parameterBase = info.CreateParameterFunc(selectedPreset);
             parameterBase.name = "Parameters";

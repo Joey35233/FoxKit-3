@@ -10,6 +10,11 @@ namespace Fox.EdGameCore
     public struct GameObjectEditorInfo
     {
         public List<string> Presets;
+
+        public int groupId;
+        public int totalCount;
+        public int realizedCount;
+
         public Func<string, DataElement> CreateParameterFunc;
     }
         
