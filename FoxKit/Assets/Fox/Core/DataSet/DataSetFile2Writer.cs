@@ -113,7 +113,7 @@ namespace Fox.Core
 
         private List<Entity> GetEntitiesToExport(UnityEngine.SceneManagement.Scene sceneToExport, out CreateDataSetResult result)
         {
-            var entities = (from Entity entityComponent in GameObject.FindObjectsOfType<Entity>()
+            var entities = (from Entity entityComponent in UnityEngine.Object.FindObjectsByType<Entity>(FindObjectsSortMode.None)
                             where entityComponent.ShouldWriteToFox2() && entityComponent.gameObject.scene == sceneToExport
                             select entityComponent).ToList();
 
