@@ -29,11 +29,13 @@ namespace Tpp.EdGameCore
                     return param;
                 },
             });
+            
             Fox.EdGameCore.EdGameCoreModule.RegisterGameObjectEditorInfo("TppBuddyDog2", new Fox.EdGameCore.GameObjectEditorInfo
             {
                 groupId = 0,
                 totalCount = 1,
                 realizedCount = 1,
+                
                 CreateParameterFunc = (preset) =>
                 {
                     var param = new UnityEngine.GameObject().AddComponent<Tpp.GameCore.TppBuddyDog2Parameter>();
@@ -47,11 +49,13 @@ namespace Tpp.EdGameCore
                     return param;
                 },
             });
+            
             Fox.EdGameCore.EdGameCoreModule.RegisterGameObjectEditorInfo("TppBuddyPuppy", new Fox.EdGameCore.GameObjectEditorInfo
             {
                 groupId = 0,
                 totalCount = 1,
                 realizedCount = 1,
+                
                 CreateParameterFunc = (preset) =>
                 {
                     var param = new UnityEngine.GameObject().AddComponent<Tpp.GameCore.TppBuddyPuppyParameter>();
@@ -68,11 +72,13 @@ namespace Tpp.EdGameCore
                     return param;
                 },
             });
+            
             Fox.EdGameCore.EdGameCoreModule.RegisterGameObjectEditorInfo("TppBuddyQuiet2", new Fox.EdGameCore.GameObjectEditorInfo
             {
                 groupId = 0,
                 totalCount = 1,
                 realizedCount = 1,
+                
                 Presets = new List<string>
                 {
                     "Naked", 
@@ -124,11 +130,13 @@ namespace Tpp.EdGameCore
                     return param;
                 },
             });
+            
             Fox.EdGameCore.EdGameCoreModule.RegisterGameObjectEditorInfo("TppBossQuiet2", new Fox.EdGameCore.GameObjectEditorInfo
             {
                 groupId = 0,
                 totalCount = 1,
                 realizedCount = 1,
+                
                 Presets = new List<string> 
                 { 
                     "Quiet",
@@ -173,11 +181,13 @@ namespace Tpp.EdGameCore
                     return param;
                 },
             });
+            
             Fox.EdGameCore.EdGameCoreModule.RegisterGameObjectEditorInfo("TppHostage2", new Fox.EdGameCore.GameObjectEditorInfo
             {
                 groupId = 0,
                 totalCount = 4,
                 realizedCount = 4,
+                
                 Presets = new List<string>
                 {
                     "Soviet Prisoner (Male)", 
@@ -220,11 +230,13 @@ namespace Tpp.EdGameCore
                     return param;
                 },
             });
+            
             Fox.EdGameCore.EdGameCoreModule.RegisterGameObjectEditorInfo("TppSoldier2", new Fox.EdGameCore.GameObjectEditorInfo
             {
                 groupId = 0,
                 totalCount = 160,
                 realizedCount = 12,
+                
                 Presets = new List<string>
                 {
                     "Soviet", "PF", "XOF",

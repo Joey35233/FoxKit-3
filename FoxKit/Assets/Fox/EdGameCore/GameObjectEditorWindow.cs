@@ -15,11 +15,11 @@ namespace Tpp.EdGameCore
         private PopupField<string> gameObjectTypeDropdown;
         private PopupField<string> presetPopup;
 
-        private string selectedType = "TppBear";
+        private string selectedType = null;
         private string selectedPreset = null;
-        private Int32Field groupIdField;
-        private Int32Field totalCountField;
-        private Int32Field realizedCountField;
+        private UInt32Field groupIdField;
+        private UInt32Field totalCountField;
+        private UInt32Field realizedCountField;
 
         private static readonly List<string> DefaultPresetList = new();
 
@@ -33,13 +33,19 @@ namespace Tpp.EdGameCore
 
         public void CreateGUI()
         {
-            gameObjectTypeDropdown = new PopupField<string>("GameObject Type", Fox.EdGameCore.EdGameCoreModule.GameObjectTypeList, 0);
+            List<string> typeList = Fox.EdGameCore.EdGameCoreModule.GameObjectTypeList;
+            if (typeList == null || typeList.Count < 1)
+                return;
+            
+            selectedType = typeList[0];
+            
+            gameObjectTypeDropdown = new PopupField<string>("GameObject Type", typeList, 0);
             presetPopup = new PopupField<string>("Preset", DefaultPresetList, 0);
             presetPopup.style.display = DisplayStyle.None;
 
-            groupIdField = new Int32Field("GroupId");
-            totalCountField = new Int32Field("Total Count");
-            realizedCountField = new Int32Field("Realized Count");
+            groupIdField = new UInt32Field(nameof(Fox.GameCore.GameObject.groupId));
+            totalCountField = new UInt32Field(nameof(Fox.GameCore.GameObject.totalCount));
+            realizedCountField = new UInt32Field(nameof(Fox.GameCore.GameObject.realizedCount));
 
             rootVisualElement.Add(gameObjectTypeDropdown);
             rootVisualElement.Add(presetPopup);
@@ -61,19 +67,17 @@ namespace Tpp.EdGameCore
                 selectedPreset = evt.newValue;
             });
 
-            realizedCountField.RegisterValueChangedCallback(evt =>
+            realizedCountField.RegisterValueChangedCallback<uint>(evt =>
             {
                 if (evt.newValue > totalCountField.value)
                 {
                     realizedCountField.SetValueWithoutNotify(totalCountField.value);
                     Debug.LogWarning("Realized count cannot be greater than total count."); //Because why would it?
 
-                    //TODO: warn if the Total Count is exceeding the recommened value for said GameObject type?
-                    //this will ensure that the game won't crash on a rideculously high number of Total Count
+                    // TODO: Warn if the Total Count is exceeding the recommended value for said GameObject type?
+                    // This will ensure that the game won't crash for a ridiculously high value of totalCount
                 }
             });
-
-
 
             var createGameObjectButton = new Button(OnCreateButtonClicked)
             {
@@ -123,7 +127,6 @@ namespace Tpp.EdGameCore
                 return;
 
             // Create/setup new Fox GameObject
-            List<Fox.GameCore.GameObject> gameObjects = new List<Fox.GameCore.GameObject>();
             Fox.GameCore.GameObject[] existingGameObjects = FindObjectsOfType<Fox.GameCore.GameObject>(true);
 
             Fox.GameCore.GameObject gameObject = null;
@@ -146,9 +149,9 @@ namespace Tpp.EdGameCore
             // Initialize
             gameObject.name = $"{selectedType}GameObject";
             gameObject.typeName = selectedType;
-            gameObject.groupId = (uint)groupIdField.value;
-            gameObject.totalCount = (uint)totalCountField.value;
-            gameObject.realizedCount = (uint)realizedCountField.value;
+            gameObject.groupId = groupIdField.value;
+            gameObject.totalCount = totalCountField.value;
+            gameObject.realizedCount = realizedCountField.value;
 
             DataElement parameterBase = info.CreateParameterFunc(selectedPreset);
             parameterBase.name = "Parameters";
