@@ -15,7 +15,7 @@ namespace Tpp.EdGameCore
         private PopupField<string> gameObjectTypeDropdown;
         private PopupField<string> presetPopup;
 
-        private string selectedType = "TppBear";
+        private string selectedType = null;
         private string selectedPreset = null;
         private UInt32Field groupIdField;
         private UInt32Field totalCountField;
@@ -33,13 +33,19 @@ namespace Tpp.EdGameCore
 
         public void CreateGUI()
         {
-            gameObjectTypeDropdown = new PopupField<string>("GameObject Type", Fox.EdGameCore.EdGameCoreModule.GameObjectTypeList, 0);
+            List<string> typeList = Fox.EdGameCore.EdGameCoreModule.GameObjectTypeList;
+            if (typeList == null || typeList.Count < 1)
+                return;
+            
+            selectedType = typeList[0];
+            
+            gameObjectTypeDropdown = new PopupField<string>("GameObject Type", typeList, 0);
             presetPopup = new PopupField<string>("Preset", DefaultPresetList, 0);
             presetPopup.style.display = DisplayStyle.None;
 
-            groupIdField = new UInt32Field("GroupId");
-            totalCountField = new UInt32Field("Total Count");
-            realizedCountField = new UInt32Field("Realized Count");
+            groupIdField = new UInt32Field(nameof(Fox.GameCore.GameObject.groupId));
+            totalCountField = new UInt32Field(nameof(Fox.GameCore.GameObject.totalCount));
+            realizedCountField = new UInt32Field(nameof(Fox.GameCore.GameObject.realizedCount));
 
             rootVisualElement.Add(gameObjectTypeDropdown);
             rootVisualElement.Add(presetPopup);
@@ -68,8 +74,8 @@ namespace Tpp.EdGameCore
                     realizedCountField.SetValueWithoutNotify(totalCountField.value);
                     Debug.LogWarning("Realized count cannot be greater than total count."); //Because why would it?
 
-                    //TODO: warn if the Total Count is exceeding the recommened value for said GameObject type?
-                    //this will ensure that the game won't crash on a rideculously high number of Total Count
+                    // TODO: Warn if the Total Count is exceeding the recommended value for said GameObject type?
+                    // This will ensure that the game won't crash for a ridiculously high value of totalCount
                 }
             });
 
@@ -121,7 +127,6 @@ namespace Tpp.EdGameCore
                 return;
 
             // Create/setup new Fox GameObject
-            List<Fox.GameCore.GameObject> gameObjects = new List<Fox.GameCore.GameObject>();
             Fox.GameCore.GameObject[] existingGameObjects = FindObjectsOfType<Fox.GameCore.GameObject>(true);
 
             Fox.GameCore.GameObject gameObject = null;
