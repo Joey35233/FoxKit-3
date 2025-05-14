@@ -16,8 +16,8 @@ namespace Fox.EdCore
 
         protected override int StringToValue(string str)
         {
-            _ = ExpressionEvaluator.Evaluate(str, out long v);
-            return NumericPropertyFields.ClampToInt32(v);
+            bool success = NumericPropertyFields.TryConvertStringToInt(str, out int v);
+            return success ? v : rawValue;
         }
 
         public static new readonly string ussClassName = "fox-int32-field";
@@ -93,11 +93,7 @@ namespace Fox.EdCore
 
             protected override string ValueToString(int v) => v.ToString(formatString);
 
-            protected override int StringToValue(string str)
-            {
-                _ = ExpressionEvaluator.Evaluate(str, out long v);
-                return NumericPropertyFields.ClampToInt32(v);
-            }
+            protected override int StringToValue(string str) => parentIntegerField.StringToValue(str);
         }
         
         public void SetLabel(string label) => this.label = label;

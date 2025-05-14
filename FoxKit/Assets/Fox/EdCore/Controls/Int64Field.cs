@@ -16,8 +16,8 @@ namespace Fox.EdCore
 
         protected override long StringToValue(string str)
         {
-            _ = ExpressionEvaluator.Evaluate(str, out System.Numerics.BigInteger v);
-            return NumericPropertyFields.ClampToInt64(v);
+            bool success = NumericPropertyFields.TryConvertStringToLong(str, out long v);
+            return success ? v : rawValue;
         }
 
         public static new readonly string ussClassName = "fox-int64-field";
@@ -70,7 +70,7 @@ namespace Fox.EdCore
 
             internal Int64Input()
             {
-                formatString = "#################0";
+                formatString = NumericPropertyFields.IntegerFieldFormatString;
             }
 
             protected override string allowedCharacters => NumericPropertyFields.IntegerExpressionCharacterWhitelist;
@@ -79,25 +79,47 @@ namespace Fox.EdCore
             {
                 double sensitivity = NumericFieldDraggerUtility.CalculateIntDragSensitivity(startValue);
                 float acceleration = NumericFieldDraggerUtility.Acceleration(speed == DeltaSpeed.Fast, speed == DeltaSpeed.Slow);
-                System.Numerics.BigInteger v = StringToValue(text);
-                v += (System.Numerics.BigInteger)System.Math.Round(NumericFieldDraggerUtility.NiceDelta(delta, acceleration) * sensitivity);
+                
+                long v = StringToValue(text);
+                
+                long niceDelta = (long)System.Math.Round(NumericFieldDraggerUtility.NiceDelta(delta, acceleration) * sensitivity);
+                
+                v = ClampMinMaxLongValue(niceDelta, v);
+                
                 if (parentIntegerField.isDelayed)
                 {
-                    text = ValueToString(NumericPropertyFields.ClampToInt64(v));
+                    text = ValueToString(v);
                 }
                 else
                 {
-                    parentIntegerField.value = NumericPropertyFields.ClampToInt64(v);
+                    parentIntegerField.value = v;
                 }
+            }
+            
+            private long ClampMinMaxLongValue(long niceDelta, long value)
+            {
+                var niceDeltaAbs = System.Math.Abs(niceDelta);
+                if (niceDelta > 0)
+                {
+                    if (value > 0 && niceDeltaAbs > long.MaxValue - value)
+                    {
+                        return long.MaxValue;
+                    }
+
+                    return value + niceDelta;
+                }
+
+                if (value < 0 && value < long.MinValue + niceDeltaAbs)
+                {
+                    return long.MinValue;
+                }
+
+                return value - niceDeltaAbs;
             }
 
             protected override string ValueToString(long v) => v.ToString(formatString);
 
-            protected override long StringToValue(string str)
-            {
-                _ = ExpressionEvaluator.Evaluate(str, out System.Numerics.BigInteger v);
-                return NumericPropertyFields.ClampToInt64(v);
-            }
+            protected override long StringToValue(string str) => parentIntegerField.StringToValue(str);
         }
         
         public void SetLabel(string label) => this.label = label;

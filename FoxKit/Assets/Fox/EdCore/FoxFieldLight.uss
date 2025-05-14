@@ -1,7 +1,6 @@
 .unity-collection-view__item > .unity-base-field__label
 {
     -unity-font: url("Fonts/CascadiaCode-SemiLight.ttf");
-    -unity-font-definition: none;
     min-width: 40px;
     flex-basis: 40px;
 }
@@ -92,7 +91,7 @@
     height: var(--unity-metrics-inspector_titlebar-height);
     flex-grow: 1;
     background-color: var(--unity-colors-toolbar_button-background-focus);
-    align-self: flex-start;
+    align-self: stretch;
     margin-top: 0;
     margin-bottom: 0;
     margin-left: 0;
