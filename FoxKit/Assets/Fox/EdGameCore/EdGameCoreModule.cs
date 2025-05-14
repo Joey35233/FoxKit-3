@@ -11,9 +11,9 @@ namespace Fox.EdGameCore
     {
         public List<string> Presets;
 
-        public int groupId;
-        public int totalCount;
-        public int realizedCount;
+        public uint groupId;
+        public uint totalCount;
+        public uint realizedCount;
 
         public Func<string, DataElement> CreateParameterFunc;
     }

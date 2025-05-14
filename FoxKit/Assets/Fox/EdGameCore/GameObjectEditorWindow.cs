@@ -17,9 +17,9 @@ namespace Tpp.EdGameCore
 
         private string selectedType = "TppBear";
         private string selectedPreset = null;
-        private Int32Field groupIdField;
-        private Int32Field totalCountField;
-        private Int32Field realizedCountField;
+        private UInt32Field groupIdField;
+        private UInt32Field totalCountField;
+        private UInt32Field realizedCountField;
 
         private static readonly List<string> DefaultPresetList = new();
 
@@ -37,9 +37,9 @@ namespace Tpp.EdGameCore
             presetPopup = new PopupField<string>("Preset", DefaultPresetList, 0);
             presetPopup.style.display = DisplayStyle.None;
 
-            groupIdField = new Int32Field("GroupId");
-            totalCountField = new Int32Field("Total Count");
-            realizedCountField = new Int32Field("Realized Count");
+            groupIdField = new UInt32Field("GroupId");
+            totalCountField = new UInt32Field("Total Count");
+            realizedCountField = new UInt32Field("Realized Count");
 
             rootVisualElement.Add(gameObjectTypeDropdown);
             rootVisualElement.Add(presetPopup);
@@ -61,7 +61,7 @@ namespace Tpp.EdGameCore
                 selectedPreset = evt.newValue;
             });
 
-            realizedCountField.RegisterValueChangedCallback(evt =>
+            realizedCountField.RegisterValueChangedCallback<uint>(evt =>
             {
                 if (evt.newValue > totalCountField.value)
                 {
@@ -72,8 +72,6 @@ namespace Tpp.EdGameCore
                     //this will ensure that the game won't crash on a rideculously high number of Total Count
                 }
             });
-
-
 
             var createGameObjectButton = new Button(OnCreateButtonClicked)
             {
@@ -146,9 +144,9 @@ namespace Tpp.EdGameCore
             // Initialize
             gameObject.name = $"{selectedType}GameObject";
             gameObject.typeName = selectedType;
-            gameObject.groupId = (uint)groupIdField.value;
-            gameObject.totalCount = (uint)totalCountField.value;
-            gameObject.realizedCount = (uint)realizedCountField.value;
+            gameObject.groupId = groupIdField.value;
+            gameObject.totalCount = totalCountField.value;
+            gameObject.realizedCount = realizedCountField.value;
 
             DataElement parameterBase = info.CreateParameterFunc(selectedPreset);
             parameterBase.name = "Parameters";
