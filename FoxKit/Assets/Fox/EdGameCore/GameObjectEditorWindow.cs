@@ -54,12 +54,12 @@ namespace Tpp.EdGameCore
             rootVisualElement.Add(totalCountField);
             rootVisualElement.Add(realizedCountField);
 
-            UpdateFields();
+            SetGameObjectTypeFields();
 
             gameObjectTypeDropdown.RegisterValueChangedCallback(evt =>
             {
                 selectedType = evt.newValue;
-                UpdateFields();
+                SetGameObjectTypeFields();
             });
 
             presetPopup.RegisterValueChangedCallback(evt =>
@@ -85,9 +85,15 @@ namespace Tpp.EdGameCore
             };
 
             rootVisualElement.Add(createGameObjectButton);
+            var resetButton = new Button(SetGameObjectTypeFields)
+            {
+                text = "Reset"
+            };
+
+            rootVisualElement.Add(resetButton);
         }
 
-        private void UpdateFields()
+        private void SetGameObjectTypeFields()
         {
             bool hasInfo = Fox.EdGameCore.EdGameCoreModule.TryGetEditorInfoForGameObjectType(selectedType, out GameObjectEditorInfo info);
             if (!hasInfo)
