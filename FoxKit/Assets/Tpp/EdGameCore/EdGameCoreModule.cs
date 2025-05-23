@@ -893,7 +893,6 @@ namespace Tpp.EdGameCore
 
                     "Parasite Fog",
                     "Parasite Metal",
-                    "Battle Dress (Female)"
                 },
 
                 CreateParameterFunc = (preset) =>
