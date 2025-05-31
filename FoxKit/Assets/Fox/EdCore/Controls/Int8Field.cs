@@ -15,18 +15,16 @@ namespace Fox.EdCore
             get => base.value;
             set
             {
+                sbyte oldValue = this.value;
                 sbyte newValue = value;
-                int packedNewValue = unchecked(newValue);
-                if (newValue != this.value)
+                if (newValue != oldValue)
                 {
                     if (panel != null)
                     {
-                        int packedOldValue = unchecked(this.value);
-
                         // Sends ChangeEvent<System.SByte> and uses its SetValueWithoutNotify function
                         base.value = newValue;
 
-                        using (var evt = ChangeEvent<int>.GetPooled(packedOldValue, packedNewValue))
+                        using (var evt = ChangeEvent<int>.GetPooled(oldValue, newValue))
                         {
                             evt.target = this;
                             SendEvent(evt);
@@ -41,20 +39,19 @@ namespace Fox.EdCore
         }
         int INotifyValueChanged<int>.value
         {
-            get => unchecked(value);
+            get => value;
             set
             {
-                sbyte newValue = unchecked((sbyte)value);
-                if (newValue != this.value)
+                sbyte oldValue = this.value;
+                sbyte newValue = (sbyte)value;
+                if (newValue != oldValue)
                 {
                     if (panel != null)
                     {
-                        int packedOldValue = unchecked(this.value);
-
                         // Sends ChangeEvent<System.SByte> and uses its SetValueWithoutNotify function
                         base.value = newValue;
 
-                        using (var evt = ChangeEvent<int>.GetPooled(packedOldValue, value))
+                        using (var evt = ChangeEvent<int>.GetPooled(oldValue, newValue))
                         {
                             evt.target = this;
                             SendEvent(evt);
@@ -75,8 +72,8 @@ namespace Fox.EdCore
 
         protected override sbyte StringToValue(string str)
         {
-            _ = ExpressionEvaluator.Evaluate(str, out int v);
-            return NumericPropertyFields.ClampToInt8(v);
+            bool success = NumericPropertyFields.TryConvertStringToInt(str, out int v);
+            return NumericPropertyFields.ClampToInt8(success ? v : rawValue);
         }
 
         public static new readonly string ussClassName = "fox-int8-field";
@@ -129,7 +126,7 @@ namespace Fox.EdCore
 
             internal Int8Input()
             {
-                formatString = "0";
+                formatString = NumericPropertyFields.IntegerFieldFormatString;
             }
 
             protected override string allowedCharacters => NumericPropertyFields.IntegerExpressionCharacterWhitelist;
@@ -152,11 +149,7 @@ namespace Fox.EdCore
 
             protected override string ValueToString(sbyte v) => v.ToString(formatString);
 
-            protected override sbyte StringToValue(string str)
-            {
-                _ = ExpressionEvaluator.Evaluate(str, out int v);
-                return NumericPropertyFields.ClampToInt8(v);
-            }
+            protected override sbyte StringToValue(string str) => parentIntegerField.StringToValue(str);
         }
         
         public void SetLabel(string label) => this.label = label;
