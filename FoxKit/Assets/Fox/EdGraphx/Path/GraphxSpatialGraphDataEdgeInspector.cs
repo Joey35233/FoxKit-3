@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Fox.EdGraphx
 {
     [CustomEditor(typeof(GraphxSpatialGraphDataEdge), editorForChildClasses: true)]
-    public class GraphxSpatialGraphDataEdgeEditor : EntityEditor
+    public class GraphxSpatialGraphDataEdgeInspector : BaseEntityEditor
     {
         private GraphxSpatialGraphDataEdge Edge => (GraphxSpatialGraphDataEdge)target;
 

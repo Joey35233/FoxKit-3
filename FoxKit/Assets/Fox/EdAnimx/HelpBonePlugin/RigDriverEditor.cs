@@ -12,7 +12,7 @@ using Vector3Field = Fox.EdCore.Vector3Field;
 namespace Fox.EdAnimx
 {
     [CustomEditor(typeof(RigDriver))]
-    public class EntityEditor : UnityEditor.Editor
+    public class RigDriverEditor : UnityEditor.Editor
     {
         private static ObjectField CreateTransformField(string name) => new (name) { objectType = typeof(Transform), allowSceneObjects = true };
 

@@ -9,8 +9,8 @@ using FloatField = Fox.EdCore.FloatField;
 
 namespace Fox.EdPh
 {
-    [CustomEntityField]
-    public class PhPrimitiveShapeParamField : EntityField<PhPrimitiveShapeParam>
+    [CustomEntityInspector]
+    public class PhPrimitiveShapeParamField : BaseEntityField<PhPrimitiveShapeParam>
     {
         private static readonly string MessageString;
         

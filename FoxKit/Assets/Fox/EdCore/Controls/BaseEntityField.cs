@@ -11,23 +11,28 @@ namespace Fox.EdCore
 {
     public struct EntityFieldBuildContext
     {
-        public EntityField<Entity> Field;
+        public BaseEntityField<Entity> Field;
         public VisualElement HeaderElement;
         public VisualElement BodyElement;
         public VisualElement FooterElement;
         public SerializedObject Object;
     }
     
-    public class EntityField<T> : BaseField<T>, IEntityField where T : Entity
+    public class BaseEntityField<T> : BaseField<T>, IEntityField where T : Entity
     {
-        public static new readonly string ussClassName = "fox-entity-field";
+        public static new readonly string ussClassName = "fox-entityfield";
         public static new readonly string inputUssClassName = ussClassName + "__input";
+        public static readonly string headerUssClassName = ussClassName + "__header";
+        public static readonly string headerLabelUssClassName = ussClassName + "__header-label";
+        public static readonly string headerLineUssClassName = ussClassName + "__header-line";
+        public static readonly string bodyUssClassName = ussClassName + "__body";
+        public static readonly string footerUssClassName = ussClassName + "__footer";
 
         public VisualElement visualInput { get; }
 
-        public EntityField() : this(new VisualElement()) { }
+        public BaseEntityField() : this(new VisualElement()) { }
 
-        private EntityField(VisualElement visInput)
+        private BaseEntityField(VisualElement visInput)
             : base(null, visInput)
         {
             visualInput = visInput;
@@ -48,7 +53,7 @@ namespace Fox.EdCore
             EntityInfo entityInfoIterator = EntityInfo;
             while (entityInfoIterator != null)
             {
-                CustomEntityFieldDesc? customFieldDesc = CustomEntityFieldManager.Get(entityInfoIterator);
+                CustomEntityFieldDesc? customFieldDesc = EntityEditorManager.Get(entityInfoIterator);
                 
                 SuperclassList.Add((entityInfoIterator, customFieldDesc));
 
@@ -58,7 +63,7 @@ namespace Fox.EdCore
 
         public void Build(SerializedObject serializedObject)
         {
-            EntityFieldBuildContext context = new EntityFieldBuildContext{ Field = this as EntityField<Entity>, BodyElement = visualInput, Object = serializedObject };
+            EntityFieldBuildContext context = new EntityFieldBuildContext{ Field = this as BaseEntityField<Entity>, Object = serializedObject };
             PreBuild(context);
             BuildBodyFromEntity(context);
         }
@@ -68,6 +73,18 @@ namespace Fox.EdCore
             for (int i = SuperclassList.Count - 1; i > -1; i--)
             {
                 (EntityInfo classInfo, CustomEntityFieldDesc? customFieldDesc) = SuperclassList[i];
+                
+                // ----------------
+                // Init context
+                context.HeaderElement = null;
+                context.BodyElement = null;
+                context.FooterElement = null;
+                
+                // ----------------
+                // HEADER
+                VisualElement header = new VisualElement();
+                context.HeaderElement = header;
+                header.AddToClassList(headerUssClassName);
 
                 // ----------------
                 // Draw name of class with underline
@@ -79,7 +96,8 @@ namespace Fox.EdCore
                         fontSize = 16
                     }
                 };
-                visualInput.Add(headerLabel);
+                headerLabel.AddToClassList(headerLabelUssClassName);
+                header.Add(headerLabel);
 
                 var headerLine = new VisualElement
                 {
@@ -92,7 +110,8 @@ namespace Fox.EdCore
                         marginBottom = 4
                     }
                 };
-                visualInput.Add(headerLine);
+                headerLabel.AddToClassList(headerLineUssClassName);
+                header.Add(headerLine);
 
                 // ----------------
                 // Should this class' editor be drawn or is there a higher-level Entity with a custom field that overrides this?
@@ -107,23 +126,27 @@ namespace Fox.EdCore
                     }
                 }
                 if (buildIsOverriddenByMoreSpecificClass)
+                {
+                    visualInput.Add(header);
                     continue;
+                }
                 
                 // ----------------
                 // CUSTOM HEADER
-                VisualElement header = new VisualElement();
-                context.HeaderElement = header;
-                customFieldDesc?.BuildHeader?.Invoke(context);
+                if (customFieldDesc?.BuildHeader is { } buildHeader)
+                {
+                    buildHeader(context);
+                }
                 visualInput.Add(header);
                 
                 // ----------------
-                // CUSTOM BODY
+                // BODY
+                VisualElement body = new VisualElement();
+                body.AddToClassList(bodyUssClassName);
+                context.BodyElement = body;
                 if (customFieldDesc?.BuildBody is { } buildBody)
                 {
-                    VisualElement body = new VisualElement();
-                    context.BodyElement = body;
                     buildBody(context);
-                    visualInput.Add(body);
                 }
                 else
                 {
@@ -146,15 +169,20 @@ namespace Fox.EdCore
                         // TODO: Reimplement property disabling based on access modifiers once custom editor support is further along.
                         // fieldElement.SetEnabled(propertyInfo.Writable != PropertyInfo.PropertyExport.Never);
                         
-                        visualInput.Add(fieldElement);
+                        body.Add(fieldElement);
                     }
                 }
+                visualInput.Add(body);
                 
                 // ----------------
-                // CUSTOM FOOTER
+                // FOOTER
                 VisualElement footer = new VisualElement();
+                footer.AddToClassList(footerUssClassName);
                 context.FooterElement = footer;
-                customFieldDesc?.BuildFooter?.Invoke(context);
+                if (customFieldDesc?.BuildFooter is { } buildFooter)
+                {
+                    buildFooter(context);
+                }
                 visualInput.Add(footer);
             }
 
@@ -163,23 +191,5 @@ namespace Fox.EdCore
 
         public void SetLabel(string label) => this.label = label;
         public Label GetLabelElement() => labelElement;
-    }
-    
-    [CustomEditor(typeof(Entity), true)]
-    public class EntityEditor : UnityEditor.Editor
-    {
-        protected new Entity target => base.target as Entity;
-        
-        public override VisualElement CreateInspectorGUI()
-        {
-            EntityInfo entityInfo = target.GetClassEntityInfo();
-            
-            CustomEntityFieldDesc? customFieldDesc = CustomEntityFieldManager.Get(entityInfo);
-            IEntityField field = customFieldDesc?.Constructor() ?? Activator.CreateInstance(typeof(EntityField<>).MakeGenericType(entityInfo.Type)) as IEntityField;
-
-            field.Build(this.serializedObject);
-            
-            return field as VisualElement;
-        }
     }
 }

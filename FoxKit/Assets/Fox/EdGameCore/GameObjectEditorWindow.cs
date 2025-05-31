@@ -127,7 +127,7 @@ namespace Tpp.EdGameCore
                 return;
 
             // Create/setup new Fox GameObject
-            Fox.GameCore.GameObject[] existingGameObjects = FindObjectsOfType<Fox.GameCore.GameObject>(true);
+            Fox.GameCore.GameObject[] existingGameObjects = Object.FindObjectsByType<Fox.GameCore.GameObject>(FindObjectsInactive.Include, FindObjectsSortMode.None);
 
             Fox.GameCore.GameObject gameObject = null;
             foreach (var existingObject in existingGameObjects)

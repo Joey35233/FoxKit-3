@@ -3,7 +3,7 @@ using Fox.Graphx;
 
 namespace Assets.Fox.EdGraphx
 {
-    public class GraphxSpatialGraphDataNodeField : EntityField<GraphxSpatialGraphDataNode>
+    public class GraphxSpatialGraphDataNodeField : BaseEntityField<GraphxSpatialGraphDataNode>
     {
     }
 }

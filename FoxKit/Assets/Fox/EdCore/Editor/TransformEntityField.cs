@@ -8,23 +8,24 @@ using Transform = Fox.Core.Transform;
 
 namespace Fox.EdCore
 {
-    [CustomEntityField]
-    public class DataElementField : EntityField<DataElement>
+    [CustomEntityInspector]
+    public class TransformEntityField : BaseEntityField<TransformEntity>
     {
-        static DataElementField()
+        static TransformEntityField()
         {
             CustomEntityFieldDesc desc = new CustomEntityFieldDesc
             {
-                Constructor = () => new DataElementField(),
+                Constructor = () => new TransformEntityField(),
                 BodyOverrideBehavior = BuildBodyOverrideBehavior.ChildrenOverride,
                 BuildBody = BuildBody
             };
             
-            CustomEntityFieldManager.Register(DataElement.ClassInfo, desc);
+            EntityEditorManager.Register(TransformEntity.ClassInfo, desc);
         }
 
         private static void BuildBody(EntityFieldBuildContext context)
         {
+            context.BodyElement.Add(new HelpBox("Required placeholder. Must be direct child of desired TransformData. The Transform of this TransformEntity GameObject is unused.", HelpBoxMessageType.Warning));
         }
     }
 }

@@ -8,19 +8,19 @@ using Transform = Fox.Core.Transform;
 
 namespace Fox.EdCore
 {
-    [CustomEntityField]
-    public class DataField : EntityField<Data>
+    [CustomEntityInspector]
+    public class DataSetField : BaseEntityField<DataSet>
     {
-        static DataField()
+        static DataSetField()
         {
             CustomEntityFieldDesc desc = new CustomEntityFieldDesc
             {
-                Constructor = () => new DataField(),
+                Constructor = () => new DataSetField(),
                 BodyOverrideBehavior = BuildBodyOverrideBehavior.ChildrenOverride,
                 BuildBody = BuildBody
             };
             
-            CustomEntityFieldManager.Register(Data.ClassInfo, desc);
+            EntityEditorManager.Register(DataSet.ClassInfo, desc);
         }
 
         private static void BuildBody(EntityFieldBuildContext context)

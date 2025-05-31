@@ -1,15 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 using Fox.Core;
 using UnityEditor;
+using UnityEngine;
 
 namespace Fox.EdCore
 {
-    public class CustomEntityField : Attribute
-    {
-        
-    }
-
     public enum BuildBodyOverrideBehavior
     {
         SpecificClassOverride,
@@ -26,24 +23,27 @@ namespace Fox.EdCore
     }
     
     [InitializeOnLoad]
-    public static class CustomEntityFieldManager
+    public static class EntityEditorManager
     {
         private static Dictionary<EntityInfo, CustomEntityFieldDesc> Map = new Dictionary<EntityInfo, CustomEntityFieldDesc>();
 
-        static CustomEntityFieldManager()
+        static EntityEditorManager()
         {
-            var customEntityFieldTypes = TypeCache.GetTypesWithAttribute<CustomEntityField>();
-            foreach (var fieldType in customEntityFieldTypes)
+            var customEntityFieldTypes = TypeCache.GetTypesWithAttribute<CustomEntityInspector>();
+            foreach (Type fieldType in customEntityFieldTypes)
             {
                 if (fieldType.TypeInitializer.IsStatic)
                     fieldType.TypeInitializer.Invoke(null, null);
+                else
+                    Debug.Log($"Custom field for Entity {fieldType.Name} does not have a static constructor.");
             }
         }
         
         public static void Register(EntityInfo entityInfo, CustomEntityFieldDesc desc)
         {
             if (!Map.TryAdd(entityInfo, desc))
-                return;
+            {
+            }
         }
         
         public static CustomEntityFieldDesc? Get(EntityInfo entityInfo)

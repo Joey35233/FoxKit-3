@@ -8,23 +8,24 @@ using Transform = Fox.Core.Transform;
 
 namespace Fox.EdCore
 {
-    [CustomEntityField]
-    public class DataSetField : EntityField<DataSet>
+    [CustomEntityInspector]
+    public class ShearTransformEntityField : BaseEntityField<ShearTransformEntity>
     {
-        static DataSetField()
+        static ShearTransformEntityField()
         {
             CustomEntityFieldDesc desc = new CustomEntityFieldDesc
             {
-                Constructor = () => new DataSetField(),
+                Constructor = () => new ShearTransformEntityField(),
                 BodyOverrideBehavior = BuildBodyOverrideBehavior.ChildrenOverride,
                 BuildBody = BuildBody
             };
             
-            CustomEntityFieldManager.Register(DataSet.ClassInfo, desc);
+            EntityEditorManager.Register(ShearTransformEntity.ClassInfo, desc);
         }
 
         private static void BuildBody(EntityFieldBuildContext context)
         {
+            context.BodyElement.Add(new HelpBox("Required placeholder. Must be direct child of desired TransformData. The Transform of this ShearTransformEntity GameObject is unused.", HelpBoxMessageType.Warning));
         }
     }
 }

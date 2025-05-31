@@ -10,7 +10,7 @@ namespace FoxKit.MenuItems
         [MenuItem("FoxKit/Prune Unused DataElements")]
         public static void RemoveUnreferencedDataElements()
         {
-            Data[] datas = Object.FindObjectsOfType<Data>();
+            Data[] datas = Object.FindObjectsByType<Data>(FindObjectsSortMode.None);
             foreach (var data in datas)
             {
                 HashSet<Entity> referencedEntities = new HashSet<Entity>();

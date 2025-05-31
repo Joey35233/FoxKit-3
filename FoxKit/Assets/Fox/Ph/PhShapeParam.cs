@@ -20,6 +20,8 @@ namespace Fox.Ph
         {
             rotation = rotation.normalized;
         }
+        
+        public Vector3 rotation_euler;
 
         public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
         {
@@ -27,11 +29,15 @@ namespace Fox.Ph
 
             offset = Fox.Math.FoxToUnityVector3(offset);
             rotation = Fox.Math.FoxToUnityQuaternion(rotation);
+
+            rotation_euler = rotation.eulerAngles;
         }
 
         public override void OverridePropertiesForExport(EntityExportContext context)
         {
             base.OverridePropertiesForExport(context);
+
+            rotation = Quaternion.Euler(rotation_euler);
 
             context.OverrideProperty(nameof(offset), Fox.Math.UnityToFoxVector3(offset));
             context.OverrideProperty(nameof(rotation), Fox.Math.UnityToFoxQuaternion(rotation));

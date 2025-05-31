@@ -95,7 +95,7 @@ namespace Fox.EdCore
 
             if ((evt as MouseDownEvent)?.button == (int)MouseButton.LeftMouse)
             {
-                OnMouseDown(evt as MouseDownEvent);
+                // OnMouseDown(evt as MouseDownEvent);
             }
             else if (evt.eventTypeId == KeyDownEvent.TypeId())
             {

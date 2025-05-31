@@ -11,7 +11,7 @@ using UnityEngine.UIElements;
 namespace Fox.EdGraphx
 {
     [CustomEditor(typeof(GraphxSpatialGraphDataNode), editorForChildClasses: true)]
-    public class GraphxSpatialGraphDataNodeEditor : EntityEditor
+    public class GraphxSpatialGraphDataNodeInspector : BaseEntityEditor
     {
         private GraphxSpatialGraphDataNode Node => (GraphxSpatialGraphDataNode)target;
 
@@ -99,7 +99,7 @@ namespace Fox.EdGraphx
 
             var nodeType = graph.GetNodeType();
             var newComp = Undo.AddComponent(newNodeGo, nodeType) as GraphxSpatialGraphDataNode;
-            var usedNames = (from ent in UnityEngine.Object.FindObjectsOfType(nodeType, true)
+            var usedNames = (from ent in UnityEngine.Object.FindObjectsByType(nodeType, FindObjectsSortMode.InstanceID)
                              select ent.name).ToHashSet();
             newNodeGo.name = Node.GenerateUniqueName(nodeType, usedNames);
 

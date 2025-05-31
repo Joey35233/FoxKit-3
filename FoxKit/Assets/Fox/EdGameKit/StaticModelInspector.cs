@@ -23,7 +23,7 @@ namespace Fox.EdGameKit
     // }
     
     [CustomEditor(typeof(StaticModel))]
-    public class StaticModelEditor : EntityEditor
+    public class StaticModelInspector : BaseEntityEditor
     {
         public override VisualElement CreateInspectorGUI()
         {
