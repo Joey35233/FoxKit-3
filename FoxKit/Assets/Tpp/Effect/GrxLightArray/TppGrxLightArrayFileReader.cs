@@ -4,6 +4,7 @@ using Fox.Fio;
 using Fox;
 using UnityEditor.SceneManagement;
 using UnityEngine;
+using System;
 
 namespace Tpp.Effect
 {
@@ -13,8 +14,15 @@ namespace Tpp.Effect
 
         public UnityEngine.SceneManagement.Scene? Read(FileStreamReader reader)
         {
-            UnityEngine.SceneManagement.Scene scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
-
+            UnityEngine.SceneManagement.Scene scene;
+            try
+            {
+                scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Additive);
+            }
+            catch (InvalidOperationException)
+            {
+                scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
+            }
             // Read header
             uint signature = reader.ReadUInt32(); //FGxL or FGxO
             if (signature != 1282950982)

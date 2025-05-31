@@ -38,6 +38,7 @@ namespace Fox.Ph
 
         internal float GetVelocityRate() => velocityRate;
         internal void SetVelocityRate(float value) => velocityRate = value;
+        
         public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
         {
             base.OnDeserializeEntity(gameObject, logger);

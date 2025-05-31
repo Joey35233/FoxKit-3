@@ -9,10 +9,10 @@ namespace Fox.Core
 
         public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
         {
+            base.OnDeserializeEntity(gameObject, logger);
+            
             if (!string.IsNullOrEmpty(name))
                 gameObject.name = name;
-
-            base.OnDeserializeEntity(gameObject, logger);
         }
 
         public override void OverridePropertiesForExport(EntityExportContext context)

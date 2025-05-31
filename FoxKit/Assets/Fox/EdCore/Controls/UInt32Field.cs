@@ -8,75 +8,16 @@ using UnityEngine.UIElements;
 
 namespace Fox.EdCore
 {
-    public class UInt32Field : TextValueField<uint>, INotifyValueChanged<int>, IFoxField
+    public class UInt32Field : TextValueField<uint>, IFoxField
     {
-        public override uint value
-        {
-            get => base.value;
-            set
-            {
-                uint newValue = value;
-                int packedNewValue = unchecked((int)newValue);
-                if (newValue != this.value)
-                {
-                    if (panel != null)
-                    {
-                        int packedOldValue = unchecked((int)this.value);
-
-                        // Sends ChangeEvent<System.UInt32> and uses its SetValueWithoutNotify function
-                        base.value = newValue;
-
-                        using (var evt = ChangeEvent<int>.GetPooled(packedOldValue, packedNewValue))
-                        {
-                            evt.target = this;
-                            SendEvent(evt);
-                        }
-                    }
-                    else
-                    {
-                        SetValueWithoutNotify(newValue);
-                    }
-                }
-            }
-        }
-        int INotifyValueChanged<int>.value
-        {
-            get => unchecked((int)value);
-            set
-            {
-                uint newValue = unchecked((uint)value);
-                if (newValue != this.value)
-                {
-                    if (panel != null)
-                    {
-                        int packedOldValue = unchecked((int)this.value);
-
-                        // Sends ChangeEvent<System.UInt32> and uses its SetValueWithoutNotify function
-                        base.value = newValue;
-
-                        using (var evt = ChangeEvent<int>.GetPooled(packedOldValue, value))
-                        {
-                            evt.target = this;
-                            SendEvent(evt);
-                        }
-                    }
-                    else
-                    {
-                        SetValueWithoutNotify(newValue);
-                    }
-                }
-            }
-        }
-        void INotifyValueChanged<int>.SetValueWithoutNotify(int newValue) => throw new NotImplementedException();
-
         private UInt32Input integerInput => (UInt32Input)textInputBase;
 
         protected override string ValueToString(uint v) => v.ToString(formatString, CultureInfo.InvariantCulture.NumberFormat);
 
         protected override uint StringToValue(string str)
         {
-            _ = ExpressionEvaluator.Evaluate(str, out System.Numerics.BigInteger v);
-            return NumericPropertyFields.ClampToUInt32(v);
+            bool success = NumericPropertyFields.TryConvertStringToUInt(str, out uint v);
+            return success ? v : rawValue;
         }
 
         public static new readonly string ussClassName = "fox-uint32-field";
@@ -129,7 +70,7 @@ namespace Fox.EdCore
 
             internal UInt32Input()
             {
-                formatString = "#######0";
+                formatString = NumericPropertyFields.IntegerFieldFormatString;
             }
 
             protected override string allowedCharacters => NumericPropertyFields.IntegerExpressionCharacterWhitelist;
@@ -138,8 +79,8 @@ namespace Fox.EdCore
             {
                 double sensitivity = NumericFieldDraggerUtility.CalculateIntDragSensitivity(startValue);
                 float acceleration = NumericFieldDraggerUtility.Acceleration(speed == DeltaSpeed.Fast, speed == DeltaSpeed.Slow);
-                System.Numerics.BigInteger v = StringToValue(text);
-                v += (System.Numerics.BigInteger)System.Math.Round(NumericFieldDraggerUtility.NiceDelta(delta, acceleration) * sensitivity);
+                long v = StringToValue(text);
+                v += (long)System.Math.Round(NumericFieldDraggerUtility.NiceDelta(delta, acceleration) * sensitivity);
                 if (parentIntegerField.isDelayed)
                 {
                     text = ValueToString(NumericPropertyFields.ClampToUInt32(v));
@@ -152,11 +93,7 @@ namespace Fox.EdCore
 
             protected override string ValueToString(uint v) => v.ToString(formatString);
 
-            protected override uint StringToValue(string str)
-            {
-                _ = ExpressionEvaluator.Evaluate(str, out System.Numerics.BigInteger v);
-                return NumericPropertyFields.ClampToUInt32(v);
-            }
+            protected override uint StringToValue(string str) => parentIntegerField.StringToValue(str);
         }
         
         public void SetLabel(string label) => this.label = label;

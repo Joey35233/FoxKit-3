@@ -10,14 +10,16 @@ namespace Tpp.Effect
         {
             base.OnDeserializeEntity(gameObject, logger);
 
-            windDirectionX = -windDirectionX;
+            (windDirectionX, _, windDirectionZ) = Fox.Math.FoxToUnityVectorComponents(new Vector3(windDirectionX, 0, windDirectionZ));
         }
 
         public override void OverridePropertiesForExport(EntityExportContext context)
         {
             base.OverridePropertiesForExport(context);
 
-            context.OverrideProperty(nameof(windDirectionX), -windDirectionX);
+            (float _windDirectionX, _, float _windDirectionZ) = Fox.Math.UnityToFoxVectorComponents(new Vector3(windDirectionX, 0, windDirectionZ));
+            context.OverrideProperty(nameof(windDirectionX), _windDirectionX);
+            context.OverrideProperty(nameof(windDirectionZ), _windDirectionZ);
         }
     }
 }

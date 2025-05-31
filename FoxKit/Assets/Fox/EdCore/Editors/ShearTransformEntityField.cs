@@ -25,7 +25,7 @@ namespace Fox.EdCore
 
         private static void BuildBody(EntityFieldBuildContext context)
         {
-            context.Element.Add(new HelpBox("Required placeholder. Must be direct child of desired TransformData. The Transform of the ShearTransformEntity GameObject is unused.", HelpBoxMessageType.Warning));
+            context.BodyElement.Add(new HelpBox("Required placeholder. Must be direct child of desired TransformData. The Transform of the ShearTransformEntity GameObject is unused.", HelpBoxMessageType.Warning));
         }
     }
 }

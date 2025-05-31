@@ -12,6 +12,7 @@ namespace Fox.Navx
             Gizmo.Transform = this.transform;
             Gizmo.OnDrawGizmos();
         }
+        
         public override void Reset()
         {
             base.Reset();

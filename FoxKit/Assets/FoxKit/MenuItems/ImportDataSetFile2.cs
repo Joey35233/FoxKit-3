@@ -21,7 +21,15 @@ namespace FoxKit.MenuItems
                 return;
             }
 
-            UnityEngine.SceneManagement.Scene scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene,NewSceneMode.Single);
+            UnityEngine.SceneManagement.Scene scene;
+            try
+            {
+                scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Additive);
+            }
+            catch (InvalidOperationException)
+            {
+                scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
+            }
             scene.name = Path.GetFileNameWithoutExtension(assetPath);
 
             var logger = new TaskLogger("ImportFOX2");

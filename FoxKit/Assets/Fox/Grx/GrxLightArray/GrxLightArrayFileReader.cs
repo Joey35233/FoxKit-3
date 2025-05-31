@@ -4,6 +4,7 @@ using Fox.Fio;
 using Fox;
 using UnityEditor.SceneManagement;
 using UnityEngine;
+using System;
 
 namespace Fox.Grx
 {
@@ -12,8 +13,15 @@ namespace Fox.Grx
         private readonly TaskLogger logger = new TaskLogger("ImportGRXLA");
         public UnityEngine.SceneManagement.Scene? Read(FileStreamReader reader)
         {
-            UnityEngine.SceneManagement.Scene scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
-
+            UnityEngine.SceneManagement.Scene scene;
+            try
+            {
+                scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Additive);
+            }
+            catch (InvalidOperationException)
+            {
+                scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
+            }
             // Read header
             uint signature = reader.ReadUInt32(); //FGxL or FGxO
             if (signature is not 1282950982 and not 1333282630)

@@ -26,26 +26,26 @@ namespace Fox.EdCore
 
         private static void BuildHeader(EntityFieldBuildContext context)
         {
-            context.Element.Add(new HelpBox("One of transform, shearTransform, pivotTransform must be set and a direct child of this TransformData.", HelpBoxMessageType.Warning));
+            context.BodyElement.Add(new HelpBox("One of transform, shearTransform, pivotTransform must be set and a direct child of this TransformData.", HelpBoxMessageType.Warning));
         }
         
         private static void BuildBody(EntityFieldBuildContext context)
         {
             EntityPtrField<TransformEntity> transformField = new EntityPtrField<TransformEntity>("transform");
-            ((IFoxField)transformField).SetBindingPathForPropertyName(transformField.label);
-            context.Element.Add(transformField);
+            transformField.bindingPath = IFoxField.GetBindingPathForPropertyName(transformField.label);
+            context.BodyElement.Add(transformField);
             
             EntityPtrField<ShearTransformEntity> shearTransformField = new EntityPtrField<ShearTransformEntity>("shearTransform");
-            ((IFoxField)shearTransformField).SetBindingPathForPropertyName(shearTransformField.label);
-            context.Element.Add(shearTransformField);
+            shearTransformField.bindingPath = IFoxField.GetBindingPathForPropertyName(shearTransformField.label);
+            context.BodyElement.Add(shearTransformField);
             
             EntityPtrField<PivotTransformEntity> pivotTransformField = new EntityPtrField<PivotTransformEntity>("pivotTransform");
-            ((IFoxField)pivotTransformField).SetBindingPathForPropertyName(pivotTransformField.label);
-            context.Element.Add(pivotTransformField);
+            pivotTransformField.bindingPath = IFoxField.GetBindingPathForPropertyName(pivotTransformField.label);
+            context.BodyElement.Add(pivotTransformField);
             
             EnumFlagsField flagsField = new EnumFlagsField("flags");
-            ((IFoxField)flagsField).SetBindingPathForPropertyName(flagsField.label);
-            context.Element.Add(flagsField);
+            flagsField.bindingPath = IFoxField.GetBindingPathForPropertyName(flagsField.label);
+            context.BodyElement.Add(flagsField);
         }
     }
 }

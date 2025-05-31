@@ -41,20 +41,20 @@ namespace Fox.Phx
 
         public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
         {
+            base.OnDeserializeEntity(gameObject, logger);
+            
             frontL = Fox.Math.FoxToUnityVector3(frontL);
             upL = Fox.Math.FoxToUnityVector3(upL);
             wheelPositionOffset = Fox.Math.FoxToUnityVector3(wheelPositionOffset);
-
-            base.OnDeserializeEntity(gameObject, logger);
         }
 
         public override void OverridePropertiesForExport(EntityExportContext context)
         {
+            base.OverridePropertiesForExport(context);
+            
             context.OverrideProperty(nameof(frontL), Fox.Math.UnityToFoxVector3(frontL));
             context.OverrideProperty(nameof(upL), Fox.Math.UnityToFoxVector3(upL)); ;
             context.OverrideProperty(nameof(wheelPositionOffset), Fox.Math.UnityToFoxVector3(wheelPositionOffset)); ;
-
-            base.OverridePropertiesForExport(context);
         }
     }
 }

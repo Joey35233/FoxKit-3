@@ -124,7 +124,7 @@ namespace Fox.Animx
             driver.LimitMin = unit->LimitMin;
             driver.LimitMax = unit->LimitMax;
 
-            if (unit->Type < DriverUnitAction.Type19)
+            if (unit->Type < DriverUnitAction.PitchASwitchLinear)
             {
                 var multiAxisParam = (DriverUnitParamsMultiAxis*)(unit + 1);
 

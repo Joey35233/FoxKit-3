@@ -15,8 +15,8 @@ namespace Fox.EdCore
 
         protected override double StringToValue(string str)
         {
-            _ = NumericPropertyFields.StringToDouble(str, out double v);
-            return v;
+            bool success = NumericPropertyFields.TryConvertStringToDouble(str, out double v);
+            return success ? v : rawValue;
         }
 
         public static new readonly string ussClassName = "fox-double-field";
@@ -71,7 +71,7 @@ namespace Fox.EdCore
 
             internal DoubleInput()
             {
-                formatString = "R";
+                formatString = NumericPropertyFields.DoubleFieldFormatString;
             }
 
             protected override string allowedCharacters => NumericPropertyFields.FloatExpressionCharacterWhitelist;
@@ -95,11 +95,7 @@ namespace Fox.EdCore
 
             protected override string ValueToString(double v) => v.ToString(formatString);
 
-            protected override double StringToValue(string str)
-            {
-                _ = NumericPropertyFields.StringToDouble(str, out double v);
-                return v;
-            }
+            protected override double StringToValue(string str) => parentDoubleField.StringToValue(str);
         }
         
         public void SetLabel(string label) => this.label = label;

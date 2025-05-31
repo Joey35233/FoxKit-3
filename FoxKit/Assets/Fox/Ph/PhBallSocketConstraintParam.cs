@@ -38,20 +38,20 @@ namespace Fox.Ph
 
         public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
         {
+            base.OnDeserializeEntity(gameObject, logger);
+            
             refA = Fox.Math.FoxToUnityVector3(refA);
             refB = Fox.Math.FoxToUnityVector3(refB);
             springRef = Fox.Math.FoxToUnityVector3(springRef);
-
-            base.OnDeserializeEntity(gameObject, logger);
         }
 
         public override void OverridePropertiesForExport(EntityExportContext context)
         {
-            context.OverrideProperty("refA", Fox.Math.UnityToFoxVector3(refA));
-            context.OverrideProperty("refB", Fox.Math.UnityToFoxVector3(refB));
-            context.OverrideProperty("springRef", Fox.Math.UnityToFoxVector3(springRef));
-
             base.OverridePropertiesForExport(context);
+            
+            context.OverrideProperty(nameof(refA), Fox.Math.UnityToFoxVector3(refA));
+            context.OverrideProperty(nameof(refB), Fox.Math.UnityToFoxVector3(refB));
+            context.OverrideProperty(nameof(springRef), Fox.Math.UnityToFoxVector3(springRef));
         }
 
         public override void DrawGizmos()

@@ -17,6 +17,7 @@ namespace Fox.Ph
 
         internal float GetHeightMax() => heightMax;
         internal void SetHeightMax(float value) => heightMax = value;
+        
         public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
         {
             base.OnDeserializeEntity(gameObject, logger);

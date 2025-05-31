@@ -8,25 +8,23 @@ using UnityEngine.UIElements;
 
 namespace Fox.EdCore
 {
-    public class UInt8Field : TextValueField<byte>, INotifyValueChanged<int>, IFoxField
+    public class UInt8Field : TextValueField<byte>, INotifyValueChanged<uint>, IFoxField
     {
         public override byte value
         {
             get => base.value;
             set
             {
+                byte oldValue = this.value;
                 byte newValue = value;
-                int packedNewValue = unchecked(newValue);
-                if (newValue != this.value)
+                if (newValue != oldValue)
                 {
                     if (panel != null)
                     {
-                        int packedOldValue = unchecked(this.value);
-
                         // Sends ChangeEvent<System.Byte> and uses its SetValueWithoutNotify function
                         base.value = newValue;
 
-                        using (var evt = ChangeEvent<int>.GetPooled(packedOldValue, packedNewValue))
+                        using (var evt = ChangeEvent<uint>.GetPooled(oldValue, newValue))
                         {
                             evt.target = this;
                             SendEvent(evt);
@@ -39,22 +37,21 @@ namespace Fox.EdCore
                 }
             }
         }
-        int INotifyValueChanged<int>.value
+        uint INotifyValueChanged<uint>.value
         {
-            get => unchecked(value);
+            get => value;
             set
             {
-                byte newValue = unchecked((byte)value);
-                if (newValue != this.value)
+                byte oldValue = this.value;
+                byte newValue = (byte)value;
+                if (newValue != oldValue)
                 {
                     if (panel != null)
                     {
-                        int packedOldValue = unchecked(this.value);
-
                         // Sends ChangeEvent<System.Byte> and uses its SetValueWithoutNotify function
                         base.value = newValue;
 
-                        using (var evt = ChangeEvent<int>.GetPooled(packedOldValue, value))
+                        using (var evt = ChangeEvent<uint>.GetPooled(oldValue, newValue))
                         {
                             evt.target = this;
                             SendEvent(evt);
@@ -67,7 +64,7 @@ namespace Fox.EdCore
                 }
             }
         }
-        void INotifyValueChanged<int>.SetValueWithoutNotify(int newValue) => throw new NotImplementedException();
+        void INotifyValueChanged<uint>.SetValueWithoutNotify(uint newValue) => throw new NotImplementedException();
 
         private UInt8Input integerInput => (UInt8Input)textInputBase;
 
@@ -75,8 +72,8 @@ namespace Fox.EdCore
 
         protected override byte StringToValue(string str)
         {
-            _ = ExpressionEvaluator.Evaluate(str, out int v);
-            return NumericPropertyFields.ClampToUInt8(v);
+            bool success = NumericPropertyFields.TryConvertStringToUInt(str, out uint v);
+            return NumericPropertyFields.ClampToUInt8(success ? v : rawValue);
         }
 
         public static new readonly string ussClassName = "fox-uint8-field";
@@ -129,7 +126,7 @@ namespace Fox.EdCore
 
             internal UInt8Input()
             {
-                formatString = "0";
+                formatString = NumericPropertyFields.IntegerFieldFormatString;
             }
 
             protected override string allowedCharacters => NumericPropertyFields.IntegerExpressionCharacterWhitelist;
@@ -152,11 +149,7 @@ namespace Fox.EdCore
 
             protected override string ValueToString(byte v) => v.ToString(formatString);
 
-            protected override byte StringToValue(string str)
-            {
-                _ = ExpressionEvaluator.Evaluate(str, out int v);
-                return NumericPropertyFields.ClampToUInt8(v);
-            }
+            protected override byte StringToValue(string str) => parentIntegerField.StringToValue(str);
         }
         
         public void SetLabel(string label) => this.label = label;

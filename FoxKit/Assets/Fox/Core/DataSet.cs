@@ -19,7 +19,7 @@ namespace Fox.Core
         public override void OverridePropertiesForExport(EntityExportContext context)
         {
             base.OverridePropertiesForExport(context);
-            context.OverrideProperty("name", string.Empty);
+            context.OverrideProperty(nameof(name), string.Empty);
         }
     }
 }
