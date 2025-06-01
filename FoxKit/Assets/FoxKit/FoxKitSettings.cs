@@ -1,7 +1,10 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "FoxKitSettings", menuName = "FoxKit/Settings")]
-public class FoxKitSettings : ScriptableObject
+namespace FoxKit
 {
-    public string sourceAssetsPath;
+    [CreateAssetMenu(fileName = "FoxKitSettings", menuName = "FoxKit/Settings")]
+    public class FoxKitSettings : ScriptableObject
+    {
+        public string sourceAssetsPath;
+    }
 }
