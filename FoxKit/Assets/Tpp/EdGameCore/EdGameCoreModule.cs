@@ -1310,7 +1310,7 @@ namespace Tpp.EdGameCore
                 {
                     var param = new UnityEngine.GameObject().AddComponent<Tpp.GameCore.TppVehicle2Parameter>();
 
-                    //param.maxBodyTypeCount = 3; // CS0122: 'TppVehicle2Parameter.maxBodyTypeCount' is inaccessible due to its protection level
+                    param.SetMaxBodyTypeCount((byte)3);
 
                     return param;
                 },
