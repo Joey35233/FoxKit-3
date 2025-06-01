@@ -105,44 +105,32 @@ namespace FoxKit.Windows
             }
 
             // Step 3: Find the baseDirectoryPath from StageBlockControllerData
-            string terrainFolderPath = null;
-
-            foreach (GameObject go in readResult.GameObjects)
+            string baseDirectoryPath = null;
+            foreach (GameObject gameObject in readResult.GameObjects)
             {
-                if (go.GetComponent<Entity>()?.GetType().Name != "StageBlockControllerData")
+                StageBlockControllerData stageBlock = gameObject.GetComponent<StageBlockControllerData>();
+                if (stageBlock == null)
                     continue;
 
-                var data = go.GetComponent<Data>();
-                if (data == null)
-                    continue;
-
-                var value = data.GetProperty("baseDirectoryPath");
-
-                // Use reflection to extract the string value from 'Value'
-                var field = value?.GetType().GetField("value", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
-                if (field != null)
+                baseDirectoryPath = stageBlock.baseDirectoryPath;
+                
+                // Fix the virtual path to real path if needed
+                if (baseDirectoryPath != null && baseDirectoryPath.Contains("/pack/location/"))
                 {
-                    terrainFolderPath = field.GetValue(value) as string;
-
-                    // Fix the virtual path to real path if needed
-                    if (terrainFolderPath != null && terrainFolderPath.Contains("/pack/location/"))
-                    {
-                        terrainFolderPath = terrainFolderPath.Replace("/pack/location/", "/level/location/");
-                        terrainFolderPath = terrainFolderPath.Replace("/pack_small", "/block_small");
-                    }
-
-                    break;
+                    baseDirectoryPath = baseDirectoryPath.Replace("/pack/location/", "/level/location/");
+                    baseDirectoryPath = baseDirectoryPath.Replace("/pack_small", "/block_small");
                 }
-            }
+                else
+                {
+                    Debug.LogError("[TerrainLoader] Couldn't find or read baseDirectoryPath.");
+                    return;
+                }
 
-            if (string.IsNullOrEmpty(terrainFolderPath))
-            {
-                Debug.LogError("[TerrainLoader] Couldn't find or read baseDirectoryPath.");
-                return;
+                break;
             }
 
             // Step 4: Turn the virtual path into an actual file path
-            string folderRelative = terrainFolderPath.TrimStart('/').Replace("/", Path.DirectorySeparatorChar.ToString());
+            string folderRelative = baseDirectoryPath.TrimStart('/').Replace("/", Path.DirectorySeparatorChar.ToString());
             string fullTerrainFolder = Path.Combine(settings.sourceAssetsPath, folderRelative);
 
             if (!Directory.Exists(fullTerrainFolder))
