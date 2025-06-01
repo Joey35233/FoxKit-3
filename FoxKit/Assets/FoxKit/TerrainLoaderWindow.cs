@@ -106,13 +106,9 @@ namespace FoxKit.Windows
 
             // Step 3: Find the baseDirectoryPath from StageBlockControllerData
             string baseDirectoryPath = null;
-            foreach (GameObject gameObject in readResult.GameObjects)
+            if (StageBlockControllerData.Instance != null)
             {
-                StageBlockControllerData stageBlock = gameObject.GetComponent<StageBlockControllerData>();
-                if (stageBlock == null)
-                    continue;
-
-                baseDirectoryPath = stageBlock.baseDirectoryPath;
+                baseDirectoryPath = StageBlockControllerData.Instance.baseDirectoryPath;
                 
                 // Fix the virtual path to real path if needed
                 if (baseDirectoryPath != null && baseDirectoryPath.Contains("/pack/location/"))
@@ -125,8 +121,6 @@ namespace FoxKit.Windows
                     Debug.LogError("[TerrainLoader] Couldn't find or read baseDirectoryPath.");
                     return;
                 }
-
-                break;
             }
 
             // Step 4: Turn the virtual path into an actual file path
