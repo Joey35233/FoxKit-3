@@ -587,8 +587,8 @@ namespace Tpp.EdGameCore
 
                 Presets = new List<string>
                 {
-                    "Soviet Prisoner (Male)",
-                    "Soviet Prisoner (Female)",
+                    "Afghanistan Prisoner (Male)",
+                    "Afghanistan Prisoner (Female)",
                     "Africa Prisoner (Male)",
                     "Africa Prisoner (Female)",
                     "DD Prisoner"
@@ -599,8 +599,8 @@ namespace Tpp.EdGameCore
 
                     switch (preset)
                     {
-                        case "Soviet Prisoner (Male)":param.partsFile = new FilePtr(new Path("/Assets/tpp/parts/chara/prs/prs2_main0_def_v00.parts"));break;
-                        case "Soviet Prisoner (Female)":param.partsFile = new FilePtr(new Path("/Assets/tpp/parts/chara/prs/prs3_main0_def_v00.parts"));break;
+                        case "Afghanistan Prisoner (Male)":param.partsFile = new FilePtr(new Path("/Assets/tpp/parts/chara/prs/prs2_main0_def_v00.parts"));break;
+                        case "Afghanistan Prisoner (Female)":param.partsFile = new FilePtr(new Path("/Assets/tpp/parts/chara/prs/prs3_main0_def_v00.parts"));break;
                         case "Africa Prisoner (Male)":param.partsFile = new FilePtr(new Path("/Assets/tpp/parts/chara/prs/prs5_main0_def_v00.parts"));break;
                         case "Africa Prisoner (Female)":param.partsFile = new FilePtr(new Path("/Assets/tpp/parts/chara/prs/prs6_main0_def_v00.parts"));break;
                         case "DD Prisoner":param.partsFile = new FilePtr(new Path("/Assets/tpp/parts/chara/prs/pdd5_main0_def_v00.parts"));break;
@@ -644,8 +644,8 @@ namespace Tpp.EdGameCore
 
                 Presets = new List<string>
                 {
-                    "Soviet Prisoner (Male)",
-                    "Soviet Prisoner (Female)",
+                    "Afghanistan Prisoner (Male)",
+                    "Afghanistan Prisoner (Female)",
                     "Africa Prisoner (Male)",
                     "Africa Prisoner (Female)",
                     "DD Prisoner"
@@ -656,8 +656,8 @@ namespace Tpp.EdGameCore
 
                     switch (preset)
                     {
-                        case "Soviet Prisoner (Male)": param.partsFile = new FilePtr(new Path("/Assets/tpp/parts/chara/prs/prs2_main0_def_v00.parts")); break;
-                        case "Soviet Prisoner (Female)": param.partsFile = new FilePtr(new Path("/Assets/tpp/parts/chara/prs/prs3_main0_def_v00.parts")); break;
+                        case "Afghanistan Prisoner (Male)": param.partsFile = new FilePtr(new Path("/Assets/tpp/parts/chara/prs/prs2_main0_def_v00.parts")); break;
+                        case "Afghanistan Prisoner (Female)": param.partsFile = new FilePtr(new Path("/Assets/tpp/parts/chara/prs/prs3_main0_def_v00.parts")); break;
                         case "Africa Prisoner (Male)": param.partsFile = new FilePtr(new Path("/Assets/tpp/parts/chara/prs/prs5_main0_def_v00.parts")); break;
                         case "Africa Prisoner (Female)": param.partsFile = new FilePtr(new Path("/Assets/tpp/parts/chara/prs/prs6_main0_def_v00.parts")); break;
                         case "DD Prisoner": param.partsFile = new FilePtr(new Path("/Assets/tpp/parts/chara/prs/pdd5_main0_def_v00.parts")); break;
@@ -683,8 +683,8 @@ namespace Tpp.EdGameCore
 
                 Presets = new List<string>
                 {
-                    "Soviet Prisoner (Male)",
-                    "Soviet Prisoner (Female)",
+                    "Afghanistan Prisoner (Male)",
+                    "Afghanistan Prisoner (Female)",
                     "Africa Prisoner (Male)",
                     "Africa Prisoner (Female)",
                     "DD Prisoner"
@@ -695,8 +695,8 @@ namespace Tpp.EdGameCore
 
                     switch (preset)
                     {
-                        case "Soviet Prisoner (Male)": param.partsFile = new FilePtr(new Path("/Assets/tpp/parts/chara/prs/prs2_main0_def_v00.parts")); break;
-                        case "Soviet Prisoner (Female)": param.partsFile = new FilePtr(new Path("/Assets/tpp/parts/chara/prs/prs3_main0_def_v00.parts")); break;
+                        case "Afghanistan Prisoner (Male)": param.partsFile = new FilePtr(new Path("/Assets/tpp/parts/chara/prs/prs2_main0_def_v00.parts")); break;
+                        case "Afghanistan Prisoner (Female)": param.partsFile = new FilePtr(new Path("/Assets/tpp/parts/chara/prs/prs3_main0_def_v00.parts")); break;
                         case "Africa Prisoner (Male)": param.partsFile = new FilePtr(new Path("/Assets/tpp/parts/chara/prs/prs5_main0_def_v00.parts")); break;
                         case "Africa Prisoner (Female)": param.partsFile = new FilePtr(new Path("/Assets/tpp/parts/chara/prs/prs6_main0_def_v00.parts")); break;
                         case "DD Prisoner": param.partsFile = new FilePtr(new Path("/Assets/tpp/parts/chara/prs/pdd5_main0_def_v00.parts")); break;
