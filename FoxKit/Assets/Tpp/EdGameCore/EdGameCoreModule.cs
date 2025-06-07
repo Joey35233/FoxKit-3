@@ -23,10 +23,13 @@ namespace Tpp.EdGameCore
                     "All",
                 },
 
+                canCreateLocator = true,
+
+
                 CreateParameterFunc = (preset) =>
                 {
                     var param = new UnityEngine.GameObject().AddComponent<Tpp.GameCore.TppBearParameter>();
-                    
+
                     param.partsFile = new FilePtr(new Path("/Assets/tpp/parts/chara/ber/ber0_main0_def_v00.parts"));
                     param.mtarFile = new FilePtr(new Path("/Assets/tpp/motion/mtar/bear/Bear_layers.mtar"));
                     param.mogFile = new FilePtr(new Path("/Assets/tpp/motion/motion_graph/bear/Bear_layers.mog"));
@@ -42,7 +45,13 @@ namespace Tpp.EdGameCore
 
                     return param;
                 },
-            });
+                CreateLocatorParameterFunc = (preset) =>
+                {
+                    var param = new UnityEngine.GameObject().AddComponent<Tpp.GameCore.TppBearLocatorParameter>();
+                 
+                    return param;
+                },
+            });;
             
             Fox.EdGameCore.EdGameCoreModule.RegisterGameObjectEditorInfo("TppBuddyDog2", new Fox.EdGameCore.GameObjectEditorInfo
             {
@@ -58,6 +67,8 @@ namespace Tpp.EdGameCore
                     "buddy_dog2_03",
                     "buddy_dog2_04",
                 },
+
+                canCreateLocator = true,
 
                 CreateParameterFunc = (preset) =>
                 {
@@ -79,6 +90,12 @@ namespace Tpp.EdGameCore
 
                     return param;
                 },
+                CreateLocatorParameterFunc = (preset) =>
+                {
+                    var param = new UnityEngine.GameObject().AddComponent<Tpp.GameCore.TppBuddyDog2LocatorParameter>();
+
+                    return param;
+                },
             });
             
             Fox.EdGameCore.EdGameCoreModule.RegisterGameObjectEditorInfo("TppBuddyPuppy", new Fox.EdGameCore.GameObjectEditorInfo
@@ -93,6 +110,8 @@ namespace Tpp.EdGameCore
                     "ddg1_v01_c00_low",
                     "All"
                 },
+
+                canCreateLocator = true,
 
                 CreateParameterFunc = (preset) =>
                 {
@@ -117,6 +136,12 @@ namespace Tpp.EdGameCore
 
                     return param;
                 },
+                CreateLocatorParameterFunc = (preset) =>
+                {
+                    var param = new UnityEngine.GameObject().AddComponent<Tpp.GameCore.TppBuddyPuppyLocatorParameter>();
+
+                    return param;
+                },
             });
             
             Fox.EdGameCore.EdGameCoreModule.RegisterGameObjectEditorInfo("TppBuddyQuiet2", new Fox.EdGameCore.GameObjectEditorInfo
@@ -124,7 +149,9 @@ namespace Tpp.EdGameCore
                 groupId = 0,
                 totalCount = 1,
                 realizedCount = 1,
+
                 
+
                 Presets = new List<string>
                 {
                     "Naked", 
@@ -134,6 +161,9 @@ namespace Tpp.EdGameCore
                     "Sniper Wolf", 
                     "Gray XOF"
                 },
+
+                canCreateLocator = true,
+
                 CreateParameterFunc = (preset) =>
                 {
                     var param = new UnityEngine.GameObject().AddComponent<Tpp.GameCore.TppBuddyQuiet2Parameter>();
@@ -163,6 +193,12 @@ namespace Tpp.EdGameCore
 
                     return param;
                 },
+                CreateLocatorParameterFunc = (preset) =>
+                {
+                    var param = new UnityEngine.GameObject().AddComponent<Tpp.GameCore.TppBuddyQuiet2LocatorParameter>();
+
+                    return param;
+                },
             });
             
             Fox.EdGameCore.EdGameCoreModule.RegisterGameObjectEditorInfo("TppBossQuiet2", new Fox.EdGameCore.GameObjectEditorInfo
@@ -177,6 +213,9 @@ namespace Tpp.EdGameCore
                     "Female Skull",
                     "Light Quiet",
                 },
+                canCreateLocator = true,
+
+                
                 CreateParameterFunc = (preset) =>
                 {
                     var param = new UnityEngine.GameObject().AddComponent<Tpp.GameCore.TppBossQuiet2Parameter>();
@@ -251,6 +290,12 @@ namespace Tpp.EdGameCore
 
                     return param;
                 },
+                CreateLocatorParameterFunc = (preset) =>
+                {
+                    var param = new UnityEngine.GameObject().AddComponent<Tpp.GameCore.TppBossQuiet2LocatorParameter>();
+
+                    return param;
+                },
             });
 
             Fox.EdGameCore.EdGameCoreModule.RegisterGameObjectEditorInfo("TppCodeTalker2", new Fox.EdGameCore.GameObjectEditorInfo
@@ -258,7 +303,9 @@ namespace Tpp.EdGameCore
                 groupId = 0,
                 totalCount = 1,
                 realizedCount = 1,
-                        
+
+                canCreateLocator = true,
+
                 CreateParameterFunc = (preset) =>
                 {
                     var param = new UnityEngine.GameObject().AddComponent<Tpp.GameCore.TppHostage2Parameter>();
@@ -267,6 +314,12 @@ namespace Tpp.EdGameCore
                     param.motionGraphFile = new FilePtr(new Path("/Assets/tpp/motion/motion_graph/hostage2/Hostage2_layers.mog"));
                     param.mtarFile = new FilePtr(new Path("/Assets/tpp/motion/mtar/hostage2/Hostage2_layers_no_stand.mtar"));
                     param.extensionMtarFile = new FilePtr(new Path("/Assets/tpp/motion/mtar/codetalker2/CodeTalker2_layers.mtar"));
+
+                    return param;
+                },
+                CreateLocatorParameterFunc = (preset) =>
+                {
+                    var param = new UnityEngine.GameObject().AddComponent<Tpp.GameCore.TppHostage2LocatorParameter>();
 
                     return param;
                 },
@@ -310,12 +363,20 @@ namespace Tpp.EdGameCore
 
                     return param;
                 },
+                CreateLocatorParameterFunc = (preset) =>
+                {
+                    var param = new UnityEngine.GameObject().AddComponent<Tpp.GameCore.TppCorpseLocatorParameter>();
+
+                    return param;
+                },
             });
             Fox.EdGameCore.EdGameCoreModule.RegisterGameObjectEditorInfo("TppCritterBird", new Fox.EdGameCore.GameObjectEditorInfo
             {
                 groupId = 0,
                 totalCount = 10,
                 realizedCount = 4,
+
+                canCreateLocator = true,
 
                 Presets = new List<string>
                 {
@@ -348,12 +409,20 @@ namespace Tpp.EdGameCore
 
                     return param;
                 },
+                CreateLocatorParameterFunc = (preset) =>
+                {
+                    var param = new UnityEngine.GameObject().AddComponent<Tpp.GameCore.TppBirdLocatorParameter2>();
+
+                    return param;
+                },
             });
             Fox.EdGameCore.EdGameCoreModule.RegisterGameObjectEditorInfo("TppEagle", new Fox.EdGameCore.GameObjectEditorInfo
             {
                 groupId = 0,
                 totalCount = 6,
                 realizedCount = 6,
+
+                canCreateLocator = true,
 
                 Presets = new List<string>
                 {
@@ -384,6 +453,12 @@ namespace Tpp.EdGameCore
 
                     return param;
                 },
+                CreateLocatorParameterFunc = (preset) =>
+                {
+                    var param = new UnityEngine.GameObject().AddComponent<Tpp.GameCore.TppBirdLocatorParameter2>();
+
+                    return param;
+                },
             });
 
             Fox.EdGameCore.EdGameCoreModule.RegisterGameObjectEditorInfo("TppEnemyHeli", new Fox.EdGameCore.GameObjectEditorInfo
@@ -392,7 +467,9 @@ namespace Tpp.EdGameCore
                 totalCount = 1,
                 realizedCount = 1,
 
-                
+                canCreateLocator = true,
+
+
                 Presets = new List<string>
                 {
                     "Internal",
@@ -430,6 +507,12 @@ namespace Tpp.EdGameCore
 
                     return param;
                 },
+                CreateLocatorParameterFunc = (preset) =>
+                {
+                    var param = new UnityEngine.GameObject().AddComponent<Tpp.GameCore.TppHeli2LocatorParameter>();
+
+                    return param;
+                },
             });
             Fox.EdGameCore.EdGameCoreModule.RegisterGameObjectEditorInfo("TppEspionageRadioSystem", new Fox.EdGameCore.GameObjectEditorInfo
             {
@@ -437,10 +520,18 @@ namespace Tpp.EdGameCore
                 totalCount = 50,
                 realizedCount = 0,
 
+                canCreateLocator = true,
+
                 CreateParameterFunc = (preset) =>
                 {
                     var param = new UnityEngine.GameObject().AddComponent<Tpp.Radio.TppEspionageRadioSystemParameter>();
                    
+                    return param;
+                },
+                CreateLocatorParameterFunc = (preset) =>
+                {
+                    var param = new UnityEngine.GameObject().AddComponent<Tpp.Radio.TppEspionageRadioLocatorParameter>();
+
                     return param;
                 },
             });
@@ -449,6 +540,8 @@ namespace Tpp.EdGameCore
                 groupId = 0,
                 totalCount = 12,
                 realizedCount = 6,
+
+                canCreateLocator = true,
 
                 CreateParameterFunc = (preset) =>
                 {
@@ -462,6 +555,12 @@ namespace Tpp.EdGameCore
 
                     return param;
                 },
+                CreateLocatorParameterFunc = (preset) =>
+                {
+                    var param = new UnityEngine.GameObject().AddComponent<Tpp.GameCore.TppAnimalLocatorParameter>();
+
+                    return param;
+                },
             });
             Fox.EdGameCore.EdGameCoreModule.RegisterGameObjectEditorInfo("TppHeli2", new Fox.EdGameCore.GameObjectEditorInfo
             {
@@ -469,6 +568,9 @@ namespace Tpp.EdGameCore
                 totalCount = 1,
                 realizedCount = 1,
 
+                canCreateLocator = true,
+
+                
                 CreateParameterFunc = (preset) =>
                 {
                     var param = new UnityEngine.GameObject().AddComponent<Tpp.GameCore.TppHeli2Parameter>();
@@ -543,12 +645,20 @@ namespace Tpp.EdGameCore
 
                     return param;
                 },
+                CreateLocatorParameterFunc = (preset) =>
+                {
+                    var param = new UnityEngine.GameObject().AddComponent<Tpp.GameCore.TppHeli2LocatorParameter>();
+
+                    return param;
+                },
             });
             Fox.EdGameCore.EdGameCoreModule.RegisterGameObjectEditorInfo("TppHorse2", new Fox.EdGameCore.GameObjectEditorInfo
             {
                 groupId = 0,
                 totalCount = 1,
                 realizedCount = 1,
+
+                canCreateLocator = true,
 
                 Presets = new List<string>
                 {
@@ -577,6 +687,12 @@ namespace Tpp.EdGameCore
                     }
                     return param;
                 },
+                CreateLocatorParameterFunc = (preset) =>
+                {
+                    var param = new UnityEngine.GameObject().AddComponent<Tpp.GameCore.TppHostage2LocatorParameter>();
+
+                    return param;
+                },
             });
             Fox.EdGameCore.EdGameCoreModule.RegisterGameObjectEditorInfo("TppHostage2", new Fox.EdGameCore.GameObjectEditorInfo
             {
@@ -584,11 +700,13 @@ namespace Tpp.EdGameCore
                 totalCount = 4,
                 realizedCount = 4,
 
+                canCreateLocator = true,
+
 
                 Presets = new List<string>
                 {
-                    "Soviet Prisoner (Male)",
-                    "Soviet Prisoner (Female)",
+                    "Afghanistan Prisoner (Male)",
+                    "Afghanistan Prisoner (Female)",
                     "Africa Prisoner (Male)",
                     "Africa Prisoner (Female)",
                     "DD Prisoner"
@@ -599,8 +717,8 @@ namespace Tpp.EdGameCore
 
                     switch (preset)
                     {
-                        case "Soviet Prisoner (Male)":param.partsFile = new FilePtr(new Path("/Assets/tpp/parts/chara/prs/prs2_main0_def_v00.parts"));break;
-                        case "Soviet Prisoner (Female)":param.partsFile = new FilePtr(new Path("/Assets/tpp/parts/chara/prs/prs3_main0_def_v00.parts"));break;
+                        case "Afghanistan Prisoner (Male)":param.partsFile = new FilePtr(new Path("/Assets/tpp/parts/chara/prs/prs2_main0_def_v00.parts"));break;
+                        case "Afghanistan Prisoner (Female)":param.partsFile = new FilePtr(new Path("/Assets/tpp/parts/chara/prs/prs3_main0_def_v00.parts"));break;
                         case "Africa Prisoner (Male)":param.partsFile = new FilePtr(new Path("/Assets/tpp/parts/chara/prs/prs5_main0_def_v00.parts"));break;
                         case "Africa Prisoner (Female)":param.partsFile = new FilePtr(new Path("/Assets/tpp/parts/chara/prs/prs6_main0_def_v00.parts"));break;
                         case "DD Prisoner":param.partsFile = new FilePtr(new Path("/Assets/tpp/parts/chara/prs/pdd5_main0_def_v00.parts"));break;
@@ -616,12 +734,20 @@ namespace Tpp.EdGameCore
 
                     return param;
                 },
+                CreateLocatorParameterFunc = (preset) =>
+                {
+                    var param = new UnityEngine.GameObject().AddComponent<Tpp.GameCore.TppHostage2LocatorParameter>();
+
+                    return param;
+                },
             });
             Fox.EdGameCore.EdGameCoreModule.RegisterGameObjectEditorInfo("TppHostageKaz", new Fox.EdGameCore.GameObjectEditorInfo
             {
                 groupId = 0,
                 totalCount = 1,
                 realizedCount = 1,
+
+                canCreateLocator = true,
 
                 CreateParameterFunc = (preset) =>
                 {
@@ -634,6 +760,12 @@ namespace Tpp.EdGameCore
 
                     return param;
                 },
+                CreateLocatorParameterFunc = (preset) =>
+                {
+                    var param = new UnityEngine.GameObject().AddComponent<Tpp.GameCore.TppHostage2LocatorParameter>();
+
+                    return param;
+                },
             });
             Fox.EdGameCore.EdGameCoreModule.RegisterGameObjectEditorInfo("TppHostageUnique", new Fox.EdGameCore.GameObjectEditorInfo
             {
@@ -641,11 +773,12 @@ namespace Tpp.EdGameCore
                 totalCount = 4,
                 realizedCount = 4,
 
+                canCreateLocator = true,
 
                 Presets = new List<string>
                 {
-                    "Soviet Prisoner (Male)",
-                    "Soviet Prisoner (Female)",
+                    "Afghanistan Prisoner (Male)",
+                    "Afghanistan Prisoner (Female)",
                     "Africa Prisoner (Male)",
                     "Africa Prisoner (Female)",
                     "DD Prisoner"
@@ -656,8 +789,8 @@ namespace Tpp.EdGameCore
 
                     switch (preset)
                     {
-                        case "Soviet Prisoner (Male)": param.partsFile = new FilePtr(new Path("/Assets/tpp/parts/chara/prs/prs2_main0_def_v00.parts")); break;
-                        case "Soviet Prisoner (Female)": param.partsFile = new FilePtr(new Path("/Assets/tpp/parts/chara/prs/prs3_main0_def_v00.parts")); break;
+                        case "Afghanistan Prisoner (Male)": param.partsFile = new FilePtr(new Path("/Assets/tpp/parts/chara/prs/prs2_main0_def_v00.parts")); break;
+                        case "Afghanistan Prisoner (Female)": param.partsFile = new FilePtr(new Path("/Assets/tpp/parts/chara/prs/prs3_main0_def_v00.parts")); break;
                         case "Africa Prisoner (Male)": param.partsFile = new FilePtr(new Path("/Assets/tpp/parts/chara/prs/prs5_main0_def_v00.parts")); break;
                         case "Africa Prisoner (Female)": param.partsFile = new FilePtr(new Path("/Assets/tpp/parts/chara/prs/prs6_main0_def_v00.parts")); break;
                         case "DD Prisoner": param.partsFile = new FilePtr(new Path("/Assets/tpp/parts/chara/prs/pdd5_main0_def_v00.parts")); break;
@@ -670,6 +803,12 @@ namespace Tpp.EdGameCore
                     param.vfxFiles.Insert("Blood0", new FilePtr(new Path("/Assets/tpp/effect/vfx_data/blood/fx_tpp_splbld01_s1LG.vfx")));
                     param.vfxFiles.Insert("Blood1", new FilePtr(new Path("/Assets/tpp/effect/vfx_data/blood/fx_tpp_splbld03_s1LG.vfx")));
                     param.vfxFiles.Insert("Blood2", new FilePtr(new Path("/Assets/tpp/effect/vfx_data/blood/fx_tpp_splbld06_s1.vfx")));
+
+                    return param;
+                },
+                CreateLocatorParameterFunc = (preset) =>
+                {
+                    var param = new UnityEngine.GameObject().AddComponent<Tpp.GameCore.TppHostage2LocatorParameter>();
 
                     return param;
                 },
@@ -680,11 +819,13 @@ namespace Tpp.EdGameCore
                 totalCount = 4,
                 realizedCount = 4,
 
+                canCreateLocator = true,
+
 
                 Presets = new List<string>
                 {
-                    "Soviet Prisoner (Male)",
-                    "Soviet Prisoner (Female)",
+                    "Afghanistan Prisoner (Male)",
+                    "Afghanistan Prisoner (Female)",
                     "Africa Prisoner (Male)",
                     "Africa Prisoner (Female)",
                     "DD Prisoner"
@@ -695,8 +836,8 @@ namespace Tpp.EdGameCore
 
                     switch (preset)
                     {
-                        case "Soviet Prisoner (Male)": param.partsFile = new FilePtr(new Path("/Assets/tpp/parts/chara/prs/prs2_main0_def_v00.parts")); break;
-                        case "Soviet Prisoner (Female)": param.partsFile = new FilePtr(new Path("/Assets/tpp/parts/chara/prs/prs3_main0_def_v00.parts")); break;
+                        case "Afghanistan Prisoner (Male)": param.partsFile = new FilePtr(new Path("/Assets/tpp/parts/chara/prs/prs2_main0_def_v00.parts")); break;
+                        case "Afghanistan Prisoner (Female)": param.partsFile = new FilePtr(new Path("/Assets/tpp/parts/chara/prs/prs3_main0_def_v00.parts")); break;
                         case "Africa Prisoner (Male)": param.partsFile = new FilePtr(new Path("/Assets/tpp/parts/chara/prs/prs5_main0_def_v00.parts")); break;
                         case "Africa Prisoner (Female)": param.partsFile = new FilePtr(new Path("/Assets/tpp/parts/chara/prs/prs6_main0_def_v00.parts")); break;
                         case "DD Prisoner": param.partsFile = new FilePtr(new Path("/Assets/tpp/parts/chara/prs/pdd5_main0_def_v00.parts")); break;
@@ -712,6 +853,12 @@ namespace Tpp.EdGameCore
 
                     return param;
                 },
+                CreateLocatorParameterFunc = (preset) =>
+                {
+                    var param = new UnityEngine.GameObject().AddComponent<Tpp.GameCore.TppHostage2LocatorParameter>();
+
+                    return param;
+                },
             });
             Fox.EdGameCore.EdGameCoreModule.RegisterGameObjectEditorInfo("TppHuey2", new Fox.EdGameCore.GameObjectEditorInfo
             {
@@ -719,8 +866,10 @@ namespace Tpp.EdGameCore
                 totalCount = 1,
                 realizedCount = 1,
 
+                canCreateLocator = true,
 
-                
+
+
                 CreateParameterFunc = (preset) =>
                 {
                     var param = new UnityEngine.GameObject().AddComponent<Tpp.GameCore.TppHostage2Parameter>();
@@ -732,12 +881,20 @@ namespace Tpp.EdGameCore
 
                     return param;
                 },
+                CreateLocatorParameterFunc = (preset) =>
+                {
+                    var param = new UnityEngine.GameObject().AddComponent<Tpp.GameCore.TppHostage2LocatorParameter>();
+
+                    return param;
+                },
             });
             Fox.EdGameCore.EdGameCoreModule.RegisterGameObjectEditorInfo("TppJackal", new Fox.EdGameCore.GameObjectEditorInfo
             {
                 groupId = 0,
                 totalCount = 2,
                 realizedCount = 2,
+
+                canCreateLocator = true,
 
                 CreateParameterFunc = (preset) =>
                 {
@@ -750,12 +907,20 @@ namespace Tpp.EdGameCore
 
                     return param;
                 },
+                CreateLocatorParameterFunc = (preset) =>
+                {
+                    var param = new UnityEngine.GameObject().AddComponent<Tpp.GameCore.TppWolfLocatorParameter>();
+
+                    return param;
+                },
             });
             Fox.EdGameCore.EdGameCoreModule.RegisterGameObjectEditorInfo("TppLiquid2", new Fox.EdGameCore.GameObjectEditorInfo
             {
                 groupId = 0,
                 totalCount = 1,
                 realizedCount = 1,
+
+                canCreateLocator = true,
 
                 CreateParameterFunc = (preset) =>
                 {
@@ -767,12 +932,20 @@ namespace Tpp.EdGameCore
 
                     return param;
                 },
+                CreateLocatorParameterFunc = (preset) =>
+                {
+                    var param = new UnityEngine.GameObject().AddComponent<Tpp.GameCore.TppLiquid2LocatorParameter>();
+
+                    return param;
+                },
             });
             Fox.EdGameCore.EdGameCoreModule.RegisterGameObjectEditorInfo("TppMantis2", new Fox.EdGameCore.GameObjectEditorInfo
             {
                 groupId = 0,
                 totalCount = 1,
                 realizedCount = 1,
+
+                canCreateLocator = true,
 
                 CreateParameterFunc = (preset) =>
                 {
@@ -784,6 +957,12 @@ namespace Tpp.EdGameCore
 
                     return param;
                 },
+                CreateLocatorParameterFunc = (preset) =>
+                {
+                    var param = new UnityEngine.GameObject().AddComponent<Tpp.GameCore.TppHostage2LocatorParameter>();
+
+                    return param;
+                },
             });
             Fox.EdGameCore.EdGameCoreModule.RegisterGameObjectEditorInfo("TppMarker2LocatorSystem", new Fox.EdGameCore.GameObjectEditorInfo
             {
@@ -791,9 +970,17 @@ namespace Tpp.EdGameCore
                 totalCount = 60,
                 realizedCount = 0,
 
+                canCreateLocator = true,
+
                 CreateParameterFunc = (preset) =>
                 {
                     var param = new UnityEngine.GameObject().AddComponent<Tpp.MarkerLocator.TppMarker2LocatorSystemParameter>();
+
+                    return param;
+                },
+                CreateLocatorParameterFunc = (preset) =>
+                {
+                    var param = new UnityEngine.GameObject().AddComponent<Tpp.MarkerLocator.TppMarker2LocatorParameter> ();
 
                     return param;
                 },
@@ -803,6 +990,8 @@ namespace Tpp.EdGameCore
                 groupId = 0,
                 totalCount = 12,
                 realizedCount = 6,
+
+                canCreateLocator = true,
 
                 CreateParameterFunc = (preset) =>
                 {
@@ -815,12 +1004,20 @@ namespace Tpp.EdGameCore
 
                     return param;
                 },
+                CreateLocatorParameterFunc = (preset) =>
+                {
+                    var param = new UnityEngine.GameObject().AddComponent<Tpp.GameCore.TppAnimalLocatorParameter> ();
+
+                    return param;
+                },
             });
             Fox.EdGameCore.EdGameCoreModule.RegisterGameObjectEditorInfo("TppOcelot2", new Fox.EdGameCore.GameObjectEditorInfo
             {
                 groupId = 0,
                 totalCount = 1,
                 realizedCount = 1,
+
+                canCreateLocator = true,
 
                 Presets = new List<string>
                 {
@@ -852,12 +1049,20 @@ namespace Tpp.EdGameCore
 
                     return param;
                 },
+                CreateLocatorParameterFunc = (preset) =>
+                {
+                    var param = new UnityEngine.GameObject().AddComponent<Tpp.GameCore.TppHostage2LocatorParameter>();
+
+                    return param;
+                },
             });
             Fox.EdGameCore.EdGameCoreModule.RegisterGameObjectEditorInfo("TppOtherHeli2", new Fox.EdGameCore.GameObjectEditorInfo
             {
                 groupId = 0,
                 totalCount = 5,
                 realizedCount = 5,
+
+                canCreateLocator = true,
 
                 CreateParameterFunc = (preset) =>
                 {
@@ -881,12 +1086,20 @@ namespace Tpp.EdGameCore
 
                     return param;
                 },
+                CreateLocatorParameterFunc = (preset) =>
+                {
+                    var param = new UnityEngine.GameObject().AddComponent<Tpp.GameCore.TppHeli2LocatorParameter>();
+
+                    return param;
+                },
             });
             Fox.EdGameCore.EdGameCoreModule.RegisterGameObjectEditorInfo("TppParasite2", new Fox.EdGameCore.GameObjectEditorInfo
             {
                 groupId = 0,
                 totalCount = 4,
                 realizedCount = 4,
+
+                canCreateLocator = true,
 
                 Presets = new List<string>
                 {
@@ -895,6 +1108,8 @@ namespace Tpp.EdGameCore
                     "Parasite Metal",
                 },
 
+
+                
                 CreateParameterFunc = (preset) =>
                 {
                     var param = new UnityEngine.GameObject().AddComponent<Tpp.GameCore.TppParasite2Parameter>();
@@ -987,6 +1202,12 @@ namespace Tpp.EdGameCore
 
                     return param;
                 },
+                CreateLocatorParameterFunc = (preset) =>
+                {
+                    var param = new UnityEngine.GameObject().AddComponent<Tpp.GameCore.TppParasite2LocatorParameter>();
+
+                    return param;
+                },
             });
             Fox.EdGameCore.EdGameCoreModule.RegisterGameObjectEditorInfo("TppPlayer2", new Fox.EdGameCore.GameObjectEditorInfo
             {
@@ -994,6 +1215,7 @@ namespace Tpp.EdGameCore
                 totalCount = 1,
                 realizedCount = 1,
 
+                canCreateLocator = true,
 
                 CreateParameterFunc = (preset) =>
                 {
@@ -1010,12 +1232,20 @@ namespace Tpp.EdGameCore
 
                     return param;
                 },
+                CreateLocatorParameterFunc = (preset) =>
+                {
+                    var param = new UnityEngine.GameObject().AddComponent<Tpp.GameCore.TppPlayer2LocatorParameter>();
+
+                    return param;
+                },
             });
             Fox.EdGameCore.EdGameCoreModule.RegisterGameObjectEditorInfo("TppPlayerHorse2forVr", new Fox.EdGameCore.GameObjectEditorInfo
             {
                 groupId = 0,
                 totalCount = 1,
                 realizedCount = 1,
+
+                canCreateLocator = true,
 
                 CreateParameterFunc = (preset) =>
                 {
@@ -1025,6 +1255,12 @@ namespace Tpp.EdGameCore
                     param.partsFile = new FilePtr(new Path("/Assets/tpp/parts/chara/hrs/hrs0_main0_def_v00.parts"));
                     param.motionGraphFile = new FilePtr(new Path("/Assets/tpp/motion/motion_graph/volginRide2/TppHorse2forVr_layers.mog"));
                     param.mtarFile = new FilePtr(new Path("/Assets/tpp/motion/mtar/volginRide2/TppHorse2forVr_layers.mtar"));
+
+                    return param;
+                },
+                CreateLocatorParameterFunc = (preset) =>
+                {
+                    var param = new UnityEngine.GameObject().AddComponent<Tpp.GameCore.TppHorse2forVrLocatorParameter>();
 
                     return param;
                 },
@@ -1073,6 +1309,12 @@ namespace Tpp.EdGameCore
 
                     return param;
                 },
+                CreateLocatorParameterFunc = (preset) =>
+                {
+                    var param = new UnityEngine.GameObject().AddComponent<Tpp.GameCore.TppRat2LocatorParameter>();
+
+                    return param;
+                },
             });
             Fox.EdGameCore.EdGameCoreModule.RegisterGameObjectEditorInfo("TppSahalen2", new Fox.EdGameCore.GameObjectEditorInfo
             {
@@ -1080,12 +1322,15 @@ namespace Tpp.EdGameCore
                 totalCount = 1,
                 realizedCount = 1,
 
+                canCreateLocator = true,
+
                 Presets = new List<string>
                 {
                     "Sahelan HellBound",
                     "Sahelan Battle",
                 },
 
+                
                 CreateParameterFunc = (preset) =>
                 {
                     var param = new UnityEngine.GameObject().AddComponent<Tpp.GameCore.TppSahelan2Parameter>();
@@ -1136,12 +1381,20 @@ namespace Tpp.EdGameCore
 
                     return param;
                 },
+                CreateLocatorParameterFunc = (preset) =>
+                {
+                    var param = new UnityEngine.GameObject().AddComponent<Tpp.GameCore.TppSahelan2LocatorParameter>();
+
+                    return param;
+                },
             });
             Fox.EdGameCore.EdGameCoreModule.RegisterGameObjectEditorInfo("TppSecurityCamera2", new Fox.EdGameCore.GameObjectEditorInfo
             {
                 groupId = 0,
                 totalCount = 15,
                 realizedCount = 6,
+
+                canCreateLocator = true,
 
                 CreateParameterFunc = (preset) =>
                 {
@@ -1151,12 +1404,20 @@ namespace Tpp.EdGameCore
                     
                     return param;
                 },
+                CreateLocatorParameterFunc = (preset) =>
+                {
+                    var param = new UnityEngine.GameObject().AddComponent<Tpp.GameCore.TppSecurityCamera2LocatorParameter>();
+
+                    return param;
+                },
             });
             Fox.EdGameCore.EdGameCoreModule.RegisterGameObjectEditorInfo("TppSkullFace2", new Fox.EdGameCore.GameObjectEditorInfo
             {
                 groupId = 0,
                 totalCount = 1,
                 realizedCount = 1,
+
+                canCreateLocator = true,
 
                 CreateParameterFunc = (preset) =>
                 {
@@ -1169,13 +1430,21 @@ namespace Tpp.EdGameCore
 
                     return param;
                 },
+                CreateLocatorParameterFunc = (preset) =>
+                {
+                    var param = new UnityEngine.GameObject().AddComponent<Tpp.GameCore.TppHostage2LocatorParameter>();
+
+                    return param;
+                },
             });
             Fox.EdGameCore.EdGameCoreModule.RegisterGameObjectEditorInfo("TppSoldier2", new Fox.EdGameCore.GameObjectEditorInfo
             {
                 groupId = 0,
                 totalCount = 160,
                 realizedCount = 12,
-                
+
+                canCreateLocator = true,
+
                 Presets = new List<string>
                 {
                     "Soviet", "PF", "XOF",
@@ -1212,6 +1481,12 @@ namespace Tpp.EdGameCore
 
                     return param;
                 },
+                CreateLocatorParameterFunc = (preset) =>
+                {
+                    var param = new UnityEngine.GameObject().AddComponent<Tpp.GameCore.TppSoldier2LocatorParameter>();
+
+                    return param;
+                },
 
             });
             Fox.EdGameCore.EdGameCoreModule.RegisterGameObjectEditorInfo("TppStork", new Fox.EdGameCore.GameObjectEditorInfo
@@ -1219,6 +1494,8 @@ namespace Tpp.EdGameCore
                 groupId = 0,
                 totalCount = 6,
                 realizedCount = 6,
+
+                canCreateLocator = true,
 
                 Presets = new List<string>
                 {
@@ -1249,13 +1526,20 @@ namespace Tpp.EdGameCore
 
                     return param;
                 },
+                CreateLocatorParameterFunc = (preset) =>
+                {
+                    var param = new UnityEngine.GameObject().AddComponent<Tpp.GameCore.TppBirdLocatorParameter2>();
 
+                    return param;
+                },
             });
             Fox.EdGameCore.EdGameCoreModule.RegisterGameObjectEditorInfo("TppVolgin2", new Fox.EdGameCore.GameObjectEditorInfo
             {
                 groupId = 0,
                 totalCount = 1,
                 realizedCount = 1,
+
+                canCreateLocator = true,
 
                 CreateParameterFunc = (preset) =>
                 {
@@ -1267,12 +1551,20 @@ namespace Tpp.EdGameCore
 
                     return param;
                 },
+                CreateLocatorParameterFunc = (preset) =>
+                {
+                    var param = new UnityEngine.GameObject().AddComponent<Tpp.GameCore.TppVolgin2LocatorParameter>();
+
+                    return param;
+                },
             });
             Fox.EdGameCore.EdGameCoreModule.RegisterGameObjectEditorInfo("TppVolgin2forVr", new Fox.EdGameCore.GameObjectEditorInfo
             {
                 groupId = 0,
                 totalCount = 1,
                 realizedCount = 1,
+
+                canCreateLocator = true,
 
                 CreateParameterFunc = (preset) =>
                 {
@@ -1284,18 +1576,32 @@ namespace Tpp.EdGameCore
 
                     return param;
                 },
+                CreateLocatorParameterFunc = (preset) =>
+                {
+                    var param = new UnityEngine.GameObject().AddComponent<Tpp.GameCore.TppVolgin2forVrLocatorParameter>();
+
+                    return param;
+                },
             });
             Fox.EdGameCore.EdGameCoreModule.RegisterGameObjectEditorInfo("TppUav", new Fox.EdGameCore.GameObjectEditorInfo
             {
                 groupId = 0,
-                totalCount = 1,
-                realizedCount = 1,
+                totalCount = 16,
+                realizedCount = 6,
+
+                canCreateLocator = true,
 
                 CreateParameterFunc = (preset) =>
                 {
                     var param = new UnityEngine.GameObject().AddComponent<Tpp.GameCore.TppUavParameter>();
 
                     param.partsFile = new FilePtr(new Path("/Assets/tpp/parts/mecha/uav/uav0_main0_def_v00.parts"));
+
+                    return param;
+                },
+                CreateLocatorParameterFunc = (preset) =>
+                {
+                    var param = new UnityEngine.GameObject().AddComponent<Tpp.GameCore.TppUavLocatorParameter>();
 
                     return param;
                 },
@@ -1314,12 +1620,20 @@ namespace Tpp.EdGameCore
 
                     return param;
                 },
+                CreateLocatorParameterFunc = (preset) =>
+                {
+                    var param = new UnityEngine.GameObject().AddComponent<Tpp.GameCore.TppVehicle2LocatorParameter>();
+
+                    return param;
+                },
             });
             Fox.EdGameCore.EdGameCoreModule.RegisterGameObjectEditorInfo("TppCommonWalkerGear2", new Fox.EdGameCore.GameObjectEditorInfo
             {
                 groupId = 0,
                 totalCount = 15,
                 realizedCount = 4,
+
+                canCreateLocator = true,
 
                 CreateParameterFunc = (preset) =>
                 {
@@ -1344,12 +1658,20 @@ namespace Tpp.EdGameCore
 
                     return param;
                 },
+                CreateLocatorParameterFunc = (preset) =>
+                {
+                    var param = new UnityEngine.GameObject().AddComponent<Tpp.GameCore.TppWalkerGear2LocatorParameter>();
+
+                    return param;
+                },
             });
             Fox.EdGameCore.EdGameCoreModule.RegisterGameObjectEditorInfo("TppWolf", new Fox.EdGameCore.GameObjectEditorInfo
             {
                 groupId = 0,
                 totalCount = 6,
                 realizedCount = 6,
+
+                canCreateLocator = true,
 
                 CreateParameterFunc = (preset) =>
                 {
@@ -1361,12 +1683,20 @@ namespace Tpp.EdGameCore
 
                     return param;
                 },
+                CreateLocatorParameterFunc = (preset) =>
+                {
+                    var param = new UnityEngine.GameObject().AddComponent<Tpp.GameCore.TppWolfLocatorParameter>();
+
+                    return param;
+                },
             });
             Fox.EdGameCore.EdGameCoreModule.RegisterGameObjectEditorInfo("TppZebra", new Fox.EdGameCore.GameObjectEditorInfo
             {
                 groupId = 0,
                 totalCount = 12,
                 realizedCount = 6,
+
+                canCreateLocator = true,
 
                 Presets = new List<string>
                 {
@@ -1400,6 +1730,12 @@ namespace Tpp.EdGameCore
 
                     param.motionGraphFile = new FilePtr(new Path("/Assets/tpp/motion/motion_graph/zebra/TppZebra_layers.mog"));
                     param.mtarFile = new FilePtr(new Path("Assets/tpp/motion/mtar/zebra/Zebra_layers.mtar"));
+
+                    return param;
+                },
+                CreateLocatorParameterFunc = (preset) =>
+                {
+                    var param = new UnityEngine.GameObject().AddComponent<Tpp.GameCore.TppAnimalLocatorParameter>();
 
                     return param;
                 },
