@@ -9,9 +9,9 @@ namespace Fox.Core
     {
         public static StageBlockControllerData Instance;
 
-        public override void OnDeserializeEntity(UnityEngine.GameObject gameObject, TaskLogger logger)
+        public override void OnDeserializeEntity(TaskLogger logger)
         {
-            base.OnDeserializeEntity(gameObject, logger);
+            base.OnDeserializeEntity(logger);
 
             if (!this.enable)
             {

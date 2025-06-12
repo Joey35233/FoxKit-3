@@ -98,11 +98,8 @@ namespace FoxKit.Windows
 
             // Step 2: Load that fox2
             var fox2Reader = new DataSetFile2Reader();
-            DataSetFile2Reader.ReadResult readResult;
-            using (var reader = new FileStreamReader(File.OpenRead(stagePath)))
-            {
-                readResult = fox2Reader.Read(reader, new TaskLogger("StageLoader"));
-            }
+            byte[] stageFileData = File.ReadAllBytes(stagePath);
+            _ = fox2Reader.Read(stageFileData, new TaskLogger("StageLoader"));
 
             // Step 3: Find the baseDirectoryPath from StageBlockControllerData
             string baseDirectoryPath = null;
@@ -144,70 +141,17 @@ namespace FoxKit.Windows
 
                 var logger = new TaskLogger("TileImport");
 
-                UnityEngine.SceneManagement.Scene scene;
-                try
-                {
-                    scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Additive);
-                }
-                catch (InvalidOperationException)
-                {
-                    scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
-                }
-                scene.name = Path.GetFileNameWithoutExtension(path);
+                UnityEngine.SceneManagement.Scene tileScene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Additive);
+                tileScene.name = Path.GetFileNameWithoutExtension(path);
 
-                using var reader = new FileStreamReader(File.OpenRead(path));
-                var result = fox2Reader.Read(reader, logger);
-
-                var typeCount = new Dictionary<Type, int>();
-                foreach (var gameObject in result.GameObjects)
-                {
-                    var entity = gameObject.GetComponent<Entity>();
-
-                    // Name the GameObject
-                    if (entity is Data dataEntity)
-                    {
-                        gameObject.name = dataEntity.name;
-                    }
-                    else
-                    {
-                        var type = entity.GetType();
-                        if (!typeCount.ContainsKey(type))
-                            typeCount[type] = 0;
-
-                        gameObject.name = type.Name + typeCount[type].ToString("D4");
-                        typeCount[type]++;
-                    }
-
-                    // Parenting
-                    if (entity is TransformData td)
-                    {
-                        if (result.TransformDataChildToParentMap.TryGetValue(td, out var parent))
-                        {
-                            td.transform.SetParent(parent.transform, false);
-                        }
-                    }
-                    else if (entity is DataElement)
-                    {
-                        var parent = entity.GetComponentInParent<Entity>();
-                        if (parent != null)
-                        {
-                            gameObject.transform.SetParent(parent.transform);
-                            gameObject.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
-                        }
-                    }
-                    else
-                    {
-                        gameObject.transform.SetParent(result.DataSetGameObject.transform);
-                    }
-
-                    entity.OnDeserializeEntity(gameObject, logger);
-                }
+                byte[] tileData = File.ReadAllBytes(path);
+                _ = fox2Reader.Read(tileData, logger);
 
                 // Save the scene for this tile
-                string scenePath = $"Assets/Scenes/{Path.GetFileName(path)}.unity";
+                string tileScenePath = $"Assets/Scenes/{Path.GetFileName(path)}.unity";
                 Directory.CreateDirectory("Assets/Scenes"); // ensure the folder exists
-                EditorSceneManager.SaveScene(scene, scenePath);
-                Debug.Log($"[TerrainLoader] Saved scene: {scenePath}");
+                EditorSceneManager.SaveScene(tileScene, tileScenePath);
+                Debug.Log($"[TerrainLoader] Saved scene: {tileScenePath}");
 
                 logger.LogToUnityConsole();
             }
