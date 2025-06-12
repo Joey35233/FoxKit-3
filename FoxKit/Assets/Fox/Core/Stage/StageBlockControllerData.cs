@@ -30,5 +30,10 @@ namespace Fox.Core
         {
             Instance = this;
         }
+
+        private void OnDisable()
+        {
+            Instance = null;
+        }
     }
 }
