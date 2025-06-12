@@ -91,6 +91,7 @@ namespace Fox.Core
                         {
                             Entity entity = entities[i];
                                 
+                            // Static properties
                             DataSetFile2.PropertyDef* propertyDef = (DataSetFile2.PropertyDef*)((byte*)entityDef + entityDef->StaticPropertiesOffset);
                             for (int j = 0; j < entityDef->StaticPropertyCount; j++)
                             {
@@ -129,6 +130,7 @@ namespace Fox.Core
                                 propertyDef = (DataSetFile2.PropertyDef*)((byte*)propertyDef + propertyDef->NextPropertyOffset);
                             }
 
+                            // Dynamic properties
                             propertyDef = (DataSetFile2.PropertyDef*)((byte*)entityDef + entityDef->DynamicPropertiesOffset);
                             for (int j = 0; j < entityDef->DynamicPropertyCount; j++)
                             {
