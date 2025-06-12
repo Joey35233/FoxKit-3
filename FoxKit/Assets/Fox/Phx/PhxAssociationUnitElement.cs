@@ -7,9 +7,9 @@ namespace Fox.Phx
     public partial class PhxAssociationUnitElement
     {
 
-        public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
+        public override void OnDeserializeEntity(TaskLogger logger)
         {
-            base.OnDeserializeEntity(gameObject, logger);
+            base.OnDeserializeEntity(logger);
             
             bodyOffsetPos = Fox.Math.FoxToUnityVector3(bodyOffsetPos);
             constraintOffsetPos = Fox.Math.FoxToUnityVector3(constraintOffsetPos);

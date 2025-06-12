@@ -11,7 +11,7 @@ namespace Fox.Core
         /// <summary>
         /// Types of values that can be stored in a Fox property.
         /// </summary>
-        public enum PropertyType
+        public enum PropertyType : byte
         {
             Int8 = 0,
             UInt8 = 1,
@@ -43,7 +43,7 @@ namespace Fox.Core
         /// <summary>
         /// Types of property containers.
         /// </summary>
-        public enum ContainerType
+        public enum ContainerType : byte
         {
             /// <summary>
             /// An array with a fixed size. A StaticArray of arraySize 1 is not stored as an array.

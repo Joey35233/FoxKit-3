@@ -21,9 +21,9 @@ namespace Fox.Ph
             rotation = rotation.normalized;
         }
 
-        public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
+        public override void OnDeserializeEntity(TaskLogger logger)
         {
-            base.OnDeserializeEntity(gameObject, logger);
+            base.OnDeserializeEntity(logger);
 
             offset = Fox.Math.FoxToUnityVector3(offset);
             rotation = Fox.Math.FoxToUnityQuaternion(rotation);

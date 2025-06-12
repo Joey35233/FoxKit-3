@@ -7,9 +7,9 @@ namespace Fox.Graphx
 {
     public partial class GraphxPathVolume
     {
-        public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
+        public override void OnDeserializeEntity(TaskLogger logger)
         {
-            base.OnDeserializeEntity(gameObject, logger);
+            base.OnDeserializeEntity(logger);
 
             topPos = Fox.Math.FoxToUnityVector3(topPos);
         }

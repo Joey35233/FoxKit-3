@@ -30,9 +30,9 @@ namespace Fox.Ph
         internal bool GetIsPoweredFlag() => isPoweredFlag;
         internal void SetIsPoweredFlag(bool value) => isPoweredFlag = value;
         
-        public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
+        public override void OnDeserializeEntity(TaskLogger logger)
         {
-            base.OnDeserializeEntity(gameObject, logger);
+            base.OnDeserializeEntity(logger);
 
             refVec0 = Fox.Math.FoxToUnityVector3(refVec0);
             refVec1 = Fox.Math.FoxToUnityVector3(refVec1);

@@ -9,11 +9,12 @@ namespace Fox.Core
         public void SetOwner(Data entity)
         {
             this.transform.SetParent(entity.transform);
+            this.transform.SetLocalPositionAndRotation(UnityEngine.Vector3.zero, UnityEngine.Quaternion.identity);
         }
 
-        public override void OnDeserializeEntity(UnityEngine.GameObject gameObject, TaskLogger logger)
+        public override void OnDeserializeEntity(TaskLogger logger)
         {
-            base.OnDeserializeEntity(gameObject, logger);
+            base.OnDeserializeEntity(logger);
 
             if (this.owner is not { } owner )
             {

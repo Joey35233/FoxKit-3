@@ -8,6 +8,11 @@ namespace Fox.Core
     public class Value
     {
         private readonly object value;
+        
+        public Value(object v)
+        {
+            value = v;
+        }
 
         public Value(bool v1)
         {

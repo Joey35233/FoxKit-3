@@ -6,9 +6,9 @@ namespace Fox.Demo
 {
     public partial class DemoControlCharacterDesc
     {
-        public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
+        public override void OnDeserializeEntity(TaskLogger logger)
         {
-            base.OnDeserializeEntity(gameObject, logger);
+            base.OnDeserializeEntity(logger);
 
             translation = Fox.Math.FoxToUnityVector3(translation);
             rotation = Fox.Math.FoxToUnityQuaternion(rotation);

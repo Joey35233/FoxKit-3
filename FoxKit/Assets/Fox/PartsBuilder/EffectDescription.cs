@@ -7,9 +7,9 @@ namespace Fox.PartsBuilder
 {
     public partial class EffectDescription
     {
-        public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
+        public override void OnDeserializeEntity(TaskLogger logger)
         {
-            base.OnDeserializeEntity(gameObject, logger);
+            base.OnDeserializeEntity(logger);
 
             for (int i = 0; i < offsetSkelPositions.Count; i++)
                 offsetSkelPositions[i] = Fox.Math.FoxToUnityVector3(offsetSkelPositions[i]);

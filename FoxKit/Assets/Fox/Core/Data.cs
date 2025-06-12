@@ -7,9 +7,9 @@ namespace Fox.Core
     {
         private partial string Get_referencePath() => throw new System.NotImplementedException();
 
-        public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
+        public override void OnDeserializeEntity(TaskLogger logger)
         {
-            base.OnDeserializeEntity(gameObject, logger);
+            base.OnDeserializeEntity(logger);
             
             if (!string.IsNullOrEmpty(name))
                 gameObject.name = name;

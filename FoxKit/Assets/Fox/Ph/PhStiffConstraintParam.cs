@@ -11,9 +11,11 @@ namespace Fox.Ph
 
         internal UnityEngine.Vector3 GetEnduranceTorque() => enduranceTorque;
         
-        internal void SetEnduranceTorque(UnityEngine.Vector3 value) => enduranceTorque = value; public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
+        internal void SetEnduranceTorque(UnityEngine.Vector3 value) => enduranceTorque = value; 
+        
+        public override void OnDeserializeEntity(TaskLogger logger)
         {
-            base.OnDeserializeEntity(gameObject, logger);
+            base.OnDeserializeEntity(logger);
 
             enduranceTorque = Fox.Math.FoxToUnityVector3(enduranceTorque);
         }

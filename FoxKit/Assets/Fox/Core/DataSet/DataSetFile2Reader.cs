@@ -4,156 +4,292 @@ using Fox;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using UnityEngine;
 
 namespace Fox.Core
 {
-    public class DataSetFile2Reader
+    public struct DataSetFile2Reader
     {
-        private IDictionary<StrCode, string> stringTable;
-        private readonly IDictionary<ulong, List<Action<Entity>>> entityPtrSetRequests = new Dictionary<ulong, List<Action<Entity>>>();
-        private readonly IDictionary<ulong, HashSet<Action<Entity>>> entityHandleSetRequests = new Dictionary<ulong, HashSet<Action<Entity>>>();
-        private TaskLogger logger;
+        // State
+        private Dictionary<StrCode, string> StringTable;
+        private Dictionary<ulong, Entity> EntityAddressMap;
+        
+        // Logger
+        private TaskLogger Logger;
 
-        public class ReadResult
+        public Entity[] Read(ReadOnlySpan<byte> data, TaskLogger logger)
         {
-            public List<GameObject> GameObjects;
-            public GameObject DataSetGameObject;
-            public IDictionary<TransformData, TransformData> TransformDataChildToParentMap = new Dictionary<TransformData, TransformData>();
-        }
-
-        public ReadResult Read(FileStreamReader reader, TaskLogger logger)
-        {
-            this.logger = logger;
-
-            byte[] headerBytes = reader.ReadBytes(32);
-            int entityCount = BitConverter.ToInt32(headerBytes, 8);
-            int stringTableOffset = BitConverter.ToInt32(headerBytes, 12);
-            long entityTableOffset = reader.BaseStream.Position;
-
-            reader.Seek(stringTableOffset);
-            stringTable = ReadStringTable(reader);
-
-			// v rlc with sai's direction, from Atvaark's FoxTool code
-            // TODO: Make different version or just figure out GZs weird path encryption
-            // string path = "Assets/Fox/Core/DataSet/fox_dictionary.txt";
-            // foreach (string line in System.IO.File.ReadAllLines(path))
-            // {
-            //     _ = stringTable.TryAdd(new StrCode(line), line);
-            // }
-			// ^
-
-            reader.Seek(entityTableOffset);
-
-            var result = new ReadResult();
-            var entities = new Dictionary<ulong, Entity>();
-            var gameObjects = new Dictionary<ulong, GameObject>();
-            for (int i = 0; i < entityCount; i++)
-            {
-                var gameObject = new GameObject();
-
-                AddressedEntity addressedEntity = new DataSetFile2AddressedEntityReader(RequestSetEntityPtr, RequestSetEntityHandle, result.TransformDataChildToParentMap, logger)
-                    .Read(reader, gameObject, (hash) => stringTable[hash]);
-                entities.Add(addressedEntity.Address, addressedEntity.Entity);
-
-                // Name GameObject
-                if (addressedEntity.Entity is DataElement)
-                {
-                    gameObject.name = $"{addressedEntity.Entity.GetClassEntityInfo().Name}<0x{addressedEntity.Address:X8}>";
-                }
-                else if (addressedEntity.Entity is DataSet)
-                {
-                    gameObject.name = "DataSet";
-                    result.DataSetGameObject = gameObject;
-                    continue;
-                }
-
-                gameObjects.Add(addressedEntity.Address, gameObject);
-            }
-
-            ResolveRequests(entities, gameObjects);
-
-            result.GameObjects = gameObjects.Values.ToList();
-            return result;
-        }
-
-        private static IDictionary<StrCode, string> ReadStringTable(FileStreamReader reader)
-        {
-            var dictionary = new Dictionary<StrCode, string>
+            Logger = logger;
+            StringTable = new Dictionary<StrCode, string>
             {
                 { new StrCode(string.Empty), string.Empty }
             };
 
-            while (true)
+            unsafe
             {
-                StrCode hash = reader.ReadStrCode();
-                if (hash == 0)
+                fixed (byte* dataPtr = data)
                 {
-                    return dictionary;
-                }
+                    // Header
+                    DataSetFile2.FileHeader* header = (DataSetFile2.FileHeader*)dataPtr;
 
-                int length = reader.ReadInt32();
-                char[] literal = reader.ReadChars(length);
-                if (dictionary.ContainsKey(hash))
-                {
-                    continue;
-                }
-
-                dictionary.Add(hash, new string(literal));
-            }
-        }
-
-        private void ResolveRequests(IDictionary<ulong, Entity> entities, IDictionary<ulong, GameObject> gameObjects)
-        {
-            foreach ((ulong address, List<Action<Entity>> setters) in entityPtrSetRequests)
-            {
-                if (address == 0)
-                    foreach (Action<Entity> setter in setters)
-                        setter(null);
-                else if (entities.TryGetValue(address, out var entity))
-                    foreach (Action<Entity> setter in setters)
-                        setter(entity);
-                else
-                    logger.AddError($"Unable to resolve EntityPtr 0x{address:X8}.");
-            }
-
-            foreach ((ulong address, HashSet<Action<Entity>> setters) in entityHandleSetRequests)
-            {
-                if (address == 0)
-                    foreach (Action<Entity> setter in setters)
-                        setter(null);
-                
-                else if (entities.TryGetValue(address, out var entity))
-                {
-                    if (!gameObjects.ContainsKey(address))
+                    // Read string table
+                    if (header->StringTableOffset > 0)
                     {
-                        foreach (Action<Entity> setter in setters)
-                            setter(entity);
-                        continue;
+                        DataSetFile2.StringData* stringData = (DataSetFile2.StringData*)((byte*)header + header->StringTableOffset);
+                        while (stringData->Hash.IsValid() && stringData->Length > 0)
+                        {
+                            byte* literalData = (byte*)(stringData + 1);
+                            
+                            if (!StringTable.ContainsKey(stringData->Hash))
+                            {
+                                string literal = Marshal.PtrToStringAnsi((IntPtr)literalData, stringData->Length);
+
+                                StringTable.Add(stringData->Hash, literal);
+                            }
+                            
+                            stringData = (DataSetFile2.StringData*)(literalData + stringData->Length);
+                        }
                     }
 
-                    foreach (Action<Entity> setter in setters)
-                        setter(gameObjects[address].GetComponent<Entity>());
+			        // v rlc with sai's direction, from Atvaark's FoxTool code
+                    // TODO: Make different version or just figure out GZs weird path encryption
+                    // string path = "Assets/Fox/Core/DataSet/fox_dictionary.txt";
+                    // foreach (string line in System.IO.File.ReadAllLines(path))
+                    // {
+                    //     _ = stringTable.TryAdd(new StrCode(line), line);
+                    // }
+			        // ^
+
+                    EntityAddressMap = new Dictionary<ulong, Entity>();
+                    Entity[] entities = new Entity[header->EntityCount];
+                    if (header->EntityCount > 0 && header->EntitiesOffset > 0)
+                    {
+                        // Initial read of each addressed Entity
+                        DataSetFile2.EntityDef* entityDef = (DataSetFile2.EntityDef*)((byte*)header + header->EntitiesOffset);
+                        for (uint i = 0; i < header->EntityCount; i++)
+                        {
+                            GameObject gameObject = new GameObject();
+
+                            Debug.Assert(entityDef->HeaderSize == 0x40);
+                            Debug.Assert(entityDef->Signature == 0x00746E65); // "ent\0"
+
+                            // TODO: Can turn into Dictionary that uses StrCode directly
+                            EntityInfo entityInfo = EntityInfo.GetEntityInfo(entityDef->ClassName.ToString());
+                            
+                            Entity entity = gameObject.AddComponent(entityInfo.Type) as Entity;
+                            EntityAddressMap.Add(entityDef->Address, entity);
+                            entities[i] = entity;
+                            
+                            entityDef = (DataSetFile2.EntityDef*)((byte*)entityDef + entityDef->NextEntityOffset);
+                        }
+
+                        // Reset iterator and read properties
+                        entityDef = (DataSetFile2.EntityDef*)((byte*)header + header->EntitiesOffset);
+                        Dictionary<Type, int> typeCounts = new Dictionary<Type, int>();
+                        for (uint i = 0; i < header->EntityCount; i++)
+                        {
+                            Entity entity = entities[i];
+                                
+                            DataSetFile2.PropertyDef* propertyDef = (DataSetFile2.PropertyDef*)((byte*)entityDef + entityDef->StaticPropertiesOffset);
+                            for (int j = 0; j < entityDef->StaticPropertyCount; j++)
+                            {
+                                PropertyInfo.PropertyType dataType = propertyDef->DataType;
+                                PropertyInfo.ContainerType containerType = propertyDef->ContainerType;
+                                ushort arraySize = propertyDef->ArraySize;
+
+                                // TODO: REMOVE
+                                string propertyName = StringTable[propertyDef->Name];
+
+                                if (containerType == PropertyInfo.ContainerType.StaticArray && arraySize == 1)
+                                {
+                                    object value = ReadPropertyValue(propertyDef);
+                                    entity.SetProperty(propertyName, new Value(value));
+                                }
+                                else if (containerType == PropertyInfo.ContainerType.StringMap)
+                                {
+                                    for (ushort k = 0; k < propertyDef->ArraySize; k++)
+                                    {
+                                        byte* payload = (byte*)propertyDef + propertyDef->PayloadOffset;
+                                        
+                                        string key = StringTable[*(StrCode*)payload];
+                                        object value = ReadPropertyValue(propertyDef);
+                                        entity.SetPropertyElement(propertyName, key, new Value(value));
+                                    }
+                                }
+                                else
+                                {
+                                    for (ushort k = 0; k < propertyDef->ArraySize; k++)
+                                    {
+                                        object value = ReadPropertyValue(propertyDef);
+                                        entity.SetPropertyElement(propertyName, k, new Value(value));
+                                    }
+                                }
+                                
+                                propertyDef = (DataSetFile2.PropertyDef*)((byte*)propertyDef + propertyDef->NextPropertyOffset);
+                            }
+
+                            propertyDef = (DataSetFile2.PropertyDef*)((byte*)entityDef + entityDef->DynamicPropertiesOffset);
+                            for (int j = 0; j < entityDef->DynamicPropertyCount; j++)
+                            {
+                                PropertyInfo.PropertyType dataType = propertyDef->DataType;
+                                PropertyInfo.ContainerType containerType = propertyDef->ContainerType;
+                                ushort arraySize = propertyDef->ArraySize;
+
+                                string propertyName = StringTable[propertyDef->Name];
+                                entity.AddDynamicProperty(dataType, propertyName, arraySize, containerType);
+
+                                if (containerType == PropertyInfo.ContainerType.StringMap)
+                                {
+                                    for (ushort k = 0; k < propertyDef->ArraySize; k++)
+                                    {
+                                        byte* payload = (byte*)propertyDef + propertyDef->PayloadOffset;
+                                        
+                                        string key = StringTable[*(StrCode*)payload];
+                                        object value = ReadPropertyValue(propertyDef);
+                                        entity.SetPropertyElement(propertyName, key, new Value(value));
+                                    }
+                                }
+                                else
+                                {
+                                    for (ushort k = 0; k < propertyDef->ArraySize; k++)
+                                    {
+                                        object value = ReadPropertyValue(propertyDef);
+                                        entity.SetPropertyElement(propertyName, k, new Value(value));
+                                    }
+                                }
+                                
+                                propertyDef = (DataSetFile2.PropertyDef*)((byte*)propertyDef + propertyDef->NextPropertyOffset);
+                            }
+                            
+                            // Naming
+                            if (entity is DataSet)
+                            {
+                                entity.name = "DataSet";
+                            }
+                            else if (entity is not Data)
+                            {
+                                Type type = entity.GetType();
+                            
+                                // Grab current type count and increment registry
+                                int typeCount = 0;
+                                if (typeCounts.TryGetValue(type, out typeCount))
+                                {
+                                    typeCounts[type] = typeCount + 1;
+                                }
+                                else
+                                {
+                                    typeCounts.Add(type, typeCount);
+                                }
+                                // Actually name Entity
+                                entity.name = $"{type.Name}{typeCount:D4}";
+                            }
+                            
+                            entityDef = (DataSetFile2.EntityDef*)((byte*)entityDef + entityDef->NextEntityOffset);
+                        }
+                        
+                        // Post
+                        foreach (Entity entity in entities)
+                            entity.OnDeserializeEntity(logger);
+                    }
+
+                    return entities;
                 }
-                else
-                    logger.AddError($"Unable to resolve EntityHandle 0x{address:X8}");
             }
         }
 
-        public void RequestSetEntityPtr(ulong address, Action<Entity> setPtr)
+        private unsafe object ReadPropertyValue(DataSetFile2.PropertyDef* propertyDef)
         {
-            if (entityPtrSetRequests.TryGetValue(address, out var request))
-                request.Add(setPtr);
-            else
-                entityPtrSetRequests.Add(address, new List<Action<Entity>>() { setPtr });
-        }
+            byte* payload = (byte*)propertyDef + propertyDef->PayloadOffset;
+            
+            // Skip over key hash
+            if (propertyDef->ContainerType == PropertyInfo.ContainerType.StringMap)
+                payload += 8;
+            
+            switch (propertyDef->DataType)
+            {
+                case PropertyInfo.PropertyType.Int8:
+                    return *(sbyte*)payload;
+                case PropertyInfo.PropertyType.UInt8:
+                    return *(byte*)payload;
+                case PropertyInfo.PropertyType.Int16:
+                    return *(short*)payload;
+                case PropertyInfo.PropertyType.UInt16:
+                    return *(ushort*)payload;
+                case PropertyInfo.PropertyType.Int32:
+                    return *(int*)payload;
+                case PropertyInfo.PropertyType.UInt32:
+                    return *(uint*)payload;
+                case PropertyInfo.PropertyType.Int64:
+                    return *(long*)payload;
+                case PropertyInfo.PropertyType.UInt64:
+                    return *(ulong*)payload;
+                case PropertyInfo.PropertyType.Float:
+                    return *(float*)payload;
+                case PropertyInfo.PropertyType.Double:
+                    return *(double*)payload;
+                case PropertyInfo.PropertyType.Bool:
+                    return *(bool*)payload;
+                case PropertyInfo.PropertyType.String:
+                    return StringTable[*(StrCode*)payload];
+                case PropertyInfo.PropertyType.Path:
+                    return new Path(StringTable[*(StrCode*)payload]);
+                case PropertyInfo.PropertyType.EntityPtr:
+                {
+                    ulong address = *(ulong*)payload;
+                    if (!EntityAddressMap.TryGetValue(address, out Entity entity) && address != 0x0)
+                        Logger.AddError($"Unable to resolve address 0x{address:X8}.");
+                    
+                    return entity;
+                }
+                case PropertyInfo.PropertyType.Vector3:
+                    return *(Vector3*)payload;
+                case PropertyInfo.PropertyType.Vector4:
+                    return *(Vector4*)payload;
+                case PropertyInfo.PropertyType.Quat:
+                    return *(Quaternion*)payload;
+                case PropertyInfo.PropertyType.Matrix3:
+                    throw new NotImplementedException();
+                case PropertyInfo.PropertyType.Matrix4:
+                    return *(Matrix4x4*)payload;
+                case PropertyInfo.PropertyType.Color:
+                    return *(Color*)payload;
+                case PropertyInfo.PropertyType.FilePtr:
+                    return new FilePtr(new Path(StringTable[*(StrCode*)payload]));
+                case PropertyInfo.PropertyType.EntityHandle:
+                {
+                    ulong address = *(ulong*)payload;
+                    if (!EntityAddressMap.TryGetValue(address, out Entity entity) && address != 0x0)
+                        Logger.AddError($"Unable to resolve address 0x{address:X8}.");
+                    
+                    return entity;
+                }
+                case PropertyInfo.PropertyType.EntityLink:
+                {
+                    DataSetFile2.EntityLinkDef entityLinkDef = *(DataSetFile2.EntityLinkDef*)payload;
 
-        public void RequestSetEntityHandle(ulong address, Action<Entity> setHandle)
-        {
-            if (entityHandleSetRequests.TryGetValue(address, out var request))
-                _ = request.Add(setHandle);
-            else
-                entityHandleSetRequests.Add(address, new HashSet<Action<Entity>> { setHandle });
+                    ulong address = entityLinkDef.Address;
+                    if (!EntityAddressMap.TryGetValue(address, out Entity entity) && address != 0x0)
+                        Logger.AddError($"Unable to resolve address 0x{address:X8}.");
+
+                    EntityLink entityLink = new EntityLink
+                    {
+                        packagePath = new Path(StringTable[entityLinkDef.PackagePathHash]),
+                        archivePath = new Path(StringTable[entityLinkDef.ArchivePathHash]),
+                        nameInArchive = StringTable[entityLinkDef.NameInArchiveHash],
+                        handle = entity,
+                    };
+
+                    return entityLink;
+                }
+                case PropertyInfo.PropertyType.PropertyInfo:
+                    throw new NotImplementedException();
+                case PropertyInfo.PropertyType.WideVector3:
+                    throw new NotImplementedException();
+                default:
+                    Logger.AddError($"Unexpected property type: {propertyDef->DataType}.");
+                    throw new InvalidOperationException();
+            }
         }
     }
 }

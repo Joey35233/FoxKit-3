@@ -6,9 +6,9 @@ namespace Tpp.Effect
 {
     public partial class TppLensFlareShape
     {
-        public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
+        public override void OnDeserializeEntity(TaskLogger logger)
         {
-            base.OnDeserializeEntity(gameObject, logger);
+            base.OnDeserializeEntity(logger);
 
             (baseOffsetX, baseOffsetY, _) = Fox.Math.FoxToUnityVectorComponents(new Vector3(baseOffsetX, baseOffsetY, 0));
             (screenSpaceRotSpeedX, screenSpaceRotSpeedY, _) = Fox.Math.FoxToUnityVectorComponents(new Vector3(screenSpaceRotSpeedX, screenSpaceRotSpeedY, 0));

@@ -6,9 +6,9 @@ namespace Tpp.GameKit
 {
     public partial class TppPermanentGimmickData : Fox.Core.Data
     {
-        public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
+        public override void OnDeserializeEntity(TaskLogger logger)
         {
-            base.OnDeserializeEntity(gameObject, logger);
+            base.OnDeserializeEntity(logger);
 
             if (partsFile == FilePtr.Empty)
             {
