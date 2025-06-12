@@ -6,9 +6,9 @@ namespace Fox.Ph
 {
     public partial class PhClothVConstraintParam
     {
-        public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
+        public override void OnDeserializeEntity(TaskLogger logger)
         {
-            base.OnDeserializeEntity(gameObject, logger);
+            base.OnDeserializeEntity(logger);
 
             refA = Fox.Math.FoxToUnityVector3(refA);
             refB = Fox.Math.FoxToUnityVector3(refB);

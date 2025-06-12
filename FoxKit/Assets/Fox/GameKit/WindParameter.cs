@@ -14,9 +14,9 @@ namespace Fox.GameKit
 
         internal float GetInfluenceOfGlobal() => influenceOfGlobal;
         internal void SetInfluenceOfGlobal(float value) => influenceOfGlobal = value;
-        public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
+        public override void OnDeserializeEntity(TaskLogger logger)
         {
-            base.OnDeserializeEntity(gameObject, logger);
+            base.OnDeserializeEntity(logger);
 
             velocity = Fox.Math.FoxToUnityVector3(velocity);
             rotation = Fox.Math.FoxToUnityQuaternion(rotation);

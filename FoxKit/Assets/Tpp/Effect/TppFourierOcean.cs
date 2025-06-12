@@ -6,9 +6,9 @@ namespace Tpp.Effect
 {
     public partial class TppFourierOcean
     {
-        public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
+        public override void OnDeserializeEntity(TaskLogger logger)
         {
-            base.OnDeserializeEntity(gameObject, logger);
+            base.OnDeserializeEntity(logger);
 
             (windDirectionX, _, windDirectionZ) = Fox.Math.FoxToUnityVectorComponents(new Vector3(windDirectionX, 0, windDirectionZ));
         }

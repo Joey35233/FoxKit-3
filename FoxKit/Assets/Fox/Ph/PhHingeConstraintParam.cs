@@ -18,9 +18,9 @@ namespace Fox.Ph
         internal float GetLimitLo() => limitLo;
         internal void SetLimitLo(float value) => limitLo = value;
         
-        public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
+        public override void OnDeserializeEntity(TaskLogger logger)
         {
-            base.OnDeserializeEntity(gameObject, logger);
+            base.OnDeserializeEntity(logger);
 
             axis = Fox.Math.FoxToUnityVector3(axis);
         }

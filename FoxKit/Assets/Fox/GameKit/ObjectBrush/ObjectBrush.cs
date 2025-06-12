@@ -11,9 +11,9 @@ namespace Fox.GameKit
 {
     public partial class ObjectBrush : Fox.Core.TransformData
     {
-        public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
+        public override void OnDeserializeEntity(TaskLogger logger)
         {
-            base.OnDeserializeEntity(gameObject, logger);
+            base.OnDeserializeEntity(logger);
 
             string obrPath = "/Game" + obrFile.path.String;
             if (System.String.IsNullOrEmpty(obrPath))

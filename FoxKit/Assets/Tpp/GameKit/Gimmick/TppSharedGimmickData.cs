@@ -7,9 +7,9 @@ namespace Tpp.GameKit
 {
     public partial class TppSharedGimmickData : Fox.Core.Data
     {
-        public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
+        public override void OnDeserializeEntity(TaskLogger logger)
         {
-            base.OnDeserializeEntity(gameObject, logger);
+            base.OnDeserializeEntity(logger);
 
             //FIND MODELS
 

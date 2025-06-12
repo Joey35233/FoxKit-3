@@ -7,9 +7,9 @@ namespace Fox.Geo
 {
     public partial class CollisionPoly
     {
-        public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
+        public override void OnDeserializeEntity(TaskLogger logger)
         {
-            base.OnDeserializeEntity(gameObject, logger);
+            base.OnDeserializeEntity(logger);
 
             for (int i = 0; i < vertices.Count; i++)
                 vertices[i] = Fox.Math.FoxToUnityVector3(vertices[i]);

@@ -6,9 +6,9 @@ namespace Fox.Ph
 {
     public partial class PhActionParam
     {
-        public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
+        public override void OnDeserializeEntity(TaskLogger logger)
         {
-            base.OnDeserializeEntity(gameObject, logger);
+            base.OnDeserializeEntity(logger);
 
             defaultPosition = Fox.Math.FoxToUnityVector3(defaultPosition);
         }

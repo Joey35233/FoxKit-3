@@ -13,9 +13,9 @@ namespace Fox.Sim
 
         private partial UnityEngine.Quaternion Get_offset() => param.GetOffset();
         private partial void Set_offset(UnityEngine.Quaternion value) => param.SetOffset(value);
-        public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
+        public override void OnDeserializeEntity(TaskLogger logger)
         {
-            base.OnDeserializeEntity(gameObject, logger);
+            base.OnDeserializeEntity(logger);
 
             offset = Fox.Math.FoxToUnityQuaternion(offset);
         }

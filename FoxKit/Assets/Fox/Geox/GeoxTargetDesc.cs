@@ -7,9 +7,9 @@ namespace Fox.Geox
 {
     public partial class GeoxTargetDesc
     {
-        public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
+        public override void OnDeserializeEntity(TaskLogger logger)
         {
-            base.OnDeserializeEntity(gameObject, logger);
+            base.OnDeserializeEntity(logger);
 
             for (int i = 0; i < posArray.Count; i++)
                 posArray[i] = Fox.Math.FoxToUnityVector3(posArray[i]);

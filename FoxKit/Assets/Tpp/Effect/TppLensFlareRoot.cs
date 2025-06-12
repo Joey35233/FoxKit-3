@@ -6,9 +6,9 @@ namespace Tpp.Effect
 {
     public partial class TppLensFlareRoot
     {
-        public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
+        public override void OnDeserializeEntity(TaskLogger logger)
         {
-            base.OnDeserializeEntity(gameObject, logger);
+            base.OnDeserializeEntity(logger);
 
             (lightPositionX, lightPositionY, _) = Fox.Math.FoxToUnityVectorComponents(new Vector3(lightPositionX, lightPositionY, 0));
         }
