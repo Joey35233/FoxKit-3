@@ -7,9 +7,9 @@ namespace Tpp.Effect
 {
     public partial class TppRainFilterInterrupt
     {
-        public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
+        public override void OnDeserializeEntity(TaskLogger logger)
         {
-            base.OnDeserializeEntity(gameObject, logger);
+            base.OnDeserializeEntity(logger);
 
             for (int i = 0; i < planeMatrices.Count; i++)
                 planeMatrices[i] = Fox.Math.FoxToUnityMatrix(planeMatrices[i]);

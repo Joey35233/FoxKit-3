@@ -6,9 +6,9 @@ namespace Fox.Tactical
 {
     public partial class GkTacticalActionWaypoint
     {
-        public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
+        public override void OnDeserializeEntity(TaskLogger logger)
         {
-            base.OnDeserializeEntity(gameObject, logger);
+            base.OnDeserializeEntity(logger);
 
             position = Fox.Math.FoxToUnityVector3(position);
         }

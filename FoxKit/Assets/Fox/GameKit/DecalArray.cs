@@ -25,9 +25,9 @@ namespace Fox.GameKit
         private partial bool Get_isSSDecal() => throw new System.NotImplementedException();
         private partial void Set_isSSDecal(bool value) => throw new System.NotImplementedException();
 
-        public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
+        public override void OnDeserializeEntity(TaskLogger logger)
         {
-            base.OnDeserializeEntity(gameObject, logger);
+            base.OnDeserializeEntity(logger);
 
             for (int i = 0; i < rotations.Count; i++)
                 rotations[i] = Fox.Math.FoxToUnityQuaternion(rotations[i]);

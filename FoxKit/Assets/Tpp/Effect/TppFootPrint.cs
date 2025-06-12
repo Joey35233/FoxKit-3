@@ -26,9 +26,9 @@ namespace Tpp.Effect
             base.Reset();
             transform.localScale = DEFAULT_SCALE;
         }
-        public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
+        public override void OnDeserializeEntity(TaskLogger logger)
         {
-            base.OnDeserializeEntity(gameObject, logger);
+            base.OnDeserializeEntity(logger);
 
             /*for (int i = 0; i < matrices.Count; i++)
                 matrices[i] = Fox.Math.FoxToUnityMatrix(matrices[i]);*/

@@ -6,9 +6,9 @@ namespace Fox.Grx
 {
     public partial class Occluder
     {
-        public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
+        public override void OnDeserializeEntity(TaskLogger logger)
         {
-            base.OnDeserializeEntity(gameObject, logger);
+            base.OnDeserializeEntity(logger);
 
             basePoint0 = Fox.Math.FoxToUnityVector3(basePoint0);
             basePoint1 = Fox.Math.FoxToUnityVector3(basePoint1);

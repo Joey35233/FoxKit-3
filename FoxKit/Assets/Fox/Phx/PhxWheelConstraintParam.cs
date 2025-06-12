@@ -39,9 +39,9 @@ namespace Fox.Phx
         internal float GetDampingFactorCompress() => dampingFactorCompress;
         internal void SetDampingFactorCompress(float value) => dampingFactorCompress = value;
 
-        public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
+        public override void OnDeserializeEntity(TaskLogger logger)
         {
-            base.OnDeserializeEntity(gameObject, logger);
+            base.OnDeserializeEntity(logger);
             
             frontL = Fox.Math.FoxToUnityVector3(frontL);
             upL = Fox.Math.FoxToUnityVector3(upL);

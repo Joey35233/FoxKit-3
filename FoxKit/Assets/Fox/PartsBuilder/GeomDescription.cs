@@ -6,9 +6,9 @@ namespace Fox.PartsBuilder
 {
     public partial class GeomDescription
     {
-        public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
+        public override void OnDeserializeEntity(TaskLogger logger)
         {
-            base.OnDeserializeEntity(gameObject, logger);
+            base.OnDeserializeEntity(logger);
 
             offsetTranslation = Fox.Math.FoxToUnityVector3(offsetTranslation);
             offsetRotQuat = Fox.Math.FoxToUnityQuaternion(offsetRotQuat);

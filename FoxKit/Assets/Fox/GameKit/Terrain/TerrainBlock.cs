@@ -6,9 +6,9 @@ namespace Fox.GameKit
 {
     public partial class TerrainBlock
     {
-        public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
+        public override void OnDeserializeEntity(TaskLogger logger)
         {
-            base.OnDeserializeEntity(gameObject, logger);
+            base.OnDeserializeEntity(logger);
             pos = Fox.Math.FoxToUnityVector3(pos);
         }
 

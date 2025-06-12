@@ -6,9 +6,9 @@ namespace Tpp.MotherBaseStage
 {
     public partial class TppMotherBaseStageBlockControllerData
     {
-        public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
+        public override void OnDeserializeEntity(TaskLogger logger)
         {
-            base.OnDeserializeEntity(gameObject, logger);
+            base.OnDeserializeEntity(logger);
 
             for (int i = 0; i < clusterPositions.Length; i++)
                 clusterPositions[i] = Fox.Math.FoxToUnityVector3(clusterPositions[i]);

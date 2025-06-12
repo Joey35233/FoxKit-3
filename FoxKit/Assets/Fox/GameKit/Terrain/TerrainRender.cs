@@ -12,9 +12,9 @@ namespace Fox.GameKit
     {
         public Gr.Terrain.TerrainTileAsset Map;
 
-        public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
+        public override void OnDeserializeEntity(TaskLogger logger)
         {
-            base.OnDeserializeEntity(gameObject, logger);
+            base.OnDeserializeEntity(logger);
 
             if (filePtr == FilePtr.Empty)
             {

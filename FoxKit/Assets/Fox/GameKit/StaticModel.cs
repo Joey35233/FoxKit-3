@@ -11,9 +11,9 @@ namespace Fox.GameKit
     [ExecuteInEditMode]
     public partial class StaticModel : TransformData
     {
-        public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
+        public override void OnDeserializeEntity(TaskLogger logger)
         {
-            base.OnDeserializeEntity(gameObject, logger);
+            base.OnDeserializeEntity(logger);
 
             if (modelFile == FilePtr.Empty)
             {
