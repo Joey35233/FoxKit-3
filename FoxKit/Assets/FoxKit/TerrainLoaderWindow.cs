@@ -87,7 +87,7 @@ namespace FoxKit.Windows
         {
             Debug.Log($"[TerrainLoader] Loading map: {mapName}");
 
-            // Step 1: Build path to the stage.fox2
+            // Step 1: Build path to the stage.fox2  
             string stagePath = Path.Combine(settings.sourceAssetsPath, "Assets", "tpp", "level", "location", mapName, $"{mapName}_stage.fox2");
 
             if (!File.Exists(stagePath))
@@ -96,18 +96,18 @@ namespace FoxKit.Windows
                 return;
             }
 
-            // Step 2: Load that fox2
+            // Step 2: Load that fox2  
             var fox2Reader = new DataSetFile2Reader();
             byte[] stageFileData = File.ReadAllBytes(stagePath);
             _ = fox2Reader.Read(stageFileData, new TaskLogger("StageLoader"));
 
-            // Step 3: Find the baseDirectoryPath from StageBlockControllerData
+            // Step 3: Find the baseDirectoryPath from StageBlockControllerData  
             string baseDirectoryPath = null;
             if (StageBlockControllerData.Instance != null)
             {
                 baseDirectoryPath = StageBlockControllerData.Instance.baseDirectoryPath;
-                
-                // Fix the virtual path to real path if needed
+
+                // Fix the virtual path to real path if needed  
                 if (baseDirectoryPath != null && baseDirectoryPath.Contains("/pack/location/"))
                 {
                     baseDirectoryPath = baseDirectoryPath.Replace("/pack/location/", "/level/location/");
@@ -120,7 +120,7 @@ namespace FoxKit.Windows
                 }
             }
 
-            // Step 4: Turn the virtual path into an actual file path
+            // Step 4: Turn the virtual path into an actual file path  
             string folderRelative = baseDirectoryPath.TrimStart('/').Replace("/", Path.DirectorySeparatorChar.ToString());
             string fullTerrainFolder = Path.Combine(settings.sourceAssetsPath, folderRelative);
 
@@ -130,11 +130,11 @@ namespace FoxKit.Windows
                 return;
             }
 
-            // Step 5: Find only *_terrain.fox2 files
+            // Step 5: Find only *_terrain.fox2 files  
             string[] terrainFox2Files = Directory.GetFiles(fullTerrainFolder, "*_terrain.fox2", SearchOption.AllDirectories);
             Debug.Log($"[TerrainLoader] Found {terrainFox2Files.Length} terrain tile FOX2 files.");
 
-            // Step 6: Import each terrain tile
+            // Step 6: Import each terrain tile  
             foreach (string path in terrainFox2Files)
             {
                 Debug.Log($"[TerrainLoader] Importing: {path}");
@@ -147,15 +147,15 @@ namespace FoxKit.Windows
                 byte[] tileData = File.ReadAllBytes(path);
                 _ = fox2Reader.Read(tileData, logger);
 
-                // Save the scene for this tile
-                string tileScenePath = $"Assets/Scenes/{Path.GetFileName(path)}.unity";
-                Directory.CreateDirectory("Assets/Scenes"); // ensure the folder exists
+                // Save the scene for this tile  
+                string tileScenePath = $"Assets/Scenes/{mapName}_TerrainBlock/{Path.GetFileName(path)}.unity";
+                Directory.CreateDirectory(Path.GetDirectoryName(tileScenePath));
+
                 EditorSceneManager.SaveScene(tileScene, tileScenePath);
                 Debug.Log($"[TerrainLoader] Saved scene: {tileScenePath}");
 
                 logger.LogToUnityConsole();
             }
-
 
             Debug.Log("[TerrainLoader] Done loading all tiles.");
         }
