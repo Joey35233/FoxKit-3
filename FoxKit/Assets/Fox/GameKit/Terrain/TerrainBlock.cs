@@ -18,5 +18,23 @@ namespace Fox.GameKit
 
             context.OverrideProperty(nameof(pos), Fox.Math.UnityToFoxVector3(pos));
         }
+
+        private UnityEngine.Transform gizmoTransform;
+
+        private readonly BoxGizmo Gizmo = new BoxGizmo();
+
+        public void OnDrawGizmos()
+        {
+            Gizmos.matrix = Matrix4x4.identity;
+            Gizmo.Label = this.name;
+            Gizmos.DrawWireCube(this.pos, Vector3.one);
+        }
+
+        public void OnDrawGizmosSelected()
+        {
+            Gizmos.matrix = Matrix4x4.identity;
+            Gizmos.DrawWireCube(this.pos, Vector3.one);
+            Gizmo.Label = null;
+        }
     }
 }
