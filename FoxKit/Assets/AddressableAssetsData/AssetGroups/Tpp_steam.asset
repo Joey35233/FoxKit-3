@@ -14,7 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_GroupName: Tpp_steam
   m_GUID: 4b0c9791a9fe78a4eaf53530c8fc5917
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: 135601dae848b2649b184675ff41fa96
+    m_Address: 
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 3a064d0bbb4f9f940b12cf0dda7580b4, type: 2}
   m_SchemaSet:
