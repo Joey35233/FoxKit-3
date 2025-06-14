@@ -2,8 +2,6 @@ using Fox.Core;
 using System;
 using System.Collections.Generic;
 using UnityEditor;
-using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Fox.EdGameCore
 {
@@ -15,7 +13,10 @@ namespace Fox.EdGameCore
         public uint totalCount;
         public uint realizedCount;
 
+        public bool canCreateLocator;
+
         public Func<string, DataElement> CreateParameterFunc;
+        public Func<string, DataElement> CreateLocatorParameterFunc;
     }
         
     [InitializeOnLoad]
