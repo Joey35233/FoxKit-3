@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEditor;
 using System.IO;
 using Fox.Core;
@@ -6,6 +6,8 @@ using Fox.Core.Utils;
 using File = System.IO.File;
 using Path = System.IO.Path;
 using UnityEditor.SceneManagement;
+using UnityEngine.SceneManagement;
+using Scene = UnityEngine.SceneManagement.Scene;
 
 namespace FoxKit.Windows
 {
@@ -13,9 +15,6 @@ namespace FoxKit.Windows
     {
         private FoxKitSettings settings;
         private const string settingsPath = "Assets/FoxKit/FoxKitSettings.asset";
-
-        private bool importFox2Tiles = true;
-        private bool importHtreTiles = true;
 
         [MenuItem("FoxKit/Terrain Loader")]
         public static void ShowWindow()
@@ -72,16 +71,8 @@ namespace FoxKit.Windows
             selectedMapIndex = EditorGUILayout.Popup("Select Map", selectedMapIndex, mapOptions);
 
             string mapName = mapOptions[selectedMapIndex];
-            string previewPath = Path.Combine(settings.sourceAssetsPath, "Assets", "tpp", "level", "location", mapName);
+            string previewPath = $"{settings.sourceAssetsPath}/Assets/tpp/level/location/{mapName}";
             EditorGUILayout.HelpBox($"Target Map Folder:\n{previewPath}", MessageType.Info);
-            EditorGUILayout.EndVertical();
-
-            GUILayout.Space(10);
-
-            EditorGUILayout.BeginVertical("box");
-            EditorGUILayout.LabelField("Import Options", EditorStyles.boldLabel);
-            importFox2Tiles = EditorGUILayout.Toggle("Import *.fox2 Tiles", importFox2Tiles);
-            importHtreTiles = EditorGUILayout.Toggle("Import *.htre Files", importHtreTiles);
             EditorGUILayout.EndVertical();
 
             GUILayout.Space(10);
@@ -114,39 +105,72 @@ namespace FoxKit.Windows
             GUI.enabled = true;
         }
 
-        private void LoadMap(string mapName)
+        private void TryCreateSceneFile(Scene scene, string path)
         {
-            Debug.Log($"[TerrainLoader] Loading map: {mapName}");
-
-            string stagePath = Path.Combine(settings.sourceAssetsPath, "Assets", "tpp", "level", "location", mapName, $"{mapName}_stage.fox2");
-
-            if (!File.Exists(stagePath))
-            {
-                Debug.LogError("[TerrainLoader] Stage file not found.");
-                return;
-            }
-
-            if (EditorSceneManager.sceneCount == 0)
-            {
-                EditorSceneManager.NewScene(NewSceneSetup.DefaultGameObjects, NewSceneMode.Single);
-            }
-
-            var stageScene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Additive);
-            stageScene.name = $"{mapName}_stage.fox2";
-
-            var fox2Reader = new DataSetFile2Reader();
-            byte[] stageFileData = File.ReadAllBytes(stagePath);
-            _ = fox2Reader.Read(stageFileData, new TaskLogger("StageLoader"));
-
-            string stageScenePath = $"Assets/Scenes/{mapName}_Terrain/{mapName}_Stage.unity";
-            string directory = Path.GetDirectoryName(stageScenePath);
+            string scenePath = Fox.Fs.FileSystem.ResolvePathname(path);
+            
+            string directory = Path.GetDirectoryName(scenePath);
             if (!Directory.Exists(directory))
             {
                 Directory.CreateDirectory(directory);
             }
 
-            EditorSceneManager.SaveScene(stageScene, stageScenePath);
+            EditorSceneManager.SaveScene(scene, scenePath);
+        }
 
+        // private void TryCreateForDirectory(string path)
+        // {
+        //     
+        // }
+
+        private void LoadMap(string mapName)
+        {
+            Debug.Log($"[TerrainLoader] Loading map: {mapName}");
+
+            // STAGE 1: Stage
+            string stageDataSetName = $"{mapName}_stage.fox2";
+            string stagePath = $"/Assets/tpp/level/location/{mapName}/{stageDataSetName}";
+            string stageSourcePath = settings.sourceAssetsPath + stagePath;
+
+            if (!File.Exists(stageSourcePath))
+            {
+                Debug.LogError($"[TerrainLoader] Stage file not found at {stagePath}");
+                return;
+            }
+
+            var stageScene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
+            stageScene.name = stageDataSetName;
+
+            var fox2Reader = new DataSetFile2Reader();
+            byte[] stageFileData = File.ReadAllBytes(stageSourcePath);
+            _ = fox2Reader.Read(stageFileData, new TaskLogger(stagePath));
+
+            TryCreateSceneFile(stageScene, stagePath);
+
+            // STAGE 2: Common terrain
+            string commonTerrainDataSetName = $"{mapName}_common_terrain.fox2";
+            string commonTerrainPath = $"/Assets/tpp/level/location/{mapName}/block_common/{commonTerrainDataSetName}";
+            string commonTerrainSourcePath = settings.sourceAssetsPath + commonTerrainPath;
+
+            if (File.Exists(commonTerrainSourcePath))
+            {
+                Debug.Log($"[TerrainLoader] Importing: {commonTerrainPath}");
+                
+                var commonTerrainScene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Additive);
+                commonTerrainScene.name = commonTerrainDataSetName;
+
+                var commonTerrainData = File.ReadAllBytes(commonTerrainSourcePath);
+                _ = fox2Reader.Read(commonTerrainData, new TaskLogger(commonTerrainPath));
+
+                TryCreateSceneFile(commonTerrainScene, commonTerrainPath);
+            }
+            else
+            {
+                Debug.LogWarning($"[TerrainLoader] {commonTerrainPath} not found.");
+                return;
+            }
+
+            // STAGE 2: Terrain directory
             string baseDirectoryPath = null;
             if (StageBlockControllerData.Instance != null)
             {
@@ -163,106 +187,61 @@ namespace FoxKit.Windows
                     return;
                 }
             }
-
-            string folderRelative = baseDirectoryPath.TrimStart('/').Replace("/", Path.DirectorySeparatorChar.ToString());
-            string fullTerrainFolder = Path.Combine(settings.sourceAssetsPath, folderRelative);
-
-            Debug.Log($"[TerrainLoader] Importing: {folderRelative}");
-
-            if (!Directory.Exists(fullTerrainFolder))
+            else
             {
-                Debug.LogError("[TerrainLoader] Terrain folder doesn't exist: " + fullTerrainFolder);
+                Debug.LogError("[TerrainLoader] No StageBlockControllerData loaded.");
+                return;
+            }
+            
+            string terrainBlockFolder = baseDirectoryPath;
+            string sourceTerrainBlockFolder = settings.sourceAssetsPath + terrainBlockFolder;
+
+            if (!Directory.Exists(sourceTerrainBlockFolder))
+            {
+                Debug.LogError($"[TerrainLoader] {terrainBlockFolder} not found.");
                 return;
             }
 
-            string commonTerrainPath = Path.Combine(settings.sourceAssetsPath, "Assets", "tpp", "level", "location", $"{mapName}", "block_common", $"{mapName}_common_terrain.fox2");
-            Debug.Log($"[TerrainLoader] Importing: {commonTerrainPath}");
+            // STAGE 3: DataSet files
+            string[] terrainFox2Files = Directory.GetFiles(sourceTerrainBlockFolder, "*_terrain.fox2", SearchOption.AllDirectories);
 
-            if (File.Exists(commonTerrainPath))
+            foreach (string sourceTilePath in terrainFox2Files)
             {
-                var commonTerrainScene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Additive);
-                commonTerrainScene.name = $"{mapName}_CommonTerrain";
+                string tilePath = Fox.Fs.FileSystem.GetRelativeToBasePath(settings.sourceAssetsPath, sourceTilePath);
+                
+                Debug.Log($"[TerrainLoader] Importing: {tilePath}");
 
-                var commonTerrainData = File.ReadAllBytes(commonTerrainPath);
-                _ = fox2Reader.Read(commonTerrainData, new TaskLogger("CommonTerrainLoader"));
+                var logger = new TaskLogger(tilePath);
+                string tileDataSetName = Path.GetFileNameWithoutExtension(sourceTilePath);
 
-                string commonTerrainScenePath = $"Assets/Scenes/{mapName}_Terrain/{mapName}_CommonTerrain.unity";
-                string commonTerrainDir = Path.GetDirectoryName(commonTerrainScenePath);
-                if (!Directory.Exists(commonTerrainDir))
-                {
-                    Directory.CreateDirectory(commonTerrainDir);
-                }
+                Scene tileScene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Additive);
+                tileScene.name = tileDataSetName;
 
-                EditorSceneManager.SaveScene(commonTerrainScene, commonTerrainScenePath);
-            }
-            else
-            {
-                Debug.LogWarning("[TerrainLoader] Common terrain file not found.");
+                byte[] tileData = File.ReadAllBytes(sourceTilePath);
+                _ = fox2Reader.Read(tileData, logger);
+                
+                TryCreateSceneFile(tileScene, tilePath);
+
+                logger.LogToUnityConsole();
             }
 
-            string[] terrainFox2Files = Directory.GetFiles(fullTerrainFolder, "*_terrain.fox2", SearchOption.AllDirectories);
-            Debug.Log($"[TerrainLoader] Found {fullTerrainFolder}");
-            Debug.Log($"[TerrainLoader] Found {terrainFox2Files.Length} terrain tile FOX2 files.");
-
-
-            if (importHtreTiles)
+            // STAGE 4: HTRE files
+            string[] sourceTerrainHtreFiles = Directory.GetFiles(sourceTerrainBlockFolder, "*_terrain.htre", SearchOption.AllDirectories);
+            foreach (string sourceHtrePath in sourceTerrainHtreFiles)
             {
-                string[] terrainHtreFiles = Directory.GetFiles(fullTerrainFolder, "*_terrain.htre", SearchOption.AllDirectories);
-                foreach (string sourcePath in terrainHtreFiles)
-                {
-                    Debug.Log($"[TerrainLoader] Importing htre from: {sourcePath}");
+                string htrePath = Fox.Fs.FileSystem.GetRelativeToBasePath(settings.sourceAssetsPath, sourceHtrePath);
+                
+                Debug.Log($"[TerrainLoader] Importing htre from: {htrePath}");
+                
+                string resolvedHtrePath = Fox.Fs.FileSystem.ResolvePathname(htrePath);
 
-                    string relativePath = sourcePath.Substring(sourcePath.IndexOf("Assets\\tpp"));
-                    string destinationPath = Path.Combine(@"Assets/Game", relativePath);
+                string importHtrePathDirectory = Path.GetDirectoryName(resolvedHtrePath);
+                Directory.CreateDirectory(importHtrePathDirectory);
 
-                    string destinationDir = Path.GetDirectoryName(destinationPath);
-                    Directory.CreateDirectory(destinationDir);
+                byte[] htreData = File.ReadAllBytes(sourceHtrePath);
 
-                    File.Copy(sourcePath, destinationPath, overwrite: true);
-
-                    Debug.Log($"[TerrainLoader] Pasted at: {destinationPath}");
-                }
+                Debug.Log($"[TerrainLoader] Size: {htreData.Length} bytes");
             }
-
-            // Import Fox2 files AFTER having
-            // all the asstes in the game folder (htre files)
-            if (importFox2Tiles)
-            {
-                foreach (string path in terrainFox2Files)
-                {
-                    Debug.Log($"[TerrainLoader] Importing: {path}");
-
-                    var logger = new TaskLogger("TileImport");
-                    string tileSceneName = Path.GetFileNameWithoutExtension(path);
-                    string tileScenePath = $"Assets/Scenes/{mapName}_Terrain/{tileSceneName}.unity";
-                    Directory.CreateDirectory(Path.GetDirectoryName(tileScenePath));
-
-                    UnityEngine.SceneManagement.Scene tileScene;
-
-                    if (File.Exists(tileScenePath))
-                    {
-                        // Scene already exists — open it additively
-                        tileScene = UnityEditor.SceneManagement.EditorSceneManager.OpenScene(tileScenePath, UnityEditor.SceneManagement.OpenSceneMode.Additive);
-                        Debug.Log($"[TerrainLoader] Opened existing scene: {tileScenePath}");
-                    }
-                    else
-                    {
-                        // Scene doesn't exist — create and save it
-                        tileScene = UnityEditor.SceneManagement.EditorSceneManager.NewScene(UnityEditor.SceneManagement.NewSceneSetup.EmptyScene, UnityEditor.SceneManagement.NewSceneMode.Additive);
-                        tileScene.name = tileSceneName;
-
-                        byte[] tileData = File.ReadAllBytes(path);
-                        _ = fox2Reader.Read(tileData, logger);
-
-                        UnityEditor.SceneManagement.EditorSceneManager.SaveScene(tileScene, tileScenePath);
-                        Debug.Log($"[TerrainLoader] Created and saved new scene: {tileScenePath}");
-                    }
-
-                    logger.LogToUnityConsole();
-                }
-            }
-
-
 
             Debug.Log("[TerrainLoader] Done loading all tiles.");
         }
