@@ -19,7 +19,7 @@ namespace FoxKit.MenuItems
             }
             Debug.Log($"File {assetPath} loaded");
 
-            Fox.Gr.Terrain.TerrainTileAsset asset = ScriptableObject.CreateInstance<Fox.Gr.Terrain.TerrainTileAsset>();
+            Fox.Gr.Terrain.MappedData asset = ScriptableObject.CreateInstance<Fox.Gr.Terrain.MappedData>();
             if (Fox.Gr.TerrainFile.TryDeserialize(asset, System.IO.File.ReadAllBytes(assetPath)))
             {
                 AssetDatabase.CreateAsset(asset, $"Assets/Game/{assetPath.Substring(assetPath.LastIndexOf("Assets"))}.asset");
