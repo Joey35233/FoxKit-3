@@ -6,9 +6,16 @@ namespace Fox.Gr
 {
     public partial class TerrainTileFile
     {
-        public static bool TryDeserialize(MappedData asset, ReadOnlySpan<byte> data)
+        private MappedData MappedData;
+        
+        public bool TryDeserialize(ReadOnlySpan<byte> data)
         {
-            return Terrain.MappedData.TryReadTerrainFile(asset, data, FileType.HTRE);
+            TerrainFileReader.DeserializationDescription desc = new TerrainFileReader.DeserializationDescription
+            {
+                Type = TerrainFileReader.FileType.Patch
+            };
+            
+            return TerrainFileReader.TryReadTerrainFile(ref MappedData, data, desc);
         }
     }
 }
