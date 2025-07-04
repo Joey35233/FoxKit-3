@@ -1,4 +1,4 @@
-using Fox.Core;
+ï»¿using Fox.Core;
 using Fox.Fio;
 using Fox.Geo;
 using Fox.Graphx;
@@ -44,74 +44,13 @@ namespace Fox.Geox
 
         public override Type GetNodeType() => typeof(GeoxPathNode);
         public override Type GetEdgeType() => typeof(GeoxPathEdge);
+        public override bool IsLoop() => false;
 
         public override void Reset()
         {
             base.Reset();
             enable = true;
         }
-
-        protected override void ConnectEdge(
-        Fox.Graphx.GraphxSpatialGraphDataNode prev,
-        Fox.Graphx.GraphxSpatialGraphDataNode next,
-        Fox.Graphx.GraphxSpatialGraphDataEdge edge)
-        {
-            edge.prevNode = prev;
-            edge.nextNode = next;
-
-            // Undirected; both nodes just get outlinks
-            prev.outlinks.Add(edge);
-            next.outlinks.Add(edge);
-        }
-
-        protected override void HandleSplice(
-            Fox.Graphx.GraphxSpatialGraphDataNode prev,
-            Fox.Graphx.GraphxSpatialGraphDataNode inserted,
-            Fox.Graphx.GraphxSpatialGraphDataEdge newEdge)
-        {
-            // Find the existing edge from prev to next node
-            var existingEdge = edges.FirstOrDefault(e =>
-                (e.prevNode == prev && e.nextNode != null) ||
-                (e.nextNode == prev && e.prevNode != null));
-
-            if (existingEdge == null)
-                return;
-
-            var oldNext = (existingEdge.prevNode == prev)
-                ? existingEdge.nextNode as Fox.Graphx.GraphxSpatialGraphDataNode
-                : existingEdge.prevNode as Fox.Graphx.GraphxSpatialGraphDataNode;
-
-            if (oldNext == null)
-                return;
-
-            // Remove old edge from both nodes' outlinks
-            prev.outlinks.Remove(existingEdge);
-            oldNext.outlinks.Remove(existingEdge);
-
-            Undo.DestroyObjectImmediate(existingEdge.gameObject);
-            edges.Remove(existingEdge);
-
-            // Create a new edge, inserted ¨ oldNext
-            var newEdgeGo = new GameObject();
-            Undo.SetTransformParent(newEdgeGo.transform, transform, "Set new graph edge's parent");
-            Undo.RegisterCreatedObjectUndo(newEdgeGo, "Added graph edge");
-
-            var edgeType = GetEdgeType();
-            var edgeInsertedNext = Undo.AddComponent(newEdgeGo, edgeType) as Fox.Graphx.GraphxSpatialGraphDataEdge;
-
-            var usedNames = UnityEngine.Object.FindObjectsOfType(edgeType, true)
-                .Select(ent => ent.name).ToHashSet();
-            edgeInsertedNext.name = edgeInsertedNext.GenerateUniqueName(edgeType, usedNames);
-
-            edgeInsertedNext.prevNode = inserted;
-            edgeInsertedNext.nextNode = oldNext;
-
-            inserted.outlinks.Add(edgeInsertedNext);
-            oldNext.outlinks.Add(edgeInsertedNext);
-
-            edges.Add(edgeInsertedNext);
-        }
-
         public static GeoxPath2 Deserialize(GeomHeaderContext header)
         {
             FileStreamReader reader = header.Reader;

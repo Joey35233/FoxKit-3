@@ -15,6 +15,7 @@ namespace Fox.Graphx
 
         public virtual Type GetNodeType() => typeof(GraphxSpatialGraphDataNode);
         public virtual Type GetEdgeType() => typeof(GraphxSpatialGraphDataEdge);
+        public virtual bool IsLoop() => true;
 
         public int IndexOf(GraphxSpatialGraphDataNode node)
         {
@@ -49,6 +50,8 @@ namespace Fox.Graphx
             nodes.Insert(index + 1, newNode);
             edges.Add(newEdge);
 
+            CreateLoopEdge();
+
             EditorUtility.SetDirty(this);
             return newNode;
         }
@@ -62,7 +65,8 @@ namespace Fox.Graphx
             edge.nextNode = next;
 
             prev.outlinks.Add(edge);
-            next.inlinks.Add(edge);
+
+            next.outlinks.Add(edge);
         }
 
         protected virtual void HandleSplice(
@@ -84,8 +88,27 @@ namespace Fox.Graphx
 
             if (oldNext != null)
             {
-                oldNext.inlinks.Remove(existingEdge);
-                oldNext.inlinks.Add(existingEdge);
+                oldNext.outlinks.Remove(existingEdge);
+                oldNext.outlinks.Add(existingEdge);
+            }
+        }
+        protected void CreateLoopEdge()
+        {
+            var firstNode = nodes.First();
+            var lastNode = nodes.Last();
+
+            if (IsLoop() && firstNode.outlinks.Count < 2 && lastNode.outlinks.Count < 2)
+            {
+                var loopEdge = CreateEdge();
+                loopEdge.transform.SetParent(transform);
+
+                loopEdge.prevNode = lastNode;
+                loopEdge.nextNode = firstNode;
+
+                lastNode.outlinks.Add(loopEdge);
+                firstNode.outlinks.Add(loopEdge);
+
+                edges.Add(loopEdge);
             }
         }
 
