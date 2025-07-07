@@ -4,6 +4,7 @@ using System.Runtime.InteropServices;
 using Fox.Core.Utils;
 using Fox.Fio;
 using UnityEditor.SceneManagement;
+using UnityEngine.SceneManagement;
 
 namespace Fox.Core
 {
@@ -78,6 +79,58 @@ namespace Fox.Core
             public StrCode NameInArchiveHash;
             [FieldOffset(0x18)]
             public ulong Address;
+        }
+
+        public enum SceneLoadMode
+        {
+            Single,
+            Additive,
+            Auto,
+        }
+
+        private static UnityEngine.SceneManagement.Scene CreateScene(SceneLoadMode mode)
+        {
+            switch (mode)
+            {
+                case SceneLoadMode.Single:
+                    return EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
+                case SceneLoadMode.Additive:
+                    return EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Additive);
+                default:
+                {
+                    UnityEngine.SceneManagement.Scene scene;
+                    try
+                    {
+                        scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Additive);
+                    }
+                    catch (InvalidOperationException)
+                    {
+                        scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
+                    }
+
+                    return scene;
+                }
+            }
+        }
+
+        public static UnityEngine.SceneManagement.Scene Read(ReadOnlySpan<byte> data, SceneLoadMode sceneMode, TaskLogger logger)
+        {
+            UnityEngine.SceneManagement.Scene scene = CreateScene(sceneMode);
+            
+            DataSetFile2Reader reader = new DataSetFile2Reader();
+            _ = reader.Read(data, logger);
+
+            return scene;
+        }
+
+        public static UnityEngine.SceneManagement.Scene Read(ReadOnlySpan<byte> data, SceneLoadMode sceneMode, TaskLogger logger, out ReadOnlySpan<Entity> entities)
+        {
+            UnityEngine.SceneManagement.Scene scene = CreateScene(sceneMode);
+            
+            DataSetFile2Reader reader = new DataSetFile2Reader();
+            entities = reader.Read(data, logger);
+
+            return scene;
         }
     }
 }

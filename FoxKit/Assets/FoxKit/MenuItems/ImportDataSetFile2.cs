@@ -15,31 +15,20 @@ namespace FoxKit.MenuItems
         [MenuItem("FoxKit/Import/DataSetFile2")]
         private static void OnImportAsset()
         {
-            string assetPath = EditorUtility.OpenFilePanel("Import DataSetFile2", "", "fox2,bnd,clo,des,evf,fsd,lad,parts,ph,phsd,sdf,sim,tgt,vdp,veh,vfxlf");
-            if (String.IsNullOrEmpty(assetPath))
+            string externalPath = EditorUtility.OpenFilePanel("Import DataSetFile2", "", "fox2,bnd,clo,des,evf,fsd,lad,parts,ph,phsd,sdf,sim,tgt,vdp,veh,vfxlf");
+            if (String.IsNullOrEmpty(externalPath))
             {
                 return;
             }
 
-            UnityEngine.SceneManagement.Scene scene;
-            try
-            {
-                scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Additive);
-            }
-            catch (InvalidOperationException)
-            {
-                scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
-            }
-            scene.name = System.IO.Path.GetFileNameWithoutExtension(assetPath);
+            var logger = new TaskLogger("Import DataSetFile2");
 
-            var logger = new TaskLogger("Import FOX2");
-            byte[] fileData = System.IO.File.ReadAllBytes(assetPath);
-            var fox2Reader = new DataSetFile2Reader();
-            _ = fox2Reader.Read(fileData, logger);
-
+            string path = Fox.Fs.FileSystem.GetFoxPathFromExternalPath(externalPath);
+            ReadOnlySpan<byte> fileData = Fox.Fs.FileSystem.ReadExternalFile(path);
+            UnityEngine.SceneManagement.Scene scene = DataSetFile2.Read(fileData, DataSetFile2.SceneLoadMode.Auto, logger);
             logger.LogToUnityConsole();
             
-            _ = EditorSceneManager.SaveScene(scene, "Assets/Scenes/" + CsSystem.IO.Path.GetFileName(assetPath) + ".unity");
+            Fox.Fs.FileSystem.TryImportAsset(scene, path);
         }
     }
 }

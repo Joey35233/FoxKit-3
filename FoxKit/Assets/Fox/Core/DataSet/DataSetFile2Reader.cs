@@ -1,15 +1,12 @@
 using Fox.Core.Utils;
-using Fox.Fio;
-using Fox;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.InteropServices;
 using UnityEngine;
 
 namespace Fox.Core
 {
-    public struct DataSetFile2Reader
+    internal struct DataSetFile2Reader
     {
         // State
         private Dictionary<StrCode, string> StringTable;
@@ -18,7 +15,7 @@ namespace Fox.Core
         // Logger
         private TaskLogger Logger;
 
-        public Entity[] Read(ReadOnlySpan<byte> data, TaskLogger logger)
+        public ReadOnlySpan<Entity> Read(ReadOnlySpan<byte> data, TaskLogger logger)
         {
             Logger = logger;
             StringTable = new Dictionary<StrCode, string>
@@ -70,6 +67,7 @@ namespace Fox.Core
                         for (uint i = 0; i < header->EntityCount; i++)
                         {
                             GameObject gameObject = new GameObject();
+                            gameObject.SetActive(false);
 
                             Debug.Assert(entityDef->HeaderSize == 0x40);
                             Debug.Assert(entityDef->Signature == 0x00746E65); // "ent\0"
@@ -104,7 +102,7 @@ namespace Fox.Core
 
                                 if (containerType == PropertyInfo.ContainerType.StaticArray && arraySize == 1)
                                 {
-                                    object value = ReadPropertyValue(propertyDef);
+                                    object value = ReadPropertyValue(propertyDef, 0);
                                     entity.SetProperty(propertyName, new Value(value));
                                 }
                                 else if (containerType == PropertyInfo.ContainerType.StringMap)
@@ -114,7 +112,7 @@ namespace Fox.Core
                                         byte* payload = (byte*)propertyDef + propertyDef->PayloadOffset;
                                         
                                         string key = StringTable[*(StrCode*)payload];
-                                        object value = ReadPropertyValue(propertyDef);
+                                        object value = ReadPropertyValue(propertyDef, k);
                                         entity.SetPropertyElement(propertyName, key, new Value(value));
                                     }
                                 }
@@ -122,7 +120,7 @@ namespace Fox.Core
                                 {
                                     for (ushort k = 0; k < propertyDef->ArraySize; k++)
                                     {
-                                        object value = ReadPropertyValue(propertyDef);
+                                        object value = ReadPropertyValue(propertyDef, k);
                                         entity.SetPropertyElement(propertyName, k, new Value(value));
                                     }
                                 }
@@ -148,7 +146,7 @@ namespace Fox.Core
                                         byte* payload = (byte*)propertyDef + propertyDef->PayloadOffset;
                                         
                                         string key = StringTable[*(StrCode*)payload];
-                                        object value = ReadPropertyValue(propertyDef);
+                                        object value = ReadPropertyValue(propertyDef, k);
                                         entity.SetPropertyElement(propertyName, key, new Value(value));
                                     }
                                 }
@@ -156,7 +154,7 @@ namespace Fox.Core
                                 {
                                     for (ushort k = 0; k < propertyDef->ArraySize; k++)
                                     {
-                                        object value = ReadPropertyValue(propertyDef);
+                                        object value = ReadPropertyValue(propertyDef, k);
                                         entity.SetPropertyElement(propertyName, k, new Value(value));
                                     }
                                 }
@@ -192,7 +190,11 @@ namespace Fox.Core
                         
                         // Post
                         foreach (Entity entity in entities)
+                        {
                             entity.OnDeserializeEntity(logger);
+                            
+                            entity.gameObject.SetActive(true);
+                        }
                     }
 
                     return entities;
@@ -200,14 +202,17 @@ namespace Fox.Core
             }
         }
 
-        private unsafe object ReadPropertyValue(DataSetFile2.PropertyDef* propertyDef)
+        private unsafe object ReadPropertyValue(DataSetFile2.PropertyDef* propertyDef, ushort index)
         {
             byte* payload = (byte*)propertyDef + propertyDef->PayloadOffset;
-            
+
+            bool hasKey = propertyDef->ContainerType == PropertyInfo.ContainerType.StringMap;
+            uint keyOffset = hasKey ? 8u : 0u;
+            uint stride = PropertyInfo.SerializedPropertyStrideTable[(uint)propertyDef->DataType] + keyOffset;
+
             // Skip over key hash
-            if (propertyDef->ContainerType == PropertyInfo.ContainerType.StringMap)
-                payload += 8;
-            
+            payload += index * stride + keyOffset;
+
             switch (propertyDef->DataType)
             {
                 case PropertyInfo.PropertyType.Int8:
@@ -241,7 +246,7 @@ namespace Fox.Core
                     ulong address = *(ulong*)payload;
                     if (!EntityAddressMap.TryGetValue(address, out Entity entity) && address != 0x0)
                         Logger.AddError($"Unable to resolve address 0x{address:X8}.");
-                    
+
                     return entity;
                 }
                 case PropertyInfo.PropertyType.Vector3:
@@ -263,7 +268,7 @@ namespace Fox.Core
                     ulong address = *(ulong*)payload;
                     if (!EntityAddressMap.TryGetValue(address, out Entity entity) && address != 0x0)
                         Logger.AddError($"Unable to resolve address 0x{address:X8}.");
-                    
+
                     return entity;
                 }
                 case PropertyInfo.PropertyType.EntityLink:

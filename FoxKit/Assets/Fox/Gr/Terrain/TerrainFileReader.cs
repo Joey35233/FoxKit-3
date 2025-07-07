@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Fox.Gr.Terrain
 {
-    internal struct BaseLayoutDescription
+    public struct BaseLayoutDescription
     {
         public uint GridWidth;
         public uint GridHeight;
@@ -14,7 +14,7 @@ namespace Fox.Gr.Terrain
         public float GridDistance;
     }
 
-    internal unsafe struct PatchConfiguration
+    public unsafe struct PatchConfiguration
     {
         public uint* Params;
         public uint* ConfigurationIds;
@@ -23,7 +23,7 @@ namespace Fox.Gr.Terrain
         public float* MaxHeight;
     }
 
-    internal unsafe struct Patch
+    public unsafe struct Patch
     {
         public uint HeightFormat;
         public float MinHeightWS;
@@ -41,12 +41,12 @@ namespace Fox.Gr.Terrain
         public uint Height;
         public uint Width;
 
-        public ushort ClusterGridSize;
+        public ushort TileGridSize;
         public ushort MaxLodLevel;
         public ushort LodCount;
     }
     
-    internal unsafe struct MappedData
+    public unsafe struct MappedData
     {
         public enum MappedDataType : uint
         {
@@ -76,52 +76,47 @@ namespace Fox.Gr.Terrain
             public FileType Type;
         }
 
-        public static bool TryReadTerrainFile(ref MappedData mappedData, ReadOnlySpan<byte> data, DeserializationDescription deserializationDescription)
+        public static bool TryReadTerrainFile(ref MappedData mappedData, byte* data, uint dataSize, DeserializationDescription deserializationDescription)
         {
             switch (deserializationDescription.Type)
             {
                 case FileType.BaseLayout:
                     mappedData.Type = MappedData.MappedDataType.BaseLayout;
-                    return ReadTerrainBaseLayout(ref mappedData, data, deserializationDescription);
+                    return ReadTerrainBaseLayout(ref mappedData, data, dataSize, deserializationDescription);
                 case FileType.Patch:
                     mappedData.Type = MappedData.MappedDataType.Patch;
-                    return ReadTerrainPatch(ref mappedData, data, deserializationDescription);
+                    return ReadTerrainPatch(ref mappedData, data, dataSize, deserializationDescription);
                 default:
                     return false;
             }
         }
 
-        private static bool ReadTerrainBaseLayout(ref MappedData mappedData, ReadOnlySpan<byte> data, DeserializationDescription deserializationDescription)
+        private static bool ReadTerrainBaseLayout(ref MappedData mappedData, byte* data, uint dataSize, DeserializationDescription deserializationDescription)
         {
-            if (data.IsEmpty || data.Length < sizeof(FoxDataHeader))
+            if (data == null || dataSize < sizeof(FoxDataHeader))
             {
                 Debug.Log("Data is empty or length is less than header");
                 return false;
             }
 
-            fixed (byte* dataPtr = data)
+            FoxDataHeader* header = (FoxDataHeader*)data;
+
+            if (header->Name.Hash != new StrCode32("tre2"))
             {
-                var header = (FoxDataHeader*)dataPtr;
+                Debug.Log("Header hash isn't tre2");
+                return false;
+            }
 
-                if (header->Name.Hash != new StrCode32("tre2"))
-                {
-                    Debug.Log("Header hash isn't tre2");
+            switch (header->Version)
+            {
+                case 2:
+                case 3:
+                    return ReadTerrainBaseLayoutV3(ref mappedData, header);
+                case 4:
+                    return ReadTerrainBaseLayoutV4(ref mappedData, header);
+                default:
+                    Debug.Log("Unknown header version");
                     return false;
-                }
-
-                Debug.Log($"Version is {header->Version}");
-
-                switch (header->Version)
-                {
-                    case 2:
-                    case 3:
-                        return ReadTerrainBaseLayoutV3(ref mappedData, header);
-                    case 4:
-                        return ReadTerrainBaseLayoutV4(ref mappedData, header);
-                    default:
-                        Debug.Log("Unknown header version");
-                        return false;
-                }
             }
         }
 
@@ -186,7 +181,7 @@ namespace Fox.Gr.Terrain
             patch.MinHeightWS = baseLayoutDesc.MinHeightWS;
             patch.Width = width / highPerLow;
             patch.Height = height / highPerLow;
-            patch.ClusterGridSize = CLUSTER_GRID_SIZE;
+            patch.TileGridSize = CLUSTER_GRID_SIZE;
 
             uint texelCount = patch.Width * patch.Height;
 
@@ -263,7 +258,7 @@ namespace Fox.Gr.Terrain
         {
             patch.Height = filePatch->Height;
             patch.Width = filePatch->Width;
-            patch.ClusterGridSize = filePatch->ClusterGridSize; // TODO; get a better name for these
+            patch.TileGridSize = filePatch->ClusterGridSize; // TODO; get a better name for these
             patch.MaxLodLevel = filePatch->MaxLodLevel;
             patch.LodCount = filePatch->LodCount;
 
@@ -291,38 +286,33 @@ namespace Fox.Gr.Terrain
             return true;
         }
 
-        private static bool ReadTerrainPatch(ref MappedData mappedData, ReadOnlySpan<byte> data, DeserializationDescription deserializationDescription)
+        private static bool ReadTerrainPatch(ref MappedData mappedData, byte* data, uint dataSize, DeserializationDescription deserializationDescription)
         {
-            if (data.IsEmpty || data.Length < sizeof(FoxDataHeader))
+            if (data == null || dataSize < sizeof(FoxDataHeader))
             {
                 Debug.Log("Data is empty or length is less than header");
                 return false;
             }
 
-            fixed (byte* dataPtr = data)
+            var header = (FoxDataHeader*)data;
+
+            if (header->Name.Hash != new StrCode32("terrainHighBlock"))
             {
-                var header = (FoxDataHeader*)dataPtr;
+                Debug.Log("Header hash isn't terrainHighBlock");
+                return false;
+            }
 
-                if (header->Name.Hash != new StrCode32("htre"))
-                {
-                    Debug.Log("Header hash isn't htre");
+            switch (header->Version)
+            {
+                case 2:
+                    return ReadTerrainPatchV2(ref mappedData, header);
+                case 3:
+                    return ReadTerrainPatchV3(ref mappedData, header);
+                case 4:
+                    return ReadTerrainPatchV4(ref mappedData, header);
+                default:
+                    Debug.Log("Unknown header version");
                     return false;
-                }
-
-                Debug.Log($"Version is {header->Version}");
-
-                switch (header->Version)
-                {
-                    case 2:
-                        return ReadTerrainPatchV2(ref mappedData, header);
-                    case 3:
-                        return ReadTerrainPatchV3(ref mappedData, header);
-                    case 4:
-                        return ReadTerrainPatchV4(ref mappedData, header);
-                    default:
-                        Debug.Log("Unknown header version");
-                        return false;
-                }
             }
         }
 
@@ -339,6 +329,8 @@ namespace Fox.Gr.Terrain
             FoxDataNodeAttribute* pitchParam = heightMapNode->FindParameter("pitch");
             if (pitchParam is null || pitchParam->Type != FoxDataNodeAttribute.DataType.UInt)
                 return false;
+            
+            mappedData.Type = MappedData.MappedDataType.Patch;
 
             uint pitch = pitchParam->GetUIntValue();
             uint size = pitch * CLUSTER_GRID_SIZE;
@@ -346,7 +338,7 @@ namespace Fox.Gr.Terrain
             ref Patch patch = ref mappedData.Patch;
             patch.Width = size;
             patch.Height = size;
-            patch.ClusterGridSize = CLUSTER_GRID_SIZE;
+            patch.TileGridSize = CLUSTER_GRID_SIZE;
             patch.MaxLodLevel = 0;
             patch.LodCount = 5;
 
@@ -378,7 +370,7 @@ namespace Fox.Gr.Terrain
             if (pitchParam is null || pitchParam->Type != FoxDataNodeAttribute.DataType.UInt)
                 return false;
             
-            mappedData.Type = MappedData.MappedDataType.BaseLayout;
+            mappedData.Type = MappedData.MappedDataType.Patch;
 
             uint pitch = pitchParam->GetUIntValue();
             uint size = pitch * CLUSTER_GRID_SIZE;
@@ -386,13 +378,14 @@ namespace Fox.Gr.Terrain
             ref Patch patch = ref mappedData.Patch;
             patch.Width = size;
             patch.Height = size;
-            patch.ClusterGridSize = CLUSTER_GRID_SIZE;
+            patch.TileGridSize = CLUSTER_GRID_SIZE;
             patch.MaxLodLevel = 0;
             patch.LodCount = 5;
 
             patch.HeightFormat = 1;
             patch.MinHeightWS = 0.0f;
             patch.MaxHeightWS = 0.0f;
+            patch.HeightMapSize = size * size * sizeof(float);
             patch.HeightMap = (uint*)heightMapNode->GetData();
             
             patch.ComboFormat = 6;

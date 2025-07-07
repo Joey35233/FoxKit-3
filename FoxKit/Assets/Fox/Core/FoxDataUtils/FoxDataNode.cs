@@ -55,7 +55,7 @@ namespace Fox.Core
             return null;
         }
 
-        public FoxDataNodeAttribute* FindParameter(String name)
+        public FoxDataNodeAttribute* FindParameter(string name)
         {
             for (FoxDataNodeAttribute* param = GetParameters(); param != null; param = param->GetNext())
             {
@@ -76,14 +76,16 @@ namespace Fox.Core
                 FoxDataNode* child = node->GetChildren();
                 if (child is not null)
                 {
-                    return child->FindNode(name);
+                    FoxDataNode* childSearchResult = child->FindNode(name);
+                    if (childSearchResult is not null)
+                        return childSearchResult;
                 }
             }
 
             return null;
         }
 
-        public FoxDataNode* FindNode(String name)
+        public FoxDataNode* FindNode(string name)
         {
             for (FoxDataNode* node = GetSelfPointer(); node != null; node = node->GetNext())
             {
@@ -93,7 +95,9 @@ namespace Fox.Core
                 FoxDataNode* child = node->GetChildren();
                 if (child is not null)
                 {
-                    return child->FindNode(name);
+                    FoxDataNode* childSearchResult = child->FindNode(name);
+                    if (childSearchResult is not null)
+                        return childSearchResult;
                 }
             }
 
