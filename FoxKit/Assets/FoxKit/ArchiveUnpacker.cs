@@ -97,8 +97,8 @@ namespace FoxKit.Windows
 
             List<string> ignoredFiles = new List<string>
             {
-                //"chunk0", "chunk1", "chunk2", "chunk3", "chunk4",
-                "data1", "e2f8e499bc8f3606", "e2f9a1fda590d087", "e2faa449a7e0781d",
+                //"chunk0", "chunk1", "chunk2", "chunk3", "chunk4","data1",
+                "e2f8e499bc8f3606", "e2f9a1fda590d087", "e2faa449a7e0781d",
                 "e2fb02c35da41a21", "e2fbebbd66f86086", "texture0", "texture1",
                 "texture2", "texture3", "texture4",
                 //"00", "01",
@@ -134,6 +134,7 @@ namespace FoxKit.Windows
                 ".uigb",
                 ".uilb",
                 ".uia",
+                ".uif",
                 ".subp",
                 ".nta",
                 ".lba",
