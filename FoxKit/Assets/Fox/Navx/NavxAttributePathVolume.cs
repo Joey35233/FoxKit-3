@@ -3,10 +3,12 @@ using Fox.Core.Utils;
 using Fox.Graphx;
 using UnityEngine;
 using System;
+using System.Linq;
+using UnityEditor;
 
 namespace Fox.Navx
 {
-    public partial class NavxAttributePathVolume
+    public partial class NavxAttributePathVolume : Fox.Graphx.GraphxPathVolume
     {
         public override void OnDeserializeEntity(TaskLogger logger)
         {
@@ -21,9 +23,6 @@ namespace Fox.Navx
 
             context.OverrideProperty(nameof(topPos), Fox.Math.UnityToFoxVector3(topPos));
         }
-
-        private static readonly Vector3 Scale = Vector3.one * 0.25f;
-        public override Type GetNodeType() => typeof(GraphxSpatialGraphDataNode);
 
         public void OnDrawGizmos()
         {
