@@ -1,12 +1,11 @@
 using UnityEngine;
 using UnityEditor;
 using System.IO;
-using Path = System.IO.Path;
 using System.Collections.Generic;
-
 using GzsTool.Core.Qar;
 using GzsTool.Core.Utility;
 using GzsTool.Core.Common;
+using GzsTool.Core.Fpk;
 
 namespace FoxKit.Windows
 {
@@ -36,12 +35,10 @@ namespace FoxKit.Windows
             if (settings == null)
             {
                 EditorGUILayout.HelpBox("FoxKitSettings.asset not found.", MessageType.Warning);
-
                 if (GUILayout.Button("Create New Settings"))
                 {
                     CreateSettingsAsset();
                 }
-
                 return;
             }
 
@@ -59,10 +56,8 @@ namespace FoxKit.Windows
                 {
                     gameDir = Path.GetDirectoryName(exePath);
                     settings.sourceAssetsPath = exePath;
-
                     EditorUtility.SetDirty(settings);
                     AssetDatabase.SaveAssets();
-
                     Debug.Log($"Executable path: {exePath}");
                     Debug.Log($"Game directory: {gameDir}");
                     Debug.Log($"Destination path: {DestinationPath}");
@@ -94,91 +89,132 @@ namespace FoxKit.Windows
                 return;
             }
 
-            // Load QAR dictionary for readable filenames
             string dictPath = Path.Combine(Application.dataPath, "Plugin", "GzsTool", "qar_dictionary.txt");
             if (File.Exists(dictPath))
             {
-                try
-                {
-                    Hashing.ReadDictionary(dictPath);
-                    Debug.Log("qar_dictionary.txt loaded successfully.");
-                }
-                catch
-                {
-                    Debug.LogWarning("Failed to read qar_dictionary.txt. Filenames may be hashes.");
-                }
-            }
-            else
-            {
-                Debug.LogWarning("qar_dictionary.txt not found. Filenames will be hashes.");
+                try { Hashing.ReadDictionary(dictPath); } catch { }
             }
 
-            // Add .dat filenames here that you want to ignore (no extension)
             List<string> ignoredFiles = new List<string>
-    {
-        "data1",
-        "e2f8e499bc8f3606",
-        "e2f9a1fda590d087",
-        "e2faa449a7e0781d",
-        "e2fb02c35da41a21",
-        "e2fbebbd66f86086",
-        "texture0",
-        "texture1",
-        "texture2",
-        "texture3",
-        "texture4",
-    };
+            {
+                //"chunk0", "chunk1", "chunk2", "chunk3", "chunk4",
+                "data1", "e2f8e499bc8f3606", "e2f9a1fda590d087", "e2faa449a7e0781d",
+                "e2fb02c35da41a21", "e2fbebbd66f86086", "texture0", "texture1",
+                "texture2", "texture3", "texture4",
+                //"00", "01",
+            };
+            List<string> ignoredExtensions = new List<string> 
+            {
+                ".ftex",
+                ".fv2",
+                ".lng2",
+                ".vfx",
+                ".vfxlf",
+                ".pftxs",
+                ".sbp",
+                ".fsd",
+                ".fsm",
+                ".frig",
+                ".sand",
+                ".sim",
+                ".fcnp",
+                ".lpsh",
+                ".grxla",
+                ".frdv",
+                ".ladb",
+                ".mog",
+                ".mtar",
+                ".mtar",
+                ".trap",
+                ".rdf",
+                ".wem",
+                ".adm",
+                ".fnt",
+                ".ends",
+                ".uigb",
+                ".uilb",
+                ".uia",
+                ".subp",
+                ".nta",
+                ".lba",
+                ".ph",
+                ".tgt",
+            };
 
             string[] datFiles = Directory.GetFiles(masterPath, "*.dat", SearchOption.TopDirectoryOnly);
-            if (datFiles.Length == 0)
-            {
-                Debug.LogError("No .dat files found in the master directory.");
-                return;
-            }
-
-            Directory.CreateDirectory(DestinationPath);
-            var outputDir = new FileSystemDirectory(DestinationPath);
-
             foreach (string datFile in datFiles)
             {
                 string fileNameOnly = Path.GetFileNameWithoutExtension(datFile);
-                if (ignoredFiles.Contains(fileNameOnly))
-                {
-                    Debug.Log($"Skipping ignored file: {fileNameOnly}.dat");
-                    continue;
-                }
-
-                Debug.Log($"Processing: {datFile}");
+                if (ignoredFiles.Contains(fileNameOnly)) continue;
 
                 try
                 {
-                    string extension = Path.GetExtension(datFile).TrimStart('.');
-                    string xmlPath = Path.Combine(DestinationPath, $"{fileNameOnly}.{extension}.xml");
-
                     using (var stream = File.OpenRead(datFile))
                     {
-                        if (!QarFile.IsQarFile(stream))
-                        {
-                            Debug.LogWarning($"Not a valid QAR file: {datFile}");
-                            continue;
-                        }
+                        if (!QarFile.IsQarFile(stream)) continue;
 
                         var qar = new QarFile { Name = Path.GetFileName(datFile) };
                         stream.Position = 0;
                         qar.Read(stream);
 
+                        var outputDir = new FileSystemDirectory(DestinationPath);
+
                         foreach (var file in qar.ExportFiles(stream))
                         {
+                            string fullPath = Path.Combine(DestinationPath, file.FileName);
+                            string relativePath = fullPath.Replace(Application.dataPath, "Assets");
+                            string extension = Path.GetExtension(file.FileName).ToLowerInvariant();
+
+                            Directory.CreateDirectory(Path.GetDirectoryName(fullPath));
                             outputDir.WriteFile(file.FileName, file.DataStream);
-                        }
 
-                        using (var xmlStream = File.Create(xmlPath))
-                        {
-                            var serializer = new System.Xml.Serialization.XmlSerializer(typeof(QarFile));
-                            serializer.Serialize(xmlStream, qar);
-                        }
+                            if (extension == ".fpk" || extension == ".fpkd")
+                            {
+                                using (var fpkStream = File.OpenRead(fullPath))
+                                {
+                                    var fpk = new FpkFile();
+                                    fpk.Read(fpkStream);
 
-                        Debug.Log($"Extracted and wrote XML for: {fileNameOnly}.dat");
+                                    var packFileList = ScriptableObject.CreateInstance<PackFileList>();
+                                    packFileList.Files = new List<string>();
+                                    packFileList.Data = new List<string>();
+                                    packFileList.References = new List<string>();
+
+                                    foreach (var entry in fpk.ExportFiles(fpkStream))
+                                    {
+                                        string entryExt = Path.GetExtension(entry.FileName).ToLowerInvariant();
+                                        if (ignoredExtensions.Contains(entryExt))
+                                        {
+                                            Debug.Log($"[Ignored] {entry.FileName} due to extension {entryExt}");
+                                            continue;
+                                        }
+                                        if (extension == ".fpk")
+                                            packFileList.Files.Add(entry.FileName);
+                                        else if (extension == ".fpkd")
+                                            packFileList.Data.Add(entry.FileName);
+
+                                        // Write extracted file
+                                        string extractedPath = Path.Combine(DestinationPath, entry.FileName);
+                                        string extractedDir = Path.GetDirectoryName(extractedPath);
+                                        if (!Directory.Exists(extractedDir))
+                                            Directory.CreateDirectory(extractedDir);
+
+                                        using (var outStream = File.Create(extractedPath))
+                                        {
+                                            entry.DataStream().CopyTo(outStream);
+                                        }
+
+                                        Debug.Log($"[Unpacked {extension.ToUpper()}] {entry.FileName}");
+                                    }
+
+                                    string assetPath = Path.ChangeExtension(relativePath, "_List.asset");
+                                    AssetDatabase.CreateAsset(packFileList, assetPath);
+                                    AssetDatabase.SaveAssets();
+
+                                    Debug.Log($"Created PackFileList asset: {assetPath}");
+                                }
+                            }
+                        }
                     }
                 }
                 catch (System.Exception ex)
@@ -187,8 +223,11 @@ namespace FoxKit.Windows
                 }
             }
 
-            Debug.Log("Finished extracting all .dat QAR files (excluding ignored ones).");
+            AssetDatabase.Refresh();
+            Debug.Log("Finished extracting all .dat QAR files (excluding ignored ones).\n");
         }
+
+
 
 
         private void CreateSettingsAsset()
