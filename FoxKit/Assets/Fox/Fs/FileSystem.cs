@@ -21,6 +21,9 @@ namespace Fox.Fs
             string basePath = FsConfig.Instance.ExternalBasePath;
             
             int index = externalPath.IndexOf(basePath, StringComparison.Ordinal);
+            if (index < 0)
+                return null;
+            
             string result = externalPath[(index + basePath.Length)..];
 
             return result;

@@ -98,7 +98,7 @@ namespace FoxKit.Windows
             string stageDataSetPath = $"/Assets/tpp/level/location/{mapName}/{mapName}_stage.fox2";
 
             ReadOnlySpan<byte> stageFileData = Fox.Fs.FileSystem.ReadExternalFile(stageDataSetPath);
-            Scene stageScene = DataSetFile2.Read(stageFileData, DataSetFile2.SceneLoadMode.Single, logger);
+            Scene stageScene = DataSetFile2.Read(stageFileData, DataSetFile2.SceneLoadMode.ForceSingle, logger);
             Fox.Fs.FileSystem.TryImportAsset(stageScene, stageDataSetPath);
 
             // STAGE 2: Common terrain

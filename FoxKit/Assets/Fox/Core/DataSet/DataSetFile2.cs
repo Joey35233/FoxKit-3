@@ -83,7 +83,7 @@ namespace Fox.Core
 
         public enum SceneLoadMode
         {
-            Single,
+            ForceSingle,
             Additive,
             Auto,
         }
@@ -92,20 +92,20 @@ namespace Fox.Core
         {
             switch (mode)
             {
-                case SceneLoadMode.Single:
+                case SceneLoadMode.ForceSingle:
                     return EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
                 case SceneLoadMode.Additive:
                     return EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Additive);
                 default:
                 {
                     UnityEngine.SceneManagement.Scene scene;
-                    try
-                    {
-                        scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Additive);
-                    }
-                    catch (InvalidOperationException)
+                    if (EditorSceneManager.EnsureUntitledSceneHasBeenSaved("Please save existing scene."))
                     {
                         scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
+                    }
+                    else
+                    {
+                        scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Additive);
                     }
 
                     return scene;

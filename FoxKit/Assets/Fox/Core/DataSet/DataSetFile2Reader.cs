@@ -20,7 +20,8 @@ namespace Fox.Core
             Logger = logger;
             StringTable = new Dictionary<StrCode, string>
             {
-                { new StrCode(string.Empty), string.Empty }
+                { HashingBitConverter.ToStrCode(0), null },
+                { new StrCode(string.Empty), string.Empty },
             };
 
             unsafe
@@ -206,12 +207,19 @@ namespace Fox.Core
         {
             byte* payload = (byte*)propertyDef + propertyDef->PayloadOffset;
 
-            bool hasKey = propertyDef->ContainerType == PropertyInfo.ContainerType.StringMap;
-            uint keyOffset = hasKey ? 8u : 0u;
-            uint stride = PropertyInfo.SerializedPropertyStrideTable[(uint)propertyDef->DataType] + keyOffset;
+            uint stride = PropertyInfo.SerializedPropertyStrideTable[(uint)propertyDef->DataType];
+            if (propertyDef->ContainerType == PropertyInfo.ContainerType.StringMap)
+            {
+                stride += 8; // Key
+                
+                stride = (uint)Fox.AlignmentUtils.Align(stride, 0x10u);
 
-            // Skip over key hash
-            payload += index * stride + keyOffset;
+                payload += index * stride + 8; // Current key
+            }
+            else
+            {
+                payload += index * stride;
+            }
 
             switch (propertyDef->DataType)
             {
@@ -278,7 +286,7 @@ namespace Fox.Core
                     ulong address = entityLinkDef.Address;
                     if (!EntityAddressMap.TryGetValue(address, out Entity entity) && address != 0x0)
                         Logger.AddError($"Unable to resolve address 0x{address:X8}.");
-
+                    
                     EntityLink entityLink = new EntityLink
                     {
                         packagePath = new Path(StringTable[entityLinkDef.PackagePathHash]),

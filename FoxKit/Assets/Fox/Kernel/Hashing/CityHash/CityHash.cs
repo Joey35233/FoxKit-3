@@ -263,11 +263,11 @@ namespace CityHash
         public static uint64 CityHash64WithSeeds(ReadOnlySpan<char> s, uint64 seed0, uint64 seed1)
         {
             string TEMP = new string(s);
-            return CityHash64WithSeeds(TEMP, seed0, seed1, Encoding.Default);
+            return CityHash64WithSeeds(TEMP, seed0, seed1, Encoding.ASCII);
         }
         public static uint64 CityHash64WithSeeds(string s, uint64 seed0, uint64 seed1)
         {
-            return CityHash64WithSeeds(s, seed0, seed1, Encoding.Default);
+            return CityHash64WithSeeds(s, seed0, seed1, Encoding.ASCII);
         }
 
         // Hash function for a string. For convenience, two seeds are also
