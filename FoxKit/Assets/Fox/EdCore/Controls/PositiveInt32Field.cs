@@ -25,7 +25,7 @@ namespace Fox.EdCore
             return result;
         }
 
-        public static new readonly string ussClassName = "fox-int32-field";
+        public static new readonly string ussClassName = "fox-uint32-field";
         public static new readonly string labelUssClassName = ussClassName + "__label";
         public static new readonly string inputUssClassName = ussClassName + "__input";
 
