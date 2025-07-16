@@ -16,14 +16,17 @@ namespace Fox.Core
                     property = type switch
                     {
                         PropertyInfo.PropertyType.UInt8 => gameObject.AddComponent<DynamicProperty_StaticArray_uint8>(),
+                        PropertyInfo.PropertyType.UInt64 => gameObject.AddComponent<DynamicProperty_StaticArray_uint64>(),
                         PropertyInfo.PropertyType.Float => gameObject.AddComponent<DynamicProperty_StaticArray_float>(),
                         PropertyInfo.PropertyType.Bool => gameObject.AddComponent<DynamicProperty_StaticArray_bool>(),
                         PropertyInfo.PropertyType.String => gameObject.AddComponent<DynamicProperty_StaticArray_String>(),
                         PropertyInfo.PropertyType.Path => gameObject.AddComponent<DynamicProperty_StaticArray_Path>(),
-                        _ => throw new NotSupportedException("Unsupported DynamicProperty type detected."),
+                        _ => throw new NotSupportedException($"Unsupported DynamicProperty type detected: StaticArray {type}."),
                     };
                     if (property)
                         property.ChangeStaticArraySize(arraySize);
+                    
+                    Debug.Log("dp");
                     
                     break;
                 }
@@ -31,7 +34,7 @@ namespace Fox.Core
                 {
                     property = type switch
                     {
-                        _ => throw new NotSupportedException("Unsupported DynamicProperty type detected."),
+                        _ => throw new NotSupportedException($"Unsupported DynamicProperty type detected: DynamicArray {type}"),
                     };
                     
                     break;
@@ -41,7 +44,8 @@ namespace Fox.Core
                     property = type switch
                     {
                         PropertyInfo.PropertyType.Path => gameObject.AddComponent<DynamicProperty_StringMap_String>(),
-                        _ => throw new NotSupportedException("Unsupported DynamicProperty type detected."),
+                        PropertyInfo.PropertyType.EntityLink => gameObject.AddComponent<DynamicProperty_StringMap_EntityLink>(),
+                        _ => throw new NotSupportedException($"Unsupported DynamicProperty type detected: StringMap {type}"),
                     };
                     
                     break;

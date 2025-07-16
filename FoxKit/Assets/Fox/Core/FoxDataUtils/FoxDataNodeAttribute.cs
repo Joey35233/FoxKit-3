@@ -5,7 +5,7 @@ using Debug = UnityEngine.Debug;
 namespace Fox.Core
 {
     [StructLayout(LayoutKind.Sequential, Size = SelfSize)]
-    public unsafe struct FoxDataParameter
+    public unsafe struct FoxDataNodeAttribute
     {
         public const int SelfSize = 0x10;
         
@@ -23,9 +23,9 @@ namespace Fox.Core
         private const uint ValueOffset = 12;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private FoxDataParameter* GetSelfPointer()
+        private FoxDataNodeAttribute* GetSelfPointer()
         {
-            fixed (FoxDataParameter* selfPtr = &this)
+            fixed (FoxDataNodeAttribute* selfPtr = &this)
             {
                 return selfPtr;
             }
@@ -52,6 +52,6 @@ namespace Fox.Core
             return (FoxDataString*)((byte*)GetSelfPointer() + ValueOffset);
         }
 
-        public FoxDataParameter* GetNext() => NextParameterOffset == 0 ? null : (FoxDataParameter*)((byte*)GetSelfPointer() + NextParameterOffset);
+        public FoxDataNodeAttribute* GetNext() => NextParameterOffset == 0 ? null : (FoxDataNodeAttribute*)((byte*)GetSelfPointer() + NextParameterOffset);
     }
 }

@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Fox.Core
 {
-    public struct DataSetFile2Reader
+    internal struct DataSetFile2Reader
     {
         // State
         private Dictionary<StrCode, string> StringTable;
@@ -15,12 +15,13 @@ namespace Fox.Core
         // Logger
         private TaskLogger Logger;
 
-        public Entity[] Read(ReadOnlySpan<byte> data, TaskLogger logger)
+        public ReadOnlySpan<Entity> Read(ReadOnlySpan<byte> data, TaskLogger logger)
         {
             Logger = logger;
             StringTable = new Dictionary<StrCode, string>
             {
-                { new StrCode(string.Empty), string.Empty }
+                { HashingBitConverter.ToStrCode(0), null },
+                { new StrCode(string.Empty), string.Empty },
             };
 
             unsafe
@@ -67,6 +68,7 @@ namespace Fox.Core
                         for (uint i = 0; i < header->EntityCount; i++)
                         {
                             GameObject gameObject = new GameObject();
+                            gameObject.SetActive(false);
 
                             Debug.Assert(entityDef->HeaderSize == 0x40);
                             Debug.Assert(entityDef->Signature == 0x00746E65); // "ent\0"
@@ -189,7 +191,11 @@ namespace Fox.Core
                         
                         // Post
                         foreach (Entity entity in entities)
+                        {
                             entity.OnDeserializeEntity(logger);
+                            
+                            entity.gameObject.SetActive(true);
+                        }
                     }
 
                     return entities;
@@ -201,12 +207,19 @@ namespace Fox.Core
         {
             byte* payload = (byte*)propertyDef + propertyDef->PayloadOffset;
 
-            bool hasKey = propertyDef->ContainerType == PropertyInfo.ContainerType.StringMap;
-            uint keyOffset = hasKey ? 8u : 0u;
-            uint stride = PropertyInfo.SerializedPropertyStrideTable[(uint)propertyDef->DataType] + keyOffset;
+            uint stride = PropertyInfo.SerializedPropertyStrideTable[(uint)propertyDef->DataType];
+            if (propertyDef->ContainerType == PropertyInfo.ContainerType.StringMap)
+            {
+                stride += 8; // Key
+                
+                stride = (uint)Fox.AlignmentUtils.Align(stride, 0x10u);
 
-            // Skip over key hash
-            payload += index * stride + keyOffset;
+                payload += index * stride + 8; // Current key
+            }
+            else
+            {
+                payload += index * stride;
+            }
 
             switch (propertyDef->DataType)
             {
@@ -273,7 +286,7 @@ namespace Fox.Core
                     ulong address = entityLinkDef.Address;
                     if (!EntityAddressMap.TryGetValue(address, out Entity entity) && address != 0x0)
                         Logger.AddError($"Unable to resolve address 0x{address:X8}.");
-
+                    
                     EntityLink entityLink = new EntityLink
                     {
                         packagePath = new Path(StringTable[entityLinkDef.PackagePathHash]),

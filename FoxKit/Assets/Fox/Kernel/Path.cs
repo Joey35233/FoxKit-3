@@ -65,6 +65,6 @@ namespace Fox
         // Generic overrides
         public override bool Equals(object obj) => obj is Path rhs && this == rhs;
 
-        public override int GetHashCode() => unchecked(Hash.GetHashCode());
+        public override int GetHashCode() => Hash.GetHashCode();
     }
 }
