@@ -2,9 +2,9 @@
 {
     public partial class PhxAssociation : Fox.Core.Data
     {
-        private PhAssociationParam associationParam => param.Get();
+        private PhAssociationParam associationParam => param;
 
-        protected partial uint Get_connectType() => associationParam.GetConnectType();
-        protected partial void Set_connectType(uint value) => associationParam.SetConnectType(value);
+        private partial uint Get_connectType() => associationParam.GetConnectType();
+        private partial void Set_connectType(uint value) => associationParam.SetConnectType(value);
     }
 }

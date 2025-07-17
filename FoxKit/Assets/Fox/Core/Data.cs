@@ -1,22 +1,32 @@
+using Fox.Core.Utils;
 using UnityEngine;
-using String = Fox.Kernel.String;
 
 namespace Fox.Core
 {
     public partial class Data : Fox.Core.Entity
     {
-        protected partial String Get_referencePath() => throw new System.NotImplementedException();
+        private partial string Get_referencePath() => throw new System.NotImplementedException();
 
-        public override void InitializeGameObject(GameObject gameObject)
+        public override void OnDeserializeEntity(TaskLogger logger)
         {
-            if (name != (String)null)
-                gameObject.name = name.CString;
-            base.InitializeGameObject(gameObject);
+            base.OnDeserializeEntity(logger);
+            
+            if (!string.IsNullOrEmpty(name))
+                gameObject.name = name;
         }
 
-        public void SetDataSet(EntityHandle dataSet)
+        public override void OverridePropertiesForExport(EntityExportContext context)
         {
-            this.dataSet = dataSet;
+            base.OverridePropertiesForExport(context);
+            
+            // context.OverrideProperty(nameof(dataSet), context.DataSet)
+
+            context.OverrideProperty(nameof(name), gameObject.name);
+        }
+
+        internal void SetDataSet(DataSet incomingDataSet)
+        {
+            this.dataSet = incomingDataSet;
         }
     }
 }

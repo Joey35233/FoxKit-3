@@ -12,72 +12,99 @@ using Fox;
 
 namespace Fox.Geox
 {
-    [UnityEditor.InitializeOnLoad]
-    public partial class GeoxPathNode : Fox.Graphx.GraphxSpatialGraphDataNode 
-    {
-        // Properties
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.DynamicArray<Fox.Kernel.String> nodeTags { get; set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
-        
-        // ClassInfos
-        public static new bool ClassInfoInitialized = false;
-        private static Fox.Core.EntityInfo classInfo;
-        public static new Fox.Core.EntityInfo ClassInfo
-        {
-            get
-            {
-                return classInfo;
-            }
-        }
-        public override Fox.Core.EntityInfo GetClassEntityInfo()
-        {
-            return classInfo;
-        }
-        static GeoxPathNode()
-        {
-            if (Fox.Graphx.GraphxSpatialGraphDataNode.ClassInfoInitialized)
-                classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("GeoxPathNode"), typeof(GeoxPathNode), Fox.Graphx.GraphxSpatialGraphDataNode.ClassInfo, 96, "Geox", 0);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("nodeTags"), Fox.Core.PropertyInfo.PropertyType.String, 112, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Geox/GeoxPathNode")]
+	public partial class GeoxPathNode : Fox.Graphx.GraphxSpatialGraphDataNode
+	{
+		// Properties
+		[field: UnityEngine.SerializeField]
+		public CsSystem.Collections.Generic.List<string> nodeTags { get; private set; } = new CsSystem.Collections.Generic.List<string>();
+		
+		// ClassInfos
+		public static new bool ClassInfoInitialized = false;
+		private static Fox.Core.EntityInfo classInfo;
+		public static new Fox.Core.EntityInfo ClassInfo
+		{
+			get
+			{
+				return classInfo;
+			}
+		}
+		public override Fox.Core.EntityInfo GetClassEntityInfo()
+		{
+			return classInfo;
+		}
+		static GeoxPathNode()
+		{
+			if (Fox.Graphx.GraphxSpatialGraphDataNode.ClassInfoInitialized)
+				classInfo = new Fox.Core.EntityInfo("GeoxPathNode", typeof(GeoxPathNode), Fox.Graphx.GraphxSpatialGraphDataNode.ClassInfo, 96, "Geox", 0);
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("nodeTags", Fox.Core.PropertyInfo.PropertyType.String, 112, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 
-            ClassInfoInitialized = true;
-        }
+			ClassInfoInitialized = true;
+		}
+		
+		public override Fox.Core.Value GetProperty(string propertyName)
+		{
+			switch (propertyName)
+			{
+				case "nodeTags":
+					return new Fox.Core.Value(nodeTags);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
 
-        // Constructors
-		public GeoxPathNode(ulong id) : base(id) { }
-		public GeoxPathNode() : base() { }
-        
-        public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetProperty(propertyName, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "nodeTags":
-                    while(this.nodeTags.Count <= index) { this.nodeTags.Add(default(Fox.Kernel.String)); }
-                    this.nodeTags[index] = value.GetValueAsString();
-                    return;
-                default:
-                    base.SetPropertyElement(propertyName, index, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, key, value);
-                    return;
-            }
-        }
-    }
+		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		{
+			switch (propertyName)
+			{
+				case "nodeTags":
+					return new Fox.Core.Value(this.nodeTags[index]);
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		{
+			switch (propertyName)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
+
+		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.SetProperty(propertyName, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				case "nodeTags":
+					while(this.nodeTags.Count <= index) { this.nodeTags.Add(default(string)); }
+					this.nodeTags[index] = value.GetValueAsString();
+					return;
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+	}
 }

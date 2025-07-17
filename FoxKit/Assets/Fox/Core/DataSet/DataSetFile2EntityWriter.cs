@@ -1,5 +1,5 @@
 using Fox.Fio;
-using Fox.Kernel;
+using Fox;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -8,16 +8,59 @@ using System.Text;
 
 namespace Fox.Core
 {
+    public class EntityExportContext
+    {
+        private readonly IDictionary<string, object> propertyOverrides = new Dictionary<string, object>();
+
+        /// <summary>
+        /// Export a different value instead of the current value of a property.
+        /// </summary>
+        /// <remarks>
+        /// Use this for non-array, non-StringMap properties. For type safety reasons,
+        /// use OverrideListProperty and OverrideStringMapProperty in other cases.
+        /// </remarks>
+        /// <param name="propertyName">Name of the property to override.</param>
+        /// <param name="valueToExport">Value to export.</param>
+        public void OverrideProperty(string propertyName, object valueToExport)
+        {
+            propertyOverrides[propertyName] = valueToExport;
+        }
+
+        /// <summary>
+        /// Export a different value instead of the current value of a property.
+        /// Use this for StaticArray, DynamicArray, and List properties.
+        /// </summary>
+        /// <param name="propertyName">Name of the property to override.</param>
+        /// <param name="listToExport">List of values to export.</param>
+        public void OverrideListProperty(string propertyName, IList listToExport)
+        {
+            OverrideProperty(propertyName, listToExport);
+        }
+
+        /// <summary>
+        /// Export a different value instead of the current value of a property.
+        /// Use this for StringMap properties.
+        /// </summary>
+        /// <param name="propertyName">Name of the property to override.</param>
+        /// <param name="stringMapToExport">StringMap of valuse to export.</param>
+        public void OverrideStringMapProperty(string propertyName, IStringMap stringMapToExport)
+        {
+            OverrideProperty(propertyName, stringMapToExport);
+        }
+
+        internal bool OverridesProperty(string propertyName) => propertyOverrides.ContainsKey(propertyName);
+        internal object GetOverriddenProperty(string propertyName) => propertyOverrides[propertyName];
+    }
+
     public class DataSetFile2EntityWriter
     {
         private const short HeaderSize = 64;
         private const uint MagicNumber = 0x746e65;
 
         private IDictionary<Entity, ulong> addresses;
-        private List<Kernel.String> strings;
+        private HashSet<string> strings;
 
-
-        public void Write(Entity entity, IDictionary<Entity, ulong> addresses, List<Kernel.String> strings, ulong address, ulong id, Stream output)
+        public void Write(Entity entity, EntityExportContext exportContext, IDictionary<Entity, ulong> addresses, HashSet<string> strings, ulong address, ulong id, Stream output)
         {
             this.addresses = addresses;
             this.strings = strings;
@@ -27,7 +70,7 @@ namespace Fox.Core
             output.Position += HeaderSize;
 
             EntityInfo info = entity.GetClassEntityInfo();
-            strings.Add(info.Name);
+            _ = strings.Add(info.Name);
 
             EntityInfo current = info;
             var superClasses = new List<EntityInfo>();
@@ -42,34 +85,33 @@ namespace Fox.Core
                 superClasses.Add(current.Super);
                 current = current.Super;
             }
-
             superClasses.Reverse();
+            
             uint staticPropertyCount = 0;
-
             foreach (EntityInfo @class in superClasses)
             {
-                foreach (System.Collections.Generic.KeyValuePair<Kernel.String, PropertyInfo> staticProperty in @class.StaticProperties)
+                foreach (PropertyInfo staticProperty in @class.OrderedStaticProperties)
                 {
-                    if (staticProperty.Value.Offset == 0)
+                    if (staticProperty.Offset == 0)
                     {
                         continue;
                     }
 
                     staticPropertyCount++;
-                    WriteProperty(entity, staticProperty.Value, writer);
+                    WriteProperty(entity, exportContext, staticProperty, writer);
                 }
-            }            
-
+            }
             uint staticDataSize = (uint)(output.Position - headerPosition);
-            /**
-             * TODO
-             * foreach (var dynamicProperty in entity.DynamicProperties)
-            {
-                dynamicProperty.Write(output);
-            }*/
 
+            uint dynamicPropertyCount = 0;
+            foreach (var dynamicProperty in entity.GetComponents<DynamicProperty>())
+            {
+                WriteProperty(entity, exportContext, dynamicProperty.GetPropertyInfo(), writer, true);
+                dynamicPropertyCount++;
+            }
             long endPosition = output.Position;
             uint dataSize = (uint)(endPosition - headerPosition);
+            
             output.Position = headerPosition;
 
             writer.Write(HeaderSize);
@@ -80,44 +122,44 @@ namespace Fox.Core
             writer.Write(id);
             writer.Write(info.Version);
 
-            writer.Write(Kernel.HashingBitConverter.StrCodeToUInt64(info.Name.Hash));
+            writer.WriteStrCode(new StrCode(info.Name));
             writer.Write(Convert.ToUInt16(staticPropertyCount));
-            writer.Write(Convert.ToUInt16(0)); // TODO DynamicProperties count
+            writer.Write(Convert.ToUInt16(dynamicPropertyCount));
             writer.Write((int)HeaderSize);
             writer.Write(staticDataSize);
             writer.Write(dataSize);
-            output.AlignWrite(16, 0x00);
+            writer.AlignWrite(16, 0x00);
             output.Position = endPosition;
         }
 
-        private void WriteProperty(Entity entity, PropertyInfo property, BinaryWriter writer)
+        private void WriteProperty(Entity entity, EntityExportContext exportContext, PropertyInfo property, BinaryWriter writer, bool isWritingDynamicProperty = false)
         {
-            strings.Add(property.Name);
+            _ = strings.Add(property.Name);
 
             Stream output = writer.BaseStream;
             long headerPosition = output.Position;
             output.Position += 32;
 
             ushort arraySize = (ushort)property.ArraySize;
-            if (property.Container == PropertyInfo.ContainerType.StaticArray && property.ArraySize == 1)
+            if (property.Container == PropertyInfo.ContainerType.StaticArray && property.ArraySize == 1 && !isWritingDynamicProperty)
             {
-                WritePropertyValue(entity, property, writer);
+                WriteSingleValue(writer, entity, exportContext, property);
             }
             else if (property.Container == PropertyInfo.ContainerType.StringMap)
             {
-                arraySize = WriteStringMapProperty(entity, property, writer);
+                arraySize = WriteStringMapProperty(entity, exportContext, property, writer);
             }
             else
             {
-                arraySize = WriteListProperty(entity, property, writer);
+                arraySize = WriteListProperty(entity, exportContext, property, writer);
             }
 
-            output.AlignWrite(16, 0x00);
+            writer.AlignWrite(16, 0x00);
             long endPosition = output.Position;
             ushort size = (ushort)(endPosition - headerPosition);
             output.Position = headerPosition;
 
-            writer.Write(HashingBitConverter.StrCodeToUInt64(property.Name.Hash));
+            writer.Write(Hashing.StringIdHashDetectionOverride(property.Name));
             writer.Write((byte)property.Type);
             writer.Write((byte)property.Container);
             writer.Write(arraySize);
@@ -127,25 +169,40 @@ namespace Fox.Core
             output.Position = endPosition;
         }
 
-        private ushort WriteStringMapProperty(Entity entity, PropertyInfo property, BinaryWriter writer)
+        private ushort WriteStringMapProperty(Entity entity, EntityExportContext exportContext, PropertyInfo property, BinaryWriter writer)
         {
-            var list = entity.GetProperty<IStringMap>(property).ToList();
-            foreach (KeyValuePair<Kernel.String, object> item in list)
+            List<KeyValuePair<string, object>> list = exportContext.OverridesProperty(property.Name)
+                   ? ((IStringMap)exportContext.GetOverriddenProperty(property.Name)).ToList()
+                   : entity.GetProperty(property.Name).GetValueAsIStringMap().ToList();
+
+            int skippedKeyCount = 0;
+            foreach (KeyValuePair<string, object> item in list)
             {
-                writer.Write(HashingBitConverter.StrCodeToUInt64(item.Key.Hash));
-                WritePropertyItem(item.Value, property.Type, writer);
-                writer.BaseStream.AlignWrite(16, 0x00);
+                // TODO Are empty keys allowed?
+                if (System.String.IsNullOrEmpty(item.Key))
+                {
+                    skippedKeyCount++;
+                    continue;
+                }
+
+                _ = strings.Add(item.Key);
+                writer.Write(Hashing.StringIdHashDetectionOverride(item.Key));
+                WriteCollectionItem(writer, item.Value, property.Type);
+                writer.AlignWrite(16, 0x00);
             }
 
-            return (ushort)list.Count;
+            return (ushort)(list.Count - skippedKeyCount);
         }
 
-        private ushort WriteListProperty(Entity entity, PropertyInfo property, BinaryWriter writer)
+        private ushort WriteListProperty(Entity entity, EntityExportContext exportContext, PropertyInfo property, BinaryWriter writer)
         {
-            IList list = entity.GetProperty<IList>(property);
+            IList list = exportContext.OverridesProperty(property.Name)
+                   ? (IList)exportContext.GetOverriddenProperty(property.Name)
+                   : entity.GetProperty(property.Name).GetValueAsIList();
+
             foreach (object item in list)
             {
-                WritePropertyItem(item, property.Type, writer);
+                WriteCollectionItem(writer, item, property.Type);
             }
 
             return (ushort)list.Count;
@@ -189,15 +246,30 @@ namespace Fox.Core
                     writer.Write((bool)item);
                     break;
                 case PropertyInfo.PropertyType.String:
-                    strings.Add(item as Kernel.String);
-                    writer.WriteStrCode((item as Kernel.String).Hash);
+                    {
+                        var str = (string)item;
+                        str = str ?? string.Empty;
+                        _ = strings.Add(str);
+                        writer.Write(Hashing.StringIdHashDetectionOverride(str));
+                    }
                     break;
                 case PropertyInfo.PropertyType.Path:
-                    strings.Add(new Kernel.String((item as Kernel.Path).CString));
-                    writer.WritePathFileNameAndExtCode((item as Kernel.Path).Hash);
+                    {
+                        var str = ((Fox.Path)item).String;
+                        _ = strings.Add(str);
+                        writer.Write(Hashing.StringIdHashDetectionOverride(str));
+                    }
                     break;
                 case PropertyInfo.PropertyType.EntityPtr:
-                    writer.WriteEntityPtr((item as IEntityPtr), addresses);
+                    {
+                        ulong address = 0;
+                        if ((Entity)item != null)
+                        {
+                            address = addresses[(Entity)item];
+                        }
+
+                        writer.Write(address);
+                    }
                     break;
                 case PropertyInfo.PropertyType.Vector3:
                     writer.Write((UnityEngine.Vector3)item);
@@ -217,96 +289,59 @@ namespace Fox.Core
                     writer.Write((UnityEngine.Color)item);
                     break;
                 case PropertyInfo.PropertyType.FilePtr:
-                    strings.Add(new Kernel.String((item as FilePtr).path.CString));
-                    writer.Write(item as FilePtr);
+                    {
+                        var ptr = (FilePtr)item;
+                        var str = ptr.path.String;
+                        _ = strings.Add(str);
+                        writer.Write(Hashing.StringIdHashDetectionOverride(str));
+                    }
                     break;
                 case PropertyInfo.PropertyType.EntityHandle:
-                    writer.WriteEntityHandle((EntityHandle)item, addresses);
+                    {
+                        ulong address = 0;
+                        if ((Entity)item != null)
+                        {
+                            address = addresses[(Entity)item];
+                        }
+
+                        writer.Write(address);
+                    }
                     break;
                 case PropertyInfo.PropertyType.EntityLink:
-                    var entityLink = (EntityLink)item;
-                    strings.Add(new Kernel.String(entityLink.packagePath.CString));
-                    strings.Add(new Kernel.String(entityLink.archivePath.CString));
-                    strings.Add(new Kernel.String(entityLink.nameInArchive.CString));
-                    writer.WriteEntityLink(entityLink, addresses);
+                    {
+                        var entityLink = (EntityLink)item;
+                        _ = strings.Add(entityLink.packagePath.String);
+                        _ = strings.Add(entityLink.archivePath.String);
+                        _ = strings.Add(entityLink.nameInArchive);
+
+                        writer.Write(Hashing.StringIdHashDetectionOverride(entityLink.packagePath.String));
+                        writer.Write(Hashing.StringIdHashDetectionOverride(entityLink.archivePath.String));
+                        writer.Write(Hashing.StringIdHashDetectionOverride(entityLink.nameInArchive));
+
+                        ulong address = 0;
+                        if (entityLink.handle != null)
+                        {
+                            address = addresses[entityLink.handle];
+                        }
+
+                        writer.Write(address);
+                    }
                     break;
             }
         }
 
-        public void WritePropertyValue(Entity entity, PropertyInfo property, BinaryWriter writer)
+        private void WriteSingleValue(BinaryWriter writer, Entity entity, EntityExportContext exportContext, PropertyInfo property)
         {
-            switch (property.Type)
-            {
-                case PropertyInfo.PropertyType.Int8:
-                    writer.WriteInt8PropertyValue(entity, property);
-                    break;
-                case PropertyInfo.PropertyType.UInt8:
-                    writer.WriteUInt8PropertyValue(entity, property);
-                    break;
-                case PropertyInfo.PropertyType.Int16:
-                    writer.WriteInt16PropertyValue(entity, property);
-                    break;
-                case PropertyInfo.PropertyType.UInt16:
-                    writer.WriteUInt16PropertyValue(entity, property);
-                    break;
-                case PropertyInfo.PropertyType.Int32:
-                    writer.WriteInt32PropertyValue(entity, property);
-                    break;
-                case PropertyInfo.PropertyType.UInt32:
-                    writer.WriteUInt32PropertyValue(entity, property);
-                    break;
-                case PropertyInfo.PropertyType.Int64:
-                    writer.WriteInt64PropertyValue(entity, property);
-                    break;
-                case PropertyInfo.PropertyType.UInt64:
-                    writer.WriteUInt64PropertyValue(entity, property);
-                    break;
-                case PropertyInfo.PropertyType.Float:
-                    writer.WriteFloatPropertyValue(entity, property);
-                    break;
-                case PropertyInfo.PropertyType.Double:
-                    writer.WriteDoublePropertyValue(entity, property);
-                    break;
-                case PropertyInfo.PropertyType.Bool:
-                    writer.WriteBoolPropertyValue(entity, property);
-                    break;
-                case PropertyInfo.PropertyType.String:
-                    strings.Add(writer.WriteStringPropertyValue(entity, property));
-                    break;
-                case PropertyInfo.PropertyType.Path:
-                    strings.Add(writer.WritePathPropertyValue(entity, property));
-                    break;
-                case PropertyInfo.PropertyType.EntityPtr:
-                    writer.WriteEntityPtrPropertyValue(entity, property, addresses);
-                    break;
-                case PropertyInfo.PropertyType.Vector3:
-                    writer.WriteVector3PropertyValue(entity, property);
-                    break;
-                case PropertyInfo.PropertyType.Vector4:
-                    writer.WriteVector4PropertyValue(entity, property);
-                    break;
-                case PropertyInfo.PropertyType.Quat:
-                    writer.WriteQuatPropertyValue(entity, property);
-                    break;
-                case PropertyInfo.PropertyType.Matrix3:
-                    writer.WriteMatrix3PropertyValue(entity, property);
-                    break;
-                case PropertyInfo.PropertyType.Matrix4:
-                    writer.WriteMatrix4PropertyValue(entity, property);
-                    break;
-                case PropertyInfo.PropertyType.Color:
-                    writer.WriteColorPropertyValue(entity, property);
-                    break;
-                case PropertyInfo.PropertyType.FilePtr:
-                    strings.Add(writer.WriteFilePtrPropertyValue(entity, property));
-                    break;
-                case PropertyInfo.PropertyType.EntityHandle:
-                    writer.WriteEntityHandlePropertyValue(entity, property, addresses);
-                    break;
-                case PropertyInfo.PropertyType.EntityLink:
-                    strings.AddRange(writer.WriteEntityLinkPropertyValue(entity, property, addresses));
-                    break;
-            }
+            object value = exportContext.OverridesProperty(property.Name)
+                ? exportContext.GetOverriddenProperty(property.Name)
+                : entity.GetProperty(property.Name).GetValueAsBoxedObject();
+
+            WritePropertyItem(value, property.Type, writer);
+        }
+
+        public void WriteCollectionItem(BinaryWriter writer, object item, PropertyInfo.PropertyType type)
+        {
+            WritePropertyItem(item, type, writer);
         }
     }
 }

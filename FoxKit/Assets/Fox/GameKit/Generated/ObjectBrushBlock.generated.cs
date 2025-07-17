@@ -12,92 +12,123 @@ using Fox;
 
 namespace Fox.GameKit
 {
-    [UnityEditor.InitializeOnLoad]
-    public partial class ObjectBrushBlock : Fox.Core.Data 
-    {
-        // Properties
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.Path filePath { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Core.FilePtr obrbFile { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint blockId { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.String objectBrushName { get; set; }
-        
-        // ClassInfos
-        public static new bool ClassInfoInitialized = false;
-        private static Fox.Core.EntityInfo classInfo;
-        public static new Fox.Core.EntityInfo ClassInfo
-        {
-            get
-            {
-                return classInfo;
-            }
-        }
-        public override Fox.Core.EntityInfo GetClassEntityInfo()
-        {
-            return classInfo;
-        }
-        static ObjectBrushBlock()
-        {
-            if (Fox.Core.Data.ClassInfoInitialized)
-                classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("ObjectBrushBlock"), typeof(ObjectBrushBlock), Fox.Core.Data.ClassInfo, 128, null, 3);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("filePath"), Fox.Core.PropertyInfo.PropertyType.Path, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("obrbFile"), Fox.Core.PropertyInfo.PropertyType.FilePtr, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("blockId"), Fox.Core.PropertyInfo.PropertyType.UInt32, 184, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("objectBrushName"), Fox.Core.PropertyInfo.PropertyType.String, 160, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxGameKit/ObjectBrushBlock")]
+	public partial class ObjectBrushBlock : Fox.Core.Data
+	{
+		// Properties
+		[field: UnityEngine.SerializeField]
+		public Fox.Path filePath { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Core.FilePtr obrbFile { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint blockId { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public string objectBrushName { get; set; }
+		
+		// ClassInfos
+		public static new bool ClassInfoInitialized = false;
+		private static Fox.Core.EntityInfo classInfo;
+		public static new Fox.Core.EntityInfo ClassInfo
+		{
+			get
+			{
+				return classInfo;
+			}
+		}
+		public override Fox.Core.EntityInfo GetClassEntityInfo()
+		{
+			return classInfo;
+		}
+		static ObjectBrushBlock()
+		{
+			if (Fox.Core.Data.ClassInfoInitialized)
+				classInfo = new Fox.Core.EntityInfo("ObjectBrushBlock", typeof(ObjectBrushBlock), Fox.Core.Data.ClassInfo, 128, null, 3);
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("filePath", Fox.Core.PropertyInfo.PropertyType.Path, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("obrbFile", Fox.Core.PropertyInfo.PropertyType.FilePtr, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("blockId", Fox.Core.PropertyInfo.PropertyType.UInt32, 184, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("objectBrushName", Fox.Core.PropertyInfo.PropertyType.String, 160, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 
-            ClassInfoInitialized = true;
-        }
+			ClassInfoInitialized = true;
+		}
+		
+		public override Fox.Core.Value GetProperty(string propertyName)
+		{
+			switch (propertyName)
+			{
+				case "filePath":
+					return new Fox.Core.Value(filePath);
+				case "obrbFile":
+					return new Fox.Core.Value(obrbFile);
+				case "blockId":
+					return new Fox.Core.Value(blockId);
+				case "objectBrushName":
+					return new Fox.Core.Value(objectBrushName);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
 
-        // Constructors
-		public ObjectBrushBlock(ulong id) : base(id) { }
-		public ObjectBrushBlock() : base() { }
-        
-        public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "filePath":
-                    this.filePath = value.GetValueAsPath();
-                    return;
-                case "obrbFile":
-                    this.obrbFile = value.GetValueAsFilePtr();
-                    return;
-                case "blockId":
-                    this.blockId = value.GetValueAsUInt32();
-                    return;
-                case "objectBrushName":
-                    this.objectBrushName = value.GetValueAsString();
-                    return;
-                default:
-                    base.SetProperty(propertyName, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, index, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, key, value);
-                    return;
-            }
-        }
-    }
+		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		{
+			switch (propertyName)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		{
+			switch (propertyName)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
+
+		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				case "filePath":
+					this.filePath = value.GetValueAsPath();
+					return;
+				case "obrbFile":
+					this.obrbFile = value.GetValueAsFilePtr();
+					return;
+				case "blockId":
+					this.blockId = value.GetValueAsUInt32();
+					return;
+				case "objectBrushName":
+					this.objectBrushName = value.GetValueAsString();
+					return;
+				default:
+					base.SetProperty(propertyName, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+	}
 }

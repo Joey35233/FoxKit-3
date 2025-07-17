@@ -12,225 +12,294 @@ using Fox;
 
 namespace Tpp.Effect
 {
-    [UnityEditor.InitializeOnLoad]
-    public partial class TppSkyClouds3Param : Fox.Core.DataElement 
-    {
-        // Properties
-        [field: UnityEngine.SerializeField]
-        public bool enable { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public bool followCamera { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public UnityEngine.Color color { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float luminanceScale { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float bottom { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float radius { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float height { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float domeLength { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float domeStreach { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float domeWindInfluence { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float midCylinderPos { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float midCylinderWidth { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float midCylinderStreach { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float midCylinderScrSpeed { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float lowCylinderIntrusion { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float lowCylinderStreach { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float lowCylinderScrSpeed { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint cylinderTexRepeat { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.Path domeTexture { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.Path midCylinderTexture { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.Path lowCylinderTexture { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public TppSkyClouds3Param_ColorSpace colorSpace { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public TppSkyClouds3Param_TexColor textureColorHandling { get; set; }
-        
-        // ClassInfos
-        public static new bool ClassInfoInitialized = false;
-        private static Fox.Core.EntityInfo classInfo;
-        public static new Fox.Core.EntityInfo ClassInfo
-        {
-            get
-            {
-                return classInfo;
-            }
-        }
-        public override Fox.Core.EntityInfo GetClassEntityInfo()
-        {
-            return classInfo;
-        }
-        static TppSkyClouds3Param()
-        {
-            if (Fox.Core.DataElement.ClassInfoInitialized)
-                classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("TppSkyClouds3Param"), typeof(TppSkyClouds3Param), Fox.Core.DataElement.ClassInfo, 0, "TppEffect", 3);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("enable"), Fox.Core.PropertyInfo.PropertyType.Bool, 172, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("followCamera"), Fox.Core.PropertyInfo.PropertyType.Bool, 173, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("color"), Fox.Core.PropertyInfo.PropertyType.Color, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("luminanceScale"), Fox.Core.PropertyInfo.PropertyType.Float, 104, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("bottom"), Fox.Core.PropertyInfo.PropertyType.Float, 108, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("radius"), Fox.Core.PropertyInfo.PropertyType.Float, 112, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("height"), Fox.Core.PropertyInfo.PropertyType.Float, 116, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("domeLength"), Fox.Core.PropertyInfo.PropertyType.Float, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("domeStreach"), Fox.Core.PropertyInfo.PropertyType.Float, 124, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("domeWindInfluence"), Fox.Core.PropertyInfo.PropertyType.Float, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("midCylinderPos"), Fox.Core.PropertyInfo.PropertyType.Float, 144, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("midCylinderWidth"), Fox.Core.PropertyInfo.PropertyType.Float, 148, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("midCylinderStreach"), Fox.Core.PropertyInfo.PropertyType.Float, 152, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("midCylinderScrSpeed"), Fox.Core.PropertyInfo.PropertyType.Float, 156, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("lowCylinderIntrusion"), Fox.Core.PropertyInfo.PropertyType.Float, 132, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("lowCylinderStreach"), Fox.Core.PropertyInfo.PropertyType.Float, 136, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("lowCylinderScrSpeed"), Fox.Core.PropertyInfo.PropertyType.Float, 140, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("cylinderTexRepeat"), Fox.Core.PropertyInfo.PropertyType.UInt32, 160, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("domeTexture"), Fox.Core.PropertyInfo.PropertyType.Path, 80, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("midCylinderTexture"), Fox.Core.PropertyInfo.PropertyType.Path, 96, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("lowCylinderTexture"), Fox.Core.PropertyInfo.PropertyType.Path, 88, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("colorSpace"), Fox.Core.PropertyInfo.PropertyType.Int32, 164, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, typeof(TppSkyClouds3Param_ColorSpace), Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("textureColorHandling"), Fox.Core.PropertyInfo.PropertyType.Int32, 168, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, typeof(TppSkyClouds3Param_TexColor), Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppEffect/TppSkyClouds3Param")]
+	public partial class TppSkyClouds3Param : Fox.Core.DataElement
+	{
+		// Properties
+		[field: UnityEngine.SerializeField]
+		public bool enable { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public bool followCamera { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public UnityEngine.Color color { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float luminanceScale { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float bottom { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float radius { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float height { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float domeLength { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float domeStreach { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float domeWindInfluence { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float midCylinderPos { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float midCylinderWidth { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float midCylinderStreach { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float midCylinderScrSpeed { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float lowCylinderIntrusion { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float lowCylinderStreach { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float lowCylinderScrSpeed { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint cylinderTexRepeat { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Path domeTexture { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Path midCylinderTexture { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Path lowCylinderTexture { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public TppSkyClouds3Param_ColorSpace colorSpace { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public TppSkyClouds3Param_TexColor textureColorHandling { get; set; }
+		
+		// ClassInfos
+		public static new bool ClassInfoInitialized = false;
+		private static Fox.Core.EntityInfo classInfo;
+		public static new Fox.Core.EntityInfo ClassInfo
+		{
+			get
+			{
+				return classInfo;
+			}
+		}
+		public override Fox.Core.EntityInfo GetClassEntityInfo()
+		{
+			return classInfo;
+		}
+		static TppSkyClouds3Param()
+		{
+			if (Fox.Core.DataElement.ClassInfoInitialized)
+				classInfo = new Fox.Core.EntityInfo("TppSkyClouds3Param", typeof(TppSkyClouds3Param), Fox.Core.DataElement.ClassInfo, 0, "TppEffect", 3);
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("enable", Fox.Core.PropertyInfo.PropertyType.Bool, 172, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("followCamera", Fox.Core.PropertyInfo.PropertyType.Bool, 173, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("color", Fox.Core.PropertyInfo.PropertyType.Color, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("luminanceScale", Fox.Core.PropertyInfo.PropertyType.Float, 104, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("bottom", Fox.Core.PropertyInfo.PropertyType.Float, 108, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("radius", Fox.Core.PropertyInfo.PropertyType.Float, 112, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("height", Fox.Core.PropertyInfo.PropertyType.Float, 116, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("domeLength", Fox.Core.PropertyInfo.PropertyType.Float, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("domeStreach", Fox.Core.PropertyInfo.PropertyType.Float, 124, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("domeWindInfluence", Fox.Core.PropertyInfo.PropertyType.Float, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("midCylinderPos", Fox.Core.PropertyInfo.PropertyType.Float, 144, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("midCylinderWidth", Fox.Core.PropertyInfo.PropertyType.Float, 148, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("midCylinderStreach", Fox.Core.PropertyInfo.PropertyType.Float, 152, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("midCylinderScrSpeed", Fox.Core.PropertyInfo.PropertyType.Float, 156, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("lowCylinderIntrusion", Fox.Core.PropertyInfo.PropertyType.Float, 132, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("lowCylinderStreach", Fox.Core.PropertyInfo.PropertyType.Float, 136, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("lowCylinderScrSpeed", Fox.Core.PropertyInfo.PropertyType.Float, 140, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("cylinderTexRepeat", Fox.Core.PropertyInfo.PropertyType.UInt32, 160, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("domeTexture", Fox.Core.PropertyInfo.PropertyType.Path, 80, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("midCylinderTexture", Fox.Core.PropertyInfo.PropertyType.Path, 96, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("lowCylinderTexture", Fox.Core.PropertyInfo.PropertyType.Path, 88, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("colorSpace", Fox.Core.PropertyInfo.PropertyType.Int32, 164, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, typeof(TppSkyClouds3Param_ColorSpace), Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("textureColorHandling", Fox.Core.PropertyInfo.PropertyType.Int32, 168, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, typeof(TppSkyClouds3Param_TexColor), Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 
-            ClassInfoInitialized = true;
-        }
+			ClassInfoInitialized = true;
+		}
+		
+		public override Fox.Core.Value GetProperty(string propertyName)
+		{
+			switch (propertyName)
+			{
+				case "enable":
+					return new Fox.Core.Value(enable);
+				case "followCamera":
+					return new Fox.Core.Value(followCamera);
+				case "color":
+					return new Fox.Core.Value(color);
+				case "luminanceScale":
+					return new Fox.Core.Value(luminanceScale);
+				case "bottom":
+					return new Fox.Core.Value(bottom);
+				case "radius":
+					return new Fox.Core.Value(radius);
+				case "height":
+					return new Fox.Core.Value(height);
+				case "domeLength":
+					return new Fox.Core.Value(domeLength);
+				case "domeStreach":
+					return new Fox.Core.Value(domeStreach);
+				case "domeWindInfluence":
+					return new Fox.Core.Value(domeWindInfluence);
+				case "midCylinderPos":
+					return new Fox.Core.Value(midCylinderPos);
+				case "midCylinderWidth":
+					return new Fox.Core.Value(midCylinderWidth);
+				case "midCylinderStreach":
+					return new Fox.Core.Value(midCylinderStreach);
+				case "midCylinderScrSpeed":
+					return new Fox.Core.Value(midCylinderScrSpeed);
+				case "lowCylinderIntrusion":
+					return new Fox.Core.Value(lowCylinderIntrusion);
+				case "lowCylinderStreach":
+					return new Fox.Core.Value(lowCylinderStreach);
+				case "lowCylinderScrSpeed":
+					return new Fox.Core.Value(lowCylinderScrSpeed);
+				case "cylinderTexRepeat":
+					return new Fox.Core.Value(cylinderTexRepeat);
+				case "domeTexture":
+					return new Fox.Core.Value(domeTexture);
+				case "midCylinderTexture":
+					return new Fox.Core.Value(midCylinderTexture);
+				case "lowCylinderTexture":
+					return new Fox.Core.Value(lowCylinderTexture);
+				case "colorSpace":
+					return new Fox.Core.Value(colorSpace);
+				case "textureColorHandling":
+					return new Fox.Core.Value(textureColorHandling);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
 
-        // Constructors
-		public TppSkyClouds3Param(ulong id) : base(id) { }
-		public TppSkyClouds3Param() : base() { }
-        
-        public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "enable":
-                    this.enable = value.GetValueAsBool();
-                    return;
-                case "followCamera":
-                    this.followCamera = value.GetValueAsBool();
-                    return;
-                case "color":
-                    this.color = value.GetValueAsColor();
-                    return;
-                case "luminanceScale":
-                    this.luminanceScale = value.GetValueAsFloat();
-                    return;
-                case "bottom":
-                    this.bottom = value.GetValueAsFloat();
-                    return;
-                case "radius":
-                    this.radius = value.GetValueAsFloat();
-                    return;
-                case "height":
-                    this.height = value.GetValueAsFloat();
-                    return;
-                case "domeLength":
-                    this.domeLength = value.GetValueAsFloat();
-                    return;
-                case "domeStreach":
-                    this.domeStreach = value.GetValueAsFloat();
-                    return;
-                case "domeWindInfluence":
-                    this.domeWindInfluence = value.GetValueAsFloat();
-                    return;
-                case "midCylinderPos":
-                    this.midCylinderPos = value.GetValueAsFloat();
-                    return;
-                case "midCylinderWidth":
-                    this.midCylinderWidth = value.GetValueAsFloat();
-                    return;
-                case "midCylinderStreach":
-                    this.midCylinderStreach = value.GetValueAsFloat();
-                    return;
-                case "midCylinderScrSpeed":
-                    this.midCylinderScrSpeed = value.GetValueAsFloat();
-                    return;
-                case "lowCylinderIntrusion":
-                    this.lowCylinderIntrusion = value.GetValueAsFloat();
-                    return;
-                case "lowCylinderStreach":
-                    this.lowCylinderStreach = value.GetValueAsFloat();
-                    return;
-                case "lowCylinderScrSpeed":
-                    this.lowCylinderScrSpeed = value.GetValueAsFloat();
-                    return;
-                case "cylinderTexRepeat":
-                    this.cylinderTexRepeat = value.GetValueAsUInt32();
-                    return;
-                case "domeTexture":
-                    this.domeTexture = value.GetValueAsPath();
-                    return;
-                case "midCylinderTexture":
-                    this.midCylinderTexture = value.GetValueAsPath();
-                    return;
-                case "lowCylinderTexture":
-                    this.lowCylinderTexture = value.GetValueAsPath();
-                    return;
-                case "colorSpace":
-                    this.colorSpace = (TppSkyClouds3Param_ColorSpace)value.GetValueAsInt32();
-                    return;
-                case "textureColorHandling":
-                    this.textureColorHandling = (TppSkyClouds3Param_TexColor)value.GetValueAsInt32();
-                    return;
-                default:
-                    base.SetProperty(propertyName, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, index, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, key, value);
-                    return;
-            }
-        }
-    }
+		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		{
+			switch (propertyName)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		{
+			switch (propertyName)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
+
+		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				case "enable":
+					this.enable = value.GetValueAsBool();
+					return;
+				case "followCamera":
+					this.followCamera = value.GetValueAsBool();
+					return;
+				case "color":
+					this.color = value.GetValueAsColor();
+					return;
+				case "luminanceScale":
+					this.luminanceScale = value.GetValueAsFloat();
+					return;
+				case "bottom":
+					this.bottom = value.GetValueAsFloat();
+					return;
+				case "radius":
+					this.radius = value.GetValueAsFloat();
+					return;
+				case "height":
+					this.height = value.GetValueAsFloat();
+					return;
+				case "domeLength":
+					this.domeLength = value.GetValueAsFloat();
+					return;
+				case "domeStreach":
+					this.domeStreach = value.GetValueAsFloat();
+					return;
+				case "domeWindInfluence":
+					this.domeWindInfluence = value.GetValueAsFloat();
+					return;
+				case "midCylinderPos":
+					this.midCylinderPos = value.GetValueAsFloat();
+					return;
+				case "midCylinderWidth":
+					this.midCylinderWidth = value.GetValueAsFloat();
+					return;
+				case "midCylinderStreach":
+					this.midCylinderStreach = value.GetValueAsFloat();
+					return;
+				case "midCylinderScrSpeed":
+					this.midCylinderScrSpeed = value.GetValueAsFloat();
+					return;
+				case "lowCylinderIntrusion":
+					this.lowCylinderIntrusion = value.GetValueAsFloat();
+					return;
+				case "lowCylinderStreach":
+					this.lowCylinderStreach = value.GetValueAsFloat();
+					return;
+				case "lowCylinderScrSpeed":
+					this.lowCylinderScrSpeed = value.GetValueAsFloat();
+					return;
+				case "cylinderTexRepeat":
+					this.cylinderTexRepeat = value.GetValueAsUInt32();
+					return;
+				case "domeTexture":
+					this.domeTexture = value.GetValueAsPath();
+					return;
+				case "midCylinderTexture":
+					this.midCylinderTexture = value.GetValueAsPath();
+					return;
+				case "lowCylinderTexture":
+					this.lowCylinderTexture = value.GetValueAsPath();
+					return;
+				case "colorSpace":
+					this.colorSpace = (TppSkyClouds3Param_ColorSpace)value.GetValueAsInt32();
+					return;
+				case "textureColorHandling":
+					this.textureColorHandling = (TppSkyClouds3Param_TexColor)value.GetValueAsInt32();
+					return;
+				default:
+					base.SetProperty(propertyName, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+	}
 }

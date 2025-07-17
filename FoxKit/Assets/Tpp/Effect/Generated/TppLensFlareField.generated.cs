@@ -12,141 +12,186 @@ using Fox;
 
 namespace Tpp.Effect
 {
-    [UnityEditor.InitializeOnLoad]
-    public partial class TppLensFlareField : Fox.Core.Data 
-    {
-        // Properties
-        [field: UnityEngine.SerializeField]
-        public TppLensFlareFieldShapeType shapeType { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public TppLensFlareFieldInterpType interpType { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public bool debugDrawFlag { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public UnityEngine.Color debugDrawColor { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float innerScale { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float centerScale { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float outerScale { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float innerValue { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float centerValue { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float outerValue { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public bool reverse { get; set; }
-        
-        // ClassInfos
-        public static new bool ClassInfoInitialized = false;
-        private static Fox.Core.EntityInfo classInfo;
-        public static new Fox.Core.EntityInfo ClassInfo
-        {
-            get
-            {
-                return classInfo;
-            }
-        }
-        public override Fox.Core.EntityInfo GetClassEntityInfo()
-        {
-            return classInfo;
-        }
-        static TppLensFlareField()
-        {
-            if (Fox.Core.Data.ClassInfoInitialized)
-                classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("TppLensFlareField"), typeof(TppLensFlareField), Fox.Core.Data.ClassInfo, 144, null, 2);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("shapeType"), Fox.Core.PropertyInfo.PropertyType.Int32, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, typeof(TppLensFlareFieldShapeType), Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("interpType"), Fox.Core.PropertyInfo.PropertyType.Int32, 124, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, typeof(TppLensFlareFieldInterpType), Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("debugDrawFlag"), Fox.Core.PropertyInfo.PropertyType.Bool, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("debugDrawColor"), Fox.Core.PropertyInfo.PropertyType.Color, 144, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("innerScale"), Fox.Core.PropertyInfo.PropertyType.Float, 160, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("centerScale"), Fox.Core.PropertyInfo.PropertyType.Float, 168, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("outerScale"), Fox.Core.PropertyInfo.PropertyType.Float, 176, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("innerValue"), Fox.Core.PropertyInfo.PropertyType.Float, 164, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("centerValue"), Fox.Core.PropertyInfo.PropertyType.Float, 172, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("outerValue"), Fox.Core.PropertyInfo.PropertyType.Float, 180, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("reverse"), Fox.Core.PropertyInfo.PropertyType.Bool, 184, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppEffect/TppLensFlareField")]
+	public partial class TppLensFlareField : Fox.Core.Data
+	{
+		// Properties
+		[field: UnityEngine.SerializeField]
+		public TppLensFlareFieldShapeType shapeType { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public TppLensFlareFieldInterpType interpType { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public bool debugDrawFlag { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public UnityEngine.Color debugDrawColor { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float innerScale { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float centerScale { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float outerScale { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float innerValue { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float centerValue { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float outerValue { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public bool reverse { get; set; }
+		
+		// ClassInfos
+		public static new bool ClassInfoInitialized = false;
+		private static Fox.Core.EntityInfo classInfo;
+		public static new Fox.Core.EntityInfo ClassInfo
+		{
+			get
+			{
+				return classInfo;
+			}
+		}
+		public override Fox.Core.EntityInfo GetClassEntityInfo()
+		{
+			return classInfo;
+		}
+		static TppLensFlareField()
+		{
+			if (Fox.Core.Data.ClassInfoInitialized)
+				classInfo = new Fox.Core.EntityInfo("TppLensFlareField", typeof(TppLensFlareField), Fox.Core.Data.ClassInfo, 144, null, 2);
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("shapeType", Fox.Core.PropertyInfo.PropertyType.Int32, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, typeof(TppLensFlareFieldShapeType), Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("interpType", Fox.Core.PropertyInfo.PropertyType.Int32, 124, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, typeof(TppLensFlareFieldInterpType), Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("debugDrawFlag", Fox.Core.PropertyInfo.PropertyType.Bool, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("debugDrawColor", Fox.Core.PropertyInfo.PropertyType.Color, 144, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("innerScale", Fox.Core.PropertyInfo.PropertyType.Float, 160, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("centerScale", Fox.Core.PropertyInfo.PropertyType.Float, 168, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("outerScale", Fox.Core.PropertyInfo.PropertyType.Float, 176, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("innerValue", Fox.Core.PropertyInfo.PropertyType.Float, 164, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("centerValue", Fox.Core.PropertyInfo.PropertyType.Float, 172, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("outerValue", Fox.Core.PropertyInfo.PropertyType.Float, 180, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("reverse", Fox.Core.PropertyInfo.PropertyType.Bool, 184, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 
-            ClassInfoInitialized = true;
-        }
+			ClassInfoInitialized = true;
+		}
+		
+		public override Fox.Core.Value GetProperty(string propertyName)
+		{
+			switch (propertyName)
+			{
+				case "shapeType":
+					return new Fox.Core.Value(shapeType);
+				case "interpType":
+					return new Fox.Core.Value(interpType);
+				case "debugDrawFlag":
+					return new Fox.Core.Value(debugDrawFlag);
+				case "debugDrawColor":
+					return new Fox.Core.Value(debugDrawColor);
+				case "innerScale":
+					return new Fox.Core.Value(innerScale);
+				case "centerScale":
+					return new Fox.Core.Value(centerScale);
+				case "outerScale":
+					return new Fox.Core.Value(outerScale);
+				case "innerValue":
+					return new Fox.Core.Value(innerValue);
+				case "centerValue":
+					return new Fox.Core.Value(centerValue);
+				case "outerValue":
+					return new Fox.Core.Value(outerValue);
+				case "reverse":
+					return new Fox.Core.Value(reverse);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
 
-        // Constructors
-		public TppLensFlareField(ulong id) : base(id) { }
-		public TppLensFlareField() : base() { }
-        
-        public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "shapeType":
-                    this.shapeType = (TppLensFlareFieldShapeType)value.GetValueAsInt32();
-                    return;
-                case "interpType":
-                    this.interpType = (TppLensFlareFieldInterpType)value.GetValueAsInt32();
-                    return;
-                case "debugDrawFlag":
-                    this.debugDrawFlag = value.GetValueAsBool();
-                    return;
-                case "debugDrawColor":
-                    this.debugDrawColor = value.GetValueAsColor();
-                    return;
-                case "innerScale":
-                    this.innerScale = value.GetValueAsFloat();
-                    return;
-                case "centerScale":
-                    this.centerScale = value.GetValueAsFloat();
-                    return;
-                case "outerScale":
-                    this.outerScale = value.GetValueAsFloat();
-                    return;
-                case "innerValue":
-                    this.innerValue = value.GetValueAsFloat();
-                    return;
-                case "centerValue":
-                    this.centerValue = value.GetValueAsFloat();
-                    return;
-                case "outerValue":
-                    this.outerValue = value.GetValueAsFloat();
-                    return;
-                case "reverse":
-                    this.reverse = value.GetValueAsBool();
-                    return;
-                default:
-                    base.SetProperty(propertyName, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, index, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, key, value);
-                    return;
-            }
-        }
-    }
+		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		{
+			switch (propertyName)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		{
+			switch (propertyName)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
+
+		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				case "shapeType":
+					this.shapeType = (TppLensFlareFieldShapeType)value.GetValueAsInt32();
+					return;
+				case "interpType":
+					this.interpType = (TppLensFlareFieldInterpType)value.GetValueAsInt32();
+					return;
+				case "debugDrawFlag":
+					this.debugDrawFlag = value.GetValueAsBool();
+					return;
+				case "debugDrawColor":
+					this.debugDrawColor = value.GetValueAsColor();
+					return;
+				case "innerScale":
+					this.innerScale = value.GetValueAsFloat();
+					return;
+				case "centerScale":
+					this.centerScale = value.GetValueAsFloat();
+					return;
+				case "outerScale":
+					this.outerScale = value.GetValueAsFloat();
+					return;
+				case "innerValue":
+					this.innerValue = value.GetValueAsFloat();
+					return;
+				case "centerValue":
+					this.centerValue = value.GetValueAsFloat();
+					return;
+				case "outerValue":
+					this.outerValue = value.GetValueAsFloat();
+					return;
+				case "reverse":
+					this.reverse = value.GetValueAsBool();
+					return;
+				default:
+					base.SetProperty(propertyName, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+	}
 }

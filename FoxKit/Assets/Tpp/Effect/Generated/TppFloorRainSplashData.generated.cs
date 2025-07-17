@@ -12,78 +12,110 @@ using Fox;
 
 namespace Tpp.Effect
 {
-    [UnityEditor.InitializeOnLoad]
-    public partial class TppFloorRainSplashData : Fox.Core.Data 
-    {
-        // Properties
-        [field: UnityEngine.SerializeField]
-        public Fox.Core.FilePtr vfxFile { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.StringMap<Fox.Kernel.String> materialSoundList { get; set; } = new Fox.Kernel.StringMap<Fox.Kernel.String>();
-        
-        // ClassInfos
-        public static new bool ClassInfoInitialized = false;
-        private static Fox.Core.EntityInfo classInfo;
-        public static new Fox.Core.EntityInfo ClassInfo
-        {
-            get
-            {
-                return classInfo;
-            }
-        }
-        public override Fox.Core.EntityInfo GetClassEntityInfo()
-        {
-            return classInfo;
-        }
-        static TppFloorRainSplashData()
-        {
-            if (Fox.Core.Data.ClassInfoInitialized)
-                classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("TppFloorRainSplashData"), typeof(TppFloorRainSplashData), Fox.Core.Data.ClassInfo, 136, null, 1);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("vfxFile"), Fox.Core.PropertyInfo.PropertyType.FilePtr, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("materialSoundList"), Fox.Core.PropertyInfo.PropertyType.String, 144, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppEffect/TppFloorRainSplashData")]
+	public partial class TppFloorRainSplashData : Fox.Core.Data
+	{
+		// Properties
+		[field: UnityEngine.SerializeField]
+		public Fox.Core.FilePtr vfxFile { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.StringMap<string> materialSoundList { get; private set; } = new Fox.StringMap<string>();
+		
+		// ClassInfos
+		public static new bool ClassInfoInitialized = false;
+		private static Fox.Core.EntityInfo classInfo;
+		public static new Fox.Core.EntityInfo ClassInfo
+		{
+			get
+			{
+				return classInfo;
+			}
+		}
+		public override Fox.Core.EntityInfo GetClassEntityInfo()
+		{
+			return classInfo;
+		}
+		static TppFloorRainSplashData()
+		{
+			if (Fox.Core.Data.ClassInfoInitialized)
+				classInfo = new Fox.Core.EntityInfo("TppFloorRainSplashData", typeof(TppFloorRainSplashData), Fox.Core.Data.ClassInfo, 136, null, 1);
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("vfxFile", Fox.Core.PropertyInfo.PropertyType.FilePtr, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("materialSoundList", Fox.Core.PropertyInfo.PropertyType.String, 144, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 
-            ClassInfoInitialized = true;
-        }
+			ClassInfoInitialized = true;
+		}
+		
+		public override Fox.Core.Value GetProperty(string propertyName)
+		{
+			switch (propertyName)
+			{
+				case "vfxFile":
+					return new Fox.Core.Value(vfxFile);
+				case "materialSoundList":
+					return new Fox.Core.Value((Fox.IStringMap)materialSoundList);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
 
-        // Constructors
-		public TppFloorRainSplashData(ulong id) : base(id) { }
-		public TppFloorRainSplashData() : base() { }
-        
-        public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "vfxFile":
-                    this.vfxFile = value.GetValueAsFilePtr();
-                    return;
-                default:
-                    base.SetProperty(propertyName, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, index, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "materialSoundList":
-                    this.materialSoundList.Insert(key, value.GetValueAsString());
-                    return;
-                default:
-                    base.SetPropertyElement(propertyName, key, value);
-                    return;
-            }
-        }
-    }
+		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		{
+			switch (propertyName)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		{
+			switch (propertyName)
+			{
+				case "materialSoundList":
+					return new Fox.Core.Value(this.materialSoundList[key]);
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
+
+		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				case "vfxFile":
+					this.vfxFile = value.GetValueAsFilePtr();
+					return;
+				default:
+					base.SetProperty(propertyName, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				case "materialSoundList":
+					if (this.materialSoundList.ContainsKey(key))
+						this.materialSoundList[key] = value.GetValueAsString();
+					else
+						this.materialSoundList.Insert(key, value.GetValueAsString());
+					return;
+				default:
+					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+	}
 }

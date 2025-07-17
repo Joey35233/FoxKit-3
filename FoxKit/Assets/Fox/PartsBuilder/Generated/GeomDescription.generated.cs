@@ -12,99 +12,132 @@ using Fox;
 
 namespace Fox.PartsBuilder
 {
-    [UnityEditor.InitializeOnLoad]
-    public partial class GeomDescription : Fox.PartsBuilder.PartDescription 
-    {
-        // Properties
-        [field: UnityEngine.SerializeField]
-        public Fox.Core.FilePtr geomFile { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.String skeletonName { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public UnityEngine.Vector3 offsetScale { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public UnityEngine.Quaternion offsetRotQuat { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public UnityEngine.Vector3 offsetTranslation { get; set; }
-        
-        // ClassInfos
-        public static new bool ClassInfoInitialized = false;
-        private static Fox.Core.EntityInfo classInfo;
-        public static new Fox.Core.EntityInfo ClassInfo
-        {
-            get
-            {
-                return classInfo;
-            }
-        }
-        public override Fox.Core.EntityInfo GetClassEntityInfo()
-        {
-            return classInfo;
-        }
-        static GeomDescription()
-        {
-            if (Fox.PartsBuilder.PartDescription.ClassInfoInitialized)
-                classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("GeomDescription"), typeof(GeomDescription), Fox.PartsBuilder.PartDescription.ClassInfo, 176, "PartsBuilder", 3);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("geomFile"), Fox.Core.PropertyInfo.PropertyType.FilePtr, 208, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("skeletonName"), Fox.Core.PropertyInfo.PropertyType.String, 232, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("offsetScale"), Fox.Core.PropertyInfo.PropertyType.Vector3, 160, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("offsetRotQuat"), Fox.Core.PropertyInfo.PropertyType.Quat, 176, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("offsetTranslation"), Fox.Core.PropertyInfo.PropertyType.Vector3, 192, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("PartsBuilder/GeomDescription")]
+	public partial class GeomDescription : Fox.PartsBuilder.PartDescription
+	{
+		// Properties
+		[field: UnityEngine.SerializeField]
+		public Fox.Core.FilePtr geomFile { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public string skeletonName { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public UnityEngine.Vector3 offsetScale { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public UnityEngine.Quaternion offsetRotQuat { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public UnityEngine.Vector3 offsetTranslation { get; set; }
+		
+		// ClassInfos
+		public static new bool ClassInfoInitialized = false;
+		private static Fox.Core.EntityInfo classInfo;
+		public static new Fox.Core.EntityInfo ClassInfo
+		{
+			get
+			{
+				return classInfo;
+			}
+		}
+		public override Fox.Core.EntityInfo GetClassEntityInfo()
+		{
+			return classInfo;
+		}
+		static GeomDescription()
+		{
+			if (Fox.PartsBuilder.PartDescription.ClassInfoInitialized)
+				classInfo = new Fox.Core.EntityInfo("GeomDescription", typeof(GeomDescription), Fox.PartsBuilder.PartDescription.ClassInfo, 176, "PartsBuilder", 3);
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("geomFile", Fox.Core.PropertyInfo.PropertyType.FilePtr, 208, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("skeletonName", Fox.Core.PropertyInfo.PropertyType.String, 232, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("offsetScale", Fox.Core.PropertyInfo.PropertyType.Vector3, 160, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("offsetRotQuat", Fox.Core.PropertyInfo.PropertyType.Quat, 176, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("offsetTranslation", Fox.Core.PropertyInfo.PropertyType.Vector3, 192, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 
-            ClassInfoInitialized = true;
-        }
+			ClassInfoInitialized = true;
+		}
+		
+		public override Fox.Core.Value GetProperty(string propertyName)
+		{
+			switch (propertyName)
+			{
+				case "geomFile":
+					return new Fox.Core.Value(geomFile);
+				case "skeletonName":
+					return new Fox.Core.Value(skeletonName);
+				case "offsetScale":
+					return new Fox.Core.Value(offsetScale);
+				case "offsetRotQuat":
+					return new Fox.Core.Value(offsetRotQuat);
+				case "offsetTranslation":
+					return new Fox.Core.Value(offsetTranslation);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
 
-        // Constructors
-		public GeomDescription(ulong id) : base(id) { }
-		public GeomDescription() : base() { }
-        
-        public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "geomFile":
-                    this.geomFile = value.GetValueAsFilePtr();
-                    return;
-                case "skeletonName":
-                    this.skeletonName = value.GetValueAsString();
-                    return;
-                case "offsetScale":
-                    this.offsetScale = value.GetValueAsVector3();
-                    return;
-                case "offsetRotQuat":
-                    this.offsetRotQuat = value.GetValueAsQuat();
-                    return;
-                case "offsetTranslation":
-                    this.offsetTranslation = value.GetValueAsVector3();
-                    return;
-                default:
-                    base.SetProperty(propertyName, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, index, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, key, value);
-                    return;
-            }
-        }
-    }
+		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		{
+			switch (propertyName)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		{
+			switch (propertyName)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
+
+		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				case "geomFile":
+					this.geomFile = value.GetValueAsFilePtr();
+					return;
+				case "skeletonName":
+					this.skeletonName = value.GetValueAsString();
+					return;
+				case "offsetScale":
+					this.offsetScale = value.GetValueAsVector3();
+					return;
+				case "offsetRotQuat":
+					this.offsetRotQuat = value.GetValueAsQuat();
+					return;
+				case "offsetTranslation":
+					this.offsetTranslation = value.GetValueAsVector3();
+					return;
+				default:
+					base.SetProperty(propertyName, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+	}
 }

@@ -12,79 +12,108 @@ using Fox;
 
 namespace Fox.Phx
 {
-    [UnityEditor.InitializeOnLoad]
-    public partial class PhxVehicleTransmission : Fox.Core.Data 
-    {
-        // Properties
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.DynamicArray<float> gearRatios { get; set; } = new Fox.Kernel.DynamicArray<float>();
-        
-        [field: UnityEngine.SerializeField]
-        public float finalGearRatio { get; set; }
-        
-        // ClassInfos
-        public static new bool ClassInfoInitialized = false;
-        private static Fox.Core.EntityInfo classInfo;
-        public static new Fox.Core.EntityInfo ClassInfo
-        {
-            get
-            {
-                return classInfo;
-            }
-        }
-        public override Fox.Core.EntityInfo GetClassEntityInfo()
-        {
-            return classInfo;
-        }
-        static PhxVehicleTransmission()
-        {
-            if (Fox.Core.Data.ClassInfoInitialized)
-                classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("PhxVehicleTransmission"), typeof(PhxVehicleTransmission), Fox.Core.Data.ClassInfo, 0, "Phx", 0);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("gearRatios"), Fox.Core.PropertyInfo.PropertyType.Float, 120, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("finalGearRatio"), Fox.Core.PropertyInfo.PropertyType.Float, 136, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Phx/PhxVehicleTransmission")]
+	public partial class PhxVehicleTransmission : Fox.Core.Data
+	{
+		// Properties
+		[field: UnityEngine.SerializeField]
+		public CsSystem.Collections.Generic.List<float> gearRatios { get; private set; } = new CsSystem.Collections.Generic.List<float>();
+		
+		[field: UnityEngine.SerializeField]
+		public float finalGearRatio { get; set; }
+		
+		// ClassInfos
+		public static new bool ClassInfoInitialized = false;
+		private static Fox.Core.EntityInfo classInfo;
+		public static new Fox.Core.EntityInfo ClassInfo
+		{
+			get
+			{
+				return classInfo;
+			}
+		}
+		public override Fox.Core.EntityInfo GetClassEntityInfo()
+		{
+			return classInfo;
+		}
+		static PhxVehicleTransmission()
+		{
+			if (Fox.Core.Data.ClassInfoInitialized)
+				classInfo = new Fox.Core.EntityInfo("PhxVehicleTransmission", typeof(PhxVehicleTransmission), Fox.Core.Data.ClassInfo, 0, "Phx", 0);
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("gearRatios", Fox.Core.PropertyInfo.PropertyType.Float, 120, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("finalGearRatio", Fox.Core.PropertyInfo.PropertyType.Float, 136, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 
-            ClassInfoInitialized = true;
-        }
+			ClassInfoInitialized = true;
+		}
+		
+		public override Fox.Core.Value GetProperty(string propertyName)
+		{
+			switch (propertyName)
+			{
+				case "gearRatios":
+					return new Fox.Core.Value(gearRatios);
+				case "finalGearRatio":
+					return new Fox.Core.Value(finalGearRatio);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
 
-        // Constructors
-		public PhxVehicleTransmission(ulong id) : base(id) { }
-		public PhxVehicleTransmission() : base() { }
-        
-        public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "finalGearRatio":
-                    this.finalGearRatio = value.GetValueAsFloat();
-                    return;
-                default:
-                    base.SetProperty(propertyName, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "gearRatios":
-                    while(this.gearRatios.Count <= index) { this.gearRatios.Add(default(float)); }
-                    this.gearRatios[index] = value.GetValueAsFloat();
-                    return;
-                default:
-                    base.SetPropertyElement(propertyName, index, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, key, value);
-                    return;
-            }
-        }
-    }
+		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		{
+			switch (propertyName)
+			{
+				case "gearRatios":
+					return new Fox.Core.Value(this.gearRatios[index]);
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		{
+			switch (propertyName)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
+
+		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				case "finalGearRatio":
+					this.finalGearRatio = value.GetValueAsFloat();
+					return;
+				default:
+					base.SetProperty(propertyName, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				case "gearRatios":
+					while(this.gearRatios.Count <= index) { this.gearRatios.Add(default(float)); }
+					this.gearRatios[index] = value.GetValueAsFloat();
+					return;
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+	}
 }

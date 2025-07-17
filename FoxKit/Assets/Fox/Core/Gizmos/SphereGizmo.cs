@@ -1,4 +1,5 @@
-﻿using UnityEditor;
+using System;
+using UnityEditor;
 using UnityEngine;
 
 namespace Fox.Core
@@ -6,37 +7,44 @@ namespace Fox.Core
     /// <summary>
     /// Draws a sphere gizmo in the scene.
     /// </summary>
-    [DisallowMultipleComponent, ExecuteInEditMode, SelectionBase]
-    public class SphereGizmo : MonoBehaviour
+    public class SphereGizmo
     {
-        public Color Color = Color.red;
+        public UnityEngine.Transform Transform = null;
+        public string Label = null;
+        public string GizmoPath = null;
+        public Color SelectedColor = EditorColors.GenericSelectedColor;
+        public float Radius = 1.0f;
+        public GUIStyle LabelStyle;
 
-        public bool DrawLabel = false;
-
-        private void DrawGizmos(bool isSelected)
+        protected virtual void DrawGizmos(bool isSelected)
         {
-            Gizmos.matrix = transform.localToWorldMatrix;
+            if (Transform is null)
+                return;
 
-            Color faceColor = Color;
-            faceColor.a = isSelected ? 0.5f : 0.25f;
-            Gizmos.color = faceColor;
-            Gizmos.DrawSphere(Vector3.zero, 1.0f);
+            Gizmos.matrix = Transform.localToWorldMatrix;
 
-            Color edgeColor = Color;
             if (isSelected)
-                edgeColor = Color.white;
-            else
-                edgeColor *= 0.25f;
-            edgeColor.a = 1.0f;
-            Gizmos.color = edgeColor;
-            Gizmos.DrawWireSphere(Vector3.zero, 1.0f);
+            {
+                Gizmos.color = SelectedColor;
+                Gizmos.DrawWireSphere(Vector3.zero, Radius);
+            }
 
-            if (DrawLabel)
-                Handles.Label(transform.position, gameObject.name);
+            // TODO Store the GuiStyle in a global location
+            if (LabelStyle == null)
+            {
+                LabelStyle = new GUIStyle();
+                LabelStyle.alignment = TextAnchor.MiddleCenter;
+                LabelStyle.normal.textColor = EditorColors.LabelIdleColor;
+            }
+
+            if (!System.String.IsNullOrEmpty(this.GizmoPath))
+            {
+                Gizmos.DrawIcon(Transform.position, GizmoPath, true, isSelected ? SelectedColor : Color.white);
+            }
         }
 
-        private void OnDrawGizmos() => DrawGizmos(false);
+        public void OnDrawGizmos() => DrawGizmos(false);
 
-        private void OnDrawGizmosSelected() => DrawGizmos(true);
+        public void OnDrawGizmosSelected() => DrawGizmos(true);
     }
 }

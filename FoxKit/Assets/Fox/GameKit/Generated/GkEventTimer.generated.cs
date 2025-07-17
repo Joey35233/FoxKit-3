@@ -12,92 +12,123 @@ using Fox;
 
 namespace Fox.GameKit
 {
-    [UnityEditor.InitializeOnLoad]
-    public partial class GkEventTimer : Fox.Core.DataBody 
-    {
-        // Properties
-        [field: UnityEngine.SerializeField]
-        public bool isTimerActive { get; protected set; }
-        
-        [field: UnityEngine.SerializeField]
-        protected double timer { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public double measureTime { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        protected bool enableDebugView { get; set; }
-        
-        // ClassInfos
-        public static new bool ClassInfoInitialized = false;
-        private static Fox.Core.EntityInfo classInfo;
-        public static new Fox.Core.EntityInfo ClassInfo
-        {
-            get
-            {
-                return classInfo;
-            }
-        }
-        public override Fox.Core.EntityInfo GetClassEntityInfo()
-        {
-            return classInfo;
-        }
-        static GkEventTimer()
-        {
-            if (Fox.Core.DataBody.ClassInfoInitialized)
-                classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("GkEventTimer"), typeof(GkEventTimer), Fox.Core.DataBody.ClassInfo, 0, null, 0);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("isTimerActive"), Fox.Core.PropertyInfo.PropertyType.Bool, 88, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("timer"), Fox.Core.PropertyInfo.PropertyType.Double, 96, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("measureTime"), Fox.Core.PropertyInfo.PropertyType.Double, 104, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("enableDebugView"), Fox.Core.PropertyInfo.PropertyType.Bool, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxGameKit/GkEventTimer")]
+	public partial class GkEventTimer : Fox.Core.DataBody
+	{
+		// Properties
+		[field: UnityEngine.SerializeField]
+		public bool isTimerActive { get; protected set; }
+		
+		[field: UnityEngine.SerializeField]
+		protected double timer { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public double measureTime { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		protected bool enableDebugView { get; set; }
+		
+		// ClassInfos
+		public static new bool ClassInfoInitialized = false;
+		private static Fox.Core.EntityInfo classInfo;
+		public static new Fox.Core.EntityInfo ClassInfo
+		{
+			get
+			{
+				return classInfo;
+			}
+		}
+		public override Fox.Core.EntityInfo GetClassEntityInfo()
+		{
+			return classInfo;
+		}
+		static GkEventTimer()
+		{
+			if (Fox.Core.DataBody.ClassInfoInitialized)
+				classInfo = new Fox.Core.EntityInfo("GkEventTimer", typeof(GkEventTimer), Fox.Core.DataBody.ClassInfo, 0, null, 0);
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("isTimerActive", Fox.Core.PropertyInfo.PropertyType.Bool, 88, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("timer", Fox.Core.PropertyInfo.PropertyType.Double, 96, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("measureTime", Fox.Core.PropertyInfo.PropertyType.Double, 104, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("enableDebugView", Fox.Core.PropertyInfo.PropertyType.Bool, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 
-            ClassInfoInitialized = true;
-        }
+			ClassInfoInitialized = true;
+		}
+		
+		public override Fox.Core.Value GetProperty(string propertyName)
+		{
+			switch (propertyName)
+			{
+				case "isTimerActive":
+					return new Fox.Core.Value(isTimerActive);
+				case "timer":
+					return new Fox.Core.Value(timer);
+				case "measureTime":
+					return new Fox.Core.Value(measureTime);
+				case "enableDebugView":
+					return new Fox.Core.Value(enableDebugView);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
 
-        // Constructors
-		public GkEventTimer(ulong id) : base(id) { }
-		public GkEventTimer() : base() { }
-        
-        public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "isTimerActive":
-                    this.isTimerActive = value.GetValueAsBool();
-                    return;
-                case "timer":
-                    this.timer = value.GetValueAsDouble();
-                    return;
-                case "measureTime":
-                    this.measureTime = value.GetValueAsDouble();
-                    return;
-                case "enableDebugView":
-                    this.enableDebugView = value.GetValueAsBool();
-                    return;
-                default:
-                    base.SetProperty(propertyName, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, index, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, key, value);
-                    return;
-            }
-        }
-    }
+		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		{
+			switch (propertyName)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		{
+			switch (propertyName)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
+
+		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				case "isTimerActive":
+					this.isTimerActive = value.GetValueAsBool();
+					return;
+				case "timer":
+					this.timer = value.GetValueAsDouble();
+					return;
+				case "measureTime":
+					this.measureTime = value.GetValueAsDouble();
+					return;
+				case "enableDebugView":
+					this.enableDebugView = value.GetValueAsBool();
+					return;
+				default:
+					base.SetProperty(propertyName, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+	}
 }

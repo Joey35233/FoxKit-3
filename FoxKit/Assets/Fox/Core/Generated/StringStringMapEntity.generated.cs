@@ -12,71 +12,101 @@ using Fox;
 
 namespace Fox.Core
 {
-    [UnityEditor.InitializeOnLoad]
-    public partial class StringStringMapEntity : Fox.Core.Entity 
-    {
-        // Properties
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.StringMap<Fox.Kernel.String> stringMap { get; set; } = new Fox.Kernel.StringMap<Fox.Kernel.String>();
-        
-        // ClassInfos
-        public static new bool ClassInfoInitialized = false;
-        private static Fox.Core.EntityInfo classInfo;
-        public static new Fox.Core.EntityInfo ClassInfo
-        {
-            get
-            {
-                return classInfo;
-            }
-        }
-        public override Fox.Core.EntityInfo GetClassEntityInfo()
-        {
-            return classInfo;
-        }
-        static StringStringMapEntity()
-        {
-            if (Fox.Core.Entity.ClassInfoInitialized)
-                classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("StringStringMapEntity"), typeof(StringStringMapEntity), Fox.Core.Entity.ClassInfo, 0, null, 0);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("stringMap"), Fox.Core.PropertyInfo.PropertyType.String, 48, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxCore/StringStringMapEntity")]
+	public partial class StringStringMapEntity : Fox.Core.Entity
+	{
+		// Properties
+		[field: UnityEngine.SerializeField]
+		public Fox.StringMap<string> stringMap { get; private set; } = new Fox.StringMap<string>();
+		
+		// ClassInfos
+		public static new bool ClassInfoInitialized = false;
+		private static Fox.Core.EntityInfo classInfo;
+		public static new Fox.Core.EntityInfo ClassInfo
+		{
+			get
+			{
+				return classInfo;
+			}
+		}
+		public override Fox.Core.EntityInfo GetClassEntityInfo()
+		{
+			return classInfo;
+		}
+		static StringStringMapEntity()
+		{
+			if (Fox.Core.Entity.ClassInfoInitialized)
+				classInfo = new Fox.Core.EntityInfo("StringStringMapEntity", typeof(StringStringMapEntity), Fox.Core.Entity.ClassInfo, 0, null, 0);
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("stringMap", Fox.Core.PropertyInfo.PropertyType.String, 48, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 
-            ClassInfoInitialized = true;
-        }
+			ClassInfoInitialized = true;
+		}
+		
+		public override Fox.Core.Value GetProperty(string propertyName)
+		{
+			switch (propertyName)
+			{
+				case "stringMap":
+					return new Fox.Core.Value((Fox.IStringMap)stringMap);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
 
-        // Constructors
-		public StringStringMapEntity(ulong id) : base(id) { }
-		public StringStringMapEntity() : base() { }
-        
-        public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetProperty(propertyName, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, index, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "stringMap":
-                    this.stringMap.Insert(key, value.GetValueAsString());
-                    return;
-                default:
-                    base.SetPropertyElement(propertyName, key, value);
-                    return;
-            }
-        }
-    }
+		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		{
+			switch (propertyName)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		{
+			switch (propertyName)
+			{
+				case "stringMap":
+					return new Fox.Core.Value(this.stringMap[key]);
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
+
+		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.SetProperty(propertyName, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				case "stringMap":
+					if (this.stringMap.ContainsKey(key))
+						this.stringMap[key] = value.GetValueAsString();
+					else
+						this.stringMap.Insert(key, value.GetValueAsString());
+					return;
+				default:
+					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+	}
 }

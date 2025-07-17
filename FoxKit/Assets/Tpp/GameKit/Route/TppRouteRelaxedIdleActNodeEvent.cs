@@ -1,6 +1,6 @@
 using Fox.Fio;
 using Fox.GameService;
-using Fox.Kernel;
+using Fox;
 using UnityEngine;
 
 namespace Tpp.GameKit
@@ -10,13 +10,27 @@ namespace Tpp.GameKit
 		public static readonly StrCode32 Id = new StrCode32("RelaxedIdleAct");
 		public override StrCode32 GetId() => Id;
 
-        public static TppRouteRelaxedIdleActNodeEvent Deserialize(FileStreamReader reader)
+        public static TppRouteRelaxedIdleActNodeEvent Deserialize(UnityEngine.GameObject gameObject, uint[] binaryData)
         {
-            var result = new TppRouteRelaxedIdleActNodeEvent { animationName = new String(reader.ReadStrCode32().ToString()), unknown = reader.ReadUInt16() };
+            TppRouteRelaxedIdleActNodeEvent result = gameObject.AddComponent<TppRouteRelaxedIdleActNodeEvent>();
 
-            Debug.Assert(result.unknown == 0);
+            StrCode32 animationName;
+            ushort unknown;
+            unsafe
+            {
+                fixed (uint* binaryDataPtr = binaryData)
+                {
+                    uint* ptr = binaryDataPtr;
+                    animationName = *(StrCode32*)ptr;
+                    ptr += 1;
+                    unknown = *(ushort*)ptr;
+                }
+            }
 
-            reader.SkipPadding(10);
+            Debug.Assert(unknown == 0);
+
+            result.animationName = animationName.ToString();
+            result.unknown = unknown;
 
             return result;
         }

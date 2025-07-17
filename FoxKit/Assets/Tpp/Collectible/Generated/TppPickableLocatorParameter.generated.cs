@@ -12,99 +12,132 @@ using Fox;
 
 namespace Tpp.Collectible
 {
-    [UnityEditor.InitializeOnLoad]
-    public partial class TppPickableLocatorParameter : Fox.Core.DataElement 
-    {
-        // Properties
-        [field: UnityEngine.SerializeField]
-        protected uint equipIdStrCode32 { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        protected ushort countRaw { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        protected ushort countSubRaw { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        protected ushort flag { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        protected ushort reserved { get; set; }
-        
-        // ClassInfos
-        public static new bool ClassInfoInitialized = false;
-        private static Fox.Core.EntityInfo classInfo;
-        public static new Fox.Core.EntityInfo ClassInfo
-        {
-            get
-            {
-                return classInfo;
-            }
-        }
-        public override Fox.Core.EntityInfo GetClassEntityInfo()
-        {
-            return classInfo;
-        }
-        static TppPickableLocatorParameter()
-        {
-            if (Fox.Core.DataElement.ClassInfoInitialized)
-                classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("TppPickableLocatorParameter"), typeof(TppPickableLocatorParameter), Fox.Core.DataElement.ClassInfo, 40, null, 0);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("equipIdStrCode32"), Fox.Core.PropertyInfo.PropertyType.UInt32, 56, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("countRaw"), Fox.Core.PropertyInfo.PropertyType.UInt16, 60, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("countSubRaw"), Fox.Core.PropertyInfo.PropertyType.UInt16, 62, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("flag"), Fox.Core.PropertyInfo.PropertyType.UInt16, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("reserved"), Fox.Core.PropertyInfo.PropertyType.UInt16, 66, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppCollectible/TppPickableLocatorParameter")]
+	public partial class TppPickableLocatorParameter : Fox.Core.DataElement
+	{
+		// Properties
+		[field: UnityEngine.SerializeField]
+		protected uint equipIdStrCode32 { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		protected ushort countRaw { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		protected ushort countSubRaw { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		protected ushort flag { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		protected ushort reserved { get; set; }
+		
+		// ClassInfos
+		public static new bool ClassInfoInitialized = false;
+		private static Fox.Core.EntityInfo classInfo;
+		public static new Fox.Core.EntityInfo ClassInfo
+		{
+			get
+			{
+				return classInfo;
+			}
+		}
+		public override Fox.Core.EntityInfo GetClassEntityInfo()
+		{
+			return classInfo;
+		}
+		static TppPickableLocatorParameter()
+		{
+			if (Fox.Core.DataElement.ClassInfoInitialized)
+				classInfo = new Fox.Core.EntityInfo("TppPickableLocatorParameter", typeof(TppPickableLocatorParameter), Fox.Core.DataElement.ClassInfo, 40, null, 0);
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("equipIdStrCode32", Fox.Core.PropertyInfo.PropertyType.UInt32, 56, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("countRaw", Fox.Core.PropertyInfo.PropertyType.UInt16, 60, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("countSubRaw", Fox.Core.PropertyInfo.PropertyType.UInt16, 62, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("flag", Fox.Core.PropertyInfo.PropertyType.UInt16, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("reserved", Fox.Core.PropertyInfo.PropertyType.UInt16, 66, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 
-            ClassInfoInitialized = true;
-        }
+			ClassInfoInitialized = true;
+		}
+		
+		public override Fox.Core.Value GetProperty(string propertyName)
+		{
+			switch (propertyName)
+			{
+				case "equipIdStrCode32":
+					return new Fox.Core.Value(equipIdStrCode32);
+				case "countRaw":
+					return new Fox.Core.Value(countRaw);
+				case "countSubRaw":
+					return new Fox.Core.Value(countSubRaw);
+				case "flag":
+					return new Fox.Core.Value(flag);
+				case "reserved":
+					return new Fox.Core.Value(reserved);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
 
-        // Constructors
-		public TppPickableLocatorParameter(ulong id) : base(id) { }
-		public TppPickableLocatorParameter() : base() { }
-        
-        public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "equipIdStrCode32":
-                    this.equipIdStrCode32 = value.GetValueAsUInt32();
-                    return;
-                case "countRaw":
-                    this.countRaw = value.GetValueAsUInt16();
-                    return;
-                case "countSubRaw":
-                    this.countSubRaw = value.GetValueAsUInt16();
-                    return;
-                case "flag":
-                    this.flag = value.GetValueAsUInt16();
-                    return;
-                case "reserved":
-                    this.reserved = value.GetValueAsUInt16();
-                    return;
-                default:
-                    base.SetProperty(propertyName, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, index, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, key, value);
-                    return;
-            }
-        }
-    }
+		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		{
+			switch (propertyName)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		{
+			switch (propertyName)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
+
+		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				case "equipIdStrCode32":
+					this.equipIdStrCode32 = value.GetValueAsUInt32();
+					return;
+				case "countRaw":
+					this.countRaw = value.GetValueAsUInt16();
+					return;
+				case "countSubRaw":
+					this.countSubRaw = value.GetValueAsUInt16();
+					return;
+				case "flag":
+					this.flag = value.GetValueAsUInt16();
+					return;
+				case "reserved":
+					this.reserved = value.GetValueAsUInt16();
+					return;
+				default:
+					base.SetProperty(propertyName, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+	}
 }

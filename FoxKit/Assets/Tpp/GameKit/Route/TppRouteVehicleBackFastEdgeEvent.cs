@@ -1,6 +1,6 @@
 using Fox.Fio;
 using Fox.GameService;
-using Fox.Kernel;
+using Fox;
 
 namespace Tpp.GameKit
 {
@@ -9,11 +9,25 @@ namespace Tpp.GameKit
 		public static readonly StrCode32 Id = new StrCode32("VehicleBackFast");
 		public override StrCode32 GetId() => Id;
 
-        public static TppRouteVehicleBackFastEdgeEvent Deserialize(FileStreamReader reader)
+        public static TppRouteVehicleBackFastEdgeEvent Deserialize(UnityEngine.GameObject gameObject, uint[] binaryData)
         {
-            var result = new TppRouteVehicleBackFastEdgeEvent { railId = new String(reader.ReadStrCode32().ToString()), rpm = reader.ReadUInt32() };
+            TppRouteVehicleBackFastEdgeEvent result = gameObject.AddComponent<TppRouteVehicleBackFastEdgeEvent>();
 
-            reader.SkipPadding(8);
+            StrCode32 railId;
+            uint rpm;
+            unsafe
+            {
+                fixed (uint* binaryDataPtr = binaryData)
+                {
+                    uint* ptr = binaryDataPtr;
+                    railId = *(StrCode32*)ptr;
+                    ptr += 1;
+                    rpm = *ptr;
+                }
+            }
+
+            result.railId = railId.ToString();
+            result.rpm = rpm;
 
             return result;
         }

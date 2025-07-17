@@ -12,84 +12,110 @@ using Fox;
 
 namespace Fox.Core
 {
-    [UnityEditor.InitializeOnLoad]
-    public partial class OrientedBoundingBox 
-    {
-        // Properties
-        [field: UnityEngine.SerializeField]
-        public UnityEngine.Vector3 center { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public UnityEngine.Vector3 size { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public UnityEngine.Quaternion rotation { get; set; }
-        
-        // ClassInfos
-        public static  bool ClassInfoInitialized = false;
-        private static Fox.Core.EntityInfo classInfo;
-        public static  Fox.Core.EntityInfo ClassInfo
-        {
-            get
-            {
-                return classInfo;
-            }
-        }
-        public virtual Fox.Core.EntityInfo GetClassEntityInfo()
-        {
-            return classInfo;
-        }
-        static OrientedBoundingBox()
-        {
-            classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("OrientedBoundingBox"), typeof(OrientedBoundingBox), null, 0, null, 0);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("center"), Fox.Core.PropertyInfo.PropertyType.Vector3, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("size"), Fox.Core.PropertyInfo.PropertyType.Vector3, 16, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("rotation"), Fox.Core.PropertyInfo.PropertyType.Quat, 32, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-
-            ClassInfoInitialized = true;
-        }
-
-        // Constructors
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxCore/OrientedBoundingBox")]
+	public partial class OrientedBoundingBox 
+	{
+		// Properties
+		[field: UnityEngine.SerializeField]
+		public UnityEngine.Vector3 center { get; set; }
 		
-		public OrientedBoundingBox()
-        {
-            
-        }
-        
-        public virtual void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "center":
-                    this.center = value.GetValueAsVector3();
-                    return;
-                case "size":
-                    this.size = value.GetValueAsVector3();
-                    return;
-                case "rotation":
-                    this.rotation = value.GetValueAsQuat();
-                    return;
-                default:
-                    throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
-            }
-        }
-        
-        public virtual void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
-            }
-        }
-        
-        public virtual void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
-            }
-        }
-    }
+		[field: UnityEngine.SerializeField]
+		public UnityEngine.Vector3 size { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public UnityEngine.Quaternion rotation { get; set; }
+		
+		// ClassInfos
+		public static  bool ClassInfoInitialized = false;
+		private static Fox.Core.EntityInfo classInfo;
+		public static  Fox.Core.EntityInfo ClassInfo
+		{
+			get
+			{
+				return classInfo;
+			}
+		}
+		public virtual Fox.Core.EntityInfo GetClassEntityInfo()
+		{
+			return classInfo;
+		}
+		static OrientedBoundingBox()
+		{
+			classInfo = new Fox.Core.EntityInfo("OrientedBoundingBox", typeof(OrientedBoundingBox), null, 0, null, 0);
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("center", Fox.Core.PropertyInfo.PropertyType.Vector3, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("size", Fox.Core.PropertyInfo.PropertyType.Vector3, 16, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("rotation", Fox.Core.PropertyInfo.PropertyType.Quat, 32, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+
+			ClassInfoInitialized = true;
+		}
+		
+		public virtual Fox.Core.Value GetProperty(string propertyName)
+		{
+			switch (propertyName)
+			{
+				case "center":
+					return new Fox.Core.Value(center);
+				case "size":
+					return new Fox.Core.Value(size);
+				case "rotation":
+					return new Fox.Core.Value(rotation);
+				default:
+					throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
+			}
+		}
+
+		public virtual Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		{
+			switch (propertyName)
+			{
+				default:
+					throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
+			}
+		}
+
+		public virtual Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		{
+			switch (propertyName)
+			{
+				default:
+					throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
+			}
+		}
+
+		public virtual void SetProperty(string propertyName, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				case "center":
+					this.center = value.GetValueAsVector3();
+					return;
+				case "size":
+					this.size = value.GetValueAsVector3();
+					return;
+				case "rotation":
+					this.rotation = value.GetValueAsQuat();
+					return;
+				default:
+					throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
+			}
+		}
+
+		public virtual void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
+			}
+		}
+
+		public virtual void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
+			}
+		}
+	}
 }

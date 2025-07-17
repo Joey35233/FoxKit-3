@@ -1,5 +1,5 @@
 using Fox.Fio;
-using Fox.Kernel;
+using Fox;
 using System;
 using Unity.Collections;
 using UnityEditor;
@@ -259,6 +259,19 @@ namespace Fox.Gr
             R8G8B8A8_UInt = 9,
         }
 
+        private struct AggregateMeshGroupDef
+        {
+            public uint TotalMeshCount;
+
+            public uint SpanCounter;
+
+            public uint[] MeshDefIndices;
+
+            public Bounds Bounds;
+
+            public uint IBufferSliceStartIndex;
+        }
+
         private struct MeshBufferDesc
         {
             public byte Stride;
@@ -354,12 +367,18 @@ namespace Fox.Gr
             var main = new GameObject(name);
 
             var def = FmdlDef.Read(reader, 0, logWarning, logError);
-            //{
-            //    BoxCollider boxComponent = main.AddComponent<BoxCollider>();
-            //    Bounds box = ReadAABBForIndex(ref def, reader, 0);
-            //    boxComponent.center = box.center;
-            //    boxComponent.size = box.size;
-            //}
+
+            // def.ValidateFeatureIndex(FeatureType.AABBs, FeatureType.AABBs, 0);
+            // {
+            //     BoxCollider boxComponent = main.AddComponent<BoxCollider>();
+            //     Bounds box = ReadAABBForIndex(ref def, reader, 0);
+            //     boxComponent.center = box.center;
+            //     boxComponent.size = box.size;
+            // }
+
+#if DEBUG
+            uint DEBUG_FinalFlags = 0;
+#endif
 
             // Bones
             Transform[] bones = null;
@@ -440,6 +459,10 @@ namespace Fox.Gr
                     StrCode nameHash = ReadNameForIndex(ref def, reader, nameIndex);
 
                     var flags = (MeshGroupHeaderFlags)reader.ReadUInt16();
+                    if (flags.HasFlag(MeshGroupHeaderFlags.A) && bones is not null)
+                        logWarning("Mesh has both bones and destruction particles.");
+                    if (flags.HasFlag(MeshGroupHeaderFlags.B))
+                        logWarning("Mesh has blend shapes flag.");
 
                     var meshGroup = new GameObject(nameHash.ToString());
                     meshGroups[i] = meshGroup;
@@ -451,13 +474,17 @@ namespace Fox.Gr
                     if (parentIndex > -1 && !def.ValidateFeatureIndex(FeatureType.MeshGroupHeaders, FeatureType.MeshGroupHeaders, (uint)parentIndex))
                         return;
 
-                    if (parentIndex == -1)
-                        meshGroup.transform.SetParent(main.transform);
-                    else
-                        meshGroup.transform.SetParent(meshGroups[parentIndex].transform);
+                    meshGroup.transform.SetParent(parentIndex == -1 ? main.transform : meshGroups[parentIndex].transform);
 
-                    short unknown = reader.ReadInt16();
-                    Debug.Assert(unknown == -1);
+                    short unknownPositionIndex = reader.ReadInt16();
+                    Debug.Assert(flags.HasFlag(MeshGroupHeaderFlags.A) == (unknownPositionIndex != -1));
+
+                    if (flags.HasFlag(MeshGroupHeaderFlags.A))
+                    {
+                        reader.Seek(def.GetBufferPosition(BufferType.MaterialParams).Value + (unknownPositionIndex * 16));
+
+                        meshGroup.transform.localPosition = reader.ReadPositionF();
+                    }
                 }
             }
 
@@ -496,49 +523,105 @@ namespace Fox.Gr
             Material defaultMaterial = AssetDatabase.GetBuiltinExtraResource<Material>("Default-Material.mat");
             context.AddObjectToAsset("Material", defaultMaterial);
 
-            // MeshGroupDefs
+            // Preprocess MeshGroupDefs
             if (def.HasFeature(FeatureType.MeshGroupDefs))
             {
-                uint meshGroupDefCount = def.GetFeatureCount(FeatureType.MeshGroupDefs);
+                var meshGroupDefs = new AggregateMeshGroupDef[meshGroups.Length];
 
-                for (uint i = 0; i < meshGroupDefCount; i++)
                 {
-                    reader.Seek(def.GetFeaturePositionForIndex(FeatureType.MeshGroupDefs, i));
-                    uint unknown = reader.ReadUInt32();
-                    Debug.Assert(unknown == 0);
+                    uint meshGroupDefCount = def.GetFeatureCount(FeatureType.MeshGroupDefs);
 
-                    ushort headerIndex = reader.ReadUInt16();
-                    if (!def.ValidateFeatureIndex(FeatureType.MeshGroupDefs, FeatureType.MeshGroupHeaders, headerIndex))
-                        return;
-                    GameObject meshGroup = meshGroups[headerIndex];
+                    // Initial loops for preallocation and input validation
+                    for (uint i = 0; i < meshGroupDefCount; i++)
+                    {
+                        reader.Seek(def.GetFeaturePositionForIndex(FeatureType.MeshGroupDefs, i));
 
-                    ushort meshCount = reader.ReadUInt16();
+                        uint unknown = reader.ReadUInt32();
+                        Debug.Assert(unknown == 0);
 
-                    ushort meshesStartIndex = reader.ReadUInt16();
-                    if (meshCount > 0 && !def.ValidateFeatureIndex(FeatureType.MeshGroupDefs, FeatureType.MeshDefs, (uint)(meshesStartIndex + meshCount - 1)))
-                        return;
+                        ushort headerIndex = reader.ReadUInt16();
+                        if (!def.ValidateFeatureIndex(FeatureType.MeshGroupDefs, FeatureType.MeshGroupHeaders,
+                                headerIndex))
+                            return;
 
-                    ushort aabbIndex = reader.ReadUInt16();
-                    if (!def.ValidateFeatureIndex(FeatureType.MeshGroupDefs, FeatureType.AABBs, headerIndex))
-                        return;
-                    Bounds box = ReadAABBForIndex(ref def, reader, aabbIndex);
+                        ushort meshCount = reader.ReadUInt16();
+                        ushort meshesStartIndex = reader.ReadUInt16();
+                        if (meshCount > 0 && !def.ValidateFeatureIndex(FeatureType.MeshGroupDefs, FeatureType.MeshDefs,
+                                (uint)(meshesStartIndex + meshCount - 1)))
+                            return;
 
-                    reader.SkipPadding(4);
+                        meshGroupDefs[headerIndex].TotalMeshCount += meshCount;
 
-                    ushort iBufferSlicesGroupStartIndex = reader.ReadUInt16();
-                    if (!def.ValidateFeatureIndex(FeatureType.MeshGroupDefs, FeatureType.IBufferSlices, headerIndex))
-                        return;
+                        ushort aabbIndex = reader.ReadUInt16();
+                        if (!def.ValidateFeatureIndex(FeatureType.MeshGroupDefs, FeatureType.AABBs, aabbIndex))
+                            return;
 
-                    reader.SkipPadding(14);
+                        reader.SkipPadding(4);
+
+                        ushort iBufferSlicesGroupStartIndex = reader.ReadUInt16();
+                        if (!def.ValidateFeatureIndex(FeatureType.MeshGroupDefs, FeatureType.IBufferSlices,
+                                iBufferSlicesGroupStartIndex))
+                            return;
+
+                        reader.SkipPadding(14);
+                    }
+
+                    for (uint i = 0; i < meshGroupDefs.LongLength; i++)
+                    {
+                        ref AggregateMeshGroupDef aggregateMeshGroupDef = ref meshGroupDefs[i];
+
+                        aggregateMeshGroupDef.MeshDefIndices = new uint[aggregateMeshGroupDef.TotalMeshCount];
+                        aggregateMeshGroupDef.Bounds = InvalidBoundingBox;
+                    }
+
+                    for (uint i = 0; i < meshGroupDefCount; i++)
+                    {
+                        reader.Seek(def.GetFeaturePositionForIndex(FeatureType.MeshGroupDefs, i));
+
+                        reader.Skip(4);
+
+                        ushort headerIndex = reader.ReadUInt16();
+
+                        ref AggregateMeshGroupDef aggregateMeshGroupDef = ref meshGroupDefs[headerIndex];
+
+                        ushort meshCount = reader.ReadUInt16();
+                        ushort meshesStartIndex = reader.ReadUInt16();
+                        for (uint j = 0; j < meshCount; j++)
+                            aggregateMeshGroupDef.MeshDefIndices[aggregateMeshGroupDef.SpanCounter + j] = meshesStartIndex + j;
+
+                        ushort aabbIndex = reader.ReadUInt16();
+                        Bounds box = ReadAABBForIndex(ref def, reader, aabbIndex);
+                        if (aggregateMeshGroupDef.Bounds == InvalidBoundingBox)
+                            aggregateMeshGroupDef.Bounds = box;
+                        else
+                            aggregateMeshGroupDef.Bounds.Encapsulate(box);
+
+                        reader.Skip(4);
+
+                        ushort ibufferSlicesStartIndex = reader.ReadUInt16();
+                        aggregateMeshGroupDef.IBufferSliceStartIndex = ibufferSlicesStartIndex;
+
+                        aggregateMeshGroupDef.SpanCounter += meshCount;
+                    }
+                }
+
+                for (uint i = 0; i < meshGroupDefs.LongLength; i++)
+                {
+                    AggregateMeshGroupDef aggregateMeshGroupDef = meshGroupDefs[i];
+
+                    if (aggregateMeshGroupDef.TotalMeshCount == 0)
+                        continue;
+
+                    GameObject meshGroup = meshGroups[i];
 
                     // MeshDefs
-                    var layoutDescs = new MeshDataLayoutDesc[meshCount];
+                    var layoutDescs = new MeshDataLayoutDesc[aggregateMeshGroupDef.TotalMeshCount];
                     uint totalVertexCount = 0;
                     uint totalIndexCount = 0;
                     uint maxBufferCount = 0;
-                    for (uint j = 0; j < meshCount; j++)
+                    for (uint j = 0; j < aggregateMeshGroupDef.TotalMeshCount; j++)
                     {
-                        reader.Seek(def.GetFeaturePositionForIndex(FeatureType.MeshDefs, meshesStartIndex + j));
+                        reader.Seek(def.GetFeaturePositionForIndex(FeatureType.MeshDefs, aggregateMeshGroupDef.MeshDefIndices[j]));
 
                         uint flags = reader.ReadUInt32();
 
@@ -577,7 +660,7 @@ namespace Fox.Gr
                         uint highLodIBufferSliceStartIndex = reader.ReadUInt32();
                         uint highLodIBufferSliceCount = reader.ReadUInt32();
 
-                        uint iBufferSlicesStartIndex = iBufferSlicesGroupStartIndex + reader.ReadUInt32();
+                        uint iBufferSlicesStartIndex = aggregateMeshGroupDef.IBufferSliceStartIndex + reader.ReadUInt32();
 
                         totalIndexCount += highLodIBufferSliceCount;
 
@@ -591,6 +674,8 @@ namespace Fox.Gr
                         byte formatElementCount = reader.ReadByte();
 
                         byte unknownMeshFormatDescByte = reader.ReadByte();
+                        if (unknownMeshFormatDescByte != 0)
+                            logWarning("unknownMeshFormatDescByte != 0");
 
                         byte uvCount = reader.ReadByte();
 
@@ -656,18 +741,26 @@ namespace Fox.Gr
                     Debug.Assert(totalIndexCount <= Int32.MaxValue);
                     mesh.SetVertexBufferParams((int)totalVertexCount, uploadHelper.GetDescriptorArray());
                     mesh.SetIndexBufferParams((int)totalIndexCount, IndexFormat.UInt16);
-                    mesh.subMeshCount = meshCount;
+                    mesh.subMeshCount = (int)aggregateMeshGroupDef.TotalMeshCount;
 
                     NativeArray<byte>[] outputBuffers = uploadHelper.CreateVertexBuffers(totalVertexCount);
                     BoneWeight[] weightBuffer = bones == null ? null : new BoneWeight[totalVertexCount];
 
+#if DEBUG
+                    DEBUG_FinalFlags = 0;
+#endif
+
                     uint vertexStart = 0;
                     uint indexStart = 0;
-                    for (uint j = 0; j < meshCount; j++)
+                    for (uint j = 0; j < aggregateMeshGroupDef.TotalMeshCount; j++)
                     {
-                        reader.Seek(def.GetFeaturePositionForIndex(FeatureType.MeshDefs, meshesStartIndex + j));
+                        reader.Seek(def.GetFeaturePositionForIndex(FeatureType.MeshDefs, aggregateMeshGroupDef.MeshDefIndices[j]));
 
                         uint flags = reader.ReadUInt32();
+
+#if DEBUG
+                        DEBUG_FinalFlags |= flags;
+#endif
 
                         ushort materialInstanceIndex = reader.ReadUInt16();
 
@@ -685,7 +778,9 @@ namespace Fox.Gr
                         uint highLodIBufferSliceCount = reader.ReadUInt32();
                         Debug.Assert(highLodIBufferSliceCount <= Int32.MaxValue);
 
-                        uint iBufferSlicesStartIndex = iBufferSlicesGroupStartIndex + reader.ReadUInt32();
+                        // TODO: Fix properly
+                        reader.Skip(4);
+                        //uint iBufferSlicesStartIndex = iBufferSlicesGroupStartIndex + reader.ReadUInt32();
 
                         // Bone Group
                         reader.Seek(def.GetFeaturePositionForIndex(FeatureType.BoneGroups, boneGroupIndex));
@@ -719,9 +814,19 @@ namespace Fox.Gr
                         indexStart += highLodIBufferSliceCount;
                     }
 
-                    mesh.bounds = box;
-                    box.center = main.transform.worldToLocalMatrix * new Vector4(box.center.x, box.center.y, box.center.z, 1.0f);
-                    box.size = main.transform.worldToLocalMatrix * box.size;
+#if DEBUG
+                    mesh.name += $"<{Convert.ToString(DEBUG_FinalFlags, 2).PadLeft(32, '0')}>";
+#endif
+
+                    mesh.bounds = aggregateMeshGroupDef.Bounds;
+
+                    Bounds localBounds = mesh.bounds;
+                    localBounds.center = main.transform.worldToLocalMatrix * new Vector4(localBounds.center.x, localBounds.center.y, localBounds.center.z, 1.0f);
+                    localBounds.size = main.transform.worldToLocalMatrix * localBounds.size;
+
+                    var sharedMaterials = new Material[mesh.subMeshCount];
+                    for (uint j = 0; j < sharedMaterials.Length; j++)
+                        sharedMaterials[j] = AssetDatabase.LoadAssetAtPath<Material>("Assets/Fox/Gr/Model/DebugDrawFlags.mat");
 
                     if (bones == null)
                     {
@@ -731,10 +836,6 @@ namespace Fox.Gr
 
                         MeshRenderer meshRenderer = meshGroup.AddComponent<MeshRenderer>();
 
-                        var sharedMaterials = new Material[mesh.subMeshCount];
-                        for (uint j = 0; j < sharedMaterials.Length; j++)
-                            sharedMaterials[j] = defaultMaterial;
-
                         meshRenderer.sharedMaterials = sharedMaterials;
                     }
                     else
@@ -743,21 +844,15 @@ namespace Fox.Gr
                         mesh.bindposes = bindPoses;
 
                         SkinnedMeshRenderer skinnedMeshRenderer = meshGroup.AddComponent<SkinnedMeshRenderer>();
-                        skinnedMeshRenderer.localBounds = box;
+                        skinnedMeshRenderer.localBounds = localBounds;
                         skinnedMeshRenderer.bones = bones;
                         skinnedMeshRenderer.sharedMesh = mesh;
                         skinnedMeshRenderer.rootBone = bones[0];
-
-                        var sharedMaterials = new Material[mesh.subMeshCount];
-                        for (uint j = 0; j < sharedMaterials.Length; j++)
-                            sharedMaterials[j] = defaultMaterial;
 
                         skinnedMeshRenderer.sharedMaterials = sharedMaterials;
                     }
 
                     context.AddObjectToAsset(mesh.name, mesh);
-
-                    continue;
                 }
             }
 

@@ -12,148 +12,195 @@ using Fox;
 
 namespace Tpp.Effect
 {
-    [UnityEditor.InitializeOnLoad]
-    public partial class TppDroplets : Fox.Core.Data 
-    {
-        // Properties
-        [field: UnityEngine.SerializeField]
-        public float timeBetweenNewDroplets { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float timeBetweenNewBigDroplets { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float timeBetweenTwoNewBigDropletsAtTheSameTime { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float dropletsSize { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float dropletsVelocity { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float dropletsTransparency { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float minimumMassToStartMoving { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float minimumVelocityToAdvance { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float remainingMassPropotionWhenDropletsMove { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float residualWaterMinimumRenderingRadius { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float residualWaterMaximumRenderingRadius { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float residualWaterMaximumIntensity { get; set; }
-        
-        // ClassInfos
-        public static new bool ClassInfoInitialized = false;
-        private static Fox.Core.EntityInfo classInfo;
-        public static new Fox.Core.EntityInfo ClassInfo
-        {
-            get
-            {
-                return classInfo;
-            }
-        }
-        public override Fox.Core.EntityInfo GetClassEntityInfo()
-        {
-            return classInfo;
-        }
-        static TppDroplets()
-        {
-            if (Fox.Core.Data.ClassInfoInitialized)
-                classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("TppDroplets"), typeof(TppDroplets), Fox.Core.Data.ClassInfo, 112, null, 0);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("timeBetweenNewDroplets"), Fox.Core.PropertyInfo.PropertyType.Float, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("timeBetweenNewBigDroplets"), Fox.Core.PropertyInfo.PropertyType.Float, 124, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("timeBetweenTwoNewBigDropletsAtTheSameTime"), Fox.Core.PropertyInfo.PropertyType.Float, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("dropletsSize"), Fox.Core.PropertyInfo.PropertyType.Float, 132, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("dropletsVelocity"), Fox.Core.PropertyInfo.PropertyType.Float, 136, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("dropletsTransparency"), Fox.Core.PropertyInfo.PropertyType.Float, 140, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("minimumMassToStartMoving"), Fox.Core.PropertyInfo.PropertyType.Float, 144, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("minimumVelocityToAdvance"), Fox.Core.PropertyInfo.PropertyType.Float, 148, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("remainingMassPropotionWhenDropletsMove"), Fox.Core.PropertyInfo.PropertyType.Float, 152, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("residualWaterMinimumRenderingRadius"), Fox.Core.PropertyInfo.PropertyType.Float, 156, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("residualWaterMaximumRenderingRadius"), Fox.Core.PropertyInfo.PropertyType.Float, 160, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("residualWaterMaximumIntensity"), Fox.Core.PropertyInfo.PropertyType.Float, 164, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppEffect/TppDroplets")]
+	public partial class TppDroplets : Fox.Core.Data
+	{
+		// Properties
+		[field: UnityEngine.SerializeField]
+		public float timeBetweenNewDroplets { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float timeBetweenNewBigDroplets { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float timeBetweenTwoNewBigDropletsAtTheSameTime { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float dropletsSize { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float dropletsVelocity { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float dropletsTransparency { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float minimumMassToStartMoving { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float minimumVelocityToAdvance { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float remainingMassPropotionWhenDropletsMove { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float residualWaterMinimumRenderingRadius { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float residualWaterMaximumRenderingRadius { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float residualWaterMaximumIntensity { get; set; }
+		
+		// ClassInfos
+		public static new bool ClassInfoInitialized = false;
+		private static Fox.Core.EntityInfo classInfo;
+		public static new Fox.Core.EntityInfo ClassInfo
+		{
+			get
+			{
+				return classInfo;
+			}
+		}
+		public override Fox.Core.EntityInfo GetClassEntityInfo()
+		{
+			return classInfo;
+		}
+		static TppDroplets()
+		{
+			if (Fox.Core.Data.ClassInfoInitialized)
+				classInfo = new Fox.Core.EntityInfo("TppDroplets", typeof(TppDroplets), Fox.Core.Data.ClassInfo, 112, null, 0);
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("timeBetweenNewDroplets", Fox.Core.PropertyInfo.PropertyType.Float, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("timeBetweenNewBigDroplets", Fox.Core.PropertyInfo.PropertyType.Float, 124, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("timeBetweenTwoNewBigDropletsAtTheSameTime", Fox.Core.PropertyInfo.PropertyType.Float, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("dropletsSize", Fox.Core.PropertyInfo.PropertyType.Float, 132, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("dropletsVelocity", Fox.Core.PropertyInfo.PropertyType.Float, 136, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("dropletsTransparency", Fox.Core.PropertyInfo.PropertyType.Float, 140, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("minimumMassToStartMoving", Fox.Core.PropertyInfo.PropertyType.Float, 144, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("minimumVelocityToAdvance", Fox.Core.PropertyInfo.PropertyType.Float, 148, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("remainingMassPropotionWhenDropletsMove", Fox.Core.PropertyInfo.PropertyType.Float, 152, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("residualWaterMinimumRenderingRadius", Fox.Core.PropertyInfo.PropertyType.Float, 156, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("residualWaterMaximumRenderingRadius", Fox.Core.PropertyInfo.PropertyType.Float, 160, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("residualWaterMaximumIntensity", Fox.Core.PropertyInfo.PropertyType.Float, 164, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 
-            ClassInfoInitialized = true;
-        }
+			ClassInfoInitialized = true;
+		}
+		
+		public override Fox.Core.Value GetProperty(string propertyName)
+		{
+			switch (propertyName)
+			{
+				case "timeBetweenNewDroplets":
+					return new Fox.Core.Value(timeBetweenNewDroplets);
+				case "timeBetweenNewBigDroplets":
+					return new Fox.Core.Value(timeBetweenNewBigDroplets);
+				case "timeBetweenTwoNewBigDropletsAtTheSameTime":
+					return new Fox.Core.Value(timeBetweenTwoNewBigDropletsAtTheSameTime);
+				case "dropletsSize":
+					return new Fox.Core.Value(dropletsSize);
+				case "dropletsVelocity":
+					return new Fox.Core.Value(dropletsVelocity);
+				case "dropletsTransparency":
+					return new Fox.Core.Value(dropletsTransparency);
+				case "minimumMassToStartMoving":
+					return new Fox.Core.Value(minimumMassToStartMoving);
+				case "minimumVelocityToAdvance":
+					return new Fox.Core.Value(minimumVelocityToAdvance);
+				case "remainingMassPropotionWhenDropletsMove":
+					return new Fox.Core.Value(remainingMassPropotionWhenDropletsMove);
+				case "residualWaterMinimumRenderingRadius":
+					return new Fox.Core.Value(residualWaterMinimumRenderingRadius);
+				case "residualWaterMaximumRenderingRadius":
+					return new Fox.Core.Value(residualWaterMaximumRenderingRadius);
+				case "residualWaterMaximumIntensity":
+					return new Fox.Core.Value(residualWaterMaximumIntensity);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
 
-        // Constructors
-		public TppDroplets(ulong id) : base(id) { }
-		public TppDroplets() : base() { }
-        
-        public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "timeBetweenNewDroplets":
-                    this.timeBetweenNewDroplets = value.GetValueAsFloat();
-                    return;
-                case "timeBetweenNewBigDroplets":
-                    this.timeBetweenNewBigDroplets = value.GetValueAsFloat();
-                    return;
-                case "timeBetweenTwoNewBigDropletsAtTheSameTime":
-                    this.timeBetweenTwoNewBigDropletsAtTheSameTime = value.GetValueAsFloat();
-                    return;
-                case "dropletsSize":
-                    this.dropletsSize = value.GetValueAsFloat();
-                    return;
-                case "dropletsVelocity":
-                    this.dropletsVelocity = value.GetValueAsFloat();
-                    return;
-                case "dropletsTransparency":
-                    this.dropletsTransparency = value.GetValueAsFloat();
-                    return;
-                case "minimumMassToStartMoving":
-                    this.minimumMassToStartMoving = value.GetValueAsFloat();
-                    return;
-                case "minimumVelocityToAdvance":
-                    this.minimumVelocityToAdvance = value.GetValueAsFloat();
-                    return;
-                case "remainingMassPropotionWhenDropletsMove":
-                    this.remainingMassPropotionWhenDropletsMove = value.GetValueAsFloat();
-                    return;
-                case "residualWaterMinimumRenderingRadius":
-                    this.residualWaterMinimumRenderingRadius = value.GetValueAsFloat();
-                    return;
-                case "residualWaterMaximumRenderingRadius":
-                    this.residualWaterMaximumRenderingRadius = value.GetValueAsFloat();
-                    return;
-                case "residualWaterMaximumIntensity":
-                    this.residualWaterMaximumIntensity = value.GetValueAsFloat();
-                    return;
-                default:
-                    base.SetProperty(propertyName, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, index, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, key, value);
-                    return;
-            }
-        }
-    }
+		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		{
+			switch (propertyName)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		{
+			switch (propertyName)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
+
+		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				case "timeBetweenNewDroplets":
+					this.timeBetweenNewDroplets = value.GetValueAsFloat();
+					return;
+				case "timeBetweenNewBigDroplets":
+					this.timeBetweenNewBigDroplets = value.GetValueAsFloat();
+					return;
+				case "timeBetweenTwoNewBigDropletsAtTheSameTime":
+					this.timeBetweenTwoNewBigDropletsAtTheSameTime = value.GetValueAsFloat();
+					return;
+				case "dropletsSize":
+					this.dropletsSize = value.GetValueAsFloat();
+					return;
+				case "dropletsVelocity":
+					this.dropletsVelocity = value.GetValueAsFloat();
+					return;
+				case "dropletsTransparency":
+					this.dropletsTransparency = value.GetValueAsFloat();
+					return;
+				case "minimumMassToStartMoving":
+					this.minimumMassToStartMoving = value.GetValueAsFloat();
+					return;
+				case "minimumVelocityToAdvance":
+					this.minimumVelocityToAdvance = value.GetValueAsFloat();
+					return;
+				case "remainingMassPropotionWhenDropletsMove":
+					this.remainingMassPropotionWhenDropletsMove = value.GetValueAsFloat();
+					return;
+				case "residualWaterMinimumRenderingRadius":
+					this.residualWaterMinimumRenderingRadius = value.GetValueAsFloat();
+					return;
+				case "residualWaterMaximumRenderingRadius":
+					this.residualWaterMaximumRenderingRadius = value.GetValueAsFloat();
+					return;
+				case "residualWaterMaximumIntensity":
+					this.residualWaterMaximumIntensity = value.GetValueAsFloat();
+					return;
+				default:
+					base.SetProperty(propertyName, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+	}
 }

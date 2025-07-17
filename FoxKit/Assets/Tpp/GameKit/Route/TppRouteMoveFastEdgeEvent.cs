@@ -1,6 +1,6 @@
 using Fox.Fio;
 using Fox.GameService;
-using Fox.Kernel;
+using Fox;
 
 namespace Tpp.GameKit
 {
@@ -9,6 +9,6 @@ namespace Tpp.GameKit
 		public static readonly StrCode32 Id = new StrCode32("MoveFast");
 		public override StrCode32 GetId() => Id;
 
-		public static TppRouteMoveFastEdgeEvent Deserialize(FileStreamReader reader) => new TppRouteMoveFastEdgeEvent { binaryData = new StaticArray<uint>(new uint[] { reader.ReadUInt32(), reader.ReadUInt32(), reader.ReadUInt32(), reader.ReadUInt32() }), };
+		public static TppRouteMoveFastEdgeEvent Deserialize(UnityEngine.GameObject gameObject, uint[] binaryData) { TppRouteMoveFastEdgeEvent component = gameObject.AddComponent<TppRouteMoveFastEdgeEvent>(); component.binaryData = binaryData; return component; }
 	}
 }

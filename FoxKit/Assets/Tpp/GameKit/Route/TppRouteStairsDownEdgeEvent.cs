@@ -1,6 +1,6 @@
 using Fox.Fio;
 using Fox.GameService;
-using Fox.Kernel;
+using Fox;
 
 namespace Tpp.GameKit
 {
@@ -9,6 +9,6 @@ namespace Tpp.GameKit
 		public static readonly StrCode32 Id = new StrCode32("StairsDown");
 		public override StrCode32 GetId() => Id;
 
-		public static TppRouteStairsDownEdgeEvent Deserialize(FileStreamReader reader) => new TppRouteStairsDownEdgeEvent { binaryData = new StaticArray<uint>(new uint[] { reader.ReadUInt32(), reader.ReadUInt32(), reader.ReadUInt32(), reader.ReadUInt32() }), };
+		public static TppRouteStairsDownEdgeEvent Deserialize(UnityEngine.GameObject gameObject, uint[] binaryData) { TppRouteStairsDownEdgeEvent component = gameObject.AddComponent<TppRouteStairsDownEdgeEvent>(); component.binaryData = binaryData; return component; }
 	}
 }

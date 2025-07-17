@@ -1,10 +1,11 @@
+using Fox.Core;
 using Fox.Fio;
-using Fox.Kernel;
+using Fox;
 using System.Collections.Generic;
 using System.IO;
 using UnityEditor;
 using UnityEngine;
-using String = Fox.Kernel.String;
+using File = System.IO.File;
 
 namespace Tpp.GameKit
 {
@@ -41,24 +42,47 @@ namespace Tpp.GameKit
         /// </summary>
         private const int ScaledLocatorSize = UnscaledLocatorSize + (sizeof(float) * 3) + (sizeof(ushort) * 2);
 
-        [UnityEditor.MenuItem("FoxKit/Debug/LBA/Import LBA")]
-        public static void Import()
+        [UnityEditor.MenuItem("FoxKit/Import/LocatorBinaryArray")]
+        public static void ImportMenuItem()
         {
-            string assetPath = UnityEditor.EditorUtility.OpenFilePanel("Import asset", global::System.String.Empty, "lba");
-            if (global::System.String.IsNullOrEmpty(assetPath))
+            string readPath = UnityEditor.EditorUtility.OpenFilePanel("Import binary file", global::System.String.Empty, "lba");
+            if (global::System.String.IsNullOrEmpty(readPath))
             {
                 return;
             }
 
-            using (var reader = new FileStreamReader(new FileStream(assetPath, FileMode.Open)))
+            ScriptableObject asset = Read(new FileStreamReader(new FileStream(readPath, FileMode.Open)));
+
+            string writePath = UnityEditor.EditorUtility.SaveFilePanelInProject("Save as asset", asset.name, "asset", "Please enter a file name to save the asset to");
+
+            if (global::System.String.IsNullOrEmpty(writePath))
             {
-                ReadLba(reader,assetPath);
+                return;
             }
+
+            AssetDatabase.CreateAsset(asset, writePath);
+
+            AssetDatabase.SaveAssets();
+        }
+        public static ScriptableObject Load(FilePtr readPath, out string unityPath)
+        {
+            ScriptableObject lbaAsset = AssetManager.LoadAssetWithExtensionReplacement<ScriptableObject>(readPath, "asset", out unityPath);
+            if (lbaAsset == null)
+            {
+                string lbaPath = readPath.path.String;
+                if (!File.Exists(lbaPath))
+                {
+                    return null;
+                }
+
+                lbaAsset = Read(new FileStreamReader(new FileStream(lbaPath, FileMode.Open)));
+                AssetDatabase.CreateAsset(lbaAsset, unityPath);
+            }
+            return lbaAsset;
         }
 
-        public static void ReadLba(FileStreamReader reader, string assetPath)
+        public static ScriptableObject Read(FileStreamReader reader)
         {
-
             reader.Seek(4);
 
             var type = (LocatorBinaryType)reader.ReadUInt32();
@@ -66,8 +90,6 @@ namespace Tpp.GameKit
             reader.Seek(0);
 
             var locatorReader = new LocatorFileReader(reader);
-
-            string path = global::System.IO.Path.Combine(global::System.IO.Path.GetDirectoryName(assetPath), global::System.IO.Path.GetFileNameWithoutExtension(assetPath));
 
             switch (type)
             {
@@ -78,12 +100,8 @@ namespace Tpp.GameKit
 
                     asset.locators = locators;
 
-                    AssetDatabase.CreateAsset(asset, $"{path}.asset");
-
-                    AssetDatabase.SaveAssets();
+                    return asset;
                 }
-
-                break;
                 case LocatorBinaryType.Named:
                 {
                     List<NamedLocatorBinary> locators = locatorReader.ReadNamedLocators();
@@ -91,11 +109,8 @@ namespace Tpp.GameKit
 
                     asset.locators = locators;
 
-                    AssetDatabase.CreateAsset(asset, $"{path}.asset");
-
-                    AssetDatabase.SaveAssets();
+                    return asset;
                 }
-                break;
                 case LocatorBinaryType.Scaled:
                 {
                     List<ScaledLocatorBinary> locators = locatorReader.ReadScaledLocators();
@@ -103,13 +118,12 @@ namespace Tpp.GameKit
 
                     asset.locators = locators;
 
-                    AssetDatabase.CreateAsset(asset, $"{path}.asset");
-
-                    AssetDatabase.SaveAssets();
+                    return asset;
                 }
-                break;
                 default:
-                    return;
+                {
+                    return null;
+                }
             }
         }
 
@@ -167,8 +181,8 @@ namespace Tpp.GameKit
                 StrCode32 locatorNameHash = hashes[2 * i];
                 StrCode32 dataSetNameHash = hashes[(2 * i) + 1];
 
-                String locatorName = UnhashLocatorName(locatorNameHash);
-                Fox.Kernel.Path dataSetName = UnhashDataSetName(dataSetNameHash);
+                string locatorName = UnhashLocatorName(locatorNameHash);
+                Fox.Path dataSetName = UnhashDataSetName(dataSetNameHash);
 
                 NamedLocatorBinary locator = ReadNamedLocator(locatorName, dataSetName);
                 result.Add(locator);
@@ -200,8 +214,8 @@ namespace Tpp.GameKit
                 StrCode32 locatorNameHash = hashes[2 * i];
                 StrCode32 dataSetNameHash = hashes[(2 * i) + 1];
 
-                String locatorName = UnhashLocatorName(locatorNameHash);
-                Fox.Kernel.Path dataSetName = UnhashDataSetName(dataSetNameHash);
+                string locatorName = UnhashLocatorName(locatorNameHash);
+                Fox.Path dataSetName = UnhashDataSetName(dataSetNameHash);
 
                 ScaledLocatorBinary locator = ReadScaledLocator(locatorName, dataSetName);
                 result.Add(locator);
@@ -210,31 +224,34 @@ namespace Tpp.GameKit
             return result;
         }
 
-        private static String UnhashLocatorName(StrCode32 hash) =>
+        private static string UnhashLocatorName(StrCode32 hash) =>
             // TODO
-            new(hash.ToString());
+            hash.ToString();
 
-        private static Fox.Kernel.Path UnhashDataSetName(StrCode32 hash) =>
+        private static Fox.Path UnhashDataSetName(StrCode32 hash) =>
             // TODO
             new(hash.ToString());
 
         private PowerCutAreaLocatorBinary ReadPowerCutAreaLocator()
         {
-            Vector3 translation = reader.ReadPositionHF();
+            Vector3 translation = reader.ReadPositionF();
+            int w = reader.ReadInt32();
             Quaternion rotation = reader.ReadRotationF();
             return new PowerCutAreaLocatorBinary(translation, rotation);
         }
 
-        private NamedLocatorBinary ReadNamedLocator(String locatorName, Fox.Kernel.Path dataSetName)
+        private NamedLocatorBinary ReadNamedLocator(string locatorName, Fox.Path dataSetName)
         {
-            Vector3 translation = reader.ReadPositionHF();
+            Vector3 translation = reader.ReadPositionF();
+            int w = reader.ReadInt32();
             Quaternion rotation = reader.ReadRotationF();
             return new NamedLocatorBinary(translation, rotation, locatorName, dataSetName);
         }
 
-        private ScaledLocatorBinary ReadScaledLocator(String locatorName, Fox.Kernel.Path dataSetName)
+        private ScaledLocatorBinary ReadScaledLocator(string locatorName, Fox.Path dataSetName)
         {
-            Vector3 translation = reader.ReadPositionHF();
+            Vector3 translation = reader.ReadPositionF();
+            int w = reader.ReadInt32();
             Quaternion rotation = reader.ReadRotationF();
             Vector3 scale = reader.ReadVector3();
             short a = reader.ReadInt16();

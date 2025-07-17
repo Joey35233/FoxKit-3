@@ -1,6 +1,7 @@
 using Fox.Core;
+using Fox.Core.Utils;
 using Fox.Fio;
-using Fox.Kernel;
+using Fox;
 using System;
 using System.IO;
 using UnityEditor;
@@ -10,11 +11,11 @@ namespace Fox.GameKit
 {
     public partial class ObjectBrush : Fox.Core.TransformData
     {
-        public override void InitializeGameObject(GameObject gameObject)
+        public override void OnDeserializeEntity(TaskLogger logger)
         {
-            base.InitializeGameObject(gameObject);
+            base.OnDeserializeEntity(logger);
 
-            string obrPath = "/Game" + obrFile.path.CString;
+            string obrPath = "/Game" + obrFile.path.String;
             if (System.String.IsNullOrEmpty(obrPath))
             {
                 Debug.LogWarning($"{name}: obrFile is null");
@@ -46,34 +47,33 @@ namespace Fox.GameKit
             foreach (ObjectBrushObjectBinary obj in asset.objects)
             {
                 GameObject instanceGameObject;
-                bool instantiated = false;
 
                 var transform = new Fox.Core.Transform();
 
                 Vector3 foxPosition = GetPositionFWSFromPositionEWS(obj,asset);
 
-                transform.translation = Kernel.Math.FoxToUnityVector3(foxPosition);
-                transform.rotation_quat = Kernel.Math.FoxToUnityQuaternion(obj.GetRotation());
+                transform.translation = Fox.Math.FoxToUnityVector3(foxPosition);
+                transform.rotation_quat = Fox.Math.FoxToUnityQuaternion(obj.GetRotation());
 
                 float normalizedScale = (float)obj.GetNormalizedScale() / System.Byte.MaxValue;
 
-                if (pluginHandle[obj.GetPluginBrushIndex()].Entity is ObjectBrushPlugin plugin)
+                if (pluginHandle[obj.GetPluginBrushIndex()] is ObjectBrushPlugin plugin)
                 {
-                    switch (pluginHandle[obj.GetPluginBrushIndex()].Entity)
+                    switch (pluginHandle[obj.GetPluginBrushIndex()])
                     {
                         case ObjectBrushPluginClone pluginClone:
                             transform.scale = Vector3.one * Mathf.Lerp(pluginClone.minSize, pluginClone.maxSize, normalizedScale);
-                            instanceGameObject = MakeStaticModelGameObject(transform, "/Assets/Game" + pluginClone.modelFile.path.CString, gameObject);
+                            instanceGameObject = MakeStaticModelGameObject(transform, "/Assets/Game" + pluginClone.modelFile.path.String, gameObject);
                             break;
                         case ObjectBrushPluginStaticModel pluginStaticModel:
                             transform.scale = Vector3.one * Mathf.Lerp(pluginStaticModel.minSize, pluginStaticModel.maxSize, normalizedScale);
-                            instanceGameObject = MakeStaticModelGameObject(transform, "/Assets/Game" + pluginStaticModel.modelFile.path.CString, gameObject);
+                            instanceGameObject = MakeStaticModelGameObject(transform, "/Assets/Game" + pluginStaticModel.modelFile.path.String, gameObject);
                             break;
                         case null:
                             throw new ArgumentNullException();
                         default:
                             //TODO Tpp.GameKit.ObjectBrushPluginStaticModel, TppObjectBrushPluginSkeletonModel
-                            var pluginClassName = new StrCode32(pluginHandle[obj.GetPluginBrushIndex()].Entity.GetClassEntityInfo().Name.CString);
+                            var pluginClassName = new StrCode32(pluginHandle[obj.GetPluginBrushIndex()].GetClassEntityInfo().Name);
                             Debug.LogWarning($"{name}: pluginHandle #{obj.GetPluginBrushIndex()} is not a supported");
                             break;
                     }
@@ -83,17 +83,17 @@ namespace Fox.GameKit
                     Debug.LogWarning($"{name}: pluginHandle #{obj.GetPluginBrushIndex()} is not ObjectBrushPlugin");
                 }
 
-                if (!instantiated)
-                {
-                    instanceGameObject = new GameObject();
-                    instanceGameObject.transform.position = transform.translation;
-                    instanceGameObject.transform.rotation = transform.rotation_quat;
-                    instanceGameObject.transform.localScale = transform.scale;
-                    instanceGameObject.transform.SetParent(gameObject.transform, false);
-                    PointGizmo gizmo = instanceGameObject.AddComponent<PointGizmo>();
-                    gizmo.Color = Color.green;
-                    gizmo.Scale = Vector3.one;
-                }
+                // if (!instantiated)
+                // {
+                //     instanceGameObject = new GameObject();
+                //     instanceGameObject.transform.position = transform.translation;
+                //     instanceGameObject.transform.rotation = transform.rotation_quat;
+                //     instanceGameObject.transform.localScale = transform.scale;
+                //     instanceGameObject.transform.SetParent(gameObject.transform, false);
+                //     PointGizmo gizmo = instanceGameObject.AddComponent<PointGizmo>();
+                //     gizmo.Color = Color.green;
+                //     gizmo.Scale = Vector3.one;
+                // }
             }
         }
         //joey func, but perhaps pointlessly dynamic!

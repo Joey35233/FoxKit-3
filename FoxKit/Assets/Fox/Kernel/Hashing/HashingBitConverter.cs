@@ -1,6 +1,6 @@
 using System;
 
-namespace Fox.Kernel
+namespace Fox
 {
     public static class HashingBitConverter
     {
@@ -13,6 +13,8 @@ namespace Fox.Kernel
         public static StrCode32 ToStrCode32(byte[] value, int startIndex) => new(BitConverter.ToUInt32(value, startIndex));
         public static StrCode32 ToStrCode32(ReadOnlySpan<byte> value) => new(BitConverter.ToUInt32(value));
         public static uint StrCode32ToUInt32(StrCode32 hash) => hash.Backing;
-        public static ulong PathFileNameAndExtCodeToUint64(PathFileNameAndExtCode hash) => hash.Backing;
+
+        public static PathCode ToPathFileNameAndExtCode(ulong value) => new(value);
+        public static ulong PathFileNameAndExtCodeToUInt64(PathCode hash) => hash.Backing;
     }
 }

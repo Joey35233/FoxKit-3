@@ -1,5 +1,5 @@
 using Fox.Fio;
-using Fox.Kernel;
+using Fox;
 using System.Diagnostics;
 
 namespace Fox.Core
@@ -39,7 +39,7 @@ namespace Fox.Core
             StringOffsetMode = stringOffsetMode;
         }
 
-        public String GetName() => new FoxDataStringContext(Reader, Position + Offset_Name, StringFormat, StringOffsetMode).GetString();
+        public string GetName() => new FoxDataStringContext(Reader, Position + Offset_Name, StringFormat, StringOffsetMode).GetString();
 
         public uint GetFlags()
         {
@@ -132,7 +132,7 @@ namespace Fox.Core
         }
         public FoxDataParameterContext? GetFirstParameter() => GetParametersPosition() is long position ? new FoxDataParameterContext(Reader, position, StringFormat, StringOffsetMode) : null;
 
-        public FoxDataParameterContext? FindParameter(String name)
+        public FoxDataParameterContext? FindParameter(string name)
         {
             for (FoxDataParameterContext? param = GetFirstParameter(); param.HasValue; param = param.Value.GetNextParameter())
             {
@@ -143,11 +143,11 @@ namespace Fox.Core
             return null;
         }
 
-        public bool NameEquals(String comparand) => new FoxDataStringContext(Reader, Position + Offset_Name, StringFormat, StringOffsetMode).Equals(comparand);
+        public bool NameEquals(string comparand) => new FoxDataStringContext(Reader, Position + Offset_Name, StringFormat, StringOffsetMode).TestEquality(comparand);
 
-        public FoxDataNodeContext? FindNode(String name)
+        public FoxDataNodeContext? FindNode(string name)
         {
-            for (FoxDataNodeContext? node = this; node.HasValue; node = GetNextNode())
+            for (FoxDataNodeContext? node = this; node.HasValue; node = node.Value.GetNextNode())
             {
                 if (node.Value.NameEquals(name))
                     return node;

@@ -1,6 +1,6 @@
 ﻿using Fox.Core;
 using Fox.Fio;
-using Fox.Kernel;
+using Fox;
 using System.Collections.Generic;
 using System.IO;
 using UnityEditor;
@@ -110,12 +110,10 @@ namespace Fox.GameKit
             if (Selection.activeGameObject is null)
                 return;
 
-            FoxEntity obrGameObject = Selection.activeGameObject.GetComponent<FoxEntity>();
-
-            if (obrGameObject?.Entity is not ObjectBrush)
+            if (Selection.activeGameObject.GetComponent<ObjectBrush>() is not { } objectBrush)
                 return;
 
-            string filePath = EditorUtility.SaveFilePanel("Export to OBR", "", Selection.activeGameObject.name, "obr");
+            string filePath = EditorUtility.SaveFilePanel("Export to OBR", "", objectBrush.name, "obr");
 
             if (System.String.IsNullOrWhiteSpace(filePath))
                 return;
@@ -134,8 +132,8 @@ namespace Fox.GameKit
             //        else if (scalarScale > minMaxScaleValue.y)
             //            minMaxScaleValue.y = scalarScale;
 
-            //        Vector3 objectPositionFWS = Fox.Kernel.Math.FoxToUnityVector3(transform.position);
-            //        Quaternion objectRotation = Fox.Kernel.Math.FoxToUnityQuaternion(transform.rotation);
+            //        Vector3 objectPositionFWS = Fox.Math.FoxToUnityVector3(transform.position);
+            //        Quaternion objectRotation = Fox.Math.FoxToUnityQuaternion(transform.rotation);
 
             //        var encodedPositionEWS = GetPositionEWSFromPositionFWS(objectPositionFWS);
 

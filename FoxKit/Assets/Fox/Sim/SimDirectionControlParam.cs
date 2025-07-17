@@ -1,13 +1,28 @@
-﻿using Fox.Kernel;
+﻿using Fox.Core;
+using Fox.Core.Utils;
+using UnityEngine;
 
 namespace Fox.Sim
 {
     public partial class SimDirectionControlParam : Fox.Sim.SimControlParam
     {
-        internal String GetRefBone() => refBone;
-        internal void SetRefBone(String value) => refBone = value;
+        internal string GetRefBone() => refBone;
+        internal void SetRefBone(string value) => refBone = value;
 
         internal UnityEngine.Quaternion GetOffset() => offset;
         internal void SetOffset(UnityEngine.Quaternion value) => offset = value;
+        public override void OnDeserializeEntity(TaskLogger logger)
+        {
+            base.OnDeserializeEntity(logger);
+
+            offset = Fox.Math.FoxToUnityQuaternion(offset);
+        }
+
+        public override void OverridePropertiesForExport(EntityExportContext context)
+        {
+            base.OverridePropertiesForExport(context);
+
+            context.OverrideProperty(nameof(offset), Fox.Math.UnityToFoxQuaternion(offset));
+        }
     }
 }

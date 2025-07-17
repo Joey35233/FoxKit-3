@@ -1,5 +1,5 @@
 using Fox.Fio;
-using Fox.Kernel;
+using Fox;
 using UnityEngine;
 
 namespace Fox.Core
@@ -68,7 +68,7 @@ namespace Fox.Core
         }
         public FoxDataParameterContext? GetNextParameter() => GetNextParameterPosition() is long position ? new FoxDataParameterContext(Reader, position, StringFormat, StringOffsetMode) : null;
 
-        public String GetName()
+        public string GetName()
         {
             Debug.Assert(IsValid());
 
@@ -84,7 +84,7 @@ namespace Fox.Core
             return Reader.ReadUInt32();
         }
 
-        public String GetString()
+        public string GetString()
         {
             Debug.Assert(GetDataType() == DataType.String);
 
@@ -100,7 +100,7 @@ namespace Fox.Core
             return Reader.ReadSingle();
         }
 
-        public bool NameEquals(String comparand)
+        public bool NameEquals(string comparand)
         {
             Debug.Assert(IsValid());
 
@@ -114,7 +114,7 @@ namespace Fox.Core
             return new FoxDataStringContext(Reader, Position + Offset_Name, StringFormat, StringOffsetMode).TestEquality(comparand);
         }
 
-        public FoxDataParameterContext? FindParameter(String name)
+        public FoxDataParameterContext? FindParameter(string name)
         {
             Debug.Assert(IsValid());
 

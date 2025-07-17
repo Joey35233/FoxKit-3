@@ -12,120 +12,159 @@ using Fox;
 
 namespace Tpp.Effect
 {
-    [UnityEditor.InitializeOnLoad]
-    public partial class TppDamageFilterParam : Fox.Core.TransformData 
-    {
-        // Properties
-        [field: UnityEngine.SerializeField]
-        public UnityEngine.Color burnOutsideColor { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public UnityEngine.Color burnMiddleColor { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public UnityEngine.Color burnInsideColor { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public UnityEngine.Color burnHoleColor { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float burnSpriteSize { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float burnSpritePosition { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.String damageColorCorrectionTextureName { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.String injuryColorCorrectionTextureName { get; set; }
-        
-        // ClassInfos
-        public static new bool ClassInfoInitialized = false;
-        private static Fox.Core.EntityInfo classInfo;
-        public static new Fox.Core.EntityInfo ClassInfo
-        {
-            get
-            {
-                return classInfo;
-            }
-        }
-        public override Fox.Core.EntityInfo GetClassEntityInfo()
-        {
-            return classInfo;
-        }
-        static TppDamageFilterParam()
-        {
-            if (Fox.Core.TransformData.ClassInfoInitialized)
-                classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("TppDamageFilterParam"), typeof(TppDamageFilterParam), Fox.Core.TransformData.ClassInfo, 336, null, 0);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("burnOutsideColor"), Fox.Core.PropertyInfo.PropertyType.Color, 304, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("burnMiddleColor"), Fox.Core.PropertyInfo.PropertyType.Color, 320, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("burnInsideColor"), Fox.Core.PropertyInfo.PropertyType.Color, 336, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("burnHoleColor"), Fox.Core.PropertyInfo.PropertyType.Color, 352, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("burnSpriteSize"), Fox.Core.PropertyInfo.PropertyType.Float, 368, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("burnSpritePosition"), Fox.Core.PropertyInfo.PropertyType.Float, 372, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("damageColorCorrectionTextureName"), Fox.Core.PropertyInfo.PropertyType.String, 376, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("injuryColorCorrectionTextureName"), Fox.Core.PropertyInfo.PropertyType.String, 384, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppEffect/TppDamageFilterParam")]
+	public partial class TppDamageFilterParam : Fox.Core.TransformData
+	{
+		// Properties
+		[field: UnityEngine.SerializeField]
+		public UnityEngine.Color burnOutsideColor { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public UnityEngine.Color burnMiddleColor { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public UnityEngine.Color burnInsideColor { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public UnityEngine.Color burnHoleColor { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float burnSpriteSize { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float burnSpritePosition { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public string damageColorCorrectionTextureName { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public string injuryColorCorrectionTextureName { get; set; }
+		
+		// ClassInfos
+		public static new bool ClassInfoInitialized = false;
+		private static Fox.Core.EntityInfo classInfo;
+		public static new Fox.Core.EntityInfo ClassInfo
+		{
+			get
+			{
+				return classInfo;
+			}
+		}
+		public override Fox.Core.EntityInfo GetClassEntityInfo()
+		{
+			return classInfo;
+		}
+		static TppDamageFilterParam()
+		{
+			if (Fox.Core.TransformData.ClassInfoInitialized)
+				classInfo = new Fox.Core.EntityInfo("TppDamageFilterParam", typeof(TppDamageFilterParam), Fox.Core.TransformData.ClassInfo, 336, null, 0);
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("burnOutsideColor", Fox.Core.PropertyInfo.PropertyType.Color, 304, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("burnMiddleColor", Fox.Core.PropertyInfo.PropertyType.Color, 320, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("burnInsideColor", Fox.Core.PropertyInfo.PropertyType.Color, 336, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("burnHoleColor", Fox.Core.PropertyInfo.PropertyType.Color, 352, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("burnSpriteSize", Fox.Core.PropertyInfo.PropertyType.Float, 368, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("burnSpritePosition", Fox.Core.PropertyInfo.PropertyType.Float, 372, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("damageColorCorrectionTextureName", Fox.Core.PropertyInfo.PropertyType.String, 376, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("injuryColorCorrectionTextureName", Fox.Core.PropertyInfo.PropertyType.String, 384, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 
-            ClassInfoInitialized = true;
-        }
+			ClassInfoInitialized = true;
+		}
+		
+		public override Fox.Core.Value GetProperty(string propertyName)
+		{
+			switch (propertyName)
+			{
+				case "burnOutsideColor":
+					return new Fox.Core.Value(burnOutsideColor);
+				case "burnMiddleColor":
+					return new Fox.Core.Value(burnMiddleColor);
+				case "burnInsideColor":
+					return new Fox.Core.Value(burnInsideColor);
+				case "burnHoleColor":
+					return new Fox.Core.Value(burnHoleColor);
+				case "burnSpriteSize":
+					return new Fox.Core.Value(burnSpriteSize);
+				case "burnSpritePosition":
+					return new Fox.Core.Value(burnSpritePosition);
+				case "damageColorCorrectionTextureName":
+					return new Fox.Core.Value(damageColorCorrectionTextureName);
+				case "injuryColorCorrectionTextureName":
+					return new Fox.Core.Value(injuryColorCorrectionTextureName);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
 
-        // Constructors
-		public TppDamageFilterParam(ulong id) : base(id) { }
-		public TppDamageFilterParam() : base() { }
-        
-        public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "burnOutsideColor":
-                    this.burnOutsideColor = value.GetValueAsColor();
-                    return;
-                case "burnMiddleColor":
-                    this.burnMiddleColor = value.GetValueAsColor();
-                    return;
-                case "burnInsideColor":
-                    this.burnInsideColor = value.GetValueAsColor();
-                    return;
-                case "burnHoleColor":
-                    this.burnHoleColor = value.GetValueAsColor();
-                    return;
-                case "burnSpriteSize":
-                    this.burnSpriteSize = value.GetValueAsFloat();
-                    return;
-                case "burnSpritePosition":
-                    this.burnSpritePosition = value.GetValueAsFloat();
-                    return;
-                case "damageColorCorrectionTextureName":
-                    this.damageColorCorrectionTextureName = value.GetValueAsString();
-                    return;
-                case "injuryColorCorrectionTextureName":
-                    this.injuryColorCorrectionTextureName = value.GetValueAsString();
-                    return;
-                default:
-                    base.SetProperty(propertyName, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, index, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, key, value);
-                    return;
-            }
-        }
-    }
+		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		{
+			switch (propertyName)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		{
+			switch (propertyName)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
+
+		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				case "burnOutsideColor":
+					this.burnOutsideColor = value.GetValueAsColor();
+					return;
+				case "burnMiddleColor":
+					this.burnMiddleColor = value.GetValueAsColor();
+					return;
+				case "burnInsideColor":
+					this.burnInsideColor = value.GetValueAsColor();
+					return;
+				case "burnHoleColor":
+					this.burnHoleColor = value.GetValueAsColor();
+					return;
+				case "burnSpriteSize":
+					this.burnSpriteSize = value.GetValueAsFloat();
+					return;
+				case "burnSpritePosition":
+					this.burnSpritePosition = value.GetValueAsFloat();
+					return;
+				case "damageColorCorrectionTextureName":
+					this.damageColorCorrectionTextureName = value.GetValueAsString();
+					return;
+				case "injuryColorCorrectionTextureName":
+					this.injuryColorCorrectionTextureName = value.GetValueAsString();
+					return;
+				default:
+					base.SetProperty(propertyName, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+	}
 }

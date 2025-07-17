@@ -12,78 +12,105 @@ using Fox;
 
 namespace Fox.Geox
 {
-    [UnityEditor.InitializeOnLoad]
-    public partial class GeoxDynamicBoundingVolumeActivator : Fox.Core.TransformData 
-    {
-        // Properties
-        [field: UnityEngine.SerializeField]
-        public UnityEngine.Vector3 gridSize { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint allocateSize { get; set; }
-        
-        // ClassInfos
-        public static new bool ClassInfoInitialized = false;
-        private static Fox.Core.EntityInfo classInfo;
-        public static new Fox.Core.EntityInfo ClassInfo
-        {
-            get
-            {
-                return classInfo;
-            }
-        }
-        public override Fox.Core.EntityInfo GetClassEntityInfo()
-        {
-            return classInfo;
-        }
-        static GeoxDynamicBoundingVolumeActivator()
-        {
-            if (Fox.Core.TransformData.ClassInfoInitialized)
-                classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("GeoxDynamicBoundingVolumeActivator"), typeof(GeoxDynamicBoundingVolumeActivator), Fox.Core.TransformData.ClassInfo, 288, null, 0);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("gridSize"), Fox.Core.PropertyInfo.PropertyType.Vector3, 304, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("allocateSize"), Fox.Core.PropertyInfo.PropertyType.UInt32, 320, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Geox/GeoxDynamicBoundingVolumeActivator")]
+	public partial class GeoxDynamicBoundingVolumeActivator : Fox.Core.TransformData
+	{
+		// Properties
+		[field: UnityEngine.SerializeField]
+		public UnityEngine.Vector3 gridSize { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint allocateSize { get; set; }
+		
+		// ClassInfos
+		public static new bool ClassInfoInitialized = false;
+		private static Fox.Core.EntityInfo classInfo;
+		public static new Fox.Core.EntityInfo ClassInfo
+		{
+			get
+			{
+				return classInfo;
+			}
+		}
+		public override Fox.Core.EntityInfo GetClassEntityInfo()
+		{
+			return classInfo;
+		}
+		static GeoxDynamicBoundingVolumeActivator()
+		{
+			if (Fox.Core.TransformData.ClassInfoInitialized)
+				classInfo = new Fox.Core.EntityInfo("GeoxDynamicBoundingVolumeActivator", typeof(GeoxDynamicBoundingVolumeActivator), Fox.Core.TransformData.ClassInfo, 288, null, 0);
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("gridSize", Fox.Core.PropertyInfo.PropertyType.Vector3, 304, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("allocateSize", Fox.Core.PropertyInfo.PropertyType.UInt32, 320, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 
-            ClassInfoInitialized = true;
-        }
+			ClassInfoInitialized = true;
+		}
+		
+		public override Fox.Core.Value GetProperty(string propertyName)
+		{
+			switch (propertyName)
+			{
+				case "gridSize":
+					return new Fox.Core.Value(gridSize);
+				case "allocateSize":
+					return new Fox.Core.Value(allocateSize);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
 
-        // Constructors
-		public GeoxDynamicBoundingVolumeActivator(ulong id) : base(id) { }
-		public GeoxDynamicBoundingVolumeActivator() : base() { }
-        
-        public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "gridSize":
-                    this.gridSize = value.GetValueAsVector3();
-                    return;
-                case "allocateSize":
-                    this.allocateSize = value.GetValueAsUInt32();
-                    return;
-                default:
-                    base.SetProperty(propertyName, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, index, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, key, value);
-                    return;
-            }
-        }
-    }
+		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		{
+			switch (propertyName)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		{
+			switch (propertyName)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
+
+		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				case "gridSize":
+					this.gridSize = value.GetValueAsVector3();
+					return;
+				case "allocateSize":
+					this.allocateSize = value.GetValueAsUInt32();
+					return;
+				default:
+					base.SetProperty(propertyName, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+	}
 }

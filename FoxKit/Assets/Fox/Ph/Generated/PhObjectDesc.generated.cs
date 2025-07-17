@@ -12,88 +12,123 @@ using Fox;
 
 namespace Fox.Ph
 {
-    [UnityEditor.InitializeOnLoad]
-    public partial class PhObjectDesc : Fox.Core.Data 
-    {
-        // Properties
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Fox.Core.Entity>> bodies { get; set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Fox.Core.Entity>>();
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Fox.Ph.PhConstraintParam>> constraints { get; set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityPtr<Fox.Ph.PhConstraintParam>>();
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.DynamicArray<int> bodyIndices { get; set; } = new Fox.Kernel.DynamicArray<int>();
-        
-        // ClassInfos
-        public static new bool ClassInfoInitialized = false;
-        private static Fox.Core.EntityInfo classInfo;
-        public static new Fox.Core.EntityInfo ClassInfo
-        {
-            get
-            {
-                return classInfo;
-            }
-        }
-        public override Fox.Core.EntityInfo GetClassEntityInfo()
-        {
-            return classInfo;
-        }
-        static PhObjectDesc()
-        {
-            if (Fox.Core.Data.ClassInfoInitialized)
-                classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("PhObjectDesc"), typeof(PhObjectDesc), Fox.Core.Data.ClassInfo, 112, "Ph", 0);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("bodies"), Fox.Core.PropertyInfo.PropertyType.EntityPtr, 120, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, typeof(Fox.Core.Entity), null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("constraints"), Fox.Core.PropertyInfo.PropertyType.EntityPtr, 136, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, typeof(Fox.Ph.PhConstraintParam), null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("bodyIndices"), Fox.Core.PropertyInfo.PropertyType.Int32, 152, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Ph/PhObjectDesc")]
+	public partial class PhObjectDesc : Fox.Core.Data
+	{
+		// Properties
+		[field: UnityEngine.SerializeField]
+		public CsSystem.Collections.Generic.List<Fox.Core.Entity> bodies { get; private set; } = new CsSystem.Collections.Generic.List<Fox.Core.Entity>();
+		
+		[field: UnityEngine.SerializeField]
+		public CsSystem.Collections.Generic.List<Fox.Ph.PhConstraintParam> constraints { get; private set; } = new CsSystem.Collections.Generic.List<Fox.Ph.PhConstraintParam>();
+		
+		[field: UnityEngine.SerializeField]
+		public CsSystem.Collections.Generic.List<int> bodyIndices { get; private set; } = new CsSystem.Collections.Generic.List<int>();
+		
+		// ClassInfos
+		public static new bool ClassInfoInitialized = false;
+		private static Fox.Core.EntityInfo classInfo;
+		public static new Fox.Core.EntityInfo ClassInfo
+		{
+			get
+			{
+				return classInfo;
+			}
+		}
+		public override Fox.Core.EntityInfo GetClassEntityInfo()
+		{
+			return classInfo;
+		}
+		static PhObjectDesc()
+		{
+			if (Fox.Core.Data.ClassInfoInitialized)
+				classInfo = new Fox.Core.EntityInfo("PhObjectDesc", typeof(PhObjectDesc), Fox.Core.Data.ClassInfo, 112, "Ph", 0);
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("bodies", Fox.Core.PropertyInfo.PropertyType.EntityPtr, 120, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, typeof(Fox.Core.Entity), null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("constraints", Fox.Core.PropertyInfo.PropertyType.EntityPtr, 136, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, typeof(Fox.Ph.PhConstraintParam), null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("bodyIndices", Fox.Core.PropertyInfo.PropertyType.Int32, 152, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 
-            ClassInfoInitialized = true;
-        }
+			ClassInfoInitialized = true;
+		}
+		
+		public override Fox.Core.Value GetProperty(string propertyName)
+		{
+			switch (propertyName)
+			{
+				case "bodies":
+					return new Fox.Core.Value(bodies);
+				case "constraints":
+					return new Fox.Core.Value(constraints);
+				case "bodyIndices":
+					return new Fox.Core.Value(bodyIndices);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
 
-        // Constructors
-		public PhObjectDesc(ulong id) : base(id) { }
-		public PhObjectDesc() : base() { }
-        
-        public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetProperty(propertyName, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "bodies":
-                    while(this.bodies.Count <= index) { this.bodies.Add(default(Fox.Core.EntityPtr<Fox.Core.Entity>)); }
-                    this.bodies[index] = value.GetValueAsEntityPtr<Fox.Core.Entity>();
-                    return;
-                case "constraints":
-                    while(this.constraints.Count <= index) { this.constraints.Add(default(Fox.Core.EntityPtr<Fox.Ph.PhConstraintParam>)); }
-                    this.constraints[index] = value.GetValueAsEntityPtr<Fox.Ph.PhConstraintParam>();
-                    return;
-                case "bodyIndices":
-                    while(this.bodyIndices.Count <= index) { this.bodyIndices.Add(default(int)); }
-                    this.bodyIndices[index] = value.GetValueAsInt32();
-                    return;
-                default:
-                    base.SetPropertyElement(propertyName, index, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, key, value);
-                    return;
-            }
-        }
-    }
+		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		{
+			switch (propertyName)
+			{
+				case "bodies":
+					return new Fox.Core.Value(this.bodies[index]);
+				case "constraints":
+					return new Fox.Core.Value(this.constraints[index]);
+				case "bodyIndices":
+					return new Fox.Core.Value(this.bodyIndices[index]);
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		{
+			switch (propertyName)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
+
+		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.SetProperty(propertyName, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				case "bodies":
+					while(this.bodies.Count <= index) { this.bodies.Add(default(Fox.Core.Entity)); }
+					this.bodies[index] = value.GetValueAsEntityPtr<Fox.Core.Entity>();
+					return;
+				case "constraints":
+					while(this.constraints.Count <= index) { this.constraints.Add(default(Fox.Ph.PhConstraintParam)); }
+					this.constraints[index] = value.GetValueAsEntityPtr<Fox.Ph.PhConstraintParam>();
+					return;
+				case "bodyIndices":
+					while(this.bodyIndices.Count <= index) { this.bodyIndices.Add(default(int)); }
+					this.bodyIndices[index] = value.GetValueAsInt32();
+					return;
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+	}
 }

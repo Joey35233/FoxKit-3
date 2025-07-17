@@ -12,95 +12,132 @@ using Fox;
 
 namespace Tpp.Effect
 {
-    [UnityEditor.InitializeOnLoad]
-    public partial class TppLightProbeArray : Fox.Core.TransformData 
-    {
-        // Properties
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.DynamicArray<TppLightProbeArray_DrawRejectionLevel> drawRejectionLevels { get; set; } = new Fox.Kernel.DynamicArray<TppLightProbeArray_DrawRejectionLevel>();
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.DynamicArray<Fox.Core.EntityLink> relatedLights { get; set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityLink>();
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.DynamicArray<Fox.Core.EntityLink> shDatas { get; set; } = new Fox.Kernel.DynamicArray<Fox.Core.EntityLink>();
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Core.FilePtr lightArrayFile { get; set; }
-        
-        // ClassInfos
-        public static new bool ClassInfoInitialized = false;
-        private static Fox.Core.EntityInfo classInfo;
-        public static new Fox.Core.EntityInfo ClassInfo
-        {
-            get
-            {
-                return classInfo;
-            }
-        }
-        public override Fox.Core.EntityInfo GetClassEntityInfo()
-        {
-            return classInfo;
-        }
-        static TppLightProbeArray()
-        {
-            if (Fox.Core.TransformData.ClassInfoInitialized)
-                classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("TppLightProbeArray"), typeof(TppLightProbeArray), Fox.Core.TransformData.ClassInfo, 336, "Light", 2);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("drawRejectionLevels"), Fox.Core.PropertyInfo.PropertyType.Int32, 304, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, typeof(TppLightProbeArray_DrawRejectionLevel), Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("relatedLights"), Fox.Core.PropertyInfo.PropertyType.EntityLink, 320, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("shDatas"), Fox.Core.PropertyInfo.PropertyType.EntityLink, 336, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("lightArrayFile"), Fox.Core.PropertyInfo.PropertyType.FilePtr, 352, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppEffect/TppLightProbeArray")]
+	public partial class TppLightProbeArray : Fox.Core.TransformData
+	{
+		// Properties
+		[field: UnityEngine.SerializeField]
+		public CsSystem.Collections.Generic.List<TppLightProbeArray_DrawRejectionLevel> drawRejectionLevels { get; private set; } = new CsSystem.Collections.Generic.List<TppLightProbeArray_DrawRejectionLevel>();
+		
+		[field: UnityEngine.SerializeField]
+		public CsSystem.Collections.Generic.List<Fox.Core.EntityLink> relatedLights { get; private set; } = new CsSystem.Collections.Generic.List<Fox.Core.EntityLink>();
+		
+		[field: UnityEngine.SerializeField]
+		public CsSystem.Collections.Generic.List<Fox.Core.EntityLink> shDatas { get; private set; } = new CsSystem.Collections.Generic.List<Fox.Core.EntityLink>();
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Core.FilePtr lightArrayFile { get; set; }
+		
+		// ClassInfos
+		public static new bool ClassInfoInitialized = false;
+		private static Fox.Core.EntityInfo classInfo;
+		public static new Fox.Core.EntityInfo ClassInfo
+		{
+			get
+			{
+				return classInfo;
+			}
+		}
+		public override Fox.Core.EntityInfo GetClassEntityInfo()
+		{
+			return classInfo;
+		}
+		static TppLightProbeArray()
+		{
+			if (Fox.Core.TransformData.ClassInfoInitialized)
+				classInfo = new Fox.Core.EntityInfo("TppLightProbeArray", typeof(TppLightProbeArray), Fox.Core.TransformData.ClassInfo, 336, "Light", 2);
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("drawRejectionLevels", Fox.Core.PropertyInfo.PropertyType.Int32, 304, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, typeof(TppLightProbeArray_DrawRejectionLevel), Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("relatedLights", Fox.Core.PropertyInfo.PropertyType.EntityLink, 320, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("shDatas", Fox.Core.PropertyInfo.PropertyType.EntityLink, 336, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("lightArrayFile", Fox.Core.PropertyInfo.PropertyType.FilePtr, 352, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 
-            ClassInfoInitialized = true;
-        }
+			ClassInfoInitialized = true;
+		}
+		
+		public override Fox.Core.Value GetProperty(string propertyName)
+		{
+			switch (propertyName)
+			{
+				case "drawRejectionLevels":
+					return new Fox.Core.Value(drawRejectionLevels);
+				case "relatedLights":
+					return new Fox.Core.Value(relatedLights);
+				case "shDatas":
+					return new Fox.Core.Value(shDatas);
+				case "lightArrayFile":
+					return new Fox.Core.Value(lightArrayFile);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
 
-        // Constructors
-		public TppLightProbeArray(ulong id) : base(id) { }
-		public TppLightProbeArray() : base() { }
-        
-        public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "lightArrayFile":
-                    this.lightArrayFile = value.GetValueAsFilePtr();
-                    return;
-                default:
-                    base.SetProperty(propertyName, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "drawRejectionLevels":
-                    while(this.drawRejectionLevels.Count <= index) { this.drawRejectionLevels.Add(default(TppLightProbeArray_DrawRejectionLevel)); }
-                    this.drawRejectionLevels[index] = (TppLightProbeArray_DrawRejectionLevel)value.GetValueAsInt32();
-                    return;
-                case "relatedLights":
-                    while(this.relatedLights.Count <= index) { this.relatedLights.Add(default(Fox.Core.EntityLink)); }
-                    this.relatedLights[index] = value.GetValueAsEntityLink();
-                    return;
-                case "shDatas":
-                    while(this.shDatas.Count <= index) { this.shDatas.Add(default(Fox.Core.EntityLink)); }
-                    this.shDatas[index] = value.GetValueAsEntityLink();
-                    return;
-                default:
-                    base.SetPropertyElement(propertyName, index, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, key, value);
-                    return;
-            }
-        }
-    }
+		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		{
+			switch (propertyName)
+			{
+				case "drawRejectionLevels":
+					return new Fox.Core.Value(this.drawRejectionLevels[index]);
+				case "relatedLights":
+					return new Fox.Core.Value(this.relatedLights[index]);
+				case "shDatas":
+					return new Fox.Core.Value(this.shDatas[index]);
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		{
+			switch (propertyName)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
+
+		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				case "lightArrayFile":
+					this.lightArrayFile = value.GetValueAsFilePtr();
+					return;
+				default:
+					base.SetProperty(propertyName, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				case "drawRejectionLevels":
+					while(this.drawRejectionLevels.Count <= index) { this.drawRejectionLevels.Add(default(TppLightProbeArray_DrawRejectionLevel)); }
+					this.drawRejectionLevels[index] = (TppLightProbeArray_DrawRejectionLevel)value.GetValueAsInt32();
+					return;
+				case "relatedLights":
+					while(this.relatedLights.Count <= index) { this.relatedLights.Add(default(Fox.Core.EntityLink)); }
+					this.relatedLights[index] = value.GetValueAsEntityLink();
+					return;
+				case "shDatas":
+					while(this.shDatas.Count <= index) { this.shDatas.Add(default(Fox.Core.EntityLink)); }
+					this.shDatas[index] = value.GetValueAsEntityLink();
+					return;
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+	}
 }

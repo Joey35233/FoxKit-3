@@ -1,4 +1,4 @@
-using Fox.Kernel;
+using Fox;
 using UnityEngine;
 
 namespace Fox.Fio
@@ -31,7 +31,7 @@ namespace Fox.Fio
 
         public StrCode32 ReadStrCode32() => HashingBitConverter.ToStrCode32(ReadUInt32());
 
-        public String ReadNullTerminatedString() => new(ReadNullTerminatedCString());
+        public string ReadNullTerminatedString() => ReadNullTerminatedCString();
 
         public string ReadNullTerminatedCString()
         {
@@ -62,15 +62,14 @@ namespace Fox.Fio
             return scaleHF;
         }
 
-        public Vector3 ReadWideVector3()
+        public Vector3 ReadPaddedVector3()
         {
             var result = new Vector3(ReadSingle(), ReadSingle(), ReadSingle());
-
-            Debug.Assert(ReadUInt32() == 0, "W component of WideVector3 is not 0.");
+            _ = ReadSingle();
 
             return result;
         }
-        //public Vector3 ReadWidePositionF() => Math.FoxToUnityVector3(ReadWideVector3());
+        //public Vector3 ReadWidePositionF() => Math.FoxToUnityVector3(ReadPaddedVector3());
 
         public Vector4 ReadVector4() => new(ReadSingle(), ReadSingle(), ReadSingle(), ReadSingle());
 
@@ -98,6 +97,6 @@ namespace Fox.Fio
 
         public void Seek(long count) => BaseStream.Seek(count, System.IO.SeekOrigin.Begin);
 
-        public void Align(uint alignment) => BaseStream.Position = (BaseStream.Position + (alignment - 1)) & (-alignment);
+        public void Align(uint alignment) => BaseStream.Position = AlignmentUtils.Align(BaseStream.Position, alignment);
     }
 }

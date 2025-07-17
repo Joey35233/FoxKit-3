@@ -12,162 +12,213 @@ using Fox;
 
 namespace Tpp.GameCore
 {
-    [UnityEditor.InitializeOnLoad]
-    public partial class TppVehicle2WeaponParameter : Fox.Core.DataElement 
-    {
-        // Properties
-        [field: UnityEngine.SerializeField]
-        protected Fox.Kernel.String attackId { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        protected Fox.Kernel.String equipId { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        protected Fox.Kernel.String bulletId { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        protected byte weaponImplTypeIndex { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        protected float fireInterval { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        protected Fox.Core.FilePtr weaponFile { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        protected Fox.Core.FilePtr ammoFile { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        protected Fox.Kernel.String ownerCnpName { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        protected Fox.Kernel.String weaponBoneName { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        protected Fox.Kernel.String turretBoneName { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        protected Fox.Kernel.String barrelBoneName { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        protected float minPitch { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        protected float maxPitch { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        protected float rotSpeed { get; set; }
-        
-        // ClassInfos
-        public static new bool ClassInfoInitialized = false;
-        private static Fox.Core.EntityInfo classInfo;
-        public static new Fox.Core.EntityInfo ClassInfo
-        {
-            get
-            {
-                return classInfo;
-            }
-        }
-        public override Fox.Core.EntityInfo GetClassEntityInfo()
-        {
-            return classInfo;
-        }
-        static TppVehicle2WeaponParameter()
-        {
-            if (Fox.Core.DataElement.ClassInfoInitialized)
-                classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("TppVehicle2WeaponParameter"), typeof(TppVehicle2WeaponParameter), Fox.Core.DataElement.ClassInfo, 128, null, 2);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("attackId"), Fox.Core.PropertyInfo.PropertyType.String, 104, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("equipId"), Fox.Core.PropertyInfo.PropertyType.String, 112, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("bulletId"), Fox.Core.PropertyInfo.PropertyType.String, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("weaponImplTypeIndex"), Fox.Core.PropertyInfo.PropertyType.UInt8, 176, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("fireInterval"), Fox.Core.PropertyInfo.PropertyType.Float, 160, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("weaponFile"), Fox.Core.PropertyInfo.PropertyType.FilePtr, 56, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("ammoFile"), Fox.Core.PropertyInfo.PropertyType.FilePtr, 80, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("ownerCnpName"), Fox.Core.PropertyInfo.PropertyType.String, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("weaponBoneName"), Fox.Core.PropertyInfo.PropertyType.String, 136, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("turretBoneName"), Fox.Core.PropertyInfo.PropertyType.String, 144, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("barrelBoneName"), Fox.Core.PropertyInfo.PropertyType.String, 152, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("minPitch"), Fox.Core.PropertyInfo.PropertyType.Float, 164, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("maxPitch"), Fox.Core.PropertyInfo.PropertyType.Float, 168, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("rotSpeed"), Fox.Core.PropertyInfo.PropertyType.Float, 172, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppGameCore/TppVehicle2WeaponParameter")]
+	public partial class TppVehicle2WeaponParameter : Fox.Core.DataElement
+	{
+		// Properties
+		[field: UnityEngine.SerializeField]
+		protected string attackId { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		protected string equipId { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		protected string bulletId { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		protected byte weaponImplTypeIndex { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		protected float fireInterval { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		protected Fox.Core.FilePtr weaponFile { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		protected Fox.Core.FilePtr ammoFile { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		protected string ownerCnpName { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		protected string weaponBoneName { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		protected string turretBoneName { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		protected string barrelBoneName { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		protected float minPitch { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		protected float maxPitch { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		protected float rotSpeed { get; set; }
+		
+		// ClassInfos
+		public static new bool ClassInfoInitialized = false;
+		private static Fox.Core.EntityInfo classInfo;
+		public static new Fox.Core.EntityInfo ClassInfo
+		{
+			get
+			{
+				return classInfo;
+			}
+		}
+		public override Fox.Core.EntityInfo GetClassEntityInfo()
+		{
+			return classInfo;
+		}
+		static TppVehicle2WeaponParameter()
+		{
+			if (Fox.Core.DataElement.ClassInfoInitialized)
+				classInfo = new Fox.Core.EntityInfo("TppVehicle2WeaponParameter", typeof(TppVehicle2WeaponParameter), Fox.Core.DataElement.ClassInfo, 128, null, 2);
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("attackId", Fox.Core.PropertyInfo.PropertyType.String, 104, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("equipId", Fox.Core.PropertyInfo.PropertyType.String, 112, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("bulletId", Fox.Core.PropertyInfo.PropertyType.String, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("weaponImplTypeIndex", Fox.Core.PropertyInfo.PropertyType.UInt8, 176, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("fireInterval", Fox.Core.PropertyInfo.PropertyType.Float, 160, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("weaponFile", Fox.Core.PropertyInfo.PropertyType.FilePtr, 56, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("ammoFile", Fox.Core.PropertyInfo.PropertyType.FilePtr, 80, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("ownerCnpName", Fox.Core.PropertyInfo.PropertyType.String, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("weaponBoneName", Fox.Core.PropertyInfo.PropertyType.String, 136, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("turretBoneName", Fox.Core.PropertyInfo.PropertyType.String, 144, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("barrelBoneName", Fox.Core.PropertyInfo.PropertyType.String, 152, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("minPitch", Fox.Core.PropertyInfo.PropertyType.Float, 164, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("maxPitch", Fox.Core.PropertyInfo.PropertyType.Float, 168, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("rotSpeed", Fox.Core.PropertyInfo.PropertyType.Float, 172, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.Never, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 
-            ClassInfoInitialized = true;
-        }
+			ClassInfoInitialized = true;
+		}
+		
+		public override Fox.Core.Value GetProperty(string propertyName)
+		{
+			switch (propertyName)
+			{
+				case "attackId":
+					return new Fox.Core.Value(attackId);
+				case "equipId":
+					return new Fox.Core.Value(equipId);
+				case "bulletId":
+					return new Fox.Core.Value(bulletId);
+				case "weaponImplTypeIndex":
+					return new Fox.Core.Value(weaponImplTypeIndex);
+				case "fireInterval":
+					return new Fox.Core.Value(fireInterval);
+				case "weaponFile":
+					return new Fox.Core.Value(weaponFile);
+				case "ammoFile":
+					return new Fox.Core.Value(ammoFile);
+				case "ownerCnpName":
+					return new Fox.Core.Value(ownerCnpName);
+				case "weaponBoneName":
+					return new Fox.Core.Value(weaponBoneName);
+				case "turretBoneName":
+					return new Fox.Core.Value(turretBoneName);
+				case "barrelBoneName":
+					return new Fox.Core.Value(barrelBoneName);
+				case "minPitch":
+					return new Fox.Core.Value(minPitch);
+				case "maxPitch":
+					return new Fox.Core.Value(maxPitch);
+				case "rotSpeed":
+					return new Fox.Core.Value(rotSpeed);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
 
-        // Constructors
-		public TppVehicle2WeaponParameter(ulong id) : base(id) { }
-		public TppVehicle2WeaponParameter() : base() { }
-        
-        public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "attackId":
-                    this.attackId = value.GetValueAsString();
-                    return;
-                case "equipId":
-                    this.equipId = value.GetValueAsString();
-                    return;
-                case "bulletId":
-                    this.bulletId = value.GetValueAsString();
-                    return;
-                case "weaponImplTypeIndex":
-                    this.weaponImplTypeIndex = value.GetValueAsUInt8();
-                    return;
-                case "fireInterval":
-                    this.fireInterval = value.GetValueAsFloat();
-                    return;
-                case "weaponFile":
-                    this.weaponFile = value.GetValueAsFilePtr();
-                    return;
-                case "ammoFile":
-                    this.ammoFile = value.GetValueAsFilePtr();
-                    return;
-                case "ownerCnpName":
-                    this.ownerCnpName = value.GetValueAsString();
-                    return;
-                case "weaponBoneName":
-                    this.weaponBoneName = value.GetValueAsString();
-                    return;
-                case "turretBoneName":
-                    this.turretBoneName = value.GetValueAsString();
-                    return;
-                case "barrelBoneName":
-                    this.barrelBoneName = value.GetValueAsString();
-                    return;
-                case "minPitch":
-                    this.minPitch = value.GetValueAsFloat();
-                    return;
-                case "maxPitch":
-                    this.maxPitch = value.GetValueAsFloat();
-                    return;
-                case "rotSpeed":
-                    this.rotSpeed = value.GetValueAsFloat();
-                    return;
-                default:
-                    base.SetProperty(propertyName, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, index, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, key, value);
-                    return;
-            }
-        }
-    }
+		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		{
+			switch (propertyName)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		{
+			switch (propertyName)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
+
+		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				case "attackId":
+					this.attackId = value.GetValueAsString();
+					return;
+				case "equipId":
+					this.equipId = value.GetValueAsString();
+					return;
+				case "bulletId":
+					this.bulletId = value.GetValueAsString();
+					return;
+				case "weaponImplTypeIndex":
+					this.weaponImplTypeIndex = value.GetValueAsUInt8();
+					return;
+				case "fireInterval":
+					this.fireInterval = value.GetValueAsFloat();
+					return;
+				case "weaponFile":
+					this.weaponFile = value.GetValueAsFilePtr();
+					return;
+				case "ammoFile":
+					this.ammoFile = value.GetValueAsFilePtr();
+					return;
+				case "ownerCnpName":
+					this.ownerCnpName = value.GetValueAsString();
+					return;
+				case "weaponBoneName":
+					this.weaponBoneName = value.GetValueAsString();
+					return;
+				case "turretBoneName":
+					this.turretBoneName = value.GetValueAsString();
+					return;
+				case "barrelBoneName":
+					this.barrelBoneName = value.GetValueAsString();
+					return;
+				case "minPitch":
+					this.minPitch = value.GetValueAsFloat();
+					return;
+				case "maxPitch":
+					this.maxPitch = value.GetValueAsFloat();
+					return;
+				case "rotSpeed":
+					this.rotSpeed = value.GetValueAsFloat();
+					return;
+				default:
+					base.SetProperty(propertyName, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+	}
 }

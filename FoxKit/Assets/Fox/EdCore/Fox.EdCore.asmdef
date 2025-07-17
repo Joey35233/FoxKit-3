@@ -1,0 +1,24 @@
+{
+    "name": "Fox.EdCore",
+    "rootNamespace": "",
+    "references": [
+        "GUID:6215282ee75f28a44abd0d6e20f2a4a5",
+        "GUID:fb29eb41f6444e24e807a401c751ea0e",
+        "GUID:46163a9f248e4dc49aa56eab99ef988e",
+        "GUID:db3d8564ad49c9943994cfc411ae1224",
+        "GUID:9bb4367371efc0e4e8f5074a8ef9a451",
+        "GUID:3e6e7090655bd8349aace8bb0ba74d58",
+        "GUID:9e24947de15b9834991c9d8411ea37cf",
+        "GUID:69448af7b92c7f342b298e06a37122aa",
+        "GUID:84651a3751eca9349aac36a66bba901b"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

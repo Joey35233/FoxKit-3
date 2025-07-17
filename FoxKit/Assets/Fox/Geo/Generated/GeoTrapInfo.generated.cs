@@ -12,148 +12,200 @@ using Fox;
 
 namespace Fox.Geo
 {
-    [UnityEditor.InitializeOnLoad]
-    public partial class GeoTrapInfo : Fox.Core.Entity 
-    {
-        // Properties
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.StringMap<byte> moverTags { get; protected set; } = new Fox.Kernel.StringMap<byte>();
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Core.EntityHandle moverHandle { get; protected set; }
-        
-        [field: UnityEngine.SerializeField]
-        public UnityEngine.Vector3 moverPosition { get; protected set; }
-        
-        [field: UnityEngine.SerializeField]
-        public UnityEngine.Vector3 moverRotation { get; protected set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.String trapName { get; protected set; }
-        
-        [field: UnityEngine.SerializeField]
-        public UnityEngine.Vector3 trapPosition { get; protected set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Core.EntityHandle trapBodyHandle { get; protected set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Core.EntityHandle conditionHandle { get; protected set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Core.EntityHandle conditionBodyHandle { get; protected set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.String trapFlagString { get; protected set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint trapFlag { get; protected set; }
-        
-        [field: UnityEngine.SerializeField]
-        public ushort moverGameObjectId { get; protected set; }
-        
-        // ClassInfos
-        public static new bool ClassInfoInitialized = false;
-        private static Fox.Core.EntityInfo classInfo;
-        public static new Fox.Core.EntityInfo ClassInfo
-        {
-            get
-            {
-                return classInfo;
-            }
-        }
-        public override Fox.Core.EntityInfo GetClassEntityInfo()
-        {
-            return classInfo;
-        }
-        static GeoTrapInfo()
-        {
-            if (Fox.Core.Entity.ClassInfoInitialized)
-                classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("GeoTrapInfo"), typeof(GeoTrapInfo), Fox.Core.Entity.ClassInfo, 0, null, 0);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("moverTags"), Fox.Core.PropertyInfo.PropertyType.UInt8, 48, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("moverHandle"), Fox.Core.PropertyInfo.PropertyType.EntityHandle, 96, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("moverPosition"), Fox.Core.PropertyInfo.PropertyType.Vector3, 112, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("moverRotation"), Fox.Core.PropertyInfo.PropertyType.Vector3, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("trapName"), Fox.Core.PropertyInfo.PropertyType.String, 144, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("trapPosition"), Fox.Core.PropertyInfo.PropertyType.Vector3, 160, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("trapBodyHandle"), Fox.Core.PropertyInfo.PropertyType.EntityHandle, 176, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("conditionHandle"), Fox.Core.PropertyInfo.PropertyType.EntityHandle, 184, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("conditionBodyHandle"), Fox.Core.PropertyInfo.PropertyType.EntityHandle, 192, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("trapFlagString"), Fox.Core.PropertyInfo.PropertyType.String, 200, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("trapFlag"), Fox.Core.PropertyInfo.PropertyType.UInt32, 208, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("moverGameObjectId"), Fox.Core.PropertyInfo.PropertyType.UInt16, 104, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Geo/GeoTrapInfo")]
+	public partial class GeoTrapInfo : Fox.Core.Entity
+	{
+		// Properties
+		[field: UnityEngine.SerializeField]
+		public Fox.StringMap<byte> moverTags { get; private set; } = new Fox.StringMap<byte>();
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Core.Entity moverHandle { get; protected set; }
+		
+		[field: UnityEngine.SerializeField]
+		public UnityEngine.Vector3 moverPosition { get; protected set; }
+		
+		[field: UnityEngine.SerializeField]
+		public UnityEngine.Vector3 moverRotation { get; protected set; }
+		
+		[field: UnityEngine.SerializeField]
+		public string trapName { get; protected set; }
+		
+		[field: UnityEngine.SerializeField]
+		public UnityEngine.Vector3 trapPosition { get; protected set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Core.Entity trapBodyHandle { get; protected set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Core.Entity conditionHandle { get; protected set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Core.Entity conditionBodyHandle { get; protected set; }
+		
+		[field: UnityEngine.SerializeField]
+		public string trapFlagString { get; protected set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint trapFlag { get; protected set; }
+		
+		[field: UnityEngine.SerializeField]
+		public ushort moverGameObjectId { get; protected set; }
+		
+		// ClassInfos
+		public static new bool ClassInfoInitialized = false;
+		private static Fox.Core.EntityInfo classInfo;
+		public static new Fox.Core.EntityInfo ClassInfo
+		{
+			get
+			{
+				return classInfo;
+			}
+		}
+		public override Fox.Core.EntityInfo GetClassEntityInfo()
+		{
+			return classInfo;
+		}
+		static GeoTrapInfo()
+		{
+			if (Fox.Core.Entity.ClassInfoInitialized)
+				classInfo = new Fox.Core.EntityInfo("GeoTrapInfo", typeof(GeoTrapInfo), Fox.Core.Entity.ClassInfo, 0, null, 0);
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("moverTags", Fox.Core.PropertyInfo.PropertyType.UInt8, 48, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("moverHandle", Fox.Core.PropertyInfo.PropertyType.EntityHandle, 96, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("moverPosition", Fox.Core.PropertyInfo.PropertyType.Vector3, 112, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("moverRotation", Fox.Core.PropertyInfo.PropertyType.Vector3, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("trapName", Fox.Core.PropertyInfo.PropertyType.String, 144, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("trapPosition", Fox.Core.PropertyInfo.PropertyType.Vector3, 160, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("trapBodyHandle", Fox.Core.PropertyInfo.PropertyType.EntityHandle, 176, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("conditionHandle", Fox.Core.PropertyInfo.PropertyType.EntityHandle, 184, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("conditionBodyHandle", Fox.Core.PropertyInfo.PropertyType.EntityHandle, 192, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("trapFlagString", Fox.Core.PropertyInfo.PropertyType.String, 200, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("trapFlag", Fox.Core.PropertyInfo.PropertyType.UInt32, 208, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("moverGameObjectId", Fox.Core.PropertyInfo.PropertyType.UInt16, 104, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.Never, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 
-            ClassInfoInitialized = true;
-        }
+			ClassInfoInitialized = true;
+		}
+		
+		public override Fox.Core.Value GetProperty(string propertyName)
+		{
+			switch (propertyName)
+			{
+				case "moverTags":
+					return new Fox.Core.Value((Fox.IStringMap)moverTags);
+				case "moverHandle":
+					return new Fox.Core.Value(moverHandle);
+				case "moverPosition":
+					return new Fox.Core.Value(moverPosition);
+				case "moverRotation":
+					return new Fox.Core.Value(moverRotation);
+				case "trapName":
+					return new Fox.Core.Value(trapName);
+				case "trapPosition":
+					return new Fox.Core.Value(trapPosition);
+				case "trapBodyHandle":
+					return new Fox.Core.Value(trapBodyHandle);
+				case "conditionHandle":
+					return new Fox.Core.Value(conditionHandle);
+				case "conditionBodyHandle":
+					return new Fox.Core.Value(conditionBodyHandle);
+				case "trapFlagString":
+					return new Fox.Core.Value(trapFlagString);
+				case "trapFlag":
+					return new Fox.Core.Value(trapFlag);
+				case "moverGameObjectId":
+					return new Fox.Core.Value(moverGameObjectId);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
 
-        // Constructors
-		public GeoTrapInfo(ulong id) : base(id) { }
-		public GeoTrapInfo() : base() { }
-        
-        public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "moverHandle":
-                    this.moverHandle = value.GetValueAsEntityHandle();
-                    return;
-                case "moverPosition":
-                    this.moverPosition = value.GetValueAsVector3();
-                    return;
-                case "moverRotation":
-                    this.moverRotation = value.GetValueAsVector3();
-                    return;
-                case "trapName":
-                    this.trapName = value.GetValueAsString();
-                    return;
-                case "trapPosition":
-                    this.trapPosition = value.GetValueAsVector3();
-                    return;
-                case "trapBodyHandle":
-                    this.trapBodyHandle = value.GetValueAsEntityHandle();
-                    return;
-                case "conditionHandle":
-                    this.conditionHandle = value.GetValueAsEntityHandle();
-                    return;
-                case "conditionBodyHandle":
-                    this.conditionBodyHandle = value.GetValueAsEntityHandle();
-                    return;
-                case "trapFlagString":
-                    this.trapFlagString = value.GetValueAsString();
-                    return;
-                case "trapFlag":
-                    this.trapFlag = value.GetValueAsUInt32();
-                    return;
-                case "moverGameObjectId":
-                    this.moverGameObjectId = value.GetValueAsUInt16();
-                    return;
-                default:
-                    base.SetProperty(propertyName, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, index, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "moverTags":
-                    this.moverTags.Insert(key, value.GetValueAsUInt8());
-                    return;
-                default:
-                    base.SetPropertyElement(propertyName, key, value);
-                    return;
-            }
-        }
-    }
+		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		{
+			switch (propertyName)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		{
+			switch (propertyName)
+			{
+				case "moverTags":
+					return new Fox.Core.Value(this.moverTags[key]);
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
+
+		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				case "moverHandle":
+					this.moverHandle = value.GetValueAsEntityHandle();
+					return;
+				case "moverPosition":
+					this.moverPosition = value.GetValueAsVector3();
+					return;
+				case "moverRotation":
+					this.moverRotation = value.GetValueAsVector3();
+					return;
+				case "trapName":
+					this.trapName = value.GetValueAsString();
+					return;
+				case "trapPosition":
+					this.trapPosition = value.GetValueAsVector3();
+					return;
+				case "trapBodyHandle":
+					this.trapBodyHandle = value.GetValueAsEntityHandle();
+					return;
+				case "conditionHandle":
+					this.conditionHandle = value.GetValueAsEntityHandle();
+					return;
+				case "conditionBodyHandle":
+					this.conditionBodyHandle = value.GetValueAsEntityHandle();
+					return;
+				case "trapFlagString":
+					this.trapFlagString = value.GetValueAsString();
+					return;
+				case "trapFlag":
+					this.trapFlag = value.GetValueAsUInt32();
+					return;
+				case "moverGameObjectId":
+					this.moverGameObjectId = value.GetValueAsUInt16();
+					return;
+				default:
+					base.SetProperty(propertyName, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				case "moverTags":
+					if (this.moverTags.ContainsKey(key))
+						this.moverTags[key] = value.GetValueAsUInt8();
+					else
+						this.moverTags.Insert(key, value.GetValueAsUInt8());
+					return;
+				default:
+					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+	}
 }

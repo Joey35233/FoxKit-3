@@ -12,63 +12,82 @@ using Fox;
 
 namespace Fox.Ncl
 {
-    [UnityEditor.InitializeOnLoad]
-    public partial class NclTransactionCallback 
-    {
-        
-        // ClassInfos
-        public static  bool ClassInfoInitialized = false;
-        private static Fox.Core.EntityInfo classInfo;
-        public static  Fox.Core.EntityInfo ClassInfo
-        {
-            get
-            {
-                return classInfo;
-            }
-        }
-        public virtual Fox.Core.EntityInfo GetClassEntityInfo()
-        {
-            return classInfo;
-        }
-        static NclTransactionCallback()
-        {
-            classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("NclTransactionCallback"), typeof(NclTransactionCallback), null, 0, null, 0);
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Ncl/NclTransactionCallback")]
+	public partial class NclTransactionCallback 
+	{
+		// ClassInfos
+		public static  bool ClassInfoInitialized = false;
+		private static Fox.Core.EntityInfo classInfo;
+		public static  Fox.Core.EntityInfo ClassInfo
+		{
+			get
+			{
+				return classInfo;
+			}
+		}
+		public virtual Fox.Core.EntityInfo GetClassEntityInfo()
+		{
+			return classInfo;
+		}
+		static NclTransactionCallback()
+		{
+			classInfo = new Fox.Core.EntityInfo("NclTransactionCallback", typeof(NclTransactionCallback), null, 0, null, 0);
 
-            ClassInfoInitialized = true;
-        }
-
-        // Constructors
+			ClassInfoInitialized = true;
+		}
 		
-		public NclTransactionCallback()
-        {
-            
-        }
-        
-        public virtual void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
-            }
-        }
-        
-        public virtual void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
-            }
-        }
-        
-        public virtual void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
-            }
-        }
-    }
+		public virtual Fox.Core.Value GetProperty(string propertyName)
+		{
+			switch (propertyName)
+			{
+				default:
+					throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
+			}
+		}
+
+		public virtual Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		{
+			switch (propertyName)
+			{
+				default:
+					throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
+			}
+		}
+
+		public virtual Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		{
+			switch (propertyName)
+			{
+				default:
+					throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
+			}
+		}
+
+		public virtual void SetProperty(string propertyName, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
+			}
+		}
+
+		public virtual void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
+			}
+		}
+
+		public virtual void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
+			}
+		}
+	}
 }

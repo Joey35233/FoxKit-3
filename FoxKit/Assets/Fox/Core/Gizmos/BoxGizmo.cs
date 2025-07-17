@@ -1,44 +1,49 @@
-﻿using UnityEditor;
+using System;
+using UnityEditor;
 using UnityEngine;
 
 namespace Fox.Core
 {
     /// <summary>
-    /// Draws a locator gizmo in the scene.
+    /// Draws a box gizmo in the scene.
     /// </summary>
-    [DisallowMultipleComponent, ExecuteInEditMode, SelectionBase]
-    public class BoxGizmo : MonoBehaviour
+    public class BoxGizmo
     {
-        public Color Color = Color.red;
-        public bool DrawLabel = false;
-
-        [HideInInspector]
+        public UnityEngine.Transform Transform = null;
+        public string Label = null;
+        public Color UnselectedColor = EditorColors.GenericUnselectedColor;
+        public Color SelectedColor = EditorColors.GenericSelectedColor;
         public Vector3 Scale = Vector3.one;
+        public GUIStyle LabelStyle;
 
         private void DrawGizmos(bool isSelected)
         {
-            Gizmos.matrix = transform.localToWorldMatrix;
+            if (Transform is null)
+                return;
 
-            Color faceColor = Color;
-            faceColor.a = isSelected ? 0.5f : 0.25f;
+            Gizmos.matrix = Transform.localToWorldMatrix;
+
+            Color faceColor = isSelected ? SelectedColor : UnselectedColor;
+
             Gizmos.color = faceColor;
-            Gizmos.DrawCube(Vector3.zero, Scale);
-
-            Color edgeColor = Color;
-            if (isSelected)
-                edgeColor = Color.white;
-            else
-                edgeColor *= 0.25f;
-            edgeColor.a = 1.0f;
-            Gizmos.color = edgeColor;
             Gizmos.DrawWireCube(Vector3.zero, Scale);
 
-            if (DrawLabel)
-                Handles.Label(transform.position, gameObject.name);
+            // TODO Store the GuiStyle in a global location
+            if (LabelStyle == null)
+            {
+                LabelStyle = new GUIStyle();
+                LabelStyle.alignment = TextAnchor.MiddleCenter;
+                LabelStyle.normal.textColor = EditorColors.LabelIdleColor;
+            }
+
+            if (!System.String.IsNullOrEmpty(this.Label))
+            {
+                Handles.Label(Transform.position, Label, LabelStyle);
+            }
         }
 
-        private void OnDrawGizmos() => DrawGizmos(false);
+        public void OnDrawGizmos() => DrawGizmos(false);
 
-        private void OnDrawGizmosSelected() => DrawGizmos(true);
+        public void OnDrawGizmosSelected() => DrawGizmos(true);
     }
 }

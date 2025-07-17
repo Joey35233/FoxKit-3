@@ -12,162 +12,213 @@ using Fox;
 
 namespace Tpp.Effect
 {
-    [UnityEditor.InitializeOnLoad]
-    public partial class TppWeatherSandStormData : Fox.Core.Data 
-    {
-        // Properties
-        [field: UnityEngine.SerializeField]
-        public Fox.Core.FilePtr vfxFileSandStormStart { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Core.FilePtr vfxFileSandStormFar { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Core.FilePtr vfxFileSandStormNear { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Core.FilePtr vfxFileSandStormCamera { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float sandStormFarDistance { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float sandStormFarHeight { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float sandStormNearDistance { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float sandStormNearHeight { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float noiseScale { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float noiseOffset { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float noiseCutScale { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float noiseCutOffset { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public UnityEngine.Color noiseColor { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public bool noiseSunLightColorMul { get; set; }
-        
-        // ClassInfos
-        public static new bool ClassInfoInitialized = false;
-        private static Fox.Core.EntityInfo classInfo;
-        public static new Fox.Core.EntityInfo ClassInfo
-        {
-            get
-            {
-                return classInfo;
-            }
-        }
-        public override Fox.Core.EntityInfo GetClassEntityInfo()
-        {
-            return classInfo;
-        }
-        static TppWeatherSandStormData()
-        {
-            if (Fox.Core.Data.ClassInfoInitialized)
-                classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("TppWeatherSandStormData"), typeof(TppWeatherSandStormData), Fox.Core.Data.ClassInfo, 240, "TppEffect", 3);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("vfxFileSandStormStart"), Fox.Core.PropertyInfo.PropertyType.FilePtr, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("vfxFileSandStormFar"), Fox.Core.PropertyInfo.PropertyType.FilePtr, 144, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("vfxFileSandStormNear"), Fox.Core.PropertyInfo.PropertyType.FilePtr, 168, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("vfxFileSandStormCamera"), Fox.Core.PropertyInfo.PropertyType.FilePtr, 192, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("sandStormFarDistance"), Fox.Core.PropertyInfo.PropertyType.Float, 216, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("sandStormFarHeight"), Fox.Core.PropertyInfo.PropertyType.Float, 220, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("sandStormNearDistance"), Fox.Core.PropertyInfo.PropertyType.Float, 228, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("sandStormNearHeight"), Fox.Core.PropertyInfo.PropertyType.Float, 232, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("noiseScale"), Fox.Core.PropertyInfo.PropertyType.Float, 240, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("noiseOffset"), Fox.Core.PropertyInfo.PropertyType.Float, 244, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("noiseCutScale"), Fox.Core.PropertyInfo.PropertyType.Float, 248, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("noiseCutOffset"), Fox.Core.PropertyInfo.PropertyType.Float, 252, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("noiseColor"), Fox.Core.PropertyInfo.PropertyType.Color, 256, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("noiseSunLightColorMul"), Fox.Core.PropertyInfo.PropertyType.Bool, 272, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppEffect/TppWeatherSandStormData")]
+	public partial class TppWeatherSandStormData : Fox.Core.Data
+	{
+		// Properties
+		[field: UnityEngine.SerializeField]
+		public Fox.Core.FilePtr vfxFileSandStormStart { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Core.FilePtr vfxFileSandStormFar { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Core.FilePtr vfxFileSandStormNear { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Core.FilePtr vfxFileSandStormCamera { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float sandStormFarDistance { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float sandStormFarHeight { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float sandStormNearDistance { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float sandStormNearHeight { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float noiseScale { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float noiseOffset { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float noiseCutScale { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float noiseCutOffset { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public UnityEngine.Color noiseColor { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public bool noiseSunLightColorMul { get; set; }
+		
+		// ClassInfos
+		public static new bool ClassInfoInitialized = false;
+		private static Fox.Core.EntityInfo classInfo;
+		public static new Fox.Core.EntityInfo ClassInfo
+		{
+			get
+			{
+				return classInfo;
+			}
+		}
+		public override Fox.Core.EntityInfo GetClassEntityInfo()
+		{
+			return classInfo;
+		}
+		static TppWeatherSandStormData()
+		{
+			if (Fox.Core.Data.ClassInfoInitialized)
+				classInfo = new Fox.Core.EntityInfo("TppWeatherSandStormData", typeof(TppWeatherSandStormData), Fox.Core.Data.ClassInfo, 240, "TppEffect", 3);
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("vfxFileSandStormStart", Fox.Core.PropertyInfo.PropertyType.FilePtr, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("vfxFileSandStormFar", Fox.Core.PropertyInfo.PropertyType.FilePtr, 144, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("vfxFileSandStormNear", Fox.Core.PropertyInfo.PropertyType.FilePtr, 168, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("vfxFileSandStormCamera", Fox.Core.PropertyInfo.PropertyType.FilePtr, 192, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("sandStormFarDistance", Fox.Core.PropertyInfo.PropertyType.Float, 216, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("sandStormFarHeight", Fox.Core.PropertyInfo.PropertyType.Float, 220, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("sandStormNearDistance", Fox.Core.PropertyInfo.PropertyType.Float, 228, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("sandStormNearHeight", Fox.Core.PropertyInfo.PropertyType.Float, 232, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("noiseScale", Fox.Core.PropertyInfo.PropertyType.Float, 240, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("noiseOffset", Fox.Core.PropertyInfo.PropertyType.Float, 244, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("noiseCutScale", Fox.Core.PropertyInfo.PropertyType.Float, 248, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("noiseCutOffset", Fox.Core.PropertyInfo.PropertyType.Float, 252, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("noiseColor", Fox.Core.PropertyInfo.PropertyType.Color, 256, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("noiseSunLightColorMul", Fox.Core.PropertyInfo.PropertyType.Bool, 272, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 
-            ClassInfoInitialized = true;
-        }
+			ClassInfoInitialized = true;
+		}
+		
+		public override Fox.Core.Value GetProperty(string propertyName)
+		{
+			switch (propertyName)
+			{
+				case "vfxFileSandStormStart":
+					return new Fox.Core.Value(vfxFileSandStormStart);
+				case "vfxFileSandStormFar":
+					return new Fox.Core.Value(vfxFileSandStormFar);
+				case "vfxFileSandStormNear":
+					return new Fox.Core.Value(vfxFileSandStormNear);
+				case "vfxFileSandStormCamera":
+					return new Fox.Core.Value(vfxFileSandStormCamera);
+				case "sandStormFarDistance":
+					return new Fox.Core.Value(sandStormFarDistance);
+				case "sandStormFarHeight":
+					return new Fox.Core.Value(sandStormFarHeight);
+				case "sandStormNearDistance":
+					return new Fox.Core.Value(sandStormNearDistance);
+				case "sandStormNearHeight":
+					return new Fox.Core.Value(sandStormNearHeight);
+				case "noiseScale":
+					return new Fox.Core.Value(noiseScale);
+				case "noiseOffset":
+					return new Fox.Core.Value(noiseOffset);
+				case "noiseCutScale":
+					return new Fox.Core.Value(noiseCutScale);
+				case "noiseCutOffset":
+					return new Fox.Core.Value(noiseCutOffset);
+				case "noiseColor":
+					return new Fox.Core.Value(noiseColor);
+				case "noiseSunLightColorMul":
+					return new Fox.Core.Value(noiseSunLightColorMul);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
 
-        // Constructors
-		public TppWeatherSandStormData(ulong id) : base(id) { }
-		public TppWeatherSandStormData() : base() { }
-        
-        public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "vfxFileSandStormStart":
-                    this.vfxFileSandStormStart = value.GetValueAsFilePtr();
-                    return;
-                case "vfxFileSandStormFar":
-                    this.vfxFileSandStormFar = value.GetValueAsFilePtr();
-                    return;
-                case "vfxFileSandStormNear":
-                    this.vfxFileSandStormNear = value.GetValueAsFilePtr();
-                    return;
-                case "vfxFileSandStormCamera":
-                    this.vfxFileSandStormCamera = value.GetValueAsFilePtr();
-                    return;
-                case "sandStormFarDistance":
-                    this.sandStormFarDistance = value.GetValueAsFloat();
-                    return;
-                case "sandStormFarHeight":
-                    this.sandStormFarHeight = value.GetValueAsFloat();
-                    return;
-                case "sandStormNearDistance":
-                    this.sandStormNearDistance = value.GetValueAsFloat();
-                    return;
-                case "sandStormNearHeight":
-                    this.sandStormNearHeight = value.GetValueAsFloat();
-                    return;
-                case "noiseScale":
-                    this.noiseScale = value.GetValueAsFloat();
-                    return;
-                case "noiseOffset":
-                    this.noiseOffset = value.GetValueAsFloat();
-                    return;
-                case "noiseCutScale":
-                    this.noiseCutScale = value.GetValueAsFloat();
-                    return;
-                case "noiseCutOffset":
-                    this.noiseCutOffset = value.GetValueAsFloat();
-                    return;
-                case "noiseColor":
-                    this.noiseColor = value.GetValueAsColor();
-                    return;
-                case "noiseSunLightColorMul":
-                    this.noiseSunLightColorMul = value.GetValueAsBool();
-                    return;
-                default:
-                    base.SetProperty(propertyName, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, index, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, key, value);
-                    return;
-            }
-        }
-    }
+		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		{
+			switch (propertyName)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		{
+			switch (propertyName)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
+
+		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				case "vfxFileSandStormStart":
+					this.vfxFileSandStormStart = value.GetValueAsFilePtr();
+					return;
+				case "vfxFileSandStormFar":
+					this.vfxFileSandStormFar = value.GetValueAsFilePtr();
+					return;
+				case "vfxFileSandStormNear":
+					this.vfxFileSandStormNear = value.GetValueAsFilePtr();
+					return;
+				case "vfxFileSandStormCamera":
+					this.vfxFileSandStormCamera = value.GetValueAsFilePtr();
+					return;
+				case "sandStormFarDistance":
+					this.sandStormFarDistance = value.GetValueAsFloat();
+					return;
+				case "sandStormFarHeight":
+					this.sandStormFarHeight = value.GetValueAsFloat();
+					return;
+				case "sandStormNearDistance":
+					this.sandStormNearDistance = value.GetValueAsFloat();
+					return;
+				case "sandStormNearHeight":
+					this.sandStormNearHeight = value.GetValueAsFloat();
+					return;
+				case "noiseScale":
+					this.noiseScale = value.GetValueAsFloat();
+					return;
+				case "noiseOffset":
+					this.noiseOffset = value.GetValueAsFloat();
+					return;
+				case "noiseCutScale":
+					this.noiseCutScale = value.GetValueAsFloat();
+					return;
+				case "noiseCutOffset":
+					this.noiseCutOffset = value.GetValueAsFloat();
+					return;
+				case "noiseColor":
+					this.noiseColor = value.GetValueAsColor();
+					return;
+				case "noiseSunLightColorMul":
+					this.noiseSunLightColorMul = value.GetValueAsBool();
+					return;
+				default:
+					base.SetProperty(propertyName, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+	}
 }

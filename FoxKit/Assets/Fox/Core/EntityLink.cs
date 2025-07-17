@@ -1,7 +1,6 @@
-using Fox.Kernel;
+using Fox;
 using System;
 using UnityEngine;
-using String = Fox.Kernel.String;
 
 namespace Fox.Core
 {
@@ -16,7 +15,7 @@ namespace Fox.Core
         /// The referenced Entity.
         /// </summary>
         [SerializeField]
-        public EntityHandle handle;
+        public Entity handle;
 
         /// <summary>
         /// Path to the referenced Entity's containing package.
@@ -34,9 +33,9 @@ namespace Fox.Core
         /// The referenced Entity's name.
         /// </summary>
         [SerializeField]
-        public String nameInArchive;
+        public string nameInArchive;
 
-        public EntityLink(EntityHandle handle, Path packagePath, Path archivePath, String nameInArchive)
+        public EntityLink(Entity handle, Path packagePath, Path archivePath, string nameInArchive)
         {
             this.handle = handle;
             this.packagePath = packagePath;
@@ -56,6 +55,6 @@ namespace Fox.Core
 
         public override string ToString() => handle.ToString();
 
-        internal static EntityLink Empty() => new(new EntityHandle(), null, null, null);
+        internal static EntityLink Empty() => new(null, null, null, null);
     }
 }

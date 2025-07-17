@@ -1,17 +1,17 @@
 ﻿using System;
-using String = Fox.Kernel.String;
 
 namespace Fox.Core
 {
     /// <summary>
     /// Metadata defining a property.
     /// </summary>
+    [Serializable]
     public class PropertyInfo
     {
         /// <summary>
         /// Types of values that can be stored in a Fox property.
         /// </summary>
-        public enum PropertyType
+        public enum PropertyType : byte
         {
             Int8 = 0,
             UInt8 = 1,
@@ -41,9 +41,41 @@ namespace Fox.Core
         }
 
         /// <summary>
+        /// Types of values that can be stored in a Fox property.
+        /// </summary>
+        public static uint[] SerializedPropertyStrideTable = new uint[]
+        {
+            1,
+            1,
+            2,
+            2,
+            4,
+            4,
+            8,
+            8,
+            4,
+            8,
+            1,
+            8,
+            8,
+            8,
+            16,
+            16,
+            16,
+            48,
+            64,
+            16,
+            8,
+            8,
+            32,
+            0,
+            16,
+        };
+
+        /// <summary>
         /// Types of property containers.
         /// </summary>
-        public enum ContainerType
+        public enum ContainerType : byte
         {
             /// <summary>
             /// An array with a fixed size. A StaticArray of arraySize 1 is not stored as an array.
@@ -95,7 +127,7 @@ namespace Fox.Core
         /// <summary>
         /// Name of the property.
         /// </summary>
-        public String Name
+        public string Name
         {
             get;
         }
@@ -182,7 +214,7 @@ namespace Fox.Core
 
         public PropertyInfo
         (
-            String name,
+            string name,
             PropertyType type,
             uint offset,
             uint arraySize = 1,
@@ -225,18 +257,18 @@ namespace Fox.Core
                 PropertyType.Float => typeof(float),
                 PropertyType.Double => typeof(double),
                 PropertyType.Bool => typeof(bool),
-                PropertyType.String => typeof(Fox.Kernel.String),
-                PropertyType.Path => typeof(Fox.Kernel.Path),
-                PropertyType.EntityPtr => typeof(EntityPtr<>).MakeGenericType(new Type[] { propertyInfo.PtrType }),
+                PropertyType.String => typeof(string),
+                PropertyType.Path => typeof(Fox.Path),
+                PropertyType.EntityPtr => propertyInfo.PtrType,
                 PropertyType.Vector3 => typeof(UnityEngine.Vector3),
                 PropertyType.Vector4 => typeof(UnityEngine.Vector4),
                 PropertyType.Quat => typeof(UnityEngine.Quaternion),
-                //case PropertyType.Matrix3:
-                //    return typeof(UnityEngine.Matrix3x3);
+                PropertyType.WideVector3 => typeof(Fox.WideVector3),
+                PropertyType.Matrix3 => typeof(Fox.Matrix3x3),
                 PropertyType.Matrix4 => typeof(UnityEngine.Matrix4x4),
                 PropertyType.Color => typeof(UnityEngine.Color),
                 PropertyType.FilePtr => typeof(FilePtr),
-                PropertyType.EntityHandle => typeof(EntityHandle),
+                PropertyType.EntityHandle => typeof(Entity),
                 PropertyType.EntityLink => typeof(EntityLink),
                 _ => throw new ArgumentException($"Invalid Fox type: {propertyType}."),
             };

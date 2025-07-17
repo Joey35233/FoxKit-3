@@ -1,5 +1,5 @@
 using Fox.Fio;
-using Fox.Kernel;
+using Fox;
 using System.Diagnostics;
 
 namespace Fox.Core
@@ -64,7 +64,7 @@ namespace Fox.Core
             return Reader.ReadUInt32();
         }
 
-        public String GetName() => new FoxDataStringContext(Reader, Position + Offset_Name, StringFormat, StringOffsetMode).GetString();
+        public string GetName() => new FoxDataStringContext(Reader, Position + Offset_Name, StringFormat, StringOffsetMode).GetString();
 
         public uint GetFlags()
         {
@@ -74,7 +74,7 @@ namespace Fox.Core
         }
 
 
-        public FoxDataNodeContext? FindNode(String name)
+        public FoxDataNodeContext? FindNode(string name)
         {
             if (GetNodesPosition() is long)
             {
@@ -102,21 +102,21 @@ namespace Fox.Core
         }
 
         [Conditional("DEBUG")]
-        public void Validate(uint version, String name, uint flags)
+        public void Validate(uint version, string name, uint flags)
         {
             Validate(version, flags);
 
             var nameContext = new FoxDataStringContext(Reader, Position, StringFormat, StringOffsetMode);
-            Debug.Assert(name == (String)null ? nameContext.GetHash() == 0 : nameContext.Equals(name));
+            Debug.Assert(name == (string)null ? nameContext.GetHash() == 0 : nameContext.Equals(name));
         }
 
         [Conditional("DEBUG")]
-        public void Validate(uint version, String name, uint flags, uint fileSize)
+        public void Validate(uint version, string name, uint flags, uint fileSize)
         {
             Validate(version, flags);
 
             var nameContext = new FoxDataStringContext(Reader, Position, StringFormat, StringOffsetMode);
-            Debug.Assert(name == (String)null ? nameContext.GetHash() == 0 : nameContext.Equals(name));
+            Debug.Assert(name == (string)null ? nameContext.GetHash() == 0 : nameContext.Equals(name));
 
             Debug.Assert(GetFileSize() == fileSize);
         }

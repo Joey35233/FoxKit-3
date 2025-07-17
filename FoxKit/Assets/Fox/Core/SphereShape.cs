@@ -1,23 +1,42 @@
-﻿using UnityEngine;
+using Fox.Core.Utils;
+using System;
+using UnityEngine;
 
 namespace Fox.Core
 {
     public partial class SphereShape : Fox.Core.ShapeData
     {
-        protected partial float Get_radius()
+        private partial float Get_radius()
         {
-            TransformEntity transformEntity = transform.Get();
-            return Mathf.Min(transformEntity.scale.x, transformEntity.scale.y, transformEntity.scale.z);
+            UnityEngine.Transform transform = this.transform;
+            return Mathf.Min(transform.localScale.x, transform.localScale.y, transform.localScale.z);
         }
-        protected partial void Set_radius(float value)
+        private partial void Set_radius(float value)
         {
-            TransformEntity transformEntity = transform.Get();
-            transformEntity.scale = new Vector3(value, value, value);
+            UnityEngine.Transform transform = this.transform;
+            transform.localScale = new Vector3(value, value, value);
         }
-        public override void InitializeGameObject(GameObject gameObject)
+
+        private readonly SphereGizmo Gizmo = new SphereGizmo();
+
+        public void OnDrawGizmos()
         {
-            base.InitializeGameObject(gameObject);
-            _ = gameObject.AddComponent<SphereGizmo>();
+            Gizmo.Transform = this.transform;
+            Gizmo.Label = this.name;
+            Gizmo.OnDrawGizmos();
+        }
+
+        public void OnDrawGizmosSelected()
+        {
+            Gizmo.Transform = this.transform;
+            Gizmo.Label = null;
+            Gizmo.OnDrawGizmos();
+        }
+
+        public override void Reset()
+        {
+            base.Reset();
+            radius = 1;
         }
     }
 }

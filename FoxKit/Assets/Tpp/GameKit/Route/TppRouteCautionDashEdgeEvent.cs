@@ -1,6 +1,6 @@
 using Fox.Fio;
 using Fox.GameService;
-using Fox.Kernel;
+using Fox;
 
 namespace Tpp.GameKit
 {
@@ -9,6 +9,6 @@ namespace Tpp.GameKit
 		public static readonly StrCode32 Id = new StrCode32("CautionDash");
 		public override StrCode32 GetId() => Id;
 
-		public static TppRouteCautionDashEdgeEvent Deserialize(FileStreamReader reader) => new TppRouteCautionDashEdgeEvent { binaryData = new StaticArray<uint>(new uint[] { reader.ReadUInt32(), reader.ReadUInt32(), reader.ReadUInt32(), reader.ReadUInt32() }), };
+		public static TppRouteCautionDashEdgeEvent Deserialize(UnityEngine.GameObject gameObject, uint[] binaryData) { TppRouteCautionDashEdgeEvent component = gameObject.AddComponent<TppRouteCautionDashEdgeEvent>(); component.binaryData = binaryData; return component; }
 	}
 }

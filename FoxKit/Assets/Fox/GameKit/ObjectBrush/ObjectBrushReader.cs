@@ -1,6 +1,6 @@
 using Fox.Core;
 using Fox.Fio;
-using Fox.Kernel;
+using Fox;
 using UnityEngine;
 
 namespace Fox.GameKit
@@ -22,19 +22,19 @@ namespace Fox.GameKit
             ObjectBrushAsset asset = ScriptableObject.CreateInstance<ObjectBrushAsset>();
 
             //Parameters
-            FoxDataParameterContext? blockSizeWParam = dataNode.FindParameter(new String("blockSizeW"));
+            FoxDataParameterContext? blockSizeWParam = dataNode.FindParameter("blockSizeW");
             asset.blockSizeW = blockSizeWParam.Value.GetFloat();
 
-            FoxDataParameterContext? blockSizeHParam = dataNode.FindParameter(new String("blockSizeH"));
+            FoxDataParameterContext? blockSizeHParam = dataNode.FindParameter("blockSizeH");
             asset.blockSizeH = blockSizeHParam.Value.GetFloat();
 
-            FoxDataParameterContext? numBlocksWParam = dataNode.FindParameter(new String("numBlocksW"));
+            FoxDataParameterContext? numBlocksWParam = dataNode.FindParameter("numBlocksW");
             asset.numBlocksW = numBlocksWParam.Value.GetUInt();
 
-            FoxDataParameterContext? numBlocksHParam = dataNode.FindParameter(new String("numBlocksH"));
+            FoxDataParameterContext? numBlocksHParam = dataNode.FindParameter("numBlocksH");
             asset.numBlocksH = numBlocksHParam.Value.GetUInt();
 
-            FoxDataParameterContext? numObjectsParam = dataNode.FindParameter(new String("numObjects"));
+            FoxDataParameterContext? numObjectsParam = dataNode.FindParameter("numObjects");
             float numObjects = numObjectsParam.Value.GetUInt();
 
             if (dataNode.GetDataPosition() is not long dataPosition)

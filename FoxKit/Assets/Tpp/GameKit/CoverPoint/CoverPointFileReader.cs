@@ -1,4 +1,5 @@
-﻿using Fox.Core;
+using Fox.Core;
+using Fox.Core.Utils;
 using Fox.Fio;
 using UnityEngine;
 
@@ -6,6 +7,8 @@ namespace Tpp.GameKit
 {
     public class CoverPointFileReader
     {
+        private readonly TaskLogger logger = new TaskLogger("ImportTCVP");
+
         private const uint TCVP_SIGNATURE = 0x50564354;
         private const float USHORT_QUANTA_PER_DEGREE = (global::System.UInt16.MaxValue + 1) / 360f;
         private const float DEGREE_PER_USHORT_QUANTA = 360f / (global::System.UInt16.MaxValue + 1);
@@ -16,7 +19,7 @@ namespace Tpp.GameKit
             TPP = 1,
         }
 
-        public GameObject[] Read(FileStreamReader reader)
+        public void Read(FileStreamReader reader)
         {
             Debug.Assert(reader.ReadUInt32() == TCVP_SIGNATURE, "Invalid TCVP file.");
 
@@ -26,25 +29,19 @@ namespace Tpp.GameKit
 
             reader.Seek(reader.ReadUInt32());
 
-            var coverPointObjects = new GameObject[entryCount];
-
             for (ushort i = 0; i < entryCount; i++)
             {
-                var coverPointObject = new GameObject
-                {
-                    name = $"TppCoverPoint{i:0000}"
-                };
-                FoxEntity component = coverPointObject.AddComponent<FoxEntity>();
-                var coverPoint = new TppCoverPoint();
-                component.Entity = coverPoint;
-                coverPoint.InitializeGameObject(coverPointObject);
+                TppCoverPoint coverPoint = new GameObject($"TppCoverPoint{i:0000}").AddComponent<TppCoverPoint>();
 
-                coverPointObject.transform.position = reader.ReadPositionF();
+                var transform = TransformEntity.GetDefault();
+                transform.translation = reader.ReadPositionF();
 
                 var direction = new Vector3((float)reader.ReadInt16() / global::System.Int16.MaxValue, (float)reader.ReadInt16() / global::System.Int16.MaxValue, (float)reader.ReadInt16() / global::System.Int16.MaxValue);
                 Quaternion rotation = Quaternion.identity;
-                rotation.SetLookRotation(Fox.Kernel.Math.FoxToUnityVector3(direction));
-                coverPointObject.transform.rotation = rotation;
+                rotation.SetLookRotation(Fox.Math.FoxToUnityVector3(direction));
+                transform.rotQuat = rotation;
+
+                coverPoint.SetTransform(transform);
 
                 ushort flags = reader.ReadUInt16();
                 coverPoint.isLeftOpen = (flags & (1 << 0)) != 0;
@@ -56,11 +53,7 @@ namespace Tpp.GameKit
                 coverPoint.isUseSniper = (flags & (1 << 6)) != 0;
                 coverPoint.isBreakDisable = (flags & (1 << 7)) != 0;
                 coverPoint.isBreakEnable = (flags & (1 << 8)) != 0;
-
-                coverPointObjects[i] = coverPointObject;
             }
-
-            return coverPointObjects;
         }
     }
 }

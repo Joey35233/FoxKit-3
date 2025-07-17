@@ -23,7 +23,7 @@ namespace Fox.Fio
             byte[] result = ReadBytes(byteCount);
 
             return result.Length != byteCount
-                ? throw new EndOfStreamException(String.Format("{0} bytes required from stream, but only {1} returned.",
+                ? throw new EndOfStreamException(string.Format("{0} bytes required from stream, but only {1} returned.",
                     byteCount, result.Length))
                 : result;
         }

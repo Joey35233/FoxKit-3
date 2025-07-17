@@ -25,6 +25,7 @@ namespace FoxKit.MenuItems
 
             using var writer = new BinaryWriter(System.IO.File.Open(outputPath, FileMode.Create), System.Text.Encoding.Default);
             var fox2Writer = new DataSetFile2Writer();
+
             fox2Writer.Write(writer, scene);
         }
     }

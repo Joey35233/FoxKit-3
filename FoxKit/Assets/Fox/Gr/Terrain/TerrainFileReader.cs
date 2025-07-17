@@ -1,328 +1,460 @@
+﻿using System;
 using Fox.Core;
-using Fox.Fio;
-using Fox.Kernel;
-using System.Linq;
 using UnityEngine;
 
-namespace Fox.Gr
+namespace Fox.Gr.Terrain
 {
-    public class TerrainFileReader
+    public struct BaseLayoutDescription
     {
-        public TerrainFileReader(FileStreamReader reader)
+        public uint GridWidth;
+        public uint GridHeight;
+        public uint LodCount;
+        public float MinHeightWS;
+        public float MaxHeightWS;
+        public float GridDistance;
+    }
+
+    public unsafe struct PatchConfiguration
+    {
+        public uint* Params;
+        public uint* ConfigurationIds;
+        public uint* MaterialIds;
+        public float* MinHeight;
+        public float* MaxHeight;
+    }
+
+    public unsafe struct Patch
+    {
+        public uint HeightFormat;
+        public float MinHeightWS;
+        public float MaxHeightWS;
+        public uint* HeightMap;
+        public uint HeightMapSize;
+
+        public uint ComboFormat;
+        public byte* ComboTexture;
+        public uint ComboTextureSize;
+
+        public bool UsePatchConfiguration;
+        public PatchConfiguration PatchConfiguration;
+        
+        public uint Height;
+        public uint Width;
+
+        public ushort TileGridSize;
+        public ushort MaxLodLevel;
+        public ushort LodCount;
+    }
+    
+    public unsafe struct MappedData
+    {
+        public enum MappedDataType : uint
         {
-            Reader = reader;
+            BaseLayout = 0,
+            Patch = 1,
+        }
+        
+        public MappedDataType Type;
+        
+        public BaseLayoutDescription BaseLayoutDescription;
+        public Patch Patch;
+    }
+    
+    internal static unsafe class TerrainFileReader
+    {
+        // TODO: MOVE
+        internal const int CLUSTER_GRID_SIZE = 32;
+        
+        public enum FileType
+        {
+            BaseLayout = 1,
+            Patch = 2,
         }
 
-        public TerrainMapAsset Read()
+        public struct DeserializationDescription
         {
-            //var header = new FoxDataHeaderContext(Reader, Reader.BaseStream.Position);
-            ////header.Validate(version: 4, flags: 0, name: new String("tre2"));
-            //Debug.Assert(header.GetVersion() == 3 || header.GetVersion() == 4, $"tre2 header version {header.GetVersion()} unsupported");
-
-            //TerrainMapAsset ret = ScriptableObject.CreateInstance<TerrainMapAsset>();
-
-            //int MapChunkWidthWS = 256;
-            //int MapChunkHeightWS = 256;
-            //uint ExtraHighSizeWS = 32;
-            //int sizeWidth = 128;
-            //int sizeHeight = 128;
-            //ushort LodCount = 1;
-
-            //for (FoxDataNodeContext? node = header.GetFirstNode(); node.HasValue; node = node.Value.GetNextNode())
-            //{
-            //    FoxDataNodeContext dataNode = node.Value;
-
-            //    string nodeName = dataNode.GetName().CString;
-
-            //    switch (nodeName)
-            //    {
-            //        case "param":
-            //            ret.Width = dataNode.FindParameter(new String("width")).Value.GetUInt();
-            //            ret.Height = dataNode.FindParameter(new String("height")).Value.GetUInt();
-            //            ret.HighPerLow = dataNode.FindParameter(new String("highPerLow")).Value.GetUInt();
-            //            ret.MaxLodLevel = dataNode.FindParameter(new String("maxLodLevel")).Value.GetUInt();
-            //            ret.GridDistance = dataNode.FindParameter(new String("gridDistance")).Value.GetFloat();
-            //            if (header.GetVersion() == 3)
-            //            {
-            //                ret.WidthWorldSpace = ret.Width & 0xffffffe0;
-            //                ret.HeightWorldSpace = ret.Height & 0xffffffe0;
-            //                MapChunkWidthWS = (int)ret.Width / (int)ret.HighPerLow;
-            //                MapChunkHeightWS = (int)ret.Height / (int)ret.HighPerLow;
-            //                LodCount = (ushort)(ret.MaxLodLevel + 1);
-            //            }
-            //            if (header.GetVersion() == 4)
-            //            {
-            //                int cappedLodLevel = (int)(ret.MaxLodLevel & 31);
-            //                sizeWidth = ((MapChunkWidthWS << cappedLodLevel) / (int)ExtraHighSizeWS);
-            //                sizeHeight = ((MapChunkHeightWS << cappedLodLevel) / (int)ExtraHighSizeWS);
-            //            }
-            //            break;
-            //        case "heightMap":
-            //            ret.HeightFormat = dataNode.FindParameter(new String("heightFormat")).Value.GetUInt();
-            //            ret.HeightRangeMax = dataNode.FindParameter(new String("heightRangeMax")).Value.GetFloat();
-            //            ret.HeightRangeMin = dataNode.FindParameter(new String("heightRangeMin")).Value.GetFloat();
-            //            break;
-            //        case "comboTexture":
-            //            ret.ComboFormat = dataNode.FindParameter(new String("comboFormat")).Value.GetUInt();
-            //            break;
-            //        case "configrationIds":
-            //            FoxDataParameterContext? comboFormatConfig = dataNode.FindParameter(new String("comboFormat")); //??? re comboTexture
-            //            if (comboFormatConfig.HasValue)
-            //            {
-            //                ret.ComboFormat = comboFormatConfig.Value.GetUInt();
-            //            }
-            //            break;
-            //    }
-
-            //    //Payload
-            //    if (dataNode.GetDataPosition() is not long dataPosition)
-            //        continue;
-            //    Reader.Seek(dataPosition);
-
-            //    switch (nodeName)
-            //    {
-            //        case "param":
-            //            //TODO multiple lod maps * LodCount
-            //            ret.LodParam = ReadR32G32B32A32Texture("lodParam", sizeWidth, sizeHeight, ret.HeightRangeMin, ret.HeightRangeMax);
-            //            break;
-            //        case "maxHeight":
-            //            ret.MaxHeight = ReadR32Texture("maxHeight", sizeWidth, sizeHeight, ret.HeightRangeMin, ret.HeightRangeMax);
-            //            break;
-            //        case "minHeight":
-            //            ret.MinHeight = ReadR32Texture("minHeight", sizeWidth, sizeHeight, ret.HeightRangeMin, ret.HeightRangeMax);
-            //            break;
-            //        case "heightMap":
-            //            ret.Heightmap = ReadR32TileTexture("heightmap", MapChunkWidthWS, MapChunkHeightWS, ret.HeightRangeMin, ret.HeightRangeMax);
-            //            break;
-            //        case "comboTexture":
-            //            ret.ComboTexture = ReadR8G8B8A8TileTexture("comboTexture", MapChunkWidthWS, MapChunkHeightWS);
-            //            break;
-            //        case "materialIds":
-            //            ret.MaterialIds = ReadR8G8B8A8Texture("materialIds", sizeWidth, sizeHeight);
-            //            break;
-            //        case "configrationIds":
-            //            ret.ConfigrationIds = ReadR8G8B8A8Texture("configrationIds", sizeWidth, sizeHeight);
-            //            break;
-            //        case "layoutDescription":
-            //            Reader.Skip(0x10);
-            //            ret.WidthWorldSpace = Reader.ReadUInt32();
-            //            ret.HeightWorldSpace = Reader.ReadUInt32();
-            //            long offsetToCommonDescription = Reader.BaseStream.Position+Reader.ReadUInt32();
-            //            ret.MaxHeightWorldSpace = Reader.ReadSingle();
-            //            ret.MinHeightWorldSpace = Reader.ReadSingle();
-            //            ret.LayoutDescriptionGridDistance = Reader.ReadSingle();
-            //            ret.LayoutDescriptionLodCount = Reader.ReadUInt16();
-
-            //            Reader.BaseStream.Position = offsetToCommonDescription;
-
-            //            uint CommonTileHeightFormat = Reader.ReadUInt32();
-            //            float CommonTileMaxHeightWorldSpace = Reader.ReadSingle();
-            //            float CommonTileMinHeightWorldSpace = Reader.ReadSingle();
-            //            uint CommonTileHeightMapOffset = Reader.ReadUInt32();
-            //            uint CommonTileHeightMapSize = Reader.ReadUInt32();
-            //            uint CommonTileComboFormat = Reader.ReadUInt32();
-
-            //            uint CommonComboTextureOffset = Reader.ReadUInt32();
-            //            uint CommonComboTextureSize = Reader.ReadUInt32();
-
-            //            ulong MatMapTileBaseOffset = Reader.ReadUInt64();
-            //            uint MatMapTileMaterialIdsOffset = Reader.ReadUInt32();
-            //            uint MatMapTileConfigurationIdsOffset = Reader.ReadUInt32();
-            //            uint MatMapTileMaxHeightOffset = Reader.ReadUInt32();
-            //            uint MatMapTileMinHeightOffset = Reader.ReadUInt32();
-            //            uint MatMapTileParamOffset = Reader.ReadUInt32();
-
-            //            Reader.Align(0x10);
-
-            //            uint CommonUnknown = Reader.ReadUInt32();
-            //            MapChunkWidthWS = (int)Reader.ReadUInt32();
-            //            MapChunkHeightWS = (int)Reader.ReadUInt32();
-            //            ExtraHighSizeWS = Reader.ReadUInt16();
-            //            ushort CommonMaxLodLevel = Reader.ReadUInt16();
-            //            LodCount = Reader.ReadUInt16();
-
-            //            break;
-            //    }
-            //}
-
-            //return ret;
-
-            return null;
+            public FileType Type;
         }
 
-        private Texture2D ReadR32G32B32A32Texture(string name, int width, int height, float minHeight, float maxHeight)
+        public static bool TryReadTerrainFile(ref MappedData mappedData, byte* data, uint dataSize, DeserializationDescription deserializationDescription)
         {
-            var ret = new Texture2D(width, height, TextureFormat.RGBAFloat, true)
+            switch (deserializationDescription.Type)
             {
-                name = name
-            };
-
-            var pixels = new Color[height * width];
-
-            for (int i = 0; i < height * width; i++)
-            {
-                float r = (Reader.ReadSingle() - minHeight) / (maxHeight - minHeight);
-                float g = (Reader.ReadSingle() - minHeight) / (maxHeight - minHeight);
-                float b = (Reader.ReadSingle() - minHeight) / (maxHeight - minHeight);
-                float a = (Reader.ReadSingle() - minHeight) / (maxHeight - minHeight);
-
-                pixels[i].r = r;
-                pixels[i].g = g;
-                pixels[i].b = b;
-                pixels[i].a = a;
+                case FileType.BaseLayout:
+                    mappedData.Type = MappedData.MappedDataType.BaseLayout;
+                    return ReadTerrainBaseLayout(ref mappedData, data, dataSize, deserializationDescription);
+                case FileType.Patch:
+                    mappedData.Type = MappedData.MappedDataType.Patch;
+                    return ReadTerrainPatch(ref mappedData, data, dataSize, deserializationDescription);
+                default:
+                    return false;
             }
-
-            ret.SetPixels(pixels);
-            ret.Apply();
-            return ret;
         }
 
-        private Texture2D ReadR32Texture(string name, int width, int height, float minHeight, float maxHeight)
+        private static bool ReadTerrainBaseLayout(ref MappedData mappedData, byte* data, uint dataSize, DeserializationDescription deserializationDescription)
         {
-            var ret = new Texture2D(width, height, TextureFormat.RFloat, true)
+            if (data == null || dataSize < sizeof(FoxDataHeader))
             {
-                name = name
-            };
-            var pixels = new Color[height * width];
-
-            for (int i = 0; i < height * width; i++)
-            {
-                float r = Reader.ReadSingle();
-                pixels[i].r = (r - minHeight) / (maxHeight - minHeight);
+                Debug.Log("Data is empty or length is less than header");
+                return false;
             }
 
-            ret.SetPixels(pixels);
-            ret.Apply();
-            return ret;
-        }
-        private Texture2D ReadR8G8B8A8Texture(string name, int width, int height)
-        {
-            var ret = new Texture2D(width, height, TextureFormat.RGBA32, true)
+            FoxDataHeader* header = (FoxDataHeader*)data;
+
+            if (header->Name.Hash != new StrCode32("tre2"))
             {
-                name = name
-            };
-
-            var pixels = new Color[height * width];
-
-            for (int i = 0; i < height * width; i++)
-            {
-                float r = Reader.ReadByte() / 255.0f;
-                float g = Reader.ReadByte() / 255.0f;
-                float b = Reader.ReadByte() / 255.0f;
-                float a = Reader.ReadByte() / 255.0f;
-
-                pixels[i] = new Color(r, g, b, a);
+                Debug.Log("Header hash isn't tre2");
+                return false;
             }
 
-            ret.SetPixels(pixels);
-            ret.Apply();
-            return ret;
+            switch (header->Version)
+            {
+                case 2:
+                case 3:
+                    return ReadTerrainBaseLayoutV3(ref mappedData, header);
+                case 4:
+                    return ReadTerrainBaseLayoutV4(ref mappedData, header);
+                default:
+                    Debug.Log("Unknown header version");
+                    return false;
+            }
         }
 
-        private Texture2D ReadR32TileTexture(string name, int width, int height, float minHeight, float maxHeight)
+        private static bool ReadTerrainBaseLayoutV3(ref MappedData mappedData, FoxDataHeader* header)
         {
-            //Debug.Log($"@{Reader.BaseStream.Position} ReadR32TileTexture");
-            var ret = new Texture2D(width, height, TextureFormat.RFloat, true)
-            {
-                name = name
-            };
-            var pixels = new Color[height * width];
+            FoxDataNode* nodes = header->GetNodes();
+            if (nodes is null) 
+                return false;
+            
+            FoxDataNode* paramNode = nodes->FindNode("param");
+            FoxDataNode* maxHeightNode = nodes->FindNode("maxHeight");
+            FoxDataNode* minHeightNode = nodes->FindNode("minHeight");
+            FoxDataNode* heightMapNode = nodes->FindNode("heightMap");
+            FoxDataNode* comboTextureNode = nodes->FindNode("comboTexture");
+            FoxDataNode* materialIdsNode = nodes->FindNode("materialIds");
+            FoxDataNode* configurationIds = nodes->FindNode("configrationIds");
 
-            float[] data = new float[height * width];
-            for (int i = 0; i < height * width; i++)
-            {
-                //Debug.Log($"@{Reader.BaseStream.Position} {i} ReadSingle");
-                data[i] = Reader.ReadSingle();
-            }
+            if (paramNode is null 
+                || maxHeightNode is null 
+                || minHeightNode is null 
+                || heightMapNode is null 
+                || comboTextureNode is null
+                || materialIdsNode is null
+                || configurationIds is null)
+                return false;
+            
+            FoxDataNodeAttribute* widthParam = paramNode->FindParameter("width");
+            FoxDataNodeAttribute* heightParam = paramNode->FindParameter("height");
+            FoxDataNodeAttribute* highPerLowParam = paramNode->FindParameter("highPerLow");
+            FoxDataNodeAttribute* maxLodLevelParam = paramNode->FindParameter("maxLodLevel");
+            FoxDataNodeAttribute* gridDistanceParam = paramNode->FindParameter("gridDistance");
 
-            const uint numTerrainBlocksW = 8;
-            const uint numTerrainBlocksH = 8;
-            const uint heightMapPitchInBlocks = 8;
-            const uint terrainBlockPitchInTexels = 32;
-            const uint heightMapPitchInTexels = heightMapPitchInBlocks * terrainBlockPitchInTexels;
-            const uint terrainBlockSizeInBytes = 0x1000;
+            if (widthParam is null 
+                || heightParam is null 
+                || highPerLowParam is null 
+                || maxLodLevelParam is null
+                || gridDistanceParam is null)
+                return false;
+            
+            uint width = widthParam->GetUIntValue();
+            uint height = heightParam->GetUIntValue();
+            uint highPerLow = highPerLowParam->GetUIntValue();
+            uint maxLodLevel = maxLodLevelParam->GetUIntValue();
+            float gridDistance = gridDistanceParam->GetFloatValue();
 
-            for (int blockZ = 0; blockZ < numTerrainBlocksH; blockZ++)
-            {
-                for (int blockX = 0; blockX < numTerrainBlocksW; blockX++)
-                {
-                    float[] sourceHeightmapBlockData = data.Skip((int)(((blockX * heightMapPitchInBlocks) + blockZ) * terrainBlockSizeInBytes) / sizeof(float)).ToArray();
+            mappedData.Type = MappedData.MappedDataType.BaseLayout;
+            ref BaseLayoutDescription baseLayoutDesc = ref mappedData.BaseLayoutDescription;
+            baseLayoutDesc.GridDistance = gridDistance;
+            baseLayoutDesc.MinHeightWS = -50;
+            baseLayoutDesc.MaxHeightWS = 200;
 
-                    for (int x = 0; x < terrainBlockPitchInTexels; x++)
-                    {
-                        for (int z = 0; z < terrainBlockPitchInTexels; z++)
-                        {
-                            float heightTexelUNORM = (sourceHeightmapBlockData[z] - minHeight) / (maxHeight - minHeight);
+            // Round down to nearest multiple of 32. 31 -> 0, 33 -> 32, etc.
+            baseLayoutDesc.GridWidth = (uint)(width & -CLUSTER_GRID_SIZE);
+            baseLayoutDesc.GridHeight = (uint)(height & -CLUSTER_GRID_SIZE);
 
-                            uint outX = (uint)((blockZ * terrainBlockPitchInTexels) + z);
-                            uint outY = (uint)((blockX * terrainBlockPitchInTexels) + x);
-                            uint pixelIdx = (outY * heightMapPitchInTexels) + outX;
-                            pixels[pixelIdx] = new Color(heightTexelUNORM, 0, 0);
-                        }
+            baseLayoutDesc.LodCount = maxLodLevel + 1;
 
-                        sourceHeightmapBlockData = sourceHeightmapBlockData.Skip((int)terrainBlockPitchInTexels).ToArray();
-                    }
-                }
-            }
+            ref Patch patch = ref mappedData.Patch;
+            patch.MaxLodLevel = (ushort)maxLodLevel;
+            patch.LodCount = (ushort)(patch.MaxLodLevel + 1);
+            patch.MaxHeightWS = baseLayoutDesc.MaxHeightWS;
+            patch.MinHeightWS = baseLayoutDesc.MinHeightWS;
+            patch.Width = width / highPerLow;
+            patch.Height = height / highPerLow;
+            patch.TileGridSize = CLUSTER_GRID_SIZE;
 
-            ret.SetPixels(pixels);
-            ret.Apply();
-            return ret;
+            uint texelCount = patch.Width * patch.Height;
+
+            patch.HeightFormat = 1;
+            patch.HeightMapSize = texelCount * sizeof(uint);
+            patch.HeightMap = (uint*)heightMapNode->GetData();
+
+            patch.ComboFormat = 6;
+            patch.ComboTextureSize = texelCount * sizeof(uint);
+            patch.ComboTexture = comboTextureNode->GetData();
+
+            ref PatchConfiguration patchConfig = ref patch.PatchConfiguration;
+            patchConfig.Params = (uint*)paramNode->GetData();
+            patchConfig.ConfigurationIds = (uint*)configurationIds->GetData();
+            patchConfig.MaterialIds = (uint*)materialIdsNode->GetData();
+            patchConfig.MinHeight = (float*)materialIdsNode->GetData();
+            patchConfig.MaxHeight = (float*)materialIdsNode->GetData();
+
+            return true;
+
         }
 
-        private Texture2D ReadR8G8B8A8TileTexture(string name, int width, int height)
+        private static bool ReadTerrainBaseLayoutV4(ref MappedData mappedData, FoxDataHeader* header)
         {
-            var ret = new Texture2D(width, height, TextureFormat.RGBA32, true)
-            {
-                name = name
-            };
-            var pixels = new Color[height * width];
+            FoxDataNode* nodes = header->GetNodes();
+            if (nodes is null)
+                return false;
 
-            var data = new Color[height * width];
-            for (int i = 0; i < height * width; i++)
-            {
-                data[i].r = Reader.ReadByte() / 255.0f;
-                data[i].g = Reader.ReadByte() / 255.0f;
-                data[i].b = Reader.ReadByte() / 255.0f;
-                data[i].a = Reader.ReadByte() / 255.0f;
-            }
+            FoxDataNode* paramNode = nodes->FindNode("param");
+            FoxDataNode* maxHeightNode = nodes->FindNode("maxHeight");
+            FoxDataNode* minHeightNode = nodes->FindNode("minHeight");
+            FoxDataNode* heightMapNode = nodes->FindNode("heightMap");
+            FoxDataNode* comboTextureNode = nodes->FindNode("comboTexture");
+            FoxDataNode* materialIdsNode = nodes->FindNode("materialIds");
+            FoxDataNode* configrationIdsNode = nodes->FindNode("configrationIds");
+            FoxDataNode* layoutDescriptionNode = nodes->FindNode("layoutDescription");
 
-            const uint numTerrainBlocksW = 8;
-            const uint numTerrainBlocksH = 8;
-            const uint heightMapPitchInBlocks = 8;
-            const uint terrainBlockPitchInTexels = 32;
-            const uint heightMapPitchInTexels = heightMapPitchInBlocks * terrainBlockPitchInTexels;
-            const uint terrainBlockSizeInBytes = 0x1000;
+            if (paramNode is null 
+                || maxHeightNode is null 
+                || minHeightNode is null 
+                || heightMapNode is null 
+                || comboTextureNode is null 
+                || materialIdsNode is null 
+                || configrationIdsNode is null 
+                || layoutDescriptionNode is null)
+                return false;
 
-            for (int blockZ = 0; blockZ < numTerrainBlocksH; blockZ++)
-            {
-                for (int blockX = 0; blockX < numTerrainBlocksW; blockX++)
-                {
-                    Color[] sourceHeightmapBlockData = data.Skip((int)(((blockX * heightMapPitchInBlocks) + blockZ) * terrainBlockSizeInBytes) / sizeof(float)).ToArray();
+            TerrainFileFormat.BaseLayoutDescription* fileBaseLayoutDesc = (TerrainFileFormat.BaseLayoutDescription*)layoutDescriptionNode->GetData();
+            if (fileBaseLayoutDesc is null)
+                return false;
 
-                    for (int x = 0; x < terrainBlockPitchInTexels; x++)
-                    {
-                        for (int z = 0; z < terrainBlockPitchInTexels; z++)
-                        {
-                            uint outX = (uint)((blockZ * terrainBlockPitchInTexels) + z);
-                            uint outY = (uint)((blockX * terrainBlockPitchInTexels) + x);
-                            uint pixelIdx = (outY * heightMapPitchInTexels) + outX;
-                            pixels[pixelIdx] = sourceHeightmapBlockData[z];
-                        }
+            if (fileBaseLayoutDesc->PatchOffset == 0)
+                return false;
+            
+            TerrainFileFormat.Patch* filePatch = (TerrainFileFormat.Patch*)((byte*)&fileBaseLayoutDesc->PatchOffset + fileBaseLayoutDesc->PatchOffset);
+            
+            mappedData.Type = MappedData.MappedDataType.BaseLayout;
+            
+            ref BaseLayoutDescription baseLayoutDesc = ref mappedData.BaseLayoutDescription;
+            baseLayoutDesc.GridWidth = fileBaseLayoutDesc->GridWidth;
+            baseLayoutDesc.GridHeight = fileBaseLayoutDesc->GridHeight;
+            baseLayoutDesc.LodCount = fileBaseLayoutDesc->LodCount;
+            baseLayoutDesc.MinHeightWS = fileBaseLayoutDesc->MinHeightWS;
+            baseLayoutDesc.MaxHeightWS = fileBaseLayoutDesc->MaxHeightWS;
+            baseLayoutDesc.GridDistance = fileBaseLayoutDesc->GridDistance;
+            
+            ref Patch patch = ref mappedData.Patch;
+            patch.UsePatchConfiguration = true;
 
-                        sourceHeightmapBlockData = sourceHeightmapBlockData.Skip((int)terrainBlockPitchInTexels).ToArray();
-                    }
-                }
-            }
-
-            ret.SetPixels(pixels);
-            ret.Apply();
-            return ret;
+            return MapTerrainPatch(ref patch, filePatch);
         }
 
-        public FileStreamReader Reader
+        private static bool MapTerrainPatch(ref Patch patch, TerrainFileFormat.Patch* filePatch)
         {
-            get;
+            patch.Height = filePatch->Height;
+            patch.Width = filePatch->Width;
+            patch.TileGridSize = filePatch->ClusterGridSize; // TODO; get a better name for these
+            patch.MaxLodLevel = filePatch->MaxLodLevel;
+            patch.LodCount = filePatch->LodCount;
+
+            ref PatchConfiguration patchConfig = ref patch.PatchConfiguration;
+            TerrainFileFormat.PatchConfiguration* filePatchConfig = &filePatch->PatchConfiguration;
+            patchConfig.Params = (uint*)((byte*)&filePatchConfig->ParamOffset + filePatchConfig->ParamOffset);
+            patchConfig.ConfigurationIds = (uint*)((byte*)&filePatchConfig->ConfigurationIdsOffset + filePatchConfig->ConfigurationIdsOffset);
+            patchConfig.MaterialIds = (uint*)((byte*)&filePatchConfig->MaterialIdsOffset + filePatchConfig->MaterialIdsOffset);
+            patchConfig.MinHeight = (float*)((byte*)&filePatchConfig->MinHeightOffset + filePatchConfig->MinHeightOffset);
+            patchConfig.MaxHeight = (float*)((byte*)&filePatchConfig->MaxHeightOffset + filePatchConfig->MaxHeightOffset);
+
+            patch.HeightFormat = filePatch->HeightMap.HeightFormat;
+            patch.MinHeightWS = filePatch->HeightMap.MinHeightWS;
+            patch.MaxHeightWS = filePatch->HeightMap.MaxHeightWS;
+            patch.HeightMap = (uint*)((byte*)&filePatch->HeightMap.HeightMapOffset + filePatch->HeightMap.HeightMapOffset);
+            patch.HeightMapSize = filePatch->HeightMap.HeightMapSize;
+
+            patch.ComboFormat = filePatch->ComboFormat;
+            patch.ComboTexture = (byte*)&filePatch->ComboTextureOffset + filePatch->ComboTextureOffset;
+            patch.ComboTextureSize = filePatch->ComboTextureSize;
+
+            if (patch.ComboFormat != 5 && patch.ComboFormat != 6)
+                return false;
+
+            return true;
+        }
+
+        private static bool ReadTerrainPatch(ref MappedData mappedData, byte* data, uint dataSize, DeserializationDescription deserializationDescription)
+        {
+            if (data == null || dataSize < sizeof(FoxDataHeader))
+            {
+                Debug.Log("Data is empty or length is less than header");
+                return false;
+            }
+
+            var header = (FoxDataHeader*)data;
+
+            if (header->Name.Hash != new StrCode32("terrainHighBlock"))
+            {
+                Debug.Log("Header hash isn't terrainHighBlock");
+                return false;
+            }
+
+            switch (header->Version)
+            {
+                case 2:
+                    return ReadTerrainPatchV2(ref mappedData, header);
+                case 3:
+                    return ReadTerrainPatchV3(ref mappedData, header);
+                case 4:
+                    return ReadTerrainPatchV4(ref mappedData, header);
+                default:
+                    Debug.Log("Unknown header version");
+                    return false;
+            }
+        }
+
+        private static bool ReadTerrainPatchV2(ref MappedData mappedData, FoxDataHeader* header)
+        {
+            FoxDataNode* heightMapNode = header->GetNodes();
+            if (heightMapNode is null)
+                return false;
+
+            FoxDataNode* comboTextureNode = heightMapNode->GetNext();
+            if (comboTextureNode is null)
+                return false;
+            
+            FoxDataNodeAttribute* pitchParam = heightMapNode->FindParameter("pitch");
+            if (pitchParam is null || pitchParam->Type != FoxDataNodeAttribute.DataType.UInt)
+                return false;
+            
+            mappedData.Type = MappedData.MappedDataType.Patch;
+
+            uint pitch = pitchParam->GetUIntValue();
+            uint size = pitch * CLUSTER_GRID_SIZE;
+
+            ref Patch patch = ref mappedData.Patch;
+            patch.Width = size;
+            patch.Height = size;
+            patch.TileGridSize = CLUSTER_GRID_SIZE;
+            patch.MaxLodLevel = 0;
+            patch.LodCount = 5;
+
+            patch.HeightFormat = 1;
+            patch.MinHeightWS = 0.0f;
+            patch.MaxHeightWS = 0.0f;
+            patch.HeightMap = (uint*)heightMapNode->GetData();
+            
+            patch.ComboFormat = 6;
+            patch.ComboTexture = comboTextureNode->GetData();
+            patch.ComboTextureSize = size * size * sizeof(uint);
+
+            return true;
+        }
+        
+        private static bool ReadTerrainPatchV3(ref MappedData mappedData, FoxDataHeader* header)
+        {
+            FoxDataNode* firstNode = header->GetNodes();
+            if (firstNode is null)
+                return false;
+
+            FoxDataNode* heightMapNode = firstNode;
+
+            FoxDataNode* comboTextureNode = heightMapNode->GetNext();
+            if (comboTextureNode is null)
+                return false;
+            
+            FoxDataNodeAttribute* pitchParam = heightMapNode->FindParameter("pitch");
+            if (pitchParam is null || pitchParam->Type != FoxDataNodeAttribute.DataType.UInt)
+                return false;
+            
+            mappedData.Type = MappedData.MappedDataType.Patch;
+
+            uint pitch = pitchParam->GetUIntValue();
+            uint size = pitch * CLUSTER_GRID_SIZE;
+
+            ref Patch patch = ref mappedData.Patch;
+            patch.Width = size;
+            patch.Height = size;
+            patch.TileGridSize = CLUSTER_GRID_SIZE;
+            patch.MaxLodLevel = 0;
+            patch.LodCount = 5;
+
+            patch.HeightFormat = 1;
+            patch.MinHeightWS = 0.0f;
+            patch.MaxHeightWS = 0.0f;
+            patch.HeightMapSize = size * size * sizeof(float);
+            patch.HeightMap = (uint*)heightMapNode->GetData();
+            
+            patch.ComboFormat = 6;
+            patch.ComboTexture = comboTextureNode->GetData();
+            patch.ComboTextureSize = size * size * sizeof(uint);
+
+            FoxDataNode* editParamNode = firstNode->FindNode("editParam");
+            if (editParamNode is not null)
+            {
+                patch.UsePatchConfiguration = true;
+                ref PatchConfiguration patchConfiguration = ref patch.PatchConfiguration;
+            
+                FoxDataNode* lodParameterNode = firstNode->FindNode("lodParameter");
+                FoxDataNode* maxHeightNode = firstNode->FindNode("maxHeight");
+                FoxDataNode* minHeightNode = firstNode->FindNode("minHeight");
+                FoxDataNode* materialIdsNode = firstNode->FindNode("materialIds");
+                FoxDataNode* configurationIdsNode = firstNode->FindNode("configrationIds");
+
+                if (lodParameterNode is null
+                    || maxHeightNode is null
+                    || minHeightNode is null
+                    || materialIdsNode is null
+                    || configurationIdsNode is null)
+                    return false;
+
+                FoxDataNodeAttribute* maxLodParam = editParamNode->FindParameter("maxLodLevel");
+                if (maxLodParam is null || maxLodParam->Type != FoxDataNodeAttribute.DataType.UInt)
+                    return false;
+            
+                uint maxLod = maxLodParam->GetUIntValue();
+                patch.MaxLodLevel = 0;
+                patch.LodCount = (ushort)(maxLod + 1);
+            
+                patchConfiguration.Params = (uint*)lodParameterNode->GetData();
+                patchConfiguration.ConfigurationIds = (uint*)configurationIdsNode->GetData();
+                patchConfiguration.MaterialIds = (uint*)materialIdsNode->GetData();
+                patchConfiguration.MinHeight = (float*)minHeightNode->GetData();
+                patchConfiguration.MaxHeight = (float*)maxHeightNode->GetData();
+            }
+            
+            return true;
+        }
+        
+        private static bool ReadTerrainPatchV4(ref MappedData mappedData, FoxDataHeader* header)
+        {
+            FoxDataNode* nodes = header->GetNodes();
+            if (nodes is null)
+                return false;
+
+            FoxDataNode* patchDescriptionNode = nodes->FindNode("patchDescription");
+
+            if (patchDescriptionNode is null)
+                return false;
+
+            TerrainFileFormat.PatchDescription* filePatchDesc = (TerrainFileFormat.PatchDescription*)patchDescriptionNode->GetData();
+            if (filePatchDesc is null)
+                return false;
+
+            if (filePatchDesc->PatchOffset == 0)
+                return false;
+            
+            TerrainFileFormat.Patch* filePatch = (TerrainFileFormat.Patch*)((byte*)&filePatchDesc->PatchOffset + filePatchDesc->PatchOffset);
+            
+            mappedData.Type = MappedData.MappedDataType.Patch;
+            ref Patch patch = ref mappedData.Patch;
+
+            patch.UsePatchConfiguration = true;
+
+            return MapTerrainPatch(ref patch, filePatch);
         }
     }
 }

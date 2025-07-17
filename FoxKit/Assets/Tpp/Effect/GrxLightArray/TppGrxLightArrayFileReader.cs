@@ -1,17 +1,28 @@
 using Fox.Core;
+using Fox.Core.Utils;
 using Fox.Fio;
-using Fox.Kernel;
+using Fox;
 using UnityEditor.SceneManagement;
 using UnityEngine;
+using System;
 
 namespace Tpp.Effect
 {
     public class TppGrxLightArrayFileReader
     {
+        private readonly TaskLogger logger = new TaskLogger("ImportGRXLA");
+
         public UnityEngine.SceneManagement.Scene? Read(FileStreamReader reader)
         {
-            UnityEngine.SceneManagement.Scene scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
-
+            UnityEngine.SceneManagement.Scene scene;
+            try
+            {
+                scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Additive);
+            }
+            catch (InvalidOperationException)
+            {
+                scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
+            }
             // Read header
             uint signature = reader.ReadUInt32(); //FGxL or FGxO
             if (signature != 1282950982)
@@ -75,81 +86,42 @@ namespace Tpp.Effect
             return result;
         }
 
-        public TransformEntity ReadTransform(FileStreamReader reader)
+        private void ReadLightProbe(FileStreamReader reader)
         {
-            long rewindPos = reader.BaseStream.Position;
-
-            TransformEntity transform = null;
-
-            uint offset = reader.ReadUInt32();
-            if (offset > 0)
-            {
-                reader.Seek(rewindPos + offset);
-
-                transform = new TransformEntity { scale = reader.ReadVector3(), rotQuat = reader.ReadRotationF(), translation = reader.ReadPositionF() };
-            }
-
-            reader.Seek(rewindPos + 4);
-
-            return transform;
-        }
-
-        public GameObject ReadLocator(FileStreamReader reader)
-        {
-            if (ReadTransform(reader) is TransformEntity transform)
-            {
-                var gameObject = new GameObject();
-                var locator = (Locator)(gameObject.AddComponent<FoxEntity>().Entity = new Locator());
-                locator.size = 1;
-
-                locator.SetTransform(transform);
-
-                locator.InitializeGameObject(gameObject);
-
-                return gameObject;
-            }
-
-            return null;
-        }
-
-        public void ReadLightProbe(FileStreamReader reader)
-        {
-            var lightGameObject = new GameObject();
-
-            var lightEntity = (TppLightProbe)(lightGameObject.AddComponent<FoxEntity>().Entity = new TppLightProbe());
-            lightEntity.name = new String(ReadName(reader));
+            TppLightProbe lightProbe = new GameObject(ReadName(reader)).AddComponent<TppLightProbe>();
+            lightProbe.SetTransform(TransformEntity.GetDefault());
 
             uint localFlags = reader.ReadUInt32();
-            lightEntity.enable = FlagUtils.GetFlag(localFlags, 0);
-            lightEntity.enable24hSH = FlagUtils.GetFlag(localFlags, 1);
-            lightEntity.enableWeatherSH = FlagUtils.GetFlag(localFlags, 2);
-            lightEntity.enableRelatedLightSH = FlagUtils.GetFlag(localFlags, 3);
-            lightEntity.enableOcclusionMode = FlagUtils.GetFlag(localFlags, 4);
+            lightProbe.enable = FlagUtils.GetFlag(localFlags, 0);
+            lightProbe.enable24hSH = FlagUtils.GetFlag(localFlags, 1);
+            lightProbe.enableWeatherSH = FlagUtils.GetFlag(localFlags, 2);
+            lightProbe.enableRelatedLightSH = FlagUtils.GetFlag(localFlags, 3);
+            lightProbe.enableOcclusionMode = FlagUtils.GetFlag(localFlags, 4);
 
-            lightEntity.shapeType = (TppLightProbe.TppLightProbe_ShapeType)reader.ReadUInt16();
+            lightProbe.shapeType = (TppLightProbe.TppLightProbe_ShapeType)reader.ReadUInt16();
 
             reader.Align(4);
 
             // Switched x scale for endianness
-            lightEntity.innerScaleXNegative = reader.ReadHalf(); // innerScaleXPositive
-            lightEntity.innerScaleYPositive = reader.ReadHalf();
-            lightEntity.innerScaleZPositive = reader.ReadHalf();
-            lightEntity.innerScaleXPositive = reader.ReadHalf(); // innerScaleXNegative
-            lightEntity.innerScaleYNegative = reader.ReadHalf();
-            lightEntity.innerScaleZNegative = reader.ReadHalf();
+            lightProbe.innerScaleXNegative = reader.ReadHalf(); // innerScaleXPositive
+            lightProbe.innerScaleYPositive = reader.ReadHalf();
+            lightProbe.innerScaleZPositive = reader.ReadHalf();
+            lightProbe.innerScaleXPositive = reader.ReadHalf(); // innerScaleXNegative
+            lightProbe.innerScaleYNegative = reader.ReadHalf();
+            lightProbe.innerScaleZNegative = reader.ReadHalf();
 
-            var transform = new TransformEntity { scale = reader.ReadVector3(), rotQuat = reader.ReadRotationF(), translation = reader.ReadPositionF() };
-            lightEntity.SetTransform(transform);
-            lightEntity.InitializeGameObject(lightGameObject);
+            lightProbe.transform.localScale = reader.ReadVector3();
+            lightProbe.transform.rotation = reader.ReadRotationF();
+            lightProbe.transform.position = reader.ReadPositionF();
 
             uint innerAreaOffset = reader.ReadUInt32();
             if (innerAreaOffset != 0)
             {
                 var iaTransform = new Fox.Core.Transform { scale = reader.ReadVector3(), rotation_quat = reader.ReadRotationF(), translation = reader.ReadPositionF() };
 
-                Vector3 localIaPos = iaTransform.translation - transform.translation;
+                Vector3 localIaPos = iaTransform.translation - lightProbe.transform.position;
                 var absIaScale = new Vector3(Mathf.Abs(iaTransform.scale.x), Mathf.Abs(iaTransform.scale.y), Mathf.Abs(iaTransform.scale.z));
-                var posProbeScale = new Vector3(Mathf.Abs(transform.scale.x), Mathf.Abs(transform.scale.y), Mathf.Abs(transform.scale.z));
+                var posProbeScale = new Vector3(Mathf.Abs(lightProbe.transform.localScale.x), Mathf.Abs(lightProbe.transform.localScale.y), Mathf.Abs(lightProbe.transform.localScale.z));
                 Vector3 negProbeScale = -posProbeScale;
 
                 Vector3 iaUpper = localIaPos + absIaScale;
@@ -161,17 +133,17 @@ namespace Tpp.Effect
 
                 var numN = Vector3.Min(localIaPos - absIaScale - iaMid, negProbeScale);
 
-                lightEntity.innerScaleXPositive = numP.x / posProbeScale.x;
-                lightEntity.innerScaleXNegative = numN.x / negProbeScale.x;
+                lightProbe.innerScaleXPositive = numP.x / posProbeScale.x;
+                lightProbe.innerScaleXNegative = numN.x / negProbeScale.x;
 
-                lightEntity.innerScaleXPositive = numP.y / posProbeScale.y;
-                lightEntity.innerScaleXNegative = numN.y / negProbeScale.y;
+                lightProbe.innerScaleXPositive = numP.y / posProbeScale.y;
+                lightProbe.innerScaleXNegative = numN.y / negProbeScale.y;
 
-                lightEntity.innerScaleXPositive = numP.z / posProbeScale.z;
-                lightEntity.innerScaleXNegative = numN.z / negProbeScale.z;
+                lightProbe.innerScaleXPositive = numP.z / posProbeScale.z;
+                lightProbe.innerScaleXNegative = numN.z / negProbeScale.z;
             }
 
-            lightEntity.priority = reader.ReadInt16();
+            lightProbe.priority = reader.ReadInt16();
 
             _ = reader.ReadUInt16();
 
@@ -179,8 +151,8 @@ namespace Tpp.Effect
 
             _ = reader.ReadUInt16();
 
-            if (lightEntity.enableOcclusionMode)
-                lightEntity.occlusionModeOpenRate = reader.ReadSingle();
+            if (lightProbe.enableOcclusionMode)
+                lightProbe.occlusionModeOpenRate = reader.ReadSingle();
             else
                 reader.Skip(4);
         }

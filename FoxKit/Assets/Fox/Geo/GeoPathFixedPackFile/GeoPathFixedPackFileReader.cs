@@ -1,4 +1,5 @@
 using Fox.Core;
+using Fox.Core.Utils;
 using Fox.Fio;
 using UnityEditor.SceneManagement;
 using UnityEngine;
@@ -7,6 +8,8 @@ namespace Fox.Geo
 {
     public class GeoPathFixedPackFileReader
     {
+        private readonly TaskLogger logger = new TaskLogger("ImportGPFP");
+
         public UnityEngine.SceneManagement.Scene? Read(FileStreamReader reader)
         {
             UnityEngine.SceneManagement.Scene scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
@@ -14,7 +17,7 @@ namespace Fox.Geo
             var foxDataHeader = new FoxDataHeaderContext(reader, reader.BaseStream.Position);
             foxDataHeader.Validate(version: 201209110, flags: 0);
 
-            if (foxDataHeader.GetFirstNode() is not FoxDataNodeContext dataNode)
+            if (foxDataHeader.GetFirstNode() is not { } dataNode)
                 return null;
 
             Debug.Assert(dataNode.GetFlags() == 12);
@@ -49,11 +52,9 @@ namespace Fox.Geo
                 Debug.Assert(header.NextHeaderOffset == 0);
                 Debug.Assert(header.PreviousHeaderOffset == 0);
                 Debug.Assert(header.ChildHeaderOffset == 0);
-                if (header.Type == GeoPrimType.Path && GeomHeaderContext.Deserialize(header) is Entity shape)
+                if (header.Type == GeoPrimType.Path && GeomHeaderContext.Deserialize(header) is { } shape)
                 {
-                    var gameObject = new GameObject(header.Name.ToString());
-                    gameObject.AddComponent<FoxEntity>().Entity = shape;
-                    shape.InitializeGameObject(gameObject);
+                    (shape as UnityEngine.Object).name = header.Name.ToString();
                 }
                 else
                 {

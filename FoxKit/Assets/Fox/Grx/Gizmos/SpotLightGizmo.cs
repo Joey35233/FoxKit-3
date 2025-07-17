@@ -1,81 +1,65 @@
 ﻿using Fox.Core;
-using System;
 using UnityEditor;
 using UnityEngine;
 
 namespace Fox.Grx
 {
-    [DisallowMultipleComponent, ExecuteInEditMode, SelectionBase]
-    public class SpotLightGizmo : MonoBehaviour
+    public class SpotLightGizmo
     {
-        [NonSerialized]
-        public Color UmbraColor = new(0.22f, 0.765f, 0.961f);
+        public UnityEngine.Transform Transform = null;
+        public string Label = null;
+        public Vector3 Axis = Vector3.forward;
+        public float OuterRange = 1;
+        public float UmbraAngle = 5;
+        public float PenumbraAngle = 10;
+        public float ShadowUmbraAngle = 20;
+        public float ShadowPenumbraAngle = 25;
 
-        [NonSerialized]
-        public Color PenumbraColor = new(0.961f, 0.271f, 0.22f);
+        private Color UmbraColor = new(0.22f, 0.765f, 0.961f);
+        private Color PenumbraColor = new(0.961f, 0.271f, 0.22f);
+        private float ShadowColorScale = 0.6f;
+        private Vector3 OriginScale = Vector3.one * 0.5f;
 
-        [NonSerialized]
-        public float ShadowColorScale = 0.6f;
-
-        public Color ShadowUmbraColor => UmbraColor * ShadowColorScale;
-        public Color ShadowPenumbraColor => PenumbraColor * ShadowColorScale;
-
-        [HideInInspector]
-        public Vector3 OriginScale = Vector3.one * 0.5f;
-
-        [NonSerialized]
-        public bool DrawLabel = false;
+        private ConeGizmo Gizmo = new ConeGizmo();
 
         private void DrawGizmos(bool isSelected)
         {
-            if (gameObject.GetComponent<FoxEntity>()?.Entity is not SpotLight spotLight)
+            if (Transform is null)
                 return;
 
-            Gizmos.matrix = transform.localToWorldMatrix;
-
-            Vector3 axis = spotLight.reachPoint.normalized;
-
-            Gizmos.color = UmbraColor;
-            DrawCone(axis, spotLight.outerRange, spotLight.umbraAngle);
-
+            Gizmos.color = isSelected ? Color.white : UmbraColor;
+            Gizmos.matrix = Transform.localToWorldMatrix;
             Gizmos.DrawWireCube(Vector3.zero, OriginScale);
 
-            Gizmos.color = PenumbraColor;
-            DrawCone(axis, spotLight.outerRange, spotLight.penumbraAngle);
+            if (isSelected)
+            {
+                Gizmo.Transform = Transform;
+                Gizmo.Axis = Axis;
+                Gizmo.Range = OuterRange;
 
-            Gizmos.color = ShadowUmbraColor;
-            DrawCone(axis, spotLight.outerRange, spotLight.shadowUmbraAngle);
+                Gizmo.Color = UmbraColor;
+                Gizmo.Angle = UmbraAngle;
+                Gizmo.OnDrawGizmos();
 
-            Gizmos.color = ShadowPenumbraColor;
-            DrawCone(axis, spotLight.outerRange, spotLight.shadowPenumbraAngle);
+                Gizmo.Color = PenumbraColor;
+                Gizmo.Angle = PenumbraAngle;
+                Gizmo.OnDrawGizmos();
+
+                Gizmo.Color = UmbraColor * ShadowColorScale;
+                Gizmo.Angle = ShadowUmbraAngle;
+                Gizmo.OnDrawGizmos();
+
+                Gizmo.Color = PenumbraColor * ShadowColorScale;
+                Gizmo.Angle = ShadowPenumbraAngle;
+                Gizmo.OnDrawGizmos();
+            }
+
+            if (!isSelected && Label is not null)
+                Handles.Label(Transform.position, Label);
         }
 
-        private void DrawCone(Vector3 axis, float range, float angle)
-        {
-            float halfAngle = angle * Mathf.Deg2Rad / 2;
+        public void OnDrawGizmos() => DrawGizmos(false);
 
-            halfAngle = Mathf.Clamp(halfAngle, 1e-10f, Mathf.PI / 2);
-
-            float r = range / Mathf.Cos(halfAngle / 2);
-
-            float coneHeight = r * Mathf.Cos(halfAngle);
-            float coneBaseRadius = r * Mathf.Sin(halfAngle);
-
-            Vector3 unnormalizedAxis = axis * coneHeight;
-
-            Gizmos.DrawLine(Vector3.zero, unnormalizedAxis + new Vector3(coneBaseRadius, 0, 0));
-            Gizmos.DrawLine(Vector3.zero, unnormalizedAxis + new Vector3(-coneBaseRadius, 0, 0));
-            Gizmos.DrawLine(Vector3.zero, unnormalizedAxis + new Vector3(0, 0, coneBaseRadius));
-            Gizmos.DrawLine(Vector3.zero, unnormalizedAxis + new Vector3(0, 0, -coneBaseRadius));
-
-            // Could be a little dicey
-            Handles.matrix = Gizmos.matrix;
-            Handles.color = Gizmos.color;
-            Handles.DrawWireDisc(unnormalizedAxis, axis, coneBaseRadius);
-        }
-
-        private void OnDrawGizmos() => DrawGizmos(false);
-
-        private void OnDrawGizmosSelected() => DrawGizmos(true);
+        public void OnDrawGizmosSelected() => DrawGizmos(true);
     }
 }

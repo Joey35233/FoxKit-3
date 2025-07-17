@@ -1,5 +1,5 @@
 using Fox.Fio;
-using Fox.Kernel;
+using Fox;
 using System;
 using System.Collections.Generic;
 using UnityEditor;
@@ -10,9 +10,9 @@ namespace Fox.GameService
     [InitializeOnLoad]
     public static class GameServiceModule
     {
-        internal static Dictionary<StrCode32, Func<FileStreamReader, GsRouteDataRouteEvent>> GsRouteDataEventDeserializationMap = new();
+        internal static Dictionary<StrCode32, Func<GameObject, uint[], GsRouteDataRouteEvent>> GsRouteDataEventDeserializationMap = new();
 
-        public static void RegisterRouteDataEventDeserializationCallback(StrCode32 id, Func<FileStreamReader, GsRouteDataRouteEvent> deserializeFunc)
+        public static void RegisterRouteDataEventDeserializationCallback(StrCode32 id, Func<GameObject, uint[], GsRouteDataRouteEvent> deserializeFunc)
         {
             Debug.Assert(deserializeFunc != null);
 

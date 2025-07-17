@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.Globalization;
 
-namespace Fox.Kernel
+namespace Fox
 {
     // Thanks to https://sourceforge.net/projects/csharp-half/!
     internal static class HalfConversions
@@ -50,15 +50,15 @@ namespace Fox.Kernel
 
         #region Constants
         /// <summary>
-        /// Represents the smallest positive Fox.Kernel.Half value greater than zero. This field is constant.
+        /// Represents the smallest positive Fox.Half value greater than zero. This field is constant.
         /// </summary>
         public static readonly Half Epsilon = Half.ToHalf(0x0001);
         /// <summary>
-        /// Represents the largest possible value of Fox.Kernel.Half. This field is constant.
+        /// Represents the largest possible value of Fox.Half. This field is constant.
         /// </summary>
         public static readonly Half MaxValue = Half.ToHalf(0x7bff);
         /// <summary>
-        /// Represents the smallest possible value of Fox.Kernel.Half. This field is constant.
+        /// Represents the smallest possible value of Fox.Half. This field is constant.
         /// </summary>
         public static readonly Half MinValue = Half.ToHalf(0xfbff);
         /// <summary>
@@ -77,329 +77,329 @@ namespace Fox.Kernel
 
         #region Constructors
         /// <summary>
-        /// Initializes a new instance of Fox.Kernel.Half to the value of the specified single-precision floating-point number.
+        /// Initializes a new instance of Fox.Half to the value of the specified single-precision floating-point number.
         /// </summary>
-        /// <param name="value">The value to represent as a Fox.Kernel.Half.</param>
+        /// <param name="value">The value to represent as a Fox.Half.</param>
         public Half(float value)
         {
             this = HalfConversions.SingleToHalf(value);
         }
         /// <summary>
-        /// Initializes a new instance of Fox.Kernel.Half to the value of the specified 32-bit signed integer.
+        /// Initializes a new instance of Fox.Half to the value of the specified 32-bit signed integer.
         /// </summary>
-        /// <param name="value">The value to represent as a Fox.Kernel.Half.</param>
+        /// <param name="value">The value to represent as a Fox.Half.</param>
         public Half(int value) : this((float)value) { }
         /// <summary>
-        /// Initializes a new instance of Fox.Kernel.Half to the value of the specified 64-bit signed integer.
+        /// Initializes a new instance of Fox.Half to the value of the specified 64-bit signed integer.
         /// </summary>
-        /// <param name="value">The value to represent as a Fox.Kernel.Half.</param>
+        /// <param name="value">The value to represent as a Fox.Half.</param>
         public Half(long value) : this((float)value) { }
         /// <summary>
-        /// Initializes a new instance of Fox.Kernel.Half to the value of the specified double-precision floating-point number.
+        /// Initializes a new instance of Fox.Half to the value of the specified double-precision floating-point number.
         /// </summary>
-        /// <param name="value">The value to represent as a Fox.Kernel.Half.</param>
+        /// <param name="value">The value to represent as a Fox.Half.</param>
         public Half(double value) : this((float)value) { }
         /// <summary>
-        /// Initializes a new instance of Fox.Kernel.Half to the value of the specified decimal number.
+        /// Initializes a new instance of Fox.Half to the value of the specified decimal number.
         /// </summary>
-        /// <param name="value">The value to represent as a Fox.Kernel.Half.</param>
+        /// <param name="value">The value to represent as a Fox.Half.</param>
         public Half(decimal value) : this((float)value) { }
         /// <summary>
-        /// Initializes a new instance of Fox.Kernel.Half to the value of the specified 32-bit unsigned integer.
+        /// Initializes a new instance of Fox.Half to the value of the specified 32-bit unsigned integer.
         /// </summary>
-        /// <param name="value">The value to represent as a Fox.Kernel.Half.</param>
+        /// <param name="value">The value to represent as a Fox.Half.</param>
         public Half(uint value) : this((float)value) { }
         /// <summary>
-        /// Initializes a new instance of Fox.Kernel.Half to the value of the specified 64-bit unsigned integer.
+        /// Initializes a new instance of Fox.Half to the value of the specified 64-bit unsigned integer.
         /// </summary>
-        /// <param name="value">The value to represent as a Fox.Kernel.Half.</param>
+        /// <param name="value">The value to represent as a Fox.Half.</param>
         public Half(ulong value) : this((float)value) { }
         #endregion
 
         #region Numeric operators
         /// <summary>
-        /// Returns the result of multiplying the specified Fox.Kernel.Half value by negative one.
+        /// Returns the result of multiplying the specified Fox.Half value by negative one.
         /// </summary>
-        /// <param name="half">A Fox.Kernel.Half.</param>
-        /// <returns>A Fox.Kernel.Half with the value of half, but the opposite sign. -or- Zero, if half is zero.</returns>
+        /// <param name="half">A Fox.Half.</param>
+        /// <returns>A Fox.Half with the value of half, but the opposite sign. -or- Zero, if half is zero.</returns>
         public static Half Negate(Half half) => -half;
         /// <summary>
-        /// Adds two specified Fox.Kernel.Half values.
+        /// Adds two specified Fox.Half values.
         /// </summary>
-        /// <param name="half1">A Fox.Kernel.Half.</param>
-        /// <param name="half2">A Fox.Kernel.Half.</param>
-        /// <returns>A Fox.Kernel.Half value that is the sum of half1 and half2.</returns>
+        /// <param name="half1">A Fox.Half.</param>
+        /// <param name="half2">A Fox.Half.</param>
+        /// <returns>A Fox.Half value that is the sum of half1 and half2.</returns>
         public static Half Add(Half half1, Half half2) => half1 + half2;
         /// <summary>
-        /// Subtracts one specified Fox.Kernel.Half value from another.
+        /// Subtracts one specified Fox.Half value from another.
         /// </summary>
-        /// <param name="half1">A Fox.Kernel.Half (the minuend).</param>
-        /// <param name="half2">A Fox.Kernel.Half (the subtrahend).</param>
-        /// <returns>The Fox.Kernel.Half result of subtracting half2 from half1.</returns>
+        /// <param name="half1">A Fox.Half (the minuend).</param>
+        /// <param name="half2">A Fox.Half (the subtrahend).</param>
+        /// <returns>The Fox.Half result of subtracting half2 from half1.</returns>
         public static Half Subtract(Half half1, Half half2) => half1 - half2;
         /// <summary>
-        /// Multiplies two specified Fox.Kernel.Half values.
+        /// Multiplies two specified Fox.Half values.
         /// </summary>
-        /// <param name="half1">A Fox.Kernel.Half (the multiplicand).</param>
-        /// <param name="half2">A Fox.Kernel.Half (the multiplier).</param>
-        /// <returns>A Fox.Kernel.Half that is the result of multiplying half1 and half2.</returns>
+        /// <param name="half1">A Fox.Half (the multiplicand).</param>
+        /// <param name="half2">A Fox.Half (the multiplier).</param>
+        /// <returns>A Fox.Half that is the result of multiplying half1 and half2.</returns>
         public static Half Multiply(Half half1, Half half2) => half1 * half2;
         /// <summary>
-        /// Divides two specified Fox.Kernel.Half values.
+        /// Divides two specified Fox.Half values.
         /// </summary>
-        /// <param name="half1">A Fox.Kernel.Half (the dividend).</param>
-        /// <param name="half2">A Fox.Kernel.Half (the divisor).</param>
-        /// <returns>The Fox.Kernel.Half that is the result of dividing half1 by half2.</returns>
+        /// <param name="half1">A Fox.Half (the dividend).</param>
+        /// <param name="half2">A Fox.Half (the divisor).</param>
+        /// <returns>The Fox.Half that is the result of dividing half1 by half2.</returns>
         /// <exception cref="System.DivideByZeroException">half2 is zero.</exception>
         public static Half Divide(Half half1, Half half2) => half1 / half2;
 
         /// <summary>
-        /// Returns the value of the Fox.Kernel.Half operand (the sign of the operand is unchanged).
+        /// Returns the value of the Fox.Half operand (the sign of the operand is unchanged).
         /// </summary>
-        /// <param name="half">The Fox.Kernel.Half operand.</param>
+        /// <param name="half">The Fox.Half operand.</param>
         /// <returns>The value of the operand, half.</returns>
         public static Half operator +(Half half) => half;
         /// <summary>
-        /// Negates the value of the specified Fox.Kernel.Half operand.
+        /// Negates the value of the specified Fox.Half operand.
         /// </summary>
-        /// <param name="half">The Fox.Kernel.Half operand.</param>
+        /// <param name="half">The Fox.Half operand.</param>
         /// <returns>The result of half multiplied by negative one (-1).</returns>
         public static Half operator -(Half half) => HalfConversions.Negate(half);
         /// <summary>
-        /// Increments the Fox.Kernel.Half operand by 1.
+        /// Increments the Fox.Half operand by 1.
         /// </summary>
-        /// <param name="half">The Fox.Kernel.Half operand.</param>
+        /// <param name="half">The Fox.Half operand.</param>
         /// <returns>The value of half incremented by 1.</returns>
         public static Half operator ++(Half half) => (Half)(half + 1f);
         /// <summary>
-        /// Decrements the Fox.Kernel.Half operand by one.
+        /// Decrements the Fox.Half operand by one.
         /// </summary>
-        /// <param name="half">The Fox.Kernel.Half operand.</param>
+        /// <param name="half">The Fox.Half operand.</param>
         /// <returns>The value of half decremented by 1.</returns>
         public static Half operator --(Half half) => (Half)(half - 1f);
         /// <summary>
-        /// Adds two specified Fox.Kernel.Half values.
+        /// Adds two specified Fox.Half values.
         /// </summary>
-        /// <param name="half1">A Fox.Kernel.Half.</param>
-        /// <param name="half2">A Fox.Kernel.Half.</param>
-        /// <returns>The Fox.Kernel.Half result of adding half1 and half2.</returns>
+        /// <param name="half1">A Fox.Half.</param>
+        /// <param name="half2">A Fox.Half.</param>
+        /// <returns>The Fox.Half result of adding half1 and half2.</returns>
         public static Half operator +(Half half1, Half half2) => (Half)((float)half1 + (float)half2);
         /// <summary>
-        /// Subtracts two specified Fox.Kernel.Half values.
+        /// Subtracts two specified Fox.Half values.
         /// </summary>
-        /// <param name="half1">A Fox.Kernel.Half.</param>
-        /// <param name="half2">A Fox.Kernel.Half.</param>
-        /// <returns>The Fox.Kernel.Half result of subtracting half1 and half2.</returns>        
+        /// <param name="half1">A Fox.Half.</param>
+        /// <param name="half2">A Fox.Half.</param>
+        /// <returns>The Fox.Half result of subtracting half1 and half2.</returns>        
         public static Half operator -(Half half1, Half half2) => (Half)((float)half1 - (float)half2);
         /// <summary>
-        /// Multiplies two specified Fox.Kernel.Half values.
+        /// Multiplies two specified Fox.Half values.
         /// </summary>
-        /// <param name="half1">A Fox.Kernel.Half.</param>
-        /// <param name="half2">A Fox.Kernel.Half.</param>
-        /// <returns>The Fox.Kernel.Half result of multiplying half1 by half2.</returns>
+        /// <param name="half1">A Fox.Half.</param>
+        /// <param name="half2">A Fox.Half.</param>
+        /// <returns>The Fox.Half result of multiplying half1 by half2.</returns>
         public static Half operator *(Half half1, Half half2) => (Half)((float)half1 * (float)half2);
         /// <summary>
-        /// Divides two specified Fox.Kernel.Half values.
+        /// Divides two specified Fox.Half values.
         /// </summary>
-        /// <param name="half1">A Fox.Kernel.Half (the dividend).</param>
-        /// <param name="half2">A Fox.Kernel.Half (the divisor).</param>
-        /// <returns>The Fox.Kernel.Half result of half1 by half2.</returns>
+        /// <param name="half1">A Fox.Half (the dividend).</param>
+        /// <param name="half2">A Fox.Half (the divisor).</param>
+        /// <returns>The Fox.Half result of half1 by half2.</returns>
         public static Half operator /(Half half1, Half half2) => (Half)((float)half1 / (float)half2);
         /// <summary>
-        /// Returns a value indicating whether two instances of Fox.Kernel.Half are equal.
+        /// Returns a value indicating whether two instances of Fox.Half are equal.
         /// </summary>
-        /// <param name="half1">A Fox.Kernel.Half.</param>
-        /// <param name="half2">A Fox.Kernel.Half.</param>
+        /// <param name="half1">A Fox.Half.</param>
+        /// <param name="half2">A Fox.Half.</param>
         /// <returns>true if half1 and half2 are equal; otherwise, false.</returns>
         public static bool operator ==(Half half1, Half half2) => !IsNaN(half1) && (half1.value == half2.value);
         /// <summary>
-        /// Returns a value indicating whether two instances of Fox.Kernel.Half are not equal.
+        /// Returns a value indicating whether two instances of Fox.Half are not equal.
         /// </summary>
-        /// <param name="half1">A Fox.Kernel.Half.</param>
-        /// <param name="half2">A Fox.Kernel.Half.</param>
+        /// <param name="half1">A Fox.Half.</param>
+        /// <param name="half2">A Fox.Half.</param>
         /// <returns>true if half1 and half2 are not equal; otherwise, false.</returns>
         public static bool operator !=(Half half1, Half half2) => !(half1.value == half2.value);
         /// <summary>
-        /// Returns a value indicating whether a specified Fox.Kernel.Half is less than another specified Fox.Kernel.Half.
+        /// Returns a value indicating whether a specified Fox.Half is less than another specified Fox.Half.
         /// </summary>
-        /// <param name="half1">A Fox.Kernel.Half.</param>
-        /// <param name="half2">A Fox.Kernel.Half.</param>
+        /// <param name="half1">A Fox.Half.</param>
+        /// <param name="half2">A Fox.Half.</param>
         /// <returns>true if half1 is less than half1; otherwise, false.</returns>
         public static bool operator <(Half half1, Half half2) => (float)half1 < (float)half2;
         /// <summary>
-        /// Returns a value indicating whether a specified Fox.Kernel.Half is greater than another specified Fox.Kernel.Half.
+        /// Returns a value indicating whether a specified Fox.Half is greater than another specified Fox.Half.
         /// </summary>
-        /// <param name="half1">A Fox.Kernel.Half.</param>
-        /// <param name="half2">A Fox.Kernel.Half.</param>
+        /// <param name="half1">A Fox.Half.</param>
+        /// <param name="half2">A Fox.Half.</param>
         /// <returns>true if half1 is greater than half2; otherwise, false.</returns>
         public static bool operator >(Half half1, Half half2) => (float)half1 > (float)half2;
         /// <summary>
-        /// Returns a value indicating whether a specified Fox.Kernel.Half is less than or equal to another specified Fox.Kernel.Half.
+        /// Returns a value indicating whether a specified Fox.Half is less than or equal to another specified Fox.Half.
         /// </summary>
-        /// <param name="half1">A Fox.Kernel.Half.</param>
-        /// <param name="half2">A Fox.Kernel.Half.</param>
+        /// <param name="half1">A Fox.Half.</param>
+        /// <param name="half2">A Fox.Half.</param>
         /// <returns>true if half1 is less than or equal to half2; otherwise, false.</returns>
         public static bool operator <=(Half half1, Half half2) => (half1 == half2) || (half1 < half2);
         /// <summary>
-        /// Returns a value indicating whether a specified Fox.Kernel.Half is greater than or equal to another specified Fox.Kernel.Half.
+        /// Returns a value indicating whether a specified Fox.Half is greater than or equal to another specified Fox.Half.
         /// </summary>
-        /// <param name="half1">A Fox.Kernel.Half.</param>
-        /// <param name="half2">A Fox.Kernel.Half.</param>
+        /// <param name="half1">A Fox.Half.</param>
+        /// <param name="half2">A Fox.Half.</param>
         /// <returns>true if half1 is greater than or equal to half2; otherwise, false.</returns>
         public static bool operator >=(Half half1, Half half2) => (half1 == half2) || (half1 > half2);
         #endregion
 
         #region Type casting operators
         /// <summary>
-        /// Converts an 8-bit unsigned integer to a Fox.Kernel.Half.
+        /// Converts an 8-bit unsigned integer to a Fox.Half.
         /// </summary>
         /// <param name="value">An 8-bit unsigned integer.</param>
-        /// <returns>A Fox.Kernel.Half that represents the converted 8-bit unsigned integer.</returns>
+        /// <returns>A Fox.Half that represents the converted 8-bit unsigned integer.</returns>
         public static implicit operator Half(byte value) => new((float)value);
         /// <summary>
-        /// Converts a 16-bit signed integer to a Fox.Kernel.Half.
+        /// Converts a 16-bit signed integer to a Fox.Half.
         /// </summary>
         /// <param name="value">A 16-bit signed integer.</param>
-        /// <returns>A Fox.Kernel.Half that represents the converted 16-bit signed integer.</returns>
+        /// <returns>A Fox.Half that represents the converted 16-bit signed integer.</returns>
         public static implicit operator Half(short value) => new((float)value);
         /// <summary>
-        /// Converts a Unicode character to a Fox.Kernel.Half.
+        /// Converts a Unicode character to a Fox.Half.
         /// </summary>
         /// <param name="value">A Unicode character.</param>
-        /// <returns>A Fox.Kernel.Half that represents the converted Unicode character.</returns>
+        /// <returns>A Fox.Half that represents the converted Unicode character.</returns>
         public static implicit operator Half(char value) => new((float)value);
         /// <summary>
-        /// Converts a 32-bit signed integer to a Fox.Kernel.Half.
+        /// Converts a 32-bit signed integer to a Fox.Half.
         /// </summary>
         /// <param name="value">A 32-bit signed integer.</param>
-        /// <returns>A Fox.Kernel.Half that represents the converted 32-bit signed integer.</returns>
+        /// <returns>A Fox.Half that represents the converted 32-bit signed integer.</returns>
         public static implicit operator Half(int value) => new((float)value);
         /// <summary>
-        /// Converts a 64-bit signed integer to a Fox.Kernel.Half.
+        /// Converts a 64-bit signed integer to a Fox.Half.
         /// </summary>
         /// <param name="value">A 64-bit signed integer.</param>
-        /// <returns>A Fox.Kernel.Half that represents the converted 64-bit signed integer.</returns>
+        /// <returns>A Fox.Half that represents the converted 64-bit signed integer.</returns>
         public static implicit operator Half(long value) => new((float)value);
         /// <summary>
-        /// Converts a single-precision floating-point number to a Fox.Kernel.Half.
+        /// Converts a single-precision floating-point number to a Fox.Half.
         /// </summary>
         /// <param name="value">A single-precision floating-point number.</param>
-        /// <returns>A Fox.Kernel.Half that represents the converted single-precision floating point number.</returns>
+        /// <returns>A Fox.Half that represents the converted single-precision floating point number.</returns>
         public static explicit operator Half(float value) => new((float)value);
         /// <summary>
-        /// Converts a double-precision floating-point number to a Fox.Kernel.Half.
+        /// Converts a double-precision floating-point number to a Fox.Half.
         /// </summary>
         /// <param name="value">A double-precision floating-point number.</param>
-        /// <returns>A Fox.Kernel.Half that represents the converted double-precision floating point number.</returns>
+        /// <returns>A Fox.Half that represents the converted double-precision floating point number.</returns>
         public static explicit operator Half(double value) => new((float)value);
         /// <summary>
-        /// Converts a decimal number to a Fox.Kernel.Half.
+        /// Converts a decimal number to a Fox.Half.
         /// </summary>
         /// <param name="value">decimal number</param>
-        /// <returns>A Fox.Kernel.Half that represents the converted decimal number.</returns>
+        /// <returns>A Fox.Half that represents the converted decimal number.</returns>
         public static explicit operator Half(decimal value) => new((float)value);
         /// <summary>
-        /// Converts a Fox.Kernel.Half to an 8-bit unsigned integer.
+        /// Converts a Fox.Half to an 8-bit unsigned integer.
         /// </summary>
-        /// <param name="value">A Fox.Kernel.Half to convert.</param>
-        /// <returns>An 8-bit unsigned integer that represents the converted Fox.Kernel.Half.</returns>
+        /// <param name="value">A Fox.Half to convert.</param>
+        /// <returns>An 8-bit unsigned integer that represents the converted Fox.Half.</returns>
         public static explicit operator byte(Half value) => (byte)(float)value;
         /// <summary>
-        /// Converts a Fox.Kernel.Half to a Unicode character.
+        /// Converts a Fox.Half to a Unicode character.
         /// </summary>
-        /// <param name="value">A Fox.Kernel.Half to convert.</param>
-        /// <returns>A Unicode character that represents the converted Fox.Kernel.Half.</returns>
+        /// <param name="value">A Fox.Half to convert.</param>
+        /// <returns>A Unicode character that represents the converted Fox.Half.</returns>
         public static explicit operator char(Half value) => (char)(float)value;
         /// <summary>
-        /// Converts a Fox.Kernel.Half to a 16-bit signed integer.
+        /// Converts a Fox.Half to a 16-bit signed integer.
         /// </summary>
-        /// <param name="value">A Fox.Kernel.Half to convert.</param>
-        /// <returns>A 16-bit signed integer that represents the converted Fox.Kernel.Half.</returns>
+        /// <param name="value">A Fox.Half to convert.</param>
+        /// <returns>A 16-bit signed integer that represents the converted Fox.Half.</returns>
         public static explicit operator short(Half value) => (short)(float)value;
         /// <summary>
-        /// Converts a Fox.Kernel.Half to a 32-bit signed integer.
+        /// Converts a Fox.Half to a 32-bit signed integer.
         /// </summary>
-        /// <param name="value">A Fox.Kernel.Half to convert.</param>
-        /// <returns>A 32-bit signed integer that represents the converted Fox.Kernel.Half.</returns>
+        /// <param name="value">A Fox.Half to convert.</param>
+        /// <returns>A 32-bit signed integer that represents the converted Fox.Half.</returns>
         public static explicit operator int(Half value) => (int)(float)value;
         /// <summary>
-        /// Converts a Fox.Kernel.Half to a 64-bit signed integer.
+        /// Converts a Fox.Half to a 64-bit signed integer.
         /// </summary>
-        /// <param name="value">A Fox.Kernel.Half to convert.</param>
-        /// <returns>A 64-bit signed integer that represents the converted Fox.Kernel.Half.</returns>
+        /// <param name="value">A Fox.Half to convert.</param>
+        /// <returns>A 64-bit signed integer that represents the converted Fox.Half.</returns>
         public static explicit operator long(Half value) => (long)(float)value;
         /// <summary>
-        /// Converts a Fox.Kernel.Half to a single-precision floating-point number.
+        /// Converts a Fox.Half to a single-precision floating-point number.
         /// </summary>
-        /// <param name="value">A Fox.Kernel.Half to convert.</param>
-        /// <returns>A single-precision floating-point number that represents the converted Fox.Kernel.Half.</returns>
+        /// <param name="value">A Fox.Half to convert.</param>
+        /// <returns>A single-precision floating-point number that represents the converted Fox.Half.</returns>
         public static implicit operator float(Half value) => (float)HalfConversions.HalfToSingle(value);
         /// <summary>
-        /// Converts a Fox.Kernel.Half to a double-precision floating-point number.
+        /// Converts a Fox.Half to a double-precision floating-point number.
         /// </summary>
-        /// <param name="value">A Fox.Kernel.Half to convert.</param>
-        /// <returns>A double-precision floating-point number that represents the converted Fox.Kernel.Half.</returns>
+        /// <param name="value">A Fox.Half to convert.</param>
+        /// <returns>A double-precision floating-point number that represents the converted Fox.Half.</returns>
         public static implicit operator double(Half value) => (double)(float)value;
         /// <summary>
-        /// Converts a Fox.Kernel.Half to a decimal number.
+        /// Converts a Fox.Half to a decimal number.
         /// </summary>
-        /// <param name="value">A Fox.Kernel.Half to convert.</param>
-        /// <returns>A decimal number that represents the converted Fox.Kernel.Half.</returns>
+        /// <param name="value">A Fox.Half to convert.</param>
+        /// <returns>A decimal number that represents the converted Fox.Half.</returns>
         public static explicit operator decimal(Half value) => (decimal)(float)value;
         /// <summary>
-        /// Converts an 8-bit signed integer to a Fox.Kernel.Half.
+        /// Converts an 8-bit signed integer to a Fox.Half.
         /// </summary>
         /// <param name="value">An 8-bit signed integer.</param>
-        /// <returns>A Fox.Kernel.Half that represents the converted 8-bit signed integer.</returns>
+        /// <returns>A Fox.Half that represents the converted 8-bit signed integer.</returns>
         public static implicit operator Half(sbyte value) => new((float)value);
         /// <summary>
-        /// Converts a 16-bit unsigned integer to a Fox.Kernel.Half.
+        /// Converts a 16-bit unsigned integer to a Fox.Half.
         /// </summary>
         /// <param name="value">A 16-bit unsigned integer.</param>
-        /// <returns>A Fox.Kernel.Half that represents the converted 16-bit unsigned integer.</returns>
+        /// <returns>A Fox.Half that represents the converted 16-bit unsigned integer.</returns>
         public static implicit operator Half(ushort value) => new((float)value);
         /// <summary>
-        /// Converts a 32-bit unsigned integer to a Fox.Kernel.Half.
+        /// Converts a 32-bit unsigned integer to a Fox.Half.
         /// </summary>
         /// <param name="value">A 32-bit unsigned integer.</param>
-        /// <returns>A Fox.Kernel.Half that represents the converted 32-bit unsigned integer.</returns>
+        /// <returns>A Fox.Half that represents the converted 32-bit unsigned integer.</returns>
         public static implicit operator Half(uint value) => new((float)value);
         /// <summary>
-        /// Converts a 64-bit unsigned integer to a Fox.Kernel.Half.
+        /// Converts a 64-bit unsigned integer to a Fox.Half.
         /// </summary>
         /// <param name="value">A 64-bit unsigned integer.</param>
-        /// <returns>A Fox.Kernel.Half that represents the converted 64-bit unsigned integer.</returns>
+        /// <returns>A Fox.Half that represents the converted 64-bit unsigned integer.</returns>
         public static implicit operator Half(ulong value) => new((float)value);
         /// <summary>
-        /// Converts a Fox.Kernel.Half to an 8-bit signed integer.
+        /// Converts a Fox.Half to an 8-bit signed integer.
         /// </summary>
-        /// <param name="value">A Fox.Kernel.Half to convert.</param>
-        /// <returns>An 8-bit signed integer that represents the converted Fox.Kernel.Half.</returns>
+        /// <param name="value">A Fox.Half to convert.</param>
+        /// <returns>An 8-bit signed integer that represents the converted Fox.Half.</returns>
         public static explicit operator sbyte(Half value) => (sbyte)(float)value;
         /// <summary>
-        /// Converts a Fox.Kernel.Half to a 16-bit unsigned integer.
+        /// Converts a Fox.Half to a 16-bit unsigned integer.
         /// </summary>
-        /// <param name="value">A Fox.Kernel.Half to convert.</param>
-        /// <returns>A 16-bit unsigned integer that represents the converted Fox.Kernel.Half.</returns>
+        /// <param name="value">A Fox.Half to convert.</param>
+        /// <returns>A 16-bit unsigned integer that represents the converted Fox.Half.</returns>
         public static explicit operator ushort(Half value) => (ushort)(float)value;
         /// <summary>
-        /// Converts a Fox.Kernel.Half to a 32-bit unsigned integer.
+        /// Converts a Fox.Half to a 32-bit unsigned integer.
         /// </summary>
-        /// <param name="value">A Fox.Kernel.Half to convert.</param>
-        /// <returns>A 32-bit unsigned integer that represents the converted Fox.Kernel.Half.</returns>
+        /// <param name="value">A Fox.Half to convert.</param>
+        /// <returns>A 32-bit unsigned integer that represents the converted Fox.Half.</returns>
         public static explicit operator uint(Half value) => (uint)(float)value;
         /// <summary>
-        /// Converts a Fox.Kernel.Half to a 64-bit unsigned integer.
+        /// Converts a Fox.Half to a 64-bit unsigned integer.
         /// </summary>
-        /// <param name="value">A Fox.Kernel.Half to convert.</param>
-        /// <returns>A 64-bit unsigned integer that represents the converted Fox.Kernel.Half.</returns>
+        /// <param name="value">A Fox.Half to convert.</param>
+        /// <returns>A 64-bit unsigned integer that represents the converted Fox.Half.</returns>
         public static explicit operator ulong(Half value) => (ulong)(float)value;
         #endregion
 
         /// <summary>
-        /// Compares this instance to a specified Fox.Kernel.Half object.
+        /// Compares this instance to a specified Fox.Half object.
         /// </summary>
-        /// <param name="other">A Fox.Kernel.Half object.</param>
+        /// <param name="other">A Fox.Half object.</param>
         /// <returns>
         /// A signed number indicating the relative values of this instance and value.
         /// Return Value Meaning Less than zero This instance is less than value. Zero
@@ -440,7 +440,7 @@ namespace Fox.Kernel
         /// This instance is equal to value. Greater than zero This instance is greater
         /// than value. -or- value is null.
         /// </returns>
-        /// <exception cref="System.ArgumentException">value is not a Fox.Kernel.Half</exception>
+        /// <exception cref="System.ArgumentException">value is not a Fox.Half</exception>
         public int CompareTo(object obj)
         {
             int result = obj == null ? 1 : obj is Half ? CompareTo((Half)obj) : throw new ArgumentException("Object must be of type Half.");
@@ -448,9 +448,9 @@ namespace Fox.Kernel
             return result;
         }
         /// <summary>
-        /// Returns a value indicating whether this instance and a specified Fox.Kernel.Half object represent the same value.
+        /// Returns a value indicating whether this instance and a specified Fox.Half object represent the same value.
         /// </summary>
-        /// <param name="other">A Fox.Kernel.Half object to compare to this instance.</param>
+        /// <param name="other">A Fox.Half object to compare to this instance.</param>
         /// <returns>true if value is equal to this instance; otherwise, false.</returns>
         public bool Equals(Half other) => (other == this) || (IsNaN(other) && IsNaN(this));
         /// <summary>
@@ -458,7 +458,7 @@ namespace Fox.Kernel
         /// represent the same type and value.
         /// </summary>
         /// <param name="obj">An System.Object.</param>
-        /// <returns>true if value is a Fox.Kernel.Half and equal to this instance; otherwise, false.</returns>
+        /// <returns>true if value is a Fox.Half and equal to this instance; otherwise, false.</returns>
         public override bool Equals(object obj)
         {
             bool result = false;
@@ -478,7 +478,7 @@ namespace Fox.Kernel
         /// <returns>A 32-bit signed integer hash code.</returns>
         public override int GetHashCode() => value.GetHashCode();
         /// <summary>
-        /// Returns the System.TypeCode for value type Fox.Kernel.Half.
+        /// Returns the System.TypeCode for value type Fox.Half.
         /// </summary>
         /// <returns>The enumerated constant (TypeCode)255.</returns>
         public TypeCode GetTypeCode() => (TypeCode)255;
@@ -491,9 +491,9 @@ namespace Fox.Kernel
         /// <returns>An array of bytes with length 2.</returns>
         public static byte[] GetBytes(Half value) => BitConverter.GetBytes(value.value);
         /// <summary>
-        /// Converts the value of a specified instance of Fox.Kernel.Half to its equivalent binary representation.
+        /// Converts the value of a specified instance of Fox.Half to its equivalent binary representation.
         /// </summary>
-        /// <param name="value">A Fox.Kernel.Half value.</param>
+        /// <param name="value">A Fox.Half value.</param>
         /// <returns>A 16-bit unsigned integer that contain the binary representation of value.</returns>        
         public static ushort GetBits(Half value) => value.value;
         /// <summary>
@@ -513,7 +513,7 @@ namespace Fox.Kernel
         /// <summary>
         /// Returns a half-precision floating point number converted from its binary representation.
         /// </summary>
-        /// <param name="bits">Binary representation of Fox.Kernel.Half value</param>
+        /// <param name="bits">Binary representation of Fox.Half value</param>
         /// <returns>A half-precision floating point number formed by its binary representation.</returns>
         public static Half ToHalf(ushort bits) => new() { value = bits };
 
@@ -525,7 +525,7 @@ namespace Fox.Kernel
         /// A number indicating the sign of value. Number Description -1 value is less
         /// than zero. 0 value is equal to zero. 1 value is greater than zero.
         /// </returns>
-        /// <exception cref="System.ArithmeticException">value is equal to Fox.Kernel.Half.NaN.</exception>
+        /// <exception cref="System.ArithmeticException">value is equal to Fox.Half.NaN.</exception>
         public static int Sign(Half value)
         {
             if (value < 0)
@@ -549,8 +549,8 @@ namespace Fox.Kernel
         /// <summary>
         /// Returns the absolute value of a half-precision floating-point number.
         /// </summary>
-        /// <param name="value">A number in the range Fox.Kernel.Half.MinValue ≤ value ≤ Fox.Kernel.Half.MaxValue.</param>
-        /// <returns>A half-precision floating-point number, x, such that 0 ≤ x ≤Fox.Kernel.Half.MaxValue.</returns>
+        /// <param name="value">A number in the range Fox.Half.MinValue ≤ value ≤ Fox.Half.MaxValue.</param>
+        /// <returns>A half-precision floating-point number, x, such that 0 ≤ x ≤Fox.Half.MaxValue.</returns>
         public static Half Abs(Half value) => HalfConversions.Abs(value);
         /// <summary>
         /// Returns the larger of two half-precision floating-point numbers.
@@ -559,7 +559,7 @@ namespace Fox.Kernel
         /// <param name="value2">The second of two half-precision floating-point numbers to compare.</param>
         /// <returns>
         /// Parameter value1 or value2, whichever is larger. If value1, or value2, or both val1
-        /// and value2 are equal to Fox.Kernel.Half.NaN, Fox.Kernel.Half.NaN is returned.
+        /// and value2 are equal to Fox.Half.NaN, Fox.Half.NaN is returned.
         /// </returns>
         public static Half Max(Half value1, Half value2) => (value1 < value2) ? value2 : value1;
         /// <summary>
@@ -569,64 +569,64 @@ namespace Fox.Kernel
         /// <param name="value2">The second of two half-precision floating-point numbers to compare.</param>
         /// <returns>
         /// Parameter value1 or value2, whichever is smaller. If value1, or value2, or both val1
-        /// and value2 are equal to Fox.Kernel.Half.NaN, Fox.Kernel.Half.NaN is returned.
+        /// and value2 are equal to Fox.Half.NaN, Fox.Half.NaN is returned.
         /// </returns>
         public static Half Min(Half value1, Half value2) => (value1 < value2) ? value1 : value2;
         #endregion
 
         /// <summary>
-        /// Returns a value indicating whether the specified number evaluates to not a number (Fox.Kernel.Half.NaN).
+        /// Returns a value indicating whether the specified number evaluates to not a number (Fox.Half.NaN).
         /// </summary>
         /// <param name="half">A half-precision floating-point number.</param>
-        /// <returns>true if value evaluates to not a number (Fox.Kernel.Half.NaN); otherwise, false.</returns>
+        /// <returns>true if value evaluates to not a number (Fox.Half.NaN); otherwise, false.</returns>
         public static bool IsNaN(Half half) => Single.IsNaN(half);
 
         /// <summary>
         /// Returns a value indicating whether the specified number evaluates to negative or positive infinity.
         /// </summary>
         /// <param name="half">A half-precision floating-point number.</param>
-        /// <returns>true if half evaluates to Fox.Kernel.Half.PositiveInfinity or Fox.Kernel.Half.NegativeInfinity; otherwise, false.</returns>
+        /// <returns>true if half evaluates to Fox.Half.PositiveInfinity or Fox.Half.NegativeInfinity; otherwise, false.</returns>
         public static bool IsInfinity(Half half) => Single.IsInfinity(half);
 
         /// <summary>
         /// Returns a value indicating whether the specified number evaluates to negative infinity.
         /// </summary>
         /// <param name="half">A half-precision floating-point number.</param>
-        /// <returns>true if half evaluates to Fox.Kernel.Half.NegativeInfinity; otherwise, false.</returns>
+        /// <returns>true if half evaluates to Fox.Half.NegativeInfinity; otherwise, false.</returns>
         public static bool IsNegativeInfinity(Half half) => Single.IsNegativeInfinity(half);
 
         /// <summary>
         /// Returns a value indicating whether the specified number evaluates to positive infinity.
         /// </summary>
         /// <param name="half">A half-precision floating-point number.</param>
-        /// <returns>true if half evaluates to Fox.Kernel.Half.PositiveInfinity; otherwise, false.</returns>
+        /// <returns>true if half evaluates to Fox.Half.PositiveInfinity; otherwise, false.</returns>
         public static bool IsPositiveInfinity(Half half) => Single.IsPositiveInfinity(half);
 
         #region String operations (Parse and ToString)
         /// <summary>
-        /// Converts the string representation of a number to its Fox.Kernel.Half equivalent.
+        /// Converts the string representation of a number to its Fox.Half equivalent.
         /// </summary>
         /// <param name="value">The string representation of the number to convert.</param>
-        /// <returns>The Fox.Kernel.Half number equivalent to the number contained in value.</returns>
+        /// <returns>The Fox.Half number equivalent to the number contained in value.</returns>
         /// <exception cref="System.ArgumentNullException">value is null.</exception>
         /// <exception cref="System.FormatException">value is not in the correct format.</exception>
-        /// <exception cref="System.OverflowException">value represents a number less than Fox.Kernel.Half.MinValue or greater than Fox.Kernel.Half.MaxValue.</exception>
+        /// <exception cref="System.OverflowException">value represents a number less than Fox.Half.MinValue or greater than Fox.Half.MaxValue.</exception>
         public static Half Parse(string value) => (Half)Single.Parse(value, CultureInfo.InvariantCulture);
 
         /// <summary>
-        /// Converts the string representation of a number to its Fox.Kernel.Half equivalent 
+        /// Converts the string representation of a number to its Fox.Half equivalent 
         /// using the specified culture-specific format information.
         /// </summary>
         /// <param name="value">The string representation of the number to convert.</param>
         /// <param name="provider">An System.IFormatProvider that supplies culture-specific parsing information about value.</param>
-        /// <returns>The Fox.Kernel.Half number equivalent to the number contained in s as specified by provider.</returns>
+        /// <returns>The Fox.Half number equivalent to the number contained in s as specified by provider.</returns>
         /// <exception cref="System.ArgumentNullException">value is null.</exception>
         /// <exception cref="System.FormatException">value is not in the correct format.</exception>
-        /// <exception cref="System.OverflowException">value represents a number less than Fox.Kernel.Half.MinValue or greater than Fox.Kernel.Half.MaxValue.</exception>
+        /// <exception cref="System.OverflowException">value represents a number less than Fox.Half.MinValue or greater than Fox.Half.MaxValue.</exception>
         public static Half Parse(string value, IFormatProvider provider) => (Half)Single.Parse(value, provider);
 
         /// <summary>
-        /// Converts the string representation of a number in a specified style to its Fox.Kernel.Half equivalent.
+        /// Converts the string representation of a number in a specified style to its Fox.Half equivalent.
         /// </summary>
         /// <param name="value">The string representation of the number to convert.</param>
         /// <param name="style">
@@ -634,18 +634,18 @@ namespace Fox.Kernel
         /// the style elements that can be present in value. A typical value to specify is
         /// System.Globalization.NumberStyles.Number.
         /// </param>
-        /// <returns>The Fox.Kernel.Half number equivalent to the number contained in s as specified by style.</returns>
+        /// <returns>The Fox.Half number equivalent to the number contained in s as specified by style.</returns>
         /// <exception cref="System.ArgumentNullException">value is null.</exception>
         /// <exception cref="System.ArgumentException">
         /// style is not a System.Globalization.NumberStyles value. -or- style is the
         /// System.Globalization.NumberStyles.AllowHexSpecifier value.
         /// </exception>
         /// <exception cref="System.FormatException">value is not in the correct format.</exception>
-        /// <exception cref="System.OverflowException">value represents a number less than Fox.Kernel.Half.MinValue or greater than Fox.Kernel.Half.MaxValue.</exception>
+        /// <exception cref="System.OverflowException">value represents a number less than Fox.Half.MinValue or greater than Fox.Half.MaxValue.</exception>
         public static Half Parse(string value, NumberStyles style) => (Half)Single.Parse(value, style, CultureInfo.InvariantCulture);
 
         /// <summary>
-        /// Converts the string representation of a number to its Fox.Kernel.Half equivalent 
+        /// Converts the string representation of a number to its Fox.Half equivalent 
         /// using the specified style and culture-specific format.
         /// </summary>
         /// <param name="value">The string representation of the number to convert.</param>
@@ -655,27 +655,27 @@ namespace Fox.Kernel
         /// System.Globalization.NumberStyles.Number.
         /// </param>
         /// <param name="provider">An System.IFormatProvider object that supplies culture-specific information about the format of value.</param>
-        /// <returns>The Fox.Kernel.Half number equivalent to the number contained in s as specified by style and provider.</returns>
+        /// <returns>The Fox.Half number equivalent to the number contained in s as specified by style and provider.</returns>
         /// <exception cref="System.ArgumentNullException">value is null.</exception>
         /// <exception cref="System.ArgumentException">
         /// style is not a System.Globalization.NumberStyles value. -or- style is the
         /// System.Globalization.NumberStyles.AllowHexSpecifier value.
         /// </exception>
         /// <exception cref="System.FormatException">value is not in the correct format.</exception>
-        /// <exception cref="System.OverflowException">value represents a number less than Fox.Kernel.Half.MinValue or greater than Fox.Kernel.Half.MaxValue.</exception>
+        /// <exception cref="System.OverflowException">value represents a number less than Fox.Half.MinValue or greater than Fox.Half.MaxValue.</exception>
         public static Half Parse(string value, NumberStyles style, IFormatProvider provider) => (Half)Single.Parse(value, style, provider);
 
         /// <summary>
-        /// Converts the string representation of a number to its Fox.Kernel.Half equivalent.
+        /// Converts the string representation of a number to its Fox.Half equivalent.
         /// A return value indicates whether the conversion succeeded or failed.
         /// </summary>
         /// <param name="value">The string representation of the number to convert.</param>
         /// <param name="result">
-        /// When this method returns, contains the Fox.Kernel.Half number that is equivalent
+        /// When this method returns, contains the Fox.Half number that is equivalent
         /// to the numeric value contained in value, if the conversion succeeded, or is zero
         /// if the conversion failed. The conversion fails if the s parameter is null,
-        /// is not a number in a valid format, or represents a number less than Fox.Kernel.Half.MinValue
-        /// or greater than Fox.Kernel.Half.MaxValue. This parameter is passed uninitialized.
+        /// is not a number in a valid format, or represents a number less than Fox.Half.MinValue
+        /// or greater than Fox.Half.MaxValue. This parameter is passed uninitialized.
         /// </param>
         /// <returns>true if s was converted successfully; otherwise, false.</returns>
         public static bool TryParse(string value, out Half result)
@@ -691,7 +691,7 @@ namespace Fox.Kernel
         }
 
         /// <summary>
-        /// Converts the string representation of a number to its Fox.Kernel.Half equivalent
+        /// Converts the string representation of a number to its Fox.Half equivalent
         /// using the specified style and culture-specific format. A return value indicates
         /// whether the conversion succeeded or failed.
         /// </summary>
@@ -702,11 +702,11 @@ namespace Fox.Kernel
         /// </param>
         /// <param name="provider">An System.IFormatProvider object that supplies culture-specific parsing information about value.</param>
         /// <param name="result">
-        /// When this method returns, contains the Fox.Kernel.Half number that is equivalent
+        /// When this method returns, contains the Fox.Half number that is equivalent
         /// to the numeric value contained in value, if the conversion succeeded, or is zero
         /// if the conversion failed. The conversion fails if the s parameter is null,
         /// is not in a format compliant with style, or represents a number less than
-        /// Fox.Kernel.Half.MinValue or greater than Fox.Kernel.Half.MaxValue. This parameter is passed uninitialized.
+        /// Fox.Half.MinValue or greater than Fox.Half.MaxValue. This parameter is passed uninitialized.
         /// </param>
         /// <returns>true if s was converted successfully; otherwise, false.</returns>
         /// <exception cref="System.ArgumentException">

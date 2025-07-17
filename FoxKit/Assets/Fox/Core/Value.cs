@@ -1,13 +1,18 @@
-﻿using Fox.Kernel;
+﻿using Fox;
 using System;
+using System.Collections;
 using UnityEngine;
-using String = Fox.Kernel.String;
 
 namespace Fox.Core
 {
     public class Value
     {
         private readonly object value;
+        
+        public Value(object v)
+        {
+            value = v;
+        }
 
         public Value(bool v1)
         {
@@ -60,17 +65,18 @@ namespace Fox.Core
             value = v2;
         }
 
-        public Value(IEntityPtr entity)
-        {
-            value = entity;
-        }
+        // TODO: Old EntityPtr<T> constructor; delete
+        // public Value(Entity entity)
+        // {
+        //     value = entity;
+        // }
 
         public Value(EntityLink entityLink)
         {
             value = entityLink;
         }
 
-        public Value(EntityHandle entityHandle)
+        public Value(Entity entityHandle)
         {
             value = entityHandle;
         }
@@ -89,6 +95,12 @@ namespace Fox.Core
         {
             value = vector3;
         }
+
+        public Value(WideVector3 wideVector3)
+        {
+            value = wideVector3;
+        }
+
         public Value(Vector4 vector3)
         {
             value = vector3;
@@ -99,12 +111,17 @@ namespace Fox.Core
             value = quaternion;
         }
 
+        public Value(Matrix3x3 matrix3x3)
+        {
+            value = matrix3x3;
+        }
+
         public Value(Matrix4x4 matrix4x4)
         {
             value = matrix4x4;
         }
 
-        public Value(String @string)
+        public Value(string @string)
         {
             value = @string;
         }
@@ -112,6 +129,21 @@ namespace Fox.Core
         public Value(Path path)
         {
             value = path;
+        }
+
+        public Value(Enum @enum)
+        {
+            value = @enum;
+        }
+
+        public Value(IStringMap stringMap)
+        {
+            value = stringMap;
+        }
+
+        public Value(IList list)
+        {
+            value = list;
         }
 
         public bool GetValueAsBool() => (bool)value;
@@ -132,11 +164,11 @@ namespace Fox.Core
 
         public double GetValueAsDouble() => (double)value;
 
-        public EntityPtr<T> GetValueAsEntityPtr<T>() where T : Entity => (EntityPtr<T>)value;
+        public T GetValueAsEntityPtr<T>() where T : Entity => value as T;
 
         public EntityLink GetValueAsEntityLink() => (EntityLink)value;
 
-        public EntityHandle GetValueAsEntityHandle() => (EntityHandle)value;
+        public Entity GetValueAsEntityHandle() => (Entity)value;
 
         public FilePtr GetValueAsFilePtr() => (FilePtr)value;
 
@@ -144,78 +176,26 @@ namespace Fox.Core
 
         public Vector3 GetValueAsVector3() => (Vector3)value;
 
-        public object GetValueAsWideVector3() => throw new NotImplementedException();
+        public WideVector3 GetValueAsWideVector3() => (WideVector3)value;
 
         public Vector4 GetValueAsVector4() => (Vector4)value;
 
         public Quaternion GetValueAsQuat() => (Quaternion)value;
 
-        public object GetValueAsMatrix3() => throw new NotImplementedException();
+        public Matrix3x3 GetValueAsMatrix3() => (Matrix3x3)value;
 
         public Matrix4x4 GetValueAsMatrix4() => (Matrix4x4)value;
 
-        public String GetValueAsString() => (String)value;
+        public string GetValueAsString() => (string)value;
 
         public Path GetValueAsPath() => (Path)value;
+
+        public IStringMap GetValueAsStringMap<T>() => value as StringMap<T>;
+
+        public IStringMap GetValueAsIStringMap() => (IStringMap)value;
+
+        public IList GetValueAsIList() => (IList)value;
+
+        public object GetValueAsBoxedObject() => value;
     }
-
-    /*public class Value<T> : Value
-    {
-        private T Data;
-
-        public static explicit operator T(Value<T> d) => d.Data;
-        public static explicit operator Value<T>(T d) => new Value<T> { Data = d };
-    }*/
 }
-
-//using System;
-//using System.Runtime.InteropServices;
-
-//namespace Fox
-//{
-//    [StructLayout(LayoutKind.Explicit)]
-//    public struct Value
-//    {
-//        [FieldOffset(0)]
-//        public sbyte Int8;
-
-//        [FieldOffset(0)]
-//        public byte UInt8;
-
-//        [FieldOffset(0)]
-//        public short Int16;
-
-//        [FieldOffset(0)]
-//        public ushort UInt16;
-
-//        [FieldOffset(0)]
-//        public int Int32;
-
-//        [FieldOffset(0)]
-//        public uint UInt32;
-
-//        [FieldOffset(0)]
-//        public long Int64;
-
-//        [FieldOffset(0)]
-//        public ulong UInt64;
-
-//        [FieldOffset(0)]
-//        public float Float;
-
-//        [FieldOffset(0)]
-//        public double Double;
-
-//        [FieldOffset(0)]
-//        public bool Bool;
-
-//        [FieldOffset(0)]
-//        public String String;
-
-//        [FieldOffset(0)]
-//        public Path Path;
-
-//        [FieldOffset(0)]
-//        public EntityPtr EntityPtr;
-//    }
-//}

@@ -1,6 +1,6 @@
 using Fox.Fio;
 using Fox.GameService;
-using Fox.Kernel;
+using Fox;
 
 namespace Tpp.GameKit
 {
@@ -9,6 +9,6 @@ namespace Tpp.GameKit
 		public static readonly StrCode32 Id = new StrCode32("VehicleGetOut");
 		public override StrCode32 GetId() => Id;
 
-		public static TppRouteVehicleGetOutNodeEvent Deserialize(FileStreamReader reader) => new TppRouteVehicleGetOutNodeEvent { binaryData = new StaticArray<uint>(new uint[] { reader.ReadUInt32(), reader.ReadUInt32(), reader.ReadUInt32(), reader.ReadUInt32() }), };
+		public static TppRouteVehicleGetOutNodeEvent Deserialize(UnityEngine.GameObject gameObject, uint[] binaryData) { TppRouteVehicleGetOutNodeEvent component = gameObject.AddComponent<TppRouteVehicleGetOutNodeEvent>(); component.binaryData = binaryData; return component; }
 	}
 }

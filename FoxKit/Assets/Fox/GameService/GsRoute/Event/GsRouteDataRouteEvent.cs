@@ -1,5 +1,5 @@
 using Fox.Core;
-using Fox.Kernel;
+using Fox;
 
 namespace Fox.GameService
 {

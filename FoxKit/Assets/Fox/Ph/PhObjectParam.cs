@@ -1,10 +1,10 @@
-﻿using Fox.Kernel;
+﻿using Fox;
 
 namespace Fox.Ph
 {
     public partial class PhObjectParam : Fox.Core.Entity
     {
-        internal String GetWorldName() => worldName;
-        internal void SetWorldName(String value) => worldName = value;
+        internal string GetWorldName() => worldName;
+        internal void SetWorldName(string value) => worldName = value;
     }
 }

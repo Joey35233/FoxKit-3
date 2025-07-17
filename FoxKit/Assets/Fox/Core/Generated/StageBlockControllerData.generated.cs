@@ -12,505 +12,654 @@ using Fox;
 
 namespace Fox.Core
 {
-    [UnityEditor.InitializeOnLoad]
-    public partial class StageBlockControllerData : Fox.Core.Data 
-    {
-        // Properties
-        [field: UnityEngine.SerializeField]
-        public bool enable { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.String stageName { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public bool useBaseDirectoryPathAndName { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.String baseDirectoryPath { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.String baseName { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.String smallBlock1BaseDirectoryPath { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.String smallBlock1BaseName { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint blockSizeX { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint blockSizeZ { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint countX { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint countZ { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint centerIndexX { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint centerIndexZ { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint blockSizeInBytes { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint smallBlock1CountX { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint smallBlock1CountZ { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint smallBlock1BlockSizeInBytes { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint blockMarginX { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint blockMarginZ { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint loadingDistanceX { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint loadingDistanceZ { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint commonBlockSizeInBytes { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint largeBlockCount0 { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint largeBlockSizeInBytes0 { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint largeBlockCount1 { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint largeBlockSizeInBytes1 { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint largeBlockCount2 { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint largeBlockSizeInBytes2 { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint largeBlockCount3 { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint largeBlockSizeInBytes3 { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint largeBlockLoadingMarginX { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint largeBlockLoadingMarginZ { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Core.FilePtr stageBlockFile { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.String lod0BaseDirectoryPath { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.String lod0BaseName { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint lod0blockSizeInBytes { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public byte lod0blockSizeX { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public byte lod0blockSizeZ { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public byte lod0BlockCountX { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public byte lod0BlockCountZ { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint lod0LargeBlock0SizeInBytes { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public byte lod0LargeBlock0Count { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint lod0LargeBlock1SizeInBytes { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public byte lod0LargeBlock1Count { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint lod0LargeBlock2SizeInBytes { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public byte lod0LargeBlock2Count { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint lod0LargeBlock3SizeInBytes { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public byte lod0LargeBlock3Count { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.String lod1BaseDirectoryPath { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.String lod1BaseName { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint lod1blockSizeInBytes { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public byte lod1blockSizeX { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public byte lod1blockSizeZ { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public byte lod1BlockCountX { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public byte lod1BlockCountZ { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint lod1LargeBlock0SizeInBytes { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public byte lod1LargeBlock0Count { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint lod1LargeBlock1SizeInBytes { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public byte lod1LargeBlock1Count { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint lod1LargeBlock2SizeInBytes { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public byte lod1LargeBlock2Count { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint lod1LargeBlock3SizeInBytes { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public byte lod1LargeBlock3Count { get; set; }
-        
-        // ClassInfos
-        public static new bool ClassInfoInitialized = false;
-        private static Fox.Core.EntityInfo classInfo;
-        public static new Fox.Core.EntityInfo ClassInfo
-        {
-            get
-            {
-                return classInfo;
-            }
-        }
-        public override Fox.Core.EntityInfo GetClassEntityInfo()
-        {
-            return classInfo;
-        }
-        static StageBlockControllerData()
-        {
-            if (Fox.Core.Data.ClassInfoInitialized)
-                classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("StageBlockControllerData"), typeof(StageBlockControllerData), Fox.Core.Data.ClassInfo, 288, null, 8);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("enable"), Fox.Core.PropertyInfo.PropertyType.Bool, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("stageName"), Fox.Core.PropertyInfo.PropertyType.String, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("useBaseDirectoryPathAndName"), Fox.Core.PropertyInfo.PropertyType.Bool, 168, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("baseDirectoryPath"), Fox.Core.PropertyInfo.PropertyType.String, 136, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("baseName"), Fox.Core.PropertyInfo.PropertyType.String, 144, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("smallBlock1BaseDirectoryPath"), Fox.Core.PropertyInfo.PropertyType.String, 152, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("smallBlock1BaseName"), Fox.Core.PropertyInfo.PropertyType.String, 160, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("blockSizeX"), Fox.Core.PropertyInfo.PropertyType.UInt32, 172, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("blockSizeZ"), Fox.Core.PropertyInfo.PropertyType.UInt32, 176, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("countX"), Fox.Core.PropertyInfo.PropertyType.UInt32, 180, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("countZ"), Fox.Core.PropertyInfo.PropertyType.UInt32, 184, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("centerIndexX"), Fox.Core.PropertyInfo.PropertyType.UInt32, 188, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("centerIndexZ"), Fox.Core.PropertyInfo.PropertyType.UInt32, 192, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("blockSizeInBytes"), Fox.Core.PropertyInfo.PropertyType.UInt32, 196, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("smallBlock1CountX"), Fox.Core.PropertyInfo.PropertyType.UInt32, 200, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("smallBlock1CountZ"), Fox.Core.PropertyInfo.PropertyType.UInt32, 204, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("smallBlock1BlockSizeInBytes"), Fox.Core.PropertyInfo.PropertyType.UInt32, 208, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("blockMarginX"), Fox.Core.PropertyInfo.PropertyType.UInt32, 212, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("blockMarginZ"), Fox.Core.PropertyInfo.PropertyType.UInt32, 216, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("loadingDistanceX"), Fox.Core.PropertyInfo.PropertyType.UInt32, 220, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("loadingDistanceZ"), Fox.Core.PropertyInfo.PropertyType.UInt32, 224, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("commonBlockSizeInBytes"), Fox.Core.PropertyInfo.PropertyType.UInt32, 228, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("largeBlockCount0"), Fox.Core.PropertyInfo.PropertyType.UInt32, 232, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("largeBlockSizeInBytes0"), Fox.Core.PropertyInfo.PropertyType.UInt32, 236, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("largeBlockCount1"), Fox.Core.PropertyInfo.PropertyType.UInt32, 240, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("largeBlockSizeInBytes1"), Fox.Core.PropertyInfo.PropertyType.UInt32, 244, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("largeBlockCount2"), Fox.Core.PropertyInfo.PropertyType.UInt32, 248, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("largeBlockSizeInBytes2"), Fox.Core.PropertyInfo.PropertyType.UInt32, 252, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("largeBlockCount3"), Fox.Core.PropertyInfo.PropertyType.UInt32, 256, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("largeBlockSizeInBytes3"), Fox.Core.PropertyInfo.PropertyType.UInt32, 260, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("largeBlockLoadingMarginX"), Fox.Core.PropertyInfo.PropertyType.UInt32, 264, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("largeBlockLoadingMarginZ"), Fox.Core.PropertyInfo.PropertyType.UInt32, 268, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("stageBlockFile"), Fox.Core.PropertyInfo.PropertyType.FilePtr, 360, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("lod0BaseDirectoryPath"), Fox.Core.PropertyInfo.PropertyType.String, 272, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("lod0BaseName"), Fox.Core.PropertyInfo.PropertyType.String, 280, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("lod0blockSizeInBytes"), Fox.Core.PropertyInfo.PropertyType.UInt32, 304, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("lod0blockSizeX"), Fox.Core.PropertyInfo.PropertyType.UInt8, 308, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("lod0blockSizeZ"), Fox.Core.PropertyInfo.PropertyType.UInt8, 309, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("lod0BlockCountX"), Fox.Core.PropertyInfo.PropertyType.UInt8, 310, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("lod0BlockCountZ"), Fox.Core.PropertyInfo.PropertyType.UInt8, 311, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("lod0LargeBlock0SizeInBytes"), Fox.Core.PropertyInfo.PropertyType.UInt32, 312, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("lod0LargeBlock0Count"), Fox.Core.PropertyInfo.PropertyType.UInt8, 328, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("lod0LargeBlock1SizeInBytes"), Fox.Core.PropertyInfo.PropertyType.UInt32, 316, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("lod0LargeBlock1Count"), Fox.Core.PropertyInfo.PropertyType.UInt8, 329, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("lod0LargeBlock2SizeInBytes"), Fox.Core.PropertyInfo.PropertyType.UInt32, 320, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("lod0LargeBlock2Count"), Fox.Core.PropertyInfo.PropertyType.UInt8, 330, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("lod0LargeBlock3SizeInBytes"), Fox.Core.PropertyInfo.PropertyType.UInt32, 324, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("lod0LargeBlock3Count"), Fox.Core.PropertyInfo.PropertyType.UInt8, 331, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("lod1BaseDirectoryPath"), Fox.Core.PropertyInfo.PropertyType.String, 288, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("lod1BaseName"), Fox.Core.PropertyInfo.PropertyType.String, 296, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("lod1blockSizeInBytes"), Fox.Core.PropertyInfo.PropertyType.UInt32, 332, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("lod1blockSizeX"), Fox.Core.PropertyInfo.PropertyType.UInt8, 336, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("lod1blockSizeZ"), Fox.Core.PropertyInfo.PropertyType.UInt8, 337, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("lod1BlockCountX"), Fox.Core.PropertyInfo.PropertyType.UInt8, 338, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("lod1BlockCountZ"), Fox.Core.PropertyInfo.PropertyType.UInt8, 339, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("lod1LargeBlock0SizeInBytes"), Fox.Core.PropertyInfo.PropertyType.UInt32, 340, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("lod1LargeBlock0Count"), Fox.Core.PropertyInfo.PropertyType.UInt8, 356, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("lod1LargeBlock1SizeInBytes"), Fox.Core.PropertyInfo.PropertyType.UInt32, 344, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("lod1LargeBlock1Count"), Fox.Core.PropertyInfo.PropertyType.UInt8, 357, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("lod1LargeBlock2SizeInBytes"), Fox.Core.PropertyInfo.PropertyType.UInt32, 348, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("lod1LargeBlock2Count"), Fox.Core.PropertyInfo.PropertyType.UInt8, 358, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("lod1LargeBlock3SizeInBytes"), Fox.Core.PropertyInfo.PropertyType.UInt32, 352, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("lod1LargeBlock3Count"), Fox.Core.PropertyInfo.PropertyType.UInt8, 359, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxCore/StageBlockControllerData")]
+	public partial class StageBlockControllerData : Fox.Core.Data
+	{
+		// Properties
+		[field: UnityEngine.SerializeField]
+		public bool enable { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public string stageName { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public bool useBaseDirectoryPathAndName { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public string baseDirectoryPath { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public string baseName { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public string smallBlock1BaseDirectoryPath { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public string smallBlock1BaseName { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint blockSizeX { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint blockSizeZ { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint countX { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint countZ { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint centerIndexX { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint centerIndexZ { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint blockSizeInBytes { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint smallBlock1CountX { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint smallBlock1CountZ { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint smallBlock1BlockSizeInBytes { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint blockMarginX { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint blockMarginZ { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint loadingDistanceX { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint loadingDistanceZ { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint commonBlockSizeInBytes { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint largeBlockCount0 { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint largeBlockSizeInBytes0 { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint largeBlockCount1 { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint largeBlockSizeInBytes1 { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint largeBlockCount2 { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint largeBlockSizeInBytes2 { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint largeBlockCount3 { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint largeBlockSizeInBytes3 { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint largeBlockLoadingMarginX { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint largeBlockLoadingMarginZ { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Core.FilePtr stageBlockFile { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public string lod0BaseDirectoryPath { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public string lod0BaseName { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint lod0blockSizeInBytes { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public byte lod0blockSizeX { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public byte lod0blockSizeZ { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public byte lod0BlockCountX { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public byte lod0BlockCountZ { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint lod0LargeBlock0SizeInBytes { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public byte lod0LargeBlock0Count { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint lod0LargeBlock1SizeInBytes { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public byte lod0LargeBlock1Count { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint lod0LargeBlock2SizeInBytes { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public byte lod0LargeBlock2Count { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint lod0LargeBlock3SizeInBytes { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public byte lod0LargeBlock3Count { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public string lod1BaseDirectoryPath { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public string lod1BaseName { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint lod1blockSizeInBytes { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public byte lod1blockSizeX { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public byte lod1blockSizeZ { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public byte lod1BlockCountX { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public byte lod1BlockCountZ { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint lod1LargeBlock0SizeInBytes { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public byte lod1LargeBlock0Count { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint lod1LargeBlock1SizeInBytes { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public byte lod1LargeBlock1Count { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint lod1LargeBlock2SizeInBytes { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public byte lod1LargeBlock2Count { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public uint lod1LargeBlock3SizeInBytes { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public byte lod1LargeBlock3Count { get; set; }
+		
+		// ClassInfos
+		public static new bool ClassInfoInitialized = false;
+		private static Fox.Core.EntityInfo classInfo;
+		public static new Fox.Core.EntityInfo ClassInfo
+		{
+			get
+			{
+				return classInfo;
+			}
+		}
+		public override Fox.Core.EntityInfo GetClassEntityInfo()
+		{
+			return classInfo;
+		}
+		static StageBlockControllerData()
+		{
+			if (Fox.Core.Data.ClassInfoInitialized)
+				classInfo = new Fox.Core.EntityInfo("StageBlockControllerData", typeof(StageBlockControllerData), Fox.Core.Data.ClassInfo, 288, null, 8);
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("enable", Fox.Core.PropertyInfo.PropertyType.Bool, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("stageName", Fox.Core.PropertyInfo.PropertyType.String, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("useBaseDirectoryPathAndName", Fox.Core.PropertyInfo.PropertyType.Bool, 168, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("baseDirectoryPath", Fox.Core.PropertyInfo.PropertyType.String, 136, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("baseName", Fox.Core.PropertyInfo.PropertyType.String, 144, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("smallBlock1BaseDirectoryPath", Fox.Core.PropertyInfo.PropertyType.String, 152, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("smallBlock1BaseName", Fox.Core.PropertyInfo.PropertyType.String, 160, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("blockSizeX", Fox.Core.PropertyInfo.PropertyType.UInt32, 172, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("blockSizeZ", Fox.Core.PropertyInfo.PropertyType.UInt32, 176, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("countX", Fox.Core.PropertyInfo.PropertyType.UInt32, 180, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("countZ", Fox.Core.PropertyInfo.PropertyType.UInt32, 184, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("centerIndexX", Fox.Core.PropertyInfo.PropertyType.UInt32, 188, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("centerIndexZ", Fox.Core.PropertyInfo.PropertyType.UInt32, 192, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("blockSizeInBytes", Fox.Core.PropertyInfo.PropertyType.UInt32, 196, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("smallBlock1CountX", Fox.Core.PropertyInfo.PropertyType.UInt32, 200, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("smallBlock1CountZ", Fox.Core.PropertyInfo.PropertyType.UInt32, 204, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("smallBlock1BlockSizeInBytes", Fox.Core.PropertyInfo.PropertyType.UInt32, 208, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("blockMarginX", Fox.Core.PropertyInfo.PropertyType.UInt32, 212, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("blockMarginZ", Fox.Core.PropertyInfo.PropertyType.UInt32, 216, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("loadingDistanceX", Fox.Core.PropertyInfo.PropertyType.UInt32, 220, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("loadingDistanceZ", Fox.Core.PropertyInfo.PropertyType.UInt32, 224, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("commonBlockSizeInBytes", Fox.Core.PropertyInfo.PropertyType.UInt32, 228, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("largeBlockCount0", Fox.Core.PropertyInfo.PropertyType.UInt32, 232, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("largeBlockSizeInBytes0", Fox.Core.PropertyInfo.PropertyType.UInt32, 236, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("largeBlockCount1", Fox.Core.PropertyInfo.PropertyType.UInt32, 240, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("largeBlockSizeInBytes1", Fox.Core.PropertyInfo.PropertyType.UInt32, 244, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("largeBlockCount2", Fox.Core.PropertyInfo.PropertyType.UInt32, 248, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("largeBlockSizeInBytes2", Fox.Core.PropertyInfo.PropertyType.UInt32, 252, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("largeBlockCount3", Fox.Core.PropertyInfo.PropertyType.UInt32, 256, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("largeBlockSizeInBytes3", Fox.Core.PropertyInfo.PropertyType.UInt32, 260, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("largeBlockLoadingMarginX", Fox.Core.PropertyInfo.PropertyType.UInt32, 264, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("largeBlockLoadingMarginZ", Fox.Core.PropertyInfo.PropertyType.UInt32, 268, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("stageBlockFile", Fox.Core.PropertyInfo.PropertyType.FilePtr, 360, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("lod0BaseDirectoryPath", Fox.Core.PropertyInfo.PropertyType.String, 272, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("lod0BaseName", Fox.Core.PropertyInfo.PropertyType.String, 280, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("lod0blockSizeInBytes", Fox.Core.PropertyInfo.PropertyType.UInt32, 304, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("lod0blockSizeX", Fox.Core.PropertyInfo.PropertyType.UInt8, 308, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("lod0blockSizeZ", Fox.Core.PropertyInfo.PropertyType.UInt8, 309, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("lod0BlockCountX", Fox.Core.PropertyInfo.PropertyType.UInt8, 310, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("lod0BlockCountZ", Fox.Core.PropertyInfo.PropertyType.UInt8, 311, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("lod0LargeBlock0SizeInBytes", Fox.Core.PropertyInfo.PropertyType.UInt32, 312, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("lod0LargeBlock0Count", Fox.Core.PropertyInfo.PropertyType.UInt8, 328, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("lod0LargeBlock1SizeInBytes", Fox.Core.PropertyInfo.PropertyType.UInt32, 316, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("lod0LargeBlock1Count", Fox.Core.PropertyInfo.PropertyType.UInt8, 329, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("lod0LargeBlock2SizeInBytes", Fox.Core.PropertyInfo.PropertyType.UInt32, 320, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("lod0LargeBlock2Count", Fox.Core.PropertyInfo.PropertyType.UInt8, 330, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("lod0LargeBlock3SizeInBytes", Fox.Core.PropertyInfo.PropertyType.UInt32, 324, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("lod0LargeBlock3Count", Fox.Core.PropertyInfo.PropertyType.UInt8, 331, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("lod1BaseDirectoryPath", Fox.Core.PropertyInfo.PropertyType.String, 288, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("lod1BaseName", Fox.Core.PropertyInfo.PropertyType.String, 296, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("lod1blockSizeInBytes", Fox.Core.PropertyInfo.PropertyType.UInt32, 332, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("lod1blockSizeX", Fox.Core.PropertyInfo.PropertyType.UInt8, 336, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("lod1blockSizeZ", Fox.Core.PropertyInfo.PropertyType.UInt8, 337, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("lod1BlockCountX", Fox.Core.PropertyInfo.PropertyType.UInt8, 338, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("lod1BlockCountZ", Fox.Core.PropertyInfo.PropertyType.UInt8, 339, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("lod1LargeBlock0SizeInBytes", Fox.Core.PropertyInfo.PropertyType.UInt32, 340, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("lod1LargeBlock0Count", Fox.Core.PropertyInfo.PropertyType.UInt8, 356, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("lod1LargeBlock1SizeInBytes", Fox.Core.PropertyInfo.PropertyType.UInt32, 344, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("lod1LargeBlock1Count", Fox.Core.PropertyInfo.PropertyType.UInt8, 357, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("lod1LargeBlock2SizeInBytes", Fox.Core.PropertyInfo.PropertyType.UInt32, 348, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("lod1LargeBlock2Count", Fox.Core.PropertyInfo.PropertyType.UInt8, 358, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("lod1LargeBlock3SizeInBytes", Fox.Core.PropertyInfo.PropertyType.UInt32, 352, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("lod1LargeBlock3Count", Fox.Core.PropertyInfo.PropertyType.UInt8, 359, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 
-            ClassInfoInitialized = true;
-        }
+			ClassInfoInitialized = true;
+		}
+		
+		public override Fox.Core.Value GetProperty(string propertyName)
+		{
+			switch (propertyName)
+			{
+				case "enable":
+					return new Fox.Core.Value(enable);
+				case "stageName":
+					return new Fox.Core.Value(stageName);
+				case "useBaseDirectoryPathAndName":
+					return new Fox.Core.Value(useBaseDirectoryPathAndName);
+				case "baseDirectoryPath":
+					return new Fox.Core.Value(baseDirectoryPath);
+				case "baseName":
+					return new Fox.Core.Value(baseName);
+				case "smallBlock1BaseDirectoryPath":
+					return new Fox.Core.Value(smallBlock1BaseDirectoryPath);
+				case "smallBlock1BaseName":
+					return new Fox.Core.Value(smallBlock1BaseName);
+				case "blockSizeX":
+					return new Fox.Core.Value(blockSizeX);
+				case "blockSizeZ":
+					return new Fox.Core.Value(blockSizeZ);
+				case "countX":
+					return new Fox.Core.Value(countX);
+				case "countZ":
+					return new Fox.Core.Value(countZ);
+				case "centerIndexX":
+					return new Fox.Core.Value(centerIndexX);
+				case "centerIndexZ":
+					return new Fox.Core.Value(centerIndexZ);
+				case "blockSizeInBytes":
+					return new Fox.Core.Value(blockSizeInBytes);
+				case "smallBlock1CountX":
+					return new Fox.Core.Value(smallBlock1CountX);
+				case "smallBlock1CountZ":
+					return new Fox.Core.Value(smallBlock1CountZ);
+				case "smallBlock1BlockSizeInBytes":
+					return new Fox.Core.Value(smallBlock1BlockSizeInBytes);
+				case "blockMarginX":
+					return new Fox.Core.Value(blockMarginX);
+				case "blockMarginZ":
+					return new Fox.Core.Value(blockMarginZ);
+				case "loadingDistanceX":
+					return new Fox.Core.Value(loadingDistanceX);
+				case "loadingDistanceZ":
+					return new Fox.Core.Value(loadingDistanceZ);
+				case "commonBlockSizeInBytes":
+					return new Fox.Core.Value(commonBlockSizeInBytes);
+				case "largeBlockCount0":
+					return new Fox.Core.Value(largeBlockCount0);
+				case "largeBlockSizeInBytes0":
+					return new Fox.Core.Value(largeBlockSizeInBytes0);
+				case "largeBlockCount1":
+					return new Fox.Core.Value(largeBlockCount1);
+				case "largeBlockSizeInBytes1":
+					return new Fox.Core.Value(largeBlockSizeInBytes1);
+				case "largeBlockCount2":
+					return new Fox.Core.Value(largeBlockCount2);
+				case "largeBlockSizeInBytes2":
+					return new Fox.Core.Value(largeBlockSizeInBytes2);
+				case "largeBlockCount3":
+					return new Fox.Core.Value(largeBlockCount3);
+				case "largeBlockSizeInBytes3":
+					return new Fox.Core.Value(largeBlockSizeInBytes3);
+				case "largeBlockLoadingMarginX":
+					return new Fox.Core.Value(largeBlockLoadingMarginX);
+				case "largeBlockLoadingMarginZ":
+					return new Fox.Core.Value(largeBlockLoadingMarginZ);
+				case "stageBlockFile":
+					return new Fox.Core.Value(stageBlockFile);
+				case "lod0BaseDirectoryPath":
+					return new Fox.Core.Value(lod0BaseDirectoryPath);
+				case "lod0BaseName":
+					return new Fox.Core.Value(lod0BaseName);
+				case "lod0blockSizeInBytes":
+					return new Fox.Core.Value(lod0blockSizeInBytes);
+				case "lod0blockSizeX":
+					return new Fox.Core.Value(lod0blockSizeX);
+				case "lod0blockSizeZ":
+					return new Fox.Core.Value(lod0blockSizeZ);
+				case "lod0BlockCountX":
+					return new Fox.Core.Value(lod0BlockCountX);
+				case "lod0BlockCountZ":
+					return new Fox.Core.Value(lod0BlockCountZ);
+				case "lod0LargeBlock0SizeInBytes":
+					return new Fox.Core.Value(lod0LargeBlock0SizeInBytes);
+				case "lod0LargeBlock0Count":
+					return new Fox.Core.Value(lod0LargeBlock0Count);
+				case "lod0LargeBlock1SizeInBytes":
+					return new Fox.Core.Value(lod0LargeBlock1SizeInBytes);
+				case "lod0LargeBlock1Count":
+					return new Fox.Core.Value(lod0LargeBlock1Count);
+				case "lod0LargeBlock2SizeInBytes":
+					return new Fox.Core.Value(lod0LargeBlock2SizeInBytes);
+				case "lod0LargeBlock2Count":
+					return new Fox.Core.Value(lod0LargeBlock2Count);
+				case "lod0LargeBlock3SizeInBytes":
+					return new Fox.Core.Value(lod0LargeBlock3SizeInBytes);
+				case "lod0LargeBlock3Count":
+					return new Fox.Core.Value(lod0LargeBlock3Count);
+				case "lod1BaseDirectoryPath":
+					return new Fox.Core.Value(lod1BaseDirectoryPath);
+				case "lod1BaseName":
+					return new Fox.Core.Value(lod1BaseName);
+				case "lod1blockSizeInBytes":
+					return new Fox.Core.Value(lod1blockSizeInBytes);
+				case "lod1blockSizeX":
+					return new Fox.Core.Value(lod1blockSizeX);
+				case "lod1blockSizeZ":
+					return new Fox.Core.Value(lod1blockSizeZ);
+				case "lod1BlockCountX":
+					return new Fox.Core.Value(lod1BlockCountX);
+				case "lod1BlockCountZ":
+					return new Fox.Core.Value(lod1BlockCountZ);
+				case "lod1LargeBlock0SizeInBytes":
+					return new Fox.Core.Value(lod1LargeBlock0SizeInBytes);
+				case "lod1LargeBlock0Count":
+					return new Fox.Core.Value(lod1LargeBlock0Count);
+				case "lod1LargeBlock1SizeInBytes":
+					return new Fox.Core.Value(lod1LargeBlock1SizeInBytes);
+				case "lod1LargeBlock1Count":
+					return new Fox.Core.Value(lod1LargeBlock1Count);
+				case "lod1LargeBlock2SizeInBytes":
+					return new Fox.Core.Value(lod1LargeBlock2SizeInBytes);
+				case "lod1LargeBlock2Count":
+					return new Fox.Core.Value(lod1LargeBlock2Count);
+				case "lod1LargeBlock3SizeInBytes":
+					return new Fox.Core.Value(lod1LargeBlock3SizeInBytes);
+				case "lod1LargeBlock3Count":
+					return new Fox.Core.Value(lod1LargeBlock3Count);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
 
-        // Constructors
-		public StageBlockControllerData(ulong id) : base(id) { }
-		public StageBlockControllerData() : base() { }
-        
-        public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "enable":
-                    this.enable = value.GetValueAsBool();
-                    return;
-                case "stageName":
-                    this.stageName = value.GetValueAsString();
-                    return;
-                case "useBaseDirectoryPathAndName":
-                    this.useBaseDirectoryPathAndName = value.GetValueAsBool();
-                    return;
-                case "baseDirectoryPath":
-                    this.baseDirectoryPath = value.GetValueAsString();
-                    return;
-                case "baseName":
-                    this.baseName = value.GetValueAsString();
-                    return;
-                case "smallBlock1BaseDirectoryPath":
-                    this.smallBlock1BaseDirectoryPath = value.GetValueAsString();
-                    return;
-                case "smallBlock1BaseName":
-                    this.smallBlock1BaseName = value.GetValueAsString();
-                    return;
-                case "blockSizeX":
-                    this.blockSizeX = value.GetValueAsUInt32();
-                    return;
-                case "blockSizeZ":
-                    this.blockSizeZ = value.GetValueAsUInt32();
-                    return;
-                case "countX":
-                    this.countX = value.GetValueAsUInt32();
-                    return;
-                case "countZ":
-                    this.countZ = value.GetValueAsUInt32();
-                    return;
-                case "centerIndexX":
-                    this.centerIndexX = value.GetValueAsUInt32();
-                    return;
-                case "centerIndexZ":
-                    this.centerIndexZ = value.GetValueAsUInt32();
-                    return;
-                case "blockSizeInBytes":
-                    this.blockSizeInBytes = value.GetValueAsUInt32();
-                    return;
-                case "smallBlock1CountX":
-                    this.smallBlock1CountX = value.GetValueAsUInt32();
-                    return;
-                case "smallBlock1CountZ":
-                    this.smallBlock1CountZ = value.GetValueAsUInt32();
-                    return;
-                case "smallBlock1BlockSizeInBytes":
-                    this.smallBlock1BlockSizeInBytes = value.GetValueAsUInt32();
-                    return;
-                case "blockMarginX":
-                    this.blockMarginX = value.GetValueAsUInt32();
-                    return;
-                case "blockMarginZ":
-                    this.blockMarginZ = value.GetValueAsUInt32();
-                    return;
-                case "loadingDistanceX":
-                    this.loadingDistanceX = value.GetValueAsUInt32();
-                    return;
-                case "loadingDistanceZ":
-                    this.loadingDistanceZ = value.GetValueAsUInt32();
-                    return;
-                case "commonBlockSizeInBytes":
-                    this.commonBlockSizeInBytes = value.GetValueAsUInt32();
-                    return;
-                case "largeBlockCount0":
-                    this.largeBlockCount0 = value.GetValueAsUInt32();
-                    return;
-                case "largeBlockSizeInBytes0":
-                    this.largeBlockSizeInBytes0 = value.GetValueAsUInt32();
-                    return;
-                case "largeBlockCount1":
-                    this.largeBlockCount1 = value.GetValueAsUInt32();
-                    return;
-                case "largeBlockSizeInBytes1":
-                    this.largeBlockSizeInBytes1 = value.GetValueAsUInt32();
-                    return;
-                case "largeBlockCount2":
-                    this.largeBlockCount2 = value.GetValueAsUInt32();
-                    return;
-                case "largeBlockSizeInBytes2":
-                    this.largeBlockSizeInBytes2 = value.GetValueAsUInt32();
-                    return;
-                case "largeBlockCount3":
-                    this.largeBlockCount3 = value.GetValueAsUInt32();
-                    return;
-                case "largeBlockSizeInBytes3":
-                    this.largeBlockSizeInBytes3 = value.GetValueAsUInt32();
-                    return;
-                case "largeBlockLoadingMarginX":
-                    this.largeBlockLoadingMarginX = value.GetValueAsUInt32();
-                    return;
-                case "largeBlockLoadingMarginZ":
-                    this.largeBlockLoadingMarginZ = value.GetValueAsUInt32();
-                    return;
-                case "stageBlockFile":
-                    this.stageBlockFile = value.GetValueAsFilePtr();
-                    return;
-                case "lod0BaseDirectoryPath":
-                    this.lod0BaseDirectoryPath = value.GetValueAsString();
-                    return;
-                case "lod0BaseName":
-                    this.lod0BaseName = value.GetValueAsString();
-                    return;
-                case "lod0blockSizeInBytes":
-                    this.lod0blockSizeInBytes = value.GetValueAsUInt32();
-                    return;
-                case "lod0blockSizeX":
-                    this.lod0blockSizeX = value.GetValueAsUInt8();
-                    return;
-                case "lod0blockSizeZ":
-                    this.lod0blockSizeZ = value.GetValueAsUInt8();
-                    return;
-                case "lod0BlockCountX":
-                    this.lod0BlockCountX = value.GetValueAsUInt8();
-                    return;
-                case "lod0BlockCountZ":
-                    this.lod0BlockCountZ = value.GetValueAsUInt8();
-                    return;
-                case "lod0LargeBlock0SizeInBytes":
-                    this.lod0LargeBlock0SizeInBytes = value.GetValueAsUInt32();
-                    return;
-                case "lod0LargeBlock0Count":
-                    this.lod0LargeBlock0Count = value.GetValueAsUInt8();
-                    return;
-                case "lod0LargeBlock1SizeInBytes":
-                    this.lod0LargeBlock1SizeInBytes = value.GetValueAsUInt32();
-                    return;
-                case "lod0LargeBlock1Count":
-                    this.lod0LargeBlock1Count = value.GetValueAsUInt8();
-                    return;
-                case "lod0LargeBlock2SizeInBytes":
-                    this.lod0LargeBlock2SizeInBytes = value.GetValueAsUInt32();
-                    return;
-                case "lod0LargeBlock2Count":
-                    this.lod0LargeBlock2Count = value.GetValueAsUInt8();
-                    return;
-                case "lod0LargeBlock3SizeInBytes":
-                    this.lod0LargeBlock3SizeInBytes = value.GetValueAsUInt32();
-                    return;
-                case "lod0LargeBlock3Count":
-                    this.lod0LargeBlock3Count = value.GetValueAsUInt8();
-                    return;
-                case "lod1BaseDirectoryPath":
-                    this.lod1BaseDirectoryPath = value.GetValueAsString();
-                    return;
-                case "lod1BaseName":
-                    this.lod1BaseName = value.GetValueAsString();
-                    return;
-                case "lod1blockSizeInBytes":
-                    this.lod1blockSizeInBytes = value.GetValueAsUInt32();
-                    return;
-                case "lod1blockSizeX":
-                    this.lod1blockSizeX = value.GetValueAsUInt8();
-                    return;
-                case "lod1blockSizeZ":
-                    this.lod1blockSizeZ = value.GetValueAsUInt8();
-                    return;
-                case "lod1BlockCountX":
-                    this.lod1BlockCountX = value.GetValueAsUInt8();
-                    return;
-                case "lod1BlockCountZ":
-                    this.lod1BlockCountZ = value.GetValueAsUInt8();
-                    return;
-                case "lod1LargeBlock0SizeInBytes":
-                    this.lod1LargeBlock0SizeInBytes = value.GetValueAsUInt32();
-                    return;
-                case "lod1LargeBlock0Count":
-                    this.lod1LargeBlock0Count = value.GetValueAsUInt8();
-                    return;
-                case "lod1LargeBlock1SizeInBytes":
-                    this.lod1LargeBlock1SizeInBytes = value.GetValueAsUInt32();
-                    return;
-                case "lod1LargeBlock1Count":
-                    this.lod1LargeBlock1Count = value.GetValueAsUInt8();
-                    return;
-                case "lod1LargeBlock2SizeInBytes":
-                    this.lod1LargeBlock2SizeInBytes = value.GetValueAsUInt32();
-                    return;
-                case "lod1LargeBlock2Count":
-                    this.lod1LargeBlock2Count = value.GetValueAsUInt8();
-                    return;
-                case "lod1LargeBlock3SizeInBytes":
-                    this.lod1LargeBlock3SizeInBytes = value.GetValueAsUInt32();
-                    return;
-                case "lod1LargeBlock3Count":
-                    this.lod1LargeBlock3Count = value.GetValueAsUInt8();
-                    return;
-                default:
-                    base.SetProperty(propertyName, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, index, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, key, value);
-                    return;
-            }
-        }
-    }
+		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		{
+			switch (propertyName)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		{
+			switch (propertyName)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
+
+		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				case "enable":
+					this.enable = value.GetValueAsBool();
+					return;
+				case "stageName":
+					this.stageName = value.GetValueAsString();
+					return;
+				case "useBaseDirectoryPathAndName":
+					this.useBaseDirectoryPathAndName = value.GetValueAsBool();
+					return;
+				case "baseDirectoryPath":
+					this.baseDirectoryPath = value.GetValueAsString();
+					return;
+				case "baseName":
+					this.baseName = value.GetValueAsString();
+					return;
+				case "smallBlock1BaseDirectoryPath":
+					this.smallBlock1BaseDirectoryPath = value.GetValueAsString();
+					return;
+				case "smallBlock1BaseName":
+					this.smallBlock1BaseName = value.GetValueAsString();
+					return;
+				case "blockSizeX":
+					this.blockSizeX = value.GetValueAsUInt32();
+					return;
+				case "blockSizeZ":
+					this.blockSizeZ = value.GetValueAsUInt32();
+					return;
+				case "countX":
+					this.countX = value.GetValueAsUInt32();
+					return;
+				case "countZ":
+					this.countZ = value.GetValueAsUInt32();
+					return;
+				case "centerIndexX":
+					this.centerIndexX = value.GetValueAsUInt32();
+					return;
+				case "centerIndexZ":
+					this.centerIndexZ = value.GetValueAsUInt32();
+					return;
+				case "blockSizeInBytes":
+					this.blockSizeInBytes = value.GetValueAsUInt32();
+					return;
+				case "smallBlock1CountX":
+					this.smallBlock1CountX = value.GetValueAsUInt32();
+					return;
+				case "smallBlock1CountZ":
+					this.smallBlock1CountZ = value.GetValueAsUInt32();
+					return;
+				case "smallBlock1BlockSizeInBytes":
+					this.smallBlock1BlockSizeInBytes = value.GetValueAsUInt32();
+					return;
+				case "blockMarginX":
+					this.blockMarginX = value.GetValueAsUInt32();
+					return;
+				case "blockMarginZ":
+					this.blockMarginZ = value.GetValueAsUInt32();
+					return;
+				case "loadingDistanceX":
+					this.loadingDistanceX = value.GetValueAsUInt32();
+					return;
+				case "loadingDistanceZ":
+					this.loadingDistanceZ = value.GetValueAsUInt32();
+					return;
+				case "commonBlockSizeInBytes":
+					this.commonBlockSizeInBytes = value.GetValueAsUInt32();
+					return;
+				case "largeBlockCount0":
+					this.largeBlockCount0 = value.GetValueAsUInt32();
+					return;
+				case "largeBlockSizeInBytes0":
+					this.largeBlockSizeInBytes0 = value.GetValueAsUInt32();
+					return;
+				case "largeBlockCount1":
+					this.largeBlockCount1 = value.GetValueAsUInt32();
+					return;
+				case "largeBlockSizeInBytes1":
+					this.largeBlockSizeInBytes1 = value.GetValueAsUInt32();
+					return;
+				case "largeBlockCount2":
+					this.largeBlockCount2 = value.GetValueAsUInt32();
+					return;
+				case "largeBlockSizeInBytes2":
+					this.largeBlockSizeInBytes2 = value.GetValueAsUInt32();
+					return;
+				case "largeBlockCount3":
+					this.largeBlockCount3 = value.GetValueAsUInt32();
+					return;
+				case "largeBlockSizeInBytes3":
+					this.largeBlockSizeInBytes3 = value.GetValueAsUInt32();
+					return;
+				case "largeBlockLoadingMarginX":
+					this.largeBlockLoadingMarginX = value.GetValueAsUInt32();
+					return;
+				case "largeBlockLoadingMarginZ":
+					this.largeBlockLoadingMarginZ = value.GetValueAsUInt32();
+					return;
+				case "stageBlockFile":
+					this.stageBlockFile = value.GetValueAsFilePtr();
+					return;
+				case "lod0BaseDirectoryPath":
+					this.lod0BaseDirectoryPath = value.GetValueAsString();
+					return;
+				case "lod0BaseName":
+					this.lod0BaseName = value.GetValueAsString();
+					return;
+				case "lod0blockSizeInBytes":
+					this.lod0blockSizeInBytes = value.GetValueAsUInt32();
+					return;
+				case "lod0blockSizeX":
+					this.lod0blockSizeX = value.GetValueAsUInt8();
+					return;
+				case "lod0blockSizeZ":
+					this.lod0blockSizeZ = value.GetValueAsUInt8();
+					return;
+				case "lod0BlockCountX":
+					this.lod0BlockCountX = value.GetValueAsUInt8();
+					return;
+				case "lod0BlockCountZ":
+					this.lod0BlockCountZ = value.GetValueAsUInt8();
+					return;
+				case "lod0LargeBlock0SizeInBytes":
+					this.lod0LargeBlock0SizeInBytes = value.GetValueAsUInt32();
+					return;
+				case "lod0LargeBlock0Count":
+					this.lod0LargeBlock0Count = value.GetValueAsUInt8();
+					return;
+				case "lod0LargeBlock1SizeInBytes":
+					this.lod0LargeBlock1SizeInBytes = value.GetValueAsUInt32();
+					return;
+				case "lod0LargeBlock1Count":
+					this.lod0LargeBlock1Count = value.GetValueAsUInt8();
+					return;
+				case "lod0LargeBlock2SizeInBytes":
+					this.lod0LargeBlock2SizeInBytes = value.GetValueAsUInt32();
+					return;
+				case "lod0LargeBlock2Count":
+					this.lod0LargeBlock2Count = value.GetValueAsUInt8();
+					return;
+				case "lod0LargeBlock3SizeInBytes":
+					this.lod0LargeBlock3SizeInBytes = value.GetValueAsUInt32();
+					return;
+				case "lod0LargeBlock3Count":
+					this.lod0LargeBlock3Count = value.GetValueAsUInt8();
+					return;
+				case "lod1BaseDirectoryPath":
+					this.lod1BaseDirectoryPath = value.GetValueAsString();
+					return;
+				case "lod1BaseName":
+					this.lod1BaseName = value.GetValueAsString();
+					return;
+				case "lod1blockSizeInBytes":
+					this.lod1blockSizeInBytes = value.GetValueAsUInt32();
+					return;
+				case "lod1blockSizeX":
+					this.lod1blockSizeX = value.GetValueAsUInt8();
+					return;
+				case "lod1blockSizeZ":
+					this.lod1blockSizeZ = value.GetValueAsUInt8();
+					return;
+				case "lod1BlockCountX":
+					this.lod1BlockCountX = value.GetValueAsUInt8();
+					return;
+				case "lod1BlockCountZ":
+					this.lod1BlockCountZ = value.GetValueAsUInt8();
+					return;
+				case "lod1LargeBlock0SizeInBytes":
+					this.lod1LargeBlock0SizeInBytes = value.GetValueAsUInt32();
+					return;
+				case "lod1LargeBlock0Count":
+					this.lod1LargeBlock0Count = value.GetValueAsUInt8();
+					return;
+				case "lod1LargeBlock1SizeInBytes":
+					this.lod1LargeBlock1SizeInBytes = value.GetValueAsUInt32();
+					return;
+				case "lod1LargeBlock1Count":
+					this.lod1LargeBlock1Count = value.GetValueAsUInt8();
+					return;
+				case "lod1LargeBlock2SizeInBytes":
+					this.lod1LargeBlock2SizeInBytes = value.GetValueAsUInt32();
+					return;
+				case "lod1LargeBlock2Count":
+					this.lod1LargeBlock2Count = value.GetValueAsUInt8();
+					return;
+				case "lod1LargeBlock3SizeInBytes":
+					this.lod1LargeBlock3SizeInBytes = value.GetValueAsUInt32();
+					return;
+				case "lod1LargeBlock3Count":
+					this.lod1LargeBlock3Count = value.GetValueAsUInt8();
+					return;
+				default:
+					base.SetProperty(propertyName, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+	}
 }

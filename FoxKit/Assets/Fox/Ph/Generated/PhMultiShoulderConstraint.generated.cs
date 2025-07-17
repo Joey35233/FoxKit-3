@@ -12,128 +12,167 @@ using Fox;
 
 namespace Fox.Ph
 {
-    [UnityEditor.InitializeOnLoad]
-    public partial class PhMultiShoulderConstraint : Fox.Ph.PhConstraint 
-    {
-        // Properties
-        public UnityEngine.Quaternion refVec0 { get => Get_refVec0(); set { Set_refVec0(value); } }
-        protected partial UnityEngine.Quaternion Get_refVec0();
-        protected partial void Set_refVec0(UnityEngine.Quaternion value);
-        
-        public UnityEngine.Quaternion refVec1 { get => Get_refVec1(); set { Set_refVec1(value); } }
-        protected partial UnityEngine.Quaternion Get_refVec1();
-        protected partial void Set_refVec1(UnityEngine.Quaternion value);
-        
-        public float refLimit0 { get => Get_refLimit0(); set { Set_refLimit0(value); } }
-        protected partial float Get_refLimit0();
-        protected partial void Set_refLimit0(float value);
-        
-        public float refLimit1 { get => Get_refLimit1(); set { Set_refLimit1(value); } }
-        protected partial float Get_refLimit1();
-        protected partial void Set_refLimit1(float value);
-        
-        public float velocityMax { get => Get_velocityMax(); set { Set_velocityMax(value); } }
-        protected partial float Get_velocityMax();
-        protected partial void Set_velocityMax(float value);
-        
-        public float torqueMax { get => Get_torqueMax(); set { Set_torqueMax(value); } }
-        protected partial float Get_torqueMax();
-        protected partial void Set_torqueMax(float value);
-        
-        public float velocityRate { get => Get_velocityRate(); set { Set_velocityRate(value); } }
-        protected partial float Get_velocityRate();
-        protected partial void Set_velocityRate(float value);
-        
-        public bool isPoweredFlag { get => Get_isPoweredFlag(); set { Set_isPoweredFlag(value); } }
-        protected partial bool Get_isPoweredFlag();
-        protected partial void Set_isPoweredFlag(bool value);
-        
-        // ClassInfos
-        public static new bool ClassInfoInitialized = false;
-        private static Fox.Core.EntityInfo classInfo;
-        public static new Fox.Core.EntityInfo ClassInfo
-        {
-            get
-            {
-                return classInfo;
-            }
-        }
-        public override Fox.Core.EntityInfo GetClassEntityInfo()
-        {
-            return classInfo;
-        }
-        static PhMultiShoulderConstraint()
-        {
-            if (Fox.Ph.PhConstraint.ClassInfoInitialized)
-                classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("PhMultiShoulderConstraint"), typeof(PhMultiShoulderConstraint), Fox.Ph.PhConstraint.ClassInfo, 0, "Ph", 0);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("refVec0"), Fox.Core.PropertyInfo.PropertyType.Quat, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Accessor));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("refVec1"), Fox.Core.PropertyInfo.PropertyType.Quat, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Accessor));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("refLimit0"), Fox.Core.PropertyInfo.PropertyType.Float, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Accessor));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("refLimit1"), Fox.Core.PropertyInfo.PropertyType.Float, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Accessor));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("velocityMax"), Fox.Core.PropertyInfo.PropertyType.Float, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Accessor));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("torqueMax"), Fox.Core.PropertyInfo.PropertyType.Float, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Accessor));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("velocityRate"), Fox.Core.PropertyInfo.PropertyType.Float, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Accessor));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("isPoweredFlag"), Fox.Core.PropertyInfo.PropertyType.Bool, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Accessor));
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Ph/PhMultiShoulderConstraint")]
+	public partial class PhMultiShoulderConstraint : Fox.Ph.PhConstraint
+	{
+		// Properties
+		public UnityEngine.Quaternion refVec0 { get => Get_refVec0(); set { Set_refVec0(value); } }
+		private partial UnityEngine.Quaternion Get_refVec0();
+		private partial void Set_refVec0(UnityEngine.Quaternion value);
+		
+		public UnityEngine.Quaternion refVec1 { get => Get_refVec1(); set { Set_refVec1(value); } }
+		private partial UnityEngine.Quaternion Get_refVec1();
+		private partial void Set_refVec1(UnityEngine.Quaternion value);
+		
+		public float refLimit0 { get => Get_refLimit0(); set { Set_refLimit0(value); } }
+		private partial float Get_refLimit0();
+		private partial void Set_refLimit0(float value);
+		
+		public float refLimit1 { get => Get_refLimit1(); set { Set_refLimit1(value); } }
+		private partial float Get_refLimit1();
+		private partial void Set_refLimit1(float value);
+		
+		public float velocityMax { get => Get_velocityMax(); set { Set_velocityMax(value); } }
+		private partial float Get_velocityMax();
+		private partial void Set_velocityMax(float value);
+		
+		public float torqueMax { get => Get_torqueMax(); set { Set_torqueMax(value); } }
+		private partial float Get_torqueMax();
+		private partial void Set_torqueMax(float value);
+		
+		public float velocityRate { get => Get_velocityRate(); set { Set_velocityRate(value); } }
+		private partial float Get_velocityRate();
+		private partial void Set_velocityRate(float value);
+		
+		public bool isPoweredFlag { get => Get_isPoweredFlag(); set { Set_isPoweredFlag(value); } }
+		private partial bool Get_isPoweredFlag();
+		private partial void Set_isPoweredFlag(bool value);
+		
+		// ClassInfos
+		public static new bool ClassInfoInitialized = false;
+		private static Fox.Core.EntityInfo classInfo;
+		public static new Fox.Core.EntityInfo ClassInfo
+		{
+			get
+			{
+				return classInfo;
+			}
+		}
+		public override Fox.Core.EntityInfo GetClassEntityInfo()
+		{
+			return classInfo;
+		}
+		static PhMultiShoulderConstraint()
+		{
+			if (Fox.Ph.PhConstraint.ClassInfoInitialized)
+				classInfo = new Fox.Core.EntityInfo("PhMultiShoulderConstraint", typeof(PhMultiShoulderConstraint), Fox.Ph.PhConstraint.ClassInfo, 0, "Ph", 0);
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("refVec0", Fox.Core.PropertyInfo.PropertyType.Quat, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Accessor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("refVec1", Fox.Core.PropertyInfo.PropertyType.Quat, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Accessor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("refLimit0", Fox.Core.PropertyInfo.PropertyType.Float, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Accessor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("refLimit1", Fox.Core.PropertyInfo.PropertyType.Float, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Accessor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("velocityMax", Fox.Core.PropertyInfo.PropertyType.Float, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Accessor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("torqueMax", Fox.Core.PropertyInfo.PropertyType.Float, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Accessor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("velocityRate", Fox.Core.PropertyInfo.PropertyType.Float, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Accessor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("isPoweredFlag", Fox.Core.PropertyInfo.PropertyType.Bool, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Accessor));
 
-            ClassInfoInitialized = true;
-        }
+			ClassInfoInitialized = true;
+		}
+		
+		public override Fox.Core.Value GetProperty(string propertyName)
+		{
+			switch (propertyName)
+			{
+				case "refVec0":
+					return new Fox.Core.Value(refVec0);
+				case "refVec1":
+					return new Fox.Core.Value(refVec1);
+				case "refLimit0":
+					return new Fox.Core.Value(refLimit0);
+				case "refLimit1":
+					return new Fox.Core.Value(refLimit1);
+				case "velocityMax":
+					return new Fox.Core.Value(velocityMax);
+				case "torqueMax":
+					return new Fox.Core.Value(torqueMax);
+				case "velocityRate":
+					return new Fox.Core.Value(velocityRate);
+				case "isPoweredFlag":
+					return new Fox.Core.Value(isPoweredFlag);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
 
-        // Constructors
-		public PhMultiShoulderConstraint(ulong id) : base(id) { }
-		public PhMultiShoulderConstraint() : base() { }
-        
-        public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "refVec0":
-                    this.refVec0 = value.GetValueAsQuat();
-                    return;
-                case "refVec1":
-                    this.refVec1 = value.GetValueAsQuat();
-                    return;
-                case "refLimit0":
-                    this.refLimit0 = value.GetValueAsFloat();
-                    return;
-                case "refLimit1":
-                    this.refLimit1 = value.GetValueAsFloat();
-                    return;
-                case "velocityMax":
-                    this.velocityMax = value.GetValueAsFloat();
-                    return;
-                case "torqueMax":
-                    this.torqueMax = value.GetValueAsFloat();
-                    return;
-                case "velocityRate":
-                    this.velocityRate = value.GetValueAsFloat();
-                    return;
-                case "isPoweredFlag":
-                    this.isPoweredFlag = value.GetValueAsBool();
-                    return;
-                default:
-                    base.SetProperty(propertyName, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, index, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, key, value);
-                    return;
-            }
-        }
-    }
+		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		{
+			switch (propertyName)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		{
+			switch (propertyName)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
+
+		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				case "refVec0":
+					this.refVec0 = value.GetValueAsQuat();
+					return;
+				case "refVec1":
+					this.refVec1 = value.GetValueAsQuat();
+					return;
+				case "refLimit0":
+					this.refLimit0 = value.GetValueAsFloat();
+					return;
+				case "refLimit1":
+					this.refLimit1 = value.GetValueAsFloat();
+					return;
+				case "velocityMax":
+					this.velocityMax = value.GetValueAsFloat();
+					return;
+				case "torqueMax":
+					this.torqueMax = value.GetValueAsFloat();
+					return;
+				case "velocityRate":
+					this.velocityRate = value.GetValueAsFloat();
+					return;
+				case "isPoweredFlag":
+					this.isPoweredFlag = value.GetValueAsBool();
+					return;
+				default:
+					base.SetProperty(propertyName, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+	}
 }

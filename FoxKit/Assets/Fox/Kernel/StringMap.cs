@@ -2,26 +2,27 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-namespace Fox.Kernel
+namespace Fox
 {
     public interface IStringMap
     {
-        public void Insert(String key, object value);
-        public void Insert(String key);
+        public void Insert(string key, object value);
 
-        public bool Remove(String key);
+        public bool Remove(string key);
 
-        public object this[String key] { get; }
+        public object this[string key] { get; }
 
-        public bool ContainsKey(String key);
+        public bool ContainsKey(string key);
 
-        public int OccupiedIndexToAbsoluteIndex(int index);
-        public List<KeyValuePair<String, object>> ToList();
+        public int OccupiedIndexToBackingIndex(int index);
+
+        public List<KeyValuePair<string, object>> ToList();
     }
 
     [Serializable]
-    public class StringMap<T> : IStringMap, IList, IEnumerable<KeyValuePair<String, T>>
+    public class StringMap<T> : IStringMap, IList, IEnumerable<KeyValuePair<string, T>>
     {
         private const int InitialSize = 256;
         private const int LoadFactor = 90;
@@ -29,17 +30,19 @@ namespace Fox.Kernel
         [Serializable]
         public struct Cell
         {
-            public Cell(uint distance, String key, T value)
+            public Cell(uint distance, string key, T value)
             {
+                Occupied = true;
                 Distance = distance;
                 Key = key;
                 Value = value;
             }
 
-            public override string ToString() => Key is null ? "Empty" : $"{{{Key}, {Value}}}";
+            public override string ToString() => !Occupied ? "Empty" : $"{{{Key}, {Value}}}";
 
+            public bool Occupied;
             public uint Distance;
-            public String Key;
+            public string Key;
             public T Value;
         }
 
@@ -49,15 +52,14 @@ namespace Fox.Kernel
         private uint HashMask; // Since this map has a 2^n size, (hash & HashMask) or (hash & Capacity - 1)
                                // serves the same remapping purpose as (hash % Capacity)
 
+        [FormerlySerializedAs("CellCount")] [SerializeField]
+        private int OccupiedCount;
         [SerializeField]
-        private int CellCount;
-        [SerializeField]
-        private List<Cell> Cells; // Open addressing style,
-                                  // Unfortunately, we have to use a List<T> instead of an array because SerializedProperty.boxedObject won't work any other way which is weird
+        private List<Cell> CellsBacking; // Unfortunately, we have to use a List<T> instead of an array because SerializedProperty.boxedObject won't work any other way which is weird
 
         public StringMap()
         {
-            CellCount = 0;
+            OccupiedCount = 0;
 
             Allocate(InitialSize);
         }
@@ -77,7 +79,7 @@ namespace Fox.Kernel
 
         public StringMap(int capacity)
         {
-            CellCount = 0;
+            OccupiedCount = 0;
 
             Allocate(capacity <= InitialSize ? InitialSize : RoundUpToPowerOfTwo(capacity));
         }
@@ -87,228 +89,305 @@ namespace Fox.Kernel
             if (capacity < 0)
                 throw new ArgumentException();
 
-            Cells = new List<Cell>(capacity);
+            CellsBacking = new List<Cell>(capacity);
             for (int i = 0; i < capacity; i++)
-                Cells.Add(new Cell());
+                CellsBacking.Add(new Cell());
 
             Threshold = capacity * LoadFactor / 100;
 
             HashMask = unchecked((uint)(capacity - 1));
         }
 
-        private bool IsCellEmpty(Cell cell) => cell.Key is null || cell.Key.IsPseudoNull();
-
         private void Resize()
         {
-            List<Cell> oldCells = Cells;
+            List<Cell> oldBacking = CellsBacking;
 
-            int newCapacity = Cells.Count * 2;
+            int newCapacity = CellsBacking.Count * 2;
 
             Allocate(newCapacity);
 
-            for (int i = 0; i < oldCells.Count; i++)
-            {
-                Cell oldCell = oldCells[i];
-
-                if (!IsCellEmpty(oldCell))
-                {
-                    InsertNoResize(oldCell.Key, oldCell.Value);
-                }
-            }
+            foreach (Cell cell in oldBacking)
+                if (cell.Occupied)
+                    InsertNoResize(cell.Key, cell.Value);
         }
 
-        private void InsertNoResize(String key, T value)
+        private void InsertNoResize(string key, T value)
         {
-            uint index = key.Hash & HashMask;
+            StrCode keyHash = new StrCode(key);
+            int index = (int)(keyHash & HashMask);
 
             uint probeDistance = 0;
             while (true)
             {
-                Cell cell = Cells[(int)index];
+                Cell slot = CellsBacking[index];
 
-                // If cell is uninitialized
-                if (IsCellEmpty(cell))
+                // If slot is open, insert cell
+                if (!slot.Occupied)
                 {
-                    Cells[(int)index] = new Cell(probeDistance, key, value);
+                    CellsBacking[index] = new Cell(probeDistance, key, value);
                     return;
                 }
 
-                if (cell.Key == key)
-                    throw new ArgumentException();
+                if (new StrCode(slot.Key) == keyHash)
+                    throw new ArgumentException($"StringMap: cell is unoccupied but {key} is already present in slot.");
 
                 // If another cell already exists
-                uint existingProbeDistance = cell.Distance;
+                uint existingProbeDistance = slot.Distance;
                 if (existingProbeDistance < probeDistance)
                 {
                     // Swap cells
-                    Cells[(int)index] = new Cell(probeDistance, key, value);
-                    key = cell.Key;
-                    value = cell.Value;
+                    CellsBacking[index] = new Cell(probeDistance, key, value);
+                    key = slot.Key;
+                    value = slot.Value;
                     probeDistance = existingProbeDistance;
                 }
 
-                index = (index + 1) & HashMask; // Loop index back to 0 if it will exceed Capacity.
+                index = (int)((index + 1) & HashMask); // Loop index back to 0 if it will exceed Capacity.
                 probeDistance++;
             }
         }
 
-        public void Insert(String key, T value)
+        public void Insert(string key, T value)
         {
             if (key is null)
                 throw new ArgumentNullException();
 
-            if (++CellCount >= Threshold)
+            if (++OccupiedCount >= Threshold)
                 Resize();
 
             InsertNoResize(key, value);
         }
-        void IStringMap.Insert(String key, object value) => Insert(key, value is T ? (T)value : throw new InvalidCastException());
-        void IStringMap.Insert(String key) => Insert(key, default);
+        void IStringMap.Insert(string key, object value) => Insert(key, value is T valueT ? valueT : throw new InvalidCastException());
 
-        public bool Remove(String key)
+        private void InsertOrUpdateNoResize(string key, T value)
         {
-            if (key is null)
-                throw new ArgumentNullException();
-
-            uint index = key.Hash & HashMask;
+            StrCode keyHash = new StrCode(key);
+            int index = (int)(keyHash & HashMask);
 
             uint probeDistance = 0;
             while (true)
             {
-                Cell cell = Cells[(int)index];
+                Cell slot = CellsBacking[index];
 
-                // If cell is uninitialized
-                if (IsCellEmpty(cell))
+                // If slot is open, insert cell
+                if (!slot.Occupied)
+                {
+                    CellsBacking[index] = new Cell(probeDistance, key, value);
+                    return;
+                }
+
+                if (new StrCode(slot.Key) == keyHash)
+                {
+                    slot.Value = value;
+                    return;
+                }
+
+                // If another cell already exists
+                uint existingProbeDistance = slot.Distance;
+                if (existingProbeDistance < probeDistance)
+                {
+                    // Swap cells
+                    CellsBacking[index] = new Cell(probeDistance, key, value);
+                    key = slot.Key;
+                    value = slot.Value;
+                    probeDistance = existingProbeDistance;
+                }
+
+                index = (int)((index + 1) & HashMask); // Loop index back to 0 if it will exceed Capacity.
+                probeDistance++;
+            }
+        }
+        
+        public bool Remove(string key)
+        {
+            if (key is null)
+                throw new ArgumentNullException();
+
+            StrCode keyHash = new StrCode(key);
+            int index = (int)(keyHash & HashMask);
+
+            uint probeDistance = 0;
+            while (true)
+            {
+                Cell slot = CellsBacking[index];
+
+                // If slot is unoccupied
+                if (!slot.Occupied)
                 {
                     return false;
                 }
-                else if (probeDistance > cell.Distance)
+                // Next available slot is unoccupied
+                else if (probeDistance > slot.Distance)
                 {
                     return false;
                 }
-                else if (key == cell.Key)
+                // Found
+                else if (keyHash == new StrCode(slot.Key))
                 {
                     break;
                 }
 
-                index = (index + 1) & HashMask; // Loop index back to 0 if it will exceed Capacity.
+                index = (int)((index + 1) & HashMask); // Loop index back to 0 if it will exceed Capacity.
                 probeDistance++;
             }
 
-            uint lastIndex = index;
-            uint nextIndex = index;
+            int lastIndex = index;
+            int nextIndex = index;
             while (true)
             {
-                nextIndex = (nextIndex + 1) & HashMask; // Loop index back to 0 if it will exceed Capacity.
+                nextIndex = (int)((nextIndex + 1) & HashMask); // Loop index back to 0 if it will exceed Capacity.
 
-                Cell nextCell = Cells[(int)nextIndex];
+                Cell nextCell = CellsBacking[nextIndex];
 
-                if (IsCellEmpty(nextCell))
+                if (!nextCell.Occupied)
                 {
-                    Cell cell = Cells[(int)index];
+                    Cell cell = CellsBacking[index];
                     cell.Key = null;
-                    Cells[(int)index] = cell;
+                    cell.Occupied = false;
+                    CellsBacking[index] = cell;
 
                     break;
                 }
                 else if (nextCell.Distance == 0)
                 {
-                    Cell cell = Cells[(int)index];
+                    Cell cell = CellsBacking[index];
                     cell.Key = null;
-                    Cells[(int)index] = cell;
+                    cell.Occupied = false;
+                    CellsBacking[index] = cell;
 
                     break;
                 }
                 else
                 {
-                    Cells[(int)lastIndex] = Cells[(int)nextIndex];
-                    Cell cell = Cells[(int)lastIndex];
+                    CellsBacking[lastIndex] = nextCell;
+                    Cell cell = CellsBacking[lastIndex];
                     cell.Distance--;
-                    Cells[(int)lastIndex] = cell;
+                    CellsBacking[lastIndex] = cell;
                 }
-
 
                 lastIndex = nextIndex; // Loop index back to 0 if it will exceed Capacity.
             }
 
-            CellCount--;
+            OccupiedCount--;
             return true;
         }
 
-        public bool TryGetValue(String key, out T value)
+        public bool TryGetValue(string key, out T value)
         {
             if (key is null)
                 throw new ArgumentNullException();
 
-            uint index = key.Hash & HashMask;
+            StrCode keyHash = new StrCode(key);
+            int index = (int)(keyHash & HashMask);
 
             uint probeDistance = 0;
             while (true)
             {
-                Cell cell = Cells[(int)index];
+                Cell slot = CellsBacking[index];
 
-                // If cell is uninitialized
-                if (IsCellEmpty(cell))
+                // If slot is unoccupied
+                if (!slot.Occupied)
                 {
                     value = default;
                     return false;
                 }
-                else if (probeDistance > cell.Distance)
+                // Next available slot is unoccupied
+                else if (probeDistance > slot.Distance)
                 {
                     value = default;
                     return false;
                 }
-                else if (key == cell.Key)
+                // Found
+                else if (keyHash == new StrCode(slot.Key))
                 {
-                    value = Cells[(int)index].Value;
+                    value = slot.Value;
                     return true;
                 }
 
-                index = (index + 1) & HashMask; // Loop index back to 0 if it will exceed Capacity.
+                index = (int)((index + 1) & HashMask); // Loop index back to 0 if it will exceed Capacity.
                 probeDistance++;
             }
         }
 
-        public T this[String key] => TryGetValue(key, out T value) ? value : throw new KeyNotFoundException();
-        object IStringMap.this[String key] => this[key];
+        private bool TryInsert(string key, T value)
+        {
+            if (key is null)
+                throw new ArgumentNullException();
 
-        public bool ContainsKey(String key) => TryGetValue(key, out _);
+            StrCode keyHash = new StrCode(key);
+            int index = (int)(keyHash & HashMask);
+
+            uint probeDistance = 0;
+            while (true)
+            {
+                Cell slot = CellsBacking[index];
+
+                // If slot is unoccupied
+                if (!slot.Occupied)
+                {
+                    return false;
+                }
+                // Next available slot is unoccupied
+                else if (probeDistance > slot.Distance)
+                {
+                    return false;
+                }
+                // Found
+                else if (keyHash == new StrCode(slot.Key))
+                {
+                    slot.Value = value;
+                    CellsBacking[index] = slot;
+                    return true;
+                }
+
+                index = (int)((index + 1) & HashMask); // Loop index back to 0 if it will exceed Capacity.
+                probeDistance++;
+            }
+        }
+
+        public T this[string key]
+        {
+            get => TryGetValue(key, out T value) ? value : throw new KeyNotFoundException();
+            set
+            {
+                if (!TryInsert(key, value))
+                    throw new KeyNotFoundException();
+            }
+        }
+        object IStringMap.this[string key] => this[key];
+
+        public bool ContainsKey(string key) => TryGetValue(key, out _);
 
         private float GetAverageProbeCount()
         {
-            float total = 0;
+            uint total = 0;
 
-            for (int i = 0; i < Cells.Count; i++)
-            {
-                Cell cell = Cells[i];
-
-                if (!IsCellEmpty(cell))
-                {
+            foreach (Cell cell in CellsBacking)
+                if (cell.Occupied)
                     total += cell.Distance;
-                }
-            }
 
-            return (total / CellCount) + 1;
+            return ((float)total / OccupiedCount) + 1;
         }
 
         public bool IsFixedSize => false;
 
         public bool IsReadOnly => false;
 
-        public int Count => CellCount;
+        public int Count => OccupiedCount;
 
         public bool IsSynchronized => throw new NotImplementedException();
 
         public object SyncRoot => throw new NotImplementedException();
 
-        public object this[int index] { get => Cells[index]; set => throw new NotImplementedException(); }
+        public object this[int index] { get => CellsBacking[index]; set => throw new NotImplementedException(); }
 
-        int IStringMap.OccupiedIndexToAbsoluteIndex(int index)
+        // Annoying hack for editor; we have a list of occupied cells and need to get the index of each one in terms of their indices in the backing array
+        int IStringMap.OccupiedIndexToBackingIndex(int index)
         {
             int i = 0;
             for (int j = -1; j < index; i++)
             {
-                if (!IsCellEmpty(Cells[i]))
+                if (CellsBacking[i].Occupied)
                     j++;
             }
 
@@ -317,9 +396,14 @@ namespace Fox.Kernel
 
         public int Add(object value) => throw new NotImplementedException();
 
-        public void Clear() => throw new NotImplementedException();
+        public void Clear()
+        {
+            OccupiedCount = 0;
+            for (int i = 0; i < CellsBacking.Count; i++)
+                CellsBacking[i] = new Cell();
+        }
 
-        public bool Contains(object value) => throw new NotImplementedException();
+        public bool Contains(object value) => throw new NotImplementedException("Use ContainsKey");
 
         public int IndexOf(object value) => throw new NotImplementedException();
 
@@ -329,7 +413,7 @@ namespace Fox.Kernel
 
         public void RemoveAt(int index)
         {
-            if (index >= Cells.Count || index < 0)
+            if (index >= CellsBacking.Count || index < 0)
                 return;
 
             int lastIndex = index;
@@ -338,82 +422,67 @@ namespace Fox.Kernel
             {
                 nextIndex = (int)((nextIndex + 1) & HashMask); // Loop index back to 0 if it will exceed Capacity.
 
-                Cell nextCell = Cells[nextIndex];
+                Cell nextCell = CellsBacking[nextIndex];
 
-                if (IsCellEmpty(nextCell))
+                if (!nextCell.Occupied)
                 {
-                    Cell cell = Cells[index];
+                    Cell cell = CellsBacking[index];
                     cell.Key = null;
-                    Cells[index] = cell;
+                    cell.Occupied = false;
+                    CellsBacking[index] = cell;
 
                     break;
                 }
                 else if (nextCell.Distance == 0)
                 {
-                    Cell cell = Cells[index];
+                    Cell cell = CellsBacking[index];
                     cell.Key = null;
-                    Cells[index] = cell;
+                    cell.Occupied = false;
+                    CellsBacking[index] = cell;
 
                     break;
                 }
                 else
                 {
-                    Cells[lastIndex] = Cells[nextIndex];
-                    Cell cell = Cells[lastIndex];
+                    CellsBacking[lastIndex] = CellsBacking[nextIndex];
+                    Cell cell = CellsBacking[lastIndex];
                     cell.Distance--;
-                    Cells[lastIndex] = cell;
+                    CellsBacking[lastIndex] = cell;
                 }
 
                 lastIndex = nextIndex; // Loop index back to 0 if it will exceed Capacity.
             }
 
-            CellCount--;
+            OccupiedCount--;
         }
 
         public void CopyTo(Array array, int index) => throw new NotImplementedException();
 
-        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+        public IEnumerator<KeyValuePair<string, T>> GetEnumerator() => new Enumerator(this);
 
-        public IEnumerator<KeyValuePair<String, T>> GetEnumerator() => new Enumerator(this);
-        public List<KeyValuePair<String, object>> ToList()
-        {
-            var res = new List<KeyValuePair<String, object>>();
-            foreach (Cell cell in this.Cells)
-            {
-                if (this.IsCellEmpty(cell))
-                {
-                    continue;
-                }
-
-                res.Add(new KeyValuePair<String, object>(cell.Key, cell.Value));
-            }
-
-            return res;
-        }
-
-        public struct Enumerator : IEnumerator<KeyValuePair<String, T>>, IDictionaryEnumerator
+        public struct Enumerator : IEnumerator<KeyValuePair<string, T>>, IDictionaryEnumerator
         {
             private readonly StringMap<T> stringMap;
             private int absoluteCellsIndex;
             private int index;
-            private KeyValuePair<String, T> current;
+            private KeyValuePair<string, T> current;
 
             internal Enumerator(StringMap<T> stringMap)
             {
                 this.stringMap = stringMap;
                 absoluteCellsIndex = 0;
                 index = 0;
-                current = new KeyValuePair<String, T>();
+                current = new KeyValuePair<string, T>();
             }
 
             public bool MoveNext()
             {
-                while ((uint)index < (uint)stringMap.Count)
+                while (index < stringMap.Count)
                 {
-                    Cell cell = stringMap.Cells[absoluteCellsIndex];
-                    if (cell.Key is not null && !cell.Key.IsPseudoNull())
+                    Cell cell = stringMap.CellsBacking[absoluteCellsIndex];
+                    if (cell.Occupied)
                     {
-                        current = new KeyValuePair<String, T>(stringMap.Cells[absoluteCellsIndex].Key, stringMap.Cells[absoluteCellsIndex].Value);
+                        current = new KeyValuePair<string, T>(stringMap.CellsBacking[absoluteCellsIndex].Key, stringMap.CellsBacking[absoluteCellsIndex].Value);
                         absoluteCellsIndex++;
                         index++;
                         return true;
@@ -422,23 +491,23 @@ namespace Fox.Kernel
                 }
 
                 index = stringMap.Count + 1;
-                current = new KeyValuePair<String, T>();
+                current = new KeyValuePair<string, T>();
                 return false;
             }
 
-            public KeyValuePair<String, T> Current => current;
+            public KeyValuePair<string, T> Current => current;
 
             public void Dispose()
             {
             }
 
-            object IEnumerator.Current => (index == 0 || (index == stringMap.Count + 1)) ? throw new IndexOutOfRangeException() : new KeyValuePair<String, T>(current.Key, current.Value);
+            object IEnumerator.Current => (index == 0 || (index == stringMap.Count + 1)) ? throw new IndexOutOfRangeException() : new KeyValuePair<string, T>(current.Key, current.Value);
 
             void IEnumerator.Reset()
             {
                 absoluteCellsIndex = 0;
                 index = 0;
-                current = new KeyValuePair<String, T>();
+                current = new KeyValuePair<string, T>();
             }
 
             DictionaryEntry IDictionaryEnumerator.Entry => (index == 0 || (index == stringMap.Count + 1)) ? throw new IndexOutOfRangeException() : new DictionaryEntry(current.Key, current.Value);
@@ -447,5 +516,23 @@ namespace Fox.Kernel
 
             object IDictionaryEnumerator.Value => (index == 0 || (index == stringMap.Count + 1)) ? throw new IndexOutOfRangeException() : current.Value;
         }
+
+        public List<KeyValuePair<string, object>> ToList()
+        {
+            var res = new List<KeyValuePair<string, object>>();
+            foreach (Cell cell in this.CellsBacking)
+            {
+                if (!cell.Occupied)
+                {
+                    continue;
+                }
+
+                res.Add(new KeyValuePair<string, object>(cell.Key, cell.Value));
+            }
+
+            return res;
+        }
+
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }
 }

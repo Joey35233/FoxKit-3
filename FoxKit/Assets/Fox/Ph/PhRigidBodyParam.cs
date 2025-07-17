@@ -1,4 +1,7 @@
-﻿using Fox.Kernel;
+﻿using Fox.Core;
+using Fox.Core.Utils;
+using System;
+using UnityEngine;
 
 namespace Fox.Ph
 {
@@ -8,7 +11,7 @@ namespace Fox.Ph
         internal void SetDefaultPosition(UnityEngine.Vector3 value) => defaultPosition = value;
 
         internal UnityEngine.Quaternion GetDefaultRotation() => defaultRotation;
-        internal void SetDefaultRotation(UnityEngine.Quaternion value) => defaultRotation = value;
+        internal void SetDefaultRotation(UnityEngine.Quaternion value) => defaultRotation = value.normalized;
 
         internal float GetMass() => mass;
         internal void SetMass(float value) => mass = value;
@@ -61,7 +64,30 @@ namespace Fox.Ph
         internal PhRigidBodyType GetMotionType() => motionType;
         internal void SetMotionType(PhRigidBodyType value) => motionType = value;
 
-        internal String GetMaterial() => material;
-        internal void SetMaterial(String value) => material = value;
+        internal string GetMaterial() => material;
+        internal void SetMaterial(string value) => material = value;
+
+        private void OnValidate()
+        {
+            defaultRotation = defaultRotation.normalized;
+        }
+
+        public override void OnDeserializeEntity(TaskLogger logger)
+        {
+            base.OnDeserializeEntity(logger);
+            
+            defaultPosition = Fox.Math.FoxToUnityVector3(defaultPosition);
+            defaultRotation = Fox.Math.FoxToUnityQuaternion(defaultRotation);
+            centerOfMassOffset = Fox.Math.FoxToUnityVector3(centerOfMassOffset);
+        }
+
+        public override void OverridePropertiesForExport(EntityExportContext context)
+        {
+            base.OverridePropertiesForExport(context);
+            
+            context.OverrideProperty(nameof(defaultPosition), Fox.Math.UnityToFoxVector3(defaultPosition));
+            context.OverrideProperty(nameof(defaultRotation), Fox.Math.UnityToFoxQuaternion(defaultRotation));
+            context.OverrideProperty(nameof(centerOfMassOffset), Fox.Math.UnityToFoxVector3(centerOfMassOffset));
+        }
     }
 }

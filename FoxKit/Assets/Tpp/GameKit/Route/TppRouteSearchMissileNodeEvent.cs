@@ -1,6 +1,6 @@
 using Fox.Fio;
 using Fox.GameService;
-using Fox.Kernel;
+using Fox;
 
 namespace Tpp.GameKit
 {
@@ -9,6 +9,6 @@ namespace Tpp.GameKit
 		public static readonly StrCode32 Id = new StrCode32("SearchMissile");
 		public override StrCode32 GetId() => Id;
 
-		public static TppRouteSearchMissileNodeEvent Deserialize(FileStreamReader reader) => new TppRouteSearchMissileNodeEvent { binaryData = new StaticArray<uint>(new uint[] { reader.ReadUInt32(), reader.ReadUInt32(), reader.ReadUInt32(), reader.ReadUInt32() }), };
+		public static TppRouteSearchMissileNodeEvent Deserialize(UnityEngine.GameObject gameObject, uint[] binaryData) { TppRouteSearchMissileNodeEvent component = gameObject.AddComponent<TppRouteSearchMissileNodeEvent>(); component.binaryData = binaryData; return component; }
 	}
 }

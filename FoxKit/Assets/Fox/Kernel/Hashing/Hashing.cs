@@ -1,84 +1,26 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
+using UnityEngine;
 
-namespace Fox.Kernel
+namespace Fox
 {
     public static class Hashing
     {
-        public enum Dictionary
+        /// ========================
+        /// fox_foundation_win64
+        /// ========================
+        private const ulong STRING_ID_MASK = 0xFFFFFFFFFFFF;
+        
+        private const ulong PATH_CODE_BASE_MASK = 0x3FFFFFFFFFFFF;
+        private const int PATH_CODE_EXTENSION_OFFSET = 0x33;
+        private const ulong PATH_CODE_USER_FLAG_MASK = 0x4000000000000;
+        private const ulong PATH_CODE_USER_FLAG_ANTIMASK = unchecked((ulong)-0x4000000000000 - 1);
+        private const string ASSET_PATH = "/Assets/";
+        
+        // ALLOCATION
+        private static ulong CityHashPathCodeInner(ReadOnlySpan<char> path)
         {
-            Sqar = 0,
-        };
-
-        private static readonly Dictionary<ulong, string>[] Dictionaries = new Dictionary<ulong, string>[1];
-
-        static Hashing()
-        {
-            //Dictionaries[0] = InitDictionary("https://raw.githubusercontent.com/TinManTex/mgsv-lookup-strings/master/GzsTool/qar_dictionary.txt");
-        }
-
-        //private static Dictionary<ulong, string> InitDictionary(string uri)
-        //{
-        //    var dictionary = new Dictionary<ulong, string>();
-
-        //    var fileName = uri.Substring(uri.LastIndexOf('/') + 1);
-        //    var file = "C:\\Users\\joey3\\Documents\\New Project\\" + fileName;
-        //    if (File.Exists(file))
-        //    {
-        //        var lines = File.ReadAllLines(file);
-
-        //        foreach (var line in lines)
-        //        {
-        //            dictionary.Add(PathFileNameAndExtCode(line), line);
-        //        }
-        //    }
-        //    else
-        //    {
-        //        var dictString = new WebClient().DownloadString(uri);
-        //        var splitDict = dictString.Split(new char[] { '\n' }, StringSplitOptions.RemoveEmptyEntries);
-
-        //        foreach (var line in splitDict)
-        //            dictionary.Add(PathFileNameAndExtCode(line), line);
-
-        //        File.WriteAllLines(file, splitDict);
-        //    }
-
-        //    return dictionary;
-        //}
-
-        public static string Unhash(ulong hash, Dictionary dictionary)
-        {
-            if (!Dictionaries[(uint)dictionary].TryGetValue(hash, out string str))
-                str = hash.ToString("x16");
-            return str;
-        }
-
-        public static ulong StrCode(string name)
-        {
-            const ulong seed0 = 0x9ae16a3b2f90404f;
-            ulong seed1 = (ulong)(name.Length > 0 ? (name[0] << 16) + name.Length : 0);
-            return CityHash.CityHash.CityHash64WithSeeds(name + '\0', seed0, seed1) & 0xFFFFFFFFFFFF;
-        }
-
-        public static uint StrCode32(string name) => (uint)StrCode(name);
-
-        public static ulong PathFileNameCode(string path)
-        {
-            ulong mask = 0x0000000000000000;
-
-            if (path.StartsWith("/Assets/"))
-            {
-                path = path[8..];
-
-                if (path.StartsWith("tpptest"))
-                    mask = 0x0004000000000000;
-            }
-            else
-            {
-                path = path.TrimStart('/');
-
-                mask = 0x0004000000000000;
-            }
-
             const ulong seed0 = 0x9ae16a3b2f90404f;
             ulong seed1 = 0;
             for (int i = path.Length - 1, j = 0; i >= 0 && j < sizeof(ulong); i--, j++)
@@ -86,18 +28,204 @@ namespace Fox.Kernel
                 seed1 |= (ulong)path[i] << (j * 8);
             }
 
-            ulong hash = CityHash.CityHash.CityHash64WithSeeds(path, seed0, seed1) & 0x3FFFFFFFFFFFF;
-            return hash | mask;
+            return CityHash.CityHash.CityHash64WithSeeds(path, seed0, seed1);
         }
 
-        public static uint PathFileNameCode32(string path) => (uint)PathFileNameCode(path);
-
-        public static ulong PathFileNameAndExtCode(string path)
+        // ALLOCATION
+        private static ulong CityHashStrCodeInner(ReadOnlySpan<char> str)
         {
-            int periodIndex = path.IndexOf('.');
-            return periodIndex > -1 ? ((PathFileNameCode(path[(periodIndex + 1)..]) & 0x1FFF) << 51) | PathFileNameCode(path[..periodIndex]) : StrCode(path);
+            const ulong seed0 = 0x9ae16a3b2f90404f;
+            ulong seed1 = (ulong)(str.Length > 0 ? (str[0] << 16) + str.Length : 0);
+            return CityHash.CityHash.CityHash64WithSeeds(new string(str) + '\0', seed0, seed1) & STRING_ID_MASK;
+        }
+        
+        private static ulong path_hash_code(ReadOnlySpan<char> path)
+        {
+            ReadOnlySpan<char> pathSpan = path;
+
+            int finalBaseSegmentIndex = pathSpan.LastIndexOf('/');
+            if (finalBaseSegmentIndex == -1)
+            {
+                finalBaseSegmentIndex = pathSpan.LastIndexOf('\\');
+                if (finalBaseSegmentIndex == -1)
+                    finalBaseSegmentIndex = 0;
+            }
+            
+            ReadOnlySpan<char> finalSegment = pathSpan[finalBaseSegmentIndex..];
+
+            int extIndex = finalSegment.IndexOf('.');
+            if (extIndex == -1)
+                extIndex = path.Length;
+            else
+                extIndex = finalBaseSegmentIndex + extIndex;
+            
+            ReadOnlySpan<char> extSpan = path[extIndex..];
+
+            pathSpan = path[..^extSpan.Length];
+            
+            // "user flag"
+            if (path.StartsWith(ASSET_PATH))
+            {
+                pathSpan = pathSpan[ASSET_PATH.Length..];
+            }
+
+            ulong baseHash = CityHashPathCodeInner(pathSpan) & PATH_CODE_BASE_MASK;
+
+            if (extSpan.Length > 0 && extSpan[0] == '.')
+                extSpan = extSpan[1..];
+            ulong extensionHash = CityHashPathCodeInner(extSpan) << PATH_CODE_EXTENSION_OFFSET;
+            return extensionHash | baseHash;
         }
 
-        public static ulong PathFileNameAndExtCode(string path, string extension) => ((PathFileNameCode(extension) & 0x1FFF) << 51) | PathFileNameCode(path);
+        private static ulong ff_path_code_set_userflag(ulong hash, int userFlag)
+        {
+            ulong mask = unchecked((ulong)(userFlag == 0 ? 0L : -1L));
+            return mask & PATH_CODE_USER_FLAG_MASK | hash & PATH_CODE_USER_FLAG_ANTIMASK;
+        }
+
+        /// ========================
+        /// PRIVATE FUNCTIONS
+        /// ========================
+
+        // fox::fs::impl::PathCodeResolver::IsImplicitRuntimeProject
+        // fox::fs::impl::PathCodeResolver::FindKnownProject
+        private static string[] RuntimeProjectList =
+        {
+            "fox",
+            "fox_export",
+            "tpp",
+            "sh",
+            "mgo",
+        };
+
+        private static bool IsImplicitRuntimeProject(ReadOnlySpan<char> path)
+        {
+            int assetsIndex = path.IndexOf(ASSET_PATH);
+            if (assetsIndex == -1)
+                return false;
+
+            path = path[ASSET_PATH.Length..];
+            int nextSlashIndex = path.IndexOf('/');
+            if (nextSlashIndex == -1)
+                return false;
+
+            path = path[..nextSlashIndex];
+
+            foreach (var project in RuntimeProjectList)
+                if (path.Equals(project, StringComparison.Ordinal))
+                    return true;
+
+            return false;
+        }
+        
+        private static ulong PathCodeInner(ReadOnlySpan<char> path)
+        {
+            ulong code;
+            if (path.StartsWith(ASSET_PATH))
+            {
+                code = path_hash_code(path);
+                if (IsImplicitRuntimeProject(path))
+                    return code;
+                else
+                    return ff_path_code_set_userflag(code, 1);
+            }
+            else
+            {
+                if (path.Length == 0)
+                    return 0;
+                
+                bool mustReallocate = false;
+                foreach (var c in path)
+                {
+                    if (c == '\\')
+                    {
+                        mustReallocate = true;
+                        break;
+                    }
+                }
+                
+                if (mustReallocate)
+                {
+                    string modified = new string(path);
+                    modified.Replace('\\', '/');
+
+                    ReadOnlySpan<char> span = modified.AsSpan();
+                    int starterPrefix = modified.IndexOf("./");
+                    if (starterPrefix != -1)
+                        span = span[2..];
+
+                    code = path_hash_code(span);
+                    code = ff_path_code_set_userflag(code, 1);
+                    return code;
+                }
+                else
+                {
+                    int starterPrefix = path.IndexOf("./");
+                    if (starterPrefix != -1)
+                        path = path[2..];
+                    
+                    code = path_hash_code(path);
+                    code = ff_path_code_set_userflag(code, 1);
+                    return code;
+                }
+            }
+        }
+
+        /// ========================
+        /// PUBLIC FUNCTIONS
+        /// ========================
+
+        public static ulong PathCode(ReadOnlySpan<char> str)
+        {
+            if (str == null)
+                return 0;
+            
+            if (str.Length > 2 && str.StartsWith("0x"))
+            {
+                ReadOnlySpan<char> subStr = str[2..];
+                if (ulong.TryParse(subStr, NumberStyles.HexNumber, null, out ulong rawVar))
+                    return rawVar;
+            }
+            
+            return PathCodeInner(str);
+        }
+        
+        public static uint PathCode32(ReadOnlySpan<char> str)
+        {
+            if (str.Length > 2 && str.StartsWith("0x"))
+            {
+                ReadOnlySpan<char> subStr = str[2..];
+                if (uint.TryParse(subStr, NumberStyles.HexNumber, null, out uint rawVar))
+                    return rawVar;
+            }
+            
+            return (uint)PathCodeInner(str);
+        }
+
+        public static ulong StringId(ReadOnlySpan<char> str)
+        {
+            if (str.Length > 2 && str.StartsWith("0x"))
+            {
+                ReadOnlySpan<char> subStr = str[2..];
+                if (ulong.TryParse(subStr, NumberStyles.HexNumber, null, out ulong rawVar))
+                    return rawVar;
+            }
+            
+            return CityHashStrCodeInner(str);
+        }
+
+        public static ulong StringIdHashDetectionOverride(ReadOnlySpan<char> str) => CityHashStrCodeInner(str);
+
+        public static uint StringId32(ReadOnlySpan<char> str)
+        {
+            if (str.Length > 2 && str.StartsWith("0x"))
+            {
+                ReadOnlySpan<char> subStr = str[2..];
+                if (uint.TryParse(subStr, NumberStyles.HexNumber, null, out uint rawVar))
+                    return rawVar;
+            }
+            
+            return (uint)CityHashStrCodeInner(str);
+        }
     }
 }

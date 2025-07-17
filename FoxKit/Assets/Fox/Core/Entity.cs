@@ -1,15 +1,17 @@
-using Fox.Kernel;
+using Fox.Core.Utils;
+using Fox;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using UnityEngine;
-using String = Fox.Kernel.String;
+using static UnityEngine.EventSystems.EventTrigger;
 
 namespace Fox.Core
 {
-    [Serializable]
-    public partial class Entity
+    [Serializable, DisallowMultipleComponent]
+    public partial class Entity : UnityEngine.MonoBehaviour
     {
         /// <summary>
         /// Unknown.
@@ -19,21 +21,12 @@ namespace Fox.Core
             get;
         }
 
-        /// <summary>
-        /// The Entity's dynamically-added properties.
-        /// </summary>
-        private StringMap<DynamicProperty> DynamicProperties { get; } = new StringMap<DynamicProperty>();
-
-        public bool AddDynamicProperty(PropertyInfo.PropertyType type, String name, ushort arraySize, PropertyInfo.ContainerType container)
+        public DynamicProperty AddDynamicProperty(PropertyInfo.PropertyType type, string propertyName, ushort arraySize, PropertyInfo.ContainerType container)
         {
-            if (HasPropertyWithName(this, name))
-            {
-                return false;
-            }
+            if (HasPropertyWithName(this, propertyName))
+                return null;
 
-            var propertyInfo = new PropertyInfo(name, type, 0, arraySize, container);
-            DynamicProperties.Insert(name, new DynamicProperty(propertyInfo));
-            return true;
+            return DynamicPropertyCollector.GetSpecificTypeForDescription(this.gameObject, type, propertyName, container, arraySize);
         }
 
         /// <summary>
@@ -43,40 +36,38 @@ namespace Fox.Core
         public virtual bool ShouldWriteToFox2() => true;
 
         /// <summary>
-        /// Perform any property updates needed before exporting.
-        /// </summary>
-        public virtual void PrepareForExport()
-        {
-        }
-
-        /// <summary>
         /// Checks if the given Entity has a static or dynamic property with a given name.
         /// </summary>
         /// <param name="entity">The Entity.</param>
         /// <param name="name">The name of the property to find.</param>
         /// <returns>True if a static or dynamic property was found, else false.</returns>
-        private static bool HasPropertyWithName(Entity entity, String name)
+        public static bool HasPropertyWithName(Entity entity, string name)
         {
             bool hasStaticProperty = EntityInfo.HasPropertyWithName(entity.GetClassEntityInfo(), name);
-            return hasStaticProperty || entity.DynamicProperties.ContainsKey(name);
+            if (hasStaticProperty)
+                return true;
+            
+            foreach (var dynamicProperty in entity.gameObject.GetComponents<DynamicProperty>())
+                if (dynamicProperty.Name == name)
+                    return true;
+
+            return false;
         }
 
         /// <summary>
         /// Called after importing a DataSet. Use to initialize scene data.
         /// </summary>
-        /// <param name="gameObject">The assigned GameObject.</param>
-        public virtual void InitializeGameObject(GameObject gameObject)
+        public virtual void OnDeserializeEntity(TaskLogger logger)
         {
 
         }
 
         /// <summary>
-        /// TODO: Do this through classgen
+        /// If a property needs to be converted on export (for instance, Unity to Fox coordinates), add it to the export context.
+        /// If a property is not overridden here, its original value will be exported instead.
         /// </summary>
-        public T GetProperty<T>(PropertyInfo property)
+        public virtual void OverridePropertiesForExport(EntityExportContext context)
         {
-            System.Reflection.PropertyInfo propInfo = this.GetType().GetProperty(property.Name.CString, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
-            return (T)propInfo.GetValue(this, null);
         }
 
         public void CollectReferencedEntities(HashSet<Entity> alreadyCollectedEntities)
@@ -97,7 +88,7 @@ namespace Fox.Core
 
             foreach (EntityInfo @class in superClasses)
             {
-                foreach (KeyValuePair<String, PropertyInfo> staticProperty in @class.StaticProperties)
+                foreach (KeyValuePair<string, PropertyInfo> staticProperty in @class.StaticProperties)
                 {
                     if (staticProperty.Value.Offset == 0)
                     {
@@ -121,13 +112,13 @@ namespace Fox.Core
                 switch (property.Type)
                 {
                     case PropertyInfo.PropertyType.EntityPtr:
-                        CollectReferencedEntity(GetProperty<IEntityPtr>(property).Get(), alreadyCollectedEntities);
+                        CollectReferencedEntity(GetProperty(property.Name).GetValueAsEntityPtr<Entity>(), alreadyCollectedEntities);
                         break;
                     case PropertyInfo.PropertyType.EntityHandle:
-                        CollectReferencedEntity(GetProperty<EntityHandle>(property).Entity, alreadyCollectedEntities);
+                        CollectReferencedEntity(GetProperty(property.Name).GetValueAsEntityHandle(), alreadyCollectedEntities);
                         break;
                     case PropertyInfo.PropertyType.EntityLink:
-                        CollectReferencedEntity(GetProperty<EntityLink>(property).handle.Entity, alreadyCollectedEntities);
+                        CollectReferencedEntity(GetProperty(property.Name).GetValueAsEntityLink().handle, alreadyCollectedEntities);
                         break;
                 }
 
@@ -135,38 +126,38 @@ namespace Fox.Core
             }
             else if (property.Container == PropertyInfo.ContainerType.StringMap)
             {
-                var list = GetProperty<IStringMap>(property).ToList();
-                foreach (KeyValuePair<Kernel.String, object> item in list)
+                IStringMap list = GetProperty(property.Name).GetValueAsIStringMap();
+                foreach (KeyValuePair<string, object> item in list.ToList())
                 {
                     switch (property.Type)
                     {
                         case PropertyInfo.PropertyType.EntityPtr:
-                            CollectReferencedEntity(((IEntityPtr)item.Value).Get(), alreadyCollectedEntities);
+                            CollectReferencedEntity((Entity)item.Value, alreadyCollectedEntities);
                             break;
                         case PropertyInfo.PropertyType.EntityHandle:
-                            CollectReferencedEntity(((EntityHandle)item.Value).Entity, alreadyCollectedEntities);
+                            CollectReferencedEntity((Entity)item.Value, alreadyCollectedEntities);
                             break;
                         case PropertyInfo.PropertyType.EntityLink:
-                            CollectReferencedEntity(((EntityLink)item.Value).handle.Entity, alreadyCollectedEntities);
+                            CollectReferencedEntity(((EntityLink)item.Value).handle, alreadyCollectedEntities);
                             break;
                     }
                 }
             }
             else
             {
-                IList list = GetProperty<IList>(property);
+                var list = GetProperty(property.Name).GetValueAsIList();
                 foreach (object item in list)
                 {
                     switch (property.Type)
                     {
                         case PropertyInfo.PropertyType.EntityPtr:
-                            CollectReferencedEntity(((IEntityPtr)item).Get(), alreadyCollectedEntities);
+                            CollectReferencedEntity((Entity)item, alreadyCollectedEntities);
                             break;
                         case PropertyInfo.PropertyType.EntityHandle:
-                            CollectReferencedEntity(((EntityHandle)item).Entity, alreadyCollectedEntities);
+                            CollectReferencedEntity((Entity)item, alreadyCollectedEntities);
                             break;
                         case PropertyInfo.PropertyType.EntityLink:
-                            CollectReferencedEntity(((EntityLink)item).handle.Entity, alreadyCollectedEntities);
+                            CollectReferencedEntity(((EntityLink)item).handle, alreadyCollectedEntities);
                             break;
                     }
                 }
@@ -185,10 +176,27 @@ namespace Fox.Core
                 return;
             }
 
-            alreadyCollectedEntities.Add(entity);
+            _ = alreadyCollectedEntities.Add(entity);
             entity.CollectReferencedEntities(alreadyCollectedEntities);
         }
 
+        public virtual string GenerateUniqueName(Type type, HashSet<string> invalidNames)
+        {
+            var index = 0;
+            while (true)
+            {
+                var workingName = type.Name + index.ToString("D4");
+                if (!invalidNames.Contains(workingName))
+                {
+                    return workingName;
+                }
+
+                index++;
+            }
+        }
+
         public override string ToString() => $"{GetType().Name}";
+
+        public virtual void Reset() { }
     }
 }

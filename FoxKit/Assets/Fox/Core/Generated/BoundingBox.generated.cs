@@ -12,77 +12,101 @@ using Fox;
 
 namespace Fox.Core
 {
-    [UnityEditor.InitializeOnLoad]
-    public partial class BoundingBox 
-    {
-        // Properties
-        [field: UnityEngine.SerializeField]
-        public UnityEngine.Vector3 min { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public UnityEngine.Vector3 max { get; set; }
-        
-        // ClassInfos
-        public static  bool ClassInfoInitialized = false;
-        private static Fox.Core.EntityInfo classInfo;
-        public static  Fox.Core.EntityInfo ClassInfo
-        {
-            get
-            {
-                return classInfo;
-            }
-        }
-        public virtual Fox.Core.EntityInfo GetClassEntityInfo()
-        {
-            return classInfo;
-        }
-        static BoundingBox()
-        {
-            classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("BoundingBox"), typeof(BoundingBox), null, 0, null, 0);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("min"), Fox.Core.PropertyInfo.PropertyType.Vector3, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("max"), Fox.Core.PropertyInfo.PropertyType.Vector3, 16, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-
-            ClassInfoInitialized = true;
-        }
-
-        // Constructors
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxCore/BoundingBox")]
+	public partial class BoundingBox 
+	{
+		// Properties
+		[field: UnityEngine.SerializeField]
+		public UnityEngine.Vector3 min { get; set; }
 		
-		public BoundingBox()
-        {
-            
-        }
-        
-        public virtual void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "min":
-                    this.min = value.GetValueAsVector3();
-                    return;
-                case "max":
-                    this.max = value.GetValueAsVector3();
-                    return;
-                default:
-                    throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
-            }
-        }
-        
-        public virtual void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
-            }
-        }
-        
-        public virtual void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
-            }
-        }
-    }
+		[field: UnityEngine.SerializeField]
+		public UnityEngine.Vector3 max { get; set; }
+		
+		// ClassInfos
+		public static  bool ClassInfoInitialized = false;
+		private static Fox.Core.EntityInfo classInfo;
+		public static  Fox.Core.EntityInfo ClassInfo
+		{
+			get
+			{
+				return classInfo;
+			}
+		}
+		public virtual Fox.Core.EntityInfo GetClassEntityInfo()
+		{
+			return classInfo;
+		}
+		static BoundingBox()
+		{
+			classInfo = new Fox.Core.EntityInfo("BoundingBox", typeof(BoundingBox), null, 0, null, 0);
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("min", Fox.Core.PropertyInfo.PropertyType.Vector3, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("max", Fox.Core.PropertyInfo.PropertyType.Vector3, 16, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+
+			ClassInfoInitialized = true;
+		}
+		
+		public virtual Fox.Core.Value GetProperty(string propertyName)
+		{
+			switch (propertyName)
+			{
+				case "min":
+					return new Fox.Core.Value(min);
+				case "max":
+					return new Fox.Core.Value(max);
+				default:
+					throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
+			}
+		}
+
+		public virtual Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		{
+			switch (propertyName)
+			{
+				default:
+					throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
+			}
+		}
+
+		public virtual Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		{
+			switch (propertyName)
+			{
+				default:
+					throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
+			}
+		}
+
+		public virtual void SetProperty(string propertyName, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				case "min":
+					this.min = value.GetValueAsVector3();
+					return;
+				case "max":
+					this.max = value.GetValueAsVector3();
+					return;
+				default:
+					throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
+			}
+		}
+
+		public virtual void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
+			}
+		}
+
+		public virtual void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
+			}
+		}
+	}
 }

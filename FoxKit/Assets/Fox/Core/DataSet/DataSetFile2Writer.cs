@@ -1,7 +1,11 @@
+using Fox.Fio;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using UnityEditor;
 using UnityEngine;
 
 namespace Fox.Core
@@ -12,7 +16,7 @@ namespace Fox.Core
         private const uint MagicNumber1 = 0x786f62f2;
         private const uint MagicNumber2 = 0x35;
 
-        private readonly List<Kernel.String> strings = new();
+        private readonly HashSet<string> strings = new();
         private readonly Dictionary<Entity, ulong> addresses = new();
         private readonly Dictionary<Entity, ulong> ids = new();
 
@@ -21,23 +25,32 @@ namespace Fox.Core
 
         public void Write(BinaryWriter writer, UnityEngine.SceneManagement.Scene sceneToExport)
         {
-            List<Entity> entities = GetEntitiesToExport(sceneToExport);
+            List<Entity> entities = GetEntitiesToExport(sceneToExport, out CreateDataSetResult result);
+            if (result == CreateDataSetResult.Failure)
+            {
+                return;
+            }
 
-            // Perform any last minute property updates
+            IDictionary<Entity, EntityExportContext> exportContexts = new Dictionary<Entity, EntityExportContext>();
+
             foreach (Entity entity in entities)
             {
                 AssignAddress(entity);
                 AssignId(entity);
-                entity.PrepareForExport();
+
+                var context = new EntityExportContext();
+                exportContexts.Add(entity, context);
+                entity.OverridePropertiesForExport(context);
             }
 
             long headerPosition = writer.BaseStream.Position;
             writer.BaseStream.Position += HeaderSize;
 
-            WriteEntities(writer, entities);
-            int stringTableOffset = WriteStringTable(writer);
+            WriteEntities(writer, entities, exportContexts);
 
+            int stringTableOffset = WriteStringTable(writer);
             long endPosition = WriteHeader(writer, entities, headerPosition, stringTableOffset);
+
             writer.BaseStream.Position = endPosition;
         }
 
@@ -60,26 +73,26 @@ namespace Fox.Core
             int stringTableOffset = (int)writer.BaseStream.Position;
 
             // Remove dupes and write string table
-            foreach (Kernel.String foxString in strings.Distinct())
+            foreach (string foxString in strings)
             {
-                if (!System.String.IsNullOrEmpty(foxString.CString))
+                if (!string.IsNullOrEmpty(foxString))
                 {
                     WriteStringTableEntry(writer, foxString);
                 }
             }
 
             writer.Write((long)0);
-            writer.BaseStream.AlignWrite(16, 0x00);
+            writer.AlignWrite(16, 0x00);
             writer.Write(new byte[] { 0x00, 0x00, 0x65, 0x6E, 0x64 });
-            writer.BaseStream.AlignWrite(16, 0x00);
+            writer.AlignWrite(16, 0x00);
             return stringTableOffset;
         }
 
-        private void WriteEntities(BinaryWriter writer, List<Entity> entities)
+        private void WriteEntities(BinaryWriter writer, List<Entity> entities, IDictionary<Entity, EntityExportContext> exportContexts)
         {
             foreach (Entity entity in entities)
             {
-                WriteEntity(writer, (uint)addresses[entity], ids[entity], entity);
+                WriteEntity(writer, (uint)addresses[entity], ids[entity], entity, exportContexts[entity]);
             }
         }
 
@@ -98,57 +111,157 @@ namespace Fox.Core
             return endPosition;
         }
 
-        private List<Entity> GetEntitiesToExport(UnityEngine.SceneManagement.Scene sceneToExport)
+        private List<Entity> GetEntitiesToExport(UnityEngine.SceneManagement.Scene sceneToExport, out CreateDataSetResult result)
         {
-            var entities = (from FoxEntity entityComponent in GameObject.FindObjectsOfType<FoxEntity>()
-                            where entityComponent.Entity != null && entityComponent.Entity.ShouldWriteToFox2() && entityComponent.gameObject.scene == sceneToExport
-                            select entityComponent.Entity).ToList();
+            var entities = (from Entity entityComponent in UnityEngine.Object.FindObjectsByType<Entity>(FindObjectsSortMode.None)
+                            where entityComponent.ShouldWriteToFox2() && entityComponent.gameObject.scene == sceneToExport
+                            select entityComponent).ToList();
 
-            CreateDataSet(entities);
-
-            var allEntities = new HashSet<Entity>();
-            foreach (Entity entity in entities)
-            {
-                if (!allEntities.Contains(entity))
-                {
-                    _ = allEntities.Add(entity);
-                }
-
-                entity.CollectReferencedEntities(allEntities);
-            }
-                        
-            return allEntities.ToList();
+            result = CreateDataSet(entities);
+            return entities;
         }
 
-        private static void CreateDataSet(List<Entity> entities)
+        enum CreateDataSetResult
         {
-            var dataSet = new DataSet();
-            dataSet.name = Kernel.String.Empty;
-            foreach (Entity entity in entities)
+            Success,
+            Failure
+        }
+
+        private static CreateDataSetResult CreateDataSet(List<Entity> entities)
+        {
+            DataSet dataSet = entities.FirstOrDefault(ent => ent is DataSet) as DataSet;
+            if (dataSet == null)
             {
+                dataSet = new GameObject("DataSet").AddComponent<DataSet>();
+                entities.Insert(0, dataSet);
+            }
+
+            // Validate Entities
+            int dataSetIndex = -1;
+            var usedNames = new HashSet<string>();
+            for (int i = 0; i < entities.Count; i++)
+            {
+                Entity entity = entities[i];
+                if (entity is DataSet)
+                {
+                    dataSetIndex = i;
+                    continue;
+                }
                 if (entity is Data)
                 {
-                    var data = entity as Data;
-                    dataSet.AddData(data.name, new EntityPtr<Data>(data));
-                    data.SetDataSet(EntityHandle.Get(dataSet));
+                    if (usedNames.Contains(entity.name))
+                    {
+                        Debug.LogError($"Two or more Datas share a name ('{entity.name}'). Exported Datas require unique names.");
+                        return CreateDataSetResult.Failure;
+                    }
+                }
+
+                _ = usedNames.Add(entity.name);
+            }
+
+            // Once Entities have been validated, update Data properties
+            dataSet.ClearDataList();
+            for (int i = 0; i < entities.Count; i++)
+            {
+                if (entities[i] is Data data and not DataSet)
+                {
+                    dataSet.AddData(data);
+                    UpdateDataOwners(data);
                 }
             }
 
-            entities.Insert(0, dataSet);
+            MoveItemAtIndexToFront(entities, dataSetIndex);
+            return CreateDataSetResult.Success;
         }
 
-        private void WriteStringTableEntry(BinaryWriter writer, Kernel.String foxString)
+        private static void UpdateDataOwners(Data data)
+        { 
+            EntityInfo entityInfo = data.GetClassEntityInfo();
+            do
+            {
+                // TODO: Might need to consider EntityLink
+                foreach (PropertyInfo propertyInfo in entityInfo.OrderedStaticProperties)
+                {
+                    if (propertyInfo.Type == PropertyInfo.PropertyType.EntityPtr)
+                    {
+                        switch (propertyInfo.Container)
+                        {
+                            case PropertyInfo.ContainerType.StaticArray:
+                                if (propertyInfo.ArraySize == 1)
+                                {
+                                    DataElement element = data.GetProperty(propertyInfo.Name).GetValueAsEntityPtr<DataElement>();
+                                    if (element != null)
+                                        element.SetOwner(data);
+                                }
+                                else
+                                {
+                                    DataElement[] staticArray = data.GetProperty(propertyInfo.Name).GetValueAsIList() as DataElement[];
+                                    if (staticArray is null)
+                                        continue;
+                                    foreach (var element in staticArray)
+                                    {
+                                        if (element != null)
+                                            element.SetOwner(data);
+                                    }
+                                }
+
+                                break;
+                            case PropertyInfo.ContainerType.DynamicArray:
+                                List<DataElement> dynamicArray = data.GetProperty(propertyInfo.Name).GetValueAsIList() as System.Collections.Generic.List<DataElement>;
+                                if (dynamicArray is null)
+                                    continue;
+                                foreach (var element in dynamicArray)
+                                {
+                                    if (element != null)
+                                        element.SetOwner(data);
+                                }
+
+                                break;
+                            case PropertyInfo.ContainerType.StringMap:
+                                StringMap<DataElement> stringMap = data.GetProperty(propertyInfo.Name).GetValueAsStringMap<DataElement>() as StringMap<DataElement>;
+                                if (stringMap is null)
+                                    continue;
+                                foreach (var element in stringMap)
+                                {
+                                    if (element.Value != null)
+                                        element.Value.SetOwner(data);
+                                }
+
+                                break;
+                        }
+                    }
+                }
+
+                entityInfo = entityInfo.Super;
+            } while (entityInfo != null);
+        }
+
+        /// <summary>
+        /// TODO Move into extension method
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="list"></param>
+        /// <param name="index"></param>
+        private static void MoveItemAtIndexToFront<T>(List<T> list, int index)
         {
-            byte[] nameBytes = foxString.CString == null ? new byte[0] : Encoding.UTF8.GetBytes(foxString.CString);
-            writer.Write(Kernel.HashingBitConverter.StrCodeToUInt64(foxString.Hash));
+            T item = list[index];
+            for (int i = index; i > 0; i--)
+                list[i] = list[i - 1];
+            list[0] = item;
+        }
+
+        private void WriteStringTableEntry(BinaryWriter writer, string str)
+        {
+            byte[] nameBytes = str == null ? new byte[0] : Encoding.UTF8.GetBytes(str);
+            writer.Write(Hashing.StringIdHashDetectionOverride(str));
             writer.Write((uint)nameBytes.Length);
             writer.Write(nameBytes);
         }
 
-        private void WriteEntity(BinaryWriter writer, uint address, ulong id, Entity entity)
+        private void WriteEntity(BinaryWriter writer, uint address, ulong id, Entity entity, EntityExportContext entityExportContext)
         {
             var entityWriter = new DataSetFile2EntityWriter();
-            entityWriter.Write(entity, addresses, strings, address, id, writer.BaseStream);
+            entityWriter.Write(entity, entityExportContext, addresses, strings, address, id, writer.BaseStream);
         }
     }
 }

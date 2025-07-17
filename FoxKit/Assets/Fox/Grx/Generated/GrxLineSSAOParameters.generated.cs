@@ -12,162 +12,213 @@ using Fox;
 
 namespace Fox.Grx
 {
-    [UnityEditor.InitializeOnLoad]
-    public partial class GrxLineSSAOParameters : Fox.Core.Entity 
-    {
-        // Properties
-        [field: UnityEngine.SerializeField]
-        public float innerRadius { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float outerRadius { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float maxDistanceInner { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float maxDistanceThresholdInner { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float maxDistanceOuter { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float maxDistanceThresholdOuter { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float contrastLow { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float contrastHigh { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public GrxLineSSAOParameters_BlurMode blurMode { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float blurRadius { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float falloffStart { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float falloffRange { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float gainonStart { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float gainonRange { get; set; }
-        
-        // ClassInfos
-        public static new bool ClassInfoInitialized = false;
-        private static Fox.Core.EntityInfo classInfo;
-        public static new Fox.Core.EntityInfo ClassInfo
-        {
-            get
-            {
-                return classInfo;
-            }
-        }
-        public override Fox.Core.EntityInfo GetClassEntityInfo()
-        {
-            return classInfo;
-        }
-        static GrxLineSSAOParameters()
-        {
-            if (Fox.Core.Entity.ClassInfoInitialized)
-                classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("GrxLineSSAOParameters"), typeof(GrxLineSSAOParameters), Fox.Core.Entity.ClassInfo, 80, null, 3);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("innerRadius"), Fox.Core.PropertyInfo.PropertyType.Float, 48, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("outerRadius"), Fox.Core.PropertyInfo.PropertyType.Float, 52, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("maxDistanceInner"), Fox.Core.PropertyInfo.PropertyType.Float, 56, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("maxDistanceThresholdInner"), Fox.Core.PropertyInfo.PropertyType.Float, 60, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("maxDistanceOuter"), Fox.Core.PropertyInfo.PropertyType.Float, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("maxDistanceThresholdOuter"), Fox.Core.PropertyInfo.PropertyType.Float, 68, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("contrastLow"), Fox.Core.PropertyInfo.PropertyType.Float, 72, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("contrastHigh"), Fox.Core.PropertyInfo.PropertyType.Float, 76, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("blurMode"), Fox.Core.PropertyInfo.PropertyType.Int32, 80, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, typeof(GrxLineSSAOParameters_BlurMode), Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("blurRadius"), Fox.Core.PropertyInfo.PropertyType.Float, 84, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("falloffStart"), Fox.Core.PropertyInfo.PropertyType.Float, 88, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("falloffRange"), Fox.Core.PropertyInfo.PropertyType.Float, 92, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("gainonStart"), Fox.Core.PropertyInfo.PropertyType.Float, 96, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("gainonRange"), Fox.Core.PropertyInfo.PropertyType.Float, 100, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Grx/GrxLineSSAOParameters")]
+	public partial class GrxLineSSAOParameters : Fox.Core.Entity
+	{
+		// Properties
+		[field: UnityEngine.SerializeField]
+		public float innerRadius { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float outerRadius { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float maxDistanceInner { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float maxDistanceThresholdInner { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float maxDistanceOuter { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float maxDistanceThresholdOuter { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float contrastLow { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float contrastHigh { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public GrxLineSSAOParameters_BlurMode blurMode { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float blurRadius { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float falloffStart { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float falloffRange { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float gainonStart { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float gainonRange { get; set; }
+		
+		// ClassInfos
+		public static new bool ClassInfoInitialized = false;
+		private static Fox.Core.EntityInfo classInfo;
+		public static new Fox.Core.EntityInfo ClassInfo
+		{
+			get
+			{
+				return classInfo;
+			}
+		}
+		public override Fox.Core.EntityInfo GetClassEntityInfo()
+		{
+			return classInfo;
+		}
+		static GrxLineSSAOParameters()
+		{
+			if (Fox.Core.Entity.ClassInfoInitialized)
+				classInfo = new Fox.Core.EntityInfo("GrxLineSSAOParameters", typeof(GrxLineSSAOParameters), Fox.Core.Entity.ClassInfo, 80, null, 3);
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("innerRadius", Fox.Core.PropertyInfo.PropertyType.Float, 48, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("outerRadius", Fox.Core.PropertyInfo.PropertyType.Float, 52, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("maxDistanceInner", Fox.Core.PropertyInfo.PropertyType.Float, 56, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("maxDistanceThresholdInner", Fox.Core.PropertyInfo.PropertyType.Float, 60, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("maxDistanceOuter", Fox.Core.PropertyInfo.PropertyType.Float, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("maxDistanceThresholdOuter", Fox.Core.PropertyInfo.PropertyType.Float, 68, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("contrastLow", Fox.Core.PropertyInfo.PropertyType.Float, 72, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("contrastHigh", Fox.Core.PropertyInfo.PropertyType.Float, 76, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("blurMode", Fox.Core.PropertyInfo.PropertyType.Int32, 80, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, typeof(GrxLineSSAOParameters_BlurMode), Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("blurRadius", Fox.Core.PropertyInfo.PropertyType.Float, 84, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("falloffStart", Fox.Core.PropertyInfo.PropertyType.Float, 88, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("falloffRange", Fox.Core.PropertyInfo.PropertyType.Float, 92, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("gainonStart", Fox.Core.PropertyInfo.PropertyType.Float, 96, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("gainonRange", Fox.Core.PropertyInfo.PropertyType.Float, 100, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 
-            ClassInfoInitialized = true;
-        }
+			ClassInfoInitialized = true;
+		}
+		
+		public override Fox.Core.Value GetProperty(string propertyName)
+		{
+			switch (propertyName)
+			{
+				case "innerRadius":
+					return new Fox.Core.Value(innerRadius);
+				case "outerRadius":
+					return new Fox.Core.Value(outerRadius);
+				case "maxDistanceInner":
+					return new Fox.Core.Value(maxDistanceInner);
+				case "maxDistanceThresholdInner":
+					return new Fox.Core.Value(maxDistanceThresholdInner);
+				case "maxDistanceOuter":
+					return new Fox.Core.Value(maxDistanceOuter);
+				case "maxDistanceThresholdOuter":
+					return new Fox.Core.Value(maxDistanceThresholdOuter);
+				case "contrastLow":
+					return new Fox.Core.Value(contrastLow);
+				case "contrastHigh":
+					return new Fox.Core.Value(contrastHigh);
+				case "blurMode":
+					return new Fox.Core.Value(blurMode);
+				case "blurRadius":
+					return new Fox.Core.Value(blurRadius);
+				case "falloffStart":
+					return new Fox.Core.Value(falloffStart);
+				case "falloffRange":
+					return new Fox.Core.Value(falloffRange);
+				case "gainonStart":
+					return new Fox.Core.Value(gainonStart);
+				case "gainonRange":
+					return new Fox.Core.Value(gainonRange);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
 
-        // Constructors
-		public GrxLineSSAOParameters(ulong id) : base(id) { }
-		public GrxLineSSAOParameters() : base() { }
-        
-        public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "innerRadius":
-                    this.innerRadius = value.GetValueAsFloat();
-                    return;
-                case "outerRadius":
-                    this.outerRadius = value.GetValueAsFloat();
-                    return;
-                case "maxDistanceInner":
-                    this.maxDistanceInner = value.GetValueAsFloat();
-                    return;
-                case "maxDistanceThresholdInner":
-                    this.maxDistanceThresholdInner = value.GetValueAsFloat();
-                    return;
-                case "maxDistanceOuter":
-                    this.maxDistanceOuter = value.GetValueAsFloat();
-                    return;
-                case "maxDistanceThresholdOuter":
-                    this.maxDistanceThresholdOuter = value.GetValueAsFloat();
-                    return;
-                case "contrastLow":
-                    this.contrastLow = value.GetValueAsFloat();
-                    return;
-                case "contrastHigh":
-                    this.contrastHigh = value.GetValueAsFloat();
-                    return;
-                case "blurMode":
-                    this.blurMode = (GrxLineSSAOParameters_BlurMode)value.GetValueAsInt32();
-                    return;
-                case "blurRadius":
-                    this.blurRadius = value.GetValueAsFloat();
-                    return;
-                case "falloffStart":
-                    this.falloffStart = value.GetValueAsFloat();
-                    return;
-                case "falloffRange":
-                    this.falloffRange = value.GetValueAsFloat();
-                    return;
-                case "gainonStart":
-                    this.gainonStart = value.GetValueAsFloat();
-                    return;
-                case "gainonRange":
-                    this.gainonRange = value.GetValueAsFloat();
-                    return;
-                default:
-                    base.SetProperty(propertyName, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, index, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, key, value);
-                    return;
-            }
-        }
-    }
+		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		{
+			switch (propertyName)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		{
+			switch (propertyName)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
+
+		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				case "innerRadius":
+					this.innerRadius = value.GetValueAsFloat();
+					return;
+				case "outerRadius":
+					this.outerRadius = value.GetValueAsFloat();
+					return;
+				case "maxDistanceInner":
+					this.maxDistanceInner = value.GetValueAsFloat();
+					return;
+				case "maxDistanceThresholdInner":
+					this.maxDistanceThresholdInner = value.GetValueAsFloat();
+					return;
+				case "maxDistanceOuter":
+					this.maxDistanceOuter = value.GetValueAsFloat();
+					return;
+				case "maxDistanceThresholdOuter":
+					this.maxDistanceThresholdOuter = value.GetValueAsFloat();
+					return;
+				case "contrastLow":
+					this.contrastLow = value.GetValueAsFloat();
+					return;
+				case "contrastHigh":
+					this.contrastHigh = value.GetValueAsFloat();
+					return;
+				case "blurMode":
+					this.blurMode = (GrxLineSSAOParameters_BlurMode)value.GetValueAsInt32();
+					return;
+				case "blurRadius":
+					this.blurRadius = value.GetValueAsFloat();
+					return;
+				case "falloffStart":
+					this.falloffStart = value.GetValueAsFloat();
+					return;
+				case "falloffRange":
+					this.falloffRange = value.GetValueAsFloat();
+					return;
+				case "gainonStart":
+					this.gainonStart = value.GetValueAsFloat();
+					return;
+				case "gainonRange":
+					this.gainonRange = value.GetValueAsFloat();
+					return;
+				default:
+					base.SetProperty(propertyName, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+	}
 }

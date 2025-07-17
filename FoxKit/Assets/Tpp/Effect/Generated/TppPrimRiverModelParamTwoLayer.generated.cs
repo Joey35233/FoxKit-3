@@ -12,295 +12,384 @@ using Fox;
 
 namespace Tpp.Effect
 {
-    [UnityEditor.InitializeOnLoad]
-    public partial class TppPrimRiverModelParamTwoLayer : Fox.Core.Data 
-    {
-        // Properties
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.String primRiverGroupName { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public bool visibility { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.String baseTextureName { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.String normalTextureName { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.String cubeMapName { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.String secondLayerBaseTextureName { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Core.EntityLink lightCaptureLocator { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float scrollDirection0 { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float scrollSpeed0 { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float scrollScale0 { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float scrollDirection1 { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float scrollSpeed1 { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float scrollScale1 { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float transparency { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float transparencyDepthBlend { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float reflectionRate { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float distortionPower { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float surfaceShadowRate { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float secondScrollDirection0 { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float secondScrollSpeed0 { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float secondScrollScale0 { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float secondScrollDirection1 { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float secondScrollSpeed1 { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float secondScrollScale1 { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float secondLayerTransparency { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float secondLayerTransparencyDepthBlend { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float secondLayerReflectionRate { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float secondLayerDistortionPower { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float secondLayerSurfaceShadowRate { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float maskDistortionRate { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float oilIntensity { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public bool useHnmTexture { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public bool debugReset { get; set; }
-        
-        // ClassInfos
-        public static new bool ClassInfoInitialized = false;
-        private static Fox.Core.EntityInfo classInfo;
-        public static new Fox.Core.EntityInfo ClassInfo
-        {
-            get
-            {
-                return classInfo;
-            }
-        }
-        public override Fox.Core.EntityInfo GetClassEntityInfo()
-        {
-            return classInfo;
-        }
-        static TppPrimRiverModelParamTwoLayer()
-        {
-            if (Fox.Core.Data.ClassInfoInitialized)
-                classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("TppPrimRiverModelParamTwoLayer"), typeof(TppPrimRiverModelParamTwoLayer), Fox.Core.Data.ClassInfo, 224, null, 4);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("primRiverGroupName"), Fox.Core.PropertyInfo.PropertyType.String, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("visibility"), Fox.Core.PropertyInfo.PropertyType.Bool, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("baseTextureName"), Fox.Core.PropertyInfo.PropertyType.String, 136, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("normalTextureName"), Fox.Core.PropertyInfo.PropertyType.String, 144, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("cubeMapName"), Fox.Core.PropertyInfo.PropertyType.String, 152, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("secondLayerBaseTextureName"), Fox.Core.PropertyInfo.PropertyType.String, 160, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("lightCaptureLocator"), Fox.Core.PropertyInfo.PropertyType.EntityLink, 168, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("scrollDirection0"), Fox.Core.PropertyInfo.PropertyType.Float, 208, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("scrollSpeed0"), Fox.Core.PropertyInfo.PropertyType.Float, 212, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("scrollScale0"), Fox.Core.PropertyInfo.PropertyType.Float, 216, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("scrollDirection1"), Fox.Core.PropertyInfo.PropertyType.Float, 220, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("scrollSpeed1"), Fox.Core.PropertyInfo.PropertyType.Float, 224, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("scrollScale1"), Fox.Core.PropertyInfo.PropertyType.Float, 228, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("transparency"), Fox.Core.PropertyInfo.PropertyType.Float, 232, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("transparencyDepthBlend"), Fox.Core.PropertyInfo.PropertyType.Float, 236, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("reflectionRate"), Fox.Core.PropertyInfo.PropertyType.Float, 240, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("distortionPower"), Fox.Core.PropertyInfo.PropertyType.Float, 244, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("surfaceShadowRate"), Fox.Core.PropertyInfo.PropertyType.Float, 248, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("secondScrollDirection0"), Fox.Core.PropertyInfo.PropertyType.Float, 252, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("secondScrollSpeed0"), Fox.Core.PropertyInfo.PropertyType.Float, 256, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("secondScrollScale0"), Fox.Core.PropertyInfo.PropertyType.Float, 260, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("secondScrollDirection1"), Fox.Core.PropertyInfo.PropertyType.Float, 264, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("secondScrollSpeed1"), Fox.Core.PropertyInfo.PropertyType.Float, 268, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("secondScrollScale1"), Fox.Core.PropertyInfo.PropertyType.Float, 272, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("secondLayerTransparency"), Fox.Core.PropertyInfo.PropertyType.Float, 276, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("secondLayerTransparencyDepthBlend"), Fox.Core.PropertyInfo.PropertyType.Float, 280, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("secondLayerReflectionRate"), Fox.Core.PropertyInfo.PropertyType.Float, 284, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("secondLayerDistortionPower"), Fox.Core.PropertyInfo.PropertyType.Float, 288, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("secondLayerSurfaceShadowRate"), Fox.Core.PropertyInfo.PropertyType.Float, 292, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("maskDistortionRate"), Fox.Core.PropertyInfo.PropertyType.Float, 296, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("oilIntensity"), Fox.Core.PropertyInfo.PropertyType.Float, 300, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("useHnmTexture"), Fox.Core.PropertyInfo.PropertyType.Bool, 304, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("debugReset"), Fox.Core.PropertyInfo.PropertyType.Bool, 305, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppEffect/TppPrimRiverModelParamTwoLayer")]
+	public partial class TppPrimRiverModelParamTwoLayer : Fox.Core.Data
+	{
+		// Properties
+		[field: UnityEngine.SerializeField]
+		public string primRiverGroupName { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public bool visibility { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public string baseTextureName { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public string normalTextureName { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public string cubeMapName { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public string secondLayerBaseTextureName { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public Fox.Core.EntityLink lightCaptureLocator { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float scrollDirection0 { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float scrollSpeed0 { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float scrollScale0 { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float scrollDirection1 { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float scrollSpeed1 { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float scrollScale1 { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float transparency { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float transparencyDepthBlend { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float reflectionRate { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float distortionPower { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float surfaceShadowRate { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float secondScrollDirection0 { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float secondScrollSpeed0 { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float secondScrollScale0 { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float secondScrollDirection1 { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float secondScrollSpeed1 { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float secondScrollScale1 { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float secondLayerTransparency { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float secondLayerTransparencyDepthBlend { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float secondLayerReflectionRate { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float secondLayerDistortionPower { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float secondLayerSurfaceShadowRate { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float maskDistortionRate { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float oilIntensity { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public bool useHnmTexture { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public bool debugReset { get; set; }
+		
+		// ClassInfos
+		public static new bool ClassInfoInitialized = false;
+		private static Fox.Core.EntityInfo classInfo;
+		public static new Fox.Core.EntityInfo ClassInfo
+		{
+			get
+			{
+				return classInfo;
+			}
+		}
+		public override Fox.Core.EntityInfo GetClassEntityInfo()
+		{
+			return classInfo;
+		}
+		static TppPrimRiverModelParamTwoLayer()
+		{
+			if (Fox.Core.Data.ClassInfoInitialized)
+				classInfo = new Fox.Core.EntityInfo("TppPrimRiverModelParamTwoLayer", typeof(TppPrimRiverModelParamTwoLayer), Fox.Core.Data.ClassInfo, 224, null, 4);
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("primRiverGroupName", Fox.Core.PropertyInfo.PropertyType.String, 120, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("visibility", Fox.Core.PropertyInfo.PropertyType.Bool, 128, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("baseTextureName", Fox.Core.PropertyInfo.PropertyType.String, 136, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("normalTextureName", Fox.Core.PropertyInfo.PropertyType.String, 144, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("cubeMapName", Fox.Core.PropertyInfo.PropertyType.String, 152, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("secondLayerBaseTextureName", Fox.Core.PropertyInfo.PropertyType.String, 160, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("lightCaptureLocator", Fox.Core.PropertyInfo.PropertyType.EntityLink, 168, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("scrollDirection0", Fox.Core.PropertyInfo.PropertyType.Float, 208, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("scrollSpeed0", Fox.Core.PropertyInfo.PropertyType.Float, 212, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("scrollScale0", Fox.Core.PropertyInfo.PropertyType.Float, 216, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("scrollDirection1", Fox.Core.PropertyInfo.PropertyType.Float, 220, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("scrollSpeed1", Fox.Core.PropertyInfo.PropertyType.Float, 224, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("scrollScale1", Fox.Core.PropertyInfo.PropertyType.Float, 228, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("transparency", Fox.Core.PropertyInfo.PropertyType.Float, 232, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("transparencyDepthBlend", Fox.Core.PropertyInfo.PropertyType.Float, 236, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("reflectionRate", Fox.Core.PropertyInfo.PropertyType.Float, 240, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("distortionPower", Fox.Core.PropertyInfo.PropertyType.Float, 244, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("surfaceShadowRate", Fox.Core.PropertyInfo.PropertyType.Float, 248, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("secondScrollDirection0", Fox.Core.PropertyInfo.PropertyType.Float, 252, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("secondScrollSpeed0", Fox.Core.PropertyInfo.PropertyType.Float, 256, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("secondScrollScale0", Fox.Core.PropertyInfo.PropertyType.Float, 260, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("secondScrollDirection1", Fox.Core.PropertyInfo.PropertyType.Float, 264, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("secondScrollSpeed1", Fox.Core.PropertyInfo.PropertyType.Float, 268, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("secondScrollScale1", Fox.Core.PropertyInfo.PropertyType.Float, 272, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("secondLayerTransparency", Fox.Core.PropertyInfo.PropertyType.Float, 276, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("secondLayerTransparencyDepthBlend", Fox.Core.PropertyInfo.PropertyType.Float, 280, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("secondLayerReflectionRate", Fox.Core.PropertyInfo.PropertyType.Float, 284, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("secondLayerDistortionPower", Fox.Core.PropertyInfo.PropertyType.Float, 288, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("secondLayerSurfaceShadowRate", Fox.Core.PropertyInfo.PropertyType.Float, 292, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("maskDistortionRate", Fox.Core.PropertyInfo.PropertyType.Float, 296, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("oilIntensity", Fox.Core.PropertyInfo.PropertyType.Float, 300, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("useHnmTexture", Fox.Core.PropertyInfo.PropertyType.Bool, 304, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("debugReset", Fox.Core.PropertyInfo.PropertyType.Bool, 305, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 
-            ClassInfoInitialized = true;
-        }
+			ClassInfoInitialized = true;
+		}
+		
+		public override Fox.Core.Value GetProperty(string propertyName)
+		{
+			switch (propertyName)
+			{
+				case "primRiverGroupName":
+					return new Fox.Core.Value(primRiverGroupName);
+				case "visibility":
+					return new Fox.Core.Value(visibility);
+				case "baseTextureName":
+					return new Fox.Core.Value(baseTextureName);
+				case "normalTextureName":
+					return new Fox.Core.Value(normalTextureName);
+				case "cubeMapName":
+					return new Fox.Core.Value(cubeMapName);
+				case "secondLayerBaseTextureName":
+					return new Fox.Core.Value(secondLayerBaseTextureName);
+				case "lightCaptureLocator":
+					return new Fox.Core.Value(lightCaptureLocator);
+				case "scrollDirection0":
+					return new Fox.Core.Value(scrollDirection0);
+				case "scrollSpeed0":
+					return new Fox.Core.Value(scrollSpeed0);
+				case "scrollScale0":
+					return new Fox.Core.Value(scrollScale0);
+				case "scrollDirection1":
+					return new Fox.Core.Value(scrollDirection1);
+				case "scrollSpeed1":
+					return new Fox.Core.Value(scrollSpeed1);
+				case "scrollScale1":
+					return new Fox.Core.Value(scrollScale1);
+				case "transparency":
+					return new Fox.Core.Value(transparency);
+				case "transparencyDepthBlend":
+					return new Fox.Core.Value(transparencyDepthBlend);
+				case "reflectionRate":
+					return new Fox.Core.Value(reflectionRate);
+				case "distortionPower":
+					return new Fox.Core.Value(distortionPower);
+				case "surfaceShadowRate":
+					return new Fox.Core.Value(surfaceShadowRate);
+				case "secondScrollDirection0":
+					return new Fox.Core.Value(secondScrollDirection0);
+				case "secondScrollSpeed0":
+					return new Fox.Core.Value(secondScrollSpeed0);
+				case "secondScrollScale0":
+					return new Fox.Core.Value(secondScrollScale0);
+				case "secondScrollDirection1":
+					return new Fox.Core.Value(secondScrollDirection1);
+				case "secondScrollSpeed1":
+					return new Fox.Core.Value(secondScrollSpeed1);
+				case "secondScrollScale1":
+					return new Fox.Core.Value(secondScrollScale1);
+				case "secondLayerTransparency":
+					return new Fox.Core.Value(secondLayerTransparency);
+				case "secondLayerTransparencyDepthBlend":
+					return new Fox.Core.Value(secondLayerTransparencyDepthBlend);
+				case "secondLayerReflectionRate":
+					return new Fox.Core.Value(secondLayerReflectionRate);
+				case "secondLayerDistortionPower":
+					return new Fox.Core.Value(secondLayerDistortionPower);
+				case "secondLayerSurfaceShadowRate":
+					return new Fox.Core.Value(secondLayerSurfaceShadowRate);
+				case "maskDistortionRate":
+					return new Fox.Core.Value(maskDistortionRate);
+				case "oilIntensity":
+					return new Fox.Core.Value(oilIntensity);
+				case "useHnmTexture":
+					return new Fox.Core.Value(useHnmTexture);
+				case "debugReset":
+					return new Fox.Core.Value(debugReset);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
 
-        // Constructors
-		public TppPrimRiverModelParamTwoLayer(ulong id) : base(id) { }
-		public TppPrimRiverModelParamTwoLayer() : base() { }
-        
-        public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "primRiverGroupName":
-                    this.primRiverGroupName = value.GetValueAsString();
-                    return;
-                case "visibility":
-                    this.visibility = value.GetValueAsBool();
-                    return;
-                case "baseTextureName":
-                    this.baseTextureName = value.GetValueAsString();
-                    return;
-                case "normalTextureName":
-                    this.normalTextureName = value.GetValueAsString();
-                    return;
-                case "cubeMapName":
-                    this.cubeMapName = value.GetValueAsString();
-                    return;
-                case "secondLayerBaseTextureName":
-                    this.secondLayerBaseTextureName = value.GetValueAsString();
-                    return;
-                case "lightCaptureLocator":
-                    this.lightCaptureLocator = value.GetValueAsEntityLink();
-                    return;
-                case "scrollDirection0":
-                    this.scrollDirection0 = value.GetValueAsFloat();
-                    return;
-                case "scrollSpeed0":
-                    this.scrollSpeed0 = value.GetValueAsFloat();
-                    return;
-                case "scrollScale0":
-                    this.scrollScale0 = value.GetValueAsFloat();
-                    return;
-                case "scrollDirection1":
-                    this.scrollDirection1 = value.GetValueAsFloat();
-                    return;
-                case "scrollSpeed1":
-                    this.scrollSpeed1 = value.GetValueAsFloat();
-                    return;
-                case "scrollScale1":
-                    this.scrollScale1 = value.GetValueAsFloat();
-                    return;
-                case "transparency":
-                    this.transparency = value.GetValueAsFloat();
-                    return;
-                case "transparencyDepthBlend":
-                    this.transparencyDepthBlend = value.GetValueAsFloat();
-                    return;
-                case "reflectionRate":
-                    this.reflectionRate = value.GetValueAsFloat();
-                    return;
-                case "distortionPower":
-                    this.distortionPower = value.GetValueAsFloat();
-                    return;
-                case "surfaceShadowRate":
-                    this.surfaceShadowRate = value.GetValueAsFloat();
-                    return;
-                case "secondScrollDirection0":
-                    this.secondScrollDirection0 = value.GetValueAsFloat();
-                    return;
-                case "secondScrollSpeed0":
-                    this.secondScrollSpeed0 = value.GetValueAsFloat();
-                    return;
-                case "secondScrollScale0":
-                    this.secondScrollScale0 = value.GetValueAsFloat();
-                    return;
-                case "secondScrollDirection1":
-                    this.secondScrollDirection1 = value.GetValueAsFloat();
-                    return;
-                case "secondScrollSpeed1":
-                    this.secondScrollSpeed1 = value.GetValueAsFloat();
-                    return;
-                case "secondScrollScale1":
-                    this.secondScrollScale1 = value.GetValueAsFloat();
-                    return;
-                case "secondLayerTransparency":
-                    this.secondLayerTransparency = value.GetValueAsFloat();
-                    return;
-                case "secondLayerTransparencyDepthBlend":
-                    this.secondLayerTransparencyDepthBlend = value.GetValueAsFloat();
-                    return;
-                case "secondLayerReflectionRate":
-                    this.secondLayerReflectionRate = value.GetValueAsFloat();
-                    return;
-                case "secondLayerDistortionPower":
-                    this.secondLayerDistortionPower = value.GetValueAsFloat();
-                    return;
-                case "secondLayerSurfaceShadowRate":
-                    this.secondLayerSurfaceShadowRate = value.GetValueAsFloat();
-                    return;
-                case "maskDistortionRate":
-                    this.maskDistortionRate = value.GetValueAsFloat();
-                    return;
-                case "oilIntensity":
-                    this.oilIntensity = value.GetValueAsFloat();
-                    return;
-                case "useHnmTexture":
-                    this.useHnmTexture = value.GetValueAsBool();
-                    return;
-                case "debugReset":
-                    this.debugReset = value.GetValueAsBool();
-                    return;
-                default:
-                    base.SetProperty(propertyName, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, index, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, key, value);
-                    return;
-            }
-        }
-    }
+		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		{
+			switch (propertyName)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		{
+			switch (propertyName)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
+
+		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				case "primRiverGroupName":
+					this.primRiverGroupName = value.GetValueAsString();
+					return;
+				case "visibility":
+					this.visibility = value.GetValueAsBool();
+					return;
+				case "baseTextureName":
+					this.baseTextureName = value.GetValueAsString();
+					return;
+				case "normalTextureName":
+					this.normalTextureName = value.GetValueAsString();
+					return;
+				case "cubeMapName":
+					this.cubeMapName = value.GetValueAsString();
+					return;
+				case "secondLayerBaseTextureName":
+					this.secondLayerBaseTextureName = value.GetValueAsString();
+					return;
+				case "lightCaptureLocator":
+					this.lightCaptureLocator = value.GetValueAsEntityLink();
+					return;
+				case "scrollDirection0":
+					this.scrollDirection0 = value.GetValueAsFloat();
+					return;
+				case "scrollSpeed0":
+					this.scrollSpeed0 = value.GetValueAsFloat();
+					return;
+				case "scrollScale0":
+					this.scrollScale0 = value.GetValueAsFloat();
+					return;
+				case "scrollDirection1":
+					this.scrollDirection1 = value.GetValueAsFloat();
+					return;
+				case "scrollSpeed1":
+					this.scrollSpeed1 = value.GetValueAsFloat();
+					return;
+				case "scrollScale1":
+					this.scrollScale1 = value.GetValueAsFloat();
+					return;
+				case "transparency":
+					this.transparency = value.GetValueAsFloat();
+					return;
+				case "transparencyDepthBlend":
+					this.transparencyDepthBlend = value.GetValueAsFloat();
+					return;
+				case "reflectionRate":
+					this.reflectionRate = value.GetValueAsFloat();
+					return;
+				case "distortionPower":
+					this.distortionPower = value.GetValueAsFloat();
+					return;
+				case "surfaceShadowRate":
+					this.surfaceShadowRate = value.GetValueAsFloat();
+					return;
+				case "secondScrollDirection0":
+					this.secondScrollDirection0 = value.GetValueAsFloat();
+					return;
+				case "secondScrollSpeed0":
+					this.secondScrollSpeed0 = value.GetValueAsFloat();
+					return;
+				case "secondScrollScale0":
+					this.secondScrollScale0 = value.GetValueAsFloat();
+					return;
+				case "secondScrollDirection1":
+					this.secondScrollDirection1 = value.GetValueAsFloat();
+					return;
+				case "secondScrollSpeed1":
+					this.secondScrollSpeed1 = value.GetValueAsFloat();
+					return;
+				case "secondScrollScale1":
+					this.secondScrollScale1 = value.GetValueAsFloat();
+					return;
+				case "secondLayerTransparency":
+					this.secondLayerTransparency = value.GetValueAsFloat();
+					return;
+				case "secondLayerTransparencyDepthBlend":
+					this.secondLayerTransparencyDepthBlend = value.GetValueAsFloat();
+					return;
+				case "secondLayerReflectionRate":
+					this.secondLayerReflectionRate = value.GetValueAsFloat();
+					return;
+				case "secondLayerDistortionPower":
+					this.secondLayerDistortionPower = value.GetValueAsFloat();
+					return;
+				case "secondLayerSurfaceShadowRate":
+					this.secondLayerSurfaceShadowRate = value.GetValueAsFloat();
+					return;
+				case "maskDistortionRate":
+					this.maskDistortionRate = value.GetValueAsFloat();
+					return;
+				case "oilIntensity":
+					this.oilIntensity = value.GetValueAsFloat();
+					return;
+				case "useHnmTexture":
+					this.useHnmTexture = value.GetValueAsBool();
+					return;
+				case "debugReset":
+					this.debugReset = value.GetValueAsBool();
+					return;
+				default:
+					base.SetProperty(propertyName, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+	}
 }

@@ -1,15 +1,18 @@
-﻿using Fox.Kernel;
+﻿using Fox.Core;
+using Fox.Core.Utils;
+using Fox;
+using UnityEngine;
 
 namespace Fox.Sim
 {
     public partial class SimAssociationUnit : Fox.Phx.PhxAssociationUnitElement
     {
-        private SimAssociationUnitParam associationUnit => param.Get();
+        private SimAssociationUnitParam associationUnit => param;
 
-        protected partial String Get_boneName() => associationUnit.boneName;
-        protected partial void Set_boneName(String value) => associationUnit.boneName = value;
+        private partial string Get_boneName() => associationUnit.boneName;
+        private partial void Set_boneName(string value) => associationUnit.boneName = value;
 
-        protected partial bool Get_initialized() => associationUnit.initialized;
-        protected partial void Set_initialized(bool value) => associationUnit.SetInitialized(value);
+        private partial bool Get_initialized() => associationUnit.initialized;
+        private partial void Set_initialized(bool value) => associationUnit.SetInitialized(value);
     }
 }

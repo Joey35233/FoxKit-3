@@ -1,23 +1,34 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 namespace Fox.Core
 {
     public partial class BoxShape : Fox.Core.ShapeData
     {
-        protected partial UnityEngine.Vector3 Get_size()
+        private partial UnityEngine.Vector3 Get_size()
         {
-            TransformEntity transformEntity = transform.Get();
-            return transformEntity.scale / 2;
+            UnityEngine.Transform transform = this.transform;
+            return transform.localScale / 2;
         }
-        protected partial void Set_size(UnityEngine.Vector3 value)
+        private partial void Set_size(UnityEngine.Vector3 value)
         {
-            TransformEntity transformEntity = transform.Get();
-            transformEntity.scale = 2 * value;
+            UnityEngine.Transform transform = this.transform;
+            transform.localScale = 2 * value;
         }
-        public override void InitializeGameObject(GameObject gameObject)
+
+        private readonly BoxGizmo Gizmo = new BoxGizmo();
+
+        public void OnDrawGizmos()
         {
-            base.InitializeGameObject(gameObject);
-            _ = gameObject.AddComponent<BoxGizmo>();
+            Gizmo.Transform = this.transform;
+            Gizmo.Label = this.name;
+            Gizmo.OnDrawGizmos();
+        }
+
+        public void OnDrawGizmosSelected()
+        {
+            Gizmo.Transform = this.transform;
+            Gizmo.Label = null;
+            Gizmo.OnDrawGizmosSelected();
         }
     }
 }

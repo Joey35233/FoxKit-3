@@ -1,5 +1,5 @@
 using Fox.Fio;
-using Fox.Kernel;
+using Fox;
 using UnityEngine;
 
 namespace Fox.Core
@@ -78,7 +78,7 @@ namespace Fox.Core
                 };
         }
 
-        public String GetString()
+        public string GetString()
         {
             long? stringPosition = GetStringPosition();
 
@@ -93,7 +93,7 @@ namespace Fox.Core
             }
         }
 
-        public bool TestEquality(String comparand) => GetString() == comparand;
+        public bool TestEquality(string comparand) => GetString() == comparand;
         public bool TestEquality(StrCode32 comparand) => GetHash() == comparand;
     }
 }

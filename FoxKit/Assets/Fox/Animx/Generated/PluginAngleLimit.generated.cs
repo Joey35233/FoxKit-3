@@ -12,91 +12,119 @@ using Fox;
 
 namespace Fox.Animx
 {
-    [UnityEditor.InitializeOnLoad]
-    public partial class PluginAngleLimit 
-    {
-        // Properties
-        [field: UnityEngine.SerializeField]
-        public float hriLimL { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float hriLimR { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float verLimU { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float verLimD { get; set; }
-        
-        // ClassInfos
-        public static  bool ClassInfoInitialized = false;
-        private static Fox.Core.EntityInfo classInfo;
-        public static  Fox.Core.EntityInfo ClassInfo
-        {
-            get
-            {
-                return classInfo;
-            }
-        }
-        public virtual Fox.Core.EntityInfo GetClassEntityInfo()
-        {
-            return classInfo;
-        }
-        static PluginAngleLimit()
-        {
-            classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("PluginAngleLimit"), typeof(PluginAngleLimit), null, 0, null, 0);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("hriLimL"), Fox.Core.PropertyInfo.PropertyType.Float, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("hriLimR"), Fox.Core.PropertyInfo.PropertyType.Float, 4, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("verLimU"), Fox.Core.PropertyInfo.PropertyType.Float, 8, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("verLimD"), Fox.Core.PropertyInfo.PropertyType.Float, 12, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-
-            ClassInfoInitialized = true;
-        }
-
-        // Constructors
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Animx/PluginAngleLimit")]
+	public partial class PluginAngleLimit 
+	{
+		// Properties
+		[field: UnityEngine.SerializeField]
+		public float hriLimL { get; set; }
 		
-		public PluginAngleLimit()
-        {
-            
-        }
-        
-        public virtual void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "hriLimL":
-                    this.hriLimL = value.GetValueAsFloat();
-                    return;
-                case "hriLimR":
-                    this.hriLimR = value.GetValueAsFloat();
-                    return;
-                case "verLimU":
-                    this.verLimU = value.GetValueAsFloat();
-                    return;
-                case "verLimD":
-                    this.verLimD = value.GetValueAsFloat();
-                    return;
-                default:
-                    throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
-            }
-        }
-        
-        public virtual void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
-            }
-        }
-        
-        public virtual void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
-            }
-        }
-    }
+		[field: UnityEngine.SerializeField]
+		public float hriLimR { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float verLimU { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float verLimD { get; set; }
+		
+		// ClassInfos
+		public static  bool ClassInfoInitialized = false;
+		private static Fox.Core.EntityInfo classInfo;
+		public static  Fox.Core.EntityInfo ClassInfo
+		{
+			get
+			{
+				return classInfo;
+			}
+		}
+		public virtual Fox.Core.EntityInfo GetClassEntityInfo()
+		{
+			return classInfo;
+		}
+		static PluginAngleLimit()
+		{
+			classInfo = new Fox.Core.EntityInfo("PluginAngleLimit", typeof(PluginAngleLimit), null, 0, null, 0);
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("hriLimL", Fox.Core.PropertyInfo.PropertyType.Float, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("hriLimR", Fox.Core.PropertyInfo.PropertyType.Float, 4, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("verLimU", Fox.Core.PropertyInfo.PropertyType.Float, 8, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("verLimD", Fox.Core.PropertyInfo.PropertyType.Float, 12, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+
+			ClassInfoInitialized = true;
+		}
+		
+		public virtual Fox.Core.Value GetProperty(string propertyName)
+		{
+			switch (propertyName)
+			{
+				case "hriLimL":
+					return new Fox.Core.Value(hriLimL);
+				case "hriLimR":
+					return new Fox.Core.Value(hriLimR);
+				case "verLimU":
+					return new Fox.Core.Value(verLimU);
+				case "verLimD":
+					return new Fox.Core.Value(verLimD);
+				default:
+					throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
+			}
+		}
+
+		public virtual Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		{
+			switch (propertyName)
+			{
+				default:
+					throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
+			}
+		}
+
+		public virtual Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		{
+			switch (propertyName)
+			{
+				default:
+					throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
+			}
+		}
+
+		public virtual void SetProperty(string propertyName, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				case "hriLimL":
+					this.hriLimL = value.GetValueAsFloat();
+					return;
+				case "hriLimR":
+					this.hriLimR = value.GetValueAsFloat();
+					return;
+				case "verLimU":
+					this.verLimU = value.GetValueAsFloat();
+					return;
+				case "verLimD":
+					this.verLimD = value.GetValueAsFloat();
+					return;
+				default:
+					throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
+			}
+		}
+
+		public virtual void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
+			}
+		}
+
+		public virtual void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
+			}
+		}
+	}
 }

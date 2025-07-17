@@ -1,6 +1,6 @@
 using Fox.Fio;
 using Fox.GameService;
-using Fox.Kernel;
+using Fox;
 using UnityEngine;
 
 namespace Tpp.GameKit
@@ -10,14 +10,29 @@ namespace Tpp.GameKit
 		public static readonly StrCode32 Id = new StrCode32("SendMessage");
 		public override StrCode32 GetId() => Id;
 
-        public static TppRouteSendMessageNodeEvent Deserialize(FileStreamReader reader)
+        public static TppRouteSendMessageNodeEvent Deserialize(UnityEngine.GameObject gameObject, uint[] binaryData)
         {
-            uint unknown = reader.ReadUInt32();
-            Debug.Assert(unknown == 0);
+            TppRouteSendMessageNodeEvent result = gameObject.AddComponent<TppRouteSendMessageNodeEvent>();
 
-            var result = new TppRouteSendMessageNodeEvent { unknown = unknown, message = new String(reader.ReadStrCode32().ToString()), routeName = new String(reader.ReadStrCode32().ToString()) };
+            uint unknown;
+            StrCode32 message;
+            StrCode32 routeName;
+            unsafe
+            {
+                fixed (uint* binaryDataPtr = binaryData)
+                {
+                    uint* ptr = binaryDataPtr;
+                    unknown = *ptr;
+                    ptr += 1;
+                    message = *(StrCode32*)ptr;
+                    ptr += 1;
+                    routeName = *(StrCode32*)ptr;
+                }
+            }
 
-            reader.SkipPadding(4);
+            result.unknown = unknown;
+            result.message = message.ToString();
+            result.routeName = routeName.ToString();
 
             return result;
         }

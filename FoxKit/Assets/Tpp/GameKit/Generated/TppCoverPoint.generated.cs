@@ -12,120 +12,159 @@ using Fox;
 
 namespace Tpp.GameKit
 {
-    [UnityEditor.InitializeOnLoad]
-    public partial class TppCoverPoint : Fox.Tactical.GkTacticalPoint 
-    {
-        // Properties
-        [field: UnityEngine.SerializeField]
-        public bool isLeftOpen { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public bool isRightOpen { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public bool isUpOpen { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public bool isUnVaultable { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public bool isUseVip { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public bool isUseSniper { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public bool isBreakDisable { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public bool isBreakEnable { get; set; }
-        
-        // ClassInfos
-        public static new bool ClassInfoInitialized = false;
-        private static Fox.Core.EntityInfo classInfo;
-        public static new Fox.Core.EntityInfo ClassInfo
-        {
-            get
-            {
-                return classInfo;
-            }
-        }
-        public override Fox.Core.EntityInfo GetClassEntityInfo()
-        {
-            return classInfo;
-        }
-        static TppCoverPoint()
-        {
-            if (Fox.Tactical.GkTacticalPoint.ClassInfoInitialized)
-                classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("TppCoverPoint"), typeof(TppCoverPoint), Fox.Tactical.GkTacticalPoint.ClassInfo, 0, "TacticalPoint", 5);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("isLeftOpen"), Fox.Core.PropertyInfo.PropertyType.Bool, 400, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("isRightOpen"), Fox.Core.PropertyInfo.PropertyType.Bool, 401, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("isUpOpen"), Fox.Core.PropertyInfo.PropertyType.Bool, 402, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("isUnVaultable"), Fox.Core.PropertyInfo.PropertyType.Bool, 403, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("isUseVip"), Fox.Core.PropertyInfo.PropertyType.Bool, 404, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("isUseSniper"), Fox.Core.PropertyInfo.PropertyType.Bool, 405, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("isBreakDisable"), Fox.Core.PropertyInfo.PropertyType.Bool, 406, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("isBreakEnable"), Fox.Core.PropertyInfo.PropertyType.Bool, 407, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppGameKit/TppCoverPoint")]
+	public partial class TppCoverPoint : Fox.Tactical.GkTacticalPoint
+	{
+		// Properties
+		[field: UnityEngine.SerializeField]
+		public bool isLeftOpen { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public bool isRightOpen { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public bool isUpOpen { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public bool isUnVaultable { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public bool isUseVip { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public bool isUseSniper { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public bool isBreakDisable { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public bool isBreakEnable { get; set; }
+		
+		// ClassInfos
+		public static new bool ClassInfoInitialized = false;
+		private static Fox.Core.EntityInfo classInfo;
+		public static new Fox.Core.EntityInfo ClassInfo
+		{
+			get
+			{
+				return classInfo;
+			}
+		}
+		public override Fox.Core.EntityInfo GetClassEntityInfo()
+		{
+			return classInfo;
+		}
+		static TppCoverPoint()
+		{
+			if (Fox.Tactical.GkTacticalPoint.ClassInfoInitialized)
+				classInfo = new Fox.Core.EntityInfo("TppCoverPoint", typeof(TppCoverPoint), Fox.Tactical.GkTacticalPoint.ClassInfo, 0, "TacticalPoint", 5);
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("isLeftOpen", Fox.Core.PropertyInfo.PropertyType.Bool, 400, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("isRightOpen", Fox.Core.PropertyInfo.PropertyType.Bool, 401, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("isUpOpen", Fox.Core.PropertyInfo.PropertyType.Bool, 402, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("isUnVaultable", Fox.Core.PropertyInfo.PropertyType.Bool, 403, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("isUseVip", Fox.Core.PropertyInfo.PropertyType.Bool, 404, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("isUseSniper", Fox.Core.PropertyInfo.PropertyType.Bool, 405, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("isBreakDisable", Fox.Core.PropertyInfo.PropertyType.Bool, 406, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("isBreakEnable", Fox.Core.PropertyInfo.PropertyType.Bool, 407, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 
-            ClassInfoInitialized = true;
-        }
+			ClassInfoInitialized = true;
+		}
+		
+		public override Fox.Core.Value GetProperty(string propertyName)
+		{
+			switch (propertyName)
+			{
+				case "isLeftOpen":
+					return new Fox.Core.Value(isLeftOpen);
+				case "isRightOpen":
+					return new Fox.Core.Value(isRightOpen);
+				case "isUpOpen":
+					return new Fox.Core.Value(isUpOpen);
+				case "isUnVaultable":
+					return new Fox.Core.Value(isUnVaultable);
+				case "isUseVip":
+					return new Fox.Core.Value(isUseVip);
+				case "isUseSniper":
+					return new Fox.Core.Value(isUseSniper);
+				case "isBreakDisable":
+					return new Fox.Core.Value(isBreakDisable);
+				case "isBreakEnable":
+					return new Fox.Core.Value(isBreakEnable);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
 
-        // Constructors
-		public TppCoverPoint(ulong id) : base(id) { }
-		public TppCoverPoint() : base() { }
-        
-        public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "isLeftOpen":
-                    this.isLeftOpen = value.GetValueAsBool();
-                    return;
-                case "isRightOpen":
-                    this.isRightOpen = value.GetValueAsBool();
-                    return;
-                case "isUpOpen":
-                    this.isUpOpen = value.GetValueAsBool();
-                    return;
-                case "isUnVaultable":
-                    this.isUnVaultable = value.GetValueAsBool();
-                    return;
-                case "isUseVip":
-                    this.isUseVip = value.GetValueAsBool();
-                    return;
-                case "isUseSniper":
-                    this.isUseSniper = value.GetValueAsBool();
-                    return;
-                case "isBreakDisable":
-                    this.isBreakDisable = value.GetValueAsBool();
-                    return;
-                case "isBreakEnable":
-                    this.isBreakEnable = value.GetValueAsBool();
-                    return;
-                default:
-                    base.SetProperty(propertyName, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, index, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, key, value);
-                    return;
-            }
-        }
-    }
+		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		{
+			switch (propertyName)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		{
+			switch (propertyName)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
+
+		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				case "isLeftOpen":
+					this.isLeftOpen = value.GetValueAsBool();
+					return;
+				case "isRightOpen":
+					this.isRightOpen = value.GetValueAsBool();
+					return;
+				case "isUpOpen":
+					this.isUpOpen = value.GetValueAsBool();
+					return;
+				case "isUnVaultable":
+					this.isUnVaultable = value.GetValueAsBool();
+					return;
+				case "isUseVip":
+					this.isUseVip = value.GetValueAsBool();
+					return;
+				case "isUseSniper":
+					this.isUseSniper = value.GetValueAsBool();
+					return;
+				case "isBreakDisable":
+					this.isBreakDisable = value.GetValueAsBool();
+					return;
+				case "isBreakEnable":
+					this.isBreakEnable = value.GetValueAsBool();
+					return;
+				default:
+					base.SetProperty(propertyName, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+	}
 }

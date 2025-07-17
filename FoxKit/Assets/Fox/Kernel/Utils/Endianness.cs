@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Fox.Kernel
+namespace Fox
 {
     public enum Endianness
     {

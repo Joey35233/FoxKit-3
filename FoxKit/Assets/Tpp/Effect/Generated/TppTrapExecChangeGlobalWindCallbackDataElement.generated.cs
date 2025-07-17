@@ -12,113 +12,150 @@ using Fox;
 
 namespace Tpp.Effect
 {
-    [UnityEditor.InitializeOnLoad]
-    public partial class TppTrapExecChangeGlobalWindCallbackDataElement : Fox.Geo.GeoTrapModuleCallbackDataElement 
-    {
-        // Properties
-        [field: UnityEngine.SerializeField]
-        public float speed { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public UnityEngine.Quaternion rotation { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float speedTurbulentRate { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float speedTurbulentCycle { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float rotTurbulentRate { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float rotTurbulentCycle { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public float interpTime { get; set; }
-        
-        // ClassInfos
-        public static new bool ClassInfoInitialized = false;
-        private static Fox.Core.EntityInfo classInfo;
-        public static new Fox.Core.EntityInfo ClassInfo
-        {
-            get
-            {
-                return classInfo;
-            }
-        }
-        public override Fox.Core.EntityInfo GetClassEntityInfo()
-        {
-            return classInfo;
-        }
-        static TppTrapExecChangeGlobalWindCallbackDataElement()
-        {
-            if (Fox.Geo.GeoTrapModuleCallbackDataElement.ClassInfoInitialized)
-                classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("TppTrapExecChangeGlobalWindCallbackDataElement"), typeof(TppTrapExecChangeGlobalWindCallbackDataElement), Fox.Geo.GeoTrapModuleCallbackDataElement.ClassInfo, 0, null, 0);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("speed"), Fox.Core.PropertyInfo.PropertyType.Float, 80, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("rotation"), Fox.Core.PropertyInfo.PropertyType.Quat, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("speedTurbulentRate"), Fox.Core.PropertyInfo.PropertyType.Float, 84, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("speedTurbulentCycle"), Fox.Core.PropertyInfo.PropertyType.Float, 88, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("rotTurbulentRate"), Fox.Core.PropertyInfo.PropertyType.Float, 92, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("rotTurbulentCycle"), Fox.Core.PropertyInfo.PropertyType.Float, 96, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("interpTime"), Fox.Core.PropertyInfo.PropertyType.Float, 100, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppEffect/TppTrapExecChangeGlobalWindCallbackDataElement")]
+	public partial class TppTrapExecChangeGlobalWindCallbackDataElement : Fox.Geo.GeoTrapModuleCallbackDataElement
+	{
+		// Properties
+		[field: UnityEngine.SerializeField]
+		public float speed { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public UnityEngine.Quaternion rotation { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float speedTurbulentRate { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float speedTurbulentCycle { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float rotTurbulentRate { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float rotTurbulentCycle { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public float interpTime { get; set; }
+		
+		// ClassInfos
+		public static new bool ClassInfoInitialized = false;
+		private static Fox.Core.EntityInfo classInfo;
+		public static new Fox.Core.EntityInfo ClassInfo
+		{
+			get
+			{
+				return classInfo;
+			}
+		}
+		public override Fox.Core.EntityInfo GetClassEntityInfo()
+		{
+			return classInfo;
+		}
+		static TppTrapExecChangeGlobalWindCallbackDataElement()
+		{
+			if (Fox.Geo.GeoTrapModuleCallbackDataElement.ClassInfoInitialized)
+				classInfo = new Fox.Core.EntityInfo("TppTrapExecChangeGlobalWindCallbackDataElement", typeof(TppTrapExecChangeGlobalWindCallbackDataElement), Fox.Geo.GeoTrapModuleCallbackDataElement.ClassInfo, 0, null, 0);
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("speed", Fox.Core.PropertyInfo.PropertyType.Float, 80, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("rotation", Fox.Core.PropertyInfo.PropertyType.Quat, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("speedTurbulentRate", Fox.Core.PropertyInfo.PropertyType.Float, 84, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("speedTurbulentCycle", Fox.Core.PropertyInfo.PropertyType.Float, 88, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("rotTurbulentRate", Fox.Core.PropertyInfo.PropertyType.Float, 92, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("rotTurbulentCycle", Fox.Core.PropertyInfo.PropertyType.Float, 96, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("interpTime", Fox.Core.PropertyInfo.PropertyType.Float, 100, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 
-            ClassInfoInitialized = true;
-        }
+			ClassInfoInitialized = true;
+		}
+		
+		public override Fox.Core.Value GetProperty(string propertyName)
+		{
+			switch (propertyName)
+			{
+				case "speed":
+					return new Fox.Core.Value(speed);
+				case "rotation":
+					return new Fox.Core.Value(rotation);
+				case "speedTurbulentRate":
+					return new Fox.Core.Value(speedTurbulentRate);
+				case "speedTurbulentCycle":
+					return new Fox.Core.Value(speedTurbulentCycle);
+				case "rotTurbulentRate":
+					return new Fox.Core.Value(rotTurbulentRate);
+				case "rotTurbulentCycle":
+					return new Fox.Core.Value(rotTurbulentCycle);
+				case "interpTime":
+					return new Fox.Core.Value(interpTime);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
 
-        // Constructors
-		public TppTrapExecChangeGlobalWindCallbackDataElement(ulong id) : base(id) { }
-		public TppTrapExecChangeGlobalWindCallbackDataElement() : base() { }
-        
-        public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "speed":
-                    this.speed = value.GetValueAsFloat();
-                    return;
-                case "rotation":
-                    this.rotation = value.GetValueAsQuat();
-                    return;
-                case "speedTurbulentRate":
-                    this.speedTurbulentRate = value.GetValueAsFloat();
-                    return;
-                case "speedTurbulentCycle":
-                    this.speedTurbulentCycle = value.GetValueAsFloat();
-                    return;
-                case "rotTurbulentRate":
-                    this.rotTurbulentRate = value.GetValueAsFloat();
-                    return;
-                case "rotTurbulentCycle":
-                    this.rotTurbulentCycle = value.GetValueAsFloat();
-                    return;
-                case "interpTime":
-                    this.interpTime = value.GetValueAsFloat();
-                    return;
-                default:
-                    base.SetProperty(propertyName, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, index, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, key, value);
-                    return;
-            }
-        }
-    }
+		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		{
+			switch (propertyName)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		{
+			switch (propertyName)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
+
+		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				case "speed":
+					this.speed = value.GetValueAsFloat();
+					return;
+				case "rotation":
+					this.rotation = value.GetValueAsQuat();
+					return;
+				case "speedTurbulentRate":
+					this.speedTurbulentRate = value.GetValueAsFloat();
+					return;
+				case "speedTurbulentCycle":
+					this.speedTurbulentCycle = value.GetValueAsFloat();
+					return;
+				case "rotTurbulentRate":
+					this.rotTurbulentRate = value.GetValueAsFloat();
+					return;
+				case "rotTurbulentCycle":
+					this.rotTurbulentCycle = value.GetValueAsFloat();
+					return;
+				case "interpTime":
+					this.interpTime = value.GetValueAsFloat();
+					return;
+				default:
+					base.SetProperty(propertyName, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+	}
 }

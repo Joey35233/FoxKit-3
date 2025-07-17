@@ -1,6 +1,6 @@
 using Fox.Fio;
 using Fox.GameService;
-using Fox.Kernel;
+using Fox;
 
 namespace Tpp.GameKit
 {
@@ -9,6 +9,6 @@ namespace Tpp.GameKit
 		public static readonly StrCode32 Id = new StrCode32("RelaxedWalkAct");
 		public override StrCode32 GetId() => Id;
 
-		public static TppRouteRelaxedWalkActEdgeEvent Deserialize(FileStreamReader reader) => new TppRouteRelaxedWalkActEdgeEvent { binaryData = new StaticArray<uint>(new uint[] { reader.ReadUInt32(), reader.ReadUInt32(), reader.ReadUInt32(), reader.ReadUInt32() }), };
+		public static TppRouteRelaxedWalkActEdgeEvent Deserialize(UnityEngine.GameObject gameObject, uint[] binaryData) { TppRouteRelaxedWalkActEdgeEvent component = gameObject.AddComponent<TppRouteRelaxedWalkActEdgeEvent>(); component.binaryData = binaryData; return component; }
 	}
 }

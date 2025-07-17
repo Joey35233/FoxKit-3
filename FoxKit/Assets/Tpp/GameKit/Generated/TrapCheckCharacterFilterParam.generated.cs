@@ -12,111 +12,146 @@ using Fox;
 
 namespace Tpp.GameKit
 {
-    [UnityEditor.InitializeOnLoad]
-    public partial class TrapCheckCharacterFilterParam : Fox.Geo.GeoTrapModuleCallbackDataElement 
-    {
-        // Properties
-        [field: UnityEngine.SerializeField]
-        public uint flag { get; set; }
-        
-        public bool checkPlayer { get => Get_checkPlayer(); set { Set_checkPlayer(value); } }
-        protected partial bool Get_checkPlayer();
-        protected partial void Set_checkPlayer(bool value);
-        
-        public bool checkSoldier { get => Get_checkSoldier(); set { Set_checkSoldier(value); } }
-        protected partial bool Get_checkSoldier();
-        protected partial void Set_checkSoldier(bool value);
-        
-        public bool checkUav { get => Get_checkUav(); set { Set_checkUav(value); } }
-        protected partial bool Get_checkUav();
-        protected partial void Set_checkUav(bool value);
-        
-        public bool checkVolgin { get => Get_checkVolgin(); set { Set_checkVolgin(value); } }
-        protected partial bool Get_checkVolgin();
-        protected partial void Set_checkVolgin(bool value);
-        
-        public bool checkLiquid { get => Get_checkLiquid(); set { Set_checkLiquid(value); } }
-        protected partial bool Get_checkLiquid();
-        protected partial void Set_checkLiquid(bool value);
-        
-        // ClassInfos
-        public static new bool ClassInfoInitialized = false;
-        private static Fox.Core.EntityInfo classInfo;
-        public static new Fox.Core.EntityInfo ClassInfo
-        {
-            get
-            {
-                return classInfo;
-            }
-        }
-        public override Fox.Core.EntityInfo GetClassEntityInfo()
-        {
-            return classInfo;
-        }
-        static TrapCheckCharacterFilterParam()
-        {
-            if (Fox.Geo.GeoTrapModuleCallbackDataElement.ClassInfoInitialized)
-                classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("TrapCheckCharacterFilterParam"), typeof(TrapCheckCharacterFilterParam), Fox.Geo.GeoTrapModuleCallbackDataElement.ClassInfo, 36, null, 0);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("flag"), Fox.Core.PropertyInfo.PropertyType.UInt32, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("checkPlayer"), Fox.Core.PropertyInfo.PropertyType.Bool, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Accessor));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("checkSoldier"), Fox.Core.PropertyInfo.PropertyType.Bool, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Accessor));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("checkUav"), Fox.Core.PropertyInfo.PropertyType.Bool, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Accessor));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("checkVolgin"), Fox.Core.PropertyInfo.PropertyType.Bool, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Accessor));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("checkLiquid"), Fox.Core.PropertyInfo.PropertyType.Bool, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Accessor));
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppGameKit/TrapCheckCharacterFilterParam")]
+	public partial class TrapCheckCharacterFilterParam : Fox.Geo.GeoTrapModuleCallbackDataElement
+	{
+		// Properties
+		[field: UnityEngine.SerializeField]
+		public uint flag { get; set; }
+		
+		public bool checkPlayer { get => Get_checkPlayer(); set { Set_checkPlayer(value); } }
+		private partial bool Get_checkPlayer();
+		private partial void Set_checkPlayer(bool value);
+		
+		public bool checkSoldier { get => Get_checkSoldier(); set { Set_checkSoldier(value); } }
+		private partial bool Get_checkSoldier();
+		private partial void Set_checkSoldier(bool value);
+		
+		public bool checkUav { get => Get_checkUav(); set { Set_checkUav(value); } }
+		private partial bool Get_checkUav();
+		private partial void Set_checkUav(bool value);
+		
+		public bool checkVolgin { get => Get_checkVolgin(); set { Set_checkVolgin(value); } }
+		private partial bool Get_checkVolgin();
+		private partial void Set_checkVolgin(bool value);
+		
+		public bool checkLiquid { get => Get_checkLiquid(); set { Set_checkLiquid(value); } }
+		private partial bool Get_checkLiquid();
+		private partial void Set_checkLiquid(bool value);
+		
+		// ClassInfos
+		public static new bool ClassInfoInitialized = false;
+		private static Fox.Core.EntityInfo classInfo;
+		public static new Fox.Core.EntityInfo ClassInfo
+		{
+			get
+			{
+				return classInfo;
+			}
+		}
+		public override Fox.Core.EntityInfo GetClassEntityInfo()
+		{
+			return classInfo;
+		}
+		static TrapCheckCharacterFilterParam()
+		{
+			if (Fox.Geo.GeoTrapModuleCallbackDataElement.ClassInfoInitialized)
+				classInfo = new Fox.Core.EntityInfo("TrapCheckCharacterFilterParam", typeof(TrapCheckCharacterFilterParam), Fox.Geo.GeoTrapModuleCallbackDataElement.ClassInfo, 36, null, 0);
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("flag", Fox.Core.PropertyInfo.PropertyType.UInt32, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, Fox.Core.PropertyInfo.PropertyExport.EditorOnly, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("checkPlayer", Fox.Core.PropertyInfo.PropertyType.Bool, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Accessor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("checkSoldier", Fox.Core.PropertyInfo.PropertyType.Bool, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Accessor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("checkUav", Fox.Core.PropertyInfo.PropertyType.Bool, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Accessor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("checkVolgin", Fox.Core.PropertyInfo.PropertyType.Bool, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Accessor));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("checkLiquid", Fox.Core.PropertyInfo.PropertyType.Bool, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Accessor));
 
-            ClassInfoInitialized = true;
-        }
+			ClassInfoInitialized = true;
+		}
+		
+		public override Fox.Core.Value GetProperty(string propertyName)
+		{
+			switch (propertyName)
+			{
+				case "flag":
+					return new Fox.Core.Value(flag);
+				case "checkPlayer":
+					return new Fox.Core.Value(checkPlayer);
+				case "checkSoldier":
+					return new Fox.Core.Value(checkSoldier);
+				case "checkUav":
+					return new Fox.Core.Value(checkUav);
+				case "checkVolgin":
+					return new Fox.Core.Value(checkVolgin);
+				case "checkLiquid":
+					return new Fox.Core.Value(checkLiquid);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
 
-        // Constructors
-		public TrapCheckCharacterFilterParam(ulong id) : base(id) { }
-		public TrapCheckCharacterFilterParam() : base() { }
-        
-        public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "flag":
-                    this.flag = value.GetValueAsUInt32();
-                    return;
-                case "checkPlayer":
-                    this.checkPlayer = value.GetValueAsBool();
-                    return;
-                case "checkSoldier":
-                    this.checkSoldier = value.GetValueAsBool();
-                    return;
-                case "checkUav":
-                    this.checkUav = value.GetValueAsBool();
-                    return;
-                case "checkVolgin":
-                    this.checkVolgin = value.GetValueAsBool();
-                    return;
-                case "checkLiquid":
-                    this.checkLiquid = value.GetValueAsBool();
-                    return;
-                default:
-                    base.SetProperty(propertyName, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, index, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, key, value);
-                    return;
-            }
-        }
-    }
+		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		{
+			switch (propertyName)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		{
+			switch (propertyName)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
+
+		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				case "flag":
+					this.flag = value.GetValueAsUInt32();
+					return;
+				case "checkPlayer":
+					this.checkPlayer = value.GetValueAsBool();
+					return;
+				case "checkSoldier":
+					this.checkSoldier = value.GetValueAsBool();
+					return;
+				case "checkUav":
+					this.checkUav = value.GetValueAsBool();
+					return;
+				case "checkVolgin":
+					this.checkVolgin = value.GetValueAsBool();
+					return;
+				case "checkLiquid":
+					this.checkLiquid = value.GetValueAsBool();
+					return;
+				default:
+					base.SetProperty(propertyName, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+	}
 }

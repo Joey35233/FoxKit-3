@@ -12,100 +12,134 @@ using Fox;
 
 namespace Tpp.GameCore
 {
-    [UnityEditor.InitializeOnLoad]
-    public partial class TppPlayer2InstanceSettings 
-    {
-        // Properties
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.String instancePackagePath { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public uint instanceBlockSize { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.String commonMotionTypeName { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.DynamicArray<Fox.Kernel.String> partsTypeNames { get; set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.DynamicArray<Fox.Kernel.String> partsTypeInitial { get; set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
-        
-        // ClassInfos
-        public static  bool ClassInfoInitialized = false;
-        private static Fox.Core.EntityInfo classInfo;
-        public static  Fox.Core.EntityInfo ClassInfo
-        {
-            get
-            {
-                return classInfo;
-            }
-        }
-        public virtual Fox.Core.EntityInfo GetClassEntityInfo()
-        {
-            return classInfo;
-        }
-        static TppPlayer2InstanceSettings()
-        {
-            classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("TppPlayer2InstanceSettings"), typeof(TppPlayer2InstanceSettings), null, 0, null, 0);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("instancePackagePath"), Fox.Core.PropertyInfo.PropertyType.String, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("instanceBlockSize"), Fox.Core.PropertyInfo.PropertyType.UInt32, 8, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("commonMotionTypeName"), Fox.Core.PropertyInfo.PropertyType.String, 16, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("partsTypeNames"), Fox.Core.PropertyInfo.PropertyType.String, 24, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("partsTypeInitial"), Fox.Core.PropertyInfo.PropertyType.String, 40, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-
-            ClassInfoInitialized = true;
-        }
-
-        // Constructors
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppGameCore/TppPlayer2InstanceSettings")]
+	public partial class TppPlayer2InstanceSettings 
+	{
+		// Properties
+		[field: UnityEngine.SerializeField]
+		public string instancePackagePath { get; set; }
 		
-		public TppPlayer2InstanceSettings()
-        {
-            
-        }
-        
-        public virtual void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "instancePackagePath":
-                    this.instancePackagePath = value.GetValueAsString();
-                    return;
-                case "instanceBlockSize":
-                    this.instanceBlockSize = value.GetValueAsUInt32();
-                    return;
-                case "commonMotionTypeName":
-                    this.commonMotionTypeName = value.GetValueAsString();
-                    return;
-                default:
-                    throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
-            }
-        }
-        
-        public virtual void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "partsTypeNames":
-                    while(this.partsTypeNames.Count <= index) { this.partsTypeNames.Add(default(Fox.Kernel.String)); }
-                    this.partsTypeNames[index] = value.GetValueAsString();
-                    return;
-                case "partsTypeInitial":
-                    while(this.partsTypeInitial.Count <= index) { this.partsTypeInitial.Add(default(Fox.Kernel.String)); }
-                    this.partsTypeInitial[index] = value.GetValueAsString();
-                    return;
-                default:
-                    throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
-            }
-        }
-        
-        public virtual void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
-            }
-        }
-    }
+		[field: UnityEngine.SerializeField]
+		public uint instanceBlockSize { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public string commonMotionTypeName { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public CsSystem.Collections.Generic.List<string> partsTypeNames { get; private set; } = new CsSystem.Collections.Generic.List<string>();
+		
+		[field: UnityEngine.SerializeField]
+		public CsSystem.Collections.Generic.List<string> partsTypeInitial { get; private set; } = new CsSystem.Collections.Generic.List<string>();
+		
+		// ClassInfos
+		public static  bool ClassInfoInitialized = false;
+		private static Fox.Core.EntityInfo classInfo;
+		public static  Fox.Core.EntityInfo ClassInfo
+		{
+			get
+			{
+				return classInfo;
+			}
+		}
+		public virtual Fox.Core.EntityInfo GetClassEntityInfo()
+		{
+			return classInfo;
+		}
+		static TppPlayer2InstanceSettings()
+		{
+			classInfo = new Fox.Core.EntityInfo("TppPlayer2InstanceSettings", typeof(TppPlayer2InstanceSettings), null, 0, null, 0);
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("instancePackagePath", Fox.Core.PropertyInfo.PropertyType.String, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("instanceBlockSize", Fox.Core.PropertyInfo.PropertyType.UInt32, 8, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("commonMotionTypeName", Fox.Core.PropertyInfo.PropertyType.String, 16, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("partsTypeNames", Fox.Core.PropertyInfo.PropertyType.String, 24, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("partsTypeInitial", Fox.Core.PropertyInfo.PropertyType.String, 40, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+
+			ClassInfoInitialized = true;
+		}
+		
+		public virtual Fox.Core.Value GetProperty(string propertyName)
+		{
+			switch (propertyName)
+			{
+				case "instancePackagePath":
+					return new Fox.Core.Value(instancePackagePath);
+				case "instanceBlockSize":
+					return new Fox.Core.Value(instanceBlockSize);
+				case "commonMotionTypeName":
+					return new Fox.Core.Value(commonMotionTypeName);
+				case "partsTypeNames":
+					return new Fox.Core.Value(partsTypeNames);
+				case "partsTypeInitial":
+					return new Fox.Core.Value(partsTypeInitial);
+				default:
+					throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
+			}
+		}
+
+		public virtual Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		{
+			switch (propertyName)
+			{
+				case "partsTypeNames":
+					return new Fox.Core.Value(this.partsTypeNames[index]);
+				case "partsTypeInitial":
+					return new Fox.Core.Value(this.partsTypeInitial[index]);
+				default:
+					throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
+			}
+		}
+
+		public virtual Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		{
+			switch (propertyName)
+			{
+				default:
+					throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
+			}
+		}
+
+		public virtual void SetProperty(string propertyName, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				case "instancePackagePath":
+					this.instancePackagePath = value.GetValueAsString();
+					return;
+				case "instanceBlockSize":
+					this.instanceBlockSize = value.GetValueAsUInt32();
+					return;
+				case "commonMotionTypeName":
+					this.commonMotionTypeName = value.GetValueAsString();
+					return;
+				default:
+					throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
+			}
+		}
+
+		public virtual void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				case "partsTypeNames":
+					while(this.partsTypeNames.Count <= index) { this.partsTypeNames.Add(default(string)); }
+					this.partsTypeNames[index] = value.GetValueAsString();
+					return;
+				case "partsTypeInitial":
+					while(this.partsTypeInitial.Count <= index) { this.partsTypeInitial.Add(default(string)); }
+					this.partsTypeInitial[index] = value.GetValueAsString();
+					return;
+				default:
+					throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
+			}
+		}
+
+		public virtual void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
+			}
+		}
+	}
 }

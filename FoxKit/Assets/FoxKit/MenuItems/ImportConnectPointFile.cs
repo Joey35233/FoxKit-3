@@ -14,9 +14,11 @@ namespace FoxKit.MenuItems
             {
                 return;
             }
-            using var reader = new FileStreamReader(System.IO.File.OpenRead(assetPath));
+            // using var reader = new FileStreamReader(System.IO.File.OpenRead(assetPath));
             var fcnpReader = new ConnectPointFileReader();
-            fcnpReader.Read(reader);
+            // fcnpReader.Read(reader);
+
+            fcnpReader.ReadUnsafe(System.IO.File.ReadAllBytes(assetPath));
         }
     }
 }

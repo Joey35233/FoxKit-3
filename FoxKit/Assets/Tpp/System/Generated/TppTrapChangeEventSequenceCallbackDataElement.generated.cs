@@ -12,78 +12,105 @@ using Fox;
 
 namespace Tpp.System
 {
-    [UnityEditor.InitializeOnLoad]
-    public partial class TppTrapChangeEventSequenceCallbackDataElement : Fox.Geo.GeoTrapModuleCallbackDataElement 
-    {
-        // Properties
-        [field: UnityEngine.SerializeField]
-        public Fox.Core.EntityLink eventSequenceManager { get; set; }
-        
-        [field: UnityEngine.SerializeField]
-        public Fox.Kernel.String sequenceIdToGo { get; set; }
-        
-        // ClassInfos
-        public static new bool ClassInfoInitialized = false;
-        private static Fox.Core.EntityInfo classInfo;
-        public static new Fox.Core.EntityInfo ClassInfo
-        {
-            get
-            {
-                return classInfo;
-            }
-        }
-        public override Fox.Core.EntityInfo GetClassEntityInfo()
-        {
-            return classInfo;
-        }
-        static TppTrapChangeEventSequenceCallbackDataElement()
-        {
-            if (Fox.Geo.GeoTrapModuleCallbackDataElement.ClassInfoInitialized)
-                classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("TppTrapChangeEventSequenceCallbackDataElement"), typeof(TppTrapChangeEventSequenceCallbackDataElement), Fox.Geo.GeoTrapModuleCallbackDataElement.ClassInfo, 0, null, 1);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("eventSequenceManager"), Fox.Core.PropertyInfo.PropertyType.EntityLink, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("sequenceIdToGo"), Fox.Core.PropertyInfo.PropertyType.String, 104, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppSystem/TppTrapChangeEventSequenceCallbackDataElement")]
+	public partial class TppTrapChangeEventSequenceCallbackDataElement : Fox.Geo.GeoTrapModuleCallbackDataElement
+	{
+		// Properties
+		[field: UnityEngine.SerializeField]
+		public Fox.Core.EntityLink eventSequenceManager { get; set; }
+		
+		[field: UnityEngine.SerializeField]
+		public string sequenceIdToGo { get; set; }
+		
+		// ClassInfos
+		public static new bool ClassInfoInitialized = false;
+		private static Fox.Core.EntityInfo classInfo;
+		public static new Fox.Core.EntityInfo ClassInfo
+		{
+			get
+			{
+				return classInfo;
+			}
+		}
+		public override Fox.Core.EntityInfo GetClassEntityInfo()
+		{
+			return classInfo;
+		}
+		static TppTrapChangeEventSequenceCallbackDataElement()
+		{
+			if (Fox.Geo.GeoTrapModuleCallbackDataElement.ClassInfoInitialized)
+				classInfo = new Fox.Core.EntityInfo("TppTrapChangeEventSequenceCallbackDataElement", typeof(TppTrapChangeEventSequenceCallbackDataElement), Fox.Geo.GeoTrapModuleCallbackDataElement.ClassInfo, 0, null, 1);
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("eventSequenceManager", Fox.Core.PropertyInfo.PropertyType.EntityLink, 64, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("sequenceIdToGo", Fox.Core.PropertyInfo.PropertyType.String, 104, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 
-            ClassInfoInitialized = true;
-        }
+			ClassInfoInitialized = true;
+		}
+		
+		public override Fox.Core.Value GetProperty(string propertyName)
+		{
+			switch (propertyName)
+			{
+				case "eventSequenceManager":
+					return new Fox.Core.Value(eventSequenceManager);
+				case "sequenceIdToGo":
+					return new Fox.Core.Value(sequenceIdToGo);
+				default:
+					return base.GetProperty(propertyName);
+			}
+		}
 
-        // Constructors
-		public TppTrapChangeEventSequenceCallbackDataElement(ulong id) : base(id) { }
-		public TppTrapChangeEventSequenceCallbackDataElement() : base() { }
-        
-        public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                case "eventSequenceManager":
-                    this.eventSequenceManager = value.GetValueAsEntityLink();
-                    return;
-                case "sequenceIdToGo":
-                    this.sequenceIdToGo = value.GetValueAsString();
-                    return;
-                default:
-                    base.SetProperty(propertyName, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, index, value);
-                    return;
-            }
-        }
-        
-        public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
-        {
-            switch(propertyName.CString)
-            {
-                default:
-                    base.SetPropertyElement(propertyName, key, value);
-                    return;
-            }
-        }
-    }
+		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		{
+			switch (propertyName)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, index);
+			}
+		}
+
+		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		{
+			switch (propertyName)
+			{
+				default:
+					return base.GetPropertyElement(propertyName, key);
+			}
+		}
+
+		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				case "eventSequenceManager":
+					this.eventSequenceManager = value.GetValueAsEntityLink();
+					return;
+				case "sequenceIdToGo":
+					this.sequenceIdToGo = value.GetValueAsString();
+					return;
+				default:
+					base.SetProperty(propertyName, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+	}
 }
