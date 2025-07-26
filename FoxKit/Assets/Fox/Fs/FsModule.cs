@@ -10,9 +10,7 @@ namespace Fox.Fs
     [InitializeOnLoad]
     public static class FsModule
     {
-        public static void RegisterFsConfigAsset(FsConfig config)
-        {
-            FsConfig.Instance = config;
-        }
+        public static string UnityBasePath;
+        public static string ExternalBasePath;
     }
 }
