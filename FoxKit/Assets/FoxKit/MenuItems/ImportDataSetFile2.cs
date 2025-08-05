@@ -1,12 +1,10 @@
 using Fox.Core;
 using Fox.Core.Utils;
 using Fox.Fio;
-using Fox.Geox;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using UnityEditor;
-using UnityEditor.Connect;
 using UnityEditor.SceneManagement;
 using CsSystem = System;
 
@@ -25,19 +23,12 @@ namespace FoxKit.MenuItems
 
             var logger = new TaskLogger("Import DataSetFile2");
 
-            ReadOnlySpan<byte> fileData = System.IO.File.ReadAllBytes(externalPath);
+            string path = Fox.Fs.FileSystem.GetFoxPathFromExternalPath(externalPath);
+            ReadOnlySpan<byte> fileData = Fox.Fs.FileSystem.ReadExternalFile(path);
             UnityEngine.SceneManagement.Scene scene = DataSetFile2.Read(fileData, DataSetFile2.SceneLoadMode.Auto, logger);
             logger.LogToUnityConsole();
-
-            string path = Fox.Fs.FileSystem.GetFoxPathFromExternalPath(externalPath);
-
-            if(path!=null)
-                Fox.Fs.FileSystem.TryImportAsset(scene, path);
-            else
-            {
-                scene.name = System.IO.Path.GetFileNameWithoutExtension(externalPath);
-                EditorSceneManager.SaveScene(scene, "Assets/Scenes/" + scene.name + ".unity");
-            }
+            
+            Fox.Fs.FileSystem.TryImportAsset(scene, path);
         }
     }
 }
