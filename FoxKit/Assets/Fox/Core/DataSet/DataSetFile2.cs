@@ -100,13 +100,13 @@ namespace Fox.Core
                 {
                     UnityEngine.SceneManagement.Scene scene;
                     if (EditorSceneManager.EnsureUntitledSceneHasBeenSaved("Please save existing scene."))
-                    {
-                        scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
-                    }
+                        {
+                            scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Additive);
+                        }
                     else
-                    {
-                        scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Additive);
-                    }
+                        {
+                            scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
+                        }
 
                     return scene;
                 }
