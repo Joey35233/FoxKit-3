@@ -121,7 +121,7 @@ namespace Fox.Graphx
             var nodeType = this.GetNodeType();
             var newNode = Undo.AddComponent(newNodeGo, nodeType) as Fox.Graphx.GraphxSpatialGraphDataNode;
 
-            var usedNames = UnityEngine.Object.FindObjectsOfType(nodeType, true)
+            var usedNames = UnityEngine.Object.FindObjectsByType(nodeType, FindObjectsInactive.Include, FindObjectsSortMode.None)
                 .Select(ent => ent.name).ToHashSet();
             newNodeGo.name = newNode.GenerateUniqueName(nodeType, usedNames);
 
@@ -137,7 +137,7 @@ namespace Fox.Graphx
             var edgeType = GetEdgeType();
             var edge = Undo.AddComponent(newEdgeGo, GetEdgeType()) as Fox.Graphx.GraphxSpatialGraphDataEdge;
 
-            var usedNames = UnityEngine.Object.FindObjectsOfType(edgeType, true)
+            var usedNames = UnityEngine.Object.FindObjectsByType(edgeType, FindObjectsInactive.Include, FindObjectsSortMode.None)
                 .Select(ent => ent.name).ToHashSet();
             edge.name = edge.GenerateUniqueName(edgeType, usedNames);
 
