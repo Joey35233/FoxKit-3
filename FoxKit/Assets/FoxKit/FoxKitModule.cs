@@ -1,3 +1,4 @@
+using Fox.Fs;
 using UnityEditor;
 using UnityEngine;
 
@@ -6,10 +7,10 @@ namespace FoxKit
     public static class FoxKitModule
     {
         [InitializeOnLoadMethod]
-        private static void RegisterConfig()
+        private static void Initialize()
         {
-            Fox.Fs.FsConfig fsConfig = AssetDatabase.LoadAssetAtPath<Fox.Fs.FsConfig>("Assets/FoxKit/Settings/FsConfig.asset");
-            Fox.Fs.FsModule.RegisterFsConfigAsset(fsConfig);
+            FsModule.UnityBasePath = SettingsManager.UnityBasePath;
+            FsModule.ExternalBasePath = SettingsManager.ExternalBasePath;
         }
     }
 }

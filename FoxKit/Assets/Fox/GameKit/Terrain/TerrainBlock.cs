@@ -40,9 +40,10 @@ namespace Fox.GameKit
 
         public unsafe void OnEnable()
         {
+            return;
             string idStr = this.name.Substring("TerrainBlock_".Length);
             int parsedId = int.Parse(idStr);
-            if (parsedId is < 1000 or > 2300)
+            if (parsedId is < 2250 or > 2300)
                 return;
             
             ReadOnlySpan<byte> data = FileSystem.ReadFile(filePtr.path.String);
