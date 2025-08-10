@@ -5,13 +5,13 @@ namespace FoxKit.TEST
 {
     public class FoxRP : RenderPipeline
     {
-        FoxRenderer renderer;
+        FoxRenderer Renderer;
 
         protected override void Render(ScriptableRenderContext context, Camera[] cameras)
         {
             foreach (Camera camera in cameras)
             {
-                renderer.Render(context, camera);
+                Renderer.Render(context, camera);
             }
         }
 
@@ -19,7 +19,7 @@ namespace FoxKit.TEST
         {
             DgUtils.Init();
 
-            renderer = new FoxRenderer();
+            Renderer = new FoxRenderer();
         }
     }
 }

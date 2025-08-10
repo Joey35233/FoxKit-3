@@ -1,6 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.Rendering.RendererUtils;
 
 namespace FoxKit.TEST
 {
@@ -90,7 +91,9 @@ namespace FoxKit.TEST
             {
                 CullingResults = context.Cull(ref param);
 
-                context.DrawRenderers(CullingResults, ref drawingSettings, ref filteringSettings);
+                RendererListParams rendererListParam = new RendererListParams(CullingResults, drawingSettings, filteringSettings);
+                RendererList rendererList = context.CreateRendererList(ref rendererListParam);
+                Buffer.DrawRendererList(rendererList);
             }
 
             //Buffer.SetInvertCulling(false);
