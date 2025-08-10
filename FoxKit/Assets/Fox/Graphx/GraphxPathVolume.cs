@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Fox.Graphx
 {
-    public partial class GraphxPathVolume
+    public partial class GraphxPathVolume : Fox.Graphx.GraphxPathData
     {
         public override void OnDeserializeEntity(TaskLogger logger)
         {
@@ -20,6 +20,5 @@ namespace Fox.Graphx
 
             context.OverrideProperty(nameof(topPos), Fox.Math.UnityToFoxVector3(topPos));
         }
-        public override Type GetNodeType() => typeof(GraphxSpatialGraphDataNode);
     }
 }

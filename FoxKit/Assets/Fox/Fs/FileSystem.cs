@@ -18,7 +18,7 @@ namespace Fox.Fs
     {
         public static string GetFoxPathFromExternalPath(string externalPath)
         {
-            string basePath = FsConfig.Instance.ExternalBasePath;
+            string basePath = FsModule.ExternalBasePath;
             
             int index = externalPath.IndexOf(basePath, StringComparison.Ordinal);
             if (index < 0)
@@ -31,7 +31,7 @@ namespace Fox.Fs
 
         public static string GetExternalPathFromFoxPath(string foxPath)
         {
-            string basePath = FsConfig.Instance.ExternalBasePath;
+            string basePath = FsModule.ExternalBasePath;
 
             string result = basePath + foxPath;
             
@@ -40,7 +40,7 @@ namespace Fox.Fs
         
         public static string GetUnityPathFromFoxPath(string foxPath)
         {
-            string basePath = FsConfig.Instance.UnityBasePath;
+            string basePath = FsModule.UnityBasePath;
 
             string resolvedPath = ResolveFoxPath(foxPath);
             
@@ -116,14 +116,14 @@ namespace Fox.Fs
         // Utilities
         public static void OpenExternalFolder()
         {
-            string path = FsConfig.Instance.ExternalBasePath;
+            string path = FsModule.ExternalBasePath;
             
             EditorUtility.RevealInFinder(path);
         }
         
         public static void OpenUnityFolder()
         {
-            string path = FsConfig.Instance.UnityBasePath;
+            string path = FsModule.UnityBasePath;
             
             UnityEngine.Object folder = AssetDatabase.LoadAssetAtPath<UnityEngine.Object>(path);
             AssetDatabase.OpenAsset(folder);

@@ -29,29 +29,6 @@ namespace FoxKit.Windows
         private void OnGUI()
         {
             EditorGUILayout.BeginVertical("box");
-            EditorGUILayout.LabelField("Source Assets Path", EditorStyles.boldLabel);
-            EditorGUILayout.BeginHorizontal();
-        
-            GUI.enabled = false;
-            string newExternalBasePath = EditorGUILayout.TextField(Fox.Fs.FsConfig.Instance.ExternalBasePath);
-            GUI.enabled = true;
-        
-            if (GUILayout.Button("Browse", GUILayout.MaxWidth(70)))
-            {
-                string selectedPath = EditorUtility.OpenFolderPanel("Select the folder that contains the /Assets folder", "", "");
-                if (!string.IsNullOrEmpty(selectedPath))
-                {
-                    Fox.Fs.FsConfig.Instance.ExternalBasePath = selectedPath;
-                    EditorUtility.SetDirty(Fox.Fs.FsConfig.Instance);
-                }
-            }
-        
-            EditorGUILayout.EndHorizontal();
-            EditorGUILayout.EndVertical();
-        
-            GUILayout.Space(10);
-        
-            EditorGUILayout.BeginVertical("box");
             EditorGUILayout.LabelField("Map Selection", EditorStyles.boldLabel);
             selectedMapIndex = EditorGUILayout.Popup("Select Map", selectedMapIndex, mapOptions);
         
@@ -61,8 +38,6 @@ namespace FoxKit.Windows
             EditorGUILayout.EndVertical();
         
             GUILayout.Space(10);
-        
-            GUI.enabled = Fox.Fs.FsConfig.Instance.Validate();
         
             EditorGUILayout.BeginHorizontal();
         
@@ -89,7 +64,6 @@ namespace FoxKit.Windows
             }
         
             EditorGUILayout.EndHorizontal();
-            GUI.enabled = true;
         }
 
         private void LoadMap(string mapName, TaskLogger logger)
