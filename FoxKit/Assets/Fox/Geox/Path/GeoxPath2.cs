@@ -4,8 +4,6 @@ using Fox.Geo;
 using Fox.Graphx;
 using System;
 using System.ComponentModel;
-using System.Linq;
-using UnityEditor;
 using UnityEngine;
 
 namespace Fox.Geox
