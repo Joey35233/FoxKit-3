@@ -169,7 +169,7 @@ namespace Tpp.EdGameCore
 
             // Create/setup new Fox GameObject
             Fox.GameCore.GameObject[] existingGameObjects =
-                FindObjectsOfType<Fox.GameCore.GameObject>(true);
+                FindObjectsByType<Fox.GameCore.GameObject>(FindObjectsInactive.Include, FindObjectsSortMode.None);
 
             Fox.GameCore.GameObject gameObject = null;
             foreach (var existingObject in existingGameObjects)
@@ -209,7 +209,7 @@ namespace Tpp.EdGameCore
             if (createLocator.value)
             {
                 Fox.GameCore.GameObjectLocator gameObjectLocator = null;
-                var existingGameObjectLocators = FindObjectsOfType<Fox.GameCore.GameObjectLocator>(true);
+                var existingGameObjectLocators = FindObjectsByType<Fox.GameCore.GameObjectLocator>(FindObjectsInactive.Include, FindObjectsSortMode.None);
 
                 foreach (var existingLocator in existingGameObjectLocators)
                 {
