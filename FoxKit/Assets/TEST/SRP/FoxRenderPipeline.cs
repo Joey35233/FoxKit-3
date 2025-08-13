@@ -3,7 +3,7 @@ using UnityEngine.Rendering;
 
 namespace FoxKit.TEST
 {
-    public class FoxRP : RenderPipeline
+    public class FoxRenderPipeline : RenderPipeline
     {
         FoxRenderer Renderer;
 
@@ -15,7 +15,7 @@ namespace FoxKit.TEST
             }
         }
 
-        public FoxRP()
+        public FoxRenderPipeline()
         {
             DgUtils.Init();
 
