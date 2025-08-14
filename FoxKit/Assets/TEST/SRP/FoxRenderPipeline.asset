@@ -10,5 +10,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b8fa659770f40294989b6ea1f3b832ee, type: 3}
-  m_Name: FoxSRP
+  m_Name: FoxRenderPipeline
   m_EditorClassIdentifier: 
