@@ -59,9 +59,9 @@ namespace FoxKit.TEST
         {
             Buffer = new CommandBuffer { name = Name };
 
-            SphereMapMaterial = new Material(Shader.Find("Fox/SH_SphereMap"));
-            CopyHalfResBufferMaterial = new Material(Shader.Find("Fox/CopyRenderBuffer"));
-            SkyEncodeMaterial = new Material(Shader.Find("Fox/SSLighting2_SH_SkyLight_Encode"));
+            SphereMapMaterial = CoreUtils.CreateEngineMaterial("Fox/SH_SphereMap");
+            CopyHalfResBufferMaterial = CoreUtils.CreateEngineMaterial("Fox/CopyRenderBuffer");
+            SkyEncodeMaterial = CoreUtils.CreateEngineMaterial("Fox/SSLighting2_SH_SkyLight_Encode");
 
             kSkyCoefficients10am = new SkyCoefficientsSet
             {

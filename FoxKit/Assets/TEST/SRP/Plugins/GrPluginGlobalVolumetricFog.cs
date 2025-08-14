@@ -38,8 +38,7 @@ namespace FoxKit.TEST
 			Buffer = new CommandBuffer { name = Name };
 
 			FogMesh = AssetDatabase.LoadAssetAtPath<Mesh>("Assets/TEST/Assets/VolFogMesh.obj");
-			var shader = Shader.Find("Fox/VolFog_TppVolFog");
-			FogMaterial = new Material(shader);
+			FogMaterial = CoreUtils.CreateEngineMaterial("Fox/VolFog_TppVolFog");
 		}
 
         public override void Render(ScriptableRenderContext context, Camera camera)

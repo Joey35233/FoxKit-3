@@ -1,6 +1,7 @@
 using UnityEngine.Rendering;
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEditor;
 
 namespace FoxKit.TEST
 {
@@ -27,9 +28,9 @@ namespace FoxKit.TEST
             Plugins.Add(new GrPluginSphericalHarmonics());
             Plugins.Add(new GrPluginTonemap());
 
-            CopyDepthBuffer_Material = new Material(Shader.Find("Fox/CopyDepthBuffer"));
+            CopyDepthBuffer_Material = CoreUtils.CreateEngineMaterial("Fox/CopyDepthBuffer");
 
-            CopyRenderBuffer_Material = new Material(Shader.Find("Fox/CopyRenderBuffer"));
+            CopyRenderBuffer_Material = CoreUtils.CreateEngineMaterial("Fox/CopyRenderBuffer");
         }
 
         public void Render(ScriptableRenderContext context, Camera camera)
@@ -42,9 +43,9 @@ namespace FoxKit.TEST
                 float far = camera.farClipPlane;
 
                 // Hardcoded MGSV camera info
-                const float focalLength = 21;
-                const float sensorHeight = 24; // I think this actually might be the width, which would make the camera vertical
-                const float sensorWidth = 36;
+                const float focalLength = 21.0f;
+                const float sensorWidth = 24.0f;
+                const float sensorHeight = 13.5f;
 
                 camera.usePhysicalProperties = true;
                 camera.focalLength = focalLength;
@@ -78,11 +79,15 @@ namespace FoxKit.TEST
                 camera.fieldOfView = 2 * Mathf.Atan(1f / projectionMatrix[1, 1]) * Mathf.Rad2Deg;
 #if UNITY_EDITOR
                 // The scene picker does not care about even the FoV settings - it relies directly on the scene camera settings FoV value. Set that, too.
-                if (UnityEditor.SceneView.currentDrawingSceneView != null)
-                    UnityEditor.SceneView.currentDrawingSceneView.cameraSettings.fieldOfView = camera.fieldOfView;
+                if (UnityEditor.SceneView.currentDrawingSceneView is { } sceneView)
+                {
+                    SceneView.CameraSettings cameraSettings = sceneView.cameraSettings;
+                    cameraSettings.nearClip = 0.05f;
+                    cameraSettings.farClip = 4000;
+                    cameraSettings.dynamicClip = false;
+                    cameraSettings.fieldOfView = camera.fieldOfView;
+                }
 #endif
-
-
 
                 DgShaderDefine.SetGlobalMatrix(Buffer, DgShaderDefine.ConstantId.M_VIEW, viewMatrix);
                 DgShaderDefine.SetGlobalMatrix(Buffer, DgShaderDefine.ConstantId.M_PROJECTION, projectionMatrix);
@@ -91,7 +96,7 @@ namespace FoxKit.TEST
                 DgShaderDefine.SetGlobalVector(Buffer, DgShaderDefine.ConstantId.V_VIEWPORTSIZE, new Vector4(camera.pixelWidth, camera.pixelHeight, camera.nearClipPlane, camera.farClipPlane));
                 DgShaderDefine.SetGlobalVector(Buffer, DgShaderDefine.ConstantId.V_PROJECTIONPARAM, new Vector4(1f / projectionMatrix[0, 0], 1f / projectionMatrix[1, 1], projectionMatrix[2, 3], projectionMatrix[2, 2]));
             }
-
+            
             Context.ExecuteCommandBuffer(Buffer);
             Buffer.Clear();
 
@@ -117,19 +122,16 @@ namespace FoxKit.TEST
 
             Context.ExecuteCommandBuffer(Buffer);
             Buffer.Clear();
-
-            //Context.DrawSkybox(camera);
-
-            Context.DrawWireOverlay(camera);
-
-            Context.DrawUIOverlay(camera);
-            Context.DrawGizmos(camera, GizmoSubset.PreImageEffects);
-            Context.DrawGizmos(camera, GizmoSubset.PostImageEffects);
-
-
+            
             camera.ResetWorldToCameraMatrix();
             camera.ResetProjectionMatrix();
             Context.SetupCameraProperties(camera);
+
+            //Context.DrawSkybox(camera);
+
+            Context.DrawGizmos(camera, GizmoSubset.PreImageEffects);
+            Context.DrawWireOverlay(camera);
+            Context.DrawGizmos(camera, GizmoSubset.PostImageEffects);
 
             Context.Submit();
         }

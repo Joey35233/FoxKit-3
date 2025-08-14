@@ -39,7 +39,7 @@ namespace FoxKit.TEST
         {
             Buffer = new CommandBuffer { name = Name };
 
-            Material_VolFog_TppTonemap = new Material(Shader.Find("Fox/DR_VolFog_TppTonemap"));
+            Material_VolFog_TppTonemap = CoreUtils.CreateEngineMaterial("Fox/DR_VolFog_TppTonemap");
         }
 
         public override void Render(ScriptableRenderContext context, Camera camera)

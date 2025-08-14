@@ -63,11 +63,11 @@ namespace FoxKit.TEST
         {
             Buffer = new CommandBuffer { name = Name };
 
-            DownSampleDepthMaterial = new Material(Shader.Find("Fox/DownSampleDepth"));
-            MainMaterial = new Material(Shader.Find("Fox/SSAOLineIntegrals"));
-            BlurXMaterial = new Material(Shader.Find("Fox/blur_Gaussian1D_Bilateral_X"));
-            BlurYMaterial = new Material(Shader.Find("Fox/blur_Gaussian1D_Bilateral_Y"));
-            AlphaToRGBMaterial = new Material(Shader.Find("Fox/SSAOAlphaToRGB"));
+            DownSampleDepthMaterial = CoreUtils.CreateEngineMaterial("Fox/DownSampleDepth");
+            MainMaterial = CoreUtils.CreateEngineMaterial("Fox/SSAOLineIntegrals");
+            BlurXMaterial = CoreUtils.CreateEngineMaterial("Fox/blur_Gaussian1D_Bilateral_X");
+            BlurYMaterial = CoreUtils.CreateEngineMaterial("Fox/blur_Gaussian1D_Bilateral_Y");
+            AlphaToRGBMaterial = CoreUtils.CreateEngineMaterial("Fox/SSAOAlphaToRGB");
 
             RotationsTexture = new Texture2D(4, 4, TextureFormat.RGHalf, false);
             RotationsTexture.SetPixels
