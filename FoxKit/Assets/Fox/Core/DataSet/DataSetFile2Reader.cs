@@ -110,9 +110,7 @@ namespace Fox.Core
                                 {
                                     for (ushort k = 0; k < propertyDef->ArraySize; k++)
                                     {
-                                        byte* payload = (byte*)propertyDef + propertyDef->PayloadOffset;
-                                        
-                                        string key = StringTable[*(StrCode*)payload];
+                                        string key = StringTable[ReadPropertyKey(propertyDef, k)];
                                         object value = ReadPropertyValue(propertyDef, k);
                                         entity.SetPropertyElement(propertyName, key, new Value(value));
                                     }
@@ -201,6 +199,20 @@ namespace Fox.Core
                     return entities;
                 }
             }
+        }
+
+        private unsafe StrCode ReadPropertyKey(DataSetFile2.PropertyDef* propertyDef, ushort index)
+        {
+            byte* payload = (byte*)propertyDef + propertyDef->PayloadOffset;
+            
+            uint stride = PropertyInfo.SerializedPropertyStrideTable[(uint)propertyDef->DataType];
+            stride += 8; // Key
+            
+            stride = (uint)Fox.AlignmentUtils.Align(stride, 0x10u);
+
+            payload += index * stride;
+
+            return *(StrCode*)payload;
         }
 
         private unsafe object ReadPropertyValue(DataSetFile2.PropertyDef* propertyDef, ushort index)
