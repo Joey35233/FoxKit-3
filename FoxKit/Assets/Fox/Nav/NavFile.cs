@@ -612,7 +612,7 @@ namespace Fox.Nav
                 
                 Gizmos.color = NavigationGraphNodeColor;
                 Vector3 worldPos = fileHeader->Origin + positions[i].ToVector3(fileHeader->Denominator);
-                Gizmos.DrawWireSphere(worldPos, NavigationGraphNodeSize);
+                Gizmos.DrawWireSphere(Math.FoxToUnityVector3(worldPos), NavigationGraphNodeSize);
                 
                 // Now draw all the links for this node
                 byte* linkDataBasePtr = chunkDataPtr + navGraphHeader->LinkDataOffset;
@@ -644,7 +644,7 @@ namespace Fox.Nav
                     Vector3 segmentWorldPos = fileHeader->Origin + segmentPositions[segmentIndex].ToVector3(fileHeader->Denominator);
                                         
                     Gizmos.color = NavigationGraphToSegmentLinkColor;
-                    Gizmos.DrawLine(worldPos, segmentWorldPos);
+                    Gizmos.DrawLine(Math.FoxToUnityVector3(worldPos), Math.FoxToUnityVector3(segmentWorldPos));
                 }
             }
             
@@ -662,12 +662,12 @@ namespace Fox.Nav
                 Vector3 pos0 = fileHeader->Origin + positions[actualNodeIndex0].ToVector3(fileHeader->Denominator);
                 Vector3 pos1 = fileHeader->Origin + positions[actualNodeIndex1].ToVector3(fileHeader->Denominator);
                 
-                Gizmos.DrawLine(pos0, pos1);
+                Gizmos.DrawLine(Math.FoxToUnityVector3(pos0), Math.FoxToUnityVector3(pos1));
                 
                 if (ShowText)
                 {
                     float weight = edge->Weight.ToFloat(fileHeader->WeightDenominator);
-                    DrawLabel((pos0 + pos1) * 0.5f, $"{weight:F2}");
+                    DrawLabel((Math.FoxToUnityVector3(pos0) + Math.FoxToUnityVector3(pos1)) * 0.5f, $"{weight:F2}");
                 }
             }
         }
@@ -705,7 +705,7 @@ namespace Fox.Nav
                     long nextI = (i + 1) % neighborCount;
                     Vector3 vertex = fileHeader->Origin + positions[(uint)segment->BaseNavmeshPositionIndex + positionIndicesPtr[i]].ToVector3(fileHeader->Denominator);
                     Vector3 nextVertex = fileHeader->Origin + positions[(uint)segment->BaseNavmeshPositionIndex + positionIndicesPtr[nextI]].ToVector3(fileHeader->Denominator);
-                    Gizmos.DrawLine(vertex, nextVertex);
+                    Gizmos.DrawLine(Math.FoxToUnityVector3(vertex), Math.FoxToUnityVector3(nextVertex));
                 }
             }
         }
@@ -725,7 +725,7 @@ namespace Fox.Nav
                 
                 Gizmos.color = SegmentGraphNodeColor;
                 Vector3 worldPos = fileHeader->Origin + positions[nodeIndex].ToVector3(fileHeader->Denominator);
-                Gizmos.DrawWireCube(worldPos, Vector3.one * SegmentGraphNodeSize);
+                Gizmos.DrawWireCube(Math.FoxToUnityVector3(worldPos), Vector3.one * SegmentGraphNodeSize);
                 
                 // Now draw all the links for this node
                 byte* linkDataBasePtr = chunkDataPtr + segmentGraphHeader->LinkDataOffset;
@@ -742,12 +742,12 @@ namespace Fox.Nav
                     SegmentGraphInsideLinkDesc* link = insideLinks + linkIndex;
                 
                     Vector3 toPos = fileHeader->Origin + positions[link->NodeIndex].ToVector3(fileHeader->Denominator);
-                    Gizmos.DrawLine(fromPos, toPos);
+                    Gizmos.DrawLine(Math.FoxToUnityVector3(fromPos), Math.FoxToUnityVector3(toPos));
                 
                     if (ShowText)
                     {
                         float weight = link->Weight.ToFloat(fileHeader->WeightDenominator);
-                        DrawLabel((fromPos + toPos) * 0.5f, $"{weight:F2}");
+                        DrawLabel((Math.FoxToUnityVector3(fromPos) + Math.FoxToUnityVector3(toPos)) * 0.5f, $"{weight:F2}");
                     }
                 }
             }
@@ -775,11 +775,11 @@ namespace Fox.Nav
                 
                 // Draw filled bounding box
                 Gizmos.color = SegmentBoundsColor;
-                Gizmos.DrawCube(center, size);
+                Gizmos.DrawCube(Math.FoxToUnityVector3(center), size);
                 
                 // Draw wireframe outline
                 Gizmos.color = SegmentBoundsWireColor;
-                Gizmos.DrawWireCube(center, size);
+                Gizmos.DrawWireCube(Math.FoxToUnityVector3(center), size);
             }
         }
         
@@ -799,7 +799,7 @@ namespace Fox.Nav
                 {
                     IslandGraphNodeDesc* node = nodes + j;
                     Vector3 worldPos = fileHeader->Origin + node->Position.ToVector3(fileHeader->Denominator);
-                    Gizmos.DrawWireSphere(worldPos, IslandGraphNodeSize);
+                    Gizmos.DrawWireSphere(Math.FoxToUnityVector3(worldPos), IslandGraphNodeSize);
                 }
                 
                 // Draw inside links
@@ -828,10 +828,10 @@ namespace Fox.Nav
                         IslandGraphNodeDesc* toNode = nodes + link->NodeIndex;
                         Vector3 toPos = fileHeader->Origin + toNode->Position.ToVector3(fileHeader->Denominator);
                         
-                        Gizmos.DrawLine(fromPos, toPos);
+                        Gizmos.DrawLine(Math.FoxToUnityVector3(fromPos), Math.FoxToUnityVector3(toPos));
                         
                         float weight = link->Weight.ToFloat(fileHeader->WeightDenominator);
-                        DrawLabel((fromPos + toPos) * 0.5f, $"{weight:F2}");
+                        DrawLabel((Math.FoxToUnityVector3(fromPos) + Math.FoxToUnityVector3(toPos)) * 0.5f, $"{weight:F2}");
                     }
                 }
                 
@@ -848,9 +848,9 @@ namespace Fox.Nav
             
             // Draw search space origin
             Gizmos.color = SearchSpaceOriginColor;
-            Gizmos.DrawWireSphere(searchSpace->Origin, SearchSpaceOriginSize);
+            Gizmos.DrawWireSphere(Math.FoxToUnityVector3(searchSpace->Origin), SearchSpaceOriginSize);
             
-            DrawLabel(searchSpace->Origin + Vector3.up * (SearchSpaceOriginSize + 0.2f), "SearchSpace Origin");
+            DrawLabel(Math.FoxToUnityVector3(searchSpace->Origin) + Vector3.up * (SearchSpaceOriginSize + 0.2f), "SearchSpace Origin");
             
             // Draw search space bounds
             Gizmos.color = SearchSpaceBucketColor;
@@ -865,7 +865,7 @@ namespace Fox.Nav
             );
             
             Vector3 searchSpaceCenter = searchSpace->Origin + searchSpaceSize * 0.5f;
-            Gizmos.DrawWireCube(searchSpaceCenter, searchSpaceSize);
+            Gizmos.DrawWireCube(Math.FoxToUnityVector3(searchSpaceCenter), Math.FoxToUnityVector3(searchSpaceSize));
             
             // Optionally draw individual buckets (can be expensive for large search spaces)
             SearchBucketDesc* buckets = (SearchBucketDesc*)(dataPtr + fileHeader->SearchSpaceOffset + searchSpace->BucketDescsOffset);
@@ -890,7 +890,7 @@ namespace Fox.Nav
                             Vector3 actualBucketSize = new Vector3(blockSizeXZ, yRange, blockSizeXZ);
                             
                             Gizmos.color = SearchSpaceBucketColor;
-                            Gizmos.DrawWireCube(actualBucketPos, actualBucketSize);
+                            Gizmos.DrawWireCube(Math.FoxToUnityVector3(actualBucketPos), actualBucketSize);
                         }
                         
                         bucketIndex++;
