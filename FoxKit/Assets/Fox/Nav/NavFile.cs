@@ -15,7 +15,7 @@ namespace Fox.Nav
         public byte[] Data;
 
         [Header("Visualization Options")]
-        public bool ShowText = true;
+        public bool ShowText = false;
         
         [Space]
         [Header("Navigation Graph")]
