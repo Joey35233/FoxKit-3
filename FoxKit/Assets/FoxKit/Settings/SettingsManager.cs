@@ -9,6 +9,7 @@ namespace FoxKit
         // Properties
         public static string UnityBasePath = "Assets/Game";
         public static string ExternalBasePath { get => EditorPrefs.GetString("FoxKit.ExternalBasePath"); internal set => EditorPrefs.SetString("FoxKit.ExternalBasePath", value); }
+        public static string LooseBasePath = "Assets/GameTest";
 
         static SettingsManager()
         {
@@ -30,7 +31,8 @@ namespace FoxKit
             string unityBasePath = UnityBasePath;
             bool unityBasePathValid = System.IO.Directory.Exists(unityBasePath);
             bool externalBasePathValid = System.IO.Directory.Exists(ExternalBasePath);
-            return unityBasePathValid && externalBasePathValid;
+            bool looseBasePathValid = System.IO.Directory.Exists(LooseBasePath);
+            return unityBasePathValid && externalBasePathValid && looseBasePathValid;
         }
 
         public static void ShowSettingsWindow()

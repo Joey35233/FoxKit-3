@@ -11,6 +11,7 @@ namespace FoxKit
         {
             FsModule.UnityBasePath = SettingsManager.UnityBasePath;
             FsModule.ExternalBasePath = SettingsManager.ExternalBasePath;
+            FsModule.LooseBasePath = SettingsManager.LooseBasePath;
         }
     }
 }
