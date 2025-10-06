@@ -12,5 +12,6 @@ namespace Fox.Fs
     {
         public static string UnityBasePath;
         public static string ExternalBasePath;
+        public static string LooseBasePath;
     }
 }
