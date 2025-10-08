@@ -1,4 +1,4 @@
-﻿using Fox.Core;
+using Fox.Core;
 using System.Collections.Generic;
 using Fox.EdGameCore;
 using Fox.EdCore;
@@ -6,7 +6,6 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
-using System.Linq;
 
 namespace Tpp.EdGameCore
 {
@@ -57,32 +56,29 @@ namespace Tpp.EdGameCore
 
             groupIdField = new UInt32Field(nameof(Fox.GameCore.GameObject.groupId))
             {
-                tooltip =
-                    "Group identifier, Unclear what it does.\nAlways 0 in any GameObject."
+                tooltip = "Group identifier, Unclear what it does.\nAlways 0 in any GameObject."
             };
             totalCountField = new UInt32Field(nameof(Fox.GameCore.GameObject.totalCount))
             {
-                tooltip =
-                    "Maximum number of instances of this GameObject that can exist"
+                tooltip = "Maximum number of instances of this GameObject that can exist"
             };
 
             totalCountField.RegisterValueChangedCallback<uint>(evt =>
             {
                 ValidateTotalLocatorCount();
             });
+
             realizedCountField = new UInt32Field(nameof(Fox.GameCore.GameObject.realizedCount))
             {
-                tooltip =
-                    "Maximum number of instances that can be rendered or active at the same time."
+                tooltip = "Maximum number of instances that can be rendered or active at the same time."
             };
-            createLocator = new Toggle("Create Locator")
+
+            createLocator = new Toggle("Create Locators")
             {
-                tooltip =
-                    "If enabled, generates a GameObjectLocator for each GameObject.\nThe number of locators will match the Total Count."
+                tooltip = "If enabled, generates a GameObjectLocator for each GameObject.\nThe number of locators will match the Total Count."
             };
             createLocator.style.display = DisplayStyle.None;
 
-            // Container for locator prefix entries
             locatorPrefixContainer = new VisualElement();
             locatorPrefixContainer.style.display = DisplayStyle.None;
             locatorPrefixContainer.style.marginTop = 5;
@@ -96,7 +92,6 @@ namespace Tpp.EdGameCore
 
             rootVisualElement.Add(gameObjectTypeDropdown);
             rootVisualElement.Add(presetPopup);
-
             rootVisualElement.Add(groupIdField);
             rootVisualElement.Add(totalCountField);
             rootVisualElement.Add(realizedCountField);
@@ -149,10 +144,9 @@ namespace Tpp.EdGameCore
             {
                 text = "Create GameObject"
             };
-
             rootVisualElement.Add(createGameObjectButton);
-            var resetButton = new Button(SetGameObjectTypeFields) { text = "Reset" };
 
+            var resetButton = new Button(SetGameObjectTypeFields) { text = "Reset" };
             rootVisualElement.Add(resetButton);
         }
 
@@ -222,11 +216,16 @@ namespace Tpp.EdGameCore
 
         private void ValidateTotalLocatorCount()
         {
-            uint totalLocators = (uint)locatorPrefixEntries.Sum(e => (int)e.CountField.value);
+            uint totalLocators = 0;
+            foreach (var e in locatorPrefixEntries)
+            {
+                totalLocators += e.CountField.value;
+            }
 
             if (totalLocators > totalCountField.value)
             {
-                Debug.LogWarning($"Total locator count ({totalLocators}) exceeds totalCount ({totalCountField.value})!");
+                Debug.LogWarning($"Total locator count ({totalLocators}) exceeds totalCount ({totalCountField.value})! Adjusting totalCount to match total locator count.");
+                totalCountField.SetValueWithoutNotify(totalLocators);
             }
         }
 
@@ -286,17 +285,15 @@ namespace Tpp.EdGameCore
             if (!hasInfo)
                 return;
 
-            // Create/setup new Fox GameObject
             Fox.GameCore.GameObject[] existingGameObjects =
                 FindObjectsByType<Fox.GameCore.GameObject>(FindObjectsInactive.Include, FindObjectsSortMode.None);
 
             Fox.GameCore.GameObject gameObject = null;
             foreach (var existingObject in existingGameObjects)
-                if (
-                    existingObject.typeName == selectedType
-                    && existingObject.gameObject.scene == scene
-                )
+            {
+                if (existingObject.typeName == selectedType && existingObject.gameObject.scene == scene)
                     gameObject = existingObject;
+            }
 
             if (gameObject == null)
             {
@@ -304,12 +301,10 @@ namespace Tpp.EdGameCore
             }
             else
             {
-                // Reset children
                 while (gameObject.transform.childCount > 0)
                     DestroyImmediate(gameObject.transform.GetChild(0).gameObject);
             }
 
-            // Initialize
             gameObject.name = $"{selectedType}GameObject";
             gameObject.typeName = selectedType;
             gameObject.groupId = groupIdField.value;
@@ -323,10 +318,8 @@ namespace Tpp.EdGameCore
 
             Selection.activeGameObject = gameObject.gameObject;
 
-            // Create/setup new Fox GameObjectLocator
             if (createLocator.value)
             {
-                // Find all existing locators of this type in the scene
                 var existingGameObjectLocators = FindObjectsByType<Fox.GameCore.GameObjectLocator>(FindObjectsInactive.Include, FindObjectsSortMode.None);
 
                 List<Fox.GameCore.GameObjectLocator> locatorsToCleanup = new List<Fox.GameCore.GameObjectLocator>();
@@ -338,14 +331,16 @@ namespace Tpp.EdGameCore
                     }
                 }
 
-                // Clean up old locators
                 foreach (var oldLocator in locatorsToCleanup)
                 {
                     DestroyImmediate(oldLocator.gameObject);
                 }
 
-                // Calculate total locators needed and validate
-                uint totalLocatorsToCreate = (uint)locatorPrefixEntries.Sum(e => (int)e.CountField.value);
+                uint totalLocatorsToCreate = 0;
+                foreach (var e in locatorPrefixEntries)
+                {
+                    totalLocatorsToCreate += e.CountField.value;
+                }
 
                 if (totalLocatorsToCreate > totalCountField.value)
                 {
@@ -353,7 +348,6 @@ namespace Tpp.EdGameCore
                     return;
                 }
 
-                // Create new locators based on prefix entries
                 int globalIndex = 0;
                 foreach (var entry in locatorPrefixEntries)
                 {
@@ -385,7 +379,6 @@ namespace Tpp.EdGameCore
                     }
                 }
 
-                // If no prefix entries exist, fall back to default naming
                 if (locatorPrefixEntries.Count == 0)
                 {
                     for (int i = 0; i < totalCountField.value; i++)
