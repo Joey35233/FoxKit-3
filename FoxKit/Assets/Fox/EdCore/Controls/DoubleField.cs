@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 
 namespace Fox.EdCore
 {
-    public class DoubleField : TextValueField<double>, IFoxField, ICustomBindable
+    public class DoubleField : TextValueField<double>, IFoxField
     {
         private DoubleInput doubleInput => (DoubleInput)textInputBase;
 
@@ -15,8 +15,8 @@ namespace Fox.EdCore
 
         protected override double StringToValue(string str)
         {
-            _ = NumericPropertyFields.StringToDouble(str, out double v);
-            return v;
+            bool success = NumericPropertyFields.TryConvertStringToDouble(str, out double v);
+            return success ? v : rawValue;
         }
 
         public static new readonly string ussClassName = "fox-double-field";
@@ -28,17 +28,18 @@ namespace Fox.EdCore
             get;
         }
 
-        public DoubleField() : this(null)
+        public DoubleField() 
+            : this(label: null)
         {
         }
-
-        public DoubleField(int maxLength)
-            : this(null, true, maxLength)
-        {
-        }
-
+        
         public DoubleField(bool hasDragger)
-            : this(null, hasDragger)
+            : this(label: null, hasDragger)
+        {
+        }
+        
+        public DoubleField(PropertyInfo propertyInfo, bool hasDragger = true, int maxLength = -1)
+            : this(propertyInfo.Name, hasDragger, maxLength)
         {
         }
 
@@ -64,21 +65,13 @@ namespace Fox.EdCore
 
         public override void ApplyInputDeviceDelta(Vector3 delta, DeltaSpeed speed, double startValue) => doubleInput.ApplyInputDeviceDelta(delta, speed, startValue);
 
-        public void BindProperty(SerializedProperty property) => BindProperty(property, null);
-        public void BindProperty(SerializedProperty property, string label, PropertyInfo propertyInfo = null)
-        {
-            if (label is not null)
-                this.label = label;
-            BindingExtensions.BindProperty(this, property);
-        }
-
         private class DoubleInput : TextValueInput
         {
             private DoubleField parentDoubleField => (DoubleField)parent;
 
             internal DoubleInput()
             {
-                formatString = "R";
+                formatString = NumericPropertyFields.DoubleFieldFormatString;
             }
 
             protected override string allowedCharacters => NumericPropertyFields.FloatExpressionCharacterWhitelist;
@@ -102,27 +95,10 @@ namespace Fox.EdCore
 
             protected override string ValueToString(double v) => v.ToString(formatString);
 
-            protected override double StringToValue(string str)
-            {
-                _ = NumericPropertyFields.StringToDouble(str, out double v);
-                return v;
-            }
+            protected override double StringToValue(string str) => parentDoubleField.StringToValue(str);
         }
+        
+        public void SetLabel(string label) => this.label = label;
+        public Label GetLabelElement() => this.labelElement;
     }
-
-    // [CustomPropertyDrawer(typeof(double))]
-    // public class DoubleDrawer : PropertyDrawer
-    // {
-    //     public override VisualElement CreatePropertyGUI(SerializedProperty property)
-    //     {
-    //         var field = new DoubleField(property.name);
-    //         field.BindProperty(property);
-    //
-    //         field.labelElement.AddToClassList(PropertyField.labelUssClassName);
-    //         field.visualInput.AddToClassList(PropertyField.inputUssClassName);
-    //         field.AddToClassList(BaseField<double>.alignedFieldUssClassName);
-    //
-    //         return field;
-    //     }
-    // }
 }

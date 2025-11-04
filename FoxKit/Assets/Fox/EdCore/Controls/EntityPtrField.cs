@@ -5,14 +5,16 @@ using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
+using Object = UnityEngine.Object;
 using PropertyInfo = Fox.Core.PropertyInfo;
 
 namespace Fox.EdCore
 {
-    public class EntityPtrField<T> : BaseField<T>, IFoxField, ICustomBindable
+    public class EntityPtrField<T> : BaseField<T>, IFoxField
         where T : Entity
     {
         private SerializedProperty PtrProperty;
+        private EntityInfo EntityInfo = EntityInfo.GetEntityInfo<T>();
 
         private readonly VisualElement PropertyContainer;
         private readonly VisualElement Header;
@@ -50,7 +52,13 @@ namespace Fox.EdCore
             get; private set;
         }
 
-        public EntityPtrField() : this(default)
+        public EntityPtrField() 
+            : this(label: null)
+        {
+        }
+        
+        public EntityPtrField(PropertyInfo propertyInfo)
+            : this(propertyInfo.Name)
         {
         }
 
@@ -98,7 +106,7 @@ namespace Fox.EdCore
             base.ExecuteDefaultActionAtTarget(evt);
 
             // UNITYENHANCEMENT: https://github.com/Joey35233/FoxKit-3/issues/12
-            if (evt.eventTypeId == FoxFieldUtils.SerializedPropertyBindEventTypeId && !String.IsNullOrWhiteSpace(bindingPath))
+            if (evt.eventTypeId == FoxFieldUtils.SerializedPropertyBindEventTypeId && !System.String.IsNullOrWhiteSpace(bindingPath))
             {
                 var property = FoxFieldUtils.SerializedPropertyBindEventBindProperty.GetValue(evt) as SerializedProperty;
 
@@ -115,7 +123,7 @@ namespace Fox.EdCore
 
         private void OnPropertyChanged(SerializedProperty property)
         {
-            // [－] clicked
+            // [-] clicked
             if (PtrProperty.objectReferenceValue is null)
             {
                 Header.RemoveFromClassList(headerLivePtrUssClassName);
@@ -130,7 +138,7 @@ namespace Fox.EdCore
                 PropertyContainer.Clear();
                 PropertyContainer.visible = false;
             }
-            // [＋] clicked
+            // [+] clicked
             else
             {
                 Header.AddToClassList(headerLivePtrUssClassName);
@@ -145,9 +153,13 @@ namespace Fox.EdCore
 
                 PropertyContainer.visible = true;
                 PropertyContainer.Clear();
-                var entityField = new EntityField<T>() as ICustomBindable;
-                entityField.BindProperty(PtrProperty);
-                PropertyContainer.Add(entityField as VisualElement);
+                CustomEntityFieldDesc? customFieldDesc = CustomEntityFieldManager.Get(EntityInfo);
+                IEntityField entityField = customFieldDesc?.Constructor is {} customConstructor ? customConstructor() : new EntityField<T>();
+                SerializedObject newObject = new SerializedObject(PtrProperty.objectReferenceValue);
+                entityField.Build(newObject);
+                VisualElement entityFieldElement = entityField as VisualElement;
+                entityFieldElement.Bind(newObject);
+                PropertyContainer.Add(entityFieldElement);
             }
         }
 
@@ -161,7 +173,21 @@ namespace Fox.EdCore
                     SpecificEntityType = EntityTypePickerPopup.ShowPopup(typeof(T))?.Type;
                     if (SpecificEntityType != null)
                     {
-                        PtrProperty.objectReferenceValue = new GameObject().AddComponent(SpecificEntityType);
+                        GameObject newGameObject = new GameObject();
+                        Entity newEntity = newGameObject.AddComponent(SpecificEntityType) as Entity;
+                        newGameObject.name = newEntity.ToString();
+                        PtrProperty.objectReferenceValue = newEntity;
+
+                        Object targetObject = PtrProperty.serializedObject.targetObject;
+                        if (targetObject != null && targetObject is Entity targetEntity)
+                        {
+                            newEntity.transform.SetParent(targetEntity.gameObject.transform);
+                        }
+                        else
+                        {
+                            Debug.LogWarning("EntityPtrField: Owning entity invalid.");
+                        }
+                        
                         _ = PtrProperty.serializedObject.ApplyModifiedProperties();
                     }
                 }
@@ -182,41 +208,8 @@ namespace Fox.EdCore
                 break;
             }
         }
-
-        public void BindProperty(SerializedProperty property) => BindProperty(property, null);
-        public void BindProperty(SerializedProperty property, string label, PropertyInfo propertyInfo = null)
-        {
-            if (label is not null)
-                this.label = label;
-
-            PtrProperty = property;
-
-            BindingExtensions.TrackPropertyValue(this, PtrProperty, OnPropertyChanged);
-
-            OnPropertyChanged(null);
-        }
+        
+        public void SetLabel(string label) => this.label = label;
+        public Label GetLabelElement() => this.labelElement;
     }
-
-    // [CustomPropertyDrawer(typeof(Core.EntityPtr<>))]
-    // public class EntityPtrDrawer : PropertyDrawer
-    // {
-    //     public override VisualElement CreatePropertyGUI(SerializedProperty property)
-    //     {
-    //         // Get the generic type argument
-    //         Type genericArgument = fieldInfo.FieldType.GenericTypeArguments[0];
-    //
-    //         // Create a generic type with the correct number of type arguments
-    //         Type genericType = typeof(EntityPtrField<>).MakeGenericType(genericArgument);
-    //
-    //         // Create an instance of the generic type
-    //         var genericField = (BindableElement)Activator.CreateInstance(genericType, new object[] { property.name });
-    //         genericField.BindProperty(property);
-    //
-    //         genericField.Q(className: BaseField<float>.labelUssClassName).AddToClassList(PropertyField.labelUssClassName);
-    //         genericField.Q(className: BaseField<float>.inputUssClassName).AddToClassList(PropertyField.inputUssClassName);
-    //         genericField.AddToClassList(BaseField<float>.alignedFieldUssClassName);
-    //
-    //         return genericField;
-    //     }
-    // }
 }

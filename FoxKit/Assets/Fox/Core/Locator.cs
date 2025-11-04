@@ -20,5 +20,10 @@ namespace Fox.Core
             Gizmo.Label = null;
             Gizmo.OnDrawGizmos();
         }
+        public override void Reset()
+        {
+            base.Reset();
+            size = 1;
+        }
     }
 }

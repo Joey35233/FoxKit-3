@@ -12,12 +12,12 @@ using Fox;
 
 namespace Fox.GameKit
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("FoxGameKit/SubtitlesOptionBlockControllerData")]
 	public partial class SubtitlesOptionBlockControllerData : Fox.Core.Data
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<Fox.Kernel.String> packageFileNames { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
+		public CsSystem.Collections.Generic.List<string> packageFileNames { get; private set; } = new CsSystem.Collections.Generic.List<string>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -36,15 +36,15 @@ namespace Fox.GameKit
 		static SubtitlesOptionBlockControllerData()
 		{
 			if (Fox.Core.Data.ClassInfoInitialized)
-				classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("SubtitlesOptionBlockControllerData"), typeof(SubtitlesOptionBlockControllerData), Fox.Core.Data.ClassInfo, 88, "Subtitles", 0);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("packageFileNames"), Fox.Core.PropertyInfo.PropertyType.String, 120, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+				classInfo = new Fox.Core.EntityInfo("SubtitlesOptionBlockControllerData", typeof(SubtitlesOptionBlockControllerData), Fox.Core.Data.ClassInfo, 88, "Subtitles", 0);
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("packageFileNames", Fox.Core.PropertyInfo.PropertyType.String, 120, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		public override Fox.Core.Value GetProperty(string propertyName)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				case "packageFileNames":
 					return new Fox.Core.Value(packageFileNames);
@@ -53,9 +53,9 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				case "packageFileNames":
 					return new Fox.Core.Value(this.packageFileNames[index]);
@@ -64,18 +64,18 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				default:
 					return base.GetPropertyElement(propertyName, key);
 			}
 		}
 
-		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, Fox.Core.Value value)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				default:
 					base.SetProperty(propertyName, value);
@@ -83,12 +83,12 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				case "packageFileNames":
-					while(this.packageFileNames.Count <= index) { this.packageFileNames.Add(default(Fox.Kernel.String)); }
+					while(this.packageFileNames.Count <= index) { this.packageFileNames.Add(default(string)); }
 					this.packageFileNames[index] = value.GetValueAsString();
 					return;
 				default:
@@ -97,9 +97,9 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

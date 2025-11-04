@@ -1,6 +1,6 @@
 using Fox.Fio;
 using Fox.GameService;
-using Fox.Kernel;
+using Fox;
 using UnityEngine;
 
 namespace Tpp.GameKit
@@ -29,7 +29,7 @@ namespace Tpp.GameKit
 
             Debug.Assert(unknown == 0);
 
-            result.animationName = new String(animationName.ToString());
+            result.animationName = animationName.ToString();
             result.unknown = unknown;
 
             return result;

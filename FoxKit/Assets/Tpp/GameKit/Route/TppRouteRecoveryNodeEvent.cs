@@ -1,6 +1,6 @@
 using Fox.Fio;
 using Fox.GameService;
-using Fox.Kernel;
+using Fox;
 
 namespace Tpp.GameKit
 {
@@ -9,6 +9,6 @@ namespace Tpp.GameKit
 		public static readonly StrCode32 Id = new StrCode32("Recovery");
 		public override StrCode32 GetId() => Id;
 
-		public static TppRouteRecoveryNodeEvent Deserialize(UnityEngine.GameObject gameObject, uint[] binaryData) { TppRouteRecoveryNodeEvent component = gameObject.AddComponent<TppRouteRecoveryNodeEvent>(); component.binaryData = new StaticArray<uint>(binaryData); return component; }
+		public static TppRouteRecoveryNodeEvent Deserialize(UnityEngine.GameObject gameObject, uint[] binaryData) { TppRouteRecoveryNodeEvent component = gameObject.AddComponent<TppRouteRecoveryNodeEvent>(); component.binaryData = binaryData; return component; }
 	}
 }

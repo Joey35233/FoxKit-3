@@ -1,10 +1,8 @@
 using Fox.Core;
 using Fox.Core.Utils;
 using Fox.Fio;
-using Fox.Kernel;
 using UnityEditor.SceneManagement;
 using UnityEngine;
-using Transform = UnityEngine.Transform;
 
 namespace Fox.Geo
 {
@@ -53,27 +51,24 @@ namespace Fox.Geo
                         {
                             reader.Seek(header.GetDataPosition() + (96 * j));
 
-                            BoxShape shape = new GameObject($"BoxShape{j:D4}").AddComponent<BoxShape>();
-                            shape.size = reader.ReadScaleHF();
+                            BoxShape shape = new GameObject($"{triggerTrap.name}|BoxShape{j:D4}").AddComponent<BoxShape>();
+                            shape.SetTransform(TransformEntity.GetDefault());
+
+                            shape.transform.localScale = reader.ReadScaleHF() * 2;
 
                             Vector4 padding = reader.ReadVector4();
                             Debug.Assert(padding == Vector4.zero);
                             Matrix4x4 matrix = reader.ReadMatrix4F();
 
-                            TransformEntity transform = new GameObject().AddComponent<TransformEntity>();
-                            transform.rotQuat = matrix.rotation;
-                            transform.translation = matrix.GetPosition();
-                            shape.SetTransform(transform);
+                            shape.transform.rotation = matrix.rotation;
+                            shape.transform.position = matrix.GetPosition();
 
                             triggerTrap.AddChild(shape);
                         }
                     }
                     else if (header.Type == GeoPrimType.AreaPath && GeomHeaderContext.Deserialize(header) is { } trap)
                     {
-                        (trap as MonoBehaviour).name = header.Name.ToString();
 
-                        for (int j = 0; j < (trap as MonoBehaviour).transform.childCount; j++)
-                            (trap as MonoBehaviour).transform.gameObject.name = $"GeoxTrapAreaPath{j:D4}";
                     }
                     else
                     {

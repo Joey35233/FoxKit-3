@@ -1,4 +1,8 @@
-﻿namespace Fox.Ph
+﻿using Fox.Core;
+using Fox.Core.Utils;
+using UnityEngine;
+
+namespace Fox.Ph
 {
     public partial class PhMultiShoulderConstraint : Fox.Ph.PhConstraint
     {

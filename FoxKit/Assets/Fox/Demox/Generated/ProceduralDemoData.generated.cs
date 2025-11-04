@@ -12,33 +12,33 @@ using Fox;
 
 namespace Fox.Demox
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Demox/ProceduralDemoData")]
 	public partial class ProceduralDemoData : Fox.Core.TransformData
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.StringMap<Fox.Core.FilePtr> evfFiles { get; private set; } = new Fox.Kernel.StringMap<Fox.Core.FilePtr>();
+		public Fox.StringMap<Fox.Core.FilePtr> evfFiles { get; private set; } = new Fox.StringMap<Fox.Core.FilePtr>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.StringMap<Fox.Core.FilePtr> eventFiles { get; private set; } = new Fox.Kernel.StringMap<Fox.Core.FilePtr>();
+		public Fox.StringMap<Fox.Core.FilePtr> eventFiles { get; private set; } = new Fox.StringMap<Fox.Core.FilePtr>();
 		
 		[field: UnityEngine.SerializeField]
 		public int priority { get; set; }
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.String demoId { get; set; }
+		public string demoId { get; set; }
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<Fox.Kernel.String> stringParams { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
+		public CsSystem.Collections.Generic.List<string> stringParams { get; private set; } = new CsSystem.Collections.Generic.List<string>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.StringMap<Fox.Core.EntityLink> entityParams { get; private set; } = new Fox.Kernel.StringMap<Fox.Core.EntityLink>();
+		public Fox.StringMap<Fox.Core.EntityLink> entityParams { get; private set; } = new Fox.StringMap<Fox.Core.EntityLink>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.StringMap<Fox.Core.FilePtr> fileParams { get; private set; } = new Fox.Kernel.StringMap<Fox.Core.FilePtr>();
+		public Fox.StringMap<Fox.Core.FilePtr> fileParams { get; private set; } = new Fox.StringMap<Fox.Core.FilePtr>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.StringMap<int> objectNum { get; private set; } = new Fox.Kernel.StringMap<int>();
+		public Fox.StringMap<int> objectNum { get; private set; } = new Fox.StringMap<int>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -57,27 +57,27 @@ namespace Fox.Demox
 		static ProceduralDemoData()
 		{
 			if (Fox.Core.TransformData.ClassInfoInitialized)
-				classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("ProceduralDemoData"), typeof(ProceduralDemoData), Fox.Core.TransformData.ClassInfo, 0, null, 0);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("evfFiles"), Fox.Core.PropertyInfo.PropertyType.FilePtr, 304, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("eventFiles"), Fox.Core.PropertyInfo.PropertyType.FilePtr, 352, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("priority"), Fox.Core.PropertyInfo.PropertyType.Int32, 400, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("demoId"), Fox.Core.PropertyInfo.PropertyType.String, 408, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("stringParams"), Fox.Core.PropertyInfo.PropertyType.String, 416, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("entityParams"), Fox.Core.PropertyInfo.PropertyType.EntityLink, 432, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("fileParams"), Fox.Core.PropertyInfo.PropertyType.FilePtr, 480, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("objectNum"), Fox.Core.PropertyInfo.PropertyType.Int32, 528, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+				classInfo = new Fox.Core.EntityInfo("ProceduralDemoData", typeof(ProceduralDemoData), Fox.Core.TransformData.ClassInfo, 0, null, 0);
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("evfFiles", Fox.Core.PropertyInfo.PropertyType.FilePtr, 304, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("eventFiles", Fox.Core.PropertyInfo.PropertyType.FilePtr, 352, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("priority", Fox.Core.PropertyInfo.PropertyType.Int32, 400, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("demoId", Fox.Core.PropertyInfo.PropertyType.String, 408, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("stringParams", Fox.Core.PropertyInfo.PropertyType.String, 416, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("entityParams", Fox.Core.PropertyInfo.PropertyType.EntityLink, 432, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("fileParams", Fox.Core.PropertyInfo.PropertyType.FilePtr, 480, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("objectNum", Fox.Core.PropertyInfo.PropertyType.Int32, 528, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		public override Fox.Core.Value GetProperty(string propertyName)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				case "evfFiles":
-					return new Fox.Core.Value((Fox.Kernel.IStringMap)evfFiles);
+					return new Fox.Core.Value((Fox.IStringMap)evfFiles);
 				case "eventFiles":
-					return new Fox.Core.Value((Fox.Kernel.IStringMap)eventFiles);
+					return new Fox.Core.Value((Fox.IStringMap)eventFiles);
 				case "priority":
 					return new Fox.Core.Value(priority);
 				case "demoId":
@@ -85,19 +85,19 @@ namespace Fox.Demox
 				case "stringParams":
 					return new Fox.Core.Value(stringParams);
 				case "entityParams":
-					return new Fox.Core.Value((Fox.Kernel.IStringMap)entityParams);
+					return new Fox.Core.Value((Fox.IStringMap)entityParams);
 				case "fileParams":
-					return new Fox.Core.Value((Fox.Kernel.IStringMap)fileParams);
+					return new Fox.Core.Value((Fox.IStringMap)fileParams);
 				case "objectNum":
-					return new Fox.Core.Value((Fox.Kernel.IStringMap)objectNum);
+					return new Fox.Core.Value((Fox.IStringMap)objectNum);
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				case "stringParams":
 					return new Fox.Core.Value(this.stringParams[index]);
@@ -106,9 +106,9 @@ namespace Fox.Demox
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				case "evfFiles":
 					return new Fox.Core.Value(this.evfFiles[key]);
@@ -125,9 +125,9 @@ namespace Fox.Demox
 			}
 		}
 
-		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, Fox.Core.Value value)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				case "priority":
 					this.priority = value.GetValueAsInt32();
@@ -141,12 +141,12 @@ namespace Fox.Demox
 			}
 		}
 
-		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				case "stringParams":
-					while(this.stringParams.Count <= index) { this.stringParams.Add(default(Fox.Kernel.String)); }
+					while(this.stringParams.Count <= index) { this.stringParams.Add(default(string)); }
 					this.stringParams[index] = value.GetValueAsString();
 					return;
 				default:
@@ -155,9 +155,9 @@ namespace Fox.Demox
 			}
 		}
 
-		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				case "evfFiles":
 					if (this.evfFiles.ContainsKey(key))

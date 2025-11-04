@@ -1,12 +1,10 @@
-using Fox.Core;
+﻿using Fox.Core;
 using Fox.Fio;
 using Fox.Geo;
 using Fox.Graphx;
-using Fox.Kernel;
 using System;
 using System.ComponentModel;
 using UnityEngine;
-using String = Fox.Kernel.String;
 
 namespace Fox.Geox
 {
@@ -40,8 +38,17 @@ namespace Fox.Geox
             ForceFallDown = 0x200,
             [Description("DontFallWall")]
             DontFallWall = 0x400,
-        };
+        }
 
+        public override Type GetNodeType() => typeof(GeoxPathNode);
+        public override Type GetEdgeType() => typeof(GeoxPathEdge);
+        public override bool IsLoop() => false;
+
+        public override void Reset()
+        {
+            base.Reset();
+            enable = true;
+        }
         public static GeoxPath2 Deserialize(GeomHeaderContext header)
         {
             FileStreamReader reader = header.Reader;
@@ -49,11 +56,8 @@ namespace Fox.Geox
             Debug.Assert(header.Type == GeoPrimType.Path);
 
             GeoxPath2 path = new GameObject().AddComponent<GeoxPath2>();
-            path.enable = true;
-
-            TransformEntity transformEntity = new GameObject().AddComponent<TransformEntity>();
-            path.SetTransform(transformEntity);
-            //transformEntity.gameObject.name = $"{header.Name.ToString()}|{transformEntity.GetType().Name}";
+            path.SetTransform(TransformEntity.GetDefault());
+            bool transformSet = false;
 
             TagUtils.AddEnumTags<Tags>(path.tags, (ulong)header.GetTags<Tags>());
 
@@ -71,13 +75,13 @@ namespace Fox.Geox
 
                 GeoxPathEdge edge = new GameObject().AddComponent<GeoxPathEdge>();
                 edge.SetOwner(path);
-                //edge.gameObject.name = $"{header.Name.ToString()}|{edge.GetType().Name}{i:0000}";
+                edge.name = $"{edge.GetType().Name}{i:D4}";
 
                 var geoEdgeTags = (GeoxPathEdge.Tags)reader.ReadUInt32();
                 foreach (GeoxPathEdge.Tags tag in Enum.GetValues(geoEdgeTags.GetType()))
                 {
                     if (geoEdgeTags.HasFlag(tag))
-                        edge.edgeTags.Add(new String(tag.ToString()));
+                        edge.edgeTags.Add(tag.ToString());
                 }
 
                 ushort inNodeIndex = reader.ReadUInt16();
@@ -85,18 +89,27 @@ namespace Fox.Geox
                 GraphxSpatialGraphDataNode inNode;
                 if (path.nodes[inNodeIndex] is null)
                 {
-                    GeoxPathNode node = new GameObject().AddComponent<GeoxPathNode>();
+                    GeoxPathNode node = new GameObject($"GeoxPathNode{inNodeIndex:D4}").AddComponent<GeoxPathNode>();
                     node.SetOwner(path);
 
                     reader.Seek(header.Position + header.VertexBufferOffset + (16 * inNodeIndex));
                     node.position = reader.ReadPositionF();
 
+                    if (!transformSet)
+                    {
+                        path.transform.position = node.position;
+                        node.position = Vector3.zero;
+                        transformSet = true;
+                    }
+                    else
+                    {
+                        node.position -= path.transform.position;
+                    }
+
                     TagUtils.AddEnumTags<GeoxPathNode.Tags>(node.nodeTags, reader.ReadUInt32());
 
                     path.nodes[inNodeIndex] = node;
                     inNode = node;
-
-                    //node.gameObject.name = $"{header.Name.ToString()}|{node.GetType().Name}";
                 }
                 else
                 {
@@ -108,56 +121,39 @@ namespace Fox.Geox
                 GraphxSpatialGraphDataNode outNode;
                 if (path.nodes[outNodeIndex] is null)
                 {
-                    GeoxPathNode node = new GameObject().AddComponent<GeoxPathNode>();
+                    GeoxPathNode node = new GameObject($"GeoxPathNode{outNodeIndex:D4}").AddComponent<GeoxPathNode>();
                     node.SetOwner(path);
 
                     reader.Seek(header.Position + header.VertexBufferOffset + (16 * outNodeIndex));
                     node.position = reader.ReadPositionF();
 
+                    if (!transformSet)
+                    {
+                        path.transform.position = node.position;
+                        node.position = Vector3.zero;
+                        transformSet = true;
+                    }
+                    else
+                    {
+                        node.position -= path.transform.position;
+                    }
+
                     TagUtils.AddEnumTags<GeoxPathNode.Tags>(node.nodeTags, reader.ReadUInt32());
 
                     path.nodes[outNodeIndex] = node;
                     outNode = node;
-
-                    //node.gameObject.name = $"{header.Name.ToString()}|{node.GetType().Name}";
                 }
                 else
                 {
                     outNode = path.nodes[outNodeIndex];
                 }
                 edge.nextNode = outNode;
-                outNode.inlinks.Add(edge);
+                outNode.outlinks.Add(edge);
 
                 path.edges[i] = edge;
             }
 
             return path;
-        }
-
-        private static readonly Color Color = Color.white;
-        private static readonly Vector3 Scale = Vector3.one * 0.1f;
-        private static readonly Vector3 ScaleNode = Vector3.one * 0.25f;
-
-        public void OnDrawGizmos()
-        {
-            Gizmos.matrix = Matrix4x4.identity;
-
-            for (int nodeIndex = 0; nodeIndex < nodes.Count; nodeIndex++)
-            {
-                Graphx.GraphxSpatialGraphDataNode node = nodes[nodeIndex];
-
-                Gizmos.color = EditorColors.PlayerUtilityColor;
-                Gizmos.DrawWireCube(node.position, ScaleNode);
-
-                for (int edgeIndex = 0; edgeIndex < node.outlinks.Count; edgeIndex++)
-                {
-                    var edge = node.outlinks[edgeIndex] as GeoxPathEdge;
-
-                    var prevNode = edge.prevNode as GeoxPathNode;
-                    var nextNode = edge.nextNode as GeoxPathNode;
-                    Gizmos.DrawLine(prevNode.position, nextNode.position);
-                }
-            }
         }
     }
 }

@@ -1,4 +1,8 @@
-﻿namespace Fox.GameKit
+﻿using Fox.Core;
+using Fox.Core.Utils;
+using UnityEngine;
+
+namespace Fox.GameKit
 {
     public partial class WindParameter : Fox.GameKit.EnvironmentParameter
     {
@@ -10,5 +14,20 @@
 
         internal float GetInfluenceOfGlobal() => influenceOfGlobal;
         internal void SetInfluenceOfGlobal(float value) => influenceOfGlobal = value;
+        public override void OnDeserializeEntity(TaskLogger logger)
+        {
+            base.OnDeserializeEntity(logger);
+
+            velocity = Fox.Math.FoxToUnityVector3(velocity);
+            rotation = Fox.Math.FoxToUnityQuaternion(rotation);
+        }
+
+        public override void OverridePropertiesForExport(EntityExportContext context)
+        {
+            base.OverridePropertiesForExport(context);
+
+            context.OverrideProperty(nameof(velocity), Fox.Math.UnityToFoxVector3(velocity));
+            context.OverrideProperty(nameof(rotation), Fox.Math.UnityToFoxQuaternion(rotation));
+        }
     }
 }

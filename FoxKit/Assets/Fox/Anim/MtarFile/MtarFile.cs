@@ -130,7 +130,7 @@ namespace Fox.Anim
                                 byte* dataBlob = (byte*)trackDataBlob;
                                 
                                 Vector3 keyValue = *(Vector3*)dataBlob; dataBlob += sizeof(Vector3);
-                                keyValue = Fox.Kernel.Math.FoxToUnityVector3(keyValue);
+                                keyValue = Fox.Math.FoxToUnityVector3(keyValue);
 
                                 curveX.AddKey((float)time, keyValue.x);
                                 curveY.AddKey((float)time, keyValue.y);
@@ -144,7 +144,7 @@ namespace Fox.Anim
                                         time += frameCount * TrackData.PlaybackRate;
 
                                         keyValue = *(Vector3*)dataBlob; dataBlob += sizeof(Vector3);
-                                        keyValue = Fox.Kernel.Math.FoxToUnityVector3(keyValue);
+                                        keyValue = Fox.Math.FoxToUnityVector3(keyValue);
 
                                         curveX.AddKey((float)time, keyValue.x);
                                         curveY.AddKey((float)time, keyValue.y);
@@ -243,7 +243,7 @@ namespace Fox.Anim
                                     byte* dataBlob = (byte*)trackDataBlob;
                                     
                                     Vector3 keyValue = *(Vector3*)dataBlob; dataBlob += sizeof(Vector3);
-                                    keyValue = Fox.Kernel.Math.FoxToUnityVector3(keyValue);
+                                    keyValue = Fox.Math.FoxToUnityVector3(keyValue);
 
                                     curveX.AddKey((float)time, keyValue.x);
                                     curveY.AddKey((float)time, keyValue.y);
@@ -257,7 +257,7 @@ namespace Fox.Anim
                                             time += frameCount * TrackData.PlaybackRate;
 
                                             keyValue = *(Vector3*)dataBlob; dataBlob += sizeof(Vector3);
-                                            keyValue = Fox.Kernel.Math.FoxToUnityVector3(keyValue);
+                                            keyValue = Fox.Math.FoxToUnityVector3(keyValue);
 
                                             curveX.AddKey((float)time, keyValue.x);
                                             curveY.AddKey((float)time, keyValue.y);

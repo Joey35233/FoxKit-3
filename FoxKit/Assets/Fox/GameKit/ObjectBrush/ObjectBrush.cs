@@ -1,7 +1,7 @@
 using Fox.Core;
 using Fox.Core.Utils;
 using Fox.Fio;
-using Fox.Kernel;
+using Fox;
 using System;
 using System.IO;
 using UnityEditor;
@@ -11,11 +11,11 @@ namespace Fox.GameKit
 {
     public partial class ObjectBrush : Fox.Core.TransformData
     {
-        public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
+        public override void OnDeserializeEntity(TaskLogger logger)
         {
-            base.OnDeserializeEntity(gameObject, logger);
+            base.OnDeserializeEntity(logger);
 
-            string obrPath = "/Game" + obrFile.path.CString;
+            string obrPath = "/Game" + obrFile.path.String;
             if (System.String.IsNullOrEmpty(obrPath))
             {
                 Debug.LogWarning($"{name}: obrFile is null");
@@ -52,8 +52,8 @@ namespace Fox.GameKit
 
                 Vector3 foxPosition = GetPositionFWSFromPositionEWS(obj,asset);
 
-                transform.translation = Kernel.Math.FoxToUnityVector3(foxPosition);
-                transform.rotation_quat = Kernel.Math.FoxToUnityQuaternion(obj.GetRotation());
+                transform.translation = Fox.Math.FoxToUnityVector3(foxPosition);
+                transform.rotation_quat = Fox.Math.FoxToUnityQuaternion(obj.GetRotation());
 
                 float normalizedScale = (float)obj.GetNormalizedScale() / System.Byte.MaxValue;
 
@@ -63,17 +63,17 @@ namespace Fox.GameKit
                     {
                         case ObjectBrushPluginClone pluginClone:
                             transform.scale = Vector3.one * Mathf.Lerp(pluginClone.minSize, pluginClone.maxSize, normalizedScale);
-                            instanceGameObject = MakeStaticModelGameObject(transform, "/Assets/Game" + pluginClone.modelFile.path.CString, gameObject);
+                            instanceGameObject = MakeStaticModelGameObject(transform, "/Assets/Game" + pluginClone.modelFile.path.String, gameObject);
                             break;
                         case ObjectBrushPluginStaticModel pluginStaticModel:
                             transform.scale = Vector3.one * Mathf.Lerp(pluginStaticModel.minSize, pluginStaticModel.maxSize, normalizedScale);
-                            instanceGameObject = MakeStaticModelGameObject(transform, "/Assets/Game" + pluginStaticModel.modelFile.path.CString, gameObject);
+                            instanceGameObject = MakeStaticModelGameObject(transform, "/Assets/Game" + pluginStaticModel.modelFile.path.String, gameObject);
                             break;
                         case null:
                             throw new ArgumentNullException();
                         default:
                             //TODO Tpp.GameKit.ObjectBrushPluginStaticModel, TppObjectBrushPluginSkeletonModel
-                            var pluginClassName = new StrCode32(pluginHandle[obj.GetPluginBrushIndex()].GetClassEntityInfo().Name.CString);
+                            var pluginClassName = new StrCode32(pluginHandle[obj.GetPluginBrushIndex()].GetClassEntityInfo().Name);
                             Debug.LogWarning($"{name}: pluginHandle #{obj.GetPluginBrushIndex()} is not a supported");
                             break;
                     }

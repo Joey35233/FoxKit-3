@@ -1,7 +1,6 @@
 using Fox.Core.Utils;
-using Fox.Kernel;
-using System;
 using UnityEngine;
+using Fox.Core;
 
 namespace Fox.Grx
 {
@@ -44,6 +43,19 @@ namespace Fox.Grx
 
         private partial bool Get_hasSpecular() => FlagUtils.GetFlag(lightFlags, 3);
         private partial void Set_hasSpecular(bool value) => lightFlags = FlagUtils.SetFlag(lightFlags, 3, value);
+
+        public override void OnDeserializeEntity(TaskLogger logger)
+        {
+            base.OnDeserializeEntity(logger);
+
+            reachPoint = Fox.Math.FoxToUnityVector3(reachPoint);
+        }
+        public override void OverridePropertiesForExport(EntityExportContext context)
+        {
+            base.OverridePropertiesForExport(context);
+
+            context.OverrideProperty(nameof(reachPoint), Fox.Math.UnityToFoxVector3(reachPoint));
+        }
 
         private PointLightGizmo Gizmo = new PointLightGizmo();
 

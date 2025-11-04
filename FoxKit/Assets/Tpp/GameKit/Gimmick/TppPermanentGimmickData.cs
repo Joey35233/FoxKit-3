@@ -6,9 +6,9 @@ namespace Tpp.GameKit
 {
     public partial class TppPermanentGimmickData : Fox.Core.Data
     {
-        public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
+        public override void OnDeserializeEntity(TaskLogger logger)
         {
-            base.OnDeserializeEntity(gameObject, logger);
+            base.OnDeserializeEntity(logger);
 
             if (partsFile == FilePtr.Empty)
             {
@@ -36,7 +36,7 @@ namespace Tpp.GameKit
                 case NamedLocatorBinaryArrayAsset namedLocaterAsset:
                     foreach (NamedLocatorBinary locator in namedLocaterAsset.locators)
                     {
-                        LocatorBinaryObject locatorGameObject = new GameObject(locator.GetLocatorName().CString).AddComponent<LocatorBinaryObject>();
+                        LocatorBinaryObject locatorGameObject = new GameObject(locator.GetLocatorName()).AddComponent<LocatorBinaryObject>();
                         locatorGameObject.transform.position = locator.GetTranslation();
                         locatorGameObject.transform.rotation = locator.GetRotation();
                         locatorGameObject.ShouldDrawGizmo = !hasModel;
@@ -46,7 +46,7 @@ namespace Tpp.GameKit
                 case ScaledLocatorBinaryArrayAsset scaledLocatorAsset:
                     foreach (ScaledLocatorBinary locator in scaledLocatorAsset.locators)
                     {
-                        LocatorBinaryObject locatorGameObject = new GameObject(locator.GetLocatorName().CString).AddComponent<LocatorBinaryObject>();
+                        LocatorBinaryObject locatorGameObject = new GameObject(locator.GetLocatorName()).AddComponent<LocatorBinaryObject>();
                         locatorGameObject.transform.position = locator.GetTranslation();
                         locatorGameObject.transform.rotation = locator.GetRotation();
                         locatorGameObject.ShouldDrawGizmo = !hasModel;

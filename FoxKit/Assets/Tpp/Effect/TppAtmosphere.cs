@@ -1,4 +1,7 @@
 ﻿using CsSystem = System;
+using Fox.Core;
+using Fox.Core.Utils;
+using UnityEngine;
 
 namespace Tpp.Effect
 {
@@ -42,5 +45,31 @@ namespace Tpp.Effect
 
         private partial bool Get_isSteppedMoveOfDirectionalLight() => throw new CsSystem.NotImplementedException();
         private partial void Set_isSteppedMoveOfDirectionalLight(bool value) => throw new CsSystem.NotImplementedException();
+        public override void OnDeserializeEntity(TaskLogger logger)
+        {
+            base.OnDeserializeEntity(logger);
+
+            fixedLightDirSunRise = Fox.Math.FoxToUnityVector3(fixedLightDirSunRise);
+            fixedLightDirSunSet = Fox.Math.FoxToUnityVector3(fixedLightDirSunSet);
+            fixedLightDirMoonRise = Fox.Math.FoxToUnityVector3(fixedLightDirMoonRise);
+            fixedLightDirMoonSet = Fox.Math.FoxToUnityVector3(fixedLightDirMoonSet);
+            fixedRisingSunDir = Fox.Math.FoxToUnityVector3(fixedRisingSunDir);
+            fixedFallingSunDir = Fox.Math.FoxToUnityVector3(fixedFallingSunDir);
+            fixedRisingMoonDir = Fox.Math.FoxToUnityVector3(fixedRisingMoonDir);
+            fixedFallingMoonDir = Fox.Math.FoxToUnityVector3(fixedFallingMoonDir);
+        }
+        public override void OverridePropertiesForExport(EntityExportContext context)
+        {
+            base.OverridePropertiesForExport(context);
+
+            context.OverrideProperty(nameof(fixedLightDirSunRise), Fox.Math.UnityToFoxVector3(fixedLightDirSunRise));
+            context.OverrideProperty(nameof(fixedLightDirSunSet), Fox.Math.UnityToFoxVector3(fixedLightDirSunSet));
+            context.OverrideProperty(nameof(fixedLightDirMoonRise), Fox.Math.UnityToFoxVector3(fixedLightDirMoonRise));
+            context.OverrideProperty(nameof(fixedLightDirMoonSet), Fox.Math.UnityToFoxVector3(fixedLightDirMoonSet));
+            context.OverrideProperty(nameof(fixedRisingSunDir), Fox.Math.UnityToFoxVector3(fixedRisingSunDir));
+            context.OverrideProperty(nameof(fixedFallingSunDir), Fox.Math.UnityToFoxVector3(fixedFallingSunDir));
+            context.OverrideProperty(nameof(fixedRisingMoonDir), Fox.Math.UnityToFoxVector3(fixedRisingMoonDir));
+            context.OverrideProperty(nameof(fixedFallingMoonDir), Fox.Math.UnityToFoxVector3(fixedFallingMoonDir));
+        }
     }
 }

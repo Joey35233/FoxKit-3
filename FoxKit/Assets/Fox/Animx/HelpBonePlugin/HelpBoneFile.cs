@@ -1,9 +1,8 @@
-using Fox.Kernel;
+using Fox;
 using System;
 using System.Runtime.InteropServices;
 using UnityEditor;
 using UnityEngine;
-using String = Fox.Kernel.String;
 
 namespace Fox.Animx
 {
@@ -125,7 +124,7 @@ namespace Fox.Animx
             driver.LimitMin = unit->LimitMin;
             driver.LimitMax = unit->LimitMax;
 
-            if (unit->Type < DriverUnitAction.Type19)
+            if (unit->Type < DriverUnitAction.PitchASwitchLinear)
             {
                 var multiAxisParam = (DriverUnitParamsMultiAxis*)(unit + 1);
 

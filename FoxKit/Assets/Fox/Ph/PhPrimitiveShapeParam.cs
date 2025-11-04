@@ -8,38 +8,59 @@ namespace Fox.Ph
     {
         private static Mesh CylinderMesh;
 
-        public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
-        {
-            offset = Fox.Kernel.Math.FoxToUnityVector3(offset);
-            rotation = Fox.Kernel.Math.FoxToUnityQuaternion(rotation);
-
-            base.OnDeserializeEntity(gameObject, logger);
-        }
-
-        public override void OverridePropertiesForExport(EntityExportContext context)
-        {
-            context.OverrideProperty("offset", Kernel.Math.UnityToFoxVector3(offset));
-            context.OverrideProperty("rotation", Kernel.Math.FoxToUnityQuaternion(rotation));
-
-            base.OverridePropertiesForExport(context);
-        }
+        public new PhPrimitiveShapeType GetType() => (PhPrimitiveShapeType)type;
 
         internal override void DrawGizmos()
         {
             Gizmos.color = Color.green;
-            Gizmos.matrix = Gizmos.matrix *= Matrix4x4.TRS(offset, rotation, size);
+            Gizmos.matrix *= Matrix4x4.TRS(offset, rotation, Vector3.one);
+            
             switch (type)
             {
                 case PhShapeType.BOX:
-                    Gizmos.DrawWireCube(Vector3.zero, Vector3.one);
+                    if (size.x > 0 && size.y > 0 && size.z > 0)
+                    {
+                        Vector3 radii = size;
+                    
+                        Gizmos.DrawWireCube(Vector3.zero, 2*radii);
+                    }
                     break;
                 case PhShapeType.SPHERE:
-                    Gizmos.DrawWireSphere(Vector3.zero, 1.0f);
+                    if (size.x > 0)
+                    {
+                        float radius = size.x;
+                        
+                        Gizmos.DrawWireSphere(Vector3.zero, radius);
+                    }
+                    break;
+                case PhShapeType.CYLINDER:
+                    if (size.x > 0 && size.y > 0)
+                    {
+                        if (CylinderMesh == null)
+                            CylinderMesh = Resources.GetBuiltinResource<Mesh>("Cylinder.fbx");
+                        
+                        float radius = size.x;
+                        float halfHeight = size.y;
+                        Vector3 scale = new Vector3(radius, halfHeight, radius);
+                        
+                        Gizmos.DrawWireMesh(CylinderMesh, Vector3.zero, Quaternion.identity, scale);
+                    }
                     break;
                 case PhShapeType.CAPSULE:
-                    if (CylinderMesh == null)
-                        CylinderMesh = Resources.GetBuiltinResource<Mesh>("Cylinder.fbx");
-                    Gizmos.DrawWireMesh(CylinderMesh);
+                    if (size.x > 0 && size.y > 0)
+                    {
+                        if (CylinderMesh == null)
+                            CylinderMesh = Resources.GetBuiltinResource<Mesh>("Cylinder.fbx");
+                        
+                        float radius = size.x;
+                        float halfHeight = size.y;
+                        Vector3 scale = new Vector3(radius, halfHeight, radius);
+                        
+                        Gizmos.DrawWireSphere(halfHeight * Vector3.up, radius);
+                        Gizmos.DrawWireSphere(halfHeight * Vector3.down, radius);
+                        
+                        Gizmos.DrawWireMesh(CylinderMesh, Vector3.zero, Quaternion.identity, scale);
+                    }
                     break;
             }
         }

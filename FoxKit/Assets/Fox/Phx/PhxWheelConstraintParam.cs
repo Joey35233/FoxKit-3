@@ -1,4 +1,8 @@
-﻿namespace Fox.Phx
+﻿using Fox.Core;
+using Fox.Core.Utils;
+using UnityEngine;
+
+namespace Fox.Phx
 {
     public partial class PhxWheelConstraintParam : Fox.Ph.PhConstraintParam
     {
@@ -34,5 +38,23 @@
 
         internal float GetDampingFactorCompress() => dampingFactorCompress;
         internal void SetDampingFactorCompress(float value) => dampingFactorCompress = value;
+
+        public override void OnDeserializeEntity(TaskLogger logger)
+        {
+            base.OnDeserializeEntity(logger);
+            
+            frontL = Fox.Math.FoxToUnityVector3(frontL);
+            upL = Fox.Math.FoxToUnityVector3(upL);
+            wheelPositionOffset = Fox.Math.FoxToUnityVector3(wheelPositionOffset);
+        }
+
+        public override void OverridePropertiesForExport(EntityExportContext context)
+        {
+            base.OverridePropertiesForExport(context);
+            
+            context.OverrideProperty(nameof(frontL), Fox.Math.UnityToFoxVector3(frontL));
+            context.OverrideProperty(nameof(upL), Fox.Math.UnityToFoxVector3(upL)); ;
+            context.OverrideProperty(nameof(wheelPositionOffset), Fox.Math.UnityToFoxVector3(wheelPositionOffset)); ;
+        }
     }
 }

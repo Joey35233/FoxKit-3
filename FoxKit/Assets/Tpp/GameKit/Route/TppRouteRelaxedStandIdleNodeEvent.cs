@@ -1,6 +1,6 @@
 using Fox.Fio;
 using Fox.GameService;
-using Fox.Kernel;
+using Fox;
 
 namespace Tpp.GameKit
 {
@@ -9,6 +9,6 @@ namespace Tpp.GameKit
 		public static readonly StrCode32 Id = new StrCode32("RelaxedStandIdle");
 		public override StrCode32 GetId() => Id;
 
-		public static TppRouteRelaxedStandIdleNodeEvent Deserialize(UnityEngine.GameObject gameObject, uint[] binaryData) { TppRouteRelaxedStandIdleNodeEvent component = gameObject.AddComponent<TppRouteRelaxedStandIdleNodeEvent>(); component.binaryData = new StaticArray<uint>(binaryData); return component; }
+		public static TppRouteRelaxedStandIdleNodeEvent Deserialize(UnityEngine.GameObject gameObject, uint[] binaryData) { TppRouteRelaxedStandIdleNodeEvent component = gameObject.AddComponent<TppRouteRelaxedStandIdleNodeEvent>(); component.binaryData = binaryData; return component; }
 	}
 }

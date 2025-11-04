@@ -8,25 +8,23 @@ using UnityEngine.UIElements;
 
 namespace Fox.EdCore
 {
-    public class Int16Field : TextValueField<short>, INotifyValueChanged<int>, IFoxField, ICustomBindable
+    public class Int16Field : TextValueField<short>, INotifyValueChanged<int>, IFoxField
     {
         public override short value
         {
             get => base.value;
             set
             {
+                short oldValue = this.value;
                 short newValue = value;
-                int packedNewValue = unchecked(newValue);
-                if (newValue != this.value)
+                if (newValue != oldValue)
                 {
                     if (panel != null)
                     {
-                        int packedOldValue = unchecked(this.value);
-
                         // Sends ChangeEvent<System.Int16> and uses its SetValueWithoutNotify function
                         base.value = newValue;
 
-                        using (var evt = ChangeEvent<int>.GetPooled(packedOldValue, packedNewValue))
+                        using (var evt = ChangeEvent<int>.GetPooled(oldValue, newValue))
                         {
                             evt.target = this;
                             SendEvent(evt);
@@ -41,20 +39,19 @@ namespace Fox.EdCore
         }
         int INotifyValueChanged<int>.value
         {
-            get => unchecked(value);
+            get => value;
             set
             {
-                short newValue = unchecked((short)value);
-                if (newValue != this.value)
+                short oldValue = this.value;
+                short newValue = (short)value;
+                if (newValue != oldValue)
                 {
                     if (panel != null)
                     {
-                        int packedOldValue = unchecked(this.value);
-
                         // Sends ChangeEvent<System.Int16> and uses its SetValueWithoutNotify function
                         base.value = newValue;
 
-                        using (var evt = ChangeEvent<int>.GetPooled(packedOldValue, value))
+                        using (var evt = ChangeEvent<int>.GetPooled(oldValue, newValue))
                         {
                             evt.target = this;
                             SendEvent(evt);
@@ -75,8 +72,8 @@ namespace Fox.EdCore
 
         protected override short StringToValue(string str)
         {
-            _ = ExpressionEvaluator.Evaluate(str, out int v);
-            return NumericPropertyFields.ClampToInt16(v);
+            bool success = NumericPropertyFields.TryConvertStringToInt(str, out int v);
+            return NumericPropertyFields.ClampToInt16(success ? v : rawValue);
         }
 
         public static new readonly string ussClassName = "fox-int16-field";
@@ -89,13 +86,19 @@ namespace Fox.EdCore
         }
 
         public Int16Field()
-            : this(null) { }
-
-        public Int16Field(int maxLength)
-            : this(null, true, maxLength) { }
-
+            : this(label: null)
+        {
+        }
+        
         public Int16Field(bool hasDragger)
-            : this(null, hasDragger) { }
+            : this(label: null, hasDragger)
+        {
+        }
+        
+        public Int16Field(PropertyInfo propertyInfo, bool hasDragger = true, int maxLength = -1)
+            : this(propertyInfo.Name, hasDragger, maxLength)
+        {
+        }
 
         public Int16Field(string label, bool hasDragger = true, int maxLength = -1)
             : this(label, hasDragger, maxLength, new Int16Input())
@@ -117,21 +120,13 @@ namespace Fox.EdCore
 
         public override void ApplyInputDeviceDelta(Vector3 delta, DeltaSpeed speed, short startValue) => integerInput.ApplyInputDeviceDelta(delta, speed, startValue);
 
-        public void BindProperty(SerializedProperty property) => BindProperty(property, null);
-        public void BindProperty(SerializedProperty property, string label, PropertyInfo propertyInfo = null)
-        {
-            if (label is not null)
-                this.label = label;
-            BindingExtensions.BindProperty(this, property);
-        }
-
         private class Int16Input : TextValueInput
         {
             private Int16Field parentIntegerField => (Int16Field)parent;
 
             internal Int16Input()
             {
-                formatString = "##0";
+                formatString = NumericPropertyFields.IntegerFieldFormatString;
             }
 
             protected override string allowedCharacters => NumericPropertyFields.IntegerExpressionCharacterWhitelist;
@@ -141,7 +136,7 @@ namespace Fox.EdCore
                 double sensitivity = NumericFieldDraggerUtility.CalculateIntDragSensitivity(startValue);
                 float acceleration = NumericFieldDraggerUtility.Acceleration(speed == DeltaSpeed.Fast, speed == DeltaSpeed.Slow);
                 int v = StringToValue(text);
-                v += (int)Math.Round(NumericFieldDraggerUtility.NiceDelta(delta, acceleration) * sensitivity);
+                v += (int)System.Math.Round(NumericFieldDraggerUtility.NiceDelta(delta, acceleration) * sensitivity);
                 if (parentIntegerField.isDelayed)
                 {
                     text = ValueToString(NumericPropertyFields.ClampToInt16(v));
@@ -154,32 +149,10 @@ namespace Fox.EdCore
 
             protected override string ValueToString(short v) => v.ToString(formatString);
 
-            protected override short StringToValue(string str)
-            {
-                _ = ExpressionEvaluator.Evaluate(str, out int v);
-                return NumericPropertyFields.ClampToInt16(v);
-            }
+            protected override short StringToValue(string str) => parentIntegerField.StringToValue(str);
         }
+        
+        public void SetLabel(string label) => this.label = label;
+        public Label GetLabelElement() => this.labelElement;
     }
-
-    // [CustomPropertyDrawer(typeof(short))]
-    // public class Int16Drawer : PropertyDrawer
-    // {
-    //     private SerializedProperty property;
-    //     private Int16Field field;
-    //
-    //     public override VisualElement CreatePropertyGUI(SerializedProperty property)
-    //     {
-    //         this.property = property;
-    //
-    //         field = new Int16Field(property.name);
-    //         field.BindProperty(property);
-    //
-    //         field.labelElement.AddToClassList(PropertyField.labelUssClassName);
-    //         field.visualInput.AddToClassList(PropertyField.inputUssClassName);
-    //         field.AddToClassList(BaseField<ulong>.alignedFieldUssClassName);
-    //
-    //         return field;
-    //     }
-    // }
 }

@@ -1,5 +1,6 @@
 ﻿using Fox.Core;
-using Fox.Kernel;
+using Fox.Core.Utils;
+using UnityEngine;
 
 namespace Fox.Phx
 {
@@ -47,13 +48,31 @@ namespace Fox.Phx
         private partial bool Get_useDifferential() => vehicleAxis.GetUseDifferential();
         private partial void Set_useDifferential(bool value) => vehicleAxis.SetUseDifferential(value);
 
-        private partial DynamicArray<String> Get_AssignedBoneNames()
+        private partial System.Collections.Generic.List<string> Get_AssignedBoneNames()
         {
-            var assignedBoneNames = new DynamicArray<String>();
+            var assignedBoneNames = new System.Collections.Generic.List<string>();
             foreach (PhxWheelAssociationUnitParam wheelAssociationUnit in wheelAssociationUnitParams)
                 assignedBoneNames.Add(wheelAssociationUnit.GetBoneName());
 
             return assignedBoneNames;
+        }
+
+        public override void OnDeserializeEntity(TaskLogger logger)
+        {
+            base.OnDeserializeEntity(logger);
+            
+            wheelFront = Fox.Math.FoxToUnityVector3(wheelFront);
+            wheelUp = Fox.Math.FoxToUnityVector3(wheelUp);
+            wheelPositionOffset = Fox.Math.FoxToUnityVector3(wheelPositionOffset);
+        }
+
+        public override void OverridePropertiesForExport(EntityExportContext context)
+        {
+            base.OverridePropertiesForExport(context);
+            
+            context.OverrideProperty(nameof(wheelFront), Fox.Math.UnityToFoxVector3(wheelFront));
+            context.OverrideProperty(nameof(wheelUp), Fox.Math.UnityToFoxVector3(wheelUp)); ;
+            context.OverrideProperty(nameof(wheelPositionOffset), Fox.Math.UnityToFoxVector3(wheelPositionOffset)); ;
         }
     }
 }

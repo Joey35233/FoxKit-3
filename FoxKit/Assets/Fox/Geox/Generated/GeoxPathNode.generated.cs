@@ -12,12 +12,12 @@ using Fox;
 
 namespace Fox.Geox
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Geox/GeoxPathNode")]
 	public partial class GeoxPathNode : Fox.Graphx.GraphxSpatialGraphDataNode
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<Fox.Kernel.String> nodeTags { get; private set; } = new Fox.Kernel.DynamicArray<Fox.Kernel.String>();
+		public CsSystem.Collections.Generic.List<string> nodeTags { get; private set; } = new CsSystem.Collections.Generic.List<string>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -36,15 +36,15 @@ namespace Fox.Geox
 		static GeoxPathNode()
 		{
 			if (Fox.Graphx.GraphxSpatialGraphDataNode.ClassInfoInitialized)
-				classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("GeoxPathNode"), typeof(GeoxPathNode), Fox.Graphx.GraphxSpatialGraphDataNode.ClassInfo, 96, "Geox", 0);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("nodeTags"), Fox.Core.PropertyInfo.PropertyType.String, 112, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+				classInfo = new Fox.Core.EntityInfo("GeoxPathNode", typeof(GeoxPathNode), Fox.Graphx.GraphxSpatialGraphDataNode.ClassInfo, 96, "Geox", 0);
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("nodeTags", Fox.Core.PropertyInfo.PropertyType.String, 112, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		public override Fox.Core.Value GetProperty(string propertyName)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				case "nodeTags":
 					return new Fox.Core.Value(nodeTags);
@@ -53,9 +53,9 @@ namespace Fox.Geox
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				case "nodeTags":
 					return new Fox.Core.Value(this.nodeTags[index]);
@@ -64,18 +64,18 @@ namespace Fox.Geox
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				default:
 					return base.GetPropertyElement(propertyName, key);
 			}
 		}
 
-		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, Fox.Core.Value value)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				default:
 					base.SetProperty(propertyName, value);
@@ -83,12 +83,12 @@ namespace Fox.Geox
 			}
 		}
 
-		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				case "nodeTags":
-					while(this.nodeTags.Count <= index) { this.nodeTags.Add(default(Fox.Kernel.String)); }
+					while(this.nodeTags.Count <= index) { this.nodeTags.Add(default(string)); }
 					this.nodeTags[index] = value.GetValueAsString();
 					return;
 				default:
@@ -97,9 +97,9 @@ namespace Fox.Geox
 			}
 		}
 
-		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);

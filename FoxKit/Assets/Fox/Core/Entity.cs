@@ -1,11 +1,12 @@
 using Fox.Core.Utils;
-using Fox.Kernel;
+using Fox;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using UnityEngine;
-using String = Fox.Kernel.String;
+using static UnityEngine.EventSystems.EventTrigger;
 
 namespace Fox.Core
 {
@@ -20,21 +21,12 @@ namespace Fox.Core
             get;
         }
 
-        /// <summary>
-        /// The Entity's dynamically-added properties.
-        /// </summary>
-        private StringMap<DynamicProperty> DynamicProperties { get; } = new StringMap<DynamicProperty>();
-
-        public bool AddDynamicProperty(PropertyInfo.PropertyType type, String name, ushort arraySize, PropertyInfo.ContainerType container)
+        public DynamicProperty AddDynamicProperty(PropertyInfo.PropertyType type, string propertyName, ushort arraySize, PropertyInfo.ContainerType container)
         {
-            if (HasPropertyWithName(this, name))
-            {
-                return false;
-            }
+            if (HasPropertyWithName(this, propertyName))
+                return null;
 
-            var propertyInfo = new PropertyInfo(name, type, 0, arraySize, container);
-            DynamicProperties.Insert(name, new DynamicProperty(propertyInfo));
-            return true;
+            return DynamicPropertyCollector.GetSpecificTypeForDescription(this.gameObject, type, propertyName, container, arraySize);
         }
 
         /// <summary>
@@ -49,17 +41,23 @@ namespace Fox.Core
         /// <param name="entity">The Entity.</param>
         /// <param name="name">The name of the property to find.</param>
         /// <returns>True if a static or dynamic property was found, else false.</returns>
-        private static bool HasPropertyWithName(Entity entity, String name)
+        public static bool HasPropertyWithName(Entity entity, string name)
         {
             bool hasStaticProperty = EntityInfo.HasPropertyWithName(entity.GetClassEntityInfo(), name);
-            return hasStaticProperty || entity.DynamicProperties.ContainsKey(name);
+            if (hasStaticProperty)
+                return true;
+            
+            foreach (var dynamicProperty in entity.gameObject.GetComponents<DynamicProperty>())
+                if (dynamicProperty.Name == name)
+                    return true;
+
+            return false;
         }
 
         /// <summary>
         /// Called after importing a DataSet. Use to initialize scene data.
         /// </summary>
-        /// <param name="gameObject">The assigned GameObject.</param>
-        public virtual void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
+        public virtual void OnDeserializeEntity(TaskLogger logger)
         {
 
         }
@@ -90,7 +88,7 @@ namespace Fox.Core
 
             foreach (EntityInfo @class in superClasses)
             {
-                foreach (KeyValuePair<String, PropertyInfo> staticProperty in @class.StaticProperties)
+                foreach (KeyValuePair<string, PropertyInfo> staticProperty in @class.StaticProperties)
                 {
                     if (staticProperty.Value.Offset == 0)
                     {
@@ -129,7 +127,7 @@ namespace Fox.Core
             else if (property.Container == PropertyInfo.ContainerType.StringMap)
             {
                 IStringMap list = GetProperty(property.Name).GetValueAsIStringMap();
-                foreach (KeyValuePair<Kernel.String, object> item in list.ToList())
+                foreach (KeyValuePair<string, object> item in list.ToList())
                 {
                     switch (property.Type)
                     {
@@ -182,6 +180,23 @@ namespace Fox.Core
             entity.CollectReferencedEntities(alreadyCollectedEntities);
         }
 
+        public virtual string GenerateUniqueName(Type type, HashSet<string> invalidNames)
+        {
+            var index = 0;
+            while (true)
+            {
+                var workingName = type.Name + index.ToString("D4");
+                if (!invalidNames.Contains(workingName))
+                {
+                    return workingName;
+                }
+
+                index++;
+            }
+        }
+
         public override string ToString() => $"{GetType().Name}";
+
+        public virtual void Reset() { }
     }
 }

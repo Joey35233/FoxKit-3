@@ -1,4 +1,4 @@
-using Fox.Kernel;
+using Fox;
 using UnityEngine;
 using UnityEngine.Animations;
 using UnityEngine.Animations.Rigging;
@@ -9,29 +9,29 @@ namespace Fox.Animx
     public enum DriverUnitAction : short
     {
         Invalid = -1,
-        Type1 = 1,
-        WeightedCopyRotation = 2,
-        Type3 = 3,
-        Type4 = 4,
-        Type5 = 5,
-        Type6 = 6,
-        Type7 = 7,
-        Type8 = 8,
-        Type9 = 9,
-        Type10 = 10,
-        Type11 = 11,
-        Type12 = 12,
-        Type13 = 13,
-        Type14 = 14,
-        Type15 = 15,
-        Type16 = 16,
-        Type17 = 17,
-        Type18 = 18,
-        Type19 = 19,
-        Type20 = 20,
-        Type21 = 21,
-        Type22 = 22,
-        Type23 = 23,
+        RotATrn = 1,
+        Rot = 2,
+        RotATurnRot = 3,
+        BendATrn = 4,
+        Bend = 5,
+        BendATrnBend = 6,
+        Roll = 7,
+        BendRoll = 8,
+        RotRoll = 9,
+        PitchL = 10,
+        PitchA = 11,
+        RollPitchL = 12,
+        YawAPitchL = 13,
+        YawAPitchA = 14,
+        Dircns = 15,
+        Swell = 16,
+        SwellRot = 17,
+        SwellRot_Copy = 18, // Identical to 17
+        PitchASwitchLinear = 19,
+        ParamSwitchAbs = 20,
+        PitchACycle = 21,
+        Mirror = 22,
+        PitchALinearParam = 23,
     };
 
     public enum DriverLimitAxis : uint
@@ -103,7 +103,7 @@ namespace Fox.Animx
         {
             switch (Type)
             {
-                case DriverUnitAction.Type1:
+                case DriverUnitAction.RotATrn:
                 {
                     Quaternion source_lr = GetLocalRotation(Source.GetRotation(stream), SourceParent.IsValid(stream) ? SourceParent.GetRotation(stream) : null);
 
@@ -122,7 +122,7 @@ namespace Fox.Animx
 
                     break;
                 }
-                case DriverUnitAction.WeightedCopyRotation:
+                case DriverUnitAction.Rot:
                 {
                     Quaternion source_lr = GetLocalRotation(Source.GetRotation(stream), SourceParent.IsValid(stream) ? SourceParent.GetRotation(stream) : null);
 
@@ -135,7 +135,7 @@ namespace Fox.Animx
 
                     break;
                 }
-                case DriverUnitAction.Type3:
+                case DriverUnitAction.RotATurnRot:
                 {
                     Quaternion source_lr = GetLocalRotation(Source.GetRotation(stream), SourceParent.IsValid(stream) ? SourceParent.GetRotation(stream) : null);
 
@@ -155,7 +155,7 @@ namespace Fox.Animx
 
                     break;
                 }
-                case DriverUnitAction.Type4:
+                case DriverUnitAction.BendATrn:
                 {
                     Quaternion source_lr = GetLocalRotation(Source.GetRotation(stream), SourceParent.IsValid(stream) ? SourceParent.GetRotation(stream) : null);
 
@@ -177,7 +177,7 @@ namespace Fox.Animx
 
                     break;
                 }
-                case DriverUnitAction.Type5:
+                case DriverUnitAction.Bend:
                 {
                     Quaternion source_lr = GetLocalRotation(Source.GetRotation(stream), SourceParent.IsValid(stream) ? SourceParent.GetRotation(stream) : null);
 
@@ -203,7 +203,7 @@ namespace Fox.Animx
 
                     break;
                 }
-                case DriverUnitAction.Type6:
+                case DriverUnitAction.BendATrnBend:
                 {
                     Quaternion source_lr = GetLocalRotation(Source.GetRotation(stream), SourceParent.IsValid(stream) ? SourceParent.GetRotation(stream) : null);
 
@@ -235,7 +235,7 @@ namespace Fox.Animx
 
                     break;
                 }
-                case DriverUnitAction.Type7:
+                case DriverUnitAction.Roll:
                 {
                     Quaternion source_lr = GetLocalRotation(Source.GetRotation(stream), SourceParent.IsValid(stream) ? SourceParent.GetRotation(stream) : null);
 
@@ -262,7 +262,7 @@ namespace Fox.Animx
 
                     break;
                 }
-                case DriverUnitAction.Type8:
+                case DriverUnitAction.BendRoll:
                 {
                     Quaternion source_lr = GetLocalRotation(Source.GetRotation(stream), SourceParent.IsValid(stream) ? SourceParent.GetRotation(stream) : null);
 
@@ -302,7 +302,7 @@ namespace Fox.Animx
 
                     break;
                 }
-                case DriverUnitAction.Type9:
+                case DriverUnitAction.RotRoll:
                 {
                     Quaternion source_lr = GetLocalRotation(Source.GetRotation(stream), SourceParent.IsValid(stream) ? SourceParent.GetRotation(stream) : null);
                     Quaternion source2_lr = GetLocalRotation(Source2.GetRotation(stream), Source2Parent.IsValid(stream) ? Source2Parent.GetRotation(stream) : null);
@@ -334,7 +334,7 @@ namespace Fox.Animx
 
                     break;
                 }
-                case DriverUnitAction.Type10:
+                case DriverUnitAction.PitchL:
                 {
                     Quaternion source_lr = GetLocalRotation(Source.GetRotation(stream), SourceParent.IsValid(stream) ? SourceParent.GetRotation(stream) : null);
 
@@ -352,7 +352,7 @@ namespace Fox.Animx
 
                     break;
                 }
-                case DriverUnitAction.Type11:
+                case DriverUnitAction.PitchA:
                 {
                     Quaternion source_lr = GetLocalRotation(Source.GetRotation(stream), SourceParent.IsValid(stream) ? SourceParent.GetRotation(stream) : null);
 
@@ -379,7 +379,7 @@ namespace Fox.Animx
 
                     break;
                 }
-                case DriverUnitAction.Type12:
+                case DriverUnitAction.RollPitchL:
                 {
                     Quaternion source_lr = GetLocalRotation(Source.GetRotation(stream), SourceParent.IsValid(stream) ? SourceParent.GetRotation(stream) : null);
 
@@ -410,7 +410,7 @@ namespace Fox.Animx
 
                     break;
                 }
-                case DriverUnitAction.Type13:
+                case DriverUnitAction.YawAPitchL:
                 {
                     Quaternion source_lr = GetLocalRotation(Source.GetRotation(stream), SourceParent.IsValid(stream) ? SourceParent.GetRotation(stream) : null);
 
@@ -442,7 +442,7 @@ namespace Fox.Animx
 
                     break;
                 }
-                case DriverUnitAction.Type14:
+                case DriverUnitAction.YawAPitchA:
                 {
                     Quaternion source_lr = GetLocalRotation(Source.GetRotation(stream), SourceParent.IsValid(stream) ? SourceParent.GetRotation(stream) : null);
 
@@ -515,6 +515,7 @@ namespace Fox.Animx
                                 DriverRotationOrder.YZX => EulerToQuat(euler.y, euler.z, euler.x, false),
                                 DriverRotationOrder.ZXY => EulerToQuat(euler.z, euler.x, euler.y, false),
                                 DriverRotationOrder.ZYX => EulerToQuat(euler.z, euler.y, euler.x, true),
+                                _ => throw new System.NotImplementedException(),
                             };
 
                             break;
@@ -526,7 +527,7 @@ namespace Fox.Animx
 
                     break;
                 }
-                case DriverUnitAction.Type15:
+                case DriverUnitAction.Dircns:
                 {
                     Quaternion source_lr = GetLocalRotation(Source.GetRotation(stream), SourceParent.IsValid(stream) ? SourceParent.GetRotation(stream) : null);
 
@@ -537,14 +538,14 @@ namespace Fox.Animx
 
                     break;
                 }
-                case DriverUnitAction.Type16:
+                case DriverUnitAction.Swell:
                 {
                     // Does not directly modify the RigPose.
 
                     break;
                 }
-                case DriverUnitAction.Type17:
-                case DriverUnitAction.Type18:
+                case DriverUnitAction.SwellRot:
+                case DriverUnitAction.SwellRot_Copy:
                 {
                     Quaternion source_lr = GetLocalRotation(Source.GetRotation(stream), SourceParent.IsValid(stream) ? SourceParent.GetRotation(stream) : null);
 
@@ -577,7 +578,7 @@ namespace Fox.Animx
 
                     break;
                 }
-                case DriverUnitAction.Type22:
+                case DriverUnitAction.Mirror:
                 {
                     Quaternion source_lr = GetLocalRotation(Source.GetRotation(stream), SourceParent.IsValid(stream) ? SourceParent.GetRotation(stream) : null);
 
@@ -637,13 +638,13 @@ namespace Fox.Animx
         public DriverRotationMode RotationMode;
         public DriverRotationOrder RotationOrder;
 
-        public String MaterialNameA;
+        public string MaterialNameA;
 
-        public String MaterialNameC;
-        public String MaterialParameterC;
-        public String MaterialNameB;
-        public String MaterialParameterA;
-        public String MaterialParameterB;
+        public string MaterialNameC;
+        public string MaterialParameterC;
+        public string MaterialNameB;
+        public string MaterialParameterA;
+        public string MaterialParameterB;
 
         public Vector3 VectorA;
         public Vector3 VectorB;

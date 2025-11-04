@@ -2,7 +2,7 @@ using Fox.Core;
 using Fox.Core.Utils;
 using Fox.Fio;
 using Fox.Graphx;
-using Fox.Kernel;
+using Fox;
 using System;
 using UnityEditor.SceneManagement;
 using UnityEngine;
@@ -138,13 +138,14 @@ namespace Fox.GameService
 
                 for (int j = 0; j < nodeCount; j++)
                 {
-                    GsRouteDataEdge edge = new GameObject().AddComponent<GsRouteDataEdge>();
+                    GsRouteDataEdge edge = new GameObject($"GsRouteDataEdge{j:D4}").AddComponent<GsRouteDataEdge>();
                     edge.SetOwner(routeData);
                     routeData.edges.Add(edge);
 
-                    GsRouteDataNode node = new GameObject().AddComponent<GsRouteDataNode>();
+                    GsRouteDataNode node = new GameObject($"GsRouteDataNode{j:D4}").AddComponent<GsRouteDataNode>();
                     node.SetOwner(routeData);
                     routeData.nodes.Add(node);
+                    edge.transform.parent = node.gameObject.transform;
 
                     // Position
                     reader.Seek(routeDefPosition + positionsOffset + (j * nodePositionSizeInBytes));
@@ -171,7 +172,7 @@ namespace Fox.GameService
                             packedZ |= 0xFFC00000;
                         float z = (float)(int)packedZ / 1024;
 
-                        node.position = Fox.Kernel.Math.FoxToUnityVector3(new Vector3(x, y, z)) + origin;
+                        node.position = Fox.Math.FoxToUnityVector3(new Vector3(x, y, z)) + origin;
                     }
                     else if (fileVersion == RouteSetVersion.TPP)
                     {
@@ -198,8 +199,10 @@ namespace Fox.GameService
                         {
                             case GsRouteDataRouteEventAimPoint.Type.NoTarget:
                                 {
+                                    /*
                                     GsRouteDataRtEvAimPointNoTarget result = new GameObject().AddComponent<GsRouteDataRtEvAimPointNoTarget>();
                                     aimPoint = result;
+                                    */
                                 }
                                 break;
                             case GsRouteDataRouteEventAimPoint.Type.StaticPoint:
@@ -212,39 +215,37 @@ namespace Fox.GameService
                             case GsRouteDataRouteEventAimPoint.Type.Character:
                                 {
                                     GsRouteDataRtEvAimPointCharacter result = new GameObject().AddComponent<GsRouteDataRtEvAimPointCharacter>();
-                                    result.characterName = new Kernel.String(reader.ReadStrCode32().ToString());
+                                    result.characterName = reader.ReadStrCode32().ToString();
                                     aimPoint = result;
                                 }
                                 break;
                             case GsRouteDataRouteEventAimPoint.Type.RouteAsSightMovePath:
                                 {
                                     GsRouteDataRtEvAimPointRouteAsSightMovePath result = new GameObject().AddComponent<GsRouteDataRtEvAimPointRouteAsSightMovePath>();
-                                    result.routeNames[0] = new Kernel.String(reader.ReadStrCode32().ToString());
-                                    result.routeNames[1] = new Kernel.String(reader.ReadStrCode32().ToString());
-                                    result.routeNames[2] = new Kernel.String(reader.ReadStrCode32().ToString());
-                                    result.routeNames[3] = new Kernel.String(reader.ReadStrCode32().ToString());
+                                    result.routeNames[0] = reader.ReadStrCode32().ToString();
+                                    result.routeNames[1] = reader.ReadStrCode32().ToString();
+                                    result.routeNames[2] = reader.ReadStrCode32().ToString();
+                                    result.routeNames[3] = reader.ReadStrCode32().ToString();
                                     aimPoint = result;
                                 }
                                 break;
                             case GsRouteDataRouteEventAimPoint.Type.RouteAsObject:
                                 {
                                     GsRouteDataRtEvAimPointRouteAsObject result = new GameObject().AddComponent<GsRouteDataRtEvAimPointRouteAsObject>();
-                                    result.routeNames[0] = new Kernel.String(reader.ReadStrCode32().ToString());
-                                    result.routeNames[1] = new Kernel.String(reader.ReadStrCode32().ToString());
-                                    result.routeNames[2] = new Kernel.String(reader.ReadStrCode32().ToString());
-                                    result.routeNames[3] = new Kernel.String(reader.ReadStrCode32().ToString());
+                                    result.routeNames[0] = reader.ReadStrCode32().ToString();
+                                    result.routeNames[1] = reader.ReadStrCode32().ToString();
+                                    result.routeNames[2] = reader.ReadStrCode32().ToString();
+                                    result.routeNames[3] = reader.ReadStrCode32().ToString();
                                     aimPoint = result;
                                 }
                                 break;
                         };
-                        aimPoint.SetOwner(routeData);
                         reader.Seek(payloadPosition);
 
                         var routeEventObject = new GameObject();
                         uint[] binaryData = { reader.ReadUInt32(), reader.ReadUInt32(), reader.ReadUInt32(), reader.ReadUInt32() };
                         GsRouteDataRouteEvent routeEvent = GameServiceModule.GsRouteDataEventDeserializationMap[eventDef.Id](routeEventObject, binaryData);
                         routeEvent.SetOwner(routeData);
-                        routeEvent.aimPoint = aimPoint;
 
                         if (fileVersion == RouteSetVersion.TPP)
                             reader.Skip(4); //snippet
@@ -253,6 +254,16 @@ namespace Fox.GameService
                         {
                             var edgeEvent = routeEvent as GsRouteDataEdgeEvent;
                             edge.edgeEvent = edgeEvent;
+                            edgeEvent.transform.parent = edge.transform;
+                            edgeEvent.name = $"GsRouteDataEdgeEvent{k:D4}|{eventDef.Id.ToString()}";
+
+                            if (aimPoint is not null)
+                            {
+                                aimPoint.SetOwner(routeData);
+                                edgeEvent.aimPoint = aimPoint;
+                                aimPoint.transform.parent = edgeEvent.transform;
+                                aimPoint.name = $"{aimPoint.GetType().Name}";
+                            }
                         }
                         else
                         {
@@ -261,6 +272,16 @@ namespace Fox.GameService
                             nodeEvent.time = eventDef.Time;
                             nodeEvent.direction = eventDef.Direction;
                             node.nodeEvents.Add(nodeEvent);
+                            nodeEvent.transform.parent = node.transform;
+                            nodeEvent.name = $"GsRouteDataNodeEvent{k:D4}|{eventDef.Id.ToString()}";
+
+                            if (aimPoint is not null)
+                            {
+                                aimPoint.SetOwner(routeData);
+                                nodeEvent.aimPoint = aimPoint;
+                                aimPoint.transform.parent = nodeEvent.transform;
+                                aimPoint.name = $"{aimPoint.GetType().Name}";
+                            }
                         }
                     }
                 }
@@ -269,10 +290,10 @@ namespace Fox.GameService
                 {
                     GraphxSpatialGraphDataNode node = routeData.nodes[j];
 
-                    GraphxSpatialGraphDataEdge prevEdge = routeData.edges[(j - 1 + nodeCount) % nodeCount];
-                    GraphxSpatialGraphDataEdge nextEdge = routeData.edges[j];
+                    GraphxSpatialGraphDataEdge prevEdge = routeData.edges[j];
+                    GraphxSpatialGraphDataEdge nextEdge = routeData.edges[(j + 1 + nodeCount) % nodeCount];
 
-                    node.inlinks.Add(prevEdge);
+                    node.outlinks.Add(prevEdge);
                     prevEdge.nextNode = node;
                     node.outlinks.Add(nextEdge);
                     nextEdge.prevNode = node;

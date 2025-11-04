@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 
 namespace Fox.EdCore
 {
-    public class ColorField : BaseField<UnityEngine.Color>, IFoxField, ICustomBindable
+    public class ColorField : BaseField<UnityEngine.Color>, IFoxField
     {
         private readonly IMGUIContainer InternalColorField;
 
@@ -23,7 +23,12 @@ namespace Fox.EdCore
         }
 
         public ColorField()
-            : this(null)
+            : this(label: null)
+        {
+        }
+        
+        public ColorField(Fox.Core.PropertyInfo propertyInfo)
+            : this(propertyInfo.Name)
         {
         }
 
@@ -62,28 +67,7 @@ namespace Fox.EdCore
         {
         }
 
-        public void BindProperty(SerializedProperty property) => BindProperty(property, null);
-        public void BindProperty(SerializedProperty property, string label, Core.PropertyInfo propertyInfo = null)
-        {
-            if (label is not null)
-                this.label = label;
-            BindingExtensions.BindProperty(this, property);
-        }
+        public void SetLabel(string label) => this.label = label;
+        public Label GetLabelElement() => this.labelElement;
     }
-
-    // [CustomPropertyDrawer(typeof(UnityEngine.Color))]
-    // public class ColorDrawer : PropertyDrawer
-    // {
-    //     public override VisualElement CreatePropertyGUI(SerializedProperty property)
-    //     {
-    //         var field = new Fox.EdCore.ColorField(property.name);
-    //         field.BindProperty(property);
-    //
-    //         field.labelElement.AddToClassList(PropertyField.labelUssClassName);
-    //         field.visualInput.AddToClassList(PropertyField.inputUssClassName);
-    //         field.AddToClassList(BaseField<UnityEngine.Color>.alignedFieldUssClassName);
-    //
-    //         return field;
-    //     }
-    // }
 }

@@ -1,16 +1,15 @@
 ﻿using Fox.Core;
-using Fox.Kernel;
+using Fox;
 using System;
 using System.Collections;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
-using String = Fox.Kernel.String;
 
 namespace Fox.EdCore
 {
-    public class StringMapField<T> : BaseField<StringMap<T>>, IFoxField, ICustomBindable
+    public class StringMapField<T> : BaseField<StringMap<T>>, IFoxField
     {
         private readonly ListView ListViewInput;
 
@@ -31,7 +30,13 @@ namespace Fox.EdCore
             get;
         }
 
-        public StringMapField() : this(default)
+        public StringMapField() 
+            : this(label: null)
+        {
+        }
+        
+        public StringMapField(PropertyInfo propertyInfo)
+            : this(propertyInfo.Name, new ListView(), propertyInfo)
         {
         }
 
@@ -40,9 +45,20 @@ namespace Fox.EdCore
         {
         }
 
-        private StringMapField(string label, ListView visInput)
+        private StringMapField(string label, ListView visInput, PropertyInfo propertyInfo = null)
             : base(label, visInput)
         {
+            if (propertyInfo is not null)
+            {
+                FieldConstructor = FoxFieldUtils.GetBindableElementConstructorForPropertyInfo(propertyInfo);
+                PropertyInfo = propertyInfo;
+            }
+            else
+            {
+                Debug.LogWarning("EdCore: StringMap can currently only be bound to Entity properties.");
+                return;
+            }
+            
             ListViewInput = visInput;
             visualInput = ListViewInput;
 
@@ -100,7 +116,7 @@ namespace Fox.EdCore
             {
                 var property = FoxFieldUtils.SerializedPropertyBindEventBindProperty.GetValue(evt) as SerializedProperty;
 
-                if (property.type.StartsWith("Fox.Kernel.StringMap"))
+                if (property.type.StartsWith("StringMap"))
                 {
                     StringMapProperty = property;
 
@@ -115,16 +131,23 @@ namespace Fox.EdCore
         }
         private void OnPropertyChanged(SerializedProperty property)
         {
-            if (property is not null)
+            if (property != null)
                 StringMapProperty = property.Copy();
 
             // TODO: Replace with custom virtualization controller here: https://docs.unity3d.com/ScriptReference/UIElements.CollectionViewController.html
             var target = StringMapProperty.serializedObject.targetObject;
-            var targetEntity = target as Entity;
-            var propertyTest = targetEntity.GetProperty(PropertyInfo.Name);
-            var propertyList = propertyTest.GetValueAsStringMap<T>();
-            ListViewInput.itemsSource = propertyList as IList;
-            ListViewInput.Rebuild();
+            if (target is Entity targetEntity)
+            {
+                var propertyTest = targetEntity.GetProperty(PropertyInfo.Name);
+                var propertyList = propertyTest.GetValueAsStringMap<T>();
+                ListViewInput.itemsSource = propertyList as IList;
+            }
+            else if (target is DynamicProperty targetDynamicProperty)
+            {
+                var propertyList = targetDynamicProperty.GetValue().GetValueAsStringMap<T>();
+                ListViewInput.itemsSource = propertyList as IList;
+            }
+            ListViewInput.Rebuild(); 
         }
 
         private void AddButton_clicked()
@@ -137,7 +160,7 @@ namespace Fox.EdCore
                 Undo.RecordObject(StringMapProperty.serializedObject.targetObject, $"Insert cell");
 
                 var stringMap = ListViewInput.itemsSource as StringMap<T>;
-                stringMap.Insert(new String(key), default);
+                stringMap.Insert(key, default);
 
                 // Apply without Undo so that the registered Undo event above works correctly.
                 _ = StringMapProperty.serializedObject.ApplyModifiedPropertiesWithoutUndo();
@@ -154,7 +177,7 @@ namespace Fox.EdCore
 
                 foreach (int selectedIndex in ListViewInput.selectedIndices)
                 {
-                    int absoluteIndex = (ListViewInput.itemsSource as IStringMap).OccupiedIndexToAbsoluteIndex(selectedIndex);
+                    int absoluteIndex = (ListViewInput.itemsSource as IStringMap).OccupiedIndexToBackingIndex(selectedIndex);
                     ListViewInput.itemsSource.RemoveAt(absoluteIndex);
                 }
 
@@ -168,35 +191,19 @@ namespace Fox.EdCore
         private void BindItem(VisualElement element, int index)
         {
             var stringMap = ListViewInput.itemsSource as StringMap<T>;
-            int i = (stringMap as IStringMap).OccupiedIndexToAbsoluteIndex(index);
+            int i = (stringMap as IStringMap).OccupiedIndexToBackingIndex(index);
 
-            SerializedProperty cellProperty = StringMapProperty.FindPropertyRelative("Cells").GetArrayElementAtIndex(i);
+            SerializedProperty cellProperty = StringMapProperty.FindPropertyRelative("CellsBacking").GetArrayElementAtIndex(i);
 
             var field = element as CellField;
             field.KeyField.BindProperty(cellProperty.FindPropertyRelative("Key"));
             field.DataField.BindProperty(cellProperty.FindPropertyRelative("Value"));
+            
+            Label label = field.labelElement;
+            label.text = $"[{index}]";
 
             field.AddToClassList(BaseCompositeField<UnityEngine.Vector4, FloatField, float>.fieldUssClassName);
             field.AddToClassList(BaseCompositeField<UnityEngine.Vector4, FloatField, float>.firstFieldVariantUssClassName);
-
-            Label label = field.labelElement;
-            label.text = $"[{index}]";
-        }
-
-        public void BindProperty(SerializedProperty property) => BindProperty(property, null);
-        public void BindProperty(SerializedProperty property, string label, PropertyInfo propertyInfo = null)
-        {
-            PropertyInfo = propertyInfo;
-            if (PropertyInfo is not null)
-                FieldConstructor = FoxFieldUtils.GetBindableElementConstructorForPropertyInfo(PropertyInfo);
-
-            if (label is not null)
-                this.label = label;
-            StringMapProperty = property;
-
-            BindingExtensions.TrackPropertyValue(this, StringMapProperty, OnPropertyChanged);
-
-            OnPropertyChanged(null);
         }
 
         private class CellField : VisualElement
@@ -246,21 +253,8 @@ namespace Fox.EdCore
                 visualInput.AddToClassList(BaseCompositeField<UnityEngine.Vector4, FloatField, float>.inputUssClassName);
             }
         }
-    }
 
-    [CustomPropertyDrawer(typeof(StringMap<>))]
-    public class StringMapDrawer : PropertyDrawer
-    {
-        public override VisualElement CreatePropertyGUI(SerializedProperty property)
-        {
-            var genericField = (VisualElement)Activator.CreateInstance(typeof(StringMapField<>).MakeGenericType(fieldInfo.FieldType.GenericTypeArguments), new object[] { property.name });
-            (genericField as IFoxField).BindProperty(property);
-
-            genericField.Q(className: BaseField<float>.labelUssClassName).AddToClassList(PropertyField.labelUssClassName);
-            genericField.Q(className: BaseField<float>.inputUssClassName).AddToClassList(PropertyField.inputUssClassName);
-            genericField.AddToClassList(BaseField<float>.alignedFieldUssClassName);
-
-            return genericField;
-        }
+        public void SetLabel(string label) => this.label = label;
+        public Label GetLabelElement() => this.labelElement;
     }
 }

@@ -3,8 +3,10 @@ using Fox.Core.Utils;
 using Fox.Fio;
 using Fox.Geo;
 using Fox.Graphx;
-using Fox.Kernel;
+using Fox;
 using UnityEngine;
+using System;
+using System.IO;
 
 namespace Fox.Geox
 {
@@ -17,9 +19,7 @@ namespace Fox.Geox
             Debug.Assert(header.Type == GeoPrimType.AreaPath);
 
             GeoTriggerTrap triggerTrap = new GameObject(header.Name.ToString()).AddComponent<GeoTriggerTrap>();
-            var triggerTrapTransformEntity = TransformEntity.GetDefault();
-            triggerTrap.inheritTransform = false;
-            triggerTrap.SetTransform(triggerTrapTransformEntity);
+            triggerTrap.SetTransform(TransformEntity.GetDefault());
             //triggerTrap.InitializeGameObject(triggerTrapGameObject);
 
             triggerTrap.name = header.Name.ToString();
@@ -36,10 +36,10 @@ namespace Fox.Geox
                 Debug.Assert(vertexCount >= 2);
                 if (vertexCount >= 2 && vertexDataOffset != 0)
                 {
-                    GeoxTrapAreaPath trapAreaPath = new GameObject(header.Name.ToString()).AddComponent<GeoxTrapAreaPath>();
-                    var transform = TransformEntity.GetDefault();
-                    transform.translation = new Vector3(0, yMin, 0);
-                    trapAreaPath.SetTransform(transform);
+                    GeoxTrapAreaPath trapAreaPath = new GameObject($"{header.Name.ToString()}|GeoxTrapAreaPath{i:D4}").AddComponent<GeoxTrapAreaPath>();
+                    trapAreaPath.SetTransform(TransformEntity.GetDefault());
+                    trapAreaPath.transform.position = new Vector3(0, yMin, 0);
+                    bool transformSet = false;
 
                     trapAreaPath.height = yMax - yMin;
 
@@ -51,7 +51,19 @@ namespace Fox.Geox
 
                         GraphxSpatialGraphDataNode node = new GameObject().AddComponent<GraphxSpatialGraphDataNode>();
                         node.SetOwner(trapAreaPath);
+                        node.name = $"{node.GetType().Name}{j:D4}";
                         node.position = reader.ReadPositionF();
+
+                        if (!transformSet)
+                        {
+                            trapAreaPath.transform.position = new Vector3(node.position.x, yMin, node.position.z);
+                            node.position = new Vector3(0, node.position.y - yMin, 0);
+                            transformSet = true;
+                        }
+                        else
+                        {
+                            node.position -= trapAreaPath.transform.position;
+                        }
 
                         trapAreaPath.nodes.Add(node);
                     }
@@ -62,6 +74,7 @@ namespace Fox.Geox
                     {
                         GraphxSpatialGraphDataEdge loopEdge = new GameObject().AddComponent<GraphxSpatialGraphDataEdge>();
                         loopEdge.SetOwner(trapAreaPath);
+                        loopEdge.name = $"{loopEdge.GetType().Name}{0:D4}";
 
                         prevNode = trapAreaPath.nodes[(int)(vertexCount - 1)];
                         nextNode = trapAreaPath.nodes[0];
@@ -80,11 +93,12 @@ namespace Fox.Geox
 
                         GraphxSpatialGraphDataEdge edge = new GameObject().AddComponent<GraphxSpatialGraphDataEdge>();
                         edge.SetOwner(trapAreaPath);
+                        edge.name = $"{edge.GetType().Name}{j+1:D4}";
 
-                        edge.nextNode = nextNode;
-                        nextNode.inlinks.Add(edge.nextNode);
                         edge.prevNode = prevNode;
                         prevNode.outlinks.Add(edge.prevNode);
+                        edge.nextNode = nextNode;
+                        nextNode.outlinks.Add(edge.nextNode);
 
                         trapAreaPath.edges.Add(edge);
                     }
@@ -95,6 +109,7 @@ namespace Fox.Geox
         }
 
         private static readonly Color Color = Color.red;
+        public override Type GetNodeType() => typeof(GraphxSpatialGraphDataNode);
 
         public void DrawGizmos(bool isSelected)
         {
@@ -111,12 +126,20 @@ namespace Fox.Geox
                 var nextNode = edge.nextNode as GraphxSpatialGraphDataNode;
 
                 float yMin = this.transform.position.y;
-                float yMax = yMin + trapPath.height;
+                float yMax = this.transform.TransformPoint(new Vector3(0, trapPath.height, 0)).y;
 
-                Gizmos.DrawLine(new Vector3(prevNode.position.x, yMin, prevNode.position.z), new Vector3(nextNode.position.x, yMin, nextNode.position.z));
-                Gizmos.DrawLine(new Vector3(prevNode.position.x, yMax, prevNode.position.z), new Vector3(nextNode.position.x, yMax, nextNode.position.z));
+                Vector3 prevNodePos = this.transform.TransformPoint(prevNode.position);
+                Vector3 nextNodePos = this.transform.TransformPoint(nextNode.position);
 
-                Gizmos.DrawLine(new Vector3(nextNode.position.x, yMin, nextNode.position.z), new Vector3(nextNode.position.x, yMax, nextNode.position.z));
+                float prevNodex = this.transform.position.x + prevNode.position.x;
+                float prevNodez = this.transform.position.z + prevNode.position.z;
+                float nextNodex = this.transform.position.x + nextNode.position.x;
+                float nextNodez = this.transform.position.z + nextNode.position.z;
+
+                Gizmos.DrawLine(new Vector3(prevNodePos.x, yMin, prevNodePos.z), new Vector3(nextNodePos.x, yMin, nextNodePos.z));
+                Gizmos.DrawLine(new Vector3(prevNodePos.x, yMax, prevNodePos.z), new Vector3(nextNodePos.x, yMax, nextNodePos.z));
+
+                Gizmos.DrawLine(new Vector3(nextNodePos.x, yMin, nextNodePos.z), new Vector3(nextNodePos.x, yMax, nextNodePos.z));
             }
         }
 

@@ -1,4 +1,8 @@
-﻿namespace Fox.Ph
+﻿using Fox.Core;
+using Fox.Core.Utils;
+using UnityEngine;
+
+namespace Fox.Ph
 {
     public partial class PhShoulderConstraintParam : Fox.Ph.PhConstraintParam
     {
@@ -25,5 +29,25 @@
 
         internal float GetLimit1() => limit1;
         internal void SetLimit1(float value) => limit1 = value;
+        
+        public override void OnDeserializeEntity(TaskLogger logger)
+        {
+            base.OnDeserializeEntity(logger);
+
+            refA = Fox.Math.FoxToUnityVector3(refA);
+            refB = Fox.Math.FoxToUnityVector3(refB);
+            refA1 = Fox.Math.FoxToUnityVector3(refA1);
+            refB1 = Fox.Math.FoxToUnityVector3(refB1);
+        }
+
+        public override void OverridePropertiesForExport(EntityExportContext context)
+        {
+            base.OverridePropertiesForExport(context);
+
+            context.OverrideProperty(nameof(refA), Fox.Math.UnityToFoxVector3(refA));
+            context.OverrideProperty(nameof(refB), Fox.Math.UnityToFoxVector3(refB));
+            context.OverrideProperty(nameof(refA1), Fox.Math.UnityToFoxVector3(refA1));
+            context.OverrideProperty(nameof(refB1), Fox.Math.UnityToFoxVector3(refB1));
+        }
     }
 }

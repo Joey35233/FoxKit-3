@@ -79,5 +79,10 @@ namespace Fox.Geo
 
         private partial bool Get_enable() => (stateFlag & 1) == 1;
         private partial void Set_enable(bool value) => stateFlag = value ? 1u : 0u;
+        public override void Reset()
+        {
+            base.Reset();
+            stateFlag |= 1;
+        }
     }
 }

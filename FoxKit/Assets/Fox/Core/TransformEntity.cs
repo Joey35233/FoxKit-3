@@ -10,6 +10,7 @@ namespace Fox.Core
             transform.translation = Vector3.zero;
             transform.rotQuat = Quaternion.identity;
             transform.scale = Vector3.one;
+            transform.name = transform.GetType().Name;
 
             return transform;
         }
@@ -27,20 +28,21 @@ namespace Fox.Core
         {
             base.OverridePropertiesForExport(context);
 
-            if (this.transform.parent.GetComponent<TransformData>() is not {} parent)
+            if (this.transform.parent.GetComponent<TransformData>() is not {} owner)
             {
                 // TODO What do we do about orphaned transforms?
                 return;
             }
 
-            UnityEngine.Transform gameObjectTransform = gameObject.GetComponent<UnityEngine.Transform>();
+            UnityEngine.Transform ownerTransform = owner.transform;
 
-            Vector3 exportPosition = parent.inheritTransform ? gameObjectTransform.position : gameObjectTransform.localPosition;
-            Quaternion exportRotation = parent.inheritTransform ? gameObjectTransform.rotation : gameObjectTransform.localRotation;
+            Vector3 exportPosition = owner.inheritTransform ? ownerTransform.localPosition : ownerTransform.position;
+            Quaternion exportRotation = owner.inheritTransform ? ownerTransform.localRotation : ownerTransform.rotation;
+            Vector3 exportScale = owner.inheritTransform ? ownerTransform.localScale : ownerTransform.lossyScale;
 
-            context.OverrideProperty(nameof(transform_translation), Kernel.Math.UnityToFoxVector3(exportPosition));
-            context.OverrideProperty(nameof(transform_rotation_quat), Kernel.Math.UnityToFoxQuaternion(exportRotation));
-            context.OverrideProperty(nameof(transform_scale), gameObjectTransform.localScale);
+            context.OverrideProperty(nameof(transform_translation), Fox.Math.UnityToFoxVector3(exportPosition));
+            context.OverrideProperty(nameof(transform_rotation_quat), Fox.Math.UnityToFoxQuaternion(exportRotation));
+            context.OverrideProperty(nameof(transform_scale), exportScale);
         }
     }
 }

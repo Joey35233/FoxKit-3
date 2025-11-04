@@ -1,12 +1,11 @@
 using Fox.Core;
 using Fox.Fio;
-using Fox.Kernel;
+using Fox;
 using System.Collections.Generic;
 using System.IO;
 using UnityEditor;
 using UnityEngine;
 using File = System.IO.File;
-using String = Fox.Kernel.String;
 
 namespace Tpp.GameKit
 {
@@ -70,7 +69,7 @@ namespace Tpp.GameKit
             ScriptableObject lbaAsset = AssetManager.LoadAssetWithExtensionReplacement<ScriptableObject>(readPath, "asset", out unityPath);
             if (lbaAsset == null)
             {
-                string lbaPath = readPath.path.CString;
+                string lbaPath = readPath.path.String;
                 if (!File.Exists(lbaPath))
                 {
                     return null;
@@ -182,8 +181,8 @@ namespace Tpp.GameKit
                 StrCode32 locatorNameHash = hashes[2 * i];
                 StrCode32 dataSetNameHash = hashes[(2 * i) + 1];
 
-                String locatorName = UnhashLocatorName(locatorNameHash);
-                Fox.Kernel.Path dataSetName = UnhashDataSetName(dataSetNameHash);
+                string locatorName = UnhashLocatorName(locatorNameHash);
+                Fox.Path dataSetName = UnhashDataSetName(dataSetNameHash);
 
                 NamedLocatorBinary locator = ReadNamedLocator(locatorName, dataSetName);
                 result.Add(locator);
@@ -215,8 +214,8 @@ namespace Tpp.GameKit
                 StrCode32 locatorNameHash = hashes[2 * i];
                 StrCode32 dataSetNameHash = hashes[(2 * i) + 1];
 
-                String locatorName = UnhashLocatorName(locatorNameHash);
-                Fox.Kernel.Path dataSetName = UnhashDataSetName(dataSetNameHash);
+                string locatorName = UnhashLocatorName(locatorNameHash);
+                Fox.Path dataSetName = UnhashDataSetName(dataSetNameHash);
 
                 ScaledLocatorBinary locator = ReadScaledLocator(locatorName, dataSetName);
                 result.Add(locator);
@@ -225,11 +224,11 @@ namespace Tpp.GameKit
             return result;
         }
 
-        private static String UnhashLocatorName(StrCode32 hash) =>
+        private static string UnhashLocatorName(StrCode32 hash) =>
             // TODO
-            new(hash.ToString());
+            hash.ToString();
 
-        private static Fox.Kernel.Path UnhashDataSetName(StrCode32 hash) =>
+        private static Fox.Path UnhashDataSetName(StrCode32 hash) =>
             // TODO
             new(hash.ToString());
 
@@ -241,7 +240,7 @@ namespace Tpp.GameKit
             return new PowerCutAreaLocatorBinary(translation, rotation);
         }
 
-        private NamedLocatorBinary ReadNamedLocator(String locatorName, Fox.Kernel.Path dataSetName)
+        private NamedLocatorBinary ReadNamedLocator(string locatorName, Fox.Path dataSetName)
         {
             Vector3 translation = reader.ReadPositionF();
             int w = reader.ReadInt32();
@@ -249,7 +248,7 @@ namespace Tpp.GameKit
             return new NamedLocatorBinary(translation, rotation, locatorName, dataSetName);
         }
 
-        private ScaledLocatorBinary ReadScaledLocator(String locatorName, Fox.Kernel.Path dataSetName)
+        private ScaledLocatorBinary ReadScaledLocator(string locatorName, Fox.Path dataSetName)
         {
             Vector3 translation = reader.ReadPositionF();
             int w = reader.ReadInt32();

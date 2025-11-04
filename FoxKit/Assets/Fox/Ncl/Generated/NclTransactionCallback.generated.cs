@@ -12,7 +12,7 @@ using Fox;
 
 namespace Fox.Ncl
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("Ncl/NclTransactionCallback")]
 	public partial class NclTransactionCallback 
 	{
 		// ClassInfos
@@ -31,59 +31,59 @@ namespace Fox.Ncl
 		}
 		static NclTransactionCallback()
 		{
-			classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("NclTransactionCallback"), typeof(NclTransactionCallback), null, 0, null, 0);
+			classInfo = new Fox.Core.EntityInfo("NclTransactionCallback", typeof(NclTransactionCallback), null, 0, null, 0);
 
 			ClassInfoInitialized = true;
 		}
 		
-		public virtual Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		public virtual Fox.Core.Value GetProperty(string propertyName)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				default:
 					throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
 			}
 		}
 
-		public virtual Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		public virtual Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				default:
 					throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
 			}
 		}
 
-		public virtual Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		public virtual Fox.Core.Value GetPropertyElement(string propertyName, string key)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				default:
 					throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
 			}
 		}
 
-		public virtual void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
+		public virtual void SetProperty(string propertyName, Fox.Core.Value value)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				default:
 					throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
 			}
 		}
 
-		public virtual void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
+		public virtual void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				default:
 					throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
 			}
 		}
 
-		public virtual void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
+		public virtual void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				default:
 					throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());

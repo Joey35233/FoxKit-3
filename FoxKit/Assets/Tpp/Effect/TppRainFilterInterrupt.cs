@@ -1,33 +1,28 @@
 using Fox.Core;
 using Fox.Core.Utils;
-using Fox.Kernel;
 using UnityEngine;
+using System.Collections.Generic;
 
 namespace Tpp.Effect
 {
     public partial class TppRainFilterInterrupt
     {
-        public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
+        public override void OnDeserializeEntity(TaskLogger logger)
         {
-            base.OnDeserializeEntity(gameObject, logger);
+            base.OnDeserializeEntity(logger);
 
             for (int i = 0; i < planeMatrices.Count; i++)
-            {
-                planeMatrices[i] = Fox.Kernel.Math.FoxToUnityMatrix(planeMatrices[i]);
-            }
+                planeMatrices[i] = Fox.Math.FoxToUnityMatrix(planeMatrices[i]);
         }
 
         public override void OverridePropertiesForExport(EntityExportContext context)
         {
             base.OverridePropertiesForExport(context);
 
-            var convertedMatrices = new DynamicArray<Matrix4x4>(planeMatrices);
-            for (int i = 0; i < convertedMatrices.Count; i++)
-            {
-                convertedMatrices[i] = Fox.Kernel.Math.UnityToFoxMatrix(convertedMatrices[i]);
-            }
-
-            context.OverrideProperty(nameof(planeMatrices), convertedMatrices);
+            List<Matrix4x4> _planeMatrices = new(planeMatrices);
+            for (int i = 0; i < _planeMatrices.Count; i++)
+                _planeMatrices[i] = Fox.Math.UnityToFoxMatrix(_planeMatrices[i]);
+            context.OverrideProperty(nameof(planeMatrices), _planeMatrices);
         }
 
         public void OnDrawGizmos()

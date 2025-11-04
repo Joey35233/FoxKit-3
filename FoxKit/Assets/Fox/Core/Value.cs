@@ -1,14 +1,18 @@
-﻿using Fox.Kernel;
+﻿using Fox;
 using System;
 using System.Collections;
 using UnityEngine;
-using String = Fox.Kernel.String;
 
 namespace Fox.Core
 {
     public class Value
     {
         private readonly object value;
+        
+        public Value(object v)
+        {
+            value = v;
+        }
 
         public Value(bool v1)
         {
@@ -117,7 +121,7 @@ namespace Fox.Core
             value = matrix4x4;
         }
 
-        public Value(String @string)
+        public Value(string @string)
         {
             value = @string;
         }
@@ -160,7 +164,7 @@ namespace Fox.Core
 
         public double GetValueAsDouble() => (double)value;
 
-        public T GetValueAsEntityPtr<T>() where T : Entity => (T)value;
+        public T GetValueAsEntityPtr<T>() where T : Entity => value as T;
 
         public EntityLink GetValueAsEntityLink() => (EntityLink)value;
 
@@ -182,11 +186,11 @@ namespace Fox.Core
 
         public Matrix4x4 GetValueAsMatrix4() => (Matrix4x4)value;
 
-        public String GetValueAsString() => (String)value;
+        public string GetValueAsString() => (string)value;
 
         public Path GetValueAsPath() => (Path)value;
 
-        public IStringMap GetValueAsStringMap<T>() => (StringMap<T>)value;
+        public IStringMap GetValueAsStringMap<T>() => value as StringMap<T>;
 
         public IStringMap GetValueAsIStringMap() => (IStringMap)value;
 

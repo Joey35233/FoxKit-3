@@ -1,6 +1,6 @@
 using Fox.Fio;
 using Fox.GameService;
-using Fox.Kernel;
+using Fox;
 
 namespace Tpp.GameKit
 {
@@ -9,6 +9,6 @@ namespace Tpp.GameKit
 		public static readonly StrCode32 Id = new StrCode32("CarryHoneyBee");
 		public override StrCode32 GetId() => Id;
 
-		public static TppRouteCarryHoneyBeeEdgeEvent Deserialize(UnityEngine.GameObject gameObject, uint[] binaryData) { TppRouteCarryHoneyBeeEdgeEvent component = gameObject.AddComponent<TppRouteCarryHoneyBeeEdgeEvent>(); component.binaryData = new StaticArray<uint>(binaryData); return component; }
+		public static TppRouteCarryHoneyBeeEdgeEvent Deserialize(UnityEngine.GameObject gameObject, uint[] binaryData) { TppRouteCarryHoneyBeeEdgeEvent component = gameObject.AddComponent<TppRouteCarryHoneyBeeEdgeEvent>(); component.binaryData = binaryData; return component; }
 	}
 }

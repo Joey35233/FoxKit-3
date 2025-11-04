@@ -1,4 +1,6 @@
-﻿using Fox.Kernel;
+﻿using Fox.Core;
+using Fox.Core.Utils;
+using UnityEngine;
 
 namespace Fox.Ph
 {
@@ -61,7 +63,7 @@ namespace Fox.Ph
         private partial PhRigidBodyType Get_motionType() => param.GetMotionType();
         private partial void Set_motionType(PhRigidBodyType value) => param.SetMotionType(value);
 
-        private partial String Get_material() => param.GetMaterial();
-        private partial void Set_material(String value) => param.SetMaterial(value);
+        private partial string Get_material() => param.GetMaterial();
+        private partial void Set_material(string value) => param.SetMaterial(value);
     }
 }

@@ -1,5 +1,5 @@
 ﻿using Fox.Core;
-using Fox.Kernel;
+using Fox;
 using Fox.Sim;
 using UnityEditor;
 using UnityEngine;
@@ -11,7 +11,7 @@ namespace Fox.EdSim
         [DrawGizmo(GizmoType.Selected | GizmoType.NonSelected)]
         static void DrawGizmo(SimAssociationUnit unit, GizmoType gizmoType)
         {
-            var bone = GameObject.Find(unit.boneName.Hash.ToString());
+            var bone = GameObject.Find(unit.boneName);
             if (bone == null)
                 return;
 

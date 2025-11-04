@@ -1,4 +1,4 @@
-﻿using Fox.Kernel;
+﻿using Fox;
 
 namespace Fox.Phx
 {
@@ -6,10 +6,10 @@ namespace Fox.Phx
     {
         private PhVehicleNormalEngineParam vehicleNormalEngine => vehicleNormalEngineParam;
 
-        private partial DynamicArray<float> Get_specPointAngularVelocity() => vehicleNormalEngine.specPointAngularVelocity;
+        private partial System.Collections.Generic.List<float> Get_specPointAngularVelocity() => vehicleNormalEngine.specPointAngularVelocity;
 
-        private partial DynamicArray<float> Get_specPointTorque() => vehicleNormalEngine.specPointTorque;
+        private partial System.Collections.Generic.List<float> Get_specPointTorque() => vehicleNormalEngine.specPointTorque;
 
-        private partial DynamicArray<float> Get_specPointBreakTorque() => vehicleNormalEngine.specPointBreakTorque;
+        private partial System.Collections.Generic.List<float> Get_specPointBreakTorque() => vehicleNormalEngine.specPointBreakTorque;
     }
 }

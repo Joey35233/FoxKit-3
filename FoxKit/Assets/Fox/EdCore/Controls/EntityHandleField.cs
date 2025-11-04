@@ -8,7 +8,7 @@ using Object = UnityEngine.Object;
 
 namespace Fox.EdCore
 {
-    public class EntityHandleField : BaseField<Entity>, IFoxField, ICustomBindable
+    public class EntityHandleField : BaseField<Entity>, IFoxField
     {
         private SerializedProperty EntityProperty;
 
@@ -74,7 +74,14 @@ namespace Fox.EdCore
         }
 
         public EntityHandleField()
-            : this(null) { }
+            : this(label: null)
+        {
+        }
+        
+        public EntityHandleField(PropertyInfo propertyInfo)
+            : this(propertyInfo.Name)
+        {
+        }
 
         public EntityHandleField(string label)
             : this(label, new VisualElement()) { }
@@ -138,24 +145,12 @@ namespace Fox.EdCore
             else
             {
                 EntityLabel.style.display = DisplayStyle.Flex;
-                EntityLabel.text = $"<b>{value.GetClassEntityInfo().Name}</b>";
+                EntityLabel.text = $"<b>{value.GetClassEntityInfo().Name}</b> {value.name}";
                 visualInput.AddToClassList(inputLivePtrUssClassName);
             }
         }
 
         private void OnPropertyChanged(SerializedProperty property) => value = EntityProperty.objectReferenceValue as Entity;
-
-        public void BindProperty(SerializedProperty property) => BindProperty(property, null);
-        public void BindProperty(SerializedProperty property, string label, PropertyInfo propertyInfo = null)
-        {
-            if (label is not null)
-                this.label = label;
-            EntityProperty = property;
-
-            BindingExtensions.TrackPropertyValue(this, EntityProperty, OnPropertyChanged);
-
-            OnPropertyChanged(null);
-        }
 
         // UNITYENHANCEMENT: https://github.com/Joey35233/FoxKit-3/issues/12
         //[EventInterest(typeof(MouseDownEvent), typeof(KeyDownEvent), typeof(DragUpdatedEvent), typeof(DragPerformEvent), typeof(DragLeaveEvent))]
@@ -168,7 +163,7 @@ namespace Fox.EdCore
                 return;
             }
 
-            if (evt.eventTypeId == FoxFieldUtils.SerializedPropertyBindEventTypeId && !String.IsNullOrWhiteSpace(bindingPath))
+            if (evt.eventTypeId == FoxFieldUtils.SerializedPropertyBindEventTypeId && !System.String.IsNullOrWhiteSpace(bindingPath))
             {
                 var property = FoxFieldUtils.SerializedPropertyBindEventBindProperty.GetValue(evt) as SerializedProperty;
 
@@ -190,14 +185,11 @@ namespace Fox.EdCore
             {
                 var kdEvt = evt as KeyDownEvent;
 
-                if ((evt as KeyDownEvent)?.keyCode is KeyCode.Space or
-                    KeyCode.KeypadEnter or
-                    KeyCode.Return)
+                if ((evt as KeyDownEvent)?.keyCode is KeyCode.Space or KeyCode.KeypadEnter or KeyCode.Return)
                 {
                     OnKeyboardEnter();
                 }
-                else if (kdEvt.keyCode is KeyCode.Delete or
-                         KeyCode.Backspace)
+                else if (kdEvt.keyCode is KeyCode.Delete or KeyCode.Backspace)
                 {
                     OnKeyboardDelete();
                 }
@@ -216,47 +208,41 @@ namespace Fox.EdCore
             }
         }
 
-        //[EventInterest(typeof(MouseDownEvent))]
-        //internal override void ExecuteDefaultActionDisabledAtTarget(EventBase evt)
-        //{
-        //    base.ExecuteDefaultActionDisabledAtTarget(evt);
-
-        //    if ((evt as MouseDownEvent)?.button == (int)MouseButton.LeftMouse)
-        //        OnMouseDown(evt as MouseDownEvent);
-        //}
-
-        private void OnDragLeave() =>
-            // Make sure we've cleared the accept drop look, whether we we in a drop operation or not.
-            RemoveFromClassList("unity-object-field-display--accept-drop");
+        // [EventInterest(typeof(MouseDownEvent))]
+        // internal override void ExecuteDefaultActionDisabledAtTarget(EventBase evt)
+        // {
+        //     base.ExecuteDefaultActionDisabledAtTarget(evt);
+        //
+        //     if ((evt as MouseDownEvent)?.button == (int)MouseButton.LeftMouse)
+        //         OnMouseDown(evt as MouseDownEvent);
+        // }
 
         private void OnMouseDown(MouseDownEvent evt)
         {
-            //GameObject targetGameObject = value?.gameObject;
+            if (value == null || value.gameObject is not GameObject targetGameObject)
+                return;
 
-            //if (targetGameObject == null)
-            //    return;
-
-            //// One click shows where the referenced object is, or pops up a preview
-            //if (evt.clickCount == 1)
-            //{
-            //    // ping object
-            //    bool anyModifiersPressed = evt.shiftKey || evt.ctrlKey;
-            //    if (!anyModifiersPressed && targetGameObject)
-            //    {
-            //        EditorGUIUtility.PingObject(targetGameObject);
-            //    }
-            //    evt.StopPropagation();
-            //}
-            //// Double click opens the asset in external app or changes selection to referenced object
-            //else if (evt.clickCount == 2)
-            //{
-            //    if (targetGameObject)
-            //    {
-            //        AssetDatabase.OpenAsset(targetGameObject);
-            //        GUIUtility.ExitGUI();
-            //    }
-            //    evt.StopPropagation();
-            //}
+            // One click shows where the referenced object is, or pops up a preview
+            if (evt.clickCount == 1)
+            {
+                // ping object
+                bool anyModifiersPressed = evt.shiftKey || evt.ctrlKey;
+                if (!anyModifiersPressed && targetGameObject)
+                {
+                    EditorGUIUtility.PingObject(targetGameObject);
+                }
+                evt.StopPropagation();
+            }
+            // Double click opens the asset in external app or changes selection to referenced object
+            else if (evt.clickCount == 2)
+            {
+                if (targetGameObject)
+                {
+                    AssetDatabase.OpenAsset(targetGameObject);
+                    GUIUtility.ExitGUI();
+                }
+                evt.StopPropagation();
+            }
         }
 
         private void OnKeyboardEnter()
@@ -304,21 +290,11 @@ namespace Fox.EdCore
                 evt.StopPropagation();
             }
         }
-    }
 
-    // [CustomPropertyDrawer(typeof(EntityHandle))]
-    // public class EntityHandleDrawer : PropertyDrawer
-    // {
-    //     public override VisualElement CreatePropertyGUI(SerializedProperty property)
-    //     {
-    //         var field = new EntityHandleField(property.name);
-    //         field.BindProperty(property);
-    //
-    //         field.labelElement.AddToClassList(PropertyField.labelUssClassName);
-    //         field.visualInput.AddToClassList(PropertyField.inputUssClassName);
-    //         field.AddToClassList(BaseField<Fox.Core.Entity>.alignedFieldUssClassName);
-    //
-    //         return field;
-    //     }
-    // }
+        // Make sure we've cleared the accept drop look, whether we we in a drop operation or not.
+        private void OnDragLeave() => RemoveFromClassList("unity-object-field-display--accept-drop");
+        
+        public void SetLabel(string label) => this.label = label;
+        public Label GetLabelElement() => this.labelElement;
+    }
 }

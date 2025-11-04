@@ -7,9 +7,9 @@ namespace Tpp.GameKit
 {
     public partial class TppSharedGimmickData : Fox.Core.Data
     {
-        public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
+        public override void OnDeserializeEntity(TaskLogger logger)
         {
-            base.OnDeserializeEntity(gameObject, logger);
+            base.OnDeserializeEntity(logger);
 
             //FIND MODELS
 
@@ -59,7 +59,7 @@ namespace Tpp.GameKit
                 case NamedLocatorBinaryArrayAsset namedAsset:
                     foreach (NamedLocatorBinary locator in namedAsset.locators)
                     {
-                        LocatorBinaryObject locatorGameObject = new GameObject(locator.GetLocatorName().CString).AddComponent<LocatorBinaryObject>();
+                        LocatorBinaryObject locatorGameObject = new GameObject(locator.GetLocatorName()).AddComponent<LocatorBinaryObject>();
                         locatorGameObject.transform.position = locator.GetTranslation();
                         locatorGameObject.transform.rotation = locator.GetRotation();
                         if (assetModelFile != null)
@@ -79,7 +79,7 @@ namespace Tpp.GameKit
                 case ScaledLocatorBinaryArrayAsset scaledAsset:
                     foreach (ScaledLocatorBinary locator in scaledAsset.locators)
                     {
-                        LocatorBinaryObject locatorGameObject = new GameObject(locator.GetLocatorName().CString).AddComponent<LocatorBinaryObject>();
+                        LocatorBinaryObject locatorGameObject = new GameObject(locator.GetLocatorName()).AddComponent<LocatorBinaryObject>();
                         locatorGameObject.transform.position = locator.GetTranslation();
                         locatorGameObject.transform.rotation = locator.GetRotation();
                         locatorGameObject.transform.localScale = locator.GetScale();

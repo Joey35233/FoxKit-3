@@ -1,13 +1,14 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Fox.Kernel
+namespace Fox
 {
     public static class AlignmentUtils
     {
         public static long Align(long value, uint alignment)
         {
             Debug.Assert(value > 0);
+            
             return (value + (alignment - 1)) & -alignment;
         }
 

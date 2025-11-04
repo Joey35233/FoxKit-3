@@ -1,14 +1,19 @@
 using Fox.Core.Utils;
-using Fox.Kernel;
-using System;
-using UnityEditor;
 using UnityEngine;
-using Math = Fox.Kernel.Math;
 
 namespace Fox.Core
 {
     public partial class TransformData : Data
     {
+        public override void Reset()
+        {
+            /*if (!transform)
+                SetTransform(TransformEntity.GetDefault());*/
+
+            flags |= TransformData_Flags.ENABLE_VISIBILITY;
+            flags |= TransformData_Flags.ENABLE_SELECTION;
+            flags |= TransformData_Flags.ENABLE_INHERIT_TRANSFORM;
+        }
         private partial bool Get_inheritTransform() => flags.HasFlag(TransformData_Flags.ENABLE_INHERIT_TRANSFORM);
         private partial void Set_inheritTransform(bool value)
         {
@@ -42,46 +47,50 @@ namespace Fox.Core
 
         public void AddChild(TransformData transformData)
         {
-            (transformData as UnityEngine.MonoBehaviour).transform.SetParent((this as UnityEngine.MonoBehaviour).transform);
+            transformData.gameObject.transform.SetParent((this as UnityEngine.MonoBehaviour).transform);
         }
 
-        public void SetTransform(TransformEntity transform)
+        public void SetTransform(TransformEntity transformEntity)
         {
-            this.transform = transform;
-            transform.SetOwner(this);
+            this.transform = transformEntity;
+            transformEntity.SetOwner(this);
 
             if (inheritTransform)
             {
-                gameObject.transform.localPosition = transform.translation;
-                gameObject.transform.localRotation = transform.rotQuat;
-                gameObject.transform.localScale = transform.scale;
+                gameObject.transform.localPosition = transformEntity.translation;
+                gameObject.transform.localRotation = transformEntity.rotQuat;
+                gameObject.transform.localScale = transformEntity.scale;
             }
             else
             {
-                gameObject.transform.position = transform.translation;
-                gameObject.transform.rotation = transform.rotQuat;
-                gameObject.transform.localScale = transform.scale;
+                gameObject.transform.position = transformEntity.translation;
+                gameObject.transform.rotation = transformEntity.rotQuat;
+                gameObject.transform.localScale = transformEntity.scale;
             }
         }
 
-        public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
+        public override void OnDeserializeEntity(TaskLogger logger)
         {
+            base.OnDeserializeEntity(logger);
+            
             OnDeserializeTransformEntity();
-
-            base.OnDeserializeEntity(gameObject, logger);
         }
 
         private void OnDeserializeTransformEntity()
         {
-            if (transform is null)
-                return;
+            if (this.parent)
+                this.gameObject.transform.SetParent(this.parent.transform, false);
 
-            TransformEntity transformEntity = transform;
-            transformEntity.translation = Math.FoxToUnityVector3(transformEntity.translation);
-            transformEntity.rotQuat = Math.FoxToUnityQuaternion(transformEntity.rotQuat);
-            transformEntity.scale = transformEntity.scale;
+            if (transform)
+            {
+                TransformEntity transformEntity = transform;
+                transformEntity.translation = Math.FoxToUnityVector3(transformEntity.translation);
+                transformEntity.rotQuat = Math.FoxToUnityQuaternion(transformEntity.rotQuat);
+                transformEntity.scale = transformEntity.scale;
+                //transformEntity.name = transform.GetType().Name;
 
-            SetTransform(transform);
+                SetTransform(transformEntity);
+            }
         }
 
         public override void OverridePropertiesForExport(EntityExportContext context)
@@ -89,7 +98,7 @@ namespace Fox.Core
             base.OverridePropertiesForExport(context);
 
             // Get GameObject's parent
-            UnityEngine.Transform transform = this.gameObject.GetComponent<UnityEngine.Transform>();
+            UnityEngine.Transform transform = this.gameObject.transform;
 
             Entity exportParent = null;
             UnityEngine.Transform parentTransform = transform.parent;
@@ -105,7 +114,7 @@ namespace Fox.Core
             context.OverrideProperty(nameof(parent), exportParent);
 
             // Get child GameObjects
-            var exportChildren = new DynamicArray<Entity>();
+            var exportChildren = new System.Collections.Generic.List<Entity>();
 
             foreach (UnityEngine.Transform child in transform)
             {

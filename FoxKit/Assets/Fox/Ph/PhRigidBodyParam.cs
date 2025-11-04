@@ -2,7 +2,6 @@
 using Fox.Core.Utils;
 using System;
 using UnityEngine;
-using String = Fox.Kernel.String;
 
 namespace Fox.Ph
 {
@@ -12,7 +11,7 @@ namespace Fox.Ph
         internal void SetDefaultPosition(UnityEngine.Vector3 value) => defaultPosition = value;
 
         internal UnityEngine.Quaternion GetDefaultRotation() => defaultRotation;
-        internal void SetDefaultRotation(UnityEngine.Quaternion value) => defaultRotation = value;
+        internal void SetDefaultRotation(UnityEngine.Quaternion value) => defaultRotation = value.normalized;
 
         internal float GetMass() => mass;
         internal void SetMass(float value) => mass = value;
@@ -65,40 +64,30 @@ namespace Fox.Ph
         internal PhRigidBodyType GetMotionType() => motionType;
         internal void SetMotionType(PhRigidBodyType value) => motionType = value;
 
-        internal String GetMaterial() => material;
-        internal void SetMaterial(String value) => material = value;
+        internal string GetMaterial() => material;
+        internal void SetMaterial(string value) => material = value;
 
-        [NonSerialized]
-        internal PhShapeParam ShapeParam;
-
-        public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
+        private void OnValidate()
         {
-            defaultPosition = Fox.Kernel.Math.FoxToUnityVector3(defaultPosition);
-            defaultRotation = Fox.Kernel.Math.FoxToUnityQuaternion(defaultRotation);
-            centerOfMassOffset = Fox.Kernel.Math.FoxToUnityVector3(centerOfMassOffset);
+            defaultRotation = defaultRotation.normalized;
+        }
 
-            base.OnDeserializeEntity(gameObject, logger);
+        public override void OnDeserializeEntity(TaskLogger logger)
+        {
+            base.OnDeserializeEntity(logger);
+            
+            defaultPosition = Fox.Math.FoxToUnityVector3(defaultPosition);
+            defaultRotation = Fox.Math.FoxToUnityQuaternion(defaultRotation);
+            centerOfMassOffset = Fox.Math.FoxToUnityVector3(centerOfMassOffset);
         }
 
         public override void OverridePropertiesForExport(EntityExportContext context)
         {
-            context.OverrideProperty("defaultPosition", Kernel.Math.UnityToFoxVector3(defaultPosition));
-            context.OverrideProperty("defaultRotation", Kernel.Math.FoxToUnityQuaternion(defaultRotation));
-            context.OverrideProperty("centerOfMassOffset", Kernel.Math.UnityToFoxVector3(centerOfMassOffset));
-
             base.OverridePropertiesForExport(context);
-        }
-
-        private void OnValidate()
-        {
-            defaultRotation = Quaternion.Normalize(defaultRotation);
-        }
-
-        internal void OnDrawGizmos()
-        {
-            Gizmos.matrix = Matrix4x4.TRS(defaultPosition, defaultRotation, Vector3.one);
-            if (ShapeParam != null)
-                ShapeParam.DrawGizmos();
+            
+            context.OverrideProperty(nameof(defaultPosition), Fox.Math.UnityToFoxVector3(defaultPosition));
+            context.OverrideProperty(nameof(defaultRotation), Fox.Math.UnityToFoxQuaternion(defaultRotation));
+            context.OverrideProperty(nameof(centerOfMassOffset), Fox.Math.UnityToFoxVector3(centerOfMassOffset));
         }
     }
 }

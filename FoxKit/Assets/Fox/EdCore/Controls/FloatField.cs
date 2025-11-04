@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 
 namespace Fox.EdCore
 {
-    public class FloatField : TextValueField<float>, IFoxField, ICustomBindable
+    public class FloatField : TextValueField<float>, IFoxField
     {
         private FloatInput floatInput => (FloatInput)textInputBase;
 
@@ -15,8 +15,8 @@ namespace Fox.EdCore
 
         protected override float StringToValue(string str)
         {
-            _ = NumericPropertyFields.StringToDouble(str, out double v);
-            return NumericPropertyFields.ClampToFloat(v);
+            bool success = NumericPropertyFields.TryConvertStringToFloat(str, out float v);
+            return success ? v : rawValue;
         }
 
         public static new readonly string ussClassName = "fox-float-field";
@@ -28,13 +28,20 @@ namespace Fox.EdCore
             get;
         }
 
-        public FloatField() : this(null) { }
-
-        public FloatField(int maxLength)
-            : this(null, true, maxLength) { }
-
+        public FloatField() 
+            : this(label: null)
+        {
+        }
+        
         public FloatField(bool hasDragger)
-            : this(null, hasDragger) { }
+            : this(label: null, hasDragger)
+        {
+        }
+        
+        public FloatField(PropertyInfo propertyInfo, bool hasDragger = true, int maxLength = -1)
+            : this(propertyInfo.Name, hasDragger, maxLength)
+        {
+        }
 
         public FloatField(string label, bool hasDragger = true, int maxLength = -1)
             : this(label, hasDragger, maxLength, new FloatInput())
@@ -58,21 +65,13 @@ namespace Fox.EdCore
 
         public override void ApplyInputDeviceDelta(Vector3 delta, DeltaSpeed speed, float startValue) => floatInput.ApplyInputDeviceDelta(delta, speed, startValue);
 
-        public void BindProperty(SerializedProperty property) => BindProperty(property, null);
-        public void BindProperty(SerializedProperty property, string label, PropertyInfo propertyInfo = null)
-        {
-            if (label is not null)
-                this.label = label;
-            BindingExtensions.BindProperty(this, property);
-        }
-
         private class FloatInput : TextValueInput
         {
             private FloatField parentFloatField => (FloatField)parent;
 
             internal FloatInput()
             {
-                formatString = "g7";
+                formatString = NumericPropertyFields.FloatFieldFormatString;
             }
 
             protected override string allowedCharacters => NumericPropertyFields.FloatExpressionCharacterWhitelist;
@@ -96,27 +95,10 @@ namespace Fox.EdCore
 
             protected override string ValueToString(float v) => v.ToString(formatString);
 
-            protected override float StringToValue(string str)
-            {
-                _ = NumericPropertyFields.StringToDouble(str, out double v);
-                return NumericPropertyFields.ClampToFloat(v);
-            }
+            protected override float StringToValue(string str) => parentFloatField.StringToValue(str);
         }
+        
+        public void SetLabel(string label) => this.label = label;
+        public Label GetLabelElement() => this.labelElement;
     }
-
-    // [CustomPropertyDrawer(typeof(float))]
-    // public class FloatDrawer : PropertyDrawer
-    // {
-    //     public override VisualElement CreatePropertyGUI(SerializedProperty property)
-    //     {
-    //         var field = new FloatField(property.name);
-    //         field.BindProperty(property);
-    //
-    //         field.labelElement.AddToClassList(PropertyField.labelUssClassName);
-    //         field.visualInput.AddToClassList(PropertyField.inputUssClassName);
-    //         field.AddToClassList(BaseField<float>.alignedFieldUssClassName);
-    //
-    //         return field;
-    //     }
-    // }
 }

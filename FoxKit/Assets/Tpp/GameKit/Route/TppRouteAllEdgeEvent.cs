@@ -1,6 +1,6 @@
 using Fox.Fio;
 using Fox.GameService;
-using Fox.Kernel;
+using Fox;
 
 namespace Tpp.GameKit
 {
@@ -9,6 +9,6 @@ namespace Tpp.GameKit
 		public static readonly StrCode32 Id = new StrCode32("All");
 		public override StrCode32 GetId() => Id;
 
-		public static TppRouteAllEdgeEvent Deserialize(UnityEngine.GameObject gameObject, uint[] binaryData) { TppRouteAllEdgeEvent component = gameObject.AddComponent<TppRouteAllEdgeEvent>(); component.binaryData = new StaticArray<uint>(binaryData); return component; }
+		public static TppRouteAllEdgeEvent Deserialize(UnityEngine.GameObject gameObject, uint[] binaryData) { TppRouteAllEdgeEvent component = gameObject.AddComponent<TppRouteAllEdgeEvent>(); component.binaryData = binaryData; return component; }
 	}
 }

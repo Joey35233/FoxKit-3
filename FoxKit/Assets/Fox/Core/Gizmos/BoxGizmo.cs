@@ -36,7 +36,7 @@ namespace Fox.Core
                 LabelStyle.normal.textColor = EditorColors.LabelIdleColor;
             }
 
-            if (!String.IsNullOrEmpty(this.Label))
+            if (!System.String.IsNullOrEmpty(this.Label))
             {
                 Handles.Label(Transform.position, Label, LabelStyle);
             }

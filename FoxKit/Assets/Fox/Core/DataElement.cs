@@ -1,5 +1,6 @@
 using Fox.Core.Utils;
 using System;
+using UnityEngine;
 
 namespace Fox.Core
 {
@@ -8,11 +9,12 @@ namespace Fox.Core
         public void SetOwner(Data entity)
         {
             this.transform.SetParent(entity.transform);
+            this.transform.SetLocalPositionAndRotation(UnityEngine.Vector3.zero, UnityEngine.Quaternion.identity);
         }
 
-        public override void OnDeserializeEntity(UnityEngine.GameObject gameObject, TaskLogger logger)
+        public override void OnDeserializeEntity(TaskLogger logger)
         {
-            base.OnDeserializeEntity(gameObject, logger);
+            base.OnDeserializeEntity(logger);
 
             if (this.owner is not { } owner )
             {
@@ -26,6 +28,20 @@ namespace Fox.Core
             {
                 this.SetOwner(data);
             }
+        }
+
+        public override void OverridePropertiesForExport(EntityExportContext context)
+        {
+            base.OverridePropertiesForExport(context);
+
+            // TODO: Ownerless DataElements
+            Entity ownerData = transform.parent.GetComponent<Data>();
+            if (ownerData == null)
+            {
+                Debug.Log($"{this.name} in {this.gameObject.scene} has no direct parent.");
+                return;
+            }
+            context.OverrideProperty(nameof(owner), ownerData);
         }
     }
 }

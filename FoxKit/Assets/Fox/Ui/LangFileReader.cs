@@ -1,5 +1,5 @@
 using Fox.Fio;
-using Fox.Kernel;
+using Fox;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;

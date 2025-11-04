@@ -8,75 +8,16 @@ using UnityEngine.UIElements;
 
 namespace Fox.EdCore
 {
-    public class UInt64Field : TextValueField<ulong>, INotifyValueChanged<long>, IFoxField, ICustomBindable
+    public class UInt64Field : TextValueField<ulong>, IFoxField
     {
-        public override ulong value
-        {
-            get => base.value;
-            set
-            {
-                ulong newValue = value;
-                long packedNewValue = unchecked((long)newValue);
-                if (newValue != this.value)
-                {
-                    if (panel != null)
-                    {
-                        long packedOldValue = unchecked((long)this.value);
-
-                        // Sends ChangeEvent<System.UInt64> and uses its SetValueWithoutNotify function
-                        base.value = newValue;
-
-                        using (var evt = ChangeEvent<long>.GetPooled(packedOldValue, packedNewValue))
-                        {
-                            evt.target = this;
-                            SendEvent(evt);
-                        }
-                    }
-                    else
-                    {
-                        SetValueWithoutNotify(newValue);
-                    }
-                }
-            }
-        }
-        long INotifyValueChanged<long>.value
-        {
-            get => unchecked((long)value);
-            set
-            {
-                ulong newValue = unchecked((ulong)value);
-                if (newValue != this.value)
-                {
-                    if (panel != null)
-                    {
-                        long packedOldValue = unchecked((long)this.value);
-
-                        // Sends ChangeEvent<System.UInt64> and uses its SetValueWithoutNotify function
-                        base.value = newValue;
-
-                        using (var evt = ChangeEvent<long>.GetPooled(packedOldValue, value))
-                        {
-                            evt.target = this;
-                            SendEvent(evt);
-                        }
-                    }
-                    else
-                    {
-                        SetValueWithoutNotify(newValue);
-                    }
-                }
-            }
-        }
-        void INotifyValueChanged<long>.SetValueWithoutNotify(long newValue) => throw new NotImplementedException();
-
         private UInt64Input integerInput => (UInt64Input)textInputBase;
 
         protected override string ValueToString(ulong v) => v.ToString(formatString, CultureInfo.InvariantCulture.NumberFormat);
 
         protected override ulong StringToValue(string str)
         {
-            _ = ExpressionEvaluator.Evaluate(str, out System.Numerics.BigInteger v);
-            return NumericPropertyFields.ClampToUInt64(v);
+            bool success = NumericPropertyFields.TryConvertStringToULong(str, out ulong v);
+            return success ? v : rawValue;
         }
 
         public static new readonly string ussClassName = "fox-uint64-field";
@@ -89,13 +30,19 @@ namespace Fox.EdCore
         }
 
         public UInt64Field()
-            : this(null) { }
-
-        public UInt64Field(int maxLength)
-            : this(null, true, maxLength) { }
-
+            : this(label: null)
+        {
+        }
+        
         public UInt64Field(bool hasDragger)
-            : this(null, hasDragger) { }
+            : this(label: null, hasDragger)
+        {
+        }
+        
+        public UInt64Field(PropertyInfo propertyInfo, bool hasDragger = true, int maxLength = -1)
+            : this(propertyInfo.Name, hasDragger, maxLength)
+        {
+        }
 
         public UInt64Field(string label, bool hasDragger = true, int maxLength = -1)
             : this(label, hasDragger, maxLength, new UInt64Input())
@@ -117,21 +64,13 @@ namespace Fox.EdCore
 
         public override void ApplyInputDeviceDelta(Vector3 delta, DeltaSpeed speed, ulong startValue) => integerInput.ApplyInputDeviceDelta(delta, speed, startValue);
 
-        public void BindProperty(SerializedProperty property) => BindProperty(property, null);
-        public void BindProperty(SerializedProperty property, string label, PropertyInfo propertyInfo = null)
-        {
-            if (label is not null)
-                this.label = label;
-            BindingExtensions.BindProperty(this, property);
-        }
-
         private class UInt64Input : TextValueInput
         {
             private UInt64Field parentIntegerField => (UInt64Field)parent;
 
             internal UInt64Input()
             {
-                formatString = "#################0";
+                formatString = NumericPropertyFields.IntegerFieldFormatString;
             }
 
             protected override string allowedCharacters => NumericPropertyFields.IntegerExpressionCharacterWhitelist;
@@ -140,41 +79,50 @@ namespace Fox.EdCore
             {
                 double sensitivity = NumericFieldDraggerUtility.CalculateIntDragSensitivity(startValue);
                 float acceleration = NumericFieldDraggerUtility.Acceleration(speed == DeltaSpeed.Fast, speed == DeltaSpeed.Slow);
-                System.Numerics.BigInteger v = StringToValue(text);
-                v += (System.Numerics.BigInteger)Math.Round(NumericFieldDraggerUtility.NiceDelta(delta, acceleration) * sensitivity);
+                ulong v = StringToValue(text);
+                
+                long niceDelta = (long)System.Math.Round(NumericFieldDraggerUtility.NiceDelta(delta, acceleration) * sensitivity);
+
+                v = ClampToMinMaxULongValue(niceDelta, v);
+                
                 if (parentIntegerField.isDelayed)
                 {
-                    text = ValueToString(NumericPropertyFields.ClampToUInt64(v));
+                    text = ValueToString(v);
                 }
                 else
                 {
-                    parentIntegerField.value = NumericPropertyFields.ClampToUInt64(v);
+                    parentIntegerField.value = v;
                 }
+            }
+            
+            private ulong ClampToMinMaxULongValue(long niceDelta, ulong value)
+            {
+                var niceDeltaAbs = (ulong)System.Math.Abs(niceDelta);
+
+                if (niceDelta > 0)
+                {
+                    if (niceDeltaAbs > ulong.MaxValue - value)
+                    {
+                        return ulong.MaxValue;
+                    }
+
+                    return value + niceDeltaAbs;
+                }
+
+                if (niceDeltaAbs > value)
+                {
+                    return ulong.MinValue;
+                }
+
+                return value - niceDeltaAbs;
             }
 
             protected override string ValueToString(ulong v) => v.ToString(formatString);
 
-            protected override ulong StringToValue(string str)
-            {
-                _ = ExpressionEvaluator.Evaluate(str, out System.Numerics.BigInteger v);
-                return NumericPropertyFields.ClampToUInt64(v);
-            }
+            protected override ulong StringToValue(string str) => parentIntegerField.StringToValue(str);
         }
+        
+        public void SetLabel(string label) => this.label = label;
+        public Label GetLabelElement() => this.labelElement;
     }
-
-    // [CustomPropertyDrawer(typeof(ulong))]
-    // public class UInt64Drawer : PropertyDrawer
-    // {
-    //     public override VisualElement CreatePropertyGUI(SerializedProperty property)
-    //     {
-    //         var field = new UInt64Field(property.name);
-    //         field.BindProperty(property);
-    //
-    //         field.labelElement.AddToClassList(PropertyField.labelUssClassName);
-    //         field.visualInput.AddToClassList(PropertyField.inputUssClassName);
-    //         field.AddToClassList(BaseField<ulong>.alignedFieldUssClassName);
-    //
-    //         return field;
-    //     }
-    // }
 }

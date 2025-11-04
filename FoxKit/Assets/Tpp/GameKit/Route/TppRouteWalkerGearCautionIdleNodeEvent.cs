@@ -1,6 +1,6 @@
 using Fox.Fio;
 using Fox.GameService;
-using Fox.Kernel;
+using Fox;
 
 namespace Tpp.GameKit
 {
@@ -9,6 +9,6 @@ namespace Tpp.GameKit
 		public static readonly StrCode32 Id = new StrCode32("WalkerGearCautionIdle");
 		public override StrCode32 GetId() => Id;
 
-		public static TppRouteWalkerGearCautionIdleNodeEvent Deserialize(UnityEngine.GameObject gameObject, uint[] binaryData) { TppRouteWalkerGearCautionIdleNodeEvent component = gameObject.AddComponent<TppRouteWalkerGearCautionIdleNodeEvent>(); component.binaryData = new StaticArray<uint>(binaryData); return component; }
+		public static TppRouteWalkerGearCautionIdleNodeEvent Deserialize(UnityEngine.GameObject gameObject, uint[] binaryData) { TppRouteWalkerGearCautionIdleNodeEvent component = gameObject.AddComponent<TppRouteWalkerGearCautionIdleNodeEvent>(); component.binaryData = binaryData; return component; }
 	}
 }

@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine.UIElements;
@@ -63,7 +62,7 @@ namespace Fox.EdCore
                     name = "Types",
                     itemsSource = (System.Collections.IList)allItems,
                     makeItem = () => new Label(),
-                    bindItem = (VisualElement e, int i) => (e as Label).text = filteredItems[i].Name.CString,
+                    bindItem = (VisualElement e, int i) => (e as Label).text = filteredItems[i].Name,
                     showAlternatingRowBackgrounds = AlternatingRowBackground.All,
                     virtualizationMethod = CollectionVirtualizationMethod.FixedHeight,
                     fixedItemHeight = 22,
@@ -102,15 +101,17 @@ namespace Fox.EdCore
                 TypesListInput.itemsSource = filteredItems;
                 TypesListInput.selectedIndex = -1;
 
-                if (String.IsNullOrEmpty(evt.newValue))
+                if (string.IsNullOrEmpty(evt.newValue))
                 {
                     filteredItems.AddRange(allItems);
                 }
                 else
                 {
-                    filteredItems.AddRange(from item in allItems
-                                           where item.Name.CString.IndexOf(evt.newValue, StringComparison.OrdinalIgnoreCase) >= 0
-                                           select item);
+                    foreach (var item in allItems)
+                    {
+                        if (item.Name.IndexOf(evt.newValue, StringComparison.OrdinalIgnoreCase) >= 0)
+                            filteredItems.Add(item);
+                    }
                 }
 
                 TypesListInput.Rebuild();
@@ -118,7 +119,12 @@ namespace Fox.EdCore
 
             private void TypeList_selectionChanged(IEnumerable<object> obj)
             {
-                var type = obj.ToList()[0] as EntityInfo;
+                EntityInfo type = null;
+                foreach (object item in obj)
+                {
+                    type = item as EntityInfo;
+                    break;
+                }
                 returnValue = type;
                 Close();
             }

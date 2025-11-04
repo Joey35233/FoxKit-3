@@ -1,6 +1,6 @@
 using Fox.Fio;
 using Fox.GameService;
-using Fox.Kernel;
+using Fox;
 
 namespace Tpp.GameKit
 {
@@ -9,6 +9,6 @@ namespace Tpp.GameKit
 		public static readonly StrCode32 Id = new StrCode32("JumpOnly");
 		public override StrCode32 GetId() => Id;
 
-		public static TppRouteJumpOnlyEdgeEvent Deserialize(UnityEngine.GameObject gameObject, uint[] binaryData) { TppRouteJumpOnlyEdgeEvent component = gameObject.AddComponent<TppRouteJumpOnlyEdgeEvent>(); component.binaryData = new StaticArray<uint>(binaryData); return component; }
+		public static TppRouteJumpOnlyEdgeEvent Deserialize(UnityEngine.GameObject gameObject, uint[] binaryData) { TppRouteJumpOnlyEdgeEvent component = gameObject.AddComponent<TppRouteJumpOnlyEdgeEvent>(); component.binaryData = binaryData; return component; }
 	}
 }

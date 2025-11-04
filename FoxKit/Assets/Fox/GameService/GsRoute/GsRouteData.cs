@@ -1,5 +1,7 @@
 using Fox.Core.Utils;
+using Fox.Graphx;
 using UnityEngine;
+using System;
 
 namespace Fox.GameService
 {
@@ -9,6 +11,7 @@ namespace Fox.GameService
         private static readonly Color SelectedColor = Color.yellow;
         private static readonly Vector3 Scale = Vector3.one * 0.1f;
         private static readonly Vector3 ScaleNode = Vector3.one * 0.25f;
+        public override Type GetNodeType() => typeof(GsRouteDataNode);
 
         private void DrawGizmos(bool isSelected)
         {

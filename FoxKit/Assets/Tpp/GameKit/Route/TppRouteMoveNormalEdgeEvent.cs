@@ -1,6 +1,6 @@
 using Fox.Fio;
 using Fox.GameService;
-using Fox.Kernel;
+using Fox;
 
 namespace Tpp.GameKit
 {
@@ -9,6 +9,6 @@ namespace Tpp.GameKit
 		public static readonly StrCode32 Id = new StrCode32("MoveNormal");
 		public override StrCode32 GetId() => Id;
 
-		public static TppRouteMoveNormalEdgeEvent Deserialize(UnityEngine.GameObject gameObject, uint[] binaryData) { TppRouteMoveNormalEdgeEvent component = gameObject.AddComponent<TppRouteMoveNormalEdgeEvent>(); component.binaryData = new StaticArray<uint>(binaryData); return component; }
+		public static TppRouteMoveNormalEdgeEvent Deserialize(UnityEngine.GameObject gameObject, uint[] binaryData) { TppRouteMoveNormalEdgeEvent component = gameObject.AddComponent<TppRouteMoveNormalEdgeEvent>(); component.binaryData = binaryData; return component; }
 	}
 }

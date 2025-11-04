@@ -8,7 +8,7 @@ using UnityEngine.UIElements;
 
 namespace Fox.EdCore
 {
-    public class Int32Field : TextValueField<int>, IFoxField, ICustomBindable
+    public class Int32Field : TextValueField<int>, IFoxField
     {
         private Int32Input integerInput => (Int32Input)textInputBase;
 
@@ -16,8 +16,8 @@ namespace Fox.EdCore
 
         protected override int StringToValue(string str)
         {
-            _ = ExpressionEvaluator.Evaluate(str, out long v);
-            return NumericPropertyFields.ClampToInt32(v);
+            bool success = NumericPropertyFields.TryConvertStringToInt(str, out int v);
+            return success ? v : rawValue;
         }
 
         public static new readonly string ussClassName = "fox-int32-field";
@@ -30,13 +30,19 @@ namespace Fox.EdCore
         }
 
         public Int32Field()
-            : this(null) { }
-
-        public Int32Field(int maxLength)
-            : this(null, true, maxLength) { }
-
+            : this(label: null)
+        {
+        }
+        
         public Int32Field(bool hasDragger)
-            : this(null, hasDragger) { }
+            : this(label: null, hasDragger)
+        {
+        }
+        
+        public Int32Field(PropertyInfo propertyInfo, bool hasDragger = true, int maxLength = -1)
+            : this(propertyInfo.Name, hasDragger, maxLength)
+        {
+        }
 
         public Int32Field(string label, bool hasDragger = true, int maxLength = -1)
             : this(label, hasDragger, maxLength, new Int32Input())
@@ -58,14 +64,6 @@ namespace Fox.EdCore
 
         public override void ApplyInputDeviceDelta(Vector3 delta, DeltaSpeed speed, int startValue) => integerInput.ApplyInputDeviceDelta(delta, speed, startValue);
 
-        public void BindProperty(SerializedProperty property) => BindProperty(property, null);
-        public void BindProperty(SerializedProperty property, string label, PropertyInfo propertyInfo = null)
-        {
-            if (label is not null)
-                this.label = label;
-            BindingExtensions.BindProperty(this, property);
-        }
-
         private class Int32Input : TextValueInput
         {
             private Int32Field parentIntegerField => (Int32Field)parent;
@@ -82,7 +80,7 @@ namespace Fox.EdCore
                 double sensitivity = NumericFieldDraggerUtility.CalculateIntDragSensitivity(startValue);
                 float acceleration = NumericFieldDraggerUtility.Acceleration(speed == DeltaSpeed.Fast, speed == DeltaSpeed.Slow);
                 long v = StringToValue(text);
-                v += (long)Math.Round(NumericFieldDraggerUtility.NiceDelta(delta, acceleration) * sensitivity);
+                v += (long)System.Math.Round(NumericFieldDraggerUtility.NiceDelta(delta, acceleration) * sensitivity);
                 if (parentIntegerField.isDelayed)
                 {
                     text = ValueToString(NumericPropertyFields.ClampToInt32(v));
@@ -95,27 +93,10 @@ namespace Fox.EdCore
 
             protected override string ValueToString(int v) => v.ToString(formatString);
 
-            protected override int StringToValue(string str)
-            {
-                _ = ExpressionEvaluator.Evaluate(str, out long v);
-                return NumericPropertyFields.ClampToInt32(v);
-            }
+            protected override int StringToValue(string str) => parentIntegerField.StringToValue(str);
         }
+        
+        public void SetLabel(string label) => this.label = label;
+        public Label GetLabelElement() => this.labelElement;
     }
-
-    // [CustomPropertyDrawer(typeof(int))]
-    // public class Int32Drawer : PropertyDrawer
-    // {
-    //     public override VisualElement CreatePropertyGUI(SerializedProperty property)
-    //     {
-    //         var field = new Int32Field(property.name);
-    //         field.BindProperty(property);
-    //
-    //         field.labelElement.AddToClassList(PropertyField.labelUssClassName);
-    //         field.visualInput.AddToClassList(PropertyField.inputUssClassName);
-    //         field.AddToClassList(BaseField<ulong>.alignedFieldUssClassName);
-    //
-    //         return field;
-    //     }
-    // }
 }

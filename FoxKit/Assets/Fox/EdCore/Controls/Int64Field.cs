@@ -8,7 +8,7 @@ using UnityEngine.UIElements;
 
 namespace Fox.EdCore
 {
-    public class Int64Field : TextValueField<long>, IFoxField, ICustomBindable
+    public class Int64Field : TextValueField<long>, IFoxField
     {
         private Int64Input integerInput => (Int64Input)textInputBase;
 
@@ -16,8 +16,8 @@ namespace Fox.EdCore
 
         protected override long StringToValue(string str)
         {
-            _ = ExpressionEvaluator.Evaluate(str, out System.Numerics.BigInteger v);
-            return NumericPropertyFields.ClampToInt64(v);
+            bool success = NumericPropertyFields.TryConvertStringToLong(str, out long v);
+            return success ? v : rawValue;
         }
 
         public static new readonly string ussClassName = "fox-int64-field";
@@ -30,13 +30,19 @@ namespace Fox.EdCore
         }
 
         public Int64Field()
-            : this(null) { }
-
-        public Int64Field(int maxLength)
-            : this(null, true, maxLength) { }
-
+            : this(label: null)
+        {
+        }
+        
         public Int64Field(bool hasDragger)
-            : this(null, hasDragger) { }
+            : this(label: null, hasDragger)
+        {
+        }
+        
+        public Int64Field(PropertyInfo propertyInfo, bool hasDragger = true, int maxLength = -1)
+            : this(propertyInfo.Name, hasDragger, maxLength)
+        {
+        }
 
         public Int64Field(string label, bool hasDragger = true, int maxLength = -1)
             : this(label, hasDragger, maxLength, new Int64Input())
@@ -58,21 +64,13 @@ namespace Fox.EdCore
 
         public override void ApplyInputDeviceDelta(Vector3 delta, DeltaSpeed speed, long startValue) => integerInput.ApplyInputDeviceDelta(delta, speed, startValue);
 
-        public void BindProperty(SerializedProperty property) => BindProperty(property, null);
-        public void BindProperty(SerializedProperty property, string label, PropertyInfo propertyInfo = null)
-        {
-            if (label is not null)
-                this.label = label;
-            BindingExtensions.BindProperty(this, property);
-        }
-
         private class Int64Input : TextValueInput
         {
             private Int64Field parentIntegerField => (Int64Field)parent;
 
             internal Int64Input()
             {
-                formatString = "#################0";
+                formatString = NumericPropertyFields.IntegerFieldFormatString;
             }
 
             protected override string allowedCharacters => NumericPropertyFields.IntegerExpressionCharacterWhitelist;
@@ -81,41 +79,50 @@ namespace Fox.EdCore
             {
                 double sensitivity = NumericFieldDraggerUtility.CalculateIntDragSensitivity(startValue);
                 float acceleration = NumericFieldDraggerUtility.Acceleration(speed == DeltaSpeed.Fast, speed == DeltaSpeed.Slow);
-                System.Numerics.BigInteger v = StringToValue(text);
-                v += (System.Numerics.BigInteger)Math.Round(NumericFieldDraggerUtility.NiceDelta(delta, acceleration) * sensitivity);
+                
+                long v = StringToValue(text);
+                
+                long niceDelta = (long)System.Math.Round(NumericFieldDraggerUtility.NiceDelta(delta, acceleration) * sensitivity);
+                
+                v = ClampMinMaxLongValue(niceDelta, v);
+                
                 if (parentIntegerField.isDelayed)
                 {
-                    text = ValueToString(NumericPropertyFields.ClampToInt64(v));
+                    text = ValueToString(v);
                 }
                 else
                 {
-                    parentIntegerField.value = NumericPropertyFields.ClampToInt64(v);
+                    parentIntegerField.value = v;
                 }
+            }
+            
+            private long ClampMinMaxLongValue(long niceDelta, long value)
+            {
+                var niceDeltaAbs = System.Math.Abs(niceDelta);
+                if (niceDelta > 0)
+                {
+                    if (value > 0 && niceDeltaAbs > long.MaxValue - value)
+                    {
+                        return long.MaxValue;
+                    }
+
+                    return value + niceDelta;
+                }
+
+                if (value < 0 && value < long.MinValue + niceDeltaAbs)
+                {
+                    return long.MinValue;
+                }
+
+                return value - niceDeltaAbs;
             }
 
             protected override string ValueToString(long v) => v.ToString(formatString);
 
-            protected override long StringToValue(string str)
-            {
-                _ = ExpressionEvaluator.Evaluate(str, out System.Numerics.BigInteger v);
-                return NumericPropertyFields.ClampToInt64(v);
-            }
+            protected override long StringToValue(string str) => parentIntegerField.StringToValue(str);
         }
+        
+        public void SetLabel(string label) => this.label = label;
+        public Label GetLabelElement() => this.labelElement;
     }
-
-    // [CustomPropertyDrawer(typeof(long))]
-    // public class Int64Drawer : PropertyDrawer
-    // {
-    //     public override VisualElement CreatePropertyGUI(SerializedProperty property)
-    //     {
-    //         var field = new Int64Field(property.name);
-    //         field.BindProperty(property);
-    //
-    //         field.labelElement.AddToClassList(PropertyField.labelUssClassName);
-    //         field.visualInput.AddToClassList(PropertyField.inputUssClassName);
-    //         field.AddToClassList(BaseField<ulong>.alignedFieldUssClassName);
-    //
-    //         return field;
-    //     }
-    // }
 }

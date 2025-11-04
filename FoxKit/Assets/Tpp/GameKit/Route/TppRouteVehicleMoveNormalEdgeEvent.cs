@@ -1,6 +1,6 @@
 using Fox.Fio;
 using Fox.GameService;
-using Fox.Kernel;
+using Fox;
 
 namespace Tpp.GameKit
 {
@@ -26,7 +26,7 @@ namespace Tpp.GameKit
                 }
             }
 
-            result.railId = new String(railId.ToString());
+            result.railId = railId.ToString();
             result.rpm = rpm;
 
             return result;

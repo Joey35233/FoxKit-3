@@ -1,6 +1,6 @@
 ﻿using Fox.Core;
 using Fox.Fio;
-using Fox.Kernel;
+using Fox;
 using System;
 using System.Diagnostics;
 

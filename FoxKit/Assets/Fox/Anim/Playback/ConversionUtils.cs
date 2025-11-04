@@ -1,4 +1,4 @@
-﻿using Fox.Kernel;
+﻿using Fox;
 
 namespace Fox.Anim
 {

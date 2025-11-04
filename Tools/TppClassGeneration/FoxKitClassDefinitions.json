@@ -241,7 +241,7 @@
     "category": null,
     "functions": [],
     "id": 0,
-    "name": "TppRouteUnknown1245047319NodeEvent",
+    "name": "TppRoutePeep1NodeEvent",
     "namespace": "TppGameKit",
     "parent": "GsRouteDataNodeEvent",
     "properties": [
@@ -263,7 +263,7 @@
     "category": null,
     "functions": [],
     "id": 0,
-    "name": "TppRouteUnknown1875147223NodeEvent",
+    "name": "TppRouteUseFlashLightAlwaysNodeEvent",
     "namespace": "TppGameKit",
     "parent": "GsRouteDataNodeEvent",
     "properties": [
@@ -351,7 +351,7 @@
     "category": null,
     "functions": [],
     "id": 0,
-    "name": "TppRouteUnknown2795470991NodeEvent",
+    "name": "TppRouteSkullFaceStandByVehicleNodeEvent",
     "namespace": "TppGameKit",
     "parent": "GsRouteDataNodeEvent",
     "properties": [
@@ -395,7 +395,7 @@
     "category": null,
     "functions": [],
     "id": 0,
-    "name": "TppRouteUnknown3696614179NodeEvent",
+    "name": "TppRouteSleepOnSofaNodeEvent",
     "namespace": "TppGameKit",
     "parent": "GsRouteDataNodeEvent",
     "properties": [
@@ -417,7 +417,7 @@
     "category": null,
     "functions": [],
     "id": 0,
-    "name": "TppRouteUnknown3969758229NodeEvent",
+    "name": "TppRouteDisableStealthModeNodeEvent",
     "namespace": "TppGameKit",
     "parent": "GsRouteDataNodeEvent",
     "properties": [
@@ -439,7 +439,7 @@
     "category": null,
     "functions": [],
     "id": 0,
-    "name": "TppRouteUnknown4257632892NodeEvent",
+    "name": "TppRouteBreakSteelTowerNodeEvent",
     "namespace": "TppGameKit",
     "parent": "GsRouteDataNodeEvent",
     "properties": [

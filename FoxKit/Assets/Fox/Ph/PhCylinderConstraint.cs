@@ -1,4 +1,8 @@
-﻿namespace Fox.Ph
+﻿using Fox.Core;
+using Fox.Core.Utils;
+using UnityEngine;
+
+namespace Fox.Ph
 {
     public partial class PhCylinderConstraint : Fox.Ph.PhConstraint
     {

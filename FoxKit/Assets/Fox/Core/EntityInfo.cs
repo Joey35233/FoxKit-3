@@ -1,7 +1,6 @@
-﻿using Fox.Kernel;
+﻿using Fox;
 using System;
 using System.Collections.Generic;
-using String = Fox.Kernel.String;
 
 namespace Fox.Core
 {
@@ -16,13 +15,13 @@ namespace Fox.Core
 
         public static EntityInfo GetEntityInfo<T>() => GetEntityInfo(typeof(T));
         public static EntityInfo GetEntityInfo(Type type) => EntityInfoMap.TryGetValue(type, out EntityInfo entityInfo) ? entityInfo : null;
-        public static EntityInfo GetEntityInfo(String name) => EntityInfoNameMap.TryGetValue(name, out EntityInfo entityInfo) ? entityInfo : null;
+        public static EntityInfo GetEntityInfo(string name) => EntityInfoNameMap.TryGetValue(name, out EntityInfo entityInfo) ? entityInfo : null;
 
         public static Entity ConstructEntity(Type type) => ConstructEntity(GetEntityInfo(type));
-        public static Entity ConstructEntity(String name) => ConstructEntity(GetEntityInfo(name));
+        public static Entity ConstructEntity(string name) => ConstructEntity(GetEntityInfo(name));
         public static Entity ConstructEntity(EntityInfo entityInfo) => Activator.CreateInstance(entityInfo.Type) as Entity;
 
-        public EntityInfo(String name, Type type, EntityInfo super, short id, string category, ushort version)
+        public EntityInfo(string name, Type type, EntityInfo super, short id, string category, ushort version)
         {
             Name = name;
             Type = type;
@@ -50,7 +49,7 @@ namespace Fox.Core
         /// <summary>
         /// Name of the class.
         /// </summary>
-        public String Name
+        public string Name
         {
             get;
         }
@@ -114,7 +113,7 @@ namespace Fox.Core
         /// <summary>
         /// Metadata for all static properties in their original order.
         /// </summary>
-        public DynamicArray<Core.PropertyInfo> OrderedStaticProperties { get; } = new DynamicArray<Core.PropertyInfo>();
+        public System.Collections.Generic.List<Core.PropertyInfo> OrderedStaticProperties { get; } = new System.Collections.Generic.List<Core.PropertyInfo>();
 
         /// <summary>
         /// Metadata for all static properties in a StringMap for fast lookup.
@@ -135,7 +134,7 @@ namespace Fox.Core
         /// <param name="entityInfo">The EntityInfo.</param>
         /// <param name="name">The name of the property to find.</param>
         /// <returns>True if a property with the given name was found, else false.</returns>
-        public static bool HasPropertyWithName(EntityInfo entityInfo, String name)
+        public static bool HasPropertyWithName(EntityInfo entityInfo, string name)
         {
             while (entityInfo != null)
             {
@@ -169,6 +168,6 @@ namespace Fox.Core
             }
         }
 
-        public override string ToString() => Name.ToString();
+        public override string ToString() => Name;
     }
 }

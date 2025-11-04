@@ -12,15 +12,15 @@ using Fox;
 
 namespace Tpp.MotherBaseCore
 {
-	[UnityEditor.InitializeOnLoad]
+	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("TppMotherBaseCore/MotherBaseReplaceTextureData")]
 	public partial class MotherBaseReplaceTextureData : Fox.Core.Data
 	{
 		// Properties
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.DynamicArray<ulong> pathCodes { get; private set; } = new Fox.Kernel.DynamicArray<ulong>();
+		public CsSystem.Collections.Generic.List<ulong> pathCodes { get; private set; } = new CsSystem.Collections.Generic.List<ulong>();
 		
 		[field: UnityEngine.SerializeField]
-		public Fox.Kernel.StringMap<int> flags { get; private set; } = new Fox.Kernel.StringMap<int>();
+		public Fox.StringMap<int> flags { get; private set; } = new Fox.StringMap<int>();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -39,29 +39,29 @@ namespace Tpp.MotherBaseCore
 		static MotherBaseReplaceTextureData()
 		{
 			if (Fox.Core.Data.ClassInfoInitialized)
-				classInfo = new Fox.Core.EntityInfo(new Fox.Kernel.String("MotherBaseReplaceTextureData"), typeof(MotherBaseReplaceTextureData), Fox.Core.Data.ClassInfo, 128, "TppMotherBase", 0);
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("pathCodes"), Fox.Core.PropertyInfo.PropertyType.UInt64, 120, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
-			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo(new Fox.Kernel.String("flags"), Fox.Core.PropertyInfo.PropertyType.Int32, 136, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+				classInfo = new Fox.Core.EntityInfo("MotherBaseReplaceTextureData", typeof(MotherBaseReplaceTextureData), Fox.Core.Data.ClassInfo, 128, "TppMotherBase", 0);
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("pathCodes", Fox.Core.PropertyInfo.PropertyType.UInt64, 120, 1, Fox.Core.PropertyInfo.ContainerType.DynamicArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("flags", Fox.Core.PropertyInfo.PropertyType.Int32, 136, 1, Fox.Core.PropertyInfo.ContainerType.StringMap, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Field));
 
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(Fox.Kernel.String propertyName)
+		public override Fox.Core.Value GetProperty(string propertyName)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				case "pathCodes":
 					return new Fox.Core.Value(pathCodes);
 				case "flags":
-					return new Fox.Core.Value((Fox.Kernel.IStringMap)flags);
+					return new Fox.Core.Value((Fox.IStringMap)flags);
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, ushort index)
+		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				case "pathCodes":
 					return new Fox.Core.Value(this.pathCodes[index]);
@@ -70,9 +70,9 @@ namespace Tpp.MotherBaseCore
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key)
+		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				case "flags":
 					return new Fox.Core.Value(this.flags[key]);
@@ -81,9 +81,9 @@ namespace Tpp.MotherBaseCore
 			}
 		}
 
-		public override void SetProperty(Fox.Kernel.String propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, Fox.Core.Value value)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				default:
 					base.SetProperty(propertyName, value);
@@ -91,9 +91,9 @@ namespace Tpp.MotherBaseCore
 			}
 		}
 
-		public override void SetPropertyElement(Fox.Kernel.String propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				case "pathCodes":
 					while(this.pathCodes.Count <= index) { this.pathCodes.Add(default(ulong)); }
@@ -105,9 +105,9 @@ namespace Tpp.MotherBaseCore
 			}
 		}
 
-		public override void SetPropertyElement(Fox.Kernel.String propertyName, Fox.Kernel.String key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
 		{
-			switch (propertyName.CString)
+			switch (propertyName)
 			{
 				case "flags":
 					if (this.flags.ContainsKey(key))
