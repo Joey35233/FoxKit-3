@@ -16,24 +16,24 @@ namespace Fox.Anim
         public static uint RootRotSegmentIndex = 0;
         public static uint RootPosSegmentIndex = 1;
         
-        public static string GetUnitNameString(uint unitIndex)
+        public static string GetUnitNameString(uint unitId)
         {
-            return $"{UnitName}[{unitIndex:0000}]";
+            return $"{UnitName}[{unitId:0000}]";
         }
         
-        public static string GetUnitNamePropertyPath(uint unitIndex)
+        public static string GetUnitNamePropertyPath(uint unitId)
         {
-            return $"{RigFolderName}/{SegmentFolderName}/{GetUnitNameString(unitIndex)}";
+            return $"{RigFolderName}/{SegmentFolderName}/{GetUnitNameString(unitId)}";
         }
         
-        public static string GetSegmentNameString(uint unitIndex, uint segmentIndex)
+        public static string GetSegmentNameString(uint unitId, uint segmentId)
         {
-            return $"{SegmentName}[{unitIndex:0000}][{segmentIndex:0000}]";
+            return $"{SegmentName}[{unitId:0000}][{segmentId:0000}]";
         }
         
-        public static string GetSegmentNamePropertyPath(uint unitIndex, uint trackIndex)
+        public static string GetSegmentNamePropertyPath(uint unitId, uint segmentId)
         {
-            return $"{RigFolderName}/{SegmentFolderName}/{GetSegmentNameString(unitIndex, trackIndex)}";
+            return $"{RigFolderName}/{SegmentFolderName}/{GetSegmentNameString(unitId, segmentId)}";
         }
     }
 }

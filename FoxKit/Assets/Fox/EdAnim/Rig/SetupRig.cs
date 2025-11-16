@@ -76,16 +76,16 @@ namespace Fox.EdAnim
                 // Stores all of the track proxies and also make a local creation function to make making proxies less painful
                 Transform segmentProxyFolder = new GameObject(ConversionUtils.SegmentFolderName).transform;
                 segmentProxyFolder.SetParent(rigObject.transform);
-                Transform CreateSegmentProxy(uint unitIndex, uint trackIndex)
+                Transform CreateSegmentProxy(uint unitIndex, uint segmentIndex)
                 {
-                    Transform proxy = new GameObject(ConversionUtils.GetSegmentNameString(unitIndex, trackIndex)).transform;
+                    Transform proxy = new GameObject(ConversionUtils.GetSegmentNameString(unitIndex, segmentIndex)).transform;
                     proxy.SetParent(segmentProxyFolder.transform);
 
                     return proxy;
                 }
 
                 int* rigUnitDefOffsets = (int*)(header + 1);
-                for (uint i = 0; i < header->RigUnitCount; i++)
+                for (uint i = 0; i < header->UnitCount; i++)
                 {
                     RigUnitType* unitHead = (RigUnitType*)(fileData + rigUnitDefOffsets[i]);
 
@@ -106,35 +106,35 @@ namespace Fox.EdAnim
                                 RigOrientationPoseUnit unit = unitObject.AddComponent<RigOrientationPoseUnit>();
                                 
                                 // Index bones
-                                Transform bone = bones[unitDef->SkelIndex];
+                                Transform bone = bones[unitDef->BoneIndex];
                                 unit.data.Target = bone;
                                 
                                 // Create track proxies
-                                Transform rotationTrackProxy = CreateSegmentProxy(i, 0);
+                                Transform rotationTrackProxy = CreateSegmentProxy(i, (uint)unitDef->RotationSegmentIndex);
                                 unit.data.Source = rotationTrackProxy;
                             }
                             break;
                         case RigUnitType.TwoBone:
                             {
-                                RigTwoBone* unitDef = (RigTwoBone*)unitHead;
+                                RigTwoBoneDef* unitDef = (RigTwoBoneDef*)unitHead;
                                     
                                 RigTwoBonePoseUnit unit = unitObject.AddComponent<RigTwoBonePoseUnit>();
                                     
                                 // Index bones
-                                Transform upper = bones[unitDef->UpperSkelIndex];
+                                Transform upper = bones[unitDef->UpperBoneIndex];
                                 unit.data.UpperTarget = upper;
                                 
-                                Transform mid = bones[unitDef->MidSkelIndex];
+                                Transform mid = bones[unitDef->MidBoneIndex];
                                 unit.data.MidTarget = mid;
                                 
-                                Transform effector = bones[unitDef->EffectorSkelIndex];
+                                Transform effector = bones[unitDef->EffectorBoneIndex];
                                 unit.data.EffectorTarget = effector;
                                 
-                                Transform effectorPositionTrackProxy = CreateSegmentProxy(i, 0);
+                                Transform effectorPositionTrackProxy = CreateSegmentProxy(i, (uint)unitDef->EffectorPositionSegmentIndex);
                                 unit.data.EffectorPositionSource = effectorPositionTrackProxy;
                                 
-                                Transform polePositionTrackProxy = CreateSegmentProxy(i, 1);
-                                unit.data.PoleRotationSource = polePositionTrackProxy;
+                                Transform poleRotationTrackProxy = CreateSegmentProxy(i, (uint)unitDef->PoleRotationSegmentIndex);
+                                unit.data.PoleRotationSource = poleRotationTrackProxy;
 
                                 unit.data.ChainPlaneNormal = Fox.Math.FoxToUnityVector3(unitDef->ChainPlaneNormal);
                             }
@@ -146,11 +146,11 @@ namespace Fox.EdAnim
                                 RigLocalOrientationPoseUnit unit = unitObject.AddComponent<RigLocalOrientationPoseUnit>();
                                     
                                 // Index bones
-                                Transform bone = bones[unitDef->SkelIndex];
+                                Transform bone = bones[unitDef->BoneIndex];
                                 unit.data.Target = bone;
                                     
                                 // Create track proxies
-                                Transform rotationTrackProxy = CreateSegmentProxy(i, 0);
+                                Transform rotationTrackProxy = CreateSegmentProxy(i, (uint)unitDef->RotationSegmentIndex);
                                 unit.data.Source = rotationTrackProxy;
                             }
                             break;
@@ -161,18 +161,18 @@ namespace Fox.EdAnim
                                 RigLocalTransformPoseUnit unit = unitObject.AddComponent<RigLocalTransformPoseUnit>();
                                 
                                 // Index bones
-                                Transform bone = bones[unitDef->SkelIndex];
+                                Transform bone = bones[unitDef->BoneIndex];
                                 unit.data.Target = bone;
                                 
                                 // Create track proxies
-                                Transform rotationTrackProxy = CreateSegmentProxy(i, 0);
+                                Transform rotationTrackProxy = CreateSegmentProxy(i, (uint)unitDef->RotationSegmentIndex);
                                 unit.data.RotationSource = rotationTrackProxy;
                                 
-                                Transform positionTrackProxy = CreateSegmentProxy(i, 1);
+                                Transform positionTrackProxy = CreateSegmentProxy(i, (uint)unitDef->PositionSegmentIndex);
                                 unit.data.PositionSource = positionTrackProxy;
                             }
                             break;
-                        case RigUnitType.Unknown6:
+                        case RigUnitType.ThreeBoneLikeTwoBone:
                             break;
                         case RigUnitType.Transform:
                             {
@@ -181,14 +181,14 @@ namespace Fox.EdAnim
                                 RigTransformPoseUnit unit = unitObject.AddComponent<RigTransformPoseUnit>();
                                 
                                 // Index bones
-                                Transform bone = bones[unitDef->SkelIndex];
+                                Transform bone = bones[unitDef->BoneIndex];
                                 unit.data.Target = bone;
                                 
                                 // Create track proxies
-                                Transform rotationTrackProxy = CreateSegmentProxy(i, 0);
+                                Transform rotationTrackProxy = CreateSegmentProxy(i, (uint)unitDef->RotationSegmentIndex);
                                 unit.data.RotationSource = rotationTrackProxy;
                                 
-                                Transform positionTrackProxy = CreateSegmentProxy(i, 1);
+                                Transform positionTrackProxy = CreateSegmentProxy(i, (uint)unitDef->PositionSegmentIndex);
                                 unit.data.PositionSource = positionTrackProxy;
                             }
                             break;
@@ -199,38 +199,53 @@ namespace Fox.EdAnim
                                 RigArmPoseUnit unit = unitObject.AddComponent<RigArmPoseUnit>();
                                     
                                 // Index bones
-                                Transform shoulder = bones[unitDef->ShoulderSkelIndex];
+                                Transform shoulder = bones[unitDef->ShoulderBoneIndex];
                                 unit.data.ShoulderTarget = shoulder;
                                 
-                                Transform uarm = bones[unitDef->UpperSkelIndex];
+                                Transform uarm = bones[unitDef->UpperBoneIndex];
                                 unit.data.UpperArmTarget = uarm;
                                 
-                                Transform larm = bones[unitDef->LowerSkelIndex];
+                                Transform larm = bones[unitDef->LowerBoneIndex];
                                 unit.data.LowerArmTarget = larm;
                                 
-                                Transform effector = bones[unitDef->EffectorSkelIndex];
+                                Transform effector = bones[unitDef->EffectorBoneIndex];
                                 unit.data.EffectorTarget = effector;
                                     
                                 // Create track proxies
-                                Transform shoulderRotationTrackProxy = CreateSegmentProxy(i, 0);
+                                Transform shoulderRotationTrackProxy = CreateSegmentProxy(i, (uint)unitDef->ShoulderRotationSegmentIndex);
                                 unit.data.ShoulderRotationSource = shoulderRotationTrackProxy;
                                 
-                                Transform effectorPositionTrackProxy = CreateSegmentProxy(i, 1);
+                                Transform effectorPositionTrackProxy = CreateSegmentProxy(i, (uint)unitDef->EffectorPositionSegmentIndex);
                                 unit.data.EffectorPositionSource = effectorPositionTrackProxy;
                                 
-                                Transform polePositionTrackProxy = CreateSegmentProxy(i, 2);
-                                unit.data.PoleRotationSource = polePositionTrackProxy;
+                                Transform poleRotationTrackProxy = CreateSegmentProxy(i, (uint)unitDef->PoleRotationSegmentIndex);
+                                unit.data.PoleRotationSource = poleRotationTrackProxy;
 
                                 unit.data.ChainPlaneNormal = Fox.Math.FoxToUnityVector3(unitDef->ChainPlaneNormal);
                             }
                             break;
-                        case RigUnitType.Unknown9:
+                        case RigUnitType.LocalTransformSRT:
                             break;
-                        case RigUnitType.Unknown10:
+                        case RigUnitType.AnimalLeg:
                             break;
-                        case RigUnitType.List:
+                        case RigUnitType.MultiLocalOrientation:
+                            {
+                                RigMultiLocalOrientationDef* unitDef = (RigMultiLocalOrientationDef*)unitHead;
+                                        
+                                RigMultiLocalOrientationPoseUnit unit = unitObject.AddComponent<RigMultiLocalOrientationPoseUnit>();
+                                        
+                                // Index bones
+                                unit.data.Targets = new Transform[unitDef->BoneCount];
+                                for (uint j = 0; j < unitDef->BoneCount; j++)
+                                    unit.data.Targets[j] = bones[unitDef->StartBoneIndex + j];
+                                        
+                                // Create track proxies
+                                unit.data.Sources = new  Transform[unitDef->SegmentCount];
+                                for (uint j = 0; j < unitDef->SegmentCount; j++)
+                                    unit.data.Sources[j] = CreateSegmentProxy(i, (uint)unitDef->StartSegmentIndex + j);
+                            }
                             break;
-                        case RigUnitType.Unknown12:
+                        case RigUnitType.TwoBoneTrans:
                             break;
                         default:
                             Debug.Assert(false);

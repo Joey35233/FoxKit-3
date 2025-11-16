@@ -13,7 +13,7 @@ namespace Fox.Anim
         Vector3 = 3,
         Vector4 = 4,
         QuatDiff = 5,
-        RootPos = 6,
+        VectorDiff = 6,
     }
     
     [StructLayout(LayoutKind.Sequential)]
@@ -23,7 +23,7 @@ namespace Fox.Anim
 
         public int DataOffset;
 
-        public short MotionSegmentId;
+        public short Id;
 
         private byte Packed_Type_NextEntryOffset;
         public TrackType Type => (TrackType)(Packed_Type_NextEntryOffset & 0xF);

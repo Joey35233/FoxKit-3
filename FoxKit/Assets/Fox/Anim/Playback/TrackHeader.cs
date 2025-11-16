@@ -6,23 +6,22 @@ namespace Fox.Anim
     [StructLayout(LayoutKind.Sequential)]
     internal unsafe struct TrackHeader
     {
-        public uint ChannelCount;
+        public uint UnitCount;
 
-        public uint TrackCount;
+        public uint SegmentCount;
 
-        public ushort HeaderIndex; // Used in SAND. In GANI, 0 for FK, 1 for IK
+        public ushort Id;
 
-        public byte Unknown;
-
-        public byte Flag;
+        public byte UnknownA;
+        public byte UnknownB;
 
         public uint FrameCount;
 
-        public uint TickBase;
+        public uint FrameRate;
 
         public TrackUnit* GetUnit(uint channelIndex)
         {
-            if (channelIndex >= ChannelCount)
+            if (channelIndex >= UnitCount)
                 return null;
             
             fixed (TrackHeader* thisPtr = &this)

@@ -12,17 +12,17 @@ namespace Fox.Anim
         LocalOrientation = 4,
         LocalTransform = 5,
 
-        Unknown6 = 6,
+        ThreeBoneLikeTwoBone = 6,
 
         Transform = 7,
         Arm = 8,
 
-        Unknown9 = 9,
-        Unknown10 = 10,
+        LocalTransformSRT = 9,
+        AnimalLeg = 10,
 
-        List = 11,
+        MultiLocalOrientation = 11,
 
-        Unknown12 = 12,
+        TwoBoneTrans = 12,
     }
 
     [StructLayout(LayoutKind.Sequential)]
@@ -30,14 +30,14 @@ namespace Fox.Anim
     {
         public RigUnitType Type;
         
-        public short TrackCount;
+        public short SegmentCount;
         public short BoneCount;
         public short ParentBoneIndex;
         public short ParentUnitIndex;
         
         private uint _Padding;
         
-        // Indices
+        // Specific
         public short PositionSegmentIndex;
         public short RotationSegmentIndex;
     }
@@ -47,42 +47,42 @@ namespace Fox.Anim
     {
         public RigUnitType Type;
 
-        public short TrackCount;
+        public short SegmentCount;
         public short BoneCount;
         public short ParentBoneIndex;
         public short ParentUnitIndex;
         
         private uint _Padding;
         
-        public short SkelIndex;
+        public short BoneIndex;
         public short RotationSegmentIndex;
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    internal struct RigTwoBone
+    internal struct RigTwoBoneDef
     {
         public RigUnitType Type;
 
-        public short TrackCount;
+        public short SegmentCount;
         public short BoneCount;
         public short ParentBoneIndex;
         public short ParentUnitIndex;
         
         private uint _Padding;
         
-        // Indices
+        // Specific
         private Vector4 _Padding1;
         
         public Vector3 ChainPlaneNormal;
         private uint _PaddingW;
 
-		public short UpperSkelIndex;
-		public short MidSkelIndex;
+		public short UpperBoneIndex;
+		public short MidBoneIndex;
 
 		public short PoleRotationSegmentIndex;
 		public short EffectorPositionSegmentIndex;
 
-		public short EffectorSkelIndex;
+		public short EffectorBoneIndex;
     }
     
     [StructLayout(LayoutKind.Sequential)]
@@ -90,14 +90,15 @@ namespace Fox.Anim
     {
         public RigUnitType Type;
 
-        public short TrackCount;
+        public short SegmentCount;
         public short BoneCount;
         public short ParentBoneIndex;
         public short ParentUnitIndex;
         
         private uint _Padding;
         
-        public short SkelIndex;
+        // Specific
+        public short BoneIndex;
         public short RotationSegmentIndex;
     }
 
@@ -106,15 +107,15 @@ namespace Fox.Anim
     {
         public RigUnitType Type;
 
-        public short TrackCount;
+        public short SegmentCount;
         public short BoneCount;
         public short ParentBoneIndex;
         public short ParentUnitIndex;
         
         private uint _Padding;
         
-        // Indices
-        public short SkelIndex;
+        // Specific
+        public short BoneIndex;
 
         public short PositionSegmentIndex;
         public short RotationSegmentIndex;
@@ -125,15 +126,15 @@ namespace Fox.Anim
     {
         public RigUnitType Type;
 
-        public short TrackCount;
+        public short SegmentCount;
         public short BoneCount;
         public short ParentBoneIndex;
         public short ParentUnitIndex;
         
         private uint _Padding;
         
-        // Indices
-        public short SkelIndex;
+        // Specific
+        public short BoneIndex;
 
         public short PositionSegmentIndex;
         public short RotationSegmentIndex;
@@ -144,27 +145,44 @@ namespace Fox.Anim
     {
         public RigUnitType Type;
 
-        public short TrackCount;
+        public short SegmentCount;
         public short BoneCount;
         public short ParentBoneIndex;
         public short ParentUnitIndex;
         
         private uint _Padding;
         
-        // Indices
+        // Specific
         private Vector4 _Padding1;
         
         public Vector3 ChainPlaneNormal;
         private uint _PaddingW;
 
-        public short ShoulderSkelIndex;
-        public short UpperSkelIndex;
-        public short LowerSkelIndex;
+        public short ShoulderBoneIndex;
+        public short UpperBoneIndex;
+        public short LowerBoneIndex;
 
         public short ShoulderRotationSegmentIndex;
         public short PoleRotationSegmentIndex;
         public short EffectorPositionSegmentIndex;
 
-        public short EffectorSkelIndex;
+        public short EffectorBoneIndex;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct RigMultiLocalOrientationDef
+    {
+        public RigUnitType Type;
+
+        public short SegmentCount;
+        public short BoneCount;
+        public short ParentBoneIndex;
+        public short ParentUnitIndex;
+        
+        private uint _Padding;
+        
+        // Specific
+        public short StartBoneIndex;
+        public short StartSegmentIndex;
     }
 }

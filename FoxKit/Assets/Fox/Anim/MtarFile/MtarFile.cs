@@ -23,8 +23,8 @@ namespace Fox.Anim
                     if (layoutTrack == null)
                         return null;
                     
-                    // Pick first file and read MTAR metadata for it
-                    Mtar2FileHeader* fileHeader = header->GetFile2Headers();
+                    // Pick file 1028 and read MTAR metadata for it - 35ac42b3641df /Assets/tpp/motion/SI_game/fani/bodies/snap/snapnon/snapnon_s_dh_lp
+                    Mtar2FileHeader* fileHeader = header->GetFile2Headers() + 1028;
                     
                     // Make Unity animation clip
                     AnimationClip clip = new AnimationClip
@@ -44,29 +44,29 @@ namespace Fox.Anim
                         gani2TrackDataArray = (Gani2TrackData*)intPtr;
                     }
                     
-                    uint absTrackDataIndex = 0;
-                    for (uint i = 0; i < layoutTrack->ChannelCount; i++)
+                    uint segmentId = 0;
+                    for (uint unitId = 0; unitId < layoutTrack->UnitCount; unitId++)
                     {
-                        TrackUnit* trackUnit = layoutTrack->GetUnit(i);
+                        TrackUnit* unit = layoutTrack->GetUnit(unitId);
 
                         // Hack to get Unity to bind the root transform properly
-                        if (trackUnit->Name == ConversionUtils.RootUnitName)
+                        if (unit->Name == ConversionUtils.RootUnitName)
                         {
-                            Debug.Assert(trackUnit->SegmentCount == 2);
+                            Debug.Assert(unit->SegmentCount == 2);
 
                             {
-                                TrackData* trackData = trackUnit->GetData(ConversionUtils.RootRotSegmentIndex);
-                                Gani2TrackData* gani2TrackData = gani2TrackDataArray + absTrackDataIndex;
+                                TrackData* trackData = unit->GetSegment(ConversionUtils.RootRotSegmentIndex);
+                                Gani2TrackData* gani2TrackData = gani2TrackDataArray + segmentId;
                                 ushort* trackDataBlob = (ushort*)((byte*)gani2TrackData + gani2TrackData->DataOffset);
                                 
                                 Debug.Assert(trackData->Type == TrackType.QuatDiff);
                                 
                                 double time = 0;
                             
-                                AnimationCurve curveX = CreateCurve(trackUnit);
-                                AnimationCurve curveY = CreateCurve(trackUnit);
-                                AnimationCurve curveZ = CreateCurve(trackUnit);
-                                AnimationCurve curveW = CreateCurve(trackUnit);
+                                AnimationCurve curveX = CreateCurve(unit);
+                                AnimationCurve curveY = CreateCurve(unit);
+                                AnimationCurve curveZ = CreateCurve(unit);
+                                AnimationCurve curveW = CreateCurve(unit);
                                 
                                 ulong inoutBitstreamPos = 0;
                                 
@@ -77,7 +77,7 @@ namespace Fox.Anim
                                 curveZ.AddKey((float)time, keyValue.z);
                                 curveW.AddKey((float)time, keyValue.w);
 
-                                if (!trackHeader->GetUnitFlags(i).HasFlag(TrackUnit.UnitFlags.NoFrames))
+                                if (!trackHeader->GetUnitFlags(unitId).HasFlag(TrackUnit.UnitFlags.NoFrames))
                                 {
                                     while (time < trackHeader->FrameCount * TrackData.PlaybackRate)
                                     {
@@ -111,21 +111,21 @@ namespace Fox.Anim
                                 clip.SetCurve("", typeof(Transform), "m_LocalRotation.z", curveZ);
                                 clip.SetCurve("", typeof(Transform), "m_LocalRotation.w", curveW);
 
-                                absTrackDataIndex++;
+                                segmentId++;
                             }
 
                             {
-                                TrackData* trackData = trackUnit->GetData(ConversionUtils.RootPosSegmentIndex);
-                                Gani2TrackData* gani2TrackData = gani2TrackDataArray + absTrackDataIndex;
+                                TrackData* trackData = unit->GetSegment(ConversionUtils.RootPosSegmentIndex);
+                                Gani2TrackData* gani2TrackData = gani2TrackDataArray + segmentId;
                                 ushort* trackDataBlob = (ushort*)((byte*)gani2TrackData + gani2TrackData->DataOffset);
                                 
-                                Debug.Assert(trackData->Type == TrackType.RootPos);
+                                Debug.Assert(trackData->Type == TrackType.VectorDiff);
                                 
                                 double time = 0;
                             
-                                AnimationCurve curveX = CreateCurve(trackUnit);
-                                AnimationCurve curveY = CreateCurve(trackUnit);
-                                AnimationCurve curveZ = CreateCurve(trackUnit);
+                                AnimationCurve curveX = CreateCurve(unit);
+                                AnimationCurve curveY = CreateCurve(unit);
+                                AnimationCurve curveZ = CreateCurve(unit);
                                 
                                 byte* dataBlob = (byte*)trackDataBlob;
                                 
@@ -136,7 +136,7 @@ namespace Fox.Anim
                                 curveY.AddKey((float)time, keyValue.y);
                                 curveZ.AddKey((float)time, keyValue.z);
 
-                                if (!trackHeader->GetUnitFlags(i).HasFlag(TrackUnit.UnitFlags.NoFrames))
+                                if (!trackHeader->GetUnitFlags(unitId).HasFlag(TrackUnit.UnitFlags.NoFrames))
                                 {
                                     while (time < trackHeader->FrameCount * TrackData.PlaybackRate)
                                     {
@@ -156,17 +156,16 @@ namespace Fox.Anim
                                 clip.SetCurve("", typeof(Transform), "m_LocalPosition.y", curveY);
                                 clip.SetCurve("", typeof(Transform), "m_LocalPosition.z", curveZ);
 
-                                absTrackDataIndex++;
+                                segmentId++;
                             }
                             
                             continue;
                         }
 
-                        for (uint j = 0; j < trackUnit->SegmentCount; j++, absTrackDataIndex++)
+                        for (uint j = 0; j < unit->SegmentCount; j++, segmentId++)
                         {
-                            // Parse TrackUnit
-                            TrackData* trackData = trackUnit->GetData(j);
-                            Gani2TrackData* gani2TrackData = gani2TrackDataArray + absTrackDataIndex;
+                            TrackData* trackData = unit->GetSegment(segmentId);
+                            Gani2TrackData* gani2TrackData = gani2TrackDataArray + segmentId;
                             ushort* trackDataBlob = (ushort*)((byte*)gani2TrackData + gani2TrackData->DataOffset);
 
                             double time = 0;
@@ -174,10 +173,10 @@ namespace Fox.Anim
                             {
                                 case TrackType.Quat:
                                 {
-                                    AnimationCurve curveX = CreateCurve(trackUnit);
-                                    AnimationCurve curveY = CreateCurve(trackUnit);
-                                    AnimationCurve curveZ = CreateCurve(trackUnit);
-                                    AnimationCurve curveW = CreateCurve(trackUnit);
+                                    AnimationCurve curveX = CreateCurve(unit);
+                                    AnimationCurve curveY = CreateCurve(unit);
+                                    AnimationCurve curveZ = CreateCurve(unit);
+                                    AnimationCurve curveW = CreateCurve(unit);
                                     
                                     ulong inoutBitstreamPos = 0;
                                     
@@ -192,7 +191,7 @@ namespace Fox.Anim
                                     // if (absTrackDataIndex == 21)
                                     //     debugString += $"{frameTime + 1} {keyValue.w}, {keyValue.x}, {keyValue.y}, {keyValue.z}\n";
 
-                                    if (!trackHeader->GetUnitFlags(i).HasFlag(TrackUnit.UnitFlags.NoFrames))
+                                    if (!trackHeader->GetUnitFlags(unitId).HasFlag(TrackUnit.UnitFlags.NoFrames))
                                     {
                                         while (time < trackHeader->FrameCount * TrackData.PlaybackRate)
                                         {
@@ -226,19 +225,19 @@ namespace Fox.Anim
                                         AnimationUtility.SetKeyRightTangentMode(curveW, l, AnimationUtility.TangentMode.Linear);
                                     }
                                     
-                                    clip.SetCurve(ConversionUtils.GetSegmentNamePropertyPath(i, j), typeof(Transform), "m_LocalRotation.x", curveX);
-                                    clip.SetCurve(ConversionUtils.GetSegmentNamePropertyPath(i, j), typeof(Transform), "m_LocalRotation.y", curveY);
-                                    clip.SetCurve(ConversionUtils.GetSegmentNamePropertyPath(i, j), typeof(Transform), "m_LocalRotation.z", curveZ);
-                                    clip.SetCurve(ConversionUtils.GetSegmentNamePropertyPath(i, j), typeof(Transform), "m_LocalRotation.w", curveW);
+                                    clip.SetCurve(ConversionUtils.GetSegmentNamePropertyPath(unitId, segmentId), typeof(Transform), "m_LocalRotation.x", curveX);
+                                    clip.SetCurve(ConversionUtils.GetSegmentNamePropertyPath(unitId, segmentId), typeof(Transform), "m_LocalRotation.y", curveY);
+                                    clip.SetCurve(ConversionUtils.GetSegmentNamePropertyPath(unitId, segmentId), typeof(Transform), "m_LocalRotation.z", curveZ);
+                                    clip.SetCurve(ConversionUtils.GetSegmentNamePropertyPath(unitId, segmentId), typeof(Transform), "m_LocalRotation.w", curveW);
 
                                     break;
                                 }
                                 case TrackType.Vector3:
-                                case TrackType.RootPos:
+                                case TrackType.VectorDiff:
                                 {      
-                                    AnimationCurve curveX = CreateCurve(trackUnit);
-                                    AnimationCurve curveY = CreateCurve(trackUnit);
-                                    AnimationCurve curveZ = CreateCurve(trackUnit);
+                                    AnimationCurve curveX = CreateCurve(unit);
+                                    AnimationCurve curveY = CreateCurve(unit);
+                                    AnimationCurve curveZ = CreateCurve(unit);
                                     
                                     byte* dataBlob = (byte*)trackDataBlob;
                                     
@@ -249,7 +248,7 @@ namespace Fox.Anim
                                     curveY.AddKey((float)time, keyValue.y);
                                     curveZ.AddKey((float)time, keyValue.z);
 
-                                    if (!trackHeader->GetUnitFlags(i).HasFlag(TrackUnit.UnitFlags.NoFrames))
+                                    if (!trackHeader->GetUnitFlags(unitId).HasFlag(TrackUnit.UnitFlags.NoFrames))
                                     {
                                         while (time < trackHeader->FrameCount * TrackData.PlaybackRate)
                                         {
@@ -265,9 +264,9 @@ namespace Fox.Anim
                                         }
                                     }
                                     
-                                    clip.SetCurve(ConversionUtils.GetSegmentNamePropertyPath(i, j), typeof(Transform), "m_LocalPosition.x", curveX);
-                                    clip.SetCurve(ConversionUtils.GetSegmentNamePropertyPath(i, j), typeof(Transform), "m_LocalPosition.y", curveY);
-                                    clip.SetCurve(ConversionUtils.GetSegmentNamePropertyPath(i, j), typeof(Transform), "m_LocalPosition.z", curveZ);
+                                    clip.SetCurve(ConversionUtils.GetSegmentNamePropertyPath(unitId, segmentId), typeof(Transform), "m_LocalPosition.x", curveX);
+                                    clip.SetCurve(ConversionUtils.GetSegmentNamePropertyPath(unitId, segmentId), typeof(Transform), "m_LocalPosition.y", curveY);
+                                    clip.SetCurve(ConversionUtils.GetSegmentNamePropertyPath(unitId, segmentId), typeof(Transform), "m_LocalPosition.z", curveZ);
                                 
                                     break;
                                 }

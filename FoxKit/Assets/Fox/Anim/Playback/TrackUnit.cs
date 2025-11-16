@@ -19,24 +19,20 @@ namespace Fox.Anim
 
         public UnitFlags Flags;
 
-        public ushort Padding;
+        private ushort _Padding;
 
-        public TrackData* GetData(uint segmentIndex)
+        public TrackData* GetSegment(uint id)
         {
-            if (segmentIndex >= SegmentCount)
-                return null;
-
             fixed (TrackUnit* thisPtr = &this)
             {
                 byte* selfPtr = (byte*)thisPtr;
 
-                TrackData* trackData = (TrackData*)(selfPtr + sizeof(TrackUnit));
+                TrackData* segment = (TrackData*)(selfPtr + sizeof(TrackUnit));
 
-                uint i = 0;
-                while (i++ != segmentIndex)
-                    trackData = (TrackData*)((byte*)trackData + trackData->NextEntryOffset);
+                while (segment->Id != id)
+                    segment = (TrackData*)((byte*)segment + segment->NextEntryOffset);
 
-                return trackData;
+                return segment;
             }
         }
     }

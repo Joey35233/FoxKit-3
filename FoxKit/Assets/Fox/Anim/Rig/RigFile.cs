@@ -12,10 +12,10 @@ namespace Fox.Anim
 
         public uint Version;
 	
-        public uint RigUnitCount;
+        public uint UnitCount;
         public uint SegmentCount;
         public uint FileSize;
-        public uint BoneListOffset;
+        public uint SkelListOffset;
         public uint MaskDefOffset;
     }
 }
