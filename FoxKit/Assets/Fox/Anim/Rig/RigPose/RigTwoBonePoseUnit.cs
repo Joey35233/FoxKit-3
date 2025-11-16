@@ -55,6 +55,7 @@ namespace Fox.Anim
 
             MidTarget.SetPosition(stream, math.rotate(upper_rgr, mid_blp) + upper_rgp);
             UpperTarget.SetPosition(stream, upper_rgp);
+            EffectorTarget.SetPosition(stream, effector_rgp);
         }
     }
 
@@ -104,5 +105,15 @@ namespace Fox.Anim
 
     public class RigTwoBonePoseUnit : RigConstraint<RigTwoBonePoseUnitJob, RigTwoBonePoseUnitData, RigTwoBonePoseUnitJobBinder>
     {
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.red;
+            
+            Vector3 effectorPosition = transform.InverseTransformPoint(data.EffectorPositionSource.position);
+            
+            Gizmos.DrawWireCube(effectorPosition, 0.1f * Vector3.one);
+            
+            Gizmos.DrawLine(data.UpperTarget.position, data.EffectorTarget.position);
+        }
     }
 }

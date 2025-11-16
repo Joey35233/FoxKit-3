@@ -58,5 +58,10 @@ namespace Fox.Anim
 
     public class RigOrientationPoseUnit : RigConstraint<RigOrientationPoseUnitJob, RigOrientationPoseUnitData, RigOrientationPoseUnitJobBinder>
     {
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireCube(Vector3.zero, 0.15f * Vector3.one);
+        }
     }
 }

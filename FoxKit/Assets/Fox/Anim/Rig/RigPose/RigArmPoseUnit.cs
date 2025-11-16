@@ -1,4 +1,5 @@
-﻿using Unity.Mathematics;
+﻿using System;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Animations;
 using UnityEngine.Animations.Rigging;
@@ -144,5 +145,16 @@ namespace Fox.Anim
 
     public class RigArmPoseUnit : RigConstraint<RigArmPoseUnitJob, RigArmPoseUnitData, RigArmPoseUnitJobBinder>
     {
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.red;
+            
+            Vector3 effectorPosition = transform.InverseTransformPoint(data.EffectorPositionSource.position);
+            
+            Gizmos.DrawWireCube(effectorPosition, 0.1f * Vector3.one);
+            
+            Gizmos.DrawLine(data.ShoulderTarget.position, data.EffectorTarget.position);
+            Gizmos.DrawLine(data.UpperArmTarget.position, data.EffectorTarget.position);
+        }
     }
 }

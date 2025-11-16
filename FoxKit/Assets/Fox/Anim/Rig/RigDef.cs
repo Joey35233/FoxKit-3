@@ -79,8 +79,8 @@ namespace Fox.Anim
 		public short UpperBoneIndex;
 		public short MidBoneIndex;
 
+        public short EffectorPositionSegmentIndex;
 		public short PoleRotationSegmentIndex;
-		public short EffectorPositionSegmentIndex;
 
 		public short EffectorBoneIndex;
     }
@@ -117,8 +117,8 @@ namespace Fox.Anim
         // Specific
         public short BoneIndex;
 
-        public short PositionSegmentIndex;
         public short RotationSegmentIndex;
+        public short PositionSegmentIndex;
     }
 
     [StructLayout(LayoutKind.Sequential)]
@@ -136,8 +136,8 @@ namespace Fox.Anim
         // Specific
         public short BoneIndex;
 
-        public short PositionSegmentIndex;
         public short RotationSegmentIndex;
+        public short PositionSegmentIndex;
     }
 
     [StructLayout(LayoutKind.Sequential)]
@@ -163,8 +163,8 @@ namespace Fox.Anim
         public short LowerBoneIndex;
 
         public short ShoulderRotationSegmentIndex;
-        public short PoleRotationSegmentIndex;
         public short EffectorPositionSegmentIndex;
+        public short PoleRotationSegmentIndex;
 
         public short EffectorBoneIndex;
     }
