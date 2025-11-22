@@ -7,7 +7,7 @@ namespace Fox.Anim
 {
     public static class RigPoseUnitUtils
     {
-        internal static void SolveTwoBoneIK(out quaternion out_upperArm_gr, out quaternion out_lowerArm_gr, float3 lowerArm_blp, float3 effector_blp, float3 chainPlaneNormal, float3 upperArm_rgp, float3 effector_rgp, float3 chain_uv)
+        internal static void SolveTwoBoneIK(out quaternion out_upperArm_rgr, out quaternion out_lowerArm_rgr, float3 lowerArm_blp, float3 effector_blp, float3 chainPlaneNormal, float3 upperArm_rgp, float3 effector_rgp, float3 chain_uv)
         {
             float3 uarm2eff_rv = effector_rgp - upperArm_rgp;
             
@@ -28,16 +28,19 @@ namespace Fox.Anim
             // UpperArm
             float3 basisA_uv = math.cross(chain_uv, uarm2eff_ruv);
 
-            float weirdLen = ((lowerArm_blp_len2 - effector_blp_len2) + uarm2eff_rv_len2) * 0.5f / uarm2eff_rv_len;
-            weirdLen = math.max(weirdLen, 0);
+            float cosTheta_num = lowerArm_blp_len2 + uarm2eff_rv_len2 - effector_blp_len2;
+            float cosTheta_denom = 2.0f * uarm2eff_rv_len;
+            float cosTheta = cosTheta_num / cosTheta_denom;
+            cosTheta = math.max(cosTheta, 0);
 
-            float maskedWeirdLen = (uarm2eff_rv_len < effector_blp_len + lowerArm_blp_len) ? weirdLen : lowerArm_blp_len;
-            float maskedWeirdLen2 = maskedWeirdLen * maskedWeirdLen;
-            float maskedWeirdDist2 = lowerArm_blp_len2 - maskedWeirdLen2;
-            float clampedMaskedWeirdDist2 = Mathf.Max(maskedWeirdDist2, 0);
-            float packedWeirdDist = math.sqrt(clampedMaskedWeirdDist2);
+            cosTheta = (uarm2eff_rv_len < effector_blp_len + lowerArm_blp_len) ? cosTheta : lowerArm_blp_len;
+            float cos2Theta = cosTheta * cosTheta;
+            float sin2Theta = lowerArm_blp_len2 - cos2Theta;
+            sin2Theta = Mathf.Max(sin2Theta, 0);
+            
+            float sinTheta = math.sqrt(sin2Theta);
 
-            float3 upperArm_basisB_v = maskedWeirdLen * uarm2eff_ruv + packedWeirdDist * chain_uv;
+            float3 upperArm_basisB_v = cosTheta * uarm2eff_ruv + sinTheta * chain_uv;
             float3 upperArm_basisB_uv = math.normalize(upperArm_basisB_v);
 
             float3 basisC_uv = math.cross(upperArm_basisB_uv, basisA_uv);
@@ -47,7 +50,7 @@ namespace Fox.Anim
             float3x3 upperArmMatrixPre = new float3x3(chainPlaneNormal, lowerArm_buv, lowerArmCrossNormal);
             float3x3 upperArmMatrixPost = new float3x3(basisA_uv, upperArm_basisB_uv, basisC_uv);
             float3x3 upperArmMatrix = math.mul(upperArmMatrixPre, math.transpose(upperArmMatrixPost));
-            out_upperArm_gr = ToRotation(upperArmMatrix);
+            out_upperArm_rgr = ToRotation(upperArmMatrix);
 
             // LowerArm
             float3 lowerArm_basisB_v = uarm2eff_rv - upperArm_basisB_v;
@@ -60,7 +63,7 @@ namespace Fox.Anim
             float3x3 lowerArmMatrixPre = new float3x3(chainPlaneNormal, effector_buv, effectorCrossNormal);
             float3x3 lowerArmMatrixPost = new float3x3(basisA_uv, lowerArm_basisB_uv, basisC_uv);
             float3x3 lowerArmMatrix = math.mul(lowerArmMatrixPre, math.transpose(lowerArmMatrixPost));
-            out_lowerArm_gr = ToRotation(lowerArmMatrix);
+            out_lowerArm_rgr = ToRotation(lowerArmMatrix);
         }
 
         private static quaternion ToRotation(float3x3 mat)

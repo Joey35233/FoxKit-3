@@ -44,7 +44,7 @@ namespace Fox.Anim
             
             quaternion chainRot = PoleRotationSource.GetRotation(stream);
             float3 upper2eff_rlv = effector_rgp - upper_rgp;
-            float3 chain_uv = math.normalize(math.rotate(chainRot, upper_rgp));
+            float3 chain_uv = math.normalize(math.rotate(chainRot, upper2eff_rlv));
             
             float3 mid_blp = MidTarget.GetLocalPosition(stream);
             float3 effector_blp = EffectorTarget.GetLocalPosition(stream);
