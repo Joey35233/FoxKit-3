@@ -11,27 +11,22 @@ namespace Fox.Anim
     [Unity.Burst.BurstCompile]
     public struct RigArmPoseUnitJob : IWeightedAnimationJob
     {
-        public ReadWriteTransformHandle ShoulderTarget;
         public ReadOnlyTransformHandle ShoulderRotationSource;
-
-        public ReadWriteTransformHandle UpperArmTarget;
-        
-        public Vector3Property ChainPlaneNormal;
+        public ReadOnlyTransformHandle EffectorPositionSource;
         public ReadOnlyTransformHandle PoleRotationSource;
-
-        public ReadWriteTransformHandle LowerArmTarget;
+        public Vector3 ChainPlaneNormal;
         
         public ReadWriteTransformHandle EffectorTarget;
         public ReadOnlyTransformHandle EffectorPositionSource;
 
         public bool DEBUG;
-        public ReadWriteTransformHandle DEBUG_ShoulderTarget;
-        public ReadWriteTransformHandle DEBUG_UpperTarget;
+        public ReadWriteTransformHandle DEBUG_Skel0Target;
+        public ReadWriteTransformHandle DEBUG_Skel1Target;
         public ReadWriteTransformHandle DEBUG_PoleTarget;
-        public ReadWriteTransformHandle DEBUG_LowerTarget;
+        public ReadWriteTransformHandle DEBUG_Skel2Target;
         public ReadWriteTransformHandle DEBUG_EffectorTarget;
 
-        private float3x3 InverseRootRotation;
+        private quaternion InverseRootRotation;
         private float3 InverseRootPosition;
 
         public FloatProperty jobWeight
@@ -42,68 +37,66 @@ namespace Fox.Anim
 
         public void ProcessRootMotion(AnimationStream stream)
         {
-            InverseRootRotation = new float3x3(math.inverse(stream.rootMotionRotation));
-
+            InverseRootRotation = math.inverse(stream.rootMotionRotation);
             InverseRootPosition = -stream.rootMotionPosition;
         }
 
-        private void ComputeSkel0AndSkel1(AnimationStream stream, out float3 out_shoulder_rgp, out quaternion out_shoulder_rgr, out float3 out_upperArm_rgp)
+        private void ComputeSkel0AndSkel1(AnimationStream stream, out float3 out_skel0_rgp, out quaternion out_skel0_rgr, out float3 out_skel1_rgp)
         {
-            out_shoulder_rgp = ShoulderTarget.GetPosition(stream);
+            out_skel0_rgp = Skel0Target.GetPosition(stream);
             
-            out_shoulder_rgr = ShoulderRotationSource.GetRotation(stream);
+            out_skel0_rgr = ShoulderRotationSource.GetRotation(stream);
             
-            float3 upperArm_blp = UpperArmTarget.GetLocalPosition(stream);
-            out_upperArm_rgp = math.rotate(out_shoulder_rgr, upperArm_blp) + out_shoulder_rgp;
+            float3 skel1_blp = Skel1Target.GetLocalPosition(stream);
+            out_skel1_rgp = math.rotate(out_skel0_rgr, skel1_blp) + out_skel0_rgp;
         }
 
         public void ProcessAnimation(AnimationStream stream)
         {
-            // Apply inverse root correction
             float3 effector_rgp = EffectorPositionSource.GetPosition(stream);
             effector_rgp = math.mul(InverseRootRotation, effector_rgp + InverseRootPosition);
-            
-            ComputeSkel0AndSkel1(stream, out float3 shoulder_rgp, out quaternion shoulder_rgr, out float3 upperArm_rgp);
-            
-            quaternion chainRot = PoleRotationSource.GetRotation(stream);
-            float3 uarm2eff_rlv = effector_rgp - upperArm_rgp;
-            float3 chain_uv = math.normalize(math.rotate(chainRot, uarm2eff_rlv));
-            
-            float3 lowerArm_blp = LowerArmTarget.GetLocalPosition(stream);
-            float3 effector_blp = EffectorTarget.GetLocalPosition(stream);
-            
-            float3 chainPlaneNormal = ChainPlaneNormal.Get(stream);
-            
-            RigPoseUnitUtils.SolveTwoBoneIK(out quaternion upperArm_rgr, out quaternion lowerArm_rgr, lowerArm_blp, effector_blp, chainPlaneNormal, upperArm_rgp, effector_rgp, chain_uv);
 
-            float3 lowerArm_rgp = math.rotate(upperArm_rgr, lowerArm_blp) + upperArm_rgp;
+            quaternion pole_rgr = PoleRotationSource.GetRotation(stream);
+            pole_rgr = math.mul(InverseRootRotation, pole_rgr);
             
-            float3 trueEffector_rgp = math.rotate(lowerArm_rgr, effector_blp) + lowerArm_rgp;
+            ComputeSkel0AndSkel1(stream, out float3 skel0_rgp, out quaternion skel0_rgr, out float3 skel1_rgp);
             
-            ShoulderTarget.SetGlobalTR(stream, shoulder_rgp, shoulder_rgr);
-            UpperArmTarget.SetGlobalTR(stream, upperArm_rgp, upperArm_rgr);
-            LowerArmTarget.SetGlobalTR(stream, lowerArm_rgp, lowerArm_rgr);
-            EffectorTarget.SetPosition(stream, trueEffector_rgp);
+            float3 skel1toEff_rv = effector_rgp - skel1_rgp;
             
-            // LowerArmTarget.SetPosition(stream, lowerArm_rgp);
-            // UpperArmTarget.SetPosition(stream, upperArm_rgp);
-            // ShoulderTarget.SetPosition(stream, shoulder_rgp);
+            float3x3 pole_rgr_mat = new float3x3(pole_rgr);
+            float3 pole_rotation_x = pole_rgr_mat.c0;
+            // float4 q = pole_rgr;
+            // float3 pole_rotation_x = new float3(
+            //     1.0f - 2.0f * (q.y * q.y + q.z * q.z),
+            //     2.0f * (q.z * q.w + q.x * q.y),
+            //     2.0f * (q.x * q.z - q.y * q.w)
+            // );
+            pole_rotation_x = pole_rotation_x * -1;
+            float3 pole_prex_v = math.cross(skel1toEff_rv, pole_rotation_x);
+            float3 pole_v = math.cross(pole_prex_v, skel1toEff_rv);
+            float3 pole_uv = math.normalize(pole_v);
             
-            // lowerArm_blp     = new float3(0.284000f, 0.000000f, 0.000000f); 
-            // effector_blp     = new float3(0.255000f, 0.000000f, 0.000000f); 
-            // chainPlaneNormal = new float3(0.000000f, -1.000000f, 0.000000f); 
-            // upperArm_rgp     = new float3(0.042653f, 0.936965f, 0.261952f); 
-            // effector_rgp     = new float3(-0.178393f, 0.639487f, 0.489623f); 
-            // chain_uv         = new float3(0.860965f, -0.418754f, 0.288762f); 
-            // RigPoseUnitUtils.SolveTwoBoneIK(out Quaternion testA, out Quaternion testB, lowerArm_blp, effector_blp, chainPlaneNormal, upperArm_rgp, effector_rgp, chain_uv);
+            float3 skel2_blp = Skel2Target.GetLocalPosition(stream);
+            float3 skel3_blp = Skel3Target.GetLocalPosition(stream);
+            
+            float3 chainPlaneNormal = ChainPlaneNormal;
+            
+            RigPoseUnitUtils.SolveTwoBoneIK(out quaternion skel1_rgr, out quaternion skel2_rgr, skel2_blp, skel3_blp, chainPlaneNormal, skel1_rgp, effector_rgp, pole_uv);
 
+            float3 skel2_rgp = math.rotate(skel1_rgr, skel2_blp) + skel1_rgp;
+            float3 skel3_rgp = math.rotate(skel2_rgr, skel3_blp) + skel2_rgp;
+            
+            Skel0Target.SetGlobalTR(stream, skel0_rgp, skel0_rgr);
+            Skel1Target.SetGlobalTR(stream, skel1_rgp, skel1_rgr);
+            Skel2Target.SetGlobalTR(stream, skel2_rgp, skel2_rgr);
+            Skel3Target.SetPosition(stream, skel3_rgp);
             
             if (DEBUG)
             {
-                DEBUG_ShoulderTarget.SetGlobalTR(stream, shoulder_rgp, shoulder_rgr);
-                DEBUG_UpperTarget.SetGlobalTR(stream, upperArm_rgp, upperArm_rgr);
-                DEBUG_PoleTarget.SetPosition(stream, upperArm_rgp + 0.5f * uarm2eff_rlv + chain_uv);
-                DEBUG_LowerTarget.SetGlobalTR(stream, lowerArm_rgp, lowerArm_rgr);
+                DEBUG_Skel0Target.SetGlobalTR(stream, skel0_rgp, skel0_rgr);
+                DEBUG_Skel1Target.SetGlobalTR(stream, skel1_rgp, skel1_rgr);
+                DEBUG_PoleTarget.SetPosition(stream, skel1_rgp + 0.5f * skel1toEff_rv + pole_uv);
+                DEBUG_Skel2Target.SetGlobalTR(stream, skel2_rgp, skel2_rgr);
                 DEBUG_EffectorTarget.SetGlobalTR(stream, effector_rgp, Quaternion.identity);
             }
         }
@@ -112,42 +105,36 @@ namespace Fox.Anim
     [System.Serializable]
     public struct RigArmPoseUnitData : IAnimationJobData
     {
-        public Transform ShoulderTarget;
         public Transform ShoulderRotationSource;
-
-        public Transform UpperArmTarget;
-        
-        public Vector3 ChainPlaneNormal;
-        public Transform PoleRotationSource;
-
-        public Transform LowerArmTarget;
-        
-        public Transform EffectorTarget;
         public Transform EffectorPositionSource;
+        public Transform PoleRotationSource;
+        public Vector3 ChainPlaneNormal;
+        
+        public Transform Skel0Target;
+        public Transform Skel1Target;
+        public Transform Skel2Target;
+        public Transform Skel3Target;
         
         public bool DEBUG;
-        public Transform DEBUG_ShoulderTarget;
-        public Transform DEBUG_UpperTarget;
+        public Transform DEBUG_Skel0Target;
+        public Transform DEBUG_Skel1Target;
         public Transform DEBUG_PoleTarget;
-        public Transform DEBUG_LowerTarget;
+        public Transform DEBUG_Skel2Target;
         public Transform DEBUG_EffectorTarget;
         
-        public bool IsValid() => ShoulderTarget != null && ShoulderRotationSource != null && UpperArmTarget != null && LowerArmTarget != null && EffectorTarget != null && EffectorPositionSource != null && PoleRotationSource != null;
+        public bool IsValid() => Skel0Target != null && ShoulderRotationSource != null && Skel1Target != null && Skel2Target != null && Skel3Target != null && EffectorPositionSource != null && PoleRotationSource != null;
 
         public void SetDefaultValues()
         {
-            ShoulderTarget = null;
             ShoulderRotationSource = null;
-
-            UpperArmTarget = null;
-
-            ChainPlaneNormal = Vector3.zero;
-            PoleRotationSource = null;
-
-            LowerArmTarget = null;
-
-            EffectorTarget = null;
             EffectorPositionSource = null;
+            PoleRotationSource = null;
+            ChainPlaneNormal = new Vector3(0, 1, 0);
+            
+            Skel0Target = null;
+            Skel1Target = null;
+            Skel2Target = null;
+            Skel3Target = null;
         }
     }
 
@@ -157,27 +144,24 @@ namespace Fox.Anim
         {
             RigArmPoseUnitJob job = new RigArmPoseUnitJob
             {
-                ShoulderTarget = ReadWriteTransformHandle.Bind(animator, data.ShoulderTarget),
                 ShoulderRotationSource = ReadOnlyTransformHandle.Bind(animator, data.ShoulderRotationSource),
-                
-                UpperArmTarget = ReadWriteTransformHandle.Bind(animator, data.UpperArmTarget),
-                
-                ChainPlaneNormal = Vector3Property.Bind(animator, component, ConstraintsUtils.ConstructConstraintDataPropertyName("ChainPlaneNormal")),
+                EffectorPositionSource = ReadOnlyTransformHandle.Bind(animator, data.EffectorPositionSource),
                 PoleRotationSource = ReadOnlyTransformHandle.Bind(animator, data.PoleRotationSource),
+                ChainPlaneNormal = data.ChainPlaneNormal,
                 
-                LowerArmTarget = ReadWriteTransformHandle.Bind(animator, data.LowerArmTarget),
-                
-                EffectorTarget = ReadWriteTransformHandle.Bind(animator, data.EffectorTarget),
-                EffectorPositionSource = ReadOnlyTransformHandle.Bind(animator, data.EffectorPositionSource)
+                Skel0Target = ReadWriteTransformHandle.Bind(animator, data.Skel0Target),
+                Skel1Target = ReadWriteTransformHandle.Bind(animator, data.Skel1Target),
+                Skel2Target = ReadWriteTransformHandle.Bind(animator, data.Skel2Target),
+                Skel3Target = ReadWriteTransformHandle.Bind(animator, data.Skel3Target),
             };
 
             if (data.DEBUG)
             {
                 job.DEBUG = true;
-                job.DEBUG_ShoulderTarget = ReadWriteTransformHandle.Bind(animator, data.DEBUG_ShoulderTarget);
-                job.DEBUG_UpperTarget = ReadWriteTransformHandle.Bind(animator, data.DEBUG_UpperTarget);
+                job.DEBUG_Skel0Target = ReadWriteTransformHandle.Bind(animator, data.DEBUG_Skel0Target);
+                job.DEBUG_Skel1Target = ReadWriteTransformHandle.Bind(animator, data.DEBUG_Skel1Target);
                 job.DEBUG_PoleTarget = ReadWriteTransformHandle.Bind(animator, data.DEBUG_PoleTarget);
-                job.DEBUG_LowerTarget = ReadWriteTransformHandle.Bind(animator, data.DEBUG_LowerTarget);
+                job.DEBUG_Skel2Target = ReadWriteTransformHandle.Bind(animator, data.DEBUG_Skel2Target);
                 job.DEBUG_EffectorTarget = ReadWriteTransformHandle.Bind(animator, data.DEBUG_EffectorTarget);
             }
 
@@ -194,43 +178,40 @@ namespace Fox.Anim
             Gizmos.color = Color.red;
             
             Vector3 effectorPosition = transform.InverseTransformPoint(data.EffectorPositionSource.position);
-            
             Gizmos.DrawWireSphere(effectorPosition, 0.02f);
-            
-            // Gizmos.DrawLine(data.ShoulderTarget.position, data.EffectorTarget.position);
-            // Gizmos.DrawLine(data.UpperArmTarget.position, data.EffectorTarget.position);
 
             if (data.DEBUG)
             {
-
-                Vector3 uarm2eff_rv = data.DEBUG_EffectorTarget.position - data.DEBUG_UpperTarget.position;
+                Vector3 skel1toEff_rv = data.DEBUG_EffectorTarget.position - data.DEBUG_Skel1Target.position;
+                
                 Gizmos.color = Color.magenta;
-                Gizmos.DrawLine(data.DEBUG_UpperTarget.position, data.DEBUG_EffectorTarget.position);
+                Gizmos.DrawLine(data.DEBUG_Skel1Target.position, data.DEBUG_EffectorTarget.position);
                 Gizmos.color = Color.white;
-                Gizmos.DrawLine(data.DEBUG_UpperTarget.position + 0.5f * uarm2eff_rv, data.DEBUG_PoleTarget.position);
+                Gizmos.DrawLine(data.DEBUG_Skel1Target.position + 0.5f * skel1toEff_rv, data.DEBUG_PoleTarget.position);
                 
                 Gizmos.color = Color.blue;
                 
-                Gizmos.DrawLine(data.DEBUG_ShoulderTarget.position, data.DEBUG_UpperTarget.position);
-                Gizmos.DrawLine(data.DEBUG_UpperTarget.position, data.DEBUG_LowerTarget.position);
-                Gizmos.DrawLine(data.DEBUG_LowerTarget.position, data.DEBUG_EffectorTarget.position);
+                Gizmos.DrawLine(data.DEBUG_Skel0Target.position, data.DEBUG_Skel1Target.position);
+                Gizmos.DrawLine(data.DEBUG_Skel1Target.position, data.DEBUG_Skel2Target.position);
+                Gizmos.DrawLine(data.DEBUG_Skel2Target.position, data.DEBUG_EffectorTarget.position);
                 
-                // Shoulder -> Upper arm
+                // Skel0 -> Skel1
                 Gizmos.color = Color.yellow;
-                Gizmos.matrix = data.DEBUG_ShoulderTarget.localToWorldMatrix;
-                Gizmos.DrawLine(Vector3.zero, data.UpperArmTarget.localPosition);
-                Gizmos.DrawWireCube(data.UpperArmTarget.localPosition, 0.02f * Vector3.one);
+                Gizmos.matrix = data.DEBUG_Skel0Target.localToWorldMatrix;
+                Gizmos.DrawLine(Vector3.zero, data.Skel1Target.localPosition);
+                Gizmos.DrawWireCube(data.Skel1Target.localPosition, 0.02f * Vector3.one);
                 
-                // Upper arm -> Lower arm
+                // Skel1 arm -> Skel2
                 Gizmos.color = Color.yellow;
-                Gizmos.matrix = data.DEBUG_UpperTarget.localToWorldMatrix;
-                Gizmos.DrawLine(Vector3.zero, data.LowerArmTarget.localPosition);
-                Gizmos.DrawWireCube(data.LowerArmTarget.localPosition, 0.02f * Vector3.one);
+                Gizmos.matrix = data.DEBUG_Skel1Target.localToWorldMatrix;
+                Gizmos.DrawLine(Vector3.zero, data.Skel2Target.localPosition);
+                Gizmos.DrawWireCube(data.Skel2Target.localPosition, 0.02f * Vector3.one);
                 
-                // Lower arm -> Effector
+                // Skel2 -> Effector
                 Gizmos.color = Color.yellow;
-                Gizmos.matrix = data.DEBUG_LowerTarget.localToWorldMatrix;
-                Gizmos.DrawLine(Vector3.zero, data.EffectorTarget.localPosition);
+                Gizmos.matrix = data.DEBUG_Skel2Target.localToWorldMatrix;
+                Gizmos.DrawLine(Vector3.zero, data.Skel3Target.localPosition);
+                
                 Gizmos.matrix = data.DEBUG_EffectorTarget.localToWorldMatrix;
                 Gizmos.DrawWireCube(Vector3.zero, 0.02f * Vector3.one);
             }

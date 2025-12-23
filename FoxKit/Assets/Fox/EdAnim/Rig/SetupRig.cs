@@ -122,10 +122,10 @@ namespace Fox.EdAnim
                                     
                                 // Index bones
                                 Transform upper = bones[unitDef->UpperBoneIndex];
-                                unit.data.UpperTarget = upper;
+                                unit.data.Skel0Target = upper;
                                 
                                 Transform mid = bones[unitDef->MidBoneIndex];
-                                unit.data.MidTarget = mid;
+                                unit.data.Skel1Target = mid;
                                 
                                 Transform effector = bones[unitDef->EffectorBoneIndex];
                                 unit.data.EffectorTarget = effector;
@@ -200,16 +200,16 @@ namespace Fox.EdAnim
                                     
                                 // Index bones
                                 Transform shoulder = bones[unitDef->ShoulderBoneIndex];
-                                unit.data.ShoulderTarget = shoulder;
+                                unit.data.Skel0Target = shoulder;
                                 
                                 Transform uarm = bones[unitDef->UpperBoneIndex];
-                                unit.data.UpperArmTarget = uarm;
+                                unit.data.Skel1Target = uarm;
                                 
                                 Transform larm = bones[unitDef->LowerBoneIndex];
-                                unit.data.LowerArmTarget = larm;
+                                unit.data.Skel2Target = larm;
                                 
                                 Transform effector = bones[unitDef->EffectorBoneIndex];
-                                unit.data.EffectorTarget = effector;
+                                unit.data.Skel3Target = effector;
                                     
                                 // Create track proxies
                                 Transform shoulderRotationTrackProxy = CreateSegmentProxy(i, (uint)unitDef->ShoulderRotationSegmentIndex);
