@@ -5,7 +5,7 @@ using Math = Fox.Math;
 
 namespace Fox.Anim
 {
-    internal enum TrackType : byte
+    internal enum SegmentType : byte
     {
         Quat = 0,
         Float = 1,
@@ -23,10 +23,10 @@ namespace Fox.Anim
 
         public int DataOffset;
 
-        public short Id;
+        public short SegmentId;
 
         private byte Packed_Type_NextEntryOffset;
-        public TrackType Type => (TrackType)(Packed_Type_NextEntryOffset & 0xF);
+        public SegmentType Type => (SegmentType)(Packed_Type_NextEntryOffset & 0xF);
         public byte NextEntryOffset => (byte)(Packed_Type_NextEntryOffset >> 4 & 0x8);
 
         public byte ComponentBitSize;
@@ -89,6 +89,7 @@ namespace Fox.Anim
             // Handedness
             X = -X;
             halfTheta = -halfTheta;
+            // Handedness
 
             float a = Mathf.Sin(halfTheta);
             float b = Mathf.Cos(halfTheta);
@@ -99,5 +100,52 @@ namespace Fox.Anim
 
             return result;
         }
+
+        private static float ReadHalf(ushort value)
+        {
+            uint sign = (uint)(value & 0x8000) << 16;
+
+            uint exponent = (uint)(value & 0x7C00);
+            if (exponent != 0)
+            {
+                exponent = (exponent + 0x1DC00) << 13;
+            }
+
+            uint mantissa = (uint)(value & 0x03FF) << 13;
+
+            uint bits = sign | exponent | mantissa;
+
+            return *(float*)&bits;
+        }
+        
+        public static Vector3 ReadVector3(ref ushort* buffer, bool isFullPrecision)
+        {
+            Vector3 value;
+
+            if (isFullPrecision)
+            {
+                value = *(Vector3*)buffer;
+                buffer += sizeof(Vector3) / sizeof(ushort);
+            }
+            else
+            {
+                float x = ReadHalf(*buffer++);
+                float y = ReadHalf(*buffer++);
+                float z = ReadHalf(*buffer++);
+                value = new Vector3(x, y, z);
+            }
+            
+            value = Fox.Math.FoxToUnityVector3(value);
+
+            return value;
+        }
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal unsafe struct TrackMiniData
+    {
+        private uint Packed_ComponentBitSize_DataOffset;
+        public byte ComponentBitSize => (byte)(Packed_ComponentBitSize_DataOffset & 0xFF);
+        public int DataOffset => (int)(Packed_ComponentBitSize_DataOffset >> 8 & 0xFFFFFF);
     }
 }

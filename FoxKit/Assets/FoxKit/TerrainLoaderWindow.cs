@@ -33,7 +33,7 @@ namespace FoxKit.Windows
             selectedMapIndex = EditorGUILayout.Popup("Select Map", selectedMapIndex, mapOptions);
         
             string mapName = mapOptions[selectedMapIndex];
-            string previewPath = Fox.Fs.FileSystem.GetExternalPathFromFoxPath($"/Assets/tpp/level/location/{mapName}");
+            string previewPath = Fox.Fs.FileSystem.GetExternalPathFromVirtualPath($"/Assets/tpp/level/location/{mapName}");
             EditorGUILayout.HelpBox($"Target Map Folder:\n{previewPath}", MessageType.Info);
             EditorGUILayout.EndVertical();
         
@@ -105,7 +105,7 @@ namespace FoxKit.Windows
                 return;
             }
 
-            string baseDirectoryExternalPath = Fox.Fs.FileSystem.GetExternalPathFromFoxPath(baseDirectoryPath);
+            string baseDirectoryExternalPath = Fox.Fs.FileSystem.GetExternalPathFromVirtualPath(baseDirectoryPath);
 
             if (!Directory.Exists(baseDirectoryExternalPath))
             {
@@ -118,7 +118,7 @@ namespace FoxKit.Windows
 
             foreach (string terrainBlockExternalPath in terrainBlockDataSetExternalPaths)
             {
-                string terrainBlockDataSetPath = Fox.Fs.FileSystem.GetFoxPathFromExternalPath(terrainBlockExternalPath);
+                string terrainBlockDataSetPath = Fox.Fs.FileSystem.GetVirtualPathFromExternalPath(terrainBlockExternalPath);
 
                 ReadOnlySpan<byte> terrainBlockFileData = Fox.Fs.FileSystem.ReadExternalFile(terrainBlockDataSetPath);
                 Scene terrainBlockScene = DataSetFile2.Read(terrainBlockFileData, DataSetFile2.SceneLoadMode.Additive, logger);

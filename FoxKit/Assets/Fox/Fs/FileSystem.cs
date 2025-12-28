@@ -9,7 +9,7 @@ namespace Fox.Fs
 {
     // Working nomenclature
     // *External* paths refer to unpacked game files stored outside of Unity - an example is C:/Program Files (x86)/Steam/steamapps/common/MGS_TPP/master/chunk0_dat/Assets/tpp/pack/...
-    // *Fox* paths refer to all types of paths found in DataSets, such as /Assets/tpp/level/location/afgh/block_common/afgh_common.fox2 and /Assets/tpp/pack/location/afgh/pack_common/afgh_common.fpk
+    // *Virtual* paths refer to all types of paths found in DataSets, such as /Assets/tpp/level/location/afgh/block_common/afgh_common.fox2 and /Assets/tpp/pack/location/afgh/pack_common/afgh_common.fpk
     // *Unity* paths refer to files stored within Unity, such as Assets/Game/Assets/tpp/level/location/afgh/block_common/afgh_common.fox2.unity
     
     public enum ImportFileMode
@@ -26,7 +26,7 @@ namespace Fox.Fs
     
     public static class FileSystem
     {
-        public static string GetFoxPathFromExternalPath(string externalPath)
+        public static string GetVirtualPathFromExternalPath(string externalPath)
         {
             string basePath = FsModule.ExternalBasePath;
             
@@ -39,20 +39,20 @@ namespace Fox.Fs
             return result;
         }
 
-        public static string GetExternalPathFromFoxPath(string foxPath)
+        public static string GetExternalPathFromVirtualPath(string virtualPath)
         {
             string basePath = FsModule.ExternalBasePath;
 
-            string result = basePath + foxPath;
+            string result = basePath + virtualPath;
             
             return result;
         }
         
-        public static string GetUnityPathFromFoxPath(string foxPath)
+        public static string GetUnityPathFromVirtualPath(string virtualPath)
         {
             string basePath = FsModule.UnityBasePath;
 
-            string resolvedPath = ResolveFoxPath(foxPath);
+            string resolvedPath = ResolveVirtualPath(virtualPath);
             
             string result = basePath + resolvedPath;
             
@@ -63,16 +63,16 @@ namespace Fox.Fs
         {
             string basePath = FsModule.LooseBasePath;
 
-            // Bit of a hack - pretend like the foxPath is just the file name and extension
-            string foxPath = $"/{System.IO.Path.GetFileName(externalPath)}";
-            string resolvedPath = ResolveFoxPath(foxPath);
+            // Bit of a hack - pretend like the virtualPath is just the file name and extension
+            string virtualPath = $"/{System.IO.Path.GetFileName(externalPath)}";
+            string resolvedPath = ResolveVirtualPath(virtualPath);
             
             string result = basePath + resolvedPath;
             
             return result;
         }
     
-        private static string ResolveFoxPath(string path)
+        private static string ResolveVirtualPath(string path)
         {
             Debug.Assert(path.StartsWith('/'));
             
@@ -83,9 +83,9 @@ namespace Fox.Fs
             return path;
         }
 
-        public static ReadOnlySpan<byte> ReadExternalFile(string foxPath)
+        public static ReadOnlySpan<byte> ReadExternalFile(string virtualPath)
         {
-            string externalPath = GetExternalPathFromFoxPath(foxPath);
+            string externalPath = GetExternalPathFromVirtualPath(virtualPath);
             return File.ReadAllBytes(externalPath);
         }
         
@@ -94,16 +94,16 @@ namespace Fox.Fs
             return File.ReadAllBytes(externalPath);
         }
 
-        public static ReadOnlySpan<byte> ReadFile(string foxPath)
+        public static ReadOnlySpan<byte> ReadFile(string virtualPath)
         {
-            string unityPath = GetUnityPathFromFoxPath(foxPath);
+            string unityPath = GetUnityPathFromVirtualPath(virtualPath);
             return File.ReadAllBytes(unityPath);
         }
 
-        public static bool TryCopyImportAsset(string foxPath, ImportFileMode importMode = ImportFileMode.PreserveImportPath, bool createDirectory = true)
+        public static bool TryCopyImportAsset(string virtualPath, ImportFileMode importMode = ImportFileMode.PreserveImportPath, bool createDirectory = true)
         {
-            string externalPath = GetExternalPathFromFoxPath(foxPath);
-            string unityPath = GetUnityPathFromFoxPath(foxPath);
+            string externalPath = GetExternalPathFromVirtualPath(virtualPath);
+            string unityPath = GetUnityPathFromVirtualPath(virtualPath);
 
             if (createDirectory)
             {
@@ -120,7 +120,7 @@ namespace Fox.Fs
             return true;
         }
 
-        // Path is foxPath is import mode is not Loose
+        // Path is virtualPath is import mode is not Loose
         public static bool TryImportAsset(Scene scene, string path, ImportFileMode importMode = ImportFileMode.PreserveImportPath, bool overwrite = true, bool createDirectory = true)
         {
             scene.name = System.IO.Path.GetFileNameWithoutExtension(path);
@@ -129,8 +129,8 @@ namespace Fox.Fs
             {
                 case ImportFileMode.PreserveImportPath:
                 {
-                    string foxPath = path;
-                    string unityPath = GetUnityPathFromFoxPath(foxPath);
+                    string virtualPath = path;
+                    string unityPath = GetUnityPathFromVirtualPath(virtualPath);
                     if (overwrite == false && System.IO.File.Exists(unityPath))
                         return false;
 
@@ -144,7 +144,7 @@ namespace Fox.Fs
                     }
                     EditorSceneManager.SaveScene(scene, unityPath);
                 }
-                break;
+                    break;
                 case ImportFileMode.Loose:
                 {
                     string externalPath = path;
@@ -158,6 +158,32 @@ namespace Fox.Fs
             case ImportFileMode.OpenDontSave:
                 break;
             }
+
+            return true;
+        }
+        
+        public static bool TryImportAsset(AnimationClip[] clips, string virtualPath, bool overwrite = true, bool createDirectory = true)
+        {
+            // scene.name = System.IO.Path.GetFileNameWithoutExtension(virtualPath);
+
+            string unityPath = GetUnityPathFromVirtualPath(virtualPath);
+            if (overwrite == false && System.IO.Directory.Exists(unityPath))
+                return false;
+
+            if (createDirectory)
+            {
+                // Entire path is directory path
+                if (!Directory.Exists(unityPath))
+                {
+                    Directory.CreateDirectory(unityPath);
+                }
+            }
+
+            foreach (AnimationClip clip in clips)
+            {
+                AssetDatabase.CreateAsset(clip, System.IO.Path.Combine(unityPath, clip.name + ".gani.asset"));
+            }
+            AssetDatabase.SaveAssets();
 
             return true;
         }

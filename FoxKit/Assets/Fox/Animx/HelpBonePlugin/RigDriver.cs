@@ -601,9 +601,9 @@ namespace Fox.Animx
                 case DriverLimitAxis.X:
                     return RotateX(radians);
                 case DriverLimitAxis.Y:
-                    return RotateX(radians);
+                    return RotateY(radians);
                 case DriverLimitAxis.Z:
-                    return RotateX(radians);
+                    return RotateZ(radians);
             }
 
             return Quaternion.identity;

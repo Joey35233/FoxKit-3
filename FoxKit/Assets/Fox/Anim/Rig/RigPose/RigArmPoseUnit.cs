@@ -16,8 +16,10 @@ namespace Fox.Anim
         public ReadOnlyTransformHandle PoleRotationSource;
         public Vector3 ChainPlaneNormal;
         
-        public ReadWriteTransformHandle EffectorTarget;
-        public ReadOnlyTransformHandle EffectorPositionSource;
+        public ReadWriteTransformHandle Skel0Target;
+        public ReadWriteTransformHandle Skel1Target;
+        public ReadWriteTransformHandle Skel2Target;
+        public ReadWriteTransformHandle Skel3Target;
 
         public bool DEBUG;
         public ReadWriteTransformHandle DEBUG_Skel0Target;
@@ -57,21 +59,21 @@ namespace Fox.Anim
             effector_rgp = math.mul(InverseRootRotation, effector_rgp + InverseRootPosition);
 
             quaternion pole_rgr = PoleRotationSource.GetRotation(stream);
-            pole_rgr = math.mul(InverseRootRotation, pole_rgr);
             
             ComputeSkel0AndSkel1(stream, out float3 skel0_rgp, out quaternion skel0_rgr, out float3 skel1_rgp);
             
             float3 skel1toEff_rv = effector_rgp - skel1_rgp;
             
-            float3x3 pole_rgr_mat = new float3x3(pole_rgr);
-            float3 pole_rotation_x = pole_rgr_mat.c0;
+            // float3x3 pole_rgr_mat = new float3x3(pole_rgr);
+            // float3 pole_rotation_x = pole_rgr_mat.c0;
+            // pole_rotation_x = pole_rotation_x * -1;
             // float4 q = pole_rgr;
             // float3 pole_rotation_x = new float3(
             //     1.0f - 2.0f * (q.y * q.y + q.z * q.z),
             //     2.0f * (q.z * q.w + q.x * q.y),
             //     2.0f * (q.x * q.z - q.y * q.w)
             // );
-            pole_rotation_x = pole_rotation_x * -1;
+            float3 pole_rotation_x = math.rotate(pole_rgr, new float3(-1.0f, 0.0f, 0.0f));
             float3 pole_prex_v = math.cross(skel1toEff_rv, pole_rotation_x);
             float3 pole_v = math.cross(pole_prex_v, skel1toEff_rv);
             float3 pole_uv = math.normalize(pole_v);
@@ -95,7 +97,7 @@ namespace Fox.Anim
             {
                 DEBUG_Skel0Target.SetGlobalTR(stream, skel0_rgp, skel0_rgr);
                 DEBUG_Skel1Target.SetGlobalTR(stream, skel1_rgp, skel1_rgr);
-                DEBUG_PoleTarget.SetPosition(stream, skel1_rgp + 0.5f * skel1toEff_rv + pole_uv);
+                DEBUG_PoleTarget.SetPosition(stream, skel1_rgp + 0.5f * skel1toEff_rv + pole_rotation_x);
                 DEBUG_Skel2Target.SetGlobalTR(stream, skel2_rgp, skel2_rgr);
                 DEBUG_EffectorTarget.SetGlobalTR(stream, effector_rgp, Quaternion.identity);
             }

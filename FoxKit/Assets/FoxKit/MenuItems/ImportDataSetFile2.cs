@@ -1,14 +1,8 @@
 using Fox.Core;
 using Fox.Core.Utils;
-using Fox.Fio;
 using System;
-using System.Collections.Generic;
-using System.IO;
 using Fox.Fs;
 using UnityEditor;
-using UnityEditor.SceneManagement;
-using CsSystem = System;
-using File = Fox.Core.File;
 
 namespace FoxKit.MenuItems
 {
@@ -20,14 +14,14 @@ namespace FoxKit.MenuItems
         private static void OnImportAsset()
         {
             string externalPath = EditorUtility.OpenFilePanel("Import DataSetFile2", "", ExtensionWhitelist);
-            if (String.IsNullOrEmpty(externalPath))
+            if (string.IsNullOrEmpty(externalPath))
             {
                 return;
             }
 
             var logger = new TaskLogger("Import DataSetFile2");
 
-            string path = Fox.Fs.FileSystem.GetFoxPathFromExternalPath(externalPath);
+            string path = Fox.Fs.FileSystem.GetVirtualPathFromExternalPath(externalPath);
             if (path == null)
             {
                 logger.AddError("Selected file is not within external directory.");

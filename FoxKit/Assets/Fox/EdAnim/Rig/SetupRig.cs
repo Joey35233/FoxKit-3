@@ -54,31 +54,41 @@ namespace Fox.EdAnim
 
                 boneRenderer.transforms = bones;
 
-                GameObject rigObject = target.Find(ConversionUtils.RigFolderName)?.gameObject;
+                // Create Rig
+                GameObject rigObject = target.Find(CommonDefs.RigFolderName)?.gameObject;
                 if (rigObject != null)
                     GameObject.DestroyImmediate(rigObject);
-                rigObject = new GameObject(ConversionUtils.RigFolderName);
+                rigObject = new GameObject(CommonDefs.RigFolderName);
                 rigObject.transform.SetParent(target);
-                
-                // Create Rig
                 Rig rigComponent = rigObject.AddComponent<Rig>();
                 rigComponent.weight = 1.0f;
+                
+                // Create MTP
+                GameObject mtpObject = target.Find(CommonDefs.MTPFolderName)?.gameObject;
+                if (mtpObject != null)
+                    GameObject.DestroyImmediate(mtpObject);
+                mtpObject = new GameObject(CommonDefs.MTPFolderName);
+                mtpObject.transform.SetParent(target);
+                Rig mtpRigComponent = mtpObject.AddComponent<Rig>();
+                mtpRigComponent.weight = 1.0f;
+                mtpObject.AddComponent<MotionPointUnit>();
                 
                 // TODO: Add to RigBuilder
                 if (rigBuilder.layers.Count != 0)
                     rigBuilder.layers.Clear();
                 rigBuilder.layers.Add(new RigLayer(rigComponent));
+                rigBuilder.layers.Add(new RigLayer(mtpRigComponent));
                 
                 // Create the "folders." These must be deterministic and independent of the specific rig so all animations can target them.
-                GameObject unitFolder = new GameObject(ConversionUtils.UnitsFolderName);
+                GameObject unitFolder = new GameObject(CommonDefs.UnitsFolderName);
                 unitFolder.transform.SetParent(rigObject.transform);
 
                 // Stores all of the track proxies and also make a local creation function to make making proxies less painful
-                Transform segmentProxyFolder = new GameObject(ConversionUtils.SegmentFolderName).transform;
+                Transform segmentProxyFolder = new GameObject(CommonDefs.SegmentFolderName).transform;
                 segmentProxyFolder.SetParent(rigObject.transform);
                 Transform CreateSegmentProxy(uint unitIndex, uint segmentIndex)
                 {
-                    Transform proxy = new GameObject(ConversionUtils.GetSegmentNameString(unitIndex, segmentIndex)).transform;
+                    Transform proxy = new GameObject(CommonDefs.GetSegmentNameString(unitIndex, segmentIndex)).transform;
                     proxy.SetParent(segmentProxyFolder.transform);
 
                     return proxy;
@@ -92,7 +102,7 @@ namespace Fox.EdAnim
                     if (*unitHead == RigUnitType.Root)
                         continue;
                     
-                    GameObject unitObject = new GameObject(ConversionUtils.GetUnitNameString(i));
+                    GameObject unitObject = new GameObject(CommonDefs.GetUnitNameString(i));
                     unitObject.transform.SetParent(unitFolder.transform);
                     
                     switch (*unitHead)

@@ -1,4 +1,5 @@
-﻿using Unity.Collections;
+﻿using System;
+using Unity.Collections;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Animations;
@@ -9,8 +10,8 @@ namespace Fox.Anim
     [Unity.Burst.BurstCompile]
     public struct RigMultiLocalOrientationPoseUnitJob : IWeightedAnimationJob
     {
-        public NativeArray<ReadWriteTransformHandle> Targets;
         public NativeArray<ReadOnlyTransformHandle> Sources;
+        public NativeArray<ReadWriteTransformHandle> Targets;
 
         public FloatProperty jobWeight
         {
@@ -25,7 +26,7 @@ namespace Fox.Anim
             for (int i = 0; i < Sources.Length; i++)
             {
                 ReadOnlyTransformHandle source = Sources[i];
-                Quaternion source_rlr = source.GetRotation(stream);
+                Quaternion source_rlr = source.GetLocalRotation(stream);
                 
                 ReadWriteTransformHandle target = Targets[i];
                 target.SetLocalRotation(stream, source_rlr);
@@ -36,20 +37,20 @@ namespace Fox.Anim
     [System.Serializable]
     public struct RigMultiLocalOrientationPoseUnitData : IAnimationJobData
     {
-        public Transform[] Targets;
         public Transform[] Sources;
+        public Transform[] Targets;
 
         public bool IsValid()
         {
-            if (Targets == null || Sources == null || Targets.Length != Sources.Length)
+            if (Sources == null || Targets == null || Sources.Length != Targets.Length)
                 return false;
-            
-            foreach (var target in Targets)
-                if (target == null)
-                    return false;
             
             foreach (var source in Sources)
                 if (source == null)
+                    return false;
+            
+            foreach (var target in Targets)
+                if (target == null)
                     return false;
             
             return true;
@@ -57,8 +58,8 @@ namespace Fox.Anim
 
         public void SetDefaultValues()
         {
-            Targets = new Transform[1];
-            Sources = new Transform[1];
+            Sources = Array.Empty<Transform>();
+            Targets = Array.Empty<Transform>();
             
             return;
         }
@@ -70,22 +71,21 @@ namespace Fox.Anim
         {
             var job = new RigMultiLocalOrientationPoseUnitJob();
             
-            job.Targets = new NativeArray<ReadWriteTransformHandle>(data.Targets.Length, Allocator.Persistent, NativeArrayOptions.UninitializedMemory);
             job.Sources = new NativeArray<ReadOnlyTransformHandle>(data.Targets.Length, Allocator.Persistent, NativeArrayOptions.UninitializedMemory);
-
-            for (int i = 0; i < data.Targets.Length; i++)
-                job.Targets[i] = ReadWriteTransformHandle.Bind(animator, data.Targets[i]);
-            
             for (int i = 0; i < data.Targets.Length; i++)
                 job.Sources[i] = ReadOnlyTransformHandle.Bind(animator, data.Sources[i]);
+            
+            job.Targets = new NativeArray<ReadWriteTransformHandle>(data.Targets.Length, Allocator.Persistent, NativeArrayOptions.UninitializedMemory);
+            for (int i = 0; i < data.Targets.Length; i++)
+                job.Targets[i] = ReadWriteTransformHandle.Bind(animator, data.Targets[i]);
 
             return job;
         }
 
         public override void Destroy(RigMultiLocalOrientationPoseUnitJob job)
         {
-            job.Targets.Dispose();
             job.Sources.Dispose();
+            job.Targets.Dispose();
         }
     }
 

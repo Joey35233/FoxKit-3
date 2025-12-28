@@ -21,7 +21,7 @@ namespace Fox.Anim
 
         public void ProcessAnimation(AnimationStream stream)
         {
-            Quaternion source_rlr = Source.GetRotation(stream);
+            Quaternion source_rlr = Source.GetLocalRotation(stream);
             
             Target.SetLocalRotation(stream, source_rlr);
         }

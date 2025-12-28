@@ -23,8 +23,8 @@ namespace Fox.Anim
 
         public void ProcessAnimation(AnimationStream stream)
         {
-            Quaternion source_rlr = RotationSource.GetRotation(stream);
-            Vector3 source_rlp = PositionSource.GetPosition(stream);
+            Quaternion source_rlr = RotationSource.GetLocalRotation(stream);
+            Vector3 source_rlp = PositionSource.GetLocalPosition(stream);
             
             Target.SetLocalTRS(stream, source_rlp, source_rlr, Vector3.one);
         }

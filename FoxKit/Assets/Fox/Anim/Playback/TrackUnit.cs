@@ -3,15 +3,16 @@ using Fox;
 
 namespace Fox.Anim
 {
+    public enum UnitFlags : byte
+    {
+        Loop = 1 << 0,
+        HermiteVectorInterpolation = 1 << 1,
+        IsStatic = 1 << 2,
+    };
+    
     [StructLayout(LayoutKind.Sequential)]
     internal unsafe struct TrackUnit
     {
-        public enum UnitFlags : byte
-        {
-            Loop = 1 << 0,
-            HermiteVectorInterpolation = 1 << 1,
-            NoFrames = 1 << 2,
-        };
         
         public StrCode32 Name;
 
@@ -29,7 +30,7 @@ namespace Fox.Anim
 
                 TrackData* segment = (TrackData*)(selfPtr + sizeof(TrackUnit));
 
-                while (segment->Id != id)
+                while (segment->SegmentId != id)
                     segment = (TrackData*)((byte*)segment + segment->NextEntryOffset);
 
                 return segment;

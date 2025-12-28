@@ -2,8 +2,9 @@
 
 namespace Fox.Anim
 {
-    public static class ConversionUtils
+    public static class CommonDefs
     {
+        // Rig
         public const string RigFolderName = "RIG";
         
         public const string UnitName = "Unit";
@@ -13,8 +14,12 @@ namespace Fox.Anim
         public const string SegmentFolderName = SegmentName + "s";
 
         public static StrCode32 RootUnitName = new StrCode32("RIG_ROOT");
-        public static uint RootRotSegmentIndex = 0;
-        public static uint RootPosSegmentIndex = 1;
+        
+        // MTP
+        public const string MTPFolderName = "MTP";
+        public const string MTPFolderPath = "MTP/";
+
+        public const char MTPParentSeparator = '|';
         
         public static string GetUnitNameString(uint unitId)
         {
