@@ -1,6 +1,9 @@
 using Fox.Core;
 using Fox.Core.Utils;
 using System;
+using System.IO;
+using Fox.Fio;
+using UnityEditor;
 using UnityEngine;
 
 namespace Tpp.GameKit
@@ -46,13 +49,20 @@ namespace Tpp.GameKit
                 logger.AddWarningMissingAsset(breakedModelFileUnityPath);
                 hasModel = false;
             }
+            string locaterPath = "/Game" + locaterFile.path.String;
 
-            ScriptableObject locaterAsset = LocatorFileReader.Load(locaterFile,out string locaterUnityPath);
+            string readPath = "Assets" + locaterPath;
+            
+            ScriptableObject locaterAsset = AssetManager.LoadAssetWithExtensionReplacement<ScriptableObject>(locaterFile, "asset", out string unityPath);
+
             if (locaterAsset == null)
             {
-                logger.AddWarningMissingAsset(locaterUnityPath);
-                return;
+                locaterAsset=LocatorFileReader.Read(new FileStreamReader(new FileStream(readPath, FileMode.Open)));
+            
+                AssetDatabase.CreateAsset(locaterAsset,  unityPath);
             }
+            
+            AssetDatabase.SaveAssets();
 
             switch (locaterAsset)
             {
@@ -118,7 +128,7 @@ namespace Tpp.GameKit
                     }
                     break;
                 case null:
-                    logger.AddWarningMissingAsset(locaterUnityPath);
+                    logger.AddWarningMissingAsset(locaterFile.path.String);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();

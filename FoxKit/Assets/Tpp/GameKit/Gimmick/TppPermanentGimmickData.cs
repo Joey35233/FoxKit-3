@@ -1,5 +1,8 @@
+using System.IO;
 using Fox.Core;
 using Fox.Core.Utils;
+using Fox.Fio;
+using UnityEditor;
 using UnityEngine;
 
 namespace Tpp.GameKit
@@ -13,21 +16,28 @@ namespace Tpp.GameKit
             if (partsFile == FilePtr.Empty)
             {
                 logger.AddWarningEmptyPath(nameof(partsFile));
-                return;
+                //return;
             }
 
             if (locaterFile == FilePtr.Empty)
             {
                 logger.AddWarningEmptyPath(nameof(locaterFile));
-                return;
+                //return;
             }
+            string locaterPath = "/Game" + locaterFile.path.String;
 
-            ScriptableObject locaterAsset = LocatorFileReader.Load(locaterFile, out string locaterUnityPath);
+            string readPath = "Assets" + locaterPath;
+            
+            ScriptableObject locaterAsset = AssetManager.LoadAssetWithExtensionReplacement<ScriptableObject>(locaterFile, "asset", out string unityPath);
+
             if (locaterAsset == null)
             {
-                logger.AddWarningMissingAsset(locaterUnityPath);
-                return;
+                locaterAsset=LocatorFileReader.Read(new FileStreamReader(new FileStream(readPath, FileMode.Open)));
+            
+                AssetDatabase.CreateAsset(locaterAsset,  unityPath);
             }
+            
+            AssetDatabase.SaveAssets();
 
             bool hasModel = false;
 
@@ -64,7 +74,7 @@ namespace Tpp.GameKit
                     }
                     break;
                 default:
-                    logger.AddWarningMissingAsset(locaterUnityPath);
+                    logger.AddWarningMissingAsset(locaterFile.path.String);
                     break;
             }
         }

@@ -72,12 +72,15 @@ namespace Tpp.GameKit
                 string lbaPath = readPath.path.String;
                 if (!File.Exists(lbaPath))
                 {
+                    Debug.LogWarning($"{lbaPath} already exists");
                     return null;
                 }
 
                 lbaAsset = Read(new FileStreamReader(new FileStream(lbaPath, FileMode.Open)));
                 AssetDatabase.CreateAsset(lbaAsset, unityPath);
             }
+
+            AssetDatabase.SaveAssets();
             return lbaAsset;
         }
 

@@ -1,8 +1,7 @@
-using Fox.Core;
 using Fox.Core.Utils;
 using Fox.Fio;
-using Fox;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using UnityEditor;
 using UnityEngine;
@@ -44,44 +43,25 @@ namespace Fox.GameKit
 
             AssetDatabase.SaveAssets();
 
+            List<ObrObject> obrObjects = new();
+
             foreach (ObjectBrushObjectBinary obj in asset.objects)
             {
-                GameObject instanceGameObject;
+                ObjectBrushPlugin obrPlugin = pluginHandle[obj.GetPluginBrushIndex()] as ObjectBrushPlugin;
 
-                var transform = new Fox.Core.Transform();
+                if (obrPlugin == null) continue;
 
-                Vector3 foxPosition = GetPositionFWSFromPositionEWS(obj,asset);
-
-                transform.translation = Fox.Math.FoxToUnityVector3(foxPosition);
-                transform.rotation_quat = Fox.Math.FoxToUnityQuaternion(obj.GetRotation());
-
-                float normalizedScale = (float)obj.GetNormalizedScale() / System.Byte.MaxValue;
-
-                if (pluginHandle[obj.GetPluginBrushIndex()] is ObjectBrushPlugin plugin)
+                ObrObject obrObj = new()
                 {
-                    switch (pluginHandle[obj.GetPluginBrushIndex()])
-                    {
-                        case ObjectBrushPluginClone pluginClone:
-                            transform.scale = Vector3.one * Mathf.Lerp(pluginClone.minSize, pluginClone.maxSize, normalizedScale);
-                            instanceGameObject = MakeStaticModelGameObject(transform, "/Assets/Game" + pluginClone.modelFile.path.String, gameObject);
-                            break;
-                        case ObjectBrushPluginStaticModel pluginStaticModel:
-                            transform.scale = Vector3.one * Mathf.Lerp(pluginStaticModel.minSize, pluginStaticModel.maxSize, normalizedScale);
-                            instanceGameObject = MakeStaticModelGameObject(transform, "/Assets/Game" + pluginStaticModel.modelFile.path.String, gameObject);
-                            break;
-                        case null:
-                            throw new ArgumentNullException();
-                        default:
-                            //TODO Tpp.GameKit.ObjectBrushPluginStaticModel, TppObjectBrushPluginSkeletonModel
-                            var pluginClassName = new StrCode32(pluginHandle[obj.GetPluginBrushIndex()].GetClassEntityInfo().Name);
-                            Debug.LogWarning($"{name}: pluginHandle #{obj.GetPluginBrushIndex()} is not a supported");
-                            break;
-                    }
-                }
-                else
-                {
-                    Debug.LogWarning($"{name}: pluginHandle #{obj.GetPluginBrushIndex()} is not ObjectBrushPlugin");
-                }
+                    Position = Math.FoxToUnityVector3(GetPositionFWSFromPositionEWS(obj,asset)),
+                    Rotation = Math.FoxToUnityQuaternion(obj.GetRotation()),
+                    Scale = (float)obj.GetNormalizedScale() / System.Byte.MaxValue,
+                    Plugin = obrPlugin
+                };
+
+                obrPlugin.RegisterObject(obrObj);
+                
+                obrObjects.Add(obrObj);
 
                 // if (!instantiated)
                 // {
@@ -95,6 +75,8 @@ namespace Fox.GameKit
                 //     gizmo.Scale = Vector3.one;
                 // }
             }
+            
+            
         }
         //joey func, but perhaps pointlessly dynamic!
         private const ushort OBR_MAGIC = 32640;
