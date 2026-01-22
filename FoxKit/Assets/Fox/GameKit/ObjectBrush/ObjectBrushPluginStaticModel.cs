@@ -8,6 +8,7 @@ using UnityEngine.ResourceManagement.ResourceLocations;
 
 namespace Fox.GameKit
 {
+    [ExecuteInEditMode]
     public partial class ObjectBrushPluginStaticModel
     {
         public override void OnDeserializeEntity(TaskLogger logger)

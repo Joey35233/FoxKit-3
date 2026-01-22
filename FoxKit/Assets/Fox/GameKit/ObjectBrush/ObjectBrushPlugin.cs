@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace Fox.GameKit
 {
@@ -8,20 +7,9 @@ namespace Fox.GameKit
     {
         [NonSerialized]
         public List<ObrObject> Objects = new();
-
-        void OnEnable()
-        {
-            
-        }
-
         public void RegisterObject(ObrObject obj)
         {
             Objects.Add(obj);
-        }
-
-        void OnDisable()
-        {
-            
         }
     }
 }

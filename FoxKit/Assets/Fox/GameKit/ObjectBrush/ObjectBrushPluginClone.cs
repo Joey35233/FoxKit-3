@@ -8,6 +8,7 @@ using UnityEngine.ResourceManagement.ResourceLocations;
 
 namespace Fox.GameKit
 {
+    [ExecuteInEditMode]
     public partial class ObjectBrushPluginClone
     {
         public override void OnDeserializeEntity(TaskLogger logger)

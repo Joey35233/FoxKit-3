@@ -8,6 +8,7 @@ using UnityEngine;
 
 namespace Tpp.GameKit
 {
+    [ExecuteInEditMode]
     public partial class TppSharedGimmickData : Fox.Core.Data
     {
         public override void OnDeserializeEntity(TaskLogger logger)
@@ -69,7 +70,16 @@ namespace Tpp.GameKit
                 case NamedLocatorBinaryArrayAsset namedAsset:
                     foreach (NamedLocatorBinary locator in namedAsset.locators)
                     {
-                        LocatorBinaryObject locatorGameObject = new GameObject(locator.GetLocatorName()).AddComponent<LocatorBinaryObject>();
+                        LocatorBinaryObject locatorGameObject =
+                            new GameObject(locator.GetLocatorName()).AddComponent<LocatorBinaryObject>();
+                        
+                        GameObject partsPrefab = (GameObject)DataSetFile2.GetPrefab(partsFile);
+                        if (partsPrefab is not null)
+                        {
+                            partsPrefab.transform.parent = locatorGameObject.transform;
+                            partsPrefab.hideFlags = HideFlags.DontSaveInEditor;
+                        }
+                        
                         locatorGameObject.transform.position = locator.GetTranslation();
                         locatorGameObject.transform.rotation = locator.GetRotation();
                         if (assetModelFile != null)
@@ -82,7 +92,10 @@ namespace Tpp.GameKit
                             var instance = GameObject.Instantiate(assetBreakedModelFile);
                             instance.transform.SetParent(locatorGameObject.transform, false);
                         }
-                        locatorGameObject.ShouldDrawGizmo = !hasModel;
+                        
+                        if (partsPrefab is null && assetModelFile is null && assetBreakedModelFile is null)
+                            locatorGameObject.ShouldDrawGizmo = true;
+                            
                         locatorGameObject.transform.SetParent(gameObject.transform);
                     }
                     break;
@@ -90,6 +103,14 @@ namespace Tpp.GameKit
                     foreach (ScaledLocatorBinary locator in scaledAsset.locators)
                     {
                         LocatorBinaryObject locatorGameObject = new GameObject(locator.GetLocatorName()).AddComponent<LocatorBinaryObject>();
+                        
+                        GameObject partsPrefab = (GameObject)DataSetFile2.GetPrefab(partsFile);
+                        if (partsPrefab is not null)
+                        {
+                            partsPrefab.transform.parent = locatorGameObject.transform;
+                            partsPrefab.hideFlags = HideFlags.DontSaveInEditor;
+                        }
+                        
                         locatorGameObject.transform.position = locator.GetTranslation();
                         locatorGameObject.transform.rotation = locator.GetRotation();
                         locatorGameObject.transform.localScale = locator.GetScale();
@@ -103,14 +124,24 @@ namespace Tpp.GameKit
                             var instance = GameObject.Instantiate(assetBreakedModelFile);
                             instance.transform.SetParent(locatorGameObject.transform, false);
                         }
-                        locatorGameObject.ShouldDrawGizmo = !hasModel;
                         locatorGameObject.transform.SetParent(gameObject.transform);
+                        
+                        if (partsPrefab is null && assetModelFile is null && assetBreakedModelFile is null)
+                            locatorGameObject.ShouldDrawGizmo = true;
                     }
                     break;
                 case PowerCutAreaLocatorBinaryArrayAsset powerCutAreaAsset:
                     foreach (PowerCutAreaLocatorBinary locator in powerCutAreaAsset.locators)
                     {
                         LocatorBinaryObject locatorGameObject = new GameObject(name).AddComponent<LocatorBinaryObject>();
+                        
+                        GameObject partsPrefab = (GameObject)DataSetFile2.GetPrefab(partsFile);
+                        if (partsPrefab is not null)
+                        {
+                            partsPrefab.transform.parent = locatorGameObject.transform;
+                            partsPrefab.hideFlags = HideFlags.DontSaveInEditor;
+                        }
+                        
                         locatorGameObject.transform.position = locator.GetTranslation();
                         locatorGameObject.transform.rotation = locator.GetRotation();
                         if (assetModelFile != null)
@@ -123,8 +154,10 @@ namespace Tpp.GameKit
                             var instance = GameObject.Instantiate(assetBreakedModelFile);
                             instance.transform.SetParent(locatorGameObject.transform, false);
                         }
-                        locatorGameObject.ShouldDrawGizmo = !hasModel;
                         locatorGameObject.transform.SetParent(gameObject.transform);
+                        
+                        if (partsPrefab is null && assetModelFile is null && assetBreakedModelFile is null)
+                            locatorGameObject.ShouldDrawGizmo = true;
                     }
                     break;
                 case null:

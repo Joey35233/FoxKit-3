@@ -7,6 +7,7 @@ using UnityEngine;
 
 namespace Tpp.GameKit
 {
+    [ExecuteInEditMode]
     public partial class TppPermanentGimmickData : Fox.Core.Data
     {
         public override void OnDeserializeEntity(TaskLogger logger)
@@ -38,28 +39,47 @@ namespace Tpp.GameKit
             }
             
             AssetDatabase.SaveAssets();
-
-            bool hasModel = false;
-
+            
             switch (locaterAsset)
             {
                 case NamedLocatorBinaryArrayAsset namedLocaterAsset:
                     foreach (NamedLocatorBinary locator in namedLocaterAsset.locators)
                     {
+
                         LocatorBinaryObject locatorGameObject = new GameObject(locator.GetLocatorName()).AddComponent<LocatorBinaryObject>();
+                        GameObject partsPrefab = (GameObject)DataSetFile2.GetPrefab(partsFile);
+                        if (partsPrefab is not null)
+                        {
+                            partsPrefab.transform.parent = locatorGameObject.transform;
+                            partsPrefab.hideFlags = HideFlags.DontSaveInEditor;
+                        }
+                        else
+                        {
+                            locatorGameObject.ShouldDrawGizmo = true;
+                        }
+                        
                         locatorGameObject.transform.position = locator.GetTranslation();
                         locatorGameObject.transform.rotation = locator.GetRotation();
-                        locatorGameObject.ShouldDrawGizmo = !hasModel;
-                        locatorGameObject.transform.SetParent(gameObject.transform);
+                        locatorGameObject.transform.SetParent(gameObject.transform);;
                     }
                     break;
                 case ScaledLocatorBinaryArrayAsset scaledLocatorAsset:
                     foreach (ScaledLocatorBinary locator in scaledLocatorAsset.locators)
                     {
                         LocatorBinaryObject locatorGameObject = new GameObject(locator.GetLocatorName()).AddComponent<LocatorBinaryObject>();
+                        GameObject partsPrefab = (GameObject)DataSetFile2.GetPrefab(partsFile);
+                        if (partsPrefab is not null)
+                        {
+                            partsPrefab.transform.parent = locatorGameObject.transform;
+                            partsPrefab.hideFlags = HideFlags.DontSaveInEditor;
+                        }
+                        else
+                        {
+                            locatorGameObject.ShouldDrawGizmo = true;
+                        }
+                        
                         locatorGameObject.transform.position = locator.GetTranslation();
                         locatorGameObject.transform.rotation = locator.GetRotation();
-                        locatorGameObject.ShouldDrawGizmo = !hasModel;
                         locatorGameObject.transform.SetParent(gameObject.transform);
                     }
                     break;
@@ -67,9 +87,19 @@ namespace Tpp.GameKit
                     foreach (PowerCutAreaLocatorBinary locator in powerCutAreaLocaterAsset.locators)
                     {
                         LocatorBinaryObject locatorGameObject = new GameObject(name).AddComponent<LocatorBinaryObject>();
+                        GameObject partsPrefab = (GameObject)DataSetFile2.GetPrefab(partsFile);
+                        if (partsPrefab is not null)
+                        {
+                            partsPrefab.transform.parent = locatorGameObject.transform;
+                            partsPrefab.hideFlags = HideFlags.DontSaveInEditor;
+                        }
+                        else
+                        {
+                            locatorGameObject.ShouldDrawGizmo = true;
+                        }
+                        
                         locatorGameObject.transform.position = locator.GetTranslation();
                         locatorGameObject.transform.rotation = locator.GetRotation();
-                        locatorGameObject.ShouldDrawGizmo = !hasModel;
                         locatorGameObject.transform.SetParent(gameObject.transform);
                     }
                     break;

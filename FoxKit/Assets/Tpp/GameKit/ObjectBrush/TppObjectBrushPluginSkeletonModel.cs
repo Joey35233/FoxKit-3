@@ -11,6 +11,7 @@ using UnityEngine.ResourceManagement.ResourceLocations;
 
 namespace Tpp.GameKit
 {
+    [ExecuteInEditMode]
     public partial class TppObjectBrushPluginSkeletonModel : Fox.GameKit.ObjectBrushPlugin
     {
         public static TppObjectBrushPluginSkeletonModel Deserialize(FileStreamReader reader)
@@ -23,9 +24,9 @@ namespace Tpp.GameKit
         {
             base.OnDeserializeEntity(logger);
 
-            foreach (var modelFil in modelFile)
+            foreach (var modelFileInstance in modelFile)
             {
-                if (modelFil == FilePtr.Empty)
+                if (modelFileInstance == FilePtr.Empty)
                 {
                     logger.AddWarningEmptyPath(nameof(modelFile));
                     return;
@@ -36,7 +37,7 @@ namespace Tpp.GameKit
             ReloadFile(logger);
         }
 
-        private List<AsyncOperationHandle<GameObject>> ModelHandle = new();
+        private List<AsyncOperationHandle<GameObject>> ModelHandles = new();
 
         private List<GameObject> Instances;
 
@@ -76,9 +77,9 @@ namespace Tpp.GameKit
                 if (results.Count > 0)
                 {
                     IResourceLocation firstLocation = results[0];
-                    ModelHandle.Insert(i,Addressables.LoadAssetAsync<GameObject>(firstLocation));;
-                    _ = ModelHandle[i].WaitForCompletion();
-                    OnLoadAsset(ModelHandle);
+                    ModelHandles.Insert(i,Addressables.LoadAssetAsync<GameObject>(firstLocation));;
+                    _ = ModelHandles[i].WaitForCompletion();
+                    OnLoadAsset(ModelHandles);
                 }
                 else
                 {
@@ -89,15 +90,15 @@ namespace Tpp.GameKit
         }
         private void OnLoadAsset(List<AsyncOperationHandle<GameObject>> handle)
         {
-            ModelHandle = handle;
+            ModelHandles = handle;
 
-            foreach (var ModelHandl in ModelHandle)
+            foreach (var modelHandle in ModelHandles)
             {
-                if (ModelHandl.Status == AsyncOperationStatus.Succeeded)
+                if (modelHandle.Status == AsyncOperationStatus.Succeeded)
                 {
                     foreach (var obj in Objects)
                     {
-                        CreateModel(ModelHandl.Result, obj);
+                        CreateModel(modelHandle.Result, obj);
                     }
                 }
             }
@@ -110,9 +111,9 @@ namespace Tpp.GameKit
         
         private void OnDisable()
         {
-            foreach (var ModelHandl in ModelHandle)
-                if (ModelHandl.IsValid())
-                    Addressables.Release(ModelHandl);
+            foreach (var modelHandle in ModelHandles)
+                if (modelHandle.IsValid())
+                    Addressables.Release(modelHandle);
         }
     }
 }

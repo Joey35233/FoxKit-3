@@ -18,14 +18,15 @@ namespace Tpp.GameKit
         {
             Gizmo.Transform = this.transform;
             Gizmo.Label = this.name;
-            Gizmo.OnDrawGizmos();
+            if (ShouldDrawGizmo)
+                Gizmo.OnDrawGizmos();
         }
 
         public void OnDrawGizmosSelected()
         {
             Gizmo.Transform = this.transform;
             Gizmo.Label = null;
-            Gizmo.OnDrawGizmos();
+                Gizmo.OnDrawGizmos();
         }
     }
 }

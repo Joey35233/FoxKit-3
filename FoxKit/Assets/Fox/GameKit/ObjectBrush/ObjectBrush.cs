@@ -8,20 +8,19 @@ using UnityEngine;
 
 namespace Fox.GameKit
 {
+    [ExecuteInEditMode]
     public partial class ObjectBrush : Fox.Core.TransformData
     {
         public override void OnDeserializeEntity(TaskLogger logger)
         {
             base.OnDeserializeEntity(logger);
-
-            string obrPath = "/Game" + obrFile.path.String;
-            if (System.String.IsNullOrEmpty(obrPath))
+            if (System.String.IsNullOrEmpty(obrFile.path.String))
             {
                 Debug.LogWarning($"{name}: obrFile is null");
                 return;
             }
-
-            string readPath = "Assets" + obrPath;
+            
+            string readPath = "Assets/Game" + obrFile.path.String;
 
             if (!System.IO.File.Exists(readPath))
             {
@@ -31,25 +30,25 @@ namespace Fox.GameKit
 
             ObjectBrushAsset asset = ObjectBrushReader.Read(new FileStreamReader(new FileStream(readPath, FileMode.Open)));
 
-            if (asset == null)
+            if (!asset)
             {
                 Debug.LogWarning($"{name}: asset could not be created");
                 return;
             }
 
-            string trimmedPath = "Assets/" + obrPath.Remove(0, 1).Replace(".obr", ".asset");
+            string trimmedPath = readPath.Remove(0, 1).Replace(".obr", ".asset");
 
             AssetDatabase.CreateAsset(asset, $"{trimmedPath}.asset");
 
             AssetDatabase.SaveAssets();
 
-            List<ObrObject> obrObjects = new();
+            List<ObrObject> ObrObjects = new();
 
-            foreach (ObjectBrushObjectBinary obj in asset.objects)
+            foreach (var obj in asset.objects)
             {
                 ObjectBrushPlugin obrPlugin = pluginHandle[obj.GetPluginBrushIndex()] as ObjectBrushPlugin;
 
-                if (obrPlugin == null) continue;
+                if (!obrPlugin) continue;
 
                 ObrObject obrObj = new()
                 {
@@ -61,7 +60,7 @@ namespace Fox.GameKit
 
                 obrPlugin.RegisterObject(obrObj);
                 
-                obrObjects.Add(obrObj);
+                ObrObjects.Add(obrObj);
 
                 // if (!instantiated)
                 // {

@@ -9,6 +9,7 @@ using UnityEditor.Experimental.GraphView;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Object = UnityEngine.Object;
 
 namespace Fox.Core
 {
@@ -127,13 +128,15 @@ namespace Fox.Core
             return scene;
         }
 
-        public static GameObject GetPrefab(FilePtr filepath)
+        public static Object GetPrefab(FilePtr filepath)
         {
             var logger = new TaskLogger("GetPrefab");
-
-            GameObject prefab = PrefabUtility.LoadPrefabContents(filepath.path.String+".asset");
             
-            if (prefab==null)
+            string localPath = "Assets/Game/"+filepath.path.String+".prefab";
+
+            var prefab = AssetDatabase.LoadAssetAtPath(localPath, typeof(GameObject));
+            
+            if (prefab is null)
             {
                 //create it
                 DataSetFile2Reader reader = new DataSetFile2Reader();
@@ -152,8 +155,7 @@ namespace Fox.Core
                 }
 
                 parent ??= new("dummy");
-
-
+                
                 // Loop through every GameObject in the array above
                 foreach (Entity obj in entities)
                 {
@@ -161,18 +163,16 @@ namespace Fox.Core
                     if (gameObject.transform.parent is null)
                         gameObject.transform.SetParent(parent.transform);
                 }
+                
+                //Create a new prefab at the path given
+                prefab = PrefabUtility.SaveAsPrefabAsset(parent,localPath);
 
-                // Create the new Prefab and log whether Prefab was saved successfully.
-                prefab = PrefabUtility.SaveAsPrefabAssetAndConnect(parent, filepath.path.String+".asset", InteractionMode.UserAction, out var prefabSuccess);
-                if (prefabSuccess != true)
-                    logger.AddError("Prefab failed to save" + false);
-
-                Destroy(parent);
+                DestroyImmediate(parent);
 
                 //return it
             }
 
-            return prefab;
+            return Instantiate(prefab);
         }
 
         public static UnityEngine.SceneManagement.Scene Read(ReadOnlySpan<byte> data, SceneLoadMode sceneMode, TaskLogger logger, out ReadOnlySpan<Entity> entities)
