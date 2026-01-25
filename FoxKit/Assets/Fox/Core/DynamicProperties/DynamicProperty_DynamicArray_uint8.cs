@@ -4,19 +4,19 @@ using UnityEngine;
 
 namespace Fox.Core
 {
-    [AddComponentMenu("FoxCore/DynamicProperty - DynamicArray<String>")]
-    public class DynamicProperty_DynamicArray_String : DynamicProperty
+    [AddComponentMenu("FoxCore/DynamicProperty - DynamicArray<uint8>")]
+    public class DynamicProperty_DynamicArray_uint8 : DynamicProperty
     {
         [SerializeField]
-        private System.Collections.Generic.List<string> SerializedField = new ();
+        private System.Collections.Generic.List<byte> SerializedField = new ();
 
         internal override PropertyInfo.ContainerType GetContainerType() => PropertyInfo.ContainerType.DynamicArray;
 
-        internal override PropertyInfo GetPropertyInfo() => new PropertyInfo(Name, PropertyInfo.PropertyType.String, 0, container: GetContainerType());
+        internal override PropertyInfo GetPropertyInfo() => new PropertyInfo(Name, PropertyInfo.PropertyType.UInt8, 0, container: GetContainerType());
         
         internal override void ChangeStaticArraySize(uint newSize)
         {
-            string[] newList = new string[newSize];
+            byte[] newList = new byte[newSize];
             
             for (int i = 0; i < (newSize <= SerializedField.Capacity ? newSize : SerializedField.Capacity); i++)
                 newList[i] = SerializedField[i];
@@ -28,7 +28,7 @@ namespace Fox.Core
 
         public override void SetElement(ushort index, Value value)
         {
-            SerializedField[index] = value.GetValueAsString();
+            SerializedField[index] = value.GetValueAsUInt8();
         }
     }
 }
