@@ -23,5 +23,7 @@ namespace Fox.GameKit
         static FoxGameKitModule()
         {
         }
+        
+        public static Dictionary<string, ObjectBrush> ObjectBrushRegistry = new();
     }
 }

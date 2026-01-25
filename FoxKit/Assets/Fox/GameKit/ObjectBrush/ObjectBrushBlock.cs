@@ -1,34 +1,27 @@
+﻿using System.Collections.Generic;
+using System.IO;
 using Fox.Core.Utils;
 using Fox.Fio;
-using System;
-using System.Collections.Generic;
-using System.IO;
 using UnityEditor;
 using UnityEngine;
 
 namespace Fox.GameKit
 {
-    [ExecuteInEditMode]
-    public partial class ObjectBrush : Fox.Core.TransformData
+    public partial class ObjectBrushBlock
     {
+        
         public override void OnDeserializeEntity(TaskLogger logger)
         {
             base.OnDeserializeEntity(logger);
-            if (System.String.IsNullOrEmpty(obrFile.path.String))
+            if (System.String.IsNullOrEmpty(obrbFile.path.String))
             {
-                Debug.LogWarning($"{name}: obrFile is null");
+                Debug.LogWarning($"{name}: obrbFile is null");
                 return;
             }
             
-            string locaterPath = "/Game" + obrFile.path.String;
+            string locaterPath = "/Game" + obrbFile.path.String;
 
             string readPath = "Assets" + locaterPath;
-
-            if (!System.IO.File.Exists(readPath))
-            {
-                Debug.LogError($"{readPath} does not exist");
-                return;
-            }
 
             ObjectBrushAsset asset = ObjectBrushReader.Read(new FileStreamReader(new FileStream(readPath, FileMode.Open)));
 
@@ -38,23 +31,39 @@ namespace Fox.GameKit
                 return;
             }
 
-            string trimmedPath = readPath.Replace(".obr", ".asset");
+            string trimmedPath = readPath.Replace(".obrb", ".asset");
 
             AssetDatabase.CreateAsset(asset, $"{trimmedPath}");
 
             AssetDatabase.SaveAssets();
 
+            if (!System.IO.File.Exists(readPath))
+            {
+                Debug.LogError($"{readPath} does not exist");
+                return;
+            }
+            
+            ObjectBrush objectBrush = FoxGameKitModule.ObjectBrushRegistry[this.objectBrushName];
+
+            var assetMain = AssetDatabase.LoadAssetAtPath<ObjectBrushAsset>(("Assets" + ("/Game" + objectBrush.obrFile.path.String)).Replace(".obr", ".asset"));
+
+            if (!asset)
+            {
+                Debug.LogWarning($"{name}: asset could not be created");
+                return;
+            }
+            
             List<ObrObject> ObrObjects = new();
 
             foreach (var obj in asset.objects)
             {
-                ObjectBrushPlugin obrPlugin = pluginHandle[obj.GetPluginBrushIndex()] as ObjectBrushPlugin;
-
+                ObjectBrushPlugin obrPlugin = objectBrush.pluginHandle[obj.GetPluginBrushIndex()] as ObjectBrushPlugin;
+                
                 if (!obrPlugin) continue;
 
                 ObrObject obrObj = new()
                 {
-                    Position = Math.FoxToUnityVector3(GetPositionFWSFromPositionEWS(obj,asset)),
+                    Position = Math.FoxToUnityVector3(GetPositionFWSFromPositionEWS(obj,assetMain,(ushort)blockId)),
                     Rotation = Math.FoxToUnityQuaternion(obj.GetRotation()),
                     Scale = (float)obj.GetNormalizedScale() / System.Byte.MaxValue,
                     Plugin = obrPlugin
@@ -63,27 +72,13 @@ namespace Fox.GameKit
                 obrPlugin.RegisterObject(obrObj);
                 
                 ObrObjects.Add(obrObj);
-
-                // if (!instantiated)
-                // {
-                //     instanceGameObject = new GameObject();
-                //     instanceGameObject.transform.position = transform.translation;
-                //     instanceGameObject.transform.rotation = transform.rotation_quat;
-                //     instanceGameObject.transform.localScale = transform.scale;
-                //     instanceGameObject.transform.SetParent(gameObject.transform, false);
-                //     PointGizmo gizmo = instanceGameObject.AddComponent<PointGizmo>();
-                //     gizmo.Color = Color.green;
-                //     gizmo.Scale = Vector3.one;
-                // }
             }
-            
-            
         }
         //joey func, but perhaps pointlessly dynamic!
         private const ushort OBR_MAGIC = 32640;
-        private static Vector3 GetPositionFWSFromPositionEWS(ObjectBrushObjectBinary obj, ObjectBrushAsset asset)
+        private static Vector3 GetPositionFWSFromPositionEWS(ObjectBrushObjectBinary obj, ObjectBrushAsset asset, ushort blockId)
         {
-            ushort blockIndex = obj.GetBlockIndex();
+            ushort blockIndex =  blockId;
 
             uint numBlocksW = asset.numBlocksW;
             uint numBlocksH = asset.numBlocksH;
@@ -123,16 +118,6 @@ namespace Fox.GameKit
                 Debug.LogWarning($"Unable to find asset at path {trimmedModelFilePath}");
             }
             return null;
-        }
-        [ExecuteAlways]
-        void OnEnable()
-        {
-            FoxGameKitModule.ObjectBrushRegistry[this.name]=this;
-        }
-        [ExecuteAlways]
-        void OnDisable()
-        {
-            FoxGameKitModule.ObjectBrushRegistry.Remove(this.name);
         }
     }
 }

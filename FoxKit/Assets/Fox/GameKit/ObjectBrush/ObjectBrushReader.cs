@@ -15,24 +15,40 @@ namespace Fox.GameKit
             if (foxDataHeader.GetFirstNode() is not FoxDataNodeContext dataNode)
                 return null;
 
-            Debug.Assert(dataNode.GetFlags() == 1);
+            var ObrType = dataNode.GetFlags();
             Debug.Assert(dataNode.GetNextNode() == null);
             Debug.Assert(dataNode.GetChildNode() == null);
 
             ObjectBrushAsset asset = ScriptableObject.CreateInstance<ObjectBrushAsset>();
 
-            //Parameters
-            FoxDataParameterContext? blockSizeWParam = dataNode.FindParameter("blockSizeW");
-            asset.blockSizeW = blockSizeWParam.Value.GetFloat();
+            switch (ObrType)
+            {
+                //Parameters
+                case 0:
+                {
+                    FoxDataParameterContext? blockIdParam = dataNode.FindParameter("blockId");
+                    asset.blockId = blockIdParam.Value.GetUInt();
+                
+                    FoxDataParameterContext? flagsParam = dataNode.FindParameter("flags");
+                    var flags = flagsParam.Value.GetUInt();
+                    break;
+                }
+                case 1:
+                {
+                    FoxDataParameterContext? blockSizeWParam = dataNode.FindParameter("blockSizeW");
+                    asset.blockSizeW = blockSizeWParam.Value.GetFloat();
 
-            FoxDataParameterContext? blockSizeHParam = dataNode.FindParameter("blockSizeH");
-            asset.blockSizeH = blockSizeHParam.Value.GetFloat();
+                    FoxDataParameterContext? blockSizeHParam = dataNode.FindParameter("blockSizeH");
+                    asset.blockSizeH = blockSizeHParam.Value.GetFloat();
 
-            FoxDataParameterContext? numBlocksWParam = dataNode.FindParameter("numBlocksW");
-            asset.numBlocksW = numBlocksWParam.Value.GetUInt();
+                    FoxDataParameterContext? numBlocksWParam = dataNode.FindParameter("numBlocksW");
+                    asset.numBlocksW = numBlocksWParam.Value.GetUInt();
 
-            FoxDataParameterContext? numBlocksHParam = dataNode.FindParameter("numBlocksH");
-            asset.numBlocksH = numBlocksHParam.Value.GetUInt();
+                    FoxDataParameterContext? numBlocksHParam = dataNode.FindParameter("numBlocksH");
+                    asset.numBlocksH = numBlocksHParam.Value.GetUInt();
+                    break;
+                }
+            }
 
             FoxDataParameterContext? numObjectsParam = dataNode.FindParameter("numObjects");
             float numObjects = numObjectsParam.Value.GetUInt();
