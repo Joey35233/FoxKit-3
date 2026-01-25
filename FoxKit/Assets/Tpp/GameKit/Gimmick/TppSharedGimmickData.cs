@@ -77,7 +77,6 @@ namespace Tpp.GameKit
                         if (partsPrefab is not null)
                         {
                             partsPrefab.transform.parent = locatorGameObject.transform;
-                            partsPrefab.hideFlags = HideFlags.DontSaveInEditor;
                         }
                         
                         locatorGameObject.transform.position = locator.GetTranslation();
@@ -108,7 +107,6 @@ namespace Tpp.GameKit
                         if (partsPrefab is not null)
                         {
                             partsPrefab.transform.parent = locatorGameObject.transform;
-                            partsPrefab.hideFlags = HideFlags.DontSaveInEditor;
                         }
                         
                         locatorGameObject.transform.position = locator.GetTranslation();
@@ -139,7 +137,6 @@ namespace Tpp.GameKit
                         if (partsPrefab is not null)
                         {
                             partsPrefab.transform.parent = locatorGameObject.transform;
-                            partsPrefab.hideFlags = HideFlags.DontSaveInEditor;
                         }
                         
                         locatorGameObject.transform.position = locator.GetTranslation();
