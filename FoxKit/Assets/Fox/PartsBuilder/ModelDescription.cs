@@ -2,9 +2,6 @@
 using Fox.Core;
 using Fox.Core.Utils;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
-using UnityEngine.ResourceManagement.AsyncOperations;
-using UnityEngine.ResourceManagement.ResourceLocations;
 
 namespace Fox.PartsBuilder
 {

@@ -5,28 +5,19 @@ using Fox.Core.Utils;
 using Fox.Fio;
 using Fox.GameKit;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
-using UnityEngine.ResourceManagement.AsyncOperations;
-using UnityEngine.ResourceManagement.ResourceLocations;
 
 namespace Tpp.GameKit
 {
     [ExecuteInEditMode]
     public partial class TppObjectBrushPluginSkeletonModel : Fox.GameKit.ObjectBrushPlugin
     {
-        public static TppObjectBrushPluginSkeletonModel Deserialize(FileStreamReader reader)
-        {
-            var plugin = new TppObjectBrushPluginSkeletonModel();
-
-            return plugin;
-        }
         public override void OnDeserializeEntity(TaskLogger logger)
         {
             base.OnDeserializeEntity(logger);
 
-            foreach (var modelFileInstance in modelFile)
+            foreach (var _modelFile in modelFile)
             {
-                if (modelFileInstance == FilePtr.Empty)
+                if (_modelFile == FilePtr.Empty)
                 {
                     logger.AddWarningEmptyPath(nameof(modelFile));
                     return;
@@ -37,7 +28,7 @@ namespace Tpp.GameKit
             ReloadFile(logger);
         }
 
-        private List<AsyncOperationHandle<GameObject>> ModelHandles = new();
+        private List<GameObject> ModelHandles = new();
 
         private List<GameObject> Instances;
 
@@ -47,10 +38,9 @@ namespace Tpp.GameKit
             Quaternion rotation = obj.Rotation;
             Vector3 scale = Vector3.one * Mathf.Lerp(minSize, maxSize, obj.Scale);
 
-            GameObject instance = GameObject.Instantiate(model, position, rotation);
-            instance.name = "INSTANCE_WILL_RESET_ON_RELOAD";
+            GameObject instance = GameObject.Instantiate(model, position, rotation, this.transform);
             instance.transform.localScale = scale;
-            instance.transform.SetParent(this.transform);
+            instance.name = "INSTANCE_WILL_RESET_ON_RELOAD";
             instance.hideFlags = HideFlags.DontSaveInEditor;
         }
         
@@ -59,61 +49,27 @@ namespace Tpp.GameKit
             for (int i = transform.childCount - 1; i >= 0; i--)
             {
                 var child = transform.GetChild(i);
-                if (child.GetComponent<Entity>() != null)
+                if (child.GetComponent<Entity>())
                     continue;
                 DestroyImmediate(child.gameObject);
             }
 
             for (int i = 0; i < modelFile.Count; i++)
             {
-                Path targetPath = modelFile[i]?.path;
-                if (targetPath is null || string.IsNullOrEmpty(targetPath.String))
-                    return;
+                FilePtr _modelFile = modelFile[i];
                 
-                var getLocationsHandle = Addressables.LoadResourceLocationsAsync(targetPath.String);
-                getLocationsHandle.WaitForCompletion();
+                if (_modelFile != FilePtr.Empty)
+                {
+                    GameObject modelHandle = Fox.Fs.FileSystem.LoadAsset<GameObject>(_modelFile.path.String);
+                    ModelHandles[i] = modelHandle;
                     
-                IList<IResourceLocation> results = getLocationsHandle.Result;
-                if (results.Count > 0)
-                {
-                    IResourceLocation firstLocation = results[0];
-                    ModelHandles.Insert(i,Addressables.LoadAssetAsync<GameObject>(firstLocation));;
-                    _ = ModelHandles[i].WaitForCompletion();
-                    OnLoadAsset(ModelHandles);
-                }
-                else
-                {
-                    Debug.Log($"Could not find: {targetPath.String}");
-                }
-                Addressables.Release(getLocationsHandle);
-            }
-        }
-        private void OnLoadAsset(List<AsyncOperationHandle<GameObject>> handle)
-        {
-            ModelHandles = handle;
-
-            foreach (var modelHandle in ModelHandles)
-            {
-                if (modelHandle.Status == AsyncOperationStatus.Succeeded)
-                {
-                    foreach (var obj in Objects)
-                    {
-                        CreateModel(modelHandle.Result, obj);
-                    }
+                    if (modelHandle)
+                        foreach (var obj in Objects)
+                            CreateModel(modelHandle, obj);
+                    else
+                        Debug.Log($"Could not find: {modelFile}");
                 }
             }
-        }
-
-        private void OnEnable()
-        {
-            ReloadFile();
-        }
-        
-        private void OnDisable()
-        {
-            foreach (var modelHandle in ModelHandles)
-                if (modelHandle.IsValid())
-                    Addressables.Release(modelHandle);
         }
     }
 }

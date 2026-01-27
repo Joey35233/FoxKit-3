@@ -38,6 +38,19 @@ namespace Fox.Fs
 
             return result;
         }
+        
+        public static string GetFoxPathFromUnityPath(string unityPath)
+        {
+            string basePath = FsModule.UnityBasePath;
+            
+            int index = unityPath.IndexOf(basePath, StringComparison.Ordinal);
+            if (index < 0)
+                return null;
+            
+            string result = unityPath[(index + basePath.Length)..];
+
+            return result;
+        }
 
         public static string GetExternalPathFromFoxPath(string foxPath)
         {

@@ -1,8 +1,6 @@
 using Fox;
 using System;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
-using UnityEngine.ResourceManagement.AsyncOperations;
 
 namespace Fox.Core
 {
@@ -41,12 +39,6 @@ namespace Fox.Core
         public FilePtr(Path path)
         {
             this.path = path;
-        }
-
-        public AsyncOperationHandle<T> LoadAsync<T>() where T : class
-        {
-            var handle = Addressables.LoadAssetAsync<T>(path.String);
-            return handle;
         }
 
         public static FilePtr Empty => new();
