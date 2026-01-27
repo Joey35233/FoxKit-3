@@ -128,51 +128,27 @@ namespace Fox.Core
             return scene;
         }
 
-        public static Object GetPrefab(FilePtr filepath)
+        public static Object ImportPrefab(FilePtr filePtr)
         {
-            var logger = new TaskLogger("GetPrefab");
-            
-            string localPath = "Assets/Game/"+filepath.path.String+".prefab";
+            var logger = new TaskLogger("ImportPrefab");
 
-            var prefab = AssetDatabase.LoadAssetAtPath(localPath, typeof(GameObject));
+            GameObject prefab = Fox.Fs.FileSystem.LoadAsset<GameObject>(filePtr.path.String);
             
-            if (prefab is null)
+            DataSetFile2Reader reader = new DataSetFile2Reader();
+            var data = Fox.Fs.FileSystem.ReadExternalFile(filePtr.path.String);
+            ReadOnlySpan<Entity> entities = reader.Read(data, logger);
+
+            GameObject root = new GameObject(System.IO.Path.GetFileNameWithoutExtension(filePtr.path.String));
+            
+            foreach (Entity entity in entities)
             {
-                //create it
-                DataSetFile2Reader reader = new DataSetFile2Reader();
-                var data = Fox.Fs.FileSystem.ReadExternalFile(filepath.path.String);
-                ReadOnlySpan<Entity> entities = reader.Read(data, logger);
-
-                GameObject parent = null;
-
-                foreach (Entity obj in entities)
-                {
-                    if (obj is DataSet set)
-                    {
-                        parent = set.gameObject;
-                        break;
-                    }
-                }
-
-                parent ??= new("dummy");
-                
-                // Loop through every GameObject in the array above
-                foreach (Entity obj in entities)
-                {
-                    GameObject gameObject = obj.gameObject;
-                    if (gameObject.transform.parent is null)
-                        gameObject.transform.SetParent(parent.transform);
-                }
-                
-                //Create a new prefab at the path given
-                prefab = PrefabUtility.SaveAsPrefabAsset(parent,localPath);
-
-                DestroyImmediate(parent);
-
-                //return it
+                entity.transform.parent = root.transform;
             }
+            
+            prefab = Fox.Fs.FileSystem.CreatePrefabAsset(root, filePtr.path.String);
+            DestroyImmediate(root);
 
-            return Instantiate(prefab);
+            return prefab;
         }
 
         public static UnityEngine.SceneManagement.Scene Read(ReadOnlySpan<byte> data, SceneLoadMode sceneMode, TaskLogger logger, out ReadOnlySpan<Entity> entities)

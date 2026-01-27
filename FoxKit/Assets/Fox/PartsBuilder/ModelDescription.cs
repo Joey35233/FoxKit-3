@@ -20,12 +20,16 @@ namespace Fox.PartsBuilder
                 logger.AddWarningEmptyPath(nameof(modelFile));
                 return;
             }
+            else
+            {
+                Fox.Fs.FileSystem.TryCopyImportAsset(modelFile.path.String);
+            }
             
             // TODO: HACK
             ReloadFile(logger);
         }
 
-        private AsyncOperationHandle<GameObject> ModelHandle;
+        private GameObject ModelHandle;
 
         private GameObject Instance;
 
@@ -46,36 +50,13 @@ namespace Fox.PartsBuilder
                 DestroyImmediate(child.gameObject);
             }
 
-            Path targetPath = modelFile?.path;
-            if (targetPath is null || string.IsNullOrEmpty(targetPath.String))
-                return;
-            
-            var getLocationsHandle = Addressables.LoadResourceLocationsAsync(targetPath.String);
-            getLocationsHandle.WaitForCompletion();
-                
-            IList<IResourceLocation> results = getLocationsHandle.Result;
-            if (results.Count > 0)
+            if (modelFile != FilePtr.Empty)
             {
-                IResourceLocation firstLocation = results[0];
-                ModelHandle = Addressables.LoadAssetAsync<GameObject>(firstLocation);
-                _ = ModelHandle.WaitForCompletion();
-                OnLoadAsset(ModelHandle);
-            }
-            else
-            {
-                Debug.Log($"Could not find: {targetPath.String}");
-            }
-                
-            Addressables.Release(getLocationsHandle);
-        }
-
-        private void OnLoadAsset(AsyncOperationHandle<GameObject> handle)
-        {
-            ModelHandle = handle;
-            
-            if (ModelHandle.Status == AsyncOperationStatus.Succeeded)
-            {
-                CreateModel(ModelHandle.Result);
+                ModelHandle = Fox.Fs.FileSystem.LoadAsset<GameObject>(modelFile.path.String);
+                if (ModelHandle)
+                    CreateModel(ModelHandle);
+                else
+                    Debug.Log($"Could not find: {modelFile}");
             }
         }
 
@@ -83,12 +64,7 @@ namespace Fox.PartsBuilder
         {
             ReloadFile();
         }
-
-        private void OnDisable()
-        {
-            if (ModelHandle.IsValid())
-                Addressables.Release(ModelHandle);
-        }
+        
         public override void Reset()
         {
             base.Reset();

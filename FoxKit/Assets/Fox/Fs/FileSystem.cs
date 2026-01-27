@@ -72,15 +72,20 @@ namespace Fox.Fs
             return result;
         }
     
-        private static string ResolveFoxPath(string path)
+        private static string ResolveFoxPath(string foxPath)
         {
-            Debug.Assert(path.StartsWith('/'));
+            Debug.Assert(foxPath != string.Empty, "Resolving empty string.");
+            Debug.Assert(foxPath.StartsWith('/'), "Virtual path not absolute.");
             
             // Very basic handling
-            if (path.EndsWith(".fox2"))
-                path += ".unity";
+            if (foxPath.EndsWith(".fox2"))
+                foxPath += ".unity";
+            if (foxPath.EndsWith(".parts"))
+                foxPath += ".prefab";
+            else if (foxPath.EndsWith(".lba"))
+                foxPath += ".asset";
     
-            return path;
+            return foxPath;
         }
 
         public static ReadOnlySpan<byte> ReadExternalFile(string foxPath)
@@ -160,6 +165,42 @@ namespace Fox.Fs
             }
 
             return true;
+        }
+
+        public static T LoadAsset<T>(string foxPath) where T : UnityEngine.Object
+        {
+            string unityPath = GetUnityPathFromFoxPath(foxPath);
+            return AssetDatabase.LoadAssetAtPath<T>(unityPath);
+        }
+        public static void CreateAsset(UnityEngine.Object asset, string foxPath, bool createDirectory = true)
+        {
+            string unityPath = GetUnityPathFromFoxPath(foxPath);
+            
+            if (createDirectory)
+            {
+                string directoryPath = System.IO.Path.GetDirectoryName(unityPath);
+                if (!Directory.Exists(directoryPath))
+                {
+                    Directory.CreateDirectory(directoryPath);
+                }
+            }
+            
+            AssetDatabase.CreateAsset(asset, unityPath);
+        }
+        public static GameObject CreatePrefabAsset(GameObject prefab, string foxPath, bool createDirectory = true)
+        {
+            string unityPath = GetUnityPathFromFoxPath(foxPath);
+            
+            if (createDirectory)
+            {
+                string directoryPath = System.IO.Path.GetDirectoryName(unityPath);
+                if (!Directory.Exists(directoryPath))
+                {
+                    Directory.CreateDirectory(directoryPath);
+                }
+            }
+            
+            return PrefabUtility.SaveAsPrefabAsset(prefab, unityPath);
         }
 
         // Utilities

@@ -54,5 +54,7 @@ namespace Fox.Core
         public static bool operator ==(FilePtr a, FilePtr b) => a.path == b.path;
 
         public static bool operator !=(FilePtr a, FilePtr b) => !(a == b);
+
+        public override string ToString() => path.ToString();
     }
 }

@@ -21,6 +21,10 @@ namespace Fox.GameKit
                 logger.AddWarningEmptyPath(nameof(modelFile));
                 return;
             }
+            else
+            {
+                Fox.Fs.FileSystem.TryCopyImportAsset(modelFile.path.String);
+            }
             
             // foreach (Matrix4x4 foxTransform in transforms)
             // {

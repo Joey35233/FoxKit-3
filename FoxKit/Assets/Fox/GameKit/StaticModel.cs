@@ -20,6 +20,10 @@ namespace Fox.GameKit
                 logger.AddWarningEmptyPath(nameof(modelFile));
                 return;
             }
+            else
+            {
+                Fox.Fs.FileSystem.TryCopyImportAsset(modelFile.path.String);
+            }
             
             // TODO: HACK
             ReloadFile(logger);
