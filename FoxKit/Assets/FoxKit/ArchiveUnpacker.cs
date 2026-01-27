@@ -8,6 +8,7 @@ using GzsTool.Core.Utility;
 using GzsTool.Core.Common;
 using System.Threading.Tasks;
 using System;
+using System.Threading;
 
 namespace FoxKit.Windows
 {
@@ -24,7 +25,11 @@ namespace FoxKit.Windows
         private string gameDir;
         private string outputFolderName;
         private bool exePathValid;
+
+        // UI / state
         private bool abortRequested = false;
+        private bool _isRunning = false;
+        private CancellationTokenSource _cts;
 
         private Dictionary<string, bool> ignoredFilesMap = new Dictionary<string, bool>();
         private Dictionary<string, bool> ignoredExtensionsMap = new Dictionary<string, bool>();
@@ -69,6 +74,14 @@ namespace FoxKit.Windows
             RefreshIgnoreLists();
         }
 
+        private void OnDisable()
+        {
+            // Cleanup
+            try { _cts?.Cancel(); } catch { }
+            try { _cts?.Dispose(); } catch { }
+            _cts = null;
+        }
+
         private void ValidateExePath()
         {
             string exePath = SettingsManager.GameDirBasePath;
@@ -94,15 +107,18 @@ namespace FoxKit.Windows
                         string name = Path.GetFileNameWithoutExtension(datFile);
                         if (!hardcodedSet.Contains(name))
                         {
-                            string relativePath = datFile.Replace(masterDir + Path.DirectorySeparatorChar, "").Replace("\\", "/");
+                            string relativePath = datFile
+                                .Replace(masterDir + Path.DirectorySeparatorChar, "")
+                                .Replace("\\", "/");
                             ignoredFilesMap[relativePath] = false;
                         }
                     }
                 }
             }
 
+            // Default: NOT ignored (otherwise you extract almost nothing)
             foreach (string ext in defaultExtensions)
-                ignoredExtensionsMap[ext] = true;
+                ignoredExtensionsMap[ext] = false;
         }
 
         private void OnGUI()
@@ -164,17 +180,23 @@ namespace FoxKit.Windows
             EditorGUILayout.BeginHorizontal(EditorStyles.helpBox);
             GUILayout.FlexibleSpace();
 
+            GUI.enabled = !_isRunning;
             if (GUILayout.Button("Transfer Archive", GUILayout.Width(200), GUILayout.Height(35)))
             {
                 abortRequested = false;
-                TransferArchive(exePath);
+                _cts?.Dispose();
+                _cts = new CancellationTokenSource();
+                TransferArchive(exePath, _cts.Token);
             }
 
-            GUI.enabled = true;
+            GUI.enabled = _isRunning;
             if (GUILayout.Button("Abort", GUILayout.Width(120), GUILayout.Height(35)))
             {
                 abortRequested = true;
+                try { _cts?.Cancel(); } catch { }
             }
+            GUI.enabled = true;
+
             GUILayout.FlexibleSpace();
             EditorGUILayout.EndHorizontal();
         }
@@ -196,6 +218,7 @@ namespace FoxKit.Windows
                 else
                 {
                     var keys = new List<string>(dict.Keys);
+                    keys.Sort(StringComparer.OrdinalIgnoreCase);
                     foreach (var key in keys)
                         dict[key] = EditorGUILayout.ToggleLeft(key, dict[key]);
                 }
@@ -216,10 +239,12 @@ namespace FoxKit.Windows
             EditorGUI.DrawRect(rect, new Color(0.25f, 0.25f, 0.25f, 1f));
         }
 
-        private async void TransferArchive(string exePath)
+        private async void TransferArchive(string exePath, CancellationToken token)
         {
             ValidateExePath();
             if (!exePathValid) return;
+
+            _isRunning = true;
 
             gameDir = Path.GetDirectoryName(exePath);
             string destinationPath = Path.Combine(
@@ -228,35 +253,39 @@ namespace FoxKit.Windows
             );
 
             string masterPath = Path.Combine(gameDir, "master");
-            if (!Directory.Exists(masterPath)) return;
+            if (!Directory.Exists(masterPath))
+            {
+                _isRunning = false;
+                return;
+            }
 
             string dictPath = Path.Combine(Application.dataPath, "Plugin", "GzsTool", "qar_dictionary.txt");
             if (File.Exists(dictPath))
             {
-                try { Hashing.ReadDictionary(dictPath); } catch { }
+                try { Hashing.ReadDictionary(dictPath); } catch { /* ignore */ }
             }
 
             // Build ignore sets
-            HashSet<string> ignoredFiles = new();
+            var ignoredFiles = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             foreach (var kv in ignoredFilesMap)
                 if (kv.Value)
                     ignoredFiles.Add(Path.GetFileNameWithoutExtension(kv.Key));
             foreach (string h in hardcodedIgnoredDatFiles)
                 ignoredFiles.Add(h);
 
-            HashSet<string> ignoredExtensions = new();
+            var ignoredExtensions = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             foreach (var kv in ignoredExtensionsMap)
                 if (kv.Value)
                     ignoredExtensions.Add(kv.Key);
 
             // Build ordered .dat list
-            List<string> orderedDatFiles = new();
+            List<string> orderedDatFiles = new List<string>();
             string[] baseOrder =
             {
                 "chunk0.dat", "chunk1.dat", "chunk2.dat", "chunk4.dat",
                 "data1.dat",
                 "texture0.dat", "texture1.dat", "texture2.dat", "texture3.dat", "texture4.dat"
-             };
+            };
 
             foreach (string name in baseOrder)
             {
@@ -273,137 +302,175 @@ namespace FoxKit.Windows
             if (Directory.Exists(updatePath))
                 orderedDatFiles.AddRange(Directory.GetFiles(updatePath, "*.dat", SearchOption.AllDirectories));
 
-            int totalFiles = orderedDatFiles.Count;
-            int processed = 0;
-            abortRequested = false;
+            int total = orderedDatFiles.Count;
+            int done = 0;
 
-            byte[] buffer = new byte[81920];
+            // Temp root for deterministic merge
             string tempRoot = Path.Combine(Path.GetTempPath(), "FoxKitExtract");
+            try { if (Directory.Exists(tempRoot)) Directory.Delete(tempRoot, true); } catch { }
             Directory.CreateDirectory(tempRoot);
 
-            // Progress callback for main thread
+            // Store per-dat temp output so we can merge in correct order
+            string[] tempDirs = new string[total];
+
+            // Main-thread progress updater
             void UpdateProgress()
             {
-                float progress = (float)processed / Mathf.Max(1, totalFiles);
-                EditorUtility.DisplayProgressBar("Extracting Archives",
-                    $"Processing... ({processed}/{totalFiles})",
-                    progress);
+                float progress = (float)done / Mathf.Max(1, total);
+                EditorUtility.DisplayProgressBar(
+                    "Extracting Archives",
+                    $"Processing... ({done}/{total})",
+                    progress
+                );
             }
-
-            // Register main-thread progress updater
             EditorApplication.update += UpdateProgress;
+
+            // Throttle parallelism
+            int maxParallel = Mathf.Clamp(Environment.ProcessorCount - 1, 1, 6);
+            using var gate = new SemaphoreSlim(maxParallel);
 
             try
             {
                 AssetDatabase.StartAssetEditing();
 
-                List<Task> tasks = new();
+                var tasks = new List<Task>(total);
 
-                foreach (string datFile in orderedDatFiles)
+                for (int i = 0; i < total; i++)
                 {
-                    if (abortRequested)
+                    string datFile = orderedDatFiles[i];
+
+                    if (token.IsCancellationRequested || abortRequested)
                         break;
 
                     string fileNameOnly = Path.GetFileNameWithoutExtension(datFile);
                     if (ignoredFiles.Contains(fileNameOnly))
-                        continue;
-
-                    // Run each .dat extraction in parallel
-                    tasks.Add(Task.Run(() =>
                     {
-                        if (abortRequested) return;
+                        Interlocked.Increment(ref done);
+                        continue;
+                    }
 
+                    string datTempDir = Path.Combine(tempRoot, $"{i:D4}_{fileNameOnly}");
+                    tempDirs[i] = datTempDir;
+
+                    tasks.Add(Task.Run(async () =>
+                    {
+                        await gate.WaitAsync(token).ConfigureAwait(false);
                         try
                         {
-                            using FileStream stream = File.OpenRead(datFile);
-                            if (!QarFile.IsQarFile(stream)) return;
+                            token.ThrowIfCancellationRequested();
 
-                            QarFile qar = new QarFile { Name = Path.GetFileName(datFile) };
-                            stream.Position = 0;
-                            qar.Read(stream);
+                            Directory.CreateDirectory(datTempDir);
 
-                            FileSystemDirectory outputDir = new FileSystemDirectory(destinationPath);
-
-                            foreach (var qarEntry in qar.ExportFiles(stream))
+                            using (FileStream stream = File.OpenRead(datFile))
                             {
-                                if (abortRequested) return;
+                                if (!QarFile.IsQarFile(stream))
+                                    return;
 
-                                string fullPath = Path.Combine(destinationPath, qarEntry.FileName);
-                                Directory.CreateDirectory(Path.GetDirectoryName(fullPath));
-                                outputDir.WriteFile(qarEntry.FileName, qarEntry.DataStream);
+                                QarFile qar = new QarFile { Name = Path.GetFileName(datFile) };
+                                stream.Position = 0;
+                                qar.Read(stream);
 
-                                string ext = Path.GetExtension(qarEntry.FileName).ToLowerInvariant();
-                                if (ext == ".fpk" || ext == ".fpkd")
+                                FileSystemDirectory outputDir = new FileSystemDirectory(datTempDir);
+
+                                foreach (var qarEntry in qar.ExportFiles(stream))
                                 {
-                                    using FileStream fpkStream = File.OpenRead(fullPath);
-                                    FpkFile fpk = new FpkFile();
-                                    fpk.Read(fpkStream);
+                                    token.ThrowIfCancellationRequested();
 
-                                    foreach (var fpkEntry in fpk.ExportFiles(fpkStream))
+                                    string qarExt = Path.GetExtension(qarEntry.FileName).ToLowerInvariant();
+                                    if (ignoredExtensions.Contains(qarExt))
+                                        continue;
+
+                                    outputDir.WriteFile(qarEntry.FileName, qarEntry.DataStream);
+
+                                    if (qarExt == ".fpk" || qarExt == ".fpkd")
                                     {
-                                        if (abortRequested)
-                                            return;
-
-                                        string entryExt = Path.GetExtension(fpkEntry.FileName).ToLowerInvariant();
-                                        if (ignoredExtensions.Contains(entryExt))
+                                        string fpkOnDisk = Path.Combine(datTempDir, qarEntry.FileName);
+                                        if (!File.Exists(fpkOnDisk))
                                             continue;
 
-                                        string extractedPath = Path.Combine(destinationPath, fpkEntry.FileName);
-                                        Directory.CreateDirectory(Path.GetDirectoryName(extractedPath));
+                                        using (FileStream fpkStream = File.OpenRead(fpkOnDisk))
+                                        {
+                                            FpkFile fpk = new FpkFile();
+                                            fpk.Read(fpkStream);
 
-                                        using Stream src = fpkEntry.DataStream();
-                                        using FileStream outStream = File.Create(extractedPath);
+                                            foreach (var fpkEntry in fpk.ExportFiles(fpkStream))
+                                            {
+                                                token.ThrowIfCancellationRequested();
 
-                                        src.CopyTo(outStream);
+                                                string entryExt = Path.GetExtension(fpkEntry.FileName).ToLowerInvariant();
+                                                if (ignoredExtensions.Contains(entryExt))
+                                                    continue;
+
+                                                string extractedPath = Path.Combine(datTempDir, fpkEntry.FileName);
+                                                Directory.CreateDirectory(Path.GetDirectoryName(extractedPath));
+
+                                                using (Stream src = fpkEntry.DataStream())
+                                                using (FileStream outStream = File.Create(extractedPath))
+                                                    src.CopyTo(outStream);
+                                            }
+                                        }
                                     }
                                 }
                             }
+                        }
+                        catch (OperationCanceledException)
+                        {
+                            // user aborted
                         }
                         catch (Exception e)
                         {
                             Debug.LogWarning($"Error unpacking {datFile}: {e.Message}");
                         }
-
-                        System.Threading.Interlocked.Increment(ref processed);
-                    }));
-
+                        finally
+                        {
+                            gate.Release();
+                            Interlocked.Increment(ref done);
+                        }
+                    }, token));
                 }
 
-                // Wait for all threads to complete
                 await Task.WhenAll(tasks);
 
-                // Merge temp results back into destination
-                if (!abortRequested)
-                {
-                    foreach (string dir in Directory.GetDirectories(tempRoot))
-                    {
-                        string[] files = Directory.GetFiles(dir, "*.*", SearchOption.AllDirectories);
-                        foreach (string file in files)
-                        {
-                            string rel = file.Substring(dir.Length + 1);
-                            string dest = Path.Combine(destinationPath, rel);
-                            Directory.CreateDirectory(Path.GetDirectoryName(dest));
-                            File.Copy(file, dest, true);
-                        }
-                    }
-
-                    try { Directory.Delete(tempRoot, true); } catch { }
-                    Debug.Log($"Extraction complete: {destinationPath}");
-                }
-                else
+                if (token.IsCancellationRequested || abortRequested)
                 {
                     Debug.LogWarning("Extraction aborted by user.");
+                    return;
                 }
+
+                // Merge in correct order (later dat overrides earlier)
+                Directory.CreateDirectory(destinationPath);
+
+                for (int i = 0; i < total; i++)
+                {
+                    string dir = tempDirs[i];
+                    if (string.IsNullOrEmpty(dir) || !Directory.Exists(dir))
+                        continue;
+
+                    foreach (string file in Directory.GetFiles(dir, "*.*", SearchOption.AllDirectories))
+                    {
+                        string rel = file.Substring(dir.Length + 1).Replace("\\", "/");
+                        string dest = Path.Combine(destinationPath, rel);
+
+                        Directory.CreateDirectory(Path.GetDirectoryName(dest));
+                        File.Copy(file, dest, true);
+                    }
+                }
+
+                Debug.Log($"Extraction complete: {destinationPath}");
             }
             finally
             {
                 EditorApplication.update -= UpdateProgress;
                 EditorUtility.ClearProgressBar();
+
+                try { if (Directory.Exists(tempRoot)) Directory.Delete(tempRoot, true); } catch { }
+
                 AssetDatabase.StopAssetEditing();
                 AssetDatabase.SaveAssets();
                 AssetDatabase.Refresh();
+
+                _isRunning = false;
             }
         }
-
     }
 }
