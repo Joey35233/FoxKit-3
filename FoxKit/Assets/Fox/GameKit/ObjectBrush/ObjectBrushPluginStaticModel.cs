@@ -6,10 +6,10 @@ using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.ResourceManagement.ResourceLocations;
 
-namespace Fox.PartsBuilder
+namespace Fox.GameKit
 {
     [ExecuteInEditMode]
-    public partial class ModelDescription
+    public partial class ObjectBrushPluginStaticModel
     {
         public override void OnDeserializeEntity(TaskLogger logger)
         {
@@ -27,12 +27,18 @@ namespace Fox.PartsBuilder
 
         private AsyncOperationHandle<GameObject> ModelHandle;
 
-        private GameObject Instance;
+        private List<GameObject> Instances;
 
-        private void CreateModel(GameObject model)
+        private void CreateModel(GameObject model, ObrObject obj)
         {
-            GameObject instance = GameObject.Instantiate(model, this.transform, false);
+            Vector3 position = obj.Position;
+            Quaternion rotation = obj.Rotation;
+            Vector3 scale = Vector3.one * Mathf.Lerp(minSize, maxSize, obj.Scale);
+
+            GameObject instance = GameObject.Instantiate(model, position, rotation);
             instance.name = "INSTANCE_WILL_RESET_ON_RELOAD";
+            instance.transform.localScale = scale;
+            instance.transform.SetParent(this.transform);
             instance.hideFlags = HideFlags.DontSaveInEditor;
         }
         
@@ -68,14 +74,16 @@ namespace Fox.PartsBuilder
                 
             Addressables.Release(getLocationsHandle);
         }
-
         private void OnLoadAsset(AsyncOperationHandle<GameObject> handle)
         {
             ModelHandle = handle;
             
             if (ModelHandle.Status == AsyncOperationStatus.Succeeded)
             {
-                CreateModel(ModelHandle.Result);
+                foreach (var obj in Objects)
+                {
+                    CreateModel(ModelHandle.Result, obj);
+                }
             }
         }
 
@@ -83,20 +91,11 @@ namespace Fox.PartsBuilder
         {
             ReloadFile();
         }
-
+        
         private void OnDisable()
         {
             if (ModelHandle.IsValid())
                 Addressables.Release(ModelHandle);
-        }
-        public override void Reset()
-        {
-            base.Reset();
-            lodFarPixelSize = -1;
-            lodNearPixelSize = -1;
-            lodPolygonSize = -1;
-            drawRejectionLevel = ModelDescription_DrawRejectionLevel.DEFAULT;
-            rejectFarRangeShadowCast = ModelDescription_RejectFarRangeShadowCast.DEFAULT;
         }
     }
 }

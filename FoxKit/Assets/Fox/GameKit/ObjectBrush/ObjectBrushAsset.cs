@@ -10,6 +10,7 @@ namespace Fox.GameKit
         public float blockSizeH;
         public uint numBlocksW;
         public uint numBlocksH;
+        public uint blockId;
         [SerializeReference]
         public List<ObjectBrushObjectBinary> objects = new();
         [MenuItem("FoxKit/Debug/OBR/Create OBR")]

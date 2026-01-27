@@ -77,5 +77,30 @@ namespace FoxKit.MenuItems
             
             Fox.Fs.FileSystem.TryImportAsset(scene, externalPath, ImportFileMode.OpenDontSave);
         }
+        [MenuItem("FoxKit/Import/DataSetFile2 (Additive)")]
+        private static void OnImportAddtlAsset()
+        {
+            string externalPath = EditorUtility.OpenFilePanel("Import DataSetFile2 (Additive)", "", ExtensionWhitelist);
+            if (String.IsNullOrEmpty(externalPath))
+            {
+                return;
+            }
+
+            var logger = new TaskLogger("Import DataSetFile2");
+
+            string path = Fox.Fs.FileSystem.GetFoxPathFromExternalPath(externalPath);
+            if (path == null)
+            {
+                logger.AddError("Selected file is not within external directory.");
+                logger.LogToUnityConsole();
+                return;
+            }
+            
+            ReadOnlySpan<byte> fileData = Fox.Fs.FileSystem.ReadExternalFile(path);
+            UnityEngine.SceneManagement.Scene scene = DataSetFile2.Read(fileData, DataSetFile2.SceneLoadMode.Additive, logger);
+            logger.LogToUnityConsole();
+            
+            Fox.Fs.FileSystem.TryImportAsset(scene, path);
+        }
     }
 }
