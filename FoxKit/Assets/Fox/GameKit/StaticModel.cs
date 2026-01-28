@@ -19,14 +19,11 @@ namespace Fox.GameKit
             }
             else
             {
-                Fox.Fs.FileSystem.TryCopyImportAsset(modelFile.path.String);
+                Fox.Fs.FileSystem.ImportAssetCopy(modelFile.path.String);
             }
-            
-            // TODO: HACK
-            ReloadFile(logger);
         }
 
-        private GameObject ModelHandle;
+        private GameObject ModelPrefab;
 
         private GameObject Instance;
 
@@ -49,9 +46,9 @@ namespace Fox.GameKit
 
             if (modelFile != FilePtr.Empty)
             {
-                ModelHandle = Fox.Fs.FileSystem.LoadAsset<GameObject>(modelFile.path.String);
-                if (ModelHandle)
-                    CreateModel(ModelHandle);
+                ModelPrefab = Fox.Fs.FileSystem.LoadAsset<GameObject>(modelFile.path.String);
+                if (ModelPrefab)
+                    CreateModel(ModelPrefab);
                 else
                     Debug.Log($"Could not find: {modelFile}");
             }

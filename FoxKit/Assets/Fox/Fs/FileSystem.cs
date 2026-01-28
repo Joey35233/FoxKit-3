@@ -118,11 +118,15 @@ namespace Fox.Fs
             return File.ReadAllBytes(unityPath);
         }
 
-        public static bool TryCopyImportAsset(string foxPath, ImportFileMode importMode = ImportFileMode.PreserveImportPath, bool createDirectory = true)
+        public static void ImportAssetCopy(string foxPath, ImportFileMode importMode = ImportFileMode.PreserveImportPath, bool createDirectory = true)
         {
             string externalPath = GetExternalPathFromFoxPath(foxPath);
             string unityPath = GetUnityPathFromFoxPath(foxPath);
 
+            // Never recopy; source Fox files are immutable
+            if (File.Exists(unityPath))
+                return;
+            
             if (createDirectory)
             {
                 string directoryPath = System.IO.Path.GetDirectoryName(unityPath);
@@ -131,11 +135,10 @@ namespace Fox.Fs
                     Directory.CreateDirectory(directoryPath);
                 }
             }
-
-            if (!File.Exists(unityPath))
-                File.Copy(externalPath, unityPath, false);
-
-            return true;
+            
+            File.Copy(externalPath, unityPath, false);
+            
+            AssetDatabase.ImportAsset(unityPath);
         }
 
         // Path is foxPath is import mode is not Loose
@@ -231,13 +234,5 @@ namespace Fox.Fs
             UnityEngine.Object folder = AssetDatabase.LoadAssetAtPath<UnityEngine.Object>(path);
             AssetDatabase.OpenAsset(folder);
         }
-        
-    //
-    //     internal static FileStreamReader CreateFromPath(Path path, System.Text.Encoding encoding) => new(new System.IO.FileStream(ResolvePathname(path), System.IO.FileMode.Open), encoding);
-    //
-    //     private void RegisterImportFileExtension(string extension, System.Func<string, string> nameResolver)
-    //     {
-    //         // TODO
-    //     }
     }
 }

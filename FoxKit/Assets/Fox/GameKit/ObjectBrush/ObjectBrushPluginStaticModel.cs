@@ -17,12 +17,9 @@ namespace Fox.GameKit
                 logger.AddWarningEmptyPath(nameof(modelFile));
                 return;
             }
-            
-            // TODO: HACK
-            ReloadFile(logger);
         }
 
-        private GameObject ModelHandle;
+        private GameObject ModelPrefab;
 
         private GameObject Instance;
 
@@ -50,10 +47,10 @@ namespace Fox.GameKit
 
             if (modelFile != FilePtr.Empty)
             {
-                ModelHandle = Fox.Fs.FileSystem.LoadAsset<GameObject>(modelFile.path.String);
-                if (ModelHandle)
+                ModelPrefab = Fox.Fs.FileSystem.LoadAsset<GameObject>(modelFile.path.String);
+                if (ModelPrefab)
                     foreach (var obj in Objects)
-                        CreateModel(ModelHandle, obj);
+                        CreateModel(ModelPrefab, obj);
                 else
                     Debug.Log($"Could not find: {modelFile}");
             }

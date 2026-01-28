@@ -14,15 +14,6 @@ namespace Fox.Core
 
         internal override PropertyInfo GetPropertyInfo() => new PropertyInfo(Name, PropertyInfo.PropertyType.UInt64, 0, container: GetContainerType());
         
-        internal override void ChangeStaticArraySize(uint newSize)
-        {
-            ulong[] newList = new ulong[newSize];
-            
-            for (int i = 0; i < (newSize <= SerializedField.Capacity ? newSize : SerializedField.Capacity); i++)
-                newList[i] = SerializedField[i];
-            
-            SerializedField = newList.ToList();
-        }
         public override Value GetValue() => new Value(SerializedField);
         public override Value GetElement(ushort index) => new Value(SerializedField[index]);
 

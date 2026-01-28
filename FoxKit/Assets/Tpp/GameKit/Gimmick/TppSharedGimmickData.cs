@@ -69,7 +69,7 @@ namespace Tpp.GameKit
             }
             else
             {
-                Fox.Fs.FileSystem.TryCopyImportAsset(modelFile.path.String);
+                Fox.Fs.FileSystem.ImportAssetCopy(modelFile.path.String);
                 modelFilePrefab = Fox.Fs.FileSystem.LoadAsset<GameObject>(modelFile.path.String);
             }
 
@@ -81,7 +81,7 @@ namespace Tpp.GameKit
             }
             else
             {
-                Fox.Fs.FileSystem.TryCopyImportAsset(breakedModelFile.path.String);
+                Fox.Fs.FileSystem.ImportAssetCopy(breakedModelFile.path.String);
                 breakedModelPrefab = Fox.Fs.FileSystem.LoadAsset<GameObject>(breakedModelFile.path.String);
             }
             

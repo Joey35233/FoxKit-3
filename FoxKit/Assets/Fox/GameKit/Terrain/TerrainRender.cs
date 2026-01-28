@@ -25,7 +25,7 @@ namespace Fox.GameKit
             }
             else
             {
-                Fs.FileSystem.TryCopyImportAsset(filePtr.path.String);
+                Fs.FileSystem.ImportAssetCopy(filePtr.path.String);
             }
         }
 

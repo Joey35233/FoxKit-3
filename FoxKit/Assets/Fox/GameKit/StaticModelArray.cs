@@ -20,34 +20,29 @@ namespace Fox.GameKit
             }
             else
             {
-                Fox.Fs.FileSystem.TryCopyImportAsset(modelFile.path.String);
+                Fox.Fs.FileSystem.ImportAssetCopy(modelFile.path.String);
             }
-            
-            // foreach (Matrix4x4 foxTransform in transforms)
-            // {
-            //     Matrix4x4 transform = Fox.Math.FoxToUnityMatrix(foxTransform);
-            //     
-            //     GameObject instance = GameObject.Instantiate(asset, gameObject.transform, false);
-            //     Matrix4x4 unityTransform = Fox.Math.FoxToUnityMatrix(transform);
-            //     instance.transform.position = unityTransform.GetPosition();
-            //     //instance.transform.rotation = unityTransform.rotation;
-            //     //instance.transform.position = Fox.Math.FoxToUnityVector3(transform.GetPosition());
-            //     instance.transform.rotation = Fox.Math.FoxToUnityQuaternion(transform.rotation);
-            //     instance.transform.localScale = transform.lossyScale;
-            // }
-            
-            // TODO: HACK
-            ReloadFile(logger);
+
+            for (int i = 0; i < transforms.Count; i++)
+                transforms[i] = Fox.Math.FoxToUnityMatrix(transforms[i]);
         }
 
-        private GameObject ModelHandle;
+        public override void OverridePropertiesForExport(EntityExportContext context)
+        {
+            base.OverridePropertiesForExport(context);
+
+            List<Matrix4x4> foxTransforms = new List<Matrix4x4>();
+            for (int i = 0; i < foxTransforms.Count; i++)
+                foxTransforms[i] = Fox.Math.UnityToFoxMatrix(transforms[i]);
+            context.OverrideListProperty(nameof(transforms), foxTransforms);
+        }
+
+        private GameObject ModelPrefab;
 
         private List<GameObject> Instances;
 
         private void CreateModel(GameObject model, Matrix4x4 matrix)
         {
-            matrix = Fox.Math.FoxToUnityMatrix(matrix);
-            
             Vector3 position = matrix.GetColumn(3);
             Quaternion rotation = Quaternion.LookRotation(matrix.GetColumn(2), matrix.GetColumn(1));
             Vector3 scale = new Vector3(matrix.GetColumn(0).magnitude, matrix.GetColumn(1).magnitude, matrix.GetColumn(2).magnitude);
@@ -71,10 +66,10 @@ namespace Fox.GameKit
 
             if (modelFile != FilePtr.Empty)
             {
-                ModelHandle = Fox.Fs.FileSystem.LoadAsset<GameObject>(modelFile.path.String);
-                if (ModelHandle)
+                ModelPrefab = Fox.Fs.FileSystem.LoadAsset<GameObject>(modelFile.path.String);
+                if (ModelPrefab)
                     foreach (Matrix4x4 matrix in transforms)
-                        CreateModel(ModelHandle, matrix);
+                        CreateModel(ModelPrefab, matrix);
                 else
                     Debug.Log($"Could not find: {modelFile}");
             }

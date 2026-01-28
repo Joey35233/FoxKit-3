@@ -27,8 +27,6 @@ namespace Fox.Core
                     if (property)
                         property.ChangeStaticArraySize(arraySize);
                     
-                    //Debug.Log("dp");
-                    
                     break;
                 }
                 case PropertyInfo.ContainerType.DynamicArray:
@@ -44,8 +42,6 @@ namespace Fox.Core
                         PropertyInfo.PropertyType.Path => gameObject.AddComponent<DynamicProperty_DynamicArray_Path>(),
                         _ => throw new NotSupportedException($"Unsupported DynamicProperty type detected: DynamicArray {type}"),
                     };
-                    if (property)
-                        property.ChangeStaticArraySize(arraySize);
                     
                     break;
                 }

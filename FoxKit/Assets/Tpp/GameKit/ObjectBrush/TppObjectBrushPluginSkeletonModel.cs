@@ -23,12 +23,9 @@ namespace Tpp.GameKit
                     return;
                 }
             }
-            
-            // TODO: HACK
-            ReloadFile(logger);
         }
 
-        private List<GameObject> ModelHandles = new();
+        private List<GameObject> ModelPrefabs = new();
 
         private List<GameObject> Instances;
 
@@ -60,16 +57,21 @@ namespace Tpp.GameKit
                 
                 if (_modelFile != FilePtr.Empty)
                 {
-                    GameObject modelHandle = Fox.Fs.FileSystem.LoadAsset<GameObject>(_modelFile.path.String);
-                    ModelHandles[i] = modelHandle;
+                    GameObject prefab = Fox.Fs.FileSystem.LoadAsset<GameObject>(_modelFile.path.String);
+                    ModelPrefabs[i] = prefab;
                     
-                    if (modelHandle)
+                    if (prefab)
                         foreach (var obj in Objects)
-                            CreateModel(modelHandle, obj);
+                            CreateModel(prefab, obj);
                     else
                         Debug.Log($"Could not find: {modelFile}");
                 }
             }
+        }
+
+        private void OnEnable()
+        {
+            ReloadFile();
         }
     }
 }
