@@ -97,6 +97,10 @@ namespace Fox.Fs
                 foxPath += ".prefab";
             else if (foxPath.EndsWith(".lba"))
                 foxPath += ".asset";
+            else if (foxPath.EndsWith(".obr"))
+                foxPath += ".asset";
+            else if (foxPath.EndsWith(".obrb"))
+                foxPath += ".asset";
     
             return foxPath;
         }

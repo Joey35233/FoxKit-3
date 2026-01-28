@@ -1,68 +1,43 @@
 using Fox.Core.Utils;
-using Fox.Fio;
-using System;
-using System.Collections.Generic;
-using System.IO;
+using Fox.Core;
+using Fox.Gr;
 using UnityEditor;
 using UnityEngine;
+using File = System.IO.File;
 
 namespace Fox.GameKit
 {
-    [ExecuteInEditMode]
+    [ExecuteAlways]
     public partial class ObjectBrush : Fox.Core.TransformData
     {
         public override void OnDeserializeEntity(TaskLogger logger)
         {
             base.OnDeserializeEntity(logger);
-            if (System.String.IsNullOrEmpty(obrFile.path.String))
+
+            ObjectBrushAsset obrAsset;
+            if (obrFile == FilePtr.Empty)
             {
-                Debug.LogWarning($"{name}: obrFile is null");
+                logger.AddWarningEmptyPath(nameof(obrFile));
                 return;
             }
-            
-            string locaterPath = "/Game" + obrFile.path.String;
-
-            string readPath = "Assets" + locaterPath;
-
-            if (!System.IO.File.Exists(readPath))
+            else
             {
-                Debug.LogError($"{readPath} does not exist");
-                return;
-            }
-
-            ObjectBrushAsset asset = ObjectBrushReader.Read(new FileStreamReader(new FileStream(readPath, FileMode.Open)));
-
-            if (!asset)
-            {
-                Debug.LogWarning($"{name}: asset could not be created");
-                return;
-            }
-
-            string trimmedPath = readPath.Replace(".obr", ".asset");
-
-            AssetDatabase.CreateAsset(asset, $"{trimmedPath}");
-
-            AssetDatabase.SaveAssets();
-
-            List<ObrObject> ObrObjects = new();
-
-            foreach (var obj in asset.objects)
-            {
-                ObjectBrushPlugin obrPlugin = pluginHandle[obj.GetPluginBrushIndex()] as ObjectBrushPlugin;
-
-                if (!obrPlugin) continue;
-
-                ObrObject obrObj = new()
+                string obrExternalPath = Fox.Fs.FileSystem.GetExternalPathFromFoxPath(obrFile.path.String);
+                if (!File.Exists(obrExternalPath))
                 {
-                    Position = Math.FoxToUnityVector3(GetPositionFWSFromPositionEWS(obj,asset)),
-                    Rotation = Math.FoxToUnityQuaternion(obj.GetRotation()),
-                    Scale = (float)obj.GetNormalizedScale() / System.Byte.MaxValue,
-                    Plugin = obrPlugin
-                };
-
-                obrPlugin.RegisterObject(obrObj);
+                    logger.AddWarningMissingAsset(obrFile.path.String);
+                    return;
+                }
                 
-                ObrObjects.Add(obrObj);
+                byte[] obrData = File.ReadAllBytes(obrExternalPath);
+                obrAsset = ConvertFile(obrData);
+                Fox.Fs.FileSystem.CreateAsset(obrAsset, obrFile.path.String);
+                AssetDatabase.SaveAssets();
+            }
+
+            foreach (ObjectBrushObject obj in obrAsset.Objects)
+            {
+                // obrPlugin.RegisterObject(obj);
 
                 // if (!instantiated)
                 // {
@@ -76,61 +51,81 @@ namespace Fox.GameKit
                 //     gizmo.Scale = Vector3.one;
                 // }
             }
+        }
+        
+        public unsafe ObjectBrushAsset ConvertFile(byte[] file)
+        {
+            // TODO: What happens with this if I return null later?
+            ObjectBrushAsset obrAsset = ScriptableObject.CreateInstance<ObjectBrushAsset>();
             
+            fixed (byte* data = file)
+            {
+                FoxDataHeader* header = (FoxDataHeader*)data;
+                if (header->Version != 3)
+                    return null;
+                
+                FoxDataNode* node = header->GetNodes();
+                if (node->Flags != 1)
+                    return null;
+                    
+                FoxDataNodeAttribute* blockSizeWAttrib = node->FindAttribute("blockSizeW");
+                FoxDataNodeAttribute* blockSizeHAttrib = node->FindAttribute("blockSizeH");
+                FoxDataNodeAttribute* numBlocksWAttrib = node->FindAttribute("numBlocksW");
+                FoxDataNodeAttribute* numBlocksHAttrib = node->FindAttribute("numBlocksH");
+                FoxDataNodeAttribute* numObjectsAttrib = node->FindAttribute("numObjects");
+
+                if (blockSizeWAttrib == null || blockSizeHAttrib == null || numBlocksWAttrib == null ||
+                    numBlocksHAttrib == null || numObjectsAttrib == null)
+                    return null;
+                
+                float blockSizeW = blockSizeWAttrib->GetFloatValue();
+                float blockSizeH = blockSizeHAttrib->GetFloatValue();
+                uint numBlocksW = numBlocksWAttrib->GetUIntValue();
+                uint numBlocksH = numBlocksHAttrib->GetUIntValue();
+
+                obrAsset.BlockSizeW = blockSizeW;
+                obrAsset.BlockSizeH = blockSizeH;
+                obrAsset.NumBlocksW = numBlocksW;
+                obrAsset.NumBlocksH = numBlocksH;
+
+                uint objectCount = numObjectsAttrib->GetUIntValue();
+                DataUnit* unit = (DataUnit*)node->GetData();
+                for (uint i = 0; i < objectCount; i++, unit++)
+                {
+                    uint blockId = unit->BlockId;
+                    
+                    // Block indices [0,32) x [0,32)
+                    ushort blockX = (ushort)(blockId % numBlocksH);
+                    ushort blockZ = (ushort)(blockId / numBlocksW);
+
+                    // Block center position
+                    float blockCenterX = blockSizeH * (blockX + 0.5f - (0.5f * numBlocksH));
+                    float blockCenterZ = blockSizeW * (blockZ + 0.5f - (0.5f * numBlocksW));
+
+                    float posX = blockCenterX + (unit->PositionX / (float)byte.MaxValue);
+                    float posZ = blockCenterZ + (unit->PositionZ / (float)byte.MaxValue);
+                    
+                    Vector3 position = new Vector3(posX, unit->PositionY, posZ);
+                    position = Fox.Math.FoxToUnityVector3(position);
+                    
+                    Quaternion rotation = Quaternion.identity;
+                    rotation = Fox.Math.FoxToUnityQuaternion(rotation);
+
+                    float normalizedScale = unit->NormalizedScale / (float)byte.MaxValue;
+                    
+                    ObjectBrushPlugin plugin = this.pluginHandle[unit->PluginIndex] as ObjectBrushPlugin;
+                }
+            }
             
+            return obrAsset;
         }
-        //joey func, but perhaps pointlessly dynamic!
-        private const ushort OBR_MAGIC = 32640;
-        private static Vector3 GetPositionFWSFromPositionEWS(ObjectBrushObjectBinary obj, ObjectBrushAsset asset)
+
+        private void OnEnable()
         {
-            ushort blockIndex = obj.GetBlockIndex();
-
-            uint numBlocksW = asset.numBlocksW;
-            uint numBlocksH = asset.numBlocksH;
-
-            ushort METERS_PER_BLOCK_X = (ushort)(asset.blockSizeH / 1);
-            ushort METERS_PER_BLOCK_Z = (ushort)(asset.blockSizeW / 1);
-            // block indices [0,32) x [0,32)
-            ushort blockX = (ushort)(blockIndex % numBlocksH);
-            ushort blockZ = (ushort)Mathf.Floor(blockIndex / numBlocksW);
-
-            // block center position
-            float blockCenterXFWS = METERS_PER_BLOCK_X * (blockX + 0.5f - (0.5f * numBlocksH));
-            float blockCenterZFWS = METERS_PER_BLOCK_Z * (blockZ + 0.5f - (0.5f * numBlocksW));
-
-            // output position FWS
-            float OBR_POSITION_DECODE_X = METERS_PER_BLOCK_X / (float)OBR_MAGIC;
-            float OBR_POSITION_DECODE_Z = METERS_PER_BLOCK_Z / (float)OBR_MAGIC;
-            float xFWS = blockCenterXFWS + (OBR_POSITION_DECODE_X * obj.GetXPosition());
-            float zFWS = blockCenterZFWS + (OBR_POSITION_DECODE_Z * obj.GetZPosition());
-
-            return new Vector3(xFWS, obj.GetYPosition(), zFWS);
+            FoxGameKitModule.ObjectBrushRegistry.Add(this.name, this);
         }
-        private static GameObject MakeStaticModelGameObject(Fox.Core.Transform transform, string modelFilePath, GameObject gameObject)
-        {
-            string trimmedModelFilePath = modelFilePath.Remove(0, 1);
-            if (AssetDatabase.LoadAssetAtPath<GameObject>(trimmedModelFilePath) is GameObject modelFileAsset)
-            {
-                var modelFileInstance = GameObject.Instantiate(modelFileAsset);
-                modelFileInstance.transform.position = transform.translation;
-                modelFileInstance.transform.rotation = transform.rotation_quat;
-                modelFileInstance.transform.localScale = transform.scale;
-                modelFileInstance.transform.SetParent(gameObject.transform, false);
-                return modelFileInstance;
-            }
-            else
-            {
-                Debug.LogWarning($"Unable to find asset at path {trimmedModelFilePath}");
-            }
-            return null;
-        }
-        [ExecuteAlways]
-        void OnEnable()
-        {
-            FoxGameKitModule.ObjectBrushRegistry[this.name]=this;
-        }
-        [ExecuteAlways]
-        void OnDisable()
+
+        private void OnDisable()
         {
             FoxGameKitModule.ObjectBrushRegistry.Remove(this.name);
         }

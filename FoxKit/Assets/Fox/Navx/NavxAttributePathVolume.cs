@@ -3,7 +3,6 @@ using Fox.Core.Utils;
 using Fox.Graphx;
 using UnityEngine;
 using System;
-using System.Linq;
 using UnityEditor;
 
 namespace Fox.Navx

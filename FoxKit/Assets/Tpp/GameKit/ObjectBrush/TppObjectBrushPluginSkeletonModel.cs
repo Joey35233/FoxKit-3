@@ -22,18 +22,22 @@ namespace Tpp.GameKit
                     logger.AddWarningEmptyPath(nameof(modelFile));
                     return;
                 }
+                else
+                {
+                    Fox.Fs.FileSystem.ImportAssetCopy(_modelFile.path.String);
+                }
             }
         }
 
-        private List<GameObject> ModelPrefabs = new();
+        private GameObject[] ModelPrefabs;
 
         private List<GameObject> Instances;
 
-        private void CreateModel(GameObject model, ObrObject obj)
+        private void CreateModel(GameObject model, ObjectBrushObject obj)
         {
             Vector3 position = obj.Position;
             Quaternion rotation = obj.Rotation;
-            Vector3 scale = Vector3.one * Mathf.Lerp(minSize, maxSize, obj.Scale);
+            Vector3 scale = Vector3.one * Mathf.Lerp(minSize, maxSize, obj.NormalizedScale);
 
             GameObject instance = GameObject.Instantiate(model, position, rotation, this.transform);
             instance.transform.localScale = scale;
@@ -51,6 +55,7 @@ namespace Tpp.GameKit
                 DestroyImmediate(child.gameObject);
             }
 
+            ModelPrefabs = new GameObject[modelFile.Count];
             for (int i = 0; i < modelFile.Count; i++)
             {
                 FilePtr _modelFile = modelFile[i];

@@ -17,17 +17,21 @@ namespace Fox.GameKit
                 logger.AddWarningEmptyPath(nameof(modelFile));
                 return;
             }
+            else
+            {
+                Fox.Fs.FileSystem.ImportAssetCopy(modelFile.path.String);
+            }
         }
 
         private GameObject ModelPrefab;
 
         private GameObject Instance;
 
-        private void CreateModel(GameObject model, ObrObject obj)
+        private void CreateModel(GameObject model, ObjectBrushObject obj)
         {
             Vector3 position = obj.Position;
             Quaternion rotation = obj.Rotation;
-            Vector3 scale = Vector3.one * Mathf.Lerp(minSize, maxSize, obj.Scale);
+            Vector3 scale = Vector3.one * Mathf.Lerp(minSize, maxSize, obj.NormalizedScale);
 
             GameObject instance = GameObject.Instantiate(model, position, rotation, this.transform);
             instance.transform.localScale = scale;

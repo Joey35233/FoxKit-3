@@ -4,25 +4,27 @@ using UnityEngine;
 
 namespace Fox.GameKit
 {
+    public class ObjectBrushObject
+    {
+        public Vector3 Position;
+        public Quaternion Rotation;
+        public float NormalizedScale;
+
+        public ObjectBrushPlugin Plugin;
+    };
+    
     public class ObjectBrushAsset : ScriptableObject
     {
-        public float blockSizeW;
-        public float blockSizeH;
-        public uint numBlocksW;
-        public uint numBlocksH;
-        public uint blockId;
-        [SerializeReference]
-        public List<ObjectBrushObjectBinary> objects = new();
-        [MenuItem("FoxKit/Debug/OBR/Create OBR")]
-        public static void CreateMyAsset()
-        {
-            ObjectBrushAsset asset = ScriptableObject.CreateInstance<ObjectBrushAsset>();
+        public float BlockSizeW;
+        public float BlockSizeH;
+        public uint NumBlocksW;
+        public uint NumBlocksH;
+        
+        public List<ObjectBrushObject> Objects = new();
+    }
 
-            AssetDatabase.CreateAsset(asset, "Assets/delete/NewObr.asset");
-            AssetDatabase.SaveAssets();
-            EditorUtility.FocusProjectWindow();
-
-            Selection.activeObject = asset;
-        }
+    public class ObjectBrushBlockAsset : ScriptableObject
+    {
+        public List<ObjectBrushObject> Objects = new();
     }
 }

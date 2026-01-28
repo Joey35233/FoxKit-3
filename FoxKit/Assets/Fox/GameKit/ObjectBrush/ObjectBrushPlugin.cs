@@ -6,8 +6,9 @@ namespace Fox.GameKit
     public partial class ObjectBrushPlugin
     {
         [NonSerialized]
-        public List<ObrObject> Objects = new();
-        public void RegisterObject(ObrObject obj)
+        public List<ObjectBrushObject> Objects = new();
+        
+        public void RegisterObject(ObjectBrushObject obj)
         {
             Objects.Add(obj);
         }

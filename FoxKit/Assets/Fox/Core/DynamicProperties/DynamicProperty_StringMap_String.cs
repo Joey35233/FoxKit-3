@@ -16,10 +16,7 @@ namespace Fox.Core
 
         public override void SetElement(string key, Value value)
         {
-            if (SerializedField.ContainsKey(key))
-                SerializedField[key] = value.GetValueAsString();
-            else
-                SerializedField.Insert(key, value.GetValueAsString());
+            SerializedField[key] = value.GetValueAsString();
         }
     }
 }

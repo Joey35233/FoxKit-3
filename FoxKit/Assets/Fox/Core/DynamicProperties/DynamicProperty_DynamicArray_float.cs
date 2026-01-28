@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Fox.Core
 {
@@ -15,9 +14,6 @@ namespace Fox.Core
         public override Value GetValue() => new Value(SerializedField);
         public override Value GetElement(ushort index) => new Value(SerializedField[index]);
 
-        public override void SetElement(ushort index, Value value)
-        {
-            SerializedField[index] = value.GetValueAsFloat();
-        }
+        public override void SetElement(ushort index, Value value) => SerializedField.Insert(index, value.GetValueAsFloat());
     }
 }
