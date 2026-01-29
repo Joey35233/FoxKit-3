@@ -1,9 +1,5 @@
 using Fox.Core;
 using Fox.Core.Utils;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using Fox.Fio;
 using Fox.GameKit;
 using UnityEditor;
 using UnityEngine;
@@ -44,7 +40,7 @@ namespace Tpp.GameKit
             }
 
             // Mandatory
-            GameObject partsPrefab;
+            Object partsPrefab;
             if (partsFile == FilePtr.Empty)
             {
                 logger.AddWarningEmptyPath(nameof(partsFile));
@@ -91,7 +87,7 @@ namespace Tpp.GameKit
                 if (locator.Name != null)
                     locatorGameObject.name = locator.Name;
                 
-                GameObject.Instantiate(partsPrefab, locatorGameObject.transform, false);
+                PrefabUtility.InstantiatePrefab(partsPrefab, locatorGameObject.transform);
                 
                 locatorGameObject.transform.position = locator.Position;
                 locatorGameObject.transform.rotation = locator.Rotation;

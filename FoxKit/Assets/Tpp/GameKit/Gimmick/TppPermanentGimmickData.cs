@@ -66,7 +66,7 @@ namespace Tpp.GameKit
                 if (locator.Name != null)
                     locatorGameObject.name = locator.Name;
                 
-                GameObject.Instantiate(partsPrefab, locatorGameObject.transform, false);
+                PrefabUtility.InstantiatePrefab(partsPrefab, locatorGameObject.transform);
                 
                 locatorGameObject.transform.position = locator.Position;
                 locatorGameObject.transform.rotation = locator.Rotation;

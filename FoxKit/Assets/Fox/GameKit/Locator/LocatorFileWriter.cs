@@ -1,9 +1,7 @@
-﻿using System.Globalization;
-using System.IO;
+﻿using System.IO;
 using Fox;
 using Fox.Fio;
 using Fox.GameKit;
-using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
 
 namespace Tpp.GameKit
