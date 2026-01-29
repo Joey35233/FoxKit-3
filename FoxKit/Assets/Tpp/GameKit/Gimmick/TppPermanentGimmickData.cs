@@ -78,9 +78,9 @@ namespace Tpp.GameKit
         {
             base.OverridePropertiesForExport(context);
 
-            var dataSetName = Fox.Fs.FileSystem.GetFoxPathFromExternalPath(AssetDatabase.GetAssetOrScenePath(this));
+            var dataSetName = Fox.Fs.FileSystem.GetFoxPathFromUnityPath(AssetDatabase.GetAssetOrScenePath(this));
 
-            LocatorFileWriter.Write(locaterFile.path.String,gameObject,dataSetName,true);
+            LocatorFileWriter.Write(Fox.Fs.FileSystem.GetExternalPathFromFoxPath(locaterFile.path.String),gameObject,dataSetName,true);
         }
     }
 }

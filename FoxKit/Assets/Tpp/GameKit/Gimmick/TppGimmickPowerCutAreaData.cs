@@ -53,7 +53,7 @@ namespace Tpp.GameKit
         {
             base.OverridePropertiesForExport(context);
             
-            LocatorFileWriter.Write(locaterFile.path.String,gameObject,null,false);
+            LocatorFileWriter.Write(Fox.Fs.FileSystem.GetExternalPathFromFoxPath(locaterFile.path.String),gameObject,null,false);
         }
 
     }

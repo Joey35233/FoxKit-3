@@ -10,7 +10,8 @@ namespace Tpp.GameKit
     {
         private readonly FileStreamReader writer;
         private const double Margin = 0.00001;
-        private const uint Padding = 0x4D475356;
+        private const uint PaddingA = 0x7372644D;
+        private const uint PaddingB = 0x6E766548;
         public static void Write(string locaterFilePath, GameObject locator, string dataSetPathString, bool useIds)
         {
             var transform = locator.transform;
@@ -57,13 +58,15 @@ namespace Tpp.GameKit
                 var child = transform.GetChild(i);
 
                 writer.Write(Fox.Math.UnityToFoxVector3(child.transform.position));
+                writer.Seek(-sizeof(float), SeekOrigin.Current);
+                writer.Write(PaddingA);
                 writer.Write(Fox.Math.UnityToFoxQuaternion(child.transform.rotation));
                 
                 if (flags.HasFlag(LocatorBinaryArrayFile.LocatorBinaryFlags.UseScale))
                 {
                     writer.Write(child.transform.localScale);
                     writer.Seek(-sizeof(float), SeekOrigin.Current);
-                    writer.Write(Padding);
+                    writer.Write(PaddingB);
                 }
             };
             
