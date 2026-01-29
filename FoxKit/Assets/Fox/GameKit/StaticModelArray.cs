@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Fox.Core;
 using Fox.Core.Utils;
+using UnityEditor;
 using UnityEngine;
 
 namespace Fox.GameKit
@@ -46,12 +47,14 @@ namespace Fox.GameKit
             Vector3 position = matrix.GetColumn(3);
             Quaternion rotation = Quaternion.LookRotation(matrix.GetColumn(2), matrix.GetColumn(1));
             Vector3 scale = new Vector3(matrix.GetColumn(0).magnitude, matrix.GetColumn(1).magnitude, matrix.GetColumn(2).magnitude);
-
-            GameObject instance = GameObject.Instantiate(model, position, rotation);
+            
+            GameObject instance = (GameObject)PrefabUtility.InstantiatePrefab(model, gameObject.transform);
             instance.name = "INSTANCE_WILL_RESET_ON_RELOAD";
+            instance.transform.localPosition = position;
+            instance.transform.localRotation = rotation;
             instance.transform.localScale = scale;
-            instance.transform.SetParent(this.transform);
             instance.hideFlags = HideFlags.DontSaveInEditor;
+            instance.AddComponent<StaticModelArrayInstance>();
         }
         
         public void ReloadFile(TaskLogger logger = null)

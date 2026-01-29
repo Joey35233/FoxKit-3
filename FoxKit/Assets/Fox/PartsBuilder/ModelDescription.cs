@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
-using Fox.Core;
+﻿using Fox.Core;
 using Fox.Core.Utils;
+using UnityEditor;
 using UnityEngine;
 
 namespace Fox.PartsBuilder
@@ -29,9 +29,10 @@ namespace Fox.PartsBuilder
 
         private void CreateModel(GameObject model)
         {
-            GameObject instance = GameObject.Instantiate(model, this.transform, false);
+            GameObject instance =(GameObject)PrefabUtility.InstantiatePrefab(model, gameObject.transform);
             instance.name = "INSTANCE_WILL_RESET_ON_RELOAD";
             instance.hideFlags = HideFlags.DontSaveInEditor;
+            //instance.AddComponent<StaticModelInstance>();
         }
         
         public void ReloadFile(TaskLogger logger = null)

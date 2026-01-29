@@ -4,6 +4,7 @@ using Fox.Core;
 using Fox.Core.Utils;
 using Fox.Fio;
 using Fox.GameKit;
+using UnityEditor;
 using UnityEngine;
 
 namespace Tpp.GameKit
@@ -39,10 +40,10 @@ namespace Tpp.GameKit
             Quaternion rotation = obj.Rotation;
             Vector3 scale = Vector3.one * Mathf.Lerp(minSize, maxSize, obj.NormalizedScale);
 
-            GameObject instance = GameObject.Instantiate(model, position, rotation, this.transform);
-            instance.transform.localScale = scale;
+            GameObject instance =(GameObject)PrefabUtility.InstantiatePrefab(model, gameObject.transform);
             instance.name = "INSTANCE_WILL_RESET_ON_RELOAD";
             instance.hideFlags = HideFlags.DontSaveInEditor;
+            instance.AddComponent<StaticModelArrayInstance>();
         }
         
         public void ReloadFile(TaskLogger logger = null)

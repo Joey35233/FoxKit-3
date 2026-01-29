@@ -1,11 +1,13 @@
 using System.Collections.Generic;
 using Fox.Core;
 using Fox.Core.Utils;
+using UnityEditor;
 using UnityEngine;
 
 namespace Fox.GameKit
 {
     [ExecuteInEditMode]
+    [SelectionBase]
     public partial class StaticModel : TransformData
     {
         public override void OnDeserializeEntity(TaskLogger logger)
@@ -29,9 +31,10 @@ namespace Fox.GameKit
 
         private void CreateModel(GameObject model)
         {
-            GameObject instance = GameObject.Instantiate(model, this.transform, false);
+            GameObject instance =(GameObject)PrefabUtility.InstantiatePrefab(model, gameObject.transform);
             instance.name = "INSTANCE_WILL_RESET_ON_RELOAD";
             instance.hideFlags = HideFlags.DontSaveInEditor;
+            //instance.AddComponent<StaticModelArrayInstance>();
         }
         
         public void ReloadFile(TaskLogger logger = null)

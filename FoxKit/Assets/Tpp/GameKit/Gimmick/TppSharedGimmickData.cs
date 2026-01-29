@@ -1,6 +1,7 @@
 using Fox.Core;
 using Fox.Core.Utils;
 using Fox.GameKit;
+using Fox.GameKit.Locator;
 using UnityEditor;
 using UnityEngine;
 using File = System.IO.File;
@@ -83,16 +84,15 @@ namespace Tpp.GameKit
             
             foreach (LocatorEntry locator in locators)
             {
-                GameObject locatorGameObject = new GameObject();
+                GameObject locatorGameObject = (GameObject)PrefabUtility.InstantiatePrefab(partsPrefab, gameObject.transform);
                 if (locator.Name != null)
                     locatorGameObject.name = locator.Name;
-                
-                PrefabUtility.InstantiatePrefab(partsPrefab, locatorGameObject.transform);
                 
                 locatorGameObject.transform.position = locator.Position;
                 locatorGameObject.transform.rotation = locator.Rotation;
                 locatorGameObject.transform.localScale = locator.Scale;
-                locatorGameObject.transform.SetParent(gameObject.transform);
+
+                locatorGameObject.AddComponent<LocatorGimmick>();
                 
                 // if (modelFilePrefab is not null)
                 // {
