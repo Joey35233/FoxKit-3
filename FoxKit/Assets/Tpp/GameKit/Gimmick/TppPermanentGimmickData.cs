@@ -74,5 +74,13 @@ namespace Tpp.GameKit
                 locatorGameObject.transform.SetParent(gameObject.transform);
             }
         }
+        public override void OverridePropertiesForExport(EntityExportContext context)
+        {
+            base.OverridePropertiesForExport(context);
+
+            var dataSetName = Fox.Fs.FileSystem.GetFoxPathFromExternalPath(AssetDatabase.GetAssetOrScenePath(this));
+
+            LocatorFileWriter.Write(locaterFile.path.String,gameObject,dataSetName,false);
+        }
     }
 }
