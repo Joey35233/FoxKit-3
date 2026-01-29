@@ -2,6 +2,8 @@
 using System.IO;
 using Fox;
 using Fox.Fio;
+using Fox.GameKit;
+using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
 
 namespace Tpp.GameKit
@@ -10,20 +12,22 @@ namespace Tpp.GameKit
     {
         private readonly FileStreamReader writer;
         private const double Margin = 0.00001;
-        private const short WidePaddingA = 0x109;
-        private const short WidePaddingB = 0x2015;
-        public static void Write(string locaterFilePath, GameObject locator, string dataSetPathString, bool isPowerCutArea)
+        private const uint Padding = 0x4D475356;
+        public static void Write(string locaterFilePath, GameObject locator, string dataSetPathString, bool useIds)
         {
             var transform = locator.transform;
+
+            LocatorBinaryArrayFile.LocatorBinaryFlags flags = 0;
             
-            var isScale = false;
+            if (useIds)
+                flags |= LocatorBinaryArrayFile.LocatorBinaryFlags.UseIds;
 
             using var writer = new BinaryWriter(new FileStream(locaterFilePath, FileMode.Create));
             
             writer.Write(transform.childCount);
             
             //decide 
-            if (!isPowerCutArea)
+            if (flags.HasFlag(LocatorBinaryArrayFile.LocatorBinaryFlags.UseIds))
             {
                 for (var i = 0; i < transform.childCount; i++)
                 {
@@ -37,22 +41,15 @@ namespace Tpp.GameKit
                 
                     if (absX>Margin||absY>Margin||absZ>Margin)
                     {
-                        isScale = true;
+                        flags |= LocatorBinaryArrayFile.LocatorBinaryFlags.UseScale;
                         break;
                     }
                 }
             }
-    
-            //write scale
-            if (!isScale)
-            {
-                if (isPowerCutArea)
-                    writer.Write((int)LocatorBinaryType.PowerCutArea);
-            }
-            else
-            {
-                writer.Write((int)LocatorBinaryType.Scaled);
-            }
+            
+            //write flags
+            
+            writer.Write((uint)flags);
 
             writer.Seek(0x10, SeekOrigin.Begin);
                 
@@ -64,26 +61,23 @@ namespace Tpp.GameKit
                 writer.Write(Fox.Math.UnityToFoxVector3(child.transform.position));
                 writer.Write(Fox.Math.UnityToFoxQuaternion(child.transform.rotation));
                 
-                if (isScale)
+                if (flags.HasFlag(LocatorBinaryArrayFile.LocatorBinaryFlags.UseScale))
                 {
-                    
                     writer.Write(child.transform.localScale);
                     writer.Seek(-sizeof(float), SeekOrigin.Current);
-                    writer.Write(WidePaddingA);
-                    writer.Write(WidePaddingB);
+                    writer.Write(Padding);
                 }
             };
             
             //write footer names and paths
-            if (!isPowerCutArea)
+            if (flags.HasFlag(LocatorBinaryArrayFile.LocatorBinaryFlags.UseIds))
             {
                 for (var i = 0; i < transform.childCount; i++)
                 {
-                    var locatorNameString = transform.GetChild(i).name;
-                    var locatorNameHash = int.TryParse(locatorNameString, NumberStyles.HexNumber, null, out var outHash) ? outHash : new StrCode32(locatorNameString).GetHashCode();
-                    writer.Write(locatorNameHash);
-                    var dataSetPathHash = new PathCode(dataSetPathString).GetHashCode();
-                    writer.Write(dataSetPathHash);
+                    StrCode32 locatorNameHash = new StrCode32(transform.GetChild(i).name);
+                    writer.WriteStrCode32(locatorNameHash);
+                    StrCode32 dataSetPathHash = (StrCode32)(new PathCode(dataSetPathString));
+                    writer.WriteStrCode32(dataSetPathHash);
                 }
             }
         }

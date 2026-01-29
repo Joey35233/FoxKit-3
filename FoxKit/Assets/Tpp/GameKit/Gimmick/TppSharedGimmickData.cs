@@ -115,7 +115,7 @@ namespace Tpp.GameKit
 
             var dataSetName = Fox.Fs.FileSystem.GetFoxPathFromExternalPath(AssetDatabase.GetAssetOrScenePath(this));
 
-            LocatorFileWriter.Write(locaterFile.path.String,gameObject,dataSetName,false);
+            LocatorFileWriter.Write(locaterFile.path.String,gameObject,dataSetName,true);
         }
     }
 }

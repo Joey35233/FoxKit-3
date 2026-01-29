@@ -48,6 +48,7 @@ namespace Fox
         public static ulong operator &(PathCode a, ulong b) => a.hash & b;
         public static uint operator &(PathCode a, uint b) => (uint)(a.hash & b);
 
-        public override string ToString() => $"0x{hash:x16}";
+        public override string ToString() => $"0x{hash:x16}";// Step-down conversion
+        public static explicit operator StrCode32(PathCode value) => new((uint)(value.hash & 0xFFFFFFFF));
     }
 }

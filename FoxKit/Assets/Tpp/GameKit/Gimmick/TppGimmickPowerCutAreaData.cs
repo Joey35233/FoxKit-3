@@ -1,9 +1,10 @@
-﻿using System.IO;
+﻿using System;
 using Fox.Core;
 using Fox.Core.Utils;
-using Fox.Fio;
+using Fox.GameKit;
 using UnityEditor;
 using UnityEngine;
+using File = System.IO.File;
 
 namespace Tpp.GameKit
 {
@@ -13,36 +14,46 @@ namespace Tpp.GameKit
         {
             base.OnDeserializeEntity(logger);
             
-            string locaterPath = "/Game" + locaterFile.path.String;
-
-            string readPath = "Assets" + locaterPath;
-            
-            var locaterAsset = AssetManager.LoadAssetWithExtensionReplacement<PowerCutAreaLocatorBinaryArrayAsset>(locaterFile, "asset", out string unityPath);
-
-            if (locaterAsset == null)
+            LocatorEntry[] locators;
+            if (locaterFile == FilePtr.Empty)
             {
-                locaterAsset=(PowerCutAreaLocatorBinaryArrayAsset)LocatorFileReader.Read(new FileStreamReader(new FileStream(readPath, FileMode.Open)));
-            
-                AssetDatabase.CreateAsset(locaterAsset,  unityPath);
+                logger.AddWarningEmptyPath(nameof(locaterFile));
+                return;
+            }
+            else
+            {
+                string lbaExternalPath = Fox.Fs.FileSystem.GetExternalPathFromFoxPath(locaterFile.path.String);
+                if (!File.Exists(lbaExternalPath))
+                {
+                    logger.AddWarningMissingAsset(locaterFile.path.String);
+                    return;
+                }
+                
+                byte[] lbaData = File.ReadAllBytes(lbaExternalPath);
+                locators = LocatorBinaryArrayFile.Convert(lbaData);
+
+                LocatorArrayAsset locatorArrayAsset = ScriptableObject.CreateInstance<LocatorArrayAsset>();
+                locatorArrayAsset.Locators = locators;
+                Fox.Fs.FileSystem.CreateAsset(locatorArrayAsset, locaterFile.path.String);
+                AssetDatabase.SaveAssets();
             }
             
-            AssetDatabase.SaveAssets();
-
-            foreach (PowerCutAreaLocatorBinary locator in locaterAsset.locators)
+            foreach (LocatorEntry locator in locators)
             {
-                LocatorBinaryObject locatorGameObject = new GameObject(name).AddComponent<LocatorBinaryObject>();
-                        
-                locatorGameObject.transform.position = locator.GetTranslation();
-                locatorGameObject.transform.rotation = locator.GetRotation();
+                GameObject locatorGameObject = new GameObject();
+                    
+                locatorGameObject.name = gameObject.name+Array.IndexOf(locators,locator).ToString("0000");
+                
+                locatorGameObject.transform.position = locator.Position;
+                locatorGameObject.transform.rotation = locator.Rotation;
                 locatorGameObject.transform.SetParent(gameObject.transform);
-                locatorGameObject.ShouldDrawGizmo = true;
             }
         }
         public override void OverridePropertiesForExport(EntityExportContext context)
         {
             base.OverridePropertiesForExport(context);
             
-            LocatorFileWriter.Write(locaterFile.path.String,gameObject,null,true);
+            LocatorFileWriter.Write(locaterFile.path.String,gameObject,null,false);
         }
 
     }
