@@ -1,4 +1,5 @@
-﻿using Fox.Core;
+﻿using System;
+using Fox.Core;
 using Fox.Core.Utils;
 using Fox.Gr;
 using UnityEditor;
@@ -7,6 +8,7 @@ using File = System.IO.File;
 
 namespace Fox.GameKit
 {
+    [ExecuteAlways]
     public partial class ObjectBrushBlock
     {
         public override void OnDeserializeEntity(TaskLogger logger)
@@ -32,16 +34,6 @@ namespace Fox.GameKit
                 obrbAsset = ConvertFile(obrbData);
                 Fox.Fs.FileSystem.CreateAsset(obrbAsset, obrbFile.path.String);
                 AssetDatabase.SaveAssets();
-            }
-
-            foreach (ObjectBrushObject obj in obrbAsset.Objects)
-            {
-                ObjectBrushPlugin plugin = obj.Plugin;
-                
-                if (!plugin)
-                    continue;
-
-                plugin.RegisterObject(obj);
             }
         }
         
@@ -74,7 +66,7 @@ namespace Fox.GameKit
                 if (!objectBrush)
                     return null;
                 
-                ObjectBrushAsset obrAsset = AssetDatabase.LoadAssetAtPath<ObjectBrushAsset>(objectBrush.obrFile.path.String);
+                ObjectBrushAsset obrAsset = Fox.Fs.FileSystem.LoadAsset<ObjectBrushAsset>(objectBrush.obrFile.path.String);
                 float blockSizeW = obrAsset.BlockSizeW;
                 float blockSizeH = obrAsset.BlockSizeH;
                 uint numBlocksW = obrAsset.NumBlocksW;
@@ -92,26 +84,65 @@ namespace Fox.GameKit
                 float blockCenterZ = blockSizeW * (blockZ + 0.5f - (0.5f * numBlocksW));
                 
                 DataUnit* unit = (DataUnit*)node->GetData();
+                ObjectBrushObject[] objects = new ObjectBrushObject[objectCount];
                 for (uint i = 0; i < objectCount; i++, unit++)
                 {
-                    Debug.Assert(unit->BlockId == fileBlockId && unit->BlockId == this.blockId);
-
-                    float posX = blockCenterX + (unit->PositionX / (float)byte.MaxValue);
-                    float posZ = blockCenterZ + (unit->PositionZ / (float)byte.MaxValue);
+                    float posX = unit->PositionX / (float)byte.MaxValue + blockCenterX;
+                    float posZ = unit->PositionZ / (float)byte.MaxValue + blockCenterZ;
                     
                     Vector3 position = new Vector3(posX, unit->PositionY, posZ);
                     position = Fox.Math.FoxToUnityVector3(position);
                     
-                    Quaternion rotation = Quaternion.identity;
+                    Quaternion rotation = new Quaternion(unit->RotationX, unit->RotationY, unit->RotationZ, unit->RotationW);
                     rotation = Fox.Math.FoxToUnityQuaternion(rotation);
 
                     float normalizedScale = unit->NormalizedScale / (float)byte.MaxValue;
                     
                     ObjectBrushPlugin plugin = objectBrush.pluginHandle[unit->PluginIndex] as ObjectBrushPlugin;
+
+                    ObjectBrushObject obj = new ObjectBrushObject
+                    {
+                        Position = position,
+                        Rotation = rotation,
+                        NormalizedScale = normalizedScale,
+                        Plugin = plugin.name,
+                    };
+                    objects[i] = obj;
                 }
+                
+                obrbAsset.Objects = objects;
             }
             
             return obrbAsset;
+        }
+
+        private void OnEnable()
+        {
+            ObjectBrush objectBrush = Fox.GameKit.FoxGameKitModule.ObjectBrushRegistry[this.objectBrushName];
+            if (!objectBrush)
+                return;
+            
+            objectBrush.RegisterBlock(this);
+        }
+
+        public void Cleanup()
+        {
+            for (int i = transform.childCount - 1; i >= 0; i--)
+            {
+                var child = transform.GetChild(i);
+                if (child.GetComponent<Entity>())
+                    continue;
+                DestroyImmediate(child.gameObject);
+            }
+        }
+
+        private void OnDisable()
+        {
+            ObjectBrush objectBrush = Fox.GameKit.FoxGameKitModule.ObjectBrushRegistry[this.objectBrushName];
+            if (objectBrush)
+                objectBrush.DeregisterBlock(this);
+            
+            Cleanup();
         }
     }
 }

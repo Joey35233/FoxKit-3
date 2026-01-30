@@ -12,7 +12,7 @@ namespace FoxKit.MenuItems
         [MenuItem("FoxKit/Import/TppGrxLightArrayFile")]
         private static void OnImportAsset()
         {
-            string assetPath = EditorUtility.OpenFilePanel("Import TppGrxLightArrayFile", "", "grxla");
+            string assetPath = Fox.Fs.FileUtils.OpenFilePanel("Import TppGrxLightArrayFile", "", "grxla");
             if (CsSystem.String.IsNullOrEmpty(assetPath))
                 return;
             using var reader = new FileStreamReader(System.IO.File.OpenRead(assetPath));

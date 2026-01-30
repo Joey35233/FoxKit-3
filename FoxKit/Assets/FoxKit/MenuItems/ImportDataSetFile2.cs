@@ -19,7 +19,7 @@ namespace FoxKit.MenuItems
         [MenuItem("FoxKit/Import/DataSetFile2")]
         private static void OnImportAsset()
         {
-            string externalPath = EditorUtility.OpenFilePanel("Import DataSetFile2", "", ExtensionWhitelist);
+            string externalPath = Fox.Fs.FileUtils.OpenFilePanel("Import DataSetFile2", "", ExtensionWhitelist);
             if (String.IsNullOrEmpty(externalPath))
             {
                 return;
@@ -45,7 +45,7 @@ namespace FoxKit.MenuItems
         [MenuItem("FoxKit/Import/DataSetFile2 (Additive)")]
         private static void OnImportAdditiveAsset()
         {
-            string externalPath = EditorUtility.OpenFilePanel("Import DataSetFile2 (Additive)", "", ExtensionWhitelist);
+            string externalPath = Fox.Fs.FileUtils.OpenFilePanel("Import DataSetFile2 (Additive)", "", ExtensionWhitelist);
             if (String.IsNullOrEmpty(externalPath))
             {
                 return;
@@ -71,7 +71,7 @@ namespace FoxKit.MenuItems
         [MenuItem("FoxKit/Import/DataSetFile2 (Loose)")]
         private static void OnImportLooseAsset()
         {
-            string externalPath = EditorUtility.OpenFilePanel("Import DataSetFile2 (Loose)", "", ExtensionWhitelist);
+            string externalPath = Fox.Fs.FileUtils.OpenFilePanel("Import DataSetFile2 (Loose)", "", ExtensionWhitelist);
             if (String.IsNullOrEmpty(externalPath))
             {
                 return;
@@ -89,7 +89,7 @@ namespace FoxKit.MenuItems
         [MenuItem("FoxKit/Open/DataSetFile2")]
         private static void OnOpenAsset()
         {
-            string externalPath = EditorUtility.OpenFilePanel("Open DataSetFile2", "", ExtensionWhitelist);
+            string externalPath = Fox.Fs.FileUtils.OpenFilePanel("Open DataSetFile2", "", ExtensionWhitelist);
             if (String.IsNullOrEmpty(externalPath))
             {
                 return;

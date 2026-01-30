@@ -58,16 +58,17 @@ namespace Tpp.GameKit
                 }
             }
 
-            // Optional
+            // Mandatory
             GameObject modelFilePrefab = null;
             if (modelFile == FilePtr.Empty)
             {
                 logger.AddWarningEmptyPath(nameof(modelFile));
+                return;
             }
             else
             {
                 Fox.Fs.FileSystem.ImportAssetCopy(modelFile.path.String);
-                modelFilePrefab = Fox.Fs.FileSystem.LoadAsset<GameObject>(modelFile.path.String);
+                // modelFilePrefab = Fox.Fs.FileSystem.LoadAsset<GameObject>(modelFile.path.String);
             }
 
             // Optional

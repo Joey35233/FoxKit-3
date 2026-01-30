@@ -11,14 +11,12 @@ namespace Fox.Core
     {
         private static readonly Dictionary<Type, EntityInfo> EntityInfoMap = new();
 
-        private static readonly StringMap<EntityInfo> EntityInfoNameMap = new();
+        private static readonly Dictionary<StrCode, EntityInfo> EntityInfoNameMap = new();
 
         public static EntityInfo GetEntityInfo<T>() => GetEntityInfo(typeof(T));
         public static EntityInfo GetEntityInfo(Type type) => EntityInfoMap.TryGetValue(type, out EntityInfo entityInfo) ? entityInfo : null;
-        public static EntityInfo GetEntityInfo(string name) => EntityInfoNameMap.TryGetValue(name, out EntityInfo entityInfo) ? entityInfo : null;
+        public static EntityInfo GetEntityInfo(StrCode name) => EntityInfoNameMap.TryGetValue(name, out EntityInfo entityInfo) ? entityInfo : null;
 
-        public static Entity ConstructEntity(Type type) => ConstructEntity(GetEntityInfo(type));
-        public static Entity ConstructEntity(string name) => ConstructEntity(GetEntityInfo(name));
         public static Entity ConstructEntity(EntityInfo entityInfo) => Activator.CreateInstance(entityInfo.Type) as Entity;
 
         public EntityInfo(string name, Type type, EntityInfo super, short id, string category, ushort version)
@@ -43,7 +41,7 @@ namespace Fox.Core
             }
 
             EntityInfoMap.Add(Type, this);
-            EntityInfoNameMap.Insert(name, this);
+            EntityInfoNameMap.Add(new StrCode(name), this);
         }
 
         /// <summary>

@@ -1,16 +1,16 @@
-using System.Collections.Generic;
-using UnityEditor;
+using System;
 using UnityEngine;
 
 namespace Fox.GameKit
 {
-    public class ObjectBrushObject
+    [Serializable]
+    public struct ObjectBrushObject
     {
         public Vector3 Position;
         public Quaternion Rotation;
         public float NormalizedScale;
 
-        public ObjectBrushPlugin Plugin;
+        public string Plugin;
     };
     
     public class ObjectBrushAsset : ScriptableObject
@@ -19,12 +19,7 @@ namespace Fox.GameKit
         public float BlockSizeH;
         public uint NumBlocksW;
         public uint NumBlocksH;
-        
-        public List<ObjectBrushObject> Objects = new();
-    }
 
-    public class ObjectBrushBlockAsset : ScriptableObject
-    {
-        public List<ObjectBrushObject> Objects = new();
+        public ObjectBrushObject[] Objects;
     }
 }

@@ -13,7 +13,7 @@ namespace FoxKit.MenuItems
         [MenuItem("FoxKit/Import/GeoTrapFile")]
         private static void OnImportAsset()
         {
-            string assetPath = EditorUtility.OpenFilePanel("Import GeoTrapFile", "", "trap");
+            string assetPath = Fox.Fs.FileUtils.OpenFilePanel("Import GeoTrapFile", "", "trap");
             if (System.String.IsNullOrEmpty(assetPath))
                 return;
 

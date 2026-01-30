@@ -10,10 +10,10 @@ namespace Fox.Gr
         public short PositionX;
         public short PositionZ;
             
-        public ushort RotationX;
-        public ushort RotationY;
-        public ushort RotationZ;
-        public ushort RotationW;
+        public Half RotationX;
+        public Half RotationY;
+        public Half RotationZ;
+        public Half RotationW;
         
         public ushort BlockId;
         public byte PluginIndex;

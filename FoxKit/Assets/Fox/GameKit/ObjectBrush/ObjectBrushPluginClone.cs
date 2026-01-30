@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Fox.GameKit
 {
-    [ExecuteInEditMode]
+    [ExecuteAlways]
     public partial class ObjectBrushPluginClone
     {
         public override void OnDeserializeEntity(TaskLogger logger)
@@ -23,47 +23,31 @@ namespace Fox.GameKit
                 Fox.Fs.FileSystem.ImportAssetCopy(modelFile.path.String);
             }
         }
-        
+
         private GameObject ModelPrefab;
-
-        private GameObject Instance;
-
-        private void CreateModel(GameObject model, ObjectBrushObject obj)
-        {
-            Vector3 position = obj.Position;
-            Quaternion rotation = obj.Rotation;
-            Vector3 scale = Vector3.one * Mathf.Lerp(minSize, maxSize, obj.NormalizedScale);
-
-            GameObject instance =(GameObject)PrefabUtility.InstantiatePrefab(model, gameObject.transform);
-            instance.name = "INSTANCE_WILL_RESET_ON_RELOAD";
-            instance.hideFlags = HideFlags.DontSaveInEditor;
-            instance.AddComponent<StaticModelArrayInstance>();
-        }
-        
-        public void ReloadFile(TaskLogger logger = null)
-        {
-            for (int i = transform.childCount - 1; i >= 0; i--)
-            {
-                var child = transform.GetChild(i);
-                if (child.GetComponent<Entity>())
-                    continue;
-                DestroyImmediate(child.gameObject);
-            }
-
-            if (modelFile != FilePtr.Empty)
-            {
-                ModelPrefab = Fox.Fs.FileSystem.LoadAsset<GameObject>(modelFile.path.String);
-                if (ModelPrefab)
-                    foreach (var obj in Objects)
-                        CreateModel(ModelPrefab, obj);
-                else
-                    Debug.Log($"Could not find: {modelFile}");
-            }
-        }
 
         private void OnEnable()
         {
-            ReloadFile();
+            if (modelFile == FilePtr.Empty)
+                return;
+            
+            ModelPrefab = Fox.Fs.FileSystem.LoadAsset<GameObject>(modelFile.path.String);
+            if (!ModelPrefab)
+                Debug.Log($"Could not find: {modelFile}");
+        }
+
+        public override GameObject GetModelInstance(ObjectBrushObject obj)
+        {
+            GameObject instance = (GameObject)PrefabUtility.InstantiatePrefab(ModelPrefab);
+            instance.name = "INSTANCE_WILL_RESET_ON_RELOAD";
+            instance.hideFlags = HideFlags.DontSaveInEditor;
+            instance.AddComponent<StaticModelArrayInstance>();
+            
+            instance.transform.position = obj.Position;
+            instance.transform.rotation = obj.Rotation;
+            instance.transform.localScale = Vector3.one * Mathf.Lerp(minSize, maxSize, obj.NormalizedScale);
+
+            return instance;
         }
     }
 }
