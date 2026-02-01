@@ -12,9 +12,9 @@ namespace Tpp.GameKit
 
             direction = Fox.Math.FoxToUnityVector3(direction);
         }
-        public override void OverridePropertiesForExport(EntityExportContext context)
+        public override void OnSerializeEntity(EntityExportContext context)
         {
-            base.OverridePropertiesForExport(context);
+            base.OnSerializeEntity(context);
 
             context.OverrideProperty(nameof(direction), Fox.Math.UnityToFoxVector3(direction));
         }

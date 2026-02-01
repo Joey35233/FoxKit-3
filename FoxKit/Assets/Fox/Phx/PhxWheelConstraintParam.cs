@@ -48,9 +48,9 @@ namespace Fox.Phx
             wheelPositionOffset = Fox.Math.FoxToUnityVector3(wheelPositionOffset);
         }
 
-        public override void OverridePropertiesForExport(EntityExportContext context)
+        public override void OnSerializeEntity(EntityExportContext context)
         {
-            base.OverridePropertiesForExport(context);
+            base.OnSerializeEntity(context);
             
             context.OverrideProperty(nameof(frontL), Fox.Math.UnityToFoxVector3(frontL));
             context.OverrideProperty(nameof(upL), Fox.Math.UnityToFoxVector3(upL)); ;

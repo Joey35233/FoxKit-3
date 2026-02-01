@@ -17,9 +17,9 @@ namespace Fox.Demox
             cameraStartRotation = Fox.Math.FoxToUnityQuaternion(cameraStartRotation);
         }
 
-        public override void OverridePropertiesForExport(EntityExportContext context)
+        public override void OnSerializeEntity(EntityExportContext context)
         {
-            base.OverridePropertiesForExport(context);
+            base.OnSerializeEntity(context);
 
             context.OverrideProperty(nameof(cameraTranslation), Fox.Math.UnityToFoxVector3(cameraTranslation));
             context.OverrideProperty(nameof(cameraRotation), Fox.Math.UnityToFoxQuaternion(cameraRotation));

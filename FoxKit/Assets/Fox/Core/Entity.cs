@@ -74,7 +74,7 @@ namespace Fox.Core
         /// If a property needs to be converted on export (for instance, Unity to Fox coordinates), add it to the export context.
         /// If a property is not overridden here, its original value will be exported instead.
         /// </summary>
-        public virtual void OverridePropertiesForExport(EntityExportContext context)
+        public virtual void OnSerializeEntity(EntityExportContext context)
         {
         }
 

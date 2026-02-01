@@ -20,9 +20,9 @@ namespace Fox.Ph
             enduranceTorque = Fox.Math.FoxToUnityVector3(enduranceTorque);
         }
 
-        public override void OverridePropertiesForExport(EntityExportContext context)
+        public override void OnSerializeEntity(EntityExportContext context)
         {
-            base.OverridePropertiesForExport(context);
+            base.OnSerializeEntity(context);
 
             context.OverrideProperty(nameof(enduranceTorque), Fox.Math.UnityToFoxVector3(enduranceTorque));
         }

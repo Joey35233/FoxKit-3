@@ -16,9 +16,9 @@ namespace Fox.Phx
             offsetRot = Fox.Math.FoxToUnityQuaternion(offsetRot);
         }
 
-        public override void OverridePropertiesForExport(EntityExportContext context)
+        public override void OnSerializeEntity(EntityExportContext context)
         {
-            base.OverridePropertiesForExport(context);
+            base.OnSerializeEntity(context);
             
             context.OverrideProperty(nameof(bodyOffsetPos), Fox.Math.UnityToFoxVector3(bodyOffsetPos));
             context.OverrideProperty(nameof(constraintOffsetPos), Fox.Math.UnityToFoxVector3(constraintOffsetPos)); ;

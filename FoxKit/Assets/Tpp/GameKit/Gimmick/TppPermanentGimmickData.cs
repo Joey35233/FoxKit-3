@@ -74,9 +74,9 @@ namespace Tpp.GameKit
                 locatorGameObject.AddComponent<LocatorGimmick>();
             }
         }
-        public override void OverridePropertiesForExport(EntityExportContext context)
+        public override void OnSerializeEntity(EntityExportContext context)
         {
-            base.OverridePropertiesForExport(context);
+            base.OnSerializeEntity(context);
 
             var dataSetName = Fox.Fs.FileSystem.GetFoxPathFromUnityPath(AssetDatabase.GetAssetOrScenePath(this));
 

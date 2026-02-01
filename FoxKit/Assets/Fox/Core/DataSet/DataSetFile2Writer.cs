@@ -40,7 +40,7 @@ namespace Fox.Core
 
                 var context = new EntityExportContext();
                 exportContexts.Add(entity, context);
-                entity.OverridePropertiesForExport(context);
+                entity.OnSerializeEntity(context);
             }
 
             long headerPosition = writer.BaseStream.Position;

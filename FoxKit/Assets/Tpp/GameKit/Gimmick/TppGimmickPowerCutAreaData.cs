@@ -51,9 +51,9 @@ namespace Tpp.GameKit
                 locatorGameObject.transform.SetParent(gameObject.transform);
             }
         }
-        public override void OverridePropertiesForExport(EntityExportContext context)
+        public override void OnSerializeEntity(EntityExportContext context)
         {
-            base.OverridePropertiesForExport(context);
+            base.OnSerializeEntity(context);
             
             LocatorFileWriter.Write(Fox.Fs.FileSystem.GetExternalPathFromFoxPath(locaterFile.path.String),gameObject,null,false);
         }
