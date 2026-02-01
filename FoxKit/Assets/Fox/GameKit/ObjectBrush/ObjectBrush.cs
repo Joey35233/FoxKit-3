@@ -22,21 +22,6 @@ namespace Fox.GameKit
             if (obrFile == FilePtr.Empty)
             {
                 logger.AddWarningEmptyPath(nameof(obrFile));
-                return;
-            }
-            else
-            {
-                string obrExternalPath = Fox.Fs.FileSystem.GetExternalPathFromFoxPath(obrFile.path.String);
-                if (!File.Exists(obrExternalPath))
-                {
-                    logger.AddWarningMissingAsset(obrFile.path.String);
-                    return;
-                }
-                
-                byte[] obrData = File.ReadAllBytes(obrExternalPath);
-                ObjectBrushAsset obrAsset = ConvertFile(obrData);
-                Fox.Fs.FileSystem.CreateAsset(obrAsset, obrFile.path.String);
-                AssetDatabase.SaveAssets();
             }
         }
 
@@ -65,6 +50,18 @@ namespace Fox.GameKit
                     pluginHandle[i] = pluginPrefab;
                 }
             }
+            
+            string obrExternalPath = Fox.Fs.FileSystem.GetExternalPathFromFoxPath(obrFile.path.String);
+            if (!File.Exists(obrExternalPath))
+            {
+                logger.AddWarningMissingAsset(obrFile.path.String);
+                return;
+            }
+                
+            byte[] obrData = File.ReadAllBytes(obrExternalPath);
+            ObjectBrushAsset obrAsset = ConvertFile(obrData);
+            Fox.Fs.FileSystem.CreateAsset(obrAsset, obrFile.path.String);
+            AssetDatabase.SaveAssets();
         }
 
         public unsafe ObjectBrushAsset ConvertFile(byte[] file)
@@ -166,6 +163,11 @@ namespace Fox.GameKit
                         continue;
                 
                     GameObject instance = (GameObject)PrefabUtility.InstantiatePrefab(plugin.gameObject);
+                    
+                    // At this stage, the handles are still Scene objects (pre-OnPostDeserializeEntity)
+                    if (instance == null)
+                        return;
+                    
                     instance.hideFlags = HideFlags.DontSaveInEditor;
                     Transform instanceTransform = instance.transform;
                     instanceTransform.position = obj.Position;

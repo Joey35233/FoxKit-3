@@ -30,7 +30,7 @@ namespace Tpp.GameKit
             }
         }
 
-        private new void OnEnable()
+        private void OnEnable()
         {
             if (!PrefabUtility.IsPartOfPrefabInstance(this))
                 return;
