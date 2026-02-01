@@ -36,22 +36,22 @@ namespace Fox.Ph
         internal bool GetStopTwistFlag() => stopTwistFlag;
         internal void SetStopTwistFlag(bool value) => stopTwistFlag = value;
 
-        public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
+        public override void OnDeserializeEntity(TaskLogger logger)
         {
+            base.OnDeserializeEntity(logger);
+            
             refA = Fox.Math.FoxToUnityVector3(refA);
             refB = Fox.Math.FoxToUnityVector3(refB);
             springRef = Fox.Math.FoxToUnityVector3(springRef);
-
-            base.OnDeserializeEntity(gameObject, logger);
         }
 
-        public override void OverridePropertiesForExport(EntityExportContext context)
+        public override void OnSerializeEntity(EntityExportContext context)
         {
-            context.OverrideProperty("refA", Fox.Math.UnityToFoxVector3(refA));
-            context.OverrideProperty("refB", Fox.Math.UnityToFoxVector3(refB));
-            context.OverrideProperty("springRef", Fox.Math.UnityToFoxVector3(springRef));
-
-            base.OverridePropertiesForExport(context);
+            base.OnSerializeEntity(context);
+            
+            context.OverrideProperty(nameof(refA), Fox.Math.UnityToFoxVector3(refA));
+            context.OverrideProperty(nameof(refB), Fox.Math.UnityToFoxVector3(refB));
+            context.OverrideProperty(nameof(springRef), Fox.Math.UnityToFoxVector3(springRef));
         }
 
         public override void DrawGizmos()

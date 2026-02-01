@@ -8,25 +8,23 @@ using UnityEngine.UIElements;
 
 namespace Fox.EdCore
 {
-    public class UInt16Field : TextValueField<ushort>, INotifyValueChanged<int>, IFoxField
+    public class UInt16Field : TextValueField<ushort>, INotifyValueChanged<uint>, IFoxField
     {
         public override ushort value
         {
             get => base.value;
             set
             {
+                ushort oldValue = this.value;
                 ushort newValue = value;
-                int packedNewValue = unchecked(newValue);
-                if (newValue != this.value)
+                if (newValue != oldValue)
                 {
                     if (panel != null)
                     {
-                        int packedOldValue = unchecked(this.value);
-
                         // Sends ChangeEvent<System.UInt16> and uses its SetValueWithoutNotify function
                         base.value = newValue;
 
-                        using (var evt = ChangeEvent<int>.GetPooled(packedOldValue, packedNewValue))
+                        using (var evt = ChangeEvent<uint>.GetPooled(oldValue, newValue))
                         {
                             evt.target = this;
                             SendEvent(evt);
@@ -39,22 +37,21 @@ namespace Fox.EdCore
                 }
             }
         }
-        int INotifyValueChanged<int>.value
+        uint INotifyValueChanged<uint>.value
         {
-            get => unchecked(value);
+            get => value;
             set
             {
-                ushort newValue = unchecked((ushort)value);
-                if (newValue != this.value)
+                ushort oldValue = this.value;
+                ushort newValue = (ushort)value;
+                if (newValue != oldValue)
                 {
                     if (panel != null)
                     {
-                        int packedOldValue = unchecked(this.value);
-
                         // Sends ChangeEvent<System.UInt16> and uses its SetValueWithoutNotify function
                         base.value = newValue;
 
-                        using (var evt = ChangeEvent<int>.GetPooled(packedOldValue, value))
+                        using (var evt = ChangeEvent<uint>.GetPooled(oldValue, newValue))
                         {
                             evt.target = this;
                             SendEvent(evt);
@@ -67,7 +64,7 @@ namespace Fox.EdCore
                 }
             }
         }
-        void INotifyValueChanged<int>.SetValueWithoutNotify(int newValue) => throw new NotImplementedException();
+        void INotifyValueChanged<uint>.SetValueWithoutNotify(uint newValue) => throw new NotImplementedException();
 
         private UInt16Input integerInput => (UInt16Input)textInputBase;
 
@@ -75,8 +72,8 @@ namespace Fox.EdCore
 
         protected override ushort StringToValue(string str)
         {
-            _ = ExpressionEvaluator.Evaluate(str, out int v);
-            return NumericPropertyFields.ClampToUInt16(v);
+            bool success = NumericPropertyFields.TryConvertStringToUInt(str, out uint v);
+            return NumericPropertyFields.ClampToUInt16(success ? v : rawValue);
         }
 
         public static new readonly string ussClassName = "fox-uint16-field";
@@ -129,7 +126,7 @@ namespace Fox.EdCore
 
             internal UInt16Input()
             {
-                formatString = "##0";
+                formatString = NumericPropertyFields.IntegerFieldFormatString;
             }
 
             protected override string allowedCharacters => NumericPropertyFields.IntegerExpressionCharacterWhitelist;
@@ -152,11 +149,7 @@ namespace Fox.EdCore
 
             protected override string ValueToString(ushort v) => v.ToString(formatString);
 
-            protected override ushort StringToValue(string str)
-            {
-                _ = ExpressionEvaluator.Evaluate(str, out int v);
-                return NumericPropertyFields.ClampToUInt16(v);
-            }
+            protected override ushort StringToValue(string str) => parentIntegerField.StringToValue(str);
         }
         
         public void SetLabel(string label) => this.label = label;

@@ -12,7 +12,7 @@ namespace FoxKit.MenuItems
         [MenuItem("FoxKit/Import/LangFile")]
         private static void OnImportAsset()
         {
-            string assetPath = EditorUtility.OpenFilePanel("Import LangFile", "", "lng,lng2");
+            string assetPath = Fox.Fs.FileUtils.OpenFilePanel("Import LangFile", "", "lng,lng2");
             if (String.IsNullOrEmpty(assetPath))
             {
                 return;

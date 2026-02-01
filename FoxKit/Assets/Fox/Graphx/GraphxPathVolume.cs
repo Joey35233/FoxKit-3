@@ -5,21 +5,20 @@ using UnityEngine;
 
 namespace Fox.Graphx
 {
-    public partial class GraphxPathVolume
+    public partial class GraphxPathVolume : Fox.Graphx.GraphxPathData
     {
-        public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
+        public override void OnDeserializeEntity(TaskLogger logger)
         {
-            base.OnDeserializeEntity(gameObject, logger);
+            base.OnDeserializeEntity(logger);
 
             topPos = Fox.Math.FoxToUnityVector3(topPos);
         }
 
-        public override void OverridePropertiesForExport(EntityExportContext context)
+        public override void OnSerializeEntity(EntityExportContext context)
         {
-            base.OverridePropertiesForExport(context);
+            base.OnSerializeEntity(context);
 
             context.OverrideProperty(nameof(topPos), Fox.Math.UnityToFoxVector3(topPos));
         }
-        public override Type GetNodeType() => typeof(GraphxSpatialGraphDataNode);
     }
 }

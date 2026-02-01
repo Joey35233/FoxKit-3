@@ -2,6 +2,8 @@
 using Fox.Core.Utils;
 using Fox.Fio;
 using System;
+using System.Collections.Concurrent;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Fox.Tactical
@@ -42,14 +44,65 @@ namespace Fox.Tactical
             Divide=0x2,
             Divide2=0x3,
         };
+
+        private static string GetActionName(StrCode32 actionName) => (uint)actionName.GetHashCode() switch
+        {
+            1277978017 => "StepOn",
+            1139911476 => "StepDown",
+            2317903572 => "LadderUp",
+            3049138984 => "LadderDown",
+            3451056519 => "Door",
+            504469101 => "StepFence",
+            504835594 => "SubstanceVowelCourseStepFence",
+            3205930904 => "",
+            _ => actionName.ToString(),
+        };
+        private static GkTacticalActionDirection GetDirection(string actionName) => actionName switch
+        {
+            "StepOn" or 
+            "LadderUp" => GkTacticalActionDirection.TACTICAL_ACTION_ONE_WAY_01,
+            "StepDown" or 
+            "LadderDown" => GkTacticalActionDirection.TACTICAL_ACTION_ONE_WAY_10,
+            "Door" or 
+            "StepFence" or 
+            "SubstanceVowelCourseStepFence" or 
+            _ => GkTacticalActionDirection.TACTICAL_ACTION_BOTH_WAYS,
+        };
+        private static (uint, List<string>) GetAttribute(string actionName) => actionName switch
+        {
+            "LadderUp" or
+            "LadderDown" or
+            "StepOn" or
+            "StepDown" => (1, new List<string>{ "Human" }),
+
+            "StepFence" or
+            "SubstanceVowelCourseStepFence" => (16, new List<string> { "HumanCombat" }),
+            
+            "Door" or _ => (1153, new List<string> { "Human", "Dog", "Child" }),
+        };
+        private static string ntaNamesPath = "Assets/Fox/Tactical/TacticalAction/nta_name_dictionary.txt";
+        private static string ntaUserIdPath = "Assets/Fox/Tactical/TacticalAction/nta_userId_dictionary.txt";
         public void Read(FileStreamReader reader)
         {
+            ConcurrentDictionary<StrCode, string> ntaNameDictionary = new();
+            ConcurrentDictionary<StrCode, string> ntaUserIdDictionary = new();
+
+            ntaNameDictionary.TryAdd(StrCode.Empty, "");
+            ntaUserIdDictionary.TryAdd(StrCode.Empty, "");
+
+            foreach (string name in System.IO.File.ReadAllLines(ntaNamesPath))
+                ntaNameDictionary.TryAdd(new StrCode(name), name);
+            foreach (string userId in System.IO.File.ReadAllLines(ntaUserIdPath))
+                ntaUserIdDictionary.TryAdd(new StrCode(userId), userId);
+
             Debug.Assert(reader.ReadUInt32() == NTA_SIGNATURE, "Invalid NTA file.");
             Debug.Assert(reader.ReadUInt16() == 1, "Invalid NTA version.");
             ushort worldCount = reader.ReadUInt16();
             uint worldOffset = reader.ReadUInt32();
 
             uint seekOffset = worldOffset;
+
+            var emptyHash32 = (StrCode32)StrCode.Empty;
 
             for (int worldIndex = 0; worldIndex < worldCount; worldIndex++)
             {
@@ -65,40 +118,78 @@ namespace Fox.Tactical
                 {
                     uint rewindPos = (uint)reader.BaseStream.Position;
                     reader.Seek(worldOffset+actionNameOffset+(actionIndex*8));
-                    GkTacticalAction tacticalAction = new GameObject(reader.ReadStrCode().ToString()).AddComponent<GkTacticalAction>();
+
+                    var tacticalActionName = reader.ReadStrCode();
+                    var tacticalActionString = ntaNameDictionary.TryGetValue(tacticalActionName, out string ntaNameStr) ? ntaNameStr : tacticalActionName.ToString();
+                    
+                    GkTacticalAction tacticalAction = new GameObject(tacticalActionString).AddComponent<GkTacticalAction>();
                     tacticalAction.SetTransform(TransformEntity.GetDefault());
-                    tacticalAction.worldName = worldName.ToString();
+
+                    if(worldName==StrCode.Empty)
+                        tacticalAction.worldName = "";
+                    else
+                        tacticalAction.worldName = worldName.ToString();
+
                     tacticalAction.enable = true;
                     tacticalAction.enableInGame = true;
+
                     reader.Seek(rewindPos);
 
+                    bool oneEdge = false;
+                    Vector3[] worldPositions = new Vector3[2];
                     for (int waypointIndex = 0; waypointIndex < 2; waypointIndex++)
                     {
+                        //Waypoint
                         tacticalAction.waypoints.Insert(waypointIndex,new GameObject($"GkTacticalActionWaypoint{waypointIndex:0000}").AddComponent<GkTacticalActionWaypoint>());
-                        tacticalAction.waypoints[waypointIndex].transform.parent=tacticalAction.gameObject.transform;
-                        tacticalAction.waypoints[waypointIndex].position = reader.ReadPositionF();
-                        tacticalAction.edges.Insert(waypointIndex,new GameObject($"GkTacticalActionEdge{waypointIndex:0000}").AddComponent<GkTacticalActionEdge>());
-                        tacticalAction.edges[waypointIndex].transform.parent = tacticalAction.gameObject.transform;
-                        tacticalAction.edges[waypointIndex].actionName = reader.ReadStrCode32().ToString();
-                        tacticalAction.edges[waypointIndex].transform.parent = tacticalAction.waypoints[waypointIndex].transform;
+                        tacticalAction.waypoints[waypointIndex].SetOwner(tacticalAction);
+                        worldPositions[waypointIndex] = reader.ReadPositionF();
+
+
+                        //Edge
+                        var actionName = reader.ReadStrCode32();
+                        var actionNameStr = GetActionName(actionName);
+                        if (/*actionName == emptyHash32 || */oneEdge==true)
+                            //edges with an empty string shouldn't exist according to Joey
+                            //and tactical actions with the direction BOTH_WAYS should have only one edge
+                            continue;
+
+                        tacticalAction.edges.Insert(waypointIndex, new GameObject($"GkTacticalActionEdge{waypointIndex:0000}|{actionNameStr}").AddComponent<GkTacticalActionEdge>());
+                        tacticalAction.edges[waypointIndex].SetOwner(tacticalAction);
+
+                        tacticalAction.edges[waypointIndex].actionName = actionNameStr;
+
+                        var actionDirection = GetDirection(actionNameStr);
+                        tacticalAction.edges[waypointIndex].actionDirection = actionDirection;
+
+                        //ensure only one edge is in the action if BOTH_WAYS
+                        oneEdge = (actionDirection == GkTacticalActionDirection.TACTICAL_ACTION_BOTH_WAYS);
                     }
-                    tacticalAction.transform.position = tacticalAction.waypoints[0].position;
 
-                    tacticalAction.waypoints[0].transform.position = tacticalAction.waypoints[0].position;
-                    tacticalAction.waypoints[1].transform.position = tacticalAction.waypoints[1].position;
+                    //set to comfortable local positions from globals
+                    tacticalAction.transform.position = worldPositions[0] + (worldPositions[1] - worldPositions[0])/2;
 
-                    tacticalAction.waypoints[0].position = Vector3.zero;
-                    tacticalAction.waypoints[1].position = Fox.Math.UnityToFoxVector3(tacticalAction.waypoints[1].transform.localPosition);
+                    tacticalAction.waypoints[0].transform.position = worldPositions[0];
+                    tacticalAction.waypoints[1].transform.position = worldPositions[1];
 
-                    tacticalAction.edges[0].actionDirection = GkTacticalActionDirection.TACTICAL_ACTION_ONE_WAY_01;
-                    tacticalAction.edges[1].actionDirection = GkTacticalActionDirection.TACTICAL_ACTION_ONE_WAY_10;
+                    tacticalAction.waypoints[0].position = tacticalAction.waypoints[0].transform.localPosition;
+                    tacticalAction.waypoints[1].position = tacticalAction.waypoints[1].transform.localPosition;
 
-                    tacticalAction.userId = reader.ReadStrCode().ToString();
 
+                    if (tacticalAction.edges[0].actionName == "LadderDown" || tacticalAction.edges[0].actionName == "StepDown")
+                    {
+                        tacticalAction.waypoints.Reverse();
+                        tacticalAction.edges.Reverse();
+                    }
+
+                    //userId refers to related gameobject or gimmick
+                    var userId = reader.ReadStrCode();
+                    tacticalAction.userId = ntaUserIdDictionary.TryGetValue(userId, out string _userIdStr) ? _userIdStr : userId.ToString();
+
+                    //nav attributes
                     tacticalAction.attribute = reader.ReadUInt16();
+                    var enumType = typeof(Tpp_Ground_Attributes);
                     if (tacticalAction.attribute != 0xffff )
                     {
-                        var enumType = typeof(Tpp_Ground_Attributes);
                         var emptyWorldName = StrCode.Empty;
                         if (worldName == emptyWorldName)
                         {
@@ -110,6 +201,16 @@ namespace Fox.Tactical
                         else
                         {
                             Debug.LogError($"World name {worldName} is not yet supported");
+                        }
+                    }
+                    else
+                    {
+                        foreach (GkTacticalActionEdge edge in tacticalAction.edges)
+                        {
+                            (var attribute, var attributeNames) = GetAttribute(edge.actionName);
+                            tacticalAction.attribute = attribute;
+                            tacticalAction.attributeNames.AddRange(attributeNames);
+                            break;
                         }
                     }
                     reader.Skip(6);

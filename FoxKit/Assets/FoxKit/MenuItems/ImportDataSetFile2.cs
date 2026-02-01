@@ -4,87 +4,104 @@ using Fox.Fio;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using Fox.Fs;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using CsSystem = System;
+using File = Fox.Core.File;
 
 namespace FoxKit.MenuItems
 {
     public static class ImportDataSetFile2
     {
+        private const string ExtensionWhitelist = "fox2,bnd,clo,des,evf,fsd,lad,parts,ph,phsd,sdf,sim,tgt,vdp,veh,vfxlf";
+        
         [MenuItem("FoxKit/Import/DataSetFile2")]
         private static void OnImportAsset()
         {
-            string assetPath = EditorUtility.OpenFilePanel("Import DataSetFile2", "", "fox2,bnd,clo,des,evf,fsd,lad,parts,ph,phsd,sdf,sim,tgt,vdp,veh,vfxlf");
-            if (String.IsNullOrEmpty(assetPath))
+            string externalPath = Fox.Fs.FileUtils.OpenFilePanel("Import DataSetFile2", "", ExtensionWhitelist);
+            if (String.IsNullOrEmpty(externalPath))
             {
                 return;
             }
 
-            UnityEngine.SceneManagement.Scene scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene,NewSceneMode.Single);
-            scene.name = Path.GetFileNameWithoutExtension(assetPath);
+            var logger = new TaskLogger("Import DataSetFile2");
 
-            var logger = new TaskLogger("ImportFOX2");
-            using var reader = new FileStreamReader(System.IO.File.OpenRead(assetPath));
-            var fox2Reader = new DataSetFile2Reader();
-            DataSetFile2Reader.ReadResult readResult = fox2Reader.Read(reader, logger);
-
-            var typeCount = new Dictionary<Type, int>();
-            foreach (UnityEngine.GameObject gameObject in readResult.GameObjects)
+            string path = Fox.Fs.FileSystem.GetFoxPathFromExternalPath(externalPath);
+            if (path == null)
             {
-                Entity entity = gameObject.GetComponent<Entity>();
-
-                // Name the GameObject
-                if (entity is Data)
-                {
-                    gameObject.name = (entity as Data).name;
-                }
-                else
-                {
-                    if (typeCount.ContainsKey(entity.GetType()))
-                    {
-                        gameObject.name = entity.GetType().Name + (typeCount[entity.GetType()] + 1).ToString("D4");
-                        typeCount[entity.GetType()]++;
-                    }
-                    else
-                    {
-                        gameObject.name = entity.GetType().Name + "0000";
-                        typeCount.Add(entity.GetType(), 0);
-                    }
-                }
-
-                // Parenting
-                if (entity is TransformData)
-                {
-                    var thisTransform = entity as TransformData;
-                    if (readResult.TransformDataChildToParentMap.ContainsKey(thisTransform))
-                    {
-                        TransformData parentEntity = readResult.TransformDataChildToParentMap[thisTransform];
-                        UnityEngine.Transform parentTransform = parentEntity.transform;
-                        entity.transform.SetParent(parentTransform, false);
-                    }
-                }
-                else if (entity is DataElement)
-                {
-                    Entity parent = entity.GetComponentInParent<Entity>();
-
-                    // I love orphaned DataElements
-                    if (parent != null)
-                    {
-                        gameObject.transform.SetParent(parent.transform);
-                        gameObject.transform.SetLocalPositionAndRotation(UnityEngine.Vector3.zero, UnityEngine.Quaternion.identity);
-                    }
-                }
-                else
-                {
-                    gameObject.transform.SetParent(readResult.DataSetGameObject.transform);
-                }
-
-                entity.OnDeserializeEntity(gameObject, logger);
+                logger.AddError("Selected file is not within external directory.");
+                logger.LogToUnityConsole();
+                return;
+            }
+            
+            ReadOnlySpan<byte> fileData = Fox.Fs.FileSystem.ReadExternalFile(path);
+            UnityEngine.SceneManagement.Scene scene = DataSetFile2.Read(fileData, DataSetFile2.SceneLoadMode.Auto, logger);
+            logger.LogToUnityConsole();
+            
+            Fox.Fs.FileSystem.TryImportAsset(scene, path);
+        }
+        
+        [MenuItem("FoxKit/Import/DataSetFile2 (Additive)")]
+        private static void OnImportAdditiveAsset()
+        {
+            string externalPath = Fox.Fs.FileUtils.OpenFilePanel("Import DataSetFile2 (Additive)", "", ExtensionWhitelist);
+            if (String.IsNullOrEmpty(externalPath))
+            {
+                return;
             }
 
-            _ = EditorSceneManager.SaveScene(scene, "Assets/Scenes/" + CsSystem.IO.Path.GetFileName(assetPath) + ".unity");
+            var logger = new TaskLogger("Import DataSetFile2");
+
+            string path = Fox.Fs.FileSystem.GetFoxPathFromExternalPath(externalPath);
+            if (path == null)
+            {
+                logger.AddError("Selected file is not within external directory.");
+                logger.LogToUnityConsole();
+                return;
+            }
+            
+            ReadOnlySpan<byte> fileData = Fox.Fs.FileSystem.ReadExternalFile(path);
+            UnityEngine.SceneManagement.Scene scene = DataSetFile2.Read(fileData, DataSetFile2.SceneLoadMode.Additive, logger);
             logger.LogToUnityConsole();
+            
+            Fox.Fs.FileSystem.TryImportAsset(scene, path);
+        }
+        
+        [MenuItem("FoxKit/Import/DataSetFile2 (Loose)")]
+        private static void OnImportLooseAsset()
+        {
+            string externalPath = Fox.Fs.FileUtils.OpenFilePanel("Import DataSetFile2 (Loose)", "", ExtensionWhitelist);
+            if (String.IsNullOrEmpty(externalPath))
+            {
+                return;
+            }
+
+            var logger = new TaskLogger("Import DataSetFile2 (Loose)");
+
+            ReadOnlySpan<byte> fileData = Fox.Fs.FileSystem.ReadLooseFile(externalPath);
+            UnityEngine.SceneManagement.Scene scene = DataSetFile2.Read(fileData, DataSetFile2.SceneLoadMode.Auto, logger);
+            logger.LogToUnityConsole();
+            
+            Fox.Fs.FileSystem.TryImportAsset(scene, externalPath, ImportFileMode.Loose);
+        }
+        
+        [MenuItem("FoxKit/Open/DataSetFile2")]
+        private static void OnOpenAsset()
+        {
+            string externalPath = Fox.Fs.FileUtils.OpenFilePanel("Open DataSetFile2", "", ExtensionWhitelist);
+            if (String.IsNullOrEmpty(externalPath))
+            {
+                return;
+            }
+
+            var logger = new TaskLogger("Open DataSetFile2");
+
+            ReadOnlySpan<byte> fileData = Fox.Fs.FileSystem.ReadLooseFile(externalPath);
+            UnityEngine.SceneManagement.Scene scene = DataSetFile2.Read(fileData, DataSetFile2.SceneLoadMode.Auto, logger);
+            logger.LogToUnityConsole();
+            
+            Fox.Fs.FileSystem.TryImportAsset(scene, externalPath, ImportFileMode.OpenDontSave);
         }
     }
 }

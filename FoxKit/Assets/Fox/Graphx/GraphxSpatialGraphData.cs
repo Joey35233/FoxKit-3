@@ -1,6 +1,9 @@
 ﻿using Fox.Core;
 using System;
+using System.Linq;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace Fox.Graphx
 {
@@ -11,6 +14,8 @@ namespace Fox.Graphx
         public Vector3 GetGraphWorldPosition(Vector3 pos) => GetGraphWorldMatrix().MultiplyPoint(pos);
 
         public virtual Type GetNodeType() => typeof(GraphxSpatialGraphDataNode);
+        public virtual Type GetEdgeType() => typeof(GraphxSpatialGraphDataEdge);
+        public virtual bool IsLoop() => true;
 
         public int IndexOf(GraphxSpatialGraphDataNode node)
         {
@@ -22,70 +27,121 @@ namespace Fox.Graphx
             return this.nodes[index];
         }
 
-        /// <summary>
-        /// Add a node at the specified index.
-        /// </summary>
-        /// <param name="index">Index to insert at.</param>
-        /// <param name="node">The new node.</param>
-        public void AddGraphNode(int index, GraphxSpatialGraphDataNode node)
+        public Fox.Graphx.GraphxSpatialGraphDataNode AddNodeAfter(Fox.Graphx.GraphxSpatialGraphDataNode node)
         {
-            this.nodes.Insert(index, node);
+            Undo.RegisterCompleteObjectUndo(this, "Add Node After");
+
+            int index = IndexOf(node);
+            if (index < 0)
+                throw new System.ArgumentException("Node not found in graph.");
+
+            var newNode = CreateNode();
+            newNode.transform.SetParent(transform);
+
+            var newEdge = CreateEdge();
+            newEdge.transform.SetParent(transform);
+
+            ConnectEdge(node, newNode, newEdge);
+
+            // If needed, update any edges pointing to next node
+            HandleSplice(node, newNode, newEdge);
+
+            // Insert into lists
+            nodes.Insert(index + 1, newNode);
+            edges.Add(newEdge);
+
+            CreateLoopEdge();
+
+            EditorUtility.SetDirty(this);
+            return newNode;
         }
 
-        private static readonly Color Color = Color.white;
-        private static readonly Vector3 Scale = Vector3.one * 0.1f;
-        private static readonly Vector3 ScaleNode = Vector3.one * 0.25f;
-        private static readonly float NormalLength = 0.25f;
-
-        public void OnDrawGizmos()
+        protected virtual void ConnectEdge(
+            Fox.Graphx.GraphxSpatialGraphDataNode prev,
+            Fox.Graphx.GraphxSpatialGraphDataNode next,
+            Fox.Graphx.GraphxSpatialGraphDataEdge edge)
         {
-            Gizmos.matrix = Matrix4x4.identity;
+            edge.prevNode = prev;
+            edge.nextNode = next;
 
-            for (int nodeIndex = 0; nodeIndex < nodes.Count; nodeIndex++)
+            prev.outlinks.Add(edge);
+
+            next.outlinks.Add(edge);
+        }
+
+        protected virtual void HandleSplice(
+            Fox.Graphx.GraphxSpatialGraphDataNode prev,
+            Fox.Graphx.GraphxSpatialGraphDataNode inserted,
+            Fox.Graphx.GraphxSpatialGraphDataEdge newEdge)
+        {
+            // Look for existing edge to a next node
+            var existingEdge = edges.FirstOrDefault(e => e.prevNode == prev && e.nextNode != null && e != newEdge);
+            if (existingEdge == null)
+                return;
+
+            var oldNext = existingEdge.nextNode as Fox.Graphx.GraphxSpatialGraphDataNode;
+            existingEdge.prevNode = inserted;
+
+            // Reconnect links
+            prev.outlinks.Remove(existingEdge);
+            inserted.outlinks.Add(existingEdge);
+
+            if (oldNext != null)
             {
-                Graphx.GraphxSpatialGraphDataNode node = nodes[nodeIndex];
-
-                if (!node)
-                    return;
-
-                Gizmos.color = EditorColors.PlayerUtilityColor;
-                Gizmos.DrawWireCube(this.transform.TransformPoint(node.position), ScaleNode);
-
-                for (int edgeIndex = 0; edgeIndex < node.outlinks.Count; edgeIndex++)
-                {
-                    var edge = node.outlinks[edgeIndex] as GraphxSpatialGraphDataEdge;
-
-                    if (!edge)
-                        return;
-
-                    var prevNode = edge.prevNode as GraphxSpatialGraphDataNode;
-                    var nextNode = edge.nextNode as GraphxSpatialGraphDataNode;
-
-                    if (!prevNode || !nextNode)
-                        return;
-
-                    Vector3 prevNodePos = this.transform.TransformPoint(prevNode.position);
-                    Vector3 nextNodePos = this.transform.TransformPoint(nextNode.position);
-
-                    Gizmos.color = EditorColors.PlayerUtilityColor;
-                    Gizmos.DrawLine(prevNodePos, nextNodePos);
-
-                    //Normals
-
-                    Vector3 pathVec = nextNodePos - prevNodePos; // Start index at 1 to guarantee i - 1 exists
-                    Vector3 lineNormalVec = Vector3.Cross(pathVec, Vector3.up).normalized;
-                    lineNormalVec *= NormalLength;
-
-                    // Gizmo draw +lineNormalVec in green
-                    Gizmos.color = Color.green;
-                    Gizmos.DrawLine(prevNodePos, prevNodePos - lineNormalVec);
-                    Gizmos.DrawLine(nextNodePos, nextNodePos - lineNormalVec);
-                    // Gizmo draw -lineNormalVec in red
-                    Gizmos.color = Color.red;
-                    Gizmos.DrawLine(prevNodePos, prevNodePos + lineNormalVec);
-                    Gizmos.DrawLine(nextNodePos, nextNodePos + lineNormalVec);
-                }
+                oldNext.outlinks.Remove(existingEdge);
+                oldNext.outlinks.Add(existingEdge);
             }
+        }
+        protected void CreateLoopEdge()
+        {
+            var firstNode = nodes.First();
+            var lastNode = nodes.Last();
+
+            if (IsLoop() && firstNode.outlinks.Count < 2 && lastNode.outlinks.Count < 2)
+            {
+                var loopEdge = CreateEdge();
+                loopEdge.transform.SetParent(transform);
+
+                loopEdge.prevNode = lastNode;
+                loopEdge.nextNode = firstNode;
+
+                lastNode.outlinks.Add(loopEdge);
+                firstNode.outlinks.Add(loopEdge);
+
+                edges.Add(loopEdge);
+            }
+        }
+
+        protected Fox.Graphx.GraphxSpatialGraphDataNode CreateNode()
+        {
+            var newNodeGo = new GameObject();
+            Undo.SetTransformParent(newNodeGo.transform, transform, "Set new graph node's parent");
+            Undo.RegisterCreatedObjectUndo(newNodeGo, "Added graph node");
+
+            var nodeType = this.GetNodeType();
+            var newNode = Undo.AddComponent(newNodeGo, nodeType) as Fox.Graphx.GraphxSpatialGraphDataNode;
+
+            var usedNames = UnityEngine.Object.FindObjectsByType(nodeType, FindObjectsInactive.Include, FindObjectsSortMode.None)
+                .Select(ent => ent.name).ToHashSet();
+            newNodeGo.name = newNode.GenerateUniqueName(nodeType, usedNames);
+
+            return newNode;
+        }
+
+        protected Fox.Graphx.GraphxSpatialGraphDataEdge CreateEdge()
+        {
+            var newEdgeGo = new GameObject();
+            Undo.SetTransformParent(newEdgeGo.transform, transform, "Set new graph edge's parent");
+            Undo.RegisterCreatedObjectUndo(newEdgeGo, "Added graph edge");
+
+            var edgeType = GetEdgeType();
+            var edge = Undo.AddComponent(newEdgeGo, GetEdgeType()) as Fox.Graphx.GraphxSpatialGraphDataEdge;
+
+            var usedNames = UnityEngine.Object.FindObjectsByType(edgeType, FindObjectsInactive.Include, FindObjectsSortMode.None)
+                .Select(ent => ent.name).ToHashSet();
+            edge.name = edge.GenerateUniqueName(edgeType, usedNames);
+
+            return edge;
         }
     }
 }

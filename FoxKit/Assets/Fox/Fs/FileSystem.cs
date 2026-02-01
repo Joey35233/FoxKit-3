@@ -1,37 +1,242 @@
-using Fox.Fio;
-using Fox;
+using System;
+using System.IO;
+using UnityEditor;
+using UnityEditor.SceneManagement;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Fox.Fs
 {
-    // public class FileSystem
-    // {
-    //     public const string GameFolderPath = "Assets/Game";
-    //
-    //     public static string ResolvePathname(Path path)
-    //     {
-    //         string fullPath;
-    //
-    //         if (path.IsHashed())
-    //         {
-    //             //string extension = Hashing.
-    //             fullPath = "";
-    //         }
-    //         else
-    //         {
-    //             Debug.Assert(path.CString.StartsWith('/'));
-    //
-    //             fullPath = GameFolderPath + path.CString;
-    //         }
-    //
-    //         return fullPath;
-    //     }
-    //
-    //     internal static FileStreamReader CreateFromPath(Path path, System.Text.Encoding encoding) => new(new System.IO.FileStream(ResolvePathname(path), System.IO.FileMode.Open), encoding);
-    //
-    //     private void RegisterImportFileExtension(string extension, System.Func<string, string> nameResolver)
-    //     {
-    //         // TODO
-    //     }
-    // }
+    // Working nomenclature
+    // *External* paths refer to unpacked game files stored outside of Unity - an example is C:/Program Files (x86)/Steam/steamapps/common/MGS_TPP/master/chunk0_dat/Assets/tpp/pack/...
+    // *Fox* paths refer to all types of paths found in DataSets, such as /Assets/tpp/level/location/afgh/block_common/afgh_common.fox2 and /Assets/tpp/pack/location/afgh/pack_common/afgh_common.fpk
+    // *Unity* paths refer to files stored within Unity, such as Assets/Game/Assets/tpp/level/location/afgh/block_common/afgh_common.fox2.unity
+    
+    public enum ImportFileMode
+    {
+        // Import to Unity path with same relative path as in external source path
+        PreserveImportPath,
+        
+        // Import to loose directory
+        Loose,
+        
+        // Open as a new scene but do not import
+        OpenDontSave,
+    }
+    
+    public static class FileSystem
+    {
+        public static string GetFoxPathFromExternalPath(string externalPath)
+        {
+            string basePath = FsModule.ExternalBasePath;
+            
+            int index = externalPath.IndexOf(basePath, StringComparison.Ordinal);
+            if (index < 0)
+                return null;
+            
+            string result = externalPath[(index + basePath.Length)..];
+
+            return result;
+        }
+        
+        public static string GetFoxPathFromUnityPath(string unityPath)
+        {
+            string basePath = FsModule.UnityBasePath;
+            
+            int index = unityPath.IndexOf(basePath, StringComparison.Ordinal);
+            if (index < 0)
+                return null;
+            
+            string result = unityPath[(index + basePath.Length)..];
+
+            return result;
+        }
+
+        public static string GetExternalPathFromFoxPath(string foxPath)
+        {
+            string basePath = FsModule.ExternalBasePath;
+
+            string result = basePath + foxPath;
+            
+            return result;
+        }
+        
+        public static string GetUnityPathFromFoxPath(string foxPath)
+        {
+            string basePath = FsModule.UnityBasePath;
+
+            string resolvedPath = ResolveFoxPath(foxPath);
+            
+            string result = basePath + resolvedPath;
+            
+            return result;
+        }
+        
+        public static string GetLoosePathFromExternalPath(string externalPath)
+        {
+            string basePath = FsModule.LooseBasePath;
+
+            // Bit of a hack - pretend like the foxPath is just the file name and extension
+            string foxPath = $"/{System.IO.Path.GetFileName(externalPath)}";
+            string resolvedPath = ResolveFoxPath(foxPath);
+            
+            string result = basePath + resolvedPath;
+            
+            return result;
+        }
+    
+        private static string ResolveFoxPath(string foxPath)
+        {
+            Debug.Assert(foxPath != string.Empty, "Resolving empty string.");
+            Debug.Assert(foxPath.StartsWith('/'), "Virtual path not absolute.");
+            
+            // Very basic handling
+            if (foxPath.EndsWith(".fox2"))
+                foxPath += ".unity";
+            if (foxPath.EndsWith(".parts"))
+                foxPath += ".prefab";
+            else if (foxPath.EndsWith(".lba"))
+                foxPath += ".asset";
+            else if (foxPath.EndsWith(".obr"))
+                foxPath += ".asset";
+            else if (foxPath.EndsWith(".obrb"))
+                foxPath += ".asset";
+    
+            return foxPath;
+        }
+
+        public static ReadOnlySpan<byte> ReadExternalFile(string foxPath)
+        {
+            string externalPath = GetExternalPathFromFoxPath(foxPath);
+            return File.ReadAllBytes(externalPath);
+        }
+        
+        public static ReadOnlySpan<byte> ReadLooseFile(string externalPath)
+        {
+            return File.ReadAllBytes(externalPath);
+        }
+
+        public static ReadOnlySpan<byte> ReadFile(string foxPath)
+        {
+            string unityPath = GetUnityPathFromFoxPath(foxPath);
+            return File.ReadAllBytes(unityPath);
+        }
+
+        public static void ImportAssetCopy(string foxPath, ImportFileMode importMode = ImportFileMode.PreserveImportPath, bool createDirectory = true)
+        {
+            string externalPath = GetExternalPathFromFoxPath(foxPath);
+            string unityPath = GetUnityPathFromFoxPath(foxPath);
+
+            // Never recopy; source Fox files are immutable
+            if (File.Exists(unityPath))
+                return;
+            
+            if (createDirectory)
+            {
+                string directoryPath = System.IO.Path.GetDirectoryName(unityPath);
+                if (!Directory.Exists(directoryPath))
+                {
+                    Directory.CreateDirectory(directoryPath);
+                }
+            }
+            
+            File.Copy(externalPath, unityPath, false);
+            
+            AssetDatabase.ImportAsset(unityPath);
+        }
+
+        // Path is foxPath is import mode is not Loose
+        public static bool TryImportAsset(Scene scene, string path, ImportFileMode importMode = ImportFileMode.PreserveImportPath, bool overwrite = true, bool createDirectory = true)
+        {
+            scene.name = System.IO.Path.GetFileNameWithoutExtension(path);
+
+            switch (importMode)
+            {
+                case ImportFileMode.PreserveImportPath:
+                {
+                    string foxPath = path;
+                    string unityPath = GetUnityPathFromFoxPath(foxPath);
+                    if (overwrite == false && System.IO.File.Exists(unityPath))
+                        return false;
+
+                    if (createDirectory)
+                    {
+                        string directoryPath = System.IO.Path.GetDirectoryName(unityPath);
+                        if (!Directory.Exists(directoryPath))
+                        {
+                            Directory.CreateDirectory(directoryPath);
+                        }
+                    }
+                    EditorSceneManager.SaveScene(scene, unityPath);
+                }
+                break;
+                case ImportFileMode.Loose:
+                {
+                    string externalPath = path;
+                    string loosePath = GetLoosePathFromExternalPath(externalPath);
+                    if (overwrite == false && System.IO.File.Exists(loosePath))
+                        return false;
+                    
+                    EditorSceneManager.SaveScene(scene, loosePath);
+                }
+                break;
+            case ImportFileMode.OpenDontSave:
+                break;
+            }
+
+            return true;
+        }
+
+        public static T LoadAsset<T>(string foxPath) where T : UnityEngine.Object
+        {
+            string unityPath = GetUnityPathFromFoxPath(foxPath);
+            return AssetDatabase.LoadAssetAtPath<T>(unityPath);
+        }
+        public static void CreateAsset(UnityEngine.Object asset, string foxPath, bool createDirectory = true)
+        {
+            string unityPath = GetUnityPathFromFoxPath(foxPath);
+            
+            if (createDirectory)
+            {
+                string directoryPath = System.IO.Path.GetDirectoryName(unityPath);
+                if (!Directory.Exists(directoryPath))
+                {
+                    Directory.CreateDirectory(directoryPath);
+                }
+            }
+            
+            AssetDatabase.CreateAsset(asset, unityPath);
+        }
+        public static GameObject CreatePrefabAsset(GameObject prefab, string foxPath, bool createDirectory = true)
+        {
+            string unityPath = GetUnityPathFromFoxPath(foxPath);
+            
+            if (createDirectory)
+            {
+                string directoryPath = System.IO.Path.GetDirectoryName(unityPath);
+                if (!Directory.Exists(directoryPath))
+                {
+                    Directory.CreateDirectory(directoryPath);
+                }
+            }
+            
+            return PrefabUtility.SaveAsPrefabAsset(prefab, unityPath);
+        }
+
+        // Utilities
+        public static void OpenExternalFolder()
+        {
+            string path = FsModule.ExternalBasePath;
+            
+            EditorUtility.RevealInFinder(path);
+        }
+        
+        public static void OpenUnityFolder()
+        {
+            string path = FsModule.UnityBasePath;
+            
+            UnityEngine.Object folder = AssetDatabase.LoadAssetAtPath<UnityEngine.Object>(path);
+            AssetDatabase.OpenAsset(folder);
+        }
+    }
 }

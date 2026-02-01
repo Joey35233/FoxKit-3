@@ -8,6 +8,11 @@ namespace Fox.Core
     public class Value
     {
         private readonly object value;
+        
+        public Value(object v)
+        {
+            value = v;
+        }
 
         public Value(bool v1)
         {
@@ -185,7 +190,7 @@ namespace Fox.Core
 
         public Path GetValueAsPath() => (Path)value;
 
-        public IStringMap GetValueAsStringMap<T>() => (StringMap<T>)value;
+        public IStringMap GetValueAsStringMap<T>() => value as StringMap<T>;
 
         public IStringMap GetValueAsIStringMap() => (IStringMap)value;
 

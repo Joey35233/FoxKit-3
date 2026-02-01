@@ -12,7 +12,7 @@ namespace Fox.EdCore
 
         private IFoxField ValueField = null;
 
-        private UInt32Field ArraySizeField = null;
+        private PositiveInt32Field StaticArraySizeField = null;
 
         private DynamicProperty DynamicProperty => (DynamicProperty)target;
         
@@ -41,9 +41,9 @@ namespace Fox.EdCore
             PropertyInfo propertyInfo = DynamicProperty.GetPropertyInfo();
             if (propertyInfo.Container == PropertyInfo.ContainerType.StaticArray)
             {
-                ArraySizeField = new UInt32Field("arraySize");
-                ArraySizeField.bindingPath = DynamicProperty.VALUE_PROPERTY_NAME + ".Array.size";
-                BaseElement.Add(ArraySizeField);
+                StaticArraySizeField = new PositiveInt32Field("arraySize");
+                StaticArraySizeField.bindingPath = DynamicProperty.VALUE_PROPERTY_NAME + ".Array.size";
+                BaseElement.Add(StaticArraySizeField);
                 
                 ValueField = FoxFieldUtils.GetCustomBindableField(propertyInfo, staticArrayOverride: true);
                 ValueField.SetLabel("value");
@@ -59,11 +59,6 @@ namespace Fox.EdCore
             }
             
             return BaseElement;
-        }
-        
-        private void OnArraySizeChanged(ChangeEvent<uint> evt)
-        {
-            DynamicProperty.ChangeStaticArraySize(evt.newValue);
         }
     }
 }

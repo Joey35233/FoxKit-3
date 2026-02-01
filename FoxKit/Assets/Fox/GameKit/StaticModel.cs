@@ -1,39 +1,40 @@
 using System.Collections.Generic;
 using Fox.Core;
 using Fox.Core.Utils;
+using UnityEditor;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
-using UnityEngine.ResourceManagement.AsyncOperations;
-using UnityEngine.ResourceManagement.ResourceLocations;
 
 namespace Fox.GameKit
 {
-    [ExecuteInEditMode]
+    [ExecuteAlways]
+    [SelectionBase]
     public partial class StaticModel : TransformData
     {
-        public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
+        public override void OnDeserializeEntity(TaskLogger logger)
         {
-            base.OnDeserializeEntity(gameObject, logger);
+            base.OnDeserializeEntity(logger);
 
             if (modelFile == FilePtr.Empty)
             {
                 logger.AddWarningEmptyPath(nameof(modelFile));
                 return;
             }
-            
-            // TODO: HACK
-            ReloadFile(logger);
+            else
+            {
+                Fox.Fs.FileSystem.ImportAssetCopy(modelFile.path.String);
+            }
         }
 
-        private AsyncOperationHandle<GameObject> ModelHandle;
+        private GameObject ModelPrefab;
 
         private GameObject Instance;
 
         private void CreateModel(GameObject model)
         {
-            GameObject instance = GameObject.Instantiate(model, this.transform, false);
+            GameObject instance =(GameObject)PrefabUtility.InstantiatePrefab(model, gameObject.transform);
             instance.name = "INSTANCE_WILL_RESET_ON_RELOAD";
             instance.hideFlags = HideFlags.DontSaveInEditor;
+            //instance.AddComponent<StaticModelArrayInstance>();
         }
         
         public void ReloadFile(TaskLogger logger = null)
@@ -46,36 +47,13 @@ namespace Fox.GameKit
                 DestroyImmediate(child.gameObject);
             }
 
-            Path targetPath = modelFile?.path;
-            if (targetPath is null || string.IsNullOrEmpty(targetPath.String))
-                return;
-            
-            var getLocationsHandle = Addressables.LoadResourceLocationsAsync(targetPath.String);
-            getLocationsHandle.WaitForCompletion();
-                
-            IList<IResourceLocation> results = getLocationsHandle.Result;
-            if (results.Count > 0)
+            if (modelFile != FilePtr.Empty)
             {
-                IResourceLocation firstLocation = results[0];
-                ModelHandle = Addressables.LoadAssetAsync<GameObject>(firstLocation);
-                _ = ModelHandle.WaitForCompletion();
-                OnLoadAsset(ModelHandle);
-            }
-            else
-            {
-                Debug.Log($"Could not find: {targetPath.String}");
-            }
-                
-            Addressables.Release(getLocationsHandle);
-        }
-
-        private void OnLoadAsset(AsyncOperationHandle<GameObject> handle)
-        {
-            ModelHandle = handle;
-            
-            if (ModelHandle.Status == AsyncOperationStatus.Succeeded)
-            {
-                CreateModel(ModelHandle.Result);
+                ModelPrefab = Fox.Fs.FileSystem.LoadAsset<GameObject>(modelFile.path.String);
+                if (ModelPrefab)
+                    CreateModel(ModelPrefab);
+                else
+                    Debug.Log($"Could not find: {modelFile}");
             }
         }
 
@@ -83,12 +61,7 @@ namespace Fox.GameKit
         {
             ReloadFile();
         }
-
-        private void OnDisable()
-        {
-            if (ModelHandle.IsValid())
-                Addressables.Release(ModelHandle);
-        }
+        
         public override void Reset()
         {
             base.Reset();

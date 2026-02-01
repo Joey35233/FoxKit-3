@@ -21,7 +21,7 @@ namespace Fox.Core
         public int ChildNodeOffset;
         public int PreviousNodeOffset;
         public int NextNodeOffset;
-        public int ParametersOffset;
+        public int Attributes;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private FoxDataNode* GetSelfPointer()
@@ -42,25 +42,25 @@ namespace Fox.Core
 
         public FoxDataNode* GetNext() => NextNodeOffset == 0 ? null : (FoxDataNode*)((byte*)GetSelfPointer() + NextNodeOffset);
 
-        public FoxDataParameter* GetParameters() => ParametersOffset == 0 ? null : (FoxDataParameter*)((byte*)GetSelfPointer() + ParametersOffset);
+        public FoxDataNodeAttribute* GetAttributes() => Attributes == 0 ? null : (FoxDataNodeAttribute*)((byte*)GetSelfPointer() + Attributes);
 
-        public FoxDataParameter* FindParameter(StrCode32 name)
+        public FoxDataNodeAttribute* FindAttribute(StrCode32 name)
         {
-            for (FoxDataParameter* param = GetParameters(); param != null; param = param->GetNext())
+            for (FoxDataNodeAttribute* attribute = GetAttributes(); attribute != null; attribute = attribute->GetNext())
             {
-                if (param->Name.Hash == name)
-                    return param;
+                if (attribute->Name.Hash == name)
+                    return attribute;
             }
 
             return null;
         }
 
-        public FoxDataParameter* FindParameter(String name)
+        public FoxDataNodeAttribute* FindAttribute(string name)
         {
-            for (FoxDataParameter* param = GetParameters(); param != null; param = param->GetNext())
+            for (FoxDataNodeAttribute* attribute = GetAttributes(); attribute != null; attribute = attribute->GetNext())
             {
-                if (param->Name.ReadStringFromRelativeOffset() == name)
-                    return param;
+                if (attribute->Name.ReadStringFromRelativeOffset() == name)
+                    return attribute;
             }
 
             return null;
@@ -76,14 +76,16 @@ namespace Fox.Core
                 FoxDataNode* child = node->GetChildren();
                 if (child is not null)
                 {
-                    return child->FindNode(name);
+                    FoxDataNode* childSearchResult = child->FindNode(name);
+                    if (childSearchResult is not null)
+                        return childSearchResult;
                 }
             }
 
             return null;
         }
 
-        public FoxDataNode* FindNode(String name)
+        public FoxDataNode* FindNode(string name)
         {
             for (FoxDataNode* node = GetSelfPointer(); node != null; node = node->GetNext())
             {
@@ -93,7 +95,9 @@ namespace Fox.Core
                 FoxDataNode* child = node->GetChildren();
                 if (child is not null)
                 {
-                    return child->FindNode(name);
+                    FoxDataNode* childSearchResult = child->FindNode(name);
+                    if (childSearchResult is not null)
+                        return childSearchResult;
                 }
             }
 

@@ -1,22 +1,23 @@
 ﻿using Fox.Core;
 using Fox.Core.Utils;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Fox.Geox
 {
     public partial class GeoxCollisionFreeShape
     {
-        public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
+        public override void OnDeserializeEntity(TaskLogger logger)
         {
-            base.OnDeserializeEntity(gameObject, logger);
+            base.OnDeserializeEntity(logger);
 
             for (int i = 0; i < points.Length; i++)
                 points[i] = Fox.Math.FoxToUnityVector3(points[i]);
         }
 
-        public override void OverridePropertiesForExport(EntityExportContext context)
+        public override void OnSerializeEntity(EntityExportContext context)
         {
-            base.OverridePropertiesForExport(context);
+            base.OnSerializeEntity(context);
 
             Vector3[] _points = points;
             for (int i = 0; i < _points.Length; i++)
@@ -24,8 +25,6 @@ namespace Fox.Geox
 
             context.OverrideProperty(nameof(points), _points);
         }
-        public Color UnselectedColor = EditorColors.GenericUnselectedColor;
-        public Color SelectedColor = EditorColors.GenericSelectedColor;
         public override void Reset()
         {
             base.Reset();
@@ -37,9 +36,18 @@ namespace Fox.Geox
             points[5] = new Vector3(0.5f, -0.5f, -0.5f);
             points[6] = new Vector3(-0.5f, -0.5f, -0.5f);
             points[7] = new Vector3(-0.5f, -0.5f, 0.5f);
+            collisionMaterial = "MTR_NONE_A";
+            collisionAttributeNames = new List<string>()
+            {
+                "CHARA",
+                "PLAYER",
+                "ENEMY",
+            };
         }
 
-        public void DrawFreeShape()
+        public Color UnselectedColor = EditorColors.GenericUnselectedColor;
+        public Color SelectedColor = EditorColors.GenericSelectedColor;
+        public void DrawGizmo()
         {
             Gizmos.matrix = gameObject.transform.localToWorldMatrix;
 
@@ -63,13 +71,13 @@ namespace Fox.Geox
         public void OnDrawGizmos()
         {
             Gizmos.color = UnselectedColor;
-            DrawFreeShape();
+            DrawGizmo();
         }
 
         public void OnDrawGizmosSelected()
         {
             Gizmos.color = SelectedColor;
-            DrawFreeShape();
+            DrawGizmo();
         }
     }
 }

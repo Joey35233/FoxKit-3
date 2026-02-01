@@ -6,18 +6,20 @@ namespace Tpp.Effect
 {
     public partial class TppFourierOcean
     {
-        public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
+        public override void OnDeserializeEntity(TaskLogger logger)
         {
-            base.OnDeserializeEntity(gameObject, logger);
+            base.OnDeserializeEntity(logger);
 
-            windDirectionX = -windDirectionX;
+            (windDirectionX, _, windDirectionZ) = Fox.Math.FoxToUnityVectorComponents(new Vector3(windDirectionX, 0, windDirectionZ));
         }
 
-        public override void OverridePropertiesForExport(EntityExportContext context)
+        public override void OnSerializeEntity(EntityExportContext context)
         {
-            base.OverridePropertiesForExport(context);
+            base.OnSerializeEntity(context);
 
-            context.OverrideProperty(nameof(windDirectionX), -windDirectionX);
+            (float _windDirectionX, _, float _windDirectionZ) = Fox.Math.UnityToFoxVectorComponents(new Vector3(windDirectionX, 0, windDirectionZ));
+            context.OverrideProperty(nameof(windDirectionX), _windDirectionX);
+            context.OverrideProperty(nameof(windDirectionZ), _windDirectionZ);
         }
     }
 }

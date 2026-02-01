@@ -17,17 +17,24 @@ namespace Fox
 
         public static Vector3 FoxToUnityVector3(Vector3 v) => new(-v.x, v.y, v.z);
         public static Vector4 FoxToUnityVector4(Vector4 v) => new(-v.x, v.y, v.z, v.w);
-        public static Quaternion FoxToUnityQuaternion(Quaternion v)
+        public static (float x, float y, float z) FoxToUnityVectorComponents(Vector3 v) => (-v.x, v.y, v.z);
+        public static Quaternion FoxToUnityQuaternion(Quaternion q)
         {
-            v.ToAngleAxis(out float angle, out Vector3 axis);
-            axis.x = -axis.x;
+            // q.ToAngleAxis(out float angle, out Vector3 axis);
+            // axis.x = -axis.x;
+            //
+            // return Quaternion.AngleAxis(-angle, axis);
 
-            return Quaternion.AngleAxis(-angle, axis);
+            q.y *= -1;
+            q.z *= -1;
+
+            return q;
         }
         public static Matrix4x4 FoxToUnityMatrix(Matrix4x4 m) => HandednessMatrix * m;
 
         public static Vector3 UnityToFoxVector3(Vector3 v) => new(-v.x, v.y, v.z);
         public static Vector4 UnityToFoxVector4(Vector4 v) => new(-v.x, v.y, v.z, v.w);
+        public static (float x, float y, float z) UnityToFoxVectorComponents(Vector3 v) => (-v.x, v.y, v.z);
         public static Quaternion UnityToFoxQuaternion(Quaternion v)
         {
             v.ToAngleAxis(out float angle, out Vector3 axis);

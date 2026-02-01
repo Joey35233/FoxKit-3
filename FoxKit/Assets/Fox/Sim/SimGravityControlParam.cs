@@ -6,16 +6,16 @@ namespace Fox.Sim
 {
     public partial class SimGravityControlParam
     {
-        public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
+        public override void OnDeserializeEntity(TaskLogger logger)
         {
-            base.OnDeserializeEntity(gameObject, logger);
+            base.OnDeserializeEntity(logger);
 
             customGravity = Fox.Math.FoxToUnityVector3(customGravity);
         }
 
-        public override void OverridePropertiesForExport(EntityExportContext context)
+        public override void OnSerializeEntity(EntityExportContext context)
         {
-            base.OverridePropertiesForExport(context);
+            base.OnSerializeEntity(context);
 
             context.OverrideProperty(nameof(customGravity), Fox.Math.UnityToFoxVector3(customGravity));
         }

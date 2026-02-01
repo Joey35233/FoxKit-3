@@ -15,8 +15,8 @@ namespace Fox.EdCore
 
         protected override float StringToValue(string str)
         {
-            _ = NumericPropertyFields.StringToDouble(str, out double v);
-            return NumericPropertyFields.ClampToFloat(v);
+            bool success = NumericPropertyFields.TryConvertStringToFloat(str, out float v);
+            return success ? v : rawValue;
         }
 
         public static new readonly string ussClassName = "fox-float-field";
@@ -71,7 +71,7 @@ namespace Fox.EdCore
 
             internal FloatInput()
             {
-                formatString = "g7";
+                formatString = NumericPropertyFields.FloatFieldFormatString;
             }
 
             protected override string allowedCharacters => NumericPropertyFields.FloatExpressionCharacterWhitelist;
@@ -95,11 +95,7 @@ namespace Fox.EdCore
 
             protected override string ValueToString(float v) => v.ToString(formatString);
 
-            protected override float StringToValue(string str)
-            {
-                _ = NumericPropertyFields.StringToDouble(str, out double v);
-                return NumericPropertyFields.ClampToFloat(v);
-            }
+            protected override float StringToValue(string str) => parentFloatField.StringToValue(str);
         }
         
         public void SetLabel(string label) => this.label = label;

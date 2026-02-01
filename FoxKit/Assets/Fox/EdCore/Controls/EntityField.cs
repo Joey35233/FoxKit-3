@@ -12,7 +12,9 @@ namespace Fox.EdCore
     public struct EntityFieldBuildContext
     {
         public EntityField<Entity> Field;
-        public VisualElement Element;
+        public VisualElement HeaderElement;
+        public VisualElement BodyElement;
+        public VisualElement FooterElement;
         public SerializedObject Object;
     }
     
@@ -56,7 +58,7 @@ namespace Fox.EdCore
 
         public void Build(SerializedObject serializedObject)
         {
-            EntityFieldBuildContext context = new EntityFieldBuildContext{ Field = this as EntityField<Entity>, Element = visualInput, Object = serializedObject };
+            EntityFieldBuildContext context = new EntityFieldBuildContext{ Field = this as EntityField<Entity>, BodyElement = visualInput, Object = serializedObject };
             PreBuild(context);
             BuildBodyFromEntity(context);
         }
@@ -109,13 +111,19 @@ namespace Fox.EdCore
                 
                 // ----------------
                 // CUSTOM HEADER
+                VisualElement header = new VisualElement();
+                context.HeaderElement = header;
                 customFieldDesc?.BuildHeader?.Invoke(context);
+                visualInput.Add(header);
                 
                 // ----------------
                 // CUSTOM BODY
                 if (customFieldDesc?.BuildBody is { } buildBody)
                 {
+                    VisualElement body = new VisualElement();
+                    context.BodyElement = body;
                     buildBody(context);
+                    visualInput.Add(body);
                 }
                 else
                 {
@@ -127,7 +135,7 @@ namespace Fox.EdCore
 
                         IFoxField field = FoxFieldUtils.GetCustomBindableField(propertyInfo);
                         VisualElement fieldElement = field as VisualElement;
-                        field.SetBindingPathForPropertyName(propertyInfo.Name);
+                        field.bindingPath = IFoxField.GetBindingPathForPropertyName(propertyInfo.Name);
                         Label fieldLabel = field.GetLabelElement();
                         if (EntityInfo.LongestNamedVisibleFieldProperty is not null)
                         {
@@ -144,7 +152,10 @@ namespace Fox.EdCore
                 
                 // ----------------
                 // CUSTOM FOOTER
+                VisualElement footer = new VisualElement();
+                context.FooterElement = footer;
                 customFieldDesc?.BuildFooter?.Invoke(context);
+                visualInput.Add(footer);
             }
 
             return;

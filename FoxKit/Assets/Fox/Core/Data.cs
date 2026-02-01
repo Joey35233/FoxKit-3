@@ -7,17 +7,17 @@ namespace Fox.Core
     {
         private partial string Get_referencePath() => throw new System.NotImplementedException();
 
-        public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
+        public override void OnDeserializeEntity(TaskLogger logger)
         {
+            base.OnDeserializeEntity(logger);
+            
             if (!string.IsNullOrEmpty(name))
                 gameObject.name = name;
-
-            base.OnDeserializeEntity(gameObject, logger);
         }
 
-        public override void OverridePropertiesForExport(EntityExportContext context)
+        public override void OnSerializeEntity(EntityExportContext context)
         {
-            base.OverridePropertiesForExport(context);
+            base.OnSerializeEntity(context);
             
             // context.OverrideProperty(nameof(dataSet), context.DataSet)
 

@@ -47,55 +47,58 @@ namespace Fox.Core
 
         public void AddChild(TransformData transformData)
         {
-            (transformData as UnityEngine.MonoBehaviour).transform.SetParent((this as UnityEngine.MonoBehaviour).transform);
+            transformData.gameObject.transform.SetParent((this as UnityEngine.MonoBehaviour).transform);
         }
 
-        public void SetTransform(TransformEntity transform)
+        public void SetTransform(TransformEntity transformEntity)
         {
-            this.transform = transform;
-            transform.SetOwner(this);
+            this.transform = transformEntity;
+            transformEntity.SetOwner(this);
 
             if (inheritTransform)
             {
-                gameObject.transform.localPosition = transform.translation;
-                gameObject.transform.localRotation = transform.rotQuat;
-                gameObject.transform.localScale = transform.scale;
+                gameObject.transform.localPosition = transformEntity.translation;
+                gameObject.transform.localRotation = transformEntity.rotQuat;
+                gameObject.transform.localScale = transformEntity.scale;
             }
             else
             {
-                gameObject.transform.position = transform.translation;
-                gameObject.transform.rotation = transform.rotQuat;
-                gameObject.transform.localScale = transform.scale;
+                gameObject.transform.position = transformEntity.translation;
+                gameObject.transform.rotation = transformEntity.rotQuat;
+                gameObject.transform.localScale = transformEntity.scale;
             }
         }
 
-        public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
+        public override void OnDeserializeEntity(TaskLogger logger)
         {
+            base.OnDeserializeEntity(logger);
+            
             OnDeserializeTransformEntity();
-
-            base.OnDeserializeEntity(gameObject, logger);
         }
 
         private void OnDeserializeTransformEntity()
         {
-            if (transform is null)
-                return;
+            if (this.parent)
+                this.gameObject.transform.SetParent(this.parent.transform, false);
 
-            TransformEntity transformEntity = transform;
-            transformEntity.translation = Math.FoxToUnityVector3(transformEntity.translation);
-            transformEntity.rotQuat = Math.FoxToUnityQuaternion(transformEntity.rotQuat);
-            transformEntity.scale = transformEntity.scale;
-            transform.name = transform.GetType().Name;
+            if (transform)
+            {
+                TransformEntity transformEntity = transform;
+                transformEntity.translation = Math.FoxToUnityVector3(transformEntity.translation);
+                transformEntity.rotQuat = Math.FoxToUnityQuaternion(transformEntity.rotQuat);
+                transformEntity.scale = transformEntity.scale;
+                //transformEntity.name = transform.GetType().Name;
 
-            SetTransform(transform);
+                SetTransform(transformEntity);
+            }
         }
 
-        public override void OverridePropertiesForExport(EntityExportContext context)
+        public override void OnSerializeEntity(EntityExportContext context)
         {
-            base.OverridePropertiesForExport(context);
+            base.OnSerializeEntity(context);
 
             // Get GameObject's parent
-            UnityEngine.Transform transform = this.gameObject.GetComponent<UnityEngine.Transform>();
+            UnityEngine.Transform transform = this.gameObject.transform;
 
             Entity exportParent = null;
             UnityEngine.Transform parentTransform = transform.parent;

@@ -110,5 +110,9 @@ Desktop.ini
 # Fox
 *.fox2.unity
 *.fox2.unity.meta
+*.parts.unity
+*.parts.unity.meta
+*.tgt.unity
+*.tgt.unity.meta
 /[Aa]ssets/Lib/*[Ff]mdl*/
-/[Aa]ssets/[Gg]ame/*
+/[Aa]ssets/[Ss]cenes/*

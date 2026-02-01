@@ -1,4 +1,4 @@
-using Fox.Core;
+﻿using Fox.Core;
 using Fox.Fio;
 using Fox.Geo;
 using Fox.Graphx;
@@ -41,6 +41,8 @@ namespace Fox.Geox
         }
 
         public override Type GetNodeType() => typeof(GeoxPathNode);
+        public override Type GetEdgeType() => typeof(GeoxPathEdge);
+        public override bool IsLoop() => false;
 
         public override void Reset()
         {
@@ -73,7 +75,7 @@ namespace Fox.Geox
 
                 GeoxPathEdge edge = new GameObject().AddComponent<GeoxPathEdge>();
                 edge.SetOwner(path);
-                edge.name = $"{path.name}|{edge.GetType().Name}{i:D4}";
+                edge.name = $"{edge.GetType().Name}{i:D4}";
 
                 var geoEdgeTags = (GeoxPathEdge.Tags)reader.ReadUInt32();
                 foreach (GeoxPathEdge.Tags tag in Enum.GetValues(geoEdgeTags.GetType()))
@@ -87,9 +89,8 @@ namespace Fox.Geox
                 GraphxSpatialGraphDataNode inNode;
                 if (path.nodes[inNodeIndex] is null)
                 {
-                    GeoxPathNode node = new GameObject().AddComponent<GeoxPathNode>();
+                    GeoxPathNode node = new GameObject($"GeoxPathNode{inNodeIndex:D4}").AddComponent<GeoxPathNode>();
                     node.SetOwner(path);
-                    node.name = $"{path.name}|{node.GetType().Name}{inNodeIndex:D4}";
 
                     reader.Seek(header.Position + header.VertexBufferOffset + (16 * inNodeIndex));
                     node.position = reader.ReadPositionF();
@@ -109,8 +110,6 @@ namespace Fox.Geox
 
                     path.nodes[inNodeIndex] = node;
                     inNode = node;
-
-                    node.name = node.GetType().Name;
                 }
                 else
                 {
@@ -122,9 +121,8 @@ namespace Fox.Geox
                 GraphxSpatialGraphDataNode outNode;
                 if (path.nodes[outNodeIndex] is null)
                 {
-                    GeoxPathNode node = new GameObject().AddComponent<GeoxPathNode>();
+                    GeoxPathNode node = new GameObject($"GeoxPathNode{outNodeIndex:D4}").AddComponent<GeoxPathNode>();
                     node.SetOwner(path);
-                    node.name = $"{path.name}|{node.GetType().Name}{outNodeIndex:D4}";
 
                     reader.Seek(header.Position + header.VertexBufferOffset + (16 * outNodeIndex));
                     node.position = reader.ReadPositionF();
@@ -144,8 +142,6 @@ namespace Fox.Geox
 
                     path.nodes[outNodeIndex] = node;
                     outNode = node;
-
-                    node.gameObject.name = node.GetType().Name;
                 }
                 else
                 {

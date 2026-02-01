@@ -6,20 +6,29 @@ namespace Fox.Graphx
 {
     public partial class GraphxSpatialGraphDataNode
     {
-        public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
+        public override void OnDeserializeEntity(TaskLogger logger)
         {
-            base.OnDeserializeEntity(gameObject, logger);
+            base.OnDeserializeEntity(logger);
 
             position = Fox.Math.FoxToUnityVector3(position);
         }
 
-        public override void OverridePropertiesForExport(EntityExportContext context)
+        public override void OnSerializeEntity(EntityExportContext context)
         {
-            base.OverridePropertiesForExport(context);
+            base.OnSerializeEntity(context);
 
             context.OverrideProperty(nameof(position), Fox.Math.UnityToFoxVector3(position));
         }
 
         private static readonly Vector3 Scale = Vector3.one * 0.25f;
+        public void OnDrawGizmos()
+        {
+            Gizmos.matrix = Matrix4x4.identity;
+            Gizmos.color = EditorColors.PlayerUtilityColor;
+            if (!this.transform.parent)
+                Gizmos.DrawWireCube(this.transform.TransformPoint(position), Scale);
+            else
+                Gizmos.DrawWireCube(this.transform.parent.TransformPoint(position), Scale);
+        }
     }
 }

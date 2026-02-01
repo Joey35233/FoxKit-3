@@ -29,17 +29,18 @@ namespace Fox.Ph
 
         internal bool GetIsPoweredFlag() => isPoweredFlag;
         internal void SetIsPoweredFlag(bool value) => isPoweredFlag = value;
-        public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
+        
+        public override void OnDeserializeEntity(TaskLogger logger)
         {
-            base.OnDeserializeEntity(gameObject, logger);
+            base.OnDeserializeEntity(logger);
 
             refVec0 = Fox.Math.FoxToUnityVector3(refVec0);
             refVec1 = Fox.Math.FoxToUnityVector3(refVec1);
         }
 
-        public override void OverridePropertiesForExport(EntityExportContext context)
+        public override void OnSerializeEntity(EntityExportContext context)
         {
-            base.OverridePropertiesForExport(context);
+            base.OnSerializeEntity(context);
 
             context.OverrideProperty(nameof(refVec0), Fox.Math.UnityToFoxVector3(refVec0));
             context.OverrideProperty(nameof(refVec1), Fox.Math.UnityToFoxVector3(refVec1));

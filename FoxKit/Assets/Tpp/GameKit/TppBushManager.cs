@@ -6,15 +6,15 @@ namespace Tpp.GameKit
 {
     public partial class TppBushManager
     {
-        public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
+        public override void OnDeserializeEntity(TaskLogger logger)
         {
-            base.OnDeserializeEntity(gameObject, logger);
+            base.OnDeserializeEntity(logger);
 
             cameraPos = Fox.Math.FoxToUnityVector3(cameraPos);
         }
-        public override void OverridePropertiesForExport(EntityExportContext context)
+        public override void OnSerializeEntity(EntityExportContext context)
         {
-            base.OverridePropertiesForExport(context);
+            base.OnSerializeEntity(context);
 
             context.OverrideProperty(nameof(cameraPos), Fox.Math.UnityToFoxVector3(cameraPos));
         }

@@ -36,15 +36,15 @@ namespace Tpp.Effect
         private partial Path Get_importFilePath() => throw new CsSystem.NotImplementedException();
         private partial void Set_importFilePath(Path value) => throw new CsSystem.NotImplementedException();
 
-        public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
+        public override void OnDeserializeEntity(TaskLogger logger)
         {
-            base.OnDeserializeEntity(gameObject, logger);
+            base.OnDeserializeEntity(logger);
 
             reachPoint = Fox.Math.FoxToUnityVector3(reachPoint);
         }
-        public override void OverridePropertiesForExport(EntityExportContext context)
+        public override void OnSerializeEntity(EntityExportContext context)
         {
-            base.OverridePropertiesForExport(context);
+            base.OnSerializeEntity(context);
 
             context.OverrideProperty(nameof(reachPoint), Fox.Math.UnityToFoxVector3(reachPoint));
         }

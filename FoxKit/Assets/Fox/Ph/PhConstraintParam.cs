@@ -10,23 +10,18 @@ namespace Fox.Ph
         internal UnityEngine.Vector3 GetDefaultPosition() => defaultPosition;
         internal void SetDefaultPosition(UnityEngine.Vector3 value) => defaultPosition = value;
 
-        [NonSerialized]
-        internal PhRigidBodyParam BodyA;
-        [NonSerialized]
-        internal PhRigidBodyParam BodyB;
-
-        public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
+        public override void OnDeserializeEntity(TaskLogger logger)
         {
+            base.OnDeserializeEntity(logger);
+            
             defaultPosition = Fox.Math.FoxToUnityVector3(defaultPosition);
-
-            base.OnDeserializeEntity(gameObject, logger);
         }
 
-        public override void OverridePropertiesForExport(EntityExportContext context)
+        public override void OnSerializeEntity(EntityExportContext context)
         {
-            context.OverrideProperty("defaultPosition", Fox.Math.UnityToFoxVector3(defaultPosition));
-
-            base.OverridePropertiesForExport(context);
+            base.OnSerializeEntity(context);
+            
+            context.OverrideProperty(nameof(defaultPosition), Fox.Math.UnityToFoxVector3(defaultPosition));
         }
 
         public virtual void DrawGizmos()

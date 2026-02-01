@@ -3,7 +3,6 @@ using Fox.Core;
 using Fox.EdCore;
 using Fox.Graphx;
 using System;
-using System.Linq;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -31,7 +30,9 @@ namespace Fox.EdGraphx
 
         protected virtual void OnSceneGUI()
         {
-            GraphxSpatialGraphData graph = Node.transform.parent.GetComponent<GraphxSpatialGraphData>();
+            var graph = Node.transform.GetComponentInParent<GraphxSpatialGraphData>();
+            if (graph == null)
+                return;
 
             Handles.matrix = graph.GetGraphWorldMatrix();
 
@@ -46,7 +47,7 @@ namespace Fox.EdGraphx
 
         public override VisualElement CreateInspectorGUI()
         {
-            VisualElement container = new VisualElement();            
+            VisualElement container = new VisualElement();
 
             Button addNodeButton = new Button();
             addNodeButton.text = "Add Node";
@@ -92,31 +93,9 @@ namespace Fox.EdGraphx
             }
 
             // Create node at current position
-            var newNodeGo = new GameObject();
-            Undo.SetTransformParent(newNodeGo.transform, graph.transform, "Set new graph node's parent");
-            Undo.RegisterCreatedObjectUndo(newNodeGo, "Added graph node");
-            Undo.RegisterCompleteObjectUndo(newNodeGo, "Added graph node");
-
-            var nodeType = graph.GetNodeType();
-            var newComp = Undo.AddComponent(newNodeGo, nodeType) as GraphxSpatialGraphDataNode;
-            var usedNames = (from ent in UnityEngine.Object.FindObjectsOfType(nodeType, true)
-                             select ent.name).ToHashSet();
-            newNodeGo.name = Node.GenerateUniqueName(nodeType, usedNames);
-
-            newComp.position = Node.position;
-
-            Selection.activeGameObject = newNodeGo;
-
-            // Add to owning graph
-            var nextIndex = index + 1;
-
-            Undo.RecordObject(graph, "Added graph node");
-            graph.AddGraphNode(nextIndex, newComp);
-
-            // Create edge
-            // (Overrideable behavior): Set outlinks
-            // If previous node had outlinks to next node, cut and paste them onto new node
-            // Set previous node's outlinks to new node
+            var newNode = graph.AddNodeAfter(Node);
+            newNode.position = Node.position;
+            Selection.activeGameObject = newNode.gameObject;
         }
 
         private void OnNextNodeButtonClicked()
@@ -124,7 +103,7 @@ namespace Fox.EdGraphx
             var graph = Node.transform.GetComponentInParent<GraphxSpatialGraphData>();
             if (graph == null)
             {
-                Debug.LogError($"Parent GameObject is not a ${nameof(GraphxSpatialGraphData)}.");
+                Debug.LogError($"Parent GameObject is not a {nameof(GraphxSpatialGraphData)}.");
                 return;
             }
 

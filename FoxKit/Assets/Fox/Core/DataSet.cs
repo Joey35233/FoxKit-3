@@ -16,10 +16,10 @@ namespace Fox.Core
                 dataList.Insert(data.name, data);
         }
         
-        public override void OverridePropertiesForExport(EntityExportContext context)
+        public override void OnSerializeEntity(EntityExportContext context)
         {
-            base.OverridePropertiesForExport(context);
-            context.OverrideProperty("name", string.Empty);
+            base.OnSerializeEntity(context);
+            context.OverrideProperty(nameof(name), string.Empty);
         }
     }
 }

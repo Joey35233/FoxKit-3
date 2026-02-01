@@ -37,7 +37,7 @@ namespace Fox.Tactical
                 if (waypoint is null)
                     return;
 
-                globalWaypointPositions[i] = this.transform.TransformPoint(new Vector3(-waypoint.position.x, waypoint.position.y, waypoint.position.z));
+                globalWaypointPositions[i] = this.transform.TransformPoint(new Vector3(waypoint.position.x, waypoint.position.y, waypoint.position.z));
 
                 Gizmos.color = isSelected? WaypointColor : WaypointColor * 0.5f;
 
