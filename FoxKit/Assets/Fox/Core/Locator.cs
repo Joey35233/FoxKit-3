@@ -2,28 +2,26 @@ using UnityEngine;
 
 namespace Fox.Core
 {
-    [System.Serializable]
     public partial class Locator : TransformData
     {
-        private readonly BoxGizmo Gizmo = new BoxGizmo();
-
-        public void OnDrawGizmos()
-        {
-            Gizmo.Transform = this.transform;
-            Gizmo.Label = this.name;
-            Gizmo.OnDrawGizmos();
-        }
-
-        public void OnDrawGizmosSelected()
-        {
-            Gizmo.Transform = this.transform;
-            Gizmo.Label = null;
-            Gizmo.OnDrawGizmos();
-        }
         public override void Reset()
         {
             base.Reset();
             size = 1;
+        }
+
+        public void OnDrawGizmos()
+        {
+            Gizmos.matrix = this.transform.localToWorldMatrix;
+            Gizmos.color = BoxGizmo.UnselectedColor;
+            Gizmos.DrawWireCube(Vector3.zero, Vector3.one);
+        }
+
+        public void OnDrawGizmosSelected()
+        {
+            Gizmos.matrix = this.transform.localToWorldMatrix;
+            Gizmos.color = BoxGizmo.SelectedColor;
+            Gizmos.DrawWireCube(Vector3.zero, Vector3.one);
         }
     }
 }

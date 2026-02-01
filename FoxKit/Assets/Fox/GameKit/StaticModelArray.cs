@@ -2,14 +2,12 @@ using System;
 using System.Collections.Generic;
 using Fox.Core;
 using Fox.Core.Utils;
+using UnityEditor;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
-using UnityEngine.ResourceManagement.AsyncOperations;
-using UnityEngine.ResourceManagement.ResourceLocations;
 
 namespace Fox.GameKit
 {
-    [ExecuteInEditMode]
+    [ExecuteAlways]
     public partial class StaticModelArray : Data
     {
         public override void OnDeserializeEntity(TaskLogger logger)
@@ -21,41 +19,42 @@ namespace Fox.GameKit
                 logger.AddWarningEmptyPath(nameof(modelFile));
                 return;
             }
-            
-            // foreach (Matrix4x4 foxTransform in transforms)
-            // {
-            //     Matrix4x4 transform = Fox.Math.FoxToUnityMatrix(foxTransform);
-            //     
-            //     GameObject instance = GameObject.Instantiate(asset, gameObject.transform, false);
-            //     Matrix4x4 unityTransform = Fox.Math.FoxToUnityMatrix(transform);
-            //     instance.transform.position = unityTransform.GetPosition();
-            //     //instance.transform.rotation = unityTransform.rotation;
-            //     //instance.transform.position = Fox.Math.FoxToUnityVector3(transform.GetPosition());
-            //     instance.transform.rotation = Fox.Math.FoxToUnityQuaternion(transform.rotation);
-            //     instance.transform.localScale = transform.lossyScale;
-            // }
-            
-            // TODO: HACK
-            ReloadFile(logger);
+            else
+            {
+                Fox.Fs.FileSystem.ImportAssetCopy(modelFile.path.String);
+            }
+
+            for (int i = 0; i < transforms.Count; i++)
+                transforms[i] = Fox.Math.FoxToUnityMatrix(transforms[i]);
         }
 
-        private AsyncOperationHandle<GameObject> ModelHandle;
+        public override void OnSerializeEntity(EntityExportContext context)
+        {
+            base.OnSerializeEntity(context);
+
+            List<Matrix4x4> foxTransforms = new List<Matrix4x4>();
+            for (int i = 0; i < foxTransforms.Count; i++)
+                foxTransforms[i] = Fox.Math.UnityToFoxMatrix(transforms[i]);
+            context.OverrideListProperty(nameof(transforms), foxTransforms);
+        }
+
+        private GameObject ModelPrefab;
 
         private List<GameObject> Instances;
 
         private void CreateModel(GameObject model, Matrix4x4 matrix)
         {
-            matrix = Fox.Math.FoxToUnityMatrix(matrix);
-            
             Vector3 position = matrix.GetColumn(3);
             Quaternion rotation = Quaternion.LookRotation(matrix.GetColumn(2), matrix.GetColumn(1));
             Vector3 scale = new Vector3(matrix.GetColumn(0).magnitude, matrix.GetColumn(1).magnitude, matrix.GetColumn(2).magnitude);
-
-            GameObject instance = GameObject.Instantiate(model, position, rotation);
+            
+            GameObject instance = (GameObject)PrefabUtility.InstantiatePrefab(model, gameObject.transform);
             instance.name = "INSTANCE_WILL_RESET_ON_RELOAD";
+            instance.transform.localPosition = position;
+            instance.transform.localRotation = rotation;
             instance.transform.localScale = scale;
-            instance.transform.SetParent(this.transform);
             instance.hideFlags = HideFlags.DontSaveInEditor;
+            instance.AddComponent<StaticModelArrayInstance>();
         }
         
         public void ReloadFile(TaskLogger logger = null)
@@ -68,39 +67,14 @@ namespace Fox.GameKit
                 DestroyImmediate(child.gameObject);
             }
 
-            Path targetPath = modelFile?.path;
-            if (targetPath is null || string.IsNullOrEmpty(targetPath.String))
-                return;
-            
-            var getLocationsHandle = Addressables.LoadResourceLocationsAsync(targetPath.String);
-            getLocationsHandle.WaitForCompletion();
-                
-            IList<IResourceLocation> results = getLocationsHandle.Result;
-            if (results.Count > 0)
+            if (modelFile != FilePtr.Empty)
             {
-                IResourceLocation firstLocation = results[0];
-                ModelHandle = Addressables.LoadAssetAsync<GameObject>(firstLocation);
-                _ = ModelHandle.WaitForCompletion();
-                OnLoadAsset(ModelHandle);
-            }
-            else
-            {
-                Debug.Log($"Could not find: {targetPath.String}");
-            }
-                
-            Addressables.Release(getLocationsHandle);
-        }
-
-        private void OnLoadAsset(AsyncOperationHandle<GameObject> handle)
-        {
-            ModelHandle = handle;
-            
-            if (ModelHandle.Status == AsyncOperationStatus.Succeeded)
-            {
-                foreach (var matrix in transforms)
-                {
-                    CreateModel(ModelHandle.Result, matrix);
-                }
+                ModelPrefab = Fox.Fs.FileSystem.LoadAsset<GameObject>(modelFile.path.String);
+                if (ModelPrefab)
+                    foreach (Matrix4x4 matrix in transforms)
+                        CreateModel(ModelPrefab, matrix);
+                else
+                    Debug.Log($"Could not find: {modelFile}");
             }
         }
 
@@ -109,11 +83,6 @@ namespace Fox.GameKit
             ReloadFile();
         }
         
-        private void OnDisable()
-        {
-            if (ModelHandle.IsValid())
-                Addressables.Release(ModelHandle);
-        }
         public override void Reset()
         {
             base.Reset();

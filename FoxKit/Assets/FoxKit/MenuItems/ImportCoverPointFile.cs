@@ -12,7 +12,7 @@ namespace FoxKit.MenuItems
         [MenuItem("FoxKit/Import/CoverPointFile")]
         private static void OnImportAsset()
         {
-            string assetPath = EditorUtility.OpenFilePanel("Import CoverPointFile", "", "tcvp");
+            string assetPath = Fox.Fs.FileUtils.OpenFilePanel("Import CoverPointFile", "", "tcvp");
             if (System.String.IsNullOrEmpty(assetPath))
             {
                 return;

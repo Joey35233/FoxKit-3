@@ -1,27 +1,25 @@
-using System.Collections.Generic;
-using UnityEditor;
+using System;
 using UnityEngine;
 
 namespace Fox.GameKit
 {
+    [Serializable]
+    public struct ObjectBrushObject
+    {
+        public Vector3 Position;
+        public Quaternion Rotation;
+        public float NormalizedScale;
+
+        public ObjectBrushPlugin Plugin;
+    };
+    
     public class ObjectBrushAsset : ScriptableObject
     {
-        public float blockSizeW;
-        public float blockSizeH;
-        public uint numBlocksW;
-        public uint numBlocksH;
-        [SerializeReference]
-        public List<ObjectBrushObjectBinary> objects = new();
-        [MenuItem("FoxKit/Debug/OBR/Create OBR")]
-        public static void CreateMyAsset()
-        {
-            ObjectBrushAsset asset = ScriptableObject.CreateInstance<ObjectBrushAsset>();
+        public float BlockSizeW;
+        public float BlockSizeH;
+        public uint NumBlocksW;
+        public uint NumBlocksH;
 
-            AssetDatabase.CreateAsset(asset, "Assets/delete/NewObr.asset");
-            AssetDatabase.SaveAssets();
-            EditorUtility.FocusProjectWindow();
-
-            Selection.activeObject = asset;
-        }
+        public ObjectBrushObject[] Objects;
     }
 }

@@ -9,7 +9,6 @@ namespace Tpp.GameKit
     {
         static TppGameKitModule()
         {
-            FoxGameKitModule.RegisterObjBrushPluginDeserializationCallback(new StrCode32(TppObjectBrushPluginSkeletonModel.ClassInfo.Name), TppObjectBrushPluginSkeletonModel.Deserialize);
         }
     }
 }

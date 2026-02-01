@@ -4,7 +4,6 @@ using Fox.Fio;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 namespace Fox.Tactical
@@ -91,9 +90,9 @@ namespace Fox.Tactical
             ntaNameDictionary.TryAdd(StrCode.Empty, "");
             ntaUserIdDictionary.TryAdd(StrCode.Empty, "");
 
-            foreach (string name in System.IO.File.ReadAllLines(ntaNamesPath).ToList())
+            foreach (string name in System.IO.File.ReadAllLines(ntaNamesPath))
                 ntaNameDictionary.TryAdd(new StrCode(name), name);
-            foreach (string userId in System.IO.File.ReadAllLines(ntaUserIdPath).ToList())
+            foreach (string userId in System.IO.File.ReadAllLines(ntaUserIdPath))
                 ntaUserIdDictionary.TryAdd(new StrCode(userId), userId);
 
             Debug.Assert(reader.ReadUInt32() == NTA_SIGNATURE, "Invalid NTA file.");

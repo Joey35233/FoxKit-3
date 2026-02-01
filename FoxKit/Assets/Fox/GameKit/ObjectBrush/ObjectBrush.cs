@@ -1,145 +1,189 @@
-using Fox.Core;
-using Fox.Core.Utils;
-using Fox.Fio;
-using Fox;
 using System;
-using System.IO;
+using System.Collections.Generic;
+using Codice.CM.Common;
+using Fox.Core.Utils;
+using Fox.Core;
+using Fox.Gr;
 using UnityEditor;
 using UnityEngine;
+using File = System.IO.File;
+using Transform = UnityEngine.Transform;
+using TransformUtils = UnityEditor.TransformUtils;
 
 namespace Fox.GameKit
 {
+    [ExecuteAlways]
     public partial class ObjectBrush : Fox.Core.TransformData
     {
         public override void OnDeserializeEntity(TaskLogger logger)
         {
             base.OnDeserializeEntity(logger);
-
-            string obrPath = "/Game" + obrFile.path.String;
-            if (System.String.IsNullOrEmpty(obrPath))
+            
+            if (obrFile == FilePtr.Empty)
             {
-                Debug.LogWarning($"{name}: obrFile is null");
+                logger.AddWarningEmptyPath(nameof(obrFile));
+            }
+        }
+
+        public override void OnPostDeserializeEntity(TaskLogger logger)
+        {
+            base.OnPostDeserializeEntity(logger);
+
+            if (obrFile == FilePtr.Empty)
+                return;
+
+            if (pluginHandle.Count > 0)
+            {
+                string basePath = System.IO.Path.ChangeExtension(obrFile.path.String, null);
+                string unityBasePath = Fox.Fs.FileSystem.GetUnityPathFromFoxPath(basePath);
+                if (!System.IO.Directory.Exists(unityBasePath))
+                    System.IO.Directory.CreateDirectory(unityBasePath);
+
+                for (int i = 0; i < pluginHandle.Count; i++)
+                {
+                    ObjectBrushPlugin plugin = pluginHandle[i] as ObjectBrushPlugin;
+                    if (plugin == null)
+                        continue;
+
+                    string prefabPath = System.IO.Path.Combine(basePath, $"{plugin.name}.prefab");
+                    ObjectBrushPlugin pluginPrefab = Fox.Fs.FileSystem.CreatePrefabAsset(plugin.gameObject, prefabPath).GetComponent<ObjectBrushPlugin>();
+                    pluginHandle[i] = pluginPrefab;
+                }
+            }
+            
+            string obrExternalPath = Fox.Fs.FileSystem.GetExternalPathFromFoxPath(obrFile.path.String);
+            if (!File.Exists(obrExternalPath))
+            {
+                logger.AddWarningMissingAsset(obrFile.path.String);
                 return;
             }
-
-            string readPath = "Assets" + obrPath;
-
-            if (!System.IO.File.Exists(readPath))
-            {
-                Debug.LogError($"{readPath} does not exist");
-                return;
-            }
-
-            ObjectBrushAsset asset = ObjectBrushReader.Read(new FileStreamReader(new FileStream(readPath, FileMode.Open)));
-
-            if (asset == null)
-            {
-                Debug.LogWarning($"{name}: asset could not be created");
-                return;
-            }
-
-            string trimmedPath = "Assets/" + obrPath.Remove(0, 1).Replace(".obr", ".asset");
-
-            AssetDatabase.CreateAsset(asset, $"{trimmedPath}.asset");
-
+                
+            byte[] obrData = File.ReadAllBytes(obrExternalPath);
+            ObjectBrushAsset obrAsset = ConvertFile(obrData);
+            Fox.Fs.FileSystem.CreateAsset(obrAsset, obrFile.path.String);
             AssetDatabase.SaveAssets();
+            
+            this.OnEnable();
+        }
 
-            foreach (ObjectBrushObjectBinary obj in asset.objects)
+        public unsafe ObjectBrushAsset ConvertFile(byte[] file)
+        {
+            // TODO: What happens with this if I return null later?
+            ObjectBrushAsset obrAsset = ScriptableObject.CreateInstance<ObjectBrushAsset>();
+            
+            fixed (byte* data = file)
             {
-                GameObject instanceGameObject;
+                FoxDataHeader* header = (FoxDataHeader*)data;
+                if (header->Version != 3)
+                    return null;
+                
+                FoxDataNode* node = header->GetNodes();
+                if (node->Flags != 1)
+                    return null;
+                    
+                FoxDataNodeAttribute* blockSizeWAttrib = node->FindAttribute("blockSizeW");
+                FoxDataNodeAttribute* blockSizeHAttrib = node->FindAttribute("blockSizeH");
+                FoxDataNodeAttribute* numBlocksWAttrib = node->FindAttribute("numBlocksW");
+                FoxDataNodeAttribute* numBlocksHAttrib = node->FindAttribute("numBlocksH");
+                FoxDataNodeAttribute* numObjectsAttrib = node->FindAttribute("numObjects");
 
-                var transform = new Fox.Core.Transform();
+                if (blockSizeWAttrib == null || blockSizeHAttrib == null || numBlocksWAttrib == null ||
+                    numBlocksHAttrib == null || numObjectsAttrib == null)
+                    return null;
+                
+                float blockSizeW = blockSizeWAttrib->GetFloatValue();
+                float blockSizeH = blockSizeHAttrib->GetFloatValue();
+                uint numBlocksW = numBlocksWAttrib->GetUIntValue();
+                uint numBlocksH = numBlocksHAttrib->GetUIntValue();
 
-                Vector3 foxPosition = GetPositionFWSFromPositionEWS(obj,asset);
+                obrAsset.BlockSizeW = blockSizeW;
+                obrAsset.BlockSizeH = blockSizeH;
+                obrAsset.NumBlocksW = numBlocksW;
+                obrAsset.NumBlocksH = numBlocksH;
 
-                transform.translation = Fox.Math.FoxToUnityVector3(foxPosition);
-                transform.rotation_quat = Fox.Math.FoxToUnityQuaternion(obj.GetRotation());
-
-                float normalizedScale = (float)obj.GetNormalizedScale() / System.Byte.MaxValue;
-
-                if (pluginHandle[obj.GetPluginBrushIndex()] is ObjectBrushPlugin plugin)
+                uint objectCount = numObjectsAttrib->GetUIntValue();
+                DataUnit* unit = (DataUnit*)node->GetData();
+                ObjectBrushObject[] objects = new ObjectBrushObject[objectCount];
+                for (uint i = 0; i < objectCount; i++, unit++)
                 {
-                    switch (pluginHandle[obj.GetPluginBrushIndex()])
+                    uint blockId = unit->BlockId;
+                    
+                    ushort blockX = (ushort)(blockId % numBlocksH);
+                    ushort blockZ = (ushort)(blockId / numBlocksW);
+
+                    float blockCenterX = blockSizeH * (blockX + 0.5f - (0.5f * numBlocksH));
+                    float blockCenterZ = blockSizeW * (blockZ + 0.5f - (0.5f * numBlocksW));
+
+                    float posX = unit->PositionX / (float)byte.MaxValue + blockCenterX;
+                    float posZ = unit->PositionZ / (float)byte.MaxValue + blockCenterZ;
+                    
+                    Vector3 position = new Vector3(posX, unit->PositionY, posZ);
+                    position = Fox.Math.FoxToUnityVector3(position);
+                    
+                    Quaternion rotation = new Quaternion(unit->RotationX, unit->RotationY, unit->RotationZ, unit->RotationW);
+                    rotation = Fox.Math.FoxToUnityQuaternion(rotation);
+
+                    float normalizedScale = unit->NormalizedScale / (float)byte.MaxValue;
+                    
+                    ObjectBrushPlugin plugin = this.pluginHandle[unit->PluginId] as ObjectBrushPlugin;
+
+                    ObjectBrushObject obj = new ObjectBrushObject
                     {
-                        case ObjectBrushPluginClone pluginClone:
-                            transform.scale = Vector3.one * Mathf.Lerp(pluginClone.minSize, pluginClone.maxSize, normalizedScale);
-                            instanceGameObject = MakeStaticModelGameObject(transform, "/Assets/Game" + pluginClone.modelFile.path.String, gameObject);
-                            break;
-                        case ObjectBrushPluginStaticModel pluginStaticModel:
-                            transform.scale = Vector3.one * Mathf.Lerp(pluginStaticModel.minSize, pluginStaticModel.maxSize, normalizedScale);
-                            instanceGameObject = MakeStaticModelGameObject(transform, "/Assets/Game" + pluginStaticModel.modelFile.path.String, gameObject);
-                            break;
-                        case null:
-                            throw new ArgumentNullException();
-                        default:
-                            //TODO Tpp.GameKit.ObjectBrushPluginStaticModel, TppObjectBrushPluginSkeletonModel
-                            var pluginClassName = new StrCode32(pluginHandle[obj.GetPluginBrushIndex()].GetClassEntityInfo().Name);
-                            Debug.LogWarning($"{name}: pluginHandle #{obj.GetPluginBrushIndex()} is not a supported");
-                            break;
-                    }
+                        Position = position,
+                        Rotation = rotation,
+                        NormalizedScale = normalizedScale,
+                        Plugin = plugin,
+                    };
+                    objects[i] = obj;
                 }
-                else
+                
+                obrAsset.Objects = objects;
+            }
+            
+            return obrAsset;
+        }
+
+        private void OnEnable()
+        {
+            for (int i = this.transform.childCount - 1; i >= 0; i--)
+            {
+                var child = this.transform.GetChild(i).gameObject;
+                if (child.GetComponent<Entity>() && !PrefabUtility.IsAnyPrefabInstanceRoot(child))
+                    continue;
+                DestroyImmediate(child);
+            }
+            
+            Fox.GameKit.FoxGameKitModule.ObjectBrushRegistry[this.name] = this;
+            
+            ObjectBrushAsset obrAsset = Fox.Fs.FileSystem.LoadAsset<ObjectBrushAsset>(obrFile.path.String);
+            if (obrAsset != null)
+            {
+                foreach (ObjectBrushObject obj in obrAsset.Objects)
                 {
-                    Debug.LogWarning($"{name}: pluginHandle #{obj.GetPluginBrushIndex()} is not ObjectBrushPlugin");
+                    ObjectBrushPlugin plugin = obj.Plugin;
+                    if (plugin == null)
+                        continue;
+                
+                    GameObject instance = (GameObject)PrefabUtility.InstantiatePrefab(plugin.gameObject);
+                    
+                    // At this stage, the handles are still Scene objects (pre-OnPostDeserializeEntity)
+                    if (instance == null)
+                        return;
+                    
+                    instance.hideFlags = HideFlags.DontSaveInEditor;
+                    Transform instanceTransform = instance.transform;
+                    instanceTransform.position = obj.Position;
+                    instanceTransform.rotation = obj.Rotation;
+                    instanceTransform.localScale = (1.0f + obj.NormalizedScale) * Vector3.one;
+                    instanceTransform.SetParent(this.transform, true);
+                    TransformUtils.SetConstrainProportions(instanceTransform, true);
                 }
-
-                // if (!instantiated)
-                // {
-                //     instanceGameObject = new GameObject();
-                //     instanceGameObject.transform.position = transform.translation;
-                //     instanceGameObject.transform.rotation = transform.rotation_quat;
-                //     instanceGameObject.transform.localScale = transform.scale;
-                //     instanceGameObject.transform.SetParent(gameObject.transform, false);
-                //     PointGizmo gizmo = instanceGameObject.AddComponent<PointGizmo>();
-                //     gizmo.Color = Color.green;
-                //     gizmo.Scale = Vector3.one;
-                // }
             }
         }
-        //joey func, but perhaps pointlessly dynamic!
-        private const ushort OBR_MAGIC = 32640;
-        private static Vector3 GetPositionFWSFromPositionEWS(ObjectBrushObjectBinary obj, ObjectBrushAsset asset)
+
+        private void OnDisable()
         {
-            ushort blockIndex = obj.GetBlockIndex();
-
-            uint numBlocksW = asset.numBlocksW;
-            uint numBlocksH = asset.numBlocksH;
-
-            ushort METERS_PER_BLOCK_X = (ushort)(asset.blockSizeH / 1);
-            ushort METERS_PER_BLOCK_Z = (ushort)(asset.blockSizeW / 1);
-            // block indices [0,32) x [0,32)
-            ushort blockX = (ushort)(blockIndex % numBlocksH);
-            ushort blockZ = (ushort)Mathf.Floor(blockIndex / numBlocksW);
-
-            // block center position
-            float blockCenterXFWS = METERS_PER_BLOCK_X * (blockX + 0.5f - (0.5f * numBlocksH));
-            float blockCenterZFWS = METERS_PER_BLOCK_Z * (blockZ + 0.5f - (0.5f * numBlocksW));
-
-            // output position FWS
-            float OBR_POSITION_DECODE_X = METERS_PER_BLOCK_X / (float)OBR_MAGIC;
-            float OBR_POSITION_DECODE_Z = METERS_PER_BLOCK_Z / (float)OBR_MAGIC;
-            float xFWS = blockCenterXFWS + (OBR_POSITION_DECODE_X * obj.GetXPosition());
-            float zFWS = blockCenterZFWS + (OBR_POSITION_DECODE_Z * obj.GetZPosition());
-
-            return new Vector3(xFWS, obj.GetYPosition(), zFWS);
-        }
-        private static GameObject MakeStaticModelGameObject(Fox.Core.Transform transform, string modelFilePath, GameObject gameObject)
-        {
-            string trimmedModelFilePath = modelFilePath.Remove(0, 1);
-            if (AssetDatabase.LoadAssetAtPath<GameObject>(trimmedModelFilePath) is GameObject modelFileAsset)
-            {
-                var modelFileInstance = GameObject.Instantiate(modelFileAsset);
-                modelFileInstance.transform.position = transform.translation;
-                modelFileInstance.transform.rotation = transform.rotation_quat;
-                modelFileInstance.transform.localScale = transform.scale;
-                modelFileInstance.transform.SetParent(gameObject.transform, false);
-                return modelFileInstance;
-            }
-            else
-            {
-                Debug.LogWarning($"Unable to find asset at path {trimmedModelFilePath}");
-            }
-            return null;
+            Fox.GameKit.FoxGameKitModule.ObjectBrushRegistry.Remove(this.name);
         }
     }
 }

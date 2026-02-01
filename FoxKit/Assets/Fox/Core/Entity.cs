@@ -61,12 +61,20 @@ namespace Fox.Core
         {
 
         }
+        
+        /// <summary>
+        /// Called after OnDeserializeEntity. Use to perform operations that require all DataSet Entities to be fully initialized and enabled.
+        /// </summary>
+        public virtual void OnPostDeserializeEntity(TaskLogger logger)
+        {
+
+        }
 
         /// <summary>
         /// If a property needs to be converted on export (for instance, Unity to Fox coordinates), add it to the export context.
         /// If a property is not overridden here, its original value will be exported instead.
         /// </summary>
-        public virtual void OverridePropertiesForExport(EntityExportContext context)
+        public virtual void OnSerializeEntity(EntityExportContext context)
         {
         }
 

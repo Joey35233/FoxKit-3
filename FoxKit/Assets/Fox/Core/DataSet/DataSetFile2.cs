@@ -1,10 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Runtime.InteropServices;
 using Fox.Core.Utils;
 using Fox.Fio;
+using UnityEditor;
+using UnityEditor.Experimental.GraphView;
 using UnityEditor.SceneManagement;
+using UnityEngine;
 using UnityEngine.SceneManagement;
+using Object = UnityEngine.Object;
 
 namespace Fox.Core
 {
@@ -121,6 +126,29 @@ namespace Fox.Core
             _ = reader.Read(data, logger);
 
             return scene;
+        }
+
+        public static Object ImportPrefab(FilePtr filePtr)
+        {
+            var logger = new TaskLogger("ImportPrefab");
+
+            GameObject prefab = Fox.Fs.FileSystem.LoadAsset<GameObject>(filePtr.path.String);
+            
+            DataSetFile2Reader reader = new DataSetFile2Reader();
+            var data = Fox.Fs.FileSystem.ReadExternalFile(filePtr.path.String);
+            ReadOnlySpan<Entity> entities = reader.Read(data, logger);
+
+            GameObject root = new GameObject(System.IO.Path.GetFileNameWithoutExtension(filePtr.path.String));
+            
+            foreach (Entity entity in entities)
+            {
+                entity.transform.parent = root.transform;
+            }
+            
+            prefab = Fox.Fs.FileSystem.CreatePrefabAsset(root, filePtr.path.String);
+            DestroyImmediate(root);
+
+            return prefab;
         }
 
         public static UnityEngine.SceneManagement.Scene Read(ReadOnlySpan<byte> data, SceneLoadMode sceneMode, TaskLogger logger, out ReadOnlySpan<Entity> entities)

@@ -101,9 +101,9 @@ namespace Tpp.Effect
             innerScaleXNegative = _xPositive;
             innerScaleXPositive = _xNegative;
         }
-        public override void OverridePropertiesForExport(EntityExportContext context)
+        public override void OnSerializeEntity(EntityExportContext context)
         {
-            base.OverridePropertiesForExport(context);
+            base.OnSerializeEntity(context);
 
             float _xNegative = innerScaleXNegative;
             float _xPositive = innerScaleXPositive;

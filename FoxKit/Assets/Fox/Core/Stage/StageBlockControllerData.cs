@@ -19,9 +19,9 @@ namespace Fox.Core
             }
         }
 
-        public override void OverridePropertiesForExport(EntityExportContext context)
+        public override void OnSerializeEntity(EntityExportContext context)
         {
-            base.OverridePropertiesForExport(context);
+            base.OnSerializeEntity(context);
 
             context.OverrideProperty(nameof(enable), isActiveAndEnabled);
         }
