@@ -1,10 +1,13 @@
 ﻿using System;
+using Codice.CM.Common.Merge;
 using Fox.Core;
 using Fox.Core.Utils;
 using Fox.Gr;
 using UnityEditor;
 using UnityEngine;
 using File = System.IO.File;
+using Transform = UnityEngine.Transform;
+using TransformUtils = UnityEditor.TransformUtils;
 
 namespace Fox.GameKit
 {
@@ -62,8 +65,8 @@ namespace Fox.GameKit
                 uint flags = flagsAttrib->GetUIntValue();
                 Debug.Assert(flags == 1);
 
-                ObjectBrush objectBrush = Fox.GameKit.FoxGameKitModule.ObjectBrushRegistry[this.objectBrushName];
-                if (!objectBrush)
+                if (!Fox.GameKit.FoxGameKitModule.ObjectBrushRegistry.TryGetValue(this.objectBrushName,
+                        out ObjectBrush objectBrush))
                     return null;
                 
                 ObjectBrushAsset obrAsset = Fox.Fs.FileSystem.LoadAsset<ObjectBrushAsset>(objectBrush.obrFile.path.String);
@@ -98,14 +101,14 @@ namespace Fox.GameKit
 
                     float normalizedScale = unit->NormalizedScale / (float)byte.MaxValue;
                     
-                    ObjectBrushPlugin plugin = objectBrush.pluginHandle[unit->PluginIndex] as ObjectBrushPlugin;
+                    ObjectBrushPlugin plugin = objectBrush.pluginHandle[unit->PluginId] as ObjectBrushPlugin;
 
                     ObjectBrushObject obj = new ObjectBrushObject
                     {
                         Position = position,
                         Rotation = rotation,
                         NormalizedScale = normalizedScale,
-                        Plugin = plugin.name,
+                        Plugin = plugin,
                     };
                     objects[i] = obj;
                 }
@@ -118,31 +121,44 @@ namespace Fox.GameKit
 
         private void OnEnable()
         {
-            ObjectBrush objectBrush = Fox.GameKit.FoxGameKitModule.ObjectBrushRegistry[this.objectBrushName];
-            if (!objectBrush)
-                return;
-            
-            objectBrush.RegisterBlock(this);
-        }
-
-        public void Cleanup()
-        {
-            for (int i = transform.childCount - 1; i >= 0; i--)
+            for (int i = this.transform.childCount - 1; i >= 0; i--)
             {
-                var child = transform.GetChild(i);
-                if (child.GetComponent<Entity>())
+                var child = this.transform.GetChild(i).gameObject;
+                if (child.GetComponent<Entity>() && !PrefabUtility.IsAnyPrefabInstanceRoot(child))
                     continue;
-                DestroyImmediate(child.gameObject);
+                DestroyImmediate(child);
+            }
+            
+            ObjectBrushBlockAsset obrbAsset = Fox.Fs.FileSystem.LoadAsset<ObjectBrushBlockAsset>(obrbFile.path.String);
+            if (obrbAsset != null)
+            {
+                foreach (ObjectBrushObject obj in obrbAsset.Objects)
+                {
+                    ObjectBrushPlugin plugin = obj.Plugin;
+                    if (plugin == null)
+                        continue;
+                
+                    GameObject instance = (GameObject)PrefabUtility.InstantiatePrefab(plugin.gameObject);
+                    instance.hideFlags = HideFlags.DontSaveInEditor;
+                    Transform instanceTransform = instance.transform;
+                    instanceTransform.position = obj.Position;
+                    instanceTransform.rotation = obj.Rotation;
+                    instanceTransform.localScale = (1.0f + obj.NormalizedScale) * Vector3.one;
+                    instanceTransform.SetParent(this.transform, true);
+                    TransformUtils.SetConstrainProportions(instanceTransform, true);
+                }
             }
         }
 
         private void OnDisable()
         {
-            ObjectBrush objectBrush = Fox.GameKit.FoxGameKitModule.ObjectBrushRegistry[this.objectBrushName];
-            if (objectBrush)
-                objectBrush.DeregisterBlock(this);
-            
-            Cleanup();
+            for (int i = this.transform.childCount - 1; i >= 0; i--)
+            {
+                var child = this.transform.GetChild(i).gameObject;
+                if (child.GetComponent<Entity>() && !PrefabUtility.IsAnyPrefabInstanceRoot(child))
+                    continue;
+                DestroyImmediate(child);
+            }
         }
     }
 }

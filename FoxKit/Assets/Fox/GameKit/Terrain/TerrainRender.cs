@@ -12,7 +12,7 @@ using Object = UnityEngine.Object;
 
 namespace Fox.GameKit
 {
-    [ExecuteInEditMode]
+    [ExecuteAlways]
     public partial class TerrainRender : Fox.Core.TransformData
     {
         public override void OnDeserializeEntity(TaskLogger logger)

@@ -10,7 +10,7 @@ namespace Fox.GameKit
         public Quaternion Rotation;
         public float NormalizedScale;
 
-        public string Plugin;
+        public ObjectBrushPlugin Plugin;
     };
     
     public class ObjectBrushAsset : ScriptableObject

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Codice.CM.Common;
 using Fox.Core.Utils;
 using Fox.Core;
 using Fox.Gr;
@@ -10,7 +11,6 @@ using File = System.IO.File;
 namespace Fox.GameKit
 {
     [ExecuteAlways]
-    [DefaultExecutionOrder(-100)] // Enables the registry to be populated before the blocks
     public partial class ObjectBrush : Fox.Core.TransformData
     {
         public override void OnDeserializeEntity(TaskLogger logger)
@@ -38,7 +38,34 @@ namespace Fox.GameKit
                 AssetDatabase.SaveAssets();
             }
         }
-        
+
+        public override void OnPostDeserializeEntity(TaskLogger logger)
+        {
+            base.OnPostDeserializeEntity(logger);
+
+            if (obrFile == FilePtr.Empty)
+                return;
+
+            if (pluginHandle.Count > 0)
+            {
+                string basePath = System.IO.Path.ChangeExtension(obrFile.path.String, null);
+                string unityBasePath = Fox.Fs.FileSystem.GetUnityPathFromFoxPath(basePath);
+                if (!System.IO.Directory.Exists(unityBasePath))
+                    System.IO.Directory.CreateDirectory(unityBasePath);
+
+                for (int i = 0; i < pluginHandle.Count; i++)
+                {
+                    ObjectBrushPlugin plugin = pluginHandle[i] as ObjectBrushPlugin;
+                    if (plugin == null)
+                        continue;
+
+                    string prefabPath = System.IO.Path.Combine(basePath, $"{plugin.name}.prefab");
+                    ObjectBrushPlugin pluginPrefab = Fox.Fs.FileSystem.CreatePrefabAsset(plugin.gameObject, prefabPath).GetComponent<ObjectBrushPlugin>();
+                    pluginHandle[i] = pluginPrefab;
+                }
+            }
+        }
+
         public unsafe ObjectBrushAsset ConvertFile(byte[] file)
         {
             // TODO: What happens with this if I return null later?
@@ -98,14 +125,14 @@ namespace Fox.GameKit
 
                     float normalizedScale = unit->NormalizedScale / (float)byte.MaxValue;
                     
-                    ObjectBrushPlugin plugin = this.pluginHandle[unit->PluginIndex] as ObjectBrushPlugin;
+                    ObjectBrushPlugin plugin = this.pluginHandle[unit->PluginId] as ObjectBrushPlugin;
 
                     ObjectBrushObject obj = new ObjectBrushObject
                     {
                         Position = position,
                         Rotation = rotation,
                         NormalizedScale = normalizedScale,
-                        Plugin = plugin.name,
+                        Plugin = plugin,
                     };
                     objects[i] = obj;
                 }
@@ -116,86 +143,38 @@ namespace Fox.GameKit
             return obrAsset;
         }
 
-        private float BlockSizeW;
-        private float BlockSizeH;
-        private uint BlockCountW;
-        private uint BlockCountH;
-
-        private List<ObjectBrushBlock> Blocks;
-
         private void OnEnable()
         {
-            ObjectBrushAsset obrAsset = Fox.Fs.FileSystem.LoadAsset<ObjectBrushAsset>(obrFile.path.String);
-            BlockSizeW = obrAsset.BlockSizeW;
-            BlockSizeH = obrAsset.BlockSizeH;
-            BlockCountW = obrAsset.NumBlocksW;
-            BlockCountH = obrAsset.NumBlocksH;
-            
-            Debug.Assert(numBlocks == BlockCountW * BlockCountH);
-            Blocks = new List<ObjectBrushBlock>((int)numBlocks);
-            for (int i = 0; i < numBlocks; i++)
-                Blocks.Add(null);
-            
-            FoxGameKitModule.ObjectBrushRegistry.Add(this.name, this);
-            
-            InstantiateObjects(this.transform, obrAsset.Objects);
-        }
-
-        private void InstantiateObjects(UnityEngine.Transform parent, ObjectBrushObject[] objects)
-        {
-            StringMap<ObjectBrushPlugin> pluginMap = new StringMap<ObjectBrushPlugin>();
-            foreach (ObjectBrushPlugin plugin in pluginHandle)
-                if (plugin)
-                    pluginMap[plugin.name] = plugin;
-            
-            foreach (ObjectBrushObject obj in objects)
+            for (int i = this.transform.childCount - 1; i >= 0; i--)
             {
-                ObjectBrushPlugin plugin = pluginMap[obj.Plugin];
-                
-                if (!plugin)
+                var child = this.transform.GetChild(i);
+                if (child.GetComponent<Entity>())
                     continue;
-                
-                GameObject instance = plugin.GetModelInstance(obj);
-                instance.transform.SetParent(parent);
+                DestroyImmediate(child.gameObject);
             }
-        }
-
-        public void RegisterBlock(ObjectBrushBlock block)
-        {
-            Debug.Assert(numBlocks == Blocks.Count);
-            if (block.blockId >= Blocks.Count)
-                return;
-
-            Blocks[(int)block.blockId] = block;
             
-            ObjectBrushBlockAsset blockAsset = Fox.Fs.FileSystem.LoadAsset<ObjectBrushBlockAsset>(block.obrbFile.path.String);
+            Fox.GameKit.FoxGameKitModule.ObjectBrushRegistry[this.name] = this;
             
-            InstantiateObjects(block.transform, blockAsset.Objects);
-        }
-
-        public void DeregisterBlock(ObjectBrushBlock block)
-        {
-            Debug.Assert(numBlocks == Blocks.Count);
-            if (block.blockId >= Blocks.Count)
-                return;
-
-            Blocks[(int)block.blockId] = null;
+            ObjectBrushAsset obrAsset = Fox.Fs.FileSystem.LoadAsset<ObjectBrushAsset>(obrFile.path.String);
+            if (obrAsset != null)
+            {
+                foreach (ObjectBrushObject obj in obrAsset.Objects)
+                {
+                    ObjectBrushPlugin plugin = obj.Plugin;
+                    if (plugin == null)
+                        continue;
+                
+                    GameObject instance = (GameObject)PrefabUtility.InstantiatePrefab(plugin.gameObject);
+                    instance.transform.position = obj.Position;
+                    instance.transform.rotation = obj.Rotation;
+                    instance.transform.SetParent(this.transform);
+                }
+            }
         }
 
         private void OnDisable()
         {
-            for (int i = 0; i < Blocks.Count; i++)
-            {
-                ObjectBrushBlock block = Blocks[i];
-                if (block != null)
-                {
-                    DeregisterBlock(block);
-
-                    block.Cleanup();
-                }
-            }
-            
-            FoxGameKitModule.ObjectBrushRegistry.Remove(this.name);
+            Fox.GameKit.FoxGameKitModule.ObjectBrushRegistry.Remove(this.name);
         }
     }
 }

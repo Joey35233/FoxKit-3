@@ -12,7 +12,7 @@ using File = System.IO.File;
 
 namespace Tpp.GameKit
 {
-    [ExecuteInEditMode]
+    [ExecuteAlways]
     public partial class TppPermanentGimmickData : Fox.Core.Data
     {
         public override void OnDeserializeEntity(TaskLogger logger)

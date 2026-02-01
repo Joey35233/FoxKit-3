@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Fox.GameKit
 {
-    [ExecuteInEditMode]
+    [ExecuteAlways]
     [SelectionBase]
     public partial class StaticModel : TransformData
     {

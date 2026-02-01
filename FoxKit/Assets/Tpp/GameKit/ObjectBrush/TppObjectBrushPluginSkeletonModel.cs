@@ -1,17 +1,16 @@
 using System;
-using System.Collections.Generic;
-using Fox;
 using Fox.Core;
 using Fox.Core.Utils;
-using Fox.Fio;
 using Fox.GameKit;
+using Fox.Gr;
 using UnityEditor;
 using UnityEngine;
 
 namespace Tpp.GameKit
 {
-    [ExecuteInEditMode]
-    public partial class TppObjectBrushPluginSkeletonModel : Fox.GameKit.ObjectBrushPlugin
+    [ExecuteAlways]
+    [SelectionBase]
+    public partial class TppObjectBrushPluginSkeletonModel
     {
         public override void OnDeserializeEntity(TaskLogger logger)
         {
@@ -31,30 +30,71 @@ namespace Tpp.GameKit
             }
         }
 
-        private GameObject ModelPrefab;
-
-        private void OnEnable()
+        private new void OnEnable()
         {
+            if (!PrefabUtility.IsPartOfPrefabInstance(this))
+                return;
+
+            base.OnEnableBase();
+            
             if (modelFile.Count < 1 || modelFile[0] == FilePtr.Empty)
                 return;
             
-            ModelPrefab = Fox.Fs.FileSystem.LoadAsset<GameObject>(modelFile[0].path.String);
-            if (!ModelPrefab)
+            GameObject modelPrefab = Fox.Fs.FileSystem.LoadAsset<GameObject>(modelFile[0].path.String);
+            if (modelPrefab == null)
+            {
                 Debug.Log($"Could not find: {modelFile[0]}");
+                return;
+            }
+            
+            ModelInstance = (GameObject)PrefabUtility.InstantiatePrefab(modelPrefab);
+            ModelInstance.name = "INSTANCE_WILL_RESET_ON_RELOAD";
+            ModelInstance.hideFlags = HideFlags.DontSaveInEditor;
+            ModelInstance.transform.SetParent(this.transform, false);
         }
 
-        public override GameObject GetModelInstance(ObjectBrushObject obj)
+        private void OnValidate()
         {
-            GameObject instance = (GameObject)PrefabUtility.InstantiatePrefab(ModelPrefab);
-            instance.name = "INSTANCE_WILL_RESET_ON_RELOAD";
-            instance.hideFlags = HideFlags.DontSaveInEditor;
-            instance.AddComponent<StaticModelArrayInstance>();
-            
-            instance.transform.position = obj.Position;
-            instance.transform.rotation = obj.Rotation;
-            instance.transform.localScale = Vector3.one * Mathf.Lerp(minSize, maxSize, obj.NormalizedScale);
+            if (maxSize < minSize)
+                maxSize = minSize + 0.001f;
+            else if (minSize > maxSize)
+                minSize = maxSize - 0.001f;
+        }
 
-            return instance;
+        private void Update()
+        {
+            if (transform.hasChanged && ModelInstance != null)
+            {
+                float scale = transform.localScale.x;
+                scale = Mathf.Clamp(scale, 1.0f, 2.0f);
+                transform.localScale = new Vector3(scale, scale, scale);
+
+                float normalizedScale = scale - 1.0f;
+            
+                float instanceScale = Mathf.Lerp(minSize, maxSize, normalizedScale);
+                float correctiveScale = instanceScale / scale;
+                ModelInstance.transform.localScale = correctiveScale * Vector3.one;
+            }
+        }
+
+        private void OnDisable()
+        {
+            base.OnDisableBase();
+        }
+
+        private void OnDrawGizmosSelected()
+        {
+            if (ModelInstance == null)
+                return;
+
+            Bounds bounds = new Bounds();
+            if (ModelUtils.CalculateBounds(ModelInstance.transform, ref bounds))
+            {
+                float sphereRadius = bounds.extents.y + extensionRadius;
+                
+                Gizmos.matrix = Matrix4x4.Translate(transform.position);
+                Gizmos.DrawWireSphere(bounds.center, sphereRadius);
+            }
         }
     }
 }

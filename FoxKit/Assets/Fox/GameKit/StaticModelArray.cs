@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Fox.GameKit
 {
-    [ExecuteInEditMode]
+    [ExecuteAlways]
     public partial class StaticModelArray : Data
     {
         public override void OnDeserializeEntity(TaskLogger logger)

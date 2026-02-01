@@ -16,10 +16,10 @@ namespace Fox.Gr
         public Half RotationW;
         
         public ushort BlockId;
-        public byte PluginIndex;
+        public byte PluginId;
 
         public byte NormalizedScale;
         
-        public uint GlobalIndex;
+        public uint ObjectId;
     }
 }

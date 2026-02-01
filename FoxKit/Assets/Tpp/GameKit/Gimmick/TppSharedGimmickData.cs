@@ -8,7 +8,7 @@ using File = System.IO.File;
 
 namespace Tpp.GameKit
 {
-    [ExecuteInEditMode]
+    [ExecuteAlways]
     public partial class TppSharedGimmickData : Fox.Core.Data
     {
         public override void OnDeserializeEntity(TaskLogger logger)
@@ -58,12 +58,11 @@ namespace Tpp.GameKit
                 }
             }
 
-            // Mandatory
-            GameObject modelFilePrefab = null;
+            // Optional
+            // GameObject modelFilePrefab = null;
             if (modelFile == FilePtr.Empty)
             {
                 logger.AddWarningEmptyPath(nameof(modelFile));
-                return;
             }
             else
             {
@@ -72,7 +71,7 @@ namespace Tpp.GameKit
             }
 
             // Optional
-            GameObject breakedModelPrefab = null;
+            // GameObject breakedModelPrefab = null;
             if (breakedModelFile == FilePtr.Empty)
             {
                 logger.AddWarningEmptyPath(nameof(breakedModelFile));
@@ -80,7 +79,7 @@ namespace Tpp.GameKit
             else
             {
                 Fox.Fs.FileSystem.ImportAssetCopy(breakedModelFile.path.String);
-                breakedModelPrefab = Fox.Fs.FileSystem.LoadAsset<GameObject>(breakedModelFile.path.String);
+                // breakedModelPrefab = Fox.Fs.FileSystem.LoadAsset<GameObject>(breakedModelFile.path.String);
             }
             
             foreach (LocatorEntry locator in locators)
@@ -94,16 +93,6 @@ namespace Tpp.GameKit
                 locatorGameObject.transform.localScale = locator.Scale;
 
                 locatorGameObject.AddComponent<LocatorGimmick>();
-                
-                // if (modelFilePrefab is not null)
-                // {
-                //     GameObject.Instantiate(modelFilePrefab, locatorGameObject.transform, false);
-                //     
-                //     if (breakedModelPrefab is not null)
-                //     {
-                //         GameObject.Instantiate(breakedModelPrefab, locatorGameObject.transform, false);
-                //     }
-                // }
             }
         }
         public override void OverridePropertiesForExport(EntityExportContext context)

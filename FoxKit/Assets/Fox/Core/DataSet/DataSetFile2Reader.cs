@@ -186,12 +186,18 @@ namespace Fox.Core
                             entityDef = (DataSetFile2.EntityDef*)((byte*)entityDef + entityDef->NextEntityOffset);
                         }
                         
-                        // Post
+                        // OnDeserialize
                         foreach (Entity entity in entities)
                         {
                             entity.OnDeserializeEntity(logger);
                             
                             entity.gameObject.SetActive(true);
+                        }
+                        
+                        // OnPostDeserialize
+                        foreach (Entity entity in entities)
+                        {
+                            entity.OnPostDeserializeEntity(logger);
                         }
                     }
 

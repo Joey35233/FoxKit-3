@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Fox.PartsBuilder
 {
-    [ExecuteInEditMode]
+    [ExecuteAlways]
     public partial class ModelDescription
     {
         public override void OnDeserializeEntity(TaskLogger logger)
