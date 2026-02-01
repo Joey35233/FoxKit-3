@@ -18,7 +18,6 @@ namespace Fox.GameKit
         {
             base.OnDeserializeEntity(logger);
             
-            ObjectBrushBlockAsset obrbAsset;
             if (obrbFile == FilePtr.Empty)
             {
                 logger.AddWarningEmptyPath(nameof(obrbFile));
@@ -34,7 +33,7 @@ namespace Fox.GameKit
                 }
                 
                 byte[] obrbData = File.ReadAllBytes(obrbExternalPath);
-                obrbAsset = ConvertFile(obrbData);
+                ObjectBrushBlockAsset obrbAsset = ConvertFile(obrbData);
                 Fox.Fs.FileSystem.CreateAsset(obrbAsset, obrbFile.path.String);
                 AssetDatabase.SaveAssets();
             }

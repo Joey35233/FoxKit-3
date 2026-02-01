@@ -7,6 +7,8 @@ using Fox.Gr;
 using UnityEditor;
 using UnityEngine;
 using File = System.IO.File;
+using Transform = UnityEngine.Transform;
+using TransformUtils = UnityEditor.TransformUtils;
 
 namespace Fox.GameKit
 {
@@ -16,8 +18,7 @@ namespace Fox.GameKit
         public override void OnDeserializeEntity(TaskLogger logger)
         {
             base.OnDeserializeEntity(logger);
-
-            ObjectBrushAsset obrAsset;
+            
             if (obrFile == FilePtr.Empty)
             {
                 logger.AddWarningEmptyPath(nameof(obrFile));
@@ -33,7 +34,7 @@ namespace Fox.GameKit
                 }
                 
                 byte[] obrData = File.ReadAllBytes(obrExternalPath);
-                obrAsset = ConvertFile(obrData);
+                ObjectBrushAsset obrAsset = ConvertFile(obrData);
                 Fox.Fs.FileSystem.CreateAsset(obrAsset, obrFile.path.String);
                 AssetDatabase.SaveAssets();
             }
@@ -147,10 +148,10 @@ namespace Fox.GameKit
         {
             for (int i = this.transform.childCount - 1; i >= 0; i--)
             {
-                var child = this.transform.GetChild(i);
-                if (child.GetComponent<Entity>())
+                var child = this.transform.GetChild(i).gameObject;
+                if (child.GetComponent<Entity>() && !PrefabUtility.IsAnyPrefabInstanceRoot(child))
                     continue;
-                DestroyImmediate(child.gameObject);
+                DestroyImmediate(child);
             }
             
             Fox.GameKit.FoxGameKitModule.ObjectBrushRegistry[this.name] = this;
@@ -165,9 +166,13 @@ namespace Fox.GameKit
                         continue;
                 
                     GameObject instance = (GameObject)PrefabUtility.InstantiatePrefab(plugin.gameObject);
-                    instance.transform.position = obj.Position;
-                    instance.transform.rotation = obj.Rotation;
-                    instance.transform.SetParent(this.transform);
+                    instance.hideFlags = HideFlags.DontSaveInEditor;
+                    Transform instanceTransform = instance.transform;
+                    instanceTransform.position = obj.Position;
+                    instanceTransform.rotation = obj.Rotation;
+                    instanceTransform.localScale = (1.0f + obj.NormalizedScale) * Vector3.one;
+                    instanceTransform.SetParent(this.transform, true);
+                    TransformUtils.SetConstrainProportions(instanceTransform, true);
                 }
             }
         }
