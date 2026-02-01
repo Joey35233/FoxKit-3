@@ -62,6 +62,8 @@ namespace Fox.GameKit
             ObjectBrushAsset obrAsset = ConvertFile(obrData);
             Fox.Fs.FileSystem.CreateAsset(obrAsset, obrFile.path.String);
             AssetDatabase.SaveAssets();
+            
+            this.OnEnable();
         }
 
         public unsafe ObjectBrushAsset ConvertFile(byte[] file)
