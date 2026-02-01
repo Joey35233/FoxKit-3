@@ -3,7 +3,6 @@ using Fox.Core;
 using Fox.EdCore;
 using Fox.Graphx;
 using System;
-using System.Linq;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -31,7 +30,9 @@ namespace Fox.EdGraphx
 
         protected virtual void OnSceneGUI()
         {
-            GraphxSpatialGraphData graph = Node.transform.parent.GetComponent<GraphxSpatialGraphData>();
+            var graph = Node.transform.GetComponentInParent<GraphxSpatialGraphData>();
+            if (graph == null)
+                return;
 
             Handles.matrix = graph.GetGraphWorldMatrix();
 
@@ -102,7 +103,7 @@ namespace Fox.EdGraphx
             var graph = Node.transform.GetComponentInParent<GraphxSpatialGraphData>();
             if (graph == null)
             {
-                Debug.LogError($"Parent GameObject is not a ${nameof(GraphxSpatialGraphData)}.");
+                Debug.LogError($"Parent GameObject is not a {nameof(GraphxSpatialGraphData)}.");
                 return;
             }
 

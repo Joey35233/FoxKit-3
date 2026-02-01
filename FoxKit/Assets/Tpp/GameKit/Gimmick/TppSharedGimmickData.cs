@@ -1,54 +1,43 @@
 using Fox.Core;
 using Fox.Core.Utils;
-using System;
-using System.IO;
-using Fox.Fio;
+using Fox.GameKit;
+using Fox.GameKit.Locator;
 using UnityEditor;
 using UnityEngine;
+using File = System.IO.File;
 
 namespace Tpp.GameKit
 {
-    [ExecuteInEditMode]
+    [ExecuteAlways]
     public partial class TppSharedGimmickData : Fox.Core.Data
     {
         public override void OnDeserializeEntity(TaskLogger logger)
         {
             base.OnDeserializeEntity(logger);
 
-            //FIND MODELS
-
-            bool hasModel = true;
-            if (modelFile == FilePtr.Empty && breakedModelFile == FilePtr.Empty)
-            {
-                logger.AddWarningEmptyPath(nameof(modelFile));
-                logger.AddWarningEmptyPath(nameof(breakedModelFile));
-                hasModel = false;
-            }
-
-            if (partsFile == FilePtr.Empty)
-            {
-                logger.AddWarningEmptyPath(nameof(partsFile));
-                return;
-            }
-
-            //LOCATORS
-
+            // Mandatory
+            LocatorEntry[] locators;
             if (locaterFile == FilePtr.Empty)
             {
                 logger.AddWarningEmptyPath(nameof(locaterFile));
                 return;
             }
-
-            //PLACE 'EM
-
-            GameObject assetModelFile = AssetManager.LoadAsset<GameObject>(modelFile, out string modelFileUnityPath);
-            GameObject assetBreakedModelFile = AssetManager.LoadAsset<GameObject>(breakedModelFile, out string breakedModelFileUnityPath);
-            if (assetModelFile == null
-                && assetBreakedModelFile == null)
+            else
             {
-                logger.AddWarningMissingAsset(modelFileUnityPath);
-                logger.AddWarningMissingAsset(breakedModelFileUnityPath);
-                hasModel = false;
+                string lbaExternalPath = Fox.Fs.FileSystem.GetExternalPathFromFoxPath(locaterFile.path.String);
+                if (!File.Exists(lbaExternalPath))
+                {
+                    logger.AddWarningMissingAsset(locaterFile.path.String);
+                    return;
+                }
+                
+                byte[] lbaData = File.ReadAllBytes(lbaExternalPath);
+                locators = LocatorBinaryArrayFile.Convert(lbaData);
+
+                LocatorArrayAsset locatorArrayAsset = ScriptableObject.CreateInstance<LocatorArrayAsset>();
+                locatorArrayAsset.Locators = locators;
+                Fox.Fs.FileSystem.CreateAsset(locatorArrayAsset, locaterFile.path.String);
+                AssetDatabase.SaveAssets();
             }
             string locaterPath = "/Game" + locaterFile.path.String;
 
@@ -56,113 +45,68 @@ namespace Tpp.GameKit
             
             ScriptableObject locaterAsset = AssetManager.LoadAssetWithExtensionReplacement<ScriptableObject>(locaterFile, "asset", out string unityPath);
 
-            if (locaterAsset == null)
+            // Mandatory
+            Object partsPrefab;
+            if (partsFile == FilePtr.Empty)
             {
-                locaterAsset=LocatorFileReader.Read(new FileStreamReader(new FileStream(readPath, FileMode.Open)));
-            
-                AssetDatabase.CreateAsset(locaterAsset,  unityPath);
+                logger.AddWarningEmptyPath(nameof(partsFile));
+                return;
             }
+            else
+            {
+                partsPrefab = (GameObject)DataSetFile2.ImportPrefab(partsFile);
             
-            AssetDatabase.SaveAssets();
+                if (!partsPrefab)
+                {
+                    logger.AddWarningMissingAsset(partsFile.path.String);
+                    return;
+                }
+            }
 
-            switch (locaterAsset)
+            // Optional
+            // GameObject modelFilePrefab = null;
+            if (modelFile == FilePtr.Empty)
             {
-                case NamedLocatorBinaryArrayAsset namedAsset:
-                    foreach (NamedLocatorBinary locator in namedAsset.locators)
-                    {
-                        LocatorBinaryObject locatorGameObject =
-                            new GameObject(locator.GetLocatorName()).AddComponent<LocatorBinaryObject>();
-                        
-                        GameObject partsPrefab = (GameObject)DataSetFile2.GetPrefab(partsFile);
-                        if (partsPrefab is not null)
-                        {
-                            partsPrefab.transform.parent = locatorGameObject.transform;
-                        }
-                        
-                        locatorGameObject.transform.position = locator.GetTranslation();
-                        locatorGameObject.transform.rotation = locator.GetRotation();
-                        if (assetModelFile != null)
-                        {
-                            var instance = GameObject.Instantiate(assetModelFile);
-                            instance.transform.SetParent(locatorGameObject.transform, false);
-                        }
-                        if (assetBreakedModelFile != null)
-                        {
-                            var instance = GameObject.Instantiate(assetBreakedModelFile);
-                            instance.transform.SetParent(locatorGameObject.transform, false);
-                        }
-                        
-                        if (partsPrefab is null && assetModelFile is null && assetBreakedModelFile is null)
-                            locatorGameObject.ShouldDrawGizmo = true;
-                            
-                        locatorGameObject.transform.SetParent(gameObject.transform);
-                    }
-                    break;
-                case ScaledLocatorBinaryArrayAsset scaledAsset:
-                    foreach (ScaledLocatorBinary locator in scaledAsset.locators)
-                    {
-                        LocatorBinaryObject locatorGameObject = new GameObject(locator.GetLocatorName()).AddComponent<LocatorBinaryObject>();
-                        
-                        GameObject partsPrefab = (GameObject)DataSetFile2.GetPrefab(partsFile);
-                        if (partsPrefab is not null)
-                        {
-                            partsPrefab.transform.parent = locatorGameObject.transform;
-                        }
-                        
-                        locatorGameObject.transform.position = locator.GetTranslation();
-                        locatorGameObject.transform.rotation = locator.GetRotation();
-                        locatorGameObject.transform.localScale = locator.GetScale();
-                        if (assetModelFile != null)
-                        {
-                            var instance = GameObject.Instantiate(assetModelFile);
-                            instance.transform.SetParent(locatorGameObject.transform, false);
-                        }
-                        if (assetBreakedModelFile != null)
-                        {
-                            var instance = GameObject.Instantiate(assetBreakedModelFile);
-                            instance.transform.SetParent(locatorGameObject.transform, false);
-                        }
-                        locatorGameObject.transform.SetParent(gameObject.transform);
-                        
-                        if (partsPrefab is null && assetModelFile is null && assetBreakedModelFile is null)
-                            locatorGameObject.ShouldDrawGizmo = true;
-                    }
-                    break;
-                case PowerCutAreaLocatorBinaryArrayAsset powerCutAreaAsset:
-                    foreach (PowerCutAreaLocatorBinary locator in powerCutAreaAsset.locators)
-                    {
-                        LocatorBinaryObject locatorGameObject = new GameObject(name).AddComponent<LocatorBinaryObject>();
-                        
-                        GameObject partsPrefab = (GameObject)DataSetFile2.GetPrefab(partsFile);
-                        if (partsPrefab is not null)
-                        {
-                            partsPrefab.transform.parent = locatorGameObject.transform;
-                        }
-                        
-                        locatorGameObject.transform.position = locator.GetTranslation();
-                        locatorGameObject.transform.rotation = locator.GetRotation();
-                        if (assetModelFile != null)
-                        {
-                            var instance = GameObject.Instantiate(assetModelFile);
-                            instance.transform.SetParent(locatorGameObject.transform, false);
-                        }
-                        if (assetBreakedModelFile != null)
-                        {
-                            var instance = GameObject.Instantiate(assetBreakedModelFile);
-                            instance.transform.SetParent(locatorGameObject.transform, false);
-                        }
-                        locatorGameObject.transform.SetParent(gameObject.transform);
-                        
-                        if (partsPrefab is null && assetModelFile is null && assetBreakedModelFile is null)
-                            locatorGameObject.ShouldDrawGizmo = true;
-                    }
-                    break;
-                case null:
-                    logger.AddWarningMissingAsset(locaterFile.path.String);
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
+                logger.AddWarningEmptyPath(nameof(modelFile));
             }
+            else
+            {
+                Fox.Fs.FileSystem.ImportAssetCopy(modelFile.path.String);
+                // modelFilePrefab = Fox.Fs.FileSystem.LoadAsset<GameObject>(modelFile.path.String);
+            }
+
+            // Optional
+            // GameObject breakedModelPrefab = null;
+            if (breakedModelFile == FilePtr.Empty)
+            {
+                logger.AddWarningEmptyPath(nameof(breakedModelFile));
+            }
+            else
+            {
+                Fox.Fs.FileSystem.ImportAssetCopy(breakedModelFile.path.String);
+                // breakedModelPrefab = Fox.Fs.FileSystem.LoadAsset<GameObject>(breakedModelFile.path.String);
+            }
+            
+            foreach (LocatorEntry locator in locators)
+            {
+                GameObject locatorGameObject = (GameObject)PrefabUtility.InstantiatePrefab(partsPrefab, gameObject.transform);
+                if (locator.Name != null)
+                    locatorGameObject.name = locator.Name;
+                
+                locatorGameObject.transform.position = locator.Position;
+                locatorGameObject.transform.rotation = locator.Rotation;
+                locatorGameObject.transform.localScale = locator.Scale;
+
+                locatorGameObject.AddComponent<LocatorGimmick>();
+            }
+        }
+        public override void OnSerializeEntity(EntityExportContext context)
+        {
+            base.OnSerializeEntity(context);
+
+            var dataSetName = Fox.Fs.FileSystem.GetFoxPathFromUnityPath(AssetDatabase.GetAssetOrScenePath(this));
+
+            LocatorFileWriter.Write(Fox.Fs.FileSystem.GetExternalPathFromFoxPath(locaterFile.path.String),gameObject,dataSetName,true);
         }
     }
 }

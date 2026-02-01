@@ -27,8 +27,6 @@ namespace Fox.Core
                     if (property)
                         property.ChangeStaticArraySize(arraySize);
                     
-                    //Debug.Log("dp");
-                    
                     break;
                 }
                 case PropertyInfo.ContainerType.DynamicArray:

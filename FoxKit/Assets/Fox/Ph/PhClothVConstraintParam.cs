@@ -14,9 +14,9 @@ namespace Fox.Ph
             refB = Fox.Math.FoxToUnityVector3(refB);
         }
 
-        public override void OverridePropertiesForExport(EntityExportContext context)
+        public override void OnSerializeEntity(EntityExportContext context)
         {
-            base.OverridePropertiesForExport(context);
+            base.OnSerializeEntity(context);
 
             context.OverrideProperty(nameof(refA), Fox.Math.UnityToFoxVector3(refA));
             context.OverrideProperty(nameof(refB), Fox.Math.UnityToFoxVector3(refB));

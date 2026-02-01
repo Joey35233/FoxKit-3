@@ -13,7 +13,7 @@ namespace FoxKit.MenuItems
         [MenuItem("FoxKit/Import/GsRouteFile")]
         private static void OnImportAsset()
         {
-            string assetPath = EditorUtility.OpenFilePanel("Import GsRouteFile", "", "frt");
+            string assetPath = Fox.Fs.FileUtils.OpenFilePanel("Import GsRouteFile", "", "frt");
             if (System.String.IsNullOrEmpty(assetPath))
                 return;
 

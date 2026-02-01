@@ -1,123 +1,163 @@
-﻿using System.Collections.Generic;
-using System.IO;
+﻿using System;
+using Codice.CM.Common.Merge;
+using Fox.Core;
 using Fox.Core.Utils;
-using Fox.Fio;
+using Fox.Gr;
 using UnityEditor;
 using UnityEngine;
+using File = System.IO.File;
+using Transform = UnityEngine.Transform;
+using TransformUtils = UnityEditor.TransformUtils;
 
 namespace Fox.GameKit
 {
+    [ExecuteAlways]
     public partial class ObjectBrushBlock
     {
-        
         public override void OnDeserializeEntity(TaskLogger logger)
         {
             base.OnDeserializeEntity(logger);
-            if (System.String.IsNullOrEmpty(obrbFile.path.String))
-            {
-                Debug.LogWarning($"{name}: obrbFile is null");
-                return;
-            }
             
-            string locaterPath = "/Game" + obrbFile.path.String;
-
-            string readPath = "Assets" + locaterPath;
-
-            ObjectBrushAsset asset = ObjectBrushReader.Read(new FileStreamReader(new FileStream(readPath, FileMode.Open)));
-
-            if (!asset)
+            if (obrbFile == FilePtr.Empty)
             {
-                Debug.LogWarning($"{name}: asset could not be created");
+                logger.AddWarningEmptyPath(nameof(obrbFile));
                 return;
-            }
-
-            string trimmedPath = readPath.Replace(".obrb", ".asset");
-
-            AssetDatabase.CreateAsset(asset, $"{trimmedPath}");
-
-            AssetDatabase.SaveAssets();
-
-            if (!System.IO.File.Exists(readPath))
-            {
-                Debug.LogError($"{readPath} does not exist");
-                return;
-            }
-            
-            ObjectBrush objectBrush = FoxGameKitModule.ObjectBrushRegistry[this.objectBrushName];
-
-            var assetMain = AssetDatabase.LoadAssetAtPath<ObjectBrushAsset>(("Assets" + ("/Game" + objectBrush.obrFile.path.String)).Replace(".obr", ".asset"));
-
-            if (!asset)
-            {
-                Debug.LogWarning($"{name}: asset could not be created");
-                return;
-            }
-            
-            List<ObrObject> ObrObjects = new();
-
-            foreach (var obj in asset.objects)
-            {
-                ObjectBrushPlugin obrPlugin = objectBrush.pluginHandle[obj.GetPluginBrushIndex()] as ObjectBrushPlugin;
-                
-                if (!obrPlugin) continue;
-
-                ObrObject obrObj = new()
-                {
-                    Position = Math.FoxToUnityVector3(GetPositionFWSFromPositionEWS(obj,assetMain,(ushort)blockId)),
-                    Rotation = Math.FoxToUnityQuaternion(obj.GetRotation()),
-                    Scale = (float)obj.GetNormalizedScale() / System.Byte.MaxValue,
-                    Plugin = obrPlugin
-                };
-
-                obrPlugin.RegisterObject(obrObj);
-                
-                ObrObjects.Add(obrObj);
-            }
-        }
-        //joey func, but perhaps pointlessly dynamic!
-        private const ushort OBR_MAGIC = 32640;
-        private static Vector3 GetPositionFWSFromPositionEWS(ObjectBrushObjectBinary obj, ObjectBrushAsset asset, ushort blockId)
-        {
-            ushort blockIndex =  blockId;
-
-            uint numBlocksW = asset.numBlocksW;
-            uint numBlocksH = asset.numBlocksH;
-
-            ushort METERS_PER_BLOCK_X = (ushort)(asset.blockSizeH / 1);
-            ushort METERS_PER_BLOCK_Z = (ushort)(asset.blockSizeW / 1);
-            // block indices [0,32) x [0,32)
-            ushort blockX = (ushort)(blockIndex % numBlocksH);
-            ushort blockZ = (ushort)Mathf.Floor(blockIndex / numBlocksW);
-
-            // block center position
-            float blockCenterXFWS = METERS_PER_BLOCK_X * (blockX + 0.5f - (0.5f * numBlocksH));
-            float blockCenterZFWS = METERS_PER_BLOCK_Z * (blockZ + 0.5f - (0.5f * numBlocksW));
-
-            // output position FWS
-            float OBR_POSITION_DECODE_X = METERS_PER_BLOCK_X / (float)OBR_MAGIC;
-            float OBR_POSITION_DECODE_Z = METERS_PER_BLOCK_Z / (float)OBR_MAGIC;
-            float xFWS = blockCenterXFWS + (OBR_POSITION_DECODE_X * obj.GetXPosition());
-            float zFWS = blockCenterZFWS + (OBR_POSITION_DECODE_Z * obj.GetZPosition());
-
-            return new Vector3(xFWS, obj.GetYPosition(), zFWS);
-        }
-        private static GameObject MakeStaticModelGameObject(Fox.Core.Transform transform, string modelFilePath, GameObject gameObject)
-        {
-            string trimmedModelFilePath = modelFilePath.Remove(0, 1);
-            if (AssetDatabase.LoadAssetAtPath<GameObject>(trimmedModelFilePath) is GameObject modelFileAsset)
-            {
-                var modelFileInstance = GameObject.Instantiate(modelFileAsset);
-                modelFileInstance.transform.position = transform.translation;
-                modelFileInstance.transform.rotation = transform.rotation_quat;
-                modelFileInstance.transform.localScale = transform.scale;
-                modelFileInstance.transform.SetParent(gameObject.transform, false);
-                return modelFileInstance;
             }
             else
             {
-                Debug.LogWarning($"Unable to find asset at path {trimmedModelFilePath}");
+                string obrbExternalPath = Fox.Fs.FileSystem.GetExternalPathFromFoxPath(obrbFile.path.String);
+                if (!File.Exists(obrbExternalPath))
+                {
+                    logger.AddWarningMissingAsset(obrbFile.path.String);
+                    return;
+                }
+                
+                byte[] obrbData = File.ReadAllBytes(obrbExternalPath);
+                ObjectBrushBlockAsset obrbAsset = ConvertFile(obrbData);
+                Fox.Fs.FileSystem.CreateAsset(obrbAsset, obrbFile.path.String);
+                AssetDatabase.SaveAssets();
             }
-            return null;
+        }
+        
+        public unsafe ObjectBrushBlockAsset ConvertFile(byte[] file)
+        {
+            // TODO: What happens with this if I return null later?
+            ObjectBrushBlockAsset obrbAsset = ScriptableObject.CreateInstance<ObjectBrushBlockAsset>();
+            
+            fixed (byte* data = file)
+            {
+                FoxDataHeader* header = (FoxDataHeader*)data;
+                if (header->Version != 2)
+                    return null;
+                
+                FoxDataNode* node = header->GetNodes();
+                if (node->Flags != 0)
+                    return null;
+                    
+                FoxDataNodeAttribute* blockIdAttrib = node->FindAttribute("blockId");
+                FoxDataNodeAttribute* numObjectsAttrib = node->FindAttribute("numObjects");
+                FoxDataNodeAttribute* flagsAttrib = node->FindAttribute("flags");
+
+                if (blockIdAttrib == null || numObjectsAttrib == null || flagsAttrib == null)
+                    return null;
+                
+                uint flags = flagsAttrib->GetUIntValue();
+                Debug.Assert(flags == 1);
+
+                if (!Fox.GameKit.FoxGameKitModule.ObjectBrushRegistry.TryGetValue(this.objectBrushName,
+                        out ObjectBrush objectBrush))
+                    return null;
+                
+                ObjectBrushAsset obrAsset = Fox.Fs.FileSystem.LoadAsset<ObjectBrushAsset>(objectBrush.obrFile.path.String);
+                float blockSizeW = obrAsset.BlockSizeW;
+                float blockSizeH = obrAsset.BlockSizeH;
+                uint numBlocksW = obrAsset.NumBlocksW;
+                uint numBlocksH = obrAsset.NumBlocksH;
+
+                uint fileBlockId = blockIdAttrib->GetUIntValue();
+                uint objectCount = numObjectsAttrib->GetUIntValue();
+                
+                // Block indices [0,32) x [0,32)
+                ushort blockX = (ushort)(fileBlockId % numBlocksH);
+                ushort blockZ = (ushort)(fileBlockId / numBlocksW);
+
+                // Block center position
+                float blockCenterX = blockSizeH * (blockX + 0.5f - (0.5f * numBlocksH));
+                float blockCenterZ = blockSizeW * (blockZ + 0.5f - (0.5f * numBlocksW));
+                
+                DataUnit* unit = (DataUnit*)node->GetData();
+                ObjectBrushObject[] objects = new ObjectBrushObject[objectCount];
+                for (uint i = 0; i < objectCount; i++, unit++)
+                {
+                    float posX = unit->PositionX / (float)byte.MaxValue + blockCenterX;
+                    float posZ = unit->PositionZ / (float)byte.MaxValue + blockCenterZ;
+                    
+                    Vector3 position = new Vector3(posX, unit->PositionY, posZ);
+                    position = Fox.Math.FoxToUnityVector3(position);
+                    
+                    Quaternion rotation = new Quaternion(unit->RotationX, unit->RotationY, unit->RotationZ, unit->RotationW);
+                    rotation = Fox.Math.FoxToUnityQuaternion(rotation);
+
+                    float normalizedScale = unit->NormalizedScale / (float)byte.MaxValue;
+                    
+                    ObjectBrushPlugin plugin = objectBrush.pluginHandle[unit->PluginId] as ObjectBrushPlugin;
+
+                    ObjectBrushObject obj = new ObjectBrushObject
+                    {
+                        Position = position,
+                        Rotation = rotation,
+                        NormalizedScale = normalizedScale,
+                        Plugin = plugin,
+                    };
+                    objects[i] = obj;
+                }
+                
+                obrbAsset.Objects = objects;
+            }
+            
+            return obrbAsset;
+        }
+
+        private void OnEnable()
+        {
+            for (int i = this.transform.childCount - 1; i >= 0; i--)
+            {
+                var child = this.transform.GetChild(i).gameObject;
+                if (child.GetComponent<Entity>() && !PrefabUtility.IsAnyPrefabInstanceRoot(child))
+                    continue;
+                DestroyImmediate(child);
+            }
+            
+            ObjectBrushBlockAsset obrbAsset = Fox.Fs.FileSystem.LoadAsset<ObjectBrushBlockAsset>(obrbFile.path.String);
+            if (obrbAsset != null)
+            {
+                foreach (ObjectBrushObject obj in obrbAsset.Objects)
+                {
+                    ObjectBrushPlugin plugin = obj.Plugin;
+                    if (plugin == null)
+                        continue;
+                
+                    GameObject instance = (GameObject)PrefabUtility.InstantiatePrefab(plugin.gameObject);
+                    instance.hideFlags = HideFlags.DontSaveInEditor;
+                    Transform instanceTransform = instance.transform;
+                    instanceTransform.position = obj.Position;
+                    instanceTransform.rotation = obj.Rotation;
+                    instanceTransform.localScale = (1.0f + obj.NormalizedScale) * Vector3.one;
+                    instanceTransform.SetParent(this.transform, true);
+                    TransformUtils.SetConstrainProportions(instanceTransform, true);
+                }
+            }
+        }
+
+        private void OnDisable()
+        {
+            for (int i = this.transform.childCount - 1; i >= 0; i--)
+            {
+                var child = this.transform.GetChild(i).gameObject;
+                if (child.GetComponent<Entity>() && !PrefabUtility.IsAnyPrefabInstanceRoot(child))
+                    continue;
+                DestroyImmediate(child);
+            }
         }
     }
 }

@@ -38,6 +38,19 @@ namespace Fox.Fs
 
             return result;
         }
+        
+        public static string GetFoxPathFromUnityPath(string unityPath)
+        {
+            string basePath = FsModule.UnityBasePath;
+            
+            int index = unityPath.IndexOf(basePath, StringComparison.Ordinal);
+            if (index < 0)
+                return null;
+            
+            string result = unityPath[(index + basePath.Length)..];
+
+            return result;
+        }
 
         public static string GetExternalPathFromFoxPath(string foxPath)
         {
@@ -72,15 +85,24 @@ namespace Fox.Fs
             return result;
         }
     
-        private static string ResolveFoxPath(string path)
+        private static string ResolveFoxPath(string foxPath)
         {
-            Debug.Assert(path.StartsWith('/'));
+            Debug.Assert(foxPath != string.Empty, "Resolving empty string.");
+            Debug.Assert(foxPath.StartsWith('/'), "Virtual path not absolute.");
             
             // Very basic handling
-            if (path.EndsWith(".fox2"))
-                path += ".unity";
+            if (foxPath.EndsWith(".fox2"))
+                foxPath += ".unity";
+            if (foxPath.EndsWith(".parts"))
+                foxPath += ".prefab";
+            else if (foxPath.EndsWith(".lba"))
+                foxPath += ".asset";
+            else if (foxPath.EndsWith(".obr"))
+                foxPath += ".asset";
+            else if (foxPath.EndsWith(".obrb"))
+                foxPath += ".asset";
     
-            return path;
+            return foxPath;
         }
 
         public static ReadOnlySpan<byte> ReadExternalFile(string foxPath)
@@ -100,11 +122,15 @@ namespace Fox.Fs
             return File.ReadAllBytes(unityPath);
         }
 
-        public static bool TryCopyImportAsset(string foxPath, ImportFileMode importMode = ImportFileMode.PreserveImportPath, bool createDirectory = true)
+        public static void ImportAssetCopy(string foxPath, ImportFileMode importMode = ImportFileMode.PreserveImportPath, bool createDirectory = true)
         {
             string externalPath = GetExternalPathFromFoxPath(foxPath);
             string unityPath = GetUnityPathFromFoxPath(foxPath);
 
+            // Never recopy; source Fox files are immutable
+            if (File.Exists(unityPath))
+                return;
+            
             if (createDirectory)
             {
                 string directoryPath = System.IO.Path.GetDirectoryName(unityPath);
@@ -113,11 +139,10 @@ namespace Fox.Fs
                     Directory.CreateDirectory(directoryPath);
                 }
             }
-
-            if (!File.Exists(unityPath))
-                File.Copy(externalPath, unityPath, false);
-
-            return true;
+            
+            File.Copy(externalPath, unityPath, false);
+            
+            AssetDatabase.ImportAsset(unityPath);
         }
 
         // Path is foxPath is import mode is not Loose
@@ -162,6 +187,42 @@ namespace Fox.Fs
             return true;
         }
 
+        public static T LoadAsset<T>(string foxPath) where T : UnityEngine.Object
+        {
+            string unityPath = GetUnityPathFromFoxPath(foxPath);
+            return AssetDatabase.LoadAssetAtPath<T>(unityPath);
+        }
+        public static void CreateAsset(UnityEngine.Object asset, string foxPath, bool createDirectory = true)
+        {
+            string unityPath = GetUnityPathFromFoxPath(foxPath);
+            
+            if (createDirectory)
+            {
+                string directoryPath = System.IO.Path.GetDirectoryName(unityPath);
+                if (!Directory.Exists(directoryPath))
+                {
+                    Directory.CreateDirectory(directoryPath);
+                }
+            }
+            
+            AssetDatabase.CreateAsset(asset, unityPath);
+        }
+        public static GameObject CreatePrefabAsset(GameObject prefab, string foxPath, bool createDirectory = true)
+        {
+            string unityPath = GetUnityPathFromFoxPath(foxPath);
+            
+            if (createDirectory)
+            {
+                string directoryPath = System.IO.Path.GetDirectoryName(unityPath);
+                if (!Directory.Exists(directoryPath))
+                {
+                    Directory.CreateDirectory(directoryPath);
+                }
+            }
+            
+            return PrefabUtility.SaveAsPrefabAsset(prefab, unityPath);
+        }
+
         // Utilities
         public static void OpenExternalFolder()
         {
@@ -177,13 +238,5 @@ namespace Fox.Fs
             UnityEngine.Object folder = AssetDatabase.LoadAssetAtPath<UnityEngine.Object>(path);
             AssetDatabase.OpenAsset(folder);
         }
-        
-    //
-    //     internal static FileStreamReader CreateFromPath(Path path, System.Text.Encoding encoding) => new(new System.IO.FileStream(ResolvePathname(path), System.IO.FileMode.Open), encoding);
-    //
-    //     private void RegisterImportFileExtension(string extension, System.Func<string, string> nameResolver)
-    //     {
-    //         // TODO
-    //     }
     }
 }

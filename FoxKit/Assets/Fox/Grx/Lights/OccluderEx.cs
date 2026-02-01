@@ -14,9 +14,9 @@ namespace Fox.Grx
                 positions[positionIndex] = Fox.Math.FoxToUnityVector3(positions[positionIndex]);
         }
 
-        public override void OverridePropertiesForExport(EntityExportContext context)
+        public override void OnSerializeEntity(EntityExportContext context)
         {
-            base.OverridePropertiesForExport(context);
+            base.OnSerializeEntity(context);
 
             Vector3[] _positions = positions;
             for (int i = 0; i < _positions.Length; i++)

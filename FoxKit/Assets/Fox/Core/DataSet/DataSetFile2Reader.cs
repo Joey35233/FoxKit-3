@@ -73,8 +73,7 @@ namespace Fox.Core
                             Debug.Assert(entityDef->HeaderSize == 0x40);
                             Debug.Assert(entityDef->Signature == 0x00746E65); // "ent\0"
 
-                            // TODO: Can turn into Dictionary that uses StrCode directly
-                            EntityInfo entityInfo = EntityInfo.GetEntityInfo(entityDef->ClassName.ToString());
+                            EntityInfo entityInfo = EntityInfo.GetEntityInfo(entityDef->ClassName);
                             
                             Entity entity = gameObject.AddComponent(entityInfo.Type) as Entity;
                             EntityAddressMap.Add(entityDef->Address, entity);
@@ -187,12 +186,18 @@ namespace Fox.Core
                             entityDef = (DataSetFile2.EntityDef*)((byte*)entityDef + entityDef->NextEntityOffset);
                         }
                         
-                        // Post
+                        // OnDeserialize
                         foreach (Entity entity in entities)
                         {
                             entity.OnDeserializeEntity(logger);
                             
                             entity.gameObject.SetActive(true);
+                        }
+                        
+                        // OnPostDeserialize
+                        foreach (Entity entity in entities)
+                        {
+                            entity.OnPostDeserializeEntity(logger);
                         }
                     }
 

@@ -143,11 +143,11 @@ namespace Fox.Gr.Terrain
                 || configurationIds is null)
                 return false;
             
-            FoxDataNodeAttribute* widthParam = paramNode->FindParameter("width");
-            FoxDataNodeAttribute* heightParam = paramNode->FindParameter("height");
-            FoxDataNodeAttribute* highPerLowParam = paramNode->FindParameter("highPerLow");
-            FoxDataNodeAttribute* maxLodLevelParam = paramNode->FindParameter("maxLodLevel");
-            FoxDataNodeAttribute* gridDistanceParam = paramNode->FindParameter("gridDistance");
+            FoxDataNodeAttribute* widthParam = paramNode->FindAttribute("width");
+            FoxDataNodeAttribute* heightParam = paramNode->FindAttribute("height");
+            FoxDataNodeAttribute* highPerLowParam = paramNode->FindAttribute("highPerLow");
+            FoxDataNodeAttribute* maxLodLevelParam = paramNode->FindAttribute("maxLodLevel");
+            FoxDataNodeAttribute* gridDistanceParam = paramNode->FindAttribute("gridDistance");
 
             if (widthParam is null 
                 || heightParam is null 
@@ -326,7 +326,7 @@ namespace Fox.Gr.Terrain
             if (comboTextureNode is null)
                 return false;
             
-            FoxDataNodeAttribute* pitchParam = heightMapNode->FindParameter("pitch");
+            FoxDataNodeAttribute* pitchParam = heightMapNode->FindAttribute("pitch");
             if (pitchParam is null || pitchParam->Type != FoxDataNodeAttribute.DataType.UInt)
                 return false;
             
@@ -366,7 +366,7 @@ namespace Fox.Gr.Terrain
             if (comboTextureNode is null)
                 return false;
             
-            FoxDataNodeAttribute* pitchParam = heightMapNode->FindParameter("pitch");
+            FoxDataNodeAttribute* pitchParam = heightMapNode->FindAttribute("pitch");
             if (pitchParam is null || pitchParam->Type != FoxDataNodeAttribute.DataType.UInt)
                 return false;
             
@@ -411,7 +411,7 @@ namespace Fox.Gr.Terrain
                     || configurationIdsNode is null)
                     return false;
 
-                FoxDataNodeAttribute* maxLodParam = editParamNode->FindParameter("maxLodLevel");
+                FoxDataNodeAttribute* maxLodParam = editParamNode->FindAttribute("maxLodLevel");
                 if (maxLodParam is null || maxLodParam->Type != FoxDataNodeAttribute.DataType.UInt)
                     return false;
             

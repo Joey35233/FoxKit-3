@@ -8,7 +8,7 @@ public class RunScriptMenuItem
     [MenuItem("FoxKit/Run Script")]
     private static void Execute()
     {
-        string file = EditorUtility.OpenFilePanel("Run Lua script", "", "lua");
+        string file = Fox.Fs.FileUtils.OpenFilePanel("Run Lua script", "", "lua");
         if (file.Length == 0)
         {
             return;

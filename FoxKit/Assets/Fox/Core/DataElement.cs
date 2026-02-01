@@ -30,9 +30,9 @@ namespace Fox.Core
             }
         }
 
-        public override void OverridePropertiesForExport(EntityExportContext context)
+        public override void OnSerializeEntity(EntityExportContext context)
         {
-            base.OverridePropertiesForExport(context);
+            base.OnSerializeEntity(context);
 
             // TODO: Ownerless DataElements
             Entity ownerData = transform.parent.GetComponent<Data>();

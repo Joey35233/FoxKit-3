@@ -40,7 +40,7 @@ namespace Fox.Core
 
                 var context = new EntityExportContext();
                 exportContexts.Add(entity, context);
-                entity.OverridePropertiesForExport(context);
+                entity.OnSerializeEntity(context);
             }
 
             long headerPosition = writer.BaseStream.Position;
@@ -113,12 +113,16 @@ namespace Fox.Core
 
         private List<Entity> GetEntitiesToExport(UnityEngine.SceneManagement.Scene sceneToExport, out CreateDataSetResult result)
         {
-            var entities = (from Entity entityComponent in UnityEngine.Object.FindObjectsByType<Entity>(FindObjectsSortMode.InstanceID)
-                            where entityComponent.ShouldWriteToFox2() && entityComponent.gameObject.scene == sceneToExport
-                            select entityComponent).ToList();
+            Entity[] entities = UnityEngine.Object.FindObjectsByType<Entity>(FindObjectsSortMode.InstanceID);
+            List<Entity> writeableEntities = new();
+            foreach (Entity entity in entities)
+            {
+                if (entity.ShouldWriteToFox2() && !PrefabUtility.IsPartOfAnyPrefab(entity) && entity.gameObject.scene == sceneToExport)
+                    writeableEntities.Add(entity);
+            }
 
-            result = CreateDataSet(entities);
-            return entities;
+            result = CreateDataSet(writeableEntities);
+            return writeableEntities;
         }
 
         enum CreateDataSetResult
