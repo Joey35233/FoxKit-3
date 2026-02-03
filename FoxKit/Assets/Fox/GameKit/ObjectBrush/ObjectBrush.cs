@@ -15,6 +15,7 @@ namespace Fox.GameKit
     [ExecuteAlways]
     public partial class ObjectBrush : Fox.Core.TransformData
     {
+        private const float BlockSize = 128;
         public override void OnDeserializeEntity(TaskLogger logger)
         {
             base.OnDeserializeEntity(logger);
@@ -63,7 +64,134 @@ namespace Fox.GameKit
             Fox.Fs.FileSystem.CreateAsset(obrAsset, obrFile.path.String);
             AssetDatabase.SaveAssets();
             
+            SetNumBlocks(obrAsset.NumBlocksH, obrAsset.NumBlocksW);
+            
             this.OnEnable();
+            
+            if (obrAsset != null)
+            {
+                foreach (ObjectBrushObject obj in obrAsset.Objects)
+                {
+                    ObjectBrushPlugin plugin = obj.Plugin;
+                    if (plugin == null)
+                        continue;
+                
+                    GameObject instance = (GameObject)PrefabUtility.InstantiatePrefab(plugin.gameObject);
+                    
+                    // At this stage, the handles are still Scene objects (pre-OnPostDeserializeEntity)
+                    if (instance == null)
+                        return;
+                    
+                    //instance.hideFlags = HideFlags.DontSaveInEditor;
+                    Transform instanceTransform = instance.transform;
+                    instanceTransform.position = obj.Position;
+                    instanceTransform.rotation = obj.Rotation;
+                    instanceTransform.localScale = (1.0f + obj.NormalizedScale) * Vector3.one;
+                    instanceTransform.SetParent(this.transform, true);
+                    TransformUtils.SetConstrainProportions(instanceTransform, true);
+                }
+            }
+        }
+
+        private void SetNumBlocks(uint numBlocksH, uint numBlocksW)
+        {
+            if (gameObject.TryGetComponent(out DynamicProperty_StaticArray_uint32 numBlocksHComponent))
+            {
+                foreach (var component in gameObject.GetComponents<DynamicProperty_StaticArray_uint32>())
+                {
+                    if (component.Name != "numBlocksH") continue;
+                    numBlocksHComponent = component;
+                    break;
+                }
+            }
+            if (numBlocksHComponent == null)
+            {
+                numBlocksHComponent = gameObject.AddComponent<DynamicProperty_StaticArray_uint32>();
+                numBlocksHComponent.Name = "numBlocksH";
+            }
+            numBlocksHComponent.SetElement(0,new Value(numBlocksH));
+            
+            if (gameObject.TryGetComponent(out DynamicProperty_StaticArray_uint32 numBlocksWComponent))
+            {
+                foreach (var component in gameObject.GetComponents<DynamicProperty_StaticArray_uint32>())
+                {
+                    if (component.Name != "numBlocksW") continue;
+                    numBlocksWComponent = component;
+                    break;
+                }
+            }
+            if (numBlocksWComponent == null || numBlocksWComponent.Name != "numBlocksW")
+            {
+                numBlocksWComponent = gameObject.AddComponent<DynamicProperty_StaticArray_uint32>();
+                numBlocksWComponent.Name = "numBlocksW";
+            }
+            numBlocksWComponent.SetElement(0,new Value(numBlocksW));
+        }
+
+        public (uint numBlocksH, uint numBlocksW) GetNumBlocks()
+        {
+            uint numBlocksH = 0;
+            uint numBlocksW = 0;
+            
+            foreach (var component in gameObject.GetComponents<DynamicProperty_StaticArray_uint32>())
+            {
+                switch (component.Name)
+                {
+                    case "numBlocksH":
+                        numBlocksH = component.GetElement(0).GetValueAsUInt32();
+                        break;
+                    case "numBlocksW":
+                        numBlocksW = component.GetElement(0).GetValueAsUInt32();
+                        break;
+                }
+            }
+
+            if (numBlocksH != 0 || numBlocksW != 0) return (numBlocksH, numBlocksW);
+            
+            float minX = 0;
+            float maxX = 0;
+            
+            float minZ = 0;
+            float maxZ = 0;
+            
+            for (int i = 0; i < gameObject.transform.childCount; i++)
+            {
+                var child = gameObject.transform.GetChild(i).gameObject;
+
+                if (!PrefabUtility.IsAnyPrefabInstanceRoot(child))
+                    continue;
+
+                if (!IsPlugin(child))
+                    continue;
+
+                var position = child.transform.position;
+                
+                
+                if (position.x < minX)
+                    minX = position.x;
+                
+                if (position.x > maxX)
+                    maxX = position.x;
+                
+                
+                if (position.z < minZ)
+                    minZ = position.z;
+                
+                if (position.z > maxZ)
+                    maxZ = position.z;
+
+            }
+
+            uint GetBlockCountFromBoundary(float bound)
+            {
+                var abs = System.Math.Abs(bound);
+                return (uint)System.Math.Ceiling(abs / BlockSize);
+            }
+
+            numBlocksH = GetBlockCountFromBoundary(minX) + GetBlockCountFromBoundary(maxX);
+            numBlocksW = GetBlockCountFromBoundary(minZ) + GetBlockCountFromBoundary(maxZ);
+
+            return (numBlocksH, numBlocksW);
         }
 
         public unsafe ObjectBrushAsset ConvertFile(byte[] file)
@@ -145,13 +273,13 @@ namespace Fox.GameKit
 
         private void OnEnable()
         {
-            for (int i = this.transform.childCount - 1; i >= 0; i--)
+            /*for (int i = this.transform.childCount - 1; i >= 0; i--)
             {
                 var child = this.transform.GetChild(i).gameObject;
                 if (child.GetComponent<Entity>() && !PrefabUtility.IsAnyPrefabInstanceRoot(child))
                     continue;
                 DestroyImmediate(child);
-            }
+            }*/
             
             Fox.GameKit.FoxGameKitModule.ObjectBrushRegistry[this.name] = this;
             
@@ -185,5 +313,53 @@ namespace Fox.GameKit
         {
             Fox.GameKit.FoxGameKitModule.ObjectBrushRegistry.Remove(this.name);
         }
+        
+        public override void OnSerializeEntity(EntityExportContext context)
+        {
+            base.OnSerializeEntity(context);
+
+            ObjectBrushFileWriter.WriteObjectBrush(this);
+        }
+
+        private static ObjectBrushPlugin GetPlugin(GameObject child)
+        {
+            return PrefabUtility.GetCorrespondingObjectFromSource(child).GetComponent<ObjectBrushPlugin>();
+        }
+
+        private int GetPluginIndex(GameObject child)
+        {
+            return pluginHandle.IndexOf(GetPlugin(child));
+        }
+
+        private bool IsPlugin(GameObject child)
+        {
+            return pluginHandle.Contains(GetPlugin(child));
+        }
+
+        public void DrawGizmo(bool isSelected)
+        {
+            Gizmos.matrix = this.transform.localToWorldMatrix;
+            Gizmos.color = Color.green;
+            if (!isSelected)
+                Gizmos.color/=4;
+            
+            (uint NumBlocksH, uint NumBlocksW) = GetNumBlocks();
+            
+            int blockHCenter = (int)(NumBlocksH / 2);
+            int blockWCenter = (int)(NumBlocksW / 2);
+            for (uint blockH = 0; blockH < NumBlocksH; blockH++)
+            {
+                float blockHX = (blockH - blockHCenter)*BlockSize+(BlockSize/2);
+                for (uint blockW = 0; blockW < NumBlocksW; blockW++)
+                {
+                    float blockWZ = (blockW - blockWCenter)*BlockSize+(BlockSize/2);
+                    Gizmos.DrawWireCube(new Vector3(blockHX,0,blockWZ), new Vector3(BlockSize,0,BlockSize));
+                }
+            }
+        }
+
+        public void OnDrawGizmos() => DrawGizmo(false);
+
+        public void OnDrawGizmosSelected() => DrawGizmo(true);
     }
 }

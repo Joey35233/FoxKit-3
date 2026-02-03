@@ -59,6 +59,8 @@ namespace Fox.GameKit
 
         private void Update()
         {
+            base.UpdateBase();
+            
             if (transform.hasChanged && ModelInstance != null)
             {
                 float scale = transform.localScale.x;

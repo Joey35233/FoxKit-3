@@ -36,6 +36,25 @@ namespace Fox.GameKit
                 ObjectBrushBlockAsset obrbAsset = ConvertFile(obrbData);
                 Fox.Fs.FileSystem.CreateAsset(obrbAsset, obrbFile.path.String);
                 AssetDatabase.SaveAssets();
+                
+                if (obrbAsset != null)
+                {
+                    foreach (ObjectBrushObject obj in obrbAsset.Objects)
+                    {
+                        ObjectBrushPlugin plugin = obj.Plugin;
+                        if (plugin == null)
+                            continue;
+                
+                        GameObject instance = (GameObject)PrefabUtility.InstantiatePrefab(plugin.gameObject);
+                        //instance.hideFlags = HideFlags.DontSaveInEditor;
+                        Transform instanceTransform = instance.transform;
+                        instanceTransform.position = obj.Position;
+                        instanceTransform.rotation = obj.Rotation;
+                        instanceTransform.localScale = (1.0f + obj.NormalizedScale) * Vector3.one;
+                        instanceTransform.SetParent(this.transform, true);
+                        TransformUtils.SetConstrainProportions(instanceTransform, true);
+                    }
+                }
             }
         }
         
@@ -120,44 +139,58 @@ namespace Fox.GameKit
 
         private void OnEnable()
         {
-            for (int i = this.transform.childCount - 1; i >= 0; i--)
+            /*for (int i = this.transform.childCount - 1; i >= 0; i--)
             {
                 var child = this.transform.GetChild(i).gameObject;
                 if (child.GetComponent<Entity>() && !PrefabUtility.IsAnyPrefabInstanceRoot(child))
                     continue;
                 DestroyImmediate(child);
-            }
-            
-            ObjectBrushBlockAsset obrbAsset = Fox.Fs.FileSystem.LoadAsset<ObjectBrushBlockAsset>(obrbFile.path.String);
-            if (obrbAsset != null)
-            {
-                foreach (ObjectBrushObject obj in obrbAsset.Objects)
-                {
-                    ObjectBrushPlugin plugin = obj.Plugin;
-                    if (plugin == null)
-                        continue;
-                
-                    GameObject instance = (GameObject)PrefabUtility.InstantiatePrefab(plugin.gameObject);
-                    instance.hideFlags = HideFlags.DontSaveInEditor;
-                    Transform instanceTransform = instance.transform;
-                    instanceTransform.position = obj.Position;
-                    instanceTransform.rotation = obj.Rotation;
-                    instanceTransform.localScale = (1.0f + obj.NormalizedScale) * Vector3.one;
-                    instanceTransform.SetParent(this.transform, true);
-                    TransformUtils.SetConstrainProportions(instanceTransform, true);
-                }
-            }
+            }*/
         }
 
         private void OnDisable()
         {
-            for (int i = this.transform.childCount - 1; i >= 0; i--)
+            /*for (int i = this.transform.childCount - 1; i >= 0; i--)
             {
                 var child = this.transform.GetChild(i).gameObject;
                 if (child.GetComponent<Entity>() && !PrefabUtility.IsAnyPrefabInstanceRoot(child))
                     continue;
                 DestroyImmediate(child);
-            }
+            }*/
         }
+        
+        public override void OnSerializeEntity(EntityExportContext context)
+        {
+            base.OnSerializeEntity(context);
+
+            ObjectBrushFileWriter.WriteObjectBrush(this);
+        }
+
+        public void DrawGizmo(bool isSelected)
+        {
+            if (!FoxGameKitModule.ObjectBrushRegistry.TryGetValue(objectBrushName, out ObjectBrush objectBrush))
+            {
+                return;
+            }
+            
+            Gizmos.matrix = this.transform.localToWorldMatrix;
+            Gizmos.color = Color.green;
+            if (!isSelected)
+                Gizmos.color/=4;
+            
+            (uint NumBlocksH, uint NumBlocksW) = objectBrush.GetNumBlocks();
+            
+            ushort blockX = (ushort)(blockId % NumBlocksH);
+            ushort blockZ = (ushort)(blockId / NumBlocksW);
+                
+            float blockCenterX = 128 * (blockX + 0.5f - (0.5f * NumBlocksH));
+            float blockCenterZ = 128 * (blockZ + 0.5f - (0.5f * NumBlocksW));
+            
+            Gizmos.DrawWireCube(new Vector3(-blockCenterX,1,blockCenterZ), new Vector3(128,0,128));
+        }
+
+        public void OnDrawGizmos() => DrawGizmo(false);
+
+        public void OnDrawGizmosSelected() => DrawGizmo(true);
     }
 }
