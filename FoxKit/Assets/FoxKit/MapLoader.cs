@@ -7,15 +7,13 @@ using UnityEngine.UIElements;
 using Fox.Core.Utils;
 using Fox.Fs;
 using Fox.Core;
-using Fox.Fio;
+using UnityEditor.SceneManagement;
+using Application = UnityEngine.Application;
 
 namespace FoxKit.Windows
 {
     public class MapLoader : EditorWindow
     {
-        // ----------------------------
-        // Simple config
-        // ----------------------------
         private const int CellWidth = 14;
         private const int CellHeight = 14;
 
@@ -113,12 +111,13 @@ namespace FoxKit.Windows
                 if (index0 < 0)
                 {
                     hoverLabel.text = "Hover: none";
+                    return;
                 }
                 else
-                {
-                    hoverLabel.text =
-                        "Hover: X=" + mapX + ", Y=" + mapY +
-                        " | Index0=" + index0 + " | Index1=" + (index0 + 1);
+                { 
+                hoverLabel.text =
+                    "Hover: X=" + mapX + ", Y=" + mapY +
+                    " | Index0=" + index0 + " | Index1=" + (index0 + 1);
                 }
             };
 
@@ -338,38 +337,111 @@ namespace FoxKit.Windows
 
         private void ImportFox2ForTile(string location, int mapX, int mapY)
         {
-            string externalRoot = FoxKit.SettingsManager.ExternalBasePath;
+            string internalRoot = Path.Combine(
+                Application.dataPath,
+                "Game", "Assets", "tpp", "level", "location",
+                location.ToLowerInvariant()
+            );
 
-            if (string.IsNullOrEmpty(externalRoot) || !Directory.Exists(externalRoot))
+            List<string> tileFolders = FindTileDirs(internalRoot, location, mapX, mapY);
+
+            bool anyInternalScenes = false;
+
+            if (tileFolders != null && tileFolders.Count > 0)
             {
-                Debug.LogError("[MapLoader] ExternalBasePath is not set or invalid. Open FoxKit settings and set it.");
-                FoxKit.SettingsManager.ShowSettingsWindow();
+                for (int i = 0; i < tileFolders.Count; i++)
+                {
+                    string folder = tileFolders[i];
+
+                    if (!Directory.Exists(folder))
+                        continue;
+
+                    // contains at least one .unity file, we're good!!!
+                    var e = Directory.EnumerateFiles(folder, "*.unity", SearchOption.AllDirectories).GetEnumerator();
+                    if (e.MoveNext())
+                    {
+                        anyInternalScenes = true;
+                        break;
+                    }
+                }
+            }
+
+            if (tileFolders == null || tileFolders.Count == 0 || anyInternalScenes == false)
+            {
+                string externalRoot = SettingsManager.ExternalBasePath;
+
+                if (string.IsNullOrEmpty(externalRoot) || !Directory.Exists(externalRoot))
+                {
+                    Debug.LogError("[MapLoader] ExternalBasePath is not set or invalid. Open FoxKit settings and set it.");
+                    FoxKit.SettingsManager.ShowSettingsWindow();
+                    return;
+                }
+
+                string locationRoot = Path.Combine(
+                    externalRoot,
+                    "Assets", "tpp", "level", "location",
+                    location.ToLowerInvariant()
+                );
+
+                if (!Directory.Exists(locationRoot))
+                {
+                    Debug.LogWarning("[MapLoader] Location folder not found: " + locationRoot);
+                    return;
+                }
+
+                tileFolders = FindTileDirs(locationRoot, location, mapX, mapY);
+
+                if (tileFolders == null || tileFolders.Count == 0)
+                {
+                    Debug.LogWarning("[MapLoader] Tile folder not found for " + location +
+                                     " X=" + mapX + " Y=" + mapY + " in block_small/block_extraSmall.");
+                    return;
+                }
+
+                List<string> fox2Files = CollectFox2Files(tileFolders);
+
+                if (fox2Files.Count == 0)
+                {
+                    Debug.LogWarning("[MapLoader] No .fox2 files found for " + location +
+                                     " X=" + mapX + " Y=" + mapY + ".");
+                    return;
+                }
+
+                ImportFox2FilesWithProgress(location, mapX, mapY, fox2Files);
                 return;
             }
 
-            string locationRoot = Path.Combine(externalRoot, "Assets", "tpp", "level", "location", location.ToLowerInvariant());
-            if (!Directory.Exists(locationRoot))
+            string dataPathNorm = Application.dataPath.Replace('\\', '/');
+            List<string> sceneAssetPaths = new List<string>();
+
+            for (int i = 0; i < tileFolders.Count; i++)
             {
-                Debug.LogWarning("[MapLoader] Location folder not found: " + locationRoot);
-                return;
+                string folder = tileFolders[i];
+
+                if (!Directory.Exists(folder))
+                    continue;
+
+                foreach (string fullPath in Directory.EnumerateFiles(folder, "*.unity", SearchOption.AllDirectories))
+                {
+                    string norm = fullPath.Replace('\\', '/');
+
+                    if (!norm.StartsWith(dataPathNorm))
+                        continue;
+
+                    string relative = norm.Substring(dataPathNorm.Length);
+                    string assetPath = "Assets" + relative;
+
+                    if (!sceneAssetPaths.Contains(assetPath))
+                        sceneAssetPaths.Add(assetPath);
+                }
             }
 
-            List<string> tileFolders = FindTileDirs(locationRoot, location, mapX, mapY);
-            if (tileFolders.Count == 0)
+            for (int i = 0; i < sceneAssetPaths.Count; i++)
             {
-                Debug.LogWarning("[MapLoader] Tile folder not found for " + location +
-                                 " X=" + mapX + " Y=" + mapY + " in block_small/block_extraSmall.");
-                return;
+                EditorSceneManager.OpenScene(sceneAssetPaths[i], OpenSceneMode.Additive);
             }
 
-            List<string> fox2Files = CollectFox2Files(tileFolders);
-            if (fox2Files.Count == 0)
-            {
-                Debug.LogWarning("[MapLoader] No .fox2 files found for " + location + " X=" + mapX + " Y=" + mapY + ".");
-                return;
-            }
-
-            ImportFox2FilesWithProgress(location, mapX, mapY, fox2Files);
+            Debug.Log("Opened internal tile scenes additively (import skipped).");
         }
 
         private static List<string> CollectFox2Files(List<string> tileDirs)
