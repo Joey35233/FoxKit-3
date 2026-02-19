@@ -270,7 +270,7 @@ namespace Fox.Core
                 {
                     ulong address = *(ulong*)payload;
                     if (!EntityAddressMap.TryGetValue(address, out Entity entity) && address != 0x0)
-                        Logger.AddError($"Unable to resolve address 0x{address:X8}.");
+                        Logger.AddWarning($"Unable to resolve address 0x{address:X8}. This can be found in vanilla files where the reference was left dangling.");
 
                     return entity;
                 }
@@ -292,7 +292,7 @@ namespace Fox.Core
                 {
                     ulong address = *(ulong*)payload;
                     if (!EntityAddressMap.TryGetValue(address, out Entity entity) && address != 0x0)
-                        Logger.AddError($"Unable to resolve address 0x{address:X8}.");
+                        Logger.AddWarning($"Unable to resolve address 0x{address:X8}. This can be found in vanilla files where the reference was left dangling.");
 
                     return entity;
                 }
@@ -302,7 +302,7 @@ namespace Fox.Core
 
                     ulong address = entityLinkDef.Address;
                     if (!EntityAddressMap.TryGetValue(address, out Entity entity) && address != 0x0)
-                        Logger.AddError($"Unable to resolve address 0x{address:X8}.");
+                        Logger.AddWarning($"Unable to resolve address 0x{address:X8}. This can be found in vanilla files where the reference was left dangling.");
                     
                     EntityLink entityLink = new EntityLink
                     {
