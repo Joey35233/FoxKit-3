@@ -11,6 +11,10 @@ namespace Fox.EdSim
         [DrawGizmo(GizmoType.Selected | GizmoType.NonSelected)]
         static void DrawGizmo(SimAssociationUnit unit, GizmoType gizmoType)
         {
+            string boneName = unit.boneName;
+            if (boneName == null)
+                return;
+            
             var bone = GameObject.Find(unit.boneName);
             if (bone == null)
                 return;
