@@ -91,7 +91,7 @@ namespace Fox.Fs
             Debug.Assert(foxPath.StartsWith('/'), "Virtual path not absolute.");
             
             // Very basic handling
-            if (foxPath.EndsWith(".fox2"))
+            if (foxPath.EndsWith(".fox2") || foxPath.EndsWith(".sim"))
                 foxPath += ".unity";
             if (foxPath.EndsWith(".parts"))
                 foxPath += ".prefab";
