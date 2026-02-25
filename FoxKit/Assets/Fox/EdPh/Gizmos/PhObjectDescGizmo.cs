@@ -12,6 +12,10 @@ namespace Fox.EdPh
         [DrawGizmo(GizmoType.Selected | GizmoType.NonSelected)]
         static void DrawGizmo(PhObjectDesc attached, GizmoType gizmoType)
         {
+            // Draw nothing if invalid
+            if (attached.bodyIndices.Count % 2 != 0)
+                return;
+            
             PhRigidBodyParam mostRecentRigidBody = null;
             for (int i = 0; i < attached.bodies.Count; i++)
             {
@@ -46,6 +50,10 @@ namespace Fox.EdPh
                 // all bodies and shapes are registered first, regardless of if they are used or not
                 int bodyAIndex = attached.bodyIndices[i];
                 if (bodyAIndex < 0)
+                    continue;
+
+                // Make sure both indices exist if constraint is not null
+                if (i + 1 >= attached.bodyIndices.Count)
                     continue;
                 
                 int bodyBIndex = attached.bodyIndices[i + 1];
