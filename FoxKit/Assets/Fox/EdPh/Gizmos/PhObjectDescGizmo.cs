@@ -12,10 +12,7 @@ namespace Fox.EdPh
         [DrawGizmo(GizmoType.Selected | GizmoType.NonSelected)]
         static void DrawGizmo(PhObjectDesc attached, GizmoType gizmoType)
         {
-            // Draw nothing if invalid
-            if (attached.bodyIndices.Count % 2 != 0)
-                return;
-            
+            // The bodies list should be body, param, body, param, etc.
             PhRigidBodyParam mostRecentRigidBody = null;
             for (int i = 0; i < attached.bodies.Count; i++)
             {
@@ -31,35 +28,42 @@ namespace Fox.EdPh
                 {
                     if (mostRecentRigidBody != null)
                     {
-                        Gizmos.matrix = Matrix4x4.TRS(mostRecentRigidBody.GetDefaultPosition(), mostRecentRigidBody.GetDefaultRotation(), Vector3.one);
-                        PhShapeParam param = entry as PhShapeParam;
-                        if (param != null)
+                        if (entry is PhShapeParam param)
+                        {
+                            Gizmos.matrix = Matrix4x4.TRS(mostRecentRigidBody.GetDefaultPosition(), mostRecentRigidBody.GetDefaultRotation(), Vector3.one);
                             param.DrawGizmos();
+                        }
                     }
                 }
             }
+            
+            // Draw nothing if invalid
+            if (attached.bodyIndices.Count % 2 != 0)
+                return;
 
-            int constraintIndex = 0;
-            for (int i = 0; i < attached.bodyIndices.Count; i += 2)
+            for (int i = 0; i < attached.bodyIndices.Count; i++)
             {
-                PhConstraintParam constraint = attached.constraints[constraintIndex];
+                if (attached.constraints.Count < 1)
+                    return;
+                
+                PhConstraintParam constraint = attached.constraints[i];
                 if (constraint == null)
                     continue;
 
                 // Draw linked bodies - this is not the same as in the EXE because there,
                 // all bodies and shapes are registered first, regardless of if they are used or not
-                int bodyAIndex = attached.bodyIndices[i];
+                int bodyAIndex = attached.bodyIndices[2 * i];
                 if (bodyAIndex < 0)
                     continue;
-
-                // Make sure both indices exist if constraint is not null
-                if (i + 1 >= attached.bodyIndices.Count)
-                    continue;
                 
-                int bodyBIndex = attached.bodyIndices[i + 1];
+                // This one can be -1 
+                int bodyBIndex = attached.bodyIndices[2 * i + 1];
+                
                 PhRigidBodyParam bodyA = null;
                 PhRigidBodyParam bodyB = null;
 
+                // If we were able to prepare a list of just bodies from the earlier bodies loop, we wouldn't need to filter out other things (PhShapeParam).
+                // Look for bodyA and (optional) bodyB in single loop
                 int realBodyIndex = 0;
                 for (int j = 0; j < attached.bodies.Count; j++)
                 {
@@ -91,8 +95,6 @@ namespace Fox.EdPh
                     Gizmos.DrawLine(Vector3.zero, bodyB.GetDefaultPosition() - defaultPos);
 
                 constraint.DrawGizmos();
-
-                constraintIndex++;
             }
         }
     }
