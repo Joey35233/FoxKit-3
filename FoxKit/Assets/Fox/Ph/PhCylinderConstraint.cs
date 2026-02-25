@@ -11,13 +11,31 @@ namespace Fox.Ph
         private partial UnityEngine.Quaternion Get_axis() => throw new System.NotImplementedException();
         private partial void Set_axis(UnityEngine.Quaternion value) => throw new System.NotImplementedException();
 
-        private partial float Get_radius() => cylinderConstraint.GetRadius();
-        private partial void Set_radius(float value) => cylinderConstraint.SetRadius(value);
+        private partial float Get_radius() => cylinderConstraint == null ? 0f : cylinderConstraint.GetRadius();
+        private partial void Set_radius(float value)
+        {
+            if (param == null)
+                return;
 
-        private partial float Get_heightMin() => cylinderConstraint.GetHeightMin();
-        private partial void Set_heightMin(float value) => cylinderConstraint.SetHeightMin(value);
+            cylinderConstraint.SetRadius(value);
+        }
 
-        private partial float Get_heightMax() => cylinderConstraint.GetHeightMax();
-        private partial void Set_heightMax(float value) => cylinderConstraint.SetHeightMax(value);
+        private partial float Get_heightMin() => cylinderConstraint == null ? 0f : cylinderConstraint.GetHeightMin();
+        private partial void Set_heightMin(float value)
+        {
+            if (param == null)
+                return;
+
+            cylinderConstraint.SetHeightMin(value);
+        }
+
+        private partial float Get_heightMax() => cylinderConstraint == null ? 0f : cylinderConstraint.GetHeightMax();
+        private partial void Set_heightMax(float value)
+        {
+            if (param == null)
+                return;
+
+            cylinderConstraint.SetHeightMax(value);
+        }
     }
 }

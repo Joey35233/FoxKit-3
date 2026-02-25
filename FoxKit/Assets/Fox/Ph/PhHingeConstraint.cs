@@ -11,13 +11,31 @@ namespace Fox.Ph
         private partial UnityEngine.Quaternion Get_axis() => throw new System.NotImplementedException();
         private partial void Set_axis(UnityEngine.Quaternion value) => throw new System.NotImplementedException();
 
-        private partial bool Get_limitedFlag() => hingeConstraint.GetLimitedFlag();
-        private partial void Set_limitedFlag(bool value) => hingeConstraint.SetLimitedFlag(value);
+        private partial bool Get_limitedFlag() => hingeConstraint == null ? false : hingeConstraint.GetLimitedFlag();
+        private partial void Set_limitedFlag(bool value)
+        {
+            if (param == null)
+                return;
 
-        private partial float Get_limitHi() => hingeConstraint.GetLimitHi();
-        private partial void Set_limitHi(float value) => hingeConstraint.SetLimitHi(value);
+            hingeConstraint.SetLimitedFlag(value);
+        }
 
-        private partial float Get_limitLo() => hingeConstraint.GetLimitLo();
-        private partial void Set_limitLo(float value) => hingeConstraint.SetLimitLo(value);
+        private partial float Get_limitHi() => hingeConstraint == null ? 0f : hingeConstraint.GetLimitHi();
+        private partial void Set_limitHi(float value)
+        {
+            if (param == null)
+                return;
+
+            hingeConstraint.SetLimitHi(value);
+        }
+
+        private partial float Get_limitLo() => hingeConstraint == null ? 0f : hingeConstraint.GetLimitLo();
+        private partial void Set_limitLo(float value)
+        {
+            if (param == null)
+                return;
+
+            hingeConstraint.SetLimitLo(value);
+        }
     }
 }

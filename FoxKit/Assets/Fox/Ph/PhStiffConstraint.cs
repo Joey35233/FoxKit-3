@@ -8,10 +8,22 @@ namespace Fox.Ph
     {
         private PhStiffConstraintParam stiffConstraint => param as PhStiffConstraintParam;
 
-        private partial UnityEngine.Vector3 Get_endurancePower() => stiffConstraint.GetEndurancePower();
-        private partial void Set_endurancePower(UnityEngine.Vector3 value) => stiffConstraint.SetEndurancePower(value);
+        private partial UnityEngine.Vector3 Get_endurancePower() => stiffConstraint == null ? Vector3.zero : stiffConstraint.GetEndurancePower();
+        private partial void Set_endurancePower(UnityEngine.Vector3 value)
+        {
+            if (param == null)
+                return;
+            
+            stiffConstraint.SetEndurancePower(value);
+        }
 
-        private partial UnityEngine.Vector3 Get_enduranceTorque() => stiffConstraint.GetEnduranceTorque();
-        private partial void Set_enduranceTorque(UnityEngine.Vector3 value) => stiffConstraint.SetEnduranceTorque(value);
+        private partial UnityEngine.Vector3 Get_enduranceTorque() => stiffConstraint == null ? Vector3.zero : stiffConstraint.GetEnduranceTorque();
+        private partial void Set_enduranceTorque(UnityEngine.Vector3 value)
+        {
+            if (param == null)
+                return;
+            
+            stiffConstraint.SetEnduranceTorque(value);
+        }
     }
 }
