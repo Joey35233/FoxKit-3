@@ -41,7 +41,7 @@ namespace Fox.EdPh
             if (attached.bodyIndices.Count % 2 != 0)
                 return;
 
-            for (int i = 0; i < attached.bodyIndices.Count; i++)
+            for (int i = 0; i < attached.bodyIndices.Count / 2; i++)
             {
                 if (attached.constraints.Count < 1)
                     return;
