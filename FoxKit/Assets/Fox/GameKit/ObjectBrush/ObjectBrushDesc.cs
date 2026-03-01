@@ -3,8 +3,7 @@ using UnityEngine;
 
 namespace Fox.GameKit
 {
-    [Serializable]
-    public struct ObjectBrushObject
+    public struct ObjectBrushObjectDesc
     {
         public Vector3 Position;
         public Quaternion Rotation;
@@ -13,13 +12,13 @@ namespace Fox.GameKit
         public ObjectBrushPlugin Plugin;
     };
     
-    public class ObjectBrushAsset : ScriptableObject
+    public struct ObjectBrushDesc
     {
         public float BlockSizeW;
         public float BlockSizeH;
         public uint NumBlocksW;
         public uint NumBlocksH;
 
-        public ObjectBrushObject[] Objects;
+        public ObjectBrushObjectDesc[] Objects;
     }
 }

@@ -15,7 +15,9 @@ namespace Fox.GameKit
     [ExecuteAlways]
     public partial class ObjectBrush : Fox.Core.TransformData
     {
-        private const float BlockSize = 128;
+        private const float InitBlockSize = 128;
+        private const uint InitBlockCount = 1;
+        
         public override void OnDeserializeEntity(TaskLogger logger)
         {
             base.OnDeserializeEntity(logger);
@@ -26,6 +28,7 @@ namespace Fox.GameKit
             }
         }
 
+        // TODO: Does this need to be its own special function?
         public override void OnPostDeserializeEntity(TaskLogger logger)
         {
             base.OnPostDeserializeEntity(logger);
@@ -60,154 +63,83 @@ namespace Fox.GameKit
             }
                 
             byte[] obrData = File.ReadAllBytes(obrExternalPath);
-            ObjectBrushAsset obrAsset = ConvertFile(obrData);
-            Fox.Fs.FileSystem.CreateAsset(obrAsset, obrFile.path.String);
-            AssetDatabase.SaveAssets();
+
+            if (!TryConvertFile(obrData, out ObjectBrushDesc obrDesc))
+            {
+                logger.AddError("OBR file invalid.");
+                return;
+            }
             
-            SetNumBlocks(obrAsset.NumBlocksH, obrAsset.NumBlocksW);
+            DynamicProperty_StaticArray_uint32 numBlocksHProperty = (DynamicProperty_StaticArray_uint32)this.AddDynamicProperty(PropertyInfo.PropertyType.UInt32, "numBlocksH", 1, PropertyInfo.ContainerType.StaticArray);
+            numBlocksHProperty.Value[0] = obrDesc.NumBlocksH;
             
+            DynamicProperty_StaticArray_uint32 numBlocksWProperty = (DynamicProperty_StaticArray_uint32)this.AddDynamicProperty(PropertyInfo.PropertyType.UInt32, "numBlocksW", 1, PropertyInfo.ContainerType.StaticArray);
+            numBlocksWProperty.Value[0] = obrDesc.NumBlocksW;
+            
+            // TODO: What happens if the file is invalid but it's called later anyway?
             this.OnEnable();
             
-            if (obrAsset != null)
+            foreach (ObjectBrushObjectDesc obj in obrDesc.Objects)
             {
-                foreach (ObjectBrushObject obj in obrAsset.Objects)
-                {
-                    ObjectBrushPlugin plugin = obj.Plugin;
-                    if (plugin == null)
-                        continue;
-                
-                    GameObject instance = (GameObject)PrefabUtility.InstantiatePrefab(plugin.gameObject);
-                    
-                    // At this stage, the handles are still Scene objects (pre-OnPostDeserializeEntity)
-                    if (instance == null)
-                        return;
-                    
-                    //instance.hideFlags = HideFlags.DontSaveInEditor;
-                    Transform instanceTransform = instance.transform;
-                    instanceTransform.position = obj.Position;
-                    instanceTransform.rotation = obj.Rotation;
-                    instanceTransform.localScale = (1.0f + obj.NormalizedScale) * Vector3.one;
-                    instanceTransform.SetParent(this.transform, true);
-                    TransformUtils.SetConstrainProportions(instanceTransform, true);
-                }
-            }
-        }
-
-        private void SetNumBlocks(uint numBlocksH, uint numBlocksW)
-        {
-            if (gameObject.TryGetComponent(out DynamicProperty_StaticArray_uint32 numBlocksHComponent))
-            {
-                foreach (var component in gameObject.GetComponents<DynamicProperty_StaticArray_uint32>())
-                {
-                    if (component.Name != "numBlocksH") continue;
-                    numBlocksHComponent = component;
-                    break;
-                }
-            }
-            if (numBlocksHComponent == null)
-            {
-                numBlocksHComponent = gameObject.AddComponent<DynamicProperty_StaticArray_uint32>();
-                numBlocksHComponent.Name = "numBlocksH";
-            }
-            numBlocksHComponent.SetElement((ushort)0,(object)numBlocksH);
+                ObjectBrushPlugin plugin = obj.Plugin;
+                if (plugin == null)
+                    continue;
             
-            if (gameObject.TryGetComponent(out DynamicProperty_StaticArray_uint32 numBlocksWComponent))
-            {
-                foreach (var component in gameObject.GetComponents<DynamicProperty_StaticArray_uint32>())
-                {
-                    if (component.Name != "numBlocksW") continue;
-                    numBlocksWComponent = component;
-                    break;
-                }
+                GameObject instance = (GameObject)PrefabUtility.InstantiatePrefab(plugin.gameObject);
+                
+                // At this stage, the handles are still Scene objects (pre-OnPostDeserializeEntity)
+                if (instance == null)
+                    return;
+                
+                //instance.hideFlags = HideFlags.DontSaveInEditor;
+                Transform instanceTransform = instance.transform;
+                instanceTransform.position = obj.Position;
+                instanceTransform.rotation = obj.Rotation;
+                instanceTransform.localScale = (1.0f + obj.NormalizedScale) * Vector3.one;
+                instanceTransform.SetParent(this.transform, true);
+                TransformUtils.SetConstrainProportions(instanceTransform, true);
             }
-            if (numBlocksWComponent == null || numBlocksWComponent.Name != "numBlocksW")
-            {
-                numBlocksWComponent = gameObject.AddComponent<DynamicProperty_StaticArray_uint32>();
-                numBlocksWComponent.Name = "numBlocksW";
-            }
-            numBlocksWComponent.SetElement((ushort)0,(object)numBlocksW);
         }
 
         public (uint numBlocksH, uint numBlocksW) GetNumBlocks()
         {
-            uint numBlocksH = 0;
-            uint numBlocksW = 0;
-            
+            DynamicProperty_StaticArray_uint32 numBlocksHProperty = null;
+            DynamicProperty_StaticArray_uint32 numBlocksWProperty = null;
             foreach (var component in gameObject.GetComponents<DynamicProperty_StaticArray_uint32>())
             {
                 switch (component.Name)
                 {
                     case "numBlocksH":
-                        numBlocksH = (uint)component.GetValue();
+                        numBlocksHProperty = component;
                         break;
                     case "numBlocksW":
-                        numBlocksW = (uint)component.GetValue();
+                        numBlocksWProperty = component;
                         break;
                 }
+
+                if (numBlocksHProperty != null && numBlocksWProperty != null)
+                    break;
             }
-
-            if (numBlocksH != 0 || numBlocksW != 0) return (numBlocksH, numBlocksW);
             
-            float minX = 0;
-            float maxX = 0;
+            uint numBlocksH = numBlocksHProperty == null ? InitBlockCount : numBlocksHProperty.Value[0];
+            uint numBlocksW = numBlocksWProperty == null ? InitBlockCount : numBlocksWProperty.Value[0];
             
-            float minZ = 0;
-            float maxZ = 0;
-            
-            for (int i = 0; i < gameObject.transform.childCount; i++)
-            {
-                var child = gameObject.transform.GetChild(i).gameObject;
-
-                if (!PrefabUtility.IsAnyPrefabInstanceRoot(child))
-                    continue;
-
-                if (!IsPlugin(child))
-                    continue;
-
-                var position = child.transform.position;
-                
-                
-                if (position.x < minX)
-                    minX = position.x;
-                
-                if (position.x > maxX)
-                    maxX = position.x;
-                
-                
-                if (position.z < minZ)
-                    minZ = position.z;
-                
-                if (position.z > maxZ)
-                    maxZ = position.z;
-
-            }
-
-            uint GetBlockCountFromBoundary(float bound)
-            {
-                var abs = System.Math.Abs(bound);
-                return (uint)System.Math.Ceiling(abs / BlockSize);
-            }
-
-            numBlocksH = GetBlockCountFromBoundary(minX) + GetBlockCountFromBoundary(maxX);
-            numBlocksW = GetBlockCountFromBoundary(minZ) + GetBlockCountFromBoundary(maxZ);
-
             return (numBlocksH, numBlocksW);
         }
 
-        public unsafe ObjectBrushAsset ConvertFile(byte[] file)
+        private unsafe bool TryConvertFile(byte[] file, out ObjectBrushDesc desc)
         {
-            // TODO: What happens with this if I return null later?
-            ObjectBrushAsset obrAsset = ScriptableObject.CreateInstance<ObjectBrushAsset>();
+            desc = new ObjectBrushDesc();
             
             fixed (byte* data = file)
             {
                 FoxDataHeader* header = (FoxDataHeader*)data;
                 if (header->Version != 3)
-                    return null;
+                    return false;
                 
                 FoxDataNode* node = header->GetNodes();
                 if (node->Flags != 1)
-                    return null;
+                    return false;
                     
                 FoxDataNodeAttribute* blockSizeWAttrib = node->FindAttribute("blockSizeW");
                 FoxDataNodeAttribute* blockSizeHAttrib = node->FindAttribute("blockSizeH");
@@ -215,23 +147,22 @@ namespace Fox.GameKit
                 FoxDataNodeAttribute* numBlocksHAttrib = node->FindAttribute("numBlocksH");
                 FoxDataNodeAttribute* numObjectsAttrib = node->FindAttribute("numObjects");
 
-                if (blockSizeWAttrib == null || blockSizeHAttrib == null || numBlocksWAttrib == null ||
-                    numBlocksHAttrib == null || numObjectsAttrib == null)
-                    return null;
+                if (blockSizeWAttrib == null || blockSizeHAttrib == null || numBlocksWAttrib == null || numBlocksHAttrib == null || numObjectsAttrib == null)
+                    return false;
                 
                 float blockSizeW = blockSizeWAttrib->GetFloatValue();
                 float blockSizeH = blockSizeHAttrib->GetFloatValue();
                 uint numBlocksW = numBlocksWAttrib->GetUIntValue();
                 uint numBlocksH = numBlocksHAttrib->GetUIntValue();
 
-                obrAsset.BlockSizeW = blockSizeW;
-                obrAsset.BlockSizeH = blockSizeH;
-                obrAsset.NumBlocksW = numBlocksW;
-                obrAsset.NumBlocksH = numBlocksH;
+                desc.BlockSizeW = blockSizeW;
+                desc.BlockSizeH = blockSizeH;
+                desc.NumBlocksW = numBlocksW;
+                desc.NumBlocksH = numBlocksH;
 
                 uint objectCount = numObjectsAttrib->GetUIntValue();
                 DataUnit* unit = (DataUnit*)node->GetData();
-                ObjectBrushObject[] objects = new ObjectBrushObject[objectCount];
+                ObjectBrushObjectDesc[] objects = new ObjectBrushObjectDesc[objectCount];
                 for (uint i = 0; i < objectCount; i++, unit++)
                 {
                     uint blockId = unit->BlockId;
@@ -255,7 +186,7 @@ namespace Fox.GameKit
                     
                     ObjectBrushPlugin plugin = this.pluginHandle[unit->PluginId] as ObjectBrushPlugin;
 
-                    ObjectBrushObject obj = new ObjectBrushObject
+                    ObjectBrushObjectDesc obj = new ObjectBrushObjectDesc
                     {
                         Position = position,
                         Rotation = rotation,
@@ -265,48 +196,15 @@ namespace Fox.GameKit
                     objects[i] = obj;
                 }
                 
-                obrAsset.Objects = objects;
+                desc.Objects = objects;
             }
             
-            return obrAsset;
+            return true;
         }
 
         private void OnEnable()
         {
-            /*for (int i = this.transform.childCount - 1; i >= 0; i--)
-            {
-                var child = this.transform.GetChild(i).gameObject;
-                if (child.GetComponent<Entity>() && !PrefabUtility.IsAnyPrefabInstanceRoot(child))
-                    continue;
-                DestroyImmediate(child);
-            }*/
-            
             Fox.GameKit.FoxGameKitModule.ObjectBrushRegistry[this.name] = this;
-            
-            ObjectBrushAsset obrAsset = Fox.Fs.FileSystem.LoadAsset<ObjectBrushAsset>(obrFile.path.String);
-            if (obrAsset != null)
-            {
-                foreach (ObjectBrushObject obj in obrAsset.Objects)
-                {
-                    ObjectBrushPlugin plugin = obj.Plugin;
-                    if (plugin == null)
-                        continue;
-                
-                    GameObject instance = (GameObject)PrefabUtility.InstantiatePrefab(plugin.gameObject);
-                    
-                    // At this stage, the handles are still Scene objects (pre-OnPostDeserializeEntity)
-                    if (instance == null)
-                        return;
-                    
-                    instance.hideFlags = HideFlags.DontSaveInEditor;
-                    Transform instanceTransform = instance.transform;
-                    instanceTransform.position = obj.Position;
-                    instanceTransform.rotation = obj.Rotation;
-                    instanceTransform.localScale = (1.0f + obj.NormalizedScale) * Vector3.one;
-                    instanceTransform.SetParent(this.transform, true);
-                    TransformUtils.SetConstrainProportions(instanceTransform, true);
-                }
-            }
         }
 
         private void OnDisable()
@@ -326,17 +224,56 @@ namespace Fox.GameKit
             return PrefabUtility.GetCorrespondingObjectFromSource(child).GetComponent<ObjectBrushPlugin>();
         }
 
-        private int GetPluginIndex(GameObject child)
-        {
-            return pluginHandle.IndexOf(GetPlugin(child));
-        }
-
         private bool IsPlugin(GameObject child)
         {
             return pluginHandle.Contains(GetPlugin(child));
         }
+        
+        public (uint numBlocksH, uint numBlocksW) CalculateNumBlocks()
+        {
+            uint numBlocksH = 0;
+            uint numBlocksW = 0;
+            
+            float minX = 0;
+            float maxX = 0;
+            
+            float minZ = 0;
+            float maxZ = 0;
+            
+            for (int i = 0; i < gameObject.transform.childCount; i++)
+            {
+                var child = gameObject.transform.GetChild(i).gameObject;
 
-        public void DrawGizmo(bool isSelected)
+                if (!PrefabUtility.IsAnyPrefabInstanceRoot(child))
+                    continue;
+
+                if (!IsPlugin(child))
+                    continue;
+
+                var position = child.transform.position;
+                
+                if (position.x < minX)
+                    minX = position.x;
+                if (position.x > maxX)
+                    maxX = position.x;
+                
+                
+                if (position.z < minZ)
+                    minZ = position.z;
+                if (position.z > maxZ)
+                    maxZ = position.z;
+
+            }
+
+            uint getBlockCountFromBoundary(float bound) => (uint)Mathf.Ceil(Mathf.Abs(bound) / InitBlockSize);
+
+            numBlocksH = getBlockCountFromBoundary(minX) + getBlockCountFromBoundary(maxX);
+            numBlocksW = getBlockCountFromBoundary(minZ) + getBlockCountFromBoundary(maxZ);
+
+            return (numBlocksH, numBlocksW);
+        }
+
+        private void DrawGizmo(bool isSelected)
         {
             Gizmos.matrix = this.transform.localToWorldMatrix;
             Gizmos.color = Color.green;
@@ -349,17 +286,17 @@ namespace Fox.GameKit
             int blockWCenter = (int)(NumBlocksW / 2);
             for (uint blockH = 0; blockH < NumBlocksH; blockH++)
             {
-                float blockHX = (blockH - blockHCenter)*BlockSize+(BlockSize/2);
+                float blockHX = (blockH - blockHCenter)*InitBlockSize+(InitBlockSize/2);
                 for (uint blockW = 0; blockW < NumBlocksW; blockW++)
                 {
-                    float blockWZ = (blockW - blockWCenter)*BlockSize+(BlockSize/2);
-                    Gizmos.DrawWireCube(new Vector3(blockHX,0,blockWZ), new Vector3(BlockSize,0,BlockSize));
+                    float blockWZ = (blockW - blockWCenter)*InitBlockSize+(InitBlockSize/2);
+                    Gizmos.DrawWireCube(new Vector3(blockHX,0,blockWZ), new Vector3(InitBlockSize,0,InitBlockSize));
                 }
             }
         }
 
-        public void OnDrawGizmos() => DrawGizmo(false);
+        private void OnDrawGizmos() => DrawGizmo(false);
 
-        public void OnDrawGizmosSelected() => DrawGizmo(true);
+        private void OnDrawGizmosSelected() => DrawGizmo(true);
     }
 }
