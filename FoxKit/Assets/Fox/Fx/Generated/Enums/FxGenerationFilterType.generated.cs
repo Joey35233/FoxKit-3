@@ -10,16 +10,15 @@
 using System;
 using System.ComponentModel;
 
-namespace Fox
+namespace Fox.Fx
 {
-	{% for enum in enums %}
-	{% if enum.type == "flags" %}[Flags]{% endif %}
-    public enum {{ enum.name }}{% if enum.underlying_type %} : {{ enum.underlying_type }}{% endif %}
-    {
-		{%- for value in enum.values %}
-		[Description("{{ value.name }}")]
-        {{ value.get_safe_name() }} = {{ value.value }},
-		{%- endfor %}
-    }
-	{% endfor %}
+	public enum FxGenerationFilterType : int
+	{
+		[Description("GENERATION_7")]
+		GENERATION_7 = 0,
+		[Description("GENERATION_8")]
+		GENERATION_8 = 1,
+		[Description("GENERATION_9")]
+		GENERATION_9 = 2,
+	}
 }

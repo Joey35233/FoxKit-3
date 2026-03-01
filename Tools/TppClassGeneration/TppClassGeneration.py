@@ -11,7 +11,7 @@ class_template_path = "ClassTemplate.txt"
 definitions_path = "TppClassDefinitions.json"
 extra_definitions_path = "FoxKitClassDefinitions.json"
 
-enum_template_path = "EnumsTemplate.txt"
+enum_template_path = "EnumTemplate.txt"
 enums_path = "TppEnums.json"
 
 entity_factory_template_path = "EntityFactoryTemplate.txt"
@@ -50,7 +50,7 @@ def load_enum_definitions (path):
             values = []
             for value in entry["values"]:
                 values.append(EnumValue(value["name"], value["value"]))
-            result.append(EnumInfo(entry["name"], entry["type"], entry["underlying_type"], values))
+            result.append(EnumInfo(entry["name"], entry["type"], entry["underlying_type"], entry["namespace"], values))
 
     return result
 
@@ -66,7 +66,7 @@ def generate_classes ():
         # Output generated file
         root_namespace = get_root_namespace(definitions[class_name].namespace)
         trimmed_namespace = get_namespace_without_prefix(definitions[class_name].namespace)
-        output_path = make_output_path(definitions[class_name].name, root_namespace, trimmed_namespace)
+        output_path = make_class_output_path(definitions[class_name].name, root_namespace, trimmed_namespace)
         Path(f'../{root_namespace}/{trimmed_namespace}/Generated').mkdir(parents=True, exist_ok=True)
 
         output_file = open(output_path,"w")
@@ -85,13 +85,19 @@ def generate_classes ():
 def generate_enums ():
     template_file = open(enum_template_path, "r")
     template = Template(template_file.read())
-    definitions = load_enum_definitions(enums_path)        
-    result = template.render(enums = definitions)
-        
-    # Output generated file
-    output_file = open(f'../Enums.generated.cs', "w")
-    output_file.write(result)
-    output_file.close()
+    definitions = load_enum_definitions(enums_path)
+
+    for enum in definitions:
+        result = template.render(enum = enum)
+
+        root_namespace = get_root_namespace(enum.namespace)
+        trimmed_namespace = get_namespace_without_prefix(enum.namespace)
+        output_path = make_enum_output_path(enum.name, root_namespace, trimmed_namespace)
+        Path(f'../{root_namespace}/{trimmed_namespace}/Generated/Enums').mkdir(parents=True, exist_ok=True)
+
+        output_file = open(output_path,"w")
+        output_file.write(result)
+        output_file.close()
 
 def get_root_namespace(namespace):
     if str.startswith(namespace, "Tpp"):
@@ -104,7 +110,7 @@ def remove_prefix(text, prefix):
 def get_namespace_without_prefix(class_name):
     return remove_prefix(remove_prefix(class_name, "Tpp"), "Fox")
 
-def make_output_path (type_name, type_root_namespace, type_namespace):
+def make_class_output_path (type_name, type_root_namespace, type_namespace):
     """Create the output path for a generated class file.
 
     Args:
@@ -118,5 +124,19 @@ def make_output_path (type_name, type_root_namespace, type_namespace):
 
     return f'../{type_root_namespace}/{type_namespace}/Generated/{type_name}.generated.cs'
 
-generate_classes()
+def make_enum_output_path (type_name, type_root_namespace, type_namespace):
+    """Create the output path for a generated enum file.
+
+    Args:
+        type_name (str): Name of the enum.
+        type_namespace (str): The enum's namespace.
+
+    Returns:
+        str: The output file path.
+
+    """
+
+    return f'../{type_root_namespace}/{type_namespace}/Generated/Enums/{type_name}.generated.cs'
+
+# generate_classes()
 generate_enums()
