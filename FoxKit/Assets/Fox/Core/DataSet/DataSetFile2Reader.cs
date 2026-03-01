@@ -103,7 +103,7 @@ namespace Fox.Core
                                 if (containerType == PropertyInfo.ContainerType.StaticArray && arraySize == 1)
                                 {
                                     object value = ReadPropertyValue(propertyDef, 0);
-                                    entity.SetProperty(propertyName, new Value(value));
+                                    entity.SetProperty(propertyName, value);
                                 }
                                 else if (containerType == PropertyInfo.ContainerType.StringMap)
                                 {
@@ -111,7 +111,7 @@ namespace Fox.Core
                                     {
                                         string key = StringTable[ReadPropertyKey(propertyDef, k)];
                                         object value = ReadPropertyValue(propertyDef, k);
-                                        entity.SetPropertyElement(propertyName, key, new Value(value));
+                                        entity.SetPropertyElement(propertyName, key, value);
                                     }
                                 }
                                 else
@@ -119,7 +119,7 @@ namespace Fox.Core
                                     for (ushort k = 0; k < propertyDef->ArraySize; k++)
                                     {
                                         object value = ReadPropertyValue(propertyDef, k);
-                                        entity.SetPropertyElement(propertyName, k, new Value(value));
+                                        entity.SetPropertyElement(propertyName, k, value);
                                     }
                                 }
                                 
@@ -145,7 +145,7 @@ namespace Fox.Core
                                         
                                         string key = StringTable[*(StrCode*)payload];
                                         object value = ReadPropertyValue(propertyDef, k);
-                                        entity.SetPropertyElement(propertyName, key, new Value(value));
+                                        entity.SetPropertyElement(propertyName, key, value);
                                     }
                                 }
                                 else
@@ -153,7 +153,7 @@ namespace Fox.Core
                                     for (ushort k = 0; k < propertyDef->ArraySize; k++)
                                     {
                                         object value = ReadPropertyValue(propertyDef, k);
-                                        entity.SetPropertyElement(propertyName, k, new Value(value));
+                                        entity.SetPropertyElement(propertyName, k, value);
                                     }
                                 }
                                 
