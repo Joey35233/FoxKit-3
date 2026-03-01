@@ -82,38 +82,38 @@ namespace Tpp.Effect
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "shapeType":
-					return new Fox.Core.Value(shapeType);
+					return (object)shapeType;
 				case "interpType":
-					return new Fox.Core.Value(interpType);
+					return (object)interpType;
 				case "debugDrawFlag":
-					return new Fox.Core.Value(debugDrawFlag);
+					return (object)debugDrawFlag;
 				case "debugDrawColor":
-					return new Fox.Core.Value(debugDrawColor);
+					return (object)debugDrawColor;
 				case "innerScale":
-					return new Fox.Core.Value(innerScale);
+					return (object)innerScale;
 				case "centerScale":
-					return new Fox.Core.Value(centerScale);
+					return (object)centerScale;
 				case "outerScale":
-					return new Fox.Core.Value(outerScale);
+					return (object)outerScale;
 				case "innerValue":
-					return new Fox.Core.Value(innerValue);
+					return (object)innerValue;
 				case "centerValue":
-					return new Fox.Core.Value(centerValue);
+					return (object)centerValue;
 				case "outerValue":
-					return new Fox.Core.Value(outerValue);
+					return (object)outerValue;
 				case "reverse":
-					return new Fox.Core.Value(reverse);
+					return (object)reverse;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
@@ -122,7 +122,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -131,42 +131,42 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "shapeType":
-					this.shapeType = (TppLensFlareFieldShapeType)value.GetValueAsInt32();
+					this.shapeType = (TppLensFlareFieldShapeType)value;
 					return;
 				case "interpType":
-					this.interpType = (TppLensFlareFieldInterpType)value.GetValueAsInt32();
+					this.interpType = (TppLensFlareFieldInterpType)value;
 					return;
 				case "debugDrawFlag":
-					this.debugDrawFlag = value.GetValueAsBool();
+					this.debugDrawFlag = (bool)value;
 					return;
 				case "debugDrawColor":
-					this.debugDrawColor = value.GetValueAsColor();
+					this.debugDrawColor = (UnityEngine.Color)value;
 					return;
 				case "innerScale":
-					this.innerScale = value.GetValueAsFloat();
+					this.innerScale = (float)value;
 					return;
 				case "centerScale":
-					this.centerScale = value.GetValueAsFloat();
+					this.centerScale = (float)value;
 					return;
 				case "outerScale":
-					this.outerScale = value.GetValueAsFloat();
+					this.outerScale = (float)value;
 					return;
 				case "innerValue":
-					this.innerValue = value.GetValueAsFloat();
+					this.innerValue = (float)value;
 					return;
 				case "centerValue":
-					this.centerValue = value.GetValueAsFloat();
+					this.centerValue = (float)value;
 					return;
 				case "outerValue":
-					this.outerValue = value.GetValueAsFloat();
+					this.outerValue = (float)value;
 					return;
 				case "reverse":
-					this.reverse = value.GetValueAsBool();
+					this.reverse = (bool)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -174,7 +174,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
@@ -184,7 +184,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

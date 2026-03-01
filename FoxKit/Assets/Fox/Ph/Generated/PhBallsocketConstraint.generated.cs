@@ -88,36 +88,36 @@ namespace Fox.Ph
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "limitedFlag":
-					return new Fox.Core.Value(limitedFlag);
+					return (object)limitedFlag;
 				case "refA":
-					return new Fox.Core.Value(refA);
+					return (object)refA;
 				case "refB":
-					return new Fox.Core.Value(refB);
+					return (object)refB;
 				case "limit":
-					return new Fox.Core.Value(limit);
+					return (object)limit;
 				case "springFlag":
-					return new Fox.Core.Value(springFlag);
+					return (object)springFlag;
 				case "springRefCustomFlag":
-					return new Fox.Core.Value(springRefCustomFlag);
+					return (object)springRefCustomFlag;
 				case "springRef":
-					return new Fox.Core.Value(springRef);
+					return (object)springRef;
 				case "springConstant":
-					return new Fox.Core.Value(springConstant);
+					return (object)springConstant;
 				case "flexibility":
-					return new Fox.Core.Value(flexibility);
+					return (object)flexibility;
 				case "stopTwist":
-					return new Fox.Core.Value(stopTwist);
+					return (object)stopTwist;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
@@ -126,7 +126,7 @@ namespace Fox.Ph
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -135,39 +135,39 @@ namespace Fox.Ph
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "limitedFlag":
-					this.limitedFlag = value.GetValueAsBool();
+					this.limitedFlag = (bool)value;
 					return;
 				case "refA":
-					this.refA = value.GetValueAsQuat();
+					this.refA = (UnityEngine.Quaternion)value;
 					return;
 				case "refB":
-					this.refB = value.GetValueAsQuat();
+					this.refB = (UnityEngine.Quaternion)value;
 					return;
 				case "limit":
-					this.limit = value.GetValueAsFloat();
+					this.limit = (float)value;
 					return;
 				case "springFlag":
-					this.springFlag = value.GetValueAsBool();
+					this.springFlag = (bool)value;
 					return;
 				case "springRefCustomFlag":
-					this.springRefCustomFlag = value.GetValueAsBool();
+					this.springRefCustomFlag = (bool)value;
 					return;
 				case "springRef":
-					this.springRef = value.GetValueAsQuat();
+					this.springRef = (UnityEngine.Quaternion)value;
 					return;
 				case "springConstant":
-					this.springConstant = value.GetValueAsFloat();
+					this.springConstant = (float)value;
 					return;
 				case "flexibility":
-					this.flexibility = value.GetValueAsFloat();
+					this.flexibility = (float)value;
 					return;
 				case "stopTwist":
-					this.stopTwist = value.GetValueAsBool();
+					this.stopTwist = (bool)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -175,7 +175,7 @@ namespace Fox.Ph
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
@@ -185,7 +185,7 @@ namespace Fox.Ph
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

@@ -82,38 +82,38 @@ namespace Fox.Core
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "materialName":
-					return new Fox.Core.Value(materialName);
+					return (object)materialName;
 				case "shader":
-					return new Fox.Core.Value(shader);
+					return (object)shader;
 				case "diffuseTexture":
-					return new Fox.Core.Value(diffuseTexture);
+					return (object)diffuseTexture;
 				case "srmTexture":
-					return new Fox.Core.Value(srmTexture);
+					return (object)srmTexture;
 				case "normalTexture":
-					return new Fox.Core.Value(normalTexture);
+					return (object)normalTexture;
 				case "materialMapTexture":
-					return new Fox.Core.Value(materialMapTexture);
+					return (object)materialMapTexture;
 				case "materialIndex":
-					return new Fox.Core.Value(materialIndex);
+					return (object)materialIndex;
 				case "diffuseColor":
-					return new Fox.Core.Value(diffuseColor);
+					return (object)diffuseColor;
 				case "specularColor":
-					return new Fox.Core.Value(specularColor);
+					return (object)specularColor;
 				case "fmtrPath":
-					return new Fox.Core.Value(fmtrPath);
+					return (object)fmtrPath;
 				case "residentFlag":
-					return new Fox.Core.Value(residentFlag);
+					return (object)residentFlag;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
@@ -122,7 +122,7 @@ namespace Fox.Core
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -131,42 +131,42 @@ namespace Fox.Core
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "materialName":
-					this.materialName = value.GetValueAsString();
+					this.materialName = (string)value;
 					return;
 				case "shader":
-					this.shader = value.GetValueAsPath();
+					this.shader = (Fox.Path)value;
 					return;
 				case "diffuseTexture":
-					this.diffuseTexture = value.GetValueAsPath();
+					this.diffuseTexture = (Fox.Path)value;
 					return;
 				case "srmTexture":
-					this.srmTexture = value.GetValueAsPath();
+					this.srmTexture = (Fox.Path)value;
 					return;
 				case "normalTexture":
-					this.normalTexture = value.GetValueAsPath();
+					this.normalTexture = (Fox.Path)value;
 					return;
 				case "materialMapTexture":
-					this.materialMapTexture = value.GetValueAsPath();
+					this.materialMapTexture = (Fox.Path)value;
 					return;
 				case "materialIndex":
-					this.materialIndex = value.GetValueAsUInt8();
+					this.materialIndex = (byte)value;
 					return;
 				case "diffuseColor":
-					this.diffuseColor = value.GetValueAsColor();
+					this.diffuseColor = (UnityEngine.Color)value;
 					return;
 				case "specularColor":
-					this.specularColor = value.GetValueAsColor();
+					this.specularColor = (UnityEngine.Color)value;
 					return;
 				case "fmtrPath":
-					this.fmtrPath = value.GetValueAsPath();
+					this.fmtrPath = (Fox.Path)value;
 					return;
 				case "residentFlag":
-					this.residentFlag = value.GetValueAsBool();
+					this.residentFlag = (bool)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -174,7 +174,7 @@ namespace Fox.Core
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
@@ -184,7 +184,7 @@ namespace Fox.Core
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

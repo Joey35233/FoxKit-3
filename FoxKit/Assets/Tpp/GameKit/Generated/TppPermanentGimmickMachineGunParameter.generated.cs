@@ -62,28 +62,28 @@ namespace Tpp.GameKit
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "maxYAxisAngle":
-					return new Fox.Core.Value(maxYAxisAngle);
+					return (object)maxYAxisAngle;
 				case "minYAxisAngle":
-					return new Fox.Core.Value(minYAxisAngle);
+					return (object)minYAxisAngle;
 				case "maxXAxisAngle":
-					return new Fox.Core.Value(maxXAxisAngle);
+					return (object)maxXAxisAngle;
 				case "minXAxisAngle":
-					return new Fox.Core.Value(minXAxisAngle);
+					return (object)minXAxisAngle;
 				case "weaponPartsFile":
-					return new Fox.Core.Value(weaponPartsFile);
+					return (object)weaponPartsFile;
 				case "flags1":
-					return new Fox.Core.Value(flags1);
+					return (object)flags1;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
@@ -92,7 +92,7 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -101,27 +101,27 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "maxYAxisAngle":
-					this.maxYAxisAngle = value.GetValueAsFloat();
+					this.maxYAxisAngle = (float)value;
 					return;
 				case "minYAxisAngle":
-					this.minYAxisAngle = value.GetValueAsFloat();
+					this.minYAxisAngle = (float)value;
 					return;
 				case "maxXAxisAngle":
-					this.maxXAxisAngle = value.GetValueAsFloat();
+					this.maxXAxisAngle = (float)value;
 					return;
 				case "minXAxisAngle":
-					this.minXAxisAngle = value.GetValueAsFloat();
+					this.minXAxisAngle = (float)value;
 					return;
 				case "weaponPartsFile":
-					this.weaponPartsFile = value.GetValueAsFilePtr();
+					this.weaponPartsFile = (Fox.Core.FilePtr)value;
 					return;
 				case "flags1":
-					this.flags1 = value.GetValueAsUInt32();
+					this.flags1 = (uint)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -129,7 +129,7 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
@@ -139,7 +139,7 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

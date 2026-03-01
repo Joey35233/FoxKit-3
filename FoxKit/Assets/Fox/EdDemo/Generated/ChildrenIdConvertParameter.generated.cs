@@ -82,38 +82,38 @@ namespace Fox.EdDemo
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "injuryId":
-					return new Fox.Core.Value(injuryId);
+					return (object)injuryId;
 				case "yellowHoodId":
-					return new Fox.Core.Value(yellowHoodId);
+					return (object)yellowHoodId;
 				case "afloId":
-					return new Fox.Core.Value(afloId);
+					return (object)afloId;
 				case "shortAfloId":
-					return new Fox.Core.Value(shortAfloId);
+					return (object)shortAfloId;
 				case "blackCoatId":
-					return new Fox.Core.Value(blackCoatId);
+					return (object)blackCoatId;
 				case "injuryPriority":
-					return new Fox.Core.Value(injuryPriority);
+					return (object)injuryPriority;
 				case "yellowHoodPriority":
-					return new Fox.Core.Value(yellowHoodPriority);
+					return (object)yellowHoodPriority;
 				case "afloPriority":
-					return new Fox.Core.Value(afloPriority);
+					return (object)afloPriority;
 				case "shortAfloPriority":
-					return new Fox.Core.Value(shortAfloPriority);
+					return (object)shortAfloPriority;
 				case "blackCoatPriority":
-					return new Fox.Core.Value(blackCoatPriority);
+					return (object)blackCoatPriority;
 				case "enableInjuredChildSpecialization":
-					return new Fox.Core.Value(enableInjuredChildSpecialization);
+					return (object)enableInjuredChildSpecialization;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
@@ -122,7 +122,7 @@ namespace Fox.EdDemo
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -131,42 +131,42 @@ namespace Fox.EdDemo
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "injuryId":
-					this.injuryId = value.GetValueAsString();
+					this.injuryId = (string)value;
 					return;
 				case "yellowHoodId":
-					this.yellowHoodId = value.GetValueAsString();
+					this.yellowHoodId = (string)value;
 					return;
 				case "afloId":
-					this.afloId = value.GetValueAsString();
+					this.afloId = (string)value;
 					return;
 				case "shortAfloId":
-					this.shortAfloId = value.GetValueAsString();
+					this.shortAfloId = (string)value;
 					return;
 				case "blackCoatId":
-					this.blackCoatId = value.GetValueAsString();
+					this.blackCoatId = (string)value;
 					return;
 				case "injuryPriority":
-					this.injuryPriority = value.GetValueAsUInt8();
+					this.injuryPriority = (byte)value;
 					return;
 				case "yellowHoodPriority":
-					this.yellowHoodPriority = value.GetValueAsUInt8();
+					this.yellowHoodPriority = (byte)value;
 					return;
 				case "afloPriority":
-					this.afloPriority = value.GetValueAsUInt8();
+					this.afloPriority = (byte)value;
 					return;
 				case "shortAfloPriority":
-					this.shortAfloPriority = value.GetValueAsUInt8();
+					this.shortAfloPriority = (byte)value;
 					return;
 				case "blackCoatPriority":
-					this.blackCoatPriority = value.GetValueAsUInt8();
+					this.blackCoatPriority = (byte)value;
 					return;
 				case "enableInjuredChildSpecialization":
-					this.enableInjuredChildSpecialization = value.GetValueAsBool();
+					this.enableInjuredChildSpecialization = (bool)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -174,7 +174,7 @@ namespace Fox.EdDemo
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
@@ -184,7 +184,7 @@ namespace Fox.EdDemo
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

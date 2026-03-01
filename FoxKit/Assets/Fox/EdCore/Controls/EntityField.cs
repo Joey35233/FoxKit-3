@@ -137,7 +137,7 @@ namespace Fox.EdCore
                         VisualElement fieldElement = field as VisualElement;
                         field.bindingPath = IFoxField.GetBindingPathForPropertyName(propertyInfo.Name);
                         Label fieldLabel = field.GetLabelElement();
-                        if (EntityInfo.LongestNamedVisibleFieldProperty is not null)
+                        if (EntityInfo.HasLongestNamedVisibleFieldProperty)
                         {
                             fieldLabel.style.minWidth = StyleKeyword.Auto;
                             fieldLabel.style.width = classInfo.LongestNamedVisibleFieldProperty.Name.Length * 8f;

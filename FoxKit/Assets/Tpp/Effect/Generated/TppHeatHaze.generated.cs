@@ -134,64 +134,64 @@ namespace Tpp.Effect
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "distortionIntensityFullResolution":
-					return new Fox.Core.Value(distortionIntensityFullResolution);
+					return (object)distortionIntensityFullResolution;
 				case "distortionVelocityFullResolution":
-					return new Fox.Core.Value(distortionVelocityFullResolution);
+					return (object)distortionVelocityFullResolution;
 				case "distortionTextureRepetitionFullResolution":
-					return new Fox.Core.Value(distortionTextureRepetitionFullResolution);
+					return (object)distortionTextureRepetitionFullResolution;
 				case "hazeMirageIntensityFullResolution":
-					return new Fox.Core.Value(hazeMirageIntensityFullResolution);
+					return (object)hazeMirageIntensityFullResolution;
 				case "hazeStartDistanceFullResolution":
-					return new Fox.Core.Value(hazeStartDistanceFullResolution);
+					return (object)hazeStartDistanceFullResolution;
 				case "hazeEndDistanceFullResolution":
-					return new Fox.Core.Value(hazeEndDistanceFullResolution);
+					return (object)hazeEndDistanceFullResolution;
 				case "hazeRangeAttenuationFullResolution":
-					return new Fox.Core.Value(hazeRangeAttenuationFullResolution);
+					return (object)hazeRangeAttenuationFullResolution;
 				case "hazeSecondLayerIntensityDifference":
-					return new Fox.Core.Value(hazeSecondLayerIntensityDifference);
+					return (object)hazeSecondLayerIntensityDifference;
 				case "hazeSecondLayerStartDistance":
-					return new Fox.Core.Value(hazeSecondLayerStartDistance);
+					return (object)hazeSecondLayerStartDistance;
 				case "hazeSecondLayerBlurRadius":
-					return new Fox.Core.Value(hazeSecondLayerBlurRadius);
+					return (object)hazeSecondLayerBlurRadius;
 				case "hazeDistortionIntensityAddedOnBinoculars":
-					return new Fox.Core.Value(hazeDistortionIntensityAddedOnBinoculars);
+					return (object)hazeDistortionIntensityAddedOnBinoculars;
 				case "mirageColorSaturation":
-					return new Fox.Core.Value(mirageColorSaturation);
+					return (object)mirageColorSaturation;
 				case "mirageSpreadingPower":
-					return new Fox.Core.Value(mirageSpreadingPower);
+					return (object)mirageSpreadingPower;
 				case "mirageRayLength":
-					return new Fox.Core.Value(mirageRayLength);
+					return (object)mirageRayLength;
 				case "mirageHitRange":
-					return new Fox.Core.Value(mirageHitRange);
+					return (object)mirageHitRange;
 				case "mirageStartDistance":
-					return new Fox.Core.Value(mirageStartDistance);
+					return (object)mirageStartDistance;
 				case "mirageRangeAttenuation":
-					return new Fox.Core.Value(mirageRangeAttenuation);
+					return (object)mirageRangeAttenuation;
 				case "distortionIntensityHalfResolution":
-					return new Fox.Core.Value(distortionIntensityHalfResolution);
+					return (object)distortionIntensityHalfResolution;
 				case "distortionVelocityHalfResolution":
-					return new Fox.Core.Value(distortionVelocityHalfResolution);
+					return (object)distortionVelocityHalfResolution;
 				case "distortionTextureRepetitionHalfResolution":
-					return new Fox.Core.Value(distortionTextureRepetitionHalfResolution);
+					return (object)distortionTextureRepetitionHalfResolution;
 				case "hazeIntensityHalfResolution":
-					return new Fox.Core.Value(hazeIntensityHalfResolution);
+					return (object)hazeIntensityHalfResolution;
 				case "hazeStartDistanceHalfResolution":
-					return new Fox.Core.Value(hazeStartDistanceHalfResolution);
+					return (object)hazeStartDistanceHalfResolution;
 				case "hazeEndDistanceHalfResolution":
-					return new Fox.Core.Value(hazeEndDistanceHalfResolution);
+					return (object)hazeEndDistanceHalfResolution;
 				case "hazeRangeAttenuationHalfResolution":
-					return new Fox.Core.Value(hazeRangeAttenuationHalfResolution);
+					return (object)hazeRangeAttenuationHalfResolution;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
@@ -200,7 +200,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -209,81 +209,81 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "distortionIntensityFullResolution":
-					this.distortionIntensityFullResolution = value.GetValueAsFloat();
+					this.distortionIntensityFullResolution = (float)value;
 					return;
 				case "distortionVelocityFullResolution":
-					this.distortionVelocityFullResolution = value.GetValueAsFloat();
+					this.distortionVelocityFullResolution = (float)value;
 					return;
 				case "distortionTextureRepetitionFullResolution":
-					this.distortionTextureRepetitionFullResolution = value.GetValueAsFloat();
+					this.distortionTextureRepetitionFullResolution = (float)value;
 					return;
 				case "hazeMirageIntensityFullResolution":
-					this.hazeMirageIntensityFullResolution = value.GetValueAsFloat();
+					this.hazeMirageIntensityFullResolution = (float)value;
 					return;
 				case "hazeStartDistanceFullResolution":
-					this.hazeStartDistanceFullResolution = value.GetValueAsFloat();
+					this.hazeStartDistanceFullResolution = (float)value;
 					return;
 				case "hazeEndDistanceFullResolution":
-					this.hazeEndDistanceFullResolution = value.GetValueAsFloat();
+					this.hazeEndDistanceFullResolution = (float)value;
 					return;
 				case "hazeRangeAttenuationFullResolution":
-					this.hazeRangeAttenuationFullResolution = value.GetValueAsFloat();
+					this.hazeRangeAttenuationFullResolution = (float)value;
 					return;
 				case "hazeSecondLayerIntensityDifference":
-					this.hazeSecondLayerIntensityDifference = value.GetValueAsFloat();
+					this.hazeSecondLayerIntensityDifference = (float)value;
 					return;
 				case "hazeSecondLayerStartDistance":
-					this.hazeSecondLayerStartDistance = value.GetValueAsFloat();
+					this.hazeSecondLayerStartDistance = (float)value;
 					return;
 				case "hazeSecondLayerBlurRadius":
-					this.hazeSecondLayerBlurRadius = value.GetValueAsFloat();
+					this.hazeSecondLayerBlurRadius = (float)value;
 					return;
 				case "hazeDistortionIntensityAddedOnBinoculars":
-					this.hazeDistortionIntensityAddedOnBinoculars = value.GetValueAsFloat();
+					this.hazeDistortionIntensityAddedOnBinoculars = (float)value;
 					return;
 				case "mirageColorSaturation":
-					this.mirageColorSaturation = value.GetValueAsFloat();
+					this.mirageColorSaturation = (float)value;
 					return;
 				case "mirageSpreadingPower":
-					this.mirageSpreadingPower = value.GetValueAsFloat();
+					this.mirageSpreadingPower = (float)value;
 					return;
 				case "mirageRayLength":
-					this.mirageRayLength = value.GetValueAsFloat();
+					this.mirageRayLength = (float)value;
 					return;
 				case "mirageHitRange":
-					this.mirageHitRange = value.GetValueAsFloat();
+					this.mirageHitRange = (float)value;
 					return;
 				case "mirageStartDistance":
-					this.mirageStartDistance = value.GetValueAsFloat();
+					this.mirageStartDistance = (float)value;
 					return;
 				case "mirageRangeAttenuation":
-					this.mirageRangeAttenuation = value.GetValueAsFloat();
+					this.mirageRangeAttenuation = (float)value;
 					return;
 				case "distortionIntensityHalfResolution":
-					this.distortionIntensityHalfResolution = value.GetValueAsFloat();
+					this.distortionIntensityHalfResolution = (float)value;
 					return;
 				case "distortionVelocityHalfResolution":
-					this.distortionVelocityHalfResolution = value.GetValueAsFloat();
+					this.distortionVelocityHalfResolution = (float)value;
 					return;
 				case "distortionTextureRepetitionHalfResolution":
-					this.distortionTextureRepetitionHalfResolution = value.GetValueAsFloat();
+					this.distortionTextureRepetitionHalfResolution = (float)value;
 					return;
 				case "hazeIntensityHalfResolution":
-					this.hazeIntensityHalfResolution = value.GetValueAsFloat();
+					this.hazeIntensityHalfResolution = (float)value;
 					return;
 				case "hazeStartDistanceHalfResolution":
-					this.hazeStartDistanceHalfResolution = value.GetValueAsFloat();
+					this.hazeStartDistanceHalfResolution = (float)value;
 					return;
 				case "hazeEndDistanceHalfResolution":
-					this.hazeEndDistanceHalfResolution = value.GetValueAsFloat();
+					this.hazeEndDistanceHalfResolution = (float)value;
 					return;
 				case "hazeRangeAttenuationHalfResolution":
-					this.hazeRangeAttenuationHalfResolution = value.GetValueAsFloat();
+					this.hazeRangeAttenuationHalfResolution = (float)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -291,7 +291,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
@@ -301,7 +301,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

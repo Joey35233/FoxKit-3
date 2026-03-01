@@ -70,32 +70,32 @@ namespace Tpp.GameCore
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "partsFile":
-					return new Fox.Core.Value(partsFile);
+					return (object)partsFile;
 				case "motionGraphFile":
-					return new Fox.Core.Value(motionGraphFile);
+					return (object)motionGraphFile;
 				case "mtarFile":
-					return new Fox.Core.Value(mtarFile);
+					return (object)mtarFile;
 				case "partsFiles":
-					return new Fox.Core.Value((Fox.IStringMap)partsFiles);
+					return (object)(Fox.IStringMap)partsFiles;
 				case "vfxFiles":
-					return new Fox.Core.Value((Fox.IStringMap)vfxFiles);
+					return (object)(Fox.IStringMap)vfxFiles;
 				case "fmdlFiles":
-					return new Fox.Core.Value((Fox.IStringMap)fmdlFiles);
+					return (object)(Fox.IStringMap)fmdlFiles;
 				case "geomFiles":
-					return new Fox.Core.Value((Fox.IStringMap)geomFiles);
+					return (object)(Fox.IStringMap)geomFiles;
 				case "fovaFiles":
-					return new Fox.Core.Value((Fox.IStringMap)fovaFiles);
+					return (object)(Fox.IStringMap)fovaFiles;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
@@ -104,37 +104,37 @@ namespace Tpp.GameCore
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
 				case "partsFiles":
-					return new Fox.Core.Value(this.partsFiles[key]);
+					return (object)this.partsFiles[key];
 				case "vfxFiles":
-					return new Fox.Core.Value(this.vfxFiles[key]);
+					return (object)this.vfxFiles[key];
 				case "fmdlFiles":
-					return new Fox.Core.Value(this.fmdlFiles[key]);
+					return (object)this.fmdlFiles[key];
 				case "geomFiles":
-					return new Fox.Core.Value(this.geomFiles[key]);
+					return (object)this.geomFiles[key];
 				case "fovaFiles":
-					return new Fox.Core.Value(this.fovaFiles[key]);
+					return (object)this.fovaFiles[key];
 				default:
 					return base.GetPropertyElement(propertyName, key);
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "partsFile":
-					this.partsFile = value.GetValueAsFilePtr();
+					this.partsFile = (Fox.Core.FilePtr)value;
 					return;
 				case "motionGraphFile":
-					this.motionGraphFile = value.GetValueAsFilePtr();
+					this.motionGraphFile = (Fox.Core.FilePtr)value;
 					return;
 				case "mtarFile":
-					this.mtarFile = value.GetValueAsFilePtr();
+					this.mtarFile = (Fox.Core.FilePtr)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -142,7 +142,7 @@ namespace Tpp.GameCore
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
@@ -152,39 +152,39 @@ namespace Tpp.GameCore
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
 				case "partsFiles":
 					if (this.partsFiles.ContainsKey(key))
-						this.partsFiles[key] = value.GetValueAsFilePtr();
+						this.partsFiles[key] = (Fox.Core.FilePtr)value;
 					else
-						this.partsFiles.Insert(key, value.GetValueAsFilePtr());
+						this.partsFiles.Insert(key, (Fox.Core.FilePtr)value);
 					return;
 				case "vfxFiles":
 					if (this.vfxFiles.ContainsKey(key))
-						this.vfxFiles[key] = value.GetValueAsFilePtr();
+						this.vfxFiles[key] = (Fox.Core.FilePtr)value;
 					else
-						this.vfxFiles.Insert(key, value.GetValueAsFilePtr());
+						this.vfxFiles.Insert(key, (Fox.Core.FilePtr)value);
 					return;
 				case "fmdlFiles":
 					if (this.fmdlFiles.ContainsKey(key))
-						this.fmdlFiles[key] = value.GetValueAsFilePtr();
+						this.fmdlFiles[key] = (Fox.Core.FilePtr)value;
 					else
-						this.fmdlFiles.Insert(key, value.GetValueAsFilePtr());
+						this.fmdlFiles.Insert(key, (Fox.Core.FilePtr)value);
 					return;
 				case "geomFiles":
 					if (this.geomFiles.ContainsKey(key))
-						this.geomFiles[key] = value.GetValueAsFilePtr();
+						this.geomFiles[key] = (Fox.Core.FilePtr)value;
 					else
-						this.geomFiles.Insert(key, value.GetValueAsFilePtr());
+						this.geomFiles.Insert(key, (Fox.Core.FilePtr)value);
 					return;
 				case "fovaFiles":
 					if (this.fovaFiles.ContainsKey(key))
-						this.fovaFiles[key] = value.GetValueAsFilePtr();
+						this.fovaFiles[key] = (Fox.Core.FilePtr)value;
 					else
-						this.fovaFiles.Insert(key, value.GetValueAsFilePtr());
+						this.fovaFiles.Insert(key, (Fox.Core.FilePtr)value);
 					return;
 				default:
 					base.SetPropertyElement(propertyName, key, value);

@@ -58,26 +58,26 @@ namespace Fox.Demo
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "name":
-					return new Fox.Core.Value(name);
+					return (object)name;
 				case "cameraName":
-					return new Fox.Core.Value(cameraName);
+					return (object)cameraName;
 				case "startFrame":
-					return new Fox.Core.Value(startFrame);
+					return (object)startFrame;
 				case "endFrame":
-					return new Fox.Core.Value(endFrame);
+					return (object)endFrame;
 				case "offsetFrame":
-					return new Fox.Core.Value(offsetFrame);
+					return (object)offsetFrame;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
@@ -86,7 +86,7 @@ namespace Fox.Demo
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -95,24 +95,24 @@ namespace Fox.Demo
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "name":
-					this.name = value.GetValueAsString();
+					this.name = (string)value;
 					return;
 				case "cameraName":
-					this.cameraName = value.GetValueAsString();
+					this.cameraName = (string)value;
 					return;
 				case "startFrame":
-					this.startFrame = value.GetValueAsInt32();
+					this.startFrame = (int)value;
 					return;
 				case "endFrame":
-					this.endFrame = value.GetValueAsInt32();
+					this.endFrame = (int)value;
 					return;
 				case "offsetFrame":
-					this.offsetFrame = value.GetValueAsInt32();
+					this.offsetFrame = (int)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -120,7 +120,7 @@ namespace Fox.Demo
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
@@ -130,7 +130,7 @@ namespace Fox.Demo
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

@@ -54,24 +54,24 @@ namespace Tpp.Effect
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "enable":
-					return new Fox.Core.Value(enable);
+					return (object)enable;
 				case "texture":
-					return new Fox.Core.Value(texture);
+					return (object)texture;
 				case "textureMappingRange":
-					return new Fox.Core.Value(textureMappingRange);
+					return (object)textureMappingRange;
 				case "windInfluence":
-					return new Fox.Core.Value(windInfluence);
+					return (object)windInfluence;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
@@ -80,7 +80,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -89,21 +89,21 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "enable":
-					this.enable = value.GetValueAsBool();
+					this.enable = (bool)value;
 					return;
 				case "texture":
-					this.texture = value.GetValueAsPath();
+					this.texture = (Fox.Path)value;
 					return;
 				case "textureMappingRange":
-					this.textureMappingRange = value.GetValueAsFloat();
+					this.textureMappingRange = (float)value;
 					return;
 				case "windInfluence":
-					this.windInfluence = value.GetValueAsFloat();
+					this.windInfluence = (float)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -111,7 +111,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
@@ -121,7 +121,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

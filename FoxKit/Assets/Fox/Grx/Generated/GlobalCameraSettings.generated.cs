@@ -68,30 +68,30 @@ namespace Fox.Grx
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "focalDistance":
-					return new Fox.Core.Value(focalDistance);
+					return (object)focalDistance;
 				case "focalLength":
-					return new Fox.Core.Value(focalLength);
+					return (object)focalLength;
 				case "aperture":
-					return new Fox.Core.Value(aperture);
+					return (object)aperture;
 				case "shutterSpeed":
-					return new Fox.Core.Value(shutterSpeed);
+					return (object)shutterSpeed;
 				case "flags":
-					return new Fox.Core.Value(flags);
+					return (object)flags;
 				case "isIgnoreDofCameraSetting":
-					return new Fox.Core.Value(isIgnoreDofCameraSetting);
+					return (object)isIgnoreDofCameraSetting;
 				case "isIgnoreMotionBlurCameraSetting":
-					return new Fox.Core.Value(isIgnoreMotionBlurCameraSetting);
+					return (object)isIgnoreMotionBlurCameraSetting;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
@@ -100,7 +100,7 @@ namespace Fox.Grx
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -109,30 +109,30 @@ namespace Fox.Grx
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "focalDistance":
-					this.focalDistance = value.GetValueAsFloat();
+					this.focalDistance = (float)value;
 					return;
 				case "focalLength":
-					this.focalLength = value.GetValueAsFloat();
+					this.focalLength = (float)value;
 					return;
 				case "aperture":
-					this.aperture = value.GetValueAsFloat();
+					this.aperture = (float)value;
 					return;
 				case "shutterSpeed":
-					this.shutterSpeed = value.GetValueAsFloat();
+					this.shutterSpeed = (float)value;
 					return;
 				case "flags":
-					this.flags = value.GetValueAsUInt32();
+					this.flags = (uint)value;
 					return;
 				case "isIgnoreDofCameraSetting":
-					this.isIgnoreDofCameraSetting = value.GetValueAsBool();
+					this.isIgnoreDofCameraSetting = (bool)value;
 					return;
 				case "isIgnoreMotionBlurCameraSetting":
-					this.isIgnoreMotionBlurCameraSetting = value.GetValueAsBool();
+					this.isIgnoreMotionBlurCameraSetting = (bool)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -140,7 +140,7 @@ namespace Fox.Grx
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
@@ -150,7 +150,7 @@ namespace Fox.Grx
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

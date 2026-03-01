@@ -114,54 +114,54 @@ namespace Fox.Sdx
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "hitEvent":
-					return new Fox.Core.Value(hitEvent);
+					return (object)hitEvent;
 				case "rollStartEvent":
-					return new Fox.Core.Value(rollStartEvent);
+					return (object)rollStartEvent;
 				case "rollEndEvent":
-					return new Fox.Core.Value(rollEndEvent);
+					return (object)rollEndEvent;
 				case "hitRtpcName":
-					return new Fox.Core.Value(hitRtpcName);
+					return (object)hitRtpcName;
 				case "rollRtpcName":
-					return new Fox.Core.Value(rollRtpcName);
+					return (object)rollRtpcName;
 				case "switchName":
-					return new Fox.Core.Value(switchName);
+					return (object)switchName;
 				case "generalEvent1":
-					return new Fox.Core.Value(generalEvent1);
+					return (object)generalEvent1;
 				case "generalEvent2":
-					return new Fox.Core.Value(generalEvent2);
+					return (object)generalEvent2;
 				case "hitLowerPower":
-					return new Fox.Core.Value(hitLowerPower);
+					return (object)hitLowerPower;
 				case "hitUpperPower":
-					return new Fox.Core.Value(hitUpperPower);
+					return (object)hitUpperPower;
 				case "hitIntervalSeconds":
-					return new Fox.Core.Value(hitIntervalSeconds);
+					return (object)hitIntervalSeconds;
 				case "hitLowerRtpc":
-					return new Fox.Core.Value(hitLowerRtpc);
+					return (object)hitLowerRtpc;
 				case "hitUpperRtpc":
-					return new Fox.Core.Value(hitUpperRtpc);
+					return (object)hitUpperRtpc;
 				case "rollLowerPower":
-					return new Fox.Core.Value(rollLowerPower);
+					return (object)rollLowerPower;
 				case "rollUpperPower":
-					return new Fox.Core.Value(rollUpperPower);
+					return (object)rollUpperPower;
 				case "rollStartSeconds":
-					return new Fox.Core.Value(rollStartSeconds);
+					return (object)rollStartSeconds;
 				case "rollEndSeconds":
-					return new Fox.Core.Value(rollEndSeconds);
+					return (object)rollEndSeconds;
 				case "rollLowerRtpc":
-					return new Fox.Core.Value(rollLowerRtpc);
+					return (object)rollLowerRtpc;
 				case "rollUpperRtpc":
-					return new Fox.Core.Value(rollUpperRtpc);
+					return (object)rollUpperRtpc;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
@@ -170,7 +170,7 @@ namespace Fox.Sdx
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -179,66 +179,66 @@ namespace Fox.Sdx
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "hitEvent":
-					this.hitEvent = value.GetValueAsString();
+					this.hitEvent = (string)value;
 					return;
 				case "rollStartEvent":
-					this.rollStartEvent = value.GetValueAsString();
+					this.rollStartEvent = (string)value;
 					return;
 				case "rollEndEvent":
-					this.rollEndEvent = value.GetValueAsString();
+					this.rollEndEvent = (string)value;
 					return;
 				case "hitRtpcName":
-					this.hitRtpcName = value.GetValueAsString();
+					this.hitRtpcName = (string)value;
 					return;
 				case "rollRtpcName":
-					this.rollRtpcName = value.GetValueAsString();
+					this.rollRtpcName = (string)value;
 					return;
 				case "switchName":
-					this.switchName = value.GetValueAsString();
+					this.switchName = (string)value;
 					return;
 				case "generalEvent1":
-					this.generalEvent1 = value.GetValueAsString();
+					this.generalEvent1 = (string)value;
 					return;
 				case "generalEvent2":
-					this.generalEvent2 = value.GetValueAsString();
+					this.generalEvent2 = (string)value;
 					return;
 				case "hitLowerPower":
-					this.hitLowerPower = value.GetValueAsFloat();
+					this.hitLowerPower = (float)value;
 					return;
 				case "hitUpperPower":
-					this.hitUpperPower = value.GetValueAsFloat();
+					this.hitUpperPower = (float)value;
 					return;
 				case "hitIntervalSeconds":
-					this.hitIntervalSeconds = value.GetValueAsFloat();
+					this.hitIntervalSeconds = (float)value;
 					return;
 				case "hitLowerRtpc":
-					this.hitLowerRtpc = value.GetValueAsFloat();
+					this.hitLowerRtpc = (float)value;
 					return;
 				case "hitUpperRtpc":
-					this.hitUpperRtpc = value.GetValueAsFloat();
+					this.hitUpperRtpc = (float)value;
 					return;
 				case "rollLowerPower":
-					this.rollLowerPower = value.GetValueAsFloat();
+					this.rollLowerPower = (float)value;
 					return;
 				case "rollUpperPower":
-					this.rollUpperPower = value.GetValueAsFloat();
+					this.rollUpperPower = (float)value;
 					return;
 				case "rollStartSeconds":
-					this.rollStartSeconds = value.GetValueAsFloat();
+					this.rollStartSeconds = (float)value;
 					return;
 				case "rollEndSeconds":
-					this.rollEndSeconds = value.GetValueAsFloat();
+					this.rollEndSeconds = (float)value;
 					return;
 				case "rollLowerRtpc":
-					this.rollLowerRtpc = value.GetValueAsFloat();
+					this.rollLowerRtpc = (float)value;
 					return;
 				case "rollUpperRtpc":
-					this.rollUpperRtpc = value.GetValueAsFloat();
+					this.rollUpperRtpc = (float)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -246,7 +246,7 @@ namespace Fox.Sdx
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
@@ -256,7 +256,7 @@ namespace Fox.Sdx
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

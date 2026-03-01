@@ -126,73 +126,73 @@ namespace Fox.Navx
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "resolution":
-					return new Fox.Core.Value(resolution);
+					return (object)resolution;
 				case "verticalThreshold":
-					return new Fox.Core.Value(verticalThreshold);
+					return (object)verticalThreshold;
 				case "doesDivideIslandWithSector":
-					return new Fox.Core.Value(doesDivideIslandWithSector);
+					return (object)doesDivideIslandWithSector;
 				case "doesHoleSimplification":
-					return new Fox.Core.Value(doesHoleSimplification);
+					return (object)doesHoleSimplification;
 				case "holeSimplificationConvexThreshold":
-					return new Fox.Core.Value(holeSimplificationConvexThreshold);
+					return (object)holeSimplificationConvexThreshold;
 				case "holeSimplificationObbExpandThreshold":
-					return new Fox.Core.Value(holeSimplificationObbExpandThreshold);
+					return (object)holeSimplificationObbExpandThreshold;
 				case "holeSimplificationObbToAabbThreshold":
-					return new Fox.Core.Value(holeSimplificationObbToAabbThreshold);
+					return (object)holeSimplificationObbToAabbThreshold;
 				case "holeSimplificationSmoothingThreshold":
-					return new Fox.Core.Value(holeSimplificationSmoothingThreshold);
+					return (object)holeSimplificationSmoothingThreshold;
 				case "isHoleSimplificationDoesNotClosePassage":
-					return new Fox.Core.Value(isHoleSimplificationDoesNotClosePassage);
+					return (object)isHoleSimplificationDoesNotClosePassage;
 				case "holeSimplificationReduceCount":
-					return new Fox.Core.Value(holeSimplificationReduceCount);
+					return (object)holeSimplificationReduceCount;
 				case "doesAdjustSearchSpaceToNavmesh":
-					return new Fox.Core.Value(doesAdjustSearchSpaceToNavmesh);
+					return (object)doesAdjustSearchSpaceToNavmesh;
 				case "doesGenerateFillNavVolumeInRadius":
-					return new Fox.Core.Value(doesGenerateFillNavVolumeInRadius);
+					return (object)doesGenerateFillNavVolumeInRadius;
 				case "roughGraphFilePath":
-					return new Fox.Core.Value(roughGraphFilePath);
+					return (object)roughGraphFilePath;
 				case "roughGraphFilePtr":
-					return new Fox.Core.Value(roughGraphFilePtr);
+					return (object)roughGraphFilePtr;
 				case "worldName":
-					return new Fox.Core.Value(worldName);
+					return (object)worldName;
 				case "maxFileSizeInKb":
-					return new Fox.Core.Value(maxFileSizeInKb);
+					return (object)maxFileSizeInKb;
 				case "parameters":
-					return new Fox.Core.Value(parameters);
+					return (object)parameters;
 				case "sectorSizeHorizontal":
-					return new Fox.Core.Value(sectorSizeHorizontal);
+					return (object)sectorSizeHorizontal;
 				case "tileSizeHorizontal":
-					return new Fox.Core.Value(tileSizeHorizontal);
+					return (object)tileSizeHorizontal;
 				case "searchSpaceBucketSizeHorizontal":
-					return new Fox.Core.Value(searchSpaceBucketSizeHorizontal);
+					return (object)searchSpaceBucketSizeHorizontal;
 				case "collisionAttributes":
-					return new Fox.Core.Value(collisionAttributes);
+					return (object)collisionAttributes;
 				case "loadFox2FileListScriptPath":
-					return new Fox.Core.Value(loadFox2FileListScriptPath);
+					return (object)loadFox2FileListScriptPath;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
 				case "parameters":
-					return new Fox.Core.Value(this.parameters[index]);
+					return (object)this.parameters[index];
 				case "collisionAttributes":
-					return new Fox.Core.Value(this.collisionAttributes[index]);
+					return (object)this.collisionAttributes[index];
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -201,69 +201,69 @@ namespace Fox.Navx
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "resolution":
-					this.resolution = value.GetValueAsFloat();
+					this.resolution = (float)value;
 					return;
 				case "verticalThreshold":
-					this.verticalThreshold = value.GetValueAsFloat();
+					this.verticalThreshold = (float)value;
 					return;
 				case "doesDivideIslandWithSector":
-					this.doesDivideIslandWithSector = value.GetValueAsBool();
+					this.doesDivideIslandWithSector = (bool)value;
 					return;
 				case "doesHoleSimplification":
-					this.doesHoleSimplification = value.GetValueAsBool();
+					this.doesHoleSimplification = (bool)value;
 					return;
 				case "holeSimplificationConvexThreshold":
-					this.holeSimplificationConvexThreshold = value.GetValueAsFloat();
+					this.holeSimplificationConvexThreshold = (float)value;
 					return;
 				case "holeSimplificationObbExpandThreshold":
-					this.holeSimplificationObbExpandThreshold = value.GetValueAsFloat();
+					this.holeSimplificationObbExpandThreshold = (float)value;
 					return;
 				case "holeSimplificationObbToAabbThreshold":
-					this.holeSimplificationObbToAabbThreshold = value.GetValueAsFloat();
+					this.holeSimplificationObbToAabbThreshold = (float)value;
 					return;
 				case "holeSimplificationSmoothingThreshold":
-					this.holeSimplificationSmoothingThreshold = value.GetValueAsFloat();
+					this.holeSimplificationSmoothingThreshold = (float)value;
 					return;
 				case "isHoleSimplificationDoesNotClosePassage":
-					this.isHoleSimplificationDoesNotClosePassage = value.GetValueAsBool();
+					this.isHoleSimplificationDoesNotClosePassage = (bool)value;
 					return;
 				case "holeSimplificationReduceCount":
-					this.holeSimplificationReduceCount = value.GetValueAsUInt32();
+					this.holeSimplificationReduceCount = (uint)value;
 					return;
 				case "doesAdjustSearchSpaceToNavmesh":
-					this.doesAdjustSearchSpaceToNavmesh = value.GetValueAsBool();
+					this.doesAdjustSearchSpaceToNavmesh = (bool)value;
 					return;
 				case "doesGenerateFillNavVolumeInRadius":
-					this.doesGenerateFillNavVolumeInRadius = value.GetValueAsBool();
+					this.doesGenerateFillNavVolumeInRadius = (bool)value;
 					return;
 				case "roughGraphFilePath":
-					this.roughGraphFilePath = value.GetValueAsPath();
+					this.roughGraphFilePath = (Fox.Path)value;
 					return;
 				case "roughGraphFilePtr":
-					this.roughGraphFilePtr = value.GetValueAsFilePtr();
+					this.roughGraphFilePtr = (Fox.Core.FilePtr)value;
 					return;
 				case "worldName":
-					this.worldName = value.GetValueAsString();
+					this.worldName = (string)value;
 					return;
 				case "maxFileSizeInKb":
-					this.maxFileSizeInKb = value.GetValueAsUInt32();
+					this.maxFileSizeInKb = (uint)value;
 					return;
 				case "sectorSizeHorizontal":
-					this.sectorSizeHorizontal = value.GetValueAsUInt32();
+					this.sectorSizeHorizontal = (uint)value;
 					return;
 				case "tileSizeHorizontal":
-					this.tileSizeHorizontal = value.GetValueAsUInt32();
+					this.tileSizeHorizontal = (uint)value;
 					return;
 				case "searchSpaceBucketSizeHorizontal":
-					this.searchSpaceBucketSizeHorizontal = value.GetValueAsUInt32();
+					this.searchSpaceBucketSizeHorizontal = (uint)value;
 					return;
 				case "loadFox2FileListScriptPath":
-					this.loadFox2FileListScriptPath = value.GetValueAsPath();
+					this.loadFox2FileListScriptPath = (Fox.Path)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -271,17 +271,17 @@ namespace Fox.Navx
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
 				case "parameters":
 					while(this.parameters.Count <= index) { this.parameters.Add(default(Fox.Navx.NavxNavigableParameter)); }
-					this.parameters[index] = value.GetValueAsEntityPtr<Fox.Navx.NavxNavigableParameter>();
+					this.parameters[index] = (Fox.Navx.NavxNavigableParameter)value;
 					return;
 				case "collisionAttributes":
 					while(this.collisionAttributes.Count <= index) { this.collisionAttributes.Add(default(string)); }
-					this.collisionAttributes[index] = value.GetValueAsString();
+					this.collisionAttributes[index] = (string)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -289,7 +289,7 @@ namespace Fox.Navx
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

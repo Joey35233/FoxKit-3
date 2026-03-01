@@ -14,10 +14,8 @@ namespace Fox.Core
         private static readonly Dictionary<StrCode, EntityInfo> EntityInfoNameMap = new();
 
         public static EntityInfo GetEntityInfo<T>() => GetEntityInfo(typeof(T));
-        public static EntityInfo GetEntityInfo(Type type) => EntityInfoMap.TryGetValue(type, out EntityInfo entityInfo) ? entityInfo : null;
-        public static EntityInfo GetEntityInfo(StrCode name) => EntityInfoNameMap.TryGetValue(name, out EntityInfo entityInfo) ? entityInfo : null;
-
-        public static Entity ConstructEntity(EntityInfo entityInfo) => Activator.CreateInstance(entityInfo.Type) as Entity;
+        public static EntityInfo GetEntityInfo(Type type) => EntityInfoMap.GetValueOrDefault(type);
+        public static EntityInfo GetEntityInfo(StrCode name) => EntityInfoNameMap.GetValueOrDefault(name);
 
         public EntityInfo(string name, Type type, EntityInfo super, short id, string category, ushort version)
         {
@@ -111,20 +109,19 @@ namespace Fox.Core
         /// <summary>
         /// Metadata for all static properties in their original order.
         /// </summary>
-        public System.Collections.Generic.List<Core.PropertyInfo> OrderedStaticProperties { get; } = new System.Collections.Generic.List<Core.PropertyInfo>();
+        public List<PropertyInfo> OrderedStaticProperties { get; } = new List<PropertyInfo>();
 
         /// <summary>
         /// Metadata for all static properties in a StringMap for fast lookup.
         /// </summary>
-        public StringMap<Core.PropertyInfo> StaticProperties { get; } = new StringMap<Core.PropertyInfo>();
+        public StringMap<PropertyInfo> StaticProperties { get; } = new StringMap<PropertyInfo>();
 
         /// <summary>
         /// PropertyInfo of the property with the longest name.
         /// </summary>
-        public Fox.Core.PropertyInfo LongestNamedVisibleFieldProperty
-        {
-            get; private set;
-        }
+        public PropertyInfo LongestNamedVisibleFieldProperty { get; private set; }
+
+        public bool HasLongestNamedVisibleFieldProperty = false;
 
         /// <summary>
         /// Checks if an EntityInfo instance or any of its superclasses contains a property with the given name.
@@ -151,18 +148,23 @@ namespace Fox.Core
         /// Adds static property to entityInfo.
         /// </summary>
         /// <param name="propertyInfo">The property's PropertyInfo.</param>
-        public void AddStaticProperty(Fox.Core.PropertyInfo propertyInfo)
+        public void AddStaticProperty(PropertyInfo propertyInfo)
         {
             OrderedStaticProperties.Add(propertyInfo);
             StaticProperties.Insert(propertyInfo.Name, propertyInfo);
 
             // TODO: Reimplement property hiding based on access modifiers once custom editor support is further along.
-            if (/*propertyInfo.Readable != Core.PropertyInfo.PropertyExport.Never && */propertyInfo.Backing == Core.PropertyInfo.BackingType.Field)
+            if (/*propertyInfo.Readable != Core.PropertyInfo.PropertyExport.Never && */propertyInfo.Backing == PropertyInfo.BackingType.Field)
             {
-                if (LongestNamedVisibleFieldProperty == null)
+                if (HasLongestNamedVisibleFieldProperty == false)
+                {
                     LongestNamedVisibleFieldProperty = propertyInfo;
+                    HasLongestNamedVisibleFieldProperty = true;
+                }
                 else if (propertyInfo.Name.Length > LongestNamedVisibleFieldProperty.Name.Length)
+                {
                     LongestNamedVisibleFieldProperty = propertyInfo;
+                }
             }
         }
 

@@ -54,24 +54,24 @@ namespace Tpp.GameCore
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "containerPriority":
-					return new Fox.Core.Value(containerPriority);
+					return (object)containerPriority;
 				case "containerKind":
-					return new Fox.Core.Value(containerKind);
+					return (object)containerKind;
 				case "containerValid":
-					return new Fox.Core.Value(containerValid);
+					return (object)containerValid;
 				case "divisionType":
-					return new Fox.Core.Value(divisionType);
+					return (object)divisionType;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
@@ -80,7 +80,7 @@ namespace Tpp.GameCore
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -89,21 +89,21 @@ namespace Tpp.GameCore
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "containerPriority":
-					this.containerPriority = value.GetValueAsUInt32();
+					this.containerPriority = (uint)value;
 					return;
 				case "containerKind":
-					this.containerKind = value.GetValueAsUInt32();
+					this.containerKind = (uint)value;
 					return;
 				case "containerValid":
-					this.containerValid = value.GetValueAsUInt32();
+					this.containerValid = (uint)value;
 					return;
 				case "divisionType":
-					this.divisionType = value.GetValueAsUInt32();
+					this.divisionType = (uint)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -111,7 +111,7 @@ namespace Tpp.GameCore
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
@@ -121,7 +121,7 @@ namespace Tpp.GameCore
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

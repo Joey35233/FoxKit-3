@@ -54,24 +54,24 @@ namespace Fox.Demox
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "maxModelJoints":
-					return new Fox.Core.Value(maxModelJoints);
+					return (object)maxModelJoints;
 				case "extraScaleJoints":
-					return new Fox.Core.Value(extraScaleJoints);
+					return (object)extraScaleJoints;
 				case "helpBoneParamSrcMax":
-					return new Fox.Core.Value(helpBoneParamSrcMax);
+					return (object)helpBoneParamSrcMax;
 				case "modelNum":
-					return new Fox.Core.Value(modelNum);
+					return (object)modelNum;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
@@ -80,7 +80,7 @@ namespace Fox.Demox
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -89,21 +89,21 @@ namespace Fox.Demox
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "maxModelJoints":
-					this.maxModelJoints = value.GetValueAsInt32();
+					this.maxModelJoints = (int)value;
 					return;
 				case "extraScaleJoints":
-					this.extraScaleJoints = value.GetValueAsInt32();
+					this.extraScaleJoints = (int)value;
 					return;
 				case "helpBoneParamSrcMax":
-					this.helpBoneParamSrcMax = value.GetValueAsInt32();
+					this.helpBoneParamSrcMax = (int)value;
 					return;
 				case "modelNum":
-					this.modelNum = value.GetValueAsInt32();
+					this.modelNum = (int)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -111,7 +111,7 @@ namespace Fox.Demox
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
@@ -121,7 +121,7 @@ namespace Fox.Demox
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

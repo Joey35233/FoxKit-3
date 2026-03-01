@@ -90,55 +90,55 @@ namespace Fox.UiScene
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "data":
-					return new Fox.Core.Value(data);
+					return (object)data;
 				case "sceneName":
-					return new Fox.Core.Value(sceneName);
+					return (object)sceneName;
 				case "priority":
-					return new Fox.Core.Value(priority);
+					return (object)priority;
 				case "animations":
-					return new Fox.Core.Value(animations);
+					return (object)animations;
 				case "useLayoutCamera":
-					return new Fox.Core.Value(useLayoutCamera);
+					return (object)useLayoutCamera;
 				case "flag":
-					return new Fox.Core.Value(flag);
+					return (object)flag;
 				case "billboardMin":
-					return new Fox.Core.Value(billboardMin);
+					return (object)billboardMin;
 				case "billboardMax":
-					return new Fox.Core.Value(billboardMax);
+					return (object)billboardMax;
 				case "connection_connectModelDataHandle":
-					return new Fox.Core.Value(connection_connectModelDataHandle);
+					return (object)connection_connectModelDataHandle;
 				case "connection_connectModelNodeName":
-					return new Fox.Core.Value(connection_connectModelNodeName);
+					return (object)connection_connectModelNodeName;
 				case "color":
-					return new Fox.Core.Value(color);
+					return (object)color;
 				case "inheritanceSetting":
-					return new Fox.Core.Value(inheritanceSetting);
+					return (object)inheritanceSetting;
 				case "modelNodes":
-					return new Fox.Core.Value(modelNodes);
+					return (object)modelNodes;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
 				case "animations":
-					return new Fox.Core.Value(this.animations[index]);
+					return (object)this.animations[index];
 				case "modelNodes":
-					return new Fox.Core.Value(this.modelNodes[index]);
+					return (object)this.modelNodes[index];
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -147,42 +147,42 @@ namespace Fox.UiScene
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "data":
-					this.data = value.GetValueAsFilePtr();
+					this.data = (Fox.Core.FilePtr)value;
 					return;
 				case "sceneName":
-					this.sceneName = value.GetValueAsString();
+					this.sceneName = (string)value;
 					return;
 				case "priority":
-					this.priority = value.GetValueAsInt32();
+					this.priority = (int)value;
 					return;
 				case "useLayoutCamera":
-					this.useLayoutCamera = value.GetValueAsBool();
+					this.useLayoutCamera = (bool)value;
 					return;
 				case "flag":
-					this.flag = (UiModelDataFlag)value.GetValueAsUInt32();
+					this.flag = (UiModelDataFlag)value;
 					return;
 				case "billboardMin":
-					this.billboardMin = value.GetValueAsFloat();
+					this.billboardMin = (float)value;
 					return;
 				case "billboardMax":
-					this.billboardMax = value.GetValueAsFloat();
+					this.billboardMax = (float)value;
 					return;
 				case "connection_connectModelDataHandle":
-					this.connection_connectModelDataHandle = value.GetValueAsEntityHandle();
+					this.connection_connectModelDataHandle = (Fox.Core.Entity)value;
 					return;
 				case "connection_connectModelNodeName":
-					this.connection_connectModelNodeName = value.GetValueAsString();
+					this.connection_connectModelNodeName = (string)value;
 					return;
 				case "color":
-					this.color = value.GetValueAsColor();
+					this.color = (UnityEngine.Color)value;
 					return;
 				case "inheritanceSetting":
-					this.inheritanceSetting = (UiInheritanceSetting)value.GetValueAsUInt32();
+					this.inheritanceSetting = (UiInheritanceSetting)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -190,17 +190,17 @@ namespace Fox.UiScene
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
 				case "animations":
 					while(this.animations.Count <= index) { this.animations.Add(default(Fox.Core.EntityLink)); }
-					this.animations[index] = value.GetValueAsEntityLink();
+					this.animations[index] = (Fox.Core.EntityLink)value;
 					return;
 				case "modelNodes":
 					while(this.modelNodes.Count <= index) { this.modelNodes.Add(default(Fox.UiScene.UiModelNodeElement)); }
-					this.modelNodes[index] = value.GetValueAsEntityPtr<Fox.UiScene.UiModelNodeElement>();
+					this.modelNodes[index] = (Fox.UiScene.UiModelNodeElement)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -208,7 +208,7 @@ namespace Fox.UiScene
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

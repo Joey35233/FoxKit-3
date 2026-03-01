@@ -54,37 +54,37 @@ namespace Fox.Geox
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "collisionCategory":
-					return new Fox.Core.Value(collisionCategory);
+					return (object)collisionCategory;
 				case "collisionMaterial":
-					return new Fox.Core.Value(collisionMaterial);
+					return (object)collisionMaterial;
 				case "collisionAttributeNames":
-					return new Fox.Core.Value(collisionAttributeNames);
+					return (object)collisionAttributeNames;
 				case "points":
-					return new Fox.Core.Value(points);
+					return (object)points;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
 				case "collisionAttributeNames":
-					return new Fox.Core.Value(this.collisionAttributeNames[index]);
+					return (object)this.collisionAttributeNames[index];
 				case "points":
-					return new Fox.Core.Value(this.points[index]);
+					return (object)this.points[index];
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -93,15 +93,15 @@ namespace Fox.Geox
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "collisionCategory":
-					this.collisionCategory = (CollisionFreeShape_Category)value.GetValueAsInt32();
+					this.collisionCategory = (CollisionFreeShape_Category)value;
 					return;
 				case "collisionMaterial":
-					this.collisionMaterial = value.GetValueAsString();
+					this.collisionMaterial = (string)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -109,17 +109,17 @@ namespace Fox.Geox
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
 				case "collisionAttributeNames":
 					while(this.collisionAttributeNames.Count <= index) { this.collisionAttributeNames.Add(default(string)); }
-					this.collisionAttributeNames[index] = value.GetValueAsString();
+					this.collisionAttributeNames[index] = (string)value;
 					return;
 				case "points":
 					
-					this.points[index] = value.GetValueAsVector3();
+					this.points[index] = (UnityEngine.Vector3)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -127,7 +127,7 @@ namespace Fox.Geox
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

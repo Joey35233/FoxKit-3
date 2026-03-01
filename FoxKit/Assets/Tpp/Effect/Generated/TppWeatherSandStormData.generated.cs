@@ -94,44 +94,44 @@ namespace Tpp.Effect
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "vfxFileSandStormStart":
-					return new Fox.Core.Value(vfxFileSandStormStart);
+					return (object)vfxFileSandStormStart;
 				case "vfxFileSandStormFar":
-					return new Fox.Core.Value(vfxFileSandStormFar);
+					return (object)vfxFileSandStormFar;
 				case "vfxFileSandStormNear":
-					return new Fox.Core.Value(vfxFileSandStormNear);
+					return (object)vfxFileSandStormNear;
 				case "vfxFileSandStormCamera":
-					return new Fox.Core.Value(vfxFileSandStormCamera);
+					return (object)vfxFileSandStormCamera;
 				case "sandStormFarDistance":
-					return new Fox.Core.Value(sandStormFarDistance);
+					return (object)sandStormFarDistance;
 				case "sandStormFarHeight":
-					return new Fox.Core.Value(sandStormFarHeight);
+					return (object)sandStormFarHeight;
 				case "sandStormNearDistance":
-					return new Fox.Core.Value(sandStormNearDistance);
+					return (object)sandStormNearDistance;
 				case "sandStormNearHeight":
-					return new Fox.Core.Value(sandStormNearHeight);
+					return (object)sandStormNearHeight;
 				case "noiseScale":
-					return new Fox.Core.Value(noiseScale);
+					return (object)noiseScale;
 				case "noiseOffset":
-					return new Fox.Core.Value(noiseOffset);
+					return (object)noiseOffset;
 				case "noiseCutScale":
-					return new Fox.Core.Value(noiseCutScale);
+					return (object)noiseCutScale;
 				case "noiseCutOffset":
-					return new Fox.Core.Value(noiseCutOffset);
+					return (object)noiseCutOffset;
 				case "noiseColor":
-					return new Fox.Core.Value(noiseColor);
+					return (object)noiseColor;
 				case "noiseSunLightColorMul":
-					return new Fox.Core.Value(noiseSunLightColorMul);
+					return (object)noiseSunLightColorMul;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
@@ -140,7 +140,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -149,51 +149,51 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "vfxFileSandStormStart":
-					this.vfxFileSandStormStart = value.GetValueAsFilePtr();
+					this.vfxFileSandStormStart = (Fox.Core.FilePtr)value;
 					return;
 				case "vfxFileSandStormFar":
-					this.vfxFileSandStormFar = value.GetValueAsFilePtr();
+					this.vfxFileSandStormFar = (Fox.Core.FilePtr)value;
 					return;
 				case "vfxFileSandStormNear":
-					this.vfxFileSandStormNear = value.GetValueAsFilePtr();
+					this.vfxFileSandStormNear = (Fox.Core.FilePtr)value;
 					return;
 				case "vfxFileSandStormCamera":
-					this.vfxFileSandStormCamera = value.GetValueAsFilePtr();
+					this.vfxFileSandStormCamera = (Fox.Core.FilePtr)value;
 					return;
 				case "sandStormFarDistance":
-					this.sandStormFarDistance = value.GetValueAsFloat();
+					this.sandStormFarDistance = (float)value;
 					return;
 				case "sandStormFarHeight":
-					this.sandStormFarHeight = value.GetValueAsFloat();
+					this.sandStormFarHeight = (float)value;
 					return;
 				case "sandStormNearDistance":
-					this.sandStormNearDistance = value.GetValueAsFloat();
+					this.sandStormNearDistance = (float)value;
 					return;
 				case "sandStormNearHeight":
-					this.sandStormNearHeight = value.GetValueAsFloat();
+					this.sandStormNearHeight = (float)value;
 					return;
 				case "noiseScale":
-					this.noiseScale = value.GetValueAsFloat();
+					this.noiseScale = (float)value;
 					return;
 				case "noiseOffset":
-					this.noiseOffset = value.GetValueAsFloat();
+					this.noiseOffset = (float)value;
 					return;
 				case "noiseCutScale":
-					this.noiseCutScale = value.GetValueAsFloat();
+					this.noiseCutScale = (float)value;
 					return;
 				case "noiseCutOffset":
-					this.noiseCutOffset = value.GetValueAsFloat();
+					this.noiseCutOffset = (float)value;
 					return;
 				case "noiseColor":
-					this.noiseColor = value.GetValueAsColor();
+					this.noiseColor = (UnityEngine.Color)value;
 					return;
 				case "noiseSunLightColorMul":
-					this.noiseSunLightColorMul = value.GetValueAsBool();
+					this.noiseSunLightColorMul = (bool)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -201,7 +201,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
@@ -211,7 +211,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

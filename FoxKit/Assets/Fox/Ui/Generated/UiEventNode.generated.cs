@@ -62,28 +62,28 @@ namespace Fox.Ui
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "inputPhaseCount":
-					return new Fox.Core.Value(inputPhaseCount);
+					return (object)inputPhaseCount;
 				case "inputOperationCount":
-					return new Fox.Core.Value(inputOperationCount);
+					return (object)inputOperationCount;
 				case "useStartOperation":
-					return new Fox.Core.Value(useStartOperation);
+					return (object)useStartOperation;
 				case "useStopOperation":
-					return new Fox.Core.Value(useStopOperation);
+					return (object)useStopOperation;
 				case "isReEnter":
-					return new Fox.Core.Value(isReEnter);
+					return (object)isReEnter;
 				case "kind":
-					return new Fox.Core.Value(kind);
+					return (object)kind;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
@@ -92,7 +92,7 @@ namespace Fox.Ui
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -101,27 +101,27 @@ namespace Fox.Ui
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "inputPhaseCount":
-					this.inputPhaseCount = value.GetValueAsUInt32();
+					this.inputPhaseCount = (uint)value;
 					return;
 				case "inputOperationCount":
-					this.inputOperationCount = value.GetValueAsUInt32();
+					this.inputOperationCount = (uint)value;
 					return;
 				case "useStartOperation":
-					this.useStartOperation = value.GetValueAsBool();
+					this.useStartOperation = (bool)value;
 					return;
 				case "useStopOperation":
-					this.useStopOperation = value.GetValueAsBool();
+					this.useStopOperation = (bool)value;
 					return;
 				case "isReEnter":
-					this.isReEnter = value.GetValueAsBool();
+					this.isReEnter = (bool)value;
 					return;
 				case "kind":
-					this.kind = (UiEventNodeKind)value.GetValueAsInt32();
+					this.kind = (UiEventNodeKind)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -129,7 +129,7 @@ namespace Fox.Ui
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
@@ -139,7 +139,7 @@ namespace Fox.Ui
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

@@ -56,24 +56,24 @@ namespace Fox.Core
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "transform_rotation_quat":
-					return new Fox.Core.Value(transform_rotation_quat);
+					return (object)transform_rotation_quat;
 				case "transform_translation":
-					return new Fox.Core.Value(transform_translation);
+					return (object)transform_translation;
 				case "rotQuat":
-					return new Fox.Core.Value(rotQuat);
+					return (object)rotQuat;
 				case "translation":
-					return new Fox.Core.Value(translation);
+					return (object)translation;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
@@ -82,7 +82,7 @@ namespace Fox.Core
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -91,21 +91,21 @@ namespace Fox.Core
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "transform_rotation_quat":
-					this.transform_rotation_quat = value.GetValueAsQuat();
+					this.transform_rotation_quat = (UnityEngine.Quaternion)value;
 					return;
 				case "transform_translation":
-					this.transform_translation = value.GetValueAsVector3();
+					this.transform_translation = (UnityEngine.Vector3)value;
 					return;
 				case "rotQuat":
-					this.rotQuat = value.GetValueAsQuat();
+					this.rotQuat = (UnityEngine.Quaternion)value;
 					return;
 				case "translation":
-					this.translation = value.GetValueAsVector3();
+					this.translation = (UnityEngine.Vector3)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -113,7 +113,7 @@ namespace Fox.Core
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
@@ -123,7 +123,7 @@ namespace Fox.Core
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

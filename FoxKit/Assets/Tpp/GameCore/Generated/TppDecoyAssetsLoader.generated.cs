@@ -50,33 +50,33 @@ namespace Tpp.GameCore
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "decoyAssets":
-					return new Fox.Core.Value(decoyAssets);
+					return (object)decoyAssets;
 				case "playerDecoyType":
-					return new Fox.Core.Value(playerDecoyType);
+					return (object)playerDecoyType;
 				case "enemyDecoyType":
-					return new Fox.Core.Value(enemyDecoyType);
+					return (object)enemyDecoyType;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
 				case "decoyAssets":
-					return new Fox.Core.Value(this.decoyAssets[index]);
+					return (object)this.decoyAssets[index];
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -85,15 +85,15 @@ namespace Tpp.GameCore
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "playerDecoyType":
-					this.playerDecoyType = value.GetValueAsString();
+					this.playerDecoyType = (string)value;
 					return;
 				case "enemyDecoyType":
-					this.enemyDecoyType = value.GetValueAsString();
+					this.enemyDecoyType = (string)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -101,13 +101,13 @@ namespace Tpp.GameCore
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
 				case "decoyAssets":
 					while(this.decoyAssets.Count <= index) { this.decoyAssets.Add(default(Fox.Core.FilePtr)); }
-					this.decoyAssets[index] = value.GetValueAsFilePtr();
+					this.decoyAssets[index] = (Fox.Core.FilePtr)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -115,7 +115,7 @@ namespace Tpp.GameCore
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

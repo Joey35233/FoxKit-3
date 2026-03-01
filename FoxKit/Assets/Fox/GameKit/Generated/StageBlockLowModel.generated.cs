@@ -66,30 +66,30 @@ namespace Fox.GameKit
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "lowModelBasePath":
-					return new Fox.Core.Value(lowModelBasePath);
+					return (object)lowModelBasePath;
 				case "minIndexX":
-					return new Fox.Core.Value(minIndexX);
+					return (object)minIndexX;
 				case "minIndexZ":
-					return new Fox.Core.Value(minIndexZ);
+					return (object)minIndexZ;
 				case "maxIndexX":
-					return new Fox.Core.Value(maxIndexX);
+					return (object)maxIndexX;
 				case "maxIndexZ":
-					return new Fox.Core.Value(maxIndexZ);
+					return (object)maxIndexZ;
 				case "groupCountX":
-					return new Fox.Core.Value(groupCountX);
+					return (object)groupCountX;
 				case "groupCountZ":
-					return new Fox.Core.Value(groupCountZ);
+					return (object)groupCountZ;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
@@ -98,7 +98,7 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -107,30 +107,30 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "lowModelBasePath":
-					this.lowModelBasePath = value.GetValueAsString();
+					this.lowModelBasePath = (string)value;
 					return;
 				case "minIndexX":
-					this.minIndexX = value.GetValueAsUInt32();
+					this.minIndexX = (uint)value;
 					return;
 				case "minIndexZ":
-					this.minIndexZ = value.GetValueAsUInt32();
+					this.minIndexZ = (uint)value;
 					return;
 				case "maxIndexX":
-					this.maxIndexX = value.GetValueAsUInt32();
+					this.maxIndexX = (uint)value;
 					return;
 				case "maxIndexZ":
-					this.maxIndexZ = value.GetValueAsUInt32();
+					this.maxIndexZ = (uint)value;
 					return;
 				case "groupCountX":
-					this.groupCountX = value.GetValueAsUInt32();
+					this.groupCountX = (uint)value;
 					return;
 				case "groupCountZ":
-					this.groupCountZ = value.GetValueAsUInt32();
+					this.groupCountZ = (uint)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -138,7 +138,7 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
@@ -148,7 +148,7 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

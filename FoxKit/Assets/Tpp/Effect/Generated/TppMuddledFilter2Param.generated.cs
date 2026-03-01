@@ -61,28 +61,28 @@ namespace Tpp.Effect
 			ClassInfoInitialized = true;
 		}
 		
-		public virtual Fox.Core.Value GetProperty(string propertyName)
+		public virtual object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "widthMin":
-					return new Fox.Core.Value(widthMin);
+					return (object)widthMin;
 				case "widthMax":
-					return new Fox.Core.Value(widthMax);
+					return (object)widthMax;
 				case "lifeMin":
-					return new Fox.Core.Value(lifeMin);
+					return (object)lifeMin;
 				case "lifeMax":
-					return new Fox.Core.Value(lifeMax);
+					return (object)lifeMax;
 				case "deltaAngleMin":
-					return new Fox.Core.Value(deltaAngleMin);
+					return (object)deltaAngleMin;
 				case "deltaAngleMax":
-					return new Fox.Core.Value(deltaAngleMax);
+					return (object)deltaAngleMax;
 				default:
 					throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
 			}
 		}
 
-		public virtual Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public virtual object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
@@ -91,7 +91,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public virtual Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public virtual object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -100,34 +100,34 @@ namespace Tpp.Effect
 			}
 		}
 
-		public virtual void SetProperty(string propertyName, Fox.Core.Value value)
+		public virtual void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "widthMin":
-					this.widthMin = value.GetValueAsFloat();
+					this.widthMin = (float)value;
 					return;
 				case "widthMax":
-					this.widthMax = value.GetValueAsFloat();
+					this.widthMax = (float)value;
 					return;
 				case "lifeMin":
-					this.lifeMin = value.GetValueAsFloat();
+					this.lifeMin = (float)value;
 					return;
 				case "lifeMax":
-					this.lifeMax = value.GetValueAsFloat();
+					this.lifeMax = (float)value;
 					return;
 				case "deltaAngleMin":
-					this.deltaAngleMin = value.GetValueAsFloat();
+					this.deltaAngleMin = (float)value;
 					return;
 				case "deltaAngleMax":
-					this.deltaAngleMax = value.GetValueAsFloat();
+					this.deltaAngleMax = (float)value;
 					return;
 				default:
 					throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
 			}
 		}
 
-		public virtual void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public virtual void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
@@ -136,7 +136,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public virtual void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public virtual void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

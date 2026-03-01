@@ -90,53 +90,53 @@ namespace Fox.Nav
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "destination":
-					return new Fox.Core.Value(destination);
+					return (object)destination;
 				case "destinationDirection":
-					return new Fox.Core.Value(destinationDirection);
+					return (object)destinationDirection;
 				case "position":
-					return new Fox.Core.Value(position);
+					return (object)position;
 				case "startPositions":
-					return new Fox.Core.Value(startPositions);
+					return (object)startPositions;
 				case "direction":
-					return new Fox.Core.Value(direction);
+					return (object)direction;
 				case "steeringMargin":
-					return new Fox.Core.Value(steeringMargin);
+					return (object)steeringMargin;
 				case "minimumTurningRadius":
-					return new Fox.Core.Value(minimumTurningRadius);
+					return (object)minimumTurningRadius;
 				case "turningRadius":
-					return new Fox.Core.Value(turningRadius);
+					return (object)turningRadius;
 				case "radius":
-					return new Fox.Core.Value(radius);
+					return (object)radius;
 				case "attribute":
-					return new Fox.Core.Value(attribute);
+					return (object)attribute;
 				case "pathUpdateDist":
-					return new Fox.Core.Value(pathUpdateDist);
+					return (object)pathUpdateDist;
 				case "pathfindOptionEnableFlags":
-					return new Fox.Core.Value(pathfindOptionEnableFlags);
+					return (object)pathfindOptionEnableFlags;
 				case "enableAutoIncrementStep":
-					return new Fox.Core.Value(enableAutoIncrementStep);
+					return (object)enableAutoIncrementStep;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
 				case "startPositions":
-					return new Fox.Core.Value(this.startPositions[index]);
+					return (object)this.startPositions[index];
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -145,45 +145,45 @@ namespace Fox.Nav
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "destination":
-					this.destination = value.GetValueAsVector3();
+					this.destination = (UnityEngine.Vector3)value;
 					return;
 				case "destinationDirection":
-					this.destinationDirection = value.GetValueAsVector3();
+					this.destinationDirection = (UnityEngine.Vector3)value;
 					return;
 				case "position":
-					this.position = value.GetValueAsVector3();
+					this.position = (UnityEngine.Vector3)value;
 					return;
 				case "direction":
-					this.direction = value.GetValueAsVector3();
+					this.direction = (UnityEngine.Vector3)value;
 					return;
 				case "steeringMargin":
-					this.steeringMargin = value.GetValueAsFloat();
+					this.steeringMargin = (float)value;
 					return;
 				case "minimumTurningRadius":
-					this.minimumTurningRadius = value.GetValueAsFloat();
+					this.minimumTurningRadius = (float)value;
 					return;
 				case "turningRadius":
-					this.turningRadius = value.GetValueAsFloat();
+					this.turningRadius = (float)value;
 					return;
 				case "radius":
-					this.radius = value.GetValueAsFloat();
+					this.radius = (float)value;
 					return;
 				case "attribute":
-					this.attribute = value.GetValueAsUInt16();
+					this.attribute = (ushort)value;
 					return;
 				case "pathUpdateDist":
-					this.pathUpdateDist = value.GetValueAsFloat();
+					this.pathUpdateDist = (float)value;
 					return;
 				case "pathfindOptionEnableFlags":
-					this.pathfindOptionEnableFlags = value.GetValueAsUInt32();
+					this.pathfindOptionEnableFlags = (uint)value;
 					return;
 				case "enableAutoIncrementStep":
-					this.enableAutoIncrementStep = value.GetValueAsBool();
+					this.enableAutoIncrementStep = (bool)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -191,13 +191,13 @@ namespace Fox.Nav
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
 				case "startPositions":
 					while(this.startPositions.Count <= index) { this.startPositions.Add(default(UnityEngine.Vector3)); }
-					this.startPositions[index] = value.GetValueAsVector3();
+					this.startPositions[index] = (UnityEngine.Vector3)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -205,7 +205,7 @@ namespace Fox.Nav
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

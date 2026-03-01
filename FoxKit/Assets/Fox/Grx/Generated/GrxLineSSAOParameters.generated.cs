@@ -94,44 +94,44 @@ namespace Fox.Grx
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "innerRadius":
-					return new Fox.Core.Value(innerRadius);
+					return (object)innerRadius;
 				case "outerRadius":
-					return new Fox.Core.Value(outerRadius);
+					return (object)outerRadius;
 				case "maxDistanceInner":
-					return new Fox.Core.Value(maxDistanceInner);
+					return (object)maxDistanceInner;
 				case "maxDistanceThresholdInner":
-					return new Fox.Core.Value(maxDistanceThresholdInner);
+					return (object)maxDistanceThresholdInner;
 				case "maxDistanceOuter":
-					return new Fox.Core.Value(maxDistanceOuter);
+					return (object)maxDistanceOuter;
 				case "maxDistanceThresholdOuter":
-					return new Fox.Core.Value(maxDistanceThresholdOuter);
+					return (object)maxDistanceThresholdOuter;
 				case "contrastLow":
-					return new Fox.Core.Value(contrastLow);
+					return (object)contrastLow;
 				case "contrastHigh":
-					return new Fox.Core.Value(contrastHigh);
+					return (object)contrastHigh;
 				case "blurMode":
-					return new Fox.Core.Value(blurMode);
+					return (object)blurMode;
 				case "blurRadius":
-					return new Fox.Core.Value(blurRadius);
+					return (object)blurRadius;
 				case "falloffStart":
-					return new Fox.Core.Value(falloffStart);
+					return (object)falloffStart;
 				case "falloffRange":
-					return new Fox.Core.Value(falloffRange);
+					return (object)falloffRange;
 				case "gainonStart":
-					return new Fox.Core.Value(gainonStart);
+					return (object)gainonStart;
 				case "gainonRange":
-					return new Fox.Core.Value(gainonRange);
+					return (object)gainonRange;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
@@ -140,7 +140,7 @@ namespace Fox.Grx
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -149,51 +149,51 @@ namespace Fox.Grx
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "innerRadius":
-					this.innerRadius = value.GetValueAsFloat();
+					this.innerRadius = (float)value;
 					return;
 				case "outerRadius":
-					this.outerRadius = value.GetValueAsFloat();
+					this.outerRadius = (float)value;
 					return;
 				case "maxDistanceInner":
-					this.maxDistanceInner = value.GetValueAsFloat();
+					this.maxDistanceInner = (float)value;
 					return;
 				case "maxDistanceThresholdInner":
-					this.maxDistanceThresholdInner = value.GetValueAsFloat();
+					this.maxDistanceThresholdInner = (float)value;
 					return;
 				case "maxDistanceOuter":
-					this.maxDistanceOuter = value.GetValueAsFloat();
+					this.maxDistanceOuter = (float)value;
 					return;
 				case "maxDistanceThresholdOuter":
-					this.maxDistanceThresholdOuter = value.GetValueAsFloat();
+					this.maxDistanceThresholdOuter = (float)value;
 					return;
 				case "contrastLow":
-					this.contrastLow = value.GetValueAsFloat();
+					this.contrastLow = (float)value;
 					return;
 				case "contrastHigh":
-					this.contrastHigh = value.GetValueAsFloat();
+					this.contrastHigh = (float)value;
 					return;
 				case "blurMode":
-					this.blurMode = (GrxLineSSAOParameters_BlurMode)value.GetValueAsInt32();
+					this.blurMode = (GrxLineSSAOParameters_BlurMode)value;
 					return;
 				case "blurRadius":
-					this.blurRadius = value.GetValueAsFloat();
+					this.blurRadius = (float)value;
 					return;
 				case "falloffStart":
-					this.falloffStart = value.GetValueAsFloat();
+					this.falloffStart = (float)value;
 					return;
 				case "falloffRange":
-					this.falloffRange = value.GetValueAsFloat();
+					this.falloffRange = (float)value;
 					return;
 				case "gainonStart":
-					this.gainonStart = value.GetValueAsFloat();
+					this.gainonStart = (float)value;
 					return;
 				case "gainonRange":
-					this.gainonRange = value.GetValueAsFloat();
+					this.gainonRange = (float)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -201,7 +201,7 @@ namespace Fox.Grx
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
@@ -211,7 +211,7 @@ namespace Fox.Grx
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

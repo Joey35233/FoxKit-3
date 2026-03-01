@@ -109,7 +109,7 @@ namespace Fox.GameKit
                 numBlocksHComponent = gameObject.AddComponent<DynamicProperty_StaticArray_uint32>();
                 numBlocksHComponent.Name = "numBlocksH";
             }
-            numBlocksHComponent.SetElement(0,new Value(numBlocksH));
+            numBlocksHComponent.SetElement((ushort)0,(object)numBlocksH);
             
             if (gameObject.TryGetComponent(out DynamicProperty_StaticArray_uint32 numBlocksWComponent))
             {
@@ -125,7 +125,7 @@ namespace Fox.GameKit
                 numBlocksWComponent = gameObject.AddComponent<DynamicProperty_StaticArray_uint32>();
                 numBlocksWComponent.Name = "numBlocksW";
             }
-            numBlocksWComponent.SetElement(0,new Value(numBlocksW));
+            numBlocksWComponent.SetElement((ushort)0,(object)numBlocksW);
         }
 
         public (uint numBlocksH, uint numBlocksW) GetNumBlocks()
@@ -138,10 +138,10 @@ namespace Fox.GameKit
                 switch (component.Name)
                 {
                     case "numBlocksH":
-                        numBlocksH = component.GetElement(0).GetValueAsUInt32();
+                        numBlocksH = (uint)component.GetValue();
                         break;
                     case "numBlocksW":
-                        numBlocksW = component.GetElement(0).GetValueAsUInt32();
+                        numBlocksW = (uint)component.GetValue();
                         break;
                 }
             }

@@ -93,38 +93,38 @@ namespace Fox.Ph
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "axis":
-					return new Fox.Core.Value(axis);
+					return (object)axis;
 				case "limitedFlag":
-					return new Fox.Core.Value(limitedFlag);
+					return (object)limitedFlag;
 				case "isPoweredFlag":
-					return new Fox.Core.Value(isPoweredFlag);
+					return (object)isPoweredFlag;
 				case "limitHi":
-					return new Fox.Core.Value(limitHi);
+					return (object)limitHi;
 				case "limitLo":
-					return new Fox.Core.Value(limitLo);
+					return (object)limitLo;
 				case "powerControlType":
-					return new Fox.Core.Value(powerControlType);
+					return (object)powerControlType;
 				case "velocityMax":
-					return new Fox.Core.Value(velocityMax);
+					return (object)velocityMax;
 				case "torqueMax":
-					return new Fox.Core.Value(torqueMax);
+					return (object)torqueMax;
 				case "targetTheta":
-					return new Fox.Core.Value(targetTheta);
+					return (object)targetTheta;
 				case "targetVelocity":
-					return new Fox.Core.Value(targetVelocity);
+					return (object)targetVelocity;
 				case "velocityRate":
-					return new Fox.Core.Value(velocityRate);
+					return (object)velocityRate;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
@@ -133,7 +133,7 @@ namespace Fox.Ph
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -142,42 +142,42 @@ namespace Fox.Ph
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "axis":
-					this.axis = value.GetValueAsQuat();
+					this.axis = (UnityEngine.Quaternion)value;
 					return;
 				case "limitedFlag":
-					this.limitedFlag = value.GetValueAsBool();
+					this.limitedFlag = (bool)value;
 					return;
 				case "isPoweredFlag":
-					this.isPoweredFlag = value.GetValueAsBool();
+					this.isPoweredFlag = (bool)value;
 					return;
 				case "limitHi":
-					this.limitHi = value.GetValueAsFloat();
+					this.limitHi = (float)value;
 					return;
 				case "limitLo":
-					this.limitLo = value.GetValueAsFloat();
+					this.limitLo = (float)value;
 					return;
 				case "powerControlType":
-					this.powerControlType = value.GetValueAsUInt32();
+					this.powerControlType = (uint)value;
 					return;
 				case "velocityMax":
-					this.velocityMax = value.GetValueAsFloat();
+					this.velocityMax = (float)value;
 					return;
 				case "torqueMax":
-					this.torqueMax = value.GetValueAsFloat();
+					this.torqueMax = (float)value;
 					return;
 				case "targetTheta":
-					this.targetTheta = value.GetValueAsFloat();
+					this.targetTheta = (float)value;
 					return;
 				case "targetVelocity":
-					this.targetVelocity = value.GetValueAsFloat();
+					this.targetVelocity = (float)value;
 					return;
 				case "velocityRate":
-					this.velocityRate = value.GetValueAsFloat();
+					this.velocityRate = (float)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -185,7 +185,7 @@ namespace Fox.Ph
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
@@ -195,7 +195,7 @@ namespace Fox.Ph
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

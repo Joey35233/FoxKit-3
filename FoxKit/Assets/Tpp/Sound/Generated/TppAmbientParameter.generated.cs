@@ -58,26 +58,26 @@ namespace Tpp.Sound
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "ambientEvent":
-					return new Fox.Core.Value(ambientEvent);
+					return (object)ambientEvent;
 				case "objectRtpcName":
-					return new Fox.Core.Value(objectRtpcName);
+					return (object)objectRtpcName;
 				case "objectRtpcValue":
-					return new Fox.Core.Value(objectRtpcValue);
+					return (object)objectRtpcValue;
 				case "auxSends":
-					return new Fox.Core.Value((Fox.IStringMap)auxSends);
+					return (object)(Fox.IStringMap)auxSends;
 				case "dryVolume":
-					return new Fox.Core.Value(dryVolume);
+					return (object)dryVolume;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
@@ -86,32 +86,32 @@ namespace Tpp.Sound
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
 				case "auxSends":
-					return new Fox.Core.Value(this.auxSends[key]);
+					return (object)this.auxSends[key];
 				default:
 					return base.GetPropertyElement(propertyName, key);
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "ambientEvent":
-					this.ambientEvent = value.GetValueAsString();
+					this.ambientEvent = (string)value;
 					return;
 				case "objectRtpcName":
-					this.objectRtpcName = value.GetValueAsString();
+					this.objectRtpcName = (string)value;
 					return;
 				case "objectRtpcValue":
-					this.objectRtpcValue = value.GetValueAsFloat();
+					this.objectRtpcValue = (float)value;
 					return;
 				case "dryVolume":
-					this.dryVolume = value.GetValueAsFloat();
+					this.dryVolume = (float)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -119,7 +119,7 @@ namespace Tpp.Sound
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
@@ -129,15 +129,15 @@ namespace Tpp.Sound
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
 				case "auxSends":
 					if (this.auxSends.ContainsKey(key))
-						this.auxSends[key] = value.GetValueAsFloat();
+						this.auxSends[key] = (float)value;
 					else
-						this.auxSends.Insert(key, value.GetValueAsFloat());
+						this.auxSends.Insert(key, (float)value);
 					return;
 				default:
 					base.SetPropertyElement(propertyName, key, value);

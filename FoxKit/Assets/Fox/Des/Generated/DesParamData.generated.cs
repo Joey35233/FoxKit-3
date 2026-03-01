@@ -66,30 +66,30 @@ namespace Fox.Des
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "density":
-					return new Fox.Core.Value(density);
+					return (object)density;
 				case "friction":
-					return new Fox.Core.Value(friction);
+					return (object)friction;
 				case "restitution":
-					return new Fox.Core.Value(restitution);
+					return (object)restitution;
 				case "materialName":
-					return new Fox.Core.Value(materialName);
+					return (object)materialName;
 				case "desCondition":
-					return new Fox.Core.Value(desCondition);
+					return (object)desCondition;
 				case "desImpactPowerThreshold":
-					return new Fox.Core.Value(desImpactPowerThreshold);
+					return (object)desImpactPowerThreshold;
 				case "physicalCoefficient":
-					return new Fox.Core.Value(physicalCoefficient);
+					return (object)physicalCoefficient;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
@@ -98,7 +98,7 @@ namespace Fox.Des
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -107,30 +107,30 @@ namespace Fox.Des
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "density":
-					this.density = value.GetValueAsFloat();
+					this.density = (float)value;
 					return;
 				case "friction":
-					this.friction = value.GetValueAsFloat();
+					this.friction = (float)value;
 					return;
 				case "restitution":
-					this.restitution = value.GetValueAsFloat();
+					this.restitution = (float)value;
 					return;
 				case "materialName":
-					this.materialName = value.GetValueAsString();
+					this.materialName = (string)value;
 					return;
 				case "desCondition":
-					this.desCondition = (ParamDataDesCondition)value.GetValueAsInt32();
+					this.desCondition = (ParamDataDesCondition)value;
 					return;
 				case "desImpactPowerThreshold":
-					this.desImpactPowerThreshold = value.GetValueAsFloat();
+					this.desImpactPowerThreshold = (float)value;
 					return;
 				case "physicalCoefficient":
-					this.physicalCoefficient = value.GetValueAsFloat();
+					this.physicalCoefficient = (float)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -138,7 +138,7 @@ namespace Fox.Des
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
@@ -148,7 +148,7 @@ namespace Fox.Des
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

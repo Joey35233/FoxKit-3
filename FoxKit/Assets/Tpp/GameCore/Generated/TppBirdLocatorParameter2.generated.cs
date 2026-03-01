@@ -58,39 +58,39 @@ namespace Tpp.GameCore
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "count":
-					return new Fox.Core.Value(count);
+					return (object)count;
 				case "grounds":
-					return new Fox.Core.Value(grounds);
+					return (object)grounds;
 				case "perchPoints":
-					return new Fox.Core.Value(perchPoints);
+					return (object)perchPoints;
 				case "radius":
-					return new Fox.Core.Value(radius);
+					return (object)radius;
 				case "height":
-					return new Fox.Core.Value(height);
+					return (object)height;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
 				case "grounds":
-					return new Fox.Core.Value(this.grounds[index]);
+					return (object)this.grounds[index];
 				case "perchPoints":
-					return new Fox.Core.Value(this.perchPoints[index]);
+					return (object)this.perchPoints[index];
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -99,18 +99,18 @@ namespace Tpp.GameCore
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "count":
-					this.count = value.GetValueAsUInt32();
+					this.count = (uint)value;
 					return;
 				case "radius":
-					this.radius = value.GetValueAsUInt8();
+					this.radius = (byte)value;
 					return;
 				case "height":
-					this.height = value.GetValueAsUInt8();
+					this.height = (byte)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -118,17 +118,17 @@ namespace Tpp.GameCore
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
 				case "grounds":
 					while(this.grounds.Count <= index) { this.grounds.Add(default(UnityEngine.Vector3)); }
-					this.grounds[index] = value.GetValueAsVector3();
+					this.grounds[index] = (UnityEngine.Vector3)value;
 					return;
 				case "perchPoints":
 					while(this.perchPoints.Count <= index) { this.perchPoints.Add(default(UnityEngine.Vector3)); }
-					this.perchPoints[index] = value.GetValueAsVector3();
+					this.perchPoints[index] = (UnityEngine.Vector3)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -136,7 +136,7 @@ namespace Tpp.GameCore
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

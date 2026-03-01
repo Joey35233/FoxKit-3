@@ -46,20 +46,20 @@ namespace Fox.Core
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "buckets":
-					return new Fox.Core.Value((Fox.IStringMap)buckets);
+					return (object)(Fox.IStringMap)buckets;
 				case "mainBucket":
-					return new Fox.Core.Value(mainBucket);
+					return (object)mainBucket;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
@@ -68,23 +68,23 @@ namespace Fox.Core
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
 				case "buckets":
-					return new Fox.Core.Value(this.buckets[key]);
+					return (object)this.buckets[key];
 				default:
 					return base.GetPropertyElement(propertyName, key);
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "mainBucket":
-					this.mainBucket = value.GetValueAsEntityPtr<Fox.Core.Bucket>();
+					this.mainBucket = (Fox.Core.Bucket)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -92,7 +92,7 @@ namespace Fox.Core
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
@@ -102,15 +102,15 @@ namespace Fox.Core
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
 				case "buckets":
 					if (this.buckets.ContainsKey(key))
-						this.buckets[key] = value.GetValueAsEntityPtr<Fox.Core.Bucket>();
+						this.buckets[key] = (Fox.Core.Bucket)value;
 					else
-						this.buckets.Insert(key, value.GetValueAsEntityPtr<Fox.Core.Bucket>());
+						this.buckets.Insert(key, (Fox.Core.Bucket)value);
 					return;
 				default:
 					base.SetPropertyElement(propertyName, key, value);

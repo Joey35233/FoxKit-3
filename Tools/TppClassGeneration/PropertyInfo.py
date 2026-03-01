@@ -178,18 +178,9 @@ class PropertyInfo:
 
 		"""
 
-		cast_string = ""
-		if self.enum_type:
-			cast_string = f'({self.enum_type})'
+		cast_type = self.get_value_type_string()
 
-		if self.data_type == "EntityPtr":
-			ptr_definition = self.definitions[self.ptr_type]
-			root_namespace = ptr_definition.get_root_namespace()
-			ptr_namespace = ptr_definition.get_namespace_without_prefix()
-			ptr_string = f'{root_namespace}.{ptr_namespace}.{self.ptr_type}'
-
-			return f'value.GetValueAsEntityPtr<{ptr_string}>()'
-		return f'{cast_string}value.GetValueAs{self.get_value_getter_type_string()}()'
+		return f'({cast_type})value'
 
 	def get_readable_string(self):
 		"""Gets the property readability enum string.

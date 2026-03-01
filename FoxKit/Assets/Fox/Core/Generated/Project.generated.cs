@@ -46,20 +46,20 @@ namespace Fox.Core
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "dataSetPaths":
-					return new Fox.Core.Value((Fox.IStringMap)dataSetPaths);
+					return (object)(Fox.IStringMap)dataSetPaths;
 				case "currentDataSetPath":
-					return new Fox.Core.Value(currentDataSetPath);
+					return (object)currentDataSetPath;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
@@ -68,23 +68,23 @@ namespace Fox.Core
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
 				case "dataSetPaths":
-					return new Fox.Core.Value(this.dataSetPaths[key]);
+					return (object)this.dataSetPaths[key];
 				default:
 					return base.GetPropertyElement(propertyName, key);
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "currentDataSetPath":
-					this.currentDataSetPath = value.GetValueAsPath();
+					this.currentDataSetPath = (Fox.Path)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -92,7 +92,7 @@ namespace Fox.Core
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
@@ -102,15 +102,15 @@ namespace Fox.Core
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
 				case "dataSetPaths":
 					if (this.dataSetPaths.ContainsKey(key))
-						this.dataSetPaths[key] = value.GetValueAsPath();
+						this.dataSetPaths[key] = (Fox.Path)value;
 					else
-						this.dataSetPaths.Insert(key, value.GetValueAsPath());
+						this.dataSetPaths.Insert(key, (Fox.Path)value);
 					return;
 				default:
 					base.SetPropertyElement(propertyName, key, value);

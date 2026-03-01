@@ -78,36 +78,36 @@ namespace Fox.Demo
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "characterId":
-					return new Fox.Core.Value(characterId);
+					return (object)characterId;
 				case "releaseGroupName":
-					return new Fox.Core.Value(releaseGroupName);
+					return (object)releaseGroupName;
 				case "releaseTag":
-					return new Fox.Core.Value(releaseTag);
+					return (object)releaseTag;
 				case "controlledAtStart":
-					return new Fox.Core.Value(controlledAtStart);
+					return (object)controlledAtStart;
 				case "translation":
-					return new Fox.Core.Value(translation);
+					return (object)translation;
 				case "rotation":
-					return new Fox.Core.Value(rotation);
+					return (object)rotation;
 				case "startGroupName":
-					return new Fox.Core.Value(startGroupName);
+					return (object)startGroupName;
 				case "startTag":
-					return new Fox.Core.Value(startTag);
+					return (object)startTag;
 				case "startTranslation":
-					return new Fox.Core.Value(startTranslation);
+					return (object)startTranslation;
 				case "startRotation":
-					return new Fox.Core.Value(startRotation);
+					return (object)startRotation;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
@@ -116,7 +116,7 @@ namespace Fox.Demo
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -125,39 +125,39 @@ namespace Fox.Demo
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "characterId":
-					this.characterId = value.GetValueAsString();
+					this.characterId = (string)value;
 					return;
 				case "releaseGroupName":
-					this.releaseGroupName = value.GetValueAsString();
+					this.releaseGroupName = (string)value;
 					return;
 				case "releaseTag":
-					this.releaseTag = value.GetValueAsString();
+					this.releaseTag = (string)value;
 					return;
 				case "controlledAtStart":
-					this.controlledAtStart = value.GetValueAsBool();
+					this.controlledAtStart = (bool)value;
 					return;
 				case "translation":
-					this.translation = value.GetValueAsVector3();
+					this.translation = (UnityEngine.Vector3)value;
 					return;
 				case "rotation":
-					this.rotation = value.GetValueAsQuat();
+					this.rotation = (UnityEngine.Quaternion)value;
 					return;
 				case "startGroupName":
-					this.startGroupName = value.GetValueAsString();
+					this.startGroupName = (string)value;
 					return;
 				case "startTag":
-					this.startTag = value.GetValueAsString();
+					this.startTag = (string)value;
 					return;
 				case "startTranslation":
-					this.startTranslation = value.GetValueAsVector3();
+					this.startTranslation = (UnityEngine.Vector3)value;
 					return;
 				case "startRotation":
-					this.startRotation = value.GetValueAsQuat();
+					this.startRotation = (UnityEngine.Quaternion)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -165,7 +165,7 @@ namespace Fox.Demo
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
@@ -175,7 +175,7 @@ namespace Fox.Demo
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

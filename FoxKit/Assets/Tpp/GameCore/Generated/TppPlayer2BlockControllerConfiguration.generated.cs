@@ -61,28 +61,28 @@ namespace Tpp.GameCore
 			ClassInfoInitialized = true;
 		}
 		
-		public virtual Fox.Core.Value GetProperty(string propertyName)
+		public virtual object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "commonMotionBlockSize":
-					return new Fox.Core.Value(commonMotionBlockSize);
+					return (object)commonMotionBlockSize;
 				case "commonMotionBlockSizePs3":
-					return new Fox.Core.Value(commonMotionBlockSizePs3);
+					return (object)commonMotionBlockSizePs3;
 				case "additiveMotionBlockCount":
-					return new Fox.Core.Value(additiveMotionBlockCount);
+					return (object)additiveMotionBlockCount;
 				case "additiveMotionBlockSize":
-					return new Fox.Core.Value(additiveMotionBlockSize);
+					return (object)additiveMotionBlockSize;
 				case "partsBlockCount":
-					return new Fox.Core.Value(partsBlockCount);
+					return (object)partsBlockCount;
 				case "partsBlockSize":
-					return new Fox.Core.Value(partsBlockSize);
+					return (object)partsBlockSize;
 				default:
 					throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
 			}
 		}
 
-		public virtual Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public virtual object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
@@ -91,7 +91,7 @@ namespace Tpp.GameCore
 			}
 		}
 
-		public virtual Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public virtual object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -100,34 +100,34 @@ namespace Tpp.GameCore
 			}
 		}
 
-		public virtual void SetProperty(string propertyName, Fox.Core.Value value)
+		public virtual void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "commonMotionBlockSize":
-					this.commonMotionBlockSize = value.GetValueAsUInt32();
+					this.commonMotionBlockSize = (uint)value;
 					return;
 				case "commonMotionBlockSizePs3":
-					this.commonMotionBlockSizePs3 = value.GetValueAsUInt32();
+					this.commonMotionBlockSizePs3 = (uint)value;
 					return;
 				case "additiveMotionBlockCount":
-					this.additiveMotionBlockCount = value.GetValueAsUInt32();
+					this.additiveMotionBlockCount = (uint)value;
 					return;
 				case "additiveMotionBlockSize":
-					this.additiveMotionBlockSize = value.GetValueAsUInt32();
+					this.additiveMotionBlockSize = (uint)value;
 					return;
 				case "partsBlockCount":
-					this.partsBlockCount = value.GetValueAsUInt32();
+					this.partsBlockCount = (uint)value;
 					return;
 				case "partsBlockSize":
-					this.partsBlockSize = value.GetValueAsUInt32();
+					this.partsBlockSize = (uint)value;
 					return;
 				default:
 					throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
 			}
 		}
 
-		public virtual void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public virtual void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
@@ -136,7 +136,7 @@ namespace Tpp.GameCore
 			}
 		}
 
-		public virtual void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public virtual void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

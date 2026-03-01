@@ -90,42 +90,42 @@ namespace Fox.Phx
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "defaultRotation":
-					return new Fox.Core.Value(defaultRotation);
+					return (object)defaultRotation;
 				case "positionL":
-					return new Fox.Core.Value(positionL);
+					return (object)positionL;
 				case "frontL":
-					return new Fox.Core.Value(frontL);
+					return (object)frontL;
 				case "upL":
-					return new Fox.Core.Value(upL);
+					return (object)upL;
 				case "wheelPositionOffset":
-					return new Fox.Core.Value(wheelPositionOffset);
+					return (object)wheelPositionOffset;
 				case "radius":
-					return new Fox.Core.Value(radius);
+					return (object)radius;
 				case "suspensionLength":
-					return new Fox.Core.Value(suspensionLength);
+					return (object)suspensionLength;
 				case "maxSuspensionForce":
-					return new Fox.Core.Value(maxSuspensionForce);
+					return (object)maxSuspensionForce;
 				case "dampingFactorElong":
-					return new Fox.Core.Value(dampingFactorElong);
+					return (object)dampingFactorElong;
 				case "dampingFactorCompress":
-					return new Fox.Core.Value(dampingFactorCompress);
+					return (object)dampingFactorCompress;
 				case "friction":
-					return new Fox.Core.Value(friction);
+					return (object)friction;
 				case "restitution":
-					return new Fox.Core.Value(restitution);
+					return (object)restitution;
 				case "inertia":
-					return new Fox.Core.Value(inertia);
+					return (object)inertia;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
@@ -134,7 +134,7 @@ namespace Fox.Phx
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -143,48 +143,48 @@ namespace Fox.Phx
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "defaultRotation":
-					this.defaultRotation = value.GetValueAsQuat();
+					this.defaultRotation = (UnityEngine.Quaternion)value;
 					return;
 				case "positionL":
-					this.positionL = value.GetValueAsVector3();
+					this.positionL = (UnityEngine.Vector3)value;
 					return;
 				case "frontL":
-					this.frontL = value.GetValueAsVector3();
+					this.frontL = (UnityEngine.Vector3)value;
 					return;
 				case "upL":
-					this.upL = value.GetValueAsVector3();
+					this.upL = (UnityEngine.Vector3)value;
 					return;
 				case "wheelPositionOffset":
-					this.wheelPositionOffset = value.GetValueAsVector3();
+					this.wheelPositionOffset = (UnityEngine.Vector3)value;
 					return;
 				case "radius":
-					this.radius = value.GetValueAsFloat();
+					this.radius = (float)value;
 					return;
 				case "suspensionLength":
-					this.suspensionLength = value.GetValueAsFloat();
+					this.suspensionLength = (float)value;
 					return;
 				case "maxSuspensionForce":
-					this.maxSuspensionForce = value.GetValueAsFloat();
+					this.maxSuspensionForce = (float)value;
 					return;
 				case "dampingFactorElong":
-					this.dampingFactorElong = value.GetValueAsFloat();
+					this.dampingFactorElong = (float)value;
 					return;
 				case "dampingFactorCompress":
-					this.dampingFactorCompress = value.GetValueAsFloat();
+					this.dampingFactorCompress = (float)value;
 					return;
 				case "friction":
-					this.friction = value.GetValueAsFloat();
+					this.friction = (float)value;
 					return;
 				case "restitution":
-					this.restitution = value.GetValueAsFloat();
+					this.restitution = (float)value;
 					return;
 				case "inertia":
-					this.inertia = value.GetValueAsFloat();
+					this.inertia = (float)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -192,7 +192,7 @@ namespace Fox.Phx
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
@@ -202,7 +202,7 @@ namespace Fox.Phx
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

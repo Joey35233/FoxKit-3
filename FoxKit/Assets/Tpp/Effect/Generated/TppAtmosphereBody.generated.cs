@@ -74,34 +74,34 @@ namespace Tpp.Effect
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "hour":
-					return new Fox.Core.Value(hour);
+					return (object)hour;
 				case "minute":
-					return new Fox.Core.Value(minute);
+					return (object)minute;
 				case "second":
-					return new Fox.Core.Value(second);
+					return (object)second;
 				case "daySkyLightScale":
-					return new Fox.Core.Value(daySkyLightScale);
+					return (object)daySkyLightScale;
 				case "nightSkyLightScale":
-					return new Fox.Core.Value(nightSkyLightScale);
+					return (object)nightSkyLightScale;
 				case "mieHeightScale":
-					return new Fox.Core.Value(mieHeightScale);
+					return (object)mieHeightScale;
 				case "mieAnisotropy":
-					return new Fox.Core.Value(mieAnisotropy);
+					return (object)mieAnisotropy;
 				case "mieScatteringCoefficient":
-					return new Fox.Core.Value(mieScatteringCoefficient);
+					return (object)mieScatteringCoefficient;
 				case "cloudiness":
-					return new Fox.Core.Value(cloudiness);
+					return (object)cloudiness;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
@@ -110,7 +110,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -119,36 +119,36 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "hour":
-					this.hour = value.GetValueAsUInt32();
+					this.hour = (uint)value;
 					return;
 				case "minute":
-					this.minute = value.GetValueAsUInt32();
+					this.minute = (uint)value;
 					return;
 				case "second":
-					this.second = value.GetValueAsUInt32();
+					this.second = (uint)value;
 					return;
 				case "daySkyLightScale":
-					this.daySkyLightScale = value.GetValueAsFloat();
+					this.daySkyLightScale = (float)value;
 					return;
 				case "nightSkyLightScale":
-					this.nightSkyLightScale = value.GetValueAsFloat();
+					this.nightSkyLightScale = (float)value;
 					return;
 				case "mieHeightScale":
-					this.mieHeightScale = value.GetValueAsFloat();
+					this.mieHeightScale = (float)value;
 					return;
 				case "mieAnisotropy":
-					this.mieAnisotropy = value.GetValueAsFloat();
+					this.mieAnisotropy = (float)value;
 					return;
 				case "mieScatteringCoefficient":
-					this.mieScatteringCoefficient = value.GetValueAsVector3();
+					this.mieScatteringCoefficient = (UnityEngine.Vector3)value;
 					return;
 				case "cloudiness":
-					this.cloudiness = value.GetValueAsFloat();
+					this.cloudiness = (float)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -156,7 +156,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
@@ -166,7 +166,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

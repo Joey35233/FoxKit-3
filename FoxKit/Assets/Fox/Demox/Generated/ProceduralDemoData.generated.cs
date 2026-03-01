@@ -70,70 +70,70 @@ namespace Fox.Demox
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "evfFiles":
-					return new Fox.Core.Value((Fox.IStringMap)evfFiles);
+					return (object)(Fox.IStringMap)evfFiles;
 				case "eventFiles":
-					return new Fox.Core.Value((Fox.IStringMap)eventFiles);
+					return (object)(Fox.IStringMap)eventFiles;
 				case "priority":
-					return new Fox.Core.Value(priority);
+					return (object)priority;
 				case "demoId":
-					return new Fox.Core.Value(demoId);
+					return (object)demoId;
 				case "stringParams":
-					return new Fox.Core.Value(stringParams);
+					return (object)stringParams;
 				case "entityParams":
-					return new Fox.Core.Value((Fox.IStringMap)entityParams);
+					return (object)(Fox.IStringMap)entityParams;
 				case "fileParams":
-					return new Fox.Core.Value((Fox.IStringMap)fileParams);
+					return (object)(Fox.IStringMap)fileParams;
 				case "objectNum":
-					return new Fox.Core.Value((Fox.IStringMap)objectNum);
+					return (object)(Fox.IStringMap)objectNum;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
 				case "stringParams":
-					return new Fox.Core.Value(this.stringParams[index]);
+					return (object)this.stringParams[index];
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
 				case "evfFiles":
-					return new Fox.Core.Value(this.evfFiles[key]);
+					return (object)this.evfFiles[key];
 				case "eventFiles":
-					return new Fox.Core.Value(this.eventFiles[key]);
+					return (object)this.eventFiles[key];
 				case "entityParams":
-					return new Fox.Core.Value(this.entityParams[key]);
+					return (object)this.entityParams[key];
 				case "fileParams":
-					return new Fox.Core.Value(this.fileParams[key]);
+					return (object)this.fileParams[key];
 				case "objectNum":
-					return new Fox.Core.Value(this.objectNum[key]);
+					return (object)this.objectNum[key];
 				default:
 					return base.GetPropertyElement(propertyName, key);
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "priority":
-					this.priority = value.GetValueAsInt32();
+					this.priority = (int)value;
 					return;
 				case "demoId":
-					this.demoId = value.GetValueAsString();
+					this.demoId = (string)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -141,13 +141,13 @@ namespace Fox.Demox
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
 				case "stringParams":
 					while(this.stringParams.Count <= index) { this.stringParams.Add(default(string)); }
-					this.stringParams[index] = value.GetValueAsString();
+					this.stringParams[index] = (string)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -155,39 +155,39 @@ namespace Fox.Demox
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
 				case "evfFiles":
 					if (this.evfFiles.ContainsKey(key))
-						this.evfFiles[key] = value.GetValueAsFilePtr();
+						this.evfFiles[key] = (Fox.Core.FilePtr)value;
 					else
-						this.evfFiles.Insert(key, value.GetValueAsFilePtr());
+						this.evfFiles.Insert(key, (Fox.Core.FilePtr)value);
 					return;
 				case "eventFiles":
 					if (this.eventFiles.ContainsKey(key))
-						this.eventFiles[key] = value.GetValueAsFilePtr();
+						this.eventFiles[key] = (Fox.Core.FilePtr)value;
 					else
-						this.eventFiles.Insert(key, value.GetValueAsFilePtr());
+						this.eventFiles.Insert(key, (Fox.Core.FilePtr)value);
 					return;
 				case "entityParams":
 					if (this.entityParams.ContainsKey(key))
-						this.entityParams[key] = value.GetValueAsEntityLink();
+						this.entityParams[key] = (Fox.Core.EntityLink)value;
 					else
-						this.entityParams.Insert(key, value.GetValueAsEntityLink());
+						this.entityParams.Insert(key, (Fox.Core.EntityLink)value);
 					return;
 				case "fileParams":
 					if (this.fileParams.ContainsKey(key))
-						this.fileParams[key] = value.GetValueAsFilePtr();
+						this.fileParams[key] = (Fox.Core.FilePtr)value;
 					else
-						this.fileParams.Insert(key, value.GetValueAsFilePtr());
+						this.fileParams.Insert(key, (Fox.Core.FilePtr)value);
 					return;
 				case "objectNum":
 					if (this.objectNum.ContainsKey(key))
-						this.objectNum[key] = value.GetValueAsInt32();
+						this.objectNum[key] = (int)value;
 					else
-						this.objectNum.Insert(key, value.GetValueAsInt32());
+						this.objectNum.Insert(key, (int)value);
 					return;
 				default:
 					base.SetPropertyElement(propertyName, key, value);

@@ -50,37 +50,37 @@ namespace Fox.Sdx
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "loadBanks":
-					return new Fox.Core.Value(loadBanks);
+					return (object)loadBanks;
 				case "prepareBanks":
-					return new Fox.Core.Value(prepareBanks);
+					return (object)prepareBanks;
 				case "prepareEvents":
-					return new Fox.Core.Value(prepareEvents);
+					return (object)prepareEvents;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
 				case "loadBanks":
-					return new Fox.Core.Value(this.loadBanks[index]);
+					return (object)this.loadBanks[index];
 				case "prepareBanks":
-					return new Fox.Core.Value(this.prepareBanks[index]);
+					return (object)this.prepareBanks[index];
 				case "prepareEvents":
-					return new Fox.Core.Value(this.prepareEvents[index]);
+					return (object)this.prepareEvents[index];
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -89,7 +89,7 @@ namespace Fox.Sdx
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
@@ -99,21 +99,21 @@ namespace Fox.Sdx
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
 				case "loadBanks":
 					while(this.loadBanks.Count <= index) { this.loadBanks.Add(default(string)); }
-					this.loadBanks[index] = value.GetValueAsString();
+					this.loadBanks[index] = (string)value;
 					return;
 				case "prepareBanks":
 					while(this.prepareBanks.Count <= index) { this.prepareBanks.Add(default(string)); }
-					this.prepareBanks[index] = value.GetValueAsString();
+					this.prepareBanks[index] = (string)value;
 					return;
 				case "prepareEvents":
 					while(this.prepareEvents.Count <= index) { this.prepareEvents.Add(default(string)); }
-					this.prepareEvents[index] = value.GetValueAsString();
+					this.prepareEvents[index] = (string)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -121,7 +121,7 @@ namespace Fox.Sdx
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

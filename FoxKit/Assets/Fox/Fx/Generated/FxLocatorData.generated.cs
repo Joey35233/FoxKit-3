@@ -70,32 +70,32 @@ namespace Fox.Fx
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "variationName":
-					return new Fox.Core.Value(variationName);
+					return (object)variationName;
 				case "effectInstanceName":
-					return new Fox.Core.Value(effectInstanceName);
+					return (object)effectInstanceName;
 				case "enableUserRandomSeed":
-					return new Fox.Core.Value(enableUserRandomSeed);
+					return (object)enableUserRandomSeed;
 				case "userRandomSeed":
-					return new Fox.Core.Value(userRandomSeed);
+					return (object)userRandomSeed;
 				case "shapeKeep":
-					return new Fox.Core.Value(shapeKeep);
+					return (object)shapeKeep;
 				case "createOnInitialize":
-					return new Fox.Core.Value(createOnInitialize);
+					return (object)createOnInitialize;
 				case "blockMemoryAllocation":
-					return new Fox.Core.Value(blockMemoryAllocation);
+					return (object)blockMemoryAllocation;
 				case "vfxFile":
-					return new Fox.Core.Value(vfxFile);
+					return (object)vfxFile;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
@@ -104,7 +104,7 @@ namespace Fox.Fx
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -113,33 +113,33 @@ namespace Fox.Fx
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "variationName":
-					this.variationName = value.GetValueAsString();
+					this.variationName = (string)value;
 					return;
 				case "effectInstanceName":
-					this.effectInstanceName = value.GetValueAsString();
+					this.effectInstanceName = (string)value;
 					return;
 				case "enableUserRandomSeed":
-					this.enableUserRandomSeed = value.GetValueAsBool();
+					this.enableUserRandomSeed = (bool)value;
 					return;
 				case "userRandomSeed":
-					this.userRandomSeed = value.GetValueAsUInt32();
+					this.userRandomSeed = (uint)value;
 					return;
 				case "shapeKeep":
-					this.shapeKeep = value.GetValueAsBool();
+					this.shapeKeep = (bool)value;
 					return;
 				case "createOnInitialize":
-					this.createOnInitialize = value.GetValueAsBool();
+					this.createOnInitialize = (bool)value;
 					return;
 				case "blockMemoryAllocation":
-					this.blockMemoryAllocation = value.GetValueAsBool();
+					this.blockMemoryAllocation = (bool)value;
 					return;
 				case "vfxFile":
-					this.vfxFile = value.GetValueAsFilePtr();
+					this.vfxFile = (Fox.Core.FilePtr)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -147,7 +147,7 @@ namespace Fox.Fx
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
@@ -157,7 +157,7 @@ namespace Fox.Fx
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

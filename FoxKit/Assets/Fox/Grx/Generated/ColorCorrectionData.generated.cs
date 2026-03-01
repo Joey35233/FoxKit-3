@@ -62,28 +62,28 @@ namespace Fox.Grx
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "textureLUT":
-					return new Fox.Core.Value(textureLUT);
+					return (object)textureLUT;
 				case "startSlope":
-					return new Fox.Core.Value(startSlope);
+					return (object)startSlope;
 				case "endSlope":
-					return new Fox.Core.Value(endSlope);
+					return (object)endSlope;
 				case "showBaseLUT":
-					return new Fox.Core.Value(showBaseLUT);
+					return (object)showBaseLUT;
 				case "showFilterLUT":
-					return new Fox.Core.Value(showFilterLUT);
+					return (object)showFilterLUT;
 				case "colorScale":
-					return new Fox.Core.Value(colorScale);
+					return (object)colorScale;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
@@ -92,7 +92,7 @@ namespace Fox.Grx
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -101,27 +101,27 @@ namespace Fox.Grx
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "textureLUT":
-					this.textureLUT = value.GetValueAsPath();
+					this.textureLUT = (Fox.Path)value;
 					return;
 				case "startSlope":
-					this.startSlope = value.GetValueAsFloat();
+					this.startSlope = (float)value;
 					return;
 				case "endSlope":
-					this.endSlope = value.GetValueAsFloat();
+					this.endSlope = (float)value;
 					return;
 				case "showBaseLUT":
-					this.showBaseLUT = value.GetValueAsBool();
+					this.showBaseLUT = (bool)value;
 					return;
 				case "showFilterLUT":
-					this.showFilterLUT = value.GetValueAsBool();
+					this.showFilterLUT = (bool)value;
 					return;
 				case "colorScale":
-					this.colorScale = value.GetValueAsColor();
+					this.colorScale = (UnityEngine.Color)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -129,7 +129,7 @@ namespace Fox.Grx
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
@@ -139,7 +139,7 @@ namespace Fox.Grx
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

@@ -6,7 +6,7 @@ namespace Fox.Core
     /// Metadata defining a property.
     /// </summary>
     [Serializable]
-    public class PropertyInfo
+    public struct PropertyInfo
     {
         /// <summary>
         /// Types of values that can be stored in a Fox property.

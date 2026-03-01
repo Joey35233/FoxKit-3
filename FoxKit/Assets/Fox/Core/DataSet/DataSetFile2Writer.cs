@@ -193,13 +193,13 @@ namespace Fox.Core
                             case PropertyInfo.ContainerType.StaticArray:
                                 if (propertyInfo.ArraySize == 1)
                                 {
-                                    DataElement element = data.GetProperty(propertyInfo.Name).GetValueAsEntityPtr<DataElement>();
+                                    DataElement element = (DataElement)data.GetProperty(propertyInfo.Name);
                                     if (element != null)
                                         element.SetOwner(data);
                                 }
                                 else
                                 {
-                                    DataElement[] staticArray = data.GetProperty(propertyInfo.Name).GetValueAsIList() as DataElement[];
+                                    DataElement[] staticArray = (DataElement[])data.GetProperty(propertyInfo.Name);
                                     if (staticArray is null)
                                         continue;
                                     foreach (var element in staticArray)
@@ -211,7 +211,7 @@ namespace Fox.Core
 
                                 break;
                             case PropertyInfo.ContainerType.DynamicArray:
-                                List<DataElement> dynamicArray = data.GetProperty(propertyInfo.Name).GetValueAsIList() as System.Collections.Generic.List<DataElement>;
+                                List<DataElement> dynamicArray = (List<DataElement>)data.GetProperty(propertyInfo.Name);
                                 if (dynamicArray is null)
                                     continue;
                                 foreach (var element in dynamicArray)
@@ -222,7 +222,7 @@ namespace Fox.Core
 
                                 break;
                             case PropertyInfo.ContainerType.StringMap:
-                                StringMap<DataElement> stringMap = data.GetProperty(propertyInfo.Name).GetValueAsStringMap<DataElement>() as StringMap<DataElement>;
+                                StringMap<DataElement> stringMap = (StringMap<DataElement>)data.GetProperty(propertyInfo.Name);
                                 if (stringMap is null)
                                     continue;
                                 foreach (var element in stringMap)

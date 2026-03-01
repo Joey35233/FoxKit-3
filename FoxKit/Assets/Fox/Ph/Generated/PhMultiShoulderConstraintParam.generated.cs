@@ -70,32 +70,32 @@ namespace Fox.Ph
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "refVec0":
-					return new Fox.Core.Value(refVec0);
+					return (object)refVec0;
 				case "refVec1":
-					return new Fox.Core.Value(refVec1);
+					return (object)refVec1;
 				case "refLimit0":
-					return new Fox.Core.Value(refLimit0);
+					return (object)refLimit0;
 				case "refLimit1":
-					return new Fox.Core.Value(refLimit1);
+					return (object)refLimit1;
 				case "velocityMax":
-					return new Fox.Core.Value(velocityMax);
+					return (object)velocityMax;
 				case "torqueMax":
-					return new Fox.Core.Value(torqueMax);
+					return (object)torqueMax;
 				case "velocityRate":
-					return new Fox.Core.Value(velocityRate);
+					return (object)velocityRate;
 				case "isPoweredFlag":
-					return new Fox.Core.Value(isPoweredFlag);
+					return (object)isPoweredFlag;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
@@ -104,7 +104,7 @@ namespace Fox.Ph
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -113,33 +113,33 @@ namespace Fox.Ph
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "refVec0":
-					this.refVec0 = value.GetValueAsVector3();
+					this.refVec0 = (UnityEngine.Vector3)value;
 					return;
 				case "refVec1":
-					this.refVec1 = value.GetValueAsVector3();
+					this.refVec1 = (UnityEngine.Vector3)value;
 					return;
 				case "refLimit0":
-					this.refLimit0 = value.GetValueAsFloat();
+					this.refLimit0 = (float)value;
 					return;
 				case "refLimit1":
-					this.refLimit1 = value.GetValueAsFloat();
+					this.refLimit1 = (float)value;
 					return;
 				case "velocityMax":
-					this.velocityMax = value.GetValueAsFloat();
+					this.velocityMax = (float)value;
 					return;
 				case "torqueMax":
-					this.torqueMax = value.GetValueAsFloat();
+					this.torqueMax = (float)value;
 					return;
 				case "velocityRate":
-					this.velocityRate = value.GetValueAsFloat();
+					this.velocityRate = (float)value;
 					return;
 				case "isPoweredFlag":
-					this.isPoweredFlag = value.GetValueAsBool();
+					this.isPoweredFlag = (bool)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -147,7 +147,7 @@ namespace Fox.Ph
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
@@ -157,7 +157,7 @@ namespace Fox.Ph
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

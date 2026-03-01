@@ -58,26 +58,26 @@ namespace Fox.Grx
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "enable":
-					return new Fox.Core.Value(enable);
+					return (object)enable;
 				case "colorPreset":
-					return new Fox.Core.Value(colorPreset);
+					return (object)colorPreset;
 				case "skyColor":
-					return new Fox.Core.Value(skyColor);
+					return (object)skyColor;
 				case "horizonColor":
-					return new Fox.Core.Value(horizonColor);
+					return (object)horizonColor;
 				case "showObject":
-					return new Fox.Core.Value(showObject);
+					return (object)showObject;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
@@ -86,7 +86,7 @@ namespace Fox.Grx
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -95,24 +95,24 @@ namespace Fox.Grx
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "enable":
-					this.enable = value.GetValueAsBool();
+					this.enable = (bool)value;
 					return;
 				case "colorPreset":
-					this.colorPreset = (Horizon_ColorPreset)value.GetValueAsInt32();
+					this.colorPreset = (Horizon_ColorPreset)value;
 					return;
 				case "skyColor":
-					this.skyColor = value.GetValueAsColor();
+					this.skyColor = (UnityEngine.Color)value;
 					return;
 				case "horizonColor":
-					this.horizonColor = value.GetValueAsColor();
+					this.horizonColor = (UnityEngine.Color)value;
 					return;
 				case "showObject":
-					this.showObject = value.GetValueAsBool();
+					this.showObject = (bool)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -120,7 +120,7 @@ namespace Fox.Grx
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
@@ -130,7 +130,7 @@ namespace Fox.Grx
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

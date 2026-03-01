@@ -142,83 +142,83 @@ namespace Fox.GameKit
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "filePath":
-					return new Fox.Core.Value(filePath);
+					return (object)filePath;
 				case "loadFilePath":
-					return new Fox.Core.Value(loadFilePath);
+					return (object)loadFilePath;
 				case "dummyFilePath":
-					return new Fox.Core.Value(dummyFilePath);
+					return (object)dummyFilePath;
 				case "filePtr":
-					return new Fox.Core.Value(filePtr);
+					return (object)filePtr;
 				case "meterPerOneRepeat":
-					return new Fox.Core.Value(meterPerOneRepeat);
+					return (object)meterPerOneRepeat;
 				case "meterPerPixel":
-					return new Fox.Core.Value(meterPerPixel);
+					return (object)meterPerPixel;
 				case "isWireFrame":
-					return new Fox.Core.Value(isWireFrame);
+					return (object)isWireFrame;
 				case "lodFlag":
-					return new Fox.Core.Value(lodFlag);
+					return (object)lodFlag;
 				case "isDebugMaterial":
-					return new Fox.Core.Value(isDebugMaterial);
+					return (object)isDebugMaterial;
 				case "materials":
-					return new Fox.Core.Value(materials);
+					return (object)materials;
 				case "lodParam":
-					return new Fox.Core.Value(lodParam);
+					return (object)lodParam;
 				case "materialConfigs":
-					return new Fox.Core.Value(materialConfigs);
+					return (object)materialConfigs;
 				case "packedAlbedoTexturePath":
-					return new Fox.Core.Value(packedAlbedoTexturePath);
+					return (object)packedAlbedoTexturePath;
 				case "packedNormalTexturePath":
-					return new Fox.Core.Value(packedNormalTexturePath);
+					return (object)packedNormalTexturePath;
 				case "packedSrmTexturePath":
-					return new Fox.Core.Value(packedSrmTexturePath);
+					return (object)packedSrmTexturePath;
 				case "packedMaterialIdentify":
-					return new Fox.Core.Value(packedMaterialIdentify);
+					return (object)packedMaterialIdentify;
 				case "isFourceUsePackedMaterialTexture":
-					return new Fox.Core.Value(isFourceUsePackedMaterialTexture);
+					return (object)isFourceUsePackedMaterialTexture;
 				case "baseColorTexture":
-					return new Fox.Core.Value(baseColorTexture);
+					return (object)baseColorTexture;
 				case "materialLodScale":
-					return new Fox.Core.Value(materialLodScale);
+					return (object)materialLodScale;
 				case "materialLodNearOffset":
-					return new Fox.Core.Value(materialLodNearOffset);
+					return (object)materialLodNearOffset;
 				case "materialLodFarOffset":
-					return new Fox.Core.Value(materialLodFarOffset);
+					return (object)materialLodFarOffset;
 				case "materialLodHeightOffset":
-					return new Fox.Core.Value(materialLodHeightOffset);
+					return (object)materialLodHeightOffset;
 				case "worldTextureMode":
-					return new Fox.Core.Value(worldTextureMode);
+					return (object)worldTextureMode;
 				case "worldTextureDividedNumX":
-					return new Fox.Core.Value(worldTextureDividedNumX);
+					return (object)worldTextureDividedNumX;
 				case "worldTextureDividedNumZ":
-					return new Fox.Core.Value(worldTextureDividedNumZ);
+					return (object)worldTextureDividedNumZ;
 				case "worldTextureTilePathes":
-					return new Fox.Core.Value(worldTextureTilePathes);
+					return (object)worldTextureTilePathes;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
 				case "materials":
-					return new Fox.Core.Value(this.materials[index]);
+					return (object)this.materials[index];
 				case "materialConfigs":
-					return new Fox.Core.Value(this.materialConfigs[index]);
+					return (object)this.materialConfigs[index];
 				case "worldTextureTilePathes":
-					return new Fox.Core.Value(this.worldTextureTilePathes[index]);
+					return (object)this.worldTextureTilePathes[index];
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -227,78 +227,78 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "filePath":
-					this.filePath = value.GetValueAsPath();
+					this.filePath = (Fox.Path)value;
 					return;
 				case "loadFilePath":
-					this.loadFilePath = value.GetValueAsPath();
+					this.loadFilePath = (Fox.Path)value;
 					return;
 				case "dummyFilePath":
-					this.dummyFilePath = value.GetValueAsPath();
+					this.dummyFilePath = (Fox.Path)value;
 					return;
 				case "filePtr":
-					this.filePtr = value.GetValueAsFilePtr();
+					this.filePtr = (Fox.Core.FilePtr)value;
 					return;
 				case "meterPerOneRepeat":
-					this.meterPerOneRepeat = value.GetValueAsFloat();
+					this.meterPerOneRepeat = (float)value;
 					return;
 				case "meterPerPixel":
-					this.meterPerPixel = value.GetValueAsFloat();
+					this.meterPerPixel = (float)value;
 					return;
 				case "isWireFrame":
-					this.isWireFrame = value.GetValueAsBool();
+					this.isWireFrame = (bool)value;
 					return;
 				case "lodFlag":
-					this.lodFlag = value.GetValueAsBool();
+					this.lodFlag = (bool)value;
 					return;
 				case "isDebugMaterial":
-					this.isDebugMaterial = value.GetValueAsBool();
+					this.isDebugMaterial = (bool)value;
 					return;
 				case "lodParam":
-					this.lodParam = value.GetValueAsFloat();
+					this.lodParam = (float)value;
 					return;
 				case "packedAlbedoTexturePath":
-					this.packedAlbedoTexturePath = value.GetValueAsPath();
+					this.packedAlbedoTexturePath = (Fox.Path)value;
 					return;
 				case "packedNormalTexturePath":
-					this.packedNormalTexturePath = value.GetValueAsPath();
+					this.packedNormalTexturePath = (Fox.Path)value;
 					return;
 				case "packedSrmTexturePath":
-					this.packedSrmTexturePath = value.GetValueAsPath();
+					this.packedSrmTexturePath = (Fox.Path)value;
 					return;
 				case "packedMaterialIdentify":
-					this.packedMaterialIdentify = value.GetValueAsUInt64();
+					this.packedMaterialIdentify = (ulong)value;
 					return;
 				case "isFourceUsePackedMaterialTexture":
-					this.isFourceUsePackedMaterialTexture = value.GetValueAsBool();
+					this.isFourceUsePackedMaterialTexture = (bool)value;
 					return;
 				case "baseColorTexture":
-					this.baseColorTexture = value.GetValueAsPath();
+					this.baseColorTexture = (Fox.Path)value;
 					return;
 				case "materialLodScale":
-					this.materialLodScale = value.GetValueAsFloat();
+					this.materialLodScale = (float)value;
 					return;
 				case "materialLodNearOffset":
-					this.materialLodNearOffset = value.GetValueAsFloat();
+					this.materialLodNearOffset = (float)value;
 					return;
 				case "materialLodFarOffset":
-					this.materialLodFarOffset = value.GetValueAsFloat();
+					this.materialLodFarOffset = (float)value;
 					return;
 				case "materialLodHeightOffset":
-					this.materialLodHeightOffset = value.GetValueAsFloat();
+					this.materialLodHeightOffset = (float)value;
 					return;
 				case "worldTextureMode":
-					this.worldTextureMode = (WolrdTerrainTextureMode)value.GetValueAsInt32();
+					this.worldTextureMode = (WolrdTerrainTextureMode)value;
 					return;
 				case "worldTextureDividedNumX":
-					this.worldTextureDividedNumX = value.GetValueAsUInt32();
+					this.worldTextureDividedNumX = (uint)value;
 					return;
 				case "worldTextureDividedNumZ":
-					this.worldTextureDividedNumZ = value.GetValueAsUInt32();
+					this.worldTextureDividedNumZ = (uint)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -306,21 +306,21 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
 				case "materials":
 					
-					this.materials[index] = value.GetValueAsEntityLink();
+					this.materials[index] = (Fox.Core.EntityLink)value;
 					return;
 				case "materialConfigs":
 					while(this.materialConfigs.Count <= index) { this.materialConfigs.Add(default(Fox.Core.EntityLink)); }
-					this.materialConfigs[index] = value.GetValueAsEntityLink();
+					this.materialConfigs[index] = (Fox.Core.EntityLink)value;
 					return;
 				case "worldTextureTilePathes":
 					while(this.worldTextureTilePathes.Count <= index) { this.worldTextureTilePathes.Add(default(Fox.Path)); }
-					this.worldTextureTilePathes[index] = value.GetValueAsPath();
+					this.worldTextureTilePathes[index] = (Fox.Path)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -328,7 +328,7 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

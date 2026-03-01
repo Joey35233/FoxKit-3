@@ -83,88 +83,88 @@ namespace Fox.Core
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "collector":
-					return new Fox.Core.Value(collector);
+					return (object)collector;
 				case "name":
-					return new Fox.Core.Value(name);
+					return (object)name;
 				case "sceneName":
-					return new Fox.Core.Value(sceneName);
+					return (object)sceneName;
 				case "actors":
-					return new Fox.Core.Value(actors);
+					return (object)actors;
 				case "dataSetFiles":
-					return new Fox.Core.Value((Fox.IStringMap)dataSetFiles);
+					return (object)(Fox.IStringMap)dataSetFiles;
 				case "dataBodySets":
-					return new Fox.Core.Value((Fox.IStringMap)dataBodySets);
+					return (object)(Fox.IStringMap)dataBodySets;
 				case "editableDataSet":
-					return new Fox.Core.Value(editableDataSet);
+					return (object)editableDataSet;
 				case "editableDataSetPath":
-					return new Fox.Core.Value(editableDataSetPath);
+					return (object)editableDataSetPath;
 				case "editableDataBodySet":
-					return new Fox.Core.Value(editableDataBodySet);
+					return (object)editableDataBodySet;
 				case "editableDataSetChanged":
-					return new Fox.Core.Value(editableDataSetChanged);
+					return (object)editableDataSetChanged;
 				case "isEditableLocked":
-					return new Fox.Core.Value(isEditableLocked);
+					return (object)isEditableLocked;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
 				case "actors":
-					return new Fox.Core.Value(this.actors[index]);
+					return (object)this.actors[index];
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
 				case "dataSetFiles":
-					return new Fox.Core.Value(this.dataSetFiles[key]);
+					return (object)this.dataSetFiles[key];
 				case "dataBodySets":
-					return new Fox.Core.Value(this.dataBodySets[key]);
+					return (object)this.dataBodySets[key];
 				default:
 					return base.GetPropertyElement(propertyName, key);
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "collector":
-					this.collector = value.GetValueAsEntityHandle();
+					this.collector = (Fox.Core.Entity)value;
 					return;
 				case "name":
-					this.name = value.GetValueAsString();
+					this.name = (string)value;
 					return;
 				case "sceneName":
-					this.sceneName = value.GetValueAsString();
+					this.sceneName = (string)value;
 					return;
 				case "editableDataSet":
-					this.editableDataSet = value.GetValueAsEntityPtr<Fox.Core.DataSet>();
+					this.editableDataSet = (Fox.Core.DataSet)value;
 					return;
 				case "editableDataSetPath":
-					this.editableDataSetPath = value.GetValueAsPath();
+					this.editableDataSetPath = (Fox.Path)value;
 					return;
 				case "editableDataBodySet":
-					this.editableDataBodySet = value.GetValueAsEntityPtr<Fox.Core.DataBodySet>();
+					this.editableDataBodySet = (Fox.Core.DataBodySet)value;
 					return;
 				case "editableDataSetChanged":
-					this.editableDataSetChanged = value.GetValueAsBool();
+					this.editableDataSetChanged = (bool)value;
 					return;
 				case "isEditableLocked":
-					this.isEditableLocked = value.GetValueAsBool();
+					this.isEditableLocked = (bool)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -172,13 +172,13 @@ namespace Fox.Core
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
 				case "actors":
 					while(this.actors.Count <= index) { this.actors.Add(default(Fox.Core.Actor)); }
-					this.actors[index] = value.GetValueAsEntityPtr<Fox.Core.Actor>();
+					this.actors[index] = (Fox.Core.Actor)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -186,21 +186,21 @@ namespace Fox.Core
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
 				case "dataSetFiles":
 					if (this.dataSetFiles.ContainsKey(key))
-						this.dataSetFiles[key] = value.GetValueAsFilePtr();
+						this.dataSetFiles[key] = (Fox.Core.FilePtr)value;
 					else
-						this.dataSetFiles.Insert(key, value.GetValueAsFilePtr());
+						this.dataSetFiles.Insert(key, (Fox.Core.FilePtr)value);
 					return;
 				case "dataBodySets":
 					if (this.dataBodySets.ContainsKey(key))
-						this.dataBodySets[key] = value.GetValueAsEntityPtr<Fox.Core.DataBodySet>();
+						this.dataBodySets[key] = (Fox.Core.DataBodySet)value;
 					else
-						this.dataBodySets.Insert(key, value.GetValueAsEntityPtr<Fox.Core.DataBodySet>());
+						this.dataBodySets.Insert(key, (Fox.Core.DataBodySet)value);
 					return;
 				default:
 					base.SetPropertyElement(propertyName, key, value);

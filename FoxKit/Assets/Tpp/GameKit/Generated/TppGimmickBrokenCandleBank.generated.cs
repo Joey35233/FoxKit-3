@@ -58,37 +58,37 @@ namespace Tpp.GameKit
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "referencePartsPathList":
-					return new Fox.Core.Value(referencePartsPathList);
+					return (object)referencePartsPathList;
 				case "modelFile":
-					return new Fox.Core.Value(modelFile);
+					return (object)modelFile;
 				case "connectPointFile":
-					return new Fox.Core.Value(connectPointFile);
+					return (object)connectPointFile;
 				case "soundFile":
-					return new Fox.Core.Value(soundFile);
+					return (object)soundFile;
 				case "instanceCount":
-					return new Fox.Core.Value(instanceCount);
+					return (object)instanceCount;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
 				case "referencePartsPathList":
-					return new Fox.Core.Value(this.referencePartsPathList[index]);
+					return (object)this.referencePartsPathList[index];
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -97,21 +97,21 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "modelFile":
-					this.modelFile = value.GetValueAsFilePtr();
+					this.modelFile = (Fox.Core.FilePtr)value;
 					return;
 				case "connectPointFile":
-					this.connectPointFile = value.GetValueAsFilePtr();
+					this.connectPointFile = (Fox.Core.FilePtr)value;
 					return;
 				case "soundFile":
-					this.soundFile = value.GetValueAsFilePtr();
+					this.soundFile = (Fox.Core.FilePtr)value;
 					return;
 				case "instanceCount":
-					this.instanceCount = value.GetValueAsUInt8();
+					this.instanceCount = (byte)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -119,13 +119,13 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
 				case "referencePartsPathList":
 					while(this.referencePartsPathList.Count <= index) { this.referencePartsPathList.Add(default(Fox.Path)); }
-					this.referencePartsPathList[index] = value.GetValueAsPath();
+					this.referencePartsPathList[index] = (Fox.Path)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -133,7 +133,7 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

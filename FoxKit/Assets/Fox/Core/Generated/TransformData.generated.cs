@@ -85,49 +85,49 @@ namespace Fox.Core
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "parent":
-					return new Fox.Core.Value(parent);
+					return (object)parent;
 				case "transform":
-					return new Fox.Core.Value(transform);
+					return (object)transform;
 				case "shearTransform":
-					return new Fox.Core.Value(shearTransform);
+					return (object)shearTransform;
 				case "pivotTransform":
-					return new Fox.Core.Value(pivotTransform);
+					return (object)pivotTransform;
 				case "children":
-					return new Fox.Core.Value(children);
+					return (object)children;
 				case "flags":
-					return new Fox.Core.Value(flags);
+					return (object)flags;
 				case "inheritTransform":
-					return new Fox.Core.Value(inheritTransform);
+					return (object)inheritTransform;
 				case "visibility":
-					return new Fox.Core.Value(visibility);
+					return (object)visibility;
 				case "selection":
-					return new Fox.Core.Value(selection);
+					return (object)selection;
 				case "worldMatrix":
-					return new Fox.Core.Value(worldMatrix);
+					return (object)worldMatrix;
 				case "worldTransform":
-					return new Fox.Core.Value(worldTransform);
+					return (object)worldTransform;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
 				case "children":
-					return new Fox.Core.Value(this.children[index]);
+					return (object)this.children[index];
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -136,33 +136,33 @@ namespace Fox.Core
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "parent":
-					this.parent = value.GetValueAsEntityHandle();
+					this.parent = (Fox.Core.Entity)value;
 					return;
 				case "transform":
-					this.transform = value.GetValueAsEntityPtr<Fox.Core.TransformEntity>();
+					this.transform = (Fox.Core.TransformEntity)value;
 					return;
 				case "shearTransform":
-					this.shearTransform = value.GetValueAsEntityPtr<Fox.Core.ShearTransformEntity>();
+					this.shearTransform = (Fox.Core.ShearTransformEntity)value;
 					return;
 				case "pivotTransform":
-					this.pivotTransform = value.GetValueAsEntityPtr<Fox.Core.PivotTransformEntity>();
+					this.pivotTransform = (Fox.Core.PivotTransformEntity)value;
 					return;
 				case "flags":
-					this.flags = (TransformData_Flags)value.GetValueAsUInt32();
+					this.flags = (TransformData_Flags)value;
 					return;
 				case "inheritTransform":
-					this.inheritTransform = value.GetValueAsBool();
+					this.inheritTransform = (bool)value;
 					return;
 				case "visibility":
-					this.visibility = value.GetValueAsBool();
+					this.visibility = (bool)value;
 					return;
 				case "selection":
-					this.selection = value.GetValueAsBool();
+					this.selection = (bool)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -170,13 +170,13 @@ namespace Fox.Core
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
 				case "children":
 					while(this.children.Count <= index) { this.children.Add(default(Fox.Core.Entity)); }
-					this.children[index] = value.GetValueAsEntityHandle();
+					this.children[index] = (Fox.Core.Entity)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -184,7 +184,7 @@ namespace Fox.Core
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

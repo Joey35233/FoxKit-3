@@ -62,39 +62,39 @@ namespace Fox.Core
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "enable":
-					return new Fox.Core.Value(enable);
+					return (object)enable;
 				case "loadWithDataProperty":
-					return new Fox.Core.Value(loadWithDataProperty);
+					return (object)loadWithDataProperty;
 				case "scriptPath":
-					return new Fox.Core.Value(scriptPath);
+					return (object)scriptPath;
 				case "blockGroups":
-					return new Fox.Core.Value(blockGroups);
+					return (object)blockGroups;
 				case "isAddRelatedBlockGroupEachOther":
-					return new Fox.Core.Value(isAddRelatedBlockGroupEachOther);
+					return (object)isAddRelatedBlockGroupEachOther;
 				case "prerequisiteBlockGroupName":
-					return new Fox.Core.Value(prerequisiteBlockGroupName);
+					return (object)prerequisiteBlockGroupName;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
 				case "blockGroups":
-					return new Fox.Core.Value(this.blockGroups[index]);
+					return (object)this.blockGroups[index];
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -103,24 +103,24 @@ namespace Fox.Core
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "enable":
-					this.enable = value.GetValueAsBool();
+					this.enable = (bool)value;
 					return;
 				case "loadWithDataProperty":
-					this.loadWithDataProperty = value.GetValueAsBool();
+					this.loadWithDataProperty = (bool)value;
 					return;
 				case "scriptPath":
-					this.scriptPath = value.GetValueAsPath();
+					this.scriptPath = (Fox.Path)value;
 					return;
 				case "isAddRelatedBlockGroupEachOther":
-					this.isAddRelatedBlockGroupEachOther = value.GetValueAsBool();
+					this.isAddRelatedBlockGroupEachOther = (bool)value;
 					return;
 				case "prerequisiteBlockGroupName":
-					this.prerequisiteBlockGroupName = value.GetValueAsString();
+					this.prerequisiteBlockGroupName = (string)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -128,13 +128,13 @@ namespace Fox.Core
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
 				case "blockGroups":
 					while(this.blockGroups.Count <= index) { this.blockGroups.Add(default(Fox.Core.EntityLink)); }
-					this.blockGroups[index] = value.GetValueAsEntityLink();
+					this.blockGroups[index] = (Fox.Core.EntityLink)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -142,7 +142,7 @@ namespace Fox.Core
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

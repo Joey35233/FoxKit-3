@@ -50,33 +50,33 @@ namespace Tpp.GameKit
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "radius":
-					return new Fox.Core.Value(radius);
+					return (object)radius;
 				case "lostSearchRadius":
-					return new Fox.Core.Value(lostSearchRadius);
+					return (object)lostSearchRadius;
 				case "locators":
-					return new Fox.Core.Value(locators);
+					return (object)locators;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
 				case "locators":
-					return new Fox.Core.Value(this.locators[index]);
+					return (object)this.locators[index];
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -85,15 +85,15 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "radius":
-					this.radius = value.GetValueAsFloat();
+					this.radius = (float)value;
 					return;
 				case "lostSearchRadius":
-					this.lostSearchRadius = value.GetValueAsFloat();
+					this.lostSearchRadius = (float)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -101,13 +101,13 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
 				case "locators":
 					while(this.locators.Count <= index) { this.locators.Add(default(Fox.Core.EntityLink)); }
-					this.locators[index] = value.GetValueAsEntityLink();
+					this.locators[index] = (Fox.Core.EntityLink)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -115,7 +115,7 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

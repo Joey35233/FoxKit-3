@@ -50,22 +50,22 @@ namespace Tpp.System
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "tagName":
-					return new Fox.Core.Value(tagName);
+					return (object)tagName;
 				case "priority":
-					return new Fox.Core.Value(priority);
+					return (object)priority;
 				case "interpTime":
-					return new Fox.Core.Value(interpTime);
+					return (object)interpTime;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
@@ -74,7 +74,7 @@ namespace Tpp.System
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -83,18 +83,18 @@ namespace Tpp.System
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "tagName":
-					this.tagName = value.GetValueAsString();
+					this.tagName = (string)value;
 					return;
 				case "priority":
-					this.priority = value.GetValueAsUInt8();
+					this.priority = (byte)value;
 					return;
 				case "interpTime":
-					this.interpTime = value.GetValueAsFloat();
+					this.interpTime = (float)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -102,7 +102,7 @@ namespace Tpp.System
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
@@ -112,7 +112,7 @@ namespace Tpp.System
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

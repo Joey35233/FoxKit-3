@@ -46,20 +46,20 @@ namespace Fox.Phx
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "maxBreakTorque":
-					return new Fox.Core.Value(maxBreakTorque);
+					return (object)maxBreakTorque;
 				case "useDifferential":
-					return new Fox.Core.Value(useDifferential);
+					return (object)useDifferential;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
@@ -68,7 +68,7 @@ namespace Fox.Phx
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -77,15 +77,15 @@ namespace Fox.Phx
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "maxBreakTorque":
-					this.maxBreakTorque = value.GetValueAsFloat();
+					this.maxBreakTorque = (float)value;
 					return;
 				case "useDifferential":
-					this.useDifferential = value.GetValueAsBool();
+					this.useDifferential = (bool)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -93,7 +93,7 @@ namespace Fox.Phx
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
@@ -103,7 +103,7 @@ namespace Fox.Phx
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

@@ -42,29 +42,29 @@ namespace Fox.Geox
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "objectArray":
-					return new Fox.Core.Value(objectArray);
+					return (object)objectArray;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
 				case "objectArray":
-					return new Fox.Core.Value(this.objectArray[index]);
+					return (object)this.objectArray[index];
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -73,7 +73,7 @@ namespace Fox.Geox
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
@@ -83,13 +83,13 @@ namespace Fox.Geox
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
 				case "objectArray":
 					while(this.objectArray.Count <= index) { this.objectArray.Add(default(Fox.Geox.GeoxPartsTargetObject)); }
-					this.objectArray[index] = value.GetValueAsEntityPtr<Fox.Geox.GeoxPartsTargetObject>();
+					this.objectArray[index] = (Fox.Geox.GeoxPartsTargetObject)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -97,7 +97,7 @@ namespace Fox.Geox
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

@@ -74,34 +74,34 @@ namespace Tpp.Effect
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "enable":
-					return new Fox.Core.Value(enable);
+					return (object)enable;
 				case "priority":
-					return new Fox.Core.Value(priority);
+					return (object)priority;
 				case "color":
-					return new Fox.Core.Value(color);
+					return (object)color;
 				case "luminance":
-					return new Fox.Core.Value(luminance);
+					return (object)luminance;
 				case "albedo":
-					return new Fox.Core.Value(albedo);
+					return (object)albedo;
 				case "density":
-					return new Fox.Core.Value(density);
+					return (object)density;
 				case "nearDistance":
-					return new Fox.Core.Value(nearDistance);
+					return (object)nearDistance;
 				case "falloff":
-					return new Fox.Core.Value(falloff);
+					return (object)falloff;
 				case "inverseFalloff":
-					return new Fox.Core.Value(inverseFalloff);
+					return (object)inverseFalloff;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
@@ -110,7 +110,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -119,36 +119,36 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "enable":
-					this.enable = value.GetValueAsBool();
+					this.enable = (bool)value;
 					return;
 				case "priority":
-					this.priority = value.GetValueAsUInt8();
+					this.priority = (byte)value;
 					return;
 				case "color":
-					this.color = value.GetValueAsColor();
+					this.color = (UnityEngine.Color)value;
 					return;
 				case "luminance":
-					this.luminance = value.GetValueAsFloat();
+					this.luminance = (float)value;
 					return;
 				case "albedo":
-					this.albedo = value.GetValueAsColor();
+					this.albedo = (UnityEngine.Color)value;
 					return;
 				case "density":
-					this.density = value.GetValueAsFloat();
+					this.density = (float)value;
 					return;
 				case "nearDistance":
-					this.nearDistance = value.GetValueAsFloat();
+					this.nearDistance = (float)value;
 					return;
 				case "falloff":
-					this.falloff = value.GetValueAsFloat();
+					this.falloff = (float)value;
 					return;
 				case "inverseFalloff":
-					this.inverseFalloff = value.GetValueAsBool();
+					this.inverseFalloff = (bool)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -156,7 +156,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
@@ -166,7 +166,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Fox.Core
 {
@@ -7,15 +6,16 @@ namespace Fox.Core
     public class DynamicProperty_DynamicArray_uint8 : DynamicProperty
     {
         [SerializeField]
-        private System.Collections.Generic.List<byte> SerializedField = new ();
+        public readonly System.Collections.Generic.List<byte> Value = new ();
 
         internal override PropertyInfo.ContainerType GetContainerType() => PropertyInfo.ContainerType.DynamicArray;
 
         internal override PropertyInfo GetPropertyInfo() => new PropertyInfo(Name, PropertyInfo.PropertyType.UInt8, 0, container: GetContainerType());
         
-        public override Value GetValue() => new Value(SerializedField);
-        public override Value GetElement(ushort index) => new Value(SerializedField[index]);
+        public override object GetValue() => Value;
+        public override object GetElement(ushort index) => Value[index];
+        public override uint GetArraySize() => (uint)Value.Count;
 
-        public override void SetElement(ushort index, Value value) => SerializedField.Insert(index, value.GetValueAsUInt8());
+        public override void SetElement(ushort index, object value) => Value.Insert(index, (byte)value);
     }
 }

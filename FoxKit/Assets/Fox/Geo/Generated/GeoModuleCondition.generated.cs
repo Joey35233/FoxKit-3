@@ -58,43 +58,43 @@ namespace Fox.Geo
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "isAndCheck":
-					return new Fox.Core.Value(isAndCheck);
+					return (object)isAndCheck;
 				case "checkFuncNames":
-					return new Fox.Core.Value(checkFuncNames);
+					return (object)checkFuncNames;
 				case "execFuncNames":
-					return new Fox.Core.Value(execFuncNames);
+					return (object)execFuncNames;
 				case "checkCallbackDataElements":
-					return new Fox.Core.Value(checkCallbackDataElements);
+					return (object)checkCallbackDataElements;
 				case "execCallbackDataElements":
-					return new Fox.Core.Value(execCallbackDataElements);
+					return (object)execCallbackDataElements;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
 				case "checkFuncNames":
-					return new Fox.Core.Value(this.checkFuncNames[index]);
+					return (object)this.checkFuncNames[index];
 				case "execFuncNames":
-					return new Fox.Core.Value(this.execFuncNames[index]);
+					return (object)this.execFuncNames[index];
 				case "checkCallbackDataElements":
-					return new Fox.Core.Value(this.checkCallbackDataElements[index]);
+					return (object)this.checkCallbackDataElements[index];
 				case "execCallbackDataElements":
-					return new Fox.Core.Value(this.execCallbackDataElements[index]);
+					return (object)this.execCallbackDataElements[index];
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -103,12 +103,12 @@ namespace Fox.Geo
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "isAndCheck":
-					this.isAndCheck = value.GetValueAsBool();
+					this.isAndCheck = (bool)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -116,25 +116,25 @@ namespace Fox.Geo
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
 				case "checkFuncNames":
 					while(this.checkFuncNames.Count <= index) { this.checkFuncNames.Add(default(string)); }
-					this.checkFuncNames[index] = value.GetValueAsString();
+					this.checkFuncNames[index] = (string)value;
 					return;
 				case "execFuncNames":
 					while(this.execFuncNames.Count <= index) { this.execFuncNames.Add(default(string)); }
-					this.execFuncNames[index] = value.GetValueAsString();
+					this.execFuncNames[index] = (string)value;
 					return;
 				case "checkCallbackDataElements":
 					while(this.checkCallbackDataElements.Count <= index) { this.checkCallbackDataElements.Add(default(Fox.Geo.GeoTrapModuleCallbackDataElement)); }
-					this.checkCallbackDataElements[index] = value.GetValueAsEntityPtr<Fox.Geo.GeoTrapModuleCallbackDataElement>();
+					this.checkCallbackDataElements[index] = (Fox.Geo.GeoTrapModuleCallbackDataElement)value;
 					return;
 				case "execCallbackDataElements":
 					while(this.execCallbackDataElements.Count <= index) { this.execCallbackDataElements.Add(default(Fox.Geo.GeoTrapModuleCallbackDataElement)); }
-					this.execCallbackDataElements[index] = value.GetValueAsEntityPtr<Fox.Geo.GeoTrapModuleCallbackDataElement>();
+					this.execCallbackDataElements[index] = (Fox.Geo.GeoTrapModuleCallbackDataElement)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -142,7 +142,7 @@ namespace Fox.Geo
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

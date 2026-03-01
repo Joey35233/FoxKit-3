@@ -54,24 +54,24 @@ namespace Tpp.Sound
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "connectedClearObstruction":
-					return new Fox.Core.Value(connectedClearObstruction);
+					return (object)connectedClearObstruction;
 				case "connectedClearOcclusion":
-					return new Fox.Core.Value(connectedClearOcclusion);
+					return (object)connectedClearOcclusion;
 				case "connectedBlockedObstruction":
-					return new Fox.Core.Value(connectedBlockedObstruction);
+					return (object)connectedBlockedObstruction;
 				case "connectedBlockedOcclusion":
-					return new Fox.Core.Value(connectedBlockedOcclusion);
+					return (object)connectedBlockedOcclusion;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
@@ -80,7 +80,7 @@ namespace Tpp.Sound
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -89,21 +89,21 @@ namespace Tpp.Sound
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "connectedClearObstruction":
-					this.connectedClearObstruction = value.GetValueAsFloat();
+					this.connectedClearObstruction = (float)value;
 					return;
 				case "connectedClearOcclusion":
-					this.connectedClearOcclusion = value.GetValueAsFloat();
+					this.connectedClearOcclusion = (float)value;
 					return;
 				case "connectedBlockedObstruction":
-					this.connectedBlockedObstruction = value.GetValueAsFloat();
+					this.connectedBlockedObstruction = (float)value;
 					return;
 				case "connectedBlockedOcclusion":
-					this.connectedBlockedOcclusion = value.GetValueAsFloat();
+					this.connectedBlockedOcclusion = (float)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -111,7 +111,7 @@ namespace Tpp.Sound
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
@@ -121,7 +121,7 @@ namespace Tpp.Sound
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

@@ -54,41 +54,41 @@ namespace Tpp.Effect
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "planeMatrices":
-					return new Fox.Core.Value(planeMatrices);
+					return (object)planeMatrices;
 				case "maskTextures":
-					return new Fox.Core.Value(maskTextures);
+					return (object)maskTextures;
 				case "interruptFlags":
-					return new Fox.Core.Value(interruptFlags);
+					return (object)interruptFlags;
 				case "levels":
-					return new Fox.Core.Value(levels);
+					return (object)levels;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
 				case "planeMatrices":
-					return new Fox.Core.Value(this.planeMatrices[index]);
+					return (object)this.planeMatrices[index];
 				case "maskTextures":
-					return new Fox.Core.Value(this.maskTextures[index]);
+					return (object)this.maskTextures[index];
 				case "interruptFlags":
-					return new Fox.Core.Value(this.interruptFlags[index]);
+					return (object)this.interruptFlags[index];
 				case "levels":
-					return new Fox.Core.Value(this.levels[index]);
+					return (object)this.levels[index];
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -97,7 +97,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
@@ -107,25 +107,25 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
 				case "planeMatrices":
 					while(this.planeMatrices.Count <= index) { this.planeMatrices.Add(default(UnityEngine.Matrix4x4)); }
-					this.planeMatrices[index] = value.GetValueAsMatrix4();
+					this.planeMatrices[index] = (UnityEngine.Matrix4x4)value;
 					return;
 				case "maskTextures":
 					while(this.maskTextures.Count <= index) { this.maskTextures.Add(default(Fox.Path)); }
-					this.maskTextures[index] = value.GetValueAsPath();
+					this.maskTextures[index] = (Fox.Path)value;
 					return;
 				case "interruptFlags":
 					while(this.interruptFlags.Count <= index) { this.interruptFlags.Add(default(uint)); }
-					this.interruptFlags[index] = value.GetValueAsUInt32();
+					this.interruptFlags[index] = (uint)value;
 					return;
 				case "levels":
 					while(this.levels.Count <= index) { this.levels.Add(default(uint)); }
-					this.levels[index] = value.GetValueAsUInt32();
+					this.levels[index] = (uint)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -133,7 +133,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

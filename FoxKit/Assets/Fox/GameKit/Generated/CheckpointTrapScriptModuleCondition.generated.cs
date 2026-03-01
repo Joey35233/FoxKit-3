@@ -42,29 +42,29 @@ namespace Fox.GameKit
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "checkpointScriptArray":
-					return new Fox.Core.Value(checkpointScriptArray);
+					return (object)checkpointScriptArray;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
 				case "checkpointScriptArray":
-					return new Fox.Core.Value(this.checkpointScriptArray[index]);
+					return (object)this.checkpointScriptArray[index];
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -73,7 +73,7 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
@@ -83,13 +83,13 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
 				case "checkpointScriptArray":
 					while(this.checkpointScriptArray.Count <= index) { this.checkpointScriptArray.Add(default(Fox.Path)); }
-					this.checkpointScriptArray[index] = value.GetValueAsPath();
+					this.checkpointScriptArray[index] = (Fox.Path)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -97,7 +97,7 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

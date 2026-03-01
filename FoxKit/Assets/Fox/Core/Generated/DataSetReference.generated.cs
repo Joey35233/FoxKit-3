@@ -50,22 +50,22 @@ namespace Fox.Core
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "referenceFilePath":
-					return new Fox.Core.Value(referenceFilePath);
+					return (object)referenceFilePath;
 				case "isReferenceLocked":
-					return new Fox.Core.Value(isReferenceLocked);
+					return (object)isReferenceLocked;
 				case "dataSetDifference":
-					return new Fox.Core.Value(dataSetDifference);
+					return (object)dataSetDifference;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
@@ -74,7 +74,7 @@ namespace Fox.Core
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -83,18 +83,18 @@ namespace Fox.Core
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "referenceFilePath":
-					this.referenceFilePath = value.GetValueAsPath();
+					this.referenceFilePath = (Fox.Path)value;
 					return;
 				case "isReferenceLocked":
-					this.isReferenceLocked = value.GetValueAsBool();
+					this.isReferenceLocked = (bool)value;
 					return;
 				case "dataSetDifference":
-					this.dataSetDifference = value.GetValueAsEntityPtr<Fox.Core.DataSetDifference>();
+					this.dataSetDifference = (Fox.Core.DataSetDifference)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -102,7 +102,7 @@ namespace Fox.Core
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
@@ -112,7 +112,7 @@ namespace Fox.Core
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

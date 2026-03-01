@@ -58,43 +58,43 @@ namespace Fox.Anim
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "eventName":
-					return new Fox.Core.Value(eventName);
+					return (object)eventName;
 				case "sections":
-					return new Fox.Core.Value(sections);
+					return (object)sections;
 				case "paramString":
-					return new Fox.Core.Value(paramString);
+					return (object)paramString;
 				case "paramInt":
-					return new Fox.Core.Value(paramInt);
+					return (object)paramInt;
 				case "paramFloat":
-					return new Fox.Core.Value(paramFloat);
+					return (object)paramFloat;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
 				case "sections":
-					return new Fox.Core.Value(this.sections[index]);
+					return (object)this.sections[index];
 				case "paramString":
-					return new Fox.Core.Value(this.paramString[index]);
+					return (object)this.paramString[index];
 				case "paramInt":
-					return new Fox.Core.Value(this.paramInt[index]);
+					return (object)this.paramInt[index];
 				case "paramFloat":
-					return new Fox.Core.Value(this.paramFloat[index]);
+					return (object)this.paramFloat[index];
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -103,12 +103,12 @@ namespace Fox.Anim
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "eventName":
-					this.eventName = value.GetValueAsString();
+					this.eventName = (string)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -116,25 +116,25 @@ namespace Fox.Anim
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
 				case "sections":
 					while(this.sections.Count <= index) { this.sections.Add(default(Fox.Anim.TimeSection)); }
-					this.sections[index] = value.GetValueAsEntityPtr<Fox.Anim.TimeSection>();
+					this.sections[index] = (Fox.Anim.TimeSection)value;
 					return;
 				case "paramString":
 					while(this.paramString.Count <= index) { this.paramString.Add(default(string)); }
-					this.paramString[index] = value.GetValueAsString();
+					this.paramString[index] = (string)value;
 					return;
 				case "paramInt":
 					while(this.paramInt.Count <= index) { this.paramInt.Add(default(int)); }
-					this.paramInt[index] = value.GetValueAsInt32();
+					this.paramInt[index] = (int)value;
 					return;
 				case "paramFloat":
 					while(this.paramFloat.Count <= index) { this.paramFloat.Add(default(float)); }
-					this.paramFloat[index] = value.GetValueAsFloat();
+					this.paramFloat[index] = (float)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -142,7 +142,7 @@ namespace Fox.Anim
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

@@ -57,39 +57,39 @@ namespace Tpp.GameCore
 			ClassInfoInitialized = true;
 		}
 		
-		public virtual Fox.Core.Value GetProperty(string propertyName)
+		public virtual object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "instancePackagePath":
-					return new Fox.Core.Value(instancePackagePath);
+					return (object)instancePackagePath;
 				case "instanceBlockSize":
-					return new Fox.Core.Value(instanceBlockSize);
+					return (object)instanceBlockSize;
 				case "commonMotionTypeName":
-					return new Fox.Core.Value(commonMotionTypeName);
+					return (object)commonMotionTypeName;
 				case "partsTypeNames":
-					return new Fox.Core.Value(partsTypeNames);
+					return (object)partsTypeNames;
 				case "partsTypeInitial":
-					return new Fox.Core.Value(partsTypeInitial);
+					return (object)partsTypeInitial;
 				default:
 					throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
 			}
 		}
 
-		public virtual Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public virtual object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
 				case "partsTypeNames":
-					return new Fox.Core.Value(this.partsTypeNames[index]);
+					return (object)this.partsTypeNames[index];
 				case "partsTypeInitial":
-					return new Fox.Core.Value(this.partsTypeInitial[index]);
+					return (object)this.partsTypeInitial[index];
 				default:
 					throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
 			}
 		}
 
-		public virtual Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public virtual object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -98,42 +98,42 @@ namespace Tpp.GameCore
 			}
 		}
 
-		public virtual void SetProperty(string propertyName, Fox.Core.Value value)
+		public virtual void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "instancePackagePath":
-					this.instancePackagePath = value.GetValueAsString();
+					this.instancePackagePath = (string)value;
 					return;
 				case "instanceBlockSize":
-					this.instanceBlockSize = value.GetValueAsUInt32();
+					this.instanceBlockSize = (uint)value;
 					return;
 				case "commonMotionTypeName":
-					this.commonMotionTypeName = value.GetValueAsString();
+					this.commonMotionTypeName = (string)value;
 					return;
 				default:
 					throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
 			}
 		}
 
-		public virtual void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public virtual void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
 				case "partsTypeNames":
 					while(this.partsTypeNames.Count <= index) { this.partsTypeNames.Add(default(string)); }
-					this.partsTypeNames[index] = value.GetValueAsString();
+					this.partsTypeNames[index] = (string)value;
 					return;
 				case "partsTypeInitial":
 					while(this.partsTypeInitial.Count <= index) { this.partsTypeInitial.Add(default(string)); }
-					this.partsTypeInitial[index] = value.GetValueAsString();
+					this.partsTypeInitial[index] = (string)value;
 					return;
 				default:
 					throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
 			}
 		}
 
-		public virtual void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public virtual void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

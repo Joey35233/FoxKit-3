@@ -74,49 +74,49 @@ namespace Fox.Tactical
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "enable":
-					return new Fox.Core.Value(enable);
+					return (object)enable;
 				case "enableInGame":
-					return new Fox.Core.Value(enableInGame);
+					return (object)enableInGame;
 				case "worldName":
-					return new Fox.Core.Value(worldName);
+					return (object)worldName;
 				case "userData":
-					return new Fox.Core.Value(userData);
+					return (object)userData;
 				case "userId":
-					return new Fox.Core.Value(userId);
+					return (object)userId;
 				case "waypoints":
-					return new Fox.Core.Value(waypoints);
+					return (object)waypoints;
 				case "edges":
-					return new Fox.Core.Value(edges);
+					return (object)edges;
 				case "attributeNames":
-					return new Fox.Core.Value(attributeNames);
+					return (object)attributeNames;
 				case "attribute":
-					return new Fox.Core.Value(attribute);
+					return (object)attribute;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
 				case "waypoints":
-					return new Fox.Core.Value(this.waypoints[index]);
+					return (object)this.waypoints[index];
 				case "edges":
-					return new Fox.Core.Value(this.edges[index]);
+					return (object)this.edges[index];
 				case "attributeNames":
-					return new Fox.Core.Value(this.attributeNames[index]);
+					return (object)this.attributeNames[index];
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -125,27 +125,27 @@ namespace Fox.Tactical
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "enable":
-					this.enable = value.GetValueAsBool();
+					this.enable = (bool)value;
 					return;
 				case "enableInGame":
-					this.enableInGame = value.GetValueAsBool();
+					this.enableInGame = (bool)value;
 					return;
 				case "worldName":
-					this.worldName = value.GetValueAsString();
+					this.worldName = (string)value;
 					return;
 				case "userData":
-					this.userData = value.GetValueAsEntityLink();
+					this.userData = (Fox.Core.EntityLink)value;
 					return;
 				case "userId":
-					this.userId = value.GetValueAsString();
+					this.userId = (string)value;
 					return;
 				case "attribute":
-					this.attribute = value.GetValueAsUInt32();
+					this.attribute = (uint)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -153,21 +153,21 @@ namespace Fox.Tactical
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
 				case "waypoints":
 					while(this.waypoints.Count <= index) { this.waypoints.Add(default(Fox.Tactical.GkTacticalActionWaypoint)); }
-					this.waypoints[index] = value.GetValueAsEntityPtr<Fox.Tactical.GkTacticalActionWaypoint>();
+					this.waypoints[index] = (Fox.Tactical.GkTacticalActionWaypoint)value;
 					return;
 				case "edges":
 					while(this.edges.Count <= index) { this.edges.Add(default(Fox.Tactical.GkTacticalActionEdge)); }
-					this.edges[index] = value.GetValueAsEntityPtr<Fox.Tactical.GkTacticalActionEdge>();
+					this.edges[index] = (Fox.Tactical.GkTacticalActionEdge)value;
 					return;
 				case "attributeNames":
 					while(this.attributeNames.Count <= index) { this.attributeNames.Add(default(string)); }
-					this.attributeNames[index] = value.GetValueAsString();
+					this.attributeNames[index] = (string)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -175,7 +175,7 @@ namespace Fox.Tactical
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

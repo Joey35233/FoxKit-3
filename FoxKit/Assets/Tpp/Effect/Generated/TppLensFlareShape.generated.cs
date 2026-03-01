@@ -154,74 +154,74 @@ namespace Tpp.Effect
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "material":
-					return new Fox.Core.Value(material);
+					return (object)material;
 				case "width":
-					return new Fox.Core.Value(width);
+					return (object)width;
 				case "height":
-					return new Fox.Core.Value(height);
+					return (object)height;
 				case "baseColor":
-					return new Fox.Core.Value(baseColor);
+					return (object)baseColor;
 				case "offsetType":
-					return new Fox.Core.Value(offsetType);
+					return (object)offsetType;
 				case "offsetScale":
-					return new Fox.Core.Value(offsetScale);
+					return (object)offsetScale;
 				case "baseOffsetX":
-					return new Fox.Core.Value(baseOffsetX);
+					return (object)baseOffsetX;
 				case "baseOffsetY":
-					return new Fox.Core.Value(baseOffsetY);
+					return (object)baseOffsetY;
 				case "rotateType":
-					return new Fox.Core.Value(rotateType);
+					return (object)rotateType;
 				case "baseRotate":
-					return new Fox.Core.Value(baseRotate);
+					return (object)baseRotate;
 				case "screenSpaceRotSpeedX":
-					return new Fox.Core.Value(screenSpaceRotSpeedX);
+					return (object)screenSpaceRotSpeedX;
 				case "screenSpaceRotSpeedY":
-					return new Fox.Core.Value(screenSpaceRotSpeedY);
+					return (object)screenSpaceRotSpeedY;
 				case "screenSpaceRotField":
-					return new Fox.Core.Value(screenSpaceRotField);
+					return (object)screenSpaceRotField;
 				case "scaleFieldX":
-					return new Fox.Core.Value(scaleFieldX);
+					return (object)scaleFieldX;
 				case "scaleFieldY":
-					return new Fox.Core.Value(scaleFieldY);
+					return (object)scaleFieldY;
 				case "scaleFieldPickSunPositionFlag":
-					return new Fox.Core.Value(scaleFieldPickSunPositionFlag);
+					return (object)scaleFieldPickSunPositionFlag;
 				case "alphaField":
-					return new Fox.Core.Value(alphaField);
+					return (object)alphaField;
 				case "alphaFieldPickSunPositionFlag":
-					return new Fox.Core.Value(alphaFieldPickSunPositionFlag);
+					return (object)alphaFieldPickSunPositionFlag;
 				case "shieldFadeOutTime":
-					return new Fox.Core.Value(shieldFadeOutTime);
+					return (object)shieldFadeOutTime;
 				case "shieldFadeInTime":
-					return new Fox.Core.Value(shieldFadeInTime);
+					return (object)shieldFadeInTime;
 				case "angleScaleGraphX":
-					return new Fox.Core.Value(angleScaleGraphX);
+					return (object)angleScaleGraphX;
 				case "angleScaleGraphY":
-					return new Fox.Core.Value(angleScaleGraphY);
+					return (object)angleScaleGraphY;
 				case "angleAlphaGraph":
-					return new Fox.Core.Value(angleAlphaGraph);
+					return (object)angleAlphaGraph;
 				case "distanceScaling":
-					return new Fox.Core.Value(distanceScaling);
+					return (object)distanceScaling;
 				case "limitDistance":
-					return new Fox.Core.Value(limitDistance);
+					return (object)limitDistance;
 				case "notDrawMultiple":
-					return new Fox.Core.Value(notDrawMultiple);
+					return (object)notDrawMultiple;
 				case "seName":
-					return new Fox.Core.Value(seName);
+					return (object)seName;
 				case "seCallThreshold":
-					return new Fox.Core.Value(seCallThreshold);
+					return (object)seCallThreshold;
 				case "scaleOnZoom":
-					return new Fox.Core.Value(scaleOnZoom);
+					return (object)scaleOnZoom;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
@@ -230,7 +230,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -239,96 +239,96 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "material":
-					this.material = value.GetValueAsEntityLink();
+					this.material = (Fox.Core.EntityLink)value;
 					return;
 				case "width":
-					this.width = value.GetValueAsFloat();
+					this.width = (float)value;
 					return;
 				case "height":
-					this.height = value.GetValueAsFloat();
+					this.height = (float)value;
 					return;
 				case "baseColor":
-					this.baseColor = value.GetValueAsColor();
+					this.baseColor = (UnityEngine.Color)value;
 					return;
 				case "offsetType":
-					this.offsetType = (TppLensFlareShapeOffsetType)value.GetValueAsInt32();
+					this.offsetType = (TppLensFlareShapeOffsetType)value;
 					return;
 				case "offsetScale":
-					this.offsetScale = value.GetValueAsFloat();
+					this.offsetScale = (float)value;
 					return;
 				case "baseOffsetX":
-					this.baseOffsetX = value.GetValueAsFloat();
+					this.baseOffsetX = (float)value;
 					return;
 				case "baseOffsetY":
-					this.baseOffsetY = value.GetValueAsFloat();
+					this.baseOffsetY = (float)value;
 					return;
 				case "rotateType":
-					this.rotateType = (TppLensFlareShapeRotateType)value.GetValueAsInt32();
+					this.rotateType = (TppLensFlareShapeRotateType)value;
 					return;
 				case "baseRotate":
-					this.baseRotate = value.GetValueAsFloat();
+					this.baseRotate = (float)value;
 					return;
 				case "screenSpaceRotSpeedX":
-					this.screenSpaceRotSpeedX = value.GetValueAsFloat();
+					this.screenSpaceRotSpeedX = (float)value;
 					return;
 				case "screenSpaceRotSpeedY":
-					this.screenSpaceRotSpeedY = value.GetValueAsFloat();
+					this.screenSpaceRotSpeedY = (float)value;
 					return;
 				case "screenSpaceRotField":
-					this.screenSpaceRotField = value.GetValueAsEntityLink();
+					this.screenSpaceRotField = (Fox.Core.EntityLink)value;
 					return;
 				case "scaleFieldX":
-					this.scaleFieldX = value.GetValueAsEntityLink();
+					this.scaleFieldX = (Fox.Core.EntityLink)value;
 					return;
 				case "scaleFieldY":
-					this.scaleFieldY = value.GetValueAsEntityLink();
+					this.scaleFieldY = (Fox.Core.EntityLink)value;
 					return;
 				case "scaleFieldPickSunPositionFlag":
-					this.scaleFieldPickSunPositionFlag = value.GetValueAsBool();
+					this.scaleFieldPickSunPositionFlag = (bool)value;
 					return;
 				case "alphaField":
-					this.alphaField = value.GetValueAsEntityLink();
+					this.alphaField = (Fox.Core.EntityLink)value;
 					return;
 				case "alphaFieldPickSunPositionFlag":
-					this.alphaFieldPickSunPositionFlag = value.GetValueAsBool();
+					this.alphaFieldPickSunPositionFlag = (bool)value;
 					return;
 				case "shieldFadeOutTime":
-					this.shieldFadeOutTime = value.GetValueAsFloat();
+					this.shieldFadeOutTime = (float)value;
 					return;
 				case "shieldFadeInTime":
-					this.shieldFadeInTime = value.GetValueAsFloat();
+					this.shieldFadeInTime = (float)value;
 					return;
 				case "angleScaleGraphX":
-					this.angleScaleGraphX = value.GetValueAsEntityLink();
+					this.angleScaleGraphX = (Fox.Core.EntityLink)value;
 					return;
 				case "angleScaleGraphY":
-					this.angleScaleGraphY = value.GetValueAsEntityLink();
+					this.angleScaleGraphY = (Fox.Core.EntityLink)value;
 					return;
 				case "angleAlphaGraph":
-					this.angleAlphaGraph = value.GetValueAsEntityLink();
+					this.angleAlphaGraph = (Fox.Core.EntityLink)value;
 					return;
 				case "distanceScaling":
-					this.distanceScaling = (TppLensFlareShapeDistanceScalingMode)value.GetValueAsInt32();
+					this.distanceScaling = (TppLensFlareShapeDistanceScalingMode)value;
 					return;
 				case "limitDistance":
-					this.limitDistance = value.GetValueAsFloat();
+					this.limitDistance = (float)value;
 					return;
 				case "notDrawMultiple":
-					this.notDrawMultiple = value.GetValueAsBool();
+					this.notDrawMultiple = (bool)value;
 					return;
 				case "seName":
-					this.seName = value.GetValueAsString();
+					this.seName = (string)value;
 					return;
 				case "seCallThreshold":
-					this.seCallThreshold = value.GetValueAsFloat();
+					this.seCallThreshold = (float)value;
 					return;
 				case "scaleOnZoom":
-					this.scaleOnZoom = value.GetValueAsBool();
+					this.scaleOnZoom = (bool)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -336,7 +336,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
@@ -346,7 +346,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

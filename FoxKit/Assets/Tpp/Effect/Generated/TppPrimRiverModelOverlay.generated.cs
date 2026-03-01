@@ -62,28 +62,28 @@ namespace Tpp.Effect
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "primRiverGroupName":
-					return new Fox.Core.Value(primRiverGroupName);
+					return (object)primRiverGroupName;
 				case "visibility":
-					return new Fox.Core.Value(visibility);
+					return (object)visibility;
 				case "depthBlendLength":
-					return new Fox.Core.Value(depthBlendLength);
+					return (object)depthBlendLength;
 				case "raise":
-					return new Fox.Core.Value(raise);
+					return (object)raise;
 				case "staticModel":
-					return new Fox.Core.Value(staticModel);
+					return (object)staticModel;
 				case "maskTextureName":
-					return new Fox.Core.Value(maskTextureName);
+					return (object)maskTextureName;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
@@ -92,7 +92,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -101,27 +101,27 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "primRiverGroupName":
-					this.primRiverGroupName = value.GetValueAsString();
+					this.primRiverGroupName = (string)value;
 					return;
 				case "visibility":
-					this.visibility = value.GetValueAsBool();
+					this.visibility = (bool)value;
 					return;
 				case "depthBlendLength":
-					this.depthBlendLength = value.GetValueAsFloat();
+					this.depthBlendLength = (float)value;
 					return;
 				case "raise":
-					this.raise = value.GetValueAsFloat();
+					this.raise = (float)value;
 					return;
 				case "staticModel":
-					this.staticModel = value.GetValueAsEntityLink();
+					this.staticModel = (Fox.Core.EntityLink)value;
 					return;
 				case "maskTextureName":
-					this.maskTextureName = value.GetValueAsString();
+					this.maskTextureName = (string)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -129,7 +129,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
@@ -139,7 +139,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

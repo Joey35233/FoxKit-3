@@ -58,41 +58,41 @@ namespace Tpp.GameKit
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "electricCableData":
-					return new Fox.Core.Value(electricCableData);
+					return (object)electricCableData;
 				case "poleData":
-					return new Fox.Core.Value(poleData);
+					return (object)poleData;
 				case "electricCable":
-					return new Fox.Core.Value(electricCable);
+					return (object)electricCable;
 				case "pole":
-					return new Fox.Core.Value(pole);
+					return (object)pole;
 				case "cnpIndex":
-					return new Fox.Core.Value(cnpIndex);
+					return (object)cnpIndex;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
 				case "electricCable":
-					return new Fox.Core.Value(this.electricCable[index]);
+					return (object)this.electricCable[index];
 				case "pole":
-					return new Fox.Core.Value(this.pole[index]);
+					return (object)this.pole[index];
 				case "cnpIndex":
-					return new Fox.Core.Value(this.cnpIndex[index]);
+					return (object)this.cnpIndex[index];
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -101,15 +101,15 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "electricCableData":
-					this.electricCableData = value.GetValueAsEntityLink();
+					this.electricCableData = (Fox.Core.EntityLink)value;
 					return;
 				case "poleData":
-					this.poleData = value.GetValueAsEntityLink();
+					this.poleData = (Fox.Core.EntityLink)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -117,21 +117,21 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
 				case "electricCable":
 					while(this.electricCable.Count <= index) { this.electricCable.Add(default(string)); }
-					this.electricCable[index] = value.GetValueAsString();
+					this.electricCable[index] = (string)value;
 					return;
 				case "pole":
 					while(this.pole.Count <= index) { this.pole.Add(default(string)); }
-					this.pole[index] = value.GetValueAsString();
+					this.pole[index] = (string)value;
 					return;
 				case "cnpIndex":
 					while(this.cnpIndex.Count <= index) { this.cnpIndex.Add(default(byte)); }
-					this.cnpIndex[index] = value.GetValueAsUInt8();
+					this.cnpIndex[index] = (byte)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -139,7 +139,7 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

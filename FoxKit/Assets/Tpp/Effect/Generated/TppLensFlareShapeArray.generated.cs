@@ -70,32 +70,32 @@ namespace Tpp.Effect
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "spriteCount":
-					return new Fox.Core.Value(spriteCount);
+					return (object)spriteCount;
 				case "offsetScaleMin":
-					return new Fox.Core.Value(offsetScaleMin);
+					return (object)offsetScaleMin;
 				case "offsetScaleMax":
-					return new Fox.Core.Value(offsetScaleMax);
+					return (object)offsetScaleMax;
 				case "sizeScaleMin":
-					return new Fox.Core.Value(sizeScaleMin);
+					return (object)sizeScaleMin;
 				case "sizeScaleMax":
-					return new Fox.Core.Value(sizeScaleMax);
+					return (object)sizeScaleMax;
 				case "randomColorMin":
-					return new Fox.Core.Value(randomColorMin);
+					return (object)randomColorMin;
 				case "randomColorMax":
-					return new Fox.Core.Value(randomColorMax);
+					return (object)randomColorMax;
 				case "randomSeed":
-					return new Fox.Core.Value(randomSeed);
+					return (object)randomSeed;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
@@ -104,7 +104,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -113,33 +113,33 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "spriteCount":
-					this.spriteCount = value.GetValueAsUInt32();
+					this.spriteCount = (uint)value;
 					return;
 				case "offsetScaleMin":
-					this.offsetScaleMin = value.GetValueAsFloat();
+					this.offsetScaleMin = (float)value;
 					return;
 				case "offsetScaleMax":
-					this.offsetScaleMax = value.GetValueAsFloat();
+					this.offsetScaleMax = (float)value;
 					return;
 				case "sizeScaleMin":
-					this.sizeScaleMin = value.GetValueAsFloat();
+					this.sizeScaleMin = (float)value;
 					return;
 				case "sizeScaleMax":
-					this.sizeScaleMax = value.GetValueAsFloat();
+					this.sizeScaleMax = (float)value;
 					return;
 				case "randomColorMin":
-					this.randomColorMin = value.GetValueAsColor();
+					this.randomColorMin = (UnityEngine.Color)value;
 					return;
 				case "randomColorMax":
-					this.randomColorMax = value.GetValueAsColor();
+					this.randomColorMax = (UnityEngine.Color)value;
 					return;
 				case "randomSeed":
-					this.randomSeed = value.GetValueAsUInt32();
+					this.randomSeed = (uint)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -147,7 +147,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
@@ -157,7 +157,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

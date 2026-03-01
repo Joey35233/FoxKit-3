@@ -66,30 +66,30 @@ namespace Tpp.Effect
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "redConeSaturationDuration":
-					return new Fox.Core.Value(redConeSaturationDuration);
+					return (object)redConeSaturationDuration;
 				case "greenConeSaturationDuration":
-					return new Fox.Core.Value(greenConeSaturationDuration);
+					return (object)greenConeSaturationDuration;
 				case "blueConeSaturationDuration":
-					return new Fox.Core.Value(blueConeSaturationDuration);
+					return (object)blueConeSaturationDuration;
 				case "distortionVelocity":
-					return new Fox.Core.Value(distortionVelocity);
+					return (object)distortionVelocity;
 				case "distortionIntensity":
-					return new Fox.Core.Value(distortionIntensity);
+					return (object)distortionIntensity;
 				case "distortionProjectionScale":
-					return new Fox.Core.Value(distortionProjectionScale);
+					return (object)distortionProjectionScale;
 				case "rotationSpeed":
-					return new Fox.Core.Value(rotationSpeed);
+					return (object)rotationSpeed;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
@@ -98,7 +98,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -107,30 +107,30 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "redConeSaturationDuration":
-					this.redConeSaturationDuration = value.GetValueAsFloat();
+					this.redConeSaturationDuration = (float)value;
 					return;
 				case "greenConeSaturationDuration":
-					this.greenConeSaturationDuration = value.GetValueAsFloat();
+					this.greenConeSaturationDuration = (float)value;
 					return;
 				case "blueConeSaturationDuration":
-					this.blueConeSaturationDuration = value.GetValueAsFloat();
+					this.blueConeSaturationDuration = (float)value;
 					return;
 				case "distortionVelocity":
-					this.distortionVelocity = value.GetValueAsFloat();
+					this.distortionVelocity = (float)value;
 					return;
 				case "distortionIntensity":
-					this.distortionIntensity = value.GetValueAsFloat();
+					this.distortionIntensity = (float)value;
 					return;
 				case "distortionProjectionScale":
-					this.distortionProjectionScale = value.GetValueAsFloat();
+					this.distortionProjectionScale = (float)value;
 					return;
 				case "rotationSpeed":
-					this.rotationSpeed = value.GetValueAsFloat();
+					this.rotationSpeed = (float)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -138,7 +138,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
@@ -148,7 +148,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

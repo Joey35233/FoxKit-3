@@ -54,24 +54,24 @@ namespace Fox.Demo
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "instanceName":
-					return new Fox.Core.Value(instanceName);
+					return (object)instanceName;
 				case "partsFile":
-					return new Fox.Core.Value(partsFile);
+					return (object)partsFile;
 				case "modelPath":
-					return new Fox.Core.Value(modelPath);
+					return (object)modelPath;
 				case "partName":
-					return new Fox.Core.Value(partName);
+					return (object)partName;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
@@ -80,7 +80,7 @@ namespace Fox.Demo
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -89,21 +89,21 @@ namespace Fox.Demo
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "instanceName":
-					this.instanceName = value.GetValueAsString();
+					this.instanceName = (string)value;
 					return;
 				case "partsFile":
-					this.partsFile = value.GetValueAsFilePtr();
+					this.partsFile = (Fox.Core.FilePtr)value;
 					return;
 				case "modelPath":
-					this.modelPath = value.GetValueAsPath();
+					this.modelPath = (Fox.Path)value;
 					return;
 				case "partName":
-					this.partName = value.GetValueAsString();
+					this.partName = (string)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -111,7 +111,7 @@ namespace Fox.Demo
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
@@ -121,7 +121,7 @@ namespace Fox.Demo
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

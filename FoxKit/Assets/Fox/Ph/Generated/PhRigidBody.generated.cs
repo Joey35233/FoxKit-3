@@ -142,58 +142,58 @@ namespace Fox.Ph
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "param":
-					return new Fox.Core.Value(param);
+					return (object)param;
 				case "defaultPosition":
-					return new Fox.Core.Value(defaultPosition);
+					return (object)defaultPosition;
 				case "defaultRotation":
-					return new Fox.Core.Value(defaultRotation);
+					return (object)defaultRotation;
 				case "mass":
-					return new Fox.Core.Value(mass);
+					return (object)mass;
 				case "friction":
-					return new Fox.Core.Value(friction);
+					return (object)friction;
 				case "restitution":
-					return new Fox.Core.Value(restitution);
+					return (object)restitution;
 				case "maxLinearVelocity":
-					return new Fox.Core.Value(maxLinearVelocity);
+					return (object)maxLinearVelocity;
 				case "maxAngularVelocity":
-					return new Fox.Core.Value(maxAngularVelocity);
+					return (object)maxAngularVelocity;
 				case "linearVelocityDamp":
-					return new Fox.Core.Value(linearVelocityDamp);
+					return (object)linearVelocityDamp;
 				case "angularVelocityDamp":
-					return new Fox.Core.Value(angularVelocityDamp);
+					return (object)angularVelocityDamp;
 				case "permittedDepth":
-					return new Fox.Core.Value(permittedDepth);
+					return (object)permittedDepth;
 				case "sleepEnable":
-					return new Fox.Core.Value(sleepEnable);
+					return (object)sleepEnable;
 				case "sleepLinearVelocityTh":
-					return new Fox.Core.Value(sleepLinearVelocityTh);
+					return (object)sleepLinearVelocityTh;
 				case "sleepAngularVelocityTh":
-					return new Fox.Core.Value(sleepAngularVelocityTh);
+					return (object)sleepAngularVelocityTh;
 				case "sleepTimeTh":
-					return new Fox.Core.Value(sleepTimeTh);
+					return (object)sleepTimeTh;
 				case "collisionGroup":
-					return new Fox.Core.Value(collisionGroup);
+					return (object)collisionGroup;
 				case "collisionType":
-					return new Fox.Core.Value(collisionType);
+					return (object)collisionType;
 				case "collisionId":
-					return new Fox.Core.Value(collisionId);
+					return (object)collisionId;
 				case "centerOfMassOffset":
-					return new Fox.Core.Value(centerOfMassOffset);
+					return (object)centerOfMassOffset;
 				case "motionType":
-					return new Fox.Core.Value(motionType);
+					return (object)motionType;
 				case "material":
-					return new Fox.Core.Value(material);
+					return (object)material;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
@@ -202,7 +202,7 @@ namespace Fox.Ph
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -211,72 +211,72 @@ namespace Fox.Ph
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "param":
-					this.param = value.GetValueAsEntityPtr<Fox.Ph.PhRigidBodyParam>();
+					this.param = (Fox.Ph.PhRigidBodyParam)value;
 					return;
 				case "defaultPosition":
-					this.defaultPosition = value.GetValueAsVector3();
+					this.defaultPosition = (UnityEngine.Vector3)value;
 					return;
 				case "defaultRotation":
-					this.defaultRotation = value.GetValueAsQuat();
+					this.defaultRotation = (UnityEngine.Quaternion)value;
 					return;
 				case "mass":
-					this.mass = value.GetValueAsFloat();
+					this.mass = (float)value;
 					return;
 				case "friction":
-					this.friction = value.GetValueAsFloat();
+					this.friction = (float)value;
 					return;
 				case "restitution":
-					this.restitution = value.GetValueAsFloat();
+					this.restitution = (float)value;
 					return;
 				case "maxLinearVelocity":
-					this.maxLinearVelocity = value.GetValueAsFloat();
+					this.maxLinearVelocity = (float)value;
 					return;
 				case "maxAngularVelocity":
-					this.maxAngularVelocity = value.GetValueAsFloat();
+					this.maxAngularVelocity = (float)value;
 					return;
 				case "linearVelocityDamp":
-					this.linearVelocityDamp = value.GetValueAsFloat();
+					this.linearVelocityDamp = (float)value;
 					return;
 				case "angularVelocityDamp":
-					this.angularVelocityDamp = value.GetValueAsFloat();
+					this.angularVelocityDamp = (float)value;
 					return;
 				case "permittedDepth":
-					this.permittedDepth = value.GetValueAsFloat();
+					this.permittedDepth = (float)value;
 					return;
 				case "sleepEnable":
-					this.sleepEnable = value.GetValueAsBool();
+					this.sleepEnable = (bool)value;
 					return;
 				case "sleepLinearVelocityTh":
-					this.sleepLinearVelocityTh = value.GetValueAsFloat();
+					this.sleepLinearVelocityTh = (float)value;
 					return;
 				case "sleepAngularVelocityTh":
-					this.sleepAngularVelocityTh = value.GetValueAsFloat();
+					this.sleepAngularVelocityTh = (float)value;
 					return;
 				case "sleepTimeTh":
-					this.sleepTimeTh = value.GetValueAsFloat();
+					this.sleepTimeTh = (float)value;
 					return;
 				case "collisionGroup":
-					this.collisionGroup = value.GetValueAsUInt16();
+					this.collisionGroup = (ushort)value;
 					return;
 				case "collisionType":
-					this.collisionType = value.GetValueAsUInt16();
+					this.collisionType = (ushort)value;
 					return;
 				case "collisionId":
-					this.collisionId = value.GetValueAsUInt32();
+					this.collisionId = (uint)value;
 					return;
 				case "centerOfMassOffset":
-					this.centerOfMassOffset = value.GetValueAsVector3();
+					this.centerOfMassOffset = (UnityEngine.Vector3)value;
 					return;
 				case "motionType":
-					this.motionType = (PhRigidBodyType)value.GetValueAsInt32();
+					this.motionType = (PhRigidBodyType)value;
 					return;
 				case "material":
-					this.material = value.GetValueAsString();
+					this.material = (string)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -284,7 +284,7 @@ namespace Fox.Ph
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
@@ -294,7 +294,7 @@ namespace Fox.Ph
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

@@ -66,30 +66,30 @@ namespace Tpp.Effect
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "speed":
-					return new Fox.Core.Value(speed);
+					return (object)speed;
 				case "rotation":
-					return new Fox.Core.Value(rotation);
+					return (object)rotation;
 				case "speedTurbulentRate":
-					return new Fox.Core.Value(speedTurbulentRate);
+					return (object)speedTurbulentRate;
 				case "speedTurbulentCycle":
-					return new Fox.Core.Value(speedTurbulentCycle);
+					return (object)speedTurbulentCycle;
 				case "rotTurbulentRate":
-					return new Fox.Core.Value(rotTurbulentRate);
+					return (object)rotTurbulentRate;
 				case "rotTurbulentCycle":
-					return new Fox.Core.Value(rotTurbulentCycle);
+					return (object)rotTurbulentCycle;
 				case "interpTime":
-					return new Fox.Core.Value(interpTime);
+					return (object)interpTime;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
@@ -98,7 +98,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -107,30 +107,30 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "speed":
-					this.speed = value.GetValueAsFloat();
+					this.speed = (float)value;
 					return;
 				case "rotation":
-					this.rotation = value.GetValueAsQuat();
+					this.rotation = (UnityEngine.Quaternion)value;
 					return;
 				case "speedTurbulentRate":
-					this.speedTurbulentRate = value.GetValueAsFloat();
+					this.speedTurbulentRate = (float)value;
 					return;
 				case "speedTurbulentCycle":
-					this.speedTurbulentCycle = value.GetValueAsFloat();
+					this.speedTurbulentCycle = (float)value;
 					return;
 				case "rotTurbulentRate":
-					this.rotTurbulentRate = value.GetValueAsFloat();
+					this.rotTurbulentRate = (float)value;
 					return;
 				case "rotTurbulentCycle":
-					this.rotTurbulentCycle = value.GetValueAsFloat();
+					this.rotTurbulentCycle = (float)value;
 					return;
 				case "interpTime":
-					this.interpTime = value.GetValueAsFloat();
+					this.interpTime = (float)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -138,7 +138,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
@@ -148,7 +148,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

@@ -66,30 +66,30 @@ namespace Tpp.GameKit
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "rootCount":
-					return new Fox.Core.Value(rootCount);
+					return (object)rootCount;
 				case "trunkCount":
-					return new Fox.Core.Value(trunkCount);
+					return (object)trunkCount;
 				case "pluginName":
-					return new Fox.Core.Value(pluginName);
+					return (object)pluginName;
 				case "flags":
-					return new Fox.Core.Value(flags);
+					return (object)flags;
 				case "rootModelFile":
-					return new Fox.Core.Value(rootModelFile);
+					return (object)rootModelFile;
 				case "rootGeomFile":
-					return new Fox.Core.Value(rootGeomFile);
+					return (object)rootGeomFile;
 				case "trunkPartsFile":
-					return new Fox.Core.Value(trunkPartsFile);
+					return (object)trunkPartsFile;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
@@ -98,7 +98,7 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -107,30 +107,30 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "rootCount":
-					this.rootCount = value.GetValueAsUInt32();
+					this.rootCount = (uint)value;
 					return;
 				case "trunkCount":
-					this.trunkCount = value.GetValueAsUInt32();
+					this.trunkCount = (uint)value;
 					return;
 				case "pluginName":
-					this.pluginName = value.GetValueAsString();
+					this.pluginName = (string)value;
 					return;
 				case "flags":
-					this.flags = value.GetValueAsUInt32();
+					this.flags = (uint)value;
 					return;
 				case "rootModelFile":
-					this.rootModelFile = value.GetValueAsFilePtr();
+					this.rootModelFile = (Fox.Core.FilePtr)value;
 					return;
 				case "rootGeomFile":
-					this.rootGeomFile = value.GetValueAsFilePtr();
+					this.rootGeomFile = (Fox.Core.FilePtr)value;
 					return;
 				case "trunkPartsFile":
-					this.trunkPartsFile = value.GetValueAsFilePtr();
+					this.trunkPartsFile = (Fox.Core.FilePtr)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -138,7 +138,7 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
@@ -148,7 +148,7 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

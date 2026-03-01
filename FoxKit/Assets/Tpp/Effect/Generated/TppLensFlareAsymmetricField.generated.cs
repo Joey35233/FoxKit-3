@@ -62,28 +62,28 @@ namespace Tpp.Effect
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "verticalInnerScale":
-					return new Fox.Core.Value(verticalInnerScale);
+					return (object)verticalInnerScale;
 				case "verticalCenterScale":
-					return new Fox.Core.Value(verticalCenterScale);
+					return (object)verticalCenterScale;
 				case "verticalOuterScale":
-					return new Fox.Core.Value(verticalOuterScale);
+					return (object)verticalOuterScale;
 				case "verticalInnerValue":
-					return new Fox.Core.Value(verticalInnerValue);
+					return (object)verticalInnerValue;
 				case "verticalCenterValue":
-					return new Fox.Core.Value(verticalCenterValue);
+					return (object)verticalCenterValue;
 				case "verticalOuterValue":
-					return new Fox.Core.Value(verticalOuterValue);
+					return (object)verticalOuterValue;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
@@ -92,7 +92,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -101,27 +101,27 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "verticalInnerScale":
-					this.verticalInnerScale = value.GetValueAsFloat();
+					this.verticalInnerScale = (float)value;
 					return;
 				case "verticalCenterScale":
-					this.verticalCenterScale = value.GetValueAsFloat();
+					this.verticalCenterScale = (float)value;
 					return;
 				case "verticalOuterScale":
-					this.verticalOuterScale = value.GetValueAsFloat();
+					this.verticalOuterScale = (float)value;
 					return;
 				case "verticalInnerValue":
-					this.verticalInnerValue = value.GetValueAsFloat();
+					this.verticalInnerValue = (float)value;
 					return;
 				case "verticalCenterValue":
-					this.verticalCenterValue = value.GetValueAsFloat();
+					this.verticalCenterValue = (float)value;
 					return;
 				case "verticalOuterValue":
-					this.verticalOuterValue = value.GetValueAsFloat();
+					this.verticalOuterValue = (float)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -129,7 +129,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
@@ -139,7 +139,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

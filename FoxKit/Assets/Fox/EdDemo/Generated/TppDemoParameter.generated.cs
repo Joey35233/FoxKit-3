@@ -82,38 +82,38 @@ namespace Fox.EdDemo
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "pauseEnable":
-					return new Fox.Core.Value(pauseEnable);
+					return (object)pauseEnable;
 				case "fadeSerchLightEnable":
-					return new Fox.Core.Value(fadeSerchLightEnable);
+					return (object)fadeSerchLightEnable;
 				case "fadeDirectionalLightEnable":
-					return new Fox.Core.Value(fadeDirectionalLightEnable);
+					return (object)fadeDirectionalLightEnable;
 				case "fadeSandStormEnable":
-					return new Fox.Core.Value(fadeSandStormEnable);
+					return (object)fadeSandStormEnable;
 				case "sandStormDensityMin":
-					return new Fox.Core.Value(sandStormDensityMin);
+					return (object)sandStormDensityMin;
 				case "fadeTime":
-					return new Fox.Core.Value(fadeTime);
+					return (object)fadeTime;
 				case "useSetTime":
-					return new Fox.Core.Value(useSetTime);
+					return (object)useSetTime;
 				case "hour":
-					return new Fox.Core.Value(hour);
+					return (object)hour;
 				case "minute":
-					return new Fox.Core.Value(minute);
+					return (object)minute;
 				case "second":
-					return new Fox.Core.Value(second);
+					return (object)second;
 				case "weatherType":
-					return new Fox.Core.Value(weatherType);
+					return (object)weatherType;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
@@ -122,7 +122,7 @@ namespace Fox.EdDemo
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -131,42 +131,42 @@ namespace Fox.EdDemo
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "pauseEnable":
-					this.pauseEnable = value.GetValueAsBool();
+					this.pauseEnable = (bool)value;
 					return;
 				case "fadeSerchLightEnable":
-					this.fadeSerchLightEnable = value.GetValueAsBool();
+					this.fadeSerchLightEnable = (bool)value;
 					return;
 				case "fadeDirectionalLightEnable":
-					this.fadeDirectionalLightEnable = value.GetValueAsBool();
+					this.fadeDirectionalLightEnable = (bool)value;
 					return;
 				case "fadeSandStormEnable":
-					this.fadeSandStormEnable = value.GetValueAsBool();
+					this.fadeSandStormEnable = (bool)value;
 					return;
 				case "sandStormDensityMin":
-					this.sandStormDensityMin = value.GetValueAsFloat();
+					this.sandStormDensityMin = (float)value;
 					return;
 				case "fadeTime":
-					this.fadeTime = value.GetValueAsFloat();
+					this.fadeTime = (float)value;
 					return;
 				case "useSetTime":
-					this.useSetTime = value.GetValueAsBool();
+					this.useSetTime = (bool)value;
 					return;
 				case "hour":
-					this.hour = value.GetValueAsUInt32();
+					this.hour = (uint)value;
 					return;
 				case "minute":
-					this.minute = value.GetValueAsUInt32();
+					this.minute = (uint)value;
 					return;
 				case "second":
-					this.second = value.GetValueAsUInt32();
+					this.second = (uint)value;
 					return;
 				case "weatherType":
-					this.weatherType = (TppDemoParameter_WeatherType)value.GetValueAsInt32();
+					this.weatherType = (TppDemoParameter_WeatherType)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -174,7 +174,7 @@ namespace Fox.EdDemo
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
@@ -184,7 +184,7 @@ namespace Fox.EdDemo
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

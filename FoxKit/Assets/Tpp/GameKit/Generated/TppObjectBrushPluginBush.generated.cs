@@ -54,24 +54,24 @@ namespace Tpp.GameKit
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "reservedCount":
-					return new Fox.Core.Value(reservedCount);
+					return (object)reservedCount;
 				case "upgradeLodRateForHighEnd":
-					return new Fox.Core.Value(upgradeLodRateForHighEnd);
+					return (object)upgradeLodRateForHighEnd;
 				case "gimmickParameter":
-					return new Fox.Core.Value(gimmickParameter);
+					return (object)gimmickParameter;
 				case "externalGimmickParameter":
-					return new Fox.Core.Value(externalGimmickParameter);
+					return (object)externalGimmickParameter;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
@@ -80,7 +80,7 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -89,21 +89,21 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "reservedCount":
-					this.reservedCount = value.GetValueAsUInt32();
+					this.reservedCount = (uint)value;
 					return;
 				case "upgradeLodRateForHighEnd":
-					this.upgradeLodRateForHighEnd = value.GetValueAsFloat();
+					this.upgradeLodRateForHighEnd = (float)value;
 					return;
 				case "gimmickParameter":
-					this.gimmickParameter = value.GetValueAsEntityPtr<Tpp.GameKit.ObjectBrushPluginBushDataElement>();
+					this.gimmickParameter = (Tpp.GameKit.ObjectBrushPluginBushDataElement)value;
 					return;
 				case "externalGimmickParameter":
-					this.externalGimmickParameter = value.GetValueAsEntityLink();
+					this.externalGimmickParameter = (Fox.Core.EntityLink)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -111,7 +111,7 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
@@ -121,7 +121,7 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

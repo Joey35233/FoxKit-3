@@ -74,34 +74,34 @@ namespace Tpp.GameKit
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "modelFile":
-					return new Fox.Core.Value(modelFile);
+					return (object)modelFile;
 				case "geomFile":
-					return new Fox.Core.Value(geomFile);
+					return (object)geomFile;
 				case "breakedModelFile":
-					return new Fox.Core.Value(breakedModelFile);
+					return (object)breakedModelFile;
 				case "breakedGeomFile":
-					return new Fox.Core.Value(breakedGeomFile);
+					return (object)breakedGeomFile;
 				case "partsFile":
-					return new Fox.Core.Value(partsFile);
+					return (object)partsFile;
 				case "numDynamicGimmick":
-					return new Fox.Core.Value(numDynamicGimmick);
+					return (object)numDynamicGimmick;
 				case "locaterFile":
-					return new Fox.Core.Value(locaterFile);
+					return (object)locaterFile;
 				case "flags1":
-					return new Fox.Core.Value(flags1);
+					return (object)flags1;
 				case "flags2":
-					return new Fox.Core.Value(flags2);
+					return (object)flags2;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
@@ -110,7 +110,7 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -119,36 +119,36 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "modelFile":
-					this.modelFile = value.GetValueAsFilePtr();
+					this.modelFile = (Fox.Core.FilePtr)value;
 					return;
 				case "geomFile":
-					this.geomFile = value.GetValueAsFilePtr();
+					this.geomFile = (Fox.Core.FilePtr)value;
 					return;
 				case "breakedModelFile":
-					this.breakedModelFile = value.GetValueAsFilePtr();
+					this.breakedModelFile = (Fox.Core.FilePtr)value;
 					return;
 				case "breakedGeomFile":
-					this.breakedGeomFile = value.GetValueAsFilePtr();
+					this.breakedGeomFile = (Fox.Core.FilePtr)value;
 					return;
 				case "partsFile":
-					this.partsFile = value.GetValueAsFilePtr();
+					this.partsFile = (Fox.Core.FilePtr)value;
 					return;
 				case "numDynamicGimmick":
-					this.numDynamicGimmick = value.GetValueAsUInt32();
+					this.numDynamicGimmick = (uint)value;
 					return;
 				case "locaterFile":
-					this.locaterFile = value.GetValueAsFilePtr();
+					this.locaterFile = (Fox.Core.FilePtr)value;
 					return;
 				case "flags1":
-					this.flags1 = value.GetValueAsUInt32();
+					this.flags1 = (uint)value;
 					return;
 				case "flags2":
-					this.flags2 = value.GetValueAsUInt32();
+					this.flags2 = (uint)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -156,7 +156,7 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
@@ -166,7 +166,7 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

@@ -94,44 +94,44 @@ namespace Tpp.GameCore
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "attackId":
-					return new Fox.Core.Value(attackId);
+					return (object)attackId;
 				case "equipId":
-					return new Fox.Core.Value(equipId);
+					return (object)equipId;
 				case "bulletId":
-					return new Fox.Core.Value(bulletId);
+					return (object)bulletId;
 				case "weaponImplTypeIndex":
-					return new Fox.Core.Value(weaponImplTypeIndex);
+					return (object)weaponImplTypeIndex;
 				case "fireInterval":
-					return new Fox.Core.Value(fireInterval);
+					return (object)fireInterval;
 				case "weaponFile":
-					return new Fox.Core.Value(weaponFile);
+					return (object)weaponFile;
 				case "ammoFile":
-					return new Fox.Core.Value(ammoFile);
+					return (object)ammoFile;
 				case "ownerCnpName":
-					return new Fox.Core.Value(ownerCnpName);
+					return (object)ownerCnpName;
 				case "weaponBoneName":
-					return new Fox.Core.Value(weaponBoneName);
+					return (object)weaponBoneName;
 				case "turretBoneName":
-					return new Fox.Core.Value(turretBoneName);
+					return (object)turretBoneName;
 				case "barrelBoneName":
-					return new Fox.Core.Value(barrelBoneName);
+					return (object)barrelBoneName;
 				case "minPitch":
-					return new Fox.Core.Value(minPitch);
+					return (object)minPitch;
 				case "maxPitch":
-					return new Fox.Core.Value(maxPitch);
+					return (object)maxPitch;
 				case "rotSpeed":
-					return new Fox.Core.Value(rotSpeed);
+					return (object)rotSpeed;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
@@ -140,7 +140,7 @@ namespace Tpp.GameCore
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -149,51 +149,51 @@ namespace Tpp.GameCore
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "attackId":
-					this.attackId = value.GetValueAsString();
+					this.attackId = (string)value;
 					return;
 				case "equipId":
-					this.equipId = value.GetValueAsString();
+					this.equipId = (string)value;
 					return;
 				case "bulletId":
-					this.bulletId = value.GetValueAsString();
+					this.bulletId = (string)value;
 					return;
 				case "weaponImplTypeIndex":
-					this.weaponImplTypeIndex = value.GetValueAsUInt8();
+					this.weaponImplTypeIndex = (byte)value;
 					return;
 				case "fireInterval":
-					this.fireInterval = value.GetValueAsFloat();
+					this.fireInterval = (float)value;
 					return;
 				case "weaponFile":
-					this.weaponFile = value.GetValueAsFilePtr();
+					this.weaponFile = (Fox.Core.FilePtr)value;
 					return;
 				case "ammoFile":
-					this.ammoFile = value.GetValueAsFilePtr();
+					this.ammoFile = (Fox.Core.FilePtr)value;
 					return;
 				case "ownerCnpName":
-					this.ownerCnpName = value.GetValueAsString();
+					this.ownerCnpName = (string)value;
 					return;
 				case "weaponBoneName":
-					this.weaponBoneName = value.GetValueAsString();
+					this.weaponBoneName = (string)value;
 					return;
 				case "turretBoneName":
-					this.turretBoneName = value.GetValueAsString();
+					this.turretBoneName = (string)value;
 					return;
 				case "barrelBoneName":
-					this.barrelBoneName = value.GetValueAsString();
+					this.barrelBoneName = (string)value;
 					return;
 				case "minPitch":
-					this.minPitch = value.GetValueAsFloat();
+					this.minPitch = (float)value;
 					return;
 				case "maxPitch":
-					this.maxPitch = value.GetValueAsFloat();
+					this.maxPitch = (float)value;
 					return;
 				case "rotSpeed":
-					this.rotSpeed = value.GetValueAsFloat();
+					this.rotSpeed = (float)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -201,7 +201,7 @@ namespace Tpp.GameCore
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
@@ -211,7 +211,7 @@ namespace Tpp.GameCore
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

@@ -70,32 +70,32 @@ namespace Tpp.Effect
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "burnOutsideColor":
-					return new Fox.Core.Value(burnOutsideColor);
+					return (object)burnOutsideColor;
 				case "burnMiddleColor":
-					return new Fox.Core.Value(burnMiddleColor);
+					return (object)burnMiddleColor;
 				case "burnInsideColor":
-					return new Fox.Core.Value(burnInsideColor);
+					return (object)burnInsideColor;
 				case "burnHoleColor":
-					return new Fox.Core.Value(burnHoleColor);
+					return (object)burnHoleColor;
 				case "burnSpriteSize":
-					return new Fox.Core.Value(burnSpriteSize);
+					return (object)burnSpriteSize;
 				case "burnSpritePosition":
-					return new Fox.Core.Value(burnSpritePosition);
+					return (object)burnSpritePosition;
 				case "damageColorCorrectionTextureName":
-					return new Fox.Core.Value(damageColorCorrectionTextureName);
+					return (object)damageColorCorrectionTextureName;
 				case "injuryColorCorrectionTextureName":
-					return new Fox.Core.Value(injuryColorCorrectionTextureName);
+					return (object)injuryColorCorrectionTextureName;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
@@ -104,7 +104,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -113,33 +113,33 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "burnOutsideColor":
-					this.burnOutsideColor = value.GetValueAsColor();
+					this.burnOutsideColor = (UnityEngine.Color)value;
 					return;
 				case "burnMiddleColor":
-					this.burnMiddleColor = value.GetValueAsColor();
+					this.burnMiddleColor = (UnityEngine.Color)value;
 					return;
 				case "burnInsideColor":
-					this.burnInsideColor = value.GetValueAsColor();
+					this.burnInsideColor = (UnityEngine.Color)value;
 					return;
 				case "burnHoleColor":
-					this.burnHoleColor = value.GetValueAsColor();
+					this.burnHoleColor = (UnityEngine.Color)value;
 					return;
 				case "burnSpriteSize":
-					this.burnSpriteSize = value.GetValueAsFloat();
+					this.burnSpriteSize = (float)value;
 					return;
 				case "burnSpritePosition":
-					this.burnSpritePosition = value.GetValueAsFloat();
+					this.burnSpritePosition = (float)value;
 					return;
 				case "damageColorCorrectionTextureName":
-					this.damageColorCorrectionTextureName = value.GetValueAsString();
+					this.damageColorCorrectionTextureName = (string)value;
 					return;
 				case "injuryColorCorrectionTextureName":
-					this.injuryColorCorrectionTextureName = value.GetValueAsString();
+					this.injuryColorCorrectionTextureName = (string)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -147,7 +147,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
@@ -157,7 +157,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

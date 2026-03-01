@@ -73,34 +73,34 @@ namespace Tpp.Effect
 			ClassInfoInitialized = true;
 		}
 		
-		public virtual Fox.Core.Value GetProperty(string propertyName)
+		public virtual object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "sphereRadiusMin":
-					return new Fox.Core.Value(sphereRadiusMin);
+					return (object)sphereRadiusMin;
 				case "sphereRadiusMax":
-					return new Fox.Core.Value(sphereRadiusMax);
+					return (object)sphereRadiusMax;
 				case "headRadiusMin":
-					return new Fox.Core.Value(headRadiusMin);
+					return (object)headRadiusMin;
 				case "headRadiusMax":
-					return new Fox.Core.Value(headRadiusMax);
+					return (object)headRadiusMax;
 				case "sinCurveAmplitude":
-					return new Fox.Core.Value(sinCurveAmplitude);
+					return (object)sinCurveAmplitude;
 				case "sinCurveLength":
-					return new Fox.Core.Value(sinCurveLength);
+					return (object)sinCurveLength;
 				case "moveSpeedMin":
-					return new Fox.Core.Value(moveSpeedMin);
+					return (object)moveSpeedMin;
 				case "moveSpeedMax":
-					return new Fox.Core.Value(moveSpeedMax);
+					return (object)moveSpeedMax;
 				case "power":
-					return new Fox.Core.Value(power);
+					return (object)power;
 				default:
 					throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
 			}
 		}
 
-		public virtual Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public virtual object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
@@ -109,7 +109,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public virtual Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public virtual object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -118,43 +118,43 @@ namespace Tpp.Effect
 			}
 		}
 
-		public virtual void SetProperty(string propertyName, Fox.Core.Value value)
+		public virtual void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "sphereRadiusMin":
-					this.sphereRadiusMin = value.GetValueAsFloat();
+					this.sphereRadiusMin = (float)value;
 					return;
 				case "sphereRadiusMax":
-					this.sphereRadiusMax = value.GetValueAsFloat();
+					this.sphereRadiusMax = (float)value;
 					return;
 				case "headRadiusMin":
-					this.headRadiusMin = value.GetValueAsFloat();
+					this.headRadiusMin = (float)value;
 					return;
 				case "headRadiusMax":
-					this.headRadiusMax = value.GetValueAsFloat();
+					this.headRadiusMax = (float)value;
 					return;
 				case "sinCurveAmplitude":
-					this.sinCurveAmplitude = value.GetValueAsFloat();
+					this.sinCurveAmplitude = (float)value;
 					return;
 				case "sinCurveLength":
-					this.sinCurveLength = value.GetValueAsFloat();
+					this.sinCurveLength = (float)value;
 					return;
 				case "moveSpeedMin":
-					this.moveSpeedMin = value.GetValueAsFloat();
+					this.moveSpeedMin = (float)value;
 					return;
 				case "moveSpeedMax":
-					this.moveSpeedMax = value.GetValueAsFloat();
+					this.moveSpeedMax = (float)value;
 					return;
 				case "power":
-					this.power = value.GetValueAsFloat();
+					this.power = (float)value;
 					return;
 				default:
 					throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
 			}
 		}
 
-		public virtual void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public virtual void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
@@ -163,7 +163,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public virtual void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public virtual void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

@@ -50,22 +50,22 @@ namespace Tpp.Effect
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "vfxFiles":
-					return new Fox.Core.Value((Fox.IStringMap)vfxFiles);
+					return (object)(Fox.IStringMap)vfxFiles;
 				case "geoMaterialFiles":
-					return new Fox.Core.Value((Fox.IStringMap)geoMaterialFiles);
+					return (object)(Fox.IStringMap)geoMaterialFiles;
 				case "otherFiles":
-					return new Fox.Core.Value((Fox.IStringMap)otherFiles);
+					return (object)(Fox.IStringMap)otherFiles;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
@@ -74,22 +74,22 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
 				case "vfxFiles":
-					return new Fox.Core.Value(this.vfxFiles[key]);
+					return (object)this.vfxFiles[key];
 				case "geoMaterialFiles":
-					return new Fox.Core.Value(this.geoMaterialFiles[key]);
+					return (object)this.geoMaterialFiles[key];
 				case "otherFiles":
-					return new Fox.Core.Value(this.otherFiles[key]);
+					return (object)this.otherFiles[key];
 				default:
 					return base.GetPropertyElement(propertyName, key);
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
@@ -99,7 +99,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
@@ -109,27 +109,27 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
 				case "vfxFiles":
 					if (this.vfxFiles.ContainsKey(key))
-						this.vfxFiles[key] = value.GetValueAsFilePtr();
+						this.vfxFiles[key] = (Fox.Core.FilePtr)value;
 					else
-						this.vfxFiles.Insert(key, value.GetValueAsFilePtr());
+						this.vfxFiles.Insert(key, (Fox.Core.FilePtr)value);
 					return;
 				case "geoMaterialFiles":
 					if (this.geoMaterialFiles.ContainsKey(key))
-						this.geoMaterialFiles[key] = value.GetValueAsFilePtr();
+						this.geoMaterialFiles[key] = (Fox.Core.FilePtr)value;
 					else
-						this.geoMaterialFiles.Insert(key, value.GetValueAsFilePtr());
+						this.geoMaterialFiles.Insert(key, (Fox.Core.FilePtr)value);
 					return;
 				case "otherFiles":
 					if (this.otherFiles.ContainsKey(key))
-						this.otherFiles[key] = value.GetValueAsFilePtr();
+						this.otherFiles[key] = (Fox.Core.FilePtr)value;
 					else
-						this.otherFiles.Insert(key, value.GetValueAsFilePtr());
+						this.otherFiles.Insert(key, (Fox.Core.FilePtr)value);
 					return;
 				default:
 					base.SetPropertyElement(propertyName, key, value);

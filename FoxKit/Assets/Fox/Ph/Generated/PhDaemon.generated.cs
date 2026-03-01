@@ -58,26 +58,26 @@ namespace Fox.Ph
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "materialManager":
-					return new Fox.Core.Value(materialManager);
+					return (object)materialManager;
 				case "defaultFriction":
-					return new Fox.Core.Value(defaultFriction);
+					return (object)defaultFriction;
 				case "defaultRestitution":
-					return new Fox.Core.Value(defaultRestitution);
+					return (object)defaultRestitution;
 				case "isParallel":
-					return new Fox.Core.Value(isParallel);
+					return (object)isParallel;
 				case "isUseSmallJob":
-					return new Fox.Core.Value(isUseSmallJob);
+					return (object)isUseSmallJob;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
@@ -86,7 +86,7 @@ namespace Fox.Ph
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -95,24 +95,24 @@ namespace Fox.Ph
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "materialManager":
-					this.materialManager = value.GetValueAsEntityPtr<Fox.Ph.PhMaterialManager>();
+					this.materialManager = (Fox.Ph.PhMaterialManager)value;
 					return;
 				case "defaultFriction":
-					this.defaultFriction = value.GetValueAsFloat();
+					this.defaultFriction = (float)value;
 					return;
 				case "defaultRestitution":
-					this.defaultRestitution = value.GetValueAsFloat();
+					this.defaultRestitution = (float)value;
 					return;
 				case "isParallel":
-					this.isParallel = value.GetValueAsBool();
+					this.isParallel = (bool)value;
 					return;
 				case "isUseSmallJob":
-					this.isUseSmallJob = value.GetValueAsBool();
+					this.isUseSmallJob = (bool)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -120,7 +120,7 @@ namespace Fox.Ph
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
@@ -130,7 +130,7 @@ namespace Fox.Ph
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

@@ -42,18 +42,18 @@ namespace Fox.Core
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "dataBodyList":
-					return new Fox.Core.Value((Fox.IStringMap)dataBodyList);
+					return (object)(Fox.IStringMap)dataBodyList;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
@@ -62,18 +62,18 @@ namespace Fox.Core
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
 				case "dataBodyList":
-					return new Fox.Core.Value(this.dataBodyList[key]);
+					return (object)this.dataBodyList[key];
 				default:
 					return base.GetPropertyElement(propertyName, key);
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
@@ -83,7 +83,7 @@ namespace Fox.Core
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
@@ -93,15 +93,15 @@ namespace Fox.Core
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
 				case "dataBodyList":
 					if (this.dataBodyList.ContainsKey(key))
-						this.dataBodyList[key] = value.GetValueAsEntityPtr<Fox.Core.DataBody>();
+						this.dataBodyList[key] = (Fox.Core.DataBody)value;
 					else
-						this.dataBodyList.Insert(key, value.GetValueAsEntityPtr<Fox.Core.DataBody>());
+						this.dataBodyList.Insert(key, (Fox.Core.DataBody)value);
 					return;
 				default:
 					base.SetPropertyElement(propertyName, key, value);

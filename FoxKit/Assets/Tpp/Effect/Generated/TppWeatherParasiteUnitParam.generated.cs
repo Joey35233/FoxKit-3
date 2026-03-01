@@ -50,22 +50,22 @@ namespace Tpp.Effect
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "vfxCameraFront":
-					return new Fox.Core.Value(vfxCameraFront);
+					return (object)vfxCameraFront;
 				case "enableDebugMistRate":
-					return new Fox.Core.Value(enableDebugMistRate);
+					return (object)enableDebugMistRate;
 				case "debugMistRate":
-					return new Fox.Core.Value(debugMistRate);
+					return (object)debugMistRate;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
@@ -74,7 +74,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -83,18 +83,18 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "vfxCameraFront":
-					this.vfxCameraFront = value.GetValueAsFilePtr();
+					this.vfxCameraFront = (Fox.Core.FilePtr)value;
 					return;
 				case "enableDebugMistRate":
-					this.enableDebugMistRate = value.GetValueAsBool();
+					this.enableDebugMistRate = (bool)value;
 					return;
 				case "debugMistRate":
-					this.debugMistRate = value.GetValueAsFloat();
+					this.debugMistRate = (float)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -102,7 +102,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
@@ -112,7 +112,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

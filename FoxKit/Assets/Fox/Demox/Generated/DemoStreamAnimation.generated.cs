@@ -102,48 +102,48 @@ namespace Fox.Demox
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "streamPath":
-					return new Fox.Core.Value(streamPath);
+					return (object)streamPath;
 				case "demoLength":
-					return new Fox.Core.Value(demoLength);
+					return (object)demoLength;
 				case "locatorTypes":
-					return new Fox.Core.Value((Fox.IStringMap)locatorTypes);
+					return (object)(Fox.IStringMap)locatorTypes;
 				case "cameraTypes":
-					return new Fox.Core.Value((Fox.IStringMap)cameraTypes);
+					return (object)(Fox.IStringMap)cameraTypes;
 				case "modelFiles":
-					return new Fox.Core.Value((Fox.IStringMap)modelFiles);
+					return (object)(Fox.IStringMap)modelFiles;
 				case "helpBoneFiles":
-					return new Fox.Core.Value((Fox.IStringMap)helpBoneFiles);
+					return (object)(Fox.IStringMap)helpBoneFiles;
 				case "partsFiles":
-					return new Fox.Core.Value((Fox.IStringMap)partsFiles);
+					return (object)(Fox.IStringMap)partsFiles;
 				case "coverModelFiles":
-					return new Fox.Core.Value((Fox.IStringMap)coverModelFiles);
+					return (object)(Fox.IStringMap)coverModelFiles;
 				case "modelPartsDictionary":
-					return new Fox.Core.Value((Fox.IStringMap)modelPartsDictionary);
+					return (object)(Fox.IStringMap)modelPartsDictionary;
 				case "coverModelDictionary":
-					return new Fox.Core.Value((Fox.IStringMap)coverModelDictionary);
+					return (object)(Fox.IStringMap)coverModelDictionary;
 				case "updateJobCount":
-					return new Fox.Core.Value(updateJobCount);
+					return (object)updateJobCount;
 				case "modelProxyPaths":
-					return new Fox.Core.Value((Fox.IStringMap)modelProxyPaths);
+					return (object)(Fox.IStringMap)modelProxyPaths;
 				case "partsProxyPaths":
-					return new Fox.Core.Value((Fox.IStringMap)partsProxyPaths);
+					return (object)(Fox.IStringMap)partsProxyPaths;
 				case "dynamicModel":
-					return new Fox.Core.Value((Fox.IStringMap)dynamicModel);
+					return (object)(Fox.IStringMap)dynamicModel;
 				case "dynamicParts":
-					return new Fox.Core.Value((Fox.IStringMap)dynamicParts);
+					return (object)(Fox.IStringMap)dynamicParts;
 				case "dynamicFv2":
-					return new Fox.Core.Value((Fox.IStringMap)dynamicFv2);
+					return (object)(Fox.IStringMap)dynamicFv2;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
@@ -152,53 +152,53 @@ namespace Fox.Demox
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
 				case "locatorTypes":
-					return new Fox.Core.Value(this.locatorTypes[key]);
+					return (object)this.locatorTypes[key];
 				case "cameraTypes":
-					return new Fox.Core.Value(this.cameraTypes[key]);
+					return (object)this.cameraTypes[key];
 				case "modelFiles":
-					return new Fox.Core.Value(this.modelFiles[key]);
+					return (object)this.modelFiles[key];
 				case "helpBoneFiles":
-					return new Fox.Core.Value(this.helpBoneFiles[key]);
+					return (object)this.helpBoneFiles[key];
 				case "partsFiles":
-					return new Fox.Core.Value(this.partsFiles[key]);
+					return (object)this.partsFiles[key];
 				case "coverModelFiles":
-					return new Fox.Core.Value(this.coverModelFiles[key]);
+					return (object)this.coverModelFiles[key];
 				case "modelPartsDictionary":
-					return new Fox.Core.Value(this.modelPartsDictionary[key]);
+					return (object)this.modelPartsDictionary[key];
 				case "coverModelDictionary":
-					return new Fox.Core.Value(this.coverModelDictionary[key]);
+					return (object)this.coverModelDictionary[key];
 				case "modelProxyPaths":
-					return new Fox.Core.Value(this.modelProxyPaths[key]);
+					return (object)this.modelProxyPaths[key];
 				case "partsProxyPaths":
-					return new Fox.Core.Value(this.partsProxyPaths[key]);
+					return (object)this.partsProxyPaths[key];
 				case "dynamicModel":
-					return new Fox.Core.Value(this.dynamicModel[key]);
+					return (object)this.dynamicModel[key];
 				case "dynamicParts":
-					return new Fox.Core.Value(this.dynamicParts[key]);
+					return (object)this.dynamicParts[key];
 				case "dynamicFv2":
-					return new Fox.Core.Value(this.dynamicFv2[key]);
+					return (object)this.dynamicFv2[key];
 				default:
 					return base.GetPropertyElement(propertyName, key);
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "streamPath":
-					this.streamPath = value.GetValueAsPath();
+					this.streamPath = (Fox.Path)value;
 					return;
 				case "demoLength":
-					this.demoLength = value.GetValueAsUInt32();
+					this.demoLength = (uint)value;
 					return;
 				case "updateJobCount":
-					this.updateJobCount = value.GetValueAsUInt32();
+					this.updateJobCount = (uint)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -206,7 +206,7 @@ namespace Fox.Demox
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
@@ -216,87 +216,87 @@ namespace Fox.Demox
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
 				case "locatorTypes":
 					if (this.locatorTypes.ContainsKey(key))
-						this.locatorTypes[key] = (DemoStreamAnimation_LocatorType)value.GetValueAsInt32();
+						this.locatorTypes[key] = (DemoStreamAnimation_LocatorType)value;
 					else
-						this.locatorTypes.Insert(key, (DemoStreamAnimation_LocatorType)value.GetValueAsInt32());
+						this.locatorTypes.Insert(key, (DemoStreamAnimation_LocatorType)value);
 					return;
 				case "cameraTypes":
 					if (this.cameraTypes.ContainsKey(key))
-						this.cameraTypes[key] = (DemoStreamAnimation_CameraType)value.GetValueAsInt32();
+						this.cameraTypes[key] = (DemoStreamAnimation_CameraType)value;
 					else
-						this.cameraTypes.Insert(key, (DemoStreamAnimation_CameraType)value.GetValueAsInt32());
+						this.cameraTypes.Insert(key, (DemoStreamAnimation_CameraType)value);
 					return;
 				case "modelFiles":
 					if (this.modelFiles.ContainsKey(key))
-						this.modelFiles[key] = value.GetValueAsFilePtr();
+						this.modelFiles[key] = (Fox.Core.FilePtr)value;
 					else
-						this.modelFiles.Insert(key, value.GetValueAsFilePtr());
+						this.modelFiles.Insert(key, (Fox.Core.FilePtr)value);
 					return;
 				case "helpBoneFiles":
 					if (this.helpBoneFiles.ContainsKey(key))
-						this.helpBoneFiles[key] = value.GetValueAsFilePtr();
+						this.helpBoneFiles[key] = (Fox.Core.FilePtr)value;
 					else
-						this.helpBoneFiles.Insert(key, value.GetValueAsFilePtr());
+						this.helpBoneFiles.Insert(key, (Fox.Core.FilePtr)value);
 					return;
 				case "partsFiles":
 					if (this.partsFiles.ContainsKey(key))
-						this.partsFiles[key] = value.GetValueAsFilePtr();
+						this.partsFiles[key] = (Fox.Core.FilePtr)value;
 					else
-						this.partsFiles.Insert(key, value.GetValueAsFilePtr());
+						this.partsFiles.Insert(key, (Fox.Core.FilePtr)value);
 					return;
 				case "coverModelFiles":
 					if (this.coverModelFiles.ContainsKey(key))
-						this.coverModelFiles[key] = value.GetValueAsFilePtr();
+						this.coverModelFiles[key] = (Fox.Core.FilePtr)value;
 					else
-						this.coverModelFiles.Insert(key, value.GetValueAsFilePtr());
+						this.coverModelFiles.Insert(key, (Fox.Core.FilePtr)value);
 					return;
 				case "modelPartsDictionary":
 					if (this.modelPartsDictionary.ContainsKey(key))
-						this.modelPartsDictionary[key] = value.GetValueAsString();
+						this.modelPartsDictionary[key] = (string)value;
 					else
-						this.modelPartsDictionary.Insert(key, value.GetValueAsString());
+						this.modelPartsDictionary.Insert(key, (string)value);
 					return;
 				case "coverModelDictionary":
 					if (this.coverModelDictionary.ContainsKey(key))
-						this.coverModelDictionary[key] = value.GetValueAsString();
+						this.coverModelDictionary[key] = (string)value;
 					else
-						this.coverModelDictionary.Insert(key, value.GetValueAsString());
+						this.coverModelDictionary.Insert(key, (string)value);
 					return;
 				case "modelProxyPaths":
 					if (this.modelProxyPaths.ContainsKey(key))
-						this.modelProxyPaths[key] = value.GetValueAsPath();
+						this.modelProxyPaths[key] = (Fox.Path)value;
 					else
-						this.modelProxyPaths.Insert(key, value.GetValueAsPath());
+						this.modelProxyPaths.Insert(key, (Fox.Path)value);
 					return;
 				case "partsProxyPaths":
 					if (this.partsProxyPaths.ContainsKey(key))
-						this.partsProxyPaths[key] = value.GetValueAsPath();
+						this.partsProxyPaths[key] = (Fox.Path)value;
 					else
-						this.partsProxyPaths.Insert(key, value.GetValueAsPath());
+						this.partsProxyPaths.Insert(key, (Fox.Path)value);
 					return;
 				case "dynamicModel":
 					if (this.dynamicModel.ContainsKey(key))
-						this.dynamicModel[key] = value.GetValueAsEntityPtr<Fox.Demox.DemoDynamicFileChangeModel>();
+						this.dynamicModel[key] = (Fox.Demox.DemoDynamicFileChangeModel)value;
 					else
-						this.dynamicModel.Insert(key, value.GetValueAsEntityPtr<Fox.Demox.DemoDynamicFileChangeModel>());
+						this.dynamicModel.Insert(key, (Fox.Demox.DemoDynamicFileChangeModel)value);
 					return;
 				case "dynamicParts":
 					if (this.dynamicParts.ContainsKey(key))
-						this.dynamicParts[key] = value.GetValueAsEntityPtr<Fox.Demox.DemoDynamicFileChangeModel>();
+						this.dynamicParts[key] = (Fox.Demox.DemoDynamicFileChangeModel)value;
 					else
-						this.dynamicParts.Insert(key, value.GetValueAsEntityPtr<Fox.Demox.DemoDynamicFileChangeModel>());
+						this.dynamicParts.Insert(key, (Fox.Demox.DemoDynamicFileChangeModel)value);
 					return;
 				case "dynamicFv2":
 					if (this.dynamicFv2.ContainsKey(key))
-						this.dynamicFv2[key] = value.GetValueAsEntityPtr<Fox.Demox.DemoFv2ResourceMemory>();
+						this.dynamicFv2[key] = (Fox.Demox.DemoFv2ResourceMemory)value;
 					else
-						this.dynamicFv2.Insert(key, value.GetValueAsEntityPtr<Fox.Demox.DemoFv2ResourceMemory>());
+						this.dynamicFv2.Insert(key, (Fox.Demox.DemoFv2ResourceMemory)value);
 					return;
 				default:
 					base.SetPropertyElement(propertyName, key, value);

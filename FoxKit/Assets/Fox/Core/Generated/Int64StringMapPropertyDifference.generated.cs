@@ -46,20 +46,20 @@ namespace Fox.Core
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "originalValues":
-					return new Fox.Core.Value((Fox.IStringMap)originalValues);
+					return (object)(Fox.IStringMap)originalValues;
 				case "values":
-					return new Fox.Core.Value((Fox.IStringMap)values);
+					return (object)(Fox.IStringMap)values;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
@@ -68,20 +68,20 @@ namespace Fox.Core
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
 				case "originalValues":
-					return new Fox.Core.Value(this.originalValues[key]);
+					return (object)this.originalValues[key];
 				case "values":
-					return new Fox.Core.Value(this.values[key]);
+					return (object)this.values[key];
 				default:
 					return base.GetPropertyElement(propertyName, key);
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
@@ -91,7 +91,7 @@ namespace Fox.Core
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
@@ -101,21 +101,21 @@ namespace Fox.Core
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
 				case "originalValues":
 					if (this.originalValues.ContainsKey(key))
-						this.originalValues[key] = value.GetValueAsInt64();
+						this.originalValues[key] = (long)value;
 					else
-						this.originalValues.Insert(key, value.GetValueAsInt64());
+						this.originalValues.Insert(key, (long)value);
 					return;
 				case "values":
 					if (this.values.ContainsKey(key))
-						this.values[key] = value.GetValueAsInt64();
+						this.values[key] = (long)value;
 					else
-						this.values.Insert(key, value.GetValueAsInt64());
+						this.values.Insert(key, (long)value);
 					return;
 				default:
 					base.SetPropertyElement(propertyName, key, value);

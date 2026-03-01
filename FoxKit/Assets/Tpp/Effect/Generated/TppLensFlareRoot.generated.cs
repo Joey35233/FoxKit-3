@@ -58,37 +58,37 @@ namespace Tpp.Effect
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "useDebugLightPosition":
-					return new Fox.Core.Value(useDebugLightPosition);
+					return (object)useDebugLightPosition;
 				case "lightPositionX":
-					return new Fox.Core.Value(lightPositionX);
+					return (object)lightPositionX;
 				case "lightPositionY":
-					return new Fox.Core.Value(lightPositionY);
+					return (object)lightPositionY;
 				case "shieldCheckLength":
-					return new Fox.Core.Value(shieldCheckLength);
+					return (object)shieldCheckLength;
 				case "shapes":
-					return new Fox.Core.Value(shapes);
+					return (object)shapes;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
 				case "shapes":
-					return new Fox.Core.Value(this.shapes[index]);
+					return (object)this.shapes[index];
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -97,21 +97,21 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "useDebugLightPosition":
-					this.useDebugLightPosition = value.GetValueAsBool();
+					this.useDebugLightPosition = (bool)value;
 					return;
 				case "lightPositionX":
-					this.lightPositionX = value.GetValueAsFloat();
+					this.lightPositionX = (float)value;
 					return;
 				case "lightPositionY":
-					this.lightPositionY = value.GetValueAsFloat();
+					this.lightPositionY = (float)value;
 					return;
 				case "shieldCheckLength":
-					this.shieldCheckLength = value.GetValueAsFloat();
+					this.shieldCheckLength = (float)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -119,13 +119,13 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
 				case "shapes":
 					while(this.shapes.Count <= index) { this.shapes.Add(default(Fox.Core.EntityLink)); }
-					this.shapes[index] = value.GetValueAsEntityLink();
+					this.shapes[index] = (Fox.Core.EntityLink)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -133,7 +133,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

@@ -130,77 +130,77 @@ namespace Tpp.GameKit
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "lodMeshName":
-					return new Fox.Core.Value(lodMeshName);
+					return (object)lodMeshName;
 				case "lodDistance":
-					return new Fox.Core.Value(lodDistance);
+					return (object)lodDistance;
 				case "lodDistanceHighEnd":
-					return new Fox.Core.Value(lodDistanceHighEnd);
+					return (object)lodDistanceHighEnd;
 				case "rotationRate":
-					return new Fox.Core.Value(rotationRate);
+					return (object)rotationRate;
 				case "elasticRate":
-					return new Fox.Core.Value(elasticRate);
+					return (object)elasticRate;
 				case "alphaMinimizeDist":
-					return new Fox.Core.Value(alphaMinimizeDist);
+					return (object)alphaMinimizeDist;
 				case "alphaMaximizeDist":
-					return new Fox.Core.Value(alphaMaximizeDist);
+					return (object)alphaMaximizeDist;
 				case "baseDensity":
-					return new Fox.Core.Value(baseDensity);
+					return (object)baseDensity;
 				case "camoufDensity":
-					return new Fox.Core.Value(camoufDensity);
+					return (object)camoufDensity;
 				case "camofRadius":
-					return new Fox.Core.Value(camofRadius);
+					return (object)camofRadius;
 				case "camofHeight":
-					return new Fox.Core.Value(camofHeight);
+					return (object)camofHeight;
 				case "modelRadius":
-					return new Fox.Core.Value(modelRadius);
+					return (object)modelRadius;
 				case "stopEyeRadius":
-					return new Fox.Core.Value(stopEyeRadius);
+					return (object)stopEyeRadius;
 				case "stopEyeHeight":
-					return new Fox.Core.Value(stopEyeHeight);
+					return (object)stopEyeHeight;
 				case "noiseSeType":
-					return new Fox.Core.Value(noiseSeType);
+					return (object)noiseSeType;
 				case "bushFlags":
-					return new Fox.Core.Value(bushFlags);
+					return (object)bushFlags;
 				case "baseCycleSpeedRate":
-					return new Fox.Core.Value(baseCycleSpeedRate);
+					return (object)baseCycleSpeedRate;
 				case "windAmplitude":
-					return new Fox.Core.Value(windAmplitude);
+					return (object)windAmplitude;
 				case "windDirYAxisFixZero":
-					return new Fox.Core.Value(windDirYAxisFixZero);
+					return (object)windDirYAxisFixZero;
 				case "windOffsetFactor":
-					return new Fox.Core.Value(windOffsetFactor);
+					return (object)windOffsetFactor;
 				case "bulletEffect":
-					return new Fox.Core.Value(bulletEffect);
+					return (object)bulletEffect;
 				case "fairEffect":
-					return new Fox.Core.Value(fairEffect);
+					return (object)fairEffect;
 				case "rainEffect":
-					return new Fox.Core.Value(rainEffect);
+					return (object)rainEffect;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
 				case "lodMeshName":
-					return new Fox.Core.Value(this.lodMeshName[index]);
+					return (object)this.lodMeshName[index];
 				case "lodDistance":
-					return new Fox.Core.Value(this.lodDistance[index]);
+					return (object)this.lodDistance[index];
 				case "lodDistanceHighEnd":
-					return new Fox.Core.Value(this.lodDistanceHighEnd[index]);
+					return (object)this.lodDistanceHighEnd[index];
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -209,69 +209,69 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "rotationRate":
-					this.rotationRate = value.GetValueAsFloat();
+					this.rotationRate = (float)value;
 					return;
 				case "elasticRate":
-					this.elasticRate = value.GetValueAsFloat();
+					this.elasticRate = (float)value;
 					return;
 				case "alphaMinimizeDist":
-					this.alphaMinimizeDist = value.GetValueAsFloat();
+					this.alphaMinimizeDist = (float)value;
 					return;
 				case "alphaMaximizeDist":
-					this.alphaMaximizeDist = value.GetValueAsFloat();
+					this.alphaMaximizeDist = (float)value;
 					return;
 				case "baseDensity":
-					this.baseDensity = value.GetValueAsFloat();
+					this.baseDensity = (float)value;
 					return;
 				case "camoufDensity":
-					this.camoufDensity = value.GetValueAsFloat();
+					this.camoufDensity = (float)value;
 					return;
 				case "camofRadius":
-					this.camofRadius = value.GetValueAsFloat();
+					this.camofRadius = (float)value;
 					return;
 				case "camofHeight":
-					this.camofHeight = value.GetValueAsFloat();
+					this.camofHeight = (float)value;
 					return;
 				case "modelRadius":
-					this.modelRadius = value.GetValueAsFloat();
+					this.modelRadius = (float)value;
 					return;
 				case "stopEyeRadius":
-					this.stopEyeRadius = value.GetValueAsFloat();
+					this.stopEyeRadius = (float)value;
 					return;
 				case "stopEyeHeight":
-					this.stopEyeHeight = value.GetValueAsFloat();
+					this.stopEyeHeight = (float)value;
 					return;
 				case "noiseSeType":
-					this.noiseSeType = value.GetValueAsString();
+					this.noiseSeType = (string)value;
 					return;
 				case "bushFlags":
-					this.bushFlags = value.GetValueAsUInt32();
+					this.bushFlags = (uint)value;
 					return;
 				case "baseCycleSpeedRate":
-					this.baseCycleSpeedRate = value.GetValueAsFloat();
+					this.baseCycleSpeedRate = (float)value;
 					return;
 				case "windAmplitude":
-					this.windAmplitude = value.GetValueAsFloat();
+					this.windAmplitude = (float)value;
 					return;
 				case "windDirYAxisFixZero":
-					this.windDirYAxisFixZero = value.GetValueAsBool();
+					this.windDirYAxisFixZero = (bool)value;
 					return;
 				case "windOffsetFactor":
-					this.windOffsetFactor = value.GetValueAsFloat();
+					this.windOffsetFactor = (float)value;
 					return;
 				case "bulletEffect":
-					this.bulletEffect = value.GetValueAsFilePtr();
+					this.bulletEffect = (Fox.Core.FilePtr)value;
 					return;
 				case "fairEffect":
-					this.fairEffect = value.GetValueAsFilePtr();
+					this.fairEffect = (Fox.Core.FilePtr)value;
 					return;
 				case "rainEffect":
-					this.rainEffect = value.GetValueAsFilePtr();
+					this.rainEffect = (Fox.Core.FilePtr)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -279,21 +279,21 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
 				case "lodMeshName":
 					while(this.lodMeshName.Count <= index) { this.lodMeshName.Add(default(string)); }
-					this.lodMeshName[index] = value.GetValueAsString();
+					this.lodMeshName[index] = (string)value;
 					return;
 				case "lodDistance":
 					while(this.lodDistance.Count <= index) { this.lodDistance.Add(default(float)); }
-					this.lodDistance[index] = value.GetValueAsFloat();
+					this.lodDistance[index] = (float)value;
 					return;
 				case "lodDistanceHighEnd":
 					while(this.lodDistanceHighEnd.Count <= index) { this.lodDistanceHighEnd.Add(default(float)); }
-					this.lodDistanceHighEnd[index] = value.GetValueAsFloat();
+					this.lodDistanceHighEnd[index] = (float)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -301,7 +301,7 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

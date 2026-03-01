@@ -6,16 +6,16 @@ namespace Fox.Core
     [AddComponentMenu("FoxCore/DynamicProperty - DynamicArray<bool>")]
     public class DynamicProperty_DynamicArray_bool : DynamicProperty
     {
-        [SerializeField]
-        private System.Collections.Generic.List<bool> SerializedField = new ();
+        public System.Collections.Generic.List<bool> Value = new ();
 
         internal override PropertyInfo.ContainerType GetContainerType() => PropertyInfo.ContainerType.DynamicArray;
 
         internal override PropertyInfo GetPropertyInfo() => new PropertyInfo(Name, PropertyInfo.PropertyType.Bool, 0, container: GetContainerType());
         
-        public override Value GetValue() => new Value(SerializedField);
-        public override Value GetElement(ushort index) => new Value(SerializedField[index]);
+        public override object GetValue() => Value;
+        public override object GetElement(ushort index) => Value[index];
+        public override uint GetArraySize() => (uint)Value.Count;
 
-        public override void SetElement(ushort index, Value value) => SerializedField.Insert(index, value.GetValueAsBool());
+        public override void SetElement(ushort index, object value) => Value.Insert(index, (bool)value);
     }
 }

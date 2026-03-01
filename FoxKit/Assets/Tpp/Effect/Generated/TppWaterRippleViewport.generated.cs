@@ -54,24 +54,24 @@ namespace Tpp.Effect
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "rippleTextureName":
-					return new Fox.Core.Value(rippleTextureName);
+					return (object)rippleTextureName;
 				case "viewportWidth":
-					return new Fox.Core.Value(viewportWidth);
+					return (object)viewportWidth;
 				case "ripplePower":
-					return new Fox.Core.Value(ripplePower);
+					return (object)ripplePower;
 				case "debugView":
-					return new Fox.Core.Value(debugView);
+					return (object)debugView;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
@@ -80,7 +80,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -89,21 +89,21 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "rippleTextureName":
-					this.rippleTextureName = value.GetValueAsString();
+					this.rippleTextureName = (string)value;
 					return;
 				case "viewportWidth":
-					this.viewportWidth = value.GetValueAsUInt32();
+					this.viewportWidth = (uint)value;
 					return;
 				case "ripplePower":
-					this.ripplePower = value.GetValueAsFloat();
+					this.ripplePower = (float)value;
 					return;
 				case "debugView":
-					this.debugView = value.GetValueAsBool();
+					this.debugView = (bool)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -111,7 +111,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
@@ -121,7 +121,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

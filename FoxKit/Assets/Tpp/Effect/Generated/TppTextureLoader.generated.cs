@@ -46,20 +46,20 @@ namespace Tpp.Effect
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "textures":
-					return new Fox.Core.Value((Fox.IStringMap)textures);
+					return (object)(Fox.IStringMap)textures;
 				case "forceLargeTextures":
-					return new Fox.Core.Value((Fox.IStringMap)forceLargeTextures);
+					return (object)(Fox.IStringMap)forceLargeTextures;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
@@ -68,20 +68,20 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
 				case "textures":
-					return new Fox.Core.Value(this.textures[key]);
+					return (object)this.textures[key];
 				case "forceLargeTextures":
-					return new Fox.Core.Value(this.forceLargeTextures[key]);
+					return (object)this.forceLargeTextures[key];
 				default:
 					return base.GetPropertyElement(propertyName, key);
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
@@ -91,7 +91,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
@@ -101,21 +101,21 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
 				case "textures":
 					if (this.textures.ContainsKey(key))
-						this.textures[key] = value.GetValueAsPath();
+						this.textures[key] = (Fox.Path)value;
 					else
-						this.textures.Insert(key, value.GetValueAsPath());
+						this.textures.Insert(key, (Fox.Path)value);
 					return;
 				case "forceLargeTextures":
 					if (this.forceLargeTextures.ContainsKey(key))
-						this.forceLargeTextures[key] = value.GetValueAsPath();
+						this.forceLargeTextures[key] = (Fox.Path)value;
 					else
-						this.forceLargeTextures.Insert(key, value.GetValueAsPath());
+						this.forceLargeTextures.Insert(key, (Fox.Path)value);
 					return;
 				default:
 					base.SetPropertyElement(propertyName, key, value);

@@ -58,26 +58,26 @@ namespace Tpp.Collectible
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "equipIdStrCode32":
-					return new Fox.Core.Value(equipIdStrCode32);
+					return (object)equipIdStrCode32;
 				case "countRaw":
-					return new Fox.Core.Value(countRaw);
+					return (object)countRaw;
 				case "countSubRaw":
-					return new Fox.Core.Value(countSubRaw);
+					return (object)countSubRaw;
 				case "flag":
-					return new Fox.Core.Value(flag);
+					return (object)flag;
 				case "reserved":
-					return new Fox.Core.Value(reserved);
+					return (object)reserved;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
@@ -86,7 +86,7 @@ namespace Tpp.Collectible
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -95,24 +95,24 @@ namespace Tpp.Collectible
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "equipIdStrCode32":
-					this.equipIdStrCode32 = value.GetValueAsUInt32();
+					this.equipIdStrCode32 = (uint)value;
 					return;
 				case "countRaw":
-					this.countRaw = value.GetValueAsUInt16();
+					this.countRaw = (ushort)value;
 					return;
 				case "countSubRaw":
-					this.countSubRaw = value.GetValueAsUInt16();
+					this.countSubRaw = (ushort)value;
 					return;
 				case "flag":
-					this.flag = value.GetValueAsUInt16();
+					this.flag = (ushort)value;
 					return;
 				case "reserved":
-					this.reserved = value.GetValueAsUInt16();
+					this.reserved = (ushort)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -120,7 +120,7 @@ namespace Tpp.Collectible
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
@@ -130,7 +130,7 @@ namespace Tpp.Collectible
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

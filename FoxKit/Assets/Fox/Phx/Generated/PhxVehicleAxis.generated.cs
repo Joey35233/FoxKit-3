@@ -127,71 +127,71 @@ namespace Fox.Phx
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "vehicleAxisParam":
-					return new Fox.Core.Value(vehicleAxisParam);
+					return (object)vehicleAxisParam;
 				case "wheelConstraintParam":
-					return new Fox.Core.Value(wheelConstraintParam);
+					return (object)wheelConstraintParam;
 				case "wheelAssociationUnitParams":
-					return new Fox.Core.Value(wheelAssociationUnitParams);
+					return (object)wheelAssociationUnitParams;
 				case "torqueDistributions":
-					return new Fox.Core.Value(torqueDistributions);
+					return (object)torqueDistributions;
 				case "gearRatios":
-					return new Fox.Core.Value(gearRatios);
+					return (object)gearRatios;
 				case "wheelFront":
-					return new Fox.Core.Value(wheelFront);
+					return (object)wheelFront;
 				case "wheelUp":
-					return new Fox.Core.Value(wheelUp);
+					return (object)wheelUp;
 				case "wheelPositionOffset":
-					return new Fox.Core.Value(wheelPositionOffset);
+					return (object)wheelPositionOffset;
 				case "wheelRadius":
-					return new Fox.Core.Value(wheelRadius);
+					return (object)wheelRadius;
 				case "wheelFriction":
-					return new Fox.Core.Value(wheelFriction);
+					return (object)wheelFriction;
 				case "wheelRestitution":
-					return new Fox.Core.Value(wheelRestitution);
+					return (object)wheelRestitution;
 				case "wheelInertia":
-					return new Fox.Core.Value(wheelInertia);
+					return (object)wheelInertia;
 				case "suspentionLength":
-					return new Fox.Core.Value(suspentionLength);
+					return (object)suspentionLength;
 				case "maxSuspentionForceCoeff":
-					return new Fox.Core.Value(maxSuspentionForceCoeff);
+					return (object)maxSuspentionForceCoeff;
 				case "dampingCoeffElong":
-					return new Fox.Core.Value(dampingCoeffElong);
+					return (object)dampingCoeffElong;
 				case "dampingCoeffCompress":
-					return new Fox.Core.Value(dampingCoeffCompress);
+					return (object)dampingCoeffCompress;
 				case "maxBreakTorqueCoeff":
-					return new Fox.Core.Value(maxBreakTorqueCoeff);
+					return (object)maxBreakTorqueCoeff;
 				case "useDifferential":
-					return new Fox.Core.Value(useDifferential);
+					return (object)useDifferential;
 				case "AssignedBoneNames":
-					return new Fox.Core.Value(AssignedBoneNames);
+					return (object)AssignedBoneNames;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
 				case "wheelAssociationUnitParams":
-					return new Fox.Core.Value(this.wheelAssociationUnitParams[index]);
+					return (object)this.wheelAssociationUnitParams[index];
 				case "torqueDistributions":
-					return new Fox.Core.Value(this.torqueDistributions[index]);
+					return (object)this.torqueDistributions[index];
 				case "gearRatios":
-					return new Fox.Core.Value(this.gearRatios[index]);
+					return (object)this.gearRatios[index];
 				case "AssignedBoneNames":
-					return new Fox.Core.Value(this.AssignedBoneNames[index]);
+					return (object)this.AssignedBoneNames[index];
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -200,54 +200,54 @@ namespace Fox.Phx
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "vehicleAxisParam":
-					this.vehicleAxisParam = value.GetValueAsEntityPtr<Fox.Phx.PhVehicleAxisParam>();
+					this.vehicleAxisParam = (Fox.Phx.PhVehicleAxisParam)value;
 					return;
 				case "wheelConstraintParam":
-					this.wheelConstraintParam = value.GetValueAsEntityPtr<Fox.Phx.PhxWheelConstraintParam>();
+					this.wheelConstraintParam = (Fox.Phx.PhxWheelConstraintParam)value;
 					return;
 				case "wheelFront":
-					this.wheelFront = value.GetValueAsVector3();
+					this.wheelFront = (UnityEngine.Vector3)value;
 					return;
 				case "wheelUp":
-					this.wheelUp = value.GetValueAsVector3();
+					this.wheelUp = (UnityEngine.Vector3)value;
 					return;
 				case "wheelPositionOffset":
-					this.wheelPositionOffset = value.GetValueAsVector3();
+					this.wheelPositionOffset = (UnityEngine.Vector3)value;
 					return;
 				case "wheelRadius":
-					this.wheelRadius = value.GetValueAsFloat();
+					this.wheelRadius = (float)value;
 					return;
 				case "wheelFriction":
-					this.wheelFriction = value.GetValueAsFloat();
+					this.wheelFriction = (float)value;
 					return;
 				case "wheelRestitution":
-					this.wheelRestitution = value.GetValueAsFloat();
+					this.wheelRestitution = (float)value;
 					return;
 				case "wheelInertia":
-					this.wheelInertia = value.GetValueAsFloat();
+					this.wheelInertia = (float)value;
 					return;
 				case "suspentionLength":
-					this.suspentionLength = value.GetValueAsFloat();
+					this.suspentionLength = (float)value;
 					return;
 				case "maxSuspentionForceCoeff":
-					this.maxSuspentionForceCoeff = value.GetValueAsFloat();
+					this.maxSuspentionForceCoeff = (float)value;
 					return;
 				case "dampingCoeffElong":
-					this.dampingCoeffElong = value.GetValueAsFloat();
+					this.dampingCoeffElong = (float)value;
 					return;
 				case "dampingCoeffCompress":
-					this.dampingCoeffCompress = value.GetValueAsFloat();
+					this.dampingCoeffCompress = (float)value;
 					return;
 				case "maxBreakTorqueCoeff":
-					this.maxBreakTorqueCoeff = value.GetValueAsFloat();
+					this.maxBreakTorqueCoeff = (float)value;
 					return;
 				case "useDifferential":
-					this.useDifferential = value.GetValueAsBool();
+					this.useDifferential = (bool)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -255,25 +255,25 @@ namespace Fox.Phx
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
 				case "wheelAssociationUnitParams":
 					while(this.wheelAssociationUnitParams.Count <= index) { this.wheelAssociationUnitParams.Add(default(Fox.Phx.PhxWheelAssociationUnitParam)); }
-					this.wheelAssociationUnitParams[index] = value.GetValueAsEntityPtr<Fox.Phx.PhxWheelAssociationUnitParam>();
+					this.wheelAssociationUnitParams[index] = (Fox.Phx.PhxWheelAssociationUnitParam)value;
 					return;
 				case "torqueDistributions":
 					while(this.torqueDistributions.Count <= index) { this.torqueDistributions.Add(default(float)); }
-					this.torqueDistributions[index] = value.GetValueAsFloat();
+					this.torqueDistributions[index] = (float)value;
 					return;
 				case "gearRatios":
 					while(this.gearRatios.Count <= index) { this.gearRatios.Add(default(float)); }
-					this.gearRatios[index] = value.GetValueAsFloat();
+					this.gearRatios[index] = (float)value;
 					return;
 				case "AssignedBoneNames":
 					while(this.AssignedBoneNames.Count <= index) { this.AssignedBoneNames.Add(default(string)); }
-					this.AssignedBoneNames[index] = value.GetValueAsString();
+					this.AssignedBoneNames[index] = (string)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -281,7 +281,7 @@ namespace Fox.Phx
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

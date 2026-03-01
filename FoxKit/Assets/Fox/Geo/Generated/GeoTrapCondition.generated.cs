@@ -54,24 +54,24 @@ namespace Fox.Geo
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "trapCategory":
-					return new Fox.Core.Value(trapCategory);
+					return (object)trapCategory;
 				case "trapPriority":
-					return new Fox.Core.Value(trapPriority);
+					return (object)trapPriority;
 				case "enable":
-					return new Fox.Core.Value(enable);
+					return (object)enable;
 				case "isOnce":
-					return new Fox.Core.Value(isOnce);
+					return (object)isOnce;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
@@ -80,7 +80,7 @@ namespace Fox.Geo
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -89,21 +89,21 @@ namespace Fox.Geo
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "trapCategory":
-					this.trapCategory = value.GetValueAsString();
+					this.trapCategory = (string)value;
 					return;
 				case "trapPriority":
-					this.trapPriority = value.GetValueAsUInt32();
+					this.trapPriority = (uint)value;
 					return;
 				case "enable":
-					this.enable = value.GetValueAsBool();
+					this.enable = (bool)value;
 					return;
 				case "isOnce":
-					this.isOnce = value.GetValueAsBool();
+					this.isOnce = (bool)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -111,7 +111,7 @@ namespace Fox.Geo
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
@@ -121,7 +121,7 @@ namespace Fox.Geo
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

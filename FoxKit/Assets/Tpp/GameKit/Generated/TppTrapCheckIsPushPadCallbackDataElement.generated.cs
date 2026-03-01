@@ -46,31 +46,31 @@ namespace Tpp.GameKit
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "padNumber":
-					return new Fox.Core.Value(padNumber);
+					return (object)padNumber;
 				case "checkButtons":
-					return new Fox.Core.Value(checkButtons);
+					return (object)checkButtons;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
 				case "checkButtons":
-					return new Fox.Core.Value(this.checkButtons[index]);
+					return (object)this.checkButtons[index];
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -79,12 +79,12 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "padNumber":
-					this.padNumber = value.GetValueAsUInt32();
+					this.padNumber = (uint)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -92,13 +92,13 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
 				case "checkButtons":
 					while(this.checkButtons.Count <= index) { this.checkButtons.Add(default(string)); }
-					this.checkButtons[index] = value.GetValueAsString();
+					this.checkButtons[index] = (string)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -106,7 +106,7 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

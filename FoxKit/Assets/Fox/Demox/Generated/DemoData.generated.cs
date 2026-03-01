@@ -226,254 +226,254 @@ namespace Fox.Demox
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "evfFiles":
-					return new Fox.Core.Value(evfFiles);
+					return (object)evfFiles;
 				case "onMemory":
-					return new Fox.Core.Value(onMemory);
+					return (object)onMemory;
 				case "demoLength":
-					return new Fox.Core.Value(demoLength);
+					return (object)demoLength;
 				case "priority":
-					return new Fox.Core.Value(priority);
+					return (object)priority;
 				case "scriptPath":
-					return new Fox.Core.Value(scriptPath);
+					return (object)scriptPath;
 				case "fmdlFiles":
-					return new Fox.Core.Value((Fox.IStringMap)fmdlFiles);
+					return (object)(Fox.IStringMap)fmdlFiles;
 				case "helpBoneFiles":
-					return new Fox.Core.Value((Fox.IStringMap)helpBoneFiles);
+					return (object)(Fox.IStringMap)helpBoneFiles;
 				case "partsDesc":
-					return new Fox.Core.Value((Fox.IStringMap)partsDesc);
+					return (object)(Fox.IStringMap)partsDesc;
 				case "clipDatas":
-					return new Fox.Core.Value(clipDatas);
+					return (object)clipDatas;
 				case "loadFiles":
-					return new Fox.Core.Value(loadFiles);
+					return (object)loadFiles;
 				case "demoId":
-					return new Fox.Core.Value(demoId);
+					return (object)demoId;
 				case "playingRoot":
-					return new Fox.Core.Value(playingRoot);
+					return (object)playingRoot;
 				case "streamAnimation":
-					return new Fox.Core.Value(streamAnimation);
+					return (object)streamAnimation;
 				case "demoStreamPath":
-					return new Fox.Core.Value(demoStreamPath);
+					return (object)demoStreamPath;
 				case "motionPath":
-					return new Fox.Core.Value(motionPath);
+					return (object)motionPath;
 				case "motionFile":
-					return new Fox.Core.Value(motionFile);
+					return (object)motionFile;
 				case "audioPath":
-					return new Fox.Core.Value(audioPath);
+					return (object)audioPath;
 				case "subtitleFile":
-					return new Fox.Core.Value(subtitleFile);
+					return (object)subtitleFile;
 				case "subtitleBinaryFile":
-					return new Fox.Core.Value(subtitleBinaryFile);
+					return (object)subtitleBinaryFile;
 				case "nodeDataFile":
-					return new Fox.Core.Value(nodeDataFile);
+					return (object)nodeDataFile;
 				case "stringParams":
-					return new Fox.Core.Value(stringParams);
+					return (object)stringParams;
 				case "entityParams":
-					return new Fox.Core.Value((Fox.IStringMap)entityParams);
+					return (object)(Fox.IStringMap)entityParams;
 				case "fileParams":
-					return new Fox.Core.Value((Fox.IStringMap)fileParams);
+					return (object)(Fox.IStringMap)fileParams;
 				case "controlCharacters":
-					return new Fox.Core.Value((Fox.IStringMap)controlCharacters);
+					return (object)(Fox.IStringMap)controlCharacters;
 				case "controlDatas":
-					return new Fox.Core.Value((Fox.IStringMap)controlDatas);
+					return (object)(Fox.IStringMap)controlDatas;
 				case "controlCollectibles":
-					return new Fox.Core.Value((Fox.IStringMap)controlCollectibles);
+					return (object)(Fox.IStringMap)controlCollectibles;
 				case "parameters":
-					return new Fox.Core.Value((Fox.IStringMap)parameters);
+					return (object)(Fox.IStringMap)parameters;
 				case "setupLights":
-					return new Fox.Core.Value((Fox.IStringMap)setupLights);
+					return (object)(Fox.IStringMap)setupLights;
 				case "cameraInterpType":
-					return new Fox.Core.Value(cameraInterpType);
+					return (object)cameraInterpType;
 				case "cameraInterpFrame":
-					return new Fox.Core.Value(cameraInterpFrame);
+					return (object)cameraInterpFrame;
 				case "cameraInterpCurveRate":
-					return new Fox.Core.Value(cameraInterpCurveRate);
+					return (object)cameraInterpCurveRate;
 				case "cameraInterpScurveCenter":
-					return new Fox.Core.Value(cameraInterpScurveCenter);
+					return (object)cameraInterpScurveCenter;
 				case "cameraTranslation":
-					return new Fox.Core.Value(cameraTranslation);
+					return (object)cameraTranslation;
 				case "cameraRotation":
-					return new Fox.Core.Value(cameraRotation);
+					return (object)cameraRotation;
 				case "cameraParam":
-					return new Fox.Core.Value(cameraParam);
+					return (object)cameraParam;
 				case "cameraDistanceToLookAt":
-					return new Fox.Core.Value(cameraDistanceToLookAt);
+					return (object)cameraDistanceToLookAt;
 				case "cameraStartTranslation":
-					return new Fox.Core.Value(cameraStartTranslation);
+					return (object)cameraStartTranslation;
 				case "cameraStartRotation":
-					return new Fox.Core.Value(cameraStartRotation);
+					return (object)cameraStartRotation;
 				case "cameraStartParam":
-					return new Fox.Core.Value(cameraStartParam);
+					return (object)cameraStartParam;
 				case "cameraStartDistanceToLookAt":
-					return new Fox.Core.Value(cameraStartDistanceToLookAt);
+					return (object)cameraStartDistanceToLookAt;
 				case "eventCacheNum":
-					return new Fox.Core.Value(eventCacheNum);
+					return (object)eventCacheNum;
 				case "eventInterpCacheNum":
-					return new Fox.Core.Value(eventInterpCacheNum);
+					return (object)eventInterpCacheNum;
 				case "eventSkipCacheNum":
-					return new Fox.Core.Value(eventSkipCacheNum);
+					return (object)eventSkipCacheNum;
 				case "highestTextureStreamModel":
-					return new Fox.Core.Value(highestTextureStreamModel);
+					return (object)highestTextureStreamModel;
 				case "highestTexture":
-					return new Fox.Core.Value(highestTexture);
+					return (object)highestTexture;
 				case "objectNum":
-					return new Fox.Core.Value((Fox.IStringMap)objectNum);
+					return (object)(Fox.IStringMap)objectNum;
 				case "blockPositionSetter":
-					return new Fox.Core.Value(blockPositionSetter);
+					return (object)blockPositionSetter;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
 				case "evfFiles":
-					return new Fox.Core.Value(this.evfFiles[index]);
+					return (object)this.evfFiles[index];
 				case "clipDatas":
-					return new Fox.Core.Value(this.clipDatas[index]);
+					return (object)this.clipDatas[index];
 				case "loadFiles":
-					return new Fox.Core.Value(this.loadFiles[index]);
+					return (object)this.loadFiles[index];
 				case "stringParams":
-					return new Fox.Core.Value(this.stringParams[index]);
+					return (object)this.stringParams[index];
 				case "highestTextureStreamModel":
-					return new Fox.Core.Value(this.highestTextureStreamModel[index]);
+					return (object)this.highestTextureStreamModel[index];
 				case "highestTexture":
-					return new Fox.Core.Value(this.highestTexture[index]);
+					return (object)this.highestTexture[index];
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
 				case "fmdlFiles":
-					return new Fox.Core.Value(this.fmdlFiles[key]);
+					return (object)this.fmdlFiles[key];
 				case "helpBoneFiles":
-					return new Fox.Core.Value(this.helpBoneFiles[key]);
+					return (object)this.helpBoneFiles[key];
 				case "partsDesc":
-					return new Fox.Core.Value(this.partsDesc[key]);
+					return (object)this.partsDesc[key];
 				case "entityParams":
-					return new Fox.Core.Value(this.entityParams[key]);
+					return (object)this.entityParams[key];
 				case "fileParams":
-					return new Fox.Core.Value(this.fileParams[key]);
+					return (object)this.fileParams[key];
 				case "controlCharacters":
-					return new Fox.Core.Value(this.controlCharacters[key]);
+					return (object)this.controlCharacters[key];
 				case "controlDatas":
-					return new Fox.Core.Value(this.controlDatas[key]);
+					return (object)this.controlDatas[key];
 				case "controlCollectibles":
-					return new Fox.Core.Value(this.controlCollectibles[key]);
+					return (object)this.controlCollectibles[key];
 				case "parameters":
-					return new Fox.Core.Value(this.parameters[key]);
+					return (object)this.parameters[key];
 				case "setupLights":
-					return new Fox.Core.Value(this.setupLights[key]);
+					return (object)this.setupLights[key];
 				case "objectNum":
-					return new Fox.Core.Value(this.objectNum[key]);
+					return (object)this.objectNum[key];
 				default:
 					return base.GetPropertyElement(propertyName, key);
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "onMemory":
-					this.onMemory = value.GetValueAsBool();
+					this.onMemory = (bool)value;
 					return;
 				case "demoLength":
-					this.demoLength = value.GetValueAsInt32();
+					this.demoLength = (int)value;
 					return;
 				case "priority":
-					this.priority = value.GetValueAsInt32();
+					this.priority = (int)value;
 					return;
 				case "scriptPath":
-					this.scriptPath = value.GetValueAsPath();
+					this.scriptPath = (Fox.Path)value;
 					return;
 				case "demoId":
-					this.demoId = value.GetValueAsString();
+					this.demoId = (string)value;
 					return;
 				case "playingRoot":
-					this.playingRoot = value.GetValueAsEntityLink();
+					this.playingRoot = (Fox.Core.EntityLink)value;
 					return;
 				case "streamAnimation":
-					this.streamAnimation = value.GetValueAsEntityLink();
+					this.streamAnimation = (Fox.Core.EntityLink)value;
 					return;
 				case "demoStreamPath":
-					this.demoStreamPath = value.GetValueAsPath();
+					this.demoStreamPath = (Fox.Path)value;
 					return;
 				case "motionPath":
-					this.motionPath = value.GetValueAsPath();
+					this.motionPath = (Fox.Path)value;
 					return;
 				case "motionFile":
-					this.motionFile = value.GetValueAsFilePtr();
+					this.motionFile = (Fox.Core.FilePtr)value;
 					return;
 				case "audioPath":
-					this.audioPath = value.GetValueAsPath();
+					this.audioPath = (Fox.Path)value;
 					return;
 				case "subtitleFile":
-					this.subtitleFile = value.GetValueAsFilePtr();
+					this.subtitleFile = (Fox.Core.FilePtr)value;
 					return;
 				case "subtitleBinaryFile":
-					this.subtitleBinaryFile = value.GetValueAsFilePtr();
+					this.subtitleBinaryFile = (Fox.Core.FilePtr)value;
 					return;
 				case "nodeDataFile":
-					this.nodeDataFile = value.GetValueAsFilePtr();
+					this.nodeDataFile = (Fox.Core.FilePtr)value;
 					return;
 				case "cameraInterpType":
-					this.cameraInterpType = (Utility_InterpType)value.GetValueAsInt32();
+					this.cameraInterpType = (Utility_InterpType)value;
 					return;
 				case "cameraInterpFrame":
-					this.cameraInterpFrame = value.GetValueAsInt32();
+					this.cameraInterpFrame = (int)value;
 					return;
 				case "cameraInterpCurveRate":
-					this.cameraInterpCurveRate = value.GetValueAsFloat();
+					this.cameraInterpCurveRate = (float)value;
 					return;
 				case "cameraInterpScurveCenter":
-					this.cameraInterpScurveCenter = value.GetValueAsFloat();
+					this.cameraInterpScurveCenter = (float)value;
 					return;
 				case "cameraTranslation":
-					this.cameraTranslation = value.GetValueAsVector3();
+					this.cameraTranslation = (UnityEngine.Vector3)value;
 					return;
 				case "cameraRotation":
-					this.cameraRotation = value.GetValueAsQuat();
+					this.cameraRotation = (UnityEngine.Quaternion)value;
 					return;
 				case "cameraParam":
-					this.cameraParam = value.GetValueAsFloat();
+					this.cameraParam = (float)value;
 					return;
 				case "cameraDistanceToLookAt":
-					this.cameraDistanceToLookAt = value.GetValueAsFloat();
+					this.cameraDistanceToLookAt = (float)value;
 					return;
 				case "cameraStartTranslation":
-					this.cameraStartTranslation = value.GetValueAsVector3();
+					this.cameraStartTranslation = (UnityEngine.Vector3)value;
 					return;
 				case "cameraStartRotation":
-					this.cameraStartRotation = value.GetValueAsQuat();
+					this.cameraStartRotation = (UnityEngine.Quaternion)value;
 					return;
 				case "cameraStartParam":
-					this.cameraStartParam = value.GetValueAsFloat();
+					this.cameraStartParam = (float)value;
 					return;
 				case "cameraStartDistanceToLookAt":
-					this.cameraStartDistanceToLookAt = value.GetValueAsFloat();
+					this.cameraStartDistanceToLookAt = (float)value;
 					return;
 				case "eventCacheNum":
-					this.eventCacheNum = value.GetValueAsInt32();
+					this.eventCacheNum = (int)value;
 					return;
 				case "eventInterpCacheNum":
-					this.eventInterpCacheNum = value.GetValueAsInt32();
+					this.eventInterpCacheNum = (int)value;
 					return;
 				case "eventSkipCacheNum":
-					this.eventSkipCacheNum = value.GetValueAsInt32();
+					this.eventSkipCacheNum = (int)value;
 					return;
 				case "blockPositionSetter":
-					this.blockPositionSetter = value.GetValueAsEntityLink();
+					this.blockPositionSetter = (Fox.Core.EntityLink)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -481,33 +481,33 @@ namespace Fox.Demox
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
 				case "evfFiles":
 					while(this.evfFiles.Count <= index) { this.evfFiles.Add(default(Fox.Core.FilePtr)); }
-					this.evfFiles[index] = value.GetValueAsFilePtr();
+					this.evfFiles[index] = (Fox.Core.FilePtr)value;
 					return;
 				case "clipDatas":
 					while(this.clipDatas.Count <= index) { this.clipDatas.Add(default(Fox.Demo.ClipData)); }
-					this.clipDatas[index] = value.GetValueAsEntityPtr<Fox.Demo.ClipData>();
+					this.clipDatas[index] = (Fox.Demo.ClipData)value;
 					return;
 				case "loadFiles":
 					while(this.loadFiles.Count <= index) { this.loadFiles.Add(default(Fox.Path)); }
-					this.loadFiles[index] = value.GetValueAsPath();
+					this.loadFiles[index] = (Fox.Path)value;
 					return;
 				case "stringParams":
 					while(this.stringParams.Count <= index) { this.stringParams.Add(default(string)); }
-					this.stringParams[index] = value.GetValueAsString();
+					this.stringParams[index] = (string)value;
 					return;
 				case "highestTextureStreamModel":
 					while(this.highestTextureStreamModel.Count <= index) { this.highestTextureStreamModel.Add(default(string)); }
-					this.highestTextureStreamModel[index] = value.GetValueAsString();
+					this.highestTextureStreamModel[index] = (string)value;
 					return;
 				case "highestTexture":
 					while(this.highestTexture.Count <= index) { this.highestTexture.Add(default(Fox.Path)); }
-					this.highestTexture[index] = value.GetValueAsPath();
+					this.highestTexture[index] = (Fox.Path)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -515,75 +515,75 @@ namespace Fox.Demox
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
 				case "fmdlFiles":
 					if (this.fmdlFiles.ContainsKey(key))
-						this.fmdlFiles[key] = value.GetValueAsFilePtr();
+						this.fmdlFiles[key] = (Fox.Core.FilePtr)value;
 					else
-						this.fmdlFiles.Insert(key, value.GetValueAsFilePtr());
+						this.fmdlFiles.Insert(key, (Fox.Core.FilePtr)value);
 					return;
 				case "helpBoneFiles":
 					if (this.helpBoneFiles.ContainsKey(key))
-						this.helpBoneFiles[key] = value.GetValueAsFilePtr();
+						this.helpBoneFiles[key] = (Fox.Core.FilePtr)value;
 					else
-						this.helpBoneFiles.Insert(key, value.GetValueAsFilePtr());
+						this.helpBoneFiles.Insert(key, (Fox.Core.FilePtr)value);
 					return;
 				case "partsDesc":
 					if (this.partsDesc.ContainsKey(key))
-						this.partsDesc[key] = value.GetValueAsEntityPtr<Fox.Demo.PartsDesc>();
+						this.partsDesc[key] = (Fox.Demo.PartsDesc)value;
 					else
-						this.partsDesc.Insert(key, value.GetValueAsEntityPtr<Fox.Demo.PartsDesc>());
+						this.partsDesc.Insert(key, (Fox.Demo.PartsDesc)value);
 					return;
 				case "entityParams":
 					if (this.entityParams.ContainsKey(key))
-						this.entityParams[key] = value.GetValueAsEntityLink();
+						this.entityParams[key] = (Fox.Core.EntityLink)value;
 					else
-						this.entityParams.Insert(key, value.GetValueAsEntityLink());
+						this.entityParams.Insert(key, (Fox.Core.EntityLink)value);
 					return;
 				case "fileParams":
 					if (this.fileParams.ContainsKey(key))
-						this.fileParams[key] = value.GetValueAsFilePtr();
+						this.fileParams[key] = (Fox.Core.FilePtr)value;
 					else
-						this.fileParams.Insert(key, value.GetValueAsFilePtr());
+						this.fileParams.Insert(key, (Fox.Core.FilePtr)value);
 					return;
 				case "controlCharacters":
 					if (this.controlCharacters.ContainsKey(key))
-						this.controlCharacters[key] = value.GetValueAsEntityPtr<Fox.Demo.DemoControlCharacterDesc>();
+						this.controlCharacters[key] = (Fox.Demo.DemoControlCharacterDesc)value;
 					else
-						this.controlCharacters.Insert(key, value.GetValueAsEntityPtr<Fox.Demo.DemoControlCharacterDesc>());
+						this.controlCharacters.Insert(key, (Fox.Demo.DemoControlCharacterDesc)value);
 					return;
 				case "controlDatas":
 					if (this.controlDatas.ContainsKey(key))
-						this.controlDatas[key] = value.GetValueAsEntityLink();
+						this.controlDatas[key] = (Fox.Core.EntityLink)value;
 					else
-						this.controlDatas.Insert(key, value.GetValueAsEntityLink());
+						this.controlDatas.Insert(key, (Fox.Core.EntityLink)value);
 					return;
 				case "controlCollectibles":
 					if (this.controlCollectibles.ContainsKey(key))
-						this.controlCollectibles[key] = value.GetValueAsString();
+						this.controlCollectibles[key] = (string)value;
 					else
-						this.controlCollectibles.Insert(key, value.GetValueAsString());
+						this.controlCollectibles.Insert(key, (string)value);
 					return;
 				case "parameters":
 					if (this.parameters.ContainsKey(key))
-						this.parameters[key] = value.GetValueAsEntityPtr<Fox.Demo.DemoParameter>();
+						this.parameters[key] = (Fox.Demo.DemoParameter)value;
 					else
-						this.parameters.Insert(key, value.GetValueAsEntityPtr<Fox.Demo.DemoParameter>());
+						this.parameters.Insert(key, (Fox.Demo.DemoParameter)value);
 					return;
 				case "setupLights":
 					if (this.setupLights.ContainsKey(key))
-						this.setupLights[key] = value.GetValueAsString();
+						this.setupLights[key] = (string)value;
 					else
-						this.setupLights.Insert(key, value.GetValueAsString());
+						this.setupLights.Insert(key, (string)value);
 					return;
 				case "objectNum":
 					if (this.objectNum.ContainsKey(key))
-						this.objectNum[key] = value.GetValueAsInt32();
+						this.objectNum[key] = (int)value;
 					else
-						this.objectNum.Insert(key, value.GetValueAsInt32());
+						this.objectNum.Insert(key, (int)value);
 					return;
 				default:
 					base.SetPropertyElement(propertyName, key, value);

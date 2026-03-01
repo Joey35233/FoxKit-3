@@ -78,36 +78,36 @@ namespace Tpp.GameCore
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "motionGraphFile":
-					return new Fox.Core.Value(motionGraphFile);
+					return (object)motionGraphFile;
 				case "vfxFiles":
-					return new Fox.Core.Value((Fox.IStringMap)vfxFiles);
+					return (object)(Fox.IStringMap)vfxFiles;
 				case "lifeMax":
-					return new Fox.Core.Value(lifeMax);
+					return (object)lifeMax;
 				case "lifeRecoveryPerSecond":
-					return new Fox.Core.Value(lifeRecoveryPerSecond);
+					return (object)lifeRecoveryPerSecond;
 				case "respawnTime":
-					return new Fox.Core.Value(respawnTime);
+					return (object)respawnTime;
 				case "clipCount":
-					return new Fox.Core.Value(clipCount);
+					return (object)clipCount;
 				case "fireInterval":
-					return new Fox.Core.Value(fireInterval);
+					return (object)fireInterval;
 				case "lifeRecoveryCooldownTimer":
-					return new Fox.Core.Value(lifeRecoveryCooldownTimer);
+					return (object)lifeRecoveryCooldownTimer;
 				case "partsType":
-					return new Fox.Core.Value(partsType);
+					return (object)partsType;
 				case "TODO_trapTags":
-					return new Fox.Core.Value((Fox.IStringMap)TODO_trapTags);
+					return (object)(Fox.IStringMap)TODO_trapTags;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
@@ -116,46 +116,46 @@ namespace Tpp.GameCore
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
 				case "vfxFiles":
-					return new Fox.Core.Value(this.vfxFiles[key]);
+					return (object)this.vfxFiles[key];
 				case "TODO_trapTags":
-					return new Fox.Core.Value(this.TODO_trapTags[key]);
+					return (object)this.TODO_trapTags[key];
 				default:
 					return base.GetPropertyElement(propertyName, key);
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "motionGraphFile":
-					this.motionGraphFile = value.GetValueAsFilePtr();
+					this.motionGraphFile = (Fox.Core.FilePtr)value;
 					return;
 				case "lifeMax":
-					this.lifeMax = value.GetValueAsUInt32();
+					this.lifeMax = (uint)value;
 					return;
 				case "lifeRecoveryPerSecond":
-					this.lifeRecoveryPerSecond = value.GetValueAsFloat();
+					this.lifeRecoveryPerSecond = (float)value;
 					return;
 				case "respawnTime":
-					this.respawnTime = value.GetValueAsFloat();
+					this.respawnTime = (float)value;
 					return;
 				case "clipCount":
-					this.clipCount = value.GetValueAsUInt32();
+					this.clipCount = (uint)value;
 					return;
 				case "fireInterval":
-					this.fireInterval = value.GetValueAsFloat();
+					this.fireInterval = (float)value;
 					return;
 				case "lifeRecoveryCooldownTimer":
-					this.lifeRecoveryCooldownTimer = value.GetValueAsFloat();
+					this.lifeRecoveryCooldownTimer = (float)value;
 					return;
 				case "partsType":
-					this.partsType = value.GetValueAsString();
+					this.partsType = (string)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -163,7 +163,7 @@ namespace Tpp.GameCore
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
@@ -173,21 +173,21 @@ namespace Tpp.GameCore
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
 				case "vfxFiles":
 					if (this.vfxFiles.ContainsKey(key))
-						this.vfxFiles[key] = value.GetValueAsFilePtr();
+						this.vfxFiles[key] = (Fox.Core.FilePtr)value;
 					else
-						this.vfxFiles.Insert(key, value.GetValueAsFilePtr());
+						this.vfxFiles.Insert(key, (Fox.Core.FilePtr)value);
 					return;
 				case "TODO_trapTags":
 					if (this.TODO_trapTags.ContainsKey(key))
-						this.TODO_trapTags[key] = value.GetValueAsUInt8();
+						this.TODO_trapTags[key] = (byte)value;
 					else
-						this.TODO_trapTags.Insert(key, value.GetValueAsUInt8());
+						this.TODO_trapTags.Insert(key, (byte)value);
 					return;
 				default:
 					base.SetPropertyElement(propertyName, key, value);

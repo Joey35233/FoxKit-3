@@ -78,36 +78,36 @@ namespace Tpp.Effect
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "debugDraw":
-					return new Fox.Core.Value(debugDraw);
+					return (object)debugDraw;
 				case "texture":
-					return new Fox.Core.Value(texture);
+					return (object)texture;
 				case "centerX":
-					return new Fox.Core.Value(centerX);
+					return (object)centerX;
 				case "centerY":
-					return new Fox.Core.Value(centerY);
+					return (object)centerY;
 				case "rotation":
-					return new Fox.Core.Value(rotation);
+					return (object)rotation;
 				case "width":
-					return new Fox.Core.Value(width);
+					return (object)width;
 				case "openRate1":
-					return new Fox.Core.Value(openRate1);
+					return (object)openRate1;
 				case "openRate2":
-					return new Fox.Core.Value(openRate2);
+					return (object)openRate2;
 				case "color1":
-					return new Fox.Core.Value(color1);
+					return (object)color1;
 				case "color2":
-					return new Fox.Core.Value(color2);
+					return (object)color2;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
@@ -116,7 +116,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -125,39 +125,39 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "debugDraw":
-					this.debugDraw = value.GetValueAsBool();
+					this.debugDraw = (bool)value;
 					return;
 				case "texture":
-					this.texture = value.GetValueAsPath();
+					this.texture = (Fox.Path)value;
 					return;
 				case "centerX":
-					this.centerX = value.GetValueAsFloat();
+					this.centerX = (float)value;
 					return;
 				case "centerY":
-					this.centerY = value.GetValueAsFloat();
+					this.centerY = (float)value;
 					return;
 				case "rotation":
-					this.rotation = value.GetValueAsFloat();
+					this.rotation = (float)value;
 					return;
 				case "width":
-					this.width = value.GetValueAsFloat();
+					this.width = (float)value;
 					return;
 				case "openRate1":
-					this.openRate1 = value.GetValueAsFloat();
+					this.openRate1 = (float)value;
 					return;
 				case "openRate2":
-					this.openRate2 = value.GetValueAsFloat();
+					this.openRate2 = (float)value;
 					return;
 				case "color1":
-					this.color1 = value.GetValueAsColor();
+					this.color1 = (UnityEngine.Color)value;
 					return;
 				case "color2":
-					this.color2 = value.GetValueAsColor();
+					this.color2 = (UnityEngine.Color)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -165,7 +165,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
@@ -175,7 +175,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

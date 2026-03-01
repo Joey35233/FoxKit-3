@@ -54,24 +54,24 @@ namespace Tpp.Network
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "userId":
-					return new Fox.Core.Value(userId);
+					return (object)userId;
 				case "userName":
-					return new Fox.Core.Value(userName);
+					return (object)userName;
 				case "playerId":
-					return new Fox.Core.Value(playerId);
+					return (object)playerId;
 				case "playerName":
-					return new Fox.Core.Value(playerName);
+					return (object)playerName;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
@@ -80,7 +80,7 @@ namespace Tpp.Network
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -89,21 +89,21 @@ namespace Tpp.Network
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "userId":
-					this.userId = value.GetValueAsUInt32();
+					this.userId = (uint)value;
 					return;
 				case "userName":
-					this.userName = value.GetValueAsString();
+					this.userName = (string)value;
 					return;
 				case "playerId":
-					this.playerId = value.GetValueAsUInt32();
+					this.playerId = (uint)value;
 					return;
 				case "playerName":
-					this.playerName = value.GetValueAsString();
+					this.playerName = (string)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -111,7 +111,7 @@ namespace Tpp.Network
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
@@ -121,7 +121,7 @@ namespace Tpp.Network
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

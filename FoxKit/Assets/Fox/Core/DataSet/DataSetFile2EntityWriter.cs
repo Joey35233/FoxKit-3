@@ -171,12 +171,12 @@ namespace Fox.Core
 
         private ushort WriteStringMapProperty(Entity entity, EntityExportContext exportContext, PropertyInfo property, BinaryWriter writer)
         {
-            List<KeyValuePair<string, object>> list = exportContext.OverridesProperty(property.Name)
-                   ? ((IStringMap)exportContext.GetOverriddenProperty(property.Name)).ToList()
-                   : entity.GetProperty(property.Name).GetValueAsIStringMap().ToList();
+             object mapListProperty = exportContext.OverridesProperty(property.Name) ? exportContext.GetOverriddenProperty(property.Name) : entity.GetProperty(property.Name);
+
+             List<KeyValuePair<string, object>> mapList = ((IStringMap)mapListProperty).ToList();
 
             int skippedKeyCount = 0;
-            foreach (KeyValuePair<string, object> item in list)
+            foreach (KeyValuePair<string, object> item in mapList)
             {
                 // TODO Are empty keys allowed?
                 if (System.String.IsNullOrEmpty(item.Key))
@@ -191,14 +191,14 @@ namespace Fox.Core
                 writer.AlignWrite(16, 0x00);
             }
 
-            return (ushort)(list.Count - skippedKeyCount);
+            return (ushort)(mapList.Count - skippedKeyCount);
         }
 
         private ushort WriteListProperty(Entity entity, EntityExportContext exportContext, PropertyInfo property, BinaryWriter writer)
         {
-            IList list = exportContext.OverridesProperty(property.Name)
-                   ? (IList)exportContext.GetOverriddenProperty(property.Name)
-                   : entity.GetProperty(property.Name).GetValueAsIList();
+            object listProperty = exportContext.OverridesProperty(property.Name) ? exportContext.GetOverriddenProperty(property.Name) : entity.GetProperty(property.Name);
+
+            IList list = (IList)listProperty;
 
             foreach (object item in list)
             {
@@ -334,7 +334,7 @@ namespace Fox.Core
         {
             object value = exportContext.OverridesProperty(property.Name)
                 ? exportContext.GetOverriddenProperty(property.Name)
-                : entity.GetProperty(property.Name).GetValueAsBoxedObject();
+                : entity.GetProperty(property.Name);
 
             WritePropertyItem(value, property.Type, writer);
         }

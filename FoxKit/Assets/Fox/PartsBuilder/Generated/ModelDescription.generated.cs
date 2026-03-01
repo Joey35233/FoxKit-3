@@ -86,51 +86,51 @@ namespace Fox.PartsBuilder
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "modelFile":
-					return new Fox.Core.Value(modelFile);
+					return (object)modelFile;
 				case "connectPointFile":
-					return new Fox.Core.Value(connectPointFile);
+					return (object)connectPointFile;
 				case "gameRigFile":
-					return new Fox.Core.Value(gameRigFile);
+					return (object)gameRigFile;
 				case "helpBoneFile":
-					return new Fox.Core.Value(helpBoneFile);
+					return (object)helpBoneFile;
 				case "lipAdjustBinaryFile":
-					return new Fox.Core.Value(lipAdjustBinaryFile);
+					return (object)lipAdjustBinaryFile;
 				case "facialSettingFile":
-					return new Fox.Core.Value(facialSettingFile);
+					return (object)facialSettingFile;
 				case "invisibleMeshNames":
-					return new Fox.Core.Value(invisibleMeshNames);
+					return (object)invisibleMeshNames;
 				case "lodFarPixelSize":
-					return new Fox.Core.Value(lodFarPixelSize);
+					return (object)lodFarPixelSize;
 				case "lodNearPixelSize":
-					return new Fox.Core.Value(lodNearPixelSize);
+					return (object)lodNearPixelSize;
 				case "lodPolygonSize":
-					return new Fox.Core.Value(lodPolygonSize);
+					return (object)lodPolygonSize;
 				case "drawRejectionLevel":
-					return new Fox.Core.Value(drawRejectionLevel);
+					return (object)drawRejectionLevel;
 				case "rejectFarRangeShadowCast":
-					return new Fox.Core.Value(rejectFarRangeShadowCast);
+					return (object)rejectFarRangeShadowCast;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
 				case "invisibleMeshNames":
-					return new Fox.Core.Value(this.invisibleMeshNames[index]);
+					return (object)this.invisibleMeshNames[index];
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -139,42 +139,42 @@ namespace Fox.PartsBuilder
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "modelFile":
-					this.modelFile = value.GetValueAsFilePtr();
+					this.modelFile = (Fox.Core.FilePtr)value;
 					return;
 				case "connectPointFile":
-					this.connectPointFile = value.GetValueAsFilePtr();
+					this.connectPointFile = (Fox.Core.FilePtr)value;
 					return;
 				case "gameRigFile":
-					this.gameRigFile = value.GetValueAsFilePtr();
+					this.gameRigFile = (Fox.Core.FilePtr)value;
 					return;
 				case "helpBoneFile":
-					this.helpBoneFile = value.GetValueAsFilePtr();
+					this.helpBoneFile = (Fox.Core.FilePtr)value;
 					return;
 				case "lipAdjustBinaryFile":
-					this.lipAdjustBinaryFile = value.GetValueAsFilePtr();
+					this.lipAdjustBinaryFile = (Fox.Core.FilePtr)value;
 					return;
 				case "facialSettingFile":
-					this.facialSettingFile = value.GetValueAsFilePtr();
+					this.facialSettingFile = (Fox.Core.FilePtr)value;
 					return;
 				case "lodFarPixelSize":
-					this.lodFarPixelSize = value.GetValueAsFloat();
+					this.lodFarPixelSize = (float)value;
 					return;
 				case "lodNearPixelSize":
-					this.lodNearPixelSize = value.GetValueAsFloat();
+					this.lodNearPixelSize = (float)value;
 					return;
 				case "lodPolygonSize":
-					this.lodPolygonSize = value.GetValueAsFloat();
+					this.lodPolygonSize = (float)value;
 					return;
 				case "drawRejectionLevel":
-					this.drawRejectionLevel = (ModelDescription_DrawRejectionLevel)value.GetValueAsInt32();
+					this.drawRejectionLevel = (ModelDescription_DrawRejectionLevel)value;
 					return;
 				case "rejectFarRangeShadowCast":
-					this.rejectFarRangeShadowCast = (ModelDescription_RejectFarRangeShadowCast)value.GetValueAsInt32();
+					this.rejectFarRangeShadowCast = (ModelDescription_RejectFarRangeShadowCast)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -182,13 +182,13 @@ namespace Fox.PartsBuilder
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
 				case "invisibleMeshNames":
 					while(this.invisibleMeshNames.Count <= index) { this.invisibleMeshNames.Add(default(string)); }
-					this.invisibleMeshNames[index] = value.GetValueAsString();
+					this.invisibleMeshNames[index] = (string)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -196,7 +196,7 @@ namespace Fox.PartsBuilder
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

@@ -66,41 +66,41 @@ namespace Tpp.GameKit
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "radius":
-					return new Fox.Core.Value(radius);
+					return (object)radius;
 				case "lostSearchRadius":
-					return new Fox.Core.Value(lostSearchRadius);
+					return (object)lostSearchRadius;
 				case "isUseWaitPrioirty":
-					return new Fox.Core.Value(isUseWaitPrioirty);
+					return (object)isUseWaitPrioirty;
 				case "isReinforcePoint":
-					return new Fox.Core.Value(isReinforcePoint);
+					return (object)isReinforcePoint;
 				case "memberCount":
-					return new Fox.Core.Value(memberCount);
+					return (object)memberCount;
 				case "memberCountFront":
-					return new Fox.Core.Value(memberCountFront);
+					return (object)memberCountFront;
 				case "subLocators":
-					return new Fox.Core.Value(subLocators);
+					return (object)subLocators;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
 				case "subLocators":
-					return new Fox.Core.Value(this.subLocators[index]);
+					return (object)this.subLocators[index];
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -109,27 +109,27 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "radius":
-					this.radius = value.GetValueAsFloat();
+					this.radius = (float)value;
 					return;
 				case "lostSearchRadius":
-					this.lostSearchRadius = value.GetValueAsFloat();
+					this.lostSearchRadius = (float)value;
 					return;
 				case "isUseWaitPrioirty":
-					this.isUseWaitPrioirty = value.GetValueAsBool();
+					this.isUseWaitPrioirty = (bool)value;
 					return;
 				case "isReinforcePoint":
-					this.isReinforcePoint = value.GetValueAsBool();
+					this.isReinforcePoint = (bool)value;
 					return;
 				case "memberCount":
-					this.memberCount = value.GetValueAsUInt8();
+					this.memberCount = (byte)value;
 					return;
 				case "memberCountFront":
-					this.memberCountFront = value.GetValueAsUInt8();
+					this.memberCountFront = (byte)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -137,13 +137,13 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
 				case "subLocators":
 					while(this.subLocators.Count <= index) { this.subLocators.Add(default(Fox.Core.EntityLink)); }
-					this.subLocators[index] = value.GetValueAsEntityLink();
+					this.subLocators[index] = (Fox.Core.EntityLink)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -151,7 +151,7 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

@@ -98,67 +98,67 @@ namespace Tpp.GameKit
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "modelFile":
-					return new Fox.Core.Value(modelFile);
+					return (object)modelFile;
 				case "geomFile":
-					return new Fox.Core.Value(geomFile);
+					return (object)geomFile;
 				case "animFile":
-					return new Fox.Core.Value(animFile);
+					return (object)animFile;
 				case "animWindyFile":
-					return new Fox.Core.Value(animWindyFile);
+					return (object)animWindyFile;
 				case "mtarFile":
-					return new Fox.Core.Value(mtarFile);
+					return (object)mtarFile;
 				case "soundSeType":
-					return new Fox.Core.Value(soundSeType);
+					return (object)soundSeType;
 				case "minSize":
-					return new Fox.Core.Value(minSize);
+					return (object)minSize;
 				case "maxSize":
-					return new Fox.Core.Value(maxSize);
+					return (object)maxSize;
 				case "isGeomActivity":
-					return new Fox.Core.Value(isGeomActivity);
+					return (object)isGeomActivity;
 				case "thinkOutRate":
-					return new Fox.Core.Value(thinkOutRate);
+					return (object)thinkOutRate;
 				case "extensionRadius":
-					return new Fox.Core.Value(extensionRadius);
+					return (object)extensionRadius;
 				case "reserveResourcePlugin":
-					return new Fox.Core.Value(reserveResourcePlugin);
+					return (object)reserveResourcePlugin;
 				case "reserveResourcePerBlock":
-					return new Fox.Core.Value(reserveResourcePerBlock);
+					return (object)reserveResourcePerBlock;
 				case "lodLength":
-					return new Fox.Core.Value(lodLength);
+					return (object)lodLength;
 				case "lodLengthForHighEnd":
-					return new Fox.Core.Value(lodLengthForHighEnd);
+					return (object)lodLengthForHighEnd;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
 				case "modelFile":
-					return new Fox.Core.Value(this.modelFile[index]);
+					return (object)this.modelFile[index];
 				case "geomFile":
-					return new Fox.Core.Value(this.geomFile[index]);
+					return (object)this.geomFile[index];
 				case "animFile":
-					return new Fox.Core.Value(this.animFile[index]);
+					return (object)this.animFile[index];
 				case "animWindyFile":
-					return new Fox.Core.Value(this.animWindyFile[index]);
+					return (object)this.animWindyFile[index];
 				case "lodLength":
-					return new Fox.Core.Value(this.lodLength[index]);
+					return (object)this.lodLength[index];
 				case "lodLengthForHighEnd":
-					return new Fox.Core.Value(this.lodLengthForHighEnd[index]);
+					return (object)this.lodLengthForHighEnd[index];
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -167,36 +167,36 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "mtarFile":
-					this.mtarFile = value.GetValueAsFilePtr();
+					this.mtarFile = (Fox.Core.FilePtr)value;
 					return;
 				case "soundSeType":
-					this.soundSeType = value.GetValueAsString();
+					this.soundSeType = (string)value;
 					return;
 				case "minSize":
-					this.minSize = value.GetValueAsFloat();
+					this.minSize = (float)value;
 					return;
 				case "maxSize":
-					this.maxSize = value.GetValueAsFloat();
+					this.maxSize = (float)value;
 					return;
 				case "isGeomActivity":
-					this.isGeomActivity = value.GetValueAsBool();
+					this.isGeomActivity = (bool)value;
 					return;
 				case "thinkOutRate":
-					this.thinkOutRate = value.GetValueAsFloat();
+					this.thinkOutRate = (float)value;
 					return;
 				case "extensionRadius":
-					this.extensionRadius = value.GetValueAsFloat();
+					this.extensionRadius = (float)value;
 					return;
 				case "reserveResourcePlugin":
-					this.reserveResourcePlugin = value.GetValueAsUInt32();
+					this.reserveResourcePlugin = (uint)value;
 					return;
 				case "reserveResourcePerBlock":
-					this.reserveResourcePerBlock = value.GetValueAsUInt32();
+					this.reserveResourcePerBlock = (uint)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -204,33 +204,33 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
 				case "modelFile":
 					while(this.modelFile.Count <= index) { this.modelFile.Add(default(Fox.Core.FilePtr)); }
-					this.modelFile[index] = value.GetValueAsFilePtr();
+					this.modelFile[index] = (Fox.Core.FilePtr)value;
 					return;
 				case "geomFile":
 					while(this.geomFile.Count <= index) { this.geomFile.Add(default(Fox.Core.FilePtr)); }
-					this.geomFile[index] = value.GetValueAsFilePtr();
+					this.geomFile[index] = (Fox.Core.FilePtr)value;
 					return;
 				case "animFile":
 					while(this.animFile.Count <= index) { this.animFile.Add(default(Fox.Path)); }
-					this.animFile[index] = value.GetValueAsPath();
+					this.animFile[index] = (Fox.Path)value;
 					return;
 				case "animWindyFile":
 					while(this.animWindyFile.Count <= index) { this.animWindyFile.Add(default(Fox.Path)); }
-					this.animWindyFile[index] = value.GetValueAsPath();
+					this.animWindyFile[index] = (Fox.Path)value;
 					return;
 				case "lodLength":
 					
-					this.lodLength[index] = value.GetValueAsFloat();
+					this.lodLength[index] = (float)value;
 					return;
 				case "lodLengthForHighEnd":
 					
-					this.lodLengthForHighEnd[index] = value.GetValueAsFloat();
+					this.lodLengthForHighEnd[index] = (float)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -238,7 +238,7 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

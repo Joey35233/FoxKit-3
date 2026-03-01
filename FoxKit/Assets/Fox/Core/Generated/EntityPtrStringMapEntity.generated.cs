@@ -42,18 +42,18 @@ namespace Fox.Core
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "stringMap":
-					return new Fox.Core.Value((Fox.IStringMap)stringMap);
+					return (object)(Fox.IStringMap)stringMap;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
@@ -62,18 +62,18 @@ namespace Fox.Core
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
 				case "stringMap":
-					return new Fox.Core.Value(this.stringMap[key]);
+					return (object)this.stringMap[key];
 				default:
 					return base.GetPropertyElement(propertyName, key);
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
@@ -83,7 +83,7 @@ namespace Fox.Core
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
@@ -93,15 +93,15 @@ namespace Fox.Core
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
 				case "stringMap":
 					if (this.stringMap.ContainsKey(key))
-						this.stringMap[key] = value.GetValueAsEntityPtr<Fox.Core.Entity>();
+						this.stringMap[key] = (Fox.Core.Entity)value;
 					else
-						this.stringMap.Insert(key, value.GetValueAsEntityPtr<Fox.Core.Entity>());
+						this.stringMap.Insert(key, (Fox.Core.Entity)value);
 					return;
 				default:
 					base.SetPropertyElement(propertyName, key, value);

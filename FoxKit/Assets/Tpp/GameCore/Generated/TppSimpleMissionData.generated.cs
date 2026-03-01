@@ -46,20 +46,20 @@ namespace Tpp.GameCore
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "script":
-					return new Fox.Core.Value(script);
+					return (object)script;
 				case "subScripts":
-					return new Fox.Core.Value((Fox.IStringMap)subScripts);
+					return (object)(Fox.IStringMap)subScripts;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
@@ -68,23 +68,23 @@ namespace Tpp.GameCore
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
 				case "subScripts":
-					return new Fox.Core.Value(this.subScripts[key]);
+					return (object)this.subScripts[key];
 				default:
 					return base.GetPropertyElement(propertyName, key);
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "script":
-					this.script = value.GetValueAsFilePtr();
+					this.script = (Fox.Core.FilePtr)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -92,7 +92,7 @@ namespace Tpp.GameCore
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
@@ -102,15 +102,15 @@ namespace Tpp.GameCore
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
 				case "subScripts":
 					if (this.subScripts.ContainsKey(key))
-						this.subScripts[key] = value.GetValueAsFilePtr();
+						this.subScripts[key] = (Fox.Core.FilePtr)value;
 					else
-						this.subScripts.Insert(key, value.GetValueAsFilePtr());
+						this.subScripts.Insert(key, (Fox.Core.FilePtr)value);
 					return;
 				default:
 					base.SetPropertyElement(propertyName, key, value);

@@ -170,82 +170,82 @@ namespace Tpp.Effect
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "primRiverGroupName":
-					return new Fox.Core.Value(primRiverGroupName);
+					return (object)primRiverGroupName;
 				case "visibility":
-					return new Fox.Core.Value(visibility);
+					return (object)visibility;
 				case "baseTextureName":
-					return new Fox.Core.Value(baseTextureName);
+					return (object)baseTextureName;
 				case "normalTextureName":
-					return new Fox.Core.Value(normalTextureName);
+					return (object)normalTextureName;
 				case "cubeMapName":
-					return new Fox.Core.Value(cubeMapName);
+					return (object)cubeMapName;
 				case "secondLayerBaseTextureName":
-					return new Fox.Core.Value(secondLayerBaseTextureName);
+					return (object)secondLayerBaseTextureName;
 				case "lightCaptureLocator":
-					return new Fox.Core.Value(lightCaptureLocator);
+					return (object)lightCaptureLocator;
 				case "scrollDirection0":
-					return new Fox.Core.Value(scrollDirection0);
+					return (object)scrollDirection0;
 				case "scrollSpeed0":
-					return new Fox.Core.Value(scrollSpeed0);
+					return (object)scrollSpeed0;
 				case "scrollScale0":
-					return new Fox.Core.Value(scrollScale0);
+					return (object)scrollScale0;
 				case "scrollDirection1":
-					return new Fox.Core.Value(scrollDirection1);
+					return (object)scrollDirection1;
 				case "scrollSpeed1":
-					return new Fox.Core.Value(scrollSpeed1);
+					return (object)scrollSpeed1;
 				case "scrollScale1":
-					return new Fox.Core.Value(scrollScale1);
+					return (object)scrollScale1;
 				case "transparency":
-					return new Fox.Core.Value(transparency);
+					return (object)transparency;
 				case "transparencyDepthBlend":
-					return new Fox.Core.Value(transparencyDepthBlend);
+					return (object)transparencyDepthBlend;
 				case "reflectionRate":
-					return new Fox.Core.Value(reflectionRate);
+					return (object)reflectionRate;
 				case "distortionPower":
-					return new Fox.Core.Value(distortionPower);
+					return (object)distortionPower;
 				case "surfaceShadowRate":
-					return new Fox.Core.Value(surfaceShadowRate);
+					return (object)surfaceShadowRate;
 				case "secondScrollDirection0":
-					return new Fox.Core.Value(secondScrollDirection0);
+					return (object)secondScrollDirection0;
 				case "secondScrollSpeed0":
-					return new Fox.Core.Value(secondScrollSpeed0);
+					return (object)secondScrollSpeed0;
 				case "secondScrollScale0":
-					return new Fox.Core.Value(secondScrollScale0);
+					return (object)secondScrollScale0;
 				case "secondScrollDirection1":
-					return new Fox.Core.Value(secondScrollDirection1);
+					return (object)secondScrollDirection1;
 				case "secondScrollSpeed1":
-					return new Fox.Core.Value(secondScrollSpeed1);
+					return (object)secondScrollSpeed1;
 				case "secondScrollScale1":
-					return new Fox.Core.Value(secondScrollScale1);
+					return (object)secondScrollScale1;
 				case "secondLayerTransparency":
-					return new Fox.Core.Value(secondLayerTransparency);
+					return (object)secondLayerTransparency;
 				case "secondLayerTransparencyDepthBlend":
-					return new Fox.Core.Value(secondLayerTransparencyDepthBlend);
+					return (object)secondLayerTransparencyDepthBlend;
 				case "secondLayerReflectionRate":
-					return new Fox.Core.Value(secondLayerReflectionRate);
+					return (object)secondLayerReflectionRate;
 				case "secondLayerDistortionPower":
-					return new Fox.Core.Value(secondLayerDistortionPower);
+					return (object)secondLayerDistortionPower;
 				case "secondLayerSurfaceShadowRate":
-					return new Fox.Core.Value(secondLayerSurfaceShadowRate);
+					return (object)secondLayerSurfaceShadowRate;
 				case "maskDistortionRate":
-					return new Fox.Core.Value(maskDistortionRate);
+					return (object)maskDistortionRate;
 				case "oilIntensity":
-					return new Fox.Core.Value(oilIntensity);
+					return (object)oilIntensity;
 				case "useHnmTexture":
-					return new Fox.Core.Value(useHnmTexture);
+					return (object)useHnmTexture;
 				case "debugReset":
-					return new Fox.Core.Value(debugReset);
+					return (object)debugReset;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
@@ -254,7 +254,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -263,108 +263,108 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "primRiverGroupName":
-					this.primRiverGroupName = value.GetValueAsString();
+					this.primRiverGroupName = (string)value;
 					return;
 				case "visibility":
-					this.visibility = value.GetValueAsBool();
+					this.visibility = (bool)value;
 					return;
 				case "baseTextureName":
-					this.baseTextureName = value.GetValueAsString();
+					this.baseTextureName = (string)value;
 					return;
 				case "normalTextureName":
-					this.normalTextureName = value.GetValueAsString();
+					this.normalTextureName = (string)value;
 					return;
 				case "cubeMapName":
-					this.cubeMapName = value.GetValueAsString();
+					this.cubeMapName = (string)value;
 					return;
 				case "secondLayerBaseTextureName":
-					this.secondLayerBaseTextureName = value.GetValueAsString();
+					this.secondLayerBaseTextureName = (string)value;
 					return;
 				case "lightCaptureLocator":
-					this.lightCaptureLocator = value.GetValueAsEntityLink();
+					this.lightCaptureLocator = (Fox.Core.EntityLink)value;
 					return;
 				case "scrollDirection0":
-					this.scrollDirection0 = value.GetValueAsFloat();
+					this.scrollDirection0 = (float)value;
 					return;
 				case "scrollSpeed0":
-					this.scrollSpeed0 = value.GetValueAsFloat();
+					this.scrollSpeed0 = (float)value;
 					return;
 				case "scrollScale0":
-					this.scrollScale0 = value.GetValueAsFloat();
+					this.scrollScale0 = (float)value;
 					return;
 				case "scrollDirection1":
-					this.scrollDirection1 = value.GetValueAsFloat();
+					this.scrollDirection1 = (float)value;
 					return;
 				case "scrollSpeed1":
-					this.scrollSpeed1 = value.GetValueAsFloat();
+					this.scrollSpeed1 = (float)value;
 					return;
 				case "scrollScale1":
-					this.scrollScale1 = value.GetValueAsFloat();
+					this.scrollScale1 = (float)value;
 					return;
 				case "transparency":
-					this.transparency = value.GetValueAsFloat();
+					this.transparency = (float)value;
 					return;
 				case "transparencyDepthBlend":
-					this.transparencyDepthBlend = value.GetValueAsFloat();
+					this.transparencyDepthBlend = (float)value;
 					return;
 				case "reflectionRate":
-					this.reflectionRate = value.GetValueAsFloat();
+					this.reflectionRate = (float)value;
 					return;
 				case "distortionPower":
-					this.distortionPower = value.GetValueAsFloat();
+					this.distortionPower = (float)value;
 					return;
 				case "surfaceShadowRate":
-					this.surfaceShadowRate = value.GetValueAsFloat();
+					this.surfaceShadowRate = (float)value;
 					return;
 				case "secondScrollDirection0":
-					this.secondScrollDirection0 = value.GetValueAsFloat();
+					this.secondScrollDirection0 = (float)value;
 					return;
 				case "secondScrollSpeed0":
-					this.secondScrollSpeed0 = value.GetValueAsFloat();
+					this.secondScrollSpeed0 = (float)value;
 					return;
 				case "secondScrollScale0":
-					this.secondScrollScale0 = value.GetValueAsFloat();
+					this.secondScrollScale0 = (float)value;
 					return;
 				case "secondScrollDirection1":
-					this.secondScrollDirection1 = value.GetValueAsFloat();
+					this.secondScrollDirection1 = (float)value;
 					return;
 				case "secondScrollSpeed1":
-					this.secondScrollSpeed1 = value.GetValueAsFloat();
+					this.secondScrollSpeed1 = (float)value;
 					return;
 				case "secondScrollScale1":
-					this.secondScrollScale1 = value.GetValueAsFloat();
+					this.secondScrollScale1 = (float)value;
 					return;
 				case "secondLayerTransparency":
-					this.secondLayerTransparency = value.GetValueAsFloat();
+					this.secondLayerTransparency = (float)value;
 					return;
 				case "secondLayerTransparencyDepthBlend":
-					this.secondLayerTransparencyDepthBlend = value.GetValueAsFloat();
+					this.secondLayerTransparencyDepthBlend = (float)value;
 					return;
 				case "secondLayerReflectionRate":
-					this.secondLayerReflectionRate = value.GetValueAsFloat();
+					this.secondLayerReflectionRate = (float)value;
 					return;
 				case "secondLayerDistortionPower":
-					this.secondLayerDistortionPower = value.GetValueAsFloat();
+					this.secondLayerDistortionPower = (float)value;
 					return;
 				case "secondLayerSurfaceShadowRate":
-					this.secondLayerSurfaceShadowRate = value.GetValueAsFloat();
+					this.secondLayerSurfaceShadowRate = (float)value;
 					return;
 				case "maskDistortionRate":
-					this.maskDistortionRate = value.GetValueAsFloat();
+					this.maskDistortionRate = (float)value;
 					return;
 				case "oilIntensity":
-					this.oilIntensity = value.GetValueAsFloat();
+					this.oilIntensity = (float)value;
 					return;
 				case "useHnmTexture":
-					this.useHnmTexture = value.GetValueAsBool();
+					this.useHnmTexture = (bool)value;
 					return;
 				case "debugReset":
-					this.debugReset = value.GetValueAsBool();
+					this.debugReset = (bool)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -372,7 +372,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
@@ -382,7 +382,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

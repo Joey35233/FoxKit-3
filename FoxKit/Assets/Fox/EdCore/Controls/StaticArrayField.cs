@@ -22,27 +22,16 @@ namespace Fox.EdCore
         {
             get;
         }
-
-        public StaticArrayField() 
-            : this(label: null)
-        {
-        }
         
         public StaticArrayField(PropertyInfo propertyInfo)
             : this(propertyInfo.Name, new ListView(), propertyInfo)
         {
         }
-        
-        public StaticArrayField(string label)
-            : this(label, new ListView())
-        {
-        }
 
-        private StaticArrayField(string label, ListView visInput, PropertyInfo propertyInfo = null)
+        private StaticArrayField(string label, ListView visInput, PropertyInfo propertyInfo)
             : base(label, visInput)
         {
-            if (propertyInfo is not null)
-                FieldConstructor = FoxFieldUtils.GetBindableElementConstructorForPropertyInfo(propertyInfo);
+            FieldConstructor = FoxFieldUtils.GetBindableElementConstructorForPropertyInfo(propertyInfo);
             
             ListViewInput = visInput;
             visualInput = ListViewInput;

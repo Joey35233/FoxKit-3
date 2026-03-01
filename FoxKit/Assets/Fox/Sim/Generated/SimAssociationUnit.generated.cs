@@ -52,22 +52,22 @@ namespace Fox.Sim
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "param":
-					return new Fox.Core.Value(param);
+					return (object)param;
 				case "boneName":
-					return new Fox.Core.Value(boneName);
+					return (object)boneName;
 				case "initialized":
-					return new Fox.Core.Value(initialized);
+					return (object)initialized;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
@@ -76,7 +76,7 @@ namespace Fox.Sim
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -85,18 +85,18 @@ namespace Fox.Sim
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "param":
-					this.param = value.GetValueAsEntityPtr<Fox.Sim.SimAssociationUnitParam>();
+					this.param = (Fox.Sim.SimAssociationUnitParam)value;
 					return;
 				case "boneName":
-					this.boneName = value.GetValueAsString();
+					this.boneName = (string)value;
 					return;
 				case "initialized":
-					this.initialized = value.GetValueAsBool();
+					this.initialized = (bool)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -104,7 +104,7 @@ namespace Fox.Sim
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
@@ -114,7 +114,7 @@ namespace Fox.Sim
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

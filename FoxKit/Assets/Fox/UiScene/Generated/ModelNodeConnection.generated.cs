@@ -45,20 +45,20 @@ namespace Fox.UiScene
 			ClassInfoInitialized = true;
 		}
 		
-		public virtual Fox.Core.Value GetProperty(string propertyName)
+		public virtual object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "connectModelDataHandle":
-					return new Fox.Core.Value(connectModelDataHandle);
+					return (object)connectModelDataHandle;
 				case "connectModelNodeName":
-					return new Fox.Core.Value(connectModelNodeName);
+					return (object)connectModelNodeName;
 				default:
 					throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
 			}
 		}
 
-		public virtual Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public virtual object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
@@ -67,7 +67,7 @@ namespace Fox.UiScene
 			}
 		}
 
-		public virtual Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public virtual object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -76,22 +76,22 @@ namespace Fox.UiScene
 			}
 		}
 
-		public virtual void SetProperty(string propertyName, Fox.Core.Value value)
+		public virtual void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "connectModelDataHandle":
-					this.connectModelDataHandle = value.GetValueAsEntityHandle();
+					this.connectModelDataHandle = (Fox.Core.Entity)value;
 					return;
 				case "connectModelNodeName":
-					this.connectModelNodeName = value.GetValueAsString();
+					this.connectModelNodeName = (string)value;
 					return;
 				default:
 					throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
 			}
 		}
 
-		public virtual void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public virtual void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
@@ -100,7 +100,7 @@ namespace Fox.UiScene
 			}
 		}
 
-		public virtual void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public virtual void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

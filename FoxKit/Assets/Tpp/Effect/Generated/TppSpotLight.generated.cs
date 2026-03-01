@@ -200,103 +200,103 @@ namespace Tpp.Effect
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "color":
-					return new Fox.Core.Value(color);
+					return (object)color;
 				case "reachPoint":
-					return new Fox.Core.Value(reachPoint);
+					return (object)reachPoint;
 				case "BynaryData":
-					return new Fox.Core.Value(BynaryData);
+					return (object)BynaryData;
 				case "lightArea":
-					return new Fox.Core.Value(lightArea);
+					return (object)lightArea;
 				case "irradiationPoint":
-					return new Fox.Core.Value(irradiationPoint);
+					return (object)irradiationPoint;
 				case "lookAtPoint":
-					return new Fox.Core.Value(lookAtPoint);
+					return (object)lookAtPoint;
 				case "outerRange":
-					return new Fox.Core.Value(outerRange);
+					return (object)outerRange;
 				case "innerRange":
-					return new Fox.Core.Value(innerRange);
+					return (object)innerRange;
 				case "temperature":
-					return new Fox.Core.Value(temperature);
+					return (object)temperature;
 				case "colorDeflection":
-					return new Fox.Core.Value(colorDeflection);
+					return (object)colorDeflection;
 				case "lumen":
-					return new Fox.Core.Value(lumen);
+					return (object)lumen;
 				case "lightSize":
-					return new Fox.Core.Value(lightSize);
+					return (object)lightSize;
 				case "umbraAngle":
-					return new Fox.Core.Value(umbraAngle);
+					return (object)umbraAngle;
 				case "penumbraAngle":
-					return new Fox.Core.Value(penumbraAngle);
+					return (object)penumbraAngle;
 				case "attenuationExponent":
-					return new Fox.Core.Value(attenuationExponent);
+					return (object)attenuationExponent;
 				case "shadowUmbraAngle":
-					return new Fox.Core.Value(shadowUmbraAngle);
+					return (object)shadowUmbraAngle;
 				case "shadowPenumbraAngle":
-					return new Fox.Core.Value(shadowPenumbraAngle);
+					return (object)shadowPenumbraAngle;
 				case "shadowAttenuationExponent":
-					return new Fox.Core.Value(shadowAttenuationExponent);
+					return (object)shadowAttenuationExponent;
 				case "dimmer":
-					return new Fox.Core.Value(dimmer);
+					return (object)dimmer;
 				case "shadowBias":
-					return new Fox.Core.Value(shadowBias);
+					return (object)shadowBias;
 				case "viewBias":
-					return new Fox.Core.Value(viewBias);
+					return (object)viewBias;
 				case "powerScale":
-					return new Fox.Core.Value(powerScale);
+					return (object)powerScale;
 				case "LodFarSize":
-					return new Fox.Core.Value(LodFarSize);
+					return (object)LodFarSize;
 				case "LodNearSize":
-					return new Fox.Core.Value(LodNearSize);
+					return (object)LodNearSize;
 				case "LodShadowDrawRate":
-					return new Fox.Core.Value(LodShadowDrawRate);
+					return (object)LodShadowDrawRate;
 				case "lightFlags":
-					return new Fox.Core.Value(lightFlags);
+					return (object)lightFlags;
 				case "lodRadiusLevel":
-					return new Fox.Core.Value(lodRadiusLevel);
+					return (object)lodRadiusLevel;
 				case "lodFadeType":
-					return new Fox.Core.Value(lodFadeType);
+					return (object)lodFadeType;
 				case "enable":
-					return new Fox.Core.Value(enable);
+					return (object)enable;
 				case "packingGeneration":
-					return new Fox.Core.Value(packingGeneration);
+					return (object)packingGeneration;
 				case "castShadow":
-					return new Fox.Core.Value(castShadow);
+					return (object)castShadow;
 				case "isBounced":
-					return new Fox.Core.Value(isBounced);
+					return (object)isBounced;
 				case "showObject":
-					return new Fox.Core.Value(showObject);
+					return (object)showObject;
 				case "showRange":
-					return new Fox.Core.Value(showRange);
+					return (object)showRange;
 				case "isDebugLightVolumeBound":
-					return new Fox.Core.Value(isDebugLightVolumeBound);
+					return (object)isDebugLightVolumeBound;
 				case "useAutoDimmer":
-					return new Fox.Core.Value(useAutoDimmer);
+					return (object)useAutoDimmer;
 				case "hasSpecular":
-					return new Fox.Core.Value(hasSpecular);
+					return (object)hasSpecular;
 				case "importFilePath":
-					return new Fox.Core.Value(importFilePath);
+					return (object)importFilePath;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
 				case "BynaryData":
-					return new Fox.Core.Value(this.BynaryData[index]);
+					return (object)this.BynaryData[index];
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -305,120 +305,120 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "color":
-					this.color = value.GetValueAsColor();
+					this.color = (UnityEngine.Color)value;
 					return;
 				case "reachPoint":
-					this.reachPoint = value.GetValueAsVector3();
+					this.reachPoint = (UnityEngine.Vector3)value;
 					return;
 				case "lightArea":
-					this.lightArea = value.GetValueAsEntityLink();
+					this.lightArea = (Fox.Core.EntityLink)value;
 					return;
 				case "irradiationPoint":
-					this.irradiationPoint = value.GetValueAsEntityLink();
+					this.irradiationPoint = (Fox.Core.EntityLink)value;
 					return;
 				case "lookAtPoint":
-					this.lookAtPoint = value.GetValueAsEntityLink();
+					this.lookAtPoint = (Fox.Core.EntityLink)value;
 					return;
 				case "outerRange":
-					this.outerRange = value.GetValueAsFloat();
+					this.outerRange = (float)value;
 					return;
 				case "innerRange":
-					this.innerRange = value.GetValueAsFloat();
+					this.innerRange = (float)value;
 					return;
 				case "temperature":
-					this.temperature = value.GetValueAsFloat();
+					this.temperature = (float)value;
 					return;
 				case "colorDeflection":
-					this.colorDeflection = value.GetValueAsFloat();
+					this.colorDeflection = (float)value;
 					return;
 				case "lumen":
-					this.lumen = value.GetValueAsFloat();
+					this.lumen = (float)value;
 					return;
 				case "lightSize":
-					this.lightSize = value.GetValueAsFloat();
+					this.lightSize = (float)value;
 					return;
 				case "umbraAngle":
-					this.umbraAngle = value.GetValueAsFloat();
+					this.umbraAngle = (float)value;
 					return;
 				case "penumbraAngle":
-					this.penumbraAngle = value.GetValueAsFloat();
+					this.penumbraAngle = (float)value;
 					return;
 				case "attenuationExponent":
-					this.attenuationExponent = value.GetValueAsFloat();
+					this.attenuationExponent = (float)value;
 					return;
 				case "shadowUmbraAngle":
-					this.shadowUmbraAngle = value.GetValueAsFloat();
+					this.shadowUmbraAngle = (float)value;
 					return;
 				case "shadowPenumbraAngle":
-					this.shadowPenumbraAngle = value.GetValueAsFloat();
+					this.shadowPenumbraAngle = (float)value;
 					return;
 				case "shadowAttenuationExponent":
-					this.shadowAttenuationExponent = value.GetValueAsFloat();
+					this.shadowAttenuationExponent = (float)value;
 					return;
 				case "dimmer":
-					this.dimmer = value.GetValueAsFloat();
+					this.dimmer = (float)value;
 					return;
 				case "shadowBias":
-					this.shadowBias = value.GetValueAsFloat();
+					this.shadowBias = (float)value;
 					return;
 				case "viewBias":
-					this.viewBias = value.GetValueAsFloat();
+					this.viewBias = (float)value;
 					return;
 				case "powerScale":
-					this.powerScale = value.GetValueAsFloat();
+					this.powerScale = (float)value;
 					return;
 				case "LodFarSize":
-					this.LodFarSize = value.GetValueAsFloat();
+					this.LodFarSize = (float)value;
 					return;
 				case "LodNearSize":
-					this.LodNearSize = value.GetValueAsFloat();
+					this.LodNearSize = (float)value;
 					return;
 				case "LodShadowDrawRate":
-					this.LodShadowDrawRate = value.GetValueAsFloat();
+					this.LodShadowDrawRate = (float)value;
 					return;
 				case "lightFlags":
-					this.lightFlags = value.GetValueAsUInt32();
+					this.lightFlags = (uint)value;
 					return;
 				case "lodRadiusLevel":
-					this.lodRadiusLevel = value.GetValueAsInt32();
+					this.lodRadiusLevel = (int)value;
 					return;
 				case "lodFadeType":
-					this.lodFadeType = value.GetValueAsUInt8();
+					this.lodFadeType = (byte)value;
 					return;
 				case "enable":
-					this.enable = value.GetValueAsBool();
+					this.enable = (bool)value;
 					return;
 				case "packingGeneration":
-					this.packingGeneration = (TppSpotLight_PackingGeneration)value.GetValueAsInt32();
+					this.packingGeneration = (TppSpotLight_PackingGeneration)value;
 					return;
 				case "castShadow":
-					this.castShadow = value.GetValueAsBool();
+					this.castShadow = (bool)value;
 					return;
 				case "isBounced":
-					this.isBounced = value.GetValueAsBool();
+					this.isBounced = (bool)value;
 					return;
 				case "showObject":
-					this.showObject = value.GetValueAsBool();
+					this.showObject = (bool)value;
 					return;
 				case "showRange":
-					this.showRange = value.GetValueAsBool();
+					this.showRange = (bool)value;
 					return;
 				case "isDebugLightVolumeBound":
-					this.isDebugLightVolumeBound = value.GetValueAsBool();
+					this.isDebugLightVolumeBound = (bool)value;
 					return;
 				case "useAutoDimmer":
-					this.useAutoDimmer = value.GetValueAsBool();
+					this.useAutoDimmer = (bool)value;
 					return;
 				case "hasSpecular":
-					this.hasSpecular = value.GetValueAsBool();
+					this.hasSpecular = (bool)value;
 					return;
 				case "importFilePath":
-					this.importFilePath = value.GetValueAsPath();
+					this.importFilePath = (Fox.Path)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -426,13 +426,13 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
 				case "BynaryData":
 					while(this.BynaryData.Count <= index) { this.BynaryData.Add(default(uint)); }
-					this.BynaryData[index] = value.GetValueAsUInt32();
+					this.BynaryData[index] = (uint)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -440,7 +440,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

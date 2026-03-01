@@ -50,37 +50,37 @@ namespace Fox.Phx
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "specPointAngularVelocity":
-					return new Fox.Core.Value(specPointAngularVelocity);
+					return (object)specPointAngularVelocity;
 				case "specPointTorque":
-					return new Fox.Core.Value(specPointTorque);
+					return (object)specPointTorque;
 				case "specPointBreakTorque":
-					return new Fox.Core.Value(specPointBreakTorque);
+					return (object)specPointBreakTorque;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
 				case "specPointAngularVelocity":
-					return new Fox.Core.Value(this.specPointAngularVelocity[index]);
+					return (object)this.specPointAngularVelocity[index];
 				case "specPointTorque":
-					return new Fox.Core.Value(this.specPointTorque[index]);
+					return (object)this.specPointTorque[index];
 				case "specPointBreakTorque":
-					return new Fox.Core.Value(this.specPointBreakTorque[index]);
+					return (object)this.specPointBreakTorque[index];
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -89,7 +89,7 @@ namespace Fox.Phx
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
@@ -99,21 +99,21 @@ namespace Fox.Phx
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
 				case "specPointAngularVelocity":
 					while(this.specPointAngularVelocity.Count <= index) { this.specPointAngularVelocity.Add(default(float)); }
-					this.specPointAngularVelocity[index] = value.GetValueAsFloat();
+					this.specPointAngularVelocity[index] = (float)value;
 					return;
 				case "specPointTorque":
 					while(this.specPointTorque.Count <= index) { this.specPointTorque.Add(default(float)); }
-					this.specPointTorque[index] = value.GetValueAsFloat();
+					this.specPointTorque[index] = (float)value;
 					return;
 				case "specPointBreakTorque":
 					while(this.specPointBreakTorque.Count <= index) { this.specPointBreakTorque.Add(default(float)); }
-					this.specPointBreakTorque[index] = value.GetValueAsFloat();
+					this.specPointBreakTorque[index] = (float)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -121,7 +121,7 @@ namespace Fox.Phx
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

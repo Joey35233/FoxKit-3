@@ -107,63 +107,63 @@ namespace Tpp.Effect
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "enable":
-					return new Fox.Core.Value(enable);
+					return (object)enable;
 				case "selfLuminance":
-					return new Fox.Core.Value(selfLuminance);
+					return (object)selfLuminance;
 				case "selfColor":
-					return new Fox.Core.Value(selfColor);
+					return (object)selfColor;
 				case "skyAlbedo":
-					return new Fox.Core.Value(skyAlbedo);
+					return (object)skyAlbedo;
 				case "rayleighScattering":
-					return new Fox.Core.Value(rayleighScattering);
+					return (object)rayleighScattering;
 				case "mieScattering":
-					return new Fox.Core.Value(mieScattering);
+					return (object)mieScattering;
 				case "mieAnisotropy":
-					return new Fox.Core.Value(mieAnisotropy);
+					return (object)mieAnisotropy;
 				case "skyLightGain":
-					return new Fox.Core.Value(skyLightGain);
+					return (object)skyLightGain;
 				case "dirLightGain":
-					return new Fox.Core.Value(dirLightGain);
+					return (object)dirLightGain;
 				case "lightningGain":
-					return new Fox.Core.Value(lightningGain);
+					return (object)lightningGain;
 				case "density":
-					return new Fox.Core.Value(density);
+					return (object)density;
 				case "power":
-					return new Fox.Core.Value(power);
+					return (object)power;
 				case "near":
-					return new Fox.Core.Value(near);
+					return (object)near;
 				case "falloff":
-					return new Fox.Core.Value(falloff);
+					return (object)falloff;
 				case "exposureOffsetValues":
-					return new Fox.Core.Value(exposureOffsetValues);
+					return (object)exposureOffsetValues;
 				case "exposureOffsetTargets":
-					return new Fox.Core.Value(exposureOffsetTargets);
+					return (object)exposureOffsetTargets;
 				case "flags":
-					return new Fox.Core.Value(flags);
+					return (object)flags;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
 				case "exposureOffsetValues":
-					return new Fox.Core.Value(this.exposureOffsetValues[index]);
+					return (object)this.exposureOffsetValues[index];
 				case "exposureOffsetTargets":
-					return new Fox.Core.Value(this.exposureOffsetTargets[index]);
+					return (object)this.exposureOffsetTargets[index];
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -172,54 +172,54 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "enable":
-					this.enable = value.GetValueAsBool();
+					this.enable = (bool)value;
 					return;
 				case "selfLuminance":
-					this.selfLuminance = value.GetValueAsFloat();
+					this.selfLuminance = (float)value;
 					return;
 				case "selfColor":
-					this.selfColor = value.GetValueAsColor();
+					this.selfColor = (UnityEngine.Color)value;
 					return;
 				case "skyAlbedo":
-					this.skyAlbedo = value.GetValueAsColor();
+					this.skyAlbedo = (UnityEngine.Color)value;
 					return;
 				case "rayleighScattering":
-					this.rayleighScattering = value.GetValueAsColor();
+					this.rayleighScattering = (UnityEngine.Color)value;
 					return;
 				case "mieScattering":
-					this.mieScattering = value.GetValueAsColor();
+					this.mieScattering = (UnityEngine.Color)value;
 					return;
 				case "mieAnisotropy":
-					this.mieAnisotropy = value.GetValueAsFloat();
+					this.mieAnisotropy = (float)value;
 					return;
 				case "skyLightGain":
-					this.skyLightGain = value.GetValueAsFloat();
+					this.skyLightGain = (float)value;
 					return;
 				case "dirLightGain":
-					this.dirLightGain = value.GetValueAsFloat();
+					this.dirLightGain = (float)value;
 					return;
 				case "lightningGain":
-					this.lightningGain = value.GetValueAsFloat();
+					this.lightningGain = (float)value;
 					return;
 				case "density":
-					this.density = value.GetValueAsFloat();
+					this.density = (float)value;
 					return;
 				case "power":
-					this.power = value.GetValueAsFloat();
+					this.power = (float)value;
 					return;
 				case "near":
-					this.near = value.GetValueAsFloat();
+					this.near = (float)value;
 					return;
 				case "falloff":
-					this.falloff = value.GetValueAsFloat();
+					this.falloff = (float)value;
 					return;
 				case "flags":
-					this.flags = value.GetValueAsUInt32();
+					this.flags = (uint)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -227,17 +227,17 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
 				case "exposureOffsetValues":
 					
-					this.exposureOffsetValues[index] = value.GetValueAsFloat();
+					this.exposureOffsetValues[index] = (float)value;
 					return;
 				case "exposureOffsetTargets":
 					
-					this.exposureOffsetTargets[index] = value.GetValueAsFloat();
+					this.exposureOffsetTargets[index] = (float)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -245,7 +245,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

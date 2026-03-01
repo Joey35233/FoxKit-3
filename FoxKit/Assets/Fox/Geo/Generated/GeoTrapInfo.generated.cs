@@ -86,40 +86,40 @@ namespace Fox.Geo
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "moverTags":
-					return new Fox.Core.Value((Fox.IStringMap)moverTags);
+					return (object)(Fox.IStringMap)moverTags;
 				case "moverHandle":
-					return new Fox.Core.Value(moverHandle);
+					return (object)moverHandle;
 				case "moverPosition":
-					return new Fox.Core.Value(moverPosition);
+					return (object)moverPosition;
 				case "moverRotation":
-					return new Fox.Core.Value(moverRotation);
+					return (object)moverRotation;
 				case "trapName":
-					return new Fox.Core.Value(trapName);
+					return (object)trapName;
 				case "trapPosition":
-					return new Fox.Core.Value(trapPosition);
+					return (object)trapPosition;
 				case "trapBodyHandle":
-					return new Fox.Core.Value(trapBodyHandle);
+					return (object)trapBodyHandle;
 				case "conditionHandle":
-					return new Fox.Core.Value(conditionHandle);
+					return (object)conditionHandle;
 				case "conditionBodyHandle":
-					return new Fox.Core.Value(conditionBodyHandle);
+					return (object)conditionBodyHandle;
 				case "trapFlagString":
-					return new Fox.Core.Value(trapFlagString);
+					return (object)trapFlagString;
 				case "trapFlag":
-					return new Fox.Core.Value(trapFlag);
+					return (object)trapFlag;
 				case "moverGameObjectId":
-					return new Fox.Core.Value(moverGameObjectId);
+					return (object)moverGameObjectId;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
@@ -128,53 +128,53 @@ namespace Fox.Geo
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
 				case "moverTags":
-					return new Fox.Core.Value(this.moverTags[key]);
+					return (object)this.moverTags[key];
 				default:
 					return base.GetPropertyElement(propertyName, key);
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "moverHandle":
-					this.moverHandle = value.GetValueAsEntityHandle();
+					this.moverHandle = (Fox.Core.Entity)value;
 					return;
 				case "moverPosition":
-					this.moverPosition = value.GetValueAsVector3();
+					this.moverPosition = (UnityEngine.Vector3)value;
 					return;
 				case "moverRotation":
-					this.moverRotation = value.GetValueAsVector3();
+					this.moverRotation = (UnityEngine.Vector3)value;
 					return;
 				case "trapName":
-					this.trapName = value.GetValueAsString();
+					this.trapName = (string)value;
 					return;
 				case "trapPosition":
-					this.trapPosition = value.GetValueAsVector3();
+					this.trapPosition = (UnityEngine.Vector3)value;
 					return;
 				case "trapBodyHandle":
-					this.trapBodyHandle = value.GetValueAsEntityHandle();
+					this.trapBodyHandle = (Fox.Core.Entity)value;
 					return;
 				case "conditionHandle":
-					this.conditionHandle = value.GetValueAsEntityHandle();
+					this.conditionHandle = (Fox.Core.Entity)value;
 					return;
 				case "conditionBodyHandle":
-					this.conditionBodyHandle = value.GetValueAsEntityHandle();
+					this.conditionBodyHandle = (Fox.Core.Entity)value;
 					return;
 				case "trapFlagString":
-					this.trapFlagString = value.GetValueAsString();
+					this.trapFlagString = (string)value;
 					return;
 				case "trapFlag":
-					this.trapFlag = value.GetValueAsUInt32();
+					this.trapFlag = (uint)value;
 					return;
 				case "moverGameObjectId":
-					this.moverGameObjectId = value.GetValueAsUInt16();
+					this.moverGameObjectId = (ushort)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -182,7 +182,7 @@ namespace Fox.Geo
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
@@ -192,15 +192,15 @@ namespace Fox.Geo
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
 				case "moverTags":
 					if (this.moverTags.ContainsKey(key))
-						this.moverTags[key] = value.GetValueAsUInt8();
+						this.moverTags[key] = (byte)value;
 					else
-						this.moverTags.Insert(key, value.GetValueAsUInt8());
+						this.moverTags.Insert(key, (byte)value);
 					return;
 				default:
 					base.SetPropertyElement(propertyName, key, value);

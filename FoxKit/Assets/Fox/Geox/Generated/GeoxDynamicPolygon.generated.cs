@@ -50,35 +50,35 @@ namespace Fox.Geox
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "isVisibleGeom":
-					return new Fox.Core.Value(isVisibleGeom);
+					return (object)isVisibleGeom;
 				case "vertices":
-					return new Fox.Core.Value(vertices);
+					return (object)vertices;
 				case "collisionAttributeTags":
-					return new Fox.Core.Value(collisionAttributeTags);
+					return (object)collisionAttributeTags;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
 				case "vertices":
-					return new Fox.Core.Value(this.vertices[index]);
+					return (object)this.vertices[index];
 				case "collisionAttributeTags":
-					return new Fox.Core.Value(this.collisionAttributeTags[index]);
+					return (object)this.collisionAttributeTags[index];
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -87,12 +87,12 @@ namespace Fox.Geox
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "isVisibleGeom":
-					this.isVisibleGeom = value.GetValueAsBool();
+					this.isVisibleGeom = (bool)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -100,17 +100,17 @@ namespace Fox.Geox
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
 				case "vertices":
 					while(this.vertices.Count <= index) { this.vertices.Add(default(UnityEngine.Vector3)); }
-					this.vertices[index] = value.GetValueAsVector3();
+					this.vertices[index] = (UnityEngine.Vector3)value;
 					return;
 				case "collisionAttributeTags":
 					while(this.collisionAttributeTags.Count <= index) { this.collisionAttributeTags.Add(default(string)); }
-					this.collisionAttributeTags[index] = value.GetValueAsString();
+					this.collisionAttributeTags[index] = (string)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -118,7 +118,7 @@ namespace Fox.Geox
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

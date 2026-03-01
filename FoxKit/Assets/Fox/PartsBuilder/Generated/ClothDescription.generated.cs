@@ -50,22 +50,22 @@ namespace Fox.PartsBuilder
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "clothFile":
-					return new Fox.Core.Value(clothFile);
+					return (object)clothFile;
 				case "clothSettingFile":
-					return new Fox.Core.Value(clothSettingFile);
+					return (object)clothSettingFile;
 				case "clothHitFile":
-					return new Fox.Core.Value(clothHitFile);
+					return (object)clothHitFile;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
@@ -74,7 +74,7 @@ namespace Fox.PartsBuilder
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -83,18 +83,18 @@ namespace Fox.PartsBuilder
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "clothFile":
-					this.clothFile = value.GetValueAsFilePtr();
+					this.clothFile = (Fox.Core.FilePtr)value;
 					return;
 				case "clothSettingFile":
-					this.clothSettingFile = value.GetValueAsFilePtr();
+					this.clothSettingFile = (Fox.Core.FilePtr)value;
 					return;
 				case "clothHitFile":
-					this.clothHitFile = value.GetValueAsFilePtr();
+					this.clothHitFile = (Fox.Core.FilePtr)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -102,7 +102,7 @@ namespace Fox.PartsBuilder
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
@@ -112,7 +112,7 @@ namespace Fox.PartsBuilder
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

@@ -53,24 +53,24 @@ namespace Fox.Animx
 			ClassInfoInitialized = true;
 		}
 		
-		public virtual Fox.Core.Value GetProperty(string propertyName)
+		public virtual object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "hriLimL":
-					return new Fox.Core.Value(hriLimL);
+					return (object)hriLimL;
 				case "hriLimR":
-					return new Fox.Core.Value(hriLimR);
+					return (object)hriLimR;
 				case "verLimU":
-					return new Fox.Core.Value(verLimU);
+					return (object)verLimU;
 				case "verLimD":
-					return new Fox.Core.Value(verLimD);
+					return (object)verLimD;
 				default:
 					throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
 			}
 		}
 
-		public virtual Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public virtual object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
@@ -79,7 +79,7 @@ namespace Fox.Animx
 			}
 		}
 
-		public virtual Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public virtual object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -88,28 +88,28 @@ namespace Fox.Animx
 			}
 		}
 
-		public virtual void SetProperty(string propertyName, Fox.Core.Value value)
+		public virtual void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "hriLimL":
-					this.hriLimL = value.GetValueAsFloat();
+					this.hriLimL = (float)value;
 					return;
 				case "hriLimR":
-					this.hriLimR = value.GetValueAsFloat();
+					this.hriLimR = (float)value;
 					return;
 				case "verLimU":
-					this.verLimU = value.GetValueAsFloat();
+					this.verLimU = (float)value;
 					return;
 				case "verLimD":
-					this.verLimD = value.GetValueAsFloat();
+					this.verLimD = (float)value;
 					return;
 				default:
 					throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
 			}
 		}
 
-		public virtual void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public virtual void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
@@ -118,7 +118,7 @@ namespace Fox.Animx
 			}
 		}
 
-		public virtual void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public virtual void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

@@ -74,34 +74,34 @@ namespace Fox.Sim
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "iteration":
-					return new Fox.Core.Value(iteration);
+					return (object)iteration;
 				case "mass":
-					return new Fox.Core.Value(mass);
+					return (object)mass;
 				case "velocityDamp":
-					return new Fox.Core.Value(velocityDamp);
+					return (object)velocityDamp;
 				case "airResistance":
-					return new Fox.Core.Value(airResistance);
+					return (object)airResistance;
 				case "gravityRate":
-					return new Fox.Core.Value(gravityRate);
+					return (object)gravityRate;
 				case "restoreRate":
-					return new Fox.Core.Value(restoreRate);
+					return (object)restoreRate;
 				case "inertialRate":
-					return new Fox.Core.Value(inertialRate);
+					return (object)inertialRate;
 				case "inertialMax":
-					return new Fox.Core.Value(inertialMax);
+					return (object)inertialMax;
 				case "noHitSkinMesh":
-					return new Fox.Core.Value(noHitSkinMesh);
+					return (object)noHitSkinMesh;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
@@ -110,7 +110,7 @@ namespace Fox.Sim
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -119,36 +119,36 @@ namespace Fox.Sim
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "iteration":
-					this.iteration = value.GetValueAsUInt32();
+					this.iteration = (uint)value;
 					return;
 				case "mass":
-					this.mass = value.GetValueAsFloat();
+					this.mass = (float)value;
 					return;
 				case "velocityDamp":
-					this.velocityDamp = value.GetValueAsFloat();
+					this.velocityDamp = (float)value;
 					return;
 				case "airResistance":
-					this.airResistance = value.GetValueAsFloat();
+					this.airResistance = (float)value;
 					return;
 				case "gravityRate":
-					this.gravityRate = value.GetValueAsFloat();
+					this.gravityRate = (float)value;
 					return;
 				case "restoreRate":
-					this.restoreRate = value.GetValueAsFloat();
+					this.restoreRate = (float)value;
 					return;
 				case "inertialRate":
-					this.inertialRate = value.GetValueAsFloat();
+					this.inertialRate = (float)value;
 					return;
 				case "inertialMax":
-					this.inertialMax = value.GetValueAsFloat();
+					this.inertialMax = (float)value;
 					return;
 				case "noHitSkinMesh":
-					this.noHitSkinMesh = value.GetValueAsBool();
+					this.noHitSkinMesh = (bool)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -156,7 +156,7 @@ namespace Fox.Sim
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
@@ -166,7 +166,7 @@ namespace Fox.Sim
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

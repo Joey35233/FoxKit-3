@@ -70,43 +70,43 @@ namespace Fox.Geox
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "primType":
-					return new Fox.Core.Value(primType);
+					return (object)primType;
 				case "axisSortFlag":
-					return new Fox.Core.Value(axisSortFlag);
+					return (object)axisSortFlag;
 				case "systemAttribute":
-					return new Fox.Core.Value(systemAttribute);
+					return (object)systemAttribute;
 				case "through":
-					return new Fox.Core.Value(through);
+					return (object)through;
 				case "isValid":
-					return new Fox.Core.Value(isValid);
+					return (object)isValid;
 				case "categoryTag":
-					return new Fox.Core.Value(categoryTag);
+					return (object)categoryTag;
 				case "groupTags":
-					return new Fox.Core.Value(groupTags);
+					return (object)groupTags;
 				case "applicationDataLink":
-					return new Fox.Core.Value(applicationDataLink);
+					return (object)applicationDataLink;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
 				case "groupTags":
-					return new Fox.Core.Value(this.groupTags[index]);
+					return (object)this.groupTags[index];
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -115,30 +115,30 @@ namespace Fox.Geox
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "primType":
-					this.primType = (PrimType)value.GetValueAsInt32();
+					this.primType = (PrimType)value;
 					return;
 				case "axisSortFlag":
-					this.axisSortFlag = (AxisSort)value.GetValueAsInt32();
+					this.axisSortFlag = (AxisSort)value;
 					return;
 				case "systemAttribute":
-					this.systemAttribute = value.GetValueAsUInt64();
+					this.systemAttribute = (ulong)value;
 					return;
 				case "through":
-					this.through = value.GetValueAsUInt32();
+					this.through = (uint)value;
 					return;
 				case "isValid":
-					this.isValid = value.GetValueAsBool();
+					this.isValid = (bool)value;
 					return;
 				case "categoryTag":
-					this.categoryTag = value.GetValueAsString();
+					this.categoryTag = (string)value;
 					return;
 				case "applicationDataLink":
-					this.applicationDataLink = value.GetValueAsEntityLink();
+					this.applicationDataLink = (Fox.Core.EntityLink)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -146,13 +146,13 @@ namespace Fox.Geox
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
 				case "groupTags":
 					while(this.groupTags.Count <= index) { this.groupTags.Add(default(string)); }
-					this.groupTags[index] = value.GetValueAsString();
+					this.groupTags[index] = (string)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -160,7 +160,7 @@ namespace Fox.Geox
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

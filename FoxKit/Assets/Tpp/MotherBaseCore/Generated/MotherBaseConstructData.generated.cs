@@ -66,45 +66,45 @@ namespace Tpp.MotherBaseCore
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "type":
-					return new Fox.Core.Value(type);
+					return (object)type;
 				case "index":
-					return new Fox.Core.Value(index);
+					return (object)index;
 				case "divisionType":
-					return new Fox.Core.Value(divisionType);
+					return (object)divisionType;
 				case "divisionRotate":
-					return new Fox.Core.Value(divisionRotate);
+					return (object)divisionRotate;
 				case "anotherConnector":
-					return new Fox.Core.Value(anotherConnector);
+					return (object)anotherConnector;
 				case "cluster":
-					return new Fox.Core.Value(cluster);
+					return (object)cluster;
 				case "plant":
-					return new Fox.Core.Value(plant);
+					return (object)plant;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
 				case "divisionType":
-					return new Fox.Core.Value(this.divisionType[index]);
+					return (object)this.divisionType[index];
 				case "divisionRotate":
-					return new Fox.Core.Value(this.divisionRotate[index]);
+					return (object)this.divisionRotate[index];
 				case "anotherConnector":
-					return new Fox.Core.Value(this.anotherConnector[index]);
+					return (object)this.anotherConnector[index];
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -113,21 +113,21 @@ namespace Tpp.MotherBaseCore
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "type":
-					this.type = (MbConstructDataType)value.GetValueAsInt32();
+					this.type = (MbConstructDataType)value;
 					return;
 				case "index":
-					this.index = value.GetValueAsUInt16();
+					this.index = (ushort)value;
 					return;
 				case "cluster":
-					this.cluster = value.GetValueAsUInt8();
+					this.cluster = (byte)value;
 					return;
 				case "plant":
-					this.plant = value.GetValueAsUInt8();
+					this.plant = (byte)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -135,21 +135,21 @@ namespace Tpp.MotherBaseCore
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
 				case "divisionType":
 					
-					this.divisionType[index] = value.GetValueAsUInt8();
+					this.divisionType[index] = (byte)value;
 					return;
 				case "divisionRotate":
 					
-					this.divisionRotate[index] = value.GetValueAsUInt16();
+					this.divisionRotate[index] = (ushort)value;
 					return;
 				case "anotherConnector":
 					
-					this.anotherConnector[index] = value.GetValueAsBool();
+					this.anotherConnector[index] = (bool)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -157,7 +157,7 @@ namespace Tpp.MotherBaseCore
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

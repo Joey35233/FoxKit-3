@@ -66,41 +66,41 @@ namespace Tpp.Effect
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "independentEditMode":
-					return new Fox.Core.Value(independentEditMode);
+					return (object)independentEditMode;
 				case "takeover":
-					return new Fox.Core.Value(takeover);
+					return (object)takeover;
 				case "debugFillCheck":
-					return new Fox.Core.Value(debugFillCheck);
+					return (object)debugFillCheck;
 				case "needCollisionCheck":
-					return new Fox.Core.Value(needCollisionCheck);
+					return (object)needCollisionCheck;
 				case "exposureBlend":
-					return new Fox.Core.Value(exposureBlend);
+					return (object)exposureBlend;
 				case "lensFlareName":
-					return new Fox.Core.Value(lensFlareName);
+					return (object)lensFlareName;
 				case "shapes":
-					return new Fox.Core.Value(shapes);
+					return (object)shapes;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
 				case "shapes":
-					return new Fox.Core.Value(this.shapes[index]);
+					return (object)this.shapes[index];
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -109,27 +109,27 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "independentEditMode":
-					this.independentEditMode = value.GetValueAsBool();
+					this.independentEditMode = (bool)value;
 					return;
 				case "takeover":
-					this.takeover = value.GetValueAsBool();
+					this.takeover = (bool)value;
 					return;
 				case "debugFillCheck":
-					this.debugFillCheck = value.GetValueAsBool();
+					this.debugFillCheck = (bool)value;
 					return;
 				case "needCollisionCheck":
-					this.needCollisionCheck = value.GetValueAsBool();
+					this.needCollisionCheck = (bool)value;
 					return;
 				case "exposureBlend":
-					this.exposureBlend = value.GetValueAsFloat();
+					this.exposureBlend = (float)value;
 					return;
 				case "lensFlareName":
-					this.lensFlareName = value.GetValueAsString();
+					this.lensFlareName = (string)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -137,13 +137,13 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
 				case "shapes":
 					while(this.shapes.Count <= index) { this.shapes.Add(default(Fox.Core.EntityLink)); }
-					this.shapes[index] = value.GetValueAsEntityLink();
+					this.shapes[index] = (Fox.Core.EntityLink)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -151,7 +151,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

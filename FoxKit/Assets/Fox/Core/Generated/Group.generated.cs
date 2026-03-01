@@ -50,33 +50,33 @@ namespace Fox.Core
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "parentGroup":
-					return new Fox.Core.Value(parentGroup);
+					return (object)parentGroup;
 				case "members":
-					return new Fox.Core.Value(members);
+					return (object)members;
 				case "deleteFromPackage":
-					return new Fox.Core.Value(deleteFromPackage);
+					return (object)deleteFromPackage;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
 				case "members":
-					return new Fox.Core.Value(this.members[index]);
+					return (object)this.members[index];
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -85,15 +85,15 @@ namespace Fox.Core
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "parentGroup":
-					this.parentGroup = value.GetValueAsEntityLink();
+					this.parentGroup = (Fox.Core.EntityLink)value;
 					return;
 				case "deleteFromPackage":
-					this.deleteFromPackage = value.GetValueAsBool();
+					this.deleteFromPackage = (bool)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -101,13 +101,13 @@ namespace Fox.Core
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
 				case "members":
 					while(this.members.Count <= index) { this.members.Add(default(Fox.Core.EntityLink)); }
-					this.members[index] = value.GetValueAsEntityLink();
+					this.members[index] = (Fox.Core.EntityLink)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -115,7 +115,7 @@ namespace Fox.Core
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

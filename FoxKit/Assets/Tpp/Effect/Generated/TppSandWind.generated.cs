@@ -70,32 +70,32 @@ namespace Tpp.Effect
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "intensity":
-					return new Fox.Core.Value(intensity);
+					return (object)intensity;
 				case "velocity":
-					return new Fox.Core.Value(velocity);
+					return (object)velocity;
 				case "amount":
-					return new Fox.Core.Value(amount);
+					return (object)amount;
 				case "textureRepetition":
-					return new Fox.Core.Value(textureRepetition);
+					return (object)textureRepetition;
 				case "intervalDuration":
-					return new Fox.Core.Value(intervalDuration);
+					return (object)intervalDuration;
 				case "phaseScale":
-					return new Fox.Core.Value(phaseScale);
+					return (object)phaseScale;
 				case "closeSandRelativeIntensity":
-					return new Fox.Core.Value(closeSandRelativeIntensity);
+					return (object)closeSandRelativeIntensity;
 				case "closeSandRelativeVelocity":
-					return new Fox.Core.Value(closeSandRelativeVelocity);
+					return (object)closeSandRelativeVelocity;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
@@ -104,7 +104,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -113,33 +113,33 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "intensity":
-					this.intensity = value.GetValueAsFloat();
+					this.intensity = (float)value;
 					return;
 				case "velocity":
-					this.velocity = value.GetValueAsFloat();
+					this.velocity = (float)value;
 					return;
 				case "amount":
-					this.amount = value.GetValueAsFloat();
+					this.amount = (float)value;
 					return;
 				case "textureRepetition":
-					this.textureRepetition = value.GetValueAsFloat();
+					this.textureRepetition = (float)value;
 					return;
 				case "intervalDuration":
-					this.intervalDuration = value.GetValueAsFloat();
+					this.intervalDuration = (float)value;
 					return;
 				case "phaseScale":
-					this.phaseScale = value.GetValueAsFloat();
+					this.phaseScale = (float)value;
 					return;
 				case "closeSandRelativeIntensity":
-					this.closeSandRelativeIntensity = value.GetValueAsFloat();
+					this.closeSandRelativeIntensity = (float)value;
 					return;
 				case "closeSandRelativeVelocity":
-					this.closeSandRelativeVelocity = value.GetValueAsFloat();
+					this.closeSandRelativeVelocity = (float)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -147,7 +147,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
@@ -157,7 +157,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

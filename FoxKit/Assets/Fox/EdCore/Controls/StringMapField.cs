@@ -29,35 +29,17 @@ namespace Fox.EdCore
         {
             get;
         }
-
-        public StringMapField() 
-            : this(label: null)
-        {
-        }
         
         public StringMapField(PropertyInfo propertyInfo)
             : this(propertyInfo.Name, new ListView(), propertyInfo)
         {
         }
 
-        public StringMapField(string label)
-            : this(label, new ListView())
-        {
-        }
-
-        private StringMapField(string label, ListView visInput, PropertyInfo propertyInfo = null)
+        private StringMapField(string label, ListView visInput, PropertyInfo propertyInfo)
             : base(label, visInput)
         {
-            if (propertyInfo is not null)
-            {
-                FieldConstructor = FoxFieldUtils.GetBindableElementConstructorForPropertyInfo(propertyInfo);
-                PropertyInfo = propertyInfo;
-            }
-            else
-            {
-                Debug.LogWarning("EdCore: StringMap can currently only be bound to Entity properties.");
-                return;
-            }
+            FieldConstructor = FoxFieldUtils.GetBindableElementConstructorForPropertyInfo(propertyInfo);
+            PropertyInfo = propertyInfo;
             
             ListViewInput = visInput;
             visualInput = ListViewInput;
@@ -139,12 +121,12 @@ namespace Fox.EdCore
             if (target is Entity targetEntity)
             {
                 var propertyTest = targetEntity.GetProperty(PropertyInfo.Name);
-                var propertyList = propertyTest.GetValueAsStringMap<T>();
+                var propertyList = (StringMap<T>)propertyTest;
                 ListViewInput.itemsSource = propertyList as IList;
             }
             else if (target is DynamicProperty targetDynamicProperty)
             {
-                var propertyList = targetDynamicProperty.GetValue().GetValueAsStringMap<T>();
+                var propertyList = (StringMap<T>)targetDynamicProperty.GetValue();
                 ListViewInput.itemsSource = propertyList as IList;
             }
             ListViewInput.Rebuild(); 

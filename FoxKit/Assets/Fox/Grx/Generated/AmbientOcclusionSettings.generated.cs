@@ -54,24 +54,24 @@ namespace Fox.Grx
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "method":
-					return new Fox.Core.Value(method);
+					return (object)method;
 				case "attachment":
-					return new Fox.Core.Value(attachment);
+					return (object)attachment;
 				case "lineSSAOParameters":
-					return new Fox.Core.Value(lineSSAOParameters);
+					return (object)lineSSAOParameters;
 				case "areaSSAOParameters":
-					return new Fox.Core.Value(areaSSAOParameters);
+					return (object)areaSSAOParameters;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
@@ -80,7 +80,7 @@ namespace Fox.Grx
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -89,21 +89,21 @@ namespace Fox.Grx
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "method":
-					this.method = (AmbientOcclusionSettings_Method)value.GetValueAsInt32();
+					this.method = (AmbientOcclusionSettings_Method)value;
 					return;
 				case "attachment":
-					this.attachment = (AmbientOcclusionSettings_LightAttachment)value.GetValueAsInt32();
+					this.attachment = (AmbientOcclusionSettings_LightAttachment)value;
 					return;
 				case "lineSSAOParameters":
-					this.lineSSAOParameters = value.GetValueAsEntityPtr<Fox.Grx.GrxLineSSAOParameters>();
+					this.lineSSAOParameters = (Fox.Grx.GrxLineSSAOParameters)value;
 					return;
 				case "areaSSAOParameters":
-					this.areaSSAOParameters = value.GetValueAsEntityPtr<Fox.Grx.GrxAreaSSAOParameters>();
+					this.areaSSAOParameters = (Fox.Grx.GrxAreaSSAOParameters)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -111,7 +111,7 @@ namespace Fox.Grx
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
@@ -121,7 +121,7 @@ namespace Fox.Grx
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

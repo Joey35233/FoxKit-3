@@ -62,28 +62,28 @@ namespace Tpp.Effect
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "exposureCompensation":
-					return new Fox.Core.Value(exposureCompensation);
+					return (object)exposureCompensation;
 				case "minExposure":
-					return new Fox.Core.Value(minExposure);
+					return (object)minExposure;
 				case "maxExposure":
-					return new Fox.Core.Value(maxExposure);
+					return (object)maxExposure;
 				case "beatExposureCompensation":
-					return new Fox.Core.Value(beatExposureCompensation);
+					return (object)beatExposureCompensation;
 				case "minBeatInterval":
-					return new Fox.Core.Value(minBeatInterval);
+					return (object)minBeatInterval;
 				case "maxBeatInterval":
-					return new Fox.Core.Value(maxBeatInterval);
+					return (object)maxBeatInterval;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
@@ -92,7 +92,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -101,27 +101,27 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "exposureCompensation":
-					this.exposureCompensation = value.GetValueAsFloat();
+					this.exposureCompensation = (float)value;
 					return;
 				case "minExposure":
-					this.minExposure = value.GetValueAsFloat();
+					this.minExposure = (float)value;
 					return;
 				case "maxExposure":
-					this.maxExposure = value.GetValueAsFloat();
+					this.maxExposure = (float)value;
 					return;
 				case "beatExposureCompensation":
-					this.beatExposureCompensation = value.GetValueAsFloat();
+					this.beatExposureCompensation = (float)value;
 					return;
 				case "minBeatInterval":
-					this.minBeatInterval = value.GetValueAsFloat();
+					this.minBeatInterval = (float)value;
 					return;
 				case "maxBeatInterval":
-					this.maxBeatInterval = value.GetValueAsFloat();
+					this.maxBeatInterval = (float)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -129,7 +129,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
@@ -139,7 +139,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

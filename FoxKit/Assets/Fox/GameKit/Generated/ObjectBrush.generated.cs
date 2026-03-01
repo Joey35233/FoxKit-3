@@ -62,41 +62,41 @@ namespace Fox.GameKit
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "pluginHandle":
-					return new Fox.Core.Value(pluginHandle);
+					return (object)pluginHandle;
 				case "blockDataName":
-					return new Fox.Core.Value(blockDataName);
+					return (object)blockDataName;
 				case "filePath":
-					return new Fox.Core.Value(filePath);
+					return (object)filePath;
 				case "loadFilePath":
-					return new Fox.Core.Value(loadFilePath);
+					return (object)loadFilePath;
 				case "obrFile":
-					return new Fox.Core.Value(obrFile);
+					return (object)obrFile;
 				case "numBlocks":
-					return new Fox.Core.Value(numBlocks);
+					return (object)numBlocks;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
 				case "pluginHandle":
-					return new Fox.Core.Value(this.pluginHandle[index]);
+					return (object)this.pluginHandle[index];
 				case "blockDataName":
-					return new Fox.Core.Value(this.blockDataName[index]);
+					return (object)this.blockDataName[index];
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -105,21 +105,21 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "filePath":
-					this.filePath = value.GetValueAsPath();
+					this.filePath = (Fox.Path)value;
 					return;
 				case "loadFilePath":
-					this.loadFilePath = value.GetValueAsPath();
+					this.loadFilePath = (Fox.Path)value;
 					return;
 				case "obrFile":
-					this.obrFile = value.GetValueAsFilePtr();
+					this.obrFile = (Fox.Core.FilePtr)value;
 					return;
 				case "numBlocks":
-					this.numBlocks = value.GetValueAsUInt32();
+					this.numBlocks = (uint)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -127,17 +127,17 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
 				case "pluginHandle":
 					while(this.pluginHandle.Count <= index) { this.pluginHandle.Add(default(Fox.Core.Entity)); }
-					this.pluginHandle[index] = value.GetValueAsEntityHandle();
+					this.pluginHandle[index] = (Fox.Core.Entity)value;
 					return;
 				case "blockDataName":
 					while(this.blockDataName.Count <= index) { this.blockDataName.Add(default(string)); }
-					this.blockDataName[index] = value.GetValueAsString();
+					this.blockDataName[index] = (string)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -145,7 +145,7 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

@@ -25,27 +25,16 @@ namespace Fox.EdCore
         {
             get;
         }
-
-        public DynamicArrayField() 
-            : this(label: null)
-        {
-        }
         
         public DynamicArrayField(PropertyInfo propertyInfo)
             : this(propertyInfo.Name, new ListView(), propertyInfo)
         {
         }
 
-        public DynamicArrayField(string label)
-            : this(label, new ListView())
-        {
-        }
-
-        private DynamicArrayField(string label, ListView visInput, PropertyInfo propertyInfo = null)
+        private DynamicArrayField(string label, ListView visInput, PropertyInfo propertyInfo)
             : base(label, visInput)
         {
-            if (propertyInfo is not null)
-                FieldConstructor = FoxFieldUtils.GetBindableElementConstructorForPropertyInfo(propertyInfo);
+            FieldConstructor = FoxFieldUtils.GetBindableElementConstructorForPropertyInfo(propertyInfo);
             
             ListViewInput = visInput;
             visualInput = ListViewInput;

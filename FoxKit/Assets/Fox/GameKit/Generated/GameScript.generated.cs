@@ -50,22 +50,22 @@ namespace Fox.GameKit
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "enable":
-					return new Fox.Core.Value(enable);
+					return (object)enable;
 				case "scriptPath":
-					return new Fox.Core.Value(scriptPath);
+					return (object)scriptPath;
 				case "variables":
-					return new Fox.Core.Value((Fox.IStringMap)variables);
+					return (object)(Fox.IStringMap)variables;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
@@ -74,26 +74,26 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
 				case "variables":
-					return new Fox.Core.Value(this.variables[key]);
+					return (object)this.variables[key];
 				default:
 					return base.GetPropertyElement(propertyName, key);
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "enable":
-					this.enable = value.GetValueAsBool();
+					this.enable = (bool)value;
 					return;
 				case "scriptPath":
-					this.scriptPath = value.GetValueAsPath();
+					this.scriptPath = (Fox.Path)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -101,7 +101,7 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
@@ -111,15 +111,15 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
 				case "variables":
 					if (this.variables.ContainsKey(key))
-						this.variables[key] = value.GetValueAsEntityLink();
+						this.variables[key] = (Fox.Core.EntityLink)value;
 					else
-						this.variables.Insert(key, value.GetValueAsEntityLink());
+						this.variables.Insert(key, (Fox.Core.EntityLink)value);
 					return;
 				default:
 					base.SetPropertyElement(propertyName, key, value);

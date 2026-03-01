@@ -54,24 +54,24 @@ namespace Fox.Core
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "name":
-					return new Fox.Core.Value(name);
+					return (object)name;
 				case "dataSetFiles":
-					return new Fox.Core.Value((Fox.IStringMap)dataSetFiles);
+					return (object)(Fox.IStringMap)dataSetFiles;
 				case "dataBodySets":
-					return new Fox.Core.Value((Fox.IStringMap)dataBodySets);
+					return (object)(Fox.IStringMap)dataBodySets;
 				case "editableDataBodySet":
-					return new Fox.Core.Value(editableDataBodySet);
+					return (object)editableDataBodySet;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
@@ -80,28 +80,28 @@ namespace Fox.Core
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
 				case "dataSetFiles":
-					return new Fox.Core.Value(this.dataSetFiles[key]);
+					return (object)this.dataSetFiles[key];
 				case "dataBodySets":
-					return new Fox.Core.Value(this.dataBodySets[key]);
+					return (object)this.dataBodySets[key];
 				default:
 					return base.GetPropertyElement(propertyName, key);
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "name":
-					this.name = value.GetValueAsString();
+					this.name = (string)value;
 					return;
 				case "editableDataBodySet":
-					this.editableDataBodySet = value.GetValueAsEntityPtr<Fox.Core.DataBodySet>();
+					this.editableDataBodySet = (Fox.Core.DataBodySet)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -109,7 +109,7 @@ namespace Fox.Core
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
@@ -119,21 +119,21 @@ namespace Fox.Core
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
 				case "dataSetFiles":
 					if (this.dataSetFiles.ContainsKey(key))
-						this.dataSetFiles[key] = value.GetValueAsFilePtr();
+						this.dataSetFiles[key] = (Fox.Core.FilePtr)value;
 					else
-						this.dataSetFiles.Insert(key, value.GetValueAsFilePtr());
+						this.dataSetFiles.Insert(key, (Fox.Core.FilePtr)value);
 					return;
 				case "dataBodySets":
 					if (this.dataBodySets.ContainsKey(key))
-						this.dataBodySets[key] = value.GetValueAsEntityPtr<Fox.Core.DataBodySet>();
+						this.dataBodySets[key] = (Fox.Core.DataBodySet)value;
 					else
-						this.dataBodySets.Insert(key, value.GetValueAsEntityPtr<Fox.Core.DataBodySet>());
+						this.dataBodySets.Insert(key, (Fox.Core.DataBodySet)value);
 					return;
 				default:
 					base.SetPropertyElement(propertyName, key, value);

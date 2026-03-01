@@ -118,56 +118,56 @@ namespace Tpp.Sound
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "tag":
-					return new Fox.Core.Value(tag);
+					return (object)tag;
 				case "playEvent":
-					return new Fox.Core.Value(playEvent);
+					return (object)playEvent;
 				case "daySwitchEvent":
-					return new Fox.Core.Value(daySwitchEvent);
+					return (object)daySwitchEvent;
 				case "nightSwitchEvent":
-					return new Fox.Core.Value(nightSwitchEvent);
+					return (object)nightSwitchEvent;
 				case "dangerEasySwitchEvent":
-					return new Fox.Core.Value(dangerEasySwitchEvent);
+					return (object)dangerEasySwitchEvent;
 				case "dangerOuterSwitchEvent":
-					return new Fox.Core.Value(dangerOuterSwitchEvent);
+					return (object)dangerOuterSwitchEvent;
 				case "dangerHardSwitchEvent":
-					return new Fox.Core.Value(dangerHardSwitchEvent);
+					return (object)dangerHardSwitchEvent;
 				case "dangerEasyLostSwitchEvent":
-					return new Fox.Core.Value(dangerEasyLostSwitchEvent);
+					return (object)dangerEasyLostSwitchEvent;
 				case "dangerOuterLostSwitchEvent":
-					return new Fox.Core.Value(dangerOuterLostSwitchEvent);
+					return (object)dangerOuterLostSwitchEvent;
 				case "dangerHardLostSwitchEvent":
-					return new Fox.Core.Value(dangerHardLostSwitchEvent);
+					return (object)dangerHardLostSwitchEvent;
 				case "dangerEvasionSwitchEvent":
-					return new Fox.Core.Value(dangerEvasionSwitchEvent);
+					return (object)dangerEvasionSwitchEvent;
 				case "dangerStrongSwitchEvent":
-					return new Fox.Core.Value(dangerStrongSwitchEvent);
+					return (object)dangerStrongSwitchEvent;
 				case "safetyReflexSwitchEvent":
-					return new Fox.Core.Value(safetyReflexSwitchEvent);
+					return (object)safetyReflexSwitchEvent;
 				case "safetyNeutralToSneakSwitchEvent":
-					return new Fox.Core.Value(safetyNeutralToSneakSwitchEvent);
+					return (object)safetyNeutralToSneakSwitchEvent;
 				case "safetySneakSwitchEvent":
-					return new Fox.Core.Value(safetySneakSwitchEvent);
+					return (object)safetySneakSwitchEvent;
 				case "safetyCautionSwitchEvent":
-					return new Fox.Core.Value(safetyCautionSwitchEvent);
+					return (object)safetyCautionSwitchEvent;
 				case "safetyNoticeSwitchEvent":
-					return new Fox.Core.Value(safetyNoticeSwitchEvent);
+					return (object)safetyNoticeSwitchEvent;
 				case "safetyCautionNoticeSwitchEvent":
-					return new Fox.Core.Value(safetyCautionNoticeSwitchEvent);
+					return (object)safetyCautionNoticeSwitchEvent;
 				case "safetyAlertToCautionSwitchEvent":
-					return new Fox.Core.Value(safetyAlertToCautionSwitchEvent);
+					return (object)safetyAlertToCautionSwitchEvent;
 				case "neutralSwitchEvent":
-					return new Fox.Core.Value(neutralSwitchEvent);
+					return (object)neutralSwitchEvent;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
@@ -176,7 +176,7 @@ namespace Tpp.Sound
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -185,69 +185,69 @@ namespace Tpp.Sound
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "tag":
-					this.tag = value.GetValueAsString();
+					this.tag = (string)value;
 					return;
 				case "playEvent":
-					this.playEvent = value.GetValueAsString();
+					this.playEvent = (string)value;
 					return;
 				case "daySwitchEvent":
-					this.daySwitchEvent = value.GetValueAsString();
+					this.daySwitchEvent = (string)value;
 					return;
 				case "nightSwitchEvent":
-					this.nightSwitchEvent = value.GetValueAsString();
+					this.nightSwitchEvent = (string)value;
 					return;
 				case "dangerEasySwitchEvent":
-					this.dangerEasySwitchEvent = value.GetValueAsString();
+					this.dangerEasySwitchEvent = (string)value;
 					return;
 				case "dangerOuterSwitchEvent":
-					this.dangerOuterSwitchEvent = value.GetValueAsString();
+					this.dangerOuterSwitchEvent = (string)value;
 					return;
 				case "dangerHardSwitchEvent":
-					this.dangerHardSwitchEvent = value.GetValueAsString();
+					this.dangerHardSwitchEvent = (string)value;
 					return;
 				case "dangerEasyLostSwitchEvent":
-					this.dangerEasyLostSwitchEvent = value.GetValueAsString();
+					this.dangerEasyLostSwitchEvent = (string)value;
 					return;
 				case "dangerOuterLostSwitchEvent":
-					this.dangerOuterLostSwitchEvent = value.GetValueAsString();
+					this.dangerOuterLostSwitchEvent = (string)value;
 					return;
 				case "dangerHardLostSwitchEvent":
-					this.dangerHardLostSwitchEvent = value.GetValueAsString();
+					this.dangerHardLostSwitchEvent = (string)value;
 					return;
 				case "dangerEvasionSwitchEvent":
-					this.dangerEvasionSwitchEvent = value.GetValueAsString();
+					this.dangerEvasionSwitchEvent = (string)value;
 					return;
 				case "dangerStrongSwitchEvent":
-					this.dangerStrongSwitchEvent = value.GetValueAsString();
+					this.dangerStrongSwitchEvent = (string)value;
 					return;
 				case "safetyReflexSwitchEvent":
-					this.safetyReflexSwitchEvent = value.GetValueAsString();
+					this.safetyReflexSwitchEvent = (string)value;
 					return;
 				case "safetyNeutralToSneakSwitchEvent":
-					this.safetyNeutralToSneakSwitchEvent = value.GetValueAsString();
+					this.safetyNeutralToSneakSwitchEvent = (string)value;
 					return;
 				case "safetySneakSwitchEvent":
-					this.safetySneakSwitchEvent = value.GetValueAsString();
+					this.safetySneakSwitchEvent = (string)value;
 					return;
 				case "safetyCautionSwitchEvent":
-					this.safetyCautionSwitchEvent = value.GetValueAsString();
+					this.safetyCautionSwitchEvent = (string)value;
 					return;
 				case "safetyNoticeSwitchEvent":
-					this.safetyNoticeSwitchEvent = value.GetValueAsString();
+					this.safetyNoticeSwitchEvent = (string)value;
 					return;
 				case "safetyCautionNoticeSwitchEvent":
-					this.safetyCautionNoticeSwitchEvent = value.GetValueAsString();
+					this.safetyCautionNoticeSwitchEvent = (string)value;
 					return;
 				case "safetyAlertToCautionSwitchEvent":
-					this.safetyAlertToCautionSwitchEvent = value.GetValueAsString();
+					this.safetyAlertToCautionSwitchEvent = (string)value;
 					return;
 				case "neutralSwitchEvent":
-					this.neutralSwitchEvent = value.GetValueAsString();
+					this.neutralSwitchEvent = (string)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -255,7 +255,7 @@ namespace Tpp.Sound
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
@@ -265,7 +265,7 @@ namespace Tpp.Sound
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

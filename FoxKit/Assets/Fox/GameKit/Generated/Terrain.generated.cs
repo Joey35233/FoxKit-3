@@ -110,65 +110,65 @@ namespace Fox.GameKit
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "filePath":
-					return new Fox.Core.Value(filePath);
+					return (object)filePath;
 				case "loadFilePath":
-					return new Fox.Core.Value(loadFilePath);
+					return (object)loadFilePath;
 				case "dummyFilePath":
-					return new Fox.Core.Value(dummyFilePath);
+					return (object)dummyFilePath;
 				case "meterPerOneRepeat":
-					return new Fox.Core.Value(meterPerOneRepeat);
+					return (object)meterPerOneRepeat;
 				case "meterPerPixel":
-					return new Fox.Core.Value(meterPerPixel);
+					return (object)meterPerPixel;
 				case "isWireFrame":
-					return new Fox.Core.Value(isWireFrame);
+					return (object)isWireFrame;
 				case "lodFlag":
-					return new Fox.Core.Value(lodFlag);
+					return (object)lodFlag;
 				case "isSave":
-					return new Fox.Core.Value(isSave);
+					return (object)isSave;
 				case "isDebugMaterial":
-					return new Fox.Core.Value(isDebugMaterial);
+					return (object)isDebugMaterial;
 				case "materials":
-					return new Fox.Core.Value(materials);
+					return (object)materials;
 				case "lodParam":
-					return new Fox.Core.Value(lodParam);
+					return (object)lodParam;
 				case "materialConfigs":
-					return new Fox.Core.Value(materialConfigs);
+					return (object)materialConfigs;
 				case "baseColorTexture":
-					return new Fox.Core.Value(baseColorTexture);
+					return (object)baseColorTexture;
 				case "materialLodScale":
-					return new Fox.Core.Value(materialLodScale);
+					return (object)materialLodScale;
 				case "materialLodNearOffset":
-					return new Fox.Core.Value(materialLodNearOffset);
+					return (object)materialLodNearOffset;
 				case "materialLodFarOffset":
-					return new Fox.Core.Value(materialLodFarOffset);
+					return (object)materialLodFarOffset;
 				case "materialLodHeightOffset":
-					return new Fox.Core.Value(materialLodHeightOffset);
+					return (object)materialLodHeightOffset;
 				case "isUseWorldTexture":
-					return new Fox.Core.Value(isUseWorldTexture);
+					return (object)isUseWorldTexture;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
 				case "materials":
-					return new Fox.Core.Value(this.materials[index]);
+					return (object)this.materials[index];
 				case "materialConfigs":
-					return new Fox.Core.Value(this.materialConfigs[index]);
+					return (object)this.materialConfigs[index];
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -177,57 +177,57 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "filePath":
-					this.filePath = value.GetValueAsPath();
+					this.filePath = (Fox.Path)value;
 					return;
 				case "loadFilePath":
-					this.loadFilePath = value.GetValueAsPath();
+					this.loadFilePath = (Fox.Path)value;
 					return;
 				case "dummyFilePath":
-					this.dummyFilePath = value.GetValueAsPath();
+					this.dummyFilePath = (Fox.Path)value;
 					return;
 				case "meterPerOneRepeat":
-					this.meterPerOneRepeat = value.GetValueAsFloat();
+					this.meterPerOneRepeat = (float)value;
 					return;
 				case "meterPerPixel":
-					this.meterPerPixel = value.GetValueAsFloat();
+					this.meterPerPixel = (float)value;
 					return;
 				case "isWireFrame":
-					this.isWireFrame = value.GetValueAsBool();
+					this.isWireFrame = (bool)value;
 					return;
 				case "lodFlag":
-					this.lodFlag = value.GetValueAsBool();
+					this.lodFlag = (bool)value;
 					return;
 				case "isSave":
-					this.isSave = value.GetValueAsBool();
+					this.isSave = (bool)value;
 					return;
 				case "isDebugMaterial":
-					this.isDebugMaterial = value.GetValueAsBool();
+					this.isDebugMaterial = (bool)value;
 					return;
 				case "lodParam":
-					this.lodParam = value.GetValueAsFloat();
+					this.lodParam = (float)value;
 					return;
 				case "baseColorTexture":
-					this.baseColorTexture = value.GetValueAsPath();
+					this.baseColorTexture = (Fox.Path)value;
 					return;
 				case "materialLodScale":
-					this.materialLodScale = value.GetValueAsFloat();
+					this.materialLodScale = (float)value;
 					return;
 				case "materialLodNearOffset":
-					this.materialLodNearOffset = value.GetValueAsFloat();
+					this.materialLodNearOffset = (float)value;
 					return;
 				case "materialLodFarOffset":
-					this.materialLodFarOffset = value.GetValueAsFloat();
+					this.materialLodFarOffset = (float)value;
 					return;
 				case "materialLodHeightOffset":
-					this.materialLodHeightOffset = value.GetValueAsFloat();
+					this.materialLodHeightOffset = (float)value;
 					return;
 				case "isUseWorldTexture":
-					this.isUseWorldTexture = value.GetValueAsBool();
+					this.isUseWorldTexture = (bool)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -235,17 +235,17 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
 				case "materials":
 					
-					this.materials[index] = value.GetValueAsEntityLink();
+					this.materials[index] = (Fox.Core.EntityLink)value;
 					return;
 				case "materialConfigs":
 					while(this.materialConfigs.Count <= index) { this.materialConfigs.Add(default(Fox.Core.EntityLink)); }
-					this.materialConfigs[index] = value.GetValueAsEntityLink();
+					this.materialConfigs[index] = (Fox.Core.EntityLink)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -253,7 +253,7 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

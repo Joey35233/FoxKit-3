@@ -54,24 +54,24 @@ namespace Fox.Geox
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "isAnyOffenseCallback":
-					return new Fox.Core.Value(isAnyOffenseCallback);
+					return (object)isAnyOffenseCallback;
 				case "isNoDefenseCallback":
-					return new Fox.Core.Value(isNoDefenseCallback);
+					return (object)isNoDefenseCallback;
 				case "isHandleCheck":
-					return new Fox.Core.Value(isHandleCheck);
+					return (object)isHandleCheck;
 				case "isNameCheck":
-					return new Fox.Core.Value(isNameCheck);
+					return (object)isNameCheck;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
@@ -80,7 +80,7 @@ namespace Fox.Geox
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -89,21 +89,21 @@ namespace Fox.Geox
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "isAnyOffenseCallback":
-					this.isAnyOffenseCallback = value.GetValueAsBool();
+					this.isAnyOffenseCallback = (bool)value;
 					return;
 				case "isNoDefenseCallback":
-					this.isNoDefenseCallback = value.GetValueAsBool();
+					this.isNoDefenseCallback = (bool)value;
 					return;
 				case "isHandleCheck":
-					this.isHandleCheck = value.GetValueAsBool();
+					this.isHandleCheck = (bool)value;
 					return;
 				case "isNameCheck":
-					this.isNameCheck = value.GetValueAsBool();
+					this.isNameCheck = (bool)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -111,7 +111,7 @@ namespace Fox.Geox
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
@@ -121,7 +121,7 @@ namespace Fox.Geox
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

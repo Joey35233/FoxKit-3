@@ -62,28 +62,28 @@ namespace Tpp.Effect
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "playerLocator":
-					return new Fox.Core.Value(playerLocator);
+					return (object)playerLocator;
 				case "enable":
-					return new Fox.Core.Value(enable);
+					return (object)enable;
 				case "filterGradientLinear":
-					return new Fox.Core.Value(filterGradientLinear);
+					return (object)filterGradientLinear;
 				case "filterGradientSquare":
-					return new Fox.Core.Value(filterGradientSquare);
+					return (object)filterGradientSquare;
 				case "filterGradinetOffset":
-					return new Fox.Core.Value(filterGradinetOffset);
+					return (object)filterGradinetOffset;
 				case "filterPower":
-					return new Fox.Core.Value(filterPower);
+					return (object)filterPower;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
@@ -92,7 +92,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -101,27 +101,27 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "playerLocator":
-					this.playerLocator = value.GetValueAsEntityLink();
+					this.playerLocator = (Fox.Core.EntityLink)value;
 					return;
 				case "enable":
-					this.enable = value.GetValueAsBool();
+					this.enable = (bool)value;
 					return;
 				case "filterGradientLinear":
-					this.filterGradientLinear = value.GetValueAsFloat();
+					this.filterGradientLinear = (float)value;
 					return;
 				case "filterGradientSquare":
-					this.filterGradientSquare = value.GetValueAsFloat();
+					this.filterGradientSquare = (float)value;
 					return;
 				case "filterGradinetOffset":
-					this.filterGradinetOffset = value.GetValueAsFloat();
+					this.filterGradinetOffset = (float)value;
 					return;
 				case "filterPower":
-					this.filterPower = value.GetValueAsFloat();
+					this.filterPower = (float)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -129,7 +129,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
@@ -139,7 +139,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

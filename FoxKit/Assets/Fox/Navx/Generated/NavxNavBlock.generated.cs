@@ -110,52 +110,52 @@ namespace Fox.Navx
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "sceneName":
-					return new Fox.Core.Value(sceneName);
+					return (object)sceneName;
 				case "worldName":
-					return new Fox.Core.Value(worldName);
+					return (object)worldName;
 				case "tileId":
-					return new Fox.Core.Value(tileId);
+					return (object)tileId;
 				case "filePath":
-					return new Fox.Core.Value(filePath);
+					return (object)filePath;
 				case "filePtr":
-					return new Fox.Core.Value(filePtr);
+					return (object)filePtr;
 				case "remainingFilePtr":
-					return new Fox.Core.Value(remainingFilePtr);
+					return (object)remainingFilePtr;
 				case "isSplit":
-					return new Fox.Core.Value(isSplit);
+					return (object)isSplit;
 				case "maxFileSizeInKb":
-					return new Fox.Core.Value(maxFileSizeInKb);
+					return (object)maxFileSizeInKb;
 				case "useBlockParameter":
-					return new Fox.Core.Value(useBlockParameter);
+					return (object)useBlockParameter;
 				case "verticalThreshold":
-					return new Fox.Core.Value(verticalThreshold);
+					return (object)verticalThreshold;
 				case "simplificationThreshold":
-					return new Fox.Core.Value(simplificationThreshold);
+					return (object)simplificationThreshold;
 				case "doesHoleSimplification":
-					return new Fox.Core.Value(doesHoleSimplification);
+					return (object)doesHoleSimplification;
 				case "holeSimplificationConvexThreshold":
-					return new Fox.Core.Value(holeSimplificationConvexThreshold);
+					return (object)holeSimplificationConvexThreshold;
 				case "holeSimplificationObbExpandThreshold":
-					return new Fox.Core.Value(holeSimplificationObbExpandThreshold);
+					return (object)holeSimplificationObbExpandThreshold;
 				case "holeSimplificationObbToAabbThreshold":
-					return new Fox.Core.Value(holeSimplificationObbToAabbThreshold);
+					return (object)holeSimplificationObbToAabbThreshold;
 				case "holeSimplificationSmoothingThreshold":
-					return new Fox.Core.Value(holeSimplificationSmoothingThreshold);
+					return (object)holeSimplificationSmoothingThreshold;
 				case "isHoleSimplificationDoesNotClosePassage":
-					return new Fox.Core.Value(isHoleSimplificationDoesNotClosePassage);
+					return (object)isHoleSimplificationDoesNotClosePassage;
 				case "holeSimplificationReduceCount":
-					return new Fox.Core.Value(holeSimplificationReduceCount);
+					return (object)holeSimplificationReduceCount;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
@@ -164,7 +164,7 @@ namespace Fox.Navx
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -173,63 +173,63 @@ namespace Fox.Navx
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "sceneName":
-					this.sceneName = value.GetValueAsString();
+					this.sceneName = (string)value;
 					return;
 				case "worldName":
-					this.worldName = value.GetValueAsString();
+					this.worldName = (string)value;
 					return;
 				case "tileId":
-					this.tileId = value.GetValueAsUInt32();
+					this.tileId = (uint)value;
 					return;
 				case "filePath":
-					this.filePath = value.GetValueAsPath();
+					this.filePath = (Fox.Path)value;
 					return;
 				case "filePtr":
-					this.filePtr = value.GetValueAsFilePtr();
+					this.filePtr = (Fox.Core.FilePtr)value;
 					return;
 				case "remainingFilePtr":
-					this.remainingFilePtr = value.GetValueAsFilePtr();
+					this.remainingFilePtr = (Fox.Core.FilePtr)value;
 					return;
 				case "isSplit":
-					this.isSplit = value.GetValueAsBool();
+					this.isSplit = (bool)value;
 					return;
 				case "maxFileSizeInKb":
-					this.maxFileSizeInKb = value.GetValueAsUInt32();
+					this.maxFileSizeInKb = (uint)value;
 					return;
 				case "useBlockParameter":
-					this.useBlockParameter = value.GetValueAsBool();
+					this.useBlockParameter = (bool)value;
 					return;
 				case "verticalThreshold":
-					this.verticalThreshold = value.GetValueAsFloat();
+					this.verticalThreshold = (float)value;
 					return;
 				case "simplificationThreshold":
-					this.simplificationThreshold = value.GetValueAsFloat();
+					this.simplificationThreshold = (float)value;
 					return;
 				case "doesHoleSimplification":
-					this.doesHoleSimplification = value.GetValueAsBool();
+					this.doesHoleSimplification = (bool)value;
 					return;
 				case "holeSimplificationConvexThreshold":
-					this.holeSimplificationConvexThreshold = value.GetValueAsFloat();
+					this.holeSimplificationConvexThreshold = (float)value;
 					return;
 				case "holeSimplificationObbExpandThreshold":
-					this.holeSimplificationObbExpandThreshold = value.GetValueAsFloat();
+					this.holeSimplificationObbExpandThreshold = (float)value;
 					return;
 				case "holeSimplificationObbToAabbThreshold":
-					this.holeSimplificationObbToAabbThreshold = value.GetValueAsFloat();
+					this.holeSimplificationObbToAabbThreshold = (float)value;
 					return;
 				case "holeSimplificationSmoothingThreshold":
-					this.holeSimplificationSmoothingThreshold = value.GetValueAsFloat();
+					this.holeSimplificationSmoothingThreshold = (float)value;
 					return;
 				case "isHoleSimplificationDoesNotClosePassage":
-					this.isHoleSimplificationDoesNotClosePassage = value.GetValueAsBool();
+					this.isHoleSimplificationDoesNotClosePassage = (bool)value;
 					return;
 				case "holeSimplificationReduceCount":
-					this.holeSimplificationReduceCount = value.GetValueAsUInt32();
+					this.holeSimplificationReduceCount = (uint)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -237,7 +237,7 @@ namespace Fox.Navx
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
@@ -247,7 +247,7 @@ namespace Fox.Navx
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

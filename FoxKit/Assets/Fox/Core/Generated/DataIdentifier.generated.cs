@@ -46,20 +46,20 @@ namespace Fox.Core
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "identifier":
-					return new Fox.Core.Value(identifier);
+					return (object)identifier;
 				case "links":
-					return new Fox.Core.Value((Fox.IStringMap)links);
+					return (object)(Fox.IStringMap)links;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
@@ -68,23 +68,23 @@ namespace Fox.Core
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
 				case "links":
-					return new Fox.Core.Value(this.links[key]);
+					return (object)this.links[key];
 				default:
 					return base.GetPropertyElement(propertyName, key);
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "identifier":
-					this.identifier = value.GetValueAsString();
+					this.identifier = (string)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -92,7 +92,7 @@ namespace Fox.Core
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
@@ -102,15 +102,15 @@ namespace Fox.Core
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
 				case "links":
 					if (this.links.ContainsKey(key))
-						this.links[key] = value.GetValueAsEntityLink();
+						this.links[key] = (Fox.Core.EntityLink)value;
 					else
-						this.links.Insert(key, value.GetValueAsEntityLink());
+						this.links.Insert(key, (Fox.Core.EntityLink)value);
 					return;
 				default:
 					base.SetPropertyElement(propertyName, key, value);

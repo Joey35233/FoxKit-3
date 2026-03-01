@@ -55,35 +55,35 @@ namespace Fox.Geo
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "enable":
-					return new Fox.Core.Value(enable);
+					return (object)enable;
 				case "stateFlag":
-					return new Fox.Core.Value(stateFlag);
+					return (object)stateFlag;
 				case "uniqueId":
-					return new Fox.Core.Value(uniqueId);
+					return (object)uniqueId;
 				case "groupTags":
-					return new Fox.Core.Value(groupTags);
+					return (object)groupTags;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
 				case "groupTags":
-					return new Fox.Core.Value(this.groupTags[index]);
+					return (object)this.groupTags[index];
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -92,18 +92,18 @@ namespace Fox.Geo
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "enable":
-					this.enable = value.GetValueAsBool();
+					this.enable = (bool)value;
 					return;
 				case "stateFlag":
-					this.stateFlag = value.GetValueAsUInt32();
+					this.stateFlag = (uint)value;
 					return;
 				case "uniqueId":
-					this.uniqueId = value.GetValueAsString();
+					this.uniqueId = (string)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -111,13 +111,13 @@ namespace Fox.Geo
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
 				case "groupTags":
 					while(this.groupTags.Count <= index) { this.groupTags.Add(default(string)); }
-					this.groupTags[index] = value.GetValueAsString();
+					this.groupTags[index] = (string)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -125,7 +125,7 @@ namespace Fox.Geo
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

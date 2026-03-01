@@ -70,32 +70,32 @@ namespace Tpp.GameKit
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "isLeftOpen":
-					return new Fox.Core.Value(isLeftOpen);
+					return (object)isLeftOpen;
 				case "isRightOpen":
-					return new Fox.Core.Value(isRightOpen);
+					return (object)isRightOpen;
 				case "isUpOpen":
-					return new Fox.Core.Value(isUpOpen);
+					return (object)isUpOpen;
 				case "isUnVaultable":
-					return new Fox.Core.Value(isUnVaultable);
+					return (object)isUnVaultable;
 				case "isUseVip":
-					return new Fox.Core.Value(isUseVip);
+					return (object)isUseVip;
 				case "isUseSniper":
-					return new Fox.Core.Value(isUseSniper);
+					return (object)isUseSniper;
 				case "isBreakDisable":
-					return new Fox.Core.Value(isBreakDisable);
+					return (object)isBreakDisable;
 				case "isBreakEnable":
-					return new Fox.Core.Value(isBreakEnable);
+					return (object)isBreakEnable;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
@@ -104,7 +104,7 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -113,33 +113,33 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "isLeftOpen":
-					this.isLeftOpen = value.GetValueAsBool();
+					this.isLeftOpen = (bool)value;
 					return;
 				case "isRightOpen":
-					this.isRightOpen = value.GetValueAsBool();
+					this.isRightOpen = (bool)value;
 					return;
 				case "isUpOpen":
-					this.isUpOpen = value.GetValueAsBool();
+					this.isUpOpen = (bool)value;
 					return;
 				case "isUnVaultable":
-					this.isUnVaultable = value.GetValueAsBool();
+					this.isUnVaultable = (bool)value;
 					return;
 				case "isUseVip":
-					this.isUseVip = value.GetValueAsBool();
+					this.isUseVip = (bool)value;
 					return;
 				case "isUseSniper":
-					this.isUseSniper = value.GetValueAsBool();
+					this.isUseSniper = (bool)value;
 					return;
 				case "isBreakDisable":
-					this.isBreakDisable = value.GetValueAsBool();
+					this.isBreakDisable = (bool)value;
 					return;
 				case "isBreakEnable":
-					this.isBreakEnable = value.GetValueAsBool();
+					this.isBreakEnable = (bool)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -147,7 +147,7 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
@@ -157,7 +157,7 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

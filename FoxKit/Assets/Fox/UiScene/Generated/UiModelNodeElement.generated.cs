@@ -102,48 +102,48 @@ namespace Fox.UiScene
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "modelNodeName":
-					return new Fox.Core.Value(modelNodeName);
+					return (object)modelNodeName;
 				case "visible":
-					return new Fox.Core.Value(visible);
+					return (object)visible;
 				case "priority":
-					return new Fox.Core.Value(priority);
+					return (object)priority;
 				case "scale":
-					return new Fox.Core.Value(scale);
+					return (object)scale;
 				case "rotQuat":
-					return new Fox.Core.Value(rotQuat);
+					return (object)rotQuat;
 				case "translate":
-					return new Fox.Core.Value(translate);
+					return (object)translate;
 				case "color":
-					return new Fox.Core.Value(color);
+					return (object)color;
 				case "blendType":
-					return new Fox.Core.Value(blendType);
+					return (object)blendType;
 				case "returnInit":
-					return new Fox.Core.Value(returnInit);
+					return (object)returnInit;
 				case "initVisible":
-					return new Fox.Core.Value(initVisible);
+					return (object)initVisible;
 				case "initPriority":
-					return new Fox.Core.Value(initPriority);
+					return (object)initPriority;
 				case "initScale":
-					return new Fox.Core.Value(initScale);
+					return (object)initScale;
 				case "initRotQuat":
-					return new Fox.Core.Value(initRotQuat);
+					return (object)initRotQuat;
 				case "initTranslate":
-					return new Fox.Core.Value(initTranslate);
+					return (object)initTranslate;
 				case "initColor":
-					return new Fox.Core.Value(initColor);
+					return (object)initColor;
 				case "initBlendType":
-					return new Fox.Core.Value(initBlendType);
+					return (object)initBlendType;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
@@ -152,7 +152,7 @@ namespace Fox.UiScene
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -161,57 +161,57 @@ namespace Fox.UiScene
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "modelNodeName":
-					this.modelNodeName = value.GetValueAsString();
+					this.modelNodeName = (string)value;
 					return;
 				case "visible":
-					this.visible = value.GetValueAsBool();
+					this.visible = (bool)value;
 					return;
 				case "priority":
-					this.priority = value.GetValueAsFloat();
+					this.priority = (float)value;
 					return;
 				case "scale":
-					this.scale = value.GetValueAsVector3();
+					this.scale = (UnityEngine.Vector3)value;
 					return;
 				case "rotQuat":
-					this.rotQuat = value.GetValueAsQuat();
+					this.rotQuat = (UnityEngine.Quaternion)value;
 					return;
 				case "translate":
-					this.translate = value.GetValueAsVector3();
+					this.translate = (UnityEngine.Vector3)value;
 					return;
 				case "color":
-					this.color = value.GetValueAsColor();
+					this.color = (UnityEngine.Color)value;
 					return;
 				case "blendType":
-					this.blendType = (UiModelNodeElementBlend)value.GetValueAsInt32();
+					this.blendType = (UiModelNodeElementBlend)value;
 					return;
 				case "returnInit":
-					this.returnInit = value.GetValueAsBool();
+					this.returnInit = (bool)value;
 					return;
 				case "initVisible":
-					this.initVisible = value.GetValueAsBool();
+					this.initVisible = (bool)value;
 					return;
 				case "initPriority":
-					this.initPriority = value.GetValueAsFloat();
+					this.initPriority = (float)value;
 					return;
 				case "initScale":
-					this.initScale = value.GetValueAsVector3();
+					this.initScale = (UnityEngine.Vector3)value;
 					return;
 				case "initRotQuat":
-					this.initRotQuat = value.GetValueAsQuat();
+					this.initRotQuat = (UnityEngine.Quaternion)value;
 					return;
 				case "initTranslate":
-					this.initTranslate = value.GetValueAsVector3();
+					this.initTranslate = (UnityEngine.Vector3)value;
 					return;
 				case "initColor":
-					this.initColor = value.GetValueAsColor();
+					this.initColor = (UnityEngine.Color)value;
 					return;
 				case "initBlendType":
-					this.initBlendType = value.GetValueAsInt32();
+					this.initBlendType = (int)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -219,7 +219,7 @@ namespace Fox.UiScene
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
@@ -229,7 +229,7 @@ namespace Fox.UiScene
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

@@ -106,50 +106,50 @@ namespace Tpp.Effect
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "ignoreYAxis":
-					return new Fox.Core.Value(ignoreYAxis);
+					return (object)ignoreYAxis;
 				case "ignoreZAxis":
-					return new Fox.Core.Value(ignoreZAxis);
+					return (object)ignoreZAxis;
 				case "interpRange":
-					return new Fox.Core.Value(interpRange);
+					return (object)interpRange;
 				case "restoreFogParameters":
-					return new Fox.Core.Value(restoreFogParameters);
+					return (object)restoreFogParameters;
 				case "color":
-					return new Fox.Core.Value(color);
+					return (object)color;
 				case "luminance":
-					return new Fox.Core.Value(luminance);
+					return (object)luminance;
 				case "albedo":
-					return new Fox.Core.Value(albedo);
+					return (object)albedo;
 				case "density":
-					return new Fox.Core.Value(density);
+					return (object)density;
 				case "nearDistance":
-					return new Fox.Core.Value(nearDistance);
+					return (object)nearDistance;
 				case "falloff":
-					return new Fox.Core.Value(falloff);
+					return (object)falloff;
 				case "changeColor":
-					return new Fox.Core.Value(changeColor);
+					return (object)changeColor;
 				case "changeAlbedo":
-					return new Fox.Core.Value(changeAlbedo);
+					return (object)changeAlbedo;
 				case "changeLuminance":
-					return new Fox.Core.Value(changeLuminance);
+					return (object)changeLuminance;
 				case "changeDensity":
-					return new Fox.Core.Value(changeDensity);
+					return (object)changeDensity;
 				case "changeNearDistance":
-					return new Fox.Core.Value(changeNearDistance);
+					return (object)changeNearDistance;
 				case "changeFalloff":
-					return new Fox.Core.Value(changeFalloff);
+					return (object)changeFalloff;
 				case "areaVolumetricFog":
-					return new Fox.Core.Value(areaVolumetricFog);
+					return (object)areaVolumetricFog;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
@@ -158,7 +158,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -167,60 +167,60 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "ignoreYAxis":
-					this.ignoreYAxis = value.GetValueAsBool();
+					this.ignoreYAxis = (bool)value;
 					return;
 				case "ignoreZAxis":
-					this.ignoreZAxis = value.GetValueAsBool();
+					this.ignoreZAxis = (bool)value;
 					return;
 				case "interpRange":
-					this.interpRange = value.GetValueAsFloat();
+					this.interpRange = (float)value;
 					return;
 				case "restoreFogParameters":
-					this.restoreFogParameters = value.GetValueAsBool();
+					this.restoreFogParameters = (bool)value;
 					return;
 				case "color":
-					this.color = value.GetValueAsColor();
+					this.color = (UnityEngine.Color)value;
 					return;
 				case "luminance":
-					this.luminance = value.GetValueAsFloat();
+					this.luminance = (float)value;
 					return;
 				case "albedo":
-					this.albedo = value.GetValueAsColor();
+					this.albedo = (UnityEngine.Color)value;
 					return;
 				case "density":
-					this.density = value.GetValueAsFloat();
+					this.density = (float)value;
 					return;
 				case "nearDistance":
-					this.nearDistance = value.GetValueAsFloat();
+					this.nearDistance = (float)value;
 					return;
 				case "falloff":
-					this.falloff = value.GetValueAsFloat();
+					this.falloff = (float)value;
 					return;
 				case "changeColor":
-					this.changeColor = value.GetValueAsBool();
+					this.changeColor = (bool)value;
 					return;
 				case "changeAlbedo":
-					this.changeAlbedo = value.GetValueAsBool();
+					this.changeAlbedo = (bool)value;
 					return;
 				case "changeLuminance":
-					this.changeLuminance = value.GetValueAsBool();
+					this.changeLuminance = (bool)value;
 					return;
 				case "changeDensity":
-					this.changeDensity = value.GetValueAsBool();
+					this.changeDensity = (bool)value;
 					return;
 				case "changeNearDistance":
-					this.changeNearDistance = value.GetValueAsBool();
+					this.changeNearDistance = (bool)value;
 					return;
 				case "changeFalloff":
-					this.changeFalloff = value.GetValueAsBool();
+					this.changeFalloff = (bool)value;
 					return;
 				case "areaVolumetricFog":
-					this.areaVolumetricFog = value.GetValueAsEntityLink();
+					this.areaVolumetricFog = (Fox.Core.EntityLink)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -228,7 +228,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
@@ -238,7 +238,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

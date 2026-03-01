@@ -90,42 +90,42 @@ namespace Tpp.GameKit
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "enable":
-					return new Fox.Core.Value(enable);
+					return (object)enable;
 				case "stageName":
-					return new Fox.Core.Value(stageName);
+					return (object)stageName;
 				case "commonFilePath":
-					return new Fox.Core.Value(commonFilePath);
+					return (object)commonFilePath;
 				case "basePath":
-					return new Fox.Core.Value(basePath);
+					return (object)basePath;
 				case "commonBlockSizeInByte":
-					return new Fox.Core.Value(commonBlockSizeInByte);
+					return (object)commonBlockSizeInByte;
 				case "largeStageBlockSizeInByte":
-					return new Fox.Core.Value(largeStageBlockSizeInByte);
+					return (object)largeStageBlockSizeInByte;
 				case "smallStageBlockCount":
-					return new Fox.Core.Value(smallStageBlockCount);
+					return (object)smallStageBlockCount;
 				case "smallStageBlockSizeInByte":
-					return new Fox.Core.Value(smallStageBlockSizeInByte);
+					return (object)smallStageBlockSizeInByte;
 				case "largeMissionBlockSizeInByte":
-					return new Fox.Core.Value(largeMissionBlockSizeInByte);
+					return (object)largeMissionBlockSizeInByte;
 				case "smallMissionBlockCount":
-					return new Fox.Core.Value(smallMissionBlockCount);
+					return (object)smallMissionBlockCount;
 				case "smallMissionBlockSizeInByte":
-					return new Fox.Core.Value(smallMissionBlockSizeInByte);
+					return (object)smallMissionBlockSizeInByte;
 				case "demoBlockCount":
-					return new Fox.Core.Value(demoBlockCount);
+					return (object)demoBlockCount;
 				case "demoBlockSizeInByte":
-					return new Fox.Core.Value(demoBlockSizeInByte);
+					return (object)demoBlockSizeInByte;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
@@ -134,7 +134,7 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -143,48 +143,48 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "enable":
-					this.enable = value.GetValueAsBool();
+					this.enable = (bool)value;
 					return;
 				case "stageName":
-					this.stageName = value.GetValueAsString();
+					this.stageName = (string)value;
 					return;
 				case "commonFilePath":
-					this.commonFilePath = value.GetValueAsPath();
+					this.commonFilePath = (Fox.Path)value;
 					return;
 				case "basePath":
-					this.basePath = value.GetValueAsString();
+					this.basePath = (string)value;
 					return;
 				case "commonBlockSizeInByte":
-					this.commonBlockSizeInByte = value.GetValueAsUInt32();
+					this.commonBlockSizeInByte = (uint)value;
 					return;
 				case "largeStageBlockSizeInByte":
-					this.largeStageBlockSizeInByte = value.GetValueAsUInt32();
+					this.largeStageBlockSizeInByte = (uint)value;
 					return;
 				case "smallStageBlockCount":
-					this.smallStageBlockCount = value.GetValueAsUInt32();
+					this.smallStageBlockCount = (uint)value;
 					return;
 				case "smallStageBlockSizeInByte":
-					this.smallStageBlockSizeInByte = value.GetValueAsUInt32();
+					this.smallStageBlockSizeInByte = (uint)value;
 					return;
 				case "largeMissionBlockSizeInByte":
-					this.largeMissionBlockSizeInByte = value.GetValueAsUInt32();
+					this.largeMissionBlockSizeInByte = (uint)value;
 					return;
 				case "smallMissionBlockCount":
-					this.smallMissionBlockCount = value.GetValueAsUInt32();
+					this.smallMissionBlockCount = (uint)value;
 					return;
 				case "smallMissionBlockSizeInByte":
-					this.smallMissionBlockSizeInByte = value.GetValueAsUInt32();
+					this.smallMissionBlockSizeInByte = (uint)value;
 					return;
 				case "demoBlockCount":
-					this.demoBlockCount = value.GetValueAsUInt32();
+					this.demoBlockCount = (uint)value;
 					return;
 				case "demoBlockSizeInByte":
-					this.demoBlockSizeInByte = value.GetValueAsUInt32();
+					this.demoBlockSizeInByte = (uint)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -192,7 +192,7 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
@@ -202,7 +202,7 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

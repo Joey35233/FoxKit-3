@@ -54,39 +54,39 @@ namespace Tpp.Effect
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "drawRejectionLevels":
-					return new Fox.Core.Value(drawRejectionLevels);
+					return (object)drawRejectionLevels;
 				case "relatedLights":
-					return new Fox.Core.Value(relatedLights);
+					return (object)relatedLights;
 				case "shDatas":
-					return new Fox.Core.Value(shDatas);
+					return (object)shDatas;
 				case "lightArrayFile":
-					return new Fox.Core.Value(lightArrayFile);
+					return (object)lightArrayFile;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
 				case "drawRejectionLevels":
-					return new Fox.Core.Value(this.drawRejectionLevels[index]);
+					return (object)this.drawRejectionLevels[index];
 				case "relatedLights":
-					return new Fox.Core.Value(this.relatedLights[index]);
+					return (object)this.relatedLights[index];
 				case "shDatas":
-					return new Fox.Core.Value(this.shDatas[index]);
+					return (object)this.shDatas[index];
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -95,12 +95,12 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "lightArrayFile":
-					this.lightArrayFile = value.GetValueAsFilePtr();
+					this.lightArrayFile = (Fox.Core.FilePtr)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -108,21 +108,21 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
 				case "drawRejectionLevels":
 					while(this.drawRejectionLevels.Count <= index) { this.drawRejectionLevels.Add(default(TppLightProbeArray_DrawRejectionLevel)); }
-					this.drawRejectionLevels[index] = (TppLightProbeArray_DrawRejectionLevel)value.GetValueAsInt32();
+					this.drawRejectionLevels[index] = (TppLightProbeArray_DrawRejectionLevel)value;
 					return;
 				case "relatedLights":
 					while(this.relatedLights.Count <= index) { this.relatedLights.Add(default(Fox.Core.EntityLink)); }
-					this.relatedLights[index] = value.GetValueAsEntityLink();
+					this.relatedLights[index] = (Fox.Core.EntityLink)value;
 					return;
 				case "shDatas":
 					while(this.shDatas.Count <= index) { this.shDatas.Add(default(Fox.Core.EntityLink)); }
-					this.shDatas[index] = value.GetValueAsEntityLink();
+					this.shDatas[index] = (Fox.Core.EntityLink)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -130,7 +130,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

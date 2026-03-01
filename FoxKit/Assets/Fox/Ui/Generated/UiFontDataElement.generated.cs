@@ -74,34 +74,34 @@ namespace Fox.Ui
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "language":
-					return new Fox.Core.Value(language);
+					return (object)language;
 				case "fontName":
-					return new Fox.Core.Value(fontName);
+					return (object)fontName;
 				case "fontFile":
-					return new Fox.Core.Value(fontFile);
+					return (object)fontFile;
 				case "texturePath":
-					return new Fox.Core.Value(texturePath);
+					return (object)texturePath;
 				case "fontWidth":
-					return new Fox.Core.Value(fontWidth);
+					return (object)fontWidth;
 				case "fontHeight":
-					return new Fox.Core.Value(fontHeight);
+					return (object)fontHeight;
 				case "textSpace":
-					return new Fox.Core.Value(textSpace);
+					return (object)textSpace;
 				case "lineSpace":
-					return new Fox.Core.Value(lineSpace);
+					return (object)lineSpace;
 				case "fontEdge":
-					return new Fox.Core.Value(fontEdge);
+					return (object)fontEdge;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
@@ -110,7 +110,7 @@ namespace Fox.Ui
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -119,36 +119,36 @@ namespace Fox.Ui
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "language":
-					this.language = value.GetValueAsString();
+					this.language = (string)value;
 					return;
 				case "fontName":
-					this.fontName = value.GetValueAsString();
+					this.fontName = (string)value;
 					return;
 				case "fontFile":
-					this.fontFile = value.GetValueAsFilePtr();
+					this.fontFile = (Fox.Core.FilePtr)value;
 					return;
 				case "texturePath":
-					this.texturePath = value.GetValueAsPath();
+					this.texturePath = (Fox.Path)value;
 					return;
 				case "fontWidth":
-					this.fontWidth = value.GetValueAsFloat();
+					this.fontWidth = (float)value;
 					return;
 				case "fontHeight":
-					this.fontHeight = value.GetValueAsFloat();
+					this.fontHeight = (float)value;
 					return;
 				case "textSpace":
-					this.textSpace = value.GetValueAsFloat();
+					this.textSpace = (float)value;
 					return;
 				case "lineSpace":
-					this.lineSpace = value.GetValueAsFloat();
+					this.lineSpace = (float)value;
 					return;
 				case "fontEdge":
-					this.fontEdge = value.GetValueAsVector4();
+					this.fontEdge = (UnityEngine.Vector4)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -156,7 +156,7 @@ namespace Fox.Ui
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
@@ -166,7 +166,7 @@ namespace Fox.Ui
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

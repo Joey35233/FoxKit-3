@@ -90,42 +90,42 @@ namespace Tpp.Effect
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "enable":
-					return new Fox.Core.Value(enable);
+					return (object)enable;
 				case "lutTexture":
-					return new Fox.Core.Value(lutTexture);
+					return (object)lutTexture;
 				case "startSlope":
-					return new Fox.Core.Value(startSlope);
+					return (object)startSlope;
 				case "endSlope":
-					return new Fox.Core.Value(endSlope);
+					return (object)endSlope;
 				case "blendRatio":
-					return new Fox.Core.Value(blendRatio);
+					return (object)blendRatio;
 				case "colorScale":
-					return new Fox.Core.Value(colorScale);
+					return (object)colorScale;
 				case "noiseScale":
-					return new Fox.Core.Value(noiseScale);
+					return (object)noiseScale;
 				case "noiseOffset":
-					return new Fox.Core.Value(noiseOffset);
+					return (object)noiseOffset;
 				case "noiseCutScale":
-					return new Fox.Core.Value(noiseCutScale);
+					return (object)noiseCutScale;
 				case "noiseCutOffset":
-					return new Fox.Core.Value(noiseCutOffset);
+					return (object)noiseCutOffset;
 				case "noiseColor":
-					return new Fox.Core.Value(noiseColor);
+					return (object)noiseColor;
 				case "cinemaScopeSlope":
-					return new Fox.Core.Value(cinemaScopeSlope);
+					return (object)cinemaScopeSlope;
 				case "cinemaScopeShift":
-					return new Fox.Core.Value(cinemaScopeShift);
+					return (object)cinemaScopeShift;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
@@ -134,7 +134,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -143,48 +143,48 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "enable":
-					this.enable = value.GetValueAsBool();
+					this.enable = (bool)value;
 					return;
 				case "lutTexture":
-					this.lutTexture = value.GetValueAsPath();
+					this.lutTexture = (Fox.Path)value;
 					return;
 				case "startSlope":
-					this.startSlope = value.GetValueAsFloat();
+					this.startSlope = (float)value;
 					return;
 				case "endSlope":
-					this.endSlope = value.GetValueAsFloat();
+					this.endSlope = (float)value;
 					return;
 				case "blendRatio":
-					this.blendRatio = value.GetValueAsFloat();
+					this.blendRatio = (float)value;
 					return;
 				case "colorScale":
-					this.colorScale = value.GetValueAsColor();
+					this.colorScale = (UnityEngine.Color)value;
 					return;
 				case "noiseScale":
-					this.noiseScale = value.GetValueAsFloat();
+					this.noiseScale = (float)value;
 					return;
 				case "noiseOffset":
-					this.noiseOffset = value.GetValueAsFloat();
+					this.noiseOffset = (float)value;
 					return;
 				case "noiseCutScale":
-					this.noiseCutScale = value.GetValueAsFloat();
+					this.noiseCutScale = (float)value;
 					return;
 				case "noiseCutOffset":
-					this.noiseCutOffset = value.GetValueAsFloat();
+					this.noiseCutOffset = (float)value;
 					return;
 				case "noiseColor":
-					this.noiseColor = value.GetValueAsColor();
+					this.noiseColor = (UnityEngine.Color)value;
 					return;
 				case "cinemaScopeSlope":
-					this.cinemaScopeSlope = value.GetValueAsFloat();
+					this.cinemaScopeSlope = (float)value;
 					return;
 				case "cinemaScopeShift":
-					this.cinemaScopeShift = value.GetValueAsFloat();
+					this.cinemaScopeShift = (float)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -192,7 +192,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
@@ -202,7 +202,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

@@ -50,33 +50,33 @@ namespace Fox.Sim
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "objectParam":
-					return new Fox.Core.Value(objectParam);
+					return (object)objectParam;
 				case "engineParam":
-					return new Fox.Core.Value(engineParam);
+					return (object)engineParam;
 				case "controls":
-					return new Fox.Core.Value(controls);
+					return (object)controls;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
 				case "controls":
-					return new Fox.Core.Value(this.controls[index]);
+					return (object)this.controls[index];
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -85,15 +85,15 @@ namespace Fox.Sim
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "objectParam":
-					this.objectParam = value.GetValueAsEntityPtr<Fox.Sim.SimObjectParam>();
+					this.objectParam = (Fox.Sim.SimObjectParam)value;
 					return;
 				case "engineParam":
-					this.engineParam = value.GetValueAsEntityPtr<Fox.Sim.SimEngineParam>();
+					this.engineParam = (Fox.Sim.SimEngineParam)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -101,13 +101,13 @@ namespace Fox.Sim
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
 				case "controls":
 					while(this.controls.Count <= index) { this.controls.Add(default(Fox.Sim.SimControlElement)); }
-					this.controls[index] = value.GetValueAsEntityPtr<Fox.Sim.SimControlElement>();
+					this.controls[index] = (Fox.Sim.SimControlElement)value;
 					return;
 				default:
 					base.SetPropertyElement(propertyName, index, value);
@@ -115,7 +115,7 @@ namespace Fox.Sim
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{

@@ -62,28 +62,28 @@ namespace Fox.EdDemo
 			ClassInfoInitialized = true;
 		}
 		
-		public override Fox.Core.Value GetProperty(string propertyName)
+		public override object GetProperty(string propertyName)
 		{
 			switch (propertyName)
 			{
 				case "playerInstanceName":
-					return new Fox.Core.Value(playerInstanceName);
+					return (object)playerInstanceName;
 				case "partsFile":
-					return new Fox.Core.Value(partsFile);
+					return (object)partsFile;
 				case "handFv2File":
-					return new Fox.Core.Value(handFv2File);
+					return (object)handFv2File;
 				case "headFv2File":
-					return new Fox.Core.Value(headFv2File);
+					return (object)headFv2File;
 				case "camoFv2File":
-					return new Fox.Core.Value(camoFv2File);
+					return (object)camoFv2File;
 				case "needReload":
-					return new Fox.Core.Value(needReload);
+					return (object)needReload;
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override object GetPropertyElement(string propertyName, ushort index)
 		{
 			switch (propertyName)
 			{
@@ -92,7 +92,7 @@ namespace Fox.EdDemo
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, string key)
+		public override object GetPropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{
@@ -101,27 +101,27 @@ namespace Fox.EdDemo
 			}
 		}
 
-		public override void SetProperty(string propertyName, Fox.Core.Value value)
+		public override void SetProperty(string propertyName, object value)
 		{
 			switch (propertyName)
 			{
 				case "playerInstanceName":
-					this.playerInstanceName = value.GetValueAsString();
+					this.playerInstanceName = (string)value;
 					return;
 				case "partsFile":
-					this.partsFile = value.GetValueAsString();
+					this.partsFile = (string)value;
 					return;
 				case "handFv2File":
-					this.handFv2File = value.GetValueAsString();
+					this.handFv2File = (string)value;
 					return;
 				case "headFv2File":
-					this.headFv2File = value.GetValueAsString();
+					this.headFv2File = (string)value;
 					return;
 				case "camoFv2File":
-					this.camoFv2File = value.GetValueAsString();
+					this.camoFv2File = (string)value;
 					return;
 				case "needReload":
-					this.needReload = value.GetValueAsBool();
+					this.needReload = (bool)value;
 					return;
 				default:
 					base.SetProperty(propertyName, value);
@@ -129,7 +129,7 @@ namespace Fox.EdDemo
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, ushort index, object value)
 		{
 			switch (propertyName)
 			{
@@ -139,7 +139,7 @@ namespace Fox.EdDemo
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, string key, object value)
 		{
 			switch (propertyName)
 			{
