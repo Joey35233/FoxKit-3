@@ -8,9 +8,9 @@ namespace Fox.Core
         internal const string NAME_PROPERTY_NAME = nameof(Name);
         public string Name;
         
-        internal const string VALUE_PROPERTY_NAME = "Value";
+        internal const string VALUE_PROPERTY_NAME = "SerializedField";
 
-        internal abstract PropertyInfo.ContainerType GetContainerType();
+        //internal abstract PropertyInfo.ContainerType GetContainerType();
         internal abstract PropertyInfo GetPropertyInfo();
         
         internal virtual void ChangeStaticArraySize(uint newSize) {}
@@ -22,7 +22,7 @@ namespace Fox.Core
 
         public void SetValue(object value)
         {
-            if (GetContainerType() == PropertyInfo.ContainerType.StaticArray && GetArraySize() == 1)
+            if (GetPropertyInfo().Container == PropertyInfo.ContainerType.StaticArray && GetArraySize() == 1)
                 SetElement(0, value);
             else
                 throw new NotImplementedException();

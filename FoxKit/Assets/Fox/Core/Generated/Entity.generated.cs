@@ -54,7 +54,7 @@ namespace Fox.Core
 			{
 				default:
 					foreach (var dynamicProperty in gameObject.GetComponents<DynamicProperty>())
-						if (dynamicProperty.Name == propertyName && dynamicProperty.GetContainerType() != PropertyInfo.ContainerType.StringMap)
+						if (dynamicProperty.Name == propertyName && dynamicProperty.GetPropertyInfo().Container != PropertyInfo.ContainerType.StringMap)
 							return dynamicProperty.GetElement(index);
 					throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
 			}
@@ -66,7 +66,7 @@ namespace Fox.Core
 			{
 				default:
 					foreach (var dynamicProperty in gameObject.GetComponents<DynamicProperty>())
-						if (dynamicProperty.Name == propertyName && dynamicProperty.GetContainerType() == PropertyInfo.ContainerType.StringMap)
+						if (dynamicProperty.Name == propertyName && dynamicProperty.GetPropertyInfo().Container == PropertyInfo.ContainerType.StringMap)
 							return dynamicProperty.GetElement(key);
 					throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
 			}
@@ -87,7 +87,7 @@ namespace Fox.Core
 			{
 				default:
 					foreach (var dynamicProperty in gameObject.GetComponents<DynamicProperty>())
-						if (dynamicProperty.Name == propertyName && dynamicProperty.GetContainerType() != PropertyInfo.ContainerType.StringMap)
+						if (dynamicProperty.Name == propertyName && dynamicProperty.GetPropertyInfo().Container != PropertyInfo.ContainerType.StringMap)
 						{
 							dynamicProperty.SetElement(index, value);
 							return;
@@ -102,7 +102,7 @@ namespace Fox.Core
 			{
 				default:
 					foreach (var dynamicProperty in gameObject.GetComponents<DynamicProperty>())
-						if (dynamicProperty.Name == propertyName && dynamicProperty.GetContainerType() == PropertyInfo.ContainerType.StringMap)
+						if (dynamicProperty.Name == propertyName && dynamicProperty.GetPropertyInfo().Container == PropertyInfo.ContainerType.StringMap)
 						{
 							dynamicProperty.SetElement(key, value);
 							return;

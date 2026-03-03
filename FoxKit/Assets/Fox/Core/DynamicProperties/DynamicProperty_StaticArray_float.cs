@@ -6,25 +6,25 @@ namespace Fox.Core
     public class DynamicProperty_StaticArray_float : DynamicProperty
     {
         [SerializeField]
-        public float[] Value = new float[1];
+        private float[] SerializedField = new float[1];
+        public float[] Value => SerializedField;
         
-        internal override PropertyInfo.ContainerType GetContainerType() => PropertyInfo.ContainerType.StaticArray;
-        internal override PropertyInfo GetPropertyInfo() => new PropertyInfo(Name, PropertyInfo.PropertyType.Float, 0, (uint)Value.LongLength);
+        internal override PropertyInfo GetPropertyInfo() => new PropertyInfo(Name, PropertyInfo.PropertyType.Float, 0, (uint)SerializedField.LongLength, PropertyInfo.ContainerType.StaticArray);
         
         internal override void ChangeStaticArraySize(uint newSize)
         {
             float[] newList = new float[newSize];
             
-            for (uint i = 0; i < (newSize <= Value.LongLength ? newSize : Value.LongLength); i++)
-                newList[i] = Value[i];
+            for (uint i = 0; i < (newSize <= SerializedField.LongLength ? newSize : SerializedField.LongLength); i++)
+                newList[i] = SerializedField[i];
             
-            Value = newList;
+            SerializedField = newList;
         }
 
-        public override object GetValue() => Value;
-        public override object GetElement(ushort index) => Value[index];
-        public override uint GetArraySize() => (uint)Value.LongLength;
+        public override object GetValue() => SerializedField;
+        public override object GetElement(ushort index) => SerializedField[index];
+        public override uint GetArraySize() => (uint)SerializedField.LongLength;
 
-        public override void SetElement(ushort index, object value) => Value[index] = (float)value;
+        public override void SetElement(ushort index, object value) => SerializedField[index] = (float)value;
     }
 }

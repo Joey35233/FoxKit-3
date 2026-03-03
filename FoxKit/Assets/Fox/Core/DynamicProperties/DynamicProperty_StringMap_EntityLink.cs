@@ -6,15 +6,15 @@ namespace Fox.Core
     public class DynamicProperty_StringMap_EntityLink : DynamicProperty
     {
         [SerializeField]
-        public StringMap<EntityLink> Value = new ();
+        private StringMap<EntityLink> SerializedField = new ();
+        public StringMap<EntityLink> Value => SerializedField;
         
-        internal override PropertyInfo.ContainerType GetContainerType() => PropertyInfo.ContainerType.StringMap;
-        internal override PropertyInfo GetPropertyInfo() => new PropertyInfo(Name, PropertyInfo.PropertyType.EntityLink, 0, container: GetContainerType());
+        internal override PropertyInfo GetPropertyInfo() => new PropertyInfo(Name, PropertyInfo.PropertyType.EntityLink, 0, container: PropertyInfo.ContainerType.StringMap);
         
-        public override object GetValue() => Value;
-        public override object GetElement(string key) => Value[key];
-        public override uint GetArraySize() => (uint)Value.Count;
+        public override object GetValue() => SerializedField;
+        public override object GetElement(string key) => SerializedField[key];
+        public override uint GetArraySize() => (uint)SerializedField.Count;
 
-        public override void SetElement(string key, object value) => Value[key] = (EntityLink)value;
+        public override void SetElement(string key, object value) => SerializedField[key] = (EntityLink)value;
     }
 }

@@ -228,7 +228,72 @@ namespace Fox.GameKit
         {
             return pluginHandle.Contains(GetPlugin(child));
         }
-        
+
+        private void DrawGizmo(bool isSelected)
+        {
+            Gizmos.matrix = this.transform.localToWorldMatrix;
+            Gizmos.color = Color.green;
+            if (!isSelected)
+                Gizmos.color/=4;
+            
+            (uint numBlocksH, uint numBlocksW) = GetNumBlocks();
+            
+            int blockHCenter = (int)(numBlocksH / 2);
+            int blockWCenter = (int)(numBlocksW / 2);
+            for (uint blockH = 0; blockH < numBlocksH; blockH++)
+            {
+                float blockHX = (blockH - blockHCenter) * InitBlockSize + (InitBlockSize / 2);
+                for (uint blockW = 0; blockW < numBlocksW; blockW++)
+                {
+                    float blockWZ = (blockW - blockWCenter) * InitBlockSize + (InitBlockSize / 2);
+                    Gizmos.DrawWireCube(new Vector3(blockHX, 0, blockWZ), new Vector3(InitBlockSize, 0, InitBlockSize));
+                }
+            }
+        }
+
+        private void OnDrawGizmos() => DrawGizmo(false);
+
+        private void OnDrawGizmosSelected() => DrawGizmo(true);
+
+        private void OnValidate()
+        {
+            DynamicProperty_StaticArray_uint32 numBlocksHProperty = null;
+            DynamicProperty_StaticArray_uint32 numBlocksWProperty = null;
+            foreach (var component in gameObject.GetComponents<DynamicProperty_StaticArray_uint32>())
+            {
+                switch (component.Name)
+                {
+                    case "numBlocksH":
+                        numBlocksHProperty = component;
+                        break;
+                    case "numBlocksW":
+                        numBlocksWProperty = component;
+                        break;
+                }
+
+                if (numBlocksHProperty != null && numBlocksWProperty != null)
+                    break;
+            }
+
+            if (numBlocksHProperty == null)
+            {
+                EditorApplication.delayCall += () =>
+                {
+                    DynamicProperty_StaticArray_uint32 numBlocksHProperty = (DynamicProperty_StaticArray_uint32)this.AddDynamicProperty(PropertyInfo.PropertyType.UInt32, "numBlocksH", 1, PropertyInfo.ContainerType.StaticArray);
+                    numBlocksHProperty.Value[0] = InitBlockCount;
+                };
+            }
+
+            if (numBlocksWProperty == null)
+            {
+                EditorApplication.delayCall += () =>
+                {
+                    DynamicProperty_StaticArray_uint32 numBlocksWProperty = (DynamicProperty_StaticArray_uint32)this.AddDynamicProperty(PropertyInfo.PropertyType.UInt32, "numBlocksW", 1, PropertyInfo.ContainerType.StaticArray);
+                    numBlocksWProperty.Value[0] = InitBlockCount;
+                };
+            }
+        }
+
         public (uint numBlocksH, uint numBlocksW) CalculateNumBlocks()
         {
             uint numBlocksH = 0;
@@ -272,31 +337,5 @@ namespace Fox.GameKit
 
             return (numBlocksH, numBlocksW);
         }
-
-        private void DrawGizmo(bool isSelected)
-        {
-            Gizmos.matrix = this.transform.localToWorldMatrix;
-            Gizmos.color = Color.green;
-            if (!isSelected)
-                Gizmos.color/=4;
-            
-            (uint NumBlocksH, uint NumBlocksW) = GetNumBlocks();
-            
-            int blockHCenter = (int)(NumBlocksH / 2);
-            int blockWCenter = (int)(NumBlocksW / 2);
-            for (uint blockH = 0; blockH < NumBlocksH; blockH++)
-            {
-                float blockHX = (blockH - blockHCenter)*InitBlockSize+(InitBlockSize/2);
-                for (uint blockW = 0; blockW < NumBlocksW; blockW++)
-                {
-                    float blockWZ = (blockW - blockWCenter)*InitBlockSize+(InitBlockSize/2);
-                    Gizmos.DrawWireCube(new Vector3(blockHX,0,blockWZ), new Vector3(InitBlockSize,0,InitBlockSize));
-                }
-            }
-        }
-
-        private void OnDrawGizmos() => DrawGizmo(false);
-
-        private void OnDrawGizmosSelected() => DrawGizmo(true);
     }
 }

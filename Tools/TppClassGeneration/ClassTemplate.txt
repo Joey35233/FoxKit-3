@@ -81,7 +81,7 @@ namespace {{ info.get_root_namespace() }}.{{ info.get_namespace_without_prefix()
 				{% endfor %}default:
 					{%- if info.name == "Entity" %}
 					foreach (var dynamicProperty in gameObject.GetComponents<DynamicProperty>())
-						if (dynamicProperty.Name == propertyName && dynamicProperty.GetContainerType() != PropertyInfo.ContainerType.StringMap)
+						if (dynamicProperty.Name == propertyName && dynamicProperty.GetPropertyInfo().Container != PropertyInfo.ContainerType.StringMap)
 							return dynamicProperty.GetElement(index);
 					{%- endif %}
 					{% if info.is_root() %}throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());{% else %}return base.GetPropertyElement(propertyName, index);{%- endif %}
@@ -98,7 +98,7 @@ namespace {{ info.get_root_namespace() }}.{{ info.get_namespace_without_prefix()
 				{% endfor %}default:
 					{%- if info.name == "Entity" %}
 					foreach (var dynamicProperty in gameObject.GetComponents<DynamicProperty>())
-						if (dynamicProperty.Name == propertyName && dynamicProperty.GetContainerType() == PropertyInfo.ContainerType.StringMap)
+						if (dynamicProperty.Name == propertyName && dynamicProperty.GetPropertyInfo().Container == PropertyInfo.ContainerType.StringMap)
 							return dynamicProperty.GetElement(key);
 					{%- endif %}
 					{% if info.is_root() %}throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());{% else %}return base.GetPropertyElement(propertyName, key);{%- endif %}
@@ -136,7 +136,7 @@ namespace {{ info.get_root_namespace() }}.{{ info.get_namespace_without_prefix()
 				default:
 					{%- if info.name == "Entity" %}
 					foreach (var dynamicProperty in gameObject.GetComponents<DynamicProperty>())
-						if (dynamicProperty.Name == propertyName && dynamicProperty.GetContainerType() != PropertyInfo.ContainerType.StringMap)
+						if (dynamicProperty.Name == propertyName && dynamicProperty.GetPropertyInfo().Container != PropertyInfo.ContainerType.StringMap)
 						{
 							dynamicProperty.SetElement(index, value);
 							return;
@@ -161,7 +161,7 @@ namespace {{ info.get_root_namespace() }}.{{ info.get_namespace_without_prefix()
 				{% endfor %}default:
 					{%- if info.name == "Entity" %}
 					foreach (var dynamicProperty in gameObject.GetComponents<DynamicProperty>())
-						if (dynamicProperty.Name == propertyName && dynamicProperty.GetContainerType() == PropertyInfo.ContainerType.StringMap)
+						if (dynamicProperty.Name == propertyName && dynamicProperty.GetPropertyInfo().Container == PropertyInfo.ContainerType.StringMap)
 						{
 							dynamicProperty.SetElement(key, value);
 							return;
