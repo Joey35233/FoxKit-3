@@ -1,11 +1,13 @@
 using Fox.Fio;
 using Fox;
 using System;
+using System.Collections.Generic;
 using Unity.Collections;
 using UnityEditor;
 using UnityEditor.AssetImporters;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.Windows;
 
 namespace Fox.Gr
 {
@@ -336,6 +338,15 @@ namespace Fox.Gr
             return box;
         }
 
+        private static Dictionary<StrCode, string> HashDictionary = new Dictionary<StrCode, string>();
+
+        static ModelFileImporter()
+        {
+            string[] strings = System.IO.File.ReadAllLines("Assets/Fox/Gr/Model/fmdl_dictionary.txt");
+            foreach (string line in strings)
+                HashDictionary[new StrCode(line)] = line;
+        }
+
         public override void OnImportAsset(AssetImportContext context)
         {
             using var reader = new FileStreamReader(System.IO.File.OpenRead(assetPath));
@@ -399,7 +410,7 @@ namespace Fox.Gr
                         return;
                     StrCode nameHash = ReadNameForIndex(ref def, reader, nameIndex);
 
-                    var bone = new GameObject(nameHash.ToString());
+                    var bone = new GameObject(HashDictionary.TryGetValue(nameHash, out string boneName) ? boneName : nameHash.ToString());
                     bones[i] = bone.transform;
 
                     short parentIndex = reader.ReadInt16();
@@ -464,7 +475,7 @@ namespace Fox.Gr
                     if (flags.HasFlag(MeshGroupHeaderFlags.B))
                         logWarning("Mesh has blend shapes flag.");
 
-                    var meshGroup = new GameObject(nameHash.ToString());
+                    var meshGroup = new GameObject(HashDictionary.TryGetValue(nameHash, out string meshName) ? meshName : nameHash.ToString());
                     meshGroups[i] = meshGroup;
 
                     if (flags.HasFlag(MeshGroupHeaderFlags.Invisible))
