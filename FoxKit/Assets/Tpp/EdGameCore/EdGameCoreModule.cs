@@ -524,13 +524,13 @@ namespace Tpp.EdGameCore
 
                 CreateParameterFunc = (preset) =>
                 {
-                    var param = new UnityEngine.GameObject().AddComponent<Tpp.Radio.TppEspionageRadioSystemParameter>();
+                    var param = new UnityEngine.GameObject().AddComponent<Tpp.GameCore.TppEspionageRadioSystemParameter>();
                    
                     return param;
                 },
                 CreateLocatorParameterFunc = (preset) =>
                 {
-                    var param = new UnityEngine.GameObject().AddComponent<Tpp.Radio.TppEspionageRadioLocatorParameter>();
+                    var param = new UnityEngine.GameObject().AddComponent<Tpp.GameCore.TppEspionageRadioLocatorParameter>();
 
                     return param;
                 },
@@ -974,13 +974,13 @@ namespace Tpp.EdGameCore
 
                 CreateParameterFunc = (preset) =>
                 {
-                    var param = new UnityEngine.GameObject().AddComponent<Tpp.MarkerLocator.TppMarker2LocatorSystemParameter>();
+                    var param = new UnityEngine.GameObject().AddComponent<Tpp.GameCore.TppMarker2LocatorSystemParameter>();
 
                     return param;
                 },
                 CreateLocatorParameterFunc = (preset) =>
                 {
-                    var param = new UnityEngine.GameObject().AddComponent<Tpp.MarkerLocator.TppMarker2LocatorParameter> ();
+                    var param = new UnityEngine.GameObject().AddComponent<Tpp.GameCore.TppMarker2LocatorParameter> ();
 
                     return param;
                 },

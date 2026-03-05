@@ -24,7 +24,7 @@ def load_definitions (path, extraPath):
             properties = {}
             for property in entry["properties"]:
                 properties[property["name"]] = PropertyInfo(property["name"], property["type"], property["offset"], property["arraySize"], property["container"], property["ptrType"], property["enum"], property["exportFlag"], entry["name"], result)
-            result[entry["name"]] = EntityInfo(entry["name"], entry["namespace"], entry["parent"], entry["category"], entry["version"], entry["id"], properties, result)
+            result[entry["name"]] = EntityInfo(entry["name"], entry["namespace"], entry["submodule"], entry["parent"], entry["category"], entry["version"], entry["id"], properties, result)
             
     with open(extraPath) as json_file:
         data = json.load(json_file)
@@ -38,7 +38,7 @@ def load_definitions (path, extraPath):
                 return {}
 
             else:
-                result[entry["name"]] = EntityInfo(entry["name"], entry["namespace"], entry["parent"], entry["category"], entry["version"], entry["id"], properties, result)
+                result[entry["name"]] = EntityInfo(entry["name"], entry["namespace"], entry["submodule"], entry["parent"], entry["category"], entry["version"], entry["id"], properties, result)
 
     return result
 
@@ -139,4 +139,4 @@ def make_enum_output_path (type_name, type_root_namespace, type_namespace):
     return f'../{type_root_namespace}/{type_namespace}/Generated/Enums/{type_name}.generated.cs'
 
 generate_classes()
-# generate_enums()
+generate_enums()

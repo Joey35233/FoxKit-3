@@ -5,6 +5,7 @@
     "id": 0,
     "name": "GsRouteData",
     "namespace": "GameService",
+    "submodule": "GameService",
     "parent": "GraphxSpatialGraphData",
     "properties": [],
     "version": 0
@@ -15,6 +16,7 @@
     "id": 0,
     "name": "GsRouteDataEdge",
     "namespace": "GameService",
+    "submodule": "GameService",
     "parent": "GraphxSpatialGraphDataEdge",
     "properties": [
       {
@@ -37,6 +39,7 @@
     "id": 0,
     "name": "GsRouteDataNode",
     "namespace": "GameService",
+    "submodule": "GameService",
     "parent": "GraphxSpatialGraphDataNode",
     "properties": [
       {
@@ -59,6 +62,7 @@
     "id": 0,
     "name": "GsRouteDataRouteEventAimPoint",
     "namespace": "GameService",
+    "submodule": "GameService",
     "parent": "DataElement",
     "properties": [],
     "version": 0
@@ -69,6 +73,7 @@
     "id": 0,
     "name": "GsRouteDataRtEvAimPointCharacter",
     "namespace": "GameService",
+    "submodule": "GameService",
     "parent": "GsRouteDataRouteEventAimPoint",
     "properties": [
       {
@@ -91,6 +96,7 @@
     "id": 0,
     "name": "GsRouteDataRtEvAimPointNoTarget",
     "namespace": "GameService",
+    "submodule": "GameService",
     "parent": "GsRouteDataRouteEventAimPoint",
     "properties": [],
     "version": 0
@@ -101,6 +107,7 @@
     "id": 0,
     "name": "GsRouteDataRtEvAimPointRouteAsObject",
     "namespace": "GameService",
+    "submodule": "GameService",
     "parent": "GsRouteDataRouteEventAimPoint",
     "properties": [
       {
@@ -123,6 +130,7 @@
     "id": 0,
     "name": "GsRouteDataRtEvAimPointRouteAsSightMovePath",
     "namespace": "GameService",
+    "submodule": "GameService",
     "parent": "GsRouteDataRouteEventAimPoint",
     "properties": [
       {
@@ -145,6 +153,7 @@
     "id": 0,
     "name": "GsRouteDataRtEvAimPointStaticPoint",
     "namespace": "GameService",
+    "submodule": "GameService",
     "parent": "GsRouteDataRouteEventAimPoint",
     "properties": [
       {
@@ -167,6 +176,7 @@
     "id": 0,
     "name": "GsRouteDataRouteEvent",
     "namespace": "GameService",
+    "submodule": "GameService",
     "parent": "DataElement",
     "properties": [
       {
@@ -189,6 +199,7 @@
     "id": 0,
     "name": "GsRouteDataNodeEvent",
     "namespace": "GameService",
+    "submodule": "GameService",
     "parent": "GsRouteDataRouteEvent",
     "properties": [
       {
@@ -233,6 +244,7 @@
     "id": 0,
     "name": "GsRouteDataEdgeEvent",
     "namespace": "GameService",
+    "submodule": "GameService",
     "parent": "GsRouteDataRouteEvent",
     "properties": [],
     "version": 0
@@ -243,6 +255,7 @@
     "id": 0,
     "name": "TppRoutePeep1NodeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataNodeEvent",
     "properties": [
       {
@@ -265,6 +278,7 @@
     "id": 0,
     "name": "TppRouteUseFlashLightAlwaysNodeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataNodeEvent",
     "properties": [
       {
@@ -287,6 +301,7 @@
     "id": 0,
     "name": "TppRoutePermitToGetOffNodeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataNodeEvent",
     "properties": [
       {
@@ -309,6 +324,7 @@
     "id": 0,
     "name": "TppRouteUnknown2358641809NodeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataNodeEvent",
     "properties": [
       {
@@ -331,6 +347,7 @@
     "id": 0,
     "name": "TppRouteVehicleAntiPlayerFireNodeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataNodeEvent",
     "properties": [
       {
@@ -353,6 +370,7 @@
     "id": 0,
     "name": "TppRouteSkullFaceStandByVehicleNodeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataNodeEvent",
     "properties": [
       {
@@ -375,6 +393,7 @@
     "id": 0,
     "name": "TppRouteUnknown3589755714NodeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataNodeEvent",
     "properties": [
       {
@@ -397,6 +416,7 @@
     "id": 0,
     "name": "TppRouteSleepOnSofaNodeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataNodeEvent",
     "properties": [
       {
@@ -419,6 +439,7 @@
     "id": 0,
     "name": "TppRouteDisableStealthModeNodeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataNodeEvent",
     "properties": [
       {
@@ -441,6 +462,7 @@
     "id": 0,
     "name": "TppRouteBreakSteelTowerNodeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataNodeEvent",
     "properties": [
       {
@@ -463,6 +485,7 @@
     "id": 0,
     "name": "TppRouteCautionNodeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataNodeEvent",
     "properties": [
       {
@@ -485,6 +508,7 @@
     "id": 0,
     "name": "TppRouteCautionIdleActNodeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataNodeEvent",
     "properties": [
       {
@@ -518,6 +542,7 @@
     "id": 0,
     "name": "TppRouteCautionSquatFireNodeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataNodeEvent",
     "properties": [
       {
@@ -540,6 +565,7 @@
     "id": 0,
     "name": "TppRouteCautionSquatIdleNodeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataNodeEvent",
     "properties": [
       {
@@ -562,6 +588,7 @@
     "id": 0,
     "name": "TppRouteCautionSquatIdleAimNodeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataNodeEvent",
     "properties": [
       {
@@ -584,6 +611,7 @@
     "id": 0,
     "name": "TppRouteCautionStandFireNodeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataNodeEvent",
     "properties": [
       {
@@ -606,6 +634,7 @@
     "id": 0,
     "name": "TppRouteCautionStandIdleNodeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataNodeEvent",
     "properties": [
       {
@@ -628,6 +657,7 @@
     "id": 0,
     "name": "TppRouteCautionStandIdleAimNodeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataNodeEvent",
     "properties": [
       {
@@ -650,6 +680,7 @@
     "id": 0,
     "name": "TppRouteCautionStandIdleAimCarryingNodeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataNodeEvent",
     "properties": [
       {
@@ -672,6 +703,7 @@
     "id": 0,
     "name": "TppRouteCautionStandIdleReadyNodeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataNodeEvent",
     "properties": [
       {
@@ -694,6 +726,7 @@
     "id": 0,
     "name": "TppRouteCautionStandIdleSearchNodeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataNodeEvent",
     "properties": [
       {
@@ -716,6 +749,7 @@
     "id": 0,
     "name": "TppRouteCloseDoorNodeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataNodeEvent",
     "properties": [
       {
@@ -738,6 +772,7 @@
     "id": 0,
     "name": "TppRouteConversationIdleNodeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataNodeEvent",
     "properties": [
       {
@@ -782,6 +817,7 @@
     "id": 0,
     "name": "TppRouteCurtainInNodeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataNodeEvent",
     "properties": [
       {
@@ -804,6 +840,7 @@
     "id": 0,
     "name": "TppRouteCurtainOutNodeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataNodeEvent",
     "properties": [
       {
@@ -826,6 +863,7 @@
     "id": 0,
     "name": "TppRouteDemoNodeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataNodeEvent",
     "properties": [
       {
@@ -848,6 +886,7 @@
     "id": 0,
     "name": "TppRouteDropPointNodeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataNodeEvent",
     "properties": [
       {
@@ -870,6 +909,7 @@
     "id": 0,
     "name": "TppRouteFireNodeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataNodeEvent",
     "properties": [
       {
@@ -892,6 +932,7 @@
     "id": 0,
     "name": "TppRouteHeliIdleNodeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataNodeEvent",
     "properties": [
       {
@@ -914,6 +955,7 @@
     "id": 0,
     "name": "TppRouteHoveringNodeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataNodeEvent",
     "properties": [
       {
@@ -936,6 +978,7 @@
     "id": 0,
     "name": "TppRouteKillNodeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataNodeEvent",
     "properties": [
       {
@@ -958,6 +1001,7 @@
     "id": 0,
     "name": "TppRouteOnBaseRouteNodeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataNodeEvent",
     "properties": [
       {
@@ -980,6 +1024,7 @@
     "id": 0,
     "name": "TppRouteOnTheHillNodeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataNodeEvent",
     "properties": [
       {
@@ -1002,6 +1047,7 @@
     "id": 0,
     "name": "TppRouteOpenDoorNodeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataNodeEvent",
     "properties": [
       {
@@ -1024,6 +1070,7 @@
     "id": 0,
     "name": "TppRoutePileBunkerNodeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataNodeEvent",
     "properties": [
       {
@@ -1046,6 +1093,7 @@
     "id": 0,
     "name": "TppRoutePickUpHoneyBeeNodeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataNodeEvent",
     "properties": [
       {
@@ -1068,6 +1116,7 @@
     "id": 0,
     "name": "TppRoutePutDownHoneyBeeNodeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataNodeEvent",
     "properties": [
       {
@@ -1090,6 +1139,7 @@
     "id": 0,
     "name": "TppRoutePutHostageInVehicleNodeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataNodeEvent",
     "properties": [
       {
@@ -1134,6 +1184,7 @@
     "id": 0,
     "name": "TppRouteRecoveryNodeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataNodeEvent",
     "properties": [
       {
@@ -1156,6 +1207,7 @@
     "id": 0,
     "name": "TppRouteRelaxedIdleActNodeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataNodeEvent",
     "properties": [
       {
@@ -1189,6 +1241,7 @@
     "id": 0,
     "name": "TppRouteRelaxedStandIdleNodeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataNodeEvent",
     "properties": [
       {
@@ -1211,6 +1264,7 @@
     "id": 0,
     "name": "TppRouteRideVehicleNodeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataNodeEvent",
     "properties": [
       {
@@ -1233,6 +1287,7 @@
     "id": 0,
     "name": "TppRouteSaluteNodeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataNodeEvent",
     "properties": [
       {
@@ -1255,6 +1310,7 @@
     "id": 0,
     "name": "TppRouteSaluteGreetingNodeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataNodeEvent",
     "properties": [
       {
@@ -1277,6 +1333,7 @@
     "id": 0,
     "name": "TppRouteSearchMissileNodeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataNodeEvent",
     "properties": [
       {
@@ -1299,6 +1356,7 @@
     "id": 0,
     "name": "TppRouteSendMessageNodeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataNodeEvent",
     "properties": [
       {
@@ -1343,6 +1401,7 @@
     "id": 0,
     "name": "TppRouteSetTargetSpeedNodeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataNodeEvent",
     "properties": [
       {
@@ -1365,6 +1424,7 @@
     "id": 0,
     "name": "TppRouteSitInChairNodeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataNodeEvent",
     "properties": [
       {
@@ -1387,6 +1447,7 @@
     "id": 0,
     "name": "TppRouteSnipeNodeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataNodeEvent",
     "properties": [
       {
@@ -1409,6 +1470,7 @@
     "id": 0,
     "name": "TppRouteStandIdleNodeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataNodeEvent",
     "properties": [
       {
@@ -1431,6 +1493,7 @@
     "id": 0,
     "name": "TppRouteStandSearchNodeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataNodeEvent",
     "properties": [
       {
@@ -1453,6 +1516,7 @@
     "id": 0,
     "name": "TppRouteSupineSnipeNodeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataNodeEvent",
     "properties": [
       {
@@ -1475,6 +1539,7 @@
     "id": 0,
     "name": "TppRouteSwitchRouteNodeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataNodeEvent",
     "properties": [
       {
@@ -1519,6 +1584,7 @@
     "id": 0,
     "name": "TppRouteSyncRouteNodeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataNodeEvent",
     "properties": [
       {
@@ -1552,6 +1618,7 @@
     "id": 0,
     "name": "TppRouteTakeHostageOutOfVehicleNodeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataNodeEvent",
     "properties": [
       {
@@ -1596,6 +1663,7 @@
     "id": 0,
     "name": "TppRouteUseFlashLightNodeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataNodeEvent",
     "properties": [
       {
@@ -1618,6 +1686,7 @@
     "id": 0,
     "name": "TppRouteUseSearchLightNodeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataNodeEvent",
     "properties": [
       {
@@ -1640,6 +1709,7 @@
     "id": 0,
     "name": "TppRouteVanishNodeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataNodeEvent",
     "properties": [
       {
@@ -1662,6 +1732,7 @@
     "id": 0,
     "name": "TppRouteVehicleFireNodeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataNodeEvent",
     "properties": [
       {
@@ -1684,6 +1755,7 @@
     "id": 0,
     "name": "TppRouteVehicleGetInNodeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataNodeEvent",
     "properties": [
       {
@@ -1706,6 +1778,7 @@
     "id": 0,
     "name": "TppRouteVehicleGetOffNodeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataNodeEvent",
     "properties": [
       {
@@ -1728,6 +1801,7 @@
     "id": 0,
     "name": "TppRouteVehicleGetOutNodeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataNodeEvent",
     "properties": [
       {
@@ -1750,6 +1824,7 @@
     "id": 0,
     "name": "TppRouteVehicleIdleNodeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataNodeEvent",
     "properties": [
       {
@@ -1772,6 +1847,7 @@
     "id": 0,
     "name": "TppRouteWaitNodeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataNodeEvent",
     "properties": [
       {
@@ -1794,6 +1870,7 @@
     "id": 0,
     "name": "TppRouteWaitIdleNodeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataNodeEvent",
     "properties": [
       {
@@ -1816,6 +1893,7 @@
     "id": 0,
     "name": "TppRouteWalkerGearCautionIdleNodeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataNodeEvent",
     "properties": [
       {
@@ -1838,6 +1916,7 @@
     "id": 0,
     "name": "TppRouteWalkerGearRelaxedIdleNodeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataNodeEvent",
     "properties": [
       {
@@ -1860,6 +1939,7 @@
     "id": 0,
     "name": "TppRouteUnknown41204288EdgeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataEdgeEvent",
     "properties": [
       {
@@ -1893,6 +1973,7 @@
     "id": 0,
     "name": "TppRouteAllEdgeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataEdgeEvent",
     "properties": [
       {
@@ -1915,6 +1996,7 @@
     "id": 0,
     "name": "TppRouteCarryHoneyBeeEdgeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataEdgeEvent",
     "properties": [
       {
@@ -1937,6 +2019,7 @@
     "id": 0,
     "name": "TppRouteCautionDashEdgeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataEdgeEvent",
     "properties": [
       {
@@ -1959,6 +2042,7 @@
     "id": 0,
     "name": "TppRouteCautionRunEdgeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataEdgeEvent",
     "properties": [
       {
@@ -1981,6 +2065,7 @@
     "id": 0,
     "name": "TppRouteCautionRunAimEdgeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataEdgeEvent",
     "properties": [
       {
@@ -2003,6 +2088,7 @@
     "id": 0,
     "name": "TppRouteCautionStandWalkReadyEdgeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataEdgeEvent",
     "properties": [
       {
@@ -2025,6 +2111,7 @@
     "id": 0,
     "name": "TppRouteCautionWalkEdgeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataEdgeEvent",
     "properties": [
       {
@@ -2047,6 +2134,7 @@
     "id": 0,
     "name": "TppRouteCautionWalkAimEdgeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataEdgeEvent",
     "properties": [
       {
@@ -2069,6 +2157,7 @@
     "id": 0,
     "name": "TppRouteCautionWalkAimFrontEdgeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataEdgeEvent",
     "properties": [
       {
@@ -2091,6 +2180,7 @@
     "id": 0,
     "name": "TppRouteCautionWalkFireEdgeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataEdgeEvent",
     "properties": [
       {
@@ -2113,6 +2203,7 @@
     "id": 0,
     "name": "TppRouteCautionWalkSearchEdgeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataEdgeEvent",
     "properties": [
       {
@@ -2135,6 +2226,7 @@
     "id": 0,
     "name": "TppRouteDashEdgeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataEdgeEvent",
     "properties": [
       {
@@ -2157,6 +2249,7 @@
     "id": 0,
     "name": "TppRouteForwardChangeSpeedEdgeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataEdgeEvent",
     "properties": [
       {
@@ -2179,6 +2272,7 @@
     "id": 0,
     "name": "TppRouteJumpOnlyEdgeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataEdgeEvent",
     "properties": [
       {
@@ -2201,6 +2295,7 @@
     "id": 0,
     "name": "TppRouteJumpWalkEdgeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataEdgeEvent",
     "properties": [
       {
@@ -2223,6 +2318,7 @@
     "id": 0,
     "name": "TppRouteMoveEdgeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataEdgeEvent",
     "properties": [
       {
@@ -2245,6 +2341,7 @@
     "id": 0,
     "name": "TppRouteMoveFastEdgeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataEdgeEvent",
     "properties": [
       {
@@ -2267,6 +2364,7 @@
     "id": 0,
     "name": "TppRouteMoveVeryFastEdgeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataEdgeEvent",
     "properties": [
       {
@@ -2289,6 +2387,7 @@
     "id": 0,
     "name": "TppRouteMoveNormalEdgeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataEdgeEvent",
     "properties": [
       {
@@ -2311,6 +2410,7 @@
     "id": 0,
     "name": "TppRouteMoveSlowEdgeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataEdgeEvent",
     "properties": [
       {
@@ -2333,6 +2433,7 @@
     "id": 0,
     "name": "TppRouteNoneEdgeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataEdgeEvent",
     "properties": [
       {
@@ -2355,6 +2456,7 @@
     "id": 0,
     "name": "TppRouteNormalEdgeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataEdgeEvent",
     "properties": [
       {
@@ -2377,6 +2479,7 @@
     "id": 0,
     "name": "TppRoutePermitGettingOffEdgeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataEdgeEvent",
     "properties": [
       {
@@ -2399,6 +2502,7 @@
     "id": 0,
     "name": "TppRouteRelaxedRunEdgeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataEdgeEvent",
     "properties": [
       {
@@ -2421,6 +2525,7 @@
     "id": 0,
     "name": "TppRouteRelaxedStandWalkEdgeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataEdgeEvent",
     "properties": [
       {
@@ -2443,6 +2548,7 @@
     "id": 0,
     "name": "TppRouteRelaxedStandWalkActEdgeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataEdgeEvent",
     "properties": [
       {
@@ -2465,6 +2571,7 @@
     "id": 0,
     "name": "TppRouteRelaxedWalkEdgeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataEdgeEvent",
     "properties": [
       {
@@ -2487,6 +2594,7 @@
     "id": 0,
     "name": "TppRouteRelaxedWalkActEdgeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataEdgeEvent",
     "properties": [
       {
@@ -2509,6 +2617,7 @@
     "id": 0,
     "name": "TppRouteRouteMoveEdgeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataEdgeEvent",
     "properties": [
       {
@@ -2531,6 +2640,7 @@
     "id": 0,
     "name": "TppRouteRouteMoveFreeEdgeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataEdgeEvent",
     "properties": [
       {
@@ -2553,6 +2663,7 @@
     "id": 0,
     "name": "TppRouteRunOnlyEdgeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataEdgeEvent",
     "properties": [
       {
@@ -2575,6 +2686,7 @@
     "id": 0,
     "name": "TppRouteRunWalkEdgeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataEdgeEvent",
     "properties": [
       {
@@ -2597,6 +2709,7 @@
     "id": 0,
     "name": "TppRouteStairsDownEdgeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataEdgeEvent",
     "properties": [
       {
@@ -2619,6 +2732,7 @@
     "id": 0,
     "name": "TppRouteVehicleBackFastEdgeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataEdgeEvent",
     "properties": [
       {
@@ -2652,6 +2766,7 @@
     "id": 0,
     "name": "TppRouteVehicleBackNormalEdgeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataEdgeEvent",
     "properties": [
       {
@@ -2685,6 +2800,7 @@
     "id": 0,
     "name": "TppRouteVehicleBackSlowEdgeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataEdgeEvent",
     "properties": [
       {
@@ -2718,6 +2834,7 @@
     "id": 0,
     "name": "TppRouteVehicleMoveFastEdgeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataEdgeEvent",
     "properties": [
       {
@@ -2751,6 +2868,7 @@
     "id": 0,
     "name": "TppRouteVehicleMoveNormalEdgeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataEdgeEvent",
     "properties": [
       {
@@ -2784,6 +2902,7 @@
     "id": 0,
     "name": "TppRouteVehicleMoveSlowEdgeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataEdgeEvent",
     "properties": [
       {
@@ -2817,6 +2936,7 @@
     "id": 0,
     "name": "TppRouteWalkEdgeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataEdgeEvent",
     "properties": [
       {
@@ -2839,6 +2959,7 @@
     "id": 0,
     "name": "TppRouteWalkOnlyEdgeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataEdgeEvent",
     "properties": [
       {
@@ -2861,6 +2982,7 @@
     "id": 0,
     "name": "TppRouteWalkerGearCautionDashEdgeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataEdgeEvent",
     "properties": [
       {
@@ -2883,6 +3005,7 @@
     "id": 0,
     "name": "TppRouteWalkerGearCautionRunEdgeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataEdgeEvent",
     "properties": [
       {
@@ -2905,6 +3028,7 @@
     "id": 0,
     "name": "TppRouteWalkerGearCautionWalkEdgeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataEdgeEvent",
     "properties": [
       {
@@ -2927,6 +3051,7 @@
     "id": 0,
     "name": "TppRouteWalkerGearRelaxedRunEdgeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataEdgeEvent",
     "properties": [
       {
@@ -2949,6 +3074,7 @@
     "id": 0,
     "name": "TppRouteWalkerGearRelaxedWalkEdgeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataEdgeEvent",
     "properties": [
       {
@@ -2971,6 +3097,7 @@
     "id": 0,
     "name": "TppRouteEMPTY_STRINGEdgeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataEdgeEvent",
     "properties": [
       {
@@ -2993,6 +3120,7 @@
     "id": 0,
     "name": "TppRoutechaseEdgeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataEdgeEvent",
     "properties": [
       {
@@ -3015,6 +3143,7 @@
     "id": 0,
     "name": "TppRouteLOWERCASE_moveEdgeEvent",
     "namespace": "TppGameKit",
+    "submodule": "TppGameKit",
     "parent": "GsRouteDataEdgeEvent",
     "properties": [
       {

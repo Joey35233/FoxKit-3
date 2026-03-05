@@ -1,15 +1,16 @@
 class EntityInfo:
     """Entity class metadata."""
 
-    def __init__(self, name, namespace, parent, category, version, id, properties, definitions):
+    def __init__(self, name, namespace, submodule, parent, category, version, id, properties, definitions):
         """Creates a new EntityInfo.
 
         Args:
                 name (str): Name of the class.
                 namespace (str): The class's namespace.
+                submodule (str): Name from string passed to EntityInfo constructor, often aligns to module name.
                 parent (str): Name of the superclass, or None if the class is a root class.
                 category (str): The class's category, or None if there is no category.
-                category (int): The class's version.
+                version (int): The class's version.
                 id (int): The class's id.
                 properties (dict): The class's static properties.
                 definitions (dict): Dictionary of all EntityInfos.
@@ -17,6 +18,7 @@ class EntityInfo:
         """
         self.name = name
         self.namespace = namespace
+        self.submodule = submodule
         self.parent = parent
         self.category = category
         self.version = version
@@ -120,4 +122,4 @@ class EntityInfo:
         return remove_prefix(remove_prefix(self.namespace, "Tpp"), "Fox")
     
     def get_add_component_name(self):
-        return f'{self.namespace}/{self.name}'
+        return f'{self.submodule}/{self.name}'
