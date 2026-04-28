@@ -1,9 +1,4 @@
-using System;
-using Fox.Core;
-using Fox.Core.Utils;
 using Fox.Gr;
-using PlasticPipe.Tube;
-using UnityEditor;
 using UnityEngine;
 
 namespace Tpp.GameKit
