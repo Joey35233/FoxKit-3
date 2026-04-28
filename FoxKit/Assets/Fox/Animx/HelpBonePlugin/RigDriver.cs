@@ -1,4 +1,5 @@
 using Fox;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Animations;
 using UnityEngine.Animations.Rigging;
@@ -105,7 +106,7 @@ namespace Fox.Animx
             {
                 case DriverUnitAction.RotATrn:
                 {
-                    Quaternion source_lr = GetLocalRotation(Source.GetRotation(stream), SourceParent.IsValid(stream) ? SourceParent.GetRotation(stream) : null);
+                    Quaternion source_lr = GetLocalRot(Source.GetRotation(stream), SourceParent.IsValid(stream) ? SourceParent.GetRotation(stream) : null);
 
                     float cosHalfTheta = Mathf.Min(Mathf.Abs(source_lr.w), 1);
 
@@ -114,7 +115,7 @@ namespace Fox.Animx
                     float axisValue = Mathf.Clamp(theta * Weight, LimitMin, LimitMax);
 
                     Vector3 target_lp = TargetLocalBindPosition;
-                    target_lp[(int)Axis] = axisValue * 0.1f;
+                    target_lp[(int)Axis] = axisValue * 0.1f; // TODO: Handedness?
 
                     TargetParent.GetGlobalTR(stream, out Vector3 targetParent_p, out Quaternion targetParent_r);
                     WriteLocalPos(Target, stream, targetParent_r, targetParent_p, target_lp);
@@ -124,11 +125,11 @@ namespace Fox.Animx
                 }
                 case DriverUnitAction.Rot:
                 {
-                    Quaternion source_lr = GetLocalRotation(Source.GetRotation(stream), SourceParent.IsValid(stream) ? SourceParent.GetRotation(stream) : null);
+                    Quaternion source_lr = GetLocalRot(Source.GetRotation(stream), SourceParent.IsValid(stream) ? SourceParent.GetRotation(stream) : null);
 
                     Vector3 target_lp = TargetLocalBindPosition;
 
-                    Quaternion target_lr = Quaternion.Normalize(Quaternion.SlerpUnclamped(Quaternion.identity, source_lr, Weight));
+                    Quaternion target_lr = SlerpWithNormalize(Weight, Quaternion.identity, source_lr);
 
                     TargetParent.GetGlobalTR(stream, out Vector3 targetParent_p, out Quaternion targetParent_r);
                     WriteLocalRotAndPos(Target, stream, targetParent_r, targetParent_p, target_lr, target_lp);
@@ -137,7 +138,7 @@ namespace Fox.Animx
                 }
                 case DriverUnitAction.RotATurnRot:
                 {
-                    Quaternion source_lr = GetLocalRotation(Source.GetRotation(stream), SourceParent.IsValid(stream) ? SourceParent.GetRotation(stream) : null);
+                    Quaternion source_lr = GetLocalRot(Source.GetRotation(stream), SourceParent.IsValid(stream) ? SourceParent.GetRotation(stream) : null);
 
                     float cosHalfTheta = Mathf.Min(Mathf.Abs(source_lr.w), 1);
 
@@ -146,9 +147,9 @@ namespace Fox.Animx
                     float axisValue = Mathf.Clamp(theta * Weight, LimitMin, LimitMax);
 
                     Vector3 target_lp = TargetLocalBindPosition;
-                    target_lp[(int)Axis] = axisValue * 0.1f;
+                    target_lp[(int)Axis] = axisValue * 0.1f; // TODO: Handedness?
 
-                    Quaternion target_lr = Quaternion.Normalize(Quaternion.SlerpUnclamped(Quaternion.identity, source_lr, WeightB));
+                    Quaternion target_lr = SlerpWithNormalize(WeightB, Quaternion.identity, source_lr);
 
                     TargetParent.GetGlobalTR(stream, out Vector3 targetParent_p, out Quaternion targetParent_r);
                     WriteLocalRotAndPos(Target, stream, targetParent_r, targetParent_p, target_lr, target_lp);
@@ -157,7 +158,7 @@ namespace Fox.Animx
                 }
                 case DriverUnitAction.BendATrn:
                 {
-                    Quaternion source_lr = GetLocalRotation(Source.GetRotation(stream), SourceParent.IsValid(stream) ? SourceParent.GetRotation(stream) : null);
+                    Quaternion source_lr = GetLocalRot(Source.GetRotation(stream), SourceParent.IsValid(stream) ? SourceParent.GetRotation(stream) : null);
 
                     Vector3 vecA_lv = source_lr * VectorA;
                     Quaternion vecA_dr = Quaternion.FromToRotation(VectorA, vecA_lv);
@@ -169,7 +170,7 @@ namespace Fox.Animx
                     float axisValue = Mathf.Clamp(theta * Weight, LimitMin, LimitMax);
 
                     Vector3 target_lp = TargetLocalBindPosition;
-                    target_lp[(int)Axis] = axisValue * 0.1f;
+                    target_lp[(int)Axis] = axisValue * 0.1f; // TODO: Handedness?
 
                     TargetParent.GetGlobalTR(stream, out Vector3 targetParent_p, out Quaternion targetParent_r);
                     WriteLocalPos(Target, stream, targetParent_r, targetParent_p, target_lp);
@@ -179,7 +180,7 @@ namespace Fox.Animx
                 }
                 case DriverUnitAction.Bend:
                 {
-                    Quaternion source_lr = GetLocalRotation(Source.GetRotation(stream), SourceParent.IsValid(stream) ? SourceParent.GetRotation(stream) : null);
+                    Quaternion source_lr = GetLocalRot(Source.GetRotation(stream), SourceParent.IsValid(stream) ? SourceParent.GetRotation(stream) : null);
 
                     Vector3 vecA_lv = source_lr * VectorA;
 
@@ -190,12 +191,12 @@ namespace Fox.Animx
                     Quaternion target_lr;
                     if (Weight < 0)
                     {
-                        target_lr = Quaternion.Normalize(Quaternion.SlerpUnclamped(Quaternion.identity, vecA_dr, -Weight));
+                        target_lr = SlerpWithNormalize(-Weight, Quaternion.identity, vecA_dr);
                         target_lr = Quaternion.Inverse(target_lr);
                     }
                     else
                     {
-                        target_lr = Quaternion.Normalize(Quaternion.SlerpUnclamped(Quaternion.identity, vecA_dr, Weight));
+                        target_lr = SlerpWithNormalize(Weight, Quaternion.identity, vecA_dr);
                     }
 
                     TargetParent.GetGlobalTR(stream, out Vector3 targetParent_p, out Quaternion targetParent_r);
@@ -205,7 +206,7 @@ namespace Fox.Animx
                 }
                 case DriverUnitAction.BendATrnBend:
                 {
-                    Quaternion source_lr = GetLocalRotation(Source.GetRotation(stream), SourceParent.IsValid(stream) ? SourceParent.GetRotation(stream) : null);
+                    Quaternion source_lr = GetLocalRot(Source.GetRotation(stream), SourceParent.IsValid(stream) ? SourceParent.GetRotation(stream) : null);
 
                     Vector3 vecA_lv = source_lr * VectorA;
                     Quaternion vecA_dr = Quaternion.FromToRotation(VectorA, vecA_lv);
@@ -217,17 +218,17 @@ namespace Fox.Animx
                     float axisValue = Mathf.Clamp(theta * Weight, LimitMin, LimitMax);
 
                     Vector3 target_lp = TargetLocalBindPosition;
-                    target_lp[(int)Axis] = (axisValue + Offset) * 0.1f;
+                    target_lp[(int)Axis] = (axisValue + Offset) * 0.1f; // TODO: Handedness?
 
                     Quaternion target_lr;
                     if (WeightB < 0)
                     {
-                        target_lr = Quaternion.Normalize(Quaternion.SlerpUnclamped(Quaternion.identity, vecA_dr, -WeightB));
+                        target_lr = SlerpWithNormalize(-WeightB, Quaternion.identity, vecA_dr);
                         target_lr = Quaternion.Inverse(target_lr);
                     }
                     else
                     {
-                        target_lr = Quaternion.Normalize(Quaternion.SlerpUnclamped(Quaternion.identity, vecA_dr, WeightB));
+                        target_lr = SlerpWithNormalize(WeightB, Quaternion.identity, vecA_dr);
                     }
 
                     TargetParent.GetGlobalTR(stream, out Vector3 targetParent_p, out Quaternion targetParent_r);
@@ -237,24 +238,24 @@ namespace Fox.Animx
                 }
                 case DriverUnitAction.Roll:
                 {
-                    Quaternion source_lr = GetLocalRotation(Source.GetRotation(stream), SourceParent.IsValid(stream) ? SourceParent.GetRotation(stream) : null);
+                    Quaternion source_lr = GetLocalRot(Source.GetRotation(stream), SourceParent.IsValid(stream) ? SourceParent.GetRotation(stream) : null);
 
                     Vector3 vecA_lv = source_lr * VectorA;
 
                     Vector3 target_lp = TargetLocalBindPosition;
 
                     Quaternion vecA_dr = Quaternion.Inverse(Quaternion.FromToRotation(VectorA, vecA_lv));
-                    Quaternion toVecASpace_r = vecA_dr * source_lr;
+                    Quaternion toVecASpace_r = vecA_dr * source_lr;  
 
                     Quaternion target_lr;
                     if (Weight < 0)
                     {
-                        target_lr = Quaternion.Normalize(Quaternion.SlerpUnclamped(Quaternion.identity, toVecASpace_r, -Weight));
+                        target_lr = SlerpWithNormalize(-Weight, Quaternion.identity, toVecASpace_r);
                         target_lr = Quaternion.Inverse(target_lr);
                     }
                     else
                     {
-                        target_lr = Quaternion.Normalize(Quaternion.SlerpUnclamped(Quaternion.identity, toVecASpace_r, Weight));
+                        target_lr = SlerpWithNormalize(Weight, Quaternion.identity, toVecASpace_r);
                     }
 
                     TargetParent.GetGlobalTR(stream, out Vector3 targetParent_p, out Quaternion targetParent_r);
@@ -264,35 +265,35 @@ namespace Fox.Animx
                 }
                 case DriverUnitAction.BendRoll:
                 {
-                    Quaternion source_lr = GetLocalRotation(Source.GetRotation(stream), SourceParent.IsValid(stream) ? SourceParent.GetRotation(stream) : null);
+                    Quaternion source_lr = GetLocalRot(Source.GetRotation(stream), SourceParent.IsValid(stream) ? SourceParent.GetRotation(stream) : null);
 
                     Vector3 vecA_lv = source_lr * VectorA;
 
                     Vector3 target_lp = TargetLocalBindPosition;
 
                     Quaternion vecA_dr = Quaternion.Inverse(Quaternion.FromToRotation(VectorA, vecA_lv));
-                    Quaternion toVecASpace_r = vecA_dr * source_lr;
+                    Quaternion toVecASpace_r = vecA_dr * source_lr; // Verified that this is the correct order
 
                     Quaternion lerpA_lr;
                     if (Weight < 0)
                     {
-                        lerpA_lr = Quaternion.Normalize(Quaternion.SlerpUnclamped(Quaternion.identity, vecA_dr, -Weight));
+                        lerpA_lr = SlerpWithNormalize(-Weight, Quaternion.identity, vecA_dr);
                         lerpA_lr = Quaternion.Inverse(lerpA_lr);
                     }
                     else
                     {
-                        lerpA_lr = Quaternion.Normalize(Quaternion.SlerpUnclamped(Quaternion.identity, vecA_dr, Weight));
+                        lerpA_lr = SlerpWithNormalize(Weight, Quaternion.identity, vecA_dr);
                     }
 
                     Quaternion lerpB_lr;
                     if (WeightB < 0)
                     {
-                        lerpB_lr = Quaternion.Normalize(Quaternion.SlerpUnclamped(Quaternion.identity, toVecASpace_r, -WeightB));
+                        lerpB_lr = SlerpWithNormalize(-WeightB, Quaternion.identity, toVecASpace_r);
                         lerpB_lr = Quaternion.Inverse(lerpB_lr);
                     }
                     else
                     {
-                        lerpB_lr = Quaternion.Normalize(Quaternion.SlerpUnclamped(Quaternion.identity, toVecASpace_r, WeightB));
+                        lerpB_lr = SlerpWithNormalize(WeightB, Quaternion.identity, toVecASpace_r);
                     }
 
                     Quaternion target_lr = lerpA_lr * lerpB_lr;
@@ -304,8 +305,8 @@ namespace Fox.Animx
                 }
                 case DriverUnitAction.RotRoll:
                 {
-                    Quaternion source_lr = GetLocalRotation(Source.GetRotation(stream), SourceParent.IsValid(stream) ? SourceParent.GetRotation(stream) : null);
-                    Quaternion source2_lr = GetLocalRotation(Source2.GetRotation(stream), Source2Parent.IsValid(stream) ? Source2Parent.GetRotation(stream) : null);
+                    Quaternion source_lr = GetLocalRot(Source.GetRotation(stream), SourceParent.IsValid(stream) ? SourceParent.GetRotation(stream) : null);
+                    Quaternion source2_lr = GetLocalRot(Source2.GetRotation(stream), Source2Parent.IsValid(stream) ? Source2Parent.GetRotation(stream) : null);
 
                     Vector3 vecA_l2v = source2_lr * VectorA;
 
@@ -317,26 +318,26 @@ namespace Fox.Animx
                     Quaternion lerp_lr;
                     if (WeightB < 0)
                     {
-                        lerp_lr = Quaternion.Normalize(Quaternion.SlerpUnclamped(Quaternion.identity, toVecASpace_r, -WeightB));
+                        lerp_lr = SlerpWithNormalize(-WeightB, Quaternion.identity, toVecASpace_r);
                         lerp_lr = Quaternion.Inverse(lerp_lr);
                     }
                     else
                     {
-                        lerp_lr = Quaternion.Normalize(Quaternion.SlerpUnclamped(Quaternion.identity, toVecASpace_r, WeightB));
+                        lerp_lr = SlerpWithNormalize(WeightB, Quaternion.identity, toVecASpace_r);
                     }
 
-                    Quaternion weightedSource_lr = Quaternion.Normalize(Quaternion.SlerpUnclamped(Quaternion.identity, source_lr, Weight));
+                    Quaternion weightedSource_lr = SlerpWithNormalize(Weight, Quaternion.identity, source_lr);
 
                     Quaternion target_lr = weightedSource_lr * lerp_lr;
 
                     TargetParent.GetGlobalTR(stream, out Vector3 targetParent_p, out Quaternion targetParent_r);
-                    WriteLocalRotAndPos(Target, stream, targetParent_r, targetParent_p, lerp_lr, target_lp);
+                    WriteLocalRotAndPos(Target, stream, targetParent_r, targetParent_p, target_lr, target_lp);
 
                     break;
                 }
                 case DriverUnitAction.PitchL:
                 {
-                    Quaternion source_lr = GetLocalRotation(Source.GetRotation(stream), SourceParent.IsValid(stream) ? SourceParent.GetRotation(stream) : null);
+                    Quaternion source_lr = GetLocalRot(Source.GetRotation(stream), SourceParent.IsValid(stream) ? SourceParent.GetRotation(stream) : null);
 
                     Vector3 vecA_lv = source_lr * VectorA;
 
@@ -354,25 +355,29 @@ namespace Fox.Animx
                 }
                 case DriverUnitAction.PitchA:
                 {
-                    Quaternion source_lr = GetLocalRotation(Source.GetRotation(stream), SourceParent.IsValid(stream) ? SourceParent.GetRotation(stream) : null);
+                    Quaternion source_lr = GetLocalRot(Source.GetRotation(stream), SourceParent.IsValid(stream) ? SourceParent.GetRotation(stream) : null);
 
                     Vector3 vecA_lv = source_lr * VectorA;
 
                     Vector3 target_lp = TargetLocalBindPosition;
 
                     float cosTheta = Vector3.Dot(vecA_lv, VectorB);
-                    float sinTheta = Vector3.Dot(Vector3.Cross(VectorB, VectorA), vecA_lv);
+                    float sinTheta = Vector3.Dot(-Fox.Math.FoxCross(VectorA, VectorB), vecA_lv); // TODO: Validate handedness
 
                     float thetaFromAtan = Mathf.Atan2(Mathf.Abs(cosTheta), Mathf.Abs(sinTheta) + 1e-10f);
-                    float scaledThetaFromAtan = (cosTheta < 0 ? -thetaFromAtan : thetaFromAtan) / Mathf.PI * 2;
+                    float scaledThetaFromAtan = thetaFromAtan / math.PIHALF;
+                    scaledThetaFromAtan = cosTheta < 0 ? -scaledThetaFromAtan : scaledThetaFromAtan;
 
-                    float doubleLen2 = 2 * Vector4.Dot(new Vector4(VectorA.x, VectorA.y, VectorA.z, 1.0f), new Vector4(vecA_lv.x, vecA_lv.y, vecA_lv.z, 1.0f));
-                    float newCosTheta = Mathf.Clamp(Mathf.Sqrt(Mathf.Max(doubleLen2, 0)) * 0.5f, -1, 1);
+                    // TODO: Clean up. This calculates angle between two vectors
+                    // Finds quaternion rotation from vec0 -> vec1 then extracts w component = cos(theta/2)
+                    float cosHalfAngleX2 = Mathf.Sqrt(Mathf.Max(2.0f * (1.0f + Vector3.Dot(VectorA, vecA_lv)), 0));
+                    float cosHalfAngle = Mathf.Clamp(cosHalfAngleX2 * 0.5f, -1.0f, 1.0f);
+                    float angle = Mathf.Acos(cosHalfAngle) * 2.0f;
+                        
+                    float theta = scaledThetaFromAtan * Weight * angle;
+                    theta = Mathf.Clamp(theta, LimitMin * Mathf.Deg2Rad, LimitMax * Mathf.Deg2Rad); // TODO: Ensure weight and min/max limits are proper deg/rad
 
-                    float theta = scaledThetaFromAtan * Weight * Mathf.Acos(newCosTheta) * 2;
-                    theta = Mathf.Clamp(theta, LimitMin * Mathf.Deg2Rad, LimitMax * Mathf.Deg2Rad);
-
-                    Quaternion target_lr = GetAxisRotation(Axis, theta);
+                    Quaternion target_lr = SetRot(Axis, theta);
 
                     TargetParent.GetGlobalTR(stream, out Vector3 targetParent_p, out Quaternion targetParent_r);
                     WriteLocalRotAndPos(Target, stream, targetParent_r, targetParent_p, target_lr, target_lp);
@@ -381,13 +386,13 @@ namespace Fox.Animx
                 }
                 case DriverUnitAction.RollPitchL:
                 {
-                    Quaternion source_lr = GetLocalRotation(Source.GetRotation(stream), SourceParent.IsValid(stream) ? SourceParent.GetRotation(stream) : null);
+                    Quaternion source_lr = GetLocalRot(Source.GetRotation(stream), SourceParent.IsValid(stream) ? SourceParent.GetRotation(stream) : null);
 
                     Vector3 vecA_lv = source_lr * VectorA;
 
                     float cosTheta = Vector3.Dot(vecA_lv, VectorB);
 
-                    float axisValue = Mathf.Clamp(cosTheta * WeightB, LimitMinB, LimitMaxB);
+                    float axisValue = Mathf.Clamp(cosTheta * WeightB, LimitMinB, LimitMaxB); // Don't convert to degrees for this one
                     Vector3 target_lp = TargetLocalBindPosition;
                     target_lp[(int)AxisB] = axisValue * 0.1f;
 
@@ -397,12 +402,12 @@ namespace Fox.Animx
                     Quaternion target_lr;
                     if (Weight < 0)
                     {
-                        target_lr = Quaternion.Normalize(Quaternion.SlerpUnclamped(Quaternion.identity, toVecASpace_r, -Weight));
+                        target_lr = SlerpWithNormalize(-Weight, Quaternion.identity, toVecASpace_r);
                         target_lr = Quaternion.Inverse(target_lr);
                     }
                     else
                     {
-                        target_lr = Quaternion.Normalize(Quaternion.SlerpUnclamped(Quaternion.identity, toVecASpace_r, Weight));
+                        target_lr = SlerpWithNormalize(Weight, Quaternion.identity, toVecASpace_r);
                     }
 
                     TargetParent.GetGlobalTR(stream, out Vector3 targetParent_p, out Quaternion targetParent_r);
@@ -412,7 +417,7 @@ namespace Fox.Animx
                 }
                 case DriverUnitAction.YawAPitchL:
                 {
-                    Quaternion source_lr = GetLocalRotation(Source.GetRotation(stream), SourceParent.IsValid(stream) ? SourceParent.GetRotation(stream) : null);
+                    Quaternion source_lr = GetLocalRot(Source.GetRotation(stream), SourceParent.IsValid(stream) ? SourceParent.GetRotation(stream) : null);
 
                     Vector3 vecA_lv = source_lr * VectorA;
 
@@ -422,20 +427,22 @@ namespace Fox.Animx
                     Vector3 target_lp = TargetLocalBindPosition;
                     target_lp[(int)AxisB] = axisValue * 0.1f;
 
-                    float sinTheta = Vector3.Dot(Vector3.Cross(VectorB, VectorA), vecA_lv);
+                    float sinTheta = Vector3.Dot(-Fox.Math.FoxCross(VectorA, VectorB), vecA_lv);
 
                     float thetaFromAtan = Mathf.Atan2(Mathf.Abs(cosTheta), Mathf.Abs(sinTheta) + 1e-10f);
-                    // Deviation - compare with 11
-                    float scaledThetaFromAtan = sinTheta < 0 ? (thetaFromAtan / Mathf.PI * 2.0f) - 1.0f : 1.0f - (thetaFromAtan / Mathf.PI * 2.0f);
-                    //
+                    float scaledThetaFromAtan = thetaFromAtan / math.PIHALF;
+                    scaledThetaFromAtan = sinTheta < 0 ? scaledThetaFromAtan - 1.0f : 1.0f - scaledThetaFromAtan;
 
-                    float doubleLen2 = 2 * Vector4.Dot(new Vector4(VectorA.x, VectorA.y, VectorA.z, 1.0f), new Vector4(vecA_lv.x, vecA_lv.y, vecA_lv.z, 1.0f));
-                    float newCosTheta = Mathf.Clamp(Mathf.Sqrt(Mathf.Max(doubleLen2, 0)) * 0.5f, -1, 1);
+                    // TODO: Clean up. This calculates angle between two vectors
+                    // Finds quaternion rotation from vec0 -> vec1 then extracts w component = cos(theta/2)
+                    float cosHalfAngleX2 = Mathf.Sqrt(Mathf.Max(2.0f * (1.0f + Vector3.Dot(VectorA, vecA_lv)), 0));
+                    float cosHalfAngle = Mathf.Clamp(cosHalfAngleX2 * 0.5f, -1.0f, 1.0f);
+                    float angle = Mathf.Acos(cosHalfAngle) * 2.0f;
 
-                    float theta = scaledThetaFromAtan * Weight * Mathf.Acos(newCosTheta) * 2;
-                    theta = Mathf.Clamp(theta, LimitMin * Mathf.Deg2Rad, LimitMax * Mathf.Deg2Rad);
+                    float theta = scaledThetaFromAtan * Weight * angle;
+                    theta = Mathf.Clamp(theta, LimitMin * Mathf.Deg2Rad, LimitMax * Mathf.Deg2Rad); // TODO: Ensure weight and min/max limits are proper deg/rad
 
-                    Quaternion target_lr = GetAxisRotation(Axis, theta);
+                    Quaternion target_lr = SetRot(Axis, theta);
 
                     TargetParent.GetGlobalTR(stream, out Vector3 targetParent_p, out Quaternion targetParent_r);
                     WriteLocalRotAndPos(Target, stream, targetParent_r, targetParent_p, target_lr, target_lp);
@@ -444,9 +451,9 @@ namespace Fox.Animx
                 }
                 case DriverUnitAction.YawAPitchA:
                 {
-                    Quaternion source_lr = GetLocalRotation(Source.GetRotation(stream), SourceParent.IsValid(stream) ? SourceParent.GetRotation(stream) : null);
+                    Quaternion source_lr = GetLocalRot(Source.GetRotation(stream), SourceParent.IsValid(stream) ? SourceParent.GetRotation(stream) : null);
 
-                    Vector3 aXb = Vector3.Cross(VectorA, VectorB);
+                    Vector3 aXb = Math.FoxCross(VectorA, VectorB);
 
                     Vector3 vecA_lv = source_lr * VectorA;
 
@@ -457,21 +464,21 @@ namespace Fox.Animx
                     float sinTheta = Vector3.Dot(-aXb, vecA_lv);
 
                     float thetaFromAtan = Mathf.Atan2(Mathf.Abs(cosTheta), Mathf.Abs(sinTheta) + 1e-10f);
-                    float scaledThetaFromAtan = thetaFromAtan / Mathf.PI * 2.0f;
-                    //float scaledThetaFromAtan = sinTheta < 0 ? (thetaFromAtan / Mathf.PI * 2.0f) - 1.0f : 1.0f - (thetaFromAtan / Mathf.PI * 2.0f);
+                    float scaledThetaFromAtan = thetaFromAtan / math.PIHALF;
 
-                    float doubleLen2 = 2 * Vector4.Dot(new Vector4(VectorA.x, VectorA.y, VectorA.z, 1.0f), new Vector4(vecA_lv.x, vecA_lv.y, vecA_lv.z, 1.0f));
-                    float newCosTheta = Mathf.Clamp(Mathf.Sqrt(Mathf.Max(doubleLen2, 0)) * 0.5f, -1, 1);
-
-                    float theta = Mathf.Acos(newCosTheta);
+                    // TODO: Clean up. This calculates angle between two vectors
+                    // Finds quaternion rotation from vec0 -> vec1 then extracts w component = cos(theta/2)
+                    float cosHalfAngleX2 = Mathf.Sqrt(Mathf.Max(2.0f * (1.0f + Vector3.Dot(VectorA, vecA_lv)), 0));
+                    float cosHalfAngle = Mathf.Clamp(cosHalfAngleX2 * 0.5f, -1.0f, 1.0f);
+                    float angle = Mathf.Acos(cosHalfAngle) * 2.0f;
 
                     float clampedScaledThetaFromAtanA = sinTheta < 0 ? scaledThetaFromAtan - 1.0f : 1.0f - scaledThetaFromAtan;
-                    float thetaA = clampedScaledThetaFromAtanA * Weight * theta * 2;
-                    float clampedThetaA = Mathf.Clamp(theta, LimitMin, LimitMax);
+                    float thetaA = clampedScaledThetaFromAtanA * Weight * angle;
+                    float clampedThetaA = Mathf.Clamp(thetaA, LimitMin, LimitMax);
 
                     float clampedScaledThetaFromAtanB = cosTheta < 0 ? -scaledThetaFromAtan : scaledThetaFromAtan;
-                    float thetaB = clampedScaledThetaFromAtanB * WeightB * theta * 2;
-                    float clampedThetaB = Mathf.Clamp(theta, LimitMinB, LimitMaxB);
+                    float thetaB = clampedScaledThetaFromAtanB * WeightB * angle;
+                    float clampedThetaB = Mathf.Clamp(thetaB, LimitMinB, LimitMaxB);
 
                     Quaternion target_lr = new Quaternion(0, 0, 0, 0);
                     switch (RotationMode)
@@ -485,14 +492,15 @@ namespace Fox.Animx
                             if (1e-10 <= c)
                             {
                                 float d = Mathf.Sin(c);
-                                float e = Mathf.Sin((1.0f / c) * clampedThetaB * Mathf.PI / 2.0f);
+                                float e = Mathf.Sin((1.0f / c) * clampedThetaB * math.PIHALF);
                                 b = e * d;
-                                float f = Mathf.Sin((1.0f / c) * clampedThetaA * (-Mathf.PI / 2.0f));
+                                float f = Mathf.Sin((1.0f / c) * clampedThetaA * -math.PIHALF);
                                 a = f * d;
                             }
 
                             float g = Mathf.Clamp01(1.0f - b * b - a * a);
-                            if (Mathf.PI / 2.0f <= c)
+                            g = Mathf.Sqrt(g);
+                            if (math.PIHALF <= c)
                                 g = -g;
 
                             Vector3 projectedVector = (g * VectorA) + (b * VectorB) + (a * aXb);
@@ -529,7 +537,7 @@ namespace Fox.Animx
                 }
                 case DriverUnitAction.Dircns:
                 {
-                    Quaternion source_lr = GetLocalRotation(Source.GetRotation(stream), SourceParent.IsValid(stream) ? SourceParent.GetRotation(stream) : null);
+                    Quaternion source_lr = GetLocalRot(Source.GetRotation(stream), SourceParent.IsValid(stream) ? SourceParent.GetRotation(stream) : null);
 
                     TargetParent.GetGlobalTR(stream, out Vector3 targetParent_p, out Quaternion targetParent_r);
                     WriteLocalPos(Target, stream, targetParent_r, targetParent_p, TargetLocalBindPosition);
@@ -547,7 +555,7 @@ namespace Fox.Animx
                 case DriverUnitAction.SwellRot:
                 case DriverUnitAction.SwellRot_Copy:
                 {
-                    Quaternion source_lr = GetLocalRotation(Source.GetRotation(stream), SourceParent.IsValid(stream) ? SourceParent.GetRotation(stream) : null);
+                    Quaternion source_lr = GetLocalRot(Source.GetRotation(stream), SourceParent.IsValid(stream) ? SourceParent.GetRotation(stream) : null);
 
                     Vector3 vecA_lv = source_lr * VectorA;
 
@@ -559,12 +567,12 @@ namespace Fox.Animx
                     Quaternion target_lr;
                     if (Weight < 0)
                     {
-                        target_lr = Quaternion.Normalize(Quaternion.SlerpUnclamped(Quaternion.identity, toVecASpace_r, -Weight));
+                        target_lr = SlerpWithNormalize(-Weight, Quaternion.identity, toVecASpace_r);
                         target_lr = Quaternion.Inverse(target_lr);
                     }
                     else
                     {
-                        target_lr = Quaternion.Normalize(Quaternion.SlerpUnclamped(Quaternion.identity, toVecASpace_r, Weight));
+                        target_lr = SlerpWithNormalize(Weight, Quaternion.identity, toVecASpace_r);
                     }
 
                     TargetParent.GetGlobalTR(stream, out Vector3 targetParent_p, out Quaternion targetParent_r);
@@ -580,7 +588,7 @@ namespace Fox.Animx
                 }
                 case DriverUnitAction.Mirror:
                 {
-                    Quaternion source_lr = GetLocalRotation(Source.GetRotation(stream), SourceParent.IsValid(stream) ? SourceParent.GetRotation(stream) : null);
+                    Quaternion source_lr = GetLocalRot(Source.GetRotation(stream), SourceParent.IsValid(stream) ? SourceParent.GetRotation(stream) : null);
 
                     Vector3 target_lp = TargetLocalBindPosition;
 
@@ -594,16 +602,16 @@ namespace Fox.Animx
             }
         }
 
-        private static Quaternion GetAxisRotation(DriverLimitAxis axis, float radians)
+        private static Quaternion SetRot(DriverLimitAxis axis, float radians)
         {
             switch (axis)
             {
                 case DriverLimitAxis.X:
-                    return RotateX(radians);
+                    return SetRotX(radians);
                 case DriverLimitAxis.Y:
-                    return RotateY(radians);
+                    return SetRotY(radians);
                 case DriverLimitAxis.Z:
-                    return RotateZ(radians);
+                    return SetRotZ(radians);
             }
 
             return Quaternion.identity;

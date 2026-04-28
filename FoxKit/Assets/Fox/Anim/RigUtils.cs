@@ -7,7 +7,12 @@ namespace Fox.Anim
     [Unity.Burst.BurstCompile]
     public static class RigUtils
     {
-        public static Quaternion GetLocalRotation(Quaternion childAbsolute, Quaternion? parentAbsolute)
+        public static Quaternion SlerpWithNormalize(float t, Quaternion unitQuat0, Quaternion unitQuat1)
+        {
+            return Quaternion.Normalize(Quaternion.Slerp(unitQuat0, unitQuat1, t));
+        }
+        
+        public static Quaternion GetLocalRot(Quaternion childAbsolute, Quaternion? parentAbsolute)
         {
             if (parentAbsolute is not Quaternion resolvedParentAbsolute)
                 return childAbsolute;
@@ -29,22 +34,22 @@ namespace Fox.Anim
             target.SetPosition(stream, (targetParentRotation * localPos) + targetParentPosition);
         }
 
-        public static Quaternion RotateX(float radians)
+        public static Quaternion SetRotX(float theta)
         {
-            float angle = radians * 0.5f;
-            return new Quaternion(Mathf.Sin(angle), 0, 0, Mathf.Cos(angle));
+            float halfTheta = theta * 0.5f;
+            return new Quaternion(Mathf.Sin(halfTheta), 0, 0, Mathf.Cos(halfTheta));
         }
 
-        public static Quaternion RotateY(float radians)
+        public static Quaternion SetRotY(float theta)
         {
-            float angle = radians * 0.5f;
-            return new Quaternion(0, Mathf.Sin(angle), 0, Mathf.Cos(angle));
+            float halfTheta = theta * 0.5f;
+            return new Quaternion(0, Mathf.Sin(halfTheta), 0, Mathf.Cos(halfTheta));
         }
 
-        public static Quaternion RotateZ(float radians)
+        public static Quaternion SetRotZ(float theta)
         {
-            float angle = radians * 0.5f;
-            return new Quaternion(0, 0, Mathf.Sin(angle), Mathf.Cos(angle));
+            float halfTheta = theta * 0.5f;
+            return new Quaternion(0, 0, Mathf.Sin(halfTheta), Mathf.Cos(halfTheta));
         }
 
         public static Quaternion EulerToQuat(float a, float b, float c, bool invertOrder)

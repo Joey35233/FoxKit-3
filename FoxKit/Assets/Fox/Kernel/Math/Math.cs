@@ -1,4 +1,6 @@
 using UnityEngine;
+using Unity.Mathematics;
+
 
 namespace Fox
 {
@@ -28,7 +30,6 @@ namespace Fox
         public static Matrix4x4 FoxToUnityMatrix(Matrix4x4 m) => HandednessMatrix * m;
 
         public static Vector3 UnityToFoxVector3(Vector3 v) => new(-v.x, v.y, v.z);
-        public static Vector4 UnityToFoxVector4(Vector4 v) => new(-v.x, v.y, v.z, v.w);
         public static (float x, float y, float z) UnityToFoxVectorComponents(Vector3 v) => (-v.x, v.y, v.z);
         public static Quaternion UnityToFoxQuaternion(Quaternion v)
         {
@@ -38,6 +39,16 @@ namespace Fox
             return Quaternion.AngleAxis(-angle, axis);
         }
         public static Matrix4x4 UnityToFoxMatrix(Matrix4x4 m) => HandednessMatrix * m;
+
+        public static Vector3 FoxCross(Vector3 a, Vector3 b)
+        {
+            return Vector3.Cross(b, a);
+        }
+        
+        public static float3 FoxCross(float3 a, float3 b)
+        {
+            return math.cross(b, a);
+        }
 
         // ================================
         // General

@@ -25,7 +25,7 @@ namespace Fox.Anim
             float skel2_blp_len = math.sqrt(skel2_blp_len2);
             float skel0ToEff_rv_len = math.sqrt(skel0ToEff_rv_len2);
             
-            float3 basisA_uv = FoxCross(pole_uv, skel0ToEff_ruv);
+            float3 basisA_uv = Math.FoxCross(pole_uv, skel0ToEff_ruv);
 
             // Law of Cosines
             float triX_len = (skel1_blp_len2 - skel2_blp_len2 + skel0ToEff_rv_len2) / (2 * skel0ToEff_rv_len);
@@ -40,23 +40,18 @@ namespace Fox.Anim
             float3 skel0BasisB_v = triX_len * skel0ToEff_ruv + triY_len * pole_uv;
             float3 skel0BasisB_uv = math.normalize(skel0BasisB_v);
             
-            float3x3 skel0_bindBasis = new float3x3(cpn_uv, skel1_bluv, FoxCross(cpn_uv, skel1_bluv));
-            float3x3 skel0_rigBasis = new float3x3(basisA_uv, skel0BasisB_uv, FoxCross(basisA_uv, skel0BasisB_uv));
+            float3x3 skel0_bindBasis = new float3x3(cpn_uv, skel1_bluv, Math.FoxCross(cpn_uv, skel1_bluv));
+            float3x3 skel0_rigBasis = new float3x3(basisA_uv, skel0BasisB_uv, Math.FoxCross(basisA_uv, skel0BasisB_uv));
             float3x3 skel0Mat = math.mul(skel0_bindBasis, math.transpose(skel0_rigBasis));
             out_skel0_rgr = ToRotation(skel0Mat);
 
             // Skel1
             float3 skel1BasisB_uv = math.normalize(skel0ToEff_rv - skel0BasisB_v);
             
-            float3x3 skel1_bindBasis = new float3x3(cpn_uv, skel2_bluv, FoxCross(cpn_uv, skel2_bluv));
-            float3x3 skel1_rigBasis = new float3x3(basisA_uv, skel1BasisB_uv, FoxCross(basisA_uv, skel1BasisB_uv));
+            float3x3 skel1_bindBasis = new float3x3(cpn_uv, skel2_bluv, Math.FoxCross(cpn_uv, skel2_bluv));
+            float3x3 skel1_rigBasis = new float3x3(basisA_uv, skel1BasisB_uv, Math.FoxCross(basisA_uv, skel1BasisB_uv));
             float3x3 skel1Mat = math.mul(skel1_bindBasis, math.transpose(skel1_rigBasis));
             out_skel1_rgr = ToRotation(skel1Mat);
-        }
-
-        private static float3 FoxCross(float3 a, float3 b)
-        {
-            return math.cross(b, a);
         }
 
         private static quaternion ToRotation(float3x3 mat)
