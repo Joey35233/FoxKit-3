@@ -1,8 +1,6 @@
 using Fox;
 using System;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
-using UnityEngine.ResourceManagement.AsyncOperations;
 
 namespace Fox.Core
 {
@@ -43,16 +41,12 @@ namespace Fox.Core
             this.path = path;
         }
 
-        public AsyncOperationHandle<T> LoadAsync<T>() where T : class
-        {
-            var handle = Addressables.LoadAssetAsync<T>(path.String);
-            return handle;
-        }
-
         public static FilePtr Empty => new();
 
         public static bool operator ==(FilePtr a, FilePtr b) => a.path == b.path;
 
         public static bool operator !=(FilePtr a, FilePtr b) => !(a == b);
+
+        public override string ToString() => path.ToString();
     }
 }

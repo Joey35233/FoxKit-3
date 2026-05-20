@@ -7,12 +7,22 @@ namespace Fox.Sim
 {
     public partial class SimAssociationUnit : Fox.Phx.PhxAssociationUnitElement
     {
-        private SimAssociationUnitParam associationUnit => param;
+        private partial string Get_boneName() => param == null ? null : param.boneName;
+        private partial void Set_boneName(string value)
+        {
+            if (param == null)
+                return;
+            
+            param.boneName = value;
+        }
 
-        private partial string Get_boneName() => associationUnit.boneName;
-        private partial void Set_boneName(string value) => associationUnit.boneName = value;
-
-        private partial bool Get_initialized() => associationUnit.initialized;
-        private partial void Set_initialized(bool value) => associationUnit.SetInitialized(value);
+        private partial bool Get_initialized() => param == null ? false : param.initialized;
+        private partial void Set_initialized(bool value)
+        {
+            if (param == null)
+                return;
+            
+            param.SetInitialized(value);
+        }
     }
 }

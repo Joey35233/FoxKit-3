@@ -58,9 +58,9 @@ namespace Tpp.Effect
             fixedRisingMoonDir = Fox.Math.FoxToUnityVector3(fixedRisingMoonDir);
             fixedFallingMoonDir = Fox.Math.FoxToUnityVector3(fixedFallingMoonDir);
         }
-        public override void OverridePropertiesForExport(EntityExportContext context)
+        public override void OnSerializeEntity(EntityExportContext context)
         {
-            base.OverridePropertiesForExport(context);
+            base.OnSerializeEntity(context);
 
             context.OverrideProperty(nameof(fixedLightDirSunRise), Fox.Math.UnityToFoxVector3(fixedLightDirSunRise));
             context.OverrideProperty(nameof(fixedLightDirSunSet), Fox.Math.UnityToFoxVector3(fixedLightDirSunSet));

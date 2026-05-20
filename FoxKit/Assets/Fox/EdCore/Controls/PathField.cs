@@ -2,13 +2,8 @@
 using Fox.Core;
 using Fox;
 using UnityEditor;
-using UnityEditor.AddressableAssets;
-using UnityEditor.AddressableAssets.Settings;
 using UnityEditor.UIElements;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
-using UnityEngine.ResourceManagement.AsyncOperations;
-using UnityEngine.ResourceManagement.ResourceLocations;
 using UnityEngine.UIElements;
 
 namespace Fox.EdCore
@@ -120,49 +115,31 @@ namespace Fox.EdCore
             }
         }
         
-        private int PingEventClickCount;
-        private void OnLoadPingTargetAsset(AsyncOperationHandle<Object> handle)
-        {
-            Object targetObject = null;
-            if (handle.Status == AsyncOperationStatus.Succeeded)
-            {
-                targetObject = handle.Result;
-            
-                // Show where the referenced asset is
-                if (PingEventClickCount == 1)
-                    EditorGUIUtility.PingObject(targetObject);
-                // Open the asset in external app
-                else if (PingEventClickCount == 2)
-                    AssetDatabase.OpenAsset(targetObject);
-            }
-            
-            Addressables.Release(handle);
-        }
-        
         private void OnMouseDown(MouseDownEvent evt)
         {
             if (value == (Path)null)
                 return;
-
-            if ((evt.clickCount == 1 || evt.clickCount == 2)  && (evt.shiftKey || evt.ctrlKey))
-            {
-                // Explicit version of using a lambda + captured variables
-                PingEventClickCount = evt.clickCount;
-                Addressables.LoadResourceLocationsAsync(value.String).Completed +=
-                    (handle) =>
-                    {
-                        IList<IResourceLocation> results = handle.Result;
-                        if (results.Count > 0)
-                        {
-                            IResourceLocation firstLocation = results[0];
-                            Addressables.LoadAssetAsync<Object>(firstLocation).Completed += OnLoadPingTargetAsset;
-                        }
-                        
-                        Addressables.Release(handle);
-                    };
-            }
             
-            evt.StopPropagation();
+            if ((evt.clickCount == 1 || evt.clickCount == 2) && (evt.shiftKey || evt.ctrlKey))
+            {
+                GameObject targetObject = Fox.Fs.FileSystem.LoadAsset<GameObject>(value.String);
+                if (!targetObject)
+                    return;
+                
+                // Show where the referenced asset is
+                if (evt.clickCount == 1)
+                {
+                    EditorGUIUtility.PingObject(targetObject);
+                }
+                // Open the asset in external app
+                else if (evt.clickCount == 2)
+                {
+                    AssetDatabase.OpenAsset(targetObject);
+                    GUIUtility.ExitGUI();
+                }
+                
+                evt.StopPropagation();
+            }
         }
 
         private void OnKeyboardDelete() => value = null;
@@ -197,18 +174,12 @@ namespace Fox.EdCore
             if (validatedObject != null)
             {
                 DragAndDrop.visualMode = DragAndDropVisualMode.Generic;
+                
+                string unityPath = AssetDatabase.GetAssetPath(validatedObject);
+                value = new Path(Fox.Fs.FileSystem.GetFoxPathFromUnityPath(unityPath));
 
-                if (AssetDatabase.TryGetGUIDAndLocalFileIdentifier(validatedObject, out string guid, out long localId))
-                {
-                    AddressableAssetEntry entry = AddressableAssetSettingsDefaultObject.Settings.FindAssetEntry(guid, true);
-                    if (entry != null)
-                    {
-                        value = new Path(entry.address);
-
-                        DragAndDrop.AcceptDrag();
-                        RemoveFromClassList("unity-object-field-display--accept-drop");
-                    }
-                }
+                DragAndDrop.AcceptDrag();
+                RemoveFromClassList("unity-object-field-display--accept-drop");
 
                 evt.StopPropagation();
             }

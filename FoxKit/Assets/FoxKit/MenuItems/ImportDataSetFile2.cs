@@ -19,7 +19,7 @@ namespace FoxKit.MenuItems
         [MenuItem("FoxKit/Import/DataSetFile2")]
         private static void OnImportAsset()
         {
-            string externalPath = EditorUtility.OpenFilePanel("Import DataSetFile2", "", ExtensionWhitelist);
+            string externalPath = Fox.Fs.FileUtils.OpenFilePanel("Import DataSetFile2", "", ExtensionWhitelist);
             if (String.IsNullOrEmpty(externalPath))
             {
                 return;
@@ -42,10 +42,36 @@ namespace FoxKit.MenuItems
             Fox.Fs.FileSystem.TryImportAsset(scene, path);
         }
         
+        [MenuItem("FoxKit/Import/DataSetFile2 (Additive)")]
+        private static void OnImportAdditiveAsset()
+        {
+            string externalPath = Fox.Fs.FileUtils.OpenFilePanel("Import DataSetFile2 (Additive)", "", ExtensionWhitelist);
+            if (String.IsNullOrEmpty(externalPath))
+            {
+                return;
+            }
+
+            var logger = new TaskLogger("Import DataSetFile2");
+
+            string path = Fox.Fs.FileSystem.GetFoxPathFromExternalPath(externalPath);
+            if (path == null)
+            {
+                logger.AddError("Selected file is not within external directory.");
+                logger.LogToUnityConsole();
+                return;
+            }
+            
+            ReadOnlySpan<byte> fileData = Fox.Fs.FileSystem.ReadExternalFile(path);
+            UnityEngine.SceneManagement.Scene scene = DataSetFile2.Read(fileData, DataSetFile2.SceneLoadMode.Additive, logger);
+            logger.LogToUnityConsole();
+            
+            Fox.Fs.FileSystem.TryImportAsset(scene, path);
+        }
+        
         [MenuItem("FoxKit/Import/DataSetFile2 (Loose)")]
         private static void OnImportLooseAsset()
         {
-            string externalPath = EditorUtility.OpenFilePanel("Import DataSetFile2 (Loose)", "", ExtensionWhitelist);
+            string externalPath = Fox.Fs.FileUtils.OpenFilePanel("Import DataSetFile2 (Loose)", "", ExtensionWhitelist);
             if (String.IsNullOrEmpty(externalPath))
             {
                 return;
@@ -63,7 +89,7 @@ namespace FoxKit.MenuItems
         [MenuItem("FoxKit/Open/DataSetFile2")]
         private static void OnOpenAsset()
         {
-            string externalPath = EditorUtility.OpenFilePanel("Open DataSetFile2", "", ExtensionWhitelist);
+            string externalPath = Fox.Fs.FileUtils.OpenFilePanel("Open DataSetFile2", "", ExtensionWhitelist);
             if (String.IsNullOrEmpty(externalPath))
             {
                 return;

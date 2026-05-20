@@ -1,9 +1,11 @@
+using System;
 using Fox.Fio;
 using Fox;
 using System.Diagnostics;
 
 namespace Fox.Core
 {
+    [Obsolete("Please use FoxDataHeader* instead.")]
     public struct FoxDataHeaderContext
     {
         public const uint Offset_Version = 0;

@@ -45,9 +45,9 @@ namespace Tpp.Effect
 
             reachPoint = Fox.Math.FoxToUnityVector3(reachPoint);
         }
-        public override void OverridePropertiesForExport(EntityExportContext context)
+        public override void OnSerializeEntity(EntityExportContext context)
         {
-            base.OverridePropertiesForExport(context);
+            base.OnSerializeEntity(context);
 
             context.OverrideProperty(nameof(reachPoint), Fox.Math.UnityToFoxVector3(reachPoint));
         }

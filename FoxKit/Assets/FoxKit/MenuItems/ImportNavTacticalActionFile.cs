@@ -12,7 +12,7 @@ namespace FoxKit.MenuItems
         [MenuItem("FoxKit/Import/NavTacticalActionFile")]
         private static void OnImportAsset()
         {
-            string assetPath = EditorUtility.OpenFilePanel("Import NavTacticalAction", "", "nta");
+            string assetPath = Fox.Fs.FileUtils.OpenFilePanel("Import NavTacticalAction", "", "nta");
             if (System.String.IsNullOrEmpty(assetPath))
             {
                 return;

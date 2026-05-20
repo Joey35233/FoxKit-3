@@ -13,7 +13,7 @@ namespace FoxKit.MenuItems
         [MenuItem("FoxKit/Import/GeoPathFixedPackFile")]
         private static void OnImportAsset()
         {
-            string assetPath = EditorUtility.OpenFilePanel("Import GeoPathFixedPackFile", "", "gpfp");
+            string assetPath = Fox.Fs.FileUtils.OpenFilePanel("Import GeoPathFixedPackFile", "", "gpfp");
             if (System.String.IsNullOrEmpty(assetPath))
                 return;
 

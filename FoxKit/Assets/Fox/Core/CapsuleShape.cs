@@ -13,9 +13,9 @@ namespace Fox.Core
             point1 = Fox.Math.FoxToUnityVector3(point1);
         }
 
-        public override void OverridePropertiesForExport(EntityExportContext context)
+        public override void OnSerializeEntity(EntityExportContext context)
         {
-            base.OverridePropertiesForExport(context);
+            base.OnSerializeEntity(context);
 
             context.OverrideProperty(nameof(point0), Fox.Math.UnityToFoxVector3(point0));
             context.OverrideProperty(nameof(point1), Fox.Math.UnityToFoxVector3(point1));

@@ -1,9 +1,11 @@
+using System;
 using Fox.Fio;
 using Fox;
 using UnityEngine;
 
 namespace Fox.Core
 {
+    [Obsolete("Please use FoxDataNodeAttribute* instead.")]
     public struct FoxDataParameterContext
     {
         public enum DataType

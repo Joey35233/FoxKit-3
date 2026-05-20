@@ -14,9 +14,9 @@ namespace Tpp.Effect
             (screenSpaceRotSpeedX, screenSpaceRotSpeedY, _) = Fox.Math.FoxToUnityVectorComponents(new Vector3(screenSpaceRotSpeedX, screenSpaceRotSpeedY, 0));
         }
 
-        public override void OverridePropertiesForExport(EntityExportContext context)
+        public override void OnSerializeEntity(EntityExportContext context)
         {
-            base.OverridePropertiesForExport(context);
+            base.OnSerializeEntity(context);
             
             (float _baseOffsetX, float _baseOffsetY, _) = Fox.Math.UnityToFoxVectorComponents(new Vector3(baseOffsetX, baseOffsetY, 0));
             context.OverrideProperty(nameof(baseOffsetX), _baseOffsetX);

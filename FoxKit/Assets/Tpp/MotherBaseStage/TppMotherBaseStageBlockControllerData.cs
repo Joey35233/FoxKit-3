@@ -13,9 +13,9 @@ namespace Tpp.MotherBaseStage
             for (int i = 0; i < clusterPositions.Length; i++)
                 clusterPositions[i] = Fox.Math.FoxToUnityVector3(clusterPositions[i]);
         }
-        public override void OverridePropertiesForExport(EntityExportContext context)
+        public override void OnSerializeEntity(EntityExportContext context)
         {
-            base.OverridePropertiesForExport(context);
+            base.OnSerializeEntity(context);
 
             Vector3[] _clusterPositions = clusterPositions;
             for (int i = 0; i < clusterPositions.Length; i++)

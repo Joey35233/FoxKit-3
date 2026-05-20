@@ -274,9 +274,9 @@ namespace Tpp.Collectible
             }
         }
         
-        public override void OverridePropertiesForExport(EntityExportContext context)
+        public override void OnSerializeEntity(EntityExportContext context)
         {
-            base.OverridePropertiesForExport(context);
+            base.OnSerializeEntity(context);
 
             /*CsSystem.Collections.Generic.List<Vector3> _positions = positions;
             for (int i = 0; i < positions.Count; i++)

@@ -13,9 +13,9 @@ namespace Tpp.Effect
             (lightPositionX, lightPositionY, _) = Fox.Math.FoxToUnityVectorComponents(new Vector3(lightPositionX, lightPositionY, 0));
         }
 
-        public override void OverridePropertiesForExport(EntityExportContext context)
+        public override void OnSerializeEntity(EntityExportContext context)
         {
-            base.OverridePropertiesForExport(context);
+            base.OnSerializeEntity(context);
 
             
             (float _lightPositionX, float _lightPositionY, _) = Fox.Math.UnityToFoxVectorComponents(new Vector3(lightPositionX, lightPositionY, 0));

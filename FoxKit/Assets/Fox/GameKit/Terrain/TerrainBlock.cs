@@ -27,13 +27,13 @@ namespace Fox.GameKit
             }
             else
             {
-                Fs.FileSystem.TryCopyImportAsset(filePtr.path.String);
+                Fs.FileSystem.ImportAssetCopy(filePtr.path.String);
             }
         }
 
-        public override void OverridePropertiesForExport(EntityExportContext context)
+        public override void OnSerializeEntity(EntityExportContext context)
         {
-            base.OverridePropertiesForExport(context);
+            base.OnSerializeEntity(context);
 
             context.OverrideProperty(nameof(pos), Fox.Math.UnityToFoxVector3(pos));
         }
