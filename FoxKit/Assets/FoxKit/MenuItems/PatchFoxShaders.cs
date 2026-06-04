@@ -31,14 +31,28 @@ namespace FoxKit.MenuItems
                 return;
             }
 
-            string[] hlslFiles = Directory.GetFiles(absoluteDirectory, "*_ps.hlsl", SearchOption.AllDirectories);
+            string[] hlslFiles = Directory.GetFiles(absoluteDirectory, "*.hlsl", SearchOption.AllDirectories);
 
             int patched = 0;
             int alreadyDone = 0;
             int errors = 0;
             foreach (string filePath in hlslFiles)
             {
-                PatchResult result = PatchFile(filePath, logger);
+                string mainFunctionName = null;
+                if (filePath.Contains("_ps.hlsl"))
+                {
+                    mainFunctionName = "ps_main";
+                }
+                else if (filePath.Contains("_vs.hlsl"))
+                {
+                    mainFunctionName = "vs_main";
+                }
+                else
+                {
+                    logger.AddError($"Unrecognized shader type: {filePath}");
+                }
+
+                PatchResult result = PatchFile(filePath, mainFunctionName, logger);
 
                 switch (result)
                 {
@@ -56,7 +70,7 @@ namespace FoxKit.MenuItems
 
         private enum PatchResult { Patched, AlreadyPatched, Error }
 
-        private static PatchResult PatchFile(string filePath, TaskLogger logger)
+        private static PatchResult PatchFile(string filePath, string mainFunctionName, TaskLogger logger)
         {
             string source;
             try
@@ -79,17 +93,17 @@ namespace FoxKit.MenuItems
             source = PatchToVPos(source);
             source = PatchTFetch(source);
 
-            // Locate ps_main
-            // Match the opening brace of ps_main
-            // Look for the first { that follows a line containing "ps_main"
+            // Locate ps_main or vs_main
+            // Match the opening brace of ps_main or vs_main
+            // Look for the first { that follows a line containing "ps_main" / "vs_main"
             Match funcMatch = Regex.Match(
                 source,
-                @"ps_main\s*\([^)]*\)\s*\{",
+                mainFunctionName + @"\s*\([^)]*\)\s*\{",
                 RegexOptions.Singleline);
 
             if (!funcMatch.Success)
             {
-                logger.AddError($"No ps_main in '{filePath}'.");
+                logger.AddError($"No {mainFunctionName} in '{filePath}'.");
                 return PatchResult.Error;
             }
 
@@ -102,7 +116,7 @@ namespace FoxKit.MenuItems
 
             if (closeBraceIndex < 0)
             {
-                logger.AddError($"Could not find closing brace of ps_main in '{filePath}'.");
+                logger.AddError($"Could not find closing brace of {mainFunctionName} in '{filePath}'.");
                 return PatchResult.Error;
             }
 
