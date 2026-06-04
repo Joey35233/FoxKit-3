@@ -77,6 +77,7 @@ namespace FoxKit.MenuItems
 
             source = PatchRegisterMap(source);
             source = PatchToVPos(source);
+            source = PatchTFetch(source);
 
             // Locate ps_main
             // Match the opening brace of ps_main
@@ -173,6 +174,12 @@ namespace FoxKit.MenuItems
         {
             return PatchString(source, $"#define ToVPos(vpos) (vpos + PIXELCENTEROFFSET)\r\n#define ToVPos4 ToVPos",
                 $"#define ToVPos(wpos) (float2(wpos.x, g_psSystem.m_renderBuffer.y - wpos.y) + PIXELCENTEROFFSET)\r\n#define ToVPos4(wpos) float4(ToVPos(wpos), 0, 0 )");
+        }
+
+        private static string PatchTFetch(string source)
+        {
+            return PatchString(source, $"#define TFetch(_texture, _sampler, _uv) \t\t_texture.Sample(_sampler, _uv)\r\n#define TFetchOffset(_texture, _sampler, _uv, _offset) \t\t_texture.Sample(_sampler, _uv, _offset)\r\n\r\n#define TFetch1D \t\t\t\t\t\t\t\tTFetch\r\n#define TFetch1DOffset\t\t\t\t\t\t\tTFetchOffset\r\n#define TFetch2D \t\t\t\t\t\t\t\tTFetch\r\n#define TFetch2DOffset\t\t\t\t\t\t\tTFetchOffset\r\n#define TFetch2DGrad\t\t\t\t\t\t\tTFetchGrad\r\n#define TFetch2DProj(_texture, _sampler, _uv) \tTFetch(_texture, _sampler, CalcProjectCoords(_uv))\r\n\r\n#define TFetch3D \t\t\t\t\t\t\t\tTFetch\r\n#define TFetchCube \t\t\t\t\t\t\t\tTFetch\r\n#define TFetchCubeBias(_texture, _sampler, _uv) _texture.SampleBias(_sampler, (_uv).xyz, (_uv).w)\r\n\r\n\r\n#line 326 \"..\\Gr\\Dg\\shader\\shader.h\"\r\n#define TFetchGrad(_texture, _sampler, _uv, _dx, _dy) _texture.SampleGrad(_sampler, _uv, _dx, _dy)\r\n#define TFetch2DLod(_texture, _sampler, _uv) \t_texture.SampleLevel(_sampler, (_uv).xy, (_uv).w)\r\n#define TFetchCubeLod(_texture, _sampler, _uv)\t_texture.SampleLevel(_sampler, (_uv).xyz, (_uv).w)\r\n\r\n#line 331 \"..\\Gr\\Dg\\shader\\shader.h\"\r\n\r\nfloat TFetch2DProjCmp(Texture2D _texture, SamplerComparisonState _sampler, float4 _uv){{\r\n\tfloat3 prjectionUV = (_uv.xyz/_uv.w );\r\n\treturn _texture.SampleCmp(_sampler, prjectionUV.xy, prjectionUV.z);\r\n}}",
+                $"#define TFetch(_texture, _sampler, _uv)         _texture.Sample(_sampler, float2((_uv).x, 1 - (_uv).y))\r\n#define TFetchOffset(_texture, _sampler, _uv, _offset) _texture.Sample(_sampler, float2((_uv).x, 1 - (_uv).y), _offset)\r\n\r\n#define TFetch1D(_texture, _sampler, _uv)         _texture.Sample(_sampler, (_uv))\r\n#define TFetch1DOffset(_texture, _sampler, _uv, _offset) _texture.Sample(_sampler, (_uv), _offset)\r\n#define TFetch2D                                 TFetch\r\n#define TFetch2DOffset                            TFetchOffset\r\n#define TFetch2DGrad                            TFetchGrad\r\n#define TFetch2DProj(_texture, _sampler, _uv)     TFetch(_texture, _sampler, CalcProjectCoords(_uv))\r\n\r\n#define TFetch3D(_texture, _sampler, _uv)        _texture.Sample(_sampler, float3((_uv).x, 1 - (_uv).y, (_uv).z))\r\n#define TFetchCube(_texture, _sampler, _uv)        _texture.Sample(_sampler, float3((_uv).x, 1 - (_uv).y, (_uv).z))\r\n#define TFetchCubeBias(_texture, _sampler, _uv)    _texture.SampleBias(_sampler, float3((_uv).x, 1 - (_uv).y, (_uv).z), (_uv).w)\r\n\r\n\r\n#line 326 \"..\\Gr\\Dg\\shader\\shader.h\"\r\n#define TFetchGrad(_texture, _sampler, _uv, _dx, _dy) _texture.SampleGrad(_sampler, float2((_uv).x, 1 - (_uv).y), _dx, _dy) // Narrows support to 2D only but only used for terrain albedo and normal textures so this should be okay.\r\n#define TFetch2DLod(_texture, _sampler, _uv)     _texture.SampleLevel(_sampler, float2((_uv).x, 1 - (_uv).y), (_uv).w)\r\n#define TFetchCubeLod(_texture, _sampler, _uv)    _texture.SampleLevel(_sampler, float3((_uv).x, 1 - (_uv).y, (_uv).z).xyz, (_uv).w)\r\n\r\n#line 331 \"..\\Gr\\Dg\\shader\\shader.h\"\r\n\r\nfloat TFetch2DProjCmp(Texture2D _texture, SamplerComparisonState _sampler, float4 _uv)\r\n{{\r\n    float3 prjectionUV = (_uv.xyz/_uv.w );\r\n    return _texture.SampleCmp(_sampler, float2(prjectionUV.x, 1 - prjectionUV.y), prjectionUV.z);\r\n}}");
         }
 
 
