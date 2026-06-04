@@ -1,4 +1,6 @@
-﻿void ps_main(
+﻿#	define REGISTERMAP(_type, _name, _register) cbuffer c##_type : _register { _type _name; }
+
+void ps_main(
 
 	in	float4	inVPos	: VPOS,
 	in	float4	inColor : COLOR0,

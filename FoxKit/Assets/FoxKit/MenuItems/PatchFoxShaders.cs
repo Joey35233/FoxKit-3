@@ -38,7 +38,7 @@ namespace FoxKit.MenuItems
             int errors = 0;
             foreach (string filePath in hlslFiles)
             {
-                PatchResult result = ProcessFile(filePath, logger);
+                PatchResult result = PatchFile(filePath, logger);
 
                 switch (result)
                 {
@@ -56,7 +56,7 @@ namespace FoxKit.MenuItems
 
         private enum PatchResult { Patched, AlreadyPatched, Error }
 
-        private static PatchResult ProcessFile(string filePath, TaskLogger logger)
+        private static PatchResult PatchFile(string filePath, TaskLogger logger)
         {
             string source;
             try
@@ -74,6 +74,8 @@ namespace FoxKit.MenuItems
             {
                 return PatchResult.AlreadyPatched;
             }
+
+            source = PatchRegisterMap(source);
 
             // Locate ps_main
             // Match the opening brace of ps_main
@@ -158,6 +160,17 @@ namespace FoxKit.MenuItems
             }
 
             return PatchResult.Patched;
+        }
+
+        private static string PatchRegisterMap(string source)
+        {
+            return PatchString(source, $"#\tdefine REGISTERMAP(_type, _name, _register) cbuffer c##_type : _register {{ _type _name; }}",
+                $"#\tdefine REGISTERMAP(_type, _name, _register) cbuffer c##_type {{ static _type _name; }}");
+        }
+
+        private static string PatchString(string source, string pattern, string replacement)
+        {
+            return source.Replace(pattern, replacement);
         }
 
         /// <summary>
