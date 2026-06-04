@@ -76,6 +76,7 @@ namespace FoxKit.MenuItems
             }
 
             source = PatchRegisterMap(source);
+            source = PatchToVPos(source);
 
             // Locate ps_main
             // Match the opening brace of ps_main
@@ -167,6 +168,13 @@ namespace FoxKit.MenuItems
             return PatchString(source, $"#\tdefine REGISTERMAP(_type, _name, _register) cbuffer c##_type : _register {{ _type _name; }}",
                 $"#\tdefine REGISTERMAP(_type, _name, _register) cbuffer c##_type {{ static _type _name; }}");
         }
+
+        private static string PatchToVPos(string source)
+        {
+            return PatchString(source, $"#define ToVPos(vpos) (vpos + PIXELCENTEROFFSET)\r\n#define ToVPos4 ToVPos",
+                $"#define ToVPos(wpos) (float2(wpos.x, g_psSystem.m_renderBuffer.y - wpos.y) + PIXELCENTEROFFSET)\r\n#define ToVPos4(wpos) float4(ToVPos(wpos), 0, 0 )");
+        }
+
 
         private static string PatchString(string source, string pattern, string replacement)
         {

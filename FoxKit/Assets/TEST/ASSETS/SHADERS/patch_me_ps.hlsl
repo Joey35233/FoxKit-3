@@ -1,5 +1,8 @@
 ﻿#	define REGISTERMAP(_type, _name, _register) cbuffer c##_type : _register { _type _name; }
 
+#define ToVPos(vpos) (vpos + PIXELCENTEROFFSET)
+#define ToVPos4 ToVPos
+
 void ps_main(
 
 	in	float4	inVPos	: VPOS,
