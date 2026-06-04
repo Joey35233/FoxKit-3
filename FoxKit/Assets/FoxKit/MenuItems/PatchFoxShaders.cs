@@ -31,7 +31,7 @@ namespace FoxKit.MenuItems
                 return;
             }
 
-            string[] hlslFiles = Directory.GetFiles(absoluteDirectory, "*.hlsl", SearchOption.AllDirectories);
+            string[] hlslFiles = Directory.GetFiles(absoluteDirectory, "*_ps.hlsl", SearchOption.AllDirectories);
 
             int patched = 0;
             int alreadyDone = 0;

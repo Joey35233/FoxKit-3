@@ -370,7 +370,6 @@ void ps_main(
 	out	half4	outColor2 : OUT_COLOR2
 )
 {
-	#include "../UnityPatch/PreEntryPoint.hlsl"
 	inVPos = ToVPos4(inVPos);
 	float2	NGetParallaxUV_getParallaxUV_inTexcoord;
 	float3	NGetParallaxUV_getParallaxUV_inParallaxVec;
@@ -728,6 +727,5 @@ void ps_main(
 
 // #line 1551 "..\Gr\Dg\shader\fox3ddf_blin.shdr"
 	outColor2 = NNormalGBufferOut_ourGBuffer_outColor2;
-	#include "../UnityPatch/PostEntryPoint.hlsl"
 }
 
