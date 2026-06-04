@@ -30,17 +30,10 @@ float TFetch2DProjCmp(Texture2D _texture, SamplerComparisonState _sampler, float
 	return _texture.SampleCmp(_sampler, prjectionUV.xy, prjectionUV.z);
 }
 
-void ps_main(
+void vs_main(
 
-	in	float4	inVPos	: VPOS,
-	in	float4	inColor : COLOR0,
-	in	float2	inBaseUV : TEXCOORD0,
-	in	float2	inSubUV : TEXCOORD1,
-	in	float3	inViewDir : TEXCOORD4,
-	in	HTANGENT2VIEW	inTangentToView : TEXCOORD5,
-	out	half4	outColor0 : OUT_COLOR0,
-	out	half4	outColor1 : OUT_COLOR1,
-	out	half4	outColor2 : OUT_COLOR2
+	 in	float4	inPosition	: POSITION,
+	 out	float4	outPosition	: OUT_POSITION
 )
 {
 }
