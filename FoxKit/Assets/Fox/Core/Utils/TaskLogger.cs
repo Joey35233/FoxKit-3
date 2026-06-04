@@ -7,6 +7,7 @@ namespace Fox.Core.Utils
     {
         private readonly HashSet<string> warnings = new HashSet<string>();
         private readonly HashSet<string> errors = new HashSet<string>();
+        private readonly HashSet<string> messages = new HashSet<string>();
         private readonly string taskName;
 
         public TaskLogger(string taskName)
@@ -39,10 +40,32 @@ namespace Fox.Core.Utils
             _ = this.errors.Add(error);
         }
 
+        public void AddMessage(string error)
+        {
+            _ = this.messages.Add(error);
+        }
+
         public void LogToUnityConsole()
         {
             this.LogErrors();
             this.LogWarnings();
+            this.LogMessages();
+        }
+        private void LogMessages()
+        {
+            if (messages.Count == 0)
+            {
+                return;
+            }
+
+            var builder = new StringBuilder();
+            _ = builder.AppendLine($"{taskName} Messages:");
+            foreach (string warning in messages)
+            {
+                _ = builder.AppendLine(warning);
+            }
+
+            UnityEngine.Debug.Log(builder.ToString());
         }
 
         private void LogWarnings()
