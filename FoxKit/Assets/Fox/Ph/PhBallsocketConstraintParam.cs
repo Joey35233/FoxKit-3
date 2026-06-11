@@ -9,6 +9,7 @@ namespace Fox.Ph
         internal bool GetLimitedFlag() => limitedFlag;
         internal void SetLimitedFlag(bool value) => limitedFlag = value;
 
+        // See: fox::ph::BallsocketConstraint::GetRefAForAc
         internal UnityEngine.Vector3 GetRefA() => refA;
         internal void SetRefA(UnityEngine.Vector3 value) => refA = value;
 

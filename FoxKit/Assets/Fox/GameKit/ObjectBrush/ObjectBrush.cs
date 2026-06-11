@@ -179,11 +179,91 @@ namespace Fox.GameKit
                     TransformUtils.SetConstrainProportions(instanceTransform, true);
                 }
             }
+            
+            //test
+            
+            Debug.Log($"{GetNumBlocks()}");
         }
 
         private void OnDisable()
         {
             Fox.GameKit.FoxGameKitModule.ObjectBrushRegistry.Remove(this.name);
+        }
+        
+        public override void OnSerializeEntity(EntityExportContext context)
+        {
+            base.OnSerializeEntity(context);
+
+            for (int i = 0; i < gameObject.transform.childCount; i++)
+            {
+                var child = gameObject.transform.GetChild(i).gameObject;
+
+                if (!PrefabUtility.IsAnyPrefabInstanceRoot(child))
+                    continue;
+
+                var pluginIndex = GetPluginIndex(child);
+            }
+        }
+
+        private int GetPluginIndex(GameObject child)
+        {
+            var prefabTypeGameObject = PrefabUtility.GetCorrespondingObjectFromSource(child).GetComponent<ObjectBrushPlugin>();
+
+            return pluginHandle.IndexOf(prefabTypeGameObject);
+        }
+
+        private bool IsPlugin(GameObject child)
+        {
+            return pluginHandle.Contains(PrefabUtility.GetCorrespondingObjectFromSource(child).GetComponent<ObjectBrushPlugin>());
+        }
+        private const float BlockSize = 128;
+
+        private (uint numBlocksW, uint numBlocksH) GetNumBlocks()
+        {
+            float minX = 0;
+            float maxX = 0;
+            
+            float minZ = 0;
+            float maxZ = 0;
+            
+            for (int i = 0; i < gameObject.transform.childCount; i++)
+            {
+                var child = gameObject.transform.GetChild(i).gameObject;
+
+                if (!PrefabUtility.IsAnyPrefabInstanceRoot(child))
+                    continue;
+
+                if (!IsPlugin(child))
+                    continue;
+
+                var position = child.transform.position;
+                
+                
+                if (position.x < minX)
+                    minX = position.x;
+                
+                if (position.x > maxX)
+                    maxX = position.x;
+                
+                
+                if (position.z < minZ)
+                    minZ = position.z;
+                
+                if (position.z > maxZ)
+                    maxZ = position.z;
+
+            }
+
+            uint GetBlockCountFromBoundary(float bound)
+            {
+                var abs = System.Math.Abs(bound);
+                return (uint)System.Math.Ceiling(abs / BlockSize);
+            }
+
+            var numBlocksH = GetBlockCountFromBoundary(minX) + GetBlockCountFromBoundary(maxX);
+            var numBlocksW = GetBlockCountFromBoundary(minZ) + GetBlockCountFromBoundary(maxZ);
+            
+            return (numBlocksW, numBlocksH);
         }
     }
 }

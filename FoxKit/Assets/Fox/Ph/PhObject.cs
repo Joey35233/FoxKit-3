@@ -6,7 +6,13 @@ namespace Fox.Ph
     {
         private PhObjectParam objectParam => param;
 
-        private partial string Get_worldName() => objectParam.GetWorldName();
-        private partial void Set_worldName(string value) => objectParam.SetWorldName(value);
+        private partial string Get_worldName() => objectParam == null ? string.Empty : objectParam.GetWorldName();
+        private partial void Set_worldName(string value)
+        {
+            if (param == null)
+                return;
+
+            objectParam.SetWorldName(value);
+        }
     }
 }
