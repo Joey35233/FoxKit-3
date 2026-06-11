@@ -147,9 +147,9 @@ namespace Fox.Gr
         
         public enum UnitFlags : ushort
         {
-            Invisible         = 1 << 0,
+            Invisible  = 1 << 0,
             IsFragment = 1 << 1,
-            B		          = 1 << 2,
+            B		   = 1 << 2,
         }
         
         [StructLayout(LayoutKind.Sequential, Size = 0x8)]
@@ -627,12 +627,6 @@ namespace Fox.Gr
                 rootBoundsComponent.center = rootBounds.center;
                 rootBoundsComponent.size = rootBounds.size;
 
-    #if DEBUG
-                uint DEBUG_FinalFlags = 0;
-                float DEBUG_SurfaceArea = 0.0f;
-                float DEBUG_UVArea = 0.0f;
-    #endif
-
                 // Bones
                 Transform[] bones = null;
                 Matrix4x4[] bindPoses = null;
@@ -947,89 +941,16 @@ namespace Fox.Gr
                                 if (firstUvSetIndex != 0 && firstUvSetIndex != byte.MaxValue)
                                     logWarning("PacketDataLayoutDesc.Unknown0 != 0");
 
-                                //MeshBufferUploadHelper uploadHelper = new MeshBufferUploadHelper(packetMesh);
-                                //uploadHelper.Register(new Span<Fmdl.InputLayoutBindSlotDef>(inputLayoutBindSlotDefs + bindSlotDefsStartIndex, bindSlotCount), new Span<Fmdl.InputLayoutElement>());
+                                MeshBufferUploadHelper packetUploadHelper = new MeshBufferUploadHelper();
+                                packetUploadHelper.Register(
+                                    inputLayoutBindSlotDefs + bindSlotDefsStartIndex, bindSlotCount, 
+                                    inputLayoutElements + elementsStartIndex, elementCount);
 
-                                // Iterate over bind slots once to set up input layout
-                                const int TODO_MAX_BINDSLOT = 4;
-                                uint absLayoutElementIndex = 0;
-                                VertexAttributeDescriptor[] unityElementAttributeDescs = new VertexAttributeDescriptor[elementCount - (uvCount - 1)];
-                                for (uint l = 0; l < bindSlotCount; l++)
-                                {
-                                    Fmdl.InputLayoutBindSlotDef* bindSlotDef = inputLayoutBindSlotDefs + bindSlotDefsStartIndex + l;
-                                    Debug.Assert(bindSlotDef->BindSlot < TODO_MAX_BINDSLOT);
-                                    
-                                    byte stride = bindSlotDef->Stride;
-                                    uint offset = bindSlotDef->Offset;
-                                    
-                                    // Elements
-                                    byte bufferIndex = bindSlotDef->BufferIndex;
-                                    uint attributeWriteIndex = 0;
-                                    for (uint m = 0; m < bindSlotDef->ElementCount; m++, absLayoutElementIndex++)
-                                    {
-                                        Fmdl.InputLayoutElement* inputElement = inputLayoutElements + inputLayoutDesc->ElementsStartIndex + absLayoutElementIndex;
+                                NativeArray<VertexAttributeDescriptor> descriptors = packetUploadHelper.GetDescriptorArray();
+                                packetMesh.SetVertexBufferParams(vertexCount, descriptors);
 
-                                        Fmdl.InputElementSemantic semantic = inputElement->Semantic; // TODO - validate type
-                                        Fmdl.InputElementType type = inputElement->Type; // TODO - validate type
-                                        ushort offsetRelative = inputElement->Offset;
-                                        
-                                        // TEMP - Fix handedness
-                                        if (semantic is Fmdl.InputElementSemantic.Position or Fmdl.InputElementSemantic.Normal or Fmdl.InputElementSemantic.Tangent)
-                                        {
-                                            byte* vBuffer = vBuffers[bufferIndex];
-                                            if (type == Fmdl.InputElementType.R32G32B32_Float)
-                                                for (uint n = 0; n < vertexCount; n++)
-                                                    vBuffer[offset + n * stride + offsetRelative + 3] ^= 0x80;
-                                            else if (type == Fmdl.InputElementType.R16G16B16A16_Float)
-                                                for (uint n = 0; n < vertexCount; n++)
-                                                    vBuffer[offset + n * stride + offsetRelative + 1] ^= 0x80;
-                                        }
-                                        
-                                        if (semantic is Fmdl.InputElementSemantic.UV1 or Fmdl.InputElementSemantic.UV2 or Fmdl.InputElementSemantic.UV3)
-                                            continue;
-                                        
-                                        VertexAttribute unityElementAttribute = MeshBufferUploadHelper.UnityAttributeSemanticTable[(uint)semantic];
-                                        (VertexAttributeFormat unityElementFormat, int unityElementDimension, ushort unityElementSize) = MeshBufferUploadHelper.UnityAttributeTypeTable[(uint)type];
-                                        VertexAttributeDescriptor unityElementAttributeDesc = new VertexAttributeDescriptor
-                                        {
-                                            attribute = MeshBufferUploadHelper.UnityAttributeSemanticTable[(uint)semantic],
-                                            format = unityElementFormat,
-                                            dimension = unityElementDimension,
-                                            stream = bufferIndex,
-                                        };
-                                        unityElementAttributeDescs[absLayoutElementIndex] = unityElementAttributeDesc;
-
-                                        attributeWriteIndex++;
-                                    }
-                                }
-                                packetMesh.SetVertexBufferParams(vertexCount, unityElementAttributeDescs);
-                                
-                                // Do it again for copies
-                                const int TODO_MAX_BUFFERCOUNT = 2;
-                                Span<bool> wasBufferCopied = stackalloc bool[TODO_MAX_BUFFERCOUNT];
-                                for (uint l = 0; l < bindSlotCount; l++)
-                                {
-                                    Fmdl.InputLayoutBindSlotDef* bindSlotDef = inputLayoutBindSlotDefs + bindSlotDefsStartIndex + l;
-                                    
-                                    // Copy buffer
-                                    byte bufferIndex = bindSlotDef->BufferIndex;
-                                    if (!wasBufferCopied[bufferIndex])
-                                    {
-                                        byte* vBuffer = vBuffers[bufferIndex];
-                                        int vBufferSize = vBufferSizes[bufferIndex];
-                                        NativeArray<byte> vertexBufferNativeArray = NativeArrayUnsafeUtility.ConvertExistingDataToNativeArray<byte>(vBuffer, vBufferSize, Allocator.None);
-#if ENABLE_UNITY_COLLECTIONS_CHECKS
-                                        NativeArrayUnsafeUtility.SetAtomicSafetyHandle(ref vertexBufferNativeArray, AtomicSafetyHandle.GetTempUnsafePtrSliceHandle());
-#endif
-                                        
-                                        byte stride = bindSlotDef->Stride;
-                                        uint offset = bindSlotDef->Offset;
-                                        Debug.Assert(offset <= Int32.MaxValue);
-                                        
-                                        packetMesh.SetVertexBufferData(vertexBufferNativeArray, (int)offset, 0, vertexCount * stride, bufferIndex, UpdateFlags | MeshUpdateFlags.DontNotifyMeshUsers);
-                                        wasBufferCopied[bufferIndex] = true;
-                                    }
-                                }
+                                NativeArray<byte>[] unityVertexBuffers = packetUploadHelper.CreateVertexBuffers(vertexCount);
+                                packetUploadHelper.CopyVertexData(packetMesh, vBuffers, unityVertexBuffers, vertexCount, boneGroup);
                                 
                                 // TODO - Inc. validation
                                 Fmdl.PacketLodIndices hiLodIndicesSpan = packet->HighLodIndicesSpan;
@@ -1050,56 +971,20 @@ namespace Fox.Gr
                                 packetMesh.RecalculateBounds();
                                 packetMesh.UploadMeshData(false);
 
-#if DEBUG
-                                {
-                                    Vector3[] vertices = packetMesh.vertices;
-                                    int[] triangles = packetMesh.triangles;
-
-                                    float result = 0f;
-                                    for(int p = 0; p < triangles.Length; p += 3)
-                                    {
-                                        Vector3 a = vertices[triangles[p + 1]] - vertices[triangles[p]];
-                                        Vector3 b = vertices[triangles[p + 2]] - vertices[triangles[p]];
-                                        Vector3 cross = Vector3.Cross(a, b);
-                                        result += cross.magnitude / 2.0f;
-                                    }
-
-                                    DEBUG_SurfaceArea += result;
-                                    // Debug.Log($"Area = {result}");
-                                    // Debug.Log($"Area/Tri = {result / (triangles.Length / 3)}");
-                                }
-                                
-                                {
-                                    Vector2[] uvs = packetMesh.uv;
-                                    int[] triangles = packetMesh.triangles;
-
-                                    float result = 0f;
-                                    for(int p = 0; p < triangles.Length; p += 3)
-                                    {
-                                        Vector2 a = uvs[triangles[p + 1]] - uvs[triangles[p]];
-                                        Vector2 b = uvs[triangles[p + 2]] - uvs[triangles[p]];
-                                        float cross = Mathf.Abs(a.x * b.y - a.y * b.x);
-                                        result += cross / 2.0f;
-                                    }
-
-                                    DEBUG_UVArea += result;
-                                    // Debug.Log($"UV Area = {result}");
-                                    // Debug.Log($"UV Area/Tri = {result / (triangles.Length / 3)}");
-                                }
-#endif
-
                                 // Renderer setup
                                 if (bones != null)
                                 {
-                                    ReadOnlySpan<ushort> boneIndices = new ReadOnlySpan<ushort>((byte*)boneGroup + 4, boneGroup->BoneCount);
-                                    Transform[] boneGroupBones = new Transform[boneGroup->BoneCount];
-                                    for (int l = 0; l < boneGroupBones.Length; l++)
-                                        boneGroupBones[l] = bones[boneIndices[l]];
+                                    // ushort* boneIndices = (ushort*)((byte*)boneGroup + 4);
+                                    // Transform[] boneGroupBones = new Transform[boneGroup->BoneCount];
+                                    // Matrix4x4[] boneGroupBindPoses = new Matrix4x4[boneGroup->BoneCount];
+                                    // for (int l = 0; l < boneGroupBones.Length; l++)
+                                    // {
+                                    //     Transform bone = bones[boneIndices[l]];
+                                    //     
+                                    //     boneGroupBones[l] = bone;
+                                    //     boneGroupBindPoses[l] = bone.worldToLocalMatrix;
+                                    // }
                                     
-                                    //BoneWeight weightBuffer = new BoneWeight()
-                                    //uploadHelper.CopyBoneWeights(weightBuffer, vBuffers[1], layoutDescs[j], layoutDescs[j].BufferDescs[1].Offset, layoutDescs[j].BufferDescs[1].Stride, vertexStart, vertexCount, boneIndices);
-                                    
-                                    // packetMesh.boneWeights = weightBuffer;
                                     packetMesh.bindposes = bindPoses;
                         
                                     SkinnedMeshRenderer packetRenderer = packetGameObject.AddComponent<SkinnedMeshRenderer>();
@@ -1113,7 +998,7 @@ namespace Fox.Gr
                                     };
 
                                     packetRenderer.localBounds = localBounds;
-                                    packetRenderer.bones = boneGroupBones;
+                                    packetRenderer.bones = bones;
                                     packetRenderer.sharedMesh = packetMesh;
                                     packetRenderer.rootBone = bones[0];
 
@@ -1133,16 +1018,6 @@ namespace Fox.Gr
                         }
                     }
                 }
-
-#if DEBUG
-                if (accessor.HasFeature(Fmdl.FeatureType.LodInfo))
-                {
-                    Fmdl.LodInfo* lodInfo = accessor.GetFeature<Fmdl.LodInfo>(Fmdl.FeatureType.LodInfo);
-
-                    Debug.Log($"DEBUG | Unknown1: {lodInfo->SurfaceArea}, Calculated: {DEBUG_SurfaceArea}");
-                    Debug.Log($"DEBUG | Unknown1: {lodInfo->SqrtSurfaceAreaDivUVArea}, Calculated: {Mathf.Sqrt(DEBUG_SurfaceArea / DEBUG_UVArea)}");
-                }
-#endif
 
                 return ErrorCode.Success;
             }
