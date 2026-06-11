@@ -52,11 +52,12 @@ namespace Fox
         private uint HashMask; // Since this map has a 2^n size, (hash & HashMask) or (hash & Capacity - 1)
                                // serves the same remapping purpose as (hash % Capacity)
 
-        [FormerlySerializedAs("CellCount")] [SerializeField]
+        [SerializeField]
         private int OccupiedCount;
         [SerializeField]
         private List<Cell> CellsBacking; // Unfortunately, we have to use a List<T> instead of an array because SerializedProperty.boxedObject won't work any other way which is weird
 
+        #region PUBLIC
         public StringMap()
         {
             OccupiedCount = 0;
@@ -64,6 +65,139 @@ namespace Fox
             Allocate(InitialSize);
         }
 
+        public StringMap(int capacity)
+        {
+            OccupiedCount = 0;
+
+            Allocate(capacity <= InitialSize ? InitialSize : RoundUpToPowerOfTwo(capacity));
+        }
+
+        public void Insert(string key, T value)
+        {
+            if (key is null)
+                throw new ArgumentNullException();
+
+            if (!InsertNoResize(key, value))
+                throw new ArgumentException("Key already exists!");
+
+            if (++OccupiedCount >= Threshold)
+                Resize();
+        }
+        void IStringMap.Insert(string key, object value) => Insert(key, value is T valueT ? valueT : throw new InvalidCastException());
+        
+
+        public void InsertOrUpdate(string key, T value)
+        {
+            if (key is null)
+                throw new ArgumentNullException();
+
+            bool inserted = InsertOrUpdateNoResize(key, value);
+
+            if (inserted && (++OccupiedCount >= Threshold))
+                Resize();
+        }
+
+        public bool TryGetValue(string key, out T value)
+        {
+            if (key is null)
+                throw new ArgumentNullException();
+
+            StrCode keyHash = new StrCode(key);
+            int index = (int)(keyHash & HashMask);
+
+            uint probeDistance = 0;
+            while (true)
+            {
+                Cell slot = CellsBacking[index];
+
+                // If slot is unoccupied or next available slot is unoccupied
+                if (!slot.Occupied || probeDistance > slot.Distance)
+                {
+                    value = default;
+                    return false;
+                }
+                // Found
+                else if (key == slot.Key)
+                {
+                    value = slot.Value;
+                    return true;
+                }
+ 
+                // Loop index back to 0 if it will exceed Capacity.
+                index = (int)((index + 1) & HashMask);
+                probeDistance++;
+            }
+        }
+
+        public T this[string key]
+        {
+            get => TryGetValue(key, out T value) ? value : throw new KeyNotFoundException();
+            set => InsertOrUpdate(key, value);
+        }
+        object IStringMap.this[string key] => this[key];
+
+        public bool ContainsKey(string key) => TryGetValue(key, out _);
+        
+        public bool Remove(string key)
+        {
+            if (key is null)
+                throw new ArgumentNullException();
+
+            StrCode keyHash = new StrCode(key);
+            int index = (int)(keyHash & HashMask);
+
+            uint probeDistance = 0;
+            while (true)
+            {
+                Cell slot = CellsBacking[index];
+
+                // If slot is unoccupied or next available slot is unoccupied
+                if (!slot.Occupied || probeDistance > slot.Distance)
+                {
+                    return false;
+                }
+                // Found
+                else if (key == slot.Key)
+                {
+                    break;
+                }
+
+                // Loop index back to 0 if it will exceed Capacity.
+                index = (int)((index + 1) & HashMask);
+                probeDistance++;
+            }
+
+            int lastIndex = index;
+            int nextIndex = index;
+            while (true)
+            {
+                // Loop index back to 0 if it will exceed Capacity.
+                nextIndex = (int)((nextIndex + 1) & HashMask);
+
+                Cell nextCell = CellsBacking[nextIndex];
+
+                if (!nextCell.Occupied || nextCell.Distance == 0)
+                {
+                    CellsBacking[index] = new Cell();
+
+                    break;
+                }
+                else
+                {
+                    nextCell.Distance--;
+                    CellsBacking[lastIndex] = nextCell;
+                }
+
+                lastIndex = nextIndex;
+            }
+
+            OccupiedCount--;
+            return true;
+        }
+        
+        #endregion
+
+        #region PRIVATE
         private int RoundUpToPowerOfTwo(int x)
         {
             x--;
@@ -75,13 +209,6 @@ namespace Fox
             x++;
 
             return x;
-        }
-
-        public StringMap(int capacity)
-        {
-            OccupiedCount = 0;
-
-            Allocate(capacity <= InitialSize ? InitialSize : RoundUpToPowerOfTwo(capacity));
         }
 
         private void Allocate(int capacity)
@@ -111,7 +238,7 @@ namespace Fox
                     InsertNoResize(cell.Key, cell.Value);
         }
 
-        private void InsertNoResize(string key, T value)
+        private bool InsertNoResize(string key, T value)
         {
             StrCode keyHash = new StrCode(key);
             int index = (int)(keyHash & HashMask);
@@ -125,195 +252,32 @@ namespace Fox
                 if (!slot.Occupied)
                 {
                     CellsBacking[index] = new Cell(probeDistance, key, value);
-                    return;
-                }
-
-                if (new StrCode(slot.Key) == keyHash)
-                    throw new ArgumentException($"StringMap: cell is unoccupied but {key} is already present in slot.");
-
-                // If another cell already exists
-                uint existingProbeDistance = slot.Distance;
-                if (existingProbeDistance < probeDistance)
-                {
-                    // Swap cells
-                    CellsBacking[index] = new Cell(probeDistance, key, value);
-                    key = slot.Key;
-                    value = slot.Value;
-                    probeDistance = existingProbeDistance;
-                }
-
-                index = (int)((index + 1) & HashMask); // Loop index back to 0 if it will exceed Capacity.
-                probeDistance++;
-            }
-        }
-
-        public void Insert(string key, T value)
-        {
-            if (key is null)
-                throw new ArgumentNullException();
-
-            if (++OccupiedCount >= Threshold)
-                Resize();
-
-            InsertNoResize(key, value);
-        }
-        void IStringMap.Insert(string key, object value) => Insert(key, value is T valueT ? valueT : throw new InvalidCastException());
-
-        private void InsertOrUpdateNoResize(string key, T value)
-        {
-            StrCode keyHash = new StrCode(key);
-            int index = (int)(keyHash & HashMask);
-
-            uint probeDistance = 0;
-            while (true)
-            {
-                Cell slot = CellsBacking[index];
-
-                // If slot is open, insert cell
-                if (!slot.Occupied)
-                {
-                    CellsBacking[index] = new Cell(probeDistance, key, value);
-                    return;
-                }
-
-                if (new StrCode(slot.Key) == keyHash)
-                {
-                    slot.Value = value;
-                    return;
-                }
-
-                // If another cell already exists
-                uint existingProbeDistance = slot.Distance;
-                if (existingProbeDistance < probeDistance)
-                {
-                    // Swap cells
-                    CellsBacking[index] = new Cell(probeDistance, key, value);
-                    key = slot.Key;
-                    value = slot.Value;
-                    probeDistance = existingProbeDistance;
-                }
-
-                index = (int)((index + 1) & HashMask); // Loop index back to 0 if it will exceed Capacity.
-                probeDistance++;
-            }
-        }
-        
-        public bool Remove(string key)
-        {
-            if (key is null)
-                throw new ArgumentNullException();
-
-            StrCode keyHash = new StrCode(key);
-            int index = (int)(keyHash & HashMask);
-
-            uint probeDistance = 0;
-            while (true)
-            {
-                Cell slot = CellsBacking[index];
-
-                // If slot is unoccupied
-                if (!slot.Occupied)
-                {
-                    return false;
-                }
-                // Next available slot is unoccupied
-                else if (probeDistance > slot.Distance)
-                {
-                    return false;
-                }
-                // Found
-                else if (keyHash == new StrCode(slot.Key))
-                {
-                    break;
-                }
-
-                index = (int)((index + 1) & HashMask); // Loop index back to 0 if it will exceed Capacity.
-                probeDistance++;
-            }
-
-            int lastIndex = index;
-            int nextIndex = index;
-            while (true)
-            {
-                nextIndex = (int)((nextIndex + 1) & HashMask); // Loop index back to 0 if it will exceed Capacity.
-
-                Cell nextCell = CellsBacking[nextIndex];
-
-                if (!nextCell.Occupied)
-                {
-                    Cell cell = CellsBacking[index];
-                    cell.Key = null;
-                    cell.Occupied = false;
-                    CellsBacking[index] = cell;
-
-                    break;
-                }
-                else if (nextCell.Distance == 0)
-                {
-                    Cell cell = CellsBacking[index];
-                    cell.Key = null;
-                    cell.Occupied = false;
-                    CellsBacking[index] = cell;
-
-                    break;
-                }
-                else
-                {
-                    CellsBacking[lastIndex] = nextCell;
-                    Cell cell = CellsBacking[lastIndex];
-                    cell.Distance--;
-                    CellsBacking[lastIndex] = cell;
-                }
-
-                lastIndex = nextIndex; // Loop index back to 0 if it will exceed Capacity.
-            }
-
-            OccupiedCount--;
-            return true;
-        }
-
-        public bool TryGetValue(string key, out T value)
-        {
-            if (key is null)
-                throw new ArgumentNullException();
-
-            StrCode keyHash = new StrCode(key);
-            int index = (int)(keyHash & HashMask);
-
-            uint probeDistance = 0;
-            while (true)
-            {
-                Cell slot = CellsBacking[index];
-
-                // If slot is unoccupied
-                if (!slot.Occupied)
-                {
-                    value = default;
-                    return false;
-                }
-                // Next available slot is unoccupied
-                else if (probeDistance > slot.Distance)
-                {
-                    value = default;
-                    return false;
-                }
-                // Found
-                else if (keyHash == new StrCode(slot.Key))
-                {
-                    value = slot.Value;
                     return true;
                 }
 
-                index = (int)((index + 1) & HashMask); // Loop index back to 0 if it will exceed Capacity.
+                // Nothing added
+                if (slot.Key == key)
+                    return false;
+
+                // If another cell already exists
+                uint existingProbeDistance = slot.Distance;
+                if (existingProbeDistance < probeDistance)
+                {
+                    // Swap cells
+                    CellsBacking[index] = new Cell(probeDistance, key, value);
+                    key = slot.Key;
+                    value = slot.Value;
+                    probeDistance = existingProbeDistance;
+                }
+
+                // Loop index back to 0 if it will exceed Capacity.
+                index = (int)((index + 1) & HashMask);
                 probeDistance++;
             }
         }
 
-        private bool TryInsert(string key, T value)
+        private bool InsertOrUpdateNoResize(string key, T value)
         {
-            if (key is null)
-                throw new ArgumentNullException();
-
             StrCode keyHash = new StrCode(key);
             int index = (int)(keyHash & HashMask);
 
@@ -322,41 +286,37 @@ namespace Fox
             {
                 Cell slot = CellsBacking[index];
 
-                // If slot is unoccupied
+                // If slot is open, insert cell
                 if (!slot.Occupied)
                 {
-                    return false;
+                    CellsBacking[index] = new Cell(probeDistance, key, value);
+                    return true;
                 }
-                // Next available slot is unoccupied
-                else if (probeDistance > slot.Distance)
-                {
-                    return false;
-                }
-                // Found
-                else if (keyHash == new StrCode(slot.Key))
+
+                // Nothing added
+                if (slot.Key == key)
                 {
                     slot.Value = value;
                     CellsBacking[index] = slot;
-                    return true;
+                    return false;
                 }
 
-                index = (int)((index + 1) & HashMask); // Loop index back to 0 if it will exceed Capacity.
+                // If another cell already exists
+                uint existingProbeDistance = slot.Distance;
+                if (existingProbeDistance < probeDistance)
+                {
+                    // Swap cells
+                    CellsBacking[index] = new Cell(probeDistance, key, value);
+                    key = slot.Key;
+                    value = slot.Value;
+                    probeDistance = existingProbeDistance;
+                }
+                
+                // Loop index back to 0 if it will exceed Capacity.
+                index = (int)((index + 1) & HashMask);
                 probeDistance++;
             }
         }
-
-        public T this[string key]
-        {
-            get => TryGetValue(key, out T value) ? value : throw new KeyNotFoundException();
-            set
-            {
-                if (!TryInsert(key, value))
-                    throw new KeyNotFoundException();
-            }
-        }
-        object IStringMap.this[string key] => this[key];
-
-        public bool ContainsKey(string key) => TryGetValue(key, out _);
 
         private float GetAverageProbeCount()
         {
@@ -368,6 +328,7 @@ namespace Fox
 
             return ((float)total / OccupiedCount) + 1;
         }
+        #endregion
 
         public bool IsFixedSize => false;
 
@@ -375,7 +336,7 @@ namespace Fox
 
         public int Count => OccupiedCount;
 
-        public bool IsSynchronized => throw new NotImplementedException();
+        public bool IsSynchronized => false;
 
         public object SyncRoot => throw new NotImplementedException();
 

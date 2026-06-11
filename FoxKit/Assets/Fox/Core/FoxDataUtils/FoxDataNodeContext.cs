@@ -1,9 +1,11 @@
+using System;
 using Fox.Fio;
 using Fox;
 using System.Diagnostics;
 
 namespace Fox.Core
 {
+    [Obsolete("Please use FoxDataNode* instead.")]
     public struct FoxDataNodeContext
     {
         public long Position

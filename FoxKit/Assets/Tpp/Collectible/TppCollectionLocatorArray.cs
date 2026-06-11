@@ -248,9 +248,9 @@ namespace Tpp.Collectible
                 nameHash = (uint)new Fox.StrCode32(uniqueIdName).GetHashCode();
             return (nameHash & 0xFFFFFF) | ((uint)type << 24);
         }
-        public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
+        public override void OnDeserializeEntity(TaskLogger logger)
         {
-            base.OnDeserializeEntity(gameObject, logger);
+            base.OnDeserializeEntity(logger);
 
             for (int i = 0; i < positions.Count; i++)
             {
@@ -274,9 +274,9 @@ namespace Tpp.Collectible
             }
         }
         
-        public override void OverridePropertiesForExport(EntityExportContext context)
+        public override void OnSerializeEntity(EntityExportContext context)
         {
-            base.OverridePropertiesForExport(context);
+            base.OnSerializeEntity(context);
 
             /*CsSystem.Collections.Generic.List<Vector3> _positions = positions;
             for (int i = 0; i < positions.Count; i++)

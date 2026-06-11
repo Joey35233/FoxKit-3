@@ -7,13 +7,13 @@ namespace Fox.Graphx
 {
     public partial class GraphxSpatialGraphDataEdge
     {
-        public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
+        public override void OnDeserializeEntity(TaskLogger logger)
         {
-            base.OnDeserializeEntity(gameObject, logger);
+            base.OnDeserializeEntity(logger);
         }
-        public override void OverridePropertiesForExport(EntityExportContext context)
+        public override void OnSerializeEntity(EntityExportContext context)
         {
-            base.OverridePropertiesForExport(context);
+            base.OnSerializeEntity(context);
         }
         private static readonly float NormalLength = 0.25f;
         public void OnDrawGizmos()

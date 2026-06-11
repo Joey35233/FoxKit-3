@@ -45,9 +45,9 @@ namespace Tpp.Effect
 
         private partial bool Get_isSteppedMoveOfDirectionalLight() => throw new CsSystem.NotImplementedException();
         private partial void Set_isSteppedMoveOfDirectionalLight(bool value) => throw new CsSystem.NotImplementedException();
-        public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
+        public override void OnDeserializeEntity(TaskLogger logger)
         {
-            base.OnDeserializeEntity(gameObject, logger);
+            base.OnDeserializeEntity(logger);
 
             fixedLightDirSunRise = Fox.Math.FoxToUnityVector3(fixedLightDirSunRise);
             fixedLightDirSunSet = Fox.Math.FoxToUnityVector3(fixedLightDirSunSet);
@@ -58,9 +58,9 @@ namespace Tpp.Effect
             fixedRisingMoonDir = Fox.Math.FoxToUnityVector3(fixedRisingMoonDir);
             fixedFallingMoonDir = Fox.Math.FoxToUnityVector3(fixedFallingMoonDir);
         }
-        public override void OverridePropertiesForExport(EntityExportContext context)
+        public override void OnSerializeEntity(EntityExportContext context)
         {
-            base.OverridePropertiesForExport(context);
+            base.OnSerializeEntity(context);
 
             context.OverrideProperty(nameof(fixedLightDirSunRise), Fox.Math.UnityToFoxVector3(fixedLightDirSunRise));
             context.OverrideProperty(nameof(fixedLightDirSunSet), Fox.Math.UnityToFoxVector3(fixedLightDirSunSet));

@@ -7,17 +7,17 @@ namespace Fox.Geox
 {
     public partial class GeoxCollisionPyraidFreeShape
     {
-        public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
+        public override void OnDeserializeEntity(TaskLogger logger)
         {
-            base.OnDeserializeEntity(gameObject, logger);
+            base.OnDeserializeEntity(logger);
 
             for (int i = 0; i < points.Length; i++)
                 points[i] = Fox.Math.FoxToUnityVector3(points[i]);
         }
 
-        public override void OverridePropertiesForExport(EntityExportContext context)
+        public override void OnSerializeEntity(EntityExportContext context)
         {
-            base.OverridePropertiesForExport(context);
+            base.OnSerializeEntity(context);
 
             Vector3[] _points = points;
             for (int i = 0; i < _points.Length; i++)

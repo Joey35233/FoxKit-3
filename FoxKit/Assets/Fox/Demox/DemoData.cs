@@ -6,9 +6,9 @@ namespace Fox.Demox
 {
     public partial class DemoData
     {
-        public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
+        public override void OnDeserializeEntity(TaskLogger logger)
         {
-            base.OnDeserializeEntity(gameObject, logger);
+            base.OnDeserializeEntity(logger);
 
             cameraTranslation = Fox.Math.FoxToUnityVector3(cameraTranslation);
             cameraRotation = Fox.Math.FoxToUnityQuaternion(cameraRotation);
@@ -17,9 +17,9 @@ namespace Fox.Demox
             cameraStartRotation = Fox.Math.FoxToUnityQuaternion(cameraStartRotation);
         }
 
-        public override void OverridePropertiesForExport(EntityExportContext context)
+        public override void OnSerializeEntity(EntityExportContext context)
         {
-            base.OverridePropertiesForExport(context);
+            base.OnSerializeEntity(context);
 
             context.OverrideProperty(nameof(cameraTranslation), Fox.Math.UnityToFoxVector3(cameraTranslation));
             context.OverrideProperty(nameof(cameraRotation), Fox.Math.UnityToFoxQuaternion(cameraRotation));

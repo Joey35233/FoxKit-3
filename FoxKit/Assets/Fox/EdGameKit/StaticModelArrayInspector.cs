@@ -1,4 +1,3 @@
-using System.Linq;
 using Fox;
 using Fox.EdCore;
 using Fox.GameKit;
@@ -35,8 +34,12 @@ namespace Fox.EdGameKit
             {
                 text = "Reload Model",
             };
-            container.Children().Last().Add(reloadButton);
             
+            VisualElement lastChild = null;
+            foreach (VisualElement child in container.Children())
+                lastChild = child;
+            lastChild?.Add(reloadButton);
+
             return container;
         }
     }

@@ -10,16 +10,16 @@ namespace Fox.Ph
         internal UnityEngine.Vector3 GetDefaultPosition() => defaultPosition;
         internal void SetDefaultPosition(UnityEngine.Vector3 value) => defaultPosition = value;
 
-        public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
+        public override void OnDeserializeEntity(TaskLogger logger)
         {
-            base.OnDeserializeEntity(gameObject, logger);
+            base.OnDeserializeEntity(logger);
             
             defaultPosition = Fox.Math.FoxToUnityVector3(defaultPosition);
         }
 
-        public override void OverridePropertiesForExport(EntityExportContext context)
+        public override void OnSerializeEntity(EntityExportContext context)
         {
-            base.OverridePropertiesForExport(context);
+            base.OnSerializeEntity(context);
             
             context.OverrideProperty(nameof(defaultPosition), Fox.Math.UnityToFoxVector3(defaultPosition));
         }

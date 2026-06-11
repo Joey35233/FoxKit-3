@@ -1,4 +1,4 @@
-using Fox.Core;
+﻿using Fox.Core;
 using Fox.Fio;
 using Fox.Geo;
 using Fox.Graphx;
@@ -41,6 +41,8 @@ namespace Fox.Geox
         }
 
         public override Type GetNodeType() => typeof(GeoxPathNode);
+        public override Type GetEdgeType() => typeof(GeoxPathEdge);
+        public override bool IsLoop() => false;
 
         public override void Reset()
         {

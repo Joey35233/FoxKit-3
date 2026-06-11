@@ -7,9 +7,9 @@ namespace Fox.Geox
 {
     public partial class GeoxTargetDesc
     {
-        public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
+        public override void OnDeserializeEntity(TaskLogger logger)
         {
-            base.OnDeserializeEntity(gameObject, logger);
+            base.OnDeserializeEntity(logger);
 
             for (int i = 0; i < posArray.Count; i++)
                 posArray[i] = Fox.Math.FoxToUnityVector3(posArray[i]);
@@ -18,9 +18,9 @@ namespace Fox.Geox
                 rotArray[i] = Fox.Math.FoxToUnityQuaternion(rotArray[i]);
         }
 
-        public override void OverridePropertiesForExport(EntityExportContext context)
+        public override void OnSerializeEntity(EntityExportContext context)
         {
-            base.OverridePropertiesForExport(context);
+            base.OnSerializeEntity(context);
 
             List<Vector3> _posArray = new(posArray);
             for (int i = 0; i < _posArray.Count; i++)

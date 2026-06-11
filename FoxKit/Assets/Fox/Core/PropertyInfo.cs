@@ -11,7 +11,7 @@ namespace Fox.Core
         /// <summary>
         /// Types of values that can be stored in a Fox property.
         /// </summary>
-        public enum PropertyType
+        public enum PropertyType : byte
         {
             Int8 = 0,
             UInt8 = 1,
@@ -41,9 +41,41 @@ namespace Fox.Core
         }
 
         /// <summary>
+        /// Types of values that can be stored in a Fox property.
+        /// </summary>
+        public static uint[] SerializedPropertyStrideTable = new uint[]
+        {
+            1,
+            1,
+            2,
+            2,
+            4,
+            4,
+            8,
+            8,
+            4,
+            8,
+            1,
+            8,
+            8,
+            8,
+            16,
+            16,
+            16,
+            48,
+            64,
+            16,
+            8,
+            8,
+            32,
+            0,
+            16,
+        };
+
+        /// <summary>
         /// Types of property containers.
         /// </summary>
-        public enum ContainerType
+        public enum ContainerType : byte
         {
             /// <summary>
             /// An array with a fixed size. A StaticArray of arraySize 1 is not stored as an array.

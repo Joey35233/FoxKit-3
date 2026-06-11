@@ -6,9 +6,9 @@ namespace Fox.Demo
 {
     public partial class DemoControlCharacterDesc
     {
-        public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
+        public override void OnDeserializeEntity(TaskLogger logger)
         {
-            base.OnDeserializeEntity(gameObject, logger);
+            base.OnDeserializeEntity(logger);
 
             translation = Fox.Math.FoxToUnityVector3(translation);
             rotation = Fox.Math.FoxToUnityQuaternion(rotation);
@@ -17,9 +17,9 @@ namespace Fox.Demo
             startRotation = Fox.Math.FoxToUnityQuaternion(startRotation);
         }
 
-        public override void OverridePropertiesForExport(EntityExportContext context)
+        public override void OnSerializeEntity(EntityExportContext context)
         {
-            base.OverridePropertiesForExport(context);
+            base.OnSerializeEntity(context);
 
             context.OverrideProperty(nameof(translation), Fox.Math.UnityToFoxVector3(translation));
             context.OverrideProperty(nameof(rotation), Fox.Math.UnityToFoxQuaternion(rotation));

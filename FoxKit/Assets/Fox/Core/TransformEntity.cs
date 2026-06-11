@@ -24,9 +24,9 @@ namespace Fox.Core
         private partial UnityEngine.Vector3 Get_translation() => transform_translation;
         private partial void Set_translation(UnityEngine.Vector3 value) => transform_translation = value;
 
-        public override void OverridePropertiesForExport(EntityExportContext context)
+        public override void OnSerializeEntity(EntityExportContext context)
         {
-            base.OverridePropertiesForExport(context);
+            base.OnSerializeEntity(context);
 
             if (this.transform.parent.GetComponent<TransformData>() is not {} owner)
             {

@@ -6,15 +6,15 @@ namespace Tpp.Effect
 {
     public partial class TppTrapExecChangeGlobalWindCallbackDataElement
     {
-        public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
+        public override void OnDeserializeEntity(TaskLogger logger)
         {
-            base.OnDeserializeEntity(gameObject, logger);
+            base.OnDeserializeEntity(logger);
 
             rotation = Fox.Math.FoxToUnityQuaternion(rotation);
         }
-        public override void OverridePropertiesForExport(EntityExportContext context)
+        public override void OnSerializeEntity(EntityExportContext context)
         {
-            base.OverridePropertiesForExport(context);
+            base.OnSerializeEntity(context);
 
             context.OverrideProperty(nameof(rotation), Fox.Math.UnityToFoxQuaternion(rotation));
         }

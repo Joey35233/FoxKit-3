@@ -72,18 +72,18 @@ namespace Fox.Ph
             defaultRotation = defaultRotation.normalized;
         }
 
-        public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
+        public override void OnDeserializeEntity(TaskLogger logger)
         {
-            base.OnDeserializeEntity(gameObject, logger);
+            base.OnDeserializeEntity(logger);
             
             defaultPosition = Fox.Math.FoxToUnityVector3(defaultPosition);
             defaultRotation = Fox.Math.FoxToUnityQuaternion(defaultRotation);
             centerOfMassOffset = Fox.Math.FoxToUnityVector3(centerOfMassOffset);
         }
 
-        public override void OverridePropertiesForExport(EntityExportContext context)
+        public override void OnSerializeEntity(EntityExportContext context)
         {
-            base.OverridePropertiesForExport(context);
+            base.OnSerializeEntity(context);
             
             context.OverrideProperty(nameof(defaultPosition), Fox.Math.UnityToFoxVector3(defaultPosition));
             context.OverrideProperty(nameof(defaultRotation), Fox.Math.UnityToFoxQuaternion(defaultRotation));

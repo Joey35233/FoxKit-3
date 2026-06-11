@@ -7,17 +7,17 @@ namespace Tpp.Effect
 {
     public partial class TppRainFilterInterruptTrans
     {
-        public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
+        public override void OnDeserializeEntity(TaskLogger logger)
         {
-            base.OnDeserializeEntity(gameObject, logger);
+            base.OnDeserializeEntity(logger);
 
             for (int i = 0; i < planeMatrices.Count; i++)
                 planeMatrices[i] = Fox.Math.FoxToUnityMatrix(planeMatrices[i]);
         }
 
-        public override void OverridePropertiesForExport(EntityExportContext context)
+        public override void OnSerializeEntity(EntityExportContext context)
         {
-            base.OverridePropertiesForExport(context);
+            base.OnSerializeEntity(context);
 
             List<Matrix4x4> _planeMatrices = new(planeMatrices);
             for (int i = 0; i < _planeMatrices.Count; i++)

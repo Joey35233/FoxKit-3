@@ -23,7 +23,7 @@ namespace Fox.EdAnim
                 Debug.LogWarning($"Multiple objects selected. Applying RigDrivers to first: {target.name}.");
             }
             
-            string assetPath = EditorUtility.OpenFilePanel("Setup rig", "Assets", "frig");
+            string assetPath = Fox.Fs.FileUtils.OpenFilePanel("Setup rig", "Assets", "frig");
             if (System.String.IsNullOrEmpty(assetPath))
             {
                 return;

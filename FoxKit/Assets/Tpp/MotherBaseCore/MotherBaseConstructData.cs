@@ -6,16 +6,16 @@ namespace Tpp.MotherBaseCore
 {
     public partial class MotherBaseConstructData
     {
-        public override void OnDeserializeEntity(GameObject gameObject, TaskLogger logger)
+        public override void OnDeserializeEntity(TaskLogger logger)
         {
-            base.OnDeserializeEntity(gameObject, logger);
+            base.OnDeserializeEntity(logger);
 
             for (int i= 0; i < divisionRotate.Length; i++)
                 divisionRotate[i] = (ushort)((divisionRotate[i] + 180) % 360);
         }
-        public override void OverridePropertiesForExport(EntityExportContext context)
+        public override void OnSerializeEntity(EntityExportContext context)
         {
-            base.OverridePropertiesForExport(context);
+            base.OnSerializeEntity(context);
 
             ushort[] _divisionRotate = divisionRotate;
 
