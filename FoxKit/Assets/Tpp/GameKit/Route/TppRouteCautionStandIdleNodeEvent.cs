@@ -10,5 +10,6 @@ namespace Tpp.GameKit
 		public override StrCode32 GetId() => Id;
 
 		public static TppRouteCautionStandIdleNodeEvent Deserialize(UnityEngine.GameObject gameObject, uint[] binaryData) { TppRouteCautionStandIdleNodeEvent component = gameObject.AddComponent<TppRouteCautionStandIdleNodeEvent>(); component.binaryData = binaryData; return component; }
+		public override uint[] Serialize() => binaryData;
 	}
 }

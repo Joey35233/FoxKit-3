@@ -31,10 +31,20 @@ namespace Tpp.GameKit
             }
 
             result.unknown = unknown;
-            result.message = message.ToString();
-            result.routeName = routeName.ToString();
+            result.message = RouteNameResolver.Resolve(message);
+            result.routeName = RouteNameResolver.Resolve(routeName);
 
             return result;
+        }
+
+        public override uint[] Serialize()
+        {
+            return new uint[]
+            {
+                unknown,
+                Hashing.StringId32(message),
+                Hashing.StringId32(routeName),
+            };
         }
     }
 }

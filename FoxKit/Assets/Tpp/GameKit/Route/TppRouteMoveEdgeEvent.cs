@@ -27,5 +27,10 @@ namespace Tpp.GameKit
 
             return result;
         }
+
+        public override uint[] Serialize()
+        {
+            return new uint[] { (uint)speed };
+        }
 	}
 }

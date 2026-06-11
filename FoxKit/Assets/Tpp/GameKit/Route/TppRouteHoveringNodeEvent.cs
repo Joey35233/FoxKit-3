@@ -10,5 +10,6 @@ namespace Tpp.GameKit
 		public override StrCode32 GetId() => Id;
 
 		public static TppRouteHoveringNodeEvent Deserialize(UnityEngine.GameObject gameObject, uint[] binaryData) { TppRouteHoveringNodeEvent component = gameObject.AddComponent<TppRouteHoveringNodeEvent>(); component.binaryData = binaryData; return component; }
+		public override uint[] Serialize() => binaryData;
 	}
 }
