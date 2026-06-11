@@ -34,4 +34,20 @@ public static class RouteNameResolver
         else
             return hash.ToString();  //0x....
     }
+
+    public static void RegisterUserRoute(string name)
+    {
+        if (string.IsNullOrWhiteSpace(name))
+            return;
+
+        // already known (vanilla route_ids.txt or a previously-added user route)
+        if (Names.ContainsKey(new StrCode32(name)))
+            return;
+
+        // AppendAllText creates route_ids_user.txt if it doesn't exist
+        string userPath = System.IO.Path.Combine(Application.dataPath, "FoxKit/Tests", "route_ids_user.txt");
+        System.IO.File.AppendAllText(userPath, name + "\n");
+
+        Names[new StrCode32(name)] = name;
+    }
 }
