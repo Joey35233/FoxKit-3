@@ -48,10 +48,7 @@ namespace Fox.GameService
 
             // StrCode32
             foreach (GsRouteData route in routes)
-            {
-                RouteNameResolver.RegisterUserRoute(route.name);
                 writer.WriteStrCode32(new StrCode32(route.name));
-            }
 
             return routeIdsOffset;
         }

@@ -31,8 +31,8 @@ namespace Tpp.GameKit
             }
 
             result.unknown = unknown;
-            result.message = RouteNameResolver.Resolve(message);
-            result.routeName = RouteNameResolver.Resolve(routeName);
+            result.message = GameServiceModule.Resolve(message);
+            result.routeName = GameServiceModule.Resolve(routeName);
 
             return result;
         }
