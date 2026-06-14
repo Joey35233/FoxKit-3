@@ -4,6 +4,7 @@ using Fox.Fio;
 using Fox.Graphx;
 using Fox;
 using System;
+using System.Collections.Generic;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
@@ -117,6 +118,8 @@ namespace Fox.GameService
             if (fileVersion == RouteSetVersion.GZ)
                 reader.Skip(4 * 2); //Irrelevant memory leak bytes
 
+            var routeRoots = new List<GsRouteData>(routeCount);
+
             for (int i = 0; i < routeCount; i++)
             {
                 // Get id
@@ -133,8 +136,10 @@ namespace Fox.GameService
                 ushort nodeCount = reader.ReadUInt16();
                 ushort eventCount = reader.ReadUInt16();
 
-                GsRouteData routeData = new GameObject(id.ToString()).AddComponent<GsRouteData>();
+                GsRouteData routeData = new GameObject(GameServiceModule.Resolve(id)).AddComponent<GsRouteData>();
                 routeData.SetTransform(TransformEntity.GetDefault());
+
+                routeRoots.Add(routeData);
 
                 for (int j = 0; j < nodeCount; j++)
                 {
@@ -299,6 +304,20 @@ namespace Fox.GameService
                     nextEdge.prevNode = node;
                 }
             }
+
+            routeRoots.Sort((a, b) =>
+            {
+                bool aHashed = a.name.StartsWith("0x");
+                bool bHashed = b.name.StartsWith("0x");
+                if (aHashed && !bHashed)
+                    return -1;
+                if (!aHashed && bHashed)
+                    return 1;
+                return string.Compare(a.name, b.name, StringComparison.OrdinalIgnoreCase);
+            });
+
+            for (int i = 0; i < routeRoots.Count; i++)
+                routeRoots[i].transform.SetSiblingIndex(i);
 
             return scene;
         }

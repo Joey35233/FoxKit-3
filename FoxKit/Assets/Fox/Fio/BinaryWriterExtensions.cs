@@ -29,6 +29,14 @@ namespace Fox.Fio
             writer.Write(0);
         }
 
+        public static void WritePositionF(this BinaryWriter writer, UnityEngine.Vector3 vec)
+        {
+            UnityEngine.Vector3 fox = Fox.Math.UnityToFoxVector3(vec);
+            writer.Write(fox.x);
+            writer.Write(fox.y);
+            writer.Write(fox.z);
+        }
+
         public static void Write(this BinaryWriter writer, UnityEngine.Matrix4x4 val)
         {
             writer.Write(val.GetColumn(0));

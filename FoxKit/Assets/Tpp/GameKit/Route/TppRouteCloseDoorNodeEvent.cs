@@ -10,5 +10,6 @@ namespace Tpp.GameKit
 		public override StrCode32 GetId() => Id;
 
 		public static TppRouteCloseDoorNodeEvent Deserialize(UnityEngine.GameObject gameObject, uint[] binaryData) { TppRouteCloseDoorNodeEvent component = gameObject.AddComponent<TppRouteCloseDoorNodeEvent>(); component.binaryData = binaryData; return component; }
+		public override uint[] Serialize() => binaryData;
 	}
 }
