@@ -1,4 +1,8 @@
+using System.Collections.Generic;
+using System.IO;
+using Fox;
 using Fox.Fs;
+using Fox.GameService;
 using UnityEditor;
 using UnityEngine;
 
@@ -12,6 +16,13 @@ namespace FoxKit
             FsModule.UnityBasePath = SettingsManager.UnityBasePath;
             FsModule.ExternalBasePath = SettingsManager.ExternalBasePath;
             FsModule.LooseBasePath = SettingsManager.LooseBasePath;
+            
+            RegisterDictionaries();
+        }
+
+        private static void RegisterDictionaries()
+        {
+            GameServiceModule.RegisterRouteIdMap("Assets/FoxKit/Dictionaries/route_ids");
         }
     }
 }

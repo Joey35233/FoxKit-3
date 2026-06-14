@@ -12,7 +12,7 @@ namespace Fox.GameService
     {
         internal static Dictionary<StrCode32, Func<GameObject, uint[], GsRouteDataRouteEvent>> GsRouteDataEventDeserializationMap = new();
 
-        private static readonly Dictionary<StrCode32, string> StringTable = new();
+        internal static StringId32Map RouteIdMap = null;
 
         public static void RegisterRouteDataEventDeserializationCallback(StrCode32 id, Func<GameObject, uint[], GsRouteDataRouteEvent> deserializeFunc)
         {
@@ -21,22 +21,9 @@ namespace Fox.GameService
             Debug.Assert(GsRouteDataEventDeserializationMap.TryAdd(id, deserializeFunc));
         }
 
-        public static void RegisterString(string str)
+        public static void RegisterRouteIdMap(string dictionaryPath)
         {
-            if (string.IsNullOrWhiteSpace(str))
-                return;
-
-            StringTable[new StrCode32(str)] = str;
-        }
-
-        public static bool IsStringKnown(StrCode32 hash) => StringTable.ContainsKey(hash);
-
-        public static string Resolve(StrCode32 hash)
-        {
-            if (StringTable.TryGetValue(hash, out string str))
-                return str;
-
-            return hash.ToString();
+            RouteIdMap = new StringId32Map(dictionaryPath);
         }
 
         static GameServiceModule()

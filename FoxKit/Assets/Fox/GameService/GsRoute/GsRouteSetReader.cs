@@ -136,7 +136,8 @@ namespace Fox.GameService
                 ushort nodeCount = reader.ReadUInt16();
                 ushort eventCount = reader.ReadUInt16();
 
-                GsRouteData routeData = new GameObject(GameServiceModule.Resolve(id)).AddComponent<GsRouteData>();
+                string routeId = GameServiceModule.RouteIdMap.Resolve(id, out string resolvedRouteIdString) ? resolvedRouteIdString : id.ToString();
+                GsRouteData routeData = new GameObject().AddComponent<GsRouteData>();
                 routeData.SetTransform(TransformEntity.GetDefault());
 
                 routeRoots.Add(routeData);
