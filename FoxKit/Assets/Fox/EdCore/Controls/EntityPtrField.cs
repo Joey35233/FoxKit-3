@@ -106,7 +106,7 @@ namespace Fox.EdCore
             base.ExecuteDefaultActionAtTarget(evt);
 
             // UNITYENHANCEMENT: https://github.com/Joey35233/FoxKit-3/issues/12
-            if (evt.eventTypeId == FoxFieldUtils.SerializedPropertyBindEventTypeId && !System.String.IsNullOrWhiteSpace(bindingPath))
+            if (evt.eventTypeId == FoxFieldUtils.SerializedPropertyBindEventTypeId && !string.IsNullOrWhiteSpace(bindingPath))
             {
                 var property = FoxFieldUtils.SerializedPropertyBindEventBindProperty.GetValue(evt) as SerializedProperty;
 

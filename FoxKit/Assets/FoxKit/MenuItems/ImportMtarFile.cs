@@ -9,8 +9,8 @@ namespace FoxKit.MenuItems
         [MenuItem("FoxKit/Import/MtarFile")]
         private static void OnImportAsset()
         {
-            string assetPath = Fox.Fs.FileUtils.OpenFilePanel("Import MtarFile", "", "mtar");
-            if (System.String.IsNullOrEmpty(assetPath))
+            string assetPath = Fox.Fs.FileUtils.OpenFilePanel("Import MtarFile", "mtar");
+            if (string.IsNullOrEmpty(assetPath))
             {
                 return;
             }

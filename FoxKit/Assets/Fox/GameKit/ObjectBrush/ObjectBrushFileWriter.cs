@@ -115,7 +115,7 @@ namespace Fox.GameKit
 
             string filePath = EditorUtility.SaveFilePanel("Export to OBR", "", objectBrush.name, "obr");
 
-            if (System.String.IsNullOrWhiteSpace(filePath))
+            if (string.IsNullOrWhiteSpace(filePath))
                 return;
 
             var minMaxScaleValues = new List<Vector2>();

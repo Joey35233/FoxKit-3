@@ -8,8 +8,8 @@ namespace FoxKit.MenuItems
         [MenuItem("FoxKit/Import/HelpBoneFile")]
         private static void OnImportAsset()
         {
-            string assetPath = Fox.Fs.FileUtils.OpenFilePanel("Import HelpBoneFile", "", "frdv");
-            if (System.String.IsNullOrEmpty(assetPath))
+            string assetPath = Fox.Fs.FileUtils.OpenFilePanel("Import HelpBoneFile", "frdv");
+            if (string.IsNullOrEmpty(assetPath))
             {
                 return;
             }
