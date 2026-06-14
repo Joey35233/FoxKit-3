@@ -12,7 +12,7 @@ namespace FoxKit.MenuItems
         private static void OnImportAsset()
         {
             // string assetPath = Fox.Fs.FileUtils.OpenFilePanel("Import Terrain", "", "tre2");
-            // if (System.String.IsNullOrEmpty(assetPath))
+            // if (string.IsNullOrEmpty(assetPath))
             // {
             //     Debug.Log("File doesn't exist or is empty");
             //     return;

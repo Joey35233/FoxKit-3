@@ -179,7 +179,7 @@ namespace Fox.Core
             foreach (KeyValuePair<string, object> item in list)
             {
                 // TODO Are empty keys allowed?
-                if (System.String.IsNullOrEmpty(item.Key))
+                if (string.IsNullOrEmpty(item.Key))
                 {
                     skippedKeyCount++;
                     continue;

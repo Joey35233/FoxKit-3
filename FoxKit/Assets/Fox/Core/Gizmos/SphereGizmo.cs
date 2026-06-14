@@ -37,7 +37,7 @@ namespace Fox.Core
                 LabelStyle.normal.textColor = EditorColors.LabelIdleColor;
             }
 
-            if (!System.String.IsNullOrEmpty(this.GizmoPath))
+            if (!string.IsNullOrEmpty(this.GizmoPath))
             {
                 Gizmos.DrawIcon(Transform.position, GizmoPath, true, isSelected ? SelectedColor : Color.white);
             }

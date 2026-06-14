@@ -9,8 +9,8 @@ namespace FoxKit.MenuItems
         [MenuItem("FoxKit/Import/ConnectPointFile")]
         private static void OnImportAsset()
         {
-            string assetPath = Fox.Fs.FileUtils.OpenFilePanel("Import ConnectPointFile", "", "fcnp");
-            if (System.String.IsNullOrEmpty(assetPath))
+            string assetPath = Fox.Fs.FileUtils.OpenFilePanel("Import ConnectPointFile", "fcnp");
+            if (string.IsNullOrEmpty(assetPath))
             {
                 return;
             }

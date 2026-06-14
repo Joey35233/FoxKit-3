@@ -1,4 +1,11 @@
 {
 	"allowUnsafeCode": true,
-	"name": "Fox.Kernel"
+	"name": "Fox.Kernel",
+	
+	"precompiledReferences": [
+		"nunit.framework.dll"
+	],
+	"defineConstraints": [
+		"UNITY_INCLUDE_TESTS"
+	]
 }

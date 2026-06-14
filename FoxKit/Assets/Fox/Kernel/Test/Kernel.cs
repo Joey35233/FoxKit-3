@@ -3,9 +3,9 @@ using NUnit.Framework;
 using UnityEngine.TestTools;
 using Fox;
 
-namespace FoxKit.Tests
+namespace Fox
 {
-    public class Kernel
+    public class Tests
     {
         [Test]
         public void BasicStringTests()
