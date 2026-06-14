@@ -10,6 +10,5 @@ namespace Tpp.GameKit
 		public override StrCode32 GetId() => Id;
 
 		public static TppRouteWalkOnlyEdgeEvent Deserialize(UnityEngine.GameObject gameObject, uint[] binaryData) { TppRouteWalkOnlyEdgeEvent component = gameObject.AddComponent<TppRouteWalkOnlyEdgeEvent>(); component.binaryData = binaryData; return component; }
-		public override uint[] Serialize() => binaryData;
 	}
 }

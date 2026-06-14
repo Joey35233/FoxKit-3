@@ -35,15 +35,5 @@ namespace Tpp.GameKit
 
             return result;
         }
-
-        public override uint[] Serialize()
-        {
-            return new uint[]
-            {
-                Hashing.StringId32(conversationLabel),
-                Hashing.StringId32(friendCharacterId),
-                range,
-            };
-        }
     }
 }

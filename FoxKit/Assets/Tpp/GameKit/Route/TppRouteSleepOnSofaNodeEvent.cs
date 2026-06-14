@@ -10,6 +10,5 @@ namespace Tpp.GameKit
 		public override StrCode32 GetId() => Id;
 
 		public static TppRouteSleepOnSofaNodeEvent Deserialize(UnityEngine.GameObject gameObject, uint[] binaryData) { TppRouteSleepOnSofaNodeEvent component = gameObject.AddComponent<TppRouteSleepOnSofaNodeEvent>(); component.binaryData = binaryData; return component; }
-		public override uint[] Serialize() => binaryData;
 	}
 }

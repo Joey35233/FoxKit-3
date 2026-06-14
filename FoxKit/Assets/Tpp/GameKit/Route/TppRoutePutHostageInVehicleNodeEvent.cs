@@ -38,15 +38,5 @@ namespace Tpp.GameKit
 
             return result;
         }
-
-        public override uint[] Serialize()
-        {
-            return new uint[]
-            {
-                unknown,
-                Hashing.StringId32(message),
-                Hashing.StringId32(routeName),
-            };
-        }
     }
 }

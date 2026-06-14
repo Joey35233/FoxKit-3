@@ -10,6 +10,5 @@ namespace Tpp.GameKit
 		public override StrCode32 GetId() => Id;
 
 		public static TppRouteSetTargetSpeedNodeEvent Deserialize(UnityEngine.GameObject gameObject, uint[] binaryData) { TppRouteSetTargetSpeedNodeEvent component = gameObject.AddComponent<TppRouteSetTargetSpeedNodeEvent>(); component.binaryData = binaryData; return component; }
-		public override uint[] Serialize() => binaryData;
 	}
 }

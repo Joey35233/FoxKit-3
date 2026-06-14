@@ -10,6 +10,5 @@ namespace Tpp.GameKit
 		public override StrCode32 GetId() => Id;
 
 		public static TppRouteUseFlashLightNodeEvent Deserialize(UnityEngine.GameObject gameObject, uint[] binaryData) { TppRouteUseFlashLightNodeEvent component = gameObject.AddComponent<TppRouteUseFlashLightNodeEvent>(); component.binaryData = binaryData; return component; }
-		public override uint[] Serialize() => binaryData;
 	}
 }

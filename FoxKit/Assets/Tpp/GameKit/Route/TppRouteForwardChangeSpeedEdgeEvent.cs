@@ -10,6 +10,5 @@ namespace Tpp.GameKit
 		public override StrCode32 GetId() => Id;
 
 		public static TppRouteForwardChangeSpeedEdgeEvent Deserialize(UnityEngine.GameObject gameObject, uint[] binaryData) { TppRouteForwardChangeSpeedEdgeEvent component = gameObject.AddComponent<TppRouteForwardChangeSpeedEdgeEvent>(); component.binaryData = binaryData; return component; }
-		public override uint[] Serialize() => binaryData;
 	}
 }
