@@ -16,7 +16,6 @@ namespace Fox.GameService
         {
             List<GsRouteData> routes = GetRoutesToExport(sceneToExport);
 
-            // Reserve the header
             long headerPosition = writer.BaseStream.Position;
             writer.BaseStream.Position += HeaderSize;
 
@@ -37,7 +36,6 @@ namespace Fox.GameService
                     writeableRoutes.Add(route);
             }
 
-            // Write in hierarchy order
             writeableRoutes.Sort((a, b) => a.transform.GetSiblingIndex().CompareTo(b.transform.GetSiblingIndex()));
             return writeableRoutes;
         }
@@ -159,9 +157,11 @@ namespace Fox.GameService
 
         private static void WriteNodePositions(BinaryWriter writer, GsRouteData route)
         {
-            // TPP: 12-byte X-negated Vector3
+            // TPP: 12-byte X-negated Vector3.
+            // Now it takes the GsRouteData(The parent of the Nodes) Transform of x, y, z into account.
+            Matrix4x4 routeMatrix = route.GetGraphWorldMatrix();
             foreach (var node in route.nodes)
-                writer.WritePositionF(node.position);
+                writer.WritePositionF(routeMatrix.MultiplyPoint3x4(node.position));
         }
 
         private static void WriteEvent(BinaryWriter writer, GsRouteDataRouteEvent routeEvent)
@@ -256,8 +256,9 @@ namespace Fox.GameService
         private static ushort QuantizeDirection(float direction)
         {
             const float quantaPerDegree = (ushort.MaxValue + 1) / 360f;
-            int raw = Mathf.RoundToInt(direction * quantaPerDegree);
-            return (ushort)Mathf.Clamp(raw, 0, ushort.MaxValue);
+            float wrapped = Mathf.Repeat(direction, 360f);
+            int raw = Mathf.RoundToInt(wrapped * quantaPerDegree);
+            return (ushort)raw;
         }
 
         private static void PatchRouteDefinition(BinaryWriter writer, long defPosition, uint positionsOffset, uint eventSpanOffset, uint eventsOffset, ushort nodeCount, ushort eventCount)

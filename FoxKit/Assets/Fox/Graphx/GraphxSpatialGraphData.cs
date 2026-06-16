@@ -17,6 +17,19 @@ namespace Fox.Graphx
         public virtual Type GetEdgeType() => typeof(GraphxSpatialGraphDataEdge);
         public virtual bool IsLoop() => true;
 
+        public virtual Type GetEdgeEventType() => null;
+        public virtual Type GetNodeEventType() => null;
+
+        public virtual void AddNodeEvent(GraphxSpatialGraphDataNode node) { }
+
+        public virtual bool ResolveNodeEvents(GraphxSpatialGraphDataNode node, int fromIndex) => false;
+
+        public virtual void SetNodeEventType(GraphxSpatialGraphDataNode node, int index, string friendlyName) { }
+
+        public virtual void SyncEventTemplates() { }
+        public virtual UnityEngine.Object GetNodeEventTemplate() => null;
+        public virtual UnityEngine.Object GetEdgeEventTemplate() => null;
+
         public int IndexOf(GraphxSpatialGraphDataNode node)
         {
             return this.nodes.IndexOf(node);
@@ -36,17 +49,12 @@ namespace Fox.Graphx
                 throw new System.ArgumentException("Node not found in graph.");
 
             var newNode = CreateNode();
-            newNode.transform.SetParent(transform);
-
             var newEdge = CreateEdge();
-            newEdge.transform.SetParent(transform);
 
             ConnectEdge(node, newNode, newEdge);
 
-            // If needed, update any edges pointing to next node
             HandleSplice(node, newNode, newEdge);
 
-            // Insert into lists
             nodes.Insert(index + 1, newNode);
             edges.Add(newEdge);
 
@@ -54,6 +62,64 @@ namespace Fox.Graphx
 
             EditorUtility.SetDirty(this);
             return newNode;
+        }
+
+        public GraphxSpatialGraphDataNode AddNode()
+        {
+            if (nodes.Count == 0)
+            {
+                Undo.RegisterCompleteObjectUndo(this, "Add First Node");
+
+                var first = CreateNode();
+                nodes.Add(first);
+
+                EditorUtility.SetDirty(this);
+                return first;
+            }
+
+            return AddNodeAfter(nodes[nodes.Count - 1]);
+        }
+
+        public void RemoveNode(GraphxSpatialGraphDataNode node)
+        {
+            int index = IndexOf(node);
+            if (index < 0)
+                return;
+
+            Undo.RegisterCompleteObjectUndo(this, "Remove Node");
+
+            var incoming = edges.FirstOrDefault(e => e.nextNode == node);   // pred -> node
+            var outgoing = edges.FirstOrDefault(e => e.prevNode == node);   // node -> succ
+            var pred = incoming?.prevNode as GraphxSpatialGraphDataNode;
+            var succ = outgoing?.nextNode as GraphxSpatialGraphDataNode;
+
+            if (pred != null && succ != null && pred != succ)
+            {
+                incoming.nextNode = succ;
+                succ.outlinks.Remove(outgoing);
+                succ.outlinks.Add(incoming);
+                RemoveEdge(outgoing);
+            }
+            else
+            {
+                foreach (var edge in edges.Where(e => e.prevNode == node || e.nextNode == node).ToList())
+                {
+                    (edge.prevNode as GraphxSpatialGraphDataNode)?.outlinks.Remove(edge);
+                    (edge.nextNode as GraphxSpatialGraphDataNode)?.outlinks.Remove(edge);
+                    RemoveEdge(edge);
+                }
+            }
+
+            nodes.RemoveAt(index);
+            Undo.DestroyObjectImmediate(node.gameObject);
+
+            EditorUtility.SetDirty(this);
+        }
+
+        private void RemoveEdge(GraphxSpatialGraphDataEdge edge)
+        {
+            edges.Remove(edge);
+            Undo.DestroyObjectImmediate(edge.gameObject);
         }
 
         protected virtual void ConnectEdge(
@@ -67,6 +133,8 @@ namespace Fox.Graphx
             prev.outlinks.Add(edge);
 
             next.outlinks.Add(edge);
+
+            edge.transform.SetParent(next.transform);
         }
 
         protected virtual void HandleSplice(
@@ -74,7 +142,6 @@ namespace Fox.Graphx
             Fox.Graphx.GraphxSpatialGraphDataNode inserted,
             Fox.Graphx.GraphxSpatialGraphDataEdge newEdge)
         {
-            // Look for existing edge to a next node
             var existingEdge = edges.FirstOrDefault(e => e.prevNode == prev && e.nextNode != null && e != newEdge);
             if (existingEdge == null)
                 return;
@@ -82,7 +149,6 @@ namespace Fox.Graphx
             var oldNext = existingEdge.nextNode as Fox.Graphx.GraphxSpatialGraphDataNode;
             existingEdge.prevNode = inserted;
 
-            // Reconnect links
             prev.outlinks.Remove(existingEdge);
             inserted.outlinks.Add(existingEdge);
 
@@ -100,10 +166,10 @@ namespace Fox.Graphx
             if (IsLoop() && firstNode.outlinks.Count < 2 && lastNode.outlinks.Count < 2)
             {
                 var loopEdge = CreateEdge();
-                loopEdge.transform.SetParent(transform);
 
                 loopEdge.prevNode = lastNode;
                 loopEdge.nextNode = firstNode;
+                loopEdge.transform.SetParent(firstNode.transform);
 
                 lastNode.outlinks.Add(loopEdge);
                 firstNode.outlinks.Add(loopEdge);
@@ -125,6 +191,7 @@ namespace Fox.Graphx
                 .Select(ent => ent.name).ToHashSet();
             newNodeGo.name = newNode.GenerateUniqueName(nodeType, usedNames);
 
+            OnNodeCreated(newNode);
             return newNode;
         }
 
@@ -141,7 +208,11 @@ namespace Fox.Graphx
                 .Select(ent => ent.name).ToHashSet();
             edge.name = edge.GenerateUniqueName(edgeType, usedNames);
 
+            OnEdgeCreated(edge);
             return edge;
         }
+
+        protected virtual void OnNodeCreated(GraphxSpatialGraphDataNode node) { }
+        protected virtual void OnEdgeCreated(GraphxSpatialGraphDataEdge edge) { }
     }
 }
