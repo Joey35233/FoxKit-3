@@ -1,42 +1,40 @@
 using Fox.Core;
 using Fox.Core.Utils;
-using Fox.Fio;
 using Fox.Geo;
+using static Fox.Geo.GeoGeom;
 using Fox.Graphx;
 using Fox;
 using UnityEngine;
 using System;
-using System.IO;
 
 namespace Fox.Geox
 {
     public partial class GeoxTrapAreaPath : Fox.Graphx.GraphxPathData
     {
-        public static GeoTriggerTrap Deserialize(GeomHeaderContext header)
+        public static unsafe void Deserialize(IntPtr geomHeaderPtr, GameObject parent)
         {
-            FileStreamReader reader = header.Reader;
+            GeomHeader* geomHeader = (GeomHeader*)geomHeaderPtr;
 
-            Debug.Assert(header.Type == GeoGeom.GeoPrimType.FreeArea);
+            byte primCount = (byte)(geomHeader->Info >> 24 & 0xFF);
+            byte* payload = (byte*)(geomHeader + 1);
 
-            GeoTriggerTrap triggerTrap = new GameObject(header.Name.ToString()).AddComponent<GeoTriggerTrap>();
+            GeoTriggerTrap triggerTrap = new GameObject(geomHeader->Name.ToString()).AddComponent<GeoTriggerTrap>();
+            triggerTrap.transform.parent = parent.transform;
             triggerTrap.SetTransform(TransformEntity.GetDefault());
-            //triggerTrap.InitializeGameObject(triggerTrapGameObject);
-
-            triggerTrap.name = header.Name.ToString();
             triggerTrap.enable = true;
-            TagUtils.AddEnumTags<GeoTriggerTrap.Tags>(triggerTrap.groupTags, (ulong)header.GetTags<GeoTriggerTrap.Tags>());
+            TagUtils.AddEnumTags<GeoTriggerTrap.Tags>(triggerTrap.groupTags, (ulong)geomHeader->Tags);
 
-            for (int i = 0; i < header.PrimCount; i++)
+            for (int i = 0; i < primCount; i++)
             {
-                reader.Seek(header.GetDataPosition() + (16 * i));
-                float yMin = reader.ReadSingle();
-                float yMax = reader.ReadSingle();
-                uint vertexCount = reader.ReadUInt32();
-                int vertexDataOffset = reader.ReadInt32();
-                Debug.Assert(vertexCount >= 2);
+                byte* prim = payload + (16 * i);
+                float yMin = *(float*)prim;
+                float yMax = *(float*)(prim + 4);
+                uint vertexCount = *(uint*)(prim + 8);
+                int vertexDataOffset = *(int*)(prim + 12);
+
                 if (vertexCount >= 2 && vertexDataOffset != 0)
                 {
-                    GeoxTrapAreaPath trapAreaPath = new GameObject($"{header.Name.ToString()}|GeoxTrapAreaPath{i:D4}").AddComponent<GeoxTrapAreaPath>();
+                    GeoxTrapAreaPath trapAreaPath = new GameObject($"{geomHeader->Name.ToString()}|GeoxTrapAreaPath{i:D4}").AddComponent<GeoxTrapAreaPath>();
                     trapAreaPath.SetTransform(TransformEntity.GetDefault());
                     trapAreaPath.transform.position = new Vector3(0, yMin, 0);
                     bool transformSet = false;
@@ -45,14 +43,13 @@ namespace Fox.Geox
 
                     triggerTrap.AddChild(trapAreaPath);
 
+                    byte* vertices = payload + vertexDataOffset;
                     for (int j = 0; j < vertexCount; j++)
                     {
-                        reader.Seek(header.GetDataPosition() + vertexDataOffset + (16 * j));
-
                         GraphxSpatialGraphDataNode node = new GameObject().AddComponent<GraphxSpatialGraphDataNode>();
                         node.SetOwner(trapAreaPath);
                         node.name = $"{node.GetType().Name}{j:D4}";
-                        node.position = reader.ReadPositionF();
+                        node.position = Fox.Math.FoxToUnityVector3(*(Vector3*)(vertices + (16 * j)));
 
                         if (!transformSet)
                         {
@@ -93,7 +90,7 @@ namespace Fox.Geox
 
                         GraphxSpatialGraphDataEdge edge = new GameObject().AddComponent<GraphxSpatialGraphDataEdge>();
                         edge.SetOwner(trapAreaPath);
-                        edge.name = $"{edge.GetType().Name}{j+1:D4}";
+                        edge.name = $"{edge.GetType().Name}{j + 1:D4}";
 
                         edge.prevNode = prevNode;
                         prevNode.outlinks.Add(edge.prevNode);
@@ -104,8 +101,6 @@ namespace Fox.Geox
                     }
                 }
             }
-
-            return triggerTrap;
         }
 
         private static readonly Color Color = Color.red;
@@ -130,11 +125,6 @@ namespace Fox.Geox
 
                 Vector3 prevNodePos = this.transform.TransformPoint(prevNode.position);
                 Vector3 nextNodePos = this.transform.TransformPoint(nextNode.position);
-
-                float prevNodex = this.transform.position.x + prevNode.position.x;
-                float prevNodez = this.transform.position.z + prevNode.position.z;
-                float nextNodex = this.transform.position.x + nextNode.position.x;
-                float nextNodez = this.transform.position.z + nextNode.position.z;
 
                 Gizmos.DrawLine(new Vector3(prevNodePos.x, yMin, prevNodePos.z), new Vector3(nextNodePos.x, yMin, nextNodePos.z));
                 Gizmos.DrawLine(new Vector3(prevNodePos.x, yMax, prevNodePos.z), new Vector3(nextNodePos.x, yMax, nextNodePos.z));
