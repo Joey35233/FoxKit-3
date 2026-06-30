@@ -15,14 +15,14 @@ namespace Fox.Core
             return transform;
         }
 
-        private partial UnityEngine.Vector3 Get_scale() => transform_scale;
-        private partial void Set_scale(UnityEngine.Vector3 value) => transform_scale = value;
+        private partial UnityEngine.Vector3 scale_Get() => transform_scale;
+        private partial void scale_Set(UnityEngine.Vector3 value) => transform_scale = value;
 
-        private partial UnityEngine.Quaternion Get_rotQuat() => transform_rotation_quat;
-        private partial void Set_rotQuat(UnityEngine.Quaternion value) => transform_rotation_quat = value;
+        private partial UnityEngine.Quaternion rotQuat_Get() => transform_rotation_quat;
+        private partial void rotQuat_Set(UnityEngine.Quaternion value) => transform_rotation_quat = value;
 
-        private partial UnityEngine.Vector3 Get_translation() => transform_translation;
-        private partial void Set_translation(UnityEngine.Vector3 value) => transform_translation = value;
+        private partial UnityEngine.Vector3 translation_Get() => transform_translation;
+        private partial void translation_Set(UnityEngine.Vector3 value) => transform_translation = value;
 
         public override void OnSerializeEntity(EntityExportContext context)
         {

@@ -6,8 +6,8 @@ namespace Fox.Ph
 {
     public partial class PhRigidBody : Fox.Ph.PhSubObject
     {
-        private partial UnityEngine.Vector3 Get_defaultPosition() => param == null ? Vector3.zero : param.GetDefaultPosition();
-        private partial void Set_defaultPosition(UnityEngine.Vector3 value)
+        private partial UnityEngine.Vector3 defaultPosition_Get() => param == null ? Vector3.zero : param.GetDefaultPosition();
+        private partial void defaultPosition_Set(UnityEngine.Vector3 value)
         {
             if (param == null)
                 return;
@@ -15,8 +15,8 @@ namespace Fox.Ph
             param.SetDefaultPosition(value);
         }
 
-        private partial UnityEngine.Quaternion Get_defaultRotation() => param == null ? Quaternion.identity : param.GetDefaultRotation();
-        private partial void Set_defaultRotation(UnityEngine.Quaternion value)
+        private partial UnityEngine.Quaternion defaultRotation_Get() => param == null ? Quaternion.identity : param.GetDefaultRotation();
+        private partial void defaultRotation_Set(UnityEngine.Quaternion value)
         {
             if (param == null)
                 return;
@@ -24,8 +24,8 @@ namespace Fox.Ph
             param.SetDefaultRotation(value);
         }
 
-        private partial float Get_mass() => param == null ? 0.0f : param.GetMass();
-        private partial void Set_mass(float value)
+        private partial float mass_Get() => param == null ? 0.0f : param.GetMass();
+        private partial void mass_Set(float value)
         {
             if (param == null)
                 return;
@@ -33,8 +33,8 @@ namespace Fox.Ph
             param.SetMass(value);
         }
 
-        private partial float Get_friction() => param == null ? 0.0f : param.GetFriction();
-        private partial void Set_friction(float value)
+        private partial float friction_Get() => param == null ? 0.0f : param.GetFriction();
+        private partial void friction_Set(float value)
         {
             if (param == null)
                 return;
@@ -42,8 +42,8 @@ namespace Fox.Ph
             param.SetFriction(value);
         }
 
-        private partial float Get_restitution() => param == null ? 0.0f : param.GetRestitution();
-        private partial void Set_restitution(float value)
+        private partial float restitution_Get() => param == null ? 0.0f : param.GetRestitution();
+        private partial void restitution_Set(float value)
         {
             if (param == null)
                 return;
@@ -51,8 +51,8 @@ namespace Fox.Ph
             param.SetRestitution(value);
         }
 
-        private partial float Get_maxLinearVelocity() => param == null ? 0.0f : param.GetMaxLinearVelocity();
-        private partial void Set_maxLinearVelocity(float value)
+        private partial float maxLinearVelocity_Get() => param == null ? 0.0f : param.GetMaxLinearVelocity();
+        private partial void maxLinearVelocity_Set(float value)
         {
             if (param == null)
                 return;
@@ -60,8 +60,8 @@ namespace Fox.Ph
             param.SetMaxLinearVelocity(value);
         }
 
-        private partial float Get_maxAngularVelocity() => param == null ? 0.0f : param.GetMaxAngularVelocity();
-        private partial void Set_maxAngularVelocity(float value)
+        private partial float maxAngularVelocity_Get() => param == null ? 0.0f : param.GetMaxAngularVelocity();
+        private partial void maxAngularVelocity_Set(float value)
         {
             if (param == null)
                 return;
@@ -69,8 +69,8 @@ namespace Fox.Ph
             param.SetMaxAngularVelocity(value);
         }
 
-        private partial float Get_linearVelocityDamp() => param == null ? 0.0f : param.GetLinearVelocityDamp();
-        private partial void Set_linearVelocityDamp(float value)
+        private partial float linearVelocityDamp_Get() => param == null ? 0.0f : param.GetLinearVelocityDamp();
+        private partial void linearVelocityDamp_Set(float value)
         {
             if (param == null)
                 return;
@@ -78,8 +78,8 @@ namespace Fox.Ph
             param.SetLinearVelocityDamp(value);
         }
 
-        private partial float Get_angularVelocityDamp() => param == null ? 0.0f : param.GetAngularVelocityDamp();
-        private partial void Set_angularVelocityDamp(float value)
+        private partial float angularVelocityDamp_Get() => param == null ? 0.0f : param.GetAngularVelocityDamp();
+        private partial void angularVelocityDamp_Set(float value)
         {
             if (param == null)
                 return;
@@ -87,8 +87,8 @@ namespace Fox.Ph
             param.SetAngularVelocityDamp(value);
         }
 
-        private partial float Get_permittedDepth() => param == null ? 0.0f : param.GetPermittedDepth();
-        private partial void Set_permittedDepth(float value)
+        private partial float permittedDepth_Get() => param == null ? 0.0f : param.GetPermittedDepth();
+        private partial void permittedDepth_Set(float value)
         {
             if (param == null)
                 return;
@@ -96,8 +96,8 @@ namespace Fox.Ph
             param.SetPermittedDepth(value);
         }
 
-        private partial bool Get_sleepEnable() => param == null ? false : param.GetSleepEnable();
-        private partial void Set_sleepEnable(bool value)
+        private partial bool sleepEnable_Get() => param == null ? false : param.GetSleepEnable();
+        private partial void sleepEnable_Set(bool value)
         {
             if (param == null)
                 return;
@@ -105,8 +105,8 @@ namespace Fox.Ph
             param.SetSleepEnable(value);
         }
 
-        private partial float Get_sleepLinearVelocityTh() => param == null ? 0.0f : param.GetSleepLinearVelocityTh();
-        private partial void Set_sleepLinearVelocityTh(float value)
+        private partial float sleepLinearVelocityTh_Get() => param == null ? 0.0f : param.GetSleepLinearVelocityTh();
+        private partial void sleepLinearVelocityTh_Set(float value)
         {
             if (param == null)
                 return;
@@ -114,8 +114,8 @@ namespace Fox.Ph
             param.SetSleepLinearVelocityTh(value);
         }
 
-        private partial float Get_sleepAngularVelocityTh() => param == null ? 0.0f : param.GetSleepAngularVelocityTh();
-        private partial void Set_sleepAngularVelocityTh(float value)
+        private partial float sleepAngularVelocityTh_Get() => param == null ? 0.0f : param.GetSleepAngularVelocityTh();
+        private partial void sleepAngularVelocityTh_Set(float value)
         {
             if (param == null)
                 return;
@@ -123,8 +123,8 @@ namespace Fox.Ph
             param.SetSleepAngularVelocityTh(value);
         }
 
-        private partial float Get_sleepTimeTh() => param == null ? 0.0f : param.GetSleepTimeTh();
-        private partial void Set_sleepTimeTh(float value)
+        private partial float sleepTimeTh_Get() => param == null ? 0.0f : param.GetSleepTimeTh();
+        private partial void sleepTimeTh_Set(float value)
         {
             if (param == null)
                 return;
@@ -132,8 +132,8 @@ namespace Fox.Ph
             param.SetSleepTimeTh(value);
         }
 
-        private partial ushort Get_collisionGroup() => param == null ? (ushort)0 : param.GetCollisionGroup();
-        private partial void Set_collisionGroup(ushort value)
+        private partial ushort collisionGroup_Get() => param == null ? (ushort)0 : param.GetCollisionGroup();
+        private partial void collisionGroup_Set(ushort value)
         {
             if (param == null)
                 return;
@@ -141,8 +141,8 @@ namespace Fox.Ph
             param.SetCollisionGroup(value);
         }
 
-        private partial ushort Get_collisionType() => param == null ? (ushort)0 : param.GetCollisionType();
-        private partial void Set_collisionType(ushort value)
+        private partial ushort collisionType_Get() => param == null ? (ushort)0 : param.GetCollisionType();
+        private partial void collisionType_Set(ushort value)
         {
             if (param == null)
                 return;
@@ -150,8 +150,8 @@ namespace Fox.Ph
             param.SetCollisionType(value);
         }
 
-        private partial uint Get_collisionId() => param == null ? 0u : param.GetCollisionId();
-        private partial void Set_collisionId(uint value)
+        private partial uint collisionId_Get() => param == null ? 0u : param.GetCollisionId();
+        private partial void collisionId_Set(uint value)
         {
             if (param == null)
                 return;
@@ -159,8 +159,8 @@ namespace Fox.Ph
             param.SetCollisionId(value);
         }
 
-        private partial UnityEngine.Vector3 Get_centerOfMassOffset() => param == null ? Vector3.zero : param.GetCenterOfMassOffset();
-        private partial void Set_centerOfMassOffset(UnityEngine.Vector3 value)
+        private partial UnityEngine.Vector3 centerOfMassOffset_Get() => param == null ? Vector3.zero : param.GetCenterOfMassOffset();
+        private partial void centerOfMassOffset_Set(UnityEngine.Vector3 value)
         {
             if (param == null)
                 return;
@@ -168,8 +168,8 @@ namespace Fox.Ph
             param.SetCenterOfMassOffset(value);
         }
 
-        private partial PhRigidBodyType Get_motionType() => param == null ? default : param.GetMotionType();
-        private partial void Set_motionType(PhRigidBodyType value)
+        private partial PhRigidBodyType motionType_Get() => param == null ? default : param.GetMotionType();
+        private partial void motionType_Set(PhRigidBodyType value)
         {
             if (param == null)
                 return;
@@ -177,8 +177,8 @@ namespace Fox.Ph
             param.SetMotionType(value);
         }
 
-        private partial string Get_material() => param == null ? null : param.GetMaterial();
-        private partial void Set_material(string value)
+        private partial string material_Get() => param == null ? null : param.GetMaterial();
+        private partial void material_Set(string value)
         {
             if (param == null)
                 return;

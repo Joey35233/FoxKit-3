@@ -59,7 +59,7 @@ namespace Tpp.MotherBaseCore
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -91,7 +91,20 @@ namespace Tpp.MotherBaseCore
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				case "pathCodes":
+					this.pathCodes[index] = value.GetValueAsUInt64();
+					return;
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
 		{
 			switch (propertyName)
 			{
@@ -100,7 +113,7 @@ namespace Tpp.MotherBaseCore
 					this.pathCodes[index] = value.GetValueAsUInt64();
 					return;
 				default:
-					base.SetPropertyElement(propertyName, index, value);
+					base.AddPropertyElement(propertyName, index, value);
 					return;
 			}
 		}
@@ -110,13 +123,49 @@ namespace Tpp.MotherBaseCore
 			switch (propertyName)
 			{
 				case "flags":
-					if (this.flags.ContainsKey(key))
-						this.flags[key] = value.GetValueAsInt32();
-					else
-						this.flags.Insert(key, value.GetValueAsInt32());
+					this.flags[key] = value.GetValueAsInt32();
 					return;
 				default:
 					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				case "flags":
+					this.flags[key] = value.GetValueAsInt32();
+					return;
+				default:
+					base.AddPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, int index)
+		{
+			switch (propertyName)
+			{
+				case "pathCodes":
+					this.pathCodes.RemoveAt(index);
+					return;
+				default:
+					base.RemovePropertyElement(propertyName, index);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, string key)
+		{
+			switch (propertyName)
+			{
+				case "flags":
+					this.flags.Remove(key);
+					return;
+				default:
+					base.RemovePropertyElement(propertyName, key);
 					return;
 			}
 		}

@@ -125,7 +125,7 @@ namespace Fox.Geox
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -180,7 +180,53 @@ namespace Fox.Geox
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				case "posArray":
+					this.posArray[index] = value.GetValueAsVector3();
+					return;
+				case "scaleArray":
+					this.scaleArray[index] = value.GetValueAsVector3();
+					return;
+				case "rotArray":
+					this.rotArray[index] = value.GetValueAsQuat();
+					return;
+				case "primTypeArray":
+					this.primTypeArray[index] = value.GetValueAsUInt32();
+					return;
+				case "systemAttributeArray":
+					this.systemAttributeArray[index] = value.GetValueAsUInt64();
+					return;
+				case "throughValueArray":
+					this.throughValueArray[index] = value.GetValueAsUInt32();
+					return;
+				case "flagArray":
+					this.flagArray[index] = value.GetValueAsUInt32();
+					return;
+				case "nameArray":
+					this.nameArray[index] = value.GetValueAsString();
+					return;
+				case "attachSkeletonArray":
+					this.attachSkeletonArray[index] = value.GetValueAsString();
+					return;
+				case "groupArray":
+					this.groupArray[index] = value.GetValueAsString();
+					return;
+				case "objIndexForgroupTagArray":
+					this.objIndexForgroupTagArray[index] = value.GetValueAsUInt32();
+					return;
+				case "applicationDataLinkArray":
+					this.applicationDataLinkArray[index] = value.GetValueAsEntityLink();
+					return;
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
 		{
 			switch (propertyName)
 			{
@@ -233,7 +279,7 @@ namespace Fox.Geox
 					this.applicationDataLinkArray[index] = value.GetValueAsEntityLink();
 					return;
 				default:
-					base.SetPropertyElement(propertyName, index, value);
+					base.AddPropertyElement(propertyName, index, value);
 					return;
 			}
 		}
@@ -244,6 +290,72 @@ namespace Fox.Geox
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.AddPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, int index)
+		{
+			switch (propertyName)
+			{
+				case "posArray":
+					this.posArray.RemoveAt(index);
+					return;
+				case "scaleArray":
+					this.scaleArray.RemoveAt(index);
+					return;
+				case "rotArray":
+					this.rotArray.RemoveAt(index);
+					return;
+				case "primTypeArray":
+					this.primTypeArray.RemoveAt(index);
+					return;
+				case "systemAttributeArray":
+					this.systemAttributeArray.RemoveAt(index);
+					return;
+				case "throughValueArray":
+					this.throughValueArray.RemoveAt(index);
+					return;
+				case "flagArray":
+					this.flagArray.RemoveAt(index);
+					return;
+				case "nameArray":
+					this.nameArray.RemoveAt(index);
+					return;
+				case "attachSkeletonArray":
+					this.attachSkeletonArray.RemoveAt(index);
+					return;
+				case "groupArray":
+					this.groupArray.RemoveAt(index);
+					return;
+				case "objIndexForgroupTagArray":
+					this.objIndexForgroupTagArray.RemoveAt(index);
+					return;
+				case "applicationDataLinkArray":
+					this.applicationDataLinkArray.RemoveAt(index);
+					return;
+				default:
+					base.RemovePropertyElement(propertyName, index);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, string key)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.RemovePropertyElement(propertyName, key);
 					return;
 			}
 		}

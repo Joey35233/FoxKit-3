@@ -7,44 +7,45 @@ namespace Tpp.Effect
 {
     public partial class TppAtmosphere : Fox.Core.Data
     {
-        private partial bool Get_useBakedData() => throw new CsSystem.NotImplementedException();
-        private partial void Set_useBakedData(bool value) => throw new CsSystem.NotImplementedException();
+        private partial bool useBakedData_Get() => throw new CsSystem.NotImplementedException();
+        private partial void useBakedData_Set(bool value) => throw new CsSystem.NotImplementedException();
 
-        private partial bool Get_enable() => throw new CsSystem.NotImplementedException();
-        private partial void Set_enable(bool value) => throw new CsSystem.NotImplementedException();
+        private partial bool enable_Get() => throw new CsSystem.NotImplementedException();
+        private partial void enable_Set(bool value) => throw new CsSystem.NotImplementedException();
 
-        private partial bool Get_skyEnable() => throw new CsSystem.NotImplementedException();
-        private partial void Set_skyEnable(bool value) => throw new CsSystem.NotImplementedException();
+        private partial bool skyEnable_Get() => throw new CsSystem.NotImplementedException();
+        private partial void skyEnable_Set(bool value) => throw new CsSystem.NotImplementedException();
 
-        private partial bool Get_sunLightEnable() => throw new CsSystem.NotImplementedException();
-        private partial void Set_sunLightEnable(bool value) => throw new CsSystem.NotImplementedException();
+        private partial bool sunLightEnable_Get() => throw new CsSystem.NotImplementedException();
+        private partial void sunLightEnable_Set(bool value) => throw new CsSystem.NotImplementedException();
 
-        private partial bool Get_isCascadeBlend() => throw new CsSystem.NotImplementedException();
-        private partial void Set_isCascadeBlend(bool value) => throw new CsSystem.NotImplementedException();
+        private partial bool isCascadeBlend_Get() => throw new CsSystem.NotImplementedException();
+        private partial void isCascadeBlend_Set(bool value) => throw new CsSystem.NotImplementedException();
 
-        private partial bool Get_castShadow() => throw new CsSystem.NotImplementedException();
-        private partial void Set_castShadow(bool value) => throw new CsSystem.NotImplementedException();
+        private partial bool castShadow_Get() => throw new CsSystem.NotImplementedException();
+        private partial void castShadow_Set(bool value) => throw new CsSystem.NotImplementedException();
 
-        private partial bool Get_dirLightFade() => throw new CsSystem.NotImplementedException();
-        private partial void Set_dirLightFade(bool value) => throw new CsSystem.NotImplementedException();
+        private partial bool dirLightFade_Get() => throw new CsSystem.NotImplementedException();
+        private partial void dirLightFade_Set(bool value) => throw new CsSystem.NotImplementedException();
 
-        private partial bool Get_disableSkyCapture() => throw new CsSystem.NotImplementedException();
-        private partial void Set_disableSkyCapture(bool value) => throw new CsSystem.NotImplementedException();
+        private partial bool disableSkyCapture_Get() => throw new CsSystem.NotImplementedException();
+        private partial void disableSkyCapture_Set(bool value) => throw new CsSystem.NotImplementedException();
 
-        private partial bool Get_skyLightEnable() => throw new CsSystem.NotImplementedException();
-        private partial void Set_skyLightEnable(bool value) => throw new CsSystem.NotImplementedException();
+        private partial bool skyLightEnable_Get() => throw new CsSystem.NotImplementedException();
+        private partial void skyLightEnable_Set(bool value) => throw new CsSystem.NotImplementedException();
 
-        private partial bool Get_usePrecomputedAmbient() => throw new CsSystem.NotImplementedException();
-        private partial void Set_usePrecomputedAmbient(bool value) => throw new CsSystem.NotImplementedException();
+        private partial bool usePrecomputedAmbient_Get() => throw new CsSystem.NotImplementedException();
+        private partial void usePrecomputedAmbient_Set(bool value) => throw new CsSystem.NotImplementedException();
 
-        private partial bool Get_fogEnable() => throw new CsSystem.NotImplementedException();
-        private partial void Set_fogEnable(bool value) => throw new CsSystem.NotImplementedException();
+        private partial bool fogEnable_Get() => throw new CsSystem.NotImplementedException();
+        private partial void fogEnable_Set(bool value) => throw new CsSystem.NotImplementedException();
 
-        private partial bool Get_expandHorizontalLineColor() => throw new CsSystem.NotImplementedException();
-        private partial void Set_expandHorizontalLineColor(bool value) => throw new CsSystem.NotImplementedException();
+        private partial bool expandHorizontalLineColor_Get() => throw new CsSystem.NotImplementedException();
+        private partial void expandHorizontalLineColor_Set(bool value) => throw new CsSystem.NotImplementedException();
 
-        private partial bool Get_isSteppedMoveOfDirectionalLight() => throw new CsSystem.NotImplementedException();
-        private partial void Set_isSteppedMoveOfDirectionalLight(bool value) => throw new CsSystem.NotImplementedException();
+        private partial bool isSteppedMoveOfDirectionalLight_Get() => throw new CsSystem.NotImplementedException();
+        private partial void isSteppedMoveOfDirectionalLight_Set(bool value) => throw new CsSystem.NotImplementedException();
+        
         public override void OnDeserializeEntity(TaskLogger logger)
         {
             base.OnDeserializeEntity(logger);

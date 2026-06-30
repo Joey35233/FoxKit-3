@@ -25,9 +25,9 @@ namespace Fox.Phx
 		[field: UnityEngine.SerializeField]
 		protected Fox.Phx.PhAssociationParam param { get; set; }
 		
-		public uint connectType { get => Get_connectType(); set { Set_connectType(value); } }
-		private partial uint Get_connectType();
-		private partial void Set_connectType(uint value);
+		public uint connectType { get => connectType_Get(); set => connectType_Set(value); }
+		private partial uint connectType_Get();
+		private partial void connectType_Set(uint value);
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -72,7 +72,7 @@ namespace Fox.Phx
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -111,7 +111,7 @@ namespace Fox.Phx
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
 		{
 			switch (propertyName)
 			{
@@ -121,18 +121,61 @@ namespace Fox.Phx
 			}
 		}
 
+		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.AddPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
 		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
 		{
 			switch (propertyName)
 			{
 				case "connections":
-					if (this.connections.ContainsKey(key))
-						this.connections[key] = value.GetValueAsEntityPtr<Fox.Phx.PhxAssociationUnitElement>();
-					else
-						this.connections.Insert(key, value.GetValueAsEntityPtr<Fox.Phx.PhxAssociationUnitElement>());
+					this.connections[key] = value.GetValueAsEntityPtr<Fox.Phx.PhxAssociationUnitElement>();
 					return;
 				default:
 					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				case "connections":
+					this.connections[key] = value.GetValueAsEntityPtr<Fox.Phx.PhxAssociationUnitElement>();
+					return;
+				default:
+					base.AddPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, int index)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.RemovePropertyElement(propertyName, index);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, string key)
+		{
+			switch (propertyName)
+			{
+				case "connections":
+					this.connections.Remove(key);
+					return;
+				default:
+					base.RemovePropertyElement(propertyName, key);
 					return;
 			}
 		}

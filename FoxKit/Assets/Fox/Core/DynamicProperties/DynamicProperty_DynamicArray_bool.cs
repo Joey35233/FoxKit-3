@@ -14,8 +14,8 @@ namespace Fox.Core
         internal override PropertyInfo GetPropertyInfo() => new PropertyInfo(Name, PropertyInfo.PropertyType.Bool, 0, container: GetContainerType());
         
         public override Value GetValue() => new Value(SerializedField);
-        public override Value GetElement(ushort index) => new Value(SerializedField[index]);
+        public override Value GetElement(int index) => new Value(SerializedField[index]);
 
-        public override void SetElement(ushort index, Value value) => SerializedField.Insert(index, value.GetValueAsBool());
+        public override void SetElement(int index, Value value) => SerializedField.Insert(index, value.GetValueAsBool());
     }
 }

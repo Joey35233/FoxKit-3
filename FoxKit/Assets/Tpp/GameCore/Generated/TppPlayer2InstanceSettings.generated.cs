@@ -76,7 +76,7 @@ namespace Tpp.GameCore
 			}
 		}
 
-		public virtual Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public virtual Fox.Core.Value GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -116,7 +116,22 @@ namespace Tpp.GameCore
 			}
 		}
 
-		public virtual void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public virtual void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				case "partsTypeNames":
+					this.partsTypeNames[index] = value.GetValueAsString();
+					return;
+				case "partsTypeInitial":
+					this.partsTypeInitial[index] = value.GetValueAsString();
+					return;
+				default:
+					throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
+			}
+		}
+
+		public virtual void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
 		{
 			switch (propertyName)
 			{
@@ -134,6 +149,39 @@ namespace Tpp.GameCore
 		}
 
 		public virtual void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
+			}
+		}
+
+		public virtual void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
+			}
+		}
+
+		public virtual void RemovePropertyElement(string propertyName, int index)
+		{
+			switch (propertyName)
+			{
+				case "partsTypeNames":
+					this.partsTypeNames.RemoveAt(index);
+					return;
+				case "partsTypeInitial":
+					this.partsTypeInitial.RemoveAt(index);
+					return;
+				default:
+					throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
+			}
+		}
+
+		public virtual void RemovePropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{

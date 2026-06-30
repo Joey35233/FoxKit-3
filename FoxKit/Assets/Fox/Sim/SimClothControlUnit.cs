@@ -6,8 +6,8 @@ namespace Fox.Sim
     {
         private SimClothControlUnitParam param => controlUnitParam;
 
-        private partial float Get_mass() => param == null ? 0.0f : param.GetMass();
-        private partial void Set_mass(float value)
+        private partial float mass_Get() => param == null ? 0.0f : param.GetMass();
+        private partial void mass_Set(float value)
         {
             if (param == null)
                 return;
@@ -15,8 +15,8 @@ namespace Fox.Sim
             param.SetMass(value);
         }
 
-        private partial float Get_thickness() => param == null ? 0.0f : param.GetThickness();
-        private partial void Set_thickness(float value)
+        private partial float thickness_Get() => param == null ? 0.0f : param.GetThickness();
+        private partial void thickness_Set(float value)
         {
             if (param == null)
                 return;
@@ -24,8 +24,8 @@ namespace Fox.Sim
             param.SetThickness(value);
         }
 
-        private partial float Get_limit() => param == null ? 0.0f : param.GetLimit();
-        private partial void Set_limit(float value)
+        private partial float limit_Get() => param == null ? 0.0f : param.GetLimit();
+        private partial void limit_Set(float value)
         {
             if (param == null)
                 return;
@@ -33,8 +33,8 @@ namespace Fox.Sim
             param.SetLimit(value);
         }
 
-        private partial float Get_expansionRatio() => param == null ? 1.0f : param.GetExpansionRatio();
-        private partial void Set_expansionRatio(float value)
+        private partial float expansionRatio_Get() => param == null ? 1.0f : param.GetExpansionRatio();
+        private partial void expansionRatio_Set(float value)
         {
             if (param == null)
                 return;
@@ -42,8 +42,8 @@ namespace Fox.Sim
             param.SetExpansionRatio(value);
         }
 
-        private partial float Get_contractionRatio() => param == null ? 1.0f : param.GetContractionRatio();
-        private partial void Set_contractionRatio(float value)
+        private partial float contractionRatio_Get() => param == null ? 1.0f : param.GetContractionRatio();
+        private partial void contractionRatio_Set(float value)
         {
             if (param == null)
                 return;

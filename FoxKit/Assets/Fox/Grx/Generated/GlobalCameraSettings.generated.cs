@@ -31,13 +31,13 @@ namespace Fox.Grx
 		[field: UnityEngine.SerializeField]
 		protected uint flags { get; set; }
 		
-		public bool isIgnoreDofCameraSetting { get => Get_isIgnoreDofCameraSetting(); set { Set_isIgnoreDofCameraSetting(value); } }
-		private partial bool Get_isIgnoreDofCameraSetting();
-		private partial void Set_isIgnoreDofCameraSetting(bool value);
+		public bool isIgnoreDofCameraSetting { get => isIgnoreDofCameraSetting_Get(); set => isIgnoreDofCameraSetting_Set(value); }
+		private partial bool isIgnoreDofCameraSetting_Get();
+		private partial void isIgnoreDofCameraSetting_Set(bool value);
 		
-		public bool isIgnoreMotionBlurCameraSetting { get => Get_isIgnoreMotionBlurCameraSetting(); set { Set_isIgnoreMotionBlurCameraSetting(value); } }
-		private partial bool Get_isIgnoreMotionBlurCameraSetting();
-		private partial void Set_isIgnoreMotionBlurCameraSetting(bool value);
+		public bool isIgnoreMotionBlurCameraSetting { get => isIgnoreMotionBlurCameraSetting_Get(); set => isIgnoreMotionBlurCameraSetting_Set(value); }
+		private partial bool isIgnoreMotionBlurCameraSetting_Get();
+		private partial void isIgnoreMotionBlurCameraSetting_Set(bool value);
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -91,7 +91,7 @@ namespace Fox.Grx
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -140,12 +140,22 @@ namespace Fox.Grx
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
 		{
 			switch (propertyName)
 			{
 				default:
 					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.AddPropertyElement(propertyName, index, value);
 					return;
 			}
 		}
@@ -156,6 +166,36 @@ namespace Fox.Grx
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.AddPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, int index)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.RemovePropertyElement(propertyName, index);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, string key)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.RemovePropertyElement(propertyName, key);
 					return;
 			}
 		}

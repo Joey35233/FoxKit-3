@@ -13,8 +13,13 @@ using Fox;
 namespace Fox.GameService
 {
 	[UnityEditor.InitializeOnLoad, UnityEngine.AddComponentMenu("GameService/GsRouteDataEdgeEvent")]
-	public partial class GsRouteDataEdgeEvent : Fox.GameService.GsRouteDataRouteEvent
+	public partial class GsRouteDataEdgeEvent : Fox.GameService.GsRouteDataEvent
 	{
+		// Properties
+		public string move { get => move_Get(); set => move_Set(value); }
+		private partial string move_Get();
+		private partial void move_Set(string value);
+		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
 		private static Fox.Core.EntityInfo classInfo;
@@ -31,8 +36,9 @@ namespace Fox.GameService
 		}
 		static GsRouteDataEdgeEvent()
 		{
-			if (Fox.GameService.GsRouteDataRouteEvent.ClassInfoInitialized)
-				classInfo = new Fox.Core.EntityInfo("GsRouteDataEdgeEvent", typeof(GsRouteDataEdgeEvent), Fox.GameService.GsRouteDataRouteEvent.ClassInfo, 0, null, 0);
+			if (Fox.GameService.GsRouteDataEvent.ClassInfoInitialized)
+				classInfo = new Fox.Core.EntityInfo("GsRouteDataEdgeEvent", typeof(GsRouteDataEdgeEvent), Fox.GameService.GsRouteDataEvent.ClassInfo, 0, null, 1);
+			classInfo.AddStaticProperty(new Fox.Core.PropertyInfo("move", Fox.Core.PropertyInfo.PropertyType.String, 0, 1, Fox.Core.PropertyInfo.ContainerType.StaticArray, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, Fox.Core.PropertyInfo.PropertyExport.EditorAndGame, null, null, Fox.Core.PropertyInfo.PropertyStorage.Instance, Fox.Core.PropertyInfo.BackingType.Accessor));
 
 			ClassInfoInitialized = true;
 		}
@@ -41,12 +47,14 @@ namespace Fox.GameService
 		{
 			switch (propertyName)
 			{
+				case "move":
+					return new Fox.Core.Value(move);
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -68,18 +76,31 @@ namespace Fox.GameService
 		{
 			switch (propertyName)
 			{
+				case "move":
+					this.move = value.GetValueAsString();
+					return;
 				default:
 					base.SetProperty(propertyName, value);
 					return;
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
 		{
 			switch (propertyName)
 			{
 				default:
 					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.AddPropertyElement(propertyName, index, value);
 					return;
 			}
 		}
@@ -90,6 +111,36 @@ namespace Fox.GameService
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.AddPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, int index)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.RemovePropertyElement(propertyName, index);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, string key)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.RemovePropertyElement(propertyName, key);
 					return;
 			}
 		}

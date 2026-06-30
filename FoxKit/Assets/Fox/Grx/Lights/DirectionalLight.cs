@@ -6,23 +6,23 @@ namespace Fox.Grx
 {
     public partial class DirectionalLight : Fox.Core.TransformData
     {
-        private partial bool Get_enable() => throw new System.NotImplementedException();
-        private partial void Set_enable(bool value) => throw new System.NotImplementedException();
+        private partial bool enable_Get() => throw new System.NotImplementedException();
+        private partial void enable_Set(bool value) => throw new System.NotImplementedException();
 
-        private partial bool Get_isCascadeBlend() => throw new System.NotImplementedException();
-        private partial void Set_isCascadeBlend(bool value) => throw new System.NotImplementedException();
+        private partial bool isCascadeBlend_Get() => throw new System.NotImplementedException();
+        private partial void isCascadeBlend_Set(bool value) => throw new System.NotImplementedException();
 
-        private partial bool Get_castShadow() => throw new System.NotImplementedException();
-        private partial void Set_castShadow(bool value) => throw new System.NotImplementedException();
+        private partial bool castShadow_Get() => throw new System.NotImplementedException();
+        private partial void castShadow_Set(bool value) => throw new System.NotImplementedException();
 
-        private partial bool Get_isBounced() => throw new System.NotImplementedException();
-        private partial void Set_isBounced(bool value) => throw new System.NotImplementedException();
+        private partial bool isBounced_Get() => throw new System.NotImplementedException();
+        private partial void isBounced_Set(bool value) => throw new System.NotImplementedException();
 
-        private partial bool Get_showObject() => throw new System.NotImplementedException();
-        private partial void Set_showObject(bool value) => throw new System.NotImplementedException();
+        private partial bool showObject_Get() => throw new System.NotImplementedException();
+        private partial void showObject_Set(bool value) => throw new System.NotImplementedException();
 
-        private partial bool Get_enableDistanceFade() => throw new System.NotImplementedException();
-        private partial void Set_enableDistanceFade(bool value) => throw new System.NotImplementedException();
+        private partial bool enableDistanceFade_Get() => throw new System.NotImplementedException();
+        private partial void enableDistanceFade_Set(bool value) => throw new System.NotImplementedException();
 
         public override void OnDeserializeEntity(TaskLogger logger)
         {

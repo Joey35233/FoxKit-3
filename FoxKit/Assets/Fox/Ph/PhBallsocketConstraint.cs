@@ -8,8 +8,8 @@ namespace Fox.Ph
     {
         private PhBallsocketConstraintParam ballsocketConstraint => param as PhBallsocketConstraintParam;
 
-        private partial bool Get_limitedFlag() => ballsocketConstraint == null ? false : ballsocketConstraint.GetLimitedFlag();
-        private partial void Set_limitedFlag(bool value)
+        private partial bool limitedFlag_Get() => ballsocketConstraint == null ? false : ballsocketConstraint.GetLimitedFlag();
+        private partial void limitedFlag_Set(bool value)
         {
             if (param == null)
                 return;
@@ -17,14 +17,14 @@ namespace Fox.Ph
             ballsocketConstraint.SetLimitedFlag(value);
         }
 
-        private partial UnityEngine.Quaternion Get_refA() => throw new System.NotImplementedException();
-        private partial void Set_refA(UnityEngine.Quaternion value) => throw new System.NotImplementedException();
+        private partial UnityEngine.Quaternion refA_Get() => throw new System.NotImplementedException();
+        private partial void refA_Set(UnityEngine.Quaternion value) => throw new System.NotImplementedException();
 
-        private partial UnityEngine.Quaternion Get_refB() => throw new System.NotImplementedException();
-        private partial void Set_refB(UnityEngine.Quaternion value) => throw new System.NotImplementedException();
+        private partial UnityEngine.Quaternion refB_Get() => throw new System.NotImplementedException();
+        private partial void refB_Set(UnityEngine.Quaternion value) => throw new System.NotImplementedException();
 
-        private partial float Get_limit() => ballsocketConstraint == null ? 0f : ballsocketConstraint.GetLimit();
-        private partial void Set_limit(float value)
+        private partial float limit_Get() => ballsocketConstraint == null ? 0f : ballsocketConstraint.GetLimit();
+        private partial void limit_Set(float value)
         {
             if (param == null)
                 return;
@@ -32,8 +32,8 @@ namespace Fox.Ph
             ballsocketConstraint.SetLimit(value);
         }
 
-        private partial bool Get_springFlag() => ballsocketConstraint == null ? false : ballsocketConstraint.GetSpringFlag();
-        private partial void Set_springFlag(bool value)
+        private partial bool springFlag_Get() => ballsocketConstraint == null ? false : ballsocketConstraint.GetSpringFlag();
+        private partial void springFlag_Set(bool value)
         {
             if (param == null)
                 return;
@@ -41,8 +41,8 @@ namespace Fox.Ph
             ballsocketConstraint.SetSpringFlag(value);
         }
 
-        private partial bool Get_springRefCustomFlag() => ballsocketConstraint == null ? false : ballsocketConstraint.GetSpringRefCustomFlag();
-        private partial void Set_springRefCustomFlag(bool value)
+        private partial bool springRefCustomFlag_Get() => ballsocketConstraint == null ? false : ballsocketConstraint.GetSpringRefCustomFlag();
+        private partial void springRefCustomFlag_Set(bool value)
         {
             if (param == null)
                 return;
@@ -50,11 +50,11 @@ namespace Fox.Ph
             ballsocketConstraint.SetSpringRefCustomFlag(value);
         }
 
-        private partial UnityEngine.Quaternion Get_springRef() => throw new System.NotImplementedException();
-        private partial void Set_springRef(UnityEngine.Quaternion value) => throw new System.NotImplementedException();
+        private partial UnityEngine.Quaternion springRef_Get() => throw new System.NotImplementedException();
+        private partial void springRef_Set(UnityEngine.Quaternion value) => throw new System.NotImplementedException();
 
-        private partial float Get_springConstant() => ballsocketConstraint == null ? 0f : ballsocketConstraint.GetSpringConstant();
-        private partial void Set_springConstant(float value)
+        private partial float springConstant_Get() => ballsocketConstraint == null ? 0f : ballsocketConstraint.GetSpringConstant();
+        private partial void springConstant_Set(float value)
         {
             if (param == null)
                 return;
@@ -62,8 +62,8 @@ namespace Fox.Ph
             ballsocketConstraint.SetSpringConstant(value);
         }
 
-        private partial float Get_flexibility() => ballsocketConstraint == null ? 0f : ballsocketConstraint.GetFlexibility();
-        private partial void Set_flexibility(float value)
+        private partial float flexibility_Get() => ballsocketConstraint == null ? 0f : ballsocketConstraint.GetFlexibility();
+        private partial void flexibility_Set(float value)
         {
             if (param == null)
                 return;
@@ -71,8 +71,8 @@ namespace Fox.Ph
             ballsocketConstraint.SetFlexibility(value);
         }
 
-        private partial bool Get_stopTwist() => ballsocketConstraint == null ? false : ballsocketConstraint.GetStopTwistFlag();
-        private partial void Set_stopTwist(bool value)
+        private partial bool stopTwist_Get() => ballsocketConstraint == null ? false : ballsocketConstraint.GetStopTwistFlag();
+        private partial void stopTwist_Set(bool value)
         {
             if (param == null)
                 return;

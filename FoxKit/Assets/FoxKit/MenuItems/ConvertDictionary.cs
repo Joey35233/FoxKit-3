@@ -30,6 +30,7 @@ namespace FoxKit.MenuItems
                 }
             }
         }
+        
         [MenuItem("FoxKit/Debug/ConvertDictionary (StringId32)")]
         private static void OnConvert32()
         {

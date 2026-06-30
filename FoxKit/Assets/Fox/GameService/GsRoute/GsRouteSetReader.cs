@@ -40,7 +40,7 @@ namespace Fox.GameService
         {
             public StrCode32 Id;
             public EventAffinity Affinity;
-            public GsRouteDataRouteEventAimPoint.Type AimPointType;
+            public RouteAimTargetType AimPointRouteAimTargetType;
             public byte Unknown;
             public bool IsLoop;
             public float Time;
@@ -52,7 +52,7 @@ namespace Fox.GameService
                 {
                     Id = reader.ReadStrCode32(),
                     Affinity = (EventAffinity)reader.ReadByte(),
-                    AimPointType = (GsRouteDataRouteEventAimPoint.Type)reader.ReadByte(),
+                    AimPointRouteAimTargetType = (RouteAimTargetType)reader.ReadByte(),
                     Unknown = reader.ReadByte(),
                     IsLoop = reader.ReadBoolean(),
                     Time = (float)(reader.ReadUInt16() + 1) / 60, // TODO: ad hoc formula could be wrong
@@ -200,10 +200,10 @@ namespace Fox.GameService
 
                         long payloadPosition = reader.BaseStream.Position + 16;
 
-                        GsRouteDataRouteEventAimPoint aimPoint = null;
-                        switch(eventDef.AimPointType)
+                        GsRouteDataEventAimPoint aimPoint = null;
+                        switch(eventDef.AimPointRouteAimTargetType)
                         {
-                            case GsRouteDataRouteEventAimPoint.Type.NoTarget:
+                            case RouteAimTargetType.NoTarget:
                                 {
                                     /*
                                     GsRouteDataRtEvAimPointNoTarget result = new GameObject().AddComponent<GsRouteDataRtEvAimPointNoTarget>();
@@ -211,37 +211,37 @@ namespace Fox.GameService
                                     */
                                 }
                                 break;
-                            case GsRouteDataRouteEventAimPoint.Type.StaticPoint:
+                            case RouteAimTargetType.StaticPoint:
                                 {
-                                    GsRouteDataRtEvAimPointStaticPoint result = new GameObject().AddComponent<GsRouteDataRtEvAimPointStaticPoint>();
+                                    GsRouteDataEventAimStaticPoint result = new GameObject().AddComponent<GsRouteDataEventAimStaticPoint>();
                                     result.position = reader.ReadPositionF();
                                     aimPoint = result;
                                 }
                                 break;
-                            case GsRouteDataRouteEventAimPoint.Type.Character:
+                            case RouteAimTargetType.Character:
                                 {
-                                    GsRouteDataRtEvAimPointCharacter result = new GameObject().AddComponent<GsRouteDataRtEvAimPointCharacter>();
-                                    result.characterName = reader.ReadStrCode32().ToString();
+                                    GsRouteDataEventAimCharacter result = new GameObject().AddComponent<GsRouteDataEventAimCharacter>();
+                                    result.characterId = reader.ReadStrCode32().ToString();
                                     aimPoint = result;
                                 }
                                 break;
-                            case GsRouteDataRouteEventAimPoint.Type.RouteAsSightMovePath:
+                            case RouteAimTargetType.RouteAsSightMovePath:
                                 {
-                                    GsRouteDataRtEvAimPointRouteAsSightMovePath result = new GameObject().AddComponent<GsRouteDataRtEvAimPointRouteAsSightMovePath>();
-                                    result.routeNames[0] = reader.ReadStrCode32().ToString();
-                                    result.routeNames[1] = reader.ReadStrCode32().ToString();
-                                    result.routeNames[2] = reader.ReadStrCode32().ToString();
-                                    result.routeNames[3] = reader.ReadStrCode32().ToString();
+                                    GsRouteDataEventAimRouteAsSightMovePath result = new GameObject().AddComponent<GsRouteDataEventAimRouteAsSightMovePath>();
+                                    result.routeId_AddElement(0, reader.ReadStrCode32().ToString());
+                                    result.routeId_AddElement(1, reader.ReadStrCode32().ToString());
+                                    result.routeId_AddElement(2, reader.ReadStrCode32().ToString());
+                                    result.routeId_AddElement(3, reader.ReadStrCode32().ToString());
                                     aimPoint = result;
                                 }
                                 break;
-                            case GsRouteDataRouteEventAimPoint.Type.RouteAsObject:
+                            case RouteAimTargetType.RouteAsObject:
                                 {
-                                    GsRouteDataRtEvAimPointRouteAsObject result = new GameObject().AddComponent<GsRouteDataRtEvAimPointRouteAsObject>();
-                                    result.routeNames[0] = reader.ReadStrCode32().ToString();
-                                    result.routeNames[1] = reader.ReadStrCode32().ToString();
-                                    result.routeNames[2] = reader.ReadStrCode32().ToString();
-                                    result.routeNames[3] = reader.ReadStrCode32().ToString();
+                                    GsRouteDataEventAimRouteAsObject result = new GameObject().AddComponent<GsRouteDataEventAimRouteAsObject>();
+                                    result.routeId_AddElement(0, reader.ReadStrCode32().ToString());
+                                    result.routeId_AddElement(1, reader.ReadStrCode32().ToString());
+                                    result.routeId_AddElement(2, reader.ReadStrCode32().ToString());
+                                    result.routeId_AddElement(3, reader.ReadStrCode32().ToString());
                                     aimPoint = result;
                                 }
                                 break;
@@ -250,45 +250,57 @@ namespace Fox.GameService
 
                         var routeEventObject = new GameObject();
                         uint[] binaryData = { reader.ReadUInt32(), reader.ReadUInt32(), reader.ReadUInt32(), reader.ReadUInt32() };
-                        GsRouteDataRouteEvent routeEvent = GameServiceModule.GsRouteDataEventDeserializationMap[eventDef.Id](routeEventObject, binaryData);
-                        routeEvent.SetOwner(routeData);
 
                         if (fileVersion == RouteSetVersion.TPP)
                             reader.Skip(4); //snippet
-
+                        
+                        GsRouteDataEvent dataEvent;
                         if (eventDef.Affinity == EventAffinity.Edge)
                         {
-                            var edgeEvent = routeEvent as GsRouteDataEdgeEvent;
-                            edge.edgeEvent = edgeEvent;
+                            var edgeEvent = (GsRouteDataEdgeEvent)(GameServiceModule.RouteEdgeEventMap.TryGetValue(eventDef.Id, out Type eventType)
+                                            ? routeEventObject.AddComponent(eventType)
+                                            : routeEventObject.AddComponent<GsRouteDataEdgeEvent>());
+                            edge.@event = edgeEvent;
                             edgeEvent.transform.parent = edge.transform;
-                            edgeEvent.name = $"GsRouteDataEdgeEvent{k:D4}|{eventDef.Id.ToString()}";
+                            edgeEvent.name = $"GsRouteDataEdgeEvent{k:D4}|{eventDef.Id}";
 
                             if (aimPoint is not null)
                             {
                                 aimPoint.SetOwner(routeData);
                                 edgeEvent.aimPoint = aimPoint;
                                 aimPoint.transform.parent = edgeEvent.transform;
-                                aimPoint.name = $"{aimPoint.GetType().Name}";
+                                aimPoint.name = $"{aimPoint.GetClassEntityInfo().Name}";
                             }
+
+                            dataEvent = edgeEvent;
                         }
                         else
                         {
-                            var nodeEvent = routeEvent as GsRouteDataNodeEvent;
+                            var nodeEvent = (GsRouteDataNodeEvent)(GameServiceModule.RouteNodeEventMap.TryGetValue(eventDef.Id, out Type eventType)
+                                ? routeEventObject.AddComponent(eventType)
+                                : routeEventObject.AddComponent<GsRouteDataNodeEvent>());
+                            
                             nodeEvent.isLoop = eventDef.IsLoop;
                             nodeEvent.time = eventDef.Time;
-                            nodeEvent.direction = eventDef.Direction;
-                            node.nodeEvents.Add(nodeEvent);
+                            nodeEvent.dir = Math.FoxToUnityQuaternion(Quaternion.AngleAxis(eventDef.Direction, Math.UnityToFoxVector3(Vector3.up)));
+                            
+                            node.events.Add(nodeEvent);
+                            
                             nodeEvent.transform.parent = node.transform;
-                            nodeEvent.name = $"GsRouteDataNodeEvent{k:D4}|{eventDef.Id.ToString()}";
+                            nodeEvent.name = $"GsRouteDataNodeEvent{k:D4}|{eventDef.Id}";
 
                             if (aimPoint is not null)
                             {
                                 aimPoint.SetOwner(routeData);
                                 nodeEvent.aimPoint = aimPoint;
                                 aimPoint.transform.parent = nodeEvent.transform;
-                                aimPoint.name = $"{aimPoint.GetType().Name}";
+                                aimPoint.name = $"{aimPoint.GetClassEntityInfo().Name}";
                             }
+
+                            dataEvent = nodeEvent;
                         }
+                        
+                        dataEvent.SetOwner(routeData);
                     }
                 }
 

@@ -101,7 +101,7 @@ namespace Tpp.Collectible
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -147,7 +147,44 @@ namespace Tpp.Collectible
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				case "positions":
+					this.positions[index] = value.GetValueAsVector3();
+					return;
+				case "rotations":
+					this.rotations[index] = value.GetValueAsUInt32();
+					return;
+				case "infos":
+					this.infos[index] = value.GetValueAsUInt32();
+					return;
+				case "segmentIndices":
+					this.segmentIndices[index] = value.GetValueAsUInt16();
+					return;
+				case "locatorIndices":
+					this.locatorIndices[index] = value.GetValueAsUInt16();
+					return;
+				case "locatorCounts":
+					this.locatorCounts[index] = value.GetValueAsUInt16();
+					return;
+				case "groupIds":
+					this.groupIds[index] = value.GetValueAsUInt8();
+					return;
+				case "segmentInfoIndices":
+					this.segmentInfoIndices[index] = value.GetValueAsUInt16();
+					return;
+				case "segmentInfoCounts":
+					this.segmentInfoCounts[index] = value.GetValueAsUInt16();
+					return;
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
 		{
 			switch (propertyName)
 			{
@@ -188,7 +225,7 @@ namespace Tpp.Collectible
 					this.segmentInfoCounts[index] = value.GetValueAsUInt16();
 					return;
 				default:
-					base.SetPropertyElement(propertyName, index, value);
+					base.AddPropertyElement(propertyName, index, value);
 					return;
 			}
 		}
@@ -199,6 +236,63 @@ namespace Tpp.Collectible
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.AddPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, int index)
+		{
+			switch (propertyName)
+			{
+				case "positions":
+					this.positions.RemoveAt(index);
+					return;
+				case "rotations":
+					this.rotations.RemoveAt(index);
+					return;
+				case "infos":
+					this.infos.RemoveAt(index);
+					return;
+				case "segmentIndices":
+					this.segmentIndices.RemoveAt(index);
+					return;
+				case "locatorIndices":
+					this.locatorIndices.RemoveAt(index);
+					return;
+				case "locatorCounts":
+					this.locatorCounts.RemoveAt(index);
+					return;
+				case "groupIds":
+					this.groupIds.RemoveAt(index);
+					return;
+				case "segmentInfoIndices":
+					this.segmentInfoIndices.RemoveAt(index);
+					return;
+				case "segmentInfoCounts":
+					this.segmentInfoCounts.RemoveAt(index);
+					return;
+				default:
+					base.RemovePropertyElement(propertyName, index);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, string key)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.RemovePropertyElement(propertyName, key);
 					return;
 			}
 		}

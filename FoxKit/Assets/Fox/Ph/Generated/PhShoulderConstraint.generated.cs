@@ -16,37 +16,37 @@ namespace Fox.Ph
 	public partial class PhShoulderConstraint : Fox.Ph.PhConstraint
 	{
 		// Properties
-		public bool limitedFlag { get => Get_limitedFlag(); set { Set_limitedFlag(value); } }
-		private partial bool Get_limitedFlag();
-		private partial void Set_limitedFlag(bool value);
+		public bool limitedFlag { get => limitedFlag_Get(); set => limitedFlag_Set(value); }
+		private partial bool limitedFlag_Get();
+		private partial void limitedFlag_Set(bool value);
 		
-		public UnityEngine.Vector3 refA { get => Get_refA(); set { Set_refA(value); } }
-		private partial UnityEngine.Vector3 Get_refA();
-		private partial void Set_refA(UnityEngine.Vector3 value);
+		public UnityEngine.Vector3 refA { get => refA_Get(); set => refA_Set(value); }
+		private partial UnityEngine.Vector3 refA_Get();
+		private partial void refA_Set(UnityEngine.Vector3 value);
 		
-		public UnityEngine.Vector3 refB { get => Get_refB(); set { Set_refB(value); } }
-		private partial UnityEngine.Vector3 Get_refB();
-		private partial void Set_refB(UnityEngine.Vector3 value);
+		public UnityEngine.Vector3 refB { get => refB_Get(); set => refB_Set(value); }
+		private partial UnityEngine.Vector3 refB_Get();
+		private partial void refB_Set(UnityEngine.Vector3 value);
 		
-		public float limit { get => Get_limit(); set { Set_limit(value); } }
-		private partial float Get_limit();
-		private partial void Set_limit(float value);
+		public float limit { get => limit_Get(); set => limit_Set(value); }
+		private partial float limit_Get();
+		private partial void limit_Set(float value);
 		
-		public bool limitedFlag1 { get => Get_limitedFlag1(); set { Set_limitedFlag1(value); } }
-		private partial bool Get_limitedFlag1();
-		private partial void Set_limitedFlag1(bool value);
+		public bool limitedFlag1 { get => limitedFlag1_Get(); set => limitedFlag1_Set(value); }
+		private partial bool limitedFlag1_Get();
+		private partial void limitedFlag1_Set(bool value);
 		
-		public UnityEngine.Vector3 refA1 { get => Get_refA1(); set { Set_refA1(value); } }
-		private partial UnityEngine.Vector3 Get_refA1();
-		private partial void Set_refA1(UnityEngine.Vector3 value);
+		public UnityEngine.Vector3 refA1 { get => refA1_Get(); set => refA1_Set(value); }
+		private partial UnityEngine.Vector3 refA1_Get();
+		private partial void refA1_Set(UnityEngine.Vector3 value);
 		
-		public UnityEngine.Vector3 refB1 { get => Get_refB1(); set { Set_refB1(value); } }
-		private partial UnityEngine.Vector3 Get_refB1();
-		private partial void Set_refB1(UnityEngine.Vector3 value);
+		public UnityEngine.Vector3 refB1 { get => refB1_Get(); set => refB1_Set(value); }
+		private partial UnityEngine.Vector3 refB1_Get();
+		private partial void refB1_Set(UnityEngine.Vector3 value);
 		
-		public float limit1 { get => Get_limit1(); set { Set_limit1(value); } }
-		private partial float Get_limit1();
-		private partial void Set_limit1(float value);
+		public float limit1 { get => limit1_Get(); set => limit1_Set(value); }
+		private partial float limit1_Get();
+		private partial void limit1_Set(float value);
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -103,7 +103,7 @@ namespace Fox.Ph
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -155,12 +155,22 @@ namespace Fox.Ph
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
 		{
 			switch (propertyName)
 			{
 				default:
 					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.AddPropertyElement(propertyName, index, value);
 					return;
 			}
 		}
@@ -171,6 +181,36 @@ namespace Fox.Ph
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.AddPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, int index)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.RemovePropertyElement(propertyName, index);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, string key)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.RemovePropertyElement(propertyName, key);
 					return;
 			}
 		}

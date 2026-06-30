@@ -28,9 +28,9 @@ namespace Tpp.Effect
 		[field: UnityEngine.SerializeField]
 		public Fox.Core.FilePtr pcspFilePtr { get; set; }
 		
-		public bool useBakedData { get => Get_useBakedData(); set { Set_useBakedData(value); } }
-		private partial bool Get_useBakedData();
-		private partial void Set_useBakedData(bool value);
+		public bool useBakedData { get => useBakedData_Get(); set => useBakedData_Set(value); }
+		private partial bool useBakedData_Get();
+		private partial void useBakedData_Set(bool value);
 		
 		[field: UnityEngine.SerializeField]
 		public Fox.Core.Entity capturePosition { get; set; }
@@ -218,53 +218,53 @@ namespace Tpp.Effect
 		[field: UnityEngine.SerializeField]
 		public uint divisonNumOfDirLightSteppedMove { get; set; }
 		
-		public bool enable { get => Get_enable(); set { Set_enable(value); } }
-		private partial bool Get_enable();
-		private partial void Set_enable(bool value);
+		public bool enable { get => enable_Get(); set => enable_Set(value); }
+		private partial bool enable_Get();
+		private partial void enable_Set(bool value);
 		
-		public bool skyEnable { get => Get_skyEnable(); set { Set_skyEnable(value); } }
-		private partial bool Get_skyEnable();
-		private partial void Set_skyEnable(bool value);
+		public bool skyEnable { get => skyEnable_Get(); set => skyEnable_Set(value); }
+		private partial bool skyEnable_Get();
+		private partial void skyEnable_Set(bool value);
 		
-		public bool sunLightEnable { get => Get_sunLightEnable(); set { Set_sunLightEnable(value); } }
-		private partial bool Get_sunLightEnable();
-		private partial void Set_sunLightEnable(bool value);
+		public bool sunLightEnable { get => sunLightEnable_Get(); set => sunLightEnable_Set(value); }
+		private partial bool sunLightEnable_Get();
+		private partial void sunLightEnable_Set(bool value);
 		
-		public bool isCascadeBlend { get => Get_isCascadeBlend(); set { Set_isCascadeBlend(value); } }
-		private partial bool Get_isCascadeBlend();
-		private partial void Set_isCascadeBlend(bool value);
+		public bool isCascadeBlend { get => isCascadeBlend_Get(); set => isCascadeBlend_Set(value); }
+		private partial bool isCascadeBlend_Get();
+		private partial void isCascadeBlend_Set(bool value);
 		
-		public bool castShadow { get => Get_castShadow(); set { Set_castShadow(value); } }
-		private partial bool Get_castShadow();
-		private partial void Set_castShadow(bool value);
+		public bool castShadow { get => castShadow_Get(); set => castShadow_Set(value); }
+		private partial bool castShadow_Get();
+		private partial void castShadow_Set(bool value);
 		
-		public bool dirLightFade { get => Get_dirLightFade(); set { Set_dirLightFade(value); } }
-		private partial bool Get_dirLightFade();
-		private partial void Set_dirLightFade(bool value);
+		public bool dirLightFade { get => dirLightFade_Get(); set => dirLightFade_Set(value); }
+		private partial bool dirLightFade_Get();
+		private partial void dirLightFade_Set(bool value);
 		
-		public bool disableSkyCapture { get => Get_disableSkyCapture(); set { Set_disableSkyCapture(value); } }
-		private partial bool Get_disableSkyCapture();
-		private partial void Set_disableSkyCapture(bool value);
+		public bool disableSkyCapture { get => disableSkyCapture_Get(); set => disableSkyCapture_Set(value); }
+		private partial bool disableSkyCapture_Get();
+		private partial void disableSkyCapture_Set(bool value);
 		
-		public bool skyLightEnable { get => Get_skyLightEnable(); set { Set_skyLightEnable(value); } }
-		private partial bool Get_skyLightEnable();
-		private partial void Set_skyLightEnable(bool value);
+		public bool skyLightEnable { get => skyLightEnable_Get(); set => skyLightEnable_Set(value); }
+		private partial bool skyLightEnable_Get();
+		private partial void skyLightEnable_Set(bool value);
 		
-		public bool usePrecomputedAmbient { get => Get_usePrecomputedAmbient(); set { Set_usePrecomputedAmbient(value); } }
-		private partial bool Get_usePrecomputedAmbient();
-		private partial void Set_usePrecomputedAmbient(bool value);
+		public bool usePrecomputedAmbient { get => usePrecomputedAmbient_Get(); set => usePrecomputedAmbient_Set(value); }
+		private partial bool usePrecomputedAmbient_Get();
+		private partial void usePrecomputedAmbient_Set(bool value);
 		
-		public bool fogEnable { get => Get_fogEnable(); set { Set_fogEnable(value); } }
-		private partial bool Get_fogEnable();
-		private partial void Set_fogEnable(bool value);
+		public bool fogEnable { get => fogEnable_Get(); set => fogEnable_Set(value); }
+		private partial bool fogEnable_Get();
+		private partial void fogEnable_Set(bool value);
 		
-		public bool expandHorizontalLineColor { get => Get_expandHorizontalLineColor(); set { Set_expandHorizontalLineColor(value); } }
-		private partial bool Get_expandHorizontalLineColor();
-		private partial void Set_expandHorizontalLineColor(bool value);
+		public bool expandHorizontalLineColor { get => expandHorizontalLineColor_Get(); set => expandHorizontalLineColor_Set(value); }
+		private partial bool expandHorizontalLineColor_Get();
+		private partial void expandHorizontalLineColor_Set(bool value);
 		
-		public bool isSteppedMoveOfDirectionalLight { get => Get_isSteppedMoveOfDirectionalLight(); set { Set_isSteppedMoveOfDirectionalLight(value); } }
-		private partial bool Get_isSteppedMoveOfDirectionalLight();
-		private partial void Set_isSteppedMoveOfDirectionalLight(bool value);
+		public bool isSteppedMoveOfDirectionalLight { get => isSteppedMoveOfDirectionalLight_Get(); set => isSteppedMoveOfDirectionalLight_Set(value); }
+		private partial bool isSteppedMoveOfDirectionalLight_Get();
+		private partial void isSteppedMoveOfDirectionalLight_Set(bool value);
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -534,7 +534,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -798,7 +798,20 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				case "coefficients":
+					this.coefficients[index] = value.GetValueAsVector4();
+					return;
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
 		{
 			switch (propertyName)
 			{
@@ -807,7 +820,7 @@ namespace Tpp.Effect
 					this.coefficients[index] = value.GetValueAsVector4();
 					return;
 				default:
-					base.SetPropertyElement(propertyName, index, value);
+					base.AddPropertyElement(propertyName, index, value);
 					return;
 			}
 		}
@@ -818,6 +831,39 @@ namespace Tpp.Effect
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.AddPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, int index)
+		{
+			switch (propertyName)
+			{
+				case "coefficients":
+					this.coefficients.RemoveAt(index);
+					return;
+				default:
+					base.RemovePropertyElement(propertyName, index);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, string key)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.RemovePropertyElement(propertyName, key);
 					return;
 			}
 		}

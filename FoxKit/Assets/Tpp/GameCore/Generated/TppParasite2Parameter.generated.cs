@@ -95,7 +95,7 @@ namespace Tpp.GameCore
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -142,7 +142,7 @@ namespace Tpp.GameCore
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
 		{
 			switch (propertyName)
 			{
@@ -152,42 +152,97 @@ namespace Tpp.GameCore
 			}
 		}
 
+		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.AddPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
 		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
 		{
 			switch (propertyName)
 			{
 				case "partsFiles":
-					if (this.partsFiles.ContainsKey(key))
-						this.partsFiles[key] = value.GetValueAsFilePtr();
-					else
-						this.partsFiles.Insert(key, value.GetValueAsFilePtr());
+					this.partsFiles[key] = value.GetValueAsFilePtr();
 					return;
 				case "vfxFiles":
-					if (this.vfxFiles.ContainsKey(key))
-						this.vfxFiles[key] = value.GetValueAsFilePtr();
-					else
-						this.vfxFiles.Insert(key, value.GetValueAsFilePtr());
+					this.vfxFiles[key] = value.GetValueAsFilePtr();
 					return;
 				case "fmdlFiles":
-					if (this.fmdlFiles.ContainsKey(key))
-						this.fmdlFiles[key] = value.GetValueAsFilePtr();
-					else
-						this.fmdlFiles.Insert(key, value.GetValueAsFilePtr());
+					this.fmdlFiles[key] = value.GetValueAsFilePtr();
 					return;
 				case "geomFiles":
-					if (this.geomFiles.ContainsKey(key))
-						this.geomFiles[key] = value.GetValueAsFilePtr();
-					else
-						this.geomFiles.Insert(key, value.GetValueAsFilePtr());
+					this.geomFiles[key] = value.GetValueAsFilePtr();
 					return;
 				case "fovaFiles":
-					if (this.fovaFiles.ContainsKey(key))
-						this.fovaFiles[key] = value.GetValueAsFilePtr();
-					else
-						this.fovaFiles.Insert(key, value.GetValueAsFilePtr());
+					this.fovaFiles[key] = value.GetValueAsFilePtr();
 					return;
 				default:
 					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				case "partsFiles":
+					this.partsFiles[key] = value.GetValueAsFilePtr();
+					return;
+				case "vfxFiles":
+					this.vfxFiles[key] = value.GetValueAsFilePtr();
+					return;
+				case "fmdlFiles":
+					this.fmdlFiles[key] = value.GetValueAsFilePtr();
+					return;
+				case "geomFiles":
+					this.geomFiles[key] = value.GetValueAsFilePtr();
+					return;
+				case "fovaFiles":
+					this.fovaFiles[key] = value.GetValueAsFilePtr();
+					return;
+				default:
+					base.AddPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, int index)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.RemovePropertyElement(propertyName, index);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, string key)
+		{
+			switch (propertyName)
+			{
+				case "partsFiles":
+					this.partsFiles.Remove(key);
+					return;
+				case "vfxFiles":
+					this.vfxFiles.Remove(key);
+					return;
+				case "fmdlFiles":
+					this.fmdlFiles.Remove(key);
+					return;
+				case "geomFiles":
+					this.geomFiles.Remove(key);
+					return;
+				case "fovaFiles":
+					this.fovaFiles.Remove(key);
+					return;
+				default:
+					base.RemovePropertyElement(propertyName, key);
 					return;
 			}
 		}

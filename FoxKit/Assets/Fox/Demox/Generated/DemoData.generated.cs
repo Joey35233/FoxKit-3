@@ -329,7 +329,7 @@ namespace Fox.Demox
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -481,7 +481,35 @@ namespace Fox.Demox
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				case "evfFiles":
+					this.evfFiles[index] = value.GetValueAsFilePtr();
+					return;
+				case "clipDatas":
+					this.clipDatas[index] = value.GetValueAsEntityPtr<Fox.Demo.ClipData>();
+					return;
+				case "loadFiles":
+					this.loadFiles[index] = value.GetValueAsPath();
+					return;
+				case "stringParams":
+					this.stringParams[index] = value.GetValueAsString();
+					return;
+				case "highestTextureStreamModel":
+					this.highestTextureStreamModel[index] = value.GetValueAsString();
+					return;
+				case "highestTexture":
+					this.highestTexture[index] = value.GetValueAsPath();
+					return;
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
 		{
 			switch (propertyName)
 			{
@@ -510,7 +538,7 @@ namespace Fox.Demox
 					this.highestTexture[index] = value.GetValueAsPath();
 					return;
 				default:
-					base.SetPropertyElement(propertyName, index, value);
+					base.AddPropertyElement(propertyName, index, value);
 					return;
 			}
 		}
@@ -520,73 +548,154 @@ namespace Fox.Demox
 			switch (propertyName)
 			{
 				case "fmdlFiles":
-					if (this.fmdlFiles.ContainsKey(key))
-						this.fmdlFiles[key] = value.GetValueAsFilePtr();
-					else
-						this.fmdlFiles.Insert(key, value.GetValueAsFilePtr());
+					this.fmdlFiles[key] = value.GetValueAsFilePtr();
 					return;
 				case "helpBoneFiles":
-					if (this.helpBoneFiles.ContainsKey(key))
-						this.helpBoneFiles[key] = value.GetValueAsFilePtr();
-					else
-						this.helpBoneFiles.Insert(key, value.GetValueAsFilePtr());
+					this.helpBoneFiles[key] = value.GetValueAsFilePtr();
 					return;
 				case "partsDesc":
-					if (this.partsDesc.ContainsKey(key))
-						this.partsDesc[key] = value.GetValueAsEntityPtr<Fox.Demo.PartsDesc>();
-					else
-						this.partsDesc.Insert(key, value.GetValueAsEntityPtr<Fox.Demo.PartsDesc>());
+					this.partsDesc[key] = value.GetValueAsEntityPtr<Fox.Demo.PartsDesc>();
 					return;
 				case "entityParams":
-					if (this.entityParams.ContainsKey(key))
-						this.entityParams[key] = value.GetValueAsEntityLink();
-					else
-						this.entityParams.Insert(key, value.GetValueAsEntityLink());
+					this.entityParams[key] = value.GetValueAsEntityLink();
 					return;
 				case "fileParams":
-					if (this.fileParams.ContainsKey(key))
-						this.fileParams[key] = value.GetValueAsFilePtr();
-					else
-						this.fileParams.Insert(key, value.GetValueAsFilePtr());
+					this.fileParams[key] = value.GetValueAsFilePtr();
 					return;
 				case "controlCharacters":
-					if (this.controlCharacters.ContainsKey(key))
-						this.controlCharacters[key] = value.GetValueAsEntityPtr<Fox.Demo.DemoControlCharacterDesc>();
-					else
-						this.controlCharacters.Insert(key, value.GetValueAsEntityPtr<Fox.Demo.DemoControlCharacterDesc>());
+					this.controlCharacters[key] = value.GetValueAsEntityPtr<Fox.Demo.DemoControlCharacterDesc>();
 					return;
 				case "controlDatas":
-					if (this.controlDatas.ContainsKey(key))
-						this.controlDatas[key] = value.GetValueAsEntityLink();
-					else
-						this.controlDatas.Insert(key, value.GetValueAsEntityLink());
+					this.controlDatas[key] = value.GetValueAsEntityLink();
 					return;
 				case "controlCollectibles":
-					if (this.controlCollectibles.ContainsKey(key))
-						this.controlCollectibles[key] = value.GetValueAsString();
-					else
-						this.controlCollectibles.Insert(key, value.GetValueAsString());
+					this.controlCollectibles[key] = value.GetValueAsString();
 					return;
 				case "parameters":
-					if (this.parameters.ContainsKey(key))
-						this.parameters[key] = value.GetValueAsEntityPtr<Fox.Demo.DemoParameter>();
-					else
-						this.parameters.Insert(key, value.GetValueAsEntityPtr<Fox.Demo.DemoParameter>());
+					this.parameters[key] = value.GetValueAsEntityPtr<Fox.Demo.DemoParameter>();
 					return;
 				case "setupLights":
-					if (this.setupLights.ContainsKey(key))
-						this.setupLights[key] = value.GetValueAsString();
-					else
-						this.setupLights.Insert(key, value.GetValueAsString());
+					this.setupLights[key] = value.GetValueAsString();
 					return;
 				case "objectNum":
-					if (this.objectNum.ContainsKey(key))
-						this.objectNum[key] = value.GetValueAsInt32();
-					else
-						this.objectNum.Insert(key, value.GetValueAsInt32());
+					this.objectNum[key] = value.GetValueAsInt32();
 					return;
 				default:
 					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				case "fmdlFiles":
+					this.fmdlFiles[key] = value.GetValueAsFilePtr();
+					return;
+				case "helpBoneFiles":
+					this.helpBoneFiles[key] = value.GetValueAsFilePtr();
+					return;
+				case "partsDesc":
+					this.partsDesc[key] = value.GetValueAsEntityPtr<Fox.Demo.PartsDesc>();
+					return;
+				case "entityParams":
+					this.entityParams[key] = value.GetValueAsEntityLink();
+					return;
+				case "fileParams":
+					this.fileParams[key] = value.GetValueAsFilePtr();
+					return;
+				case "controlCharacters":
+					this.controlCharacters[key] = value.GetValueAsEntityPtr<Fox.Demo.DemoControlCharacterDesc>();
+					return;
+				case "controlDatas":
+					this.controlDatas[key] = value.GetValueAsEntityLink();
+					return;
+				case "controlCollectibles":
+					this.controlCollectibles[key] = value.GetValueAsString();
+					return;
+				case "parameters":
+					this.parameters[key] = value.GetValueAsEntityPtr<Fox.Demo.DemoParameter>();
+					return;
+				case "setupLights":
+					this.setupLights[key] = value.GetValueAsString();
+					return;
+				case "objectNum":
+					this.objectNum[key] = value.GetValueAsInt32();
+					return;
+				default:
+					base.AddPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, int index)
+		{
+			switch (propertyName)
+			{
+				case "evfFiles":
+					this.evfFiles.RemoveAt(index);
+					return;
+				case "clipDatas":
+					this.clipDatas.RemoveAt(index);
+					return;
+				case "loadFiles":
+					this.loadFiles.RemoveAt(index);
+					return;
+				case "stringParams":
+					this.stringParams.RemoveAt(index);
+					return;
+				case "highestTextureStreamModel":
+					this.highestTextureStreamModel.RemoveAt(index);
+					return;
+				case "highestTexture":
+					this.highestTexture.RemoveAt(index);
+					return;
+				default:
+					base.RemovePropertyElement(propertyName, index);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, string key)
+		{
+			switch (propertyName)
+			{
+				case "fmdlFiles":
+					this.fmdlFiles.Remove(key);
+					return;
+				case "helpBoneFiles":
+					this.helpBoneFiles.Remove(key);
+					return;
+				case "partsDesc":
+					this.partsDesc.Remove(key);
+					return;
+				case "entityParams":
+					this.entityParams.Remove(key);
+					return;
+				case "fileParams":
+					this.fileParams.Remove(key);
+					return;
+				case "controlCharacters":
+					this.controlCharacters.Remove(key);
+					return;
+				case "controlDatas":
+					this.controlDatas.Remove(key);
+					return;
+				case "controlCollectibles":
+					this.controlCollectibles.Remove(key);
+					return;
+				case "parameters":
+					this.parameters.Remove(key);
+					return;
+				case "setupLights":
+					this.setupLights.Remove(key);
+					return;
+				case "objectNum":
+					this.objectNum.Remove(key);
+					return;
+				default:
+					base.RemovePropertyElement(propertyName, key);
 					return;
 			}
 		}

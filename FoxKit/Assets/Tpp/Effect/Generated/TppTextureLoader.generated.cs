@@ -59,7 +59,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -91,7 +91,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
 		{
 			switch (propertyName)
 			{
@@ -101,24 +101,70 @@ namespace Tpp.Effect
 			}
 		}
 
+		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.AddPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
 		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
 		{
 			switch (propertyName)
 			{
 				case "textures":
-					if (this.textures.ContainsKey(key))
-						this.textures[key] = value.GetValueAsPath();
-					else
-						this.textures.Insert(key, value.GetValueAsPath());
+					this.textures[key] = value.GetValueAsPath();
 					return;
 				case "forceLargeTextures":
-					if (this.forceLargeTextures.ContainsKey(key))
-						this.forceLargeTextures[key] = value.GetValueAsPath();
-					else
-						this.forceLargeTextures.Insert(key, value.GetValueAsPath());
+					this.forceLargeTextures[key] = value.GetValueAsPath();
 					return;
 				default:
 					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				case "textures":
+					this.textures[key] = value.GetValueAsPath();
+					return;
+				case "forceLargeTextures":
+					this.forceLargeTextures[key] = value.GetValueAsPath();
+					return;
+				default:
+					base.AddPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, int index)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.RemovePropertyElement(propertyName, index);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, string key)
+		{
+			switch (propertyName)
+			{
+				case "textures":
+					this.textures.Remove(key);
+					return;
+				case "forceLargeTextures":
+					this.forceLargeTextures.Remove(key);
+					return;
+				default:
+					base.RemovePropertyElement(propertyName, key);
 					return;
 			}
 		}

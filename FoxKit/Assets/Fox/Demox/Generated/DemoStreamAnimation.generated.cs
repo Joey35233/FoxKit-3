@@ -143,7 +143,7 @@ namespace Fox.Demox
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -206,7 +206,7 @@ namespace Fox.Demox
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
 		{
 			switch (propertyName)
 			{
@@ -216,90 +216,169 @@ namespace Fox.Demox
 			}
 		}
 
+		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.AddPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
 		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
 		{
 			switch (propertyName)
 			{
 				case "locatorTypes":
-					if (this.locatorTypes.ContainsKey(key))
-						this.locatorTypes[key] = (DemoStreamAnimation_LocatorType)value.GetValueAsInt32();
-					else
-						this.locatorTypes.Insert(key, (DemoStreamAnimation_LocatorType)value.GetValueAsInt32());
+					this.locatorTypes[key] = (DemoStreamAnimation_LocatorType)value.GetValueAsInt32();
 					return;
 				case "cameraTypes":
-					if (this.cameraTypes.ContainsKey(key))
-						this.cameraTypes[key] = (DemoStreamAnimation_CameraType)value.GetValueAsInt32();
-					else
-						this.cameraTypes.Insert(key, (DemoStreamAnimation_CameraType)value.GetValueAsInt32());
+					this.cameraTypes[key] = (DemoStreamAnimation_CameraType)value.GetValueAsInt32();
 					return;
 				case "modelFiles":
-					if (this.modelFiles.ContainsKey(key))
-						this.modelFiles[key] = value.GetValueAsFilePtr();
-					else
-						this.modelFiles.Insert(key, value.GetValueAsFilePtr());
+					this.modelFiles[key] = value.GetValueAsFilePtr();
 					return;
 				case "helpBoneFiles":
-					if (this.helpBoneFiles.ContainsKey(key))
-						this.helpBoneFiles[key] = value.GetValueAsFilePtr();
-					else
-						this.helpBoneFiles.Insert(key, value.GetValueAsFilePtr());
+					this.helpBoneFiles[key] = value.GetValueAsFilePtr();
 					return;
 				case "partsFiles":
-					if (this.partsFiles.ContainsKey(key))
-						this.partsFiles[key] = value.GetValueAsFilePtr();
-					else
-						this.partsFiles.Insert(key, value.GetValueAsFilePtr());
+					this.partsFiles[key] = value.GetValueAsFilePtr();
 					return;
 				case "coverModelFiles":
-					if (this.coverModelFiles.ContainsKey(key))
-						this.coverModelFiles[key] = value.GetValueAsFilePtr();
-					else
-						this.coverModelFiles.Insert(key, value.GetValueAsFilePtr());
+					this.coverModelFiles[key] = value.GetValueAsFilePtr();
 					return;
 				case "modelPartsDictionary":
-					if (this.modelPartsDictionary.ContainsKey(key))
-						this.modelPartsDictionary[key] = value.GetValueAsString();
-					else
-						this.modelPartsDictionary.Insert(key, value.GetValueAsString());
+					this.modelPartsDictionary[key] = value.GetValueAsString();
 					return;
 				case "coverModelDictionary":
-					if (this.coverModelDictionary.ContainsKey(key))
-						this.coverModelDictionary[key] = value.GetValueAsString();
-					else
-						this.coverModelDictionary.Insert(key, value.GetValueAsString());
+					this.coverModelDictionary[key] = value.GetValueAsString();
 					return;
 				case "modelProxyPaths":
-					if (this.modelProxyPaths.ContainsKey(key))
-						this.modelProxyPaths[key] = value.GetValueAsPath();
-					else
-						this.modelProxyPaths.Insert(key, value.GetValueAsPath());
+					this.modelProxyPaths[key] = value.GetValueAsPath();
 					return;
 				case "partsProxyPaths":
-					if (this.partsProxyPaths.ContainsKey(key))
-						this.partsProxyPaths[key] = value.GetValueAsPath();
-					else
-						this.partsProxyPaths.Insert(key, value.GetValueAsPath());
+					this.partsProxyPaths[key] = value.GetValueAsPath();
 					return;
 				case "dynamicModel":
-					if (this.dynamicModel.ContainsKey(key))
-						this.dynamicModel[key] = value.GetValueAsEntityPtr<Fox.Demox.DemoDynamicFileChangeModel>();
-					else
-						this.dynamicModel.Insert(key, value.GetValueAsEntityPtr<Fox.Demox.DemoDynamicFileChangeModel>());
+					this.dynamicModel[key] = value.GetValueAsEntityPtr<Fox.Demox.DemoDynamicFileChangeModel>();
 					return;
 				case "dynamicParts":
-					if (this.dynamicParts.ContainsKey(key))
-						this.dynamicParts[key] = value.GetValueAsEntityPtr<Fox.Demox.DemoDynamicFileChangeModel>();
-					else
-						this.dynamicParts.Insert(key, value.GetValueAsEntityPtr<Fox.Demox.DemoDynamicFileChangeModel>());
+					this.dynamicParts[key] = value.GetValueAsEntityPtr<Fox.Demox.DemoDynamicFileChangeModel>();
 					return;
 				case "dynamicFv2":
-					if (this.dynamicFv2.ContainsKey(key))
-						this.dynamicFv2[key] = value.GetValueAsEntityPtr<Fox.Demox.DemoFv2ResourceMemory>();
-					else
-						this.dynamicFv2.Insert(key, value.GetValueAsEntityPtr<Fox.Demox.DemoFv2ResourceMemory>());
+					this.dynamicFv2[key] = value.GetValueAsEntityPtr<Fox.Demox.DemoFv2ResourceMemory>();
 					return;
 				default:
 					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				case "locatorTypes":
+					this.locatorTypes[key] = (DemoStreamAnimation_LocatorType)value.GetValueAsInt32();
+					return;
+				case "cameraTypes":
+					this.cameraTypes[key] = (DemoStreamAnimation_CameraType)value.GetValueAsInt32();
+					return;
+				case "modelFiles":
+					this.modelFiles[key] = value.GetValueAsFilePtr();
+					return;
+				case "helpBoneFiles":
+					this.helpBoneFiles[key] = value.GetValueAsFilePtr();
+					return;
+				case "partsFiles":
+					this.partsFiles[key] = value.GetValueAsFilePtr();
+					return;
+				case "coverModelFiles":
+					this.coverModelFiles[key] = value.GetValueAsFilePtr();
+					return;
+				case "modelPartsDictionary":
+					this.modelPartsDictionary[key] = value.GetValueAsString();
+					return;
+				case "coverModelDictionary":
+					this.coverModelDictionary[key] = value.GetValueAsString();
+					return;
+				case "modelProxyPaths":
+					this.modelProxyPaths[key] = value.GetValueAsPath();
+					return;
+				case "partsProxyPaths":
+					this.partsProxyPaths[key] = value.GetValueAsPath();
+					return;
+				case "dynamicModel":
+					this.dynamicModel[key] = value.GetValueAsEntityPtr<Fox.Demox.DemoDynamicFileChangeModel>();
+					return;
+				case "dynamicParts":
+					this.dynamicParts[key] = value.GetValueAsEntityPtr<Fox.Demox.DemoDynamicFileChangeModel>();
+					return;
+				case "dynamicFv2":
+					this.dynamicFv2[key] = value.GetValueAsEntityPtr<Fox.Demox.DemoFv2ResourceMemory>();
+					return;
+				default:
+					base.AddPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, int index)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.RemovePropertyElement(propertyName, index);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, string key)
+		{
+			switch (propertyName)
+			{
+				case "locatorTypes":
+					this.locatorTypes.Remove(key);
+					return;
+				case "cameraTypes":
+					this.cameraTypes.Remove(key);
+					return;
+				case "modelFiles":
+					this.modelFiles.Remove(key);
+					return;
+				case "helpBoneFiles":
+					this.helpBoneFiles.Remove(key);
+					return;
+				case "partsFiles":
+					this.partsFiles.Remove(key);
+					return;
+				case "coverModelFiles":
+					this.coverModelFiles.Remove(key);
+					return;
+				case "modelPartsDictionary":
+					this.modelPartsDictionary.Remove(key);
+					return;
+				case "coverModelDictionary":
+					this.coverModelDictionary.Remove(key);
+					return;
+				case "modelProxyPaths":
+					this.modelProxyPaths.Remove(key);
+					return;
+				case "partsProxyPaths":
+					this.partsProxyPaths.Remove(key);
+					return;
+				case "dynamicModel":
+					this.dynamicModel.Remove(key);
+					return;
+				case "dynamicParts":
+					this.dynamicParts.Remove(key);
+					return;
+				case "dynamicFv2":
+					this.dynamicFv2.Remove(key);
+					return;
+				default:
+					base.RemovePropertyElement(propertyName, key);
 					return;
 			}
 		}

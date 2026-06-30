@@ -52,14 +52,14 @@ namespace Tpp.System
 			{
 				case "id":
 					return new Fox.Core.Value(id);
-				case "@params":
+				case "params":
 					return new Fox.Core.Value((Fox.IStringMap)@params);
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -72,7 +72,7 @@ namespace Tpp.System
 		{
 			switch (propertyName)
 			{
-				case "@params":
+				case "params":
 					return new Fox.Core.Value(this.@params[key]);
 				default:
 					return base.GetPropertyElement(propertyName, key);
@@ -92,7 +92,7 @@ namespace Tpp.System
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
 		{
 			switch (propertyName)
 			{
@@ -102,18 +102,61 @@ namespace Tpp.System
 			}
 		}
 
+		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.AddPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
 		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
 		{
 			switch (propertyName)
 			{
-				case "@params":
-					if (this.@params.ContainsKey(key))
-						this.@params[key] = value.GetValueAsEntityPtr<Tpp.System.TppDefaultParameterElement>();
-					else
-						this.@params.Insert(key, value.GetValueAsEntityPtr<Tpp.System.TppDefaultParameterElement>());
+				case "params":
+					this.@params[key] = value.GetValueAsEntityPtr<Tpp.System.TppDefaultParameterElement>();
 					return;
 				default:
 					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				case "params":
+					this.@params[key] = value.GetValueAsEntityPtr<Tpp.System.TppDefaultParameterElement>();
+					return;
+				default:
+					base.AddPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, int index)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.RemovePropertyElement(propertyName, index);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, string key)
+		{
+			switch (propertyName)
+			{
+				case "params":
+					this.@params.Remove(key);
+					return;
+				default:
+					base.RemovePropertyElement(propertyName, key);
 					return;
 			}
 		}

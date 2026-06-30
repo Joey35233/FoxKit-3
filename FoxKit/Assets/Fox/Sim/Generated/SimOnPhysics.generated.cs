@@ -34,21 +34,21 @@ namespace Fox.Sim
 		[field: UnityEngine.SerializeField]
 		public Fox.Core.EntityLink physicsData { get; set; }
 		
-		public SimLodLevelName minLodLevel { get => Get_minLodLevel(); set { Set_minLodLevel(value); } }
-		private partial SimLodLevelName Get_minLodLevel();
-		private partial void Set_minLodLevel(SimLodLevelName value);
+		public SimLodLevelName minLodLevel { get => minLodLevel_Get(); set => minLodLevel_Set(value); }
+		private partial SimLodLevelName minLodLevel_Get();
+		private partial void minLodLevel_Set(SimLodLevelName value);
 		
-		public SimLodLevelName maxLodLevel { get => Get_maxLodLevel(); set { Set_maxLodLevel(value); } }
-		private partial SimLodLevelName Get_maxLodLevel();
-		private partial void Set_maxLodLevel(SimLodLevelName value);
+		public SimLodLevelName maxLodLevel { get => maxLodLevel_Get(); set => maxLodLevel_Set(value); }
+		private partial SimLodLevelName maxLodLevel_Get();
+		private partial void maxLodLevel_Set(SimLodLevelName value);
 		
-		public bool isEnableGeoCheck { get => Get_isEnableGeoCheck(); set { Set_isEnableGeoCheck(value); } }
-		private partial bool Get_isEnableGeoCheck();
-		private partial void Set_isEnableGeoCheck(bool value);
+		public bool isEnableGeoCheck { get => isEnableGeoCheck_Get(); set => isEnableGeoCheck_Set(value); }
+		private partial bool isEnableGeoCheck_Get();
+		private partial void isEnableGeoCheck_Set(bool value);
 		
-		public bool convertMoveToWind { get => Get_convertMoveToWind(); set { Set_convertMoveToWind(value); } }
-		private partial bool Get_convertMoveToWind();
-		private partial void Set_convertMoveToWind(bool value);
+		public bool convertMoveToWind { get => convertMoveToWind_Get(); set => convertMoveToWind_Set(value); }
+		private partial bool convertMoveToWind_Get();
+		private partial void convertMoveToWind_Set(bool value);
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -111,7 +111,7 @@ namespace Fox.Sim
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -165,7 +165,7 @@ namespace Fox.Sim
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
 		{
 			switch (propertyName)
 			{
@@ -175,36 +175,88 @@ namespace Fox.Sim
 			}
 		}
 
+		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.AddPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
 		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
 		{
 			switch (propertyName)
 			{
 				case "simRootBones":
-					if (this.simRootBones.ContainsKey(key))
-						this.simRootBones[key] = value.GetValueAsEntityPtr<Fox.Sim.SimAssociationUnit>();
-					else
-						this.simRootBones.Insert(key, value.GetValueAsEntityPtr<Fox.Sim.SimAssociationUnit>());
+					this.simRootBones[key] = value.GetValueAsEntityPtr<Fox.Sim.SimAssociationUnit>();
 					return;
 				case "simBones":
-					if (this.simBones.ContainsKey(key))
-						this.simBones[key] = value.GetValueAsEntityPtr<Fox.Sim.SimAssociationUnit>();
-					else
-						this.simBones.Insert(key, value.GetValueAsEntityPtr<Fox.Sim.SimAssociationUnit>());
+					this.simBones[key] = value.GetValueAsEntityPtr<Fox.Sim.SimAssociationUnit>();
 					return;
 				case "simTransBones":
-					if (this.simTransBones.ContainsKey(key))
-						this.simTransBones[key] = value.GetValueAsEntityPtr<Fox.Sim.SimAssociationUnit>();
-					else
-						this.simTransBones.Insert(key, value.GetValueAsEntityPtr<Fox.Sim.SimAssociationUnit>());
+					this.simTransBones[key] = value.GetValueAsEntityPtr<Fox.Sim.SimAssociationUnit>();
 					return;
 				case "simHitBones":
-					if (this.simHitBones.ContainsKey(key))
-						this.simHitBones[key] = value.GetValueAsEntityPtr<Fox.Sim.SimAssociationUnit>();
-					else
-						this.simHitBones.Insert(key, value.GetValueAsEntityPtr<Fox.Sim.SimAssociationUnit>());
+					this.simHitBones[key] = value.GetValueAsEntityPtr<Fox.Sim.SimAssociationUnit>();
 					return;
 				default:
 					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				case "simRootBones":
+					this.simRootBones[key] = value.GetValueAsEntityPtr<Fox.Sim.SimAssociationUnit>();
+					return;
+				case "simBones":
+					this.simBones[key] = value.GetValueAsEntityPtr<Fox.Sim.SimAssociationUnit>();
+					return;
+				case "simTransBones":
+					this.simTransBones[key] = value.GetValueAsEntityPtr<Fox.Sim.SimAssociationUnit>();
+					return;
+				case "simHitBones":
+					this.simHitBones[key] = value.GetValueAsEntityPtr<Fox.Sim.SimAssociationUnit>();
+					return;
+				default:
+					base.AddPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, int index)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.RemovePropertyElement(propertyName, index);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, string key)
+		{
+			switch (propertyName)
+			{
+				case "simRootBones":
+					this.simRootBones.Remove(key);
+					return;
+				case "simBones":
+					this.simBones.Remove(key);
+					return;
+				case "simTransBones":
+					this.simTransBones.Remove(key);
+					return;
+				case "simHitBones":
+					this.simHitBones.Remove(key);
+					return;
+				default:
+					base.RemovePropertyElement(propertyName, key);
 					return;
 			}
 		}

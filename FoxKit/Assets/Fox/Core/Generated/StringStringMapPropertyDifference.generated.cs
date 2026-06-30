@@ -59,7 +59,7 @@ namespace Fox.Core
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -91,7 +91,7 @@ namespace Fox.Core
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
 		{
 			switch (propertyName)
 			{
@@ -101,24 +101,70 @@ namespace Fox.Core
 			}
 		}
 
+		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.AddPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
 		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
 		{
 			switch (propertyName)
 			{
 				case "originalValues":
-					if (this.originalValues.ContainsKey(key))
-						this.originalValues[key] = value.GetValueAsString();
-					else
-						this.originalValues.Insert(key, value.GetValueAsString());
+					this.originalValues[key] = value.GetValueAsString();
 					return;
 				case "values":
-					if (this.values.ContainsKey(key))
-						this.values[key] = value.GetValueAsString();
-					else
-						this.values.Insert(key, value.GetValueAsString());
+					this.values[key] = value.GetValueAsString();
 					return;
 				default:
 					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				case "originalValues":
+					this.originalValues[key] = value.GetValueAsString();
+					return;
+				case "values":
+					this.values[key] = value.GetValueAsString();
+					return;
+				default:
+					base.AddPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, int index)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.RemovePropertyElement(propertyName, index);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, string key)
+		{
+			switch (propertyName)
+			{
+				case "originalValues":
+					this.originalValues.Remove(key);
+					return;
+				case "values":
+					this.values.Remove(key);
+					return;
+				default:
+					base.RemovePropertyElement(propertyName, key);
 					return;
 			}
 		}

@@ -46,9 +46,9 @@ namespace Fox.Core
 		[field: UnityEngine.SerializeField]
 		protected bool editableDataSetChanged { get; set; }
 		
-		public bool isEditableLocked { get => Get_isEditableLocked(); set { Set_isEditableLocked(value); } }
-		private partial bool Get_isEditableLocked();
-		private partial void Set_isEditableLocked(bool value);
+		public bool isEditableLocked { get => isEditableLocked_Get(); set => isEditableLocked_Set(value); }
+		private partial bool isEditableLocked_Get();
+		private partial void isEditableLocked_Set(bool value);
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -114,7 +114,7 @@ namespace Fox.Core
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -172,7 +172,20 @@ namespace Fox.Core
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				case "actors":
+					this.actors[index] = value.GetValueAsEntityPtr<Fox.Core.Actor>();
+					return;
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
 		{
 			switch (propertyName)
 			{
@@ -181,7 +194,7 @@ namespace Fox.Core
 					this.actors[index] = value.GetValueAsEntityPtr<Fox.Core.Actor>();
 					return;
 				default:
-					base.SetPropertyElement(propertyName, index, value);
+					base.AddPropertyElement(propertyName, index, value);
 					return;
 			}
 		}
@@ -191,19 +204,58 @@ namespace Fox.Core
 			switch (propertyName)
 			{
 				case "dataSetFiles":
-					if (this.dataSetFiles.ContainsKey(key))
-						this.dataSetFiles[key] = value.GetValueAsFilePtr();
-					else
-						this.dataSetFiles.Insert(key, value.GetValueAsFilePtr());
+					this.dataSetFiles[key] = value.GetValueAsFilePtr();
 					return;
 				case "dataBodySets":
-					if (this.dataBodySets.ContainsKey(key))
-						this.dataBodySets[key] = value.GetValueAsEntityPtr<Fox.Core.DataBodySet>();
-					else
-						this.dataBodySets.Insert(key, value.GetValueAsEntityPtr<Fox.Core.DataBodySet>());
+					this.dataBodySets[key] = value.GetValueAsEntityPtr<Fox.Core.DataBodySet>();
 					return;
 				default:
 					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				case "dataSetFiles":
+					this.dataSetFiles[key] = value.GetValueAsFilePtr();
+					return;
+				case "dataBodySets":
+					this.dataBodySets[key] = value.GetValueAsEntityPtr<Fox.Core.DataBodySet>();
+					return;
+				default:
+					base.AddPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, int index)
+		{
+			switch (propertyName)
+			{
+				case "actors":
+					this.actors.RemoveAt(index);
+					return;
+				default:
+					base.RemovePropertyElement(propertyName, index);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, string key)
+		{
+			switch (propertyName)
+			{
+				case "dataSetFiles":
+					this.dataSetFiles.Remove(key);
+					return;
+				case "dataBodySets":
+					this.dataBodySets.Remove(key);
+					return;
+				default:
+					base.RemovePropertyElement(propertyName, key);
 					return;
 			}
 		}

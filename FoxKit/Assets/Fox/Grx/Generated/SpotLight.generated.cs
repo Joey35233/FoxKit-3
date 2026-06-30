@@ -97,41 +97,41 @@ namespace Fox.Grx
 		[field: UnityEngine.SerializeField]
 		public byte lodFadeType { get; set; }
 		
-		public bool enable { get => Get_enable(); set { Set_enable(value); } }
-		private partial bool Get_enable();
-		private partial void Set_enable(bool value);
+		public bool enable { get => enable_Get(); set => enable_Set(value); }
+		private partial bool enable_Get();
+		private partial void enable_Set(bool value);
 		
-		public SpotLight_PackingGeneration packingGeneration { get => Get_packingGeneration(); set { Set_packingGeneration(value); } }
-		private partial SpotLight_PackingGeneration Get_packingGeneration();
-		private partial void Set_packingGeneration(SpotLight_PackingGeneration value);
+		public SpotLight_PackingGeneration packingGeneration { get => packingGeneration_Get(); set => packingGeneration_Set(value); }
+		private partial SpotLight_PackingGeneration packingGeneration_Get();
+		private partial void packingGeneration_Set(SpotLight_PackingGeneration value);
 		
-		public bool castShadow { get => Get_castShadow(); set { Set_castShadow(value); } }
-		private partial bool Get_castShadow();
-		private partial void Set_castShadow(bool value);
+		public bool castShadow { get => castShadow_Get(); set => castShadow_Set(value); }
+		private partial bool castShadow_Get();
+		private partial void castShadow_Set(bool value);
 		
-		public bool isBounced { get => Get_isBounced(); set { Set_isBounced(value); } }
-		private partial bool Get_isBounced();
-		private partial void Set_isBounced(bool value);
+		public bool isBounced { get => isBounced_Get(); set => isBounced_Set(value); }
+		private partial bool isBounced_Get();
+		private partial void isBounced_Set(bool value);
 		
-		public bool showObject { get => Get_showObject(); set { Set_showObject(value); } }
-		private partial bool Get_showObject();
-		private partial void Set_showObject(bool value);
+		public bool showObject { get => showObject_Get(); set => showObject_Set(value); }
+		private partial bool showObject_Get();
+		private partial void showObject_Set(bool value);
 		
-		public bool showRange { get => Get_showRange(); set { Set_showRange(value); } }
-		private partial bool Get_showRange();
-		private partial void Set_showRange(bool value);
+		public bool showRange { get => showRange_Get(); set => showRange_Set(value); }
+		private partial bool showRange_Get();
+		private partial void showRange_Set(bool value);
 		
-		public bool isDebugLightVolumeBound { get => Get_isDebugLightVolumeBound(); set { Set_isDebugLightVolumeBound(value); } }
-		private partial bool Get_isDebugLightVolumeBound();
-		private partial void Set_isDebugLightVolumeBound(bool value);
+		public bool isDebugLightVolumeBound { get => isDebugLightVolumeBound_Get(); set => isDebugLightVolumeBound_Set(value); }
+		private partial bool isDebugLightVolumeBound_Get();
+		private partial void isDebugLightVolumeBound_Set(bool value);
 		
-		public bool useAutoDimmer { get => Get_useAutoDimmer(); set { Set_useAutoDimmer(value); } }
-		private partial bool Get_useAutoDimmer();
-		private partial void Set_useAutoDimmer(bool value);
+		public bool useAutoDimmer { get => useAutoDimmer_Get(); set => useAutoDimmer_Set(value); }
+		private partial bool useAutoDimmer_Get();
+		private partial void useAutoDimmer_Set(bool value);
 		
-		public bool hasSpecular { get => Get_hasSpecular(); set { Set_hasSpecular(value); } }
-		private partial bool Get_hasSpecular();
-		private partial void Set_hasSpecular(bool value);
+		public bool hasSpecular { get => hasSpecular_Get(); set => hasSpecular_Set(value); }
+		private partial bool hasSpecular_Get();
+		private partial void hasSpecular_Set(bool value);
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -272,7 +272,7 @@ namespace Fox.Grx
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -408,12 +408,22 @@ namespace Fox.Grx
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
 		{
 			switch (propertyName)
 			{
 				default:
 					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.AddPropertyElement(propertyName, index, value);
 					return;
 			}
 		}
@@ -424,6 +434,36 @@ namespace Fox.Grx
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.AddPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, int index)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.RemovePropertyElement(propertyName, index);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, string key)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.RemovePropertyElement(propertyName, key);
 					return;
 			}
 		}

@@ -167,7 +167,7 @@ namespace Tpp.MotherBaseStage
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -244,56 +244,55 @@ namespace Tpp.MotherBaseStage
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
 		{
 			switch (propertyName)
 			{
 				case "cluster00divisionPackageIds":
-					
 					this.cluster00divisionPackageIds[index] = value.GetValueAsUInt8();
 					return;
 				case "cluster01divisionPackageIds":
-					
 					this.cluster01divisionPackageIds[index] = value.GetValueAsUInt8();
 					return;
 				case "cluster02divisionPackageIds":
-					
 					this.cluster02divisionPackageIds[index] = value.GetValueAsUInt8();
 					return;
 				case "cluster03divisionPackageIds":
-					
 					this.cluster03divisionPackageIds[index] = value.GetValueAsUInt8();
 					return;
 				case "cluster04divisionPackageIds":
-					
 					this.cluster04divisionPackageIds[index] = value.GetValueAsUInt8();
 					return;
 				case "cluster05divisionPackageIds":
-					
 					this.cluster05divisionPackageIds[index] = value.GetValueAsUInt8();
 					return;
 				case "cluster06divisionPackageIds":
-					
 					this.cluster06divisionPackageIds[index] = value.GetValueAsUInt8();
 					return;
 				case "cluster07divisionPackageIds":
-					
 					this.cluster07divisionPackageIds[index] = value.GetValueAsUInt8();
 					return;
 				case "clusterPositions":
-					
 					this.clusterPositions[index] = value.GetValueAsVector3();
 					return;
 				case "clusterRequestRadiuses":
-					
 					this.clusterRequestRadiuses[index] = value.GetValueAsUInt32();
 					return;
 				case "clusterRequireRadiuses":
-					
 					this.clusterRequireRadiuses[index] = value.GetValueAsUInt32();
 					return;
 				default:
 					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.AddPropertyElement(propertyName, index, value);
 					return;
 			}
 		}
@@ -304,6 +303,36 @@ namespace Tpp.MotherBaseStage
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.AddPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, int index)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.RemovePropertyElement(propertyName, index);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, string key)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.RemovePropertyElement(propertyName, key);
 					return;
 			}
 		}

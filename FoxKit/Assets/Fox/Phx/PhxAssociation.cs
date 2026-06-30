@@ -4,7 +4,7 @@
     {
         private PhAssociationParam associationParam => param;
 
-        private partial uint Get_connectType() => associationParam.GetConnectType();
-        private partial void Set_connectType(uint value) => associationParam.SetConnectType(value);
+        private partial uint connectType_Get() => associationParam.GetConnectType();
+        private partial void connectType_Set(uint value) => associationParam.SetConnectType(value);
     }
 }

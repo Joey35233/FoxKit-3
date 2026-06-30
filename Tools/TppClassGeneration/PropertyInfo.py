@@ -91,7 +91,7 @@ class PropertyInfo:
 				The safe property name.
 
 		"""
-		if self.name == "string" or self.name == "object" or self.name == "params":
+		if self.name == "string" or self.name == "object" or self.name == "params" or self.name == "event":
 			return f'@{self.name}'
 		return self.name
 

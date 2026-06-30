@@ -16,37 +16,37 @@ namespace Fox.Ph
 	public partial class PhMultiShoulderConstraint : Fox.Ph.PhConstraint
 	{
 		// Properties
-		public UnityEngine.Quaternion refVec0 { get => Get_refVec0(); set { Set_refVec0(value); } }
-		private partial UnityEngine.Quaternion Get_refVec0();
-		private partial void Set_refVec0(UnityEngine.Quaternion value);
+		public UnityEngine.Quaternion refVec0 { get => refVec0_Get(); set => refVec0_Set(value); }
+		private partial UnityEngine.Quaternion refVec0_Get();
+		private partial void refVec0_Set(UnityEngine.Quaternion value);
 		
-		public UnityEngine.Quaternion refVec1 { get => Get_refVec1(); set { Set_refVec1(value); } }
-		private partial UnityEngine.Quaternion Get_refVec1();
-		private partial void Set_refVec1(UnityEngine.Quaternion value);
+		public UnityEngine.Quaternion refVec1 { get => refVec1_Get(); set => refVec1_Set(value); }
+		private partial UnityEngine.Quaternion refVec1_Get();
+		private partial void refVec1_Set(UnityEngine.Quaternion value);
 		
-		public float refLimit0 { get => Get_refLimit0(); set { Set_refLimit0(value); } }
-		private partial float Get_refLimit0();
-		private partial void Set_refLimit0(float value);
+		public float refLimit0 { get => refLimit0_Get(); set => refLimit0_Set(value); }
+		private partial float refLimit0_Get();
+		private partial void refLimit0_Set(float value);
 		
-		public float refLimit1 { get => Get_refLimit1(); set { Set_refLimit1(value); } }
-		private partial float Get_refLimit1();
-		private partial void Set_refLimit1(float value);
+		public float refLimit1 { get => refLimit1_Get(); set => refLimit1_Set(value); }
+		private partial float refLimit1_Get();
+		private partial void refLimit1_Set(float value);
 		
-		public float velocityMax { get => Get_velocityMax(); set { Set_velocityMax(value); } }
-		private partial float Get_velocityMax();
-		private partial void Set_velocityMax(float value);
+		public float velocityMax { get => velocityMax_Get(); set => velocityMax_Set(value); }
+		private partial float velocityMax_Get();
+		private partial void velocityMax_Set(float value);
 		
-		public float torqueMax { get => Get_torqueMax(); set { Set_torqueMax(value); } }
-		private partial float Get_torqueMax();
-		private partial void Set_torqueMax(float value);
+		public float torqueMax { get => torqueMax_Get(); set => torqueMax_Set(value); }
+		private partial float torqueMax_Get();
+		private partial void torqueMax_Set(float value);
 		
-		public float velocityRate { get => Get_velocityRate(); set { Set_velocityRate(value); } }
-		private partial float Get_velocityRate();
-		private partial void Set_velocityRate(float value);
+		public float velocityRate { get => velocityRate_Get(); set => velocityRate_Set(value); }
+		private partial float velocityRate_Get();
+		private partial void velocityRate_Set(float value);
 		
-		public bool isPoweredFlag { get => Get_isPoweredFlag(); set { Set_isPoweredFlag(value); } }
-		private partial bool Get_isPoweredFlag();
-		private partial void Set_isPoweredFlag(bool value);
+		public bool isPoweredFlag { get => isPoweredFlag_Get(); set => isPoweredFlag_Set(value); }
+		private partial bool isPoweredFlag_Get();
+		private partial void isPoweredFlag_Set(bool value);
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -103,7 +103,7 @@ namespace Fox.Ph
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -155,12 +155,22 @@ namespace Fox.Ph
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
 		{
 			switch (propertyName)
 			{
 				default:
 					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.AddPropertyElement(propertyName, index, value);
 					return;
 			}
 		}
@@ -171,6 +181,36 @@ namespace Fox.Ph
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.AddPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, int index)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.RemovePropertyElement(propertyName, index);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, string key)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.RemovePropertyElement(propertyName, key);
 					return;
 			}
 		}

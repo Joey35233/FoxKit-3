@@ -55,53 +55,53 @@ namespace Fox.Grx
 		[field: UnityEngine.SerializeField]
 		protected uint flags { get; set; }
 		
-		public bool isTonemap { get => Get_isTonemap(); set { Set_isTonemap(value); } }
-		private partial bool Get_isTonemap();
-		private partial void Set_isTonemap(bool value);
+		public bool isTonemap { get => isTonemap_Get(); set => isTonemap_Set(value); }
+		private partial bool isTonemap_Get();
+		private partial void isTonemap_Set(bool value);
 		
-		public bool isBloom { get => Get_isBloom(); set { Set_isBloom(value); } }
-		private partial bool Get_isBloom();
-		private partial void Set_isBloom(bool value);
+		public bool isBloom { get => isBloom_Get(); set => isBloom_Set(value); }
+		private partial bool isBloom_Get();
+		private partial void isBloom_Set(bool value);
 		
-		public bool isMotionBlur { get => Get_isMotionBlur(); set { Set_isMotionBlur(value); } }
-		private partial bool Get_isMotionBlur();
-		private partial void Set_isMotionBlur(bool value);
+		public bool isMotionBlur { get => isMotionBlur_Get(); set => isMotionBlur_Set(value); }
+		private partial bool isMotionBlur_Get();
+		private partial void isMotionBlur_Set(bool value);
 		
-		public bool isDepthOfField { get => Get_isDepthOfField(); set { Set_isDepthOfField(value); } }
-		private partial bool Get_isDepthOfField();
-		private partial void Set_isDepthOfField(bool value);
+		public bool isDepthOfField { get => isDepthOfField_Get(); set => isDepthOfField_Set(value); }
+		private partial bool isDepthOfField_Get();
+		private partial void isDepthOfField_Set(bool value);
 		
-		public bool isDOFVisualizeFocus { get => Get_isDOFVisualizeFocus(); set { Set_isDOFVisualizeFocus(value); } }
-		private partial bool Get_isDOFVisualizeFocus();
-		private partial void Set_isDOFVisualizeFocus(bool value);
+		public bool isDOFVisualizeFocus { get => isDOFVisualizeFocus_Get(); set => isDOFVisualizeFocus_Set(value); }
+		private partial bool isDOFVisualizeFocus_Get();
+		private partial void isDOFVisualizeFocus_Set(bool value);
 		
-		public bool isLocalReflections { get => Get_isLocalReflections(); set { Set_isLocalReflections(value); } }
-		private partial bool Get_isLocalReflections();
-		private partial void Set_isLocalReflections(bool value);
+		public bool isLocalReflections { get => isLocalReflections_Get(); set => isLocalReflections_Set(value); }
+		private partial bool isLocalReflections_Get();
+		private partial void isLocalReflections_Set(bool value);
 		
-		public bool isTemporalAA { get => Get_isTemporalAA(); set { Set_isTemporalAA(value); } }
-		private partial bool Get_isTemporalAA();
-		private partial void Set_isTemporalAA(bool value);
+		public bool isTemporalAA { get => isTemporalAA_Get(); set => isTemporalAA_Set(value); }
+		private partial bool isTemporalAA_Get();
+		private partial void isTemporalAA_Set(bool value);
 		
-		public bool isFixedShutterRatio { get => Get_isFixedShutterRatio(); set { Set_isFixedShutterRatio(value); } }
-		private partial bool Get_isFixedShutterRatio();
-		private partial void Set_isFixedShutterRatio(bool value);
+		public bool isFixedShutterRatio { get => isFixedShutterRatio_Get(); set => isFixedShutterRatio_Set(value); }
+		private partial bool isFixedShutterRatio_Get();
+		private partial void isFixedShutterRatio_Set(bool value);
 		
-		public bool isPatchVelocity { get => Get_isPatchVelocity(); set { Set_isPatchVelocity(value); } }
-		private partial bool Get_isPatchVelocity();
-		private partial void Set_isPatchVelocity(bool value);
+		public bool isPatchVelocity { get => isPatchVelocity_Get(); set => isPatchVelocity_Set(value); }
+		private partial bool isPatchVelocity_Get();
+		private partial void isPatchVelocity_Set(bool value);
 		
-		public bool isLightAdaptationFromLACC { get => Get_isLightAdaptationFromLACC(); set { Set_isLightAdaptationFromLACC(value); } }
-		private partial bool Get_isLightAdaptationFromLACC();
-		private partial void Set_isLightAdaptationFromLACC(bool value);
+		public bool isLightAdaptationFromLACC { get => isLightAdaptationFromLACC_Get(); set => isLightAdaptationFromLACC_Set(value); }
+		private partial bool isLightAdaptationFromLACC_Get();
+		private partial void isLightAdaptationFromLACC_Set(bool value);
 		
-		public bool isShowDecals { get => Get_isShowDecals(); set { Set_isShowDecals(value); } }
-		private partial bool Get_isShowDecals();
-		private partial void Set_isShowDecals(bool value);
+		public bool isShowDecals { get => isShowDecals_Get(); set => isShowDecals_Set(value); }
+		private partial bool isShowDecals_Get();
+		private partial void isShowDecals_Set(bool value);
 		
-		public bool isShrinkSHBuffer { get => Get_isShrinkSHBuffer(); set { Set_isShrinkSHBuffer(value); } }
-		private partial bool Get_isShrinkSHBuffer();
-		private partial void Set_isShrinkSHBuffer(bool value);
+		public bool isShrinkSHBuffer { get => isShrinkSHBuffer_Get(); set => isShrinkSHBuffer_Set(value); }
+		private partial bool isShrinkSHBuffer_Get();
+		private partial void isShrinkSHBuffer_Set(bool value);
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -209,7 +209,7 @@ namespace Fox.Grx
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -312,12 +312,22 @@ namespace Fox.Grx
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
 		{
 			switch (propertyName)
 			{
 				default:
 					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.AddPropertyElement(propertyName, index, value);
 					return;
 			}
 		}
@@ -328,6 +338,36 @@ namespace Fox.Grx
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.AddPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, int index)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.RemovePropertyElement(propertyName, index);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, string key)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.RemovePropertyElement(propertyName, key);
 					return;
 			}
 		}

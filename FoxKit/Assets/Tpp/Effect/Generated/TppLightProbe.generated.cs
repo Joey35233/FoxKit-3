@@ -73,25 +73,25 @@ namespace Tpp.Effect
 		[field: UnityEngine.SerializeField]
 		public float occlusionModeOpenRate { get; set; }
 		
-		public bool enable24hSH { get => Get_enable24hSH(); set { Set_enable24hSH(value); } }
-		private partial bool Get_enable24hSH();
-		private partial void Set_enable24hSH(bool value);
+		public bool enable24hSH { get => enable24hSH_Get(); set => enable24hSH_Set(value); }
+		private partial bool enable24hSH_Get();
+		private partial void enable24hSH_Set(bool value);
 		
-		public bool enableWeatherSH { get => Get_enableWeatherSH(); set { Set_enableWeatherSH(value); } }
-		private partial bool Get_enableWeatherSH();
-		private partial void Set_enableWeatherSH(bool value);
+		public bool enableWeatherSH { get => enableWeatherSH_Get(); set => enableWeatherSH_Set(value); }
+		private partial bool enableWeatherSH_Get();
+		private partial void enableWeatherSH_Set(bool value);
 		
-		public bool enableRelatedLightSH { get => Get_enableRelatedLightSH(); set { Set_enableRelatedLightSH(value); } }
-		private partial bool Get_enableRelatedLightSH();
-		private partial void Set_enableRelatedLightSH(bool value);
+		public bool enableRelatedLightSH { get => enableRelatedLightSH_Get(); set => enableRelatedLightSH_Set(value); }
+		private partial bool enableRelatedLightSH_Get();
+		private partial void enableRelatedLightSH_Set(bool value);
 		
-		public bool enableOcclusionMode { get => Get_enableOcclusionMode(); set { Set_enableOcclusionMode(value); } }
-		private partial bool Get_enableOcclusionMode();
-		private partial void Set_enableOcclusionMode(bool value);
+		public bool enableOcclusionMode { get => enableOcclusionMode_Get(); set => enableOcclusionMode_Set(value); }
+		private partial bool enableOcclusionMode_Get();
+		private partial void enableOcclusionMode_Set(bool value);
 		
-		public TppLightProbe_PackingGeneration packingGeneration { get => Get_packingGeneration(); set { Set_packingGeneration(value); } }
-		private partial TppLightProbe_PackingGeneration Get_packingGeneration();
-		private partial void Set_packingGeneration(TppLightProbe_PackingGeneration value);
+		public TppLightProbe_PackingGeneration packingGeneration { get => packingGeneration_Get(); set => packingGeneration_Set(value); }
+		private partial TppLightProbe_PackingGeneration packingGeneration_Get();
+		private partial void packingGeneration_Set(TppLightProbe_PackingGeneration value);
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -196,7 +196,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -294,7 +294,23 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				case "onLights":
+					this.onLights[index] = value.GetValueAsEntityLink();
+					return;
+				case "offLights":
+					this.offLights[index] = value.GetValueAsEntityLink();
+					return;
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
 		{
 			switch (propertyName)
 			{
@@ -307,7 +323,7 @@ namespace Tpp.Effect
 					this.offLights[index] = value.GetValueAsEntityLink();
 					return;
 				default:
-					base.SetPropertyElement(propertyName, index, value);
+					base.AddPropertyElement(propertyName, index, value);
 					return;
 			}
 		}
@@ -318,6 +334,42 @@ namespace Tpp.Effect
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.AddPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, int index)
+		{
+			switch (propertyName)
+			{
+				case "onLights":
+					this.onLights.RemoveAt(index);
+					return;
+				case "offLights":
+					this.offLights.RemoveAt(index);
+					return;
+				default:
+					base.RemovePropertyElement(propertyName, index);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, string key)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.RemovePropertyElement(propertyName, key);
 					return;
 			}
 		}

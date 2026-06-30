@@ -116,7 +116,7 @@ def make_output_path (type_name, type_root_namespace, type_namespace):
 
     """
 
-    return f'../{type_root_namespace}/{type_namespace}/Generated/{type_name}.generated.cs'
+    return f'../../FoxKit/Assets/{type_root_namespace}/{type_namespace}/Generated/{type_name}.generated.cs'
 
 generate_classes()
 generate_enums()

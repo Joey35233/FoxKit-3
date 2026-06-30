@@ -19,21 +19,21 @@ namespace Fox.Ph
 		[field: UnityEngine.SerializeField]
 		public PhPrimitiveShapeType type { get; set; }
 		
-		public UnityEngine.Vector3 size { get => Get_size(); set { Set_size(value); } }
-		private partial UnityEngine.Vector3 Get_size();
-		private partial void Set_size(UnityEngine.Vector3 value);
+		public UnityEngine.Vector3 size { get => size_Get(); set => size_Set(value); }
+		private partial UnityEngine.Vector3 size_Get();
+		private partial void size_Set(UnityEngine.Vector3 value);
 		
-		public float radius { get => Get_radius(); set { Set_radius(value); } }
-		private partial float Get_radius();
-		private partial void Set_radius(float value);
+		public float radius { get => radius_Get(); set => radius_Set(value); }
+		private partial float radius_Get();
+		private partial void radius_Set(float value);
 		
-		public float height { get => Get_height(); set { Set_height(value); } }
-		private partial float Get_height();
-		private partial void Set_height(float value);
+		public float height { get => height_Get(); set => height_Set(value); }
+		private partial float height_Get();
+		private partial void height_Set(float value);
 		
-		public float radius2 { get => Get_radius2(); set { Set_radius2(value); } }
-		private partial float Get_radius2();
-		private partial void Set_radius2(float value);
+		public float radius2 { get => radius2_Get(); set => radius2_Set(value); }
+		private partial float radius2_Get();
+		private partial void radius2_Set(float value);
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -81,7 +81,7 @@ namespace Fox.Ph
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -124,12 +124,22 @@ namespace Fox.Ph
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
 		{
 			switch (propertyName)
 			{
 				default:
 					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.AddPropertyElement(propertyName, index, value);
 					return;
 			}
 		}
@@ -140,6 +150,36 @@ namespace Fox.Ph
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.AddPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, int index)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.RemovePropertyElement(propertyName, index);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, string key)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.RemovePropertyElement(propertyName, key);
 					return;
 			}
 		}

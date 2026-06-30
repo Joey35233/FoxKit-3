@@ -65,7 +65,7 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -100,7 +100,20 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				case "passedCheckpoints":
+					this.passedCheckpoints[index] = value.GetValueAsString();
+					return;
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
 		{
 			switch (propertyName)
 			{
@@ -109,7 +122,7 @@ namespace Fox.GameKit
 					this.passedCheckpoints[index] = value.GetValueAsString();
 					return;
 				default:
-					base.SetPropertyElement(propertyName, index, value);
+					base.AddPropertyElement(propertyName, index, value);
 					return;
 			}
 		}
@@ -119,13 +132,49 @@ namespace Fox.GameKit
 			switch (propertyName)
 			{
 				case "checkPointUnits":
-					if (this.checkPointUnits.ContainsKey(key))
-						this.checkPointUnits[key] = value.GetValueAsEntityPtr<Fox.GameKit.CheckpointUnit>();
-					else
-						this.checkPointUnits.Insert(key, value.GetValueAsEntityPtr<Fox.GameKit.CheckpointUnit>());
+					this.checkPointUnits[key] = value.GetValueAsEntityPtr<Fox.GameKit.CheckpointUnit>();
 					return;
 				default:
 					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				case "checkPointUnits":
+					this.checkPointUnits[key] = value.GetValueAsEntityPtr<Fox.GameKit.CheckpointUnit>();
+					return;
+				default:
+					base.AddPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, int index)
+		{
+			switch (propertyName)
+			{
+				case "passedCheckpoints":
+					this.passedCheckpoints.RemoveAt(index);
+					return;
+				default:
+					base.RemovePropertyElement(propertyName, index);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, string key)
+		{
+			switch (propertyName)
+			{
+				case "checkPointUnits":
+					this.checkPointUnits.Remove(key);
+					return;
+				default:
+					base.RemovePropertyElement(propertyName, key);
 					return;
 			}
 		}

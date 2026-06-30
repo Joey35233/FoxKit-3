@@ -83,7 +83,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -123,7 +123,35 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				case "matrices":
+					this.matrices[index] = value.GetValueAsMatrix4();
+					return;
+				case "footChara":
+					this.footChara[index] = value.GetValueAsUInt32();
+					return;
+				case "footLR":
+					this.footLR[index] = value.GetValueAsUInt32();
+					return;
+				case "alpha":
+					this.alpha[index] = value.GetValueAsFloat();
+					return;
+				case "blood":
+					this.blood[index] = value.GetValueAsBool();
+					return;
+				case "enable":
+					this.enable[index] = value.GetValueAsBool();
+					return;
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
 		{
 			switch (propertyName)
 			{
@@ -152,7 +180,7 @@ namespace Tpp.Effect
 					this.enable[index] = value.GetValueAsBool();
 					return;
 				default:
-					base.SetPropertyElement(propertyName, index, value);
+					base.AddPropertyElement(propertyName, index, value);
 					return;
 			}
 		}
@@ -163,6 +191,54 @@ namespace Tpp.Effect
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.AddPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, int index)
+		{
+			switch (propertyName)
+			{
+				case "matrices":
+					this.matrices.RemoveAt(index);
+					return;
+				case "footChara":
+					this.footChara.RemoveAt(index);
+					return;
+				case "footLR":
+					this.footLR.RemoveAt(index);
+					return;
+				case "alpha":
+					this.alpha.RemoveAt(index);
+					return;
+				case "blood":
+					this.blood.RemoveAt(index);
+					return;
+				case "enable":
+					this.enable.RemoveAt(index);
+					return;
+				default:
+					base.RemovePropertyElement(propertyName, index);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, string key)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.RemovePropertyElement(propertyName, key);
 					return;
 			}
 		}

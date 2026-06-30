@@ -34,23 +34,23 @@ namespace Fox.Core
 		[field: UnityEngine.SerializeField]
 		protected TransformData_Flags flags { get; set; }
 		
-		public bool inheritTransform { get => Get_inheritTransform(); set { Set_inheritTransform(value); } }
-		private partial bool Get_inheritTransform();
-		private partial void Set_inheritTransform(bool value);
+		public bool inheritTransform { get => inheritTransform_Get(); set => inheritTransform_Set(value); }
+		private partial bool inheritTransform_Get();
+		private partial void inheritTransform_Set(bool value);
 		
-		public bool visibility { get => Get_visibility(); set { Set_visibility(value); } }
-		private partial bool Get_visibility();
-		private partial void Set_visibility(bool value);
+		public bool visibility { get => visibility_Get(); set => visibility_Set(value); }
+		private partial bool visibility_Get();
+		private partial void visibility_Set(bool value);
 		
-		public bool selection { get => Get_selection(); set { Set_selection(value); } }
-		private partial bool Get_selection();
-		private partial void Set_selection(bool value);
+		public bool selection { get => selection_Get(); set => selection_Set(value); }
+		private partial bool selection_Get();
+		private partial void selection_Set(bool value);
 		
-		public UnityEngine.Matrix4x4 worldMatrix { get => Get_worldMatrix(); }
-		private partial UnityEngine.Matrix4x4 Get_worldMatrix();
+		public UnityEngine.Matrix4x4 worldMatrix { get => worldMatrix_Get(); }
+		private partial UnityEngine.Matrix4x4 worldMatrix_Get();
 		
-		public UnityEngine.Matrix4x4 worldTransform { get => Get_worldTransform(); }
-		private partial UnityEngine.Matrix4x4 Get_worldTransform();
+		public UnityEngine.Matrix4x4 worldTransform { get => worldTransform_Get(); }
+		private partial UnityEngine.Matrix4x4 worldTransform_Get();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -116,7 +116,7 @@ namespace Fox.Core
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -170,7 +170,20 @@ namespace Fox.Core
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				case "children":
+					this.children[index] = value.GetValueAsEntityHandle();
+					return;
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
 		{
 			switch (propertyName)
 			{
@@ -179,7 +192,7 @@ namespace Fox.Core
 					this.children[index] = value.GetValueAsEntityHandle();
 					return;
 				default:
-					base.SetPropertyElement(propertyName, index, value);
+					base.AddPropertyElement(propertyName, index, value);
 					return;
 			}
 		}
@@ -190,6 +203,39 @@ namespace Fox.Core
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.AddPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, int index)
+		{
+			switch (propertyName)
+			{
+				case "children":
+					this.children.RemoveAt(index);
+					return;
+				default:
+					base.RemovePropertyElement(propertyName, index);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, string key)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.RemovePropertyElement(propertyName, key);
 					return;
 			}
 		}

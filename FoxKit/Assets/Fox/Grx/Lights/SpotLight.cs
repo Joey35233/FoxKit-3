@@ -6,11 +6,11 @@ namespace Fox.Grx
 {
     public partial class SpotLight : Fox.Core.TransformData
     {
-        private partial bool Get_enable() => FlagUtils.GetFlag(lightFlags, 0);
-        private partial void Set_enable(bool value) => lightFlags = FlagUtils.SetFlag(lightFlags, 0, value);
+        private partial bool enable_Get() => FlagUtils.GetFlag(lightFlags, 0);
+        private partial void enable_Set(bool value) => lightFlags = FlagUtils.SetFlag(lightFlags, 0, value);
 
-        private partial SpotLight_PackingGeneration Get_packingGeneration() => throw new System.NotImplementedException();
-        private partial void Set_packingGeneration(SpotLight_PackingGeneration value)
+        private partial SpotLight_PackingGeneration packingGeneration_Get() => throw new System.NotImplementedException();
+        private partial void packingGeneration_Set(SpotLight_PackingGeneration value)
         {
             if (value == SpotLight_PackingGeneration.GENERATION_ALL)
             {
@@ -22,26 +22,26 @@ namespace Fox.Grx
             }
         }
 
-        private partial bool Get_castShadow() => FlagUtils.GetFlag(lightFlags, 1);
-        private partial void Set_castShadow(bool value) => lightFlags = FlagUtils.SetFlag(lightFlags, 1, value);
+        private partial bool castShadow_Get() => FlagUtils.GetFlag(lightFlags, 1);
+        private partial void castShadow_Set(bool value) => lightFlags = FlagUtils.SetFlag(lightFlags, 1, value);
 
-        private partial bool Get_isBounced() => FlagUtils.GetFlag(lightFlags, 2);
-        private partial void Set_isBounced(bool value) => lightFlags = FlagUtils.SetFlag(lightFlags, 2, value);
+        private partial bool isBounced_Get() => FlagUtils.GetFlag(lightFlags, 2);
+        private partial void isBounced_Set(bool value) => lightFlags = FlagUtils.SetFlag(lightFlags, 2, value);
 
-        private partial bool Get_showObject() => FlagUtils.GetFlag(lightFlags, 4);
-        private partial void Set_showObject(bool value) => lightFlags = FlagUtils.SetFlag(lightFlags, 4, value);
+        private partial bool showObject_Get() => FlagUtils.GetFlag(lightFlags, 4);
+        private partial void showObject_Set(bool value) => lightFlags = FlagUtils.SetFlag(lightFlags, 4, value);
 
-        private partial bool Get_showRange() => FlagUtils.GetFlag(lightFlags, 5);
-        private partial void Set_showRange(bool value) => lightFlags = FlagUtils.SetFlag(lightFlags, 5, value);
+        private partial bool showRange_Get() => FlagUtils.GetFlag(lightFlags, 5);
+        private partial void showRange_Set(bool value) => lightFlags = FlagUtils.SetFlag(lightFlags, 5, value);
 
-        private partial bool Get_isDebugLightVolumeBound() => FlagUtils.GetFlag(lightFlags, 6);
-        private partial void Set_isDebugLightVolumeBound(bool value) => lightFlags = FlagUtils.SetFlag(lightFlags, 6, value);
+        private partial bool isDebugLightVolumeBound_Get() => FlagUtils.GetFlag(lightFlags, 6);
+        private partial void isDebugLightVolumeBound_Set(bool value) => lightFlags = FlagUtils.SetFlag(lightFlags, 6, value);
 
-        private partial bool Get_useAutoDimmer() => FlagUtils.GetFlag(lightFlags, 7);
-        private partial void Set_useAutoDimmer(bool value) => lightFlags = FlagUtils.SetFlag(lightFlags, 7, value);
+        private partial bool useAutoDimmer_Get() => FlagUtils.GetFlag(lightFlags, 7);
+        private partial void useAutoDimmer_Set(bool value) => lightFlags = FlagUtils.SetFlag(lightFlags, 7, value);
 
-        private partial bool Get_hasSpecular() => FlagUtils.GetFlag(lightFlags, 3);
-        private partial void Set_hasSpecular(bool value) => lightFlags = FlagUtils.SetFlag(lightFlags, 3, value);
+        private partial bool hasSpecular_Get() => FlagUtils.GetFlag(lightFlags, 3);
+        private partial void hasSpecular_Set(bool value) => lightFlags = FlagUtils.SetFlag(lightFlags, 3, value);
 
         public override void OnDeserializeEntity(TaskLogger logger)
         {

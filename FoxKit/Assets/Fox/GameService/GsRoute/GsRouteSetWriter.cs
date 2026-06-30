@@ -74,14 +74,14 @@ namespace Fox.GameService
                 writer.WriteZeros(16);
             }
 
-            var routeEvents = new List<GsRouteDataRouteEvent>[routeCount];
+            var routeEvents = new List<GsRouteDataEvent>[routeCount];
             var spanCounts = new ushort[routeCount][];
             var spanStarts = new ushort[routeCount][];
             for (int i = 0; i < routeCount; i++)
             {
                 GsRouteData route = routes[i];
                 int nodeCount = route.nodes.Count;
-                var events = new List<GsRouteDataRouteEvent>();
+                var events = new List<GsRouteDataEvent>();
                 var counts = new ushort[nodeCount];
                 var starts = new ushort[nodeCount];
                 ushort running = 0;
@@ -91,7 +91,7 @@ namespace Fox.GameService
 
                     if (j < route.edges.Count)
                     {
-                        GsRouteDataEdgeEvent edgeEvent = ((GsRouteDataEdge)route.edges[j]).edgeEvent;
+                        GsRouteDataEdgeEvent edgeEvent = ((GsRouteDataEdge)route.edges[j]).@event;
                         if (edgeEvent != null)
                         {
                             events.Add(edgeEvent);
@@ -99,7 +99,7 @@ namespace Fox.GameService
                         }
                     }
 
-                    foreach (GsRouteDataNodeEvent nodeEvent in ((GsRouteDataNode)route.nodes[j]).nodeEvents)
+                    foreach (GsRouteDataNodeEvent nodeEvent in ((GsRouteDataNode)route.nodes[j]).events)
                     {
                         events.Add(nodeEvent);
                         running++;
@@ -137,7 +137,7 @@ namespace Fox.GameService
             for (int i = 0; i < routeCount; i++)
             {
                 eventsPositions[i] = writer.BaseStream.Position;
-                foreach (GsRouteDataRouteEvent routeEvent in routeEvents[i])
+                foreach (GsRouteDataEvent routeEvent in routeEvents[i])
                     WriteEvent(writer, routeEvent);
             }
 
@@ -164,10 +164,10 @@ namespace Fox.GameService
                 writer.WritePositionF(node.position);
         }
 
-        private static void WriteEvent(BinaryWriter writer, GsRouteDataRouteEvent routeEvent)
+        private static void WriteEvent(BinaryWriter writer, GsRouteDataEvent routeEvent)
         {
             // EventDef
-            writer.WriteStrCode32(routeEvent.GetId());
+            writer.WriteStrCode32(new StrCode32(routeEvent.id));
 
             byte affinity = 0; // Edge
             if (routeEvent is GsRouteDataNodeEvent)
@@ -184,63 +184,69 @@ namespace Fox.GameService
             {
                 isLoop = nodeEvent.isLoop;
                 time = QuantizeTime(nodeEvent.time);
-                direction = QuantizeDirection(nodeEvent.direction);
+                direction = QuantizeDirection(nodeEvent.dir);
             }
             writer.Write(isLoop);
             writer.Write(time);
             writer.Write(direction);
 
             WriteAimPointPayload(writer, routeEvent.aimPoint);
-
-            uint[] binaryData = routeEvent.Serialize();
-            for (int b = 0; b < 4; b++)
-            {
-                if (b < binaryData.Length)
-                    writer.Write(binaryData[b]);
-                else
-                    writer.Write(0u);
-            }
+            
+            for (int i = 0; i < 4; i++)
+                    writer.Write(routeEvent.extensions[i]);
 
             writer.Write(0u);
         }
 
-        private static GsRouteDataRouteEventAimPoint.Type GetAimPointType(GsRouteDataRouteEventAimPoint aimPoint)
+        private static RouteAimTargetType GetAimPointType(GsRouteDataEventAimPoint aimPoint)
         {
-            if (aimPoint is GsRouteDataRtEvAimPointStaticPoint)
-                return GsRouteDataRouteEventAimPoint.Type.StaticPoint;
-            if (aimPoint is GsRouteDataRtEvAimPointCharacter)
-                return GsRouteDataRouteEventAimPoint.Type.Character;
-            if (aimPoint is GsRouteDataRtEvAimPointRouteAsSightMovePath)
-                return GsRouteDataRouteEventAimPoint.Type.RouteAsSightMovePath;
-            if (aimPoint is GsRouteDataRtEvAimPointRouteAsObject)
-                return GsRouteDataRouteEventAimPoint.Type.RouteAsObject;
-            return GsRouteDataRouteEventAimPoint.Type.NoTarget;
+            if (aimPoint is GsRouteDataEventAimStaticPoint)
+                return RouteAimTargetType.StaticPoint;
+            if (aimPoint is GsRouteDataEventAimCharacter)
+                return RouteAimTargetType.Character;
+            if (aimPoint is GsRouteDataEventAimRouteAsSightMovePath)
+                return RouteAimTargetType.RouteAsSightMovePath;
+            if (aimPoint is GsRouteDataEventAimRouteAsObject)
+                return RouteAimTargetType.RouteAsObject;
+            return RouteAimTargetType.NoTarget;
         }
 
-        private static void WriteAimPointPayload(BinaryWriter writer, GsRouteDataRouteEventAimPoint aimPoint)
+        private static void WriteAimPointPayload(BinaryWriter writer, GsRouteDataEventAimPoint aimPoint)
         {
-            if (aimPoint is GsRouteDataRtEvAimPointStaticPoint staticPoint)
+            if (aimPoint is GsRouteDataEventAimStaticPoint staticPoint)
             {
                 writer.WritePositionF(staticPoint.position);
                 writer.WriteZeros(4);
                 return;
             }
-            if (aimPoint is GsRouteDataRtEvAimPointCharacter character)
+            if (aimPoint is GsRouteDataEventAimCharacter character)
             {
-                writer.WriteStrCode32(new StrCode32(character.characterName));
+                writer.WriteStrCode32(new StrCode32(character.characterId));
                 writer.WriteZeros(12);
                 return;
             }
-            if (aimPoint is GsRouteDataRtEvAimPointRouteAsSightMovePath sightMovePath)
+            if (aimPoint is GsRouteDataEventAimRouteAsSightMovePath sightMovePath)
             {
-                for (int i = 0; i < 4; i++)
-                    writer.WriteStrCode32(new StrCode32(sightMovePath.routeNames[i]));
+                int idCount = sightMovePath.routeId_GetContainerSize();
+                
+                for (int i = 0; i < idCount; i++)
+                    writer.WriteStrCode32(new StrCode32(sightMovePath.routeId_Get(i)));
+                
+                for (int i = 0; i < (4 - idCount); i++)
+                    writer.WriteStrCode32(new StrCode32(""));
+                
                 return;
             }
-            if (aimPoint is GsRouteDataRtEvAimPointRouteAsObject routeAsObject)
+            if (aimPoint is GsRouteDataEventAimRouteAsObject routeAsObject)
             {
-                for (int i = 0; i < 4; i++)
-                    writer.WriteStrCode32(new StrCode32(routeAsObject.routeNames[i]));
+                int idCount = routeAsObject.routeId_GetContainerSize();
+                
+                for (int i = 0; i < routeAsObject.routeId_GetContainerSize(); i++)
+                    writer.WriteStrCode32(new StrCode32(routeAsObject.routeId_Get(i)));
+                
+                for (int i = 0; i < (4 - idCount); i++)
+                    writer.WriteStrCode32(new StrCode32(""));
+                
                 return;
             }
 
@@ -253,10 +259,15 @@ namespace Fox.GameService
             return (ushort)Mathf.Clamp(raw, 0, ushort.MaxValue);
         }
 
-        private static ushort QuantizeDirection(float direction)
+        private static ushort QuantizeDirection(Quaternion direction)
         {
+            Fox.Math.UnityToFoxQuaternion(direction).ToAngleAxis(out float angle, out _);
+            
+            // May need this
+            // angle = Mathf.Repeat(angle, 2f * Mathf.PI);
+            
             const float quantaPerDegree = (ushort.MaxValue + 1) / 360f;
-            int raw = Mathf.RoundToInt(direction * quantaPerDegree);
+            int raw = Mathf.RoundToInt(angle * quantaPerDegree);
             return (ushort)Mathf.Clamp(raw, 0, ushort.MaxValue);
         }
 

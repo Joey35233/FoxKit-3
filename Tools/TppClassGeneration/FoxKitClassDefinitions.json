@@ -3,10 +3,22 @@
     "category": null,
     "functions": [],
     "id": 0,
-    "name": "GsRouteData",
+    "name": "GsRouteDataNode",
     "namespace": "GameService",
-    "parent": "GraphxSpatialGraphData",
-    "properties": [],
+    "parent": "GraphxSpatialGraphDataNode",
+    "properties": [
+      {
+        "arraySize": 1,
+        "container": "DynamicArray",
+        "enum": null,
+        "exportFlag": "rw",
+        "name": "events",
+        "offset": 112,
+        "ptrType": "GsRouteDataNodeEvent",
+        "size": 16,
+        "type": "EntityPtr"
+      }
+    ],
     "version": 0
   },
   {
@@ -21,8 +33,8 @@
         "arraySize": 1,
         "container": "StaticArray",
         "enum": null,
-        "exportFlag": "RW",
-        "name": "edgeEvent",
+        "exportFlag": "rw",
+        "name": "event",
         "offset": 72,
         "ptrType": "GsRouteDataEdgeEvent",
         "size": 8,
@@ -35,125 +47,268 @@
     "category": null,
     "functions": [],
     "id": 0,
-    "name": "GsRouteDataNode",
+    "name": "GsRouteData",
     "namespace": "GameService",
-    "parent": "GraphxSpatialGraphDataNode",
-    "properties": [
-      {
-        "arraySize": 1,
-        "container": "DynamicArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "nodeEvents",
-        "offset": 72,
-        "ptrType": "GsRouteDataNodeEvent",
-        "size": 8,
-        "type": "EntityPtr"
-      }
-    ],
+    "parent": "GraphxSpatialGraphData",
+    "properties": [],
     "version": 0
   },
   {
     "category": null,
     "functions": [],
     "id": 0,
-    "name": "GsRouteDataRouteEventAimPoint",
+    "name": "GsRouteDataBody",
+    "namespace": "GameService",
+    "parent": "GraphxPath",
+    "properties": [],
+    "version": 0
+  },
+  {
+    "category": null,
+    "functions": [],
+    "id": 0,
+    "name": "GsRouteDataEvent",
     "namespace": "GameService",
     "parent": "DataElement",
-    "properties": [],
+    "properties": [
+      {
+        "arraySize": 1,
+        "container": "StaticArray",
+        "enum": null,
+        "exportFlag": "rw",
+        "name": "id",
+        "offset": 56,
+        "ptrType": null,
+        "size": 8,
+        "type": "String"
+      },
+      {
+        "arraySize": 1,
+        "container": "StaticArray",
+        "enum": null,
+        "exportFlag": "rw",
+        "name": "aimPoint",
+        "offset": 64,
+        "ptrType": "GsRouteDataEventAimPoint",
+        "size": 8,
+        "type": "EntityPtr"
+      },
+      {
+        "arraySize": 4,
+        "container": "StaticArray",
+        "enum": null,
+        "exportFlag": "rw",
+        "name": "extensions",
+        "offset": 72,
+        "ptrType": null,
+        "size": 16,
+        "type": "uint32"
+      }
+    ],
     "version": 0
   },
   {
     "category": null,
     "functions": [],
     "id": 0,
-    "name": "GsRouteDataRtEvAimPointCharacter",
+    "name": "GsRouteDataEdgeEvent",
     "namespace": "GameService",
-    "parent": "GsRouteDataRouteEventAimPoint",
+    "parent": "GsRouteDataEvent",
     "properties": [
       {
         "arraySize": 1,
         "container": "StaticArray",
         "enum": null,
         "exportFlag": "RW",
-        "name": "characterName",
-        "offset": 56,
+        "name": "move",
+        "offset": 0,
         "ptrType": null,
         "size": 8,
         "type": "String"
       }
     ],
-    "version": 0
+    "version": 1
   },
   {
     "category": null,
     "functions": [],
     "id": 0,
-    "name": "GsRouteDataRtEvAimPointNoTarget",
+    "name": "GsRouteDataNodeEvent",
     "namespace": "GameService",
-    "parent": "GsRouteDataRouteEventAimPoint",
-    "properties": [],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "GsRouteDataRtEvAimPointRouteAsObject",
-    "namespace": "GameService",
-    "parent": "GsRouteDataRouteEventAimPoint",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "routeNames",
-        "offset": 56,
-        "ptrType": null,
-        "size": 32,
-        "type": "String"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "GsRouteDataRtEvAimPointRouteAsSightMovePath",
-    "namespace": "GameService",
-    "parent": "GsRouteDataRouteEventAimPoint",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "routeNames",
-        "offset": 56,
-        "ptrType": null,
-        "size": 32,
-        "type": "String"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "GsRouteDataRtEvAimPointStaticPoint",
-    "namespace": "GameService",
-    "parent": "GsRouteDataRouteEventAimPoint",
+    "parent": "GsRouteDataEvent",
     "properties": [
       {
         "arraySize": 1,
         "container": "StaticArray",
         "enum": null,
         "exportFlag": "RW",
-        "name": "position",
+        "name": "action",
+        "offset": 0,
+        "ptrType": null,
+        "size": 8,
+        "type": "String"
+      },
+      {
+        "arraySize": 1,
+        "container": "StaticArray",
+        "enum": null,
+        "exportFlag": "rw",
+        "name": "isLoop",
+        "offset": 88,
+        "ptrType": null,
+        "size": 1,
+        "type": "bool"
+      },
+      {
+        "arraySize": 1,
+        "container": "StaticArray",
+        "enum": null,
+        "exportFlag": "rw",
+        "name": "isActionCount",
+        "offset": 89,
+        "ptrType": null,
+        "size": 1,
+        "type": "bool"
+      },
+      {
+        "arraySize": 1,
+        "container": "StaticArray",
+        "enum": null,
+        "exportFlag": "rw",
+        "name": "time",
+        "offset": 92,
+        "ptrType": null,
+        "size": 4,
+        "type": "float"
+      },
+      {
+        "arraySize": 1,
+        "container": "StaticArray",
+        "enum": null,
+        "exportFlag": "rw",
+        "name": "dir",
+        "offset": 96,
+        "ptrType": null,
+        "size": 16,
+        "type": "Quat"
+      },
+      {
+        "arraySize": 1,
+        "container": "StaticArray",
+        "enum": null,
+        "exportFlag": "rw",
+        "name": "scriptPath",
+        "offset": 112,
+        "ptrType": null,
+        "size": 24,
+        "type": "FilePtr"
+      }
+    ],
+    "version": 2
+  },
+  {
+    "category": null,
+    "functions": [],
+    "id": 0,
+    "name": "GsRouteDataEventAimPoint",
+    "namespace": "GameService",
+    "parent": "DataElement",
+    "properties": [
+      {
+        "arraySize": 1,
+        "container": "StaticArray",
+        "enum": null,
+        "exportFlag": "rw",
+        "name": "type",
         "offset": 56,
+        "ptrType": null,
+        "size": 1,
+        "type": "uint8"
+      },
+      {
+        "arraySize": 1,
+        "container": "StaticArray",
+        "enum": null,
+        "exportFlag": "RW",
+        "name": "typeName",
+        "offset": 0,
+        "ptrType": null,
+        "size": 8,
+        "type": "String"
+      },
+      {
+        "arraySize": 1,
+        "container": "StaticArray",
+        "enum": null,
+        "exportFlag": "rw",
+        "name": "infoType",
+        "offset": 57,
+        "ptrType": null,
+        "size": 1,
+        "type": "uint8"
+      },
+      {
+        "arraySize": 1,
+        "container": "StaticArray",
+        "enum": null,
+        "exportFlag": "rw",
+        "name": "position",
+        "offset": 64,
+        "ptrType": null,
+        "size": 16,
+        "type": "Vector3"
+      },
+      {
+        "arraySize": 4,
+        "container": "StaticArray",
+        "enum": null,
+        "exportFlag": "rw",
+        "name": "targetIds",
+        "offset": 80,
+        "ptrType": null,
+        "size": 32,
+        "type": "String"
+      },
+      {
+        "arraySize": 1,
+        "container": "StaticArray",
+        "enum": null,
+        "exportFlag": "rw",
+        "name": "bodySection",
+        "offset": 112,
+        "ptrType": null,
+        "size": 1,
+        "type": "uint8"
+      },
+      {
+        "arraySize": 1,
+        "container": "StaticArray",
+        "enum": null,
+        "exportFlag": "RW",
+        "name": "bodySectionName",
+        "offset": 0,
+        "ptrType": null,
+        "size": 8,
+        "type": "String"
+      }
+    ],
+    "version": 2
+  },
+  {
+    "category": null,
+    "functions": [],
+    "id": 0,
+    "name": "GsRouteDataEventAimStaticPoint",
+    "namespace": "GameService",
+    "parent": "GsRouteDataEventAimPoint",
+    "properties": [
+      {
+        "arraySize": 1,
+        "container": "StaticArray",
+        "enum": null,
+        "exportFlag": "RW",
+        "name": "aimPos",
+        "offset": 0,
         "ptrType": null,
         "size": 16,
         "type": "Vector3"
@@ -165,20 +320,20 @@
     "category": null,
     "functions": [],
     "id": 0,
-    "name": "GsRouteDataRouteEvent",
+    "name": "GsRouteDataEventAimCharacter",
     "namespace": "GameService",
-    "parent": "DataElement",
+    "parent": "GsRouteDataEventAimPoint",
     "properties": [
       {
         "arraySize": 1,
         "container": "StaticArray",
         "enum": null,
         "exportFlag": "RW",
-        "name": "aimPoint",
-        "offset": 56,
-        "ptrType": "GsRouteDataRouteEventAimPoint",
+        "name": "characterId",
+        "offset": 0,
+        "ptrType": null,
         "size": 8,
-        "type": "EntityPtr"
+        "type": "String"
       }
     ],
     "version": 0
@@ -187,42 +342,64 @@
     "category": null,
     "functions": [],
     "id": 0,
-    "name": "GsRouteDataNodeEvent",
+    "name": "GsRouteDataEventAimRouteAsSightMovePath",
     "namespace": "GameService",
-    "parent": "GsRouteDataRouteEvent",
+    "parent": "GsRouteDataEventAimPoint",
+    "properties": [
+      {
+        "arraySize": 1,
+        "container": "DynamicArray",
+        "enum": null,
+        "exportFlag": "RW",
+        "name": "routeId",
+        "offset": 0,
+        "ptrType": null,
+        "size": 16,
+        "type": "String"
+      }
+    ],
+    "version": 0
+  },
+  {
+    "category": null,
+    "functions": [],
+    "id": 0,
+    "name": "GsRouteDataEventAimRouteAsObject",
+    "namespace": "GameService",
+    "parent": "GsRouteDataEventAimPoint",
+    "properties": [
+      {
+        "arraySize": 1,
+        "container": "DynamicArray",
+        "enum": null,
+        "exportFlag": "RW",
+        "name": "routeId",
+        "offset": 0,
+        "ptrType": null,
+        "size": 16,
+        "type": "String"
+      }
+    ],
+    "version": 0
+  },
+  {
+    "category": null,
+    "functions": [],
+    "id": 0,
+    "name": "TppRouteEdgeEventMove",
+    "namespace": "TppGameKit",
+    "parent": "GsRouteDataEdgeEvent",
     "properties": [
       {
         "arraySize": 1,
         "container": "StaticArray",
         "enum": null,
         "exportFlag": "RW",
-        "name": "time",
-        "offset": 64,
+        "name": "speed",
+        "offset": 88,
         "ptrType": null,
         "size": 4,
-        "type": "float"
-      },
-      {
-        "arraySize": 1,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "direction",
-        "offset": 68,
-        "ptrType": null,
-        "size": 4,
-        "type": "float"
-      },
-      {
-        "arraySize": 1,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "isLoop",
-        "offset": 72,
-        "ptrType": null,
-        "size": 1,
-        "type": "bool"
+        "type": "int32"
       }
     ],
     "version": 0
@@ -231,259 +408,7 @@
     "category": null,
     "functions": [],
     "id": 0,
-    "name": "GsRouteDataEdgeEvent",
-    "namespace": "GameService",
-    "parent": "GsRouteDataRouteEvent",
-    "properties": [],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRoutePeep1NodeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataNodeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteUseFlashLightAlwaysNodeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataNodeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRoutePermitToGetOffNodeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataNodeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteUnknown2358641809NodeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataNodeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteVehicleAntiPlayerFireNodeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataNodeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteSkullFaceStandByVehicleNodeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataNodeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteUnknown3589755714NodeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataNodeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteSleepOnSofaNodeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataNodeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteDisableStealthModeNodeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataNodeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteBreakSteelTowerNodeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataNodeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteCautionNodeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataNodeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteCautionIdleActNodeEvent",
+    "name": "TppRouteNodeEventRelaxedIdleAct",
     "namespace": "TppGameKit",
     "parent": "GsRouteDataNodeEvent",
     "properties": [
@@ -493,7 +418,7 @@
         "enum": null,
         "exportFlag": "RW",
         "name": "animationName",
-        "offset": 76,
+        "offset": 136,
         "ptrType": null,
         "size": 8,
         "type": "String"
@@ -504,7 +429,7 @@
         "enum": null,
         "exportFlag": "RW",
         "name": "unknown",
-        "offset": 84,
+        "offset": 144,
         "ptrType": null,
         "size": 2,
         "type": "uint16"
@@ -516,20 +441,31 @@
     "category": null,
     "functions": [],
     "id": 0,
-    "name": "TppRouteCautionSquatFireNodeEvent",
+    "name": "TppRouteNodeEventCautionIdleAct",
     "namespace": "TppGameKit",
     "parent": "GsRouteDataNodeEvent",
     "properties": [
       {
-        "arraySize": 4,
+        "arraySize": 1,
         "container": "StaticArray",
         "enum": null,
         "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
+        "name": "animationName",
+        "offset": 136,
         "ptrType": null,
-        "size": 16,
-        "type": "uint32"
+        "size": 8,
+        "type": "String"
+      },
+      {
+        "arraySize": 1,
+        "container": "StaticArray",
+        "enum": null,
+        "exportFlag": "RW",
+        "name": "unknown",
+        "offset": 144,
+        "ptrType": null,
+        "size": 2,
+        "type": "uint16"
       }
     ],
     "version": 0
@@ -538,205 +474,7 @@
     "category": null,
     "functions": [],
     "id": 0,
-    "name": "TppRouteCautionSquatIdleNodeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataNodeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteCautionSquatIdleAimNodeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataNodeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteCautionStandFireNodeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataNodeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteCautionStandIdleNodeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataNodeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteCautionStandIdleAimNodeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataNodeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteCautionStandIdleAimCarryingNodeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataNodeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteCautionStandIdleReadyNodeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataNodeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteCautionStandIdleSearchNodeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataNodeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteCloseDoorNodeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataNodeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteConversationIdleNodeEvent",
+    "name": "TppRouteNodeEventConversationIdle",
     "namespace": "TppGameKit",
     "parent": "GsRouteDataNodeEvent",
     "properties": [
@@ -746,7 +484,7 @@
         "enum": null,
         "exportFlag": "RW",
         "name": "conversationLabel",
-        "offset": 76,
+        "offset": 136,
         "ptrType": null,
         "size": 8,
         "type": "String"
@@ -757,7 +495,7 @@
         "enum": null,
         "exportFlag": "RW",
         "name": "friendCharacterId",
-        "offset": 84,
+        "offset": 144,
         "ptrType": null,
         "size": 8,
         "type": "String"
@@ -768,7 +506,7 @@
         "enum": null,
         "exportFlag": "RW",
         "name": "range",
-        "offset": 92,
+        "offset": 152,
         "ptrType": null,
         "size": 4,
         "type": "uint32"
@@ -780,315 +518,7 @@
     "category": null,
     "functions": [],
     "id": 0,
-    "name": "TppRouteCurtainInNodeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataNodeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteCurtainOutNodeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataNodeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteDemoNodeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataNodeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteDropPointNodeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataNodeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteFireNodeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataNodeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteHeliIdleNodeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataNodeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteHoveringNodeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataNodeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteKillNodeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataNodeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteOnBaseRouteNodeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataNodeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteOnTheHillNodeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataNodeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteOpenDoorNodeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataNodeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRoutePileBunkerNodeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataNodeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRoutePickUpHoneyBeeNodeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataNodeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRoutePutDownHoneyBeeNodeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataNodeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRoutePutHostageInVehicleNodeEvent",
+    "name": "TppRouteNodeEventSendMessage",
     "namespace": "TppGameKit",
     "parent": "GsRouteDataNodeEvent",
     "properties": [
@@ -1098,7 +528,7 @@
         "enum": null,
         "exportFlag": "RW",
         "name": "unknown",
-        "offset": 76,
+        "offset": 136,
         "ptrType": null,
         "size": 4,
         "type": "uint32"
@@ -1109,7 +539,7 @@
         "enum": null,
         "exportFlag": "RW",
         "name": "message",
-        "offset": 80,
+        "offset": 140,
         "ptrType": null,
         "size": 8,
         "type": "String"
@@ -1119,8 +549,8 @@
         "container": "StaticArray",
         "enum": null,
         "exportFlag": "RW",
-        "name": "routeName",
-        "offset": 88,
+        "name": "routeId",
+        "offset": 148,
         "ptrType": null,
         "size": 8,
         "type": "String"
@@ -1132,29 +562,7 @@
     "category": null,
     "functions": [],
     "id": 0,
-    "name": "TppRouteRecoveryNodeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataNodeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteRelaxedIdleActNodeEvent",
+    "name": "TppRouteNodeEventSwitchRoute",
     "namespace": "TppGameKit",
     "parent": "GsRouteDataNodeEvent",
     "properties": [
@@ -1163,327 +571,8 @@
         "container": "StaticArray",
         "enum": null,
         "exportFlag": "RW",
-        "name": "animationName",
-        "offset": 76,
-        "ptrType": null,
-        "size": 8,
-        "type": "String"
-      },
-      {
-        "arraySize": 1,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "unknown",
-        "offset": 84,
-        "ptrType": null,
-        "size": 2,
-        "type": "uint16"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteRelaxedStandIdleNodeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataNodeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteRideVehicleNodeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataNodeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteSaluteNodeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataNodeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteSaluteGreetingNodeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataNodeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteSearchMissileNodeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataNodeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteSendMessageNodeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataNodeEvent",
-    "properties": [
-      {
-        "arraySize": 1,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "unknown",
-        "offset": 76,
-        "ptrType": null,
-        "size": 4,
-        "type": "uint32"
-      },
-      {
-        "arraySize": 1,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "message",
-        "offset": 80,
-        "ptrType": null,
-        "size": 8,
-        "type": "String"
-      },
-      {
-        "arraySize": 1,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "routeName",
-        "offset": 88,
-        "ptrType": null,
-        "size": 8,
-        "type": "String"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteSetTargetSpeedNodeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataNodeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteSitInChairNodeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataNodeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteSnipeNodeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataNodeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteStandIdleNodeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataNodeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteStandSearchNodeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataNodeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteSupineSnipeNodeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataNodeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteSwitchRouteNodeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataNodeEvent",
-    "properties": [
-      {
-        "arraySize": 1,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "routeName",
-        "offset": 76,
+        "name": "routeId",
+        "offset": 136,
         "ptrType": null,
         "size": 8,
         "type": "String"
@@ -1494,7 +583,7 @@
         "enum": null,
         "exportFlag": "RW",
         "name": "function",
-        "offset": 84,
+        "offset": 144,
         "ptrType": null,
         "size": 8,
         "type": "String"
@@ -1505,7 +594,7 @@
         "enum": null,
         "exportFlag": "RW",
         "name": "argument",
-        "offset": 92,
+        "offset": 152,
         "ptrType": null,
         "size": 8,
         "type": "String"
@@ -1517,7 +606,7 @@
     "category": null,
     "functions": [],
     "id": 0,
-    "name": "TppRouteSyncRouteNodeEvent",
+    "name": "TppRouteNodeEventSyncRoute",
     "namespace": "TppGameKit",
     "parent": "GsRouteDataNodeEvent",
     "properties": [
@@ -1527,7 +616,7 @@
         "enum": null,
         "exportFlag": "RW",
         "name": "syncTableId",
-        "offset": 76,
+        "offset": 136,
         "ptrType": null,
         "size": 8,
         "type": "String"
@@ -1538,7 +627,7 @@
         "enum": null,
         "exportFlag": "RW",
         "name": "step",
-        "offset": 84,
+        "offset": 144,
         "ptrType": null,
         "size": 4,
         "type": "int32"
@@ -1550,7 +639,7 @@
     "category": null,
     "functions": [],
     "id": 0,
-    "name": "TppRouteTakeHostageOutOfVehicleNodeEvent",
+    "name": "TppRouteNodeEventPutHostageInVehicle",
     "namespace": "TppGameKit",
     "parent": "GsRouteDataNodeEvent",
     "properties": [
@@ -1560,7 +649,7 @@
         "enum": null,
         "exportFlag": "RW",
         "name": "unknown",
-        "offset": 76,
+        "offset": 136,
         "ptrType": null,
         "size": 4,
         "type": "uint32"
@@ -1571,7 +660,7 @@
         "enum": null,
         "exportFlag": "RW",
         "name": "message",
-        "offset": 80,
+        "offset": 140,
         "ptrType": null,
         "size": 8,
         "type": "String"
@@ -1581,32 +670,87 @@
         "container": "StaticArray",
         "enum": null,
         "exportFlag": "RW",
-        "name": "routeName",
+        "name": "routeId",
+        "offset": 148,
+        "ptrType": null,
+        "size": 8,
+        "type": "String"
+      }
+    ],
+    "version": 0
+  },
+  {
+    "category": null,
+    "functions": [],
+    "id": 0,
+    "name": "TppRouteNodeEventTakeHostageOutOfVehicle",
+    "namespace": "TppGameKit",
+    "parent": "GsRouteDataNodeEvent",
+    "properties": [
+      {
+        "arraySize": 1,
+        "container": "StaticArray",
+        "enum": null,
+        "exportFlag": "RW",
+        "name": "unknown",
+        "offset": 136,
+        "ptrType": null,
+        "size": 4,
+        "type": "uint32"
+      },
+      {
+        "arraySize": 1,
+        "container": "StaticArray",
+        "enum": null,
+        "exportFlag": "RW",
+        "name": "message",
+        "offset": 140,
+        "ptrType": null,
+        "size": 8,
+        "type": "String"
+      },
+      {
+        "arraySize": 1,
+        "container": "StaticArray",
+        "enum": null,
+        "exportFlag": "RW",
+        "name": "routeId",
+        "offset": 148,
+        "ptrType": null,
+        "size": 8,
+        "type": "String"
+      }
+    ],
+    "version": 0
+  },
+  {
+    "category": null,
+    "functions": [],
+    "id": 0,
+    "name": "TppRouteEdgeEventVehicleBackFast",
+    "namespace": "TppGameKit",
+    "parent": "GsRouteDataEdgeEvent",
+    "properties": [
+      {
+        "arraySize": 1,
+        "container": "StaticArray",
+        "enum": null,
+        "exportFlag": "RW",
+        "name": "railId",
         "offset": 88,
         "ptrType": null,
         "size": 8,
         "type": "String"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteUseFlashLightNodeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataNodeEvent",
-    "properties": [
+      },
       {
-        "arraySize": 4,
+        "arraySize": 1,
         "container": "StaticArray",
         "enum": null,
         "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
+        "name": "rpm",
+        "offset": 96,
         "ptrType": null,
-        "size": 16,
+        "size": 4,
         "type": "uint32"
       }
     ],
@@ -1616,249 +760,7 @@
     "category": null,
     "functions": [],
     "id": 0,
-    "name": "TppRouteUseSearchLightNodeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataNodeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteVanishNodeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataNodeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteVehicleFireNodeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataNodeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteVehicleGetInNodeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataNodeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteVehicleGetOffNodeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataNodeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteVehicleGetOutNodeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataNodeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteVehicleIdleNodeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataNodeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteWaitNodeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataNodeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteWaitIdleNodeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataNodeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteWalkerGearCautionIdleNodeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataNodeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteWalkerGearRelaxedIdleNodeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataNodeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteUnknown41204288EdgeEvent",
+    "name": "TppRouteEdgeEventVehicleBackNormal",
     "namespace": "TppGameKit",
     "parent": "GsRouteDataEdgeEvent",
     "properties": [
@@ -1868,7 +770,7 @@
         "enum": null,
         "exportFlag": "RW",
         "name": "railId",
-        "offset": 76,
+        "offset": 88,
         "ptrType": null,
         "size": 8,
         "type": "String"
@@ -1879,7 +781,7 @@
         "enum": null,
         "exportFlag": "RW",
         "name": "rpm",
-        "offset": 84,
+        "offset": 96,
         "ptrType": null,
         "size": 4,
         "type": "uint32"
@@ -1891,733 +793,7 @@
     "category": null,
     "functions": [],
     "id": 0,
-    "name": "TppRouteAllEdgeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataEdgeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteCarryHoneyBeeEdgeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataEdgeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteCautionDashEdgeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataEdgeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteCautionRunEdgeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataEdgeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteCautionRunAimEdgeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataEdgeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteCautionStandWalkReadyEdgeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataEdgeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteCautionWalkEdgeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataEdgeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteCautionWalkAimEdgeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataEdgeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteCautionWalkAimFrontEdgeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataEdgeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteCautionWalkFireEdgeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataEdgeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteCautionWalkSearchEdgeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataEdgeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteDashEdgeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataEdgeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteForwardChangeSpeedEdgeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataEdgeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteJumpOnlyEdgeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataEdgeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteJumpWalkEdgeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataEdgeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteMoveEdgeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataEdgeEvent",
-    "properties": [
-      {
-        "arraySize": 1,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "speed",
-        "offset": 76,
-        "ptrType": null,
-        "size": 4,
-        "type": "int32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteMoveFastEdgeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataEdgeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteMoveVeryFastEdgeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataEdgeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteMoveNormalEdgeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataEdgeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteMoveSlowEdgeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataEdgeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteNoneEdgeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataEdgeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteNormalEdgeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataEdgeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRoutePermitGettingOffEdgeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataEdgeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteRelaxedRunEdgeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataEdgeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteRelaxedStandWalkEdgeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataEdgeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteRelaxedStandWalkActEdgeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataEdgeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteRelaxedWalkEdgeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataEdgeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteRelaxedWalkActEdgeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataEdgeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteRouteMoveEdgeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataEdgeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteRouteMoveFreeEdgeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataEdgeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteRunOnlyEdgeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataEdgeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteRunWalkEdgeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataEdgeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteStairsDownEdgeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataEdgeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteVehicleBackFastEdgeEvent",
+    "name": "TppRouteEdgeEventVehicleBackSlow",
     "namespace": "TppGameKit",
     "parent": "GsRouteDataEdgeEvent",
     "properties": [
@@ -2627,7 +803,7 @@
         "enum": null,
         "exportFlag": "RW",
         "name": "railId",
-        "offset": 76,
+        "offset": 88,
         "ptrType": null,
         "size": 8,
         "type": "String"
@@ -2638,7 +814,7 @@
         "enum": null,
         "exportFlag": "RW",
         "name": "rpm",
-        "offset": 84,
+        "offset": 96,
         "ptrType": null,
         "size": 4,
         "type": "uint32"
@@ -2650,7 +826,7 @@
     "category": null,
     "functions": [],
     "id": 0,
-    "name": "TppRouteVehicleBackNormalEdgeEvent",
+    "name": "TppRouteEdgeEventVehicleMoveFast",
     "namespace": "TppGameKit",
     "parent": "GsRouteDataEdgeEvent",
     "properties": [
@@ -2660,7 +836,7 @@
         "enum": null,
         "exportFlag": "RW",
         "name": "railId",
-        "offset": 76,
+        "offset": 88,
         "ptrType": null,
         "size": 8,
         "type": "String"
@@ -2671,7 +847,7 @@
         "enum": null,
         "exportFlag": "RW",
         "name": "rpm",
-        "offset": 84,
+        "offset": 96,
         "ptrType": null,
         "size": 4,
         "type": "uint32"
@@ -2683,7 +859,7 @@
     "category": null,
     "functions": [],
     "id": 0,
-    "name": "TppRouteVehicleBackSlowEdgeEvent",
+    "name": "TppRouteEdgeEventVehicleMoveNormal",
     "namespace": "TppGameKit",
     "parent": "GsRouteDataEdgeEvent",
     "properties": [
@@ -2693,7 +869,7 @@
         "enum": null,
         "exportFlag": "RW",
         "name": "railId",
-        "offset": 76,
+        "offset": 88,
         "ptrType": null,
         "size": 8,
         "type": "String"
@@ -2704,7 +880,7 @@
         "enum": null,
         "exportFlag": "RW",
         "name": "rpm",
-        "offset": 84,
+        "offset": 96,
         "ptrType": null,
         "size": 4,
         "type": "uint32"
@@ -2716,7 +892,7 @@
     "category": null,
     "functions": [],
     "id": 0,
-    "name": "TppRouteVehicleMoveFastEdgeEvent",
+    "name": "TppRouteEdgeEventVehicleMoveSlow",
     "namespace": "TppGameKit",
     "parent": "GsRouteDataEdgeEvent",
     "properties": [
@@ -2726,7 +902,7 @@
         "enum": null,
         "exportFlag": "RW",
         "name": "railId",
-        "offset": 76,
+        "offset": 88,
         "ptrType": null,
         "size": 8,
         "type": "String"
@@ -2737,7 +913,7 @@
         "enum": null,
         "exportFlag": "RW",
         "name": "rpm",
-        "offset": 84,
+        "offset": 96,
         "ptrType": null,
         "size": 4,
         "type": "uint32"
@@ -2749,7 +925,7 @@
     "category": null,
     "functions": [],
     "id": 0,
-    "name": "TppRouteVehicleMoveNormalEdgeEvent",
+    "name": "TppRouteEdgeEventVehicleMoveRail",
     "namespace": "TppGameKit",
     "parent": "GsRouteDataEdgeEvent",
     "properties": [
@@ -2759,7 +935,7 @@
         "enum": null,
         "exportFlag": "RW",
         "name": "railId",
-        "offset": 76,
+        "offset": 88,
         "ptrType": null,
         "size": 8,
         "type": "String"
@@ -2770,262 +946,9 @@
         "enum": null,
         "exportFlag": "RW",
         "name": "rpm",
-        "offset": 84,
+        "offset": 96,
         "ptrType": null,
         "size": 4,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteVehicleMoveSlowEdgeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataEdgeEvent",
-    "properties": [
-      {
-        "arraySize": 1,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "railId",
-        "offset": 76,
-        "ptrType": null,
-        "size": 8,
-        "type": "String"
-      },
-      {
-        "arraySize": 1,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "rpm",
-        "offset": 84,
-        "ptrType": null,
-        "size": 4,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteWalkEdgeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataEdgeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteWalkOnlyEdgeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataEdgeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteWalkerGearCautionDashEdgeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataEdgeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteWalkerGearCautionRunEdgeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataEdgeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteWalkerGearCautionWalkEdgeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataEdgeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteWalkerGearRelaxedRunEdgeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataEdgeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteWalkerGearRelaxedWalkEdgeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataEdgeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteEMPTY_STRINGEdgeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataEdgeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRoutechaseEdgeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataEdgeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
-        "type": "uint32"
-      }
-    ],
-    "version": 0
-  },
-  {
-    "category": null,
-    "functions": [],
-    "id": 0,
-    "name": "TppRouteLOWERCASE_moveEdgeEvent",
-    "namespace": "TppGameKit",
-    "parent": "GsRouteDataEdgeEvent",
-    "properties": [
-      {
-        "arraySize": 4,
-        "container": "StaticArray",
-        "enum": null,
-        "exportFlag": "RW",
-        "name": "binaryData",
-        "offset": 76,
-        "ptrType": null,
-        "size": 16,
         "type": "uint32"
       }
     ],

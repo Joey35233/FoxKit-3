@@ -28,14 +28,23 @@ namespace Fox.Phx
 		[field: UnityEngine.SerializeField]
 		protected Fox.Phx.PhVehicleNormalEngineParam vehicleNormalEngineParam { get; set; }
 		
-		public CsSystem.Collections.Generic.List<float> specPointAngularVelocity { get => Get_specPointAngularVelocity(); }
-		private partial CsSystem.Collections.Generic.List<float> Get_specPointAngularVelocity();
+		public partial float specPointAngularVelocity_Get(int index);
+		public partial void specPointAngularVelocity_Set(int index, float value);
+		public partial void specPointAngularVelocity_AddElement(int index, float value);
+		public partial void specPointAngularVelocity_RemoveElement(int index);
+		public partial int specPointAngularVelocity_GetContainerSize();
 		
-		public CsSystem.Collections.Generic.List<float> specPointTorque { get => Get_specPointTorque(); }
-		private partial CsSystem.Collections.Generic.List<float> Get_specPointTorque();
+		public partial float specPointTorque_Get(int index);
+		public partial void specPointTorque_Set(int index, float value);
+		public partial void specPointTorque_AddElement(int index, float value);
+		public partial void specPointTorque_RemoveElement(int index);
+		public partial int specPointTorque_GetContainerSize();
 		
-		public CsSystem.Collections.Generic.List<float> specPointBreakTorque { get => Get_specPointBreakTorque(); }
-		private partial CsSystem.Collections.Generic.List<float> Get_specPointBreakTorque();
+		public partial float specPointBreakTorque_Get(int index);
+		public partial void specPointBreakTorque_Set(int index, float value);
+		public partial void specPointBreakTorque_AddElement(int index, float value);
+		public partial void specPointBreakTorque_RemoveElement(int index);
+		public partial int specPointBreakTorque_GetContainerSize();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -78,18 +87,12 @@ namespace Fox.Phx
 					return new Fox.Core.Value(gearRatios);
 				case "vehicleNormalEngineParam":
 					return new Fox.Core.Value(vehicleNormalEngineParam);
-				case "specPointAngularVelocity":
-					return new Fox.Core.Value(specPointAngularVelocity);
-				case "specPointTorque":
-					return new Fox.Core.Value(specPointTorque);
-				case "specPointBreakTorque":
-					return new Fox.Core.Value(specPointBreakTorque);
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -100,11 +103,11 @@ namespace Fox.Phx
 				case "gearRatios":
 					return new Fox.Core.Value(this.gearRatios[index]);
 				case "specPointAngularVelocity":
-					return new Fox.Core.Value(this.specPointAngularVelocity[index]);
+					return new Fox.Core.Value(specPointAngularVelocity_Get(index));
 				case "specPointTorque":
-					return new Fox.Core.Value(this.specPointTorque[index]);
+					return new Fox.Core.Value(specPointTorque_Get(index));
 				case "specPointBreakTorque":
-					return new Fox.Core.Value(this.specPointBreakTorque[index]);
+					return new Fox.Core.Value(specPointBreakTorque_Get(index));
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
@@ -132,7 +135,35 @@ namespace Fox.Phx
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				case "vehicleAxes":
+					this.vehicleAxes[index] = value.GetValueAsEntityLink();
+					return;
+				case "torqueDistributions":
+					this.torqueDistributions[index] = value.GetValueAsFloat();
+					return;
+				case "gearRatios":
+					this.gearRatios[index] = value.GetValueAsFloat();
+					return;
+				case "specPointAngularVelocity":
+					specPointAngularVelocity_Set(index, value.GetValueAsFloat());
+					return;
+				case "specPointTorque":
+					specPointTorque_Set(index, value.GetValueAsFloat());
+					return;
+				case "specPointBreakTorque":
+					specPointBreakTorque_Set(index, value.GetValueAsFloat());
+					return;
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
 		{
 			switch (propertyName)
 			{
@@ -149,19 +180,16 @@ namespace Fox.Phx
 					this.gearRatios[index] = value.GetValueAsFloat();
 					return;
 				case "specPointAngularVelocity":
-					while(this.specPointAngularVelocity.Count <= index) { this.specPointAngularVelocity.Add(default(float)); }
-					this.specPointAngularVelocity[index] = value.GetValueAsFloat();
+					specPointAngularVelocity_AddElement(index, value.GetValueAsFloat());
 					return;
 				case "specPointTorque":
-					while(this.specPointTorque.Count <= index) { this.specPointTorque.Add(default(float)); }
-					this.specPointTorque[index] = value.GetValueAsFloat();
+					specPointTorque_AddElement(index, value.GetValueAsFloat());
 					return;
 				case "specPointBreakTorque":
-					while(this.specPointBreakTorque.Count <= index) { this.specPointBreakTorque.Add(default(float)); }
-					this.specPointBreakTorque[index] = value.GetValueAsFloat();
+					specPointBreakTorque_AddElement(index, value.GetValueAsFloat());
 					return;
 				default:
-					base.SetPropertyElement(propertyName, index, value);
+					base.AddPropertyElement(propertyName, index, value);
 					return;
 			}
 		}
@@ -172,6 +200,54 @@ namespace Fox.Phx
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.AddPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, int index)
+		{
+			switch (propertyName)
+			{
+				case "vehicleAxes":
+					this.vehicleAxes.RemoveAt(index);
+					return;
+				case "torqueDistributions":
+					this.torqueDistributions.RemoveAt(index);
+					return;
+				case "gearRatios":
+					this.gearRatios.RemoveAt(index);
+					return;
+				case "specPointAngularVelocity":
+					specPointAngularVelocity_RemoveElement(index);
+					return;
+				case "specPointTorque":
+					specPointTorque_RemoveElement(index);
+					return;
+				case "specPointBreakTorque":
+					specPointBreakTorque_RemoveElement(index);
+					return;
+				default:
+					base.RemovePropertyElement(propertyName, index);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, string key)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.RemovePropertyElement(propertyName, key);
 					return;
 			}
 		}

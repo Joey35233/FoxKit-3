@@ -18,12 +18,21 @@ namespace {{ info.get_root_namespace() }}.{{ info.get_namespace_without_prefix()
 		{%- if not info.properties|length == 0 %}
 		// Properties
 		{%- for property_name in info.properties %}
-		{%- if info.properties[property_name].is_accessor_property() %}
-		{% if info.properties[property_name].has_public_get() %}public{% else %}protected{% endif %} {{ info.properties[property_name].get_property_full_type_string() }} {{ info.properties[property_name].get_safe_name() }} { get => Get_{{ property_name }}();{% if info.properties[property_name].has_public_set() and not info.properties[property_name].is_collection_property() %} set { Set_{{ property_name }}(value); }{%- endif %} }
-		private partial {{ info.properties[property_name].get_property_full_type_string() }} Get_{{ property_name }}();
-		{% if info.properties[property_name].has_public_set() and not info.properties[property_name].is_collection_property() %}private partial void Set_{{ property_name }}({{ info.properties[property_name].get_property_full_type_string() }} value);
+		{% if info.properties[property_name].is_accessor_property() -%}
+		{%- if info.properties[property_name].is_collection_property() -%}
+		{% if info.properties[property_name].has_public_get() %}public{% else %}protected{% endif %} partial {{ info.properties[property_name].get_value_type_string() }} {{ property_name }}_Get({% if info.properties[property_name].container == "StringMap" %}string key{% else %}int index{% endif %});
+		{% if info.properties[property_name].has_public_set() %}public{% else %}protected{% endif %} partial void {{ property_name }}_Set({% if info.properties[property_name].container == "StringMap" %}string key{% else %}int index{% endif %}, {{ info.properties[property_name].get_value_type_string() }} value);
+		{% if info.properties[property_name].has_public_set() %}public{% else %}protected{% endif %} partial void {{ property_name }}_AddElement({% if info.properties[property_name].container == "StringMap" %}string key{% else %}int index{% endif %}, {{ info.properties[property_name].get_value_type_string() }} value);
+		{% if info.properties[property_name].has_public_set() %}public{% else %}protected{% endif %} partial void {{ property_name }}_RemoveElement({% if info.properties[property_name].container == "StringMap" %}string key{% else %}int index{% endif %});
+		{% if info.properties[property_name].has_public_set() %}public{% else %}protected{% endif %} partial int {{ property_name }}_GetContainerSize();
+		{% else -%}
+		{% if info.properties[property_name].has_public_get() %}public{% else %}protected{% endif %} {{ info.properties[property_name].get_property_full_type_string() }} {{ info.properties[property_name].get_safe_name() }} { get => {{ property_name }}_Get();{% if info.properties[property_name].has_public_set() %} set => {{ property_name }}_Set(value); {%- endif %} }
+		private partial {{ info.properties[property_name].get_property_full_type_string() }} {{ property_name }}_Get();
+		{% if info.properties[property_name].has_public_set() -%}
+		private partial void {{ property_name }}_Set({{ info.properties[property_name].get_property_full_type_string() }} value);
 		{% endif -%}
-		{%- else %}
+		{%- endif -%}
+		{%- else -%}
 		[field: UnityEngine.SerializeField]
 		{% if info.properties[property_name].is_blacklisted() -%}private {% elif info.properties[property_name].has_public_get() -%}public {% else -%}protected {% endif -%}{% if info.properties[property_name].is_hiding_existing() -%}new {% endif %}{{ info.properties[property_name].get_property_full_type_string() }} {{ info.properties[property_name].get_safe_name() }} { get; {% if info.properties[property_name].is_collection_property() and not info.properties[property_name].is_blacklisted() %}private {% else %}{% if not info.properties[property_name].has_public_set() and info.properties[property_name].has_public_get() %}{%if not info.properties[property_name].is_blacklisted() %}protected {% endif %}{% endif %}{% endif %}set; }{% if info.properties[property_name].has_default_value() %} = {{info.properties[property_name].get_default_value()}};{%- endif %}
 		{% endif -%}
@@ -58,8 +67,8 @@ namespace {{ info.get_root_namespace() }}.{{ info.get_namespace_without_prefix()
 		{
 			switch (propertyName)
 			{
-				{% for property_name in info.properties -%}
-				case "{{ info.properties[property_name].get_safe_name() }}":
+				{% for property_name in info.properties if not (info.properties[property_name].is_accessor_property() and info.properties[property_name].is_collection_property()) -%}
+				case "{{ info.properties[property_name].name }}":
 					return new Fox.Core.Value({%- if info.properties[property_name].container == "StringMap" -%}(Fox.IStringMap){%- endif -%}{{ info.properties[property_name].get_safe_name() }});
 				{% endfor %}default:
 					{%- if info.name == "Entity" %}
@@ -71,13 +80,13 @@ namespace {{ info.get_root_namespace() }}.{{ info.get_namespace_without_prefix()
 			}
 		}
 
-		public {% if info.is_root() %}virtual{% else %}override{% endif %} Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public {% if info.is_root() %}virtual{% else %}override{% endif %} Fox.Core.Value GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
 				{% for property_name in info.get_array_properties() -%}
-				case "{{ info.properties[property_name].get_safe_name() }}":
-					return new Fox.Core.Value(this.{{ info.properties[property_name].get_safe_name() }}[index]);
+				case "{{ info.properties[property_name].name }}":
+					return new Fox.Core.Value({%- if info.properties[property_name].is_accessor_property() -%}{{ property_name }}_Get(index){%- else -%}this.{{ info.properties[property_name].get_safe_name() }}[index]{%- endif -%});
 				{% endfor %}default:
 					{%- if info.name == "Entity" %}
 					foreach (var dynamicProperty in gameObject.GetComponents<DynamicProperty>())
@@ -93,8 +102,8 @@ namespace {{ info.get_root_namespace() }}.{{ info.get_namespace_without_prefix()
 			switch (propertyName)
 			{
 				{% for property_name in info.get_string_map_properties() -%}
-				case "{{ info.properties[property_name].get_safe_name() }}":
-					return new Fox.Core.Value(this.{{ info.properties[property_name].get_safe_name() }}[key]);
+				case "{{ info.properties[property_name].name }}":
+					return new Fox.Core.Value({%- if info.properties[property_name].is_accessor_property() -%}{{ property_name }}_Get(key){%- else -%}this.{{ info.properties[property_name].get_safe_name() }}[key]{%- endif -%});
 				{% endfor %}default:
 					{%- if info.name == "Entity" %}
 					foreach (var dynamicProperty in gameObject.GetComponents<DynamicProperty>())
@@ -111,7 +120,7 @@ namespace {{ info.get_root_namespace() }}.{{ info.get_namespace_without_prefix()
 			{
 				{% for property_name in info.get_non_collection_properties() -%}
 				{%- if info.properties[property_name].has_public_set() or not info.properties[property_name].is_accessor_property() -%}
-				case "{{ info.properties[property_name].get_safe_name() }}":
+				case "{{ info.properties[property_name].name }}":
 					this.{{ info.properties[property_name].get_safe_name() }} = {{ info.properties[property_name].get_value_extraction_string() }};
 					return;
 				{% endif -%}
@@ -123,14 +132,17 @@ namespace {{ info.get_root_namespace() }}.{{ info.get_namespace_without_prefix()
 			}
 		}
 
-		public {% if info.is_root() %}virtual{% else %}override{% endif %} void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public {% if info.is_root() %}virtual{% else %}override{% endif %} void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
 		{
 			switch (propertyName)
 			{
 				{% for property_name in info.get_array_properties() -%}
-				case "{{ info.properties[property_name].get_safe_name() }}":
-					{% if info.properties[property_name].container != "StaticArray" %}while(this.{{ info.properties[property_name].get_safe_name() }}.Count <= index) { this.{{ info.properties[property_name].get_safe_name() }}.Add(default({{ info.properties[property_name].get_value_type_string() }})); }{%- endif %}
+				case "{{ info.properties[property_name].name }}":
+					{%- if info.properties[property_name].is_accessor_property() %}
+					{{ property_name }}_Set(index, {{ info.properties[property_name].get_value_extraction_string() }});
+					{%- else %}
 					this.{{ info.properties[property_name].get_safe_name() }}[index] = {{ info.properties[property_name].get_value_extraction_string() }};
+					{%- endif %}
 					return;
 				{% endfor -%}
 				default:
@@ -147,16 +159,45 @@ namespace {{ info.get_root_namespace() }}.{{ info.get_namespace_without_prefix()
 			}
 		}
 
+		public {% if info.is_root() %}virtual{% else %}override{% endif %} void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				{% for property_name in info.get_array_properties() if info.properties[property_name].container != "StaticArray"  -%}
+				case "{{ info.properties[property_name].name }}":
+					{%- if info.properties[property_name].is_accessor_property() %}
+					{{ property_name }}_AddElement(index, {{ info.properties[property_name].get_value_extraction_string() }});
+					{%- else %}
+					{% if info.properties[property_name].container != "StaticArray" %}while(this.{{ info.properties[property_name].get_safe_name() }}.Count <= index) { this.{{ info.properties[property_name].get_safe_name() }}.Add(default({{ info.properties[property_name].get_value_type_string() }})); }{%- endif %}
+					this.{{ info.properties[property_name].get_safe_name() }}[index] = {{ info.properties[property_name].get_value_extraction_string() }};
+					{%- endif %}
+					return;
+				{% endfor -%}
+				default:
+					{%- if info.name == "Entity" %}
+					foreach (var dynamicProperty in gameObject.GetComponents<DynamicProperty>())
+						if (dynamicProperty.Name == propertyName && dynamicProperty.GetContainerType() != PropertyInfo.ContainerType.StringMap)
+						{
+							dynamicProperty.AddElement(index, value);
+							return;
+						}
+					{%- endif %}
+					{% if info.is_root() %}throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());{% else %}base.AddPropertyElement(propertyName, index, value);
+					return;{%- endif %}
+			}
+		}
+
 		public {% if info.is_root() %}virtual{% else %}override{% endif %} void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
 		{
 			switch (propertyName)
 			{
 				{% for property_name in info.get_string_map_properties() -%}
-				case "{{ info.properties[property_name].get_safe_name() }}":
-					if (this.{{ info.properties[property_name].get_safe_name() }}.ContainsKey(key))
-						this.{{ info.properties[property_name].get_safe_name() }}[key] = {{ info.properties[property_name].get_value_extraction_string() }};
-					else
-						this.{{ info.properties[property_name].get_safe_name() }}.Insert(key, {{ info.properties[property_name].get_value_extraction_string() }});
+				case "{{ info.properties[property_name].name }}":
+					{%- if info.properties[property_name].is_accessor_property() %}
+					{{ property_name }}_Set(key, {{ info.properties[property_name].get_value_extraction_string() }});
+					{%- else %}
+					this.{{ info.properties[property_name].get_safe_name() }}[key] = {{ info.properties[property_name].get_value_extraction_string() }};
+					{%- endif %}
 					return;
 				{% endfor %}default:
 					{%- if info.name == "Entity" %}
@@ -168,6 +209,85 @@ namespace {{ info.get_root_namespace() }}.{{ info.get_namespace_without_prefix()
 						}
 					{%- endif %}
 					{% if info.is_root() %}throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());{% else %}base.SetPropertyElement(propertyName, key, value);
+					return;{%- endif %}
+			}
+		}
+
+		public {% if info.is_root() %}virtual{% else %}override{% endif %} void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				{% for property_name in info.get_string_map_properties() -%}
+				case "{{ info.properties[property_name].name }}":
+					{%- if info.properties[property_name].is_accessor_property() %}
+					{{ property_name }}_AddElement(key, {{ info.properties[property_name].get_value_extraction_string() }});
+					{%- else %}
+					this.{{ info.properties[property_name].get_safe_name() }}[key] = {{ info.properties[property_name].get_value_extraction_string() }};
+					{%- endif %}
+					return;
+				{% endfor %}default:
+					{%- if info.name == "Entity" %}
+					foreach (var dynamicProperty in gameObject.GetComponents<DynamicProperty>())
+						if (dynamicProperty.Name == propertyName && dynamicProperty.GetContainerType() == PropertyInfo.ContainerType.StringMap)
+						{
+							dynamicProperty.SetElement(key, value);
+							return;
+						}
+					{%- endif %}
+					{% if info.is_root() %}throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());{% else %}base.AddPropertyElement(propertyName, key, value);
+					return;{%- endif %}
+			}
+		}
+
+		public {% if info.is_root() %}virtual{% else %}override{% endif %} void RemovePropertyElement(string propertyName, int index)
+		{
+			switch (propertyName)
+			{
+				{% for property_name in info.get_array_properties() if info.properties[property_name].container != "StaticArray" -%}
+				case "{{ info.properties[property_name].name }}":
+					{%- if info.properties[property_name].is_accessor_property() %}
+					{{ property_name }}_RemoveElement(index);
+					{%- else %}
+					this.{{ info.properties[property_name].get_safe_name() }}.RemoveAt(index);
+					{%- endif %}
+					return;
+				{% endfor -%}
+				default:
+					{%- if info.name == "Entity" %}
+					foreach (var dynamicProperty in gameObject.GetComponents<DynamicProperty>())
+						if (dynamicProperty.Name == propertyName && dynamicProperty.GetContainerType() != PropertyInfo.ContainerType.StringMap)
+						{
+							dynamicProperty.RemoveElement(index);
+							return;
+						}
+					{%- endif %}
+					{% if info.is_root() %}throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());{% else %}base.RemovePropertyElement(propertyName, index);
+					return;{%- endif %}
+			}
+		}
+
+		public {% if info.is_root() %}virtual{% else %}override{% endif %} void RemovePropertyElement(string propertyName, string key)
+		{
+			switch (propertyName)
+			{
+				{% for property_name in info.get_string_map_properties() if info.properties[property_name].container != "StaticArray" -%}
+				case "{{ info.properties[property_name].name }}":
+					{%- if info.properties[property_name].is_accessor_property() %}
+					{{ property_name }}_RemoveElement(key);
+					{%- else %}
+					this.{{ info.properties[property_name].get_safe_name() }}.Remove(key);
+					{%- endif %}
+					return;
+				{% endfor %}default:
+					{%- if info.name == "Entity" %}
+					foreach (var dynamicProperty in gameObject.GetComponents<DynamicProperty>())
+						if (dynamicProperty.Name == propertyName && dynamicProperty.GetContainerType() == PropertyInfo.ContainerType.StringMap)
+						{
+							dynamicProperty.RemoveElement(key);
+							return;
+						}
+					{%- endif %}
+					{% if info.is_root() %}throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());{% else %}base.RemovePropertyElement(propertyName, key);
 					return;{%- endif %}
 			}
 		}
