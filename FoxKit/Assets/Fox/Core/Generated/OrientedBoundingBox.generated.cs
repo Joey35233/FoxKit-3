@@ -64,7 +64,7 @@ namespace Fox.Core
 			}
 		}
 
-		public virtual Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public virtual Fox.Core.Value GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -100,7 +100,16 @@ namespace Fox.Core
 			}
 		}
 
-		public virtual void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public virtual void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
+			}
+		}
+
+		public virtual void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
 		{
 			switch (propertyName)
 			{
@@ -110,6 +119,33 @@ namespace Fox.Core
 		}
 
 		public virtual void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
+			}
+		}
+
+		public virtual void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
+			}
+		}
+
+		public virtual void RemovePropertyElement(string propertyName, int index)
+		{
+			switch (propertyName)
+			{
+				default:
+					throw new CsSystem.MissingMemberException("Unrecognized property", propertyName.ToString());
+			}
+		}
+
+		public virtual void RemovePropertyElement(string propertyName, string key)
 		{
 			switch (propertyName)
 			{

@@ -188,22 +188,24 @@ namespace Fox.Core
             entity.CollectReferencedEntities(alreadyCollectedEntities);
         }
 
-        public virtual string GenerateUniqueName(Type type, HashSet<string> invalidNames)
+        public string GenerateName() => $"{GetType().Name}";
+        public string GenerateName(ushort index) => $"{GetType().Name}{index:D4}";
+
+        public string GenerateUniqueName(Type type, HashSet<string> invalidNames)
         {
-            var index = 0;
-            while (true)
+            for (ushort i = 0; i < ushort.MaxValue; i++)
             {
-                var workingName = type.Name + index.ToString("D4");
+                string workingName = GenerateName(i);
                 if (!invalidNames.Contains(workingName))
                 {
                     return workingName;
                 }
-
-                index++;
             }
+
+            throw new IndexOutOfRangeException("Too many entities of the same type");
         }
 
-        public override string ToString() => $"{GetType().Name}";
+        public override string ToString() => GenerateName();
 
         public virtual void Reset() { }
     }

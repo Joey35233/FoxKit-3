@@ -19,25 +19,25 @@ namespace Tpp.GameKit
 		[field: UnityEngine.SerializeField]
 		public uint flag { get; set; }
 		
-		public bool checkPlayer { get => Get_checkPlayer(); set { Set_checkPlayer(value); } }
-		private partial bool Get_checkPlayer();
-		private partial void Set_checkPlayer(bool value);
+		public bool checkPlayer { get => checkPlayer_Get(); set => checkPlayer_Set(value); }
+		private partial bool checkPlayer_Get();
+		private partial void checkPlayer_Set(bool value);
 		
-		public bool checkSoldier { get => Get_checkSoldier(); set { Set_checkSoldier(value); } }
-		private partial bool Get_checkSoldier();
-		private partial void Set_checkSoldier(bool value);
+		public bool checkSoldier { get => checkSoldier_Get(); set => checkSoldier_Set(value); }
+		private partial bool checkSoldier_Get();
+		private partial void checkSoldier_Set(bool value);
 		
-		public bool checkUav { get => Get_checkUav(); set { Set_checkUav(value); } }
-		private partial bool Get_checkUav();
-		private partial void Set_checkUav(bool value);
+		public bool checkUav { get => checkUav_Get(); set => checkUav_Set(value); }
+		private partial bool checkUav_Get();
+		private partial void checkUav_Set(bool value);
 		
-		public bool checkVolgin { get => Get_checkVolgin(); set { Set_checkVolgin(value); } }
-		private partial bool Get_checkVolgin();
-		private partial void Set_checkVolgin(bool value);
+		public bool checkVolgin { get => checkVolgin_Get(); set => checkVolgin_Set(value); }
+		private partial bool checkVolgin_Get();
+		private partial void checkVolgin_Set(bool value);
 		
-		public bool checkLiquid { get => Get_checkLiquid(); set { Set_checkLiquid(value); } }
-		private partial bool Get_checkLiquid();
-		private partial void Set_checkLiquid(bool value);
+		public bool checkLiquid { get => checkLiquid_Get(); set => checkLiquid_Set(value); }
+		private partial bool checkLiquid_Get();
+		private partial void checkLiquid_Set(bool value);
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -88,7 +88,7 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -134,12 +134,22 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
 		{
 			switch (propertyName)
 			{
 				default:
 					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.AddPropertyElement(propertyName, index, value);
 					return;
 			}
 		}
@@ -150,6 +160,36 @@ namespace Tpp.GameKit
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.AddPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, int index)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.RemovePropertyElement(propertyName, index);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, string key)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.RemovePropertyElement(propertyName, key);
 					return;
 			}
 		}

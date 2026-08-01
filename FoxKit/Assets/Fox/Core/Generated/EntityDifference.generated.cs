@@ -59,7 +59,7 @@ namespace Fox.Core
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -91,7 +91,7 @@ namespace Fox.Core
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
 		{
 			switch (propertyName)
 			{
@@ -101,24 +101,70 @@ namespace Fox.Core
 			}
 		}
 
+		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.AddPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
 		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
 		{
 			switch (propertyName)
 			{
 				case "entityDifferences":
-					if (this.entityDifferences.ContainsKey(key))
-						this.entityDifferences[key] = value.GetValueAsEntityPtr<Fox.Core.Entity>();
-					else
-						this.entityDifferences.Insert(key, value.GetValueAsEntityPtr<Fox.Core.Entity>());
+					this.entityDifferences[key] = value.GetValueAsEntityPtr<Fox.Core.Entity>();
 					return;
 				case "propertyDifferences":
-					if (this.propertyDifferences.ContainsKey(key))
-						this.propertyDifferences[key] = value.GetValueAsEntityPtr<Fox.Core.PropertyDifference>();
-					else
-						this.propertyDifferences.Insert(key, value.GetValueAsEntityPtr<Fox.Core.PropertyDifference>());
+					this.propertyDifferences[key] = value.GetValueAsEntityPtr<Fox.Core.PropertyDifference>();
 					return;
 				default:
 					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				case "entityDifferences":
+					this.entityDifferences[key] = value.GetValueAsEntityPtr<Fox.Core.Entity>();
+					return;
+				case "propertyDifferences":
+					this.propertyDifferences[key] = value.GetValueAsEntityPtr<Fox.Core.PropertyDifference>();
+					return;
+				default:
+					base.AddPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, int index)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.RemovePropertyElement(propertyName, index);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, string key)
+		{
+			switch (propertyName)
+			{
+				case "entityDifferences":
+					this.entityDifferences.Remove(key);
+					return;
+				case "propertyDifferences":
+					this.propertyDifferences.Remove(key);
+					return;
+				default:
+					base.RemovePropertyElement(propertyName, key);
 					return;
 			}
 		}

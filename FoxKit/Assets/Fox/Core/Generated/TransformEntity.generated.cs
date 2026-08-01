@@ -25,17 +25,17 @@ namespace Fox.Core
 		[field: UnityEngine.SerializeField]
 		protected UnityEngine.Vector3 transform_translation { get; set; }
 		
-		public UnityEngine.Vector3 scale { get => Get_scale(); set { Set_scale(value); } }
-		private partial UnityEngine.Vector3 Get_scale();
-		private partial void Set_scale(UnityEngine.Vector3 value);
+		public UnityEngine.Vector3 scale { get => scale_Get(); set => scale_Set(value); }
+		private partial UnityEngine.Vector3 scale_Get();
+		private partial void scale_Set(UnityEngine.Vector3 value);
 		
-		public UnityEngine.Quaternion rotQuat { get => Get_rotQuat(); set { Set_rotQuat(value); } }
-		private partial UnityEngine.Quaternion Get_rotQuat();
-		private partial void Set_rotQuat(UnityEngine.Quaternion value);
+		public UnityEngine.Quaternion rotQuat { get => rotQuat_Get(); set => rotQuat_Set(value); }
+		private partial UnityEngine.Quaternion rotQuat_Get();
+		private partial void rotQuat_Set(UnityEngine.Quaternion value);
 		
-		public UnityEngine.Vector3 translation { get => Get_translation(); set { Set_translation(value); } }
-		private partial UnityEngine.Vector3 Get_translation();
-		private partial void Set_translation(UnityEngine.Vector3 value);
+		public UnityEngine.Vector3 translation { get => translation_Get(); set => translation_Set(value); }
+		private partial UnityEngine.Vector3 translation_Get();
+		private partial void translation_Set(UnityEngine.Vector3 value);
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -86,7 +86,7 @@ namespace Fox.Core
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -132,12 +132,22 @@ namespace Fox.Core
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
 		{
 			switch (propertyName)
 			{
 				default:
 					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.AddPropertyElement(propertyName, index, value);
 					return;
 			}
 		}
@@ -148,6 +158,36 @@ namespace Fox.Core
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.AddPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, int index)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.RemovePropertyElement(propertyName, index);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, string key)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.RemovePropertyElement(propertyName, key);
 					return;
 			}
 		}

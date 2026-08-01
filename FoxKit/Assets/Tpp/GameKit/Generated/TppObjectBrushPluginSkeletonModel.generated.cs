@@ -137,7 +137,7 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -204,7 +204,35 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				case "modelFile":
+					this.modelFile[index] = value.GetValueAsFilePtr();
+					return;
+				case "geomFile":
+					this.geomFile[index] = value.GetValueAsFilePtr();
+					return;
+				case "animFile":
+					this.animFile[index] = value.GetValueAsPath();
+					return;
+				case "animWindyFile":
+					this.animWindyFile[index] = value.GetValueAsPath();
+					return;
+				case "lodLength":
+					this.lodLength[index] = value.GetValueAsFloat();
+					return;
+				case "lodLengthForHighEnd":
+					this.lodLengthForHighEnd[index] = value.GetValueAsFloat();
+					return;
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
 		{
 			switch (propertyName)
 			{
@@ -224,16 +252,8 @@ namespace Tpp.GameKit
 					while(this.animWindyFile.Count <= index) { this.animWindyFile.Add(default(Fox.Path)); }
 					this.animWindyFile[index] = value.GetValueAsPath();
 					return;
-				case "lodLength":
-					
-					this.lodLength[index] = value.GetValueAsFloat();
-					return;
-				case "lodLengthForHighEnd":
-					
-					this.lodLengthForHighEnd[index] = value.GetValueAsFloat();
-					return;
 				default:
-					base.SetPropertyElement(propertyName, index, value);
+					base.AddPropertyElement(propertyName, index, value);
 					return;
 			}
 		}
@@ -244,6 +264,48 @@ namespace Tpp.GameKit
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.AddPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, int index)
+		{
+			switch (propertyName)
+			{
+				case "modelFile":
+					this.modelFile.RemoveAt(index);
+					return;
+				case "geomFile":
+					this.geomFile.RemoveAt(index);
+					return;
+				case "animFile":
+					this.animFile.RemoveAt(index);
+					return;
+				case "animWindyFile":
+					this.animWindyFile.RemoveAt(index);
+					return;
+				default:
+					base.RemovePropertyElement(propertyName, index);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, string key)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.RemovePropertyElement(propertyName, key);
 					return;
 			}
 		}

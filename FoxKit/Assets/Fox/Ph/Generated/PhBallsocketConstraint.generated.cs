@@ -16,45 +16,45 @@ namespace Fox.Ph
 	public partial class PhBallsocketConstraint : Fox.Ph.PhConstraint
 	{
 		// Properties
-		public bool limitedFlag { get => Get_limitedFlag(); set { Set_limitedFlag(value); } }
-		private partial bool Get_limitedFlag();
-		private partial void Set_limitedFlag(bool value);
+		public bool limitedFlag { get => limitedFlag_Get(); set => limitedFlag_Set(value); }
+		private partial bool limitedFlag_Get();
+		private partial void limitedFlag_Set(bool value);
 		
-		public UnityEngine.Quaternion refA { get => Get_refA(); set { Set_refA(value); } }
-		private partial UnityEngine.Quaternion Get_refA();
-		private partial void Set_refA(UnityEngine.Quaternion value);
+		public UnityEngine.Quaternion refA { get => refA_Get(); set => refA_Set(value); }
+		private partial UnityEngine.Quaternion refA_Get();
+		private partial void refA_Set(UnityEngine.Quaternion value);
 		
-		public UnityEngine.Quaternion refB { get => Get_refB(); set { Set_refB(value); } }
-		private partial UnityEngine.Quaternion Get_refB();
-		private partial void Set_refB(UnityEngine.Quaternion value);
+		public UnityEngine.Quaternion refB { get => refB_Get(); set => refB_Set(value); }
+		private partial UnityEngine.Quaternion refB_Get();
+		private partial void refB_Set(UnityEngine.Quaternion value);
 		
-		public float limit { get => Get_limit(); set { Set_limit(value); } }
-		private partial float Get_limit();
-		private partial void Set_limit(float value);
+		public float limit { get => limit_Get(); set => limit_Set(value); }
+		private partial float limit_Get();
+		private partial void limit_Set(float value);
 		
-		public bool springFlag { get => Get_springFlag(); set { Set_springFlag(value); } }
-		private partial bool Get_springFlag();
-		private partial void Set_springFlag(bool value);
+		public bool springFlag { get => springFlag_Get(); set => springFlag_Set(value); }
+		private partial bool springFlag_Get();
+		private partial void springFlag_Set(bool value);
 		
-		public bool springRefCustomFlag { get => Get_springRefCustomFlag(); set { Set_springRefCustomFlag(value); } }
-		private partial bool Get_springRefCustomFlag();
-		private partial void Set_springRefCustomFlag(bool value);
+		public bool springRefCustomFlag { get => springRefCustomFlag_Get(); set => springRefCustomFlag_Set(value); }
+		private partial bool springRefCustomFlag_Get();
+		private partial void springRefCustomFlag_Set(bool value);
 		
-		public UnityEngine.Quaternion springRef { get => Get_springRef(); set { Set_springRef(value); } }
-		private partial UnityEngine.Quaternion Get_springRef();
-		private partial void Set_springRef(UnityEngine.Quaternion value);
+		public UnityEngine.Quaternion springRef { get => springRef_Get(); set => springRef_Set(value); }
+		private partial UnityEngine.Quaternion springRef_Get();
+		private partial void springRef_Set(UnityEngine.Quaternion value);
 		
-		public float springConstant { get => Get_springConstant(); set { Set_springConstant(value); } }
-		private partial float Get_springConstant();
-		private partial void Set_springConstant(float value);
+		public float springConstant { get => springConstant_Get(); set => springConstant_Set(value); }
+		private partial float springConstant_Get();
+		private partial void springConstant_Set(float value);
 		
-		public float flexibility { get => Get_flexibility(); set { Set_flexibility(value); } }
-		private partial float Get_flexibility();
-		private partial void Set_flexibility(float value);
+		public float flexibility { get => flexibility_Get(); set => flexibility_Set(value); }
+		private partial float flexibility_Get();
+		private partial void flexibility_Set(float value);
 		
-		public bool stopTwist { get => Get_stopTwist(); set { Set_stopTwist(value); } }
-		private partial bool Get_stopTwist();
-		private partial void Set_stopTwist(bool value);
+		public bool stopTwist { get => stopTwist_Get(); set => stopTwist_Set(value); }
+		private partial bool stopTwist_Get();
+		private partial void stopTwist_Set(bool value);
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -117,7 +117,7 @@ namespace Fox.Ph
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -175,12 +175,22 @@ namespace Fox.Ph
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
 		{
 			switch (propertyName)
 			{
 				default:
 					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.AddPropertyElement(propertyName, index, value);
 					return;
 			}
 		}
@@ -191,6 +201,36 @@ namespace Fox.Ph
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.AddPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, int index)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.RemovePropertyElement(propertyName, index);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, string key)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.RemovePropertyElement(propertyName, key);
 					return;
 			}
 		}

@@ -6,55 +6,64 @@ namespace Fox.Phx
 {
     public partial class PhxVehicleAxis : Fox.Core.Data
     {
-        private PhxWheelConstraintParam wheelConstraint => wheelConstraintParam;
-        private PhVehicleAxisParam vehicleAxis => vehicleAxisParam;
+        private partial UnityEngine.Vector3 wheelFront_Get() => wheelConstraintParam.GetFrontL();
+        private partial void wheelFront_Set(UnityEngine.Vector3 value) => wheelConstraintParam.SetFrontL(value);
 
-        private partial UnityEngine.Vector3 Get_wheelFront() => wheelConstraint.GetFrontL();
-        private partial void Set_wheelFront(UnityEngine.Vector3 value) => wheelConstraint.SetFrontL(value);
+        private partial UnityEngine.Vector3 wheelUp_Get() => wheelConstraintParam.GetUpL();
+        private partial void wheelUp_Set(UnityEngine.Vector3 value) => wheelConstraintParam.SetUpL(value);
 
-        private partial UnityEngine.Vector3 Get_wheelUp() => wheelConstraint.GetUpL();
-        private partial void Set_wheelUp(UnityEngine.Vector3 value) => wheelConstraint.SetUpL(value);
+        private partial UnityEngine.Vector3 wheelPositionOffset_Get() => wheelConstraintParam.GetWheelPositionOffset();
+        private partial void wheelPositionOffset_Set(UnityEngine.Vector3 value) => wheelConstraintParam.SetWheelPositionOffset(value);
 
-        private partial UnityEngine.Vector3 Get_wheelPositionOffset() => wheelConstraint.GetWheelPositionOffset();
-        private partial void Set_wheelPositionOffset(UnityEngine.Vector3 value) => wheelConstraint.SetWheelPositionOffset(value);
+        private partial float wheelRadius_Get() => wheelConstraintParam.GetRadius();
+        private partial void wheelRadius_Set(float value) => wheelConstraintParam.SetRadius(value);
 
-        private partial float Get_wheelRadius() => wheelConstraint.GetRadius();
-        private partial void Set_wheelRadius(float value) => wheelConstraint.SetRadius(value);
+        private partial float wheelFriction_Get() => wheelConstraintParam.GetFriction();
+        private partial void wheelFriction_Set(float value) => wheelConstraintParam.SetFriction(value);
 
-        private partial float Get_wheelFriction() => wheelConstraint.GetFriction();
-        private partial void Set_wheelFriction(float value) => wheelConstraint.SetFriction(value);
+        private partial float wheelRestitution_Get() => wheelConstraintParam.GetRestitution();
+        private partial void wheelRestitution_Set(float value) => wheelConstraintParam.SetRestitution(value);
 
-        private partial float Get_wheelRestitution() => wheelConstraint.GetRestitution();
-        private partial void Set_wheelRestitution(float value) => wheelConstraint.SetRestitution(value);
+        private partial float wheelInertia_Get() => wheelConstraintParam.GetInertia();
+        private partial void wheelInertia_Set(float value) => wheelConstraintParam.SetIntertia(value);
 
-        private partial float Get_wheelInertia() => wheelConstraint.GetInertia();
-        private partial void Set_wheelInertia(float value) => wheelConstraint.SetIntertia(value);
+        private partial float suspentionLength_Get() => wheelConstraintParam.GetSuspensionLength();
+        private partial void suspentionLength_Set(float value) => wheelConstraintParam.SetSuspensionLength(value);
 
-        private partial float Get_suspentionLength() => wheelConstraint.GetSuspensionLength();
-        private partial void Set_suspentionLength(float value) => wheelConstraint.SetSuspensionLength(value);
+        private partial float maxSuspentionForceCoeff_Get() => wheelConstraintParam.GetMaxSuspensionForce();
+        private partial void maxSuspentionForceCoeff_Set(float value) => wheelConstraintParam.SetMaxSuspensionForce(value);
 
-        private partial float Get_maxSuspentionForceCoeff() => wheelConstraint.GetMaxSuspensionForce();
-        private partial void Set_maxSuspentionForceCoeff(float value) => wheelConstraint.SetMaxSuspensionForce(value);
+        private partial float dampingCoeffElong_Get() => wheelConstraintParam.GetDampingFactorElong();
+        private partial void dampingCoeffElong_Set(float value) => wheelConstraintParam.SetDampingFactorElong(value);
 
-        private partial float Get_dampingCoeffElong() => wheelConstraint.GetDampingFactorElong();
-        private partial void Set_dampingCoeffElong(float value) => wheelConstraint.SetDampingFactorElong(value);
+        private partial float dampingCoeffCompress_Get() => wheelConstraintParam.GetDampingFactorCompress();
+        private partial void dampingCoeffCompress_Set(float value) => wheelConstraintParam.SetDampingFactorCompress(value);
 
-        private partial float Get_dampingCoeffCompress() => wheelConstraint.GetDampingFactorCompress();
-        private partial void Set_dampingCoeffCompress(float value) => wheelConstraint.SetDampingFactorCompress(value);
+        private partial float maxBreakTorqueCoeff_Get() => vehicleAxisParam.GetMaxBrakeTorque();
+        private partial void maxBreakTorqueCoeff_Set(float value) => vehicleAxisParam.SetMaxBrakeTorque(value);
 
-        private partial float Get_maxBreakTorqueCoeff() => vehicleAxis.GetMaxBrakeTorque();
-        private partial void Set_maxBreakTorqueCoeff(float value) => vehicleAxis.SetMaxBrakeTorque(value);
+        private partial bool useDifferential_Get() => vehicleAxisParam.GetUseDifferential();
+        private partial void useDifferential_Set(bool value) => vehicleAxisParam.SetUseDifferential(value);
 
-        private partial bool Get_useDifferential() => vehicleAxis.GetUseDifferential();
-        private partial void Set_useDifferential(bool value) => vehicleAxis.SetUseDifferential(value);
-
-        private partial System.Collections.Generic.List<string> Get_AssignedBoneNames()
+        public partial string AssignedBoneNames_Get(int index)
         {
-            var assignedBoneNames = new System.Collections.Generic.List<string>();
-            foreach (PhxWheelAssociationUnitParam wheelAssociationUnit in wheelAssociationUnitParams)
-                assignedBoneNames.Add(wheelAssociationUnit.GetBoneName());
-
-            return assignedBoneNames;
+            throw new System.NotImplementedException();
+        }
+        public partial void AssignedBoneNames_Set(int index, string value)
+        {
+            throw new System.NotImplementedException();
+        }
+        public partial void AssignedBoneNames_AddElement(int index, string value)
+        {
+            throw new System.NotImplementedException();
+        }
+        public partial void AssignedBoneNames_RemoveElement(int index)
+        {
+            throw new System.NotImplementedException();
+        }
+        public partial int AssignedBoneNames_GetContainerSize()
+        {
+            throw new System.NotImplementedException();
         }
 
         public override void OnDeserializeEntity(TaskLogger logger)

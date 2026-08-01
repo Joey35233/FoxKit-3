@@ -13,6 +13,7 @@ extra_definitions_path = "FoxKitClassDefinitions.json"
 
 enum_template_path = "EnumsTemplate.txt"
 enums_path = "TppEnums.json"
+extra_enums_path = "FoxKitEnums.json"
 
 entity_factory_template_path = "EntityFactoryTemplate.txt"
 
@@ -42,11 +43,23 @@ def load_definitions (path, extraPath):
 
     return result
 
-def load_enum_definitions (path):
+def load_enum_definitions (path, extraPath):
     result = []
     with open(path) as json_file:
         data = json.load(json_file)
         for entry in data:
+            values = []
+            for value in entry["values"]:
+                values.append(EnumValue(value["name"], value["value"]))
+            result.append(EnumInfo(entry["name"], entry["type"], entry["underlying_type"], values))
+
+    with open(extraPath) as json_file:
+        data = json.load(json_file)
+        for entry in data:
+            if entry["name"] in result:
+                raise RuntimeError("Vanilla enum redeclared as custom")
+                return {}
+
             values = []
             for value in entry["values"]:
                 values.append(EnumValue(value["name"], value["value"]))
@@ -85,7 +98,7 @@ def generate_classes ():
 def generate_enums ():
     template_file = open(enum_template_path, "r")
     template = Template(template_file.read())
-    definitions = load_enum_definitions(enums_path)        
+    definitions = load_enum_definitions(enums_path, extra_enums_path)        
     result = template.render(enums = definitions)
         
     # Output generated file
@@ -116,7 +129,7 @@ def make_output_path (type_name, type_root_namespace, type_namespace):
 
     """
 
-    return f'../{type_root_namespace}/{type_namespace}/Generated/{type_name}.generated.cs'
+    return f'../../FoxKit/Assets/{type_root_namespace}/{type_namespace}/Generated/{type_name}.generated.cs'
 
 generate_classes()
 generate_enums()

@@ -4,8 +4,8 @@
     {
         private SimWindControlParam param => controlParam;
 
-        private partial float Get_windCoefficient() => param == null ? 1.0f : param.GetCoefficient();
-        private partial void Set_windCoefficient(float value)
+        private partial float windCoefficient_Get() => param == null ? 1.0f : param.GetCoefficient();
+        private partial void windCoefficient_Set(float value)
         {
             if (param == null)
                 return;

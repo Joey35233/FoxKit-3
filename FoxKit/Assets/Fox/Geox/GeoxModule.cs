@@ -1,12 +1,18 @@
-﻿using Fox.Geo;
-using UnityEditor;
+using Fox.Geo;
 
 namespace Fox.Geox
 {
-    [InitializeOnLoad]
-    public static class GeoxModule
+    public class GeoxModule : Module
     {
-        static GeoxModule()
+        public static GeoxModule Instance { get; private set; }
+
+        public GeoxModule() : base("Fox.Geox")
+        {
+            Instance = this;
+            AddDependencyModule("Fox.Geo");
+        }
+
+        public override void Init()
         {
             GeoModule.RegisterGeomHeaderDeserializationCallback(GeoPrimType.Path, GeoxPath2.Deserialize);
             GeoModule.RegisterGeomHeaderDeserializationCallback(GeoPrimType.AreaPath, GeoxTrapAreaPath.Deserialize);

@@ -19,13 +19,13 @@ namespace Fox.Sim
 		[field: UnityEngine.SerializeField]
 		protected Fox.Sim.SimAssociationUnitParam param { get; set; }
 		
-		public string boneName { get => Get_boneName(); set { Set_boneName(value); } }
-		private partial string Get_boneName();
-		private partial void Set_boneName(string value);
+		public string boneName { get => boneName_Get(); set => boneName_Set(value); }
+		private partial string boneName_Get();
+		private partial void boneName_Set(string value);
 		
-		public bool initialized { get => Get_initialized(); set { Set_initialized(value); } }
-		private partial bool Get_initialized();
-		private partial void Set_initialized(bool value);
+		public bool initialized { get => initialized_Get(); set => initialized_Set(value); }
+		private partial bool initialized_Get();
+		private partial void initialized_Set(bool value);
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -67,7 +67,7 @@ namespace Fox.Sim
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -104,12 +104,22 @@ namespace Fox.Sim
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
 		{
 			switch (propertyName)
 			{
 				default:
 					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.AddPropertyElement(propertyName, index, value);
 					return;
 			}
 		}
@@ -120,6 +130,36 @@ namespace Fox.Sim
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.AddPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, int index)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.RemovePropertyElement(propertyName, index);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, string key)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.RemovePropertyElement(propertyName, key);
 					return;
 			}
 		}

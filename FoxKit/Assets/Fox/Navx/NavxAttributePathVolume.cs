@@ -32,9 +32,9 @@ namespace Fox.Navx
                 var prevNode = edge.prevNode as GraphxSpatialGraphDataNode;
                 var nextNode = edge.nextNode as GraphxSpatialGraphDataNode;
 
-                Gizmos.DrawLine(prevNode.position + topPos, nextNode.position + topPos);
+                Gizmos.DrawLine(prevNode.transform.localPosition + topPos, nextNode.transform.localPosition + topPos);
 
-                Gizmos.DrawLine(nextNode.position, nextNode.position + topPos);
+                Gizmos.DrawLine(nextNode.transform.localPosition, nextNode.transform.localPosition + topPos);
             }
         }
     }

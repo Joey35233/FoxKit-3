@@ -77,12 +77,14 @@ namespace Fox.Geo
             Waterfall = 0x80000000, // 0x80000000 for convenience in 010 but the tag is actually 0xffffffff80000000, signalling that there are no higher-value tags
         };
 
-        private partial bool Get_enable() => (stateFlag & 1) == 1;
-        private partial void Set_enable(bool value) => stateFlag = value ? 1u : 0u;
+        private partial bool enable_Get() => (stateFlag & 1) == 1;
+        private partial void enable_Set(bool value) => stateFlag = value ? 1u : 0u;
+        
         public override void Reset()
         {
             base.Reset();
-            stateFlag |= 1;
+
+            enable = true;
         }
     }
 }

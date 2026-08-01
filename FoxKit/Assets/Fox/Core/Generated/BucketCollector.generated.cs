@@ -59,7 +59,7 @@ namespace Fox.Core
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -92,7 +92,7 @@ namespace Fox.Core
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
 		{
 			switch (propertyName)
 			{
@@ -102,18 +102,61 @@ namespace Fox.Core
 			}
 		}
 
+		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.AddPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
 		public override void SetPropertyElement(string propertyName, string key, Fox.Core.Value value)
 		{
 			switch (propertyName)
 			{
 				case "buckets":
-					if (this.buckets.ContainsKey(key))
-						this.buckets[key] = value.GetValueAsEntityPtr<Fox.Core.Bucket>();
-					else
-						this.buckets.Insert(key, value.GetValueAsEntityPtr<Fox.Core.Bucket>());
+					this.buckets[key] = value.GetValueAsEntityPtr<Fox.Core.Bucket>();
 					return;
 				default:
 					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				case "buckets":
+					this.buckets[key] = value.GetValueAsEntityPtr<Fox.Core.Bucket>();
+					return;
+				default:
+					base.AddPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, int index)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.RemovePropertyElement(propertyName, index);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, string key)
+		{
+			switch (propertyName)
+			{
+				case "buckets":
+					this.buckets.Remove(key);
+					return;
+				default:
+					base.RemovePropertyElement(propertyName, key);
 					return;
 			}
 		}

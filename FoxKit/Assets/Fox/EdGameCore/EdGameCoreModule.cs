@@ -1,7 +1,6 @@
 using Fox.Core;
 using System;
 using System.Collections.Generic;
-using UnityEditor;
 
 namespace Fox.EdGameCore
 {
@@ -18,13 +17,19 @@ namespace Fox.EdGameCore
         public Func<string, DataElement> CreateParameterFunc;
         public Func<string, DataElement> CreateLocatorParameterFunc;
     }
-        
-    [InitializeOnLoad]
-    public class EdGameCoreModule
+
+    public class EdGameCoreModule : Module
     {
+        public static EdGameCoreModule Instance { get; private set; }
+
         public static List<string> GameObjectTypeList = new();
         private static Dictionary<string, GameObjectEditorInfo> GameObjectEditorInfoMap = new();
-        
+
+        public EdGameCoreModule() : base("Fox.EdGameCore")
+        {
+            Instance = this;
+        }
+
         public static void RegisterGameObjectEditorInfo(string type, GameObjectEditorInfo info)
         {
             GameObjectTypeList.Add(type);

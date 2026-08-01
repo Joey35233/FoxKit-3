@@ -137,7 +137,7 @@ namespace Fox.PartsBuilder
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -204,7 +204,35 @@ namespace Fox.PartsBuilder
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				case "connectDestinationSkelNames":
+					this.connectDestinationSkelNames[index] = value.GetValueAsString();
+					return;
+				case "connectDestinationCnpNames":
+					this.connectDestinationCnpNames[index] = value.GetValueAsString();
+					return;
+				case "offsetSkelPositions":
+					this.offsetSkelPositions[index] = value.GetValueAsVector3();
+					return;
+				case "offsetCnpPositions":
+					this.offsetCnpPositions[index] = value.GetValueAsVector3();
+					return;
+				case "generalSkelParameters":
+					this.generalSkelParameters[index] = value.GetValueAsVector4();
+					return;
+				case "generalCnpParameters":
+					this.generalCnpParameters[index] = value.GetValueAsVector4();
+					return;
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
 		{
 			switch (propertyName)
 			{
@@ -233,7 +261,7 @@ namespace Fox.PartsBuilder
 					this.generalCnpParameters[index] = value.GetValueAsVector4();
 					return;
 				default:
-					base.SetPropertyElement(propertyName, index, value);
+					base.AddPropertyElement(propertyName, index, value);
 					return;
 			}
 		}
@@ -244,6 +272,54 @@ namespace Fox.PartsBuilder
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.AddPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, int index)
+		{
+			switch (propertyName)
+			{
+				case "connectDestinationSkelNames":
+					this.connectDestinationSkelNames.RemoveAt(index);
+					return;
+				case "connectDestinationCnpNames":
+					this.connectDestinationCnpNames.RemoveAt(index);
+					return;
+				case "offsetSkelPositions":
+					this.offsetSkelPositions.RemoveAt(index);
+					return;
+				case "offsetCnpPositions":
+					this.offsetCnpPositions.RemoveAt(index);
+					return;
+				case "generalSkelParameters":
+					this.generalSkelParameters.RemoveAt(index);
+					return;
+				case "generalCnpParameters":
+					this.generalCnpParameters.RemoveAt(index);
+					return;
+				default:
+					base.RemovePropertyElement(propertyName, index);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, string key)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.RemovePropertyElement(propertyName, key);
 					return;
 			}
 		}

@@ -125,7 +125,7 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -189,7 +189,23 @@ namespace Tpp.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				case "existMaterials":
+					this.existMaterials[index] = value.GetValueAsString();
+					return;
+				case "noiseSeType":
+					this.noiseSeType[index] = value.GetValueAsString();
+					return;
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
 		{
 			switch (propertyName)
 			{
@@ -202,7 +218,7 @@ namespace Tpp.GameKit
 					this.noiseSeType[index] = value.GetValueAsString();
 					return;
 				default:
-					base.SetPropertyElement(propertyName, index, value);
+					base.AddPropertyElement(propertyName, index, value);
 					return;
 			}
 		}
@@ -212,13 +228,52 @@ namespace Tpp.GameKit
 			switch (propertyName)
 			{
 				case "noiseSeEventNames":
-					if (this.noiseSeEventNames.ContainsKey(key))
-						this.noiseSeEventNames[key] = value.GetValueAsString();
-					else
-						this.noiseSeEventNames.Insert(key, value.GetValueAsString());
+					this.noiseSeEventNames[key] = value.GetValueAsString();
 					return;
 				default:
 					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				case "noiseSeEventNames":
+					this.noiseSeEventNames[key] = value.GetValueAsString();
+					return;
+				default:
+					base.AddPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, int index)
+		{
+			switch (propertyName)
+			{
+				case "existMaterials":
+					this.existMaterials.RemoveAt(index);
+					return;
+				case "noiseSeType":
+					this.noiseSeType.RemoveAt(index);
+					return;
+				default:
+					base.RemovePropertyElement(propertyName, index);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, string key)
+		{
+			switch (propertyName)
+			{
+				case "noiseSeEventNames":
+					this.noiseSeEventNames.Remove(key);
+					return;
+				default:
+					base.RemovePropertyElement(propertyName, key);
 					return;
 			}
 		}

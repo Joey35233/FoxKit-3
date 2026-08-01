@@ -1,7 +1,12 @@
 namespace Fox.As
 {
-    public static class AsModule
+    public class AsModule : Module
     {
+        public static AsModule Instance { get; private set; }
 
+        public AsModule() : base("Fox.As")
+        {
+            Instance = this;
+        }
     }
 }

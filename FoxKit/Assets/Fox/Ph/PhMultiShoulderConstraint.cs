@@ -8,14 +8,14 @@ namespace Fox.Ph
     {
         private PhMultiShoulderConstraintParam multiShoulderConstraint => param as PhMultiShoulderConstraintParam;
 
-        private partial UnityEngine.Quaternion Get_refVec0() => throw new System.NotImplementedException();
-        private partial void Set_refVec0(UnityEngine.Quaternion value) => throw new System.NotImplementedException();
+        private partial UnityEngine.Quaternion refVec0_Get() => throw new System.NotImplementedException();
+        private partial void refVec0_Set(UnityEngine.Quaternion value) => throw new System.NotImplementedException();
 
-        private partial UnityEngine.Quaternion Get_refVec1() => throw new System.NotImplementedException();
-        private partial void Set_refVec1(UnityEngine.Quaternion value) => throw new System.NotImplementedException();
+        private partial UnityEngine.Quaternion refVec1_Get() => throw new System.NotImplementedException();
+        private partial void refVec1_Set(UnityEngine.Quaternion value) => throw new System.NotImplementedException();
 
-        private partial float Get_refLimit0() => multiShoulderConstraint == null ? 0.0f : multiShoulderConstraint.GetRefLimit0();
-        private partial void Set_refLimit0(float value)
+        private partial float refLimit0_Get() => multiShoulderConstraint == null ? 0.0f : multiShoulderConstraint.GetRefLimit0();
+        private partial void refLimit0_Set(float value)
         {
             if (param == null)
                 return;
@@ -23,8 +23,8 @@ namespace Fox.Ph
             multiShoulderConstraint.SetRefLimit0(value);
         }
 
-        private partial float Get_refLimit1() => multiShoulderConstraint == null ? 0.0f : multiShoulderConstraint.GetRefLimit1();
-        private partial void Set_refLimit1(float value)
+        private partial float refLimit1_Get() => multiShoulderConstraint == null ? 0.0f : multiShoulderConstraint.GetRefLimit1();
+        private partial void refLimit1_Set(float value)
         {
             if (param == null)
                 return;
@@ -32,8 +32,8 @@ namespace Fox.Ph
             multiShoulderConstraint.SetRefLimit1(value);
         }
 
-        private partial float Get_velocityMax() => multiShoulderConstraint == null ? 0.0f : multiShoulderConstraint.GetVelocityMax();
-        private partial void Set_velocityMax(float value)
+        private partial float velocityMax_Get() => multiShoulderConstraint == null ? 0.0f : multiShoulderConstraint.GetVelocityMax();
+        private partial void velocityMax_Set(float value)
         {
             if (param == null)
                 return;
@@ -41,8 +41,8 @@ namespace Fox.Ph
             multiShoulderConstraint.SetVelocityMax(value);
         }
 
-        private partial float Get_torqueMax() => multiShoulderConstraint == null ? 0.0f : multiShoulderConstraint.GetTorqueMax();
-        private partial void Set_torqueMax(float value)
+        private partial float torqueMax_Get() => multiShoulderConstraint == null ? 0.0f : multiShoulderConstraint.GetTorqueMax();
+        private partial void torqueMax_Set(float value)
         {
             if (param == null)
                 return;
@@ -50,8 +50,8 @@ namespace Fox.Ph
             multiShoulderConstraint.SetTorqueMax(value);
         }
 
-        private partial float Get_velocityRate() => multiShoulderConstraint == null ? 0.0f : multiShoulderConstraint.GetVelocityRate();
-        private partial void Set_velocityRate(float value)
+        private partial float velocityRate_Get() => multiShoulderConstraint == null ? 0.0f : multiShoulderConstraint.GetVelocityRate();
+        private partial void velocityRate_Set(float value)
         {
             if (param == null)
                 return;
@@ -59,8 +59,8 @@ namespace Fox.Ph
             multiShoulderConstraint.SetVelocityRate(value);
         }
 
-        private partial bool Get_isPoweredFlag() => multiShoulderConstraint == null ? false : multiShoulderConstraint.GetIsPoweredFlag();
-        private partial void Set_isPoweredFlag(bool value)
+        private partial bool isPoweredFlag_Get() => multiShoulderConstraint == null ? false : multiShoulderConstraint.GetIsPoweredFlag();
+        private partial void isPoweredFlag_Set(bool value)
         {
             if (param == null)
                 return;

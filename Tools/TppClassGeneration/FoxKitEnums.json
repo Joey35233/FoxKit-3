@@ -1,0 +1,33 @@
+[
+	{
+		"name": "TppRouteEdgeEventHelicopter_DoorState",
+		"type": "switch",
+		"underlying_type": "uint",
+		"values": [
+			{ "name": "DOOR_STATE_DEFAULT", "value": 0 },
+			{ "name": "DOOR_STATE_A", "value": 1 },
+			{ "name": "DOOR_STATE_B", "value": 2 }
+		]
+	},
+	{
+		"name": "TppRouteEdgeEventHelicopter_DirectionType",
+		"type": "switch",
+		"underlying_type": "uint",
+		"values": [
+			{ "name": "DIRECTION_TYPE_NONE", "value": 0 },
+			{ "name": "DIRECTION_TYPE_WORLD", "value": 1 },
+			{ "name": "DIRECTION_TYPE_LOCAL", "value": 2 },
+			{ "name": "DIRECTION_TYPE_AIM_POINT_LOCAL", "value": 3 }
+		]
+	},
+	{
+		"name": "TppRouteEdgeEventHelicopter_DoorSide",
+		"type": "switch",
+		"underlying_type": "uint",
+		"values": [
+			{ "name": "DOOR_SIDE_DEFAULT", "value": 0 },
+			{ "name": "DOOR_SIDE_LEFT", "value": 1 },
+			{ "name": "DOOR_SIDE_RIGHT", "value": 2 }
+		]
+	}
+]

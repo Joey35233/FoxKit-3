@@ -16,9 +16,9 @@ namespace Fox.GameKit
 	public partial class WindArea : Fox.GameKit.EnvironmentArea
 	{
 		// Properties
-		public float influenceOfGlobal { get => Get_influenceOfGlobal(); set { Set_influenceOfGlobal(value); } }
-		private partial float Get_influenceOfGlobal();
-		private partial void Set_influenceOfGlobal(float value);
+		public float influenceOfGlobal { get => influenceOfGlobal_Get(); set => influenceOfGlobal_Set(value); }
+		private partial float influenceOfGlobal_Get();
+		private partial void influenceOfGlobal_Set(float value);
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -54,7 +54,7 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -85,12 +85,22 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
 		{
 			switch (propertyName)
 			{
 				default:
 					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.AddPropertyElement(propertyName, index, value);
 					return;
 			}
 		}
@@ -101,6 +111,36 @@ namespace Fox.GameKit
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.AddPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, int index)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.RemovePropertyElement(propertyName, index);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, string key)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.RemovePropertyElement(propertyName, key);
 					return;
 			}
 		}

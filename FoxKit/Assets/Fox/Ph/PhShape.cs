@@ -8,8 +8,8 @@ namespace Fox.Ph
     {
         private PhShapeParam shapeParam => param;
 
-        private partial UnityEngine.Vector3 Get_offset() => shapeParam == null ? Vector3.zero : shapeParam.GetOffset();
-        private partial void Set_offset(UnityEngine.Vector3 value)
+        private partial UnityEngine.Vector3 offset_Get() => shapeParam == null ? Vector3.zero : shapeParam.GetOffset();
+        private partial void offset_Set(UnityEngine.Vector3 value)
         {
             if (param == null)
                 return;
@@ -17,8 +17,8 @@ namespace Fox.Ph
             shapeParam.SetOffset(value);
         }
 
-        private partial UnityEngine.Quaternion Get_rotation() => shapeParam == null ? Quaternion.identity : shapeParam.GetRotation();
-        private partial void Set_rotation(UnityEngine.Quaternion value)
+        private partial UnityEngine.Quaternion rotation_Get() => shapeParam == null ? Quaternion.identity : shapeParam.GetRotation();
+        private partial void rotation_Set(UnityEngine.Quaternion value)
         {
             if (param == null)
                 return;

@@ -16,9 +16,9 @@ namespace Tpp.Effect
 	public partial class TppGlobalVolumetricFogParam : Fox.Core.DataElement
 	{
 		// Properties
-		public bool enable { get => Get_enable(); set { Set_enable(value); } }
-		private partial bool Get_enable();
-		private partial void Set_enable(bool value);
+		public bool enable { get => enable_Get(); set => enable_Set(value); }
+		private partial bool enable_Get();
+		private partial void enable_Set(bool value);
 		
 		[field: UnityEngine.SerializeField]
 		public float selfLuminance { get; set; }
@@ -150,7 +150,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -227,20 +227,28 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
 		{
 			switch (propertyName)
 			{
 				case "exposureOffsetValues":
-					
 					this.exposureOffsetValues[index] = value.GetValueAsFloat();
 					return;
 				case "exposureOffsetTargets":
-					
 					this.exposureOffsetTargets[index] = value.GetValueAsFloat();
 					return;
 				default:
 					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.AddPropertyElement(propertyName, index, value);
 					return;
 			}
 		}
@@ -251,6 +259,36 @@ namespace Tpp.Effect
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.AddPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, int index)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.RemovePropertyElement(propertyName, index);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, string key)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.RemovePropertyElement(propertyName, key);
 					return;
 			}
 		}

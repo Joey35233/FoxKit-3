@@ -16,9 +16,9 @@ namespace Fox.Core
 	public partial class BoxShape : Fox.Core.ShapeData
 	{
 		// Properties
-		public UnityEngine.Vector3 size { get => Get_size(); set { Set_size(value); } }
-		private partial UnityEngine.Vector3 Get_size();
-		private partial void Set_size(UnityEngine.Vector3 value);
+		public UnityEngine.Vector3 size { get => size_Get(); set => size_Set(value); }
+		private partial UnityEngine.Vector3 size_Get();
+		private partial void size_Set(UnityEngine.Vector3 value);
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -54,7 +54,7 @@ namespace Fox.Core
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -85,12 +85,22 @@ namespace Fox.Core
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
 		{
 			switch (propertyName)
 			{
 				default:
 					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.AddPropertyElement(propertyName, index, value);
 					return;
 			}
 		}
@@ -101,6 +111,36 @@ namespace Fox.Core
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.AddPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, int index)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.RemovePropertyElement(propertyName, index);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, string key)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.RemovePropertyElement(propertyName, key);
 					return;
 			}
 		}

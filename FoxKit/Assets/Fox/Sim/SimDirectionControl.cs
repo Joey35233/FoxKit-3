@@ -8,8 +8,8 @@ namespace Fox.Sim
     {
         private SimDirectionControlParam param => controlParam;
 
-        private partial string Get_refBone() => param == null ? null : param.GetRefBone();
-        private partial void Set_refBone(string value)
+        private partial string refBone_Get() => param == null ? null : param.GetRefBone();
+        private partial void refBone_Set(string value)
         {
             if (param == null)
                 return;
@@ -17,8 +17,8 @@ namespace Fox.Sim
             param.SetRefBone(value);
         }
 
-        private partial UnityEngine.Quaternion Get_offset() => param == null ? Quaternion.identity : param.GetOffset();
-        private partial void Set_offset(UnityEngine.Quaternion value)
+        private partial UnityEngine.Quaternion offset_Get() => param == null ? Quaternion.identity : param.GetOffset();
+        private partial void offset_Set(UnityEngine.Quaternion value)
         {
             if (param == null)
                 return;

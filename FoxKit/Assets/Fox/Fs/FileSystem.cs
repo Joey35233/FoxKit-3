@@ -29,7 +29,7 @@ namespace Fox.Fs
         public static string GetFoxPathFromExternalPath(string externalPath)
         {
             string basePath = FsModule.ExternalBasePath;
-            
+
             int index = externalPath.IndexOf(basePath, StringComparison.Ordinal);
             if (index < 0)
                 return null;
@@ -42,7 +42,7 @@ namespace Fox.Fs
         public static string GetFoxPathFromUnityPath(string unityPath)
         {
             string basePath = FsModule.UnityBasePath;
-            
+
             int index = unityPath.IndexOf(basePath, StringComparison.Ordinal);
             if (index < 0)
                 return null;
@@ -105,6 +105,12 @@ namespace Fox.Fs
             return foxPath;
         }
 
+        public static bool Exists(string foxPath)
+        {
+            string unityPath = GetUnityPathFromFoxPath(foxPath);
+            return File.Exists(unityPath);
+        }
+
         public static ReadOnlySpan<byte> ReadExternalFile(string foxPath)
         {
             string externalPath = GetExternalPathFromFoxPath(foxPath);
@@ -120,6 +126,12 @@ namespace Fox.Fs
         {
             string unityPath = GetUnityPathFromFoxPath(foxPath);
             return File.ReadAllBytes(unityPath);
+        }
+
+        public static string[] ReadLines(string foxPath)
+        {
+            string unityPath = GetUnityPathFromFoxPath(foxPath);
+            return File.ReadAllLines(unityPath);
         }
 
         public static void ImportAssetCopy(string foxPath, ImportFileMode importMode = ImportFileMode.PreserveImportPath, bool createDirectory = true)
@@ -227,14 +239,14 @@ namespace Fox.Fs
         public static void OpenExternalFolder()
         {
             string path = FsModule.ExternalBasePath;
-            
+
             EditorUtility.RevealInFinder(path);
         }
         
         public static void OpenUnityFolder()
         {
             string path = FsModule.UnityBasePath;
-            
+
             UnityEngine.Object folder = AssetDatabase.LoadAssetAtPath<UnityEngine.Object>(path);
             AssetDatabase.OpenAsset(folder);
         }

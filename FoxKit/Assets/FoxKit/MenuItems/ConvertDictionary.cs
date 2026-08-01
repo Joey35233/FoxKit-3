@@ -22,7 +22,7 @@ namespace FoxKit.MenuItems
                 {
                     string[] lines = File.ReadAllLines(path);
                     
-                    using StreamWriter streamWriter = new StreamWriter(Path.ChangeExtension(path, "pathdb"), false, System.Text.Encoding.ASCII);
+                    using StreamWriter streamWriter = new StreamWriter(Path.ChangeExtension(path, "stringdb"), false, System.Text.Encoding.ASCII);
                     foreach (string line in lines)
                     {
                         streamWriter.WriteLine($"{new StrCode(line)}\t{line}");
@@ -30,6 +30,7 @@ namespace FoxKit.MenuItems
                 }
             }
         }
+        
         [MenuItem("FoxKit/Debug/ConvertDictionary (StringId32)")]
         private static void OnConvert32()
         {
@@ -41,7 +42,7 @@ namespace FoxKit.MenuItems
                 {
                     string[] lines = File.ReadAllLines(path);
                     
-                    using StreamWriter streamWriter = new StreamWriter(Path.ChangeExtension(path, "pathdb"), false, System.Text.Encoding.ASCII);
+                    using StreamWriter streamWriter = new StreamWriter(Path.ChangeExtension(path, "stringdb"), false, System.Text.Encoding.ASCII);
                     foreach (string line in lines)
                     {
                         streamWriter.WriteLine($"{new StrCode32(line)}\t{line}");

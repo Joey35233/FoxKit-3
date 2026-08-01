@@ -1,2 +1,13 @@
 *
-!.gitignore
+!Assets
+!Assets.meta
+!Assets/tpp
+!Assets/tpp.meta
+!Assets/tpp/toolbox
+!Assets/tpp/toolbox.meta
+!Assets/tpp/toolbox/Config
+!Assets/tpp/toolbox/Config.meta
+!Assets/tpp/toolbox/Config/**
+!Assets/tpp/toolbox/Config/Route
+!Assets/tpp/toolbox/Config/Route.meta
+!Assets/tpp/toolbox/Config/Route/**

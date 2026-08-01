@@ -14,12 +14,7 @@ namespace Fox.Core
         public override Value GetValue() => new Value(SerializedField as IStringMap);
         public override Value GetElement(string key) => new Value(SerializedField[key]);
 
-        public override void SetElement(string key, Value value)
-        {
-            if (SerializedField.ContainsKey(key))
-                SerializedField[key] = value.GetValueAsEntityLink();
-            else
-                SerializedField.Insert(key, value.GetValueAsEntityLink());
-        }
+        public override void SetElement(string key, Value value) => SerializedField[key] = value.GetValueAsEntityLink();
+        public override void RemoveElement(string key) => SerializedField.Remove(key);
     }
 }

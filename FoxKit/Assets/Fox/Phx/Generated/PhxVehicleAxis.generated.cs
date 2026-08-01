@@ -31,60 +31,63 @@ namespace Fox.Phx
 		[field: UnityEngine.SerializeField]
 		public CsSystem.Collections.Generic.List<float> gearRatios { get; private set; } = new CsSystem.Collections.Generic.List<float>();
 		
-		public UnityEngine.Vector3 wheelFront { get => Get_wheelFront(); set { Set_wheelFront(value); } }
-		private partial UnityEngine.Vector3 Get_wheelFront();
-		private partial void Set_wheelFront(UnityEngine.Vector3 value);
+		public UnityEngine.Vector3 wheelFront { get => wheelFront_Get(); set => wheelFront_Set(value); }
+		private partial UnityEngine.Vector3 wheelFront_Get();
+		private partial void wheelFront_Set(UnityEngine.Vector3 value);
 		
-		public UnityEngine.Vector3 wheelUp { get => Get_wheelUp(); set { Set_wheelUp(value); } }
-		private partial UnityEngine.Vector3 Get_wheelUp();
-		private partial void Set_wheelUp(UnityEngine.Vector3 value);
+		public UnityEngine.Vector3 wheelUp { get => wheelUp_Get(); set => wheelUp_Set(value); }
+		private partial UnityEngine.Vector3 wheelUp_Get();
+		private partial void wheelUp_Set(UnityEngine.Vector3 value);
 		
-		public UnityEngine.Vector3 wheelPositionOffset { get => Get_wheelPositionOffset(); set { Set_wheelPositionOffset(value); } }
-		private partial UnityEngine.Vector3 Get_wheelPositionOffset();
-		private partial void Set_wheelPositionOffset(UnityEngine.Vector3 value);
+		public UnityEngine.Vector3 wheelPositionOffset { get => wheelPositionOffset_Get(); set => wheelPositionOffset_Set(value); }
+		private partial UnityEngine.Vector3 wheelPositionOffset_Get();
+		private partial void wheelPositionOffset_Set(UnityEngine.Vector3 value);
 		
-		public float wheelRadius { get => Get_wheelRadius(); set { Set_wheelRadius(value); } }
-		private partial float Get_wheelRadius();
-		private partial void Set_wheelRadius(float value);
+		public float wheelRadius { get => wheelRadius_Get(); set => wheelRadius_Set(value); }
+		private partial float wheelRadius_Get();
+		private partial void wheelRadius_Set(float value);
 		
-		public float wheelFriction { get => Get_wheelFriction(); set { Set_wheelFriction(value); } }
-		private partial float Get_wheelFriction();
-		private partial void Set_wheelFriction(float value);
+		public float wheelFriction { get => wheelFriction_Get(); set => wheelFriction_Set(value); }
+		private partial float wheelFriction_Get();
+		private partial void wheelFriction_Set(float value);
 		
-		public float wheelRestitution { get => Get_wheelRestitution(); set { Set_wheelRestitution(value); } }
-		private partial float Get_wheelRestitution();
-		private partial void Set_wheelRestitution(float value);
+		public float wheelRestitution { get => wheelRestitution_Get(); set => wheelRestitution_Set(value); }
+		private partial float wheelRestitution_Get();
+		private partial void wheelRestitution_Set(float value);
 		
-		public float wheelInertia { get => Get_wheelInertia(); set { Set_wheelInertia(value); } }
-		private partial float Get_wheelInertia();
-		private partial void Set_wheelInertia(float value);
+		public float wheelInertia { get => wheelInertia_Get(); set => wheelInertia_Set(value); }
+		private partial float wheelInertia_Get();
+		private partial void wheelInertia_Set(float value);
 		
-		public float suspentionLength { get => Get_suspentionLength(); set { Set_suspentionLength(value); } }
-		private partial float Get_suspentionLength();
-		private partial void Set_suspentionLength(float value);
+		public float suspentionLength { get => suspentionLength_Get(); set => suspentionLength_Set(value); }
+		private partial float suspentionLength_Get();
+		private partial void suspentionLength_Set(float value);
 		
-		public float maxSuspentionForceCoeff { get => Get_maxSuspentionForceCoeff(); set { Set_maxSuspentionForceCoeff(value); } }
-		private partial float Get_maxSuspentionForceCoeff();
-		private partial void Set_maxSuspentionForceCoeff(float value);
+		public float maxSuspentionForceCoeff { get => maxSuspentionForceCoeff_Get(); set => maxSuspentionForceCoeff_Set(value); }
+		private partial float maxSuspentionForceCoeff_Get();
+		private partial void maxSuspentionForceCoeff_Set(float value);
 		
-		public float dampingCoeffElong { get => Get_dampingCoeffElong(); set { Set_dampingCoeffElong(value); } }
-		private partial float Get_dampingCoeffElong();
-		private partial void Set_dampingCoeffElong(float value);
+		public float dampingCoeffElong { get => dampingCoeffElong_Get(); set => dampingCoeffElong_Set(value); }
+		private partial float dampingCoeffElong_Get();
+		private partial void dampingCoeffElong_Set(float value);
 		
-		public float dampingCoeffCompress { get => Get_dampingCoeffCompress(); set { Set_dampingCoeffCompress(value); } }
-		private partial float Get_dampingCoeffCompress();
-		private partial void Set_dampingCoeffCompress(float value);
+		public float dampingCoeffCompress { get => dampingCoeffCompress_Get(); set => dampingCoeffCompress_Set(value); }
+		private partial float dampingCoeffCompress_Get();
+		private partial void dampingCoeffCompress_Set(float value);
 		
-		public float maxBreakTorqueCoeff { get => Get_maxBreakTorqueCoeff(); set { Set_maxBreakTorqueCoeff(value); } }
-		private partial float Get_maxBreakTorqueCoeff();
-		private partial void Set_maxBreakTorqueCoeff(float value);
+		public float maxBreakTorqueCoeff { get => maxBreakTorqueCoeff_Get(); set => maxBreakTorqueCoeff_Set(value); }
+		private partial float maxBreakTorqueCoeff_Get();
+		private partial void maxBreakTorqueCoeff_Set(float value);
 		
-		public bool useDifferential { get => Get_useDifferential(); set { Set_useDifferential(value); } }
-		private partial bool Get_useDifferential();
-		private partial void Set_useDifferential(bool value);
+		public bool useDifferential { get => useDifferential_Get(); set => useDifferential_Set(value); }
+		private partial bool useDifferential_Get();
+		private partial void useDifferential_Set(bool value);
 		
-		public CsSystem.Collections.Generic.List<string> AssignedBoneNames { get => Get_AssignedBoneNames(); }
-		private partial CsSystem.Collections.Generic.List<string> Get_AssignedBoneNames();
+		public partial string AssignedBoneNames_Get(int index);
+		public partial void AssignedBoneNames_Set(int index, string value);
+		public partial void AssignedBoneNames_AddElement(int index, string value);
+		public partial void AssignedBoneNames_RemoveElement(int index);
+		public partial int AssignedBoneNames_GetContainerSize();
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -167,14 +170,12 @@ namespace Fox.Phx
 					return new Fox.Core.Value(maxBreakTorqueCoeff);
 				case "useDifferential":
 					return new Fox.Core.Value(useDifferential);
-				case "AssignedBoneNames":
-					return new Fox.Core.Value(AssignedBoneNames);
 				default:
 					return base.GetProperty(propertyName);
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -185,7 +186,7 @@ namespace Fox.Phx
 				case "gearRatios":
 					return new Fox.Core.Value(this.gearRatios[index]);
 				case "AssignedBoneNames":
-					return new Fox.Core.Value(this.AssignedBoneNames[index]);
+					return new Fox.Core.Value(AssignedBoneNames_Get(index));
 				default:
 					return base.GetPropertyElement(propertyName, index);
 			}
@@ -255,7 +256,29 @@ namespace Fox.Phx
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				case "wheelAssociationUnitParams":
+					this.wheelAssociationUnitParams[index] = value.GetValueAsEntityPtr<Fox.Phx.PhxWheelAssociationUnitParam>();
+					return;
+				case "torqueDistributions":
+					this.torqueDistributions[index] = value.GetValueAsFloat();
+					return;
+				case "gearRatios":
+					this.gearRatios[index] = value.GetValueAsFloat();
+					return;
+				case "AssignedBoneNames":
+					AssignedBoneNames_Set(index, value.GetValueAsString());
+					return;
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
 		{
 			switch (propertyName)
 			{
@@ -272,11 +295,10 @@ namespace Fox.Phx
 					this.gearRatios[index] = value.GetValueAsFloat();
 					return;
 				case "AssignedBoneNames":
-					while(this.AssignedBoneNames.Count <= index) { this.AssignedBoneNames.Add(default(string)); }
-					this.AssignedBoneNames[index] = value.GetValueAsString();
+					AssignedBoneNames_AddElement(index, value.GetValueAsString());
 					return;
 				default:
-					base.SetPropertyElement(propertyName, index, value);
+					base.AddPropertyElement(propertyName, index, value);
 					return;
 			}
 		}
@@ -287,6 +309,48 @@ namespace Fox.Phx
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.AddPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, int index)
+		{
+			switch (propertyName)
+			{
+				case "wheelAssociationUnitParams":
+					this.wheelAssociationUnitParams.RemoveAt(index);
+					return;
+				case "torqueDistributions":
+					this.torqueDistributions.RemoveAt(index);
+					return;
+				case "gearRatios":
+					this.gearRatios.RemoveAt(index);
+					return;
+				case "AssignedBoneNames":
+					AssignedBoneNames_RemoveElement(index);
+					return;
+				default:
+					base.RemovePropertyElement(propertyName, index);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, string key)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.RemovePropertyElement(propertyName, key);
 					return;
 			}
 		}

@@ -70,29 +70,29 @@ namespace Fox.GameKit
 		[field: UnityEngine.SerializeField]
 		public CsSystem.Collections.Generic.List<int> renderingPriorities { get; private set; } = new CsSystem.Collections.Generic.List<int>();
 		
-		public bool isDisableAlbedo { get => Get_isDisableAlbedo(); set { Set_isDisableAlbedo(value); } }
-		private partial bool Get_isDisableAlbedo();
-		private partial void Set_isDisableAlbedo(bool value);
+		public bool isDisableAlbedo { get => isDisableAlbedo_Get(); set => isDisableAlbedo_Set(value); }
+		private partial bool isDisableAlbedo_Get();
+		private partial void isDisableAlbedo_Set(bool value);
 		
-		public bool isPreserveAspect { get => Get_isPreserveAspect(); set { Set_isPreserveAspect(value); } }
-		private partial bool Get_isPreserveAspect();
-		private partial void Set_isPreserveAspect(bool value);
+		public bool isPreserveAspect { get => isPreserveAspect_Get(); set => isPreserveAspect_Set(value); }
+		private partial bool isPreserveAspect_Get();
+		private partial void isPreserveAspect_Set(bool value);
 		
-		public bool isWrap { get => Get_isWrap(); set { Set_isWrap(value); } }
-		private partial bool Get_isWrap();
-		private partial void Set_isWrap(bool value);
+		public bool isWrap { get => isWrap_Get(); set => isWrap_Set(value); }
+		private partial bool isWrap_Get();
+		private partial void isWrap_Set(bool value);
 		
-		public bool showObject { get => Get_showObject(); set { Set_showObject(value); } }
-		private partial bool Get_showObject();
-		private partial void Set_showObject(bool value);
+		public bool showObject { get => showObject_Get(); set => showObject_Set(value); }
+		private partial bool showObject_Get();
+		private partial void showObject_Set(bool value);
 		
-		public bool isVisibleGeom { get => Get_isVisibleGeom(); set { Set_isVisibleGeom(value); } }
-		private partial bool Get_isVisibleGeom();
-		private partial void Set_isVisibleGeom(bool value);
+		public bool isVisibleGeom { get => isVisibleGeom_Get(); set => isVisibleGeom_Set(value); }
+		private partial bool isVisibleGeom_Get();
+		private partial void isVisibleGeom_Set(bool value);
 		
-		public bool isSSDecal { get => Get_isSSDecal(); set { Set_isSSDecal(value); } }
-		private partial bool Get_isSSDecal();
-		private partial void Set_isSSDecal(bool value);
+		public bool isSSDecal { get => isSSDecal_Get(); set => isSSDecal_Set(value); }
+		private partial bool isSSDecal_Get();
+		private partial void isSSDecal_Set(bool value);
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -197,7 +197,7 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -290,7 +290,38 @@ namespace Fox.GameKit
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				case "scales":
+					this.scales[index] = value.GetValueAsVector3();
+					return;
+				case "rotations":
+					this.rotations[index] = value.GetValueAsQuat();
+					return;
+				case "translations":
+					this.translations[index] = value.GetValueAsVector3();
+					return;
+				case "targets":
+					this.targets[index] = value.GetValueAsEntityLink();
+					return;
+				case "targetIndices":
+					this.targetIndices[index] = value.GetValueAsUInt32();
+					return;
+				case "targetStartIndices":
+					this.targetStartIndices[index] = value.GetValueAsUInt32();
+					return;
+				case "renderingPriorities":
+					this.renderingPriorities[index] = value.GetValueAsInt32();
+					return;
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
 		{
 			switch (propertyName)
 			{
@@ -323,7 +354,7 @@ namespace Fox.GameKit
 					this.renderingPriorities[index] = value.GetValueAsInt32();
 					return;
 				default:
-					base.SetPropertyElement(propertyName, index, value);
+					base.AddPropertyElement(propertyName, index, value);
 					return;
 			}
 		}
@@ -334,6 +365,57 @@ namespace Fox.GameKit
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.AddPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, int index)
+		{
+			switch (propertyName)
+			{
+				case "scales":
+					this.scales.RemoveAt(index);
+					return;
+				case "rotations":
+					this.rotations.RemoveAt(index);
+					return;
+				case "translations":
+					this.translations.RemoveAt(index);
+					return;
+				case "targets":
+					this.targets.RemoveAt(index);
+					return;
+				case "targetIndices":
+					this.targetIndices.RemoveAt(index);
+					return;
+				case "targetStartIndices":
+					this.targetStartIndices.RemoveAt(index);
+					return;
+				case "renderingPriorities":
+					this.renderingPriorities.RemoveAt(index);
+					return;
+				default:
+					base.RemovePropertyElement(propertyName, index);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, string key)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.RemovePropertyElement(propertyName, key);
 					return;
 			}
 		}

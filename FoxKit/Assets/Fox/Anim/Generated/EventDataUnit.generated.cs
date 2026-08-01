@@ -77,7 +77,7 @@ namespace Fox.Anim
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -116,7 +116,29 @@ namespace Fox.Anim
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				case "sections":
+					this.sections[index] = value.GetValueAsEntityPtr<Fox.Anim.TimeSection>();
+					return;
+				case "paramString":
+					this.paramString[index] = value.GetValueAsString();
+					return;
+				case "paramInt":
+					this.paramInt[index] = value.GetValueAsInt32();
+					return;
+				case "paramFloat":
+					this.paramFloat[index] = value.GetValueAsFloat();
+					return;
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
 		{
 			switch (propertyName)
 			{
@@ -137,7 +159,7 @@ namespace Fox.Anim
 					this.paramFloat[index] = value.GetValueAsFloat();
 					return;
 				default:
-					base.SetPropertyElement(propertyName, index, value);
+					base.AddPropertyElement(propertyName, index, value);
 					return;
 			}
 		}
@@ -148,6 +170,48 @@ namespace Fox.Anim
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.AddPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, int index)
+		{
+			switch (propertyName)
+			{
+				case "sections":
+					this.sections.RemoveAt(index);
+					return;
+				case "paramString":
+					this.paramString.RemoveAt(index);
+					return;
+				case "paramInt":
+					this.paramInt.RemoveAt(index);
+					return;
+				case "paramFloat":
+					this.paramFloat.RemoveAt(index);
+					return;
+				default:
+					base.RemovePropertyElement(propertyName, index);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, string key)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.RemovePropertyElement(propertyName, key);
 					return;
 			}
 		}

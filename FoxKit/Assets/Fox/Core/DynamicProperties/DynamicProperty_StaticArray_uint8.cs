@@ -22,11 +22,8 @@ namespace Fox.Core
         }
 
         public override Value GetValue() => new Value(SerializedField);
-        public override Value GetElement(ushort index) => new Value(SerializedField[index]);
+        public override Value GetElement(int index) => new Value(SerializedField[index]);
 
-        public override void SetElement(ushort index, Value value)
-        {
-            SerializedField[index] = value.GetValueAsUInt8();
-        }
+        public override void SetElement(int index, Value value) => SerializedField[index] = value.GetValueAsUInt8();
     }
 }

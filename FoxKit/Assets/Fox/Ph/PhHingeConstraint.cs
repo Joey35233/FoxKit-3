@@ -8,11 +8,11 @@ namespace Fox.Ph
     {
         private PhHingeConstraintParam hingeConstraint => param as PhHingeConstraintParam;
 
-        private partial UnityEngine.Quaternion Get_axis() => throw new System.NotImplementedException();
-        private partial void Set_axis(UnityEngine.Quaternion value) => throw new System.NotImplementedException();
+        private partial UnityEngine.Quaternion axis_Get() => throw new System.NotImplementedException();
+        private partial void axis_Set(UnityEngine.Quaternion value) => throw new System.NotImplementedException();
 
-        private partial bool Get_limitedFlag() => hingeConstraint == null ? false : hingeConstraint.GetLimitedFlag();
-        private partial void Set_limitedFlag(bool value)
+        private partial bool limitedFlag_Get() => hingeConstraint == null ? false : hingeConstraint.GetLimitedFlag();
+        private partial void limitedFlag_Set(bool value)
         {
             if (param == null)
                 return;
@@ -20,8 +20,8 @@ namespace Fox.Ph
             hingeConstraint.SetLimitedFlag(value);
         }
 
-        private partial float Get_limitHi() => hingeConstraint == null ? 0f : hingeConstraint.GetLimitHi();
-        private partial void Set_limitHi(float value)
+        private partial float limitHi_Get() => hingeConstraint == null ? 0f : hingeConstraint.GetLimitHi();
+        private partial void limitHi_Set(float value)
         {
             if (param == null)
                 return;
@@ -29,8 +29,8 @@ namespace Fox.Ph
             hingeConstraint.SetLimitHi(value);
         }
 
-        private partial float Get_limitLo() => hingeConstraint == null ? 0f : hingeConstraint.GetLimitLo();
-        private partial void Set_limitLo(float value)
+        private partial float limitLo_Get() => hingeConstraint == null ? 0f : hingeConstraint.GetLimitLo();
+        private partial void limitLo_Set(float value)
         {
             if (param == null)
                 return;

@@ -137,7 +137,7 @@ namespace Fox.Ui
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -202,7 +202,41 @@ namespace Fox.Ui
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				case "inputEdges":
+					this.inputEdges[index] = value.GetValueAsEntityLink();
+					return;
+				case "outputEdges":
+					this.outputEdges[index] = value.GetValueAsEntityLink();
+					return;
+				case "inputPortTypes":
+					this.inputPortTypes[index] = (UiNodeType)value.GetValueAsInt32();
+					return;
+				case "inputPropertyNames":
+					this.inputPropertyNames[index] = value.GetValueAsString();
+					return;
+				case "inputPropertyTypes":
+					this.inputPropertyTypes[index] = (UiNodePropType)value.GetValueAsInt32();
+					return;
+				case "outputPortTypes":
+					this.outputPortTypes[index] = (UiNodeType)value.GetValueAsInt32();
+					return;
+				case "outputPropertyNames":
+					this.outputPropertyNames[index] = value.GetValueAsString();
+					return;
+				case "outputPropertyTypes":
+					this.outputPropertyTypes[index] = (UiNodePropType)value.GetValueAsInt32();
+					return;
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
 		{
 			switch (propertyName)
 			{
@@ -239,7 +273,7 @@ namespace Fox.Ui
 					this.outputPropertyTypes[index] = (UiNodePropType)value.GetValueAsInt32();
 					return;
 				default:
-					base.SetPropertyElement(propertyName, index, value);
+					base.AddPropertyElement(propertyName, index, value);
 					return;
 			}
 		}
@@ -250,6 +284,60 @@ namespace Fox.Ui
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.AddPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, int index)
+		{
+			switch (propertyName)
+			{
+				case "inputEdges":
+					this.inputEdges.RemoveAt(index);
+					return;
+				case "outputEdges":
+					this.outputEdges.RemoveAt(index);
+					return;
+				case "inputPortTypes":
+					this.inputPortTypes.RemoveAt(index);
+					return;
+				case "inputPropertyNames":
+					this.inputPropertyNames.RemoveAt(index);
+					return;
+				case "inputPropertyTypes":
+					this.inputPropertyTypes.RemoveAt(index);
+					return;
+				case "outputPortTypes":
+					this.outputPortTypes.RemoveAt(index);
+					return;
+				case "outputPropertyNames":
+					this.outputPropertyNames.RemoveAt(index);
+					return;
+				case "outputPropertyTypes":
+					this.outputPropertyTypes.RemoveAt(index);
+					return;
+				default:
+					base.RemovePropertyElement(propertyName, index);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, string key)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.RemovePropertyElement(propertyName, key);
 					return;
 			}
 		}

@@ -105,21 +105,32 @@ namespace Fox.Core
                                     object value = ReadPropertyValue(propertyDef, 0);
                                     entity.SetProperty(propertyName, new Value(value));
                                 }
-                                else if (containerType == PropertyInfo.ContainerType.StringMap)
-                                {
-                                    for (ushort k = 0; k < propertyDef->ArraySize; k++)
-                                    {
-                                        string key = StringTable[ReadPropertyKey(propertyDef, k)];
-                                        object value = ReadPropertyValue(propertyDef, k);
-                                        entity.SetPropertyElement(propertyName, key, new Value(value));
-                                    }
-                                }
                                 else
                                 {
-                                    for (ushort k = 0; k < propertyDef->ArraySize; k++)
+                                    switch (containerType)
                                     {
-                                        object value = ReadPropertyValue(propertyDef, k);
-                                        entity.SetPropertyElement(propertyName, k, new Value(value));
+                                    case PropertyInfo.ContainerType.StaticArray:
+                                        for (ushort k = 0; k < propertyDef->ArraySize; k++)
+                                        {
+                                            object value = ReadPropertyValue(propertyDef, k);
+                                            entity.SetPropertyElement(propertyName, k, new Value(value));
+                                        }
+                                        break;
+                                    case PropertyInfo.ContainerType.DynamicArray:
+                                        for (ushort k = 0; k < propertyDef->ArraySize; k++)
+                                        {
+                                            object value = ReadPropertyValue(propertyDef, k);
+                                            entity.AddPropertyElement(propertyName, k, new Value(value));
+                                        }
+                                        break;
+                                    case PropertyInfo.ContainerType.StringMap:
+                                        for (ushort k = 0; k < propertyDef->ArraySize; k++)
+                                        {
+                                            string key = StringTable[ReadPropertyKey(propertyDef, k)];
+                                            object value = ReadPropertyValue(propertyDef, k);
+                                            entity.AddPropertyElement(propertyName, key, new Value(value));
+                                        }
+                                        break;
                                     }
                                 }
                                 
@@ -137,24 +148,30 @@ namespace Fox.Core
                                 string propertyName = StringTable[propertyDef->Name];
                                 entity.AddDynamicProperty(dataType, propertyName, arraySize, containerType);
 
-                                if (containerType == PropertyInfo.ContainerType.StringMap)
+                                switch (containerType)
                                 {
-                                    for (ushort k = 0; k < propertyDef->ArraySize; k++)
-                                    {
-                                        byte* payload = (byte*)propertyDef + propertyDef->PayloadOffset;
-                                        
-                                        string key = StringTable[*(StrCode*)payload];
-                                        object value = ReadPropertyValue(propertyDef, k);
-                                        entity.SetPropertyElement(propertyName, key, new Value(value));
-                                    }
-                                }
-                                else
-                                {
+                                case PropertyInfo.ContainerType.StaticArray:
                                     for (ushort k = 0; k < propertyDef->ArraySize; k++)
                                     {
                                         object value = ReadPropertyValue(propertyDef, k);
                                         entity.SetPropertyElement(propertyName, k, new Value(value));
                                     }
+                                    break;
+                                case PropertyInfo.ContainerType.DynamicArray:
+                                    for (ushort k = 0; k < propertyDef->ArraySize; k++)
+                                    {
+                                        object value = ReadPropertyValue(propertyDef, k);
+                                        entity.AddPropertyElement(propertyName, k, new Value(value));
+                                    }
+                                    break;
+                                case PropertyInfo.ContainerType.StringMap:
+                                    for (ushort k = 0; k < propertyDef->ArraySize; k++)
+                                    {
+                                        string key = StringTable[ReadPropertyKey(propertyDef, k)];
+                                        object value = ReadPropertyValue(propertyDef, k);
+                                        entity.AddPropertyElement(propertyName, key, new Value(value));
+                                    }
+                                    break;
                                 }
                                 
                                 propertyDef = (DataSetFile2.PropertyDef*)((byte*)propertyDef + propertyDef->NextPropertyOffset);

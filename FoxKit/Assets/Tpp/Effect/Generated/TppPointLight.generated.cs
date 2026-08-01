@@ -73,41 +73,41 @@ namespace Tpp.Effect
 		[field: UnityEngine.SerializeField]
 		public byte lodFadeType { get; set; }
 		
-		public bool enable { get => Get_enable(); set { Set_enable(value); } }
-		private partial bool Get_enable();
-		private partial void Set_enable(bool value);
+		public bool enable { get => enable_Get(); set => enable_Set(value); }
+		private partial bool enable_Get();
+		private partial void enable_Set(bool value);
 		
-		public TppPointLight_PackingGeneration packingGeneration { get => Get_packingGeneration(); set { Set_packingGeneration(value); } }
-		private partial TppPointLight_PackingGeneration Get_packingGeneration();
-		private partial void Set_packingGeneration(TppPointLight_PackingGeneration value);
+		public TppPointLight_PackingGeneration packingGeneration { get => packingGeneration_Get(); set => packingGeneration_Set(value); }
+		private partial TppPointLight_PackingGeneration packingGeneration_Get();
+		private partial void packingGeneration_Set(TppPointLight_PackingGeneration value);
 		
-		public bool castShadow { get => Get_castShadow(); set { Set_castShadow(value); } }
-		private partial bool Get_castShadow();
-		private partial void Set_castShadow(bool value);
+		public bool castShadow { get => castShadow_Get(); set => castShadow_Set(value); }
+		private partial bool castShadow_Get();
+		private partial void castShadow_Set(bool value);
 		
-		public bool isBounced { get => Get_isBounced(); set { Set_isBounced(value); } }
-		private partial bool Get_isBounced();
-		private partial void Set_isBounced(bool value);
+		public bool isBounced { get => isBounced_Get(); set => isBounced_Set(value); }
+		private partial bool isBounced_Get();
+		private partial void isBounced_Set(bool value);
 		
-		public bool showObject { get => Get_showObject(); set { Set_showObject(value); } }
-		private partial bool Get_showObject();
-		private partial void Set_showObject(bool value);
+		public bool showObject { get => showObject_Get(); set => showObject_Set(value); }
+		private partial bool showObject_Get();
+		private partial void showObject_Set(bool value);
 		
-		public bool showRange { get => Get_showRange(); set { Set_showRange(value); } }
-		private partial bool Get_showRange();
-		private partial void Set_showRange(bool value);
+		public bool showRange { get => showRange_Get(); set => showRange_Set(value); }
+		private partial bool showRange_Get();
+		private partial void showRange_Set(bool value);
 		
-		public bool isDebugLightVolumeBounding { get => Get_isDebugLightVolumeBounding(); set { Set_isDebugLightVolumeBounding(value); } }
-		private partial bool Get_isDebugLightVolumeBounding();
-		private partial void Set_isDebugLightVolumeBounding(bool value);
+		public bool isDebugLightVolumeBounding { get => isDebugLightVolumeBounding_Get(); set => isDebugLightVolumeBounding_Set(value); }
+		private partial bool isDebugLightVolumeBounding_Get();
+		private partial void isDebugLightVolumeBounding_Set(bool value);
 		
-		public bool hasSpecular { get => Get_hasSpecular(); set { Set_hasSpecular(value); } }
-		private partial bool Get_hasSpecular();
-		private partial void Set_hasSpecular(bool value);
+		public bool hasSpecular { get => hasSpecular_Get(); set => hasSpecular_Set(value); }
+		private partial bool hasSpecular_Get();
+		private partial void hasSpecular_Set(bool value);
 		
-		public Fox.Path importFilePath { get => Get_importFilePath(); set { Set_importFilePath(value); } }
-		private partial Fox.Path Get_importFilePath();
-		private partial void Set_importFilePath(Fox.Path value);
+		public Fox.Path importFilePath { get => importFilePath_Get(); set => importFilePath_Set(value); }
+		private partial Fox.Path importFilePath_Get();
+		private partial void importFilePath_Set(Fox.Path value);
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -224,7 +224,7 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -335,7 +335,20 @@ namespace Tpp.Effect
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				case "BynaryData":
+					this.BynaryData[index] = value.GetValueAsUInt32();
+					return;
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
 		{
 			switch (propertyName)
 			{
@@ -344,7 +357,7 @@ namespace Tpp.Effect
 					this.BynaryData[index] = value.GetValueAsUInt32();
 					return;
 				default:
-					base.SetPropertyElement(propertyName, index, value);
+					base.AddPropertyElement(propertyName, index, value);
 					return;
 			}
 		}
@@ -355,6 +368,39 @@ namespace Tpp.Effect
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.AddPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, int index)
+		{
+			switch (propertyName)
+			{
+				case "BynaryData":
+					this.BynaryData.RemoveAt(index);
+					return;
+				default:
+					base.RemovePropertyElement(propertyName, index);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, string key)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.RemovePropertyElement(propertyName, key);
 					return;
 			}
 		}

@@ -39,6 +39,7 @@
     <Content Include="EnumsTemplate.txt" />
     <Content Include="FoxKitClassDefinitions.json" />
     <Content Include="TppClassDefinitions.json" />
+    <Content Include="FoxKitEnums.json" />
     <Content Include="TppEnums.json" />
   </ItemGroup>
   <ItemGroup>

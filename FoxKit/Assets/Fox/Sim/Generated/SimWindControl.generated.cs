@@ -19,9 +19,9 @@ namespace Fox.Sim
 		[field: UnityEngine.SerializeField]
 		protected Fox.Sim.SimWindControlParam controlParam { get; set; }
 		
-		public float windCoefficient { get => Get_windCoefficient(); set { Set_windCoefficient(value); } }
-		private partial float Get_windCoefficient();
-		private partial void Set_windCoefficient(float value);
+		public float windCoefficient { get => windCoefficient_Get(); set => windCoefficient_Set(value); }
+		private partial float windCoefficient_Get();
+		private partial void windCoefficient_Set(float value);
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -60,7 +60,7 @@ namespace Fox.Sim
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -94,12 +94,22 @@ namespace Fox.Sim
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
 		{
 			switch (propertyName)
 			{
 				default:
 					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.AddPropertyElement(propertyName, index, value);
 					return;
 			}
 		}
@@ -110,6 +120,36 @@ namespace Fox.Sim
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.AddPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, int index)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.RemovePropertyElement(propertyName, index);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, string key)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.RemovePropertyElement(propertyName, key);
 					return;
 			}
 		}

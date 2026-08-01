@@ -22,13 +22,13 @@ namespace Fox.Sim
 		[field: UnityEngine.SerializeField]
 		public CsSystem.Collections.Generic.List<Fox.Sim.SimClothControlUnit> clothControlUnits { get; private set; } = new CsSystem.Collections.Generic.List<Fox.Sim.SimClothControlUnit>();
 		
-		public float windCoefficient { get => Get_windCoefficient(); set { Set_windCoefficient(value); } }
-		private partial float Get_windCoefficient();
-		private partial void Set_windCoefficient(float value);
+		public float windCoefficient { get => windCoefficient_Get(); set => windCoefficient_Set(value); }
+		private partial float windCoefficient_Get();
+		private partial void windCoefficient_Set(float value);
 		
-		public bool isLoop { get => Get_isLoop(); set { Set_isLoop(value); } }
-		private partial bool Get_isLoop();
-		private partial void Set_isLoop(bool value);
+		public bool isLoop { get => isLoop_Get(); set => isLoop_Set(value); }
+		private partial bool isLoop_Get();
+		private partial void isLoop_Set(bool value);
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -73,7 +73,7 @@ namespace Fox.Sim
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -112,7 +112,20 @@ namespace Fox.Sim
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				case "clothControlUnits":
+					this.clothControlUnits[index] = value.GetValueAsEntityPtr<Fox.Sim.SimClothControlUnit>();
+					return;
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
 		{
 			switch (propertyName)
 			{
@@ -121,7 +134,7 @@ namespace Fox.Sim
 					this.clothControlUnits[index] = value.GetValueAsEntityPtr<Fox.Sim.SimClothControlUnit>();
 					return;
 				default:
-					base.SetPropertyElement(propertyName, index, value);
+					base.AddPropertyElement(propertyName, index, value);
 					return;
 			}
 		}
@@ -132,6 +145,39 @@ namespace Fox.Sim
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.AddPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, int index)
+		{
+			switch (propertyName)
+			{
+				case "clothControlUnits":
+					this.clothControlUnits.RemoveAt(index);
+					return;
+				default:
+					base.RemovePropertyElement(propertyName, index);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, string key)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.RemovePropertyElement(propertyName, key);
 					return;
 			}
 		}

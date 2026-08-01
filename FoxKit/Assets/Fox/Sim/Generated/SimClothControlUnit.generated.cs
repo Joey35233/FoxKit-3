@@ -19,25 +19,25 @@ namespace Fox.Sim
 		[field: UnityEngine.SerializeField]
 		protected Fox.Sim.SimClothControlUnitParam controlUnitParam { get; set; }
 		
-		public float mass { get => Get_mass(); set { Set_mass(value); } }
-		private partial float Get_mass();
-		private partial void Set_mass(float value);
+		public float mass { get => mass_Get(); set => mass_Set(value); }
+		private partial float mass_Get();
+		private partial void mass_Set(float value);
 		
-		public float thickness { get => Get_thickness(); set { Set_thickness(value); } }
-		private partial float Get_thickness();
-		private partial void Set_thickness(float value);
+		public float thickness { get => thickness_Get(); set => thickness_Set(value); }
+		private partial float thickness_Get();
+		private partial void thickness_Set(float value);
 		
-		public float limit { get => Get_limit(); set { Set_limit(value); } }
-		private partial float Get_limit();
-		private partial void Set_limit(float value);
+		public float limit { get => limit_Get(); set => limit_Set(value); }
+		private partial float limit_Get();
+		private partial void limit_Set(float value);
 		
-		public float expansionRatio { get => Get_expansionRatio(); set { Set_expansionRatio(value); } }
-		private partial float Get_expansionRatio();
-		private partial void Set_expansionRatio(float value);
+		public float expansionRatio { get => expansionRatio_Get(); set => expansionRatio_Set(value); }
+		private partial float expansionRatio_Get();
+		private partial void expansionRatio_Set(float value);
 		
-		public float contractionRatio { get => Get_contractionRatio(); set { Set_contractionRatio(value); } }
-		private partial float Get_contractionRatio();
-		private partial void Set_contractionRatio(float value);
+		public float contractionRatio { get => contractionRatio_Get(); set => contractionRatio_Set(value); }
+		private partial float contractionRatio_Get();
+		private partial void contractionRatio_Set(float value);
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -88,7 +88,7 @@ namespace Fox.Sim
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -134,12 +134,22 @@ namespace Fox.Sim
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
 		{
 			switch (propertyName)
 			{
 				default:
 					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.AddPropertyElement(propertyName, index, value);
 					return;
 			}
 		}
@@ -150,6 +160,36 @@ namespace Fox.Sim
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.AddPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, int index)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.RemovePropertyElement(propertyName, index);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, string key)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.RemovePropertyElement(propertyName, key);
 					return;
 			}
 		}

@@ -77,20 +77,20 @@ namespace Tpp.Effect
             HALF_SQUARE = 2,
         }
 
-        private partial bool Get_enable24hSH() => FlagUtils.GetFlag(localFlags, 0);
-        private partial void Set_enable24hSH(bool value) => localFlags = FlagUtils.SetFlag(localFlags, 0, value);
+        private partial bool enable24hSH_Get() => FlagUtils.GetFlag(localFlags, 0);
+        private partial void enable24hSH_Set(bool value) => localFlags = FlagUtils.SetFlag(localFlags, 0, value);
 
-        private partial bool Get_enableWeatherSH() => FlagUtils.GetFlag(localFlags, 1);
-        private partial void Set_enableWeatherSH(bool value) => localFlags = FlagUtils.SetFlag(localFlags, 1, value);
+        private partial bool enableWeatherSH_Get() => FlagUtils.GetFlag(localFlags, 1);
+        private partial void enableWeatherSH_Set(bool value) => localFlags = FlagUtils.SetFlag(localFlags, 1, value);
 
-        private partial bool Get_enableRelatedLightSH() => FlagUtils.GetFlag(localFlags, 2);
-        private partial void Set_enableRelatedLightSH(bool value) => localFlags = FlagUtils.SetFlag(localFlags, 2, value);
+        private partial bool enableRelatedLightSH_Get() => FlagUtils.GetFlag(localFlags, 2);
+        private partial void enableRelatedLightSH_Set(bool value) => localFlags = FlagUtils.SetFlag(localFlags, 2, value);
 
-        private partial bool Get_enableOcclusionMode() => FlagUtils.GetFlag(localFlags, 3);
-        private partial void Set_enableOcclusionMode(bool value) => localFlags = FlagUtils.SetFlag(localFlags, 3, value);
+        private partial bool enableOcclusionMode_Get() => FlagUtils.GetFlag(localFlags, 3);
+        private partial void enableOcclusionMode_Set(bool value) => localFlags = FlagUtils.SetFlag(localFlags, 3, value);
 
-        private partial TppLightProbe_PackingGeneration Get_packingGeneration() => throw new CsSystem.NotImplementedException();
-        private partial void Set_packingGeneration(TppLightProbe_PackingGeneration value) => throw new CsSystem.NotImplementedException();
+        private partial TppLightProbe_PackingGeneration packingGeneration_Get() => throw new CsSystem.NotImplementedException();
+        private partial void packingGeneration_Set(TppLightProbe_PackingGeneration value) => throw new CsSystem.NotImplementedException();
 
         public override void OnDeserializeEntity(TaskLogger logger)
         {

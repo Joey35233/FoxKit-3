@@ -19,85 +19,85 @@ namespace Fox.Ph
 		[field: UnityEngine.SerializeField]
 		protected Fox.Ph.PhRigidBodyParam param { get; set; }
 		
-		public UnityEngine.Vector3 defaultPosition { get => Get_defaultPosition(); set { Set_defaultPosition(value); } }
-		private partial UnityEngine.Vector3 Get_defaultPosition();
-		private partial void Set_defaultPosition(UnityEngine.Vector3 value);
+		public UnityEngine.Vector3 defaultPosition { get => defaultPosition_Get(); set => defaultPosition_Set(value); }
+		private partial UnityEngine.Vector3 defaultPosition_Get();
+		private partial void defaultPosition_Set(UnityEngine.Vector3 value);
 		
-		public UnityEngine.Quaternion defaultRotation { get => Get_defaultRotation(); set { Set_defaultRotation(value); } }
-		private partial UnityEngine.Quaternion Get_defaultRotation();
-		private partial void Set_defaultRotation(UnityEngine.Quaternion value);
+		public UnityEngine.Quaternion defaultRotation { get => defaultRotation_Get(); set => defaultRotation_Set(value); }
+		private partial UnityEngine.Quaternion defaultRotation_Get();
+		private partial void defaultRotation_Set(UnityEngine.Quaternion value);
 		
-		public float mass { get => Get_mass(); set { Set_mass(value); } }
-		private partial float Get_mass();
-		private partial void Set_mass(float value);
+		public float mass { get => mass_Get(); set => mass_Set(value); }
+		private partial float mass_Get();
+		private partial void mass_Set(float value);
 		
-		public float friction { get => Get_friction(); set { Set_friction(value); } }
-		private partial float Get_friction();
-		private partial void Set_friction(float value);
+		public float friction { get => friction_Get(); set => friction_Set(value); }
+		private partial float friction_Get();
+		private partial void friction_Set(float value);
 		
-		public float restitution { get => Get_restitution(); set { Set_restitution(value); } }
-		private partial float Get_restitution();
-		private partial void Set_restitution(float value);
+		public float restitution { get => restitution_Get(); set => restitution_Set(value); }
+		private partial float restitution_Get();
+		private partial void restitution_Set(float value);
 		
-		public float maxLinearVelocity { get => Get_maxLinearVelocity(); set { Set_maxLinearVelocity(value); } }
-		private partial float Get_maxLinearVelocity();
-		private partial void Set_maxLinearVelocity(float value);
+		public float maxLinearVelocity { get => maxLinearVelocity_Get(); set => maxLinearVelocity_Set(value); }
+		private partial float maxLinearVelocity_Get();
+		private partial void maxLinearVelocity_Set(float value);
 		
-		public float maxAngularVelocity { get => Get_maxAngularVelocity(); set { Set_maxAngularVelocity(value); } }
-		private partial float Get_maxAngularVelocity();
-		private partial void Set_maxAngularVelocity(float value);
+		public float maxAngularVelocity { get => maxAngularVelocity_Get(); set => maxAngularVelocity_Set(value); }
+		private partial float maxAngularVelocity_Get();
+		private partial void maxAngularVelocity_Set(float value);
 		
-		public float linearVelocityDamp { get => Get_linearVelocityDamp(); set { Set_linearVelocityDamp(value); } }
-		private partial float Get_linearVelocityDamp();
-		private partial void Set_linearVelocityDamp(float value);
+		public float linearVelocityDamp { get => linearVelocityDamp_Get(); set => linearVelocityDamp_Set(value); }
+		private partial float linearVelocityDamp_Get();
+		private partial void linearVelocityDamp_Set(float value);
 		
-		public float angularVelocityDamp { get => Get_angularVelocityDamp(); set { Set_angularVelocityDamp(value); } }
-		private partial float Get_angularVelocityDamp();
-		private partial void Set_angularVelocityDamp(float value);
+		public float angularVelocityDamp { get => angularVelocityDamp_Get(); set => angularVelocityDamp_Set(value); }
+		private partial float angularVelocityDamp_Get();
+		private partial void angularVelocityDamp_Set(float value);
 		
-		public float permittedDepth { get => Get_permittedDepth(); set { Set_permittedDepth(value); } }
-		private partial float Get_permittedDepth();
-		private partial void Set_permittedDepth(float value);
+		public float permittedDepth { get => permittedDepth_Get(); set => permittedDepth_Set(value); }
+		private partial float permittedDepth_Get();
+		private partial void permittedDepth_Set(float value);
 		
-		public bool sleepEnable { get => Get_sleepEnable(); set { Set_sleepEnable(value); } }
-		private partial bool Get_sleepEnable();
-		private partial void Set_sleepEnable(bool value);
+		public bool sleepEnable { get => sleepEnable_Get(); set => sleepEnable_Set(value); }
+		private partial bool sleepEnable_Get();
+		private partial void sleepEnable_Set(bool value);
 		
-		public float sleepLinearVelocityTh { get => Get_sleepLinearVelocityTh(); set { Set_sleepLinearVelocityTh(value); } }
-		private partial float Get_sleepLinearVelocityTh();
-		private partial void Set_sleepLinearVelocityTh(float value);
+		public float sleepLinearVelocityTh { get => sleepLinearVelocityTh_Get(); set => sleepLinearVelocityTh_Set(value); }
+		private partial float sleepLinearVelocityTh_Get();
+		private partial void sleepLinearVelocityTh_Set(float value);
 		
-		public float sleepAngularVelocityTh { get => Get_sleepAngularVelocityTh(); set { Set_sleepAngularVelocityTh(value); } }
-		private partial float Get_sleepAngularVelocityTh();
-		private partial void Set_sleepAngularVelocityTh(float value);
+		public float sleepAngularVelocityTh { get => sleepAngularVelocityTh_Get(); set => sleepAngularVelocityTh_Set(value); }
+		private partial float sleepAngularVelocityTh_Get();
+		private partial void sleepAngularVelocityTh_Set(float value);
 		
-		public float sleepTimeTh { get => Get_sleepTimeTh(); set { Set_sleepTimeTh(value); } }
-		private partial float Get_sleepTimeTh();
-		private partial void Set_sleepTimeTh(float value);
+		public float sleepTimeTh { get => sleepTimeTh_Get(); set => sleepTimeTh_Set(value); }
+		private partial float sleepTimeTh_Get();
+		private partial void sleepTimeTh_Set(float value);
 		
-		public ushort collisionGroup { get => Get_collisionGroup(); set { Set_collisionGroup(value); } }
-		private partial ushort Get_collisionGroup();
-		private partial void Set_collisionGroup(ushort value);
+		public ushort collisionGroup { get => collisionGroup_Get(); set => collisionGroup_Set(value); }
+		private partial ushort collisionGroup_Get();
+		private partial void collisionGroup_Set(ushort value);
 		
-		public ushort collisionType { get => Get_collisionType(); set { Set_collisionType(value); } }
-		private partial ushort Get_collisionType();
-		private partial void Set_collisionType(ushort value);
+		public ushort collisionType { get => collisionType_Get(); set => collisionType_Set(value); }
+		private partial ushort collisionType_Get();
+		private partial void collisionType_Set(ushort value);
 		
-		public uint collisionId { get => Get_collisionId(); set { Set_collisionId(value); } }
-		private partial uint Get_collisionId();
-		private partial void Set_collisionId(uint value);
+		public uint collisionId { get => collisionId_Get(); set => collisionId_Set(value); }
+		private partial uint collisionId_Get();
+		private partial void collisionId_Set(uint value);
 		
-		public UnityEngine.Vector3 centerOfMassOffset { get => Get_centerOfMassOffset(); set { Set_centerOfMassOffset(value); } }
-		private partial UnityEngine.Vector3 Get_centerOfMassOffset();
-		private partial void Set_centerOfMassOffset(UnityEngine.Vector3 value);
+		public UnityEngine.Vector3 centerOfMassOffset { get => centerOfMassOffset_Get(); set => centerOfMassOffset_Set(value); }
+		private partial UnityEngine.Vector3 centerOfMassOffset_Get();
+		private partial void centerOfMassOffset_Set(UnityEngine.Vector3 value);
 		
-		public PhRigidBodyType motionType { get => Get_motionType(); set { Set_motionType(value); } }
-		private partial PhRigidBodyType Get_motionType();
-		private partial void Set_motionType(PhRigidBodyType value);
+		public PhRigidBodyType motionType { get => motionType_Get(); set => motionType_Set(value); }
+		private partial PhRigidBodyType motionType_Get();
+		private partial void motionType_Set(PhRigidBodyType value);
 		
-		public string material { get => Get_material(); set { Set_material(value); } }
-		private partial string Get_material();
-		private partial void Set_material(string value);
+		public string material { get => material_Get(); set => material_Set(value); }
+		private partial string material_Get();
+		private partial void material_Set(string value);
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -193,7 +193,7 @@ namespace Fox.Ph
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -284,12 +284,22 @@ namespace Fox.Ph
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
 		{
 			switch (propertyName)
 			{
 				default:
 					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.AddPropertyElement(propertyName, index, value);
 					return;
 			}
 		}
@@ -300,6 +310,36 @@ namespace Fox.Ph
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.AddPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, int index)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.RemovePropertyElement(propertyName, index);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, string key)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.RemovePropertyElement(propertyName, key);
 					return;
 			}
 		}

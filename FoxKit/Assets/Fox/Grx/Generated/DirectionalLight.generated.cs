@@ -70,29 +70,29 @@ namespace Fox.Grx
 		[field: UnityEngine.SerializeField]
 		protected uint lightFlags { get; set; }
 		
-		public bool enable { get => Get_enable(); set { Set_enable(value); } }
-		private partial bool Get_enable();
-		private partial void Set_enable(bool value);
+		public bool enable { get => enable_Get(); set => enable_Set(value); }
+		private partial bool enable_Get();
+		private partial void enable_Set(bool value);
 		
-		public bool isCascadeBlend { get => Get_isCascadeBlend(); set { Set_isCascadeBlend(value); } }
-		private partial bool Get_isCascadeBlend();
-		private partial void Set_isCascadeBlend(bool value);
+		public bool isCascadeBlend { get => isCascadeBlend_Get(); set => isCascadeBlend_Set(value); }
+		private partial bool isCascadeBlend_Get();
+		private partial void isCascadeBlend_Set(bool value);
 		
-		public bool castShadow { get => Get_castShadow(); set { Set_castShadow(value); } }
-		private partial bool Get_castShadow();
-		private partial void Set_castShadow(bool value);
+		public bool castShadow { get => castShadow_Get(); set => castShadow_Set(value); }
+		private partial bool castShadow_Get();
+		private partial void castShadow_Set(bool value);
 		
-		public bool isBounced { get => Get_isBounced(); set { Set_isBounced(value); } }
-		private partial bool Get_isBounced();
-		private partial void Set_isBounced(bool value);
+		public bool isBounced { get => isBounced_Get(); set => isBounced_Set(value); }
+		private partial bool isBounced_Get();
+		private partial void isBounced_Set(bool value);
 		
-		public bool showObject { get => Get_showObject(); set { Set_showObject(value); } }
-		private partial bool Get_showObject();
-		private partial void Set_showObject(bool value);
+		public bool showObject { get => showObject_Get(); set => showObject_Set(value); }
+		private partial bool showObject_Get();
+		private partial void showObject_Set(bool value);
 		
-		public bool enableDistanceFade { get => Get_enableDistanceFade(); set { Set_enableDistanceFade(value); } }
-		private partial bool Get_enableDistanceFade();
-		private partial void Set_enableDistanceFade(bool value);
+		public bool enableDistanceFade { get => enableDistanceFade_Get(); set => enableDistanceFade_Set(value); }
+		private partial bool enableDistanceFade_Get();
+		private partial void enableDistanceFade_Set(bool value);
 		
 		// ClassInfos
 		public static new bool ClassInfoInitialized = false;
@@ -197,7 +197,7 @@ namespace Fox.Grx
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -297,12 +297,22 @@ namespace Fox.Grx
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
 		{
 			switch (propertyName)
 			{
 				default:
 					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.AddPropertyElement(propertyName, index, value);
 					return;
 			}
 		}
@@ -313,6 +323,36 @@ namespace Fox.Grx
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.AddPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, int index)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.RemovePropertyElement(propertyName, index);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, string key)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.RemovePropertyElement(propertyName, key);
 					return;
 			}
 		}

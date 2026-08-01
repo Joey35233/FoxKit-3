@@ -71,7 +71,7 @@ namespace Fox.Gr
 			}
 		}
 
-		public override Fox.Core.Value GetPropertyElement(string propertyName, ushort index)
+		public override Fox.Core.Value GetPropertyElement(string propertyName, int index)
 		{
 			switch (propertyName)
 			{
@@ -107,7 +107,29 @@ namespace Fox.Gr
 			}
 		}
 
-		public override void SetPropertyElement(string propertyName, ushort index, Fox.Core.Value value)
+		public override void SetPropertyElement(string propertyName, int index, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				case "slot0":
+					this.slot0[index] = value.GetValueAsUInt32();
+					return;
+				case "slot1":
+					this.slot1[index] = value.GetValueAsUInt32();
+					return;
+				case "slot2":
+					this.slot2[index] = value.GetValueAsUInt32();
+					return;
+				case "slot3":
+					this.slot3[index] = value.GetValueAsUInt32();
+					return;
+				default:
+					base.SetPropertyElement(propertyName, index, value);
+					return;
+			}
+		}
+
+		public override void AddPropertyElement(string propertyName, int index, Fox.Core.Value value)
 		{
 			switch (propertyName)
 			{
@@ -128,7 +150,7 @@ namespace Fox.Gr
 					this.slot3[index] = value.GetValueAsUInt32();
 					return;
 				default:
-					base.SetPropertyElement(propertyName, index, value);
+					base.AddPropertyElement(propertyName, index, value);
 					return;
 			}
 		}
@@ -139,6 +161,48 @@ namespace Fox.Gr
 			{
 				default:
 					base.SetPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void AddPropertyElement(string propertyName, string key, Fox.Core.Value value)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.AddPropertyElement(propertyName, key, value);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, int index)
+		{
+			switch (propertyName)
+			{
+				case "slot0":
+					this.slot0.RemoveAt(index);
+					return;
+				case "slot1":
+					this.slot1.RemoveAt(index);
+					return;
+				case "slot2":
+					this.slot2.RemoveAt(index);
+					return;
+				case "slot3":
+					this.slot3.RemoveAt(index);
+					return;
+				default:
+					base.RemovePropertyElement(propertyName, index);
+					return;
+			}
+		}
+
+		public override void RemovePropertyElement(string propertyName, string key)
+		{
+			switch (propertyName)
+			{
+				default:
+					base.RemovePropertyElement(propertyName, key);
 					return;
 			}
 		}

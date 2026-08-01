@@ -57,7 +57,6 @@ namespace Fox.Geox
 
             GeoxPath2 path = new GameObject().AddComponent<GeoxPath2>();
             path.SetTransform(TransformEntity.GetDefault());
-            bool transformSet = false;
 
             TagUtils.AddEnumTags<Tags>(path.tags, (ulong)header.GetTags<Tags>());
 
@@ -94,17 +93,7 @@ namespace Fox.Geox
 
                     reader.Seek(header.Position + header.VertexBufferOffset + (16 * inNodeIndex));
                     node.position = reader.ReadPositionF();
-
-                    if (!transformSet)
-                    {
-                        path.transform.position = node.position;
-                        node.position = Vector3.zero;
-                        transformSet = true;
-                    }
-                    else
-                    {
-                        node.position -= path.transform.position;
-                    }
+                    node.transform.position = node.position;
 
                     TagUtils.AddEnumTags<GeoxPathNode.Tags>(node.nodeTags, reader.ReadUInt32());
 
@@ -126,17 +115,7 @@ namespace Fox.Geox
 
                     reader.Seek(header.Position + header.VertexBufferOffset + (16 * outNodeIndex));
                     node.position = reader.ReadPositionF();
-
-                    if (!transformSet)
-                    {
-                        path.transform.position = node.position;
-                        node.position = Vector3.zero;
-                        transformSet = true;
-                    }
-                    else
-                    {
-                        node.position -= path.transform.position;
-                    }
+                    node.transform.position = node.position;
 
                     TagUtils.AddEnumTags<GeoxPathNode.Tags>(node.nodeTags, reader.ReadUInt32());
 

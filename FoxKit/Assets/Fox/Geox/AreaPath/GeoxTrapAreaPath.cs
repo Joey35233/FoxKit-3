@@ -38,8 +38,6 @@ namespace Fox.Geox
                 {
                     GeoxTrapAreaPath trapAreaPath = new GameObject($"{header.Name.ToString()}|GeoxTrapAreaPath{i:D4}").AddComponent<GeoxTrapAreaPath>();
                     trapAreaPath.SetTransform(TransformEntity.GetDefault());
-                    trapAreaPath.transform.position = new Vector3(0, yMin, 0);
-                    bool transformSet = false;
 
                     trapAreaPath.height = yMax - yMin;
 
@@ -53,17 +51,7 @@ namespace Fox.Geox
                         node.SetOwner(trapAreaPath);
                         node.name = $"{node.GetType().Name}{j:D4}";
                         node.position = reader.ReadPositionF();
-
-                        if (!transformSet)
-                        {
-                            trapAreaPath.transform.position = new Vector3(node.position.x, yMin, node.position.z);
-                            node.position = new Vector3(0, node.position.y - yMin, 0);
-                            transformSet = true;
-                        }
-                        else
-                        {
-                            node.position -= trapAreaPath.transform.position;
-                        }
+                        node.transform.position = node.position;
 
                         trapAreaPath.nodes.Add(node);
                     }
@@ -108,43 +96,53 @@ namespace Fox.Geox
             return triggerTrap;
         }
 
+        public const uint MaxNodeCount = 256;
+
+        private void OnValidate()
+        {
+            if (nodes.Count > MaxNodeCount)
+            {
+                Debug.Log("TrapAreaPath has a max node count of 256 per fox::geox::GeoxTrapAreaFunctor::GetTrapAreaPathInfo.");
+                
+                for (int i = nodes.Count - 1; i >= MaxNodeCount; i--)
+                    RemoveNode(nodes[i]);
+            }
+        }
+
         private static readonly Color Color = Color.red;
         public override Type GetNodeType() => typeof(GraphxSpatialGraphDataNode);
 
         public void DrawGizmos(bool isSelected)
         {
-            if (gameObject.GetComponent<GeoxTrapAreaPath>() is not { } trapPath)
+            if (nodes.Count < 0)
                 return;
-
-            Gizmos.matrix = Matrix4x4.identity;
+            
             Gizmos.color = isSelected ? Color.white : Color;
+            
+            float minHeight = nodes[0].transform.position.y;
+            for (int i = 1; i < nodes.Count; i++)
+            {
+                float y = nodes[i].transform.position.y;
+                if (y < minHeight)
+                    minHeight = y;
+            }
 
-            foreach (GraphxSpatialGraphDataEdge edgePtr in trapPath.edges)
+            foreach (GraphxSpatialGraphDataEdge edgePtr in edges)
             {
                 GraphxSpatialGraphDataEdge edge = edgePtr;
-                var prevNode = edge.prevNode as GraphxSpatialGraphDataNode;
-                var nextNode = edge.nextNode as GraphxSpatialGraphDataNode;
 
-                float yMin = this.transform.position.y;
-                float yMax = this.transform.TransformPoint(new Vector3(0, trapPath.height, 0)).y;
+                Vector3 prevNodePos = edge.prevNode.transform.position;
+                Vector3 nextNodePos = edge.nextNode.transform.position;
 
-                Vector3 prevNodePos = this.transform.TransformPoint(prevNode.position);
-                Vector3 nextNodePos = this.transform.TransformPoint(nextNode.position);
+                Gizmos.DrawLine(new Vector3(prevNodePos.x, minHeight, prevNodePos.z), new Vector3(nextNodePos.x, minHeight, nextNodePos.z));
+                Gizmos.DrawLine(new Vector3(prevNodePos.x, minHeight + height, prevNodePos.z), new Vector3(nextNodePos.x, minHeight + height, nextNodePos.z));
 
-                float prevNodex = this.transform.position.x + prevNode.position.x;
-                float prevNodez = this.transform.position.z + prevNode.position.z;
-                float nextNodex = this.transform.position.x + nextNode.position.x;
-                float nextNodez = this.transform.position.z + nextNode.position.z;
-
-                Gizmos.DrawLine(new Vector3(prevNodePos.x, yMin, prevNodePos.z), new Vector3(nextNodePos.x, yMin, nextNodePos.z));
-                Gizmos.DrawLine(new Vector3(prevNodePos.x, yMax, prevNodePos.z), new Vector3(nextNodePos.x, yMax, nextNodePos.z));
-
-                Gizmos.DrawLine(new Vector3(nextNodePos.x, yMin, nextNodePos.z), new Vector3(nextNodePos.x, yMax, nextNodePos.z));
+                Gizmos.DrawLine(new Vector3(nextNodePos.x, minHeight, nextNodePos.z), new Vector3(nextNodePos.x, minHeight + height, nextNodePos.z));
             }
         }
 
-        public void OnDrawGizmos() => DrawGizmos(false);
+        public new void OnDrawGizmos() => DrawGizmos(false);
 
-        public void OnDrawGizmosSelected() => DrawGizmos(true);
+        public new void OnDrawGizmosSelected() => DrawGizmos(true);
     }
 }

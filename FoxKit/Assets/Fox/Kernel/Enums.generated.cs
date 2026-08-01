@@ -12,8 +12,8 @@ using System.ComponentModel;
 
 namespace Fox
 {
-
-
+	
+	
     public enum GrxLineSSAOParameters_BlurMode : int
     {
 		[Description("SIMPLE_BLUR")]
@@ -21,8 +21,8 @@ namespace Fox
 		[Description("BILATERAL_BLUR")]
         BILATERAL_BLUR = 1,
     }
-
-
+	
+	
     public enum UiCameraDataFov : int
     {
 		[Description("FOV_DIAGONAL")]
@@ -32,15 +32,15 @@ namespace Fox
 		[Description("FOV_VERTICAL")]
         FOV_VERTICAL = 2,
     }
-
-
+	
+	
     public enum UiCameraDataFlag : int
     {
 		[Description("FLAG_DISP_INFO")]
         FLAG_DISP_INFO = 2,
     }
-
-
+	
+	
     public enum StaticModel_DrawRejectionLevel : int
     {
 		[Description("LEVEL0(size:0.5m)")]
@@ -62,8 +62,8 @@ namespace Fox
 		[Description("DEFAULT")]
         DEFAULT = 8,
     }
-
-
+	
+	
     public enum StaticModel_DrawMode : int
     {
 		[Description("NORMAL")]
@@ -73,8 +73,8 @@ namespace Fox
 		[Description("DISABLE_SHADOW")]
         DISABLE_SHADOW = 2,
     }
-
-
+	
+	
     public enum StaticModel_RejectFarRangeShadowCast : int
     {
 		[Description("NO_REJECT")]
@@ -84,8 +84,8 @@ namespace Fox
 		[Description("DEFAULT")]
         DEFAULT = 2,
     }
-
-
+	
+	
     public enum TerrainDecal_DrawRejectionLevel : int
     {
 		[Description("LEVEL0(size:0.5m)")]
@@ -101,8 +101,8 @@ namespace Fox
 		[Description("NO_REJECT")]
         NO_REJECT = 5,
     }
-
-
+	
+	
     public enum SimLodLevelName : int
     {
 		[Description("SIM_UPDATE_2X")]
@@ -112,7 +112,7 @@ namespace Fox
 		[Description("SIM_UPDATE_SIMPLE")]
         SIM_UPDATE_SIMPLE = 2,
     }
-
+	
 	[Flags]
     public enum TransformData_Flags : uint
     {
@@ -126,11 +126,11 @@ namespace Fox
         UNKNOWN1 = 134217728,
 		[Description("UNKNOWN3")]
         UNKNOWN3 = 1073741824,
-        [Description("UNKNOWN2")]
+		[Description("UNKNOWN2")]
         UNKNOWN2 = 2147483648,
     }
-
-
+	
+	
     public enum BlockGroupData_ByteOrder : int
     {
 		[Description("B")]
@@ -140,8 +140,8 @@ namespace Fox
 		[Description("MB")]
         MB = 2,
     }
-
-
+	
+	
     public enum Utility_InterpType : int
     {
 		[Description("INTERP_TYPE_NONE")]
@@ -153,8 +153,8 @@ namespace Fox
 		[Description("INTERP_TYPE_SCURVE")]
         INTERP_TYPE_SCURVE = 3,
     }
-
-
+	
+	
     public enum DemoStreamAnimation_LocatorType : int
     {
 		[Description("LOCATOR_TYPE_NONE")]
@@ -166,8 +166,8 @@ namespace Fox
 		[Description("LOCATOR_TYPE_PARTS")]
         LOCATOR_TYPE_PARTS = 3,
     }
-
-
+	
+	
     public enum DemoStreamAnimation_CameraType : int
     {
 		[Description("CAMERA_TYPE_NONE")]
@@ -175,8 +175,8 @@ namespace Fox
 		[Description("CAMERA_TYPE_NORMAL")]
         CAMERA_TYPE_NORMAL = 1,
     }
-
-
+	
+	
     public enum StaticModelArray_DrawRejectionLevel : int
     {
 		[Description("LEVEL0(size:0.5m)")]
@@ -198,8 +198,8 @@ namespace Fox
 		[Description("DEFAULT")]
         DEFAULT = 8,
     }
-
-
+	
+	
     public enum StaticModelArray_DrawMode : int
     {
 		[Description("NORMAL")]
@@ -209,8 +209,8 @@ namespace Fox
 		[Description("DISABLE_SHADOW")]
         DISABLE_SHADOW = 2,
     }
-
-
+	
+	
     public enum StaticModelArray_RejectFarRangeShadowCast : int
     {
 		[Description("NO_REJECT")]
@@ -220,8 +220,8 @@ namespace Fox
 		[Description("DEFAULT")]
         DEFAULT = 2,
     }
-
-
+	
+	
     public enum OrthogonalCamera_ViewType : int
     {
 		[Description("VIEW_FRONT")]
@@ -231,8 +231,8 @@ namespace Fox
 		[Description("VIEW_TOP")]
         VIEW_TOP = 2,
     }
-
-
+	
+	
     public enum Decal_ProjectionMode : int
     {
 		[Description("PROJECTION_ORTHOGRAPHIC")]
@@ -242,8 +242,8 @@ namespace Fox
 		[Description("MAP_CYLINDRICAL")]
         MAP_CYLINDRICAL = 2,
     }
-
-
+	
+	
     public enum Decal_ProjectionTarget : int
     {
 		[Description("PROJECTION_ANY_SURFACE")]
@@ -251,8 +251,8 @@ namespace Fox
 		[Description("PROJECTION_TARGETS_ONLY")]
         PROJECTION_TARGETS_ONLY = 1,
     }
-
-
+	
+	
     public enum Decal_PolygonDataSource : int
     {
 		[Description("CHARA_COLLISION_DATA")]
@@ -260,8 +260,8 @@ namespace Fox
 		[Description("RECOIL_COLLISION_DATA")]
         RECOIL_COLLISION_DATA = 1,
     }
-
-
+	
+	
     public enum Decal_DrawRejectionLevel : int
     {
 		[Description("LEVEL0(size:0.5m)")]
@@ -277,8 +277,8 @@ namespace Fox
 		[Description("NO_REJECT")]
         NO_REJECT = 5,
     }
-
-
+	
+	
     public enum DecalArray_ProjectionMode : int
     {
 		[Description("PROJECTION_ORTHOGRAPHIC")]
@@ -288,8 +288,8 @@ namespace Fox
 		[Description("MAP_CYLINDRICAL")]
         MAP_CYLINDRICAL = 2,
     }
-
-
+	
+	
     public enum DecalArray_ProjectionTarget : int
     {
 		[Description("PROJECTION_ANY_SURFACE")]
@@ -297,8 +297,8 @@ namespace Fox
 		[Description("PROJECTION_TARGETS_ONLY")]
         PROJECTION_TARGETS_ONLY = 1,
     }
-
-
+	
+	
     public enum DecalArray_PolygonDataSource : int
     {
 		[Description("CHARA_COLLISION_DATA")]
@@ -306,8 +306,8 @@ namespace Fox
 		[Description("RECOIL_COLLISION_DATA")]
         RECOIL_COLLISION_DATA = 1,
     }
-
-
+	
+	
     public enum DecalArray_DrawRejectionLevel : int
     {
 		[Description("LEVEL0(size:0.5m)")]
@@ -323,8 +323,8 @@ namespace Fox
 		[Description("NO_REJECT")]
         NO_REJECT = 5,
     }
-
-
+	
+	
     public enum LevelType : int
     {
 		[Description("SQUARE")]
@@ -334,8 +334,8 @@ namespace Fox
 		[Description("PATH")]
         PATH = 2,
     }
-
-
+	
+	
     public enum WolrdTerrainTextureMode : int
     {
 		[Description("NONE")]
@@ -345,8 +345,8 @@ namespace Fox
 		[Description("NEW")]
         NEW = 2,
     }
-
-
+	
+	
     public enum DrawRejectionLevel : int
     {
 		[Description("LEVEL0(size:0.5m)")]
@@ -362,8 +362,8 @@ namespace Fox
 		[Description("NO_REJECT")]
         NO_REJECT = 5,
     }
-
-
+	
+	
     public enum ObjectBrushPluginClone_ModelRejectionLevel : int
     {
 		[Description("LEVEL0(size:400pixel)")]
@@ -391,8 +391,8 @@ namespace Fox
 		[Description("LEVEL MASSIVE GRASS")]
         LEVEL_MASSIVE_GRASS = 11,
     }
-
-
+	
+	
     public enum ViewGroupControlCondition_Condition : int
     {
 		[Description("Visible")]
@@ -400,8 +400,8 @@ namespace Fox
 		[Description("Invisible")]
         Invisible = 1,
     }
-
-
+	
+	
     public enum Watermark_StandardMode : int
     {
 		[Description("LEFT_TOP")]
@@ -413,8 +413,8 @@ namespace Fox
 		[Description("RIGHT_BOTTOM")]
         RIGHT_BOTTOM = 3,
     }
-
-
+	
+	
     public enum SequenceState : int
     {
 		[Description("STATE_CREATED")]
@@ -434,8 +434,8 @@ namespace Fox
 		[Description("STATE_LEAVE_GAMEOVER")]
         STATE_LEAVE_GAMEOVER = 7,
     }
-
-
+	
+	
     public enum SubtitlesGenerator_TextHorizontalAlign : int
     {
 		[Description("TEXT_LEFT")]
@@ -445,8 +445,8 @@ namespace Fox
 		[Description("TEXT_RIGHT")]
         TEXT_RIGHT = 2,
     }
-
-
+	
+	
     public enum SubtitlesGenerator_TextVerticalAlign : int
     {
 		[Description("VERTICAL_TOP")]
@@ -456,8 +456,8 @@ namespace Fox
 		[Description("VERTICAL_BOTTOM")]
         VERTICAL_BOTTOM = 2,
     }
-
-
+	
+	
     public enum SubtitlesGenerator_TextBoxAlign : int
     {
 		[Description("BOX_LEFT")]
@@ -469,8 +469,8 @@ namespace Fox
 		[Description("BOX_NONE")]
         BOX_NONE = 3,
     }
-
-
+	
+	
     public enum ModelDescription_DrawRejectionLevel : int
     {
 		[Description("LEVEL0(size:0.5m)")]
@@ -492,8 +492,8 @@ namespace Fox
 		[Description("DEFAULT")]
         DEFAULT = 8,
     }
-
-
+	
+	
     public enum ModelDescription_RejectFarRangeShadowCast : int
     {
 		[Description("NO_REJECT")]
@@ -503,8 +503,8 @@ namespace Fox
 		[Description("DEFAULT")]
         DEFAULT = 2,
     }
-
-
+	
+	
     public enum EffectKind : int
     {
 		[Description("NORMAL")]
@@ -514,8 +514,8 @@ namespace Fox
 		[Description("ROTATION_OFFSET")]
         ROTATION_OFFSET = 2,
     }
-
-
+	
+	
     public enum GkTacticalActionDirection : int
     {
 		[Description("TACTICAL_ACTION_ONE_WAY_01")]
@@ -525,8 +525,8 @@ namespace Fox
 		[Description("TACTICAL_ACTION_BOTH_WAYS")]
         TACTICAL_ACTION_BOTH_WAYS = 2,
     }
-
-
+	
+	
     public enum MbConstructDataType : int
     {
 		[Description("PLANT_HQ")]
@@ -544,8 +544,8 @@ namespace Fox
 		[Description("PREREQUISIT_DUMMY")]
         PREREQUISIT_DUMMY = 6,
     }
-
-
+	
+	
     public enum TppGameStatusFlag : int
     {
 		[Description("S_DISABLE_TARGET")]
@@ -625,8 +625,8 @@ namespace Fox
 		[Description("S_DISABLE_KEYBOARD")]
         S_DISABLE_KEYBOARD = 36,
     }
-
-
+	
+	
     public enum MGS_LadderEntryType : int
     {
 		[Description("Bottom")]
@@ -634,8 +634,8 @@ namespace Fox
 		[Description("Top")]
         Top = 2,
     }
-
-
+	
+	
     public enum TppTrapEnvironmentType : int
     {
 		[Description("ENV_TYPE_NORMAL")]
@@ -645,8 +645,8 @@ namespace Fox
 		[Description("ENV_TYPE_FIRE")]
         ENV_TYPE_FIRE = 1,
     }
-
-
+	
+	
     public enum TppDemoParameter_WeatherType : int
     {
 		[Description("WEATHER_TYPE_IGNORE")]
@@ -662,8 +662,8 @@ namespace Fox
 		[Description("WEATHER_TYPE_FOGGY")]
         WEATHER_TYPE_FOGGY = 5,
     }
-
-
+	
+	
     public enum EyelidFilterStateMngState : int
     {
 		[Description("EVENT_STATUS_NONE")]
@@ -673,8 +673,8 @@ namespace Fox
 		[Description("EVENT_STATUS_AWAKENING_2DAY")]
         EVENT_STATUS_AWAKENING_2DAY = 2,
     }
-
-
+	
+	
     public enum TppEyelidFilterState : int
     {
 		[Description("EYELID_STATE_DEMO_CONTROL")]
@@ -686,8 +686,8 @@ namespace Fox
 		[Description("EYELID_STATE_CLOSE")]
         EYELID_STATE_CLOSE = 3,
     }
-
-
+	
+	
     public enum TppWaterBoundingType : int
     {
 		[Description("TYPE_WATER")]
@@ -697,8 +697,8 @@ namespace Fox
 		[Description("TYPE_SOUND_ONLY")]
         TYPE_SOUND_ONLY = 2,
     }
-
-
+	
+	
     public enum TppSkyClouds3Param_ColorSpace : int
     {
 		[Description("LINEAR")]
@@ -706,8 +706,8 @@ namespace Fox
 		[Description("SRGB")]
         SRGB = 1,
     }
-
-
+	
+	
     public enum TppSkyClouds3Param_TexColor : int
     {
 		[Description("RGBA")]
@@ -715,8 +715,8 @@ namespace Fox
 		[Description("GA")]
         GA = 1,
     }
-
-
+	
+	
     public enum TppLensFlareShapeOffsetType : int
     {
 		[Description("OFFSET_TYPE_NO_MOVE")]
@@ -730,8 +730,8 @@ namespace Fox
 		[Description("OFFSET_TYPE_Y_MIRROR")]
         OFFSET_TYPE_Y_MIRROR = 4,
     }
-
-
+	
+	
     public enum TppLensFlareShapeRotateType : int
     {
 		[Description("ROTATE_TYPE_NO_ROTATE")]
@@ -743,8 +743,8 @@ namespace Fox
 		[Description("ROTATE_TYPE_SCREEN_SPACE")]
         ROTATE_TYPE_SCREEN_SPACE = 3,
     }
-
-
+	
+	
     public enum TppLensFlareShapeDistanceScalingMode : int
     {
 		[Description("DISTANCE_SCALING_MODE_NONE")]
@@ -756,8 +756,8 @@ namespace Fox
 		[Description("DISTANCE_SCALING_MODE_SIZESCALE2")]
         DISTANCE_SCALING_MODE_SIZESCALE2 = 3,
     }
-
-
+	
+	
     public enum TppLensFlareFieldShapeType : int
     {
 		[Description("SHAPE_TYPE_SQUARE")]
@@ -765,8 +765,8 @@ namespace Fox
 		[Description("SHAPE_TYPE_CIRCLE")]
         SHAPE_TYPE_CIRCLE = 1,
     }
-
-
+	
+	
     public enum TppLensFlareFieldInterpType : int
     {
 		[Description("INTERP_TYPE_LINEAR")]
@@ -778,8 +778,74 @@ namespace Fox
 		[Description("INTERP_TYPE_BOWL")]
         INTERP_TYPE_BOWL = 3,
     }
-
-
+	
+	
+    public enum TppLightProbe_DebugMode : int
+    {
+		[Description("DEBUG_OFF")]
+        DEBUG_OFF = 0,
+		[Description("DEBUG_CUBEMAP")]
+        DEBUG_CUBEMAP = 1,
+		[Description("DEBUG_SH_VALUE")]
+        DEBUG_SH_VALUE = 2,
+		[Description("DEBUG_SH_OCCLUSION")]
+        DEBUG_SH_OCCLUSION = 3,
+		[Description("DEBUG_SH_WITH_SKY")]
+        DEBUG_SH_WITH_SKY = 4,
+		[Description("DEBUG_SH_ONLY_COL")]
+        DEBUG_SH_ONLY_COL = 5,
+		[Description("DEBUG_SH_ONLY_SUB_COL")]
+        DEBUG_SH_ONLY_SUB_COL = 6,
+		[Description("DEBUG_SH_ONLY_LIGHT_ALL")]
+        DEBUG_SH_ONLY_LIGHT_ALL = 7,
+    }
+	
+	
+    public enum TppLightProbe_DrawRejectionLevel : int
+    {
+		[Description("LEVEL0(size:0.5m)")]
+        LEVEL0 = 0,
+		[Description("LEVEL1(size:1m)")]
+        LEVEL1 = 1,
+		[Description("LEVEL2(size:2m)")]
+        LEVEL2 = 2,
+		[Description("LEVEL3(size:4m)")]
+        LEVEL3 = 3,
+		[Description("LEVEL4(size:8m)")]
+        LEVEL4 = 4,
+		[Description("LEVEL5(size:16m)")]
+        LEVEL5 = 5,
+		[Description("LEVEL6(size:32m)")]
+        LEVEL6 = 6,
+		[Description("NO_REJECT")]
+        NO_REJECT = 7,
+    }
+	
+	
+    public enum TppLightProbe_PackingGeneration : int
+    {
+		[Description("GENERATION_ALL")]
+        GENERATION_ALL = 0,
+		[Description("GENERATION_7")]
+        GENERATION_7 = 1,
+		[Description("GENERATION_8")]
+        GENERATION_8 = 2,
+    }
+	
+	
+    public enum TppLightProbe_ShapeType : int
+    {
+		[Description("DEFAULT")]
+        DEFAULT = 0,
+		[Description("TRIALGULAR_PRISM")]
+        TRIALGULAR_PRISM = 1,
+		[Description("SEMI_CYLINDRICAL")]
+        SEMI_CYLINDRICAL = 2,
+		[Description("HALF_SQUARE")]
+        HALF_SQUARE = 3,
+    }
+	
+	
     public enum TppLightProbeArray_DrawRejectionLevel : int
     {
 		[Description("LEVEL0(size:0.5m)")]
@@ -799,8 +865,8 @@ namespace Fox
 		[Description("NO_REJECT")]
         NO_REJECT = 7,
     }
-
-
+	
+	
     public enum TppTrapExecThunder_Type : int
     {
 		[Description("HOLD")]
@@ -808,8 +874,8 @@ namespace Fox
 		[Description("FIRE")]
         FIRE = 1,
     }
-
-
+	
+	
     public enum TppPointLight_PackingGeneration : int
     {
 		[Description("GENERATION_ALL")]
@@ -819,8 +885,8 @@ namespace Fox
 		[Description("GENERATION_8")]
         GENERATION_8 = 2,
     }
-
-
+	
+	
     public enum TppSpotLight_PackingGeneration : int
     {
 		[Description("GENERATION_ALL")]
@@ -830,8 +896,8 @@ namespace Fox
 		[Description("GENERATION_8")]
         GENERATION_8 = 2,
     }
-
-
+	
+	
     public enum SnipePointType : int
     {
 		[Description("Normal")]
@@ -839,8 +905,8 @@ namespace Fox
 		[Description("HighPriority")]
         HighPriority = 1,
     }
-
-
+	
+	
     public enum SearchMissilePointType : int
     {
 		[Description("Normal")]
@@ -848,8 +914,8 @@ namespace Fox
 		[Description("HighPriority")]
         HighPriority = 1,
     }
-
-
+	
+	
     public enum HidePointType : int
     {
 		[Description("Type1")]
@@ -859,8 +925,8 @@ namespace Fox
 		[Description("Type3")]
         Type3 = 2,
     }
-
-
+	
+	
     public enum MbStageBlockCreateMode : int
     {
 		[Description("NOT_CREATE")]
@@ -868,8 +934,8 @@ namespace Fox
 		[Description("CREATE")]
         CREATE = 1,
     }
-
-
+	
+	
     public enum ParamDataDesCondition : int
     {
 		[Description("DES_CONDITION_AUTO")]
@@ -877,8 +943,8 @@ namespace Fox
 		[Description("DES_CONDITION_OUTSIDE")]
         DES_CONDITION_OUTSIDE = 1,
     }
-
-
+	
+	
     public enum DesEffectDataDesEffectFlag : int
     {
 		[Description("ACCOMPANYING")]
@@ -892,8 +958,8 @@ namespace Fox
 		[Description("GENERATION_BREAKING")]
         GENERATION_BREAKING = 5,
     }
-
-
+	
+	
     public enum FxRandomGatherType : int
     {
 		[Description("AUTO")]
@@ -903,8 +969,8 @@ namespace Fox
 		[Description("ABSOLUTE_VALUE")]
         ABSOLUTE_VALUE = 2,
     }
-
-
+	
+	
     public enum FxVectorType : int
     {
 		[Description("VECTOR")]
@@ -914,8 +980,8 @@ namespace Fox
 		[Description("COLOR")]
         COLOR = 2,
     }
-
-
+	
+	
     public enum FxRenderBlendMode : int
     {
 		[Description("ALPHA")]
@@ -931,8 +997,8 @@ namespace Fox
 		[Description("OPAQUE")]
         OPAQUE = 5,
     }
-
-
+	
+	
     public enum FxRenderSortMode : int
     {
 		[Description("NONE")]
@@ -944,8 +1010,8 @@ namespace Fox
 		[Description("LOCAL_SORT")]
         LOCAL_SORT = 3,
     }
-
-
+	
+	
     public enum FxPlayModeType : int
     {
 		[Description("ONESHOT")]
@@ -955,8 +1021,8 @@ namespace Fox
 		[Description("LOOP_FADEINOUT")]
         LOOP_FADEINOUT = 2,
     }
-
-
+	
+	
     public enum FxUpdateType : int
     {
 		[Description("NORMAL")]
@@ -966,8 +1032,8 @@ namespace Fox
 		[Description("DRAW_TIMING")]
         DRAW_TIMING = 2,
     }
-
-
+	
+	
     public enum FxExecutionPriorityType : int
     {
 		[Description("MUST")]
@@ -975,8 +1041,8 @@ namespace Fox
 		[Description("NORMAL")]
         NORMAL = 1,
     }
-
-
+	
+	
     public enum FxBoundingBoxType : int
     {
 		[Description("NONE")]
@@ -986,8 +1052,8 @@ namespace Fox
 		[Description("STOP")]
         STOP = 2,
     }
-
-
+	
+	
     public enum FxSimulationMode : int
     {
 		[Description("SIMULATION_NORMAL")]
@@ -1005,22 +1071,22 @@ namespace Fox
 		[Description("SIMULATION_RECEIVE_COLOR_TEST")]
         SIMULATION_RECEIVE_COLOR_TEST = 6,
     }
-
-
+	
+	
     public enum FxShapeBoundingBoxType : int
     {
 		[Description("MANUAL")]
         MANUAL = 0,
     }
-
-
+	
+	
     public enum FxRotateOrderType : int
     {
 		[Description("ZYX_OREDER")]
         ZYX_OREDER = 0,
     }
-
-
+	
+	
     public enum FxCameraLodType : int
     {
 		[Description("CAMERA_DISTANCE")]
@@ -1030,8 +1096,8 @@ namespace Fox
 		[Description("LOD_PRIORITY")]
         LOD_PRIORITY = 2,
     }
-
-
+	
+	
     public enum FxLodEmitPriorityLevel : int
     {
 		[Description("LEVEL_0")]
@@ -1055,8 +1121,8 @@ namespace Fox
 		[Description("LEVEL_MAX")]
         LEVEL_MAX = 9,
     }
-
-
+	
+	
     public enum FxGenerationFilterType : int
     {
 		[Description("GENERATION_7")]
@@ -1066,8 +1132,8 @@ namespace Fox
 		[Description("GENERATION_9")]
         GENERATION_9 = 2,
     }
-
-
+	
+	
     public enum FxVariationGenerationFilterType : int
     {
 		[Description("NONE")]
@@ -1077,8 +1143,8 @@ namespace Fox
 		[Description("GENERATION_8")]
         GENERATION_8 = 2,
     }
-
-
+	
+	
     public enum GeoShapeType : int
     {
 		[Description("SPHERE")]
@@ -1088,8 +1154,8 @@ namespace Fox
 		[Description("AABB")]
         AABB = 4,
     }
-
-
+	
+	
     public enum PrimType : int
     {
 		[Description("TARGET_PRIM_SPHERE")]
@@ -1105,8 +1171,8 @@ namespace Fox
 		[Description("TARGET_PRIM_AXIS")]
         TARGET_PRIM_AXIS = 5,
     }
-
-
+	
+	
     public enum AxisSort : int
     {
 		[Description("TARGET_SORT_PLUS_X")]
@@ -1122,8 +1188,8 @@ namespace Fox
 		[Description("TARGET_SORT_MINUS_Z")]
         TARGET_SORT_MINUS_Z = 5,
     }
-
-
+	
+	
     public enum Face_Mode : int
     {
 		[Description("FACE_CW")]
@@ -1133,8 +1199,8 @@ namespace Fox
 		[Description("FACE_DOUBLE")]
         FACE_DOUBLE = 2,
     }
-
-
+	
+	
     public enum CollisionPrimitive_Category : int
     {
 		[Description("CATEGORY_ALLL")]
@@ -1144,8 +1210,8 @@ namespace Fox
 		[Description("CATEGORY_RECOIL")]
         CATEGORY_RECOIL = 2,
     }
-
-
+	
+	
     public enum CollisionPrimitive_PrimType : int
     {
 		[Description("PRIM_CIRCLE")]
@@ -1153,8 +1219,8 @@ namespace Fox
 		[Description("PRIM_RECT")]
         PRIM_RECT = 1,
     }
-
-
+	
+	
     public enum CollisionFreeShape_Category : int
     {
 		[Description("CATEGORY_ALLL")]
@@ -1164,8 +1230,8 @@ namespace Fox
 		[Description("CATEGORY_RECOIL")]
         CATEGORY_RECOIL = 2,
     }
-
-
+	
+	
     public enum CollisionPyraidFreeShape_Category : int
     {
 		[Description("CATEGORY_ALLL")]
@@ -1175,8 +1241,8 @@ namespace Fox
 		[Description("CATEGORY_RECOIL")]
         CATEGORY_RECOIL = 2,
     }
-
-
+	
+	
     public enum Horizon_ColorPreset : int
     {
 		[Description("USER_COLOR")]
@@ -1188,8 +1254,8 @@ namespace Fox
 		[Description("GRADIENT_AZURE")]
         GRADIENT_AZURE = 2,
     }
-
-
+	
+	
     public enum PointLight_LodRadiusLevel : int
     {
 		[Description("LEVEL0(size:0.5m)")]
@@ -1209,8 +1275,8 @@ namespace Fox
 		[Description("LEVEL7(size:64m)")]
         LEVEL7 = 7,
     }
-
-
+	
+	
     public enum PointLight_PackingGeneration : int
     {
 		[Description("GENERATION_ALL")]
@@ -1220,8 +1286,8 @@ namespace Fox
 		[Description("GENERATION_8")]
         GENERATION_8 = 2,
     }
-
-
+	
+	
     public enum SpotLight_LodRadiusLevel : int
     {
 		[Description("LEVEL0(size:0.5m)")]
@@ -1241,8 +1307,8 @@ namespace Fox
 		[Description("LEVEL7(size:64m)")]
         LEVEL7 = 7,
     }
-
-
+	
+	
     public enum SpotLight_PackingGeneration : int
     {
 		[Description("GENERATION_ALL")]
@@ -1252,8 +1318,8 @@ namespace Fox
 		[Description("GENERATION_8")]
         GENERATION_8 = 2,
     }
-
-
+	
+	
     public enum AmbientOcclusionSettings_Method : int
     {
 		[Description("NO_AMBIENT_OCCLUSION")]
@@ -1263,8 +1329,8 @@ namespace Fox
 		[Description("HORIZON_BASED")]
         HORIZON_BASED = 2,
     }
-
-
+	
+	
     public enum AmbientOcclusionSettings_LightAttachment : int
     {
 		[Description("DIFFUSE")]
@@ -1272,8 +1338,8 @@ namespace Fox
 		[Description("AMBIENT")]
         AMBIENT = 1,
     }
-
-
+	
+	
     public enum GrxAreaSSAOParameters_Resolution : int
     {
 		[Description("FULL_SIZE")]
@@ -1283,8 +1349,8 @@ namespace Fox
 		[Description("QUARTER_SIZE")]
         QUARTER_SIZE = 2,
     }
-
-
+	
+	
     public enum GrxAreaSSAOParameters_BlurMode : int
     {
 		[Description("BILATERAL_UPSAMPLING")]
@@ -1292,8 +1358,8 @@ namespace Fox
 		[Description("BILATERAL_BLUR")]
         BILATERAL_BLUR = 1,
     }
-
-
+	
+	
     public enum OccluderEx_Mode : int
     {
 		[Description("MODE_GLOBAL")]
@@ -1301,8 +1367,8 @@ namespace Fox
 		[Description("MODE_LOCAL")]
         MODE_LOCAL = 1,
     }
-
-
+	
+	
     public enum NavEdgeType : int
     {
 		[Description("EdgeHandle::TYPE_STATIC")]
@@ -1310,8 +1376,8 @@ namespace Fox
 		[Description("EdgeHandle::TYPE_DYNAMIC")]
         TYPE_DYNAMIC = 1,
     }
-
-
+	
+	
     public enum NavNavigationAnalyzeReason : int
     {
 		[Description("ANALYZE_REASON_NO_OPTIMIZE_PATH")]
@@ -1341,8 +1407,8 @@ namespace Fox
 		[Description("ANALYZE_REASON_REACHED_SUB_GOAL")]
         ANALYZE_REASON_REACHED_SUB_GOAL = 4096,
     }
-
-
+	
+	
     public enum NavxBounderLocatorType : int
     {
 		[Description("TYPE_GRAPH")]
@@ -1350,8 +1416,8 @@ namespace Fox
 		[Description("TYPE_SWITCH")]
         TYPE_SWITCH = 1,
     }
-
-
+	
+	
     public enum PhRigidBodyType : int
     {
 		[Description("FIX")]
@@ -1361,8 +1427,8 @@ namespace Fox
 		[Description("INERTIA")]
         INERTIA = 2,
     }
-
-
+	
+	
     public enum PhShapeType : int
     {
 		[Description("NONE")]
@@ -1384,8 +1450,8 @@ namespace Fox
 		[Description("POLYHEDRON")]
         POLYHEDRON = 8,
     }
-
-
+	
+	
     public enum PhPrimitiveShapeType : int
     {
 		[Description("NONE")]
@@ -1401,8 +1467,8 @@ namespace Fox
 		[Description("CAPSULE")]
         CAPSULE = 5,
     }
-
-
+	
+	
     public enum UiNodeType : int
     {
 		[Description("NODE_PAGE")]
@@ -1420,8 +1486,8 @@ namespace Fox
 		[Description("NODE_COMPOUND")]
         NODE_COMPOUND = 6,
     }
-
-
+	
+	
     public enum UiNodePropType : int
     {
 		[Description("INT8")]
@@ -1473,8 +1539,8 @@ namespace Fox
 		[Description("INVALID")]
         INVALID = 23,
     }
-
-
+	
+	
     public enum UiNodeBodyType : int
     {
 		[Description("NODE_PAGE")]
@@ -1492,8 +1558,8 @@ namespace Fox
 		[Description("NODE_COMPOUND")]
         NODE_COMPOUND = 6,
     }
-
-
+	
+	
     public enum UiNodeBodyPropType : int
     {
 		[Description("INT8")]
@@ -1545,8 +1611,8 @@ namespace Fox
 		[Description("INVALID")]
         INVALID = 23,
     }
-
-
+	
+	
     public enum UiEventNodeKind : int
     {
 		[Description("EVENT_NONE")]
@@ -1572,7 +1638,7 @@ namespace Fox
 		[Description("EVENT_EVCONTROLLER")]
         EVENT_EVCONTROLLER = 10,
     }
-
+	
 	[Flags]
     public enum UiModelDataFlag : int
     {
@@ -1593,7 +1659,7 @@ namespace Fox
 		[Description("FLAG_TEXTURE_NOWAIT")]
         FLAG_TEXTURE_NOWAIT = 128,
     }
-
+	
 	[Flags]
     public enum UiInheritanceSetting : int
     {
@@ -1608,8 +1674,8 @@ namespace Fox
 		[Description("COLOR_ALPHA")]
         COLOR_ALPHA = 16,
     }
-
-
+	
+	
     public enum UiModelNodeElementBlend : int
     {
 		[Description("BLEND_OFF")]
@@ -1619,7 +1685,7 @@ namespace Fox
 		[Description("BLEND_ADD")]
         BLEND_ADD = 2,
     }
-
+	
 	[Flags]
     public enum UiAnimDataFlag : int
     {
@@ -1632,8 +1698,8 @@ namespace Fox
 		[Description("FLAG_DISP")]
         FLAG_DISP = 8,
     }
-
-
+	
+	
     public enum UiActionNodeKind : int
     {
 		[Description("ACTION_NONE")]
@@ -1675,8 +1741,8 @@ namespace Fox
 		[Description("ACTION_CONNECTCOMPONENT")]
         ACTION_CONNECTCOMPONENT = 18,
     }
-
-
+	
+	
     public enum UiOperationNodeKind : int
     {
 		[Description("OPERATION_NONE")]
@@ -1710,8 +1776,8 @@ namespace Fox
 		[Description("OPERATION_OPETRIGGERPARAMTOSTRING")]
         OPERATION_OPETRIGGERPARAMTOSTRING = 14,
     }
-
-
+	
+	
     public enum UiOperationBodyKind : int
     {
 		[Description("OPERATION_NONE")]
@@ -1745,5 +1811,40 @@ namespace Fox
 		[Description("OPERATION_OPETRIGGERPARAMTOSTRING")]
         OPERATION_OPETRIGGERPARAMTOSTRING = 14,
     }
-
+	
+	
+    public enum TppRouteEdgeEventHelicopter_DoorState : uint
+    {
+		[Description("DOOR_STATE_DEFAULT")]
+        DOOR_STATE_DEFAULT = 0,
+		[Description("DOOR_STATE_A")]
+        DOOR_STATE_A = 1,
+		[Description("DOOR_STATE_B")]
+        DOOR_STATE_B = 2,
+    }
+	
+	
+    public enum TppRouteEdgeEventHelicopter_DirectionType : uint
+    {
+		[Description("DIRECTION_TYPE_NONE")]
+        DIRECTION_TYPE_NONE = 0,
+		[Description("DIRECTION_TYPE_WORLD")]
+        DIRECTION_TYPE_WORLD = 1,
+		[Description("DIRECTION_TYPE_LOCAL")]
+        DIRECTION_TYPE_LOCAL = 2,
+		[Description("DIRECTION_TYPE_AIM_POINT_LOCAL")]
+        DIRECTION_TYPE_AIM_POINT_LOCAL = 3,
+    }
+	
+	
+    public enum TppRouteEdgeEventHelicopter_DoorSide : uint
+    {
+		[Description("DOOR_SIDE_DEFAULT")]
+        DOOR_SIDE_DEFAULT = 0,
+		[Description("DOOR_SIDE_LEFT")]
+        DOOR_SIDE_LEFT = 1,
+		[Description("DOOR_SIDE_RIGHT")]
+        DOOR_SIDE_RIGHT = 2,
+    }
+	
 }

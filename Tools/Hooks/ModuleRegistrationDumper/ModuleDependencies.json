@@ -1,0 +1,1147 @@
+{
+  "Anim": {
+    "dependencies": [
+      "FoxKernel",
+      "Fs",
+      "FoxCore"
+    ],
+    "expandedDependencies": [
+      "As",
+      "Fio",
+      "FoxCore",
+      "FoxKernel",
+      "Fs",
+      "Nio"
+    ]
+  },
+  "Animx": {
+    "dependencies": [
+      "FoxKernel",
+      "Fs",
+      "FoxCore",
+      "Gr",
+      "Geo",
+      "Graphx",
+      "Anim",
+      "MotionGraph"
+    ],
+    "expandedDependencies": [
+      "Anim",
+      "As",
+      "Fio",
+      "FoxCore",
+      "FoxKernel",
+      "Fs",
+      "Geo",
+      "Gr",
+      "Graphx",
+      "Grx",
+      "MotionGraph",
+      "Nio"
+    ]
+  },
+  "As": {
+    "dependencies": [
+      "FoxKernel",
+      "Fio",
+      "Nio"
+    ],
+    "expandedDependencies": [
+      "Fio",
+      "FoxKernel",
+      "Nio"
+    ]
+  },
+  "Cc": {
+    "dependencies": [
+      "FoxKernel",
+      "FoxCore",
+      "Gr",
+      "Grx",
+      "Geo",
+      "Anim",
+      "Animx"
+    ],
+    "expandedDependencies": [
+      "Anim",
+      "Animx",
+      "As",
+      "Fio",
+      "FoxCore",
+      "FoxKernel",
+      "Fs",
+      "Geo",
+      "Gr",
+      "Graphx",
+      "Grx",
+      "MotionGraph",
+      "Nio"
+    ]
+  },
+  "Demo": {
+    "dependencies": [
+      "Anim",
+      "Animx",
+      "FoxCore",
+      "Gr",
+      "Grx"
+    ],
+    "expandedDependencies": [
+      "Anim",
+      "Animx",
+      "As",
+      "Fio",
+      "FoxCore",
+      "FoxKernel",
+      "Fs",
+      "Geo",
+      "Gr",
+      "Graphx",
+      "Grx",
+      "MotionGraph",
+      "Nio"
+    ]
+  },
+  "Demox": {
+    "dependencies": [
+      "Anim",
+      "Animx",
+      "Demo",
+      "FoxGameKit",
+      "Fx",
+      "Geo",
+      "Gr",
+      "Grx",
+      "PartsBuilder",
+      "Ph",
+      "Sd",
+      "Sdx",
+      "Sim",
+      "Ui"
+    ],
+    "expandedDependencies": [
+      "Anim",
+      "Animx",
+      "As",
+      "Cc",
+      "Demo",
+      "Fio",
+      "FoxCore",
+      "FoxGameKit",
+      "FoxKernel",
+      "Fs",
+      "Fx",
+      "Geo",
+      "Geox",
+      "Gr",
+      "Graphx",
+      "Grx",
+      "MotionGraph",
+      "Nav",
+      "Navx",
+      "Nio",
+      "Nt",
+      "PartsBuilder",
+      "Ph",
+      "Phx",
+      "Sd",
+      "Sdx",
+      "Sim",
+      "Ui"
+    ]
+  },
+  "Des": {
+    "dependencies": [
+      "FoxKernel",
+      "FoxCore",
+      "Gr",
+      "Grx",
+      "Ph",
+      "Phx",
+      "Fx"
+    ],
+    "expandedDependencies": [
+      "As",
+      "Fio",
+      "FoxCore",
+      "FoxKernel",
+      "Fs",
+      "Fx",
+      "Geo",
+      "Gr",
+      "Grx",
+      "Nio",
+      "Ph",
+      "Phx",
+      "Sd"
+    ]
+  },
+  "Fio": {
+    "dependencies": [
+      "FoxKernel"
+    ],
+    "expandedDependencies": [
+      "FoxKernel"
+    ]
+  },
+  "FoxCore": {
+    "dependencies": [
+      "FoxKernel",
+      "Fs",
+      "Nio"
+    ],
+    "expandedDependencies": [
+      "As",
+      "Fio",
+      "FoxKernel",
+      "Fs",
+      "Nio"
+    ]
+  },
+  "FoxGameKit": {
+    "dependencies": [
+      "FoxKernel",
+      "Fio",
+      "As",
+      "Fs",
+      "Anim",
+      "Animx",
+      "FoxCore",
+      "Gr",
+      "Grx",
+      "Geo",
+      "Geox",
+      "Graphx",
+      "Sd",
+      "Sdx",
+      "Nio",
+      "Nt",
+      "Fx",
+      "Ph",
+      "Phx",
+      "Sim",
+      "Cc",
+      "Ui"
+    ],
+    "expandedDependencies": [
+      "Anim",
+      "Animx",
+      "As",
+      "Cc",
+      "Fio",
+      "FoxCore",
+      "FoxKernel",
+      "Fs",
+      "Fx",
+      "Geo",
+      "Geox",
+      "Gr",
+      "Graphx",
+      "Grx",
+      "MotionGraph",
+      "Nio",
+      "Nt",
+      "Ph",
+      "Phx",
+      "Sd",
+      "Sdx",
+      "Sim",
+      "Ui"
+    ]
+  },
+  "FoxKernel": {
+    "dependencies": [],
+    "expandedDependencies": []
+  },
+  "FoxQuark": {
+    "dependencies": [
+      "FoxKernel",
+      "FoxCore"
+    ],
+    "expandedDependencies": [
+      "As",
+      "Fio",
+      "FoxCore",
+      "FoxKernel",
+      "Fs",
+      "Nio"
+    ]
+  },
+  "Fs": {
+    "dependencies": [
+      "FoxKernel",
+      "Fio",
+      "Nio",
+      "As"
+    ],
+    "expandedDependencies": [
+      "As",
+      "Fio",
+      "FoxKernel",
+      "Nio"
+    ]
+  },
+  "Fx": {
+    "dependencies": [
+      "FoxKernel",
+      "FoxCore",
+      "Gr",
+      "Grx",
+      "Geo",
+      "Sd"
+    ],
+    "expandedDependencies": [
+      "As",
+      "Fio",
+      "FoxCore",
+      "FoxKernel",
+      "Fs",
+      "Geo",
+      "Gr",
+      "Grx",
+      "Nio",
+      "Sd"
+    ]
+  },
+  "GameCore": {
+    "dependencies": [
+      "FoxKernel",
+      "FoxCore",
+      "Nt"
+    ],
+    "expandedDependencies": [
+      "As",
+      "Fio",
+      "FoxCore",
+      "FoxKernel",
+      "Fs",
+      "Nio",
+      "Nt"
+    ]
+  },
+  "GameService": {
+    "dependencies": [
+      "FoxKernel",
+      "FoxCore",
+      "Graphx"
+    ],
+    "expandedDependencies": [
+      "As",
+      "Fio",
+      "FoxCore",
+      "FoxKernel",
+      "Fs",
+      "Gr",
+      "Graphx",
+      "Grx",
+      "Nio"
+    ]
+  },
+  "Geo": {
+    "dependencies": [
+      "FoxKernel",
+      "Fs",
+      "FoxCore"
+    ],
+    "expandedDependencies": [
+      "As",
+      "Fio",
+      "FoxCore",
+      "FoxKernel",
+      "Fs",
+      "Nio"
+    ]
+  },
+  "Geox": {
+    "dependencies": [
+      "Geo",
+      "Gr",
+      "Grx",
+      "Graphx"
+    ],
+    "expandedDependencies": [
+      "As",
+      "Fio",
+      "FoxCore",
+      "FoxKernel",
+      "Fs",
+      "Geo",
+      "Gr",
+      "Graphx",
+      "Grx",
+      "Nio"
+    ]
+  },
+  "Gr": {
+    "dependencies": [
+      "FoxKernel",
+      "Fs",
+      "FoxCore"
+    ],
+    "expandedDependencies": [
+      "As",
+      "Fio",
+      "FoxCore",
+      "FoxKernel",
+      "Fs",
+      "Nio"
+    ]
+  },
+  "Graph": {
+    "dependencies": [
+      "FoxKernel",
+      "FoxCore"
+    ],
+    "expandedDependencies": [
+      "As",
+      "Fio",
+      "FoxCore",
+      "FoxKernel",
+      "Fs",
+      "Nio"
+    ]
+  },
+  "Graphx": {
+    "dependencies": [
+      "FoxKernel",
+      "FoxCore",
+      "Gr",
+      "Grx"
+    ],
+    "expandedDependencies": [
+      "As",
+      "Fio",
+      "FoxCore",
+      "FoxKernel",
+      "Fs",
+      "Gr",
+      "Grx",
+      "Nio"
+    ]
+  },
+  "Grx": {
+    "dependencies": [
+      "Gr"
+    ],
+    "expandedDependencies": [
+      "As",
+      "Fio",
+      "FoxCore",
+      "FoxKernel",
+      "Fs",
+      "Gr",
+      "Nio"
+    ]
+  },
+  "MotionGraph": {
+    "dependencies": [
+      "FoxKernel",
+      "Fs",
+      "FoxCore",
+      "Anim"
+    ],
+    "expandedDependencies": [
+      "Anim",
+      "As",
+      "Fio",
+      "FoxCore",
+      "FoxKernel",
+      "Fs",
+      "Nio"
+    ]
+  },
+  "Nav": {
+    "dependencies": [
+      "FoxKernel",
+      "Fs",
+      "FoxCore"
+    ],
+    "expandedDependencies": [
+      "As",
+      "Fio",
+      "FoxCore",
+      "FoxKernel",
+      "Fs",
+      "Nio"
+    ]
+  },
+  "Navx": {
+    "dependencies": [
+      "Nav",
+      "Geo",
+      "Grx",
+      "Graphx"
+    ],
+    "expandedDependencies": [
+      "As",
+      "Fio",
+      "FoxCore",
+      "FoxKernel",
+      "Fs",
+      "Geo",
+      "Gr",
+      "Graphx",
+      "Grx",
+      "Nav",
+      "Nio"
+    ]
+  },
+  "Ncl": {
+    "dependencies": [
+      "Nio",
+      "FoxCore"
+    ],
+    "expandedDependencies": [
+      "As",
+      "Fio",
+      "FoxCore",
+      "FoxKernel",
+      "Fs",
+      "Nio"
+    ]
+  },
+  "Nio": {
+    "dependencies": [
+      "FoxKernel"
+    ],
+    "expandedDependencies": [
+      "FoxKernel"
+    ]
+  },
+  "Nt": {
+    "dependencies": [
+      "Nio",
+      "FoxCore"
+    ],
+    "expandedDependencies": [
+      "As",
+      "Fio",
+      "FoxCore",
+      "FoxKernel",
+      "Fs",
+      "Nio"
+    ]
+  },
+  "PartsBuilder": {
+    "dependencies": [
+      "FoxKernel",
+      "FoxCore",
+      "FoxGameKit",
+      "Anim",
+      "Animx",
+      "As",
+      "Gr",
+      "Grx",
+      "Fs",
+      "Geo",
+      "Geox",
+      "Graphx",
+      "Sd",
+      "Sdx",
+      "Ph",
+      "Phx",
+      "Sim",
+      "Nav",
+      "Navx"
+    ],
+    "expandedDependencies": [
+      "Anim",
+      "Animx",
+      "As",
+      "Cc",
+      "Fio",
+      "FoxCore",
+      "FoxGameKit",
+      "FoxKernel",
+      "Fs",
+      "Fx",
+      "Geo",
+      "Geox",
+      "Gr",
+      "Graphx",
+      "Grx",
+      "MotionGraph",
+      "Nav",
+      "Navx",
+      "Nio",
+      "Nt",
+      "Ph",
+      "Phx",
+      "Sd",
+      "Sdx",
+      "Sim",
+      "Ui"
+    ]
+  },
+  "Ph": {
+    "dependencies": [
+      "FoxKernel",
+      "FoxCore",
+      "Geo"
+    ],
+    "expandedDependencies": [
+      "As",
+      "Fio",
+      "FoxCore",
+      "FoxKernel",
+      "Fs",
+      "Geo",
+      "Nio"
+    ]
+  },
+  "Phx": {
+    "dependencies": [
+      "Ph",
+      "Grx"
+    ],
+    "expandedDependencies": [
+      "As",
+      "Fio",
+      "FoxCore",
+      "FoxKernel",
+      "Fs",
+      "Geo",
+      "Gr",
+      "Grx",
+      "Nio",
+      "Ph"
+    ]
+  },
+  "Sd": {
+    "dependencies": [
+      "FoxKernel",
+      "Fs",
+      "FoxCore"
+    ],
+    "expandedDependencies": [
+      "As",
+      "Fio",
+      "FoxCore",
+      "FoxKernel",
+      "Fs",
+      "Nio"
+    ]
+  },
+  "Sdx": {
+    "dependencies": [
+      "Sd",
+      "Gr",
+      "Geo",
+      "Anim",
+      "Ph"
+    ],
+    "expandedDependencies": [
+      "Anim",
+      "As",
+      "Fio",
+      "FoxCore",
+      "FoxKernel",
+      "Fs",
+      "Geo",
+      "Gr",
+      "Nio",
+      "Ph",
+      "Sd"
+    ]
+  },
+  "Sim": {
+    "dependencies": [
+      "FoxKernel",
+      "FoxCore",
+      "Anim",
+      "Gr",
+      "Geo",
+      "Ph",
+      "Phx"
+    ],
+    "expandedDependencies": [
+      "Anim",
+      "As",
+      "Fio",
+      "FoxCore",
+      "FoxKernel",
+      "Fs",
+      "Geo",
+      "Gr",
+      "Grx",
+      "Nio",
+      "Ph",
+      "Phx"
+    ]
+  },
+  "Simx": {
+    "dependencies": [
+      "Sim",
+      "Grx",
+      "Phx"
+    ],
+    "expandedDependencies": [
+      "Anim",
+      "As",
+      "Fio",
+      "FoxCore",
+      "FoxKernel",
+      "Fs",
+      "Geo",
+      "Gr",
+      "Grx",
+      "Nio",
+      "Ph",
+      "Phx",
+      "Sim"
+    ]
+  },
+  "Tactical": {
+    "dependencies": [
+      "Nav"
+    ],
+    "expandedDependencies": [
+      "As",
+      "Fio",
+      "FoxCore",
+      "FoxKernel",
+      "Fs",
+      "Nav",
+      "Nio"
+    ]
+  },
+  "TppEffect": {
+    "dependencies": [
+      "TppSystem"
+    ],
+    "expandedDependencies": [
+      "Anim",
+      "Animx",
+      "As",
+      "Cc",
+      "Demo",
+      "Fio",
+      "FoxCore",
+      "FoxGameKit",
+      "FoxKernel",
+      "Fs",
+      "Fx",
+      "Geo",
+      "Geox",
+      "Gr",
+      "Graph",
+      "Graphx",
+      "Grx",
+      "MotionGraph",
+      "Nav",
+      "Navx",
+      "Nio",
+      "Nt",
+      "Ph",
+      "Phx",
+      "Sd",
+      "Sdx",
+      "Sim",
+      "Tactical",
+      "TppSystem",
+      "Ui"
+    ]
+  },
+  "TppGameCore": {
+    "dependencies": [
+      "GameCore",
+      "TppSystem",
+      "TppUi",
+      "TppGameKit",
+      "TppEffect"
+    ],
+    "expandedDependencies": [
+      "Anim",
+      "Animx",
+      "As",
+      "Cc",
+      "Demo",
+      "Fio",
+      "FoxCore",
+      "FoxGameKit",
+      "FoxKernel",
+      "FoxQuark",
+      "Fs",
+      "Fx",
+      "GameCore",
+      "Geo",
+      "Geox",
+      "Gr",
+      "Graph",
+      "Graphx",
+      "Grx",
+      "MotionGraph",
+      "Nav",
+      "Navx",
+      "Nio",
+      "Nt",
+      "Ph",
+      "Phx",
+      "Sd",
+      "Sdx",
+      "Sim",
+      "Tactical",
+      "TppEffect",
+      "TppGameKit",
+      "TppNetwork",
+      "TppSystem",
+      "TppUi",
+      "Ui"
+    ]
+  },
+  "TppGameKit": {
+    "dependencies": [
+      "FoxQuark",
+      "TppNetwork",
+      "TppSystem"
+    ],
+    "expandedDependencies": [
+      "Anim",
+      "Animx",
+      "As",
+      "Cc",
+      "Demo",
+      "Fio",
+      "FoxCore",
+      "FoxGameKit",
+      "FoxKernel",
+      "FoxQuark",
+      "Fs",
+      "Fx",
+      "Geo",
+      "Geox",
+      "Gr",
+      "Graph",
+      "Graphx",
+      "Grx",
+      "MotionGraph",
+      "Nav",
+      "Navx",
+      "Nio",
+      "Nt",
+      "Ph",
+      "Phx",
+      "Sd",
+      "Sdx",
+      "Sim",
+      "Tactical",
+      "TppNetwork",
+      "TppSystem",
+      "Ui"
+    ]
+  },
+  "TppMotherBaseCore": {
+    "dependencies": [
+      "TppSystem",
+      "TppGameKit",
+      "TppNetwork"
+    ],
+    "expandedDependencies": [
+      "Anim",
+      "Animx",
+      "As",
+      "Cc",
+      "Demo",
+      "Fio",
+      "FoxCore",
+      "FoxGameKit",
+      "FoxKernel",
+      "FoxQuark",
+      "Fs",
+      "Fx",
+      "Geo",
+      "Geox",
+      "Gr",
+      "Graph",
+      "Graphx",
+      "Grx",
+      "MotionGraph",
+      "Nav",
+      "Navx",
+      "Nio",
+      "Nt",
+      "Ph",
+      "Phx",
+      "Sd",
+      "Sdx",
+      "Sim",
+      "Tactical",
+      "TppGameKit",
+      "TppNetwork",
+      "TppSystem",
+      "Ui"
+    ]
+  },
+  "TppMotherBaseStage": {
+    "dependencies": [
+      "TppMotherBaseCore"
+    ],
+    "expandedDependencies": [
+      "Anim",
+      "Animx",
+      "As",
+      "Cc",
+      "Demo",
+      "Fio",
+      "FoxCore",
+      "FoxGameKit",
+      "FoxKernel",
+      "FoxQuark",
+      "Fs",
+      "Fx",
+      "Geo",
+      "Geox",
+      "Gr",
+      "Graph",
+      "Graphx",
+      "Grx",
+      "MotionGraph",
+      "Nav",
+      "Navx",
+      "Nio",
+      "Nt",
+      "Ph",
+      "Phx",
+      "Sd",
+      "Sdx",
+      "Sim",
+      "Tactical",
+      "TppGameKit",
+      "TppMotherBaseCore",
+      "TppNetwork",
+      "TppSystem",
+      "Ui"
+    ]
+  },
+  "TppNetwork": {
+    "dependencies": [
+      "TppSystem"
+    ],
+    "expandedDependencies": [
+      "Anim",
+      "Animx",
+      "As",
+      "Cc",
+      "Demo",
+      "Fio",
+      "FoxCore",
+      "FoxGameKit",
+      "FoxKernel",
+      "Fs",
+      "Fx",
+      "Geo",
+      "Geox",
+      "Gr",
+      "Graph",
+      "Graphx",
+      "Grx",
+      "MotionGraph",
+      "Nav",
+      "Navx",
+      "Nio",
+      "Nt",
+      "Ph",
+      "Phx",
+      "Sd",
+      "Sdx",
+      "Sim",
+      "Tactical",
+      "TppSystem",
+      "Ui"
+    ]
+  },
+  "TppSound": {
+    "dependencies": [
+      "TppSystem"
+    ],
+    "expandedDependencies": [
+      "Anim",
+      "Animx",
+      "As",
+      "Cc",
+      "Demo",
+      "Fio",
+      "FoxCore",
+      "FoxGameKit",
+      "FoxKernel",
+      "Fs",
+      "Fx",
+      "Geo",
+      "Geox",
+      "Gr",
+      "Graph",
+      "Graphx",
+      "Grx",
+      "MotionGraph",
+      "Nav",
+      "Navx",
+      "Nio",
+      "Nt",
+      "Ph",
+      "Phx",
+      "Sd",
+      "Sdx",
+      "Sim",
+      "Tactical",
+      "TppSystem",
+      "Ui"
+    ]
+  },
+  "TppSystem": {
+    "dependencies": [
+      "FoxKernel",
+      "FoxCore",
+      "Fio",
+      "Anim",
+      "Animx",
+      "FoxGameKit",
+      "Gr",
+      "Grx",
+      "Geo",
+      "Graph",
+      "Graphx",
+      "Nav",
+      "Navx",
+      "Nt",
+      "Nio",
+      "Tactical",
+      "Fx",
+      "Ui",
+      "Demo"
+    ],
+    "expandedDependencies": [
+      "Anim",
+      "Animx",
+      "As",
+      "Cc",
+      "Demo",
+      "Fio",
+      "FoxCore",
+      "FoxGameKit",
+      "FoxKernel",
+      "Fs",
+      "Fx",
+      "Geo",
+      "Geox",
+      "Gr",
+      "Graph",
+      "Graphx",
+      "Grx",
+      "MotionGraph",
+      "Nav",
+      "Navx",
+      "Nio",
+      "Nt",
+      "Ph",
+      "Phx",
+      "Sd",
+      "Sdx",
+      "Sim",
+      "Tactical",
+      "Ui"
+    ]
+  },
+  "TppUi": {
+    "dependencies": [
+      "TppSystem",
+      "TppNetwork"
+    ],
+    "expandedDependencies": [
+      "Anim",
+      "Animx",
+      "As",
+      "Cc",
+      "Demo",
+      "Fio",
+      "FoxCore",
+      "FoxGameKit",
+      "FoxKernel",
+      "Fs",
+      "Fx",
+      "Geo",
+      "Geox",
+      "Gr",
+      "Graph",
+      "Graphx",
+      "Grx",
+      "MotionGraph",
+      "Nav",
+      "Navx",
+      "Nio",
+      "Nt",
+      "Ph",
+      "Phx",
+      "Sd",
+      "Sdx",
+      "Sim",
+      "Tactical",
+      "TppNetwork",
+      "TppSystem",
+      "Ui"
+    ]
+  },
+  "Ui": {
+    "dependencies": [
+      "FoxKernel",
+      "FoxCore",
+      "Fio",
+      "Fs",
+      "Gr",
+      "Anim",
+      "Sd"
+    ],
+    "expandedDependencies": [
+      "Anim",
+      "As",
+      "Fio",
+      "FoxCore",
+      "FoxKernel",
+      "Fs",
+      "Gr",
+      "Nio",
+      "Sd"
+    ]
+  },
+  "Uix": {
+    "dependencies": [
+      "FoxKernel",
+      "FoxCore",
+      "Ui",
+      "FoxGameKit"
+    ],
+    "expandedDependencies": [
+      "Anim",
+      "Animx",
+      "As",
+      "Cc",
+      "Fio",
+      "FoxCore",
+      "FoxGameKit",
+      "FoxKernel",
+      "Fs",
+      "Fx",
+      "Geo",
+      "Geox",
+      "Gr",
+      "Graphx",
+      "Grx",
+      "MotionGraph",
+      "Nio",
+      "Nt",
+      "Ph",
+      "Phx",
+      "Sd",
+      "Sdx",
+      "Sim",
+      "Ui"
+    ]
+  },
+  "Vd": {
+    "dependencies": [
+      "FoxKernel"
+    ],
+    "expandedDependencies": [
+      "FoxKernel"
+    ]
+  }
+}

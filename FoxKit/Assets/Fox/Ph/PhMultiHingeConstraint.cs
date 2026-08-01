@@ -8,11 +8,11 @@ namespace Fox.Ph
     {
         private PhMultiHingeConstraintParam multiHingeConstraint => param as PhMultiHingeConstraintParam;
 
-        private partial UnityEngine.Quaternion Get_axis() => throw new System.NotImplementedException();
-        private partial void Set_axis(UnityEngine.Quaternion value) => throw new System.NotImplementedException();
+        private partial UnityEngine.Quaternion axis_Get() => throw new System.NotImplementedException();
+        private partial void axis_Set(UnityEngine.Quaternion value) => throw new System.NotImplementedException();
 
-        private partial bool Get_limitedFlag() => multiHingeConstraint == null ? false : multiHingeConstraint.GetLimitedFlag();
-        private partial void Set_limitedFlag(bool value)
+        private partial bool limitedFlag_Get() => multiHingeConstraint == null ? false : multiHingeConstraint.GetLimitedFlag();
+        private partial void limitedFlag_Set(bool value)
         {
             if (param == null)
                 return;
@@ -20,8 +20,8 @@ namespace Fox.Ph
             multiHingeConstraint.SetLimitedFlag(value);
         }
 
-        private partial bool Get_isPoweredFlag() => multiHingeConstraint == null ? false : multiHingeConstraint.GetIsPoweredFlag();
-        private partial void Set_isPoweredFlag(bool value)
+        private partial bool isPoweredFlag_Get() => multiHingeConstraint == null ? false : multiHingeConstraint.GetIsPoweredFlag();
+        private partial void isPoweredFlag_Set(bool value)
         {
             if (param == null)
                 return;
@@ -29,8 +29,8 @@ namespace Fox.Ph
             multiHingeConstraint.SetIsPoweredFlag(value);
         }
 
-        private partial float Get_limitHi() => multiHingeConstraint == null ? 0f : multiHingeConstraint.GetLimitHi();
-        private partial void Set_limitHi(float value)
+        private partial float limitHi_Get() => multiHingeConstraint == null ? 0f : multiHingeConstraint.GetLimitHi();
+        private partial void limitHi_Set(float value)
         {
             if (param == null)
                 return;
@@ -38,8 +38,8 @@ namespace Fox.Ph
             multiHingeConstraint.SetLimitHi(value);
         }
 
-        private partial float Get_limitLo() => multiHingeConstraint == null ? 0f : multiHingeConstraint.GetLimitLo();
-        private partial void Set_limitLo(float value)
+        private partial float limitLo_Get() => multiHingeConstraint == null ? 0f : multiHingeConstraint.GetLimitLo();
+        private partial void limitLo_Set(float value)
         {
             if (param == null)
                 return;
@@ -47,8 +47,8 @@ namespace Fox.Ph
             multiHingeConstraint.SetLimitLo(value);
         }
 
-        private partial uint Get_powerControlType() => multiHingeConstraint == null ? 0u : unchecked((uint)multiHingeConstraint.GetControlType());
-        private partial void Set_powerControlType(uint value)
+        private partial uint powerControlType_Get() => multiHingeConstraint == null ? 0u : unchecked((uint)multiHingeConstraint.GetControlType());
+        private partial void powerControlType_Set(uint value)
         {
             if (param == null)
                 return;
@@ -56,8 +56,8 @@ namespace Fox.Ph
             multiHingeConstraint.SetControlType(unchecked((int)value));
         }
 
-        private partial float Get_velocityMax() => multiHingeConstraint == null ? 0f : multiHingeConstraint.GetVelocityMax();
-        private partial void Set_velocityMax(float value)
+        private partial float velocityMax_Get() => multiHingeConstraint == null ? 0f : multiHingeConstraint.GetVelocityMax();
+        private partial void velocityMax_Set(float value)
         {
             if (param == null)
                 return;
@@ -65,8 +65,8 @@ namespace Fox.Ph
             multiHingeConstraint.SetVelocityMax(value);
         }
 
-        private partial float Get_torqueMax() => multiHingeConstraint == null ? 0f : multiHingeConstraint.GetTorqueMax();
-        private partial void Set_torqueMax(float value)
+        private partial float torqueMax_Get() => multiHingeConstraint == null ? 0f : multiHingeConstraint.GetTorqueMax();
+        private partial void torqueMax_Set(float value)
         {
             if (param == null)
                 return;
@@ -74,8 +74,8 @@ namespace Fox.Ph
             multiHingeConstraint.SetTorqueMax(value);
         }
 
-        private partial float Get_targetTheta() => multiHingeConstraint == null ? 0f : multiHingeConstraint.GetTargetTheta();
-        private partial void Set_targetTheta(float value)
+        private partial float targetTheta_Get() => multiHingeConstraint == null ? 0f : multiHingeConstraint.GetTargetTheta();
+        private partial void targetTheta_Set(float value)
         {
             if (param == null)
                 return;
@@ -83,8 +83,8 @@ namespace Fox.Ph
             multiHingeConstraint.SetTargetTheta(value);
         }
 
-        private partial float Get_targetVelocity() => multiHingeConstraint == null ? 0f : multiHingeConstraint.GetTargetVelocity();
-        private partial void Set_targetVelocity(float value)
+        private partial float targetVelocity_Get() => multiHingeConstraint == null ? 0f : multiHingeConstraint.GetTargetVelocity();
+        private partial void targetVelocity_Set(float value)
         {
             if (param == null)
                 return;
@@ -92,8 +92,8 @@ namespace Fox.Ph
             multiHingeConstraint.SetTargetVelocity(value);
         }
 
-        private partial float Get_velocityRate() => multiHingeConstraint == null ? 0f : multiHingeConstraint.GetVelocityRate();
-        private partial void Set_velocityRate(float value)
+        private partial float velocityRate_Get() => multiHingeConstraint == null ? 0f : multiHingeConstraint.GetVelocityRate();
+        private partial void velocityRate_Set(float value)
         {
             if (param == null)
                 return;

@@ -15,7 +15,7 @@ namespace Fox.Core
 {
     public partial class DataSetFile2 : Fox.Core.EntityFile
     {
-        private partial Fox.Core.DataSet Get_dataSet() => throw new System.NotImplementedException();
+        private partial Fox.Core.DataSet dataSet_Get() => throw new System.NotImplementedException();
 
         [StructLayout(LayoutKind.Sequential, Size = 0x20)]
         internal struct FileHeader

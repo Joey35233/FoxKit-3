@@ -1,14 +1,20 @@
 using Fox;
 using Fox.Core;
 using System.Collections.Generic;
-using UnityEditor;
 
 namespace Tpp.EdGameCore
 {
-    [InitializeOnLoad]
-    public class EdGameCoreModule
+    public class EdGameCoreModule : Module
     {
-        static EdGameCoreModule()
+        public static EdGameCoreModule Instance { get; private set; }
+
+        public EdGameCoreModule() : base("Tpp.EdGameCore")
+        {
+            Instance = this;
+            AddDependencyModule("Fox.EdGameCore");
+        }
+
+        public override void Init()
         {
             Fox.EdGameCore.EdGameCoreModule.RegisterGameObjectEditorInfo("TppBear", new Fox.EdGameCore.GameObjectEditorInfo
             {
