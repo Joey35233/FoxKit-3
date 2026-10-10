@@ -52,7 +52,7 @@ namespace Fox.Geo
                 Debug.Assert(header.NextHeaderOffset == 0);
                 Debug.Assert(header.PreviousHeaderOffset == 0);
                 Debug.Assert(header.ChildHeaderOffset == 0);
-                if (header.Type == GeoPrimType.Path && GeomHeaderContext.Deserialize(header) is { } shape)
+                if (header.Type == GeoGeom.GeoPrimType.Path && GeomHeaderContext.Deserialize(header) is { } shape)
                 {
                     (shape as UnityEngine.Object).name = header.Name.ToString();
                 }

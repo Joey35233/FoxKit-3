@@ -141,12 +141,12 @@ namespace Fox.Animx
             {
                 var materialParam = (DriverUnitParamsMaterial*)(unit + 1);
 
-                driver.MaterialNameA = new String(materialParam->MaterialNameA.ToString());
-                driver.MaterialNameC = new String(materialParam->MaterialNameC.ToString());
-                driver.MaterialParameterC = new String(materialParam->MaterialParameterC.ToString());
-                driver.MaterialNameB = new String(materialParam->MaterialNameB.ToString());
-                driver.MaterialParameterA = new String(materialParam->MaterialParameterA.ToString());
-                driver.MaterialParameterB = new String(materialParam->MaterialParameterB.ToString());
+                driver.MaterialNameA = materialParam->MaterialNameA.ToString();
+                driver.MaterialNameC = materialParam->MaterialNameC.ToString();
+                driver.MaterialParameterC = materialParam->MaterialParameterC.ToString();
+                driver.MaterialNameB = materialParam->MaterialNameB.ToString();
+                driver.MaterialParameterA = materialParam->MaterialParameterA.ToString();
+                driver.MaterialParameterB = materialParam->MaterialParameterB.ToString();
             }
 
             var vectors = (Vector4*)((byte*)(unit + 1) + sizeof(DriverUnitParamsMultiAxis));

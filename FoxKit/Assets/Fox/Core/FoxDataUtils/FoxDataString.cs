@@ -18,13 +18,13 @@ namespace Fox.Core
             }
         }
 
-        public String ReadStringFromRelativeOffset()
+        public string ReadStringFromRelativeOffset()
         {
             if (StringOffset == 0)
                 return null;
 
             var intPtr = new IntPtr((byte*)GetSelfPointer() + StringOffset);
-            return new String(Marshal.PtrToStringAnsi(intPtr));
+            return Marshal.PtrToStringAnsi(intPtr);
         }
     }
 }
