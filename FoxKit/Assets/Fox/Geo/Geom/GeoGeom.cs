@@ -59,35 +59,35 @@ namespace Fox.Geo
             MISSILE2 = 0x4000000000,
             // Padding4 = 0x8000000000,
 
-            TppReserve1 = 0x1 * (0x10 * 10),
-            TppReserve2 = 0x2 * (0x10 * 10),
-            TppReserve3 = 0x4 * (0x10 * 10),
-            TppReserve4 = 0x8 * (0x10 * 10),
+            TppReserve1 = 0x10000000000,
+            TppReserve2 = 0x20000000000,
+            TppReserve3 = 0x40000000000,
+            TppReserve4 = 0x80000000000,
 
-            // Padding5 = 0x1 * (0x10 * 11),
-            // Padding6 = 0x2 * (0x10 * 11),
-            // Padding7 = 0x4 * (0x10 * 11),
-            // Padding8 = 0x8 * (0x10 * 11),
+            // Padding5 = 0x100000000000,
+            // Padding6 = 0x200000000000,
+            // Padding7 = 0x400000000000,
+            // Padding8 = 0x800000000000,
 
-            Sahelan = 0x1 * (0x10 * 12),
-            RIDE_ON_OUTER = 0x2 * (0x10 * 12),
-            FLAME = 0x4 * (0x10 * 12),
-            IGNORE_PHYSICS = 0x8 * (0x10 * 12),
+            Sahelan = 0x1000000000000,
+            RIDE_ON_OUTER = 0x2000000000000,
+            FLAME = 0x4000000000000,
+            IGNORE_PHYSICS = 0x8000000000000,
 
-            CLIMB = 0x1 * (0x10 * 13),
-            HORSE = 0x2 * (0x10 * 13),
-            VEHICLE = 0x4 * (0x10 * 13),
-            MARKER = 0x8 * (0x10 * 13),
+            CLIMB = 0x10000000000000,
+            HORSE = 0x20000000000000,
+            VEHICLE = 0x40000000000000,
+            MARKER = 0x80000000000000,
 
-            RIDE_ON = 0x1 * (0x10 * 14),
-            THROUGH_LINE_OF_FIRE = 0x2 * (0x10 * 14),
-            THROUGH_ITEM_CHECK = 0x4 * (0x10 * 14),
-            NO_CREEP = 0x8 * (0x10 * 14),
+            RIDE_ON = 0x100000000000000,
+            THROUGH_LINE_OF_FIRE = 0x200000000000000,
+            THROUGH_ITEM_CHECK = 0x400000000000000,
+            NO_CREEP = 0x800000000000000,
 
-            NO_FULTON = 0x1 * (0x10 * 15),
-            FULTON = 0x2 * (0x10 * 15),
-            ITEM = 0x4 * (0x10 * 15),
-            BOSS = 0x8 * (0x10 * 15),
+            NO_FULTON = 0x1000000000000000,
+            FULTON = 0x2000000000000000,
+            ITEM = 0x4000000000000000,
+            BOSS = 0x8000000000000000,
         }
         
         public enum NodePayloadType : uint
@@ -163,8 +163,8 @@ namespace Fox.Geo
             Unknown6 = 6,
             Pyramid = 7,
             Path = 8,
-            Unknown9 = 6,
-            Unknown10 = 7,
+            Unknown9 = 9,
+            Unknown10 = 10,
             FreeArea = 11,
         }
 
@@ -181,7 +181,7 @@ namespace Fox.Geo
             HasChild = 0x2000,
             StopCheck = 0x4000,
             HasReference = 0x8000,
-            Unknown3 = 0x8000,
+            Unknown3 = 0x20000,
             Unknown5 = 0x80000,
         }
 

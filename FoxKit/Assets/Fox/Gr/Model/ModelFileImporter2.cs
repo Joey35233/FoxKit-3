@@ -933,13 +933,12 @@ namespace Fox.Gr
                                     if (!accessor.ValidateFeatureIndex(Fmdl.FeatureType.InputLayoutDesc, Fmdl.FeatureType.InputLayoutElement, (uint)(elementsStartIndex + elementCount - 1)))
                                         return ErrorCode.InvalidIndex;
 
-                                // TODO: Figure out
-                                byte firstUvSetIndex = inputLayoutDesc->Unknown0;
-                                byte uvCount = inputLayoutDesc->UvCount;
-                                Debug.Assert(uvCount <= 2);
-                                Debug.Assert((firstUvSetIndex == byte.MaxValue) == (uvCount == 0));
-                                if (firstUvSetIndex != 0 && firstUvSetIndex != byte.MaxValue)
-                                    logWarning("PacketDataLayoutDesc.Unknown0 != 0");
+                                // Unknown0 and UvCount together form one little-endian ushort with exactly one bit set, determined by
+                                // the layout (verified on every TPP/MGO/SSD packet): 0x0080 = no UVs, 0x0100 << (n - 1) for n declared UV
+                                // semantics (aliased UV sets count), 0x2000 = layout has BoneIndex1/BoneWeight1.
+                                ushort layoutClass = (ushort)(inputLayoutDesc->Unknown0 | (inputLayoutDesc->UvCount << 8));
+                                Debug.Assert(layoutClass != 0 && (layoutClass & (layoutClass - 1)) == 0);
+                                Debug.Assert((layoutClass == 0x0080) == (inputLayoutDesc->UvCount == 0));
 
                                 MeshBufferUploadHelper packetUploadHelper = new MeshBufferUploadHelper();
                                 packetUploadHelper.Register(

@@ -271,7 +271,7 @@ namespace Fox.Geo
 
                 GeoBlockMaterialsHeader* materialsHeader = (GeoBlockMaterialsHeader*)((byte*)block + block->MaterialsHeaderOffset);
 
-                GeoMaterial* materials = (GeoMaterial*)(&materialsHeader + 1);
+                GeoMaterial* materials = (GeoMaterial*)(materialsHeader + 1);
 
                 // for (uint i = 0; i < materialsHeader->MaterialsCount; i++)
                 // {
