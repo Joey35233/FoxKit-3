@@ -29,5 +29,12 @@ namespace Fox.Core
         {
             SerializedField[index] = value.GetValueAsBool();
         }
+
+        public override void AddElement(int index, Value value)
+        {
+            if (index >= SerializedField.LongLength)
+                ChangeStaticArraySize((uint)index + 1);
+            SerializedField[index] = value.GetValueAsBool();
+        }
     }
 }
