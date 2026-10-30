@@ -10,6 +10,10 @@ namespace Fox.Gr
     {
         private class BufferUploadHelper
         {
+            private const int HalfVector4WHighByteOffset = 7;
+
+            private const byte SignBit = 0x80;
+
             // Indexed by MeshBufferFormatElementUsage
             private readonly VertexAttribute[] UnityAttributeUsageLUT =
             {
@@ -162,6 +166,9 @@ namespace Fox.Gr
                 }
 
                 for (int i = 0; i < DescriptorCounts.Length; i++) // Buffer
+                    SortDescriptorsInUnityOrder(i);
+
+                for (int i = 0; i < DescriptorCounts.Length; i++) // Buffer
                 {
                     for (int j = 1; j < DescriptorCounts[i]; j++) // Element
                         Descriptors[i, j].Offset = Descriptors[i, j - 1].Offset + Descriptors[i, j - 1].Size;
@@ -171,8 +178,29 @@ namespace Fox.Gr
                 {
                     for (uint j = 0; j < RemapDescCounts.GetLongLength(1); j++) // Mesh
                     {
-                        for (uint k = 1; k < RemapDescCounts[i, j]; k++) // Element
+                        for (uint k = 0; k < RemapDescCounts[i, j]; k++) // Element
                             RemapDescs[i, j, k].OutputOffset = Descriptors[i, DescriptorIndices[i, (uint)RemapDescs[i, j, k].Usage]].Offset;
+                    }
+                }
+            }
+
+            private void SortDescriptorsInUnityOrder(int bufferIndex)
+            {
+                for (int j = 1; j < DescriptorCounts[bufferIndex]; j++)
+                {
+                    for (int k = j; k > 0 && Descriptors[bufferIndex, k].Descriptor.attribute < Descriptors[bufferIndex, k - 1].Descriptor.attribute; k--)
+                        (Descriptors[bufferIndex, k], Descriptors[bufferIndex, k - 1]) = (Descriptors[bufferIndex, k - 1], Descriptors[bufferIndex, k]);
+                }
+
+                for (uint usage = 0; usage < DescriptorIndices.GetLongLength(1); usage++)
+                {
+                    if (DescriptorIndices[bufferIndex, usage] == -1)
+                        continue;
+
+                    for (int j = 0; j < DescriptorCounts[bufferIndex]; j++)
+                    {
+                        if (Descriptors[bufferIndex, j].Descriptor.attribute == UnityAttributeUsageLUT[usage])
+                            DescriptorIndices[bufferIndex, usage] = j;
                     }
                 }
             }
@@ -246,6 +274,9 @@ namespace Fox.Gr
                                     else if (remapDesc.Type == MeshBufferFormatElementType.R16G16B16A16_Float)
                                         *(outputDataPtr + remapDesc.OutputOffset + 1) ^= 0x80;
                                 }
+
+                                if (remapDesc.Usage == MeshBufferFormatElementUsage.Tangent && remapDesc.Type == MeshBufferFormatElementType.R16G16B16A16_Float)
+                                    *(outputDataPtr + remapDesc.OutputOffset + HalfVector4WHighByteOffset) ^= SignBit;
                             }
 
                             outputDataPtr += outputDataStride;

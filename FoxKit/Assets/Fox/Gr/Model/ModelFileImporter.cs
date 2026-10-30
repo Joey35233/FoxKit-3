@@ -531,8 +531,12 @@ namespace Fox.Gr
                 return;
             }
 
-            Material defaultMaterial = AssetDatabase.GetBuiltinExtraResource<Material>("Default-Material.mat");
-            context.AddObjectToAsset("Material", defaultMaterial);
+            // Materials
+            Material[] materials = ReadMaterials(ref def, reader, context, logWarning);
+            if (materials == null)
+                return;
+            Material nothingMaterial = null;
+            var twoSidedShadowMaterials = new Dictionary<Material, Material>();
 
             // Preprocess MeshGroupDefs
             if (def.HasFeature(FeatureType.MeshGroupDefs))
@@ -752,7 +756,6 @@ namespace Fox.Gr
                     Debug.Assert(totalIndexCount <= Int32.MaxValue);
                     mesh.SetVertexBufferParams((int)totalVertexCount, uploadHelper.GetDescriptorArray());
                     mesh.SetIndexBufferParams((int)totalIndexCount, IndexFormat.UInt16);
-                    mesh.subMeshCount = (int)aggregateMeshGroupDef.TotalMeshCount;
 
                     NativeArray<byte>[] outputBuffers = uploadHelper.CreateVertexBuffers(totalVertexCount);
                     BoneWeight[] weightBuffer = bones == null ? null : new BoneWeight[totalVertexCount];
@@ -761,6 +764,9 @@ namespace Fox.Gr
                     DEBUG_FinalFlags = 0;
 #endif
 
+                    var subMeshes = new SubMeshDescriptor[aggregateMeshGroupDef.TotalMeshCount];
+                    var sharedMaterials = new Material[aggregateMeshGroupDef.TotalMeshCount];
+                    var shadowModes = new uint[aggregateMeshGroupDef.TotalMeshCount];
                     uint vertexStart = 0;
                     uint indexStart = 0;
                     for (uint j = 0; j < aggregateMeshGroupDef.TotalMeshCount; j++)
@@ -768,12 +774,26 @@ namespace Fox.Gr
                         reader.Seek(def.GetFeaturePositionForIndex(FeatureType.MeshDefs, aggregateMeshGroupDef.MeshDefIndices[j]));
 
                         uint flags = reader.ReadUInt32();
+                        shadowModes[j] = flags & ShadowModeMeshFlags;
 
 #if DEBUG
                         DEBUG_FinalFlags |= flags;
 #endif
 
                         ushort materialInstanceIndex = reader.ReadUInt16();
+
+                        if (materialInstanceIndex < materials.Length)
+                            sharedMaterials[j] = materials[materialInstanceIndex];
+                        else
+                            sharedMaterials[j] = AssetDatabase.LoadAssetAtPath<Material>("Assets/Fox/Gr/Model/DebugDrawFlags.mat");
+
+                        if (materialInstanceIndex < materials.Length)
+                        {
+                            if ((flags & AlphaTestMeshFlag) != 0)
+                                MakeCutout(materials[materialInstanceIndex]);
+                            if ((flags & TwoSidedMeshFlag) != 0)
+                                MakeTwoSided(materials[materialInstanceIndex]);
+                        }
 
                         ushort boneGroupIndex = reader.ReadUInt16();
 
@@ -819,11 +839,13 @@ namespace Fox.Gr
 
                         mesh.SetIndexBufferData(indexBuffer, (int)highLodIBufferSliceStartIndex * 2, (int)indexStart * 2, (int)highLodIBufferSliceCount * 2, UpdateFlags | MeshUpdateFlags.DontNotifyMeshUsers);
 
-                        mesh.SetSubMesh((int)j, new SubMeshDescriptor { topology = MeshTopology.Triangles, indexStart = (int)indexStart, indexCount = (int)highLodIBufferSliceCount, firstVertex = (int)vertexStart, vertexCount = vertexCount, baseVertex = (int)vertexStart }, UpdateFlags);
+                        subMeshes[j] = new SubMeshDescriptor { topology = MeshTopology.Triangles, indexStart = (int)indexStart, indexCount = (int)highLodIBufferSliceCount, firstVertex = (int)vertexStart, vertexCount = vertexCount, baseVertex = (int)vertexStart, bounds = aggregateMeshGroupDef.Bounds };
 
                         vertexStart += vertexCount;
                         indexStart += highLodIBufferSliceCount;
                     }
+
+                    mesh.SetSubMeshes(subMeshes, UpdateFlags);
 
 #if DEBUG
                     mesh.name += $"<{Convert.ToString(DEBUG_FinalFlags, 2).PadLeft(32, '0')}>";
@@ -835,10 +857,6 @@ namespace Fox.Gr
                     localBounds.center = main.transform.worldToLocalMatrix * new Vector4(localBounds.center.x, localBounds.center.y, localBounds.center.z, 1.0f);
                     localBounds.size = main.transform.worldToLocalMatrix * localBounds.size;
 
-                    var sharedMaterials = new Material[mesh.subMeshCount];
-                    for (uint j = 0; j < sharedMaterials.Length; j++)
-                        sharedMaterials[j] = AssetDatabase.LoadAssetAtPath<Material>("Assets/Fox/Gr/Model/DebugDrawFlags.mat");
-
                     if (bones == null)
                     {
                         MeshFilter meshFilter = meshGroup.AddComponent<MeshFilter>();
@@ -848,6 +866,7 @@ namespace Fox.Gr
                         MeshRenderer meshRenderer = meshGroup.AddComponent<MeshRenderer>();
 
                         meshRenderer.sharedMaterials = sharedMaterials;
+                        ApplyShadowModes(context, meshRenderer, shadowModes, ref nothingMaterial, twoSidedShadowMaterials);
                     }
                     else
                     {
@@ -861,6 +880,7 @@ namespace Fox.Gr
                         skinnedMeshRenderer.rootBone = bones[0];
 
                         skinnedMeshRenderer.sharedMaterials = sharedMaterials;
+                        ApplyShadowModes(context, skinnedMeshRenderer, shadowModes, ref nothingMaterial, twoSidedShadowMaterials);
                     }
 
                     context.AddObjectToAsset(mesh.name, mesh);
