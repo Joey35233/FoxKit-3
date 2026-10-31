@@ -80,8 +80,8 @@ namespace Fox.GameService
         {
             public StrCode32 Id;
             public RouteEventType Type;
-            public RouteAimTargetType AimTargetType;
-            public RouteBodySectionType BodySectionType;
+            public GsRouteDataEventAimPoint_TargetType AimTargetType;
+            public GsRouteDataEventAimPoint_BodySection AimBodySection;
             public bool IsLoop;
             public ushort EncodedTime;
             public ushort EncodedDir;

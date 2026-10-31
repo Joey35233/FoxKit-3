@@ -1,15 +1,22 @@
+using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Splines;
 
 namespace Fox.Geo
 {
     public class RailFileWriter
     {
-        public unsafe byte[] Write(UnityEngine.SceneManagement.Scene scene)
+        public unsafe byte[] Write(Scene scene)
         {
-            GameObject[] railObjects = scene.GetRootGameObjects();
-            uint railCount = (uint)railObjects.Length;
+            GameObject[] rootGameObjects = scene.GetRootGameObjects();
+            List<SplineContainer> containers = new List<SplineContainer>(rootGameObjects.Length);
+            foreach (GameObject rootGameObject in rootGameObjects)
+                if (rootGameObject.TryGetComponent(out SplineContainer splineContainer))
+                    containers.Add(splineContainer);
+            
+            int railCount = containers.Count;
 
             Spline[] splines = new Spline[railCount];
             RailNoteData[][] notesArrays = new RailNoteData[railCount][];
@@ -17,17 +24,22 @@ namespace Fox.Geo
             uint vertexCount = 0;
             uint noteCount = 0;
             uint extensionCount = 0;
-            for (uint i = 0; i < railCount; i++)
+            for (int i = 0; i < railCount; i++)
             {
-                Spline spline = railObjects[i].GetComponent<SplineContainer>().Spline;
-                RailNoteData[] notes = railObjects[i].GetComponent<RailData>().Notes;
+                Spline spline = containers[i].Spline;
 
                 splines[i] = spline;
-                notesArrays[i] = notes;
 
                 vertexCount += (uint)spline.Count;
-                noteCount += (uint)notes.Length;
-                extensionCount += (uint)notes.Length * 2;
+
+                if (containers[i].GetComponent<RailData>() is RailData railData)
+                {
+                    RailNoteData[] notes = railData.Notes;
+                        
+                    notesArrays[i] = notes;
+                    noteCount += (uint)notes.Length;
+                    extensionCount += (uint)notes.Length * 2;
+                }
             }
 
             long dataSize = AlignmentUtils.Align(sizeof(RailFile.Header), 0x10)
